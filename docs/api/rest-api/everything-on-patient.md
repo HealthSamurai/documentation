@@ -84,7 +84,7 @@ The next step is to optimize the request.&#x20;
 See:
 
 {% content-ref url="../../deployment-and-maintenance/indexes/" %}
-[indexes](../../deployment-and-maintenance/indexes/)
+[indexes](../../deployment-and-maintenance/indexes/README.md)
 {% endcontent-ref %}
 
 {% content-ref url="../../deployment-and-maintenance/indexes/create-indexes-manually.md" %}

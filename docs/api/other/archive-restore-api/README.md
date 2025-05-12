@@ -2,7 +2,7 @@
 
 Archive/restore API was designed to upload unnecessary resources from Aidbox to AWS or GCP cloud and restore it back when it is needed.
 
-Archive/restore API is represented by several [tasks](../../../deprecated/deprecated/zen-related/workflow-engine/task/):
+Archive/restore API is represented by several [tasks](../../../deprecated/deprecated/zen-related/workflow-engine/task/README.md):
 
 {% content-ref url="create-archive.md" %}
 [create-archive.md](create-archive.md)

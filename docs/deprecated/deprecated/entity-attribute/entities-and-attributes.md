@@ -7,11 +7,11 @@ description: Aidbox Core Engine Overview
 {% hint style="warning" %}
 Since the 2405 release, using Aidbox in FHIRSchema mode is recommended, which is incompatible with zen or Entity/Attribute options.
 
-[Setup Aidbox with FHIR Schema validation engine](../../../modules/profiling-and-validation/fhir-schema-validator/)
+[Setup Aidbox with FHIR Schema validation engine](../../../modules/profiling-and-validation/fhir-schema-validator/README.md)
 {% endhint %}
 
 {% hint style="info" %}
-Note: you can not use Attributes and [zen profiles](../zen-related/profiling-with-zen-lang/) on the same resource at the same time
+Note: you can not use Attributes and [zen profiles](../zen-related/profiling-with-zen-lang/README.md) on the same resource at the same time
 {% endhint %}
 
 In Aidbox, almost everything is a **Resource**. Resource has a type, which is placed in **resourceType** attribute. All resource types are described with "meta-resources" - **Entity** and **Attribute**. **Entity** defines the resource or complex type and a set of **Attributes** describes its structure.

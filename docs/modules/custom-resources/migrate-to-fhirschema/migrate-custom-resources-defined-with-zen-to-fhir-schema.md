@@ -573,7 +573,7 @@ If you have multiple schemas replacing a set of resources and want to work with 
 **Loading the FHIR NPM Package**
 
 {% content-ref url="../../../tutorials/validation-tutorials/upload-fhir-implementation-guide/" %}
-[upload-fhir-implementation-guide](../../../tutorials/validation-tutorials/upload-fhir-implementation-guide/)
+[upload-fhir-implementation-guide](../../../tutorials/validation-tutorials/upload-fhir-implementation-guide/README.md)
 {% endcontent-ref %}
 
 **Important Notes:**

@@ -1,7 +1,7 @@
 # Custom Resources using Entity
 
 {% hint style="warning" %}
-Entity & Attributes and Zen Schema are planned to be retired and will be replaced by FHIR Schema. Here’s a [migration guide](../../../modules/custom-resources/migrate-to-fhirschema/) to help you transition your custom resources defined via Entity & Attributes / Zen Schema.
+Entity & Attributes and Zen Schema are planned to be retired and will be replaced by FHIR Schema. Here’s a [migration guide](../../../modules/custom-resources/migrate-to-fhirschema/README.md) to help you transition your custom resources defined via Entity & Attributes / Zen Schema.
 {% endhint %}
 
 ## Defining a Custom Resource

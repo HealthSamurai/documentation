@@ -86,4 +86,4 @@ Click the `Show` button to see all spans of a certain request.
 
 ## Next Steps
 
-* Learn more about [Aidbox Configuration](../../../deprecated/deprecated/zen-related/aidbox-zen-lang-project/)
+* Learn more about [Aidbox Configuration](../../../deprecated/deprecated/zen-related/aidbox-zen-lang-project/README.md)

@@ -6,11 +6,11 @@ Since the 2405 release, using Aidbox in FHIRSchema mode is recommended, which is
 [setup-aidbox-with-fhir-schema-validation-engine.md](../../../../modules/profiling-and-validation/fhir-schema-validator/setup-aidbox-with-fhir-schema-validation-engine.md)
 {% endhint %}
 
-[Aidbox Configuration project](../aidbox-zen-lang-project/) is used to configure Aidbox with various features. One of the things it’s used for is providing Aidbox with external terminologies.
+[Aidbox Configuration project](../aidbox-zen-lang-project/README.md) is used to configure Aidbox with various features. One of the things it’s used for is providing Aidbox with external terminologies.
 
 ## Import terminologies using FTR
 
-[FHIR Terminology Repository](./), or FTR, is an efficient way to store and handle terminologies. It is the recommended way to work with CodeSystem and ValueSet resources in Aidbox. You can start using it by providing [Aidbox Configuration project](../aidbox-zen-lang-project/) set up with FTR.
+[FHIR Terminology Repository](./), or FTR, is an efficient way to store and handle terminologies. It is the recommended way to work with CodeSystem and ValueSet resources in Aidbox. You can start using it by providing [Aidbox Configuration project](../aidbox-zen-lang-project/README.md) set up with FTR.
 
 {% content-ref url="creating-aidbox-project-with-ftr/" %}
 [creating-aidbox-project-with-ftr](creating-aidbox-project-with-ftr/)
@@ -40,7 +40,7 @@ AIDBOX_ZEN_PATHS=path:dir:/my/aidbox/project
 BOX_FEATURES_FTR_PULL_ENABLE=true
 ```
 
-You can read more about [AIDBOX\_ZEN\_PATHS](../aidbox-zen-lang-project/aidbox-project-environment-variables/) and [BOX\_FEATURES\_FTR\_PULL\_ENABLE](../ftr.md) in our [configuration reference](broken-reference/).
+You can read more about [AIDBOX\_ZEN\_PATHS](../aidbox-zen-lang-project/aidbox-project-environment-variables/README.md) and [BOX\_FEATURES\_FTR\_PULL\_ENABLE](../ftr.md) in our [configuration reference](broken-reference/).
 
 {% hint style="warning" %}
 Make sure that your Aidbox container [has access to the specified path](broken-reference) on your system.

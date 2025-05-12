@@ -47,7 +47,7 @@ Commit the changes you just made:
 cd project && git add . && git commit -m "Add us-core dependency" && cd ..
 ```
 
-Commit step is necessary as we are using [Aidbox configuration project](../../aidbox-zen-lang-project/) which is a git repository under the hood.
+Commit step is necessary as we are using [Aidbox configuration project](../../aidbox-zen-lang-project/README.md) which is a git repository under the hood.
 
 ### Start Aidbox
 

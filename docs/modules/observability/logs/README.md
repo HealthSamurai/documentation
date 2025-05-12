@@ -9,7 +9,7 @@ Aidbox produces structured logs on every significant event to the internal strea
 * [Loki](./how-to-guides/loki-log-management-integration.md)
 
 {% hint style="info" %}
-Aidbox logs can be used in audit. Please, see our [article on auditing](../../security-and-access-control/audit/) for more info.
+Aidbox logs can be used in audit. Please, see our [article on auditing](../../security-and-access-control/audit/README.md) for more info.
 {% endhint %}
 
 ## Logs exporting with OTEL spec

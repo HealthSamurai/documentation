@@ -67,4 +67,4 @@ Go to your Aidbox base URL, you will be redirected to the login page - you shoul
 
 ![](<../../../.gitbook/assets/image (44) (1).png>)
 
-This user will be logged into Aidbox Console, but without any permissions. Read more in [Access Control Section](../security/) about permissions.
+This user will be logged into Aidbox Console, but without any permissions. Read more in [Access Control Section](../security/README.md) about permissions.

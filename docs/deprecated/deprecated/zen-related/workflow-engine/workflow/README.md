@@ -10,7 +10,7 @@ Since the 2405 release, using Aidbox in FHIR schema validation engine is recomme
 
 ## Introduction
 
-Workflow allows orchestrating a series of [tasks](../task/). Workflow in Aidbox is implemented through a special [decision](broken-reference) task, an instance of which is created on every event of workflow, thus a logic behind workflow could be implemented as an executor for this task.
+Workflow allows orchestrating a series of [tasks](../task/README.md). Workflow in Aidbox is implemented through a special [decision](broken-reference) task, an instance of which is created on every event of workflow, thus a logic behind workflow could be implemented as an executor for this task.
 
 We plan to add SDK for different programming languages to allow the implementation of workflow as a code on the client side. Also, we plan to introduce DSL to describe simple workflow inside Aidbox Configuration Project.
 
@@ -106,7 +106,7 @@ To add a custom workflow:
 
 ### 1. Specify Workflow Definition
 
-The first step for implementing a new custom workflow is to specify its definition in [aidbox-zen-lang-project](../../aidbox-zen-lang-project/) .
+The first step for implementing a new custom workflow is to specify its definition in [aidbox-zen-lang-project](../../aidbox-zen-lang-project/README.md) .
 
 Workflow Definition contains all the information necessary to define the behavior of a workflow instance.
 

@@ -763,7 +763,7 @@ With defined resources, most of the work is done, but there is one missing aspec
 Manually writing StructureDefinitions can be overwhelming. Fortunately, there is an alternative: FSH/SUSHI allows you to generate a FHIR NPM package with your custom resources, which you can load into Aidbox and use.
 
 {% content-ref url="../../tutorials/validation-tutorials/upload-fhir-implementation-guide/" %}
-[upload-fhir-implementation-guide](../../tutorials/validation-tutorials/upload-fhir-implementation-guide/)
+[upload-fhir-implementation-guide](../../tutorials/validation-tutorials/upload-fhir-implementation-guide/README.md)
 {% endcontent-ref %}
 
 ## How Aidbox Deals with FHIR Limitations for Custom Resources

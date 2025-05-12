@@ -7,7 +7,7 @@ description: First-class extension as Zen profile
 {% hint style="warning" %}
 Since the 2405 release, using Aidbox in FHIRSchema mode is recommended, which is incompatible with zen or Entity/Attribute options.
 
-[Setup Aidbox with FHIR Schema validation engine](../../../../modules/profiling-and-validation/fhir-schema-validator/)
+[Setup Aidbox with FHIR Schema validation engine](../../../../modules/profiling-and-validation/fhir-schema-validator/README.md)
 {% endhint %}
 
 While FHIR uses two different ways to define **core elements** and **extensions**, zen profiles provide a unified framework to describe both. Zen FHIR format offers user-defined elements or "first-class extensions". In zen profiles, you can define new attributes (elements) for existing (FHIR) resources. \

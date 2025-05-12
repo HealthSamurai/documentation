@@ -16,7 +16,7 @@ Full syntax description and examples
 
 ## Validation modes supported with zen schemas
 
-Zen schemas are used by Aidbox for validating resources e.g. in [FHIR CRUD API](../../../../api/rest-api/crud/). Such zen schemas must be tagged with either `zen.fhir/base-schema` or `zen.fhir/profile-schema`. Additionally, they must have `:zen.fhir/type` and `:zen.fhir/profileUri` keys specified.
+Zen schemas are used by Aidbox for validating resources e.g. in [FHIR CRUD API](../../../../api/rest-api/crud/README.md). Such zen schemas must be tagged with either `zen.fhir/base-schema` or `zen.fhir/profile-schema`. Additionally, they must have `:zen.fhir/type` and `:zen.fhir/profileUri` keys specified.
 
 ### `zen.fhir/base-schema`
 
@@ -107,7 +107,7 @@ Those schemas must be tagged with `zen.fhir/profile-schema`, describe data struc
 
 #### `zen.fhir/value-set`
 
-To enable value-set validation in zen [concept resources](../../../../modules/terminology/concept/) with `valueset` attribute populated must be loaded into Aidbox.
+To enable value-set validation in zen [concept resources](../../../../modules/terminology/concept/README.md) with `valueset` attribute populated must be loaded into Aidbox.
 
 `:zen.fhir/value-set` key must be a symbol tagged with `zen.fhir/value-set`
 

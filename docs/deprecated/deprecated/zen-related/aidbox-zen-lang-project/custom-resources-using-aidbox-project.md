@@ -5,7 +5,7 @@ description: Create custom resources with zen
 # Custom resources using Aidbox Project
 
 {% hint style="warning" %}
-Entity & Attributes and Zen Schema are planned to be retired and will be replaced by FHIR Schema. Here’s a [migration guide](../../../../modules/custom-resources/migrate-to-fhirschema/) to help you transition your custom resources defined via Entity & Attributes / Zen Schema.
+Entity & Attributes and Zen Schema are planned to be retired and will be replaced by FHIR Schema. Here’s a [migration guide](../../../../modules/custom-resources/migrate-to-fhirschema/README.md) to help you transition your custom resources defined via Entity & Attributes / Zen Schema.
 {% endhint %}
 
 If you're not familiar with Aidbox Project, read [this](broken-reference) section first.

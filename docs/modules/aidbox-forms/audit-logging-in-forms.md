@@ -65,7 +65,7 @@ parameter:
   valueString: forms-app
 ```
 
-For using user-token you should setup [TokenIntrospector](../../modules-1/security-and-access-control/how-to-guides/token-introspection/) or [IdentityProvider](../security-and-access-control/set-up-external-identity-provider/) for validating this token.
+For using user-token you should setup [TokenIntrospector](../../modules-1/security-and-access-control/how-to-guides/token-introspection/README.md) or [IdentityProvider](../security-and-access-control/set-up-external-identity-provider/README.md) for validating this token.
 
 User from token will be used in AuditEvent as
 

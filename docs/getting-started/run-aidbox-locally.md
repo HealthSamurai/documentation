@@ -62,5 +62,5 @@ Notebooks are interactive tutorials within the Aidbox UI with built-in REST, RPC
 ## Next Steps
 
 * Learn more about [Aidbox Configuration](../configuration/configure-aidbox-and-multibox.md)
-* Unlock additional capabilities of [Aidbox UI](../overview/aidbox-ui/)
+* Unlock additional capabilities of [Aidbox UI](../overview/aidbox-ui/README.md)
 * Dive into the built-in [Aidbox Notebooks](../overview/aidbox-ui/aidbox-notebooks.md)

@@ -10,7 +10,7 @@ Since the 2405 release, using Aidbox in FHIR schema validation engine is recomme
 
 ## Introduction
 
-**Tasks** are atomic actions **asynchronously** executed by Aidbox or by an external executor. Tasks can be used as stand-alone operations or as part of an [Aidbox Workflow](../workflow/). It allows async operations to be more reliable, to continue work after restarts, and handle errors correctly. A typical example of task usage is asynchronous sending email or transforming a resource.
+**Tasks** are atomic actions **asynchronously** executed by Aidbox or by an external executor. Tasks can be used as stand-alone operations or as part of an [Aidbox Workflow](../workflow/README.md). It allows async operations to be more reliable, to continue work after restarts, and handle errors correctly. A typical example of task usage is asynchronous sending email or transforming a resource.
 
 ## Aidbox predefined Tasks
 
@@ -21,7 +21,7 @@ Aidbox provides several predefined tasks for routine jobs that can be called via
 <summary>Predefined tasks</summary>
 
 * **Special tasks:**
-  * [**Decision task**](broken-reference) - a task used to implement an [Aidbox Workflow](../workflow/).
+  * [**Decision task**](broken-reference) - a task used to implement an [Aidbox Workflow](../workflow/README.md).
   * [**Subscription task**](broken-reference) - a task that waits for the resource that meets specified criteria.
   * [**Wait task**](broken-reference) - a task that will wait for the indicated duration or until the indicated datetime.
 
@@ -32,7 +32,7 @@ Aidbox provides several predefined tasks for routine jobs that can be called via
 
 ## Task Instance
 
-When a new task is created by [task-user-api.md](task-user-api.md) or by [services.md](../services.md) or [workflow](../workflow/), new resource `AidboxTask` is created which stores task Params, Result, and Status, as well as some additional information regarding task execution. Bellow is an example of AidboxTask with fields explanation:
+When a new task is created by [task-user-api.md](task-user-api.md) or by [services.md](../services.md) or [workflow](../workflow/README.md), new resource `AidboxTask` is created which stores task Params, Result, and Status, as well as some additional information regarding task execution. Bellow is an example of AidboxTask with fields explanation:
 
 ```clojure
 {
@@ -126,7 +126,7 @@ To add a custom task:
 
 ### 1. Specify Task Definition
 
-The first step for implementing a new custom task is to specify its definition in [aidbox-zen-lang-project](../../aidbox-zen-lang-project/) .
+The first step for implementing a new custom task is to specify its definition in [aidbox-zen-lang-project](../../aidbox-zen-lang-project/README.md) .
 
 Task Definition contains all the information necessary to define the behavior of a task instance.
 

@@ -86,7 +86,7 @@ accept: application/json
 ```
 
 {% hint style="warning" %}
-In [fhir-schema-validator](../../modules/profiling-and-validation/fhir-schema-validator/) mode, `/fhir/Bundle/$validate`  doesn't validates Aidbox built-in resources (User, AccessPolicy, etc.). &#x20;
+In [fhir-schema-validator](../../modules/profiling-and-validation/fhir-schema-validator/README.md) mode, `/fhir/Bundle/$validate`  doesn't validates Aidbox built-in resources (User, AccessPolicy, etc.). &#x20;
 
 Use validation in Aidbox format with `Bundle/$validate` if you need to validate a bundle with built-in resources. This endpoint only validates entries of the bundle, but not the bundle itself.
 {% endhint %}

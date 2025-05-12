@@ -14,7 +14,7 @@ When a user with the role `OrganizationAdmin` performs read request for some use
 
 ## Init Aidbox configuration project
 
-To set new [Adibox configuration project](../../../deprecated/deprecated/zen-related/aidbox-zen-lang-project/)
+To set new [Adibox configuration project](../../../deprecated/deprecated/zen-related/aidbox-zen-lang-project/README.md)
 
 {% hint style="info" %}
 It is important to syncronize directory and file name to the `:ns` parameter of the configuration

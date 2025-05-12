@@ -13,7 +13,7 @@ This is a draft API. We appreciate your feedback and ideas in [this discussion](
 It may happen that you updated your profiles when data is already in your database or you want to do efficiently load a batch of data and validate it later. API consists of 4 procedures and a couple of resources:
 
 * [aidbox.validation/batch-validation](asynchronous-resource-validation.md#aidbox-validation-batch-validation) **-** run validation
-* [aidbox.validation/resources-batch-validation-task](asynchronous-resource-validation.md#aidbox.validation-batch-validation-result) - run validation with [Aidbox Workflow](../../deprecated/deprecated/zen-related/workflow-engine/workflow/)
+* [aidbox.validation/resources-batch-validation-task](asynchronous-resource-validation.md#aidbox.validation-batch-validation-result) - run validation with [Aidbox Workflow](../../deprecated/deprecated/zen-related/workflow-engine/workflow/README.md)
 * [aidbox.validation/batch-validation-result](asynchronous-resource-validation.md#aidbox-validation-batch-validation-result) - inspect results (useful for async mode)
 * [aidbox.validation/clear-batch-validation](asynchronous-resource-validation.md#aidbox-validation-clear-batch-validation) - clear validation results
 

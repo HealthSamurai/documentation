@@ -4,7 +4,7 @@
 GET [base]/[type]/[id]
 ```
 
-One of the most basic interactions is used to obtain a resource by a given `id`. For more advanced options for getting resources, check out [Search](../fhir-search/).
+One of the most basic interactions is used to obtain a resource by a given `id`. For more advanced options for getting resources, check out [Search](../fhir-search/README.md).
 
 | Response code | Text          | Description                                            |
 | ------------- | ------------- | ------------------------------------------------------ |

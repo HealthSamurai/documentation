@@ -43,4 +43,4 @@ Go to your Aidbox base URL, you will be redirected to the login page - you shoul
 
 <figure><img src="../../../../.gitbook/assets/Screenshot 2024-01-31 at 12.31.29.png" alt=""><figcaption><p>Aidbox login page</p></figcaption></figure>
 
-This user will be logged into Aidbox Console, but without any permissions. Read more in [Access Control Section](../security/) about permissions.
+This user will be logged into Aidbox Console, but without any permissions. Read more in [Access Control Section](../security/README.md) about permissions.

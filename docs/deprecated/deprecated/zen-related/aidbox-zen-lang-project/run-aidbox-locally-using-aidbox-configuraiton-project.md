@@ -124,7 +124,7 @@ Navigate to [http://localhost:8888/](http://localhost:8888/) and Sign In to the 
 
 ### 4. Discover Aidbox features with Notebooks
 
-Go to the Notebooks section within [the Aidbox UI](../../../../overview/aidbox-ui/) and open Getting Started Notebooks.
+Go to the Notebooks section within [the Aidbox UI](../../../../overview/aidbox-ui/README.md) and open Getting Started Notebooks.
 
 Use the pre-defined Getting Started Notebooks to explore the basic features of Aidbox through interactive steps with API queries:
 
@@ -139,5 +139,5 @@ Notebooks are interactive tutorials within the Aidbox UI with built-in REST, RPC
 ## Next Steps
 
 * Learn more about [Aidbox Configuration](./)
-* Unlock additional capabilities of [Aidbox UI](../../../../overview/aidbox-ui/)
+* Unlock additional capabilities of [Aidbox UI](../../../../overview/aidbox-ui/README.md)
 * Dive into the built-in [Aidbox Notebooks](broken-reference)

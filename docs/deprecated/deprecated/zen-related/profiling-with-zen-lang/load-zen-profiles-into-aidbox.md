@@ -83,7 +83,7 @@ Add `my-profiles` namespace to the entry file imports.
 ```
 
 {% hint style="info" %}
-Refer to [Aidbox Configuration project page](../aidbox-zen-lang-project/) if you want to learn more about zen projects.
+Refer to [Aidbox Configuration project page](../aidbox-zen-lang-project/README.md) if you want to learn more about zen projects.
 {% endhint %}
 
 ## Setup Aidbox for development with zen projects

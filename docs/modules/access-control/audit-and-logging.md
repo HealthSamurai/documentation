@@ -44,7 +44,7 @@ All versions can be accessed using the [\_history](../../api/rest-api/history.md
 
 ## Logging configuration
 
-Aidbox automatically logs all auth, API, database, and network events, so in most cases, basic audit logs may be derived from [Aidbox logs](../observability/logging-and-audit/).
+Aidbox automatically logs all auth, API, database, and network events, so in most cases, basic audit logs may be derived from [Aidbox logs](../observability/logging-and-audit/README.md).
 
 Aidbox also provides ways to [extend](../observability/logs/extending-aidbox-logs.md) Aidbox logs.
 

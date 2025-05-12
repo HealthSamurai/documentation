@@ -17,7 +17,7 @@ Discover how to start with Aidbox in just a few minutes.
 {% endcontent-ref %}
 
 {% content-ref url="../deployment-and-maintenance/deploy-aidbox/run-aidbox-in-kubernetes/" %}
-[run-aidbox-in-kubernetes](../deployment-and-maintenance/deploy-aidbox/run-aidbox-in-kubernetes/)
+[run-aidbox-in-kubernetes](../deployment-and-maintenance/deploy-aidbox/run-aidbox-in-kubernetes/README.md)
 {% endcontent-ref %}
 
 {% content-ref url="upload-sample-data.md" %}

@@ -174,7 +174,7 @@ With this flag, Aidbox will update the history for updated resources. For each r
 
 ## /v2/$import on top of the Workflow Engine
 
-Improved version of the $import operation, to enhance its reliability and performance. By implementing this operation on top of the [workflow-engine](../../deprecated/deprecated/zen-related/workflow-engine/), it allows the $import operation to be more reliable, continue work after restarts, and handle errors correctly. The Task API also enables the operation to accept multiple requests and execute them from a queue while simultaneously processing multiple items from the "inputs" field (with a default of two items processed simultaneously). Users can monitor the status of the operation through the [monitoring.md](../../deprecated/deprecated/zen-related/workflow-engine/monitoring.md).
+Improved version of the $import operation, to enhance its reliability and performance. By implementing this operation on top of the [workflow-engine](../../deprecated/deprecated/zen-related/workflow-engine/README.md), it allows the $import operation to be more reliable, continue work after restarts, and handle errors correctly. The Task API also enables the operation to accept multiple requests and execute them from a queue while simultaneously processing multiple items from the "inputs" field (with a default of two items processed simultaneously). Users can monitor the status of the operation through the [monitoring.md](../../deprecated/deprecated/zen-related/workflow-engine/monitoring.md).
 
 In the future, the ability to list and cancel $import operations will be added, as well as detailed progress info on the operation.
 

@@ -22,7 +22,7 @@ To get the Aidbox License:
 
 ## Create Aidbox project
 
-Aidbox is configured by the [Aidbox Configuration Projects](../../deprecated/deprecated/zen-related/aidbox-zen-lang-project/). To create sample project run command below&#x20;
+Aidbox is configured by the [Aidbox Configuration Projects](../../deprecated/deprecated/zen-related/aidbox-zen-lang-project/README.md). To create sample project run command below&#x20;
 
 {% tabs %}
 {% tab title="FHIR R4" %}

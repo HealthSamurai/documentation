@@ -1,7 +1,7 @@
 # Subscription API
 
 {% hint style="warning" %}
-While FHIR topic-based subscriptions are functional, they will no longer receive active development or new features. For enhanced capabilities and ongoing support, please use [Aidbox topic-based subscriptions](../../../../../modules/topic-based-subscriptions/wip-dynamic-subscriptiontopic-with-destinations/). This newer implementation offers improved performance, flexibility, and will continue to be developed to meet future needs.&#x20;
+While FHIR topic-based subscriptions are functional, they will no longer receive active development or new features. For enhanced capabilities and ongoing support, please use [Aidbox topic-based subscriptions](../../../../../modules/topic-based-subscriptions/wip-dynamic-subscriptiontopic-with-destinations/README.md). This newer implementation offers improved performance, flexibility, and will continue to be developed to meet future needs.&#x20;
 {% endhint %}
 
 ## Create Subscription - `POST /fhir/Subscription`

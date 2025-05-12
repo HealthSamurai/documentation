@@ -64,5 +64,5 @@ template: <b>Hello world! {{foo.bar}}</b>
 ## See also
 
 {% content-ref url="../../../reference/email-providers-reference/" %}
-[email-providers-reference](../../../reference/email-providers-reference/)
+[email-providers-reference](../../../reference/email-providers-reference/README.md)
 {% endcontent-ref %}

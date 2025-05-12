@@ -42,7 +42,7 @@ To create the extension run `CREATE EXTENSION pgagent;`
 There are some more options available to configure PgAgent:\
 You can specify log level with `PGAGENT_LOG_LEVEL` and you can specify a file where PgAagent logs are written in `PGAGENT_LOG_FILE_PATH`.
 
-You can see more info on [configuring aidboxdb](../aidboxdb-image/).
+You can see more info on [configuring aidboxdb](../aidboxdb-image/README.md).
 
 ## Step-by-step example with docker
 

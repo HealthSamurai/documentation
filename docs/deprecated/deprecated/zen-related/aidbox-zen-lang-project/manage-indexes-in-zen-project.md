@@ -172,7 +172,7 @@ Test that no indexes are created:
 select * from pg_indexes where indexname ilike 'aidbox_mng%'
 ```
 
-Start synchronization _**task**_ of indexes from zen-schemas. About tasks and workflow you can read [here](../workflow-engine/).
+Start synchronization _**task**_ of indexes from zen-schemas. About tasks and workflow you can read [here](../workflow-engine/README.md).
 
 Request:
 

@@ -2,7 +2,7 @@
 
 ## Objectives
 
-* Learn how to integrate [AidboxTopicSubscriptions](../../modules/topic-based-subscriptions/wip-dynamic-subscriptiontopic-with-destinations/) with core NATS / NATS JetStream
+* Learn how to integrate [AidboxTopicSubscriptions](../../modules/topic-based-subscriptions/wip-dynamic-subscriptiontopic-with-destinations/README.md) with core NATS / NATS JetStream
 
 ## What is NATS?
 

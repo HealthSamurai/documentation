@@ -5,7 +5,7 @@ description: Validate your resources with zen-lang schemas
 # zen-lang validator
 
 {% hint style="danger" %}
-The zen-lang validator is deprecated in release 2508. Please consider using [FHIR Schema validator](../../../../modules/profiling-and-validation/fhir-schema-validator/).
+The zen-lang validator is deprecated in release 2508. Please consider using [FHIR Schema validator](../../../../modules/profiling-and-validation/fhir-schema-validator/README.md).
 {% endhint %}
 
 Aidbox supports a powerful profile validation mechanism powered by [Zen language](https://github.com/zen-lang/zen). It allows you to define a set (or multiple sets) of profiles in [edn](https://github.com/edn-format/edn) format and later load them into your Aidbox instance. These profiles can be used to validate resources against the specified schemas, including individual properties and also interoperation with other profiles in a composable way.
@@ -44,7 +44,7 @@ Zen FHIR packages require `AIDBOX_CORRECT_AIDBOX_FORMAT=true` environment variab
 
 ### Use Zen FHIR packages
 
-We recommend to load Zen FHIR packages using an [Aidbox Configuration project](../aidbox-zen-lang-project/). Visit the following page for a detailed guide:
+We recommend to load Zen FHIR packages using an [Aidbox Configuration project](../aidbox-zen-lang-project/README.md). Visit the following page for a detailed guide:
 
 {% content-ref url="../aidbox-zen-lang-project/enable-igs.md" %}
 [enable-igs.md](../aidbox-zen-lang-project/enable-igs.md)
@@ -52,7 +52,7 @@ We recommend to load Zen FHIR packages using an [Aidbox Configuration project](.
 
 ### Convert custom FHIR profiles to Zen FHIR package
 
-Our [`zen-lang/fhir`](https://github.com/zen-lang/fhir/blob/main/README.md) tool allows you to generate zen schemas for custom FHIR profiles and use them in your [Aidbox Configuration projects](../aidbox-zen-lang-project/).
+Our [`zen-lang/fhir`](https://github.com/zen-lang/fhir/blob/main/README.md) tool allows you to generate zen schemas for custom FHIR profiles and use them in your [Aidbox Configuration projects](../aidbox-zen-lang-project/README.md).
 
 ### Create custom Zen FHIR package based on other Zen FHIR packages
 

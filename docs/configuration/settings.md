@@ -80,6 +80,6 @@ In some cases there're specific settings defined in products: Smartbox, Multibox
 ### Settings reference documentation
 
 {% content-ref url="../reference/settings/" %}
-[settings](../reference/settings/)
+[settings](../reference/settings/README.md)
 {% endcontent-ref %}
 

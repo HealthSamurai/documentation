@@ -18,7 +18,7 @@ Since the 2405 release, using Aidbox in FHIR schema validation engine is recomme
 
 **Aidbox configuration project** is a directory containing configuration files written in [Zen](https://github.com/zen-lang/zen) language. Don’t worry if you are not familiar with Zen yet — we’ll explain all the necessary details along the way. For now you can think of it as a simple syntax well-suited for specifying all sorts of configs.
 
-With Aidbox configuration project, you can configure all the things you need for a functioning Aidbox instance, including [API endpoints](broken-reference), [authorization flows](broken-reference), [FHIR IGs](../profiling-with-zen-lang/) and more.
+With Aidbox configuration project, you can configure all the things you need for a functioning Aidbox instance, including [API endpoints](broken-reference), [authorization flows](broken-reference), [FHIR IGs](../profiling-with-zen-lang/README.md) and more.
 
 Once you set up your project for one Aidbox instance you can reuse it across multiple instances — they all will be configured in the exact same way. This feature is especially useful for testing purposes. Using a single configuration project, you can be sure that your CI pipeline has the same setup as your deployed instance.
 

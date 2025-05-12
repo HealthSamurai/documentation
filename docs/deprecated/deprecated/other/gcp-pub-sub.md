@@ -11,7 +11,7 @@ This is old, not stable version.
 Since version 2309 Aidbox has GCP Pub/Sub integration via Topic-Based Subscriptions, which is ready for production use.
 
 {% content-ref url="../zen-related/topic-based-subscriptions/" %}
-[topic-based-subscriptions](../zen-related/topic-based-subscriptions/)
+[topic-based-subscriptions](../zen-related/topic-based-subscriptions/README.md)
 {% endcontent-ref %}
 
 ## GCP Pub/Sub

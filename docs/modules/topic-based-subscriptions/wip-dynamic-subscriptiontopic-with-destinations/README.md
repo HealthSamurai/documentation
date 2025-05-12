@@ -1,7 +1,7 @@
 # Aidbox topic-based subscriptions
 
 {% hint style="info" %}
-This functionality is available in Aidbox versions 2409 and later and requires [FHIR Schema](../../profiling-and-validation/fhir-schema-validator/) validation engine to be [enabled](../../profiling-and-validation/fhir-schema-validator/README.md).
+This functionality is available in Aidbox versions 2409 and later and requires [FHIR Schema](../../profiling-and-validation/fhir-schema-validator/README.md) validation engine to be [enabled](../../profiling-and-validation/fhir-schema-validator/README.md).
 {% endhint %}
 
 ### Overview

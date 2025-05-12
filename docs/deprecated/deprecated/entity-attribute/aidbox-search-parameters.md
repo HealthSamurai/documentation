@@ -1,7 +1,7 @@
 # Aidbox Search Parameters
 
 {% hint style="warning" %}
-Aidbox Search Parameters will be ignored if Aidbox operates with the [FHIR Schema validator engine](../../../modules/profiling-and-validation/fhir-schema-validator/). Please contact [us](../../../overview/contact-us.md) if you need assistance migrating to FHIR Search Parameters.
+Aidbox Search Parameters will be ignored if Aidbox operates with the [FHIR Schema validator engine](../../../modules/profiling-and-validation/fhir-schema-validator/README.md). Please contact [us](../../../overview/contact-us.md) if you need assistance migrating to FHIR Search Parameters.
 
 If you want to migrate from Aidbox SearchParameter to FHIR SearchParameter see [this guide.](../../../modules/custom-resources/migrate-to-fhirschema/migrate-custom-resources-defined-with-entity-and-attributes-to-fhir-schema.md)
 {% endhint %}

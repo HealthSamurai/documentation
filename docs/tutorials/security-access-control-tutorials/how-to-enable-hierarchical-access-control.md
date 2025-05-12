@@ -6,13 +6,13 @@ description: >-
 
 # How to enable hierarchical access control
 
-&#x20;Since Aidbox version 2412, to enable OrgBAC in [FHIRSchema mode](../../modules/profiling-and-validation/fhir-schema-validator/), use:
+&#x20;Since Aidbox version 2412, to enable OrgBAC in [FHIRSchema mode](../../modules/profiling-and-validation/fhir-schema-validator/README.md), use:
 
 ```
 BOX_FEATURES_ORGBAC_ENABLE=true
 ```
 
-If your Aidbox version is lower or you do not use FHIRSchema mode, use [the Aidbox Configuration project](../../deprecated/deprecated/zen-related/aidbox-zen-lang-project/) and import `aidbox.multitenancy.v1.fhir-r4`or `aidbox.multitenancy.v1.fhir-r5`namespace.
+If your Aidbox version is lower or you do not use FHIRSchema mode, use [the Aidbox Configuration project](../../deprecated/deprecated/zen-related/aidbox-zen-lang-project/README.md) and import `aidbox.multitenancy.v1.fhir-r4`or `aidbox.multitenancy.v1.fhir-r5`namespace.
 
 {% tabs %}
 {% tab title="FHIR R4" %}
