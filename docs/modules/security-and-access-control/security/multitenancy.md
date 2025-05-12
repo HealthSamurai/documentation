@@ -24,6 +24,8 @@ Multibox is a type of Aidbox distribution that isolates data to separate databas
 * Data can't be easily shared between tenants, e.g. terminologies, Practitioner, Organization resources etc.
 {% endhint %}
 
+See: [how to start Multibox](../../../tutorials/security-access-control-tutorials/run-multibox-locally.md) tutorial. 
+
 ### Aidbox API Constructor
 
 Aidbox API Constructor is a tool to define your own REST API routes with middlewares, access checks, etc.\
@@ -51,21 +53,13 @@ You can fine-tune access to every operation or resource type, for example:
 * Multitenancy without isolation requires precise configuration.
 {% endhint %}
 
-{% content-ref url="broken-reference" %}
-[Broken link](broken-reference)
-{% endcontent-ref %}
-
-{% content-ref url="broken-reference" %}
-[Broken link](broken-reference)
-{% endcontent-ref %}
-
 {% embed url="https://github.com/Aidbox/aidbox-project-samples/tree/main/aidbox-project-samples/multitenancy" %}
 Aidbox project with API constructor multitenancy example
 {% endembed %}
 
 ### Aidbox AccessPolicy
 
-Aidbox AccessPolicy can be used to add requirements to requests.\
+Aidbox [AccessPolicy](./accesspolicy.md) can be used to add requirements to requests.\
 \
 Aidbox FHIR API can have filters to ensure that a client can access only certain data. To separate search request results by a tenant you can add a filter by the tenant identifier. AccessPolicy forces using the tenant id to get access to the tenant data.
 
@@ -79,11 +73,3 @@ Aidbox FHIR API can have filters to ensure that a client can access only certain
 * Multitenancy is forced but not automated.
 * Different tenants can't have different configurations, e.g. the same FHIR version across all tenants.
 {% endhint %}
-
-{% content-ref url="broken-reference" %}
-[Broken link](broken-reference)
-{% endcontent-ref %}
-
-{% content-ref url="broken-reference" %}
-[Broken link](broken-reference)
-{% endcontent-ref %}

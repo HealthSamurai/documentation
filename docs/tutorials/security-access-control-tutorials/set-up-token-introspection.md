@@ -138,8 +138,4 @@ matcho:
 resourceType: AccessPolicy
 ```
 
-All available `TokenIntrospector` attributes:
-
-{% content-ref url="broken-reference" %}
-[Broken link](broken-reference)
-{% endcontent-ref %}
+See all available [TokenIntrospector fields](../../reference/system-resources-reference/iam-module-resources.md).

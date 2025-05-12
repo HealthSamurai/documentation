@@ -7,10 +7,7 @@ description: How to load FHIR Canonical resources via Aidbox FHIR API
 Aidbox provides a FHIR CRUD API over canonical resources such as StructureDefinition, SearchParameter, and ValueSet.
 
 ### 1. Run Aidbox with FHIR Schema Validation Engine
-
-{% content-ref url="broken-reference" %}
-[Broken link](broken-reference)
-{% endcontent-ref %}
+See [getting started](../../../getting-started/run-aidbox-locally.md) guide.
 
 ## 2. Creating conformance resources
 

@@ -8,11 +8,7 @@ description: >-
 
 Aidbox has its own registry of IG packages with guaranteed uptime. The content of the registry is synchronized daily, fetching available public packages.
 
-You can explore the list of available packages in the registry here:
-
-{% content-ref url="broken-reference" %}
-[Broken link](broken-reference)
-{% endcontent-ref %}
+You can explore the list of available packages in the registry [here](../../../../modules/profiling-and-validation/fhir-schema-validator/aidbox-fhir-igs-registry.md).
 
 ### 1. Run Aidbox with FHIR Schema Validation Engine
 

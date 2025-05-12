@@ -9,10 +9,7 @@ Aidbox allows you to upload a package from your computer even in offline mode. T
 If the package includes dependencies, they can either be included in the upload or automatically downloaded from the Aidbox Registry when online.
 
 ## 1. Run Aidbox with FHIR Schema Validation Engine
-
-{% content-ref url="broken-reference" %}
-[Broken link](broken-reference)
-{% endcontent-ref %}
+See [getting started](../../../../getting-started/run-aidbox-locally.md) guide.
 
 ## 2. Open the Aidbox UI
 

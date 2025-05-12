@@ -12,7 +12,7 @@
 *   **How to send inbound messages?**
 
     Visit the Message Tester section within Surescripts workbench.\
-    From there, you can manage templates and compose messages. That's particularly useful for [callback testing](broken-reference).
+    From there, you can manage templates and compose messages. That's particularly useful for callback testing.
 *   **What should I do if I receive an "Authentication Failed - No account matches certificate information" error?**
 
     This error can be confusing and typically occurs when there is a mismatch in the identifiers used in message header. Specifically, it means either the NCPDP ID or SPI (Surescripts Provider ID) being used is incorrect. Double-check these values and ensure they match the credentials provided to you.
