@@ -98,13 +98,13 @@ redirects:
     api-1/rest-api-1/other/aidbox-version: api/rest-api/other/aidbox-version.md
     api-1/rest-api-1/other/capability-statement: api/rest-api/other/capability-statement.md
     api-1/rest-api-1/other/health-check: api/rest-api/other/health-check.md
-    api-1/rest-api-1/other/observation-usdlastn: api/rest-api/other/observation-usdlastn.md
+    api-1/rest-api-1/other/observation-usdlastn: api/rest-api/other/observation-lastn.md
     api-1/rest-api-1/other/README: api/rest-api/other/README.md
     api-1/rest-api-1/other/sql-endpoints: api/rest-api/other/sql-endpoints.md
-    api-1/rest-api-1/other/usddocument: api/rest-api/other/usddocument.md
-    api-1/rest-api-1/other/usdmatcho: api/rest-api/other/usdmatcho.md
-    api-1/rest-api-1/other/usdto-format: api/rest-api/other/usdto-format.md
-    api-1/rest-api-1/other/usdvalidate: api/rest-api/other/usdvalidate.md
+    api-1/rest-api-1/other/usddocument: api/rest-api/other/document.md
+    api-1/rest-api-1/other/usdmatcho: api/rest-api/other/matcho.md
+    api-1/rest-api-1/other/usdto-format: api/rest-api/other/to-format.md
+    api-1/rest-api-1/other/usdvalidate: api/rest-api/other/validate.md
     api-1/rest-api-1/README: api/rest-api/README.md
     api-1/rest-api/aidbox-search: api/rest-api/aidbox-search.md
     api-1/rest-api/bundle: api/rest-api/bundle.md
@@ -131,13 +131,13 @@ redirects:
     api-1/rest-api/other/aidbox-version: api/rest-api/other/aidbox-version.md
     api-1/rest-api/other/capability-statement: api/rest-api/other/capability-statement.md
     api-1/rest-api/other/health-check: api/rest-api/other/health-check.md
-    api-1/rest-api/other/observation-usdlastn: api/rest-api/other/observation-usdlastn.md
+    api-1/rest-api/other/observation-usdlastn: api/rest-api/other/observation-lastn.md
     api-1/rest-api/other/README: api/rest-api/other/README.md
     api-1/rest-api/other/sql-endpoints: api/rest-api/other/sql-endpoints.md
-    api-1/rest-api/other/usddocument: api/rest-api/other/usddocument.md
-    api-1/rest-api/other/usdmatcho: api/rest-api/other/usdmatcho.md
-    api-1/rest-api/other/usdto-format: api/rest-api/other/usdto-format.md
-    api-1/rest-api/other/usdvalidate: api/rest-api/other/usdvalidate.md
+    api-1/rest-api/other/usddocument: api/rest-api/other/document.md
+    api-1/rest-api/other/usdmatcho: api/rest-api/other/matcho.md
+    api-1/rest-api/other/usdto-format: api/rest-api/other/to-format.md
+    api-1/rest-api/other/usdvalidate: api/rest-api/other/validate.md
     api-1/rest-api/README: api/rest-api/README.md
     api/bulk-api-1/aidbox-bulk-data-import: api/bulk-api/aidbox-bulk-data-import.md
     api/bulk-api-1/bulk-import-from-an-s3-bucket: api/bulk-api/bulk-import-from-an-s3-bucket.md
@@ -181,13 +181,13 @@ redirects:
     api/rest-api-1/other/aidbox-version: api/rest-api/other/aidbox-version.md
     api/rest-api-1/other/capability-statement: api/rest-api/other/capability-statement.md
     api/rest-api-1/other/health-check: api/rest-api/other/health-check.md
-    api/rest-api-1/other/observation-usdlastn: api/rest-api/other/observation-usdlastn.md
+    api/rest-api-1/other/observation-usdlastn: api/rest-api/other/observation-lastn.md
     api/rest-api-1/other/README: api/rest-api/other/README.md
     api/rest-api-1/other/sql-endpoints: api/rest-api/other/sql-endpoints.md
-    api/rest-api-1/other/usddocument: api/rest-api/other/usddocument.md
-    api/rest-api-1/other/usdmatcho: api/rest-api/other/usdmatcho.md
-    api/rest-api-1/other/usdto-format: api/rest-api/other/usdto-format.md
-    api/rest-api-1/other/usdvalidate: api/rest-api/other/usdvalidate.md
+    api/rest-api-1/other/usddocument: api/rest-api/other/document.md
+    api/rest-api-1/other/usdmatcho: api/rest-api/other/matcho.md
+    api/rest-api-1/other/usdto-format: api/rest-api/other/to-format.md
+    api/rest-api-1/other/usdvalidate: api/rest-api/other/validate.md
     api/rest-api-1/README: api/rest-api/README.md
     api/rest-api/crud-1/create: api/rest-api/crud/create.md
     api/rest-api/crud-1/delete: api/rest-api/crud/delete.md
@@ -411,7 +411,7 @@ redirects:
     modules-1/observability/traces/README: modules/observability/traces/README.md
     modules-1/other-modules/mcp: modules/other-modules/mcp.md
     modules-1/other-modules/mdm/configure-mdm-module: modules/other-modules/mdm/configure-mdm-module.md
-    modules-1/other-modules/mdm/find-duplicates-usdmatch: modules/other-modules/mdm/find-duplicates-usdmatch.md
+    modules-1/other-modules/mdm/find-duplicates-usdmatch: modules/other-modules/mdm/find-duplicates-match.md
     modules-1/other-modules/mdm/mathematical-details: modules/other-modules/mdm/mathematical-details.md
     modules-1/other-modules/mdm/README: modules/other-modules/mdm/README.md
     modules-1/other-modules/mdm/train-model: modules/other-modules/mdm/train-model.md
@@ -464,7 +464,7 @@ redirects:
     modules-1/smartbox/get-started/set-up-smartbox-locally: modules/smartbox/get-started/set-up-smartbox-locally.md
     modules-1/smartbox/how-to-guides/check-email-templates: modules/smartbox/how-to-guides/check-email-templates.md
     modules-1/smartbox/how-to-guides/find-documentation-endpoint: modules/smartbox/how-to-guides/find-documentation-endpoint.md
-    modules-1/smartbox/how-to-guides/find-out-what-resources-were-exported-during-the-usdexport-operation: modules/smartbox/how-to-guides/find-out-what-resources-were-exported-during-the-usdexport-operation.md
+    modules-1/smartbox/how-to-guides/find-out-what-resources-were-exported-during-the-usdexport-operation: modules/smartbox/how-to-guides/find-out-what-resources-were-exported-during-the-export-operation.md
     modules-1/smartbox/how-to-guides/pass-inferno-tests-with-smartbox: modules/smartbox/how-to-guides/pass-inferno-tests-with-smartbox.md
     modules-1/smartbox/how-to-guides/pass-inferno-visual-inspection-and-attestation: modules/smartbox/how-to-guides/pass-inferno-visual-inspection-and-attestation.md
     modules-1/smartbox/how-to-guides/perform-ehr-launch: modules/smartbox/how-to-guides/perform-ehr-launch.md
@@ -490,13 +490,13 @@ redirects:
     modules-1/terminology/codesystem-and-concept/README: modules/terminology/codesystem-and-concept/README.md
     modules-1/terminology/concept/handling-hierarchies-using-ancestors: modules/terminology/concept/handling-hierarchies-using-ancestors.md
     modules-1/terminology/concept/README: modules/terminology/concept/README.md
-    modules-1/terminology/concept/usdtranslate-concepts: modules/terminology/concept/usdtranslate-concepts.md
+    modules-1/terminology/concept/usdtranslate-concepts: modules/terminology/concept/translate-concepts.md
     modules-1/terminology/README: modules/terminology/README.md
     modules-1/terminology/terminology-api/import-flat-file-docs-csv: modules/terminology/terminology-api/import-flat-file-docs-csv.md
     modules-1/terminology/terminology-api/import-operation: modules/terminology/terminology-api/import-operation.md
     modules-1/terminology/terminology-api/README: modules/terminology/terminology-api/README.md
     modules-1/terminology/terminology-api/ready-to-use-terminologies: modules/terminology/terminology-api/ready-to-use-terminologies.md
-    modules-1/terminology/usdtranslate-on-conceptmap: modules/terminology/usdtranslate-on-conceptmap.md
+    modules-1/terminology/usdtranslate-on-conceptmap: modules/terminology/translate-on-conceptmap.md
     modules-1/terminology/valueset/create-a-valueset: modules/terminology/valueset/create-a-valueset.md
     modules-1/terminology/valueset/README: modules/terminology/valueset/README.md
     modules-1/terminology/valueset/valueset-code-validation: modules/terminology/valueset/valueset-code-validation.md
