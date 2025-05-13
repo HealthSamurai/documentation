@@ -126,7 +126,7 @@ In Aidbox mode, it is possible to search without specifying source type: GET /Pa
 
 ### Authorize inline requests<a href="#fhir.search.authorize-inline-requests" id="fhir.search.authorize-inline-requests"></a>
 
-Authorize inline requests (`_revinclude` and `_include`) with access policies. [Learn more](../../api/rest-api/fhir-search/include-and-revinclude.md#authorize-inline-requests-mode)
+Authorize inline requests (`_revinclude` and `_include`) with access policies. [Learn more](https://docs.aidbox.app/api/rest-api/fhir-search/include-and-revinclude#authorize-inline-requests-mode)
 
 <table data-header-hidden="true"><thead><tr><th width="200"></th><th></th></tr></thead><tbody><tr><td>ID</td><td><code>fhir.search.authorize-inline-requests</code></td></tr><tr><td>Type</td><td>Bool</td></tr><tr><td>Default value</td><td><code>false</code></td></tr><tr><td>Environment variable</td><td><code>BOX_FHIR_SEARCH_AUTHORIZE_INLINE_REQUESTS</code></td></tr><tr><td>Deprecated environment variables</td><td><code>BOX_SEARCH_AUTHORIZE_INLINE_REQUESTS</code></td></tr><tr><td>Sensitive</td><td><code>false</code> — value will be visible in plaintext in Admin UI</td></tr><tr><td>Set via</td><td>Admin UI → Settings<br />Environment variables</td></tr><tr><td>Hot reload</td><td><code>true</code> — setting can be changed at runtime</td></tr></tbody></table>
 
