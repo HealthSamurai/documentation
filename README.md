@@ -49,5 +49,6 @@ Run `make init` to set up the pre-push git hook. This hook will automatically ru
 - `replace_absolute_aidbox_links.sh` — Replaces absolute links to `https://docs.aidbox.app` with correct relative links (if the target file exists).
 - `redirects-from-all-files.sh` — Generates a YAML file with possible redirects for legacy paths (used for migration/redirects).
 - `change_names.sh` — Batch renaming utility for files. api-1.md -> api.md
+- `find-unused-assets.sh` — Finds images in `.gitbook/assets` that are not referenced in any markdown file. The list of unused files is saved to `out/unused_assets.txt` — you can safely delete them with `xargs -d '\n' rm -- < out/unused_assets.txt`.
 
 You can run any script from the `scripts/` directory manually if needed.
