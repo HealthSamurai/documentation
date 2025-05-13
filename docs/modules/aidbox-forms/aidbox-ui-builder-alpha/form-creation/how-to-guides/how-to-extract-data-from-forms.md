@@ -258,3 +258,126 @@ entry:
     method: POST
     url: /Provenance
 ```
+
+### Extraction complicated resource types
+
+Some resource types have rules for extraction conditions. For example, extracting Patient phone or another contact information needs to be created[ ContactPoint](https://hl7.org/fhir/R4/datatypes.html#contactpoint) data type.
+
+In our example ContactPoint has constraints which means:&#x20;
+
+> A system field is required if a value is provided.
+
+We need setup another item which will be extract's need `system` field.
+
+#### Form setup
+
+Let's create a form that updates Patient phone resource. Create in builder group called Patient and two items into it , so your form in item tree should look like this:
+
+```
+Patient [group]
+  - phone [integer]
+    - system [string]
+```
+
+#### 1. Setting group extraction context
+
+1. Select group in outline
+2. Expand `Data extraction` section
+3. Check `Extract`&#x20;
+4. Select `Definition`
+5. Fill `Group extraction context` with **`Patient/{{%resource.subject.id}}`**
+
+When aidbox mets this group during the extraction process, it will fetch Patient resource with id = subject.id of QuestionnaireResponse.&#x20;
+
+#### 2. Setting item definitions
+
+Once we have item extraction context (in our case it is a Patient resource), we can set where answers from items in this group should go.&#x20;
+
+For each item in "Patient" group enable data-extraction in builder and choose "Definition" and fill it with these values:
+
+* `Patient.telecom.value` for phone name item
+* `Patient.telecom.system` for system name item
+
+#### 3. Setting widget
+
+1. Select `system` widget in outline
+2. Select `Hidden` and `Readonly` properties
+3. Expand `Rules` section&#x20;
+4. Fill `Calculated Expression` with **`'phone'`**
+
+Now `system` item will extract  **`'system' = 'phone'`** into Patient telecom resource.
+
+In the end your Questionnaire should look like this:
+
+```yaml
+url: http://forms.aidbox.io/questionnaire/extraction-definition
+item:
+- item:
+  - item:
+    - text: system
+      type: string
+      linkId: system
+      readOnly: true
+      extension:
+      - {url: 'http://hl7.org/fhir/StructureDefinition/questionnaire-hidden', valueBoolean: true}
+      - url: http://hl7.org/fhir/uv/sdc/StructureDefinition/sdc-questionnaire-calculatedExpression
+        valueExpression: {language: text/fhirpath, expression: '''phone'''}
+      definition: Patient.contact.telecom.system
+    text: Phone
+    type: string
+    linkId: phone
+    definition: Patient.contact.telecom.value
+  text: Patient
+  type: group
+  linkId: patient
+  repeats: false
+  extension:
+  - url: http://hl7.org/fhir/uv/sdc/StructureDefinition/sdc-questionnaire-itemExtractionContext
+    valueExpression: {language: application/x-fhir-query, expression: 'Patient/{{%resource.subject.id}}'}
+title: 'Extraction definition '
+status: draft
+id: eb58940b-6839-45c5-8fd7-8cf641a5e305
+resourceType: Questionnaire
+meta:
+  lastUpdated: '2000-00-00T00:00:00.00Z'
+  versionId: '6487'
+  extension:
+  - {url: 'https://fhir.aidbox.app/fhir/StructureDefinition/created-at', valueInstant: '2000-00-00T00:00:00.00Z'}
+```
+
+#### Testing
+
+&#x20;Call `$extract` operation again or click "Extract" in Debug panel in Extraction tab:
+
+```yaml
+resourceType: Parameters
+parameter:
+- name: return
+  resource:
+    resourceType: Bundle
+    type: transaction
+    entry:
+    - resource:
+        meta:
+          lastUpdated: '2000-00-00T00:00:00.00Z'
+          versionId: '4491'
+          extension:
+          - {url: 'https://fhir.aidbox.app/fhir/StructureDefinition/created-at', valueInstant: '2000-00-00T00:00:00.00Z'}
+        name:
+        - given: [John, Doe]
+          family: Andrews
+        resourceType: Patient
+        id: id2
+        identifier:
+        - use: usual
+          type:
+            coding:
+            - {code: MR, system: 'http://terminology.hl7.org/CodeSystem/v2-0203'}
+          value: '12345'
+          system: urn:oid:1.2.36.146.595.217.0.1
+        telecom:
+        - {system: phone, value: '+1222333444'}
+      request: {method: PUT, url: /Patient/id2}
+```
+
+In response you will find enty which updates Patient `id2`  with filled `telecom` . In our example it is `phone` type with `+1222333444` numbers.
