@@ -24,9 +24,9 @@ This way of enabling OTEL capabilities is available in Aidbox versions 2503 and 
 
 To  enable exporting telemetry to the OTEL collector, set up the following Aidbox settings:
 
-* [observability.otel.metrics-url](broken-reference)
-* [observability.otel.traces-url](broken-reference)
-* [observability.otel.logs-url](broken-reference)
+* [observability.otel.metrics-url](../../../reference/settings/observability.md#observability.otel.metrics-url)
+* [observability.otel.traces-url](../../../reference/settings/observability.md#observability.otel.traces-url)
+* [observability.otel.logs-url](../../../reference/settings/observability.md#observability.otel.logs-url)
 
 Set OTEL collector receiver endpoint in each of the variables.
 

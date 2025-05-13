@@ -68,9 +68,6 @@ Here's how to create your own custom print template:
 Let's consider a basic example for clarity: there is a form with three fields (see Figure 1). The task is to create a print version where a table will be generated. In the left column of the table, the title and response from the textarea field will be placed, in the right column - the response from the datetime field, and the field with the signature should not be displayed at all.
 
 {% tabs %}
-{% tab title="Form" %}
-![Figure 1](../../../../.gitbook/assets/form-for-pdf.png)
-{% endtab %}
 
 {% tab title="Questionnaire" %}
 ```yaml
@@ -193,7 +190,6 @@ parameter:
       string: 'test-template'
 ```
 
-![rendered form](../../../../.gitbook/assets/rendered-form.png)
 
 ### Template Render Context
 

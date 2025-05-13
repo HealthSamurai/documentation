@@ -2,7 +2,7 @@
 
 {% hint style="info" %}
 This functionality is available starting from version 2411.\
-The [FHIR Schema Validator Engine](broken-reference) should be enabled.
+The [FHIR Schema Validator Engine](../../../profiling-and-validation/fhir-schema-validator/README.md) must be enabled.
 {% endhint %}
 
 Aidbox fully supports [version 1 ](https://www.hl7.org/fhir/smart-app-launch/1.0.0/scopes-and-launch-context/index.html)of SMART on FHIR scopes:
@@ -27,7 +27,7 @@ To enable scope checking in the Access Control layer, the JWT access token must 
 
 \* - required claim
 
-For scope checking, Aidbox accepts any valid JWT tokens issued by [external servers](../../../docs/tutorials/security-access-control-tutorials/set-up-token-introspection.md) if they contain the specified scopes and Aidbox can issue its own JWT tokens with all the required claims.
+For scope checking, Aidbox accepts any valid JWT tokens issued by [external servers](../../../../tutorials/security-access-control-tutorials/set-up-token-introspection.md) if they contain the specified scopes and Aidbox can issue its own JWT tokens with all the required claims.
 
 ### Example
 

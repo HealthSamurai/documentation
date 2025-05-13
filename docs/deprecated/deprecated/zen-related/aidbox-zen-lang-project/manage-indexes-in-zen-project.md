@@ -39,7 +39,7 @@ Next we will edit files in /zrc directory.
 
 ## Create repositories
 
-Read about [Index Management](../../../../deployment-and-maintenance/indexes/#index-management).
+Read about [Index Management](../../../../deployment-and-maintenance/indexes/README.md#index-management).
 
 We will create index for Practitioner.index search parameter with SQL, define new search parameter Patient.brthdt and create auto-index for that.
 

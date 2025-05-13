@@ -10,10 +10,10 @@ Since the 2405 release, using Aidbox in FHIRSchema mode is recommended, which is
 
 ## Import terminologies using FTR
 
-[FHIR Terminology Repository](./), or FTR, is an efficient way to store and handle terminologies. It is the recommended way to work with CodeSystem and ValueSet resources in Aidbox. You can start using it by providing [Aidbox Configuration project](../aidbox-zen-lang-project/README.md) set up with FTR.
+[FHIR Terminology Repository](./README.md), or FTR, is an efficient way to store and handle terminologies. It is the recommended way to work with CodeSystem and ValueSet resources in Aidbox. You can start using it by providing [Aidbox Configuration project](../aidbox-zen-lang-project/README.md) set up with FTR.
 
 {% content-ref url="creating-aidbox-project-with-ftr/" %}
-[creating-aidbox-project-with-ftr](creating-aidbox-project-with-ftr/)
+[creating-aidbox-project-with-ftr](creating-aidbox-project-with-ftr/README.md)
 {% endcontent-ref %}
 
 ## Import terminology bundles
@@ -29,7 +29,7 @@ Aidbox imports terminology bundles found in zen paths. Bundles are just `.ndjson
 
 ### Import terminology bundle from local system using Aidbox project
 
-Aidbox reads files from [Aidbox projects](../aidbox-zen-lang-project/#aidbox-project) on startup and imports files whose names end with `terminology-bundle.ndjson.gz` .
+Aidbox reads files from [Aidbox projects](../aidbox-zen-lang-project/README.md#aidbox-project) on startup and imports files whose names end with `terminology-bundle.ndjson.gz` .
 
 For example, path to terminology bundle GZIP fie is: `/my/aidbox/project/my-terminology-bundle.ndjson.gz`.
 
@@ -52,7 +52,7 @@ Zip-archive your terminology bundle that is my-terminology-budnle.ndjson.gz file
 
 Upload your my-terminology.zip to a remote server e.g. https://example.com/terminologies/my-terminology.zip
 
-Set [`AIDBOX_ZEN_PATHS` environment variable:](../aidbox-zen-lang-project/#aidbox_zen_paths)
+Set [`AIDBOX_ZEN_PATHS` environment variable:](../aidbox-zen-lang-project/README.md#aidbox_zen_paths)
 
 ```
 AIDBOX_ZEN_PATHS=url:zip:https://example.com/terminologies/my-terminology.zip

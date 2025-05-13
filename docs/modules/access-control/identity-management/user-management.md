@@ -11,7 +11,7 @@ There are three ways to manage users in Aidbox:
 Aidbox user management is based on the `User` resource.\
 A `User` represents an application‑level identity and is completely stored and controlled inside the Aidbox database. Each user record contains the login name, a hashed password, an active flag, and a link to FHIR user (Practitioner or Patient), and some additional fields that determine the user's effective permissions through `AccessPolicy` rules.
 
-Because everything is a resource, you can manage users the same way you manage clinical data: create [profiles](../../profiling-and-validation/#what-is-profiling) to apply validation, versioned history, transactions, \_history, etc.
+Because everything is a resource, you can manage users the same way you manage clinical data: create [profiles](../../profiling-and-validation/README.md#what-is-profiling) to apply validation, versioned history, transactions, \_history, etc.
 
 See also:
 

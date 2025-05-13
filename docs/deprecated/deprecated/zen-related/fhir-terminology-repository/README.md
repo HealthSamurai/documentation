@@ -19,7 +19,7 @@ You can store the resulting FTR on s3 like storage or a regular file system. Aid
 {% endcontent-ref %}
 
 {% content-ref url="creating-aidbox-project-with-ftr/" %}
-[creating-aidbox-project-with-ftr](creating-aidbox-project-with-ftr/)
+[creating-aidbox-project-with-ftr](creating-aidbox-project-with-ftr/README.md)
 {% endcontent-ref %}
 
 ### Ready to use FTRs

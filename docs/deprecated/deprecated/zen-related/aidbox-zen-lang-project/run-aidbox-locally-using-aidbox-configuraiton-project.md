@@ -95,7 +95,7 @@ Everything in Aidbox can be configured with a dedicated Aidbox Configuration Pro
 
 This approach helps you keep configurations under a version control system and share them between Aidbox Instances.
 
-[Learn more.](./)
+[Learn more.](./README.md)
 {% endhint %}
 
 #### Add the license key to your configuration project.
@@ -138,6 +138,6 @@ Notebooks are interactive tutorials within the Aidbox UI with built-in REST, RPC
 
 ## Next Steps
 
-* Learn more about [Aidbox Configuration](./)
+* Learn more about [Aidbox Configuration](./README.md)
 * Unlock additional capabilities of [Aidbox UI](../../../../overview/aidbox-ui/README.md)
 * Dive into the built-in [Aidbox Notebooks](broken-reference)

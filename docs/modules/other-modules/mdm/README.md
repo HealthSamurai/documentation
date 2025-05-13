@@ -29,10 +29,3 @@ Learn more about mathematics behind probabilistic matching
 {% content-ref url="mathematical-details.md" %}
 [mathematical-details.md](mathematical-details.md)
 {% endcontent-ref %}
-
-## References
-
-### RPC methods
-
-* [aidbox.mdm/update-mdm-tables](../../../deprecated/deprecated/zen-related/rpc-reference/aidbox/mdm/aidbox.mdm-update-mdm-tables.md)
-* [aidbox.mdm/match](../../../deprecated/deprecated/zen-related/rpc-reference/aidbox/mdm/aidbox.mdm-match.md)

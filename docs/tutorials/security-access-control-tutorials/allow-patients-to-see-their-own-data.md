@@ -12,8 +12,6 @@ In this tutorial, you will learn how to manage user access to patient resources.
 
 ## Prerequisites
 
-To complete this tutorial, you should install Postman and get access to the Aidbox Console (see [here](../../configuration/installation.md) how to install your Aidbox instance) .
-
 Once you access the Aidbox REST Console, load resources that you need to work with policies:
 
 ```yaml
@@ -88,7 +86,7 @@ POST /auth/token
 
 Notice the `patient_id` field of `userinfo` . This is the id of the Patient resource associated with our user. It will be used further in Access Policies to decide if access should be granted or not. In general, you need to specify `data.patient_id: some_patient_id` in your User resource to establish a relation to a Patient resource.‌
 
-The `access-token` field of `user-info` will be needed to perform requests on behalf of our User. See [here](../../modules/security-and-access-control/auth/resource-owner-password.md#use-access-token) how to perform user request with a token.
+The `access-token` field of `user-info` will be needed to perform requests on behalf of our User. See [here](../../modules/security-and-access-control/auth/resource-owner-grant.md) how to perform user request with a token.
 
 ![](<../../.gitbook/assets/image (8) (1) (1) (1).png>)
 
@@ -312,7 +310,7 @@ resource:
 {% endtab %}
 {% endtabs %}
 
-Now, when we've created a `CompartmentDefinition` resource, we can access patient-related resources with such requests: `GET /Patient/{patient-id}/{resource}`. To know in detail about how compartments work, see the [Compartments tutorial](../../modules/access-control/authorization/scoped-api/compartments.md).
+Now, when we've created a `CompartmentDefinition` resource, we can access patient-related resources with such requests: `GET /Patient/{patient-id}/{resource}`. To know in detail about how compartments work, see the [Compartments tutorial](../../modules/access-control/authorization/scoped-api/compartments-api.md).
 
 And that's it! We don't even need to add more policies, since we already have the policy that allows the user to access URIs that match `/Patient/.*` regex.
 

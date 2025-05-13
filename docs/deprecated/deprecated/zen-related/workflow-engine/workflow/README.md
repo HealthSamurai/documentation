@@ -181,7 +181,7 @@ Suppose that we are implementing a simple workflow, in which we want to start Ta
 
 Given that the decision tasks are executed repeatedly, we need to determine which action it should take each time, using conditional branching.
 
-This decision task will be created the first time immediately after the workflow is started, and then each time either task-1 or task-2 is completed. Accordingly, we need to implement the entire workflow according to the following diagram. All Task-1, Task-2, and the decision task are supposed to be implemented as we explained in [#task-implementation](../task/#task-implementation).
+This decision task will be created the first time immediately after the workflow is started, and then each time either task-1 or task-2 is completed. Accordingly, we need to implement the entire workflow according to the following diagram. All Task-1, Task-2, and the decision task are supposed to be implemented as we explained in [#task-implementation](../task/README.md#task-implementation).
 
 <figure><img src="../../../../../../.gitbook/assets/Implement_workflow.png" alt=""><figcaption></figcaption></figure>
 

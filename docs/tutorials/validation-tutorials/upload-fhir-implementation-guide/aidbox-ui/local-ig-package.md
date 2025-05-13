@@ -23,5 +23,5 @@ See [getting started](../../../../getting-started/run-aidbox-locally.md) guide.
 Learn about other methods for loading IGs here:
 
 {% content-ref url="../" %}
-[..](../)
+[..](../README.md)
 {% endcontent-ref %}

@@ -13,7 +13,7 @@ The webhook AidboxTopicDestination works in the following way:
 * If an error occurs during sending, Aidbox will continue retrying until the message is successfully delivered.
 
 {% content-ref url="./" %}
-[.](./)
+[.](./README.md)
 {% endcontent-ref %}
 
 ## Configuration

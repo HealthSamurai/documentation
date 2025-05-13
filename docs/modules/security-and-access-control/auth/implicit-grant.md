@@ -12,8 +12,6 @@ It is better to switch to [Authorization Code Grant with PKCE](authorization-cod
 
 Implicit Grant flow is an alternative for Authorization Code flow. This flow just receives `access_token` in query string fragment instead of obtaining secure`code`. It's indented for client-side apps use in order to access an API, typically as Web SPA applications. For more detailed information, read [OAuth 2.0 specification](https://tools.ietf.org/html/rfc6749#section-4.2).
 
-![Basic scheme](../../../.gitbook/assets/untitled-diagram-page-4.svg)
-
 ### Easy way
 
 The easiest way to test Implicit Grant flow is to run through the [Aidbox Sandbox UI](#auth-sandbox) (_Auth -> Sandbox ->_ Implicit).
@@ -44,11 +42,9 @@ Obtaining access token
 
 After this request, the resource owner (user) will be redirected to Log-in/Sign-up page.
 
-![Example](../../../.gitbook/assets/screenshot-2019-02-11-18.15.41.png)
 
 Next step is granting access to the client:
 
-![Example](../../../.gitbook/assets/screenshot-2019-02-11-19.47.39.png)
 
 After granting access the user is redirected to the redirect\_uri from the client configuration with `access_token` in query string fragment.
 

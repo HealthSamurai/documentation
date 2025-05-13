@@ -73,7 +73,7 @@ AIDBOX_ZEN_ENTRYPOINT=mybox/box
 
 {% hint style="info" %}
 The namespace with entrypoint symbol must be loaded: file containing namespace mentioned in `AIDBOX_ZEN_PATHS` and imported or specified directly in`AIDBOX_ZEN_ENTRYPOINT` env.\
-[More info on loading namespace](aidbox-zen-lang-project/)
+[More info on loading namespace](aidbox-zen-lang-project/README.md)
 {% endhint %}
 
 Entrypoint symbol must be tagged with `aidbox/system` tag. `aidbox/system` describes a set of services to start and configurations.
@@ -94,7 +94,7 @@ A service contains `engine` and its configuration.
 #### Available engines:
 
 * `aidbox/http` - Describes http service, contains set of `apis`. Each api must be tagged with `aidbox.rest/api`.
-* `aidbox/seed` - Creates provided fixtures on start. Described [here](aidbox-zen-lang-project/#seed-import).
+* `aidbox/seed` - Creates provided fixtures on start. Described [here](aidbox-zen-lang-project/README.md#seed-import).
 
 #### Example
 

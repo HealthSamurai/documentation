@@ -23,7 +23,7 @@ If you already have a running Aidbox instance, please refer to the following gui
 {% endhint %}
 
 {% content-ref url="upload-fhir-implementation-guide/" %}
-[upload-fhir-implementation-guide](upload-fhir-implementation-guide/)
+[upload-fhir-implementation-guide](upload-fhir-implementation-guide/README.md)
 {% endcontent-ref %}
 
 ## Validate example resources against Carin BB profiles

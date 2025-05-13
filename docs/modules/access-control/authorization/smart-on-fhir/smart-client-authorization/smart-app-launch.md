@@ -2,7 +2,7 @@
 
 {% hint style="info" %}
 This functionality is available starting from version 2411.\
-The [FHIR Schema Validator Engine](broken-reference) should be enabled.
+The [FHIR Schema Validator Engine](../../../../profiling-and-validation/fhir-schema-validator/README.md) should be enabled.
 {% endhint %}
 
 Performing [SMART App Launch](https://build.fhir.org/ig/HL7/smart-app-launch/app-launch.html) with Aidbox requires:
@@ -21,7 +21,7 @@ If the answer is "**No**," use a public client.
 * Example: The app is an HTML5 or JavaScript application running in a browser (including single-page applications), where the secret would be exposed in user space.
 * Example: The app is a native application that can only distribute a secret in a fixed, unprotected manner.
 
-Client shall be [Authorization Code Grant](../../../../docs/modules/access-control/authentication/oauth-2-0.md) Client with several required values:
+Client shall be [Authorization Code Grant](../../../authentication/oauth-2-0.md) Client with several required values:
 
 <table><thead><tr><th width="445">Client resource field</th><th>Description</th></tr></thead><tbody><tr><td><code>auth.authorization_code.token_format</code></td><td>Fixed value - <code>jwt</code></td></tr><tr><td><code>auth.authorization_code.secret_required</code></td><td><code>true</code> - for confidential Client<br><code>false</code> - for public Client</td></tr><tr><td><code>smart.launch_uri</code></td><td>SMART Application launch endpoint</td></tr><tr><td><code>type</code></td><td>Fixed value - <code>smart-app</code></td></tr><tr><td><code>secret</code></td><td>Only for confidential Client</td></tr></tbody></table>
 
@@ -143,7 +143,7 @@ Where:
 
 1. `smart-app-launch-endpoint` - SMART Application launch endpoint. It shall be equal to `Client.smart.launch_uri`.
 2. `iss` - Identifies the EHR's FHIR endpoint.
-3. `launch` - JWT identifier for this specific launch and context associated with it. It shall be signed with an [Aidbox private key](broken-reference).
+3. `launch` - JWT identifier for this specific launch and context associated with it. It shall be signed with an [Aidbox private key](../../../../../reference/settings/security-and-access-control.md).
 
 `launch` parameter JWT shall contain the following claims:
 

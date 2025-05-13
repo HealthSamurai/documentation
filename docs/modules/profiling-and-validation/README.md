@@ -33,7 +33,7 @@ Specifying constraints and refinements is only half the job; your FHIR server mu
 During validation, various constraints are checked, including data shape, required properties, FHIRPath invariants, slicings, reference checks, and terminology bindings. You can read about the specific constraints supported by the Aidbox validator engine here:
 
 {% content-ref url="fhir-schema-validator/" %}
-[fhir-schema-validator](fhir-schema-validator/)
+[fhir-schema-validator](fhir-schema-validator/README.md)
 {% endcontent-ref %}
 
 ## What Aidbox provides for _validation_?
@@ -53,5 +53,5 @@ Additionally, you can easily create a `StructureDefinition` in a running Aidbox 
 ## Aidbox validation engines
 
 {% content-ref url="fhir-schema-validator/" %}
-[fhir-schema-validator](fhir-schema-validator/)
+[fhir-schema-validator](fhir-schema-validator/README.md)
 {% endcontent-ref %}

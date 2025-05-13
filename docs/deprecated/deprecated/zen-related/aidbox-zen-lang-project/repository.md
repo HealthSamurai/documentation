@@ -62,8 +62,8 @@ Described in [SearchParameter page](broken-reference).
 
 ## Create index for search parameter
 
-Described in [Index page](../../../../deployment-and-maintenance/indexes/#auto-generated-indexes).
+Described in [Index page](../../../../deployment-and-maintenance/indexes/README.md#auto-generated-indexes).
 
 ## Create index by SQL
 
-Described in[ Index page](../../../../deployment-and-maintenance/indexes/#how-to-make-my-index-explicitly-with-sql).
+Described in[ Index page](../../../../deployment-and-maintenance/indexes/README.md#how-to-make-my-index-explicitly-with-sql).

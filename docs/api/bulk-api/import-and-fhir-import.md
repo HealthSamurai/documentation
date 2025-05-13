@@ -184,7 +184,7 @@ In the future, the ability to list and cancel $import operations will be added, 
 2. The status of the workflow can be accessed with a GET request to `/v2/$import/<id>` instead of `/BulkImportStatus/<id>`. The URL for the import status is returned in the `content-location` header of the $import request.
 
 {% hint style="warning" %}
-This feature is not available in [Multibox](broken-reference)
+This feature is not available in Multibox
 {% endhint %}
 
 To start import make a POST request to `/v2[/fhir]/$import`:
@@ -229,7 +229,7 @@ Content-Location:  /v2/$import/synthea
 
 To check the status of the import make a GET request to `/v2/$import/<id>`:
 
-As the operation is built on top of our workflow engine, the statuses and outcomes of the files and import as a whole are inherited from [#task-statuses-and-outcomes](../../deprecated/deprecated/zen-related/workflow-engine/task/#task-statuses-and-outcomes)
+As the operation is built on top of our workflow engine, the statuses and outcomes of the files and import as a whole are inherited from [#task-statuses-and-outcomes](../../deprecated/deprecated/zen-related/workflow-engine/task/README.md#task-statuses-and-outcomes)
 
 {% tabs %}
 {% tab title="Request" %}

@@ -20,12 +20,12 @@ The list of available Bulk API endpoints:
 [usdexport.md](export.md)
 {% endcontent-ref %}
 
-{% content-ref url="usdimport-and-fhir-usdimport.md" %}
-[usdimport-and-fhir-usdimport.md](import-and-fhir-import.md)
+{% content-ref url="import-and-fhir-import.md" %}
+[import-and-fhir-import.md](import-and-fhir-import.md)
 {% endcontent-ref %}
 
-{% content-ref url="aidbox.bulk-data-import.md" %}
-[aidbox.bulk-data-import.md](aidbox.bulk-data-import.md)
+{% content-ref url="import-and-fhir-import.md" %}
+[import-and-fhir-import.md](./import-and-fhir-import.md)
 {% endcontent-ref %}
 
 ## Read more

@@ -17,7 +17,7 @@ Aidbox provides RPC API to load terminology from a flat file by url.
 
 ### RPC `aidbox.terminology.import-flat/import-from-url`
 
-This method accepts an URL pointing to a flat file with a terminology, file format description, columns to [concept](../concept/README.md) mapping, `CodeSystem` resource and `ValueSet` resource. For hierarchical terminology it can build [hierarchy materialized paths](../concept/#hierarchy).
+This method accepts an URL pointing to a flat file with a terminology, file format description, columns to [concept](../concept/README.md) mapping, `CodeSystem` resource and `ValueSet` resource. For hierarchical terminology it can build [hierarchy materialized paths](../concept/README.md#hierarchy).
 
 When upload is done, rows of the flat file are loaded as `Concept` resources into Aidbox. Also `CodeSystem` and `ValueSet` resources are created, these resources describe the full terminology from the file, i.e. the `ValueSet` composed of only this `CodeSystem` and all `Concept`s have `system` set to the `CodeSystem.url`.
 

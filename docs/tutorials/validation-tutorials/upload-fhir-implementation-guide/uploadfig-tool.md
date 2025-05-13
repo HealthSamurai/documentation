@@ -89,5 +89,5 @@ This command initiates the upload process, sending the specified IG package to y
 Learn about other methods for loading IGs here:
 
 {% content-ref url="./" %}
-[.](./)
+[.](./README.md)
 {% endcontent-ref %}

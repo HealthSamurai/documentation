@@ -456,7 +456,7 @@ Minor updates:
 * Aidbox user portal
   * Added the ability to specify a custom configuration project when creating a GCP Aidbox
 * Aidbox.app UI
-  * Updated the sidebar in the [Aidbox UI](aidbox-ui/)
+  * Updated the sidebar in the [Aidbox UI](aidbox-ui/README.md)
 * DevOps
   * Add metrics for Aidbox logs. Count of logs per log level
   * Implemented PG database backup verification tool, improved Grafana dashboards to show backup verification statuses
@@ -716,7 +716,7 @@ Minor updates:
 * C-CDA to FHIR converter
   * Confirmed [USCDI v1](https://www.healthit.gov/isa/united-states-core-data-interoperability-uscdi#uscdi-v1) compliance
 * Aidbox Forms
-  * Added forms as a configuration project to the [Aidbox User Portal](aidbox-user-portal/)
+  * Added forms as a configuration project to the [Aidbox User Portal](aidbox-user-portal/README.md)
   * Introduced the [form repository](https://github.com/Aidbox/sdc-forms-library) with the commonly used templates, such as PHQ-9, vital signs and GAD-7
   * Published tutorials on how to create and manage forms in [Aidbox Forms](../modules/aidbox-forms/README.md)
 * Supported tls for [SMTP provider](../modules/integration-toolkit/email-providers/setup-smtp-provider.md)
@@ -750,7 +750,7 @@ Minor updates:
   * Supported rules, text type and display type conversion on FHIR Questionnaire -> SDCDocument converter
   * Supported amendments and addendums of forms
 * Aidbox user portal
-  * Introduced CI/CD licenses on the [Aidbox user portal](aidbox-user-portal/). You can get this license to run multiple instances of Aidbox and Multibox in parallel for 72 hours. Both development and CI/CD licenses are available for existing customers at no cost
+  * Introduced CI/CD licenses on the [Aidbox user portal](aidbox-user-portal/README.md). You can get this license to run multiple instances of Aidbox and Multibox in parallel for 72 hours. Both development and CI/CD licenses are available for existing customers at no cost
   * Added an option to configure Aidbox instances hosted in Aidbox Cloud with FHIR IGs for data validation
 * Logging and audit
   * Supported [log streaming to browser](../modules/observability/logs/README.md)

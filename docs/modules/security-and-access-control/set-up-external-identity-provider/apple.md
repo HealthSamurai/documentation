@@ -161,4 +161,4 @@ Now you can log in again with your Apple user, and the user will be granted admi
 
 ## What's next
 
-* See more about Aidbox Security [..](../)
+* See more about Aidbox Security [..](../README.md)

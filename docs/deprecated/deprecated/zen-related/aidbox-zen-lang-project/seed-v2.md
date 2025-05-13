@@ -25,7 +25,7 @@ Seed v2 is a stable feature, but it has a couple of known issues:
 Please, let us know if you run into any issues with the service.
 {% endhint %}
 
-Seed v2 was designed to make a reliable bridge between [aidbox-project on zen](./) and the predecessor configuration way on meta-resources (e.g. AccessPolicy resources).
+Seed v2 was designed to make a reliable bridge between [aidbox-project on zen](./README.md) and the predecessor configuration way on meta-resources (e.g. AccessPolicy resources).
 
 The second reason is to bring an interactive experience for meta-resources configuration which is incredibly useful during development.
 

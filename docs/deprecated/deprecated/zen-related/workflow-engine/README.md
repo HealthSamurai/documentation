@@ -22,7 +22,7 @@ Having a workflow engine tightly integrated with a FHIR server offers numerous b
 2. Real-time event processing: The event-driven architecture allows the workflow engine to respond immediately to changes in FHIR data, enabling rapid adaptation and reaction to various healthcare scenarios.
 3. Simplified maintenance: Reduces operational complexity and resource requirements by consolidating workflow management and FHIR data processing within a single server.
 
-Workflow Engine allows implementing both simple scenarios using [predefined tasks](task/#predefined-tasks) and services with Aidbox Configuration or building applications of any complexity using provided API.
+Workflow Engine allows implementing both simple scenarios using [predefined tasks](task/README.md#predefined-tasks) and services with Aidbox Configuration or building applications of any complexity using provided API.
 
 ## Basic Concepts <a href="#basic-concepts" id="basic-concepts"></a>
 
@@ -30,7 +30,7 @@ Workflow Engine allows implementing both simple scenarios using [predefined task
 
 ### Task and Workflow
 
-[task](task/) and [workflow](workflow/) are two basic concepts of Workflow Engine. Both are managed through Aidbox API.
+[task](task/README.md) and [workflow](workflow/README.md) are two basic concepts of Workflow Engine. Both are managed through Aidbox API.
 
 Tasks are the simplest building block responsible for performing business actions. Aidbox provides a number of tasks out of the box. Additional tasks can be implemented outside of Aidbox in any programming language using an [SDK](broken-reference) or API directly.
 
@@ -38,7 +38,7 @@ For more complex application when a simple granular task is not enough, it is ne
 
 ### Task Executor
 
-Task Executor is responsible for executing the logic behind a task. For [predefined tasks](broken-reference), they are run within Aidbox, and custom task executors could be [implemented](task/#task-implementation-1) in any programming language using an [SDK](broken-reference) or API directly.
+Task Executor is responsible for executing the logic behind a task. For [predefined tasks](broken-reference), they are run within Aidbox, and custom task executors could be [implemented](task/README.md#task-implementation-1) in any programming language using an [SDK](broken-reference) or API directly.
 
 ### Workflow Executor
 
@@ -63,11 +63,11 @@ To monitor the current state of tasks, workflow, and services Workflow Engine pr
 * [resource-generation-with-map-to-fhir-bundle-task-and-subscription-triggers.md](../../other/other-deprecated-tutorials/resource-generation-with-map-to-fhir-bundle-task-and-subscription-triggers.md) - How to create an encounter when a specific observation is created.
 
 {% content-ref url="task/" %}
-[task](task/)
+[task](task/README.md)
 {% endcontent-ref %}
 
 {% content-ref url="workflow/" %}
-[workflow](workflow/)
+[workflow](workflow/README.md)
 {% endcontent-ref %}
 
 {% content-ref url="services.md" %}

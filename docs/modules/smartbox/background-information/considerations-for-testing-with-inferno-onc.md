@@ -26,12 +26,10 @@ Aidbox is distributed as a Docker container:
 
 #### Aidbox
 
-It could be configured in [many ways](broken-reference).
-
 Main configuration aspects:
 
 * S3 account & bucket should be prepared as Aidbox uploads exported data to the bucket
-* Aidbox should be configured as a [zen-project](broken-reference)
+* Aidbox should be configured as a zen-project
 
 #### TLS for HTTP
 

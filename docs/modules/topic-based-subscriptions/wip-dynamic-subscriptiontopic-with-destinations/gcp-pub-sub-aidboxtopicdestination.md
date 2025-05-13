@@ -11,7 +11,7 @@ The GCP Pub/Sub AidboxTopicDestination works in the following way:
 * If an error occurs during sending, Aidbox will continue retrying until the message is successfully delivered. So Aidbox guarantees at least once delivery for an event.
 
 {% content-ref url="./" %}
-[.](./)
+[.](./README.md)
 {% endcontent-ref %}
 
 ## Configuration

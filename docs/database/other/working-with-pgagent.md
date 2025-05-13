@@ -292,6 +292,6 @@ If everything was successfull you will see new records in the table.
 
 * `pgagent` is a tool to run various jobs on your postgres database.
 * `pgagent` runs only if `PGAGENT_ENABLED` variable is present.
-* You can configure `pgagent` using several variables described [here](../aidboxdb-image/#optional-environment-variables).
+* You can configure `pgagent` using several variables described [here](../aidboxdb-image/README.md#optional-environment-variables).
 
 If you have any questions on how to configure `pgagent` feel free to [contact us](../../overview/contact-us.md).

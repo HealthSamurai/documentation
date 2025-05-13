@@ -22,7 +22,7 @@ Please note that `at least once`approach uses **transactional** Kafka producers.
 {% endhint %}
 
 {% content-ref url="./" %}
-[.](./)
+[.](./README.md)
 {% endcontent-ref %}
 
 ## Configuration

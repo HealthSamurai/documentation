@@ -8,7 +8,7 @@ Since the 2405 release, using Aidbox in FHIRSchema mode is recommended, which is
 
 ## Introduction
 
-Formal description of Zen Indexes in `aidbox.index.v1`.  Read [this](../../../../deployment-and-maintenance/indexes/#how-to-make-my-index-explicitly-with-sql) guide first.
+Formal description of Zen Indexes in `aidbox.index.v1`.  Read [this](../../../../deployment-and-maintenance/indexes/README.md#how-to-make-my-index-explicitly-with-sql) guide first.
 
 Index can be used to create any PostgreSQL index. Auto-index is auto-generated based on Zen SearchParameter.&#x20;
 
