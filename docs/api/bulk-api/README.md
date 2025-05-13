@@ -8,16 +8,16 @@ Aidbox supports various options for the bulk import and export of data.
 
 The list of available Bulk API endpoints:
 
-{% content-ref url="usddump.md" %}
-[usddump.md](dump.md)
+{% content-ref url="dump.md" %}
+[dump.md](dump.md)
 {% endcontent-ref %}
 
-{% content-ref url="usddump-sql.md" %}
-[usddump-sql.md](dump-sql.md)
+{% content-ref url="dump-sql.md" %}
+[dump-sql.md](dump-sql.md)
 {% endcontent-ref %}
 
-{% content-ref url="usdexport.md" %}
-[usdexport.md](export.md)
+{% content-ref url="export.md" %}
+[export.md](export.md)
 {% endcontent-ref %}
 
 {% content-ref url="import-and-fhir-import.md" %}

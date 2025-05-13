@@ -197,7 +197,7 @@ The search API does not support search parameters:
 GET <AIDBOX_BASE_URL>/Organization/<org-id>/fhir/Patient/$everything
 ```
 
-See also [usdeverything-on-patient.md](../../../../api/rest-api/everything-on-patient.md)
+See also [$everything on Patient](../../../../api/rest-api/everything-on-patient.md)
 
 ### $document
 
@@ -205,7 +205,7 @@ See also [usdeverything-on-patient.md](../../../../api/rest-api/everything-on-pa
 GET <AIDBOX_BASE_URL>/Organization/<org-id>/fhir/Composition/$document
 ```
 
-See also [usddocument.md](../../../../api/rest-api/other/document.md)
+See also [$document endpoint](../../../../api/rest-api/other/document.md)
 
 ### History
 

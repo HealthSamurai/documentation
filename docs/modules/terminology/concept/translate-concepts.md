@@ -2,7 +2,7 @@
 
 $translate-concepts endpoint can be used to translate concepts for given language.
 
-It will search for translations given in `Concept.designation.display` (see [Aidbox concept format]())
+It will search for translations given in `Concept.designation.display` (see [Aidbox concept format](#designation))
 
 <pre class="language-yaml"><code class="lang-yaml"><strong>POST /$translate-concepts
 </strong>

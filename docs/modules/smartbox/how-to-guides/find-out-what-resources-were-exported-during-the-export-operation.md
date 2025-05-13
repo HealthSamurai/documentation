@@ -6,7 +6,7 @@ description: >-
 
 # Find out what resources were exported during the $export operation
 
-[$export]() operation is used to export huge amounts of patient data directly to S3 buckets. Sometimes it is important to clarify what resources certain Bulk client had access to.
+[$export](../../../api/bulk-api/export.md) operation is used to export huge amounts of patient data directly to S3 buckets. Sometimes it is important to clarify what resources certain Bulk client had access to.
 
 {% hint style="info" %}
 In the guide we analyze the behavior of the `inferno-my-clinic-bulk-client` client
@@ -57,7 +57,7 @@ List of resources types are defined with the `scope` attribute.
    `system/Observation.read` -> `Observation` resource type
 
 {% hint style="info" %}
-`See how system/*.read` [expands]()
+`See how system/*.read` [expands](../background-information/considerations-for-testing-with-inferno-onc.md#how-aidbox-expands-wildcard-scope)
 {% endhint %}
 
 ### List the id of resources

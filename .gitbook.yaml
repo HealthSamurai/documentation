@@ -513,3 +513,12 @@ redirects:
     readme-1/architecture: readme/architecture.md
     readme-1/features: readme/features.md
     readme-1/README: readme/README.md
+    api/rest-api/other/usddocument.md: api/rest-api/other/document.md
+    api/rest-api/other/usdto-format.md: api/rest-api/other/to-format.md
+    api/rest-api/other/usdvalidate.md: api/rest-api/other/validate.md
+    api/rest-api/other/observation-usdlastn.md: api/rest-api/other/observation-lastn.md
+    api/rest-api/other/usdmatcho.md: api/rest-api/other/matcho.md
+    modules/terminology/concept/usdtranslate-concepts.md: modules/terminology/concept/translate-concepts.md
+    modules/terminology/usdtranslate-on-conceptmap.md: modules/terminology/translate-on-conceptmap.md
+    modules/smartbox/how-to-guides/find-out-what-resources-were-exported-during-the-usdexport-operation.md: modules/smartbox/how-to-guides/find-out-what-resources-were-exported-during-the-export-operation.md
+    modules/other-modules/mdm/find-duplicates-usdmatch.md: modules/other-modules/mdm/find-duplicates-match.md
