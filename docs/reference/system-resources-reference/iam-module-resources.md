@@ -49,7 +49,6 @@ IAM module includes the following resource types:
 <tr><td width="290">roleName</td><td width="70">0..1</td><td width="150">string</td><td>Symbolic link to Role by name</td></tr>
 <tr><td width="290">rpc</td><td width="70">0..1</td><td width="150">Object</td><td>Defines rules for Remote Procedure Calls (RPCs).</td></tr>
 <tr><td width="290">schema</td><td width="70">0..1</td><td width="150">Object</td><td>JSON Schema used to validate requests against the policy.</td></tr>
-<tr><td width="290">source</td><td width="70">0..1</td><td width="150">string</td><td>Source identifier for the policy.</td></tr>
 <tr><td width="290">sql</td><td width="70">0..1</td><td width="150">BackboneElement</td><td>SQL-based policy definition.</td></tr>
 <tr><td width="290">sql.<strong>query</strong></td><td width="70">0..1</td><td width="150">string</td><td>SQL query used to evaluate access conditions.</td></tr>
 <tr><td width="290">type</td><td width="70">0..1</td><td width="150">string</td><td>The type or category of the access policy. 
