@@ -6,15 +6,15 @@ Open [Aidbox FHIR platform product page](https://aws.amazon.com/marketplace/pp/p
 
 Click on the **"Continue to Subscribe"** button
 
-<figure><img src="../../.gitbook/assets/Screen Shot 2022-08-29 at 11.43.11.png" alt=""><figcaption><p>Aidbox FHIR platform product page</p></figcaption></figure>
+<figure><img src="../../.gitbook/assets/aws-continue-to-subscribe.png" alt=""><figcaption><p>Aidbox FHIR platform product page</p></figcaption></figure>
 
-On the next scerrn click to the **"Subscribe"** button
+On the next screen click to the **"Subscribe"** button
 
-<figure><img src="../../.gitbook/assets/Screen Shot 2022-08-29 at 11.48.55 (1).png" alt=""><figcaption><p>Subscribe to the "Aidbox FHIR platform product"</p></figcaption></figure>
+<figure><img src="../../.gitbook/assets/aws-subscribe.png" alt=""><figcaption><p>Subscribe to the "Aidbox FHIR platform product"</p></figcaption></figure>
 
 On the last screen click on **"Set Up Your Account"** button.
 
-<figure><img src="../../.gitbook/assets/Screen Shot 2022-08-29 at 12.31.54.png" alt=""><figcaption><p>Set Up Your Account screen</p></figcaption></figure>
+<figure><img src="../../.gitbook/assets/aws-setup-account.png" alt=""><figcaption><p>Set Up Your Account screen</p></figcaption></figure>
 
 After that, you will be redirected to the Aidbox user portal page. Log in in to Aidbox user portal and create new license.
 
