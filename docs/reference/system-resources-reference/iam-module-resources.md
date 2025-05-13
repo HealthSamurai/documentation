@@ -462,6 +462,18 @@ User role
 <tr><td width="290">jwt</td><td width="70">0..1</td><td width="150">BackboneElement</td><td>Configuration for local JWT validation used when type is jwt.</td></tr>
 <tr><td width="290">jwt.<strong>iss</strong></td><td width="70">0..1</td><td width="150">string</td><td>The expected issuer (iss) claim value for JWTs. The TokenIntrospector ensures that tokens it validates come from this issuer.</td></tr>
 <tr><td width="290">jwt.<strong>secret</strong></td><td width="70">0..1</td><td width="150">string</td><td>A shared secret key or other signing key material used to verify the JWT's signature.</td></tr>
+<tr><td width="290">jwt.<strong>keys</strong></td><td width="70">0..*</td><td width="150">BackboneElement</td><td>The set of keys to use for validation.</td></tr>
+<tr><td width="290">jwt.<strong>keys</strong>.<strong>k</strong></td><td width="70">0..1</td><td width="150">string</td><td>The asymmetric key to use for validation.</td></tr>
+<tr><td width="290">jwt.<strong>keys</strong>.<strong>pub</strong></td><td width="70">0..1</td><td width="150">string</td><td>The asymmetric key to use for validation.</td></tr>
+<tr><td width="290">jwt.<strong>keys</strong>.<strong>kty</strong></td><td width="70">1..1</td><td width="150">string</td><td>The key type to use for validation. 
+
+<strong>Allowed values</strong>: `RSA` | `EC` | `OCT`</td></tr>
+<tr><td width="290">jwt.<strong>keys</strong>.<strong>alg</strong></td><td width="70">1..1</td><td width="150">string</td><td>The algorithm to use for validation. 
+
+<strong>Allowed values</strong>: `RS256` | `RS384` | `ES256` | `HS256`</td></tr>
+<tr><td width="290">jwt.<strong>keys</strong>.<strong>format</strong></td><td width="70">1..1</td><td width="150">string</td><td>The format of the key to use for validation. 'plain' for symmetric algs (HS256) and 'PEM' for all asymmetric algs 
+
+<strong>Allowed values</strong>: `PEM` | `plain`</td></tr>
 <tr><td width="290">type</td><td width="70">1..1</td><td width="150">string</td><td>Specifies the type of token to introspect. 
 
 <strong>Allowed values</strong>: `opaque` | `jwt` | `aspxauth`</td></tr></tbody>
