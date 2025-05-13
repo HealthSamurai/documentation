@@ -53,7 +53,7 @@ To disable metrics server, leave this setting empty
 
 ### Enable Postgres metrics<a href="#observability.metrics.enable-postgres-metrics" id="observability.metrics.enable-postgres-metrics"></a>
 
-Controls whether to provide metrics [related to PostgreSQL](../../modules/observability/metrics/monitoring/aidbox-metrics-server#postgres)
+Controls whether to provide metrics [related to PostgreSQL](../../modules/observability/metrics/monitoring/aidbox-metrics-server.md#postgres)
 
 <table data-header-hidden="true"><thead><tr><th width="200"></th><th></th></tr></thead><tbody><tr><td>ID</td><td><code>observability.metrics.enable-postgres-metrics</code></td></tr><tr><td>Type</td><td>Bool</td></tr><tr><td>Default value</td><td><code>true</code></td></tr><tr><td>Environment variable</td><td><code>BOX_OBSERVABILITY_METRICS_ENABLE_POSTGRES_METRICS</code></td></tr><tr><td>Deprecated environment variables</td><td><code>BOX_METRICS_POSTGRES_ON</code></td></tr><tr><td>Sensitive</td><td><code>false</code> — value will be visible in plaintext in Admin UI</td></tr><tr><td>Set via</td><td>Admin UI → Settings<br />Environment variables</td></tr><tr><td>Hot reload</td><td><code>false</code> — setting requires system restart</td></tr></tbody></table>
 
