@@ -121,5 +121,5 @@ JWT's parsed claims:
 
 ## Requesting an Access Token
 
-This JWT should be used as `client_assertion` a parameter in the access token request. See the full example in [SMART Backend services](broken-reference).
+This JWT should be used as `client_assertion` a parameter in the access token request. See the full example in [SMART Backend services](../smart-client-authorization/smart-backend-services.md).
 

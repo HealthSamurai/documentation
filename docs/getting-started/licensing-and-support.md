@@ -78,7 +78,7 @@ If you have a development team ready to start, but need that extra expertise to 
 * Performance tuning and optimization
 * Major version upgrade
 
-We can also work with you to build a custom engagement that suits your needs. Please [contact us](../contact-us.md) for more info.
+We can also work with you to build a custom engagement that suits your needs. Please [contact us](../overview/contact-us.md) for more info.
 
 ### Aidbox Trial
 

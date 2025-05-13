@@ -2,32 +2,12 @@
 
 In this tutorial we will guide you how to setup US Core FHIR Implementation Guide.&#x20;
 
-## Setup Aidbox with US Core IG version 6.1.0 with prebuilt Aidbox config
+## Setup Aidbox with US Core IG version 6.1.0
 
-To correctly set up Aidbox, we'll utilize the Aidbox configuration projects.&#x20;
-
-There's an [existing guide](broken-reference) for this process. Adhere to this guide, but note a variation when you reach the `Configure the Aidbox` step: instead of using the recommended configuration projects (R4,R4B,R5,etc.) — clone this specific project:
-
+Follow [getting started guide](../../getting-started/run-aidbox-locally.md). Add the dependency:
 ```
-git clone \
-  --branch=us-core \
-  --depth=1 \
-  https://github.com/Aidbox/aidbox-project-template.git \
-  aidbox-project && \
-  cd aidbox-project && \
-  rm -rf .git
+AIDBOX_FHIR_PACKAGES=hl7.fhir.r4.core#4.0.1:hl7.fhir.us.core#6.1.0
 ```
-
-The git template project contains US Core version 6.1.0 FHIR IG preconfigured via .env file.
-
-{% hint style="info" %}
-If you already have a running Aidbox instance, please refer to the following guide:
-{% endhint %}
-
-{% content-ref url="upload-fhir-implementation-guide/" %}
-[upload-fhir-implementation-guide](upload-fhir-implementation-guide/README.md)
-{% endcontent-ref %}
-
 ## Validate example resources against US Core profiles
 
 <details>

@@ -2,29 +2,10 @@
 
 ## Setup Aidbox with Da Vinci Payer Data Exchange version 2.0.0 with prebuilt Aidbox config
 
-To correctly set up Aidbox, we'll utilize the Aidbox configuration projects.&#x20;
-
-There's an [existing guide](broken-reference) for this process. Adhere to this guide, but note a variation when you reach the `Configure the Aidbox` step: instead of using the recommended configuration projects (R4,R4B,R5,etc.) — clone this specific project:
-
+Follow [getting started guide](../../getting-started/run-aidbox-locally.md). Add the dependency:
 ```
-git clone \
-  --branch=davinci-pdex \
-  --depth=1 \
-  https://github.com/Aidbox/aidbox-project-template.git \
-  aidbox-project && \
-  cd aidbox-project && \
-  rm -rf .git
+AIDBOX_FHIR_PACKAGES=hl7.fhir.r4.core#4.0.1:hl7.fhir.us.davinci-pdex#2.0.0
 ```
-
-The git template project contains Da Vinci Payer Data Exchange version 2.0.0 FHIR IG preconfigured via .env file.
-
-{% hint style="info" %}
-If you already have a running Aidbox instance, please refer to the following guide:
-{% endhint %}
-
-{% content-ref url="upload-fhir-implementation-guide/" %}
-[upload-fhir-implementation-guide](upload-fhir-implementation-guide/README.md)
-{% endcontent-ref %}
 
 ## Validate example resources against Davinci PDEX profiles
 
