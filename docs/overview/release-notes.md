@@ -100,7 +100,7 @@ Minor updates:
 ## December 2024 _`2412`_
 
 * Aidbox
-  * Supported [SMART App Launch scopes v1 and v2](../modules/smartbox/README.md) for Aidbox on FHIR Schema validation engine and reworked [SMART on FHIR](../modules/smartbox) documentation
+  * Supported [SMART App Launch scopes v1 and v2](../modules/smartbox/README.md) for Aidbox on FHIR Schema validation engine and reworked [SMART on FHIR](../modules/smartbox/README.md) documentation
   * Added example of [SMART App Launch using Aidbox and Keycloak](https://github.com/Aidbox/examples/tree/main/smart-app-launch)
   * Supported enabling [OrgBAC (Organization-based hierarchical access control)](../modules/access-control/authorization/scoped-api/organization-based-hierarchical-access-control.md) using an [environment variable](../tutorials/security-access-control-tutorials/how-to-enable-hierarchical-access-control.md) if an Aidox instance uses FHIR Schema validator
   * Fixed security issues and bugs
@@ -220,7 +220,7 @@ Minor updates:
     * [Supported definition-based extraction](../modules/aidbox-forms/aidbox-ui-builder-alpha/form-creation/how-to-guides/how-to-extract-data-from-forms.md#definition-based-extraction)
     * [Ability to search and use templates from Aidbox Form Gallery on UI](../modules/aidbox-forms/aidbox-form-gallery.md)
     * [Ability to embed Aidbox UI Builder as a web-component](../modules/aidbox-forms/aidbox-ui-builder-alpha/embedding.md)
-    * [Implemented Template-based PDF Generation](../modules/aidbox-forms/aidbox-ui-builder-alpha/generating-forms-from-pdf)
+    * [Implemented Template-based PDF Generation](../reference/aidbox-forms-reference/generating-questionnaire-from-pdf-api.md)
     * [Added a Speech to text widget](../modules/aidbox-forms/aidbox-ui-builder-alpha/form-creation/widgets.md#speech-to-text)
     * [Added an Annotation Pad widget](../modules/aidbox-forms/aidbox-ui-builder-alpha/form-creation/widgets.md#annotation-pad)
     * Performance optimization for large forms
@@ -559,7 +559,7 @@ Minor updates:
 * C-CDA / FHIR converter
   * Enhanced [/ccda/validate](../modules/integration-toolkit/ccda-converter/README.md) endpoint to behave exactly as HealthIT.gov CDA validator
 * Security and access control
-  * Supported [log filtering](../modules/observability/logging-and-audit/technical-reference/log-transformations.md#aidbox.log-ignore) via [different appenders](../modules/observability/logging-and-audit/technical-reference/log-appenders.md)
+  * Supported log filtering via different appenders
   * Added [Authentication with AD FS](../modules/security-and-access-control/set-up-external-identity-provider/microsoft-ad-fs.md) tutorial
 * Aidbox user portal
   * Added option to specify [FHIR R5 configuration project](https://aidbox.app/ui/portal#/signin)
@@ -766,14 +766,14 @@ Minor updates:
 * Released [Seed v2 service](../deprecated/deprecated/zen-related/aidbox-zen-lang-project/seed-v2.md) for [Aidbox configuration projects](../deprecated/deprecated/zen-related/aidbox-zen-lang-project/README.md)
 * Added Client.audience regex support in SMART on FHIR App launch
 * Added an option to [filter Aidbox stdout logs](../modules/observability/logs/README.md) by severity. By default Aidbox sends only `error` severity level logs to stdout.
-* Added response headers to [Aidbox REST Console](../../overview/aidbox-ui/rest-console-1.md) and Aidbox Notebooks.
+* Added response headers to [Aidbox REST Console](./aidbox-ui/rest-console.md) and Aidbox Notebooks.
 * Enhanced the Aidbox configuration process with [Aidbox configuration projects](../deprecated/deprecated/zen-related/aidbox-zen-lang-project/README.md)
 * Supported [`/health` endpoint](../api/rest-api/other/health-check.md) for Multibox
 * Updated documentation on how to configure Aidbox with [Aidbox configuration project](../deprecated/deprecated/zen-related/aidbox-zen-lang-project/README.md)
 * Updated documentation on how to configure highly available Aidbox.
 * Added support for [PostgreSQL 15](../database/aidboxdb-image/README.md) (beta)
 * Added documentation on how to create [most common indexes](../deployment-and-maintenance/indexes/create-indexes-manually.md)
-* Added `aidbox` format support for [bulk import](../api/bulk-api/aidbox.bulk-data-import.md#aidbox.bulk-import-start)
+* Added `aidbox` format support for [bulk import](../api/bulk-api/aidbox-bulk-data-import.md)
 * Added `enable-links` parameter for AidboxQuery
 * Fixed issues submitted by Aidbox users and fixed minor bugs.
 
@@ -883,7 +883,7 @@ Starting from January 2022 we're switching to a new release cycle. We added`:lat
 {% endhint %}
 
 * Added FHIR R4 search parameters to [zen FHIR packages](../deprecated/deprecated/zen-related/profiling-with-zen-lang/README.md) (alpha) as a part of our roadmap to run Aidbox on managed PostgreSQL databases.
-* Released [load-from-bucket](../api/bulk-api/aidbox.bulk-data-import.md#aidbox.bulk-load-from-bucket) import operation for huge imports that allows loading terabytes of data from an AWS bucket directly to the Aidbox database with maximum performance.
+* Released [load-from-bucket](../api/bulk-api/bulk-import-from-an-s3-bucket.md) import operation for huge imports that allows loading terabytes of data from an AWS bucket directly to the Aidbox database with maximum performance.
 * Added Aidbox UI new tools: [DB Tables](aidbox-ui/db-tables.md) and [DB Queries](aidbox-ui/db-queries.md) to improve database administration and introspection.
 * Added new env `box_compatibility_validation_json__schema_regex="#{:fhir-datetime}` to enable strict date time validation in JSON schema validation engine per [FHIR spec](https://www.hl7.org/fhir/datatypes.html#dateTime).
 * Improved [`$export`](../api/bulk-api/export.md) error statuses.
@@ -958,9 +958,6 @@ Starting from January 2022 we're switching to a new release cycle. We added`:lat
 ## July 2021 - v:2107
 
 * We've released a major Aidbox UI upgrade
-
-![New Aidbox UI](<../../.gitbook/assets/image (49) (7) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (3) (1) (1) (1) (1) (1) (1) (1) (12) (1) (10) (10) (1) (11) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (11) (6).png>)
-
 * Updated REST Console (check out[ the tutorial](https://bit.ly/rest_console_tutorial)):
   * Explicit request headers `content-type, accept` etc
   * Show raw response
@@ -1081,7 +1078,7 @@ Plenty of bug fixes!
 Now references to contained resources are represented as `localRef` attribute in [Aidbox Format](../api/rest-api/other/aidbox-and-fhir-formats.md)
 {% endhint %}
 
-* Managed SQL for FHIR search by [SearchQuery](../../api-1/api/search/other/searchquery.md)
+* Managed SQL for FHIR search by [SearchQuery](../deprecated/deprecated/other/searchquery.md)
 * A default timeout for Search Operations with _timeout param for high-load
 * Ordered search in $lookup
 * microseconds precision for timestamps (Resource.meta.lastUpdated)
@@ -1149,7 +1146,7 @@ It's time to upgrade your database - please stop your container and change image
 
 ### Features
 
-* [User Level Logs](../modules/observability/logging-and-audit/README.md)
+* User Level Logs
 * [Structured Data Capture](../tutorials/other-tutorials/sdc-with-custom-resources.md) with Custom Resources (Alpha)
 * History based replication
 * Search: new _ilike search parameter

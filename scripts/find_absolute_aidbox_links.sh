@@ -3,20 +3,16 @@
 mkdir -p out
 OUTPUT="out/absolute_aidbox_links.txt"
 
-{
+# Only search for absolute links in markdown files outside docs/reference
+find docs/ -type f -name '*.md' ! -path 'docs/reference/*' | xargs grep -l 'https://docs.aidbox.app' | while read file; do
+  count=$(grep -c 'https://docs.aidbox.app' "$file")
+  lines=$(grep -n --color=never 'https://docs.aidbox.app' "$file" | awk -F: '{print $1}' | paste -sd, -)
+  echo "$file | $count | $lines"
+done | (
   echo "File | Count | Lines with links"
   echo "-----|-------|-----------------"
-  grep -r --include='*.md' 'https://docs.aidbox.app' docs/ \
-    | grep -v 'https://docs.aidbox.app/reference' \
-    | awk -F: '{print $1}' \
-    | sort \
-    | uniq -c \
-    | sort -rn \
-    | while read count file; do
-        echo -n "$file | $count | "
-        grep -n --color=never 'https://docs.aidbox.app' "$file" | awk -F: '{print $1}' | paste -sd, -
-      done
-} > "$OUTPUT"
+  cat
+) > "$OUTPUT"
 
 cat "$OUTPUT"
 
@@ -25,6 +21,6 @@ if [ "$count" -gt 0 ]; then
   echo -e "\nAbsolute links to https://docs.aidbox.app found. Please fix them before pushing!\nUse bash scripts/replace_absolute_aidbox_links.sh"
   exit 42
 else
-  echo -e "\nNo absolute links found."
+  echo -e "\nNo absolute links found (except /reference directory)."
   exit 0
 fi
