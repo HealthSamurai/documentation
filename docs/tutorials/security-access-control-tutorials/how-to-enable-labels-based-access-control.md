@@ -82,7 +82,7 @@ user:
 
 ### Create TokenIntrospector
 
-To make Aidbox trust `JWT` issued by external server token introspection is used, run the following request in the [REST Console](../../../overview/aidbox-ui/rest-console.md#rest-console).
+To make Aidbox trust `JWT` issued by external server token introspection is used, run the following request in the [REST Console](../../overview/aidbox-ui/rest-console.md).
 
 ```yaml
 PUT /TokenIntrospector/security-labels-demo-client
@@ -104,7 +104,7 @@ Currently, we use a common secret to make the introspector work. In production i
 
 This access policy allows `FhirRead` and `FhirSearch` operations for requesters having JWT with `iss` claim value `https://auth.example.com`.
 
-To create the access policy, run the following request in the [REST Console](../../../overview/aidbox-ui/rest-console-1.md#rest-console).
+To create the access policy, run the following request in the REST Console.
 
 ```yaml
 PUT /AccessPolicy/as-security-labels-demo-client-do-read-search
@@ -127,7 +127,7 @@ matcho:
 
 #### Create Patient resource
 
-To create the Patient, run the following request in the [REST Console](../../../overview/aidbox-ui/rest-console-1.md#rest-console).
+To create the Patient, run the following request in the REST Console.
 
 ```yaml
 PUT /fhir/Patient/pt-1
@@ -184,7 +184,7 @@ resourceType: Patient
 
 #### Create Encounter resource
 
-To create the Encounter, run the following request in the [REST Console](../../../overview/aidbox-ui/rest-console-1.md#rest-console).
+To create the Encounter, run the following request in the REST Console.
 
 ```yaml
 PUT /fhir/Encounter/enc-1
@@ -214,7 +214,7 @@ subject:
 
 #### Create Observation resource
 
-To create the Observation, run the following request in the [REST Console](../../../overview/aidbox-ui/rest-console-1.md#rest-console).
+To create the Observation, run the following request in the REST Console.
 
 ```yaml
 PUT /fhir/Observation/obs-1

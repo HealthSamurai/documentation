@@ -11,7 +11,7 @@ Aidbox supports exporting traces using the Protobuf protocol in line with the OT
 {% endhint %}
 
 {% hint style="info" %}
-This way of enabling OTEL capabilities is available in Aidbox versions 2503 and later. On previous AIdbox versions it was possible to enable OTEL with [Aidbox configuration project](broken-reference).
+This way of enabling OTEL capabilities is available in Aidbox versions 2503 and later. On previous AIdbox versions it was possible to enable OTEL with Aidbox configuration project.
 {% endhint %}
 
 ## Prerequisites&#x20;
@@ -20,7 +20,7 @@ This way of enabling OTEL capabilities is available in Aidbox versions 2503 and 
 
 ## How to enable traces export to the OTEL collector
 
-To  enable exporting traces to the OTEL collector set the OTEL collector traces receiver endpoint to the Aidbox setting [observability.otel.traces-url](broken-reference)
+To  enable exporting traces to the OTEL collector set the OTEL collector traces receiver endpoint to the Aidbox setting [observability.otel.traces-url](../../../../reference/settings/observability.md#observability.otel.traces-url)
 
 ## How to check the OTEL collector receives traces&#x20;
 

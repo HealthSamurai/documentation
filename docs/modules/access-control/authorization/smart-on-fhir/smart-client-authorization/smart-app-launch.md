@@ -492,4 +492,4 @@ accept: application/json
 
 ## SMART App Launch using an External Identity Provider
 
-Aidbox enables SMART App Launch with external identity providers. Set up an [Identity Provider](../../../../docs/modules/security-and-access-control/set-up-external-identity-provider/README.md) in Aidbox to sign in via the provider during the launch. Try it with our pre-configured demo (e.g., Keycloak):
+Aidbox enables SMART App Launch with external identity providers. Set up an [IdentityProvider](../../../authentication/sso-with-external-identity-provider.md) in Aidbox to sign in via the provider during the launch. Try it with our pre-configured demo (e.g., Keycloak):
