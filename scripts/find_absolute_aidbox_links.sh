@@ -1,5 +1,6 @@
 #!/bin/bash
 
+echo 'Checking that we do not use absolute reference https://docs.aidbox.app/ in docs/ directory'
 mkdir -p out
 OUTPUT="out/absolute_aidbox_links.txt"
 

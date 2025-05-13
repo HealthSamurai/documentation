@@ -57,3 +57,14 @@ while IFS= read -r line; do
 done < out/all_links_by_file.txt
 
 echo "Generated $output"
+
+if [[ -s out/all_nonexistent_links_by_file.txt ]]; then
+  # Only consider file header lines (ending with 'links):')
+  files=$(grep 'links):$' out/all_nonexistent_links_by_file.txt | sed 's/ (.*//')
+  if [[ -n "$files" ]] && echo "$files" | grep -qv '^docs/deprecated/'; then
+    echo -e '\nERROR: Broken relative links found outside docs/deprecated directory. See details in out/all_nonexistent_links_by_file.txt. Fix them before pushing.'
+    exit 1
+  else
+    echo -e '\nOnly deprecated files have broken relative links. Skipping error.'
+  fi
+fi

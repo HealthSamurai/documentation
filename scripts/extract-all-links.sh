@@ -23,7 +23,6 @@ for entry in $sorted_files; do
   file="${entry%%:*}"
   count="${entry##*:}"
   if [[ "$file" == "docs/overview/release-notes.md" ]] || \
-     [[ "$file" == "docs/modules/integration-toolkit/ccda-converter/sections/README.md" ]] || \
      [[ "$file" == docs/deprecated/* ]]; then
     last_files+=("$file:$count")
   else

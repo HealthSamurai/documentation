@@ -1,5 +1,6 @@
 #!/usr/bin/env bash
 set -e
+echo -e '\nChecking if summary.md file and filetree are synced'
 
 ALL_FROM_SUMMARY=$(./scripts/all-files-from-summary.sh)
 ALL_ON_DISK=$(./scripts/all-files.sh | grep -v '^SUMMARY.md$' | grep '.md$')
@@ -23,7 +24,7 @@ else
     echo 'Paths in SUMMARY.md that do not exist on disk:'
     echo "$paths_not_on_disk"
   fi
-  echo -e "\n[pre-push] ERROR: docs/SUMMARY.md and docs/ are out of sync. Fix the issues above before pushing."
+  echo -e "\nERROR: docs/SUMMARY.md and docs/ are out of sync. Fix the issues above before pushing."
   exit 1
 fi
 
