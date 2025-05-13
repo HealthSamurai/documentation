@@ -36,7 +36,7 @@ jwt:
 
 Set `jwks_uri` property to the URL of the JWKS endpoint.
 
-```html
+```http
 PUT /TokenIntrospector/external-auth-server
 content-type: text/yaml
 
@@ -50,7 +50,11 @@ jwks_uri: <AUTH_SERVER_URL>/.well-known/jwks.json"
 
 #### 3. Cryptographic keys
 
-TokenIntrospector allows to use `RSA` `EC` `OCT` keys to validate a JWT token.
+{% hint style="warning" %}
+Cryptographic keys functionality is available starting from version 2505.
+{% endhint %}
+
+TokenIntrospector allows you to use `RSA` `EC` `OCT` keys to validate a JWT token.
 
 ```http
 PUT /TokenIntrospector/external-auth-server
@@ -81,6 +85,11 @@ jwt:
       alg: HS256
       format: plain
 ```
+
+{% hint style="warning" %}
+Only one of the options listed above can be configured for each TokenIntrospector resource.
+{% endhint %}
+
 ### Define `AccessPolicy`
 
 ```http
@@ -144,7 +153,7 @@ Authorization: Bearer eyJ0...U6TY
 
 ## Opaque Token
 
-### Create Token Introspector&#x20;
+### Create Token Introspector
 
 with `introspection_endpoint`:
 
