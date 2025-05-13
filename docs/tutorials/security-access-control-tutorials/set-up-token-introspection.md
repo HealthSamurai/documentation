@@ -14,6 +14,12 @@ In this guide external auth server URL is `https://auth.example.com`
 
 ### Create `TokenIntrospector`
 
+Aidbox provides three ways to validate JWT tokens with `TokenIntrospector` resource:
+
+#### 1. Token secret
+
+Set `jwt.secret` property to the secret value used to sign the JWT.
+
 ```http
 PUT /TokenIntrospector/external-auth-server
 content-type: text/yaml
@@ -26,7 +32,9 @@ jwt:
   secret: very-secret
 ```
 
-The other example would be:&#x20;
+#### 2. JWKS URI
+
+Set `jwks_uri` property to the URL of the JWKS endpoint.
 
 ```html
 PUT /TokenIntrospector/external-auth-server
@@ -40,10 +48,39 @@ jwt:
 jwks_uri: <AUTH_SERVER_URL>/.well-known/jwks.json"
 ```
 
-{% hint style="warning" %}
-Currently we use common `secret` to validate our introspector works. In production installations it's better to switch to `jwks_uri` instead
-{% endhint %}
+#### 3. Cryptographic keys
 
+TokenIntrospector allows to use `RSA` `EC` `OCT` keys to validate a JWT token.
+
+```http
+PUT /TokenIntrospector/external-auth-server
+content-type: text/yaml
+
+resourceType: TokenIntrospector
+id: external-auth-server
+resourceType: TokenIntrospector
+id: with-keys
+type: jwt
+jwt:
+  iss: <AUTH_SERVER_URL>
+  keys:
+    - pub: <RSA_PUBLIC_KEY>
+      kty: RSA
+      alg: RS256
+      format: PEM
+    - pub: <RSA_PUBLIC_KEY>
+      kty: RSA
+      alg: RS384
+      format: PEM
+    - pub: <EC_PUBLIC_KEY>
+      kty: EC
+      alg: ES256
+      format: PEM
+    - k: <OCT_SECRET>
+      kty: OCT
+      alg: HS256
+      format: plain
+```
 ### Define `AccessPolicy`
 
 ```http
@@ -138,4 +175,4 @@ matcho:
 resourceType: AccessPolicy
 ```
 
-See all available [TokenIntrospector fields](../../reference/system-resources-reference/iam-module-resources.md).
+See all available [TokenIntrospector properties](../../reference/system-resources-reference/iam-module-resources.md).
