@@ -61,7 +61,7 @@ You can edit zen files in `zrc` directory and they will be automatically reloade
 
 ### Start form designing
 
-See [Design form in Aidbox UI Builder](aidbox-ui-builder-alpha/)
+See [Design form in Aidbox UI Builder](./aidbox-ui-builder-alpha/README.md)
 
 ## Enable Audit log
 

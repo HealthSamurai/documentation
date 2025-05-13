@@ -6,7 +6,7 @@ This example showcases the Smart App EHR and Patient [launch flows](https://hl7.
 
 1. Aidbox FHIR server with SMART-on-FHIR support.
 2. [Keycloak](https://www.keycloak.org/)\
-   Identity and Access Management solution that integrates with Aidbox through the [IdentityProvider](broken-reference) resource.
+   Identity and Access Management solution that integrates with Aidbox through the [IdentityProvider](../../authentication/sso-with-external-identity-provider.md) resource.
 3. [Growth Chart Smart App](https://github.com/smart-on-fhir/growth-chart-app)\
    A SMART pediatric web application that displays patient growth charts based on their observations.
 4. **Demo Launcher Page**\

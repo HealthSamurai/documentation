@@ -61,7 +61,7 @@ npm install
 
 ### How to use
 
-**Important:** Before we start we have to make sure that aidbox client [is configured](broken-reference) and your [access policies](broken-reference) provide granular access to resources you're trying to reach.
+**Important:** Before we start we have to make sure that aidbox client [is configured](../../modules/access-control/authentication/basic-http-authentication.md) and your [access policies](../../modules/access-control/authorization/access-policies.md) provide granular access to resources you're trying to reach.
 
 ```javascript
 import { Client } from "aidbox-sdk"
@@ -213,7 +213,7 @@ await client.createSubscription({
 
 ### sendLog
 
-Aidbox has the ability to extend its logs. There is an [endpoint](broken-reference) that accepts logs with the defined structure from your application. These logs are ingested into the elastic log.
+Aidbox has the ability to extend its logs. There is an endpoint that accepts logs with the defined structure from your application. These logs are ingested into the elastic log.
 
 ```javascript
 await client.sendLog({
@@ -245,7 +245,7 @@ client.transformToBundle(
 );
 ```
 
-Bundle requests could be a [transaction or batch](broken-reference) type. SDK uses the "transaction" type by default but you can change it by providing it in the second parameter.
+Bundle requests could be a [transaction or batch](../../api/batch-transaction.md) type. SDK uses the "transaction" type by default but you can change it by providing it in the second parameter.
 
 ```javascript
 const data = ArrayOfPatients.map(client.bundleEntryPost);
@@ -285,7 +285,7 @@ First of all we have to create task's schema with settings that apply restrictio
 ```
 
 {% hint style="info" %}
-We have to regenerate SDK package each time we made changes into configuration project. [More information about task definition](broken-reference)
+We have to regenerate SDK package each time we made changes into configuration project.
 {% endhint %}
 
 ### Implementation
@@ -348,7 +348,7 @@ const client = new Engine({
 ```
 
 {% hint style="info" %}
-We have to regenerate SDK package each time we made changes into configuration project. [More information about workflow definition](broken-reference)
+We have to regenerate SDK package each time we made changes into configuration project.
 {% endhint %}
 
 ### Implementation

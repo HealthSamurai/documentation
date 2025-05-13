@@ -42,7 +42,7 @@ On the left side you sketch out the form, on the right side it is rendered for y
 
 After you have created and tested the form, you click the `Save Questionnaire` button and the form is saved to the FHIR Storage and is available for working with it.
 
-Go to this [page](form-creation/) to start designing a form.
+Go to this [page](./form-creation/README.md) to start designing a form.
 
 ## Create form from FHIR Questionnaire (Import Quetionnaire)
 

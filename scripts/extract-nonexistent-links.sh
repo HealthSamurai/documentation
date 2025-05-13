@@ -29,6 +29,10 @@ while IFS= read -r line; do
     fi
     # Remove possible anchors/fragments
     file_path="${link%%#*}"
+    # If file_path is empty, it's an anchor in the same file, skip
+    if [[ -z "$file_path" ]]; then
+      continue
+    fi
     dir=$(dirname "$current_file")
     full_path="$dir/$file_path"
     # If no extension, try .md

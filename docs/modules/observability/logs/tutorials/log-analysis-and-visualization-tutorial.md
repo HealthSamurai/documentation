@@ -9,14 +9,14 @@ description: >-
 ## Update Docker Image
 
 {% hint style="info" %}
-This feature is available since [July 2021 - v:2107](broken-reference) Aidbox version
+This feature is available since 2107 Aidbox version
 {% endhint %}
 
 To begin using pre-configured Kibana and Grafana please clone [this repository](https://github.com/Aidbox/devbox) and execute `make up` operation in your shell.
 
 ## **Explore logs with Kibana**
 
-To use Kibana you need to understand Aidbox log formatting first. Go to Aidbox log documentation ([Logging & Audit](broken-reference)) to find logs schema available here with a brief attribute description.
+To use Kibana you need to understand Aidbox log formatting first. Go to Aidbox [log documentation](../README.md) to find logs schema available here with a brief attribute description.
 
 ```bash
 git clone https://github.com/Aidbox/devbox.git
@@ -26,7 +26,7 @@ make up
 
 ## **Explore logs with Kibana**
 
-To get a deeper understanding of Aidbox logs please go to the [log documentation](broken-reference) and explore logs schema available there.
+To get a deeper understanding of Aidbox logs please go to the [log documentation](../README.md) and explore logs schema available there.
 
 {% hint style="info" %}
 Aidbox Elastic appender sends logs as bundles of multiple records so if there's not enough data **you won't see any logs in Kibana**. For testing purposes reduce bundle size to 1 record by setting environment variable:
