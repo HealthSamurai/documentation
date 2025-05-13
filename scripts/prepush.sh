@@ -11,7 +11,7 @@ if [[ -s out/all_nonexistent_links_by_file.txt ]]; then
   if grep -q '^docs/deprecated/' out/all_nonexistent_links_by_file.txt && ! grep -vq '^docs/deprecated/' out/all_nonexistent_links_by_file.txt; then
     echo '\nOnly deprecated files have broken relative links. Skipping error.'
   else
-    echo '\nERROR: Broken relative links found outside docs/deprecated directory. See details in out/all_nonexistent_links_by_file.txt. Fix them before pushing.'
+    echo -e '\nERROR: Broken relative links found outside docs/deprecated directory. See details in out/all_nonexistent_links_by_file.txt. Fix them before pushing.'
     exit 1
   fi
 fi

@@ -10,7 +10,7 @@ Aidbox produces three types of signals: logs, metrics and traces in OTEL specifi
 Aidbox supports exporting telemetry using the Protobuf protocol in line with the OTEL specification. This guide configures Aidbox to export telemetry to the OpenTelemetry collector, but the setup can also be modified to export to other telemetry consumers that adhere to this specification.
 {% endhint %}
 
-## Prerequisites&#x20;
+## Prerequisites
 
 1. [OTEL collector](https://opentelemetry.io/docs/collector/) should be deployed and [configured](https://opentelemetry.io/docs/collector/configuration/) to receive logs, metrics and traces.
 
@@ -19,7 +19,7 @@ Aidbox supports exporting telemetry using the Protobuf protocol in line with the
 ## How to enable export telemetry to the OTEL collector
 
 {% hint style="info" %}
-This way of enabling OTEL capabilities is available in Aidbox versions 2503 and later. On previous AIdbox versions it was possible to enable OTEL with [Aidbox configuration project](how-to-export-telemetry-to-the-otel-collector.md#how-to-enable-export-telemetry-to-the-otel-collector-with-aidbox-configuration-project).
+This way of enabling OTEL capabilities is available in Aidbox versions 2503 and later. On previous AIdbox versions it was possible to enable OTEL with [Aidbox configuration project](#how-to-enable-export-telemetry-to-the-otel-collector-with-aidbox-configuration-project).
 {% endhint %}
 
 To  enable exporting telemetry to the OTEL collector, set up the following Aidbox settings:
