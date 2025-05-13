@@ -36,12 +36,12 @@ You will get Aidbox with enabled MCP server and created `AccessPolicy` for it.
 If you have already configured Aidbox to enable the MCP server:
 
 1. Set [`module.mcp.server-enabled` setting](../../reference/settings/modules.md#module.mcp.server-enabled) to `true`
-2. Set up Access Control for MCP endpoints via `AccessPolicy`&#x20;
+2. Set up Access Control for MCP endpoints via `AccessPolicy`
 
 #### Option 1. Public MCP Endpointb
 
 {% hint style="warning" %}
-The easiest but unsafe way to test MCP Server. Recommended for local development tests.&#x20;
+The easiest but unsafe way to test MCP Server. Recommended for local development tests.
 {% endhint %}
 
 Aidbox MCP endpoints are not public, so you need to set up Access Control for these endpoints.\
@@ -166,7 +166,18 @@ $ npx -y supergateway --sse <your-box-base-url>/mcp
 * For the `Cursor` editor add this config to your project folder `.cursor/mcp.json` and make sure that `Settings` -> `Cursor Settings` -> `MCP` is enabled.
 * For the LLM Desktop applications, such `Claude`, `ChatGPT` etc. go to the `Settings` and set the config. For example, in `Claude` desktop app go to `Settings` -> `Developer` -> `Edit Config`.
 
-Now you can ask your LLM agent to Create, Read, Update or Delete FHIR resources in Aidbox
+Now you can ask your LLM agent to Create, Read, Update or Delete FHIR resources in Aidbox.
+
+{% hint style="warning" %}
+You need to uninstall all node versions below 18 if you use Claude Desktop. \
+
+
+```
+nvm uninstall v16
+nvm uninstall ... another version below 18
+nvm cache clear
+```
+{% endhint %}
 
 ### Using MCP Inspector
 
