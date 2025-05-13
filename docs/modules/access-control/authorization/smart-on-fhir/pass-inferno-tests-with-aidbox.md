@@ -2,7 +2,7 @@
 
 {% hint style="info" %}
 This functionality is available starting from version 2411.\
-The [FHIR Schema Validator Engine](broken-reference) should be enabled.
+The [FHIR Schema Validator Engine](../../../profiling-and-validation/fhir-schema-validator/README.md) should be enabled.
 {% endhint %}
 
 Aidbox successfully passes the Inferno SMART App Launch Test Kit STU1.

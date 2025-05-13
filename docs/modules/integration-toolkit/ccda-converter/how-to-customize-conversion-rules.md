@@ -18,8 +18,6 @@ This part of functionality requires knowledge of zen language.
 
 Here is basic information on configuring zen-project to enable the converter functionality.
 
-[More details about zen-configuration](broken-reference).
-
 ## Default rules
 
 Current conversion rules are stored in `.edn` files in the zen project.

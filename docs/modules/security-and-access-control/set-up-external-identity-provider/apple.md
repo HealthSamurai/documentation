@@ -8,7 +8,7 @@
 
 * Create an account in Apple Developer portal
 * Make sure your Aidbox version is newer than 2503
-* Set up the local Aidbox instance using the getting started [guide](broken-reference)
+* Set up the local Aidbox instance using the getting started [guide](../../../getting-started/run-aidbox-locally.md)
 
 ## Managing Admin Access to the Aidbox UI Using Apple SSO
 

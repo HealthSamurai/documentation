@@ -9,7 +9,7 @@
 
 * Create an account in [Okta development portal](https://developer.okta.com/)
 * Make sure your Aidbox version is newer than 2107
-* Setup the local Aidbox instance using getting started [guide](broken-reference)
+* Setup the local Aidbox instance using getting started [guide](../../getting-started/run-aidbox-locally.md)
 
 ## Managing Admin Access to the Aidbox UI Using Okta Groups
 

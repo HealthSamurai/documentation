@@ -44,7 +44,7 @@ Aidbox is configured by the [Aidbox Configuration Projects](../../deprecated/dep
 </code></pre>
 
 {% hint style="info" %}
-See more details related the [running Aidbox locally](../../../../getting-started/run-aidbox-locally.md)
+See more details related the [running Aidbox locally](../../getting-started/run-aidbox-locally.md)
 {% endhint %}
 
 ### Apply the license and AIDBOX\_BASE\_URL

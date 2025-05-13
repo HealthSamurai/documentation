@@ -14,7 +14,7 @@ Aidbox is a mature and reliable FHIR platform that enables rapid development of 
 * [Architecture](architecture.md)
 * [Licensing and support](../getting-started/licensing-and-support.md)
 * [Release notes](../overview/release-notes.md)
-* [Run Aidbox on Kubernetes](../deployment-and-maintenance/deploy-aidbox/run-aidbox-in-kubernetes/)
+* [Run Aidbox on Kubernetes](../deployment-and-maintenance/deploy-aidbox/run-aidbox-in-kubernetes/README.md)
 
 ## Platform
 

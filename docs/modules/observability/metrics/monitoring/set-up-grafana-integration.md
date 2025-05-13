@@ -13,7 +13,7 @@ Before setting up Grafana integration, ensure you have set up the Aidbox Metrics
 {% endcontent-ref %}
 
 {% hint style="info" %}
-Please start [a discussion](https://github.com/Aidbox/Issues/discussions) or [contact](../../../../contact-us.md) us if you have questions, feedback, or suggestions.
+Please start [a discussion](https://github.com/Aidbox/Issues/discussions) or [contact](../../../../overview/contact-us.md) us if you have questions, feedback, or suggestions.
 {% endhint %}
 
 ## Configuration

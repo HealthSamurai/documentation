@@ -2,7 +2,7 @@
 
 ### Creating user resource
 
-Aidbox `user` resources conforms to following [schema](broken-reference). You can [create](broken-reference) new `user` as a regular resource.
+Aidbox `user` resources conforms to following [schema](../../reference/system-resources-reference/iam-module-resources.md). You can [create](../../api/rest-api/crud/create.md) new `user` as a regular resource.
 
 #### User resource example
 
