@@ -22,7 +22,6 @@
     * [🎓 Synthea by Bulk API](tutorials/bulk-api-tutorials/synthea-by-bulk-api.md)
     * [🎓 $dump-sql tutorial](tutorials/bulk-api-tutorials/dump-sql-tutorial.md)
   * [Security & Access Control Tutorials](tutorials/security-access-control-tutorials/README.md)
-    * [Authentication Tutorial](tutorials/security-access-control-tutorials/authentication-tutorial.md)
     * [Allow patients to see their own data](tutorials/security-access-control-tutorials/allow-patients-to-see-their-own-data.md)
     * [Restrict operations on resource type](tutorials/security-access-control-tutorials/restrict-operations-on-resource-type.md)
     * [Relationship-based access control](tutorials/security-access-control-tutorials/relationship-based-access-control.md)

@@ -3,7 +3,7 @@
 {% hint style="warning" %}
 Since the 2405 release, using Aidbox in FHIR schema validation engine is recommended, which is incompatible with zen or Entity/Attribute options.
 
-[Setup Aidbox with FHIR Schema validation engine](broken-reference)
+[Setup Aidbox with FHIR Schema validation engine](broken-reference/)
 {% endhint %}
 
 Aidbox configuration project consists of a set of files which together describe how a box should behave. Overview is given by the following filesystem tree example:
@@ -38,24 +38,30 @@ This is a directory with all your configuration files. They specify how a box sh
 * `box/` — directory with configs for services such as ACL or FHIR IG.\
   Each service config comes with its own set of options.
 
-| zrc/system.edn                                                                                                                                                                            | zrc/box/acl.edn                                                                                                     |
-| ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------- |
+| zrc/system.edn                                                                        | zrc/box/acl.edn |
+| ------------------------------------------------------------------------------------- | --------------- |
 | <pre class="language-clojure"><code class="lang-clojure">{ns     system
- import #{aidbox}
+</code></pre> |                 |
+| import #{aidbox}                                                                      |                 |
 
 server {...}
 
- box 
- {:zen/tags #{aidbox/system} 
-  :services {:http server …}}}
-</code></pre> | <pre><code>{ns     box.acl
+box\
+{:zen/tags #{aidbox/system}\
+:services {:http server …\}}}\
+|
+
+```
+{ns     box.acl
 import #{aidbox.rest.acl}
 some-acl-symbol
 {…}
 …
 some-other-acl-symbol
 {…}}
-</code></pre> |
+```
+
+|
 
 ### Examples
 
