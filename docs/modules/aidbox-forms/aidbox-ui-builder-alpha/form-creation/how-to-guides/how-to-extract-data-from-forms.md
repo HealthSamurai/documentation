@@ -324,7 +324,7 @@ item:
         valueExpression: {language: text/fhirpath, expression: '''phone'''}
       definition: Patient.contact.telecom.system
     text: Phone
-    type: string
+    type: integer
     linkId: phone
     definition: Patient.contact.telecom.value
   text: Patient
