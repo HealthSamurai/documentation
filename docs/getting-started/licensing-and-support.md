@@ -48,7 +48,7 @@ You can get a turn-key production-ready Aidbox as a SaaS to start your developme
 
 ### Aidbox for education
 
-For non-profit educational institutions, the Health Samurai provides Aidbox licenses that can be used for instructional and non-commercial academic research. Please [contact us](../contact-us.md) for more information.
+For non-profit educational institutions, the Health Samurai provides Aidbox licenses that can be used for instructional and non-commercial academic research. Please [contact us](../overview/contact-us.md) for more information.
 
 ## Aidbox Support
 
