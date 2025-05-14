@@ -3,5 +3,8 @@ _book
 check_summary_report.txt
 out/
 .clj-kondo/
+!.clj-kondo/config.edn
 .lsp/
 .nrepl-port
+node_modules
+.cpcache

@@ -1,0 +1,6 @@
+[submodule "libs/http"]
+	path = libs/http
+	url = git@github.com:context-clj/http.git
+[submodule "libs/system"]
+	path = libs/system
+	url = git@github.com:context-clj/system.git

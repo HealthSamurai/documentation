@@ -1,0 +1,120 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+@import "../../libs/http/resources/public/uui.css";
+
+.gitbook {
+    @apply max-w-3xl;
+}
+.gitbook {
+
+
+    h1 {
+        @apply mt-6 text-4xl font-bold flex items-center gap-4;
+    }
+
+    h2 {
+        @apply mt-6 text-3xl font-semibold relative mx-auto w-full;
+    }
+
+    h3 {
+        @apply mt-6 text-xl font-semibold relative mx-auto w-full;
+    }
+
+    p {
+        @apply my-4 text-gray-600;
+    }
+
+    ul {
+        @apply mt-4 ml-8 list-disc;
+        ul {
+            @apply list-[circle];
+            margin-top: 0 !important;
+        }
+        ol {
+            margin-top: 0 !important;
+        }
+    }
+
+    ol {
+        @apply mt-4 ml-8 list-decimal;
+        ul {
+            @apply list-[circle];
+            margin-top: 0 !important;
+        }
+        ol {
+            margin-top: 0 !important;
+        }
+    }
+
+    pre {
+        @apply p-4 text-xs bg-gray-100  text-black rounded-md overflow-x-auto shadow-md;
+        code {
+            @apply font-mono;
+        }
+    }
+
+    a {
+        @apply text-sky-600;
+    }
+    table {
+        @apply mt-4 text-sm;
+        thead {
+            tr {
+                @apply border-b border-gray-400;
+            }
+            th {
+                @apply px-2 py-1 align-top font-semibold text-gray-600;
+            }
+        }
+        tr {
+            @apply border-b border-gray-200;
+        }
+        td {
+            @apply px-2 py-1 align-top;
+        }
+    }
+
+    p {
+        code {
+            @apply bg-gray-100 text-xs px-2 py-1 rounded text-black font-mono;
+        }
+    }
+
+    div[role="hint"] {
+        @apply my-4 p-6 border rounded-md shadow;
+
+        &[style="info"] {
+            @apply bg-gray-50 border-gray-200;
+        }
+        &[style="warning"] {
+            @apply bg-yellow-50 border-yellow-200;
+        }
+        &[style="danger"] {
+            @apply bg-red-50 border-red-200;
+        }
+    }
+
+    a[role="content-ref"] {
+        @apply block my-4 p-4 border border-blue-100 rounded-md hover:bg-blue-50;
+    }
+}
+
+.nav {
+    summary {
+        list-style: none;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    summary .chevron {
+        transition: 0.4s;
+    }
+
+    details[open] > summary {}
+
+    details[open] > summary .chevron {
+        transform: rotate(90deg);
+    }
+}

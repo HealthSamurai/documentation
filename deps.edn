@@ -1,0 +1,32 @@
+{:paths ["src" "resources"]
+ :deps {org.clojure/clojure    {:mvn/version "1.12.0"}
+        context/system         {:local/root "./libs/system"}
+        hiccup/hiccup          {:mvn/version "2.0.0-RC4"}
+        ring/ring-core         {:mvn/version "1.14.1"}
+        context/http           {:local/root "./libs/http"}}
+ :aliases
+ {:dev
+  {:extra-paths ["dev" "test" "resources"]
+   :extra-deps  {refactor-nrepl/refactor-nrepl {:mvn/version "3.6.0"}
+                 cider/cider-nrepl             {:mvn/version "LATEST"}
+                 cider/piggieback              {:mvn/version "0.5.3"}
+                 zprint/zprint                 {:mvn/version "1.2.9"}
+                 hashp/hashp                   {:mvn/version "0.2.2"}}
+
+   :main-opts   ["-m" "nrepl.cmdline"
+                 "-b" "0.0.0.0"
+                 "--middleware"
+                 "[refactor-nrepl.middleware/wrap-refactor,cider.nrepl/cider-middleware]"]
+
+   :jvm-opts []
+   #_["-Dclojure.compiler.direct-linking=true"
+      "-XX:MaxDirectMemorySize=16g" "-XX:+UseLargePages"
+      "--add-opens=java.base/java.nio=ALL-UNNAMED"
+      "--add-opens=java.base/jdk.internal.ref=ALL-UNNAMED"
+      "--add-opens=java.base/sun.nio.ch=ALL-UNNAMED"]}
+
+  :test
+  {:extra-deps {lambdaisland/kaocha {:mvn/version "1.77.1236"}}
+   :extra-paths ["test"]
+   ;; :jvm-opts   ^:replace ["-XX:-OmitStackTraceInFastThrow"]
+   #_#_:main-opts  ["-m" "kaocha.runner"]}}}

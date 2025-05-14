@@ -52,3 +52,16 @@ Run `make init` to set up the pre-push git hook. This hook will automatically ru
 - `find-unused-assets.sh` — Finds images in `.gitbook/assets` that are not referenced in any markdown file. The list of unused files is saved to `out/unused_assets.txt` — you can safely delete them with `xargs -d '\n' rm -- < out/unused_assets.txt`.
 
 You can run any script from the `scripts/` directory manually if needed.
+
+## Rendering
+```
+npm install -D tailwindcss@3
+```
+
+
+### TODO
+
+1. url -> go to url-to-file idx -> get filepath
+2. if found, render. If not, go to redirects
+
+3. When user clicks the reference, we have filepath. We use filepath-to-url index
