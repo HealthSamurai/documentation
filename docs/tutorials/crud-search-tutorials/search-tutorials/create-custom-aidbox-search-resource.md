@@ -54,7 +54,7 @@ FROM patient p
 
 In DB Console, we get results:
 
-<figure><img src="../../../../.gitbook/assets/image (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="broken-reference" alt=""><figcaption></figcaption></figure>
 
 Then we can rewrite it like this:
 

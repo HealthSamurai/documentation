@@ -4,7 +4,7 @@ description: This guide explains how to export Aidbox telemetry in OpenTelemetry
 
 # How to export telemetry to the OTEL collector
 
-Aidbox produces three types of signals: logs, metrics and traces in OTEL specification.&#x20;
+Aidbox produces three types of signals: logs, metrics and traces in OTEL specification.
 
 {% hint style="info" %}
 Aidbox supports exporting telemetry using the Protobuf protocol in line with the OTEL specification. This guide configures Aidbox to export telemetry to the OpenTelemetry collector, but the setup can also be modified to export to other telemetry consumers that adhere to this specification.
@@ -14,15 +14,15 @@ Aidbox supports exporting telemetry using the Protobuf protocol in line with the
 
 1. [OTEL collector](https://opentelemetry.io/docs/collector/) should be deployed and [configured](https://opentelemetry.io/docs/collector/configuration/) to receive logs, metrics and traces.
 
-<figure><img src="../../../../.gitbook/assets/Telemetry (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="broken-reference" alt=""><figcaption></figcaption></figure>
 
 ## How to enable export telemetry to the OTEL collector
 
 {% hint style="info" %}
-This way of enabling OTEL capabilities is available in Aidbox versions 2503 and later. On previous AIdbox versions it was possible to enable OTEL with [Aidbox configuration project](#how-to-enable-export-telemetry-to-the-otel-collector-with-aidbox-configuration-project).
+This way of enabling OTEL capabilities is available in Aidbox versions 2503 and later. On previous AIdbox versions it was possible to enable OTEL with [Aidbox configuration project](how-to-export-telemetry-to-the-otel-collector.md#how-to-enable-export-telemetry-to-the-otel-collector-with-aidbox-configuration-project).
 {% endhint %}
 
-To  enable exporting telemetry to the OTEL collector, set up the following Aidbox settings:
+To enable exporting telemetry to the OTEL collector, set up the following Aidbox settings:
 
 * [observability.otel.metrics-url](../../../reference/settings/observability.md#observability.otel.metrics-url)
 * [observability.otel.traces-url](../../../reference/settings/observability.md#observability.otel.traces-url)
@@ -30,7 +30,7 @@ To  enable exporting telemetry to the OTEL collector, set up the following Aidbo
 
 Set OTEL collector receiver endpoint in each of the variables.
 
-## How to check the OTEL collector receives telemetry&#x20;
+## How to check the OTEL collector receives telemetry
 
 ### Set up `debug` exporter and `logs`, `metrics`, `traces` pipelines in the OTEL collector configuration:
 
@@ -73,10 +73,10 @@ Open OTEL collector stdout and see the logs, metrics and traces.
 ## How to enable export telemetry to the OTEL collector with Aidbox configuration project
 
 {% hint style="danger" %}
-Aidbox configuration project is [deprecated](https://www.health-samurai.io/news/aidbox-transitions-to-the-fhir-schema-engine).&#x20;
+Aidbox configuration project is [deprecated](https://www.health-samurai.io/news/aidbox-transitions-to-the-fhir-schema-engine).
 {% endhint %}
 
-To  enable exporting telemetry to the OTEL collector:
+To enable exporting telemetry to the OTEL collector:
 
 1. Import `aidbox.log`, `aidbox.telemetry.metrics`, `aidbox.telemetry.trace`
 2. Define `open-telemetry-appender`, `open-telemetry-metrics-exporter`, `otel-trace-exporter`
@@ -111,4 +111,3 @@ To  enable exporting telemetry to the OTEL collector:
   :config   config/zen-config
   :services {:otel-appender open-telemetry-appender}}} ; add otel-appender
 ```
-

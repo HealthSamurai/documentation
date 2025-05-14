@@ -1,7 +1,7 @@
 # Custom SearchParameter tutorial
 
 {% hint style="info" %}
-To create a SearchParameter, [FHIRSchema](../../../modules/profiling-and-validation/fhir-schema-validator/README.md) must be enabled (enabled by default)
+To create a SearchParameter, [FHIRSchema](../../../modules/profiling-and-validation/fhir-schema-validator/) must be enabled (enabled by default)
 {% endhint %}
 
 ### Objectives <a href="#objectives" id="objectives"></a>
@@ -11,18 +11,18 @@ To create a SearchParameter, [FHIRSchema](../../../modules/profiling-and-validat
 
 ## Before you begin <a href="#before-you-begin" id="before-you-begin"></a>
 
-* See what FHIR Search is [here](../../../api/rest-api/fhir-search/README.md), what [SearchParameter is here](../../../api/rest-api/fhir-search/searchparameter.md)
+* See what FHIR Search is [here](../../../api/rest-api/fhir-search/), what [SearchParameter is here](../../../api/rest-api/fhir-search/searchparameter.md)
 * Set up the local Aidbox instance using the getting started [guide](../../../getting-started/run-aidbox-locally.md)
 
 ## Get any SearchParameter definition
 
 In AidboxUI, go to **FHIR Packages -> hl7.fhir.r4.core** and click on "SearchParameters" tab:
 
-<figure><img src="../../../../.gitbook/assets/image (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="broken-reference" alt=""><figcaption></figcaption></figure>
 
 Getting all Patient SearchParameters from r4:
 
-<figure><img src="../../../../.gitbook/assets/image (2).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="broken-reference" alt=""><figcaption></figcaption></figure>
 
 Clicking on `Patient-active` SearchParameter gives us an actual definition of it:
 
@@ -86,7 +86,7 @@ The expression field uses [FHIRPath](https://hl7.org/fhir/fhirpath.html) and def
 
 You can find all SearchParameters created by you in **app.aidbox.main** package:
 
-<figure><img src="../../../../.gitbook/assets/image (150).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="broken-reference" alt=""><figcaption></figcaption></figure>
 
 ## Test Search Parameter
 

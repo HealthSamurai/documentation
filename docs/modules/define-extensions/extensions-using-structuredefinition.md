@@ -1,13 +1,12 @@
 # Extensions using StructureDefinition
 
-Aidbox supports defining extensions using [StructureDefinition](https://build.fhir.org/structuredefinition.html) FHIR resource. This is possible when Aidbox is configured with [FHIRSchema mode](../../modules/profiling-and-validation/fhir-schema-validator/README.md).&#x20;
+Aidbox supports defining extensions using [StructureDefinition](https://build.fhir.org/structuredefinition.html) FHIR resource. This is possible when Aidbox is configured with [FHIRSchema mode](../profiling-and-validation/fhir-schema-validator/).
 
-See also [Extensions using FHIRSchema](./extensions-using-fhirschema.md).
-
+See also [Extensions using FHIRSchema](extensions-using-fhirschema.md).
 
 ## Example
 
-To create the Extension, simply `PUT` or `POST` the StructureDefinition with `Extension` type to the `/fhir/StructureDefinition` endpoint.&#x20;
+To create the Extension, simply `PUT` or `POST` the StructureDefinition with `Extension` type to the `/fhir/StructureDefinition` endpoint.
 
 ```json
 PUT /fhir/StructureDefinition/insurance-plan
@@ -65,11 +64,11 @@ PUT /fhir/StructureDefinition/insurance-plan
 }
 ```
 
-When StructureDefinition is created, you can inspect it in the "Fhir Packages" Aidbox UI page.&#x20;
+When StructureDefinition is created, you can inspect it in the "Fhir Packages" Aidbox UI page.
 
-<figure><img src="../../../.gitbook/assets/image (110).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="broken-reference" alt=""><figcaption></figcaption></figure>
 
-We can use the defined extension like this:&#x20;
+We can use the defined extension like this:
 
 ```yaml
 PUT /fhir/Coverage/my-coverage

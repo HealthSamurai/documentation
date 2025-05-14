@@ -19,7 +19,7 @@ The dev tool is a part of Aidbox UI Console, which aims
 * to edit AccessPolicy resource, and
 * to give a nice view for AccessPolicy debug output for specific request in the same place.
 
-<figure><img src="../../../../.gitbook/assets/Screenshot 2023-03-23 at 11.40.41.png" alt=""><figcaption><p>Access policy dev tool</p></figcaption></figure>
+<figure><img src="broken-reference" alt=""><figcaption><p>Access policy dev tool</p></figcaption></figure>
 
 The dev tool is split on two sides, editor side and result side. On the left side you define
 
@@ -35,11 +35,11 @@ When you press the Save\&Run button, the dev tool saves AccessPolicy and perform
 
 To get to the dev tool from AccessPolicy list page, click the _dev tool_ link on a AccessPolicy you want to debug.
 
-<figure><img src="../../../../.gitbook/assets/Screenshot 2023-03-23 at 11.40.10.png" alt=""><figcaption><p>AccessPolicy list with the link to dev tool</p></figcaption></figure>
+<figure><img src="broken-reference" alt=""><figcaption><p>AccessPolicy list with the link to dev tool</p></figcaption></figure>
 
 To get to the dev tool from AccessPolicy view page, click the link on the top right corner.
 
-<figure><img src="../../../../.gitbook/assets/Screenshot 2023-03-23 at 11.48.13.png" alt=""><figcaption><p>AccessPolicy view page with the link to dev tool</p></figcaption></figure>
+<figure><img src="broken-reference" alt=""><figcaption><p>AccessPolicy view page with the link to dev tool</p></figcaption></figure>
 
 ## Tips
 

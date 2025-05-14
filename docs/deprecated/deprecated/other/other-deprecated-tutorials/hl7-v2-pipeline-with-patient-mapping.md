@@ -3,7 +3,7 @@
 {% hint style="warning" %}
 Since the 2405 release, using Aidbox in FHIR schema validation engine is recommended, which is incompatible with zen or Entity/Attribute options.
 
-[Setup Aidbox with FHIR Schema validation engine](broken-reference)
+[Setup Aidbox with FHIR Schema validation engine](broken-reference/)
 {% endhint %}
 
 In this tutorial we will create an [HL7 v2 pipeline](../../../../modules/integration-toolkit/hl7-v2-integration/hl7-v2-integration-with-aidbox-project.md) to parse, map and persist Patient resources to your Aidbox database.
@@ -14,7 +14,7 @@ This tutorial is also available with a [sample aidbox configuration project](htt
 
 Define your mapping tagged by `lisp/mapping`.
 
-The `:mapping` value is confirmed as `lisp/expr`, so you may use [Lisp expressions](broken-reference) to define which intermediate format properties should be included in the Bundle resource.
+The `:mapping` value is confirmed as `lisp/expr`, so you may use [Lisp expressions](broken-reference/) to define which intermediate format properties should be included in the Bundle resource.
 
 ```clojure
 {ns my-mappings
@@ -73,7 +73,7 @@ Mapping with several functions on empty intermediate fields may cause exceptions
 
 ## Api definition
 
-Create a namespace with [your API definition](broken-reference) with operation tagged by `aidbox.rest/op`. You should use `hl7v2.api/in-op` as `:engine` for every pipeline operation.
+Create a namespace with [your API definition](broken-reference/) with operation tagged by `aidbox.rest/op`. You should use `hl7v2.api/in-op` as `:engine` for every pipeline operation.
 
 Aidbox provides a predefined parser configuration, so you may use `hl7v2.config/default-config` for most types of messages.\
 `:mapping` property should use mapping defined in previous step.
@@ -102,7 +102,7 @@ Aidbox provides a predefined parser configuration, so you may use `hl7v2.config/
 
 Add your API in :apis set of Aidbox server definition.
 
-To properly validate the resulting resource, import the appropriate [fhir profiles](../../zen-related/profiling-with-zen-lang/README.md).
+To properly validate the resulting resource, import the appropriate [fhir profiles](../../zen-related/profiling-with-zen-lang/).
 
 ```clojure
 {ns box
@@ -127,4 +127,4 @@ To properly validate the resulting resource, import the appropriate [fhir profil
 
 If your configuration was loaded correctly - you should see a new option when creating the HL7 v2 message.
 
-<figure><img src="../../../../../.gitbook/assets/image (6) (2).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="broken-reference" alt=""><figcaption></figcaption></figure>
