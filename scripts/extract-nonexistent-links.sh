@@ -13,8 +13,13 @@ while IFS= read -r line; do
     current_file=$(echo "$line" | sed 's/ (.*//;s/ links.*//')
     file_header="$line"
     broken_links=()
-  elif echo "$line" | grep -qE '^  \[.*\]\([^)]+\)'; then
-    link=$(echo "$line" | sed -n 's/.*](\([^)]*\)).*/\1/p')
+  elif echo "$line" | grep -qE '^  \[.*\]\([^)]+\)' || echo "$line" | grep -qE '^  <img.*src="[^"]+'; then
+    # Extract link from markdown or HTML img tag
+    if echo "$line" | grep -qE '^  \[.*\]\([^)]+\)'; then
+      link=$(echo "$line" | sed -n 's/.*](\([^)]*\)).*/\1/p')
+    else
+      link=$(echo "$line" | sed -n 's/.*src="\([^"]*\)".*/\1/p')
+    fi
     # Skip external and anchor links
     if [[ "$link" =~ ^(http|https|ftp|mailto|#) ]]; then
       continue

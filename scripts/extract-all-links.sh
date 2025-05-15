@@ -7,7 +7,13 @@ declare -A file_links
 declare -a files
 
 while IFS= read -r -d '' file; do
-  links=$(grep -oP '\[[^\]]+\]\([^\)]+\)' "$file" | sort | uniq)
+  # Combine markdown links and HTML img tags, sort and remove duplicates
+  links=$(
+    {
+      grep -oP '\[[^\]]+\]\([^\)]+\)' "$file"
+      grep -oP '<img[^>]*src="[^"]+"' "$file" | sed 's/.*src="\([^"]*\)".*/  <img src="\1"/'
+    } | sort | uniq
+  )
   count=$(echo "$links" | grep -c .)
   if [ "$count" -gt 0 ]; then
     file_links["$file"]="$links"
