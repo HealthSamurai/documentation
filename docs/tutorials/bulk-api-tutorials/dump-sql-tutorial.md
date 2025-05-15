@@ -4,11 +4,9 @@ description: >-
   analytics
 ---
 
-# $dump-sql tutorial
+# 🎓 $dump-sql tutorial
 
 {% embed url="https://www.youtube.com/watch?v=BtLxICcQNWw&feature=youtu.be" %}
-
-
 
 Create Client & AccessPolicy for your API agent - in our case curl
 
@@ -82,4 +80,3 @@ bq query 'select id from test.entities'
 # remove dataset
 bq rm -r test
 ```
-

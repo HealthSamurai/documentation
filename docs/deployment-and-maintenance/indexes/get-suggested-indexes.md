@@ -3,7 +3,7 @@
 Since version 2211, Aidbox can suggest indexes for Search API.&#x20;
 
 {% hint style="warning" %}
-Index suggestion API is in draft stage. It will change in future!
+Index suggestion API is in the draft stage.
 {% endhint %}
 
 Supported FHIR Search parameter types:
