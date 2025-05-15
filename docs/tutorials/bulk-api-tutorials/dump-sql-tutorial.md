@@ -4,7 +4,7 @@ description: >-
   analytics
 ---
 
-# 🎓 $dump-sql tutorial
+# $dump-sql tutorial
 
 {% embed url="https://www.youtube.com/watch?v=BtLxICcQNWw&feature=youtu.be" %}
 

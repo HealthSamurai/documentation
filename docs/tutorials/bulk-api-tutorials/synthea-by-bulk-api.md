@@ -2,7 +2,7 @@
 description: In this guide we will generate synthea data and load it into aidbox
 ---
 
-# 🎓 Synthea by Bulk APi
+# Synthea by Bulk APi
 
 ### Generate synthea data
 
