@@ -2,10 +2,12 @@
 @tailwind components;
 @tailwind utilities;
 @import "../../libs/http/resources/public/uui.css";
+@import "./css/code-highlight.css"
 
 .gitbook {
     @apply max-w-3xl;
 }
+
 .gitbook {
 
 

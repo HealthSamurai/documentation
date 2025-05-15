@@ -42,13 +42,72 @@
   (let [lvl (count (re-find #"#+" (str/trim l)))]
     (into [(keyword (str "h" lvl))] (parse-inline ctx (str/replace l #"\s*#+\s*" "")))))
 
+(defn escape-html
+  "Escape HTML special characters"
+  [text]
+  (-> text
+      (str/replace #"&" "&amp;")
+      (str/replace #"<" "&lt;")
+      (str/replace #">" "&gt;")))
+
+(defn apply-basic-highlighting 
+  "Apply basic syntax highlighting to code content"
+  [code language]
+  (let [escaped-code (escape-html code)
+        styled-code 
+        (if (not-empty language)
+          (cond
+            ;; Shell/Bash highlighting
+            (or (= language "shell") (= language "bash") (= language "sh"))
+            (-> escaped-code
+                ;; Comments
+                (str/replace #"(^|\n)(\s*#.*?)($|\n)" "$1<span style=\"color:#94a3b8;font-style:italic\">$2</span>$3")
+                ;; Commands at line start
+                (str/replace #"(^|\n)(\s*\w+\b)" "$1<span style=\"color:#fb923c;font-weight:bold\">$2</span>")
+                ;; Strings
+                (str/replace #"\"([^\"]*)\"" "<span style=\"color:#86efac\">\"$1\"</span>"))
+            
+            ;; Docker highlighting
+            (or (= language "docker") (= language "dockerfile"))
+            (-> escaped-code
+                ;; Docker directives
+                (str/replace #"\b(FROM|RUN|CMD|LABEL|MAINTAINER|EXPOSE|ENV|ADD|COPY|ENTRYPOINT|VOLUME|USER|WORKDIR|ARG|ONBUILD)\b" 
+                            "<span style=\"color:#fb923c;font-weight:bold\">$1</span>")
+                ;; Comments
+                (str/replace #"(^|\n)(\s*#.*?)($|\n)" "$1<span style=\"color:#94a3b8;font-style:italic\">$2</span>$3"))
+            
+            ;; JSON highlighting
+            (= language "json")
+            (-> escaped-code
+                ;; JSON keys
+                (str/replace #"\"([^\"]+)\":" "<span style=\"color:#93c5fd\">\"$1\"</span>:")
+                ;; JSON string values
+                (str/replace #":\\s*\"([^\"]*)\"" ": <span style=\"color:#86efac\">\"$1\"</span>"))
+            
+            ;; Default - no highlighting
+            :else escaped-code)
+          
+          ;; No language specified
+          escaped-code)]
+    
+    ;; Wrap in code tag with monospace font styling
+    (str "<code style=\"font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier New', monospace;\">" 
+         styled-code 
+         "</code>")))
+
 (defn code-parser [ctx block]
   (let [ls (:lines block)
-        lang (str/trim (str/replace (first ls) #"^```" ""))]
-    [:div {:class "my-4"}
-     [:b {:class "text-xs text-gray-400"} lang]
-     [:pre
-      [:code (str/join "\n" (butlast (rest ls)))]]]))
+        lang (str/trim (str/replace (first ls) #"^```" ""))
+        code-content (str/join "\n" (butlast (rest ls)))
+        highlighted-content (apply-basic-highlighting code-content lang)]
+    
+    (println "Code block found! Language:" (or lang "none"))
+    
+    [:div {:style "margin-top: 1.5rem; margin-bottom: 1.5rem;"}
+     [:div {:style "text-align: right; font-size: 0.75rem; margin-bottom: 0.25rem; color: #6b7280;"}
+      (str "Language: " (or lang "none"))]
+     [:pre {:style "border-radius: 0.375rem; padding: 1rem; overflow-x: auto; background-color: #1e293b; color: #f8fafc; font-size: 0.875rem; line-height: 1.7;"}
+      (hiccup2.core/raw highlighted-content)]]))
 
 ;; TODO nested lists
 (defn ul-parser [ctx block]

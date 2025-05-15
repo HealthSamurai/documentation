@@ -10,7 +10,6 @@
 
 (set! *warn-on-reflection* true)
 
-;; todo use this
 (defn uri->file-idx
   "Creates index to get filepath by uri.
 
@@ -28,13 +27,9 @@
 
 (defn uri->filepath [uri->file-idx ^String uri]
   (let [fixed-url (if (= "/" (subs uri 0 1)) (subs uri 1) uri)]
-    (def fixed-url fixed-url)
     (str "/docs/" (get uri->file-idx fixed-url "readme/README.md"))))
 
 (defn page-link->uri [context ^String current-page-uri ^String relative-page-link]
   (let [current-filepath (uri->filepath (gitbok.indexing.impl.uri-to-file/get context) current-page-uri)
         real-file-path (common/get-filepath current-filepath relative-page-link)]
     (get file->uri-idx real-file-path "/")))
-
-;; (defn summary []
-;;   (gitbok.indexing.impl.summary/parse-summary))
