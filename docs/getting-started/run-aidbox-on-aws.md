@@ -18,18 +18,18 @@ On the last screen click on **"Set Up Your Account"** button.
 
 After that, you will be redirected to the Aidbox user portal page. Log in in to Aidbox user portal and create new license.
 
-<figure><img src="../../.gitbook/assets/Screenshot 2023-03-08 at 09.33.06.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/3d6a14b0baa441e2a31a4253f0582cf8.png" alt=""><figcaption></figcaption></figure>
 
 On license create page select product type and fill all required fields. On "Hosting" section you need select **AWS** options. If you successfully subscribe on AWS you will see a green message "You have an active AWS subscription...". Select the hosting zone and click create button.
 
-<figure><img src="../../.gitbook/assets/Screenshot 2023-03-08 at 09.24.26.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/5e3dfcb3a54f42e4b96660147272ef9f.png" alt=""><figcaption></figcaption></figure>
 
 You can check your license status on the licenses list page. Wait a couple of minutes until we install your environment and order certificates. As a result in "Hosting" section status should be changed to **Running**
 
-<figure><img src="../../.gitbook/assets/Screenshot 2023-03-08 at 09.30.07.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/2ca9587712f042cfa72f2d1ddf57d3ce.png" alt=""><figcaption></figcaption></figure>
 
 Now you can open your instance URL and enter user/password credentials from license page
 
 &#x20;
 
-<figure><img src="../../.gitbook/assets/Screen Shot 2022-08-29 at 13.04.30.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/855a9ce6ecaf4d2b910e465393006911.png" alt=""><figcaption></figcaption></figure>

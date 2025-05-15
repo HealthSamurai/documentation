@@ -112,7 +112,7 @@ By default, Aidbox does not load terminologies into the database to save disk sp
 
 To see currently loaded profiles you can go to the `profiles` UI page:
 
-![](<../../../../../.gitbook/assets/image (4) (1) (2).png>) ![](<../../../../../.gitbook/assets/image (3) (3).png>)
+![](<../../../../../.gitbook/assets/6afe1c1ae6af443ea30c357cc014514b.png>) ![](<../../../../../.gitbook/assets/0692ed62c1314b83a62c2b4e5e1c9cb7.png>)
 
 If you want to verify that validation with IGs work, you can create FHIR resource using FHIR REST API which will validate the provided resource against the specified Profile.
 

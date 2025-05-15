@@ -204,4 +204,4 @@ Select `SSE` in `Transport Type` dropdown. And set URL to `<your-aidbox-base-url
 
 Now you can discover tools and use them.
 
-<figure><img src="../../../.gitbook/assets/Screenshot 2025-05-07 at 14.24.30.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/b42cf3753e2642d89db372604133a866.png" alt=""><figcaption></figcaption></figure>

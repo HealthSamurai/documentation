@@ -20,7 +20,7 @@ Go to **Applications -> Applications** in Okta portal and click "**Create App In
 * Sign-in method: OIDC - OpenID Connect
 * Application type: Web Application
 
-<figure><img src="../../../.gitbook/assets/image (113).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/8e7fad14130e41e7aa99793c36666c93.png" alt=""><figcaption></figcaption></figure>
 
 Enter Application details:
 
@@ -30,20 +30,20 @@ Enter Application details:
   * Refresh Token
   * Implicit (hybrid)
 
-<figure><img src="../../../.gitbook/assets/image (116).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/05e8e209602c4656bbe793e4f12968b2.png" alt=""><figcaption></figcaption></figure>
 
 * Sign-in redirect URIs: `http://localhost:8080/auth/callback/okta-identity-provider`
 * Controlled access: Skip group assignment for now
 
-<figure><img src="../../../.gitbook/assets/image (115).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/e8542ec68a8443f0878c2b0b44ef34f6.png" alt=""><figcaption></figcaption></figure>
 
 Assign the application to your personal account in Okta:
 
-<figure><img src="../../../.gitbook/assets/image (118).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/77ba5bbf06004cc9ba8b89d791b7100b.png" alt=""><figcaption></figcaption></figure>
 
 Checkout **Client ID** and **Client secret**:
 
-<figure><img src="../../../.gitbook/assets/image (117).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/450ddf0ec56c4b4da1339f32eccc4a2f.png" alt=""><figcaption></figcaption></figure>
 
 ### Create an IdentityProvider in Aidbox
 
@@ -83,7 +83,7 @@ accept: application/json
 
 Go to the Aidbox login page. You should see **Sign in with MyOkta** button.&#x20;
 
-<figure><img src="../../../.gitbook/assets/image (119).png" alt="" width="375"><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/041bc5f323ac4f5eac9241ae8598327a.png" alt="" width="375"><figcaption></figcaption></figure>
 
 Press this button and log in with Okta user into Aidbox.
 
@@ -91,7 +91,7 @@ You should not be able to see much in the Aidbox because there's no access polic
 
 Relogin with admin and check the user created in Aidbox for your Okta user. Go to **IAM -> User** and click on the user ID.
 
-<figure><img src="../../../.gitbook/assets/image (120).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/6fe03066fe0c4f5ebb5e26e338bdb587.png" alt=""><figcaption></figcaption></figure>
 
 User Resource is Aidbox is updated every time the user logs in using external Identity Provider. Source of the user information is configured using `userinfo-source` element in IdentityProvider configuration resource.&#x20;
 
@@ -99,11 +99,11 @@ User Resource is Aidbox is updated every time the user logs in using external Id
 
 In Okta go to **Directory -> Groups** and create group `Aidbox-Admins`
 
-<figure><img src="../../../.gitbook/assets/image (121).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/56375f0e51984d1e81912291503883a3.png" alt=""><figcaption></figcaption></figure>
 
 Add your user to the group
 
-<figure><img src="../../../.gitbook/assets/image (124).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/a2b51a54bebb4c68ad97ba2292d51f46.png" alt=""><figcaption></figcaption></figure>
 
 ### Customize ID token in Okta to include groups
 
@@ -115,13 +115,13 @@ In Okta go to **Security -> API** drill down to the `default` authorization serv
 * Filter: Starts with: Aidbox-Admins
 * Include in: any scope
 
-<figure><img src="../../../.gitbook/assets/image (127).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/70a9ee2e52344c3bb2d4b8f1aa07feeb.png" alt=""><figcaption></figcaption></figure>
 
 ### Make sure the group info from Okta is making into Aidbox
 
 Relogin into Aidbox using **Sign in with MyOkta** button. The user is updated with Okta groups data. Relogin with admin and check.
 
-<figure><img src="../../../.gitbook/assets/image (126).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/b7eedcdf360942ff90b3034816584faf.png" alt=""><figcaption></figcaption></figure>
 
 ### Create the AccessPolicy
 

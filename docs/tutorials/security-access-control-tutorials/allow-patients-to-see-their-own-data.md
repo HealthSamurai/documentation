@@ -40,7 +40,7 @@ inputs:
 
 In the previous step, we have imported a client that will authenticate users and two users with corresponding sets of related resources shown on the picture below. Overlapping outlines indicates the relation between enclosed resources. A similar diagram applies to User-2.
 
-![](<../../.gitbook/assets/image (10) (1).png>)
+![](<../../.gitbook/assets/d0139d9e87774baf8ee5b3750f8b72db.png>)
 
 ## User Login‌ <a href="#user-login" id="user-login"></a>
 
@@ -88,7 +88,7 @@ Notice the `patient_id` field of `userinfo` . This is the id of the Patient reso
 
 The `access-token` field of `user-info` will be needed to perform requests on behalf of our User. See [here](../../modules/security-and-access-control/auth/resource-owner-grant.md) how to perform user request with a token.
 
-![](<../../.gitbook/assets/image (8) (1) (1) (1).png>)
+![](<../../.gitbook/assets/55a61b7dc7c44de9b2947a4be2c99504.png>)
 
 At this point there are no access policies that allow the user to access any resources. So all attempts to make requests for Resources will be denied.
 
