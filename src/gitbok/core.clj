@@ -67,8 +67,9 @@
    :deps ["http"]
    :config {:history {:type "boolean"}}})
 
+#_{:clj-kondo/ignore [:unresolved-symbol]}
 (system/defstart
-  [context _config]
+  [context config]
   (http/register-ns-endpoints context *ns*)
   (http/register-endpoint context {:path "/" :method :get :fn #'render-file-view})
   (http/register-endpoint context {:path "/admin/broken" :method :get :fn #'gitbok.broken-links/broken-links-view})
@@ -80,16 +81,3 @@
 (def default-config
   {:services ["http" "uui" "gitbok.core"]
    :http {:port 8081}})
-
-(comment
-  (require '[system.dev :as dev])
-
-  (dev/update-libs)
-
-  (def context (system/start-system default-config))
-
-  (system/stop-system context)
-
-  )
-
-
