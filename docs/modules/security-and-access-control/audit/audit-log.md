@@ -30,4 +30,6 @@ Aidbox acts as [Audit record repository](https://profiles.ihe.net/ITI/TF/Volume1
 
 ## Next steps
 
-* [How to configure Audit Log](../../../tutorials/security-access-control-tutorials/how-to-configure-audit-log.md)
+{% content-ref url="../../../tutorials/security-access-control-tutorials/how-to-configure-audit-log.md" %}
+[how-to-configure-audit-log.md](../../../tutorials/security-access-control-tutorials/how-to-configure-audit-log.md)
+{% endcontent-ref %}

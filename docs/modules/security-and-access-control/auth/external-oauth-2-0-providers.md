@@ -144,4 +144,6 @@ link:
 
 ## How to set-up identity provider
 
-* [External identity providers](../set-up-external-identity-provider/)
+{% content-ref url="../set-up-external-identity-provider/" %}
+[set-up-external-identity-provider](../set-up-external-identity-provider/README.md)
+{% endcontent-ref %}

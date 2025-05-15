@@ -116,7 +116,9 @@ The good thing about Search resource is that it can be used just like SearchPara
 
 See more:
 
-* [Aidbox Search](../../../api/rest-api/aidbox-search.md)
+{% content-ref url="../../../api/rest-api/aidbox-search.md" %}
+[aidbox-search.md](../../../api/rest-api/aidbox-search.md)
+{% endcontent-ref %}
 
 ## Other examples
 

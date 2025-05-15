@@ -35,10 +35,14 @@ Deleting projects entails irretrievable deletion of all associated resources suc
 
 ### License management
 
-* [Licenses](licenses.md)
+{% content-ref url="licenses.md" %}
+[licenses.md](licenses.md)
+{% endcontent-ref %}
 
 ### Member management
 
 Collaborative work in projects
 
-* [Members](members.md)
+{% content-ref url="members.md" %}
+[members.md](members.md)
+{% endcontent-ref %}

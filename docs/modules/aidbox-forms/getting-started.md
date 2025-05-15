@@ -105,7 +105,9 @@ Restart Aidbox. Aidbox will start recording audit logs and you can see them in t
 
 Learn more about Audit logs:
 
-* [Audit](../security-and-access-control/audit/)
+{% content-ref url="../security-and-access-control/audit/" %}
+[audit](../security-and-access-control/audit/README.md)
+{% endcontent-ref %}
 
 ## Disable SDC operations
 

@@ -12,7 +12,9 @@ The webhook AidboxTopicDestination works in the following way:
 * After the CRUD operation, Aidbox collects unsent messages (refer to the `maxEventNumberInBatch` parameter) from the database and sends them to the specified endpoint via a POST request.
 * If an error occurs during sending, Aidbox will continue retrying until the message is successfully delivered.
 
-* [Aidbox topic-based subscriptions](./)
+{% content-ref url="./" %}
+[.](./README.md)
+{% endcontent-ref %}
 
 ## Configuration
 

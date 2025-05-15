@@ -6,7 +6,9 @@ Authentication is verifying the identity of clients accessing Aidbox APIs and se
 
 Basic Authentication is a simple username/password authentication suitable for development and testing environments.
 
-* [Basic HTTP Authentication](basic-http-authentication.md)
+{% content-ref url="basic-http-authentication.md" %}
+[basic-http-authentication.md](basic-http-authentication.md)
+{% endcontent-ref %}
 
 ## OAuth 2.0
 
@@ -19,13 +21,17 @@ OAuth 2.0 is the industry-standard protocol for authorization. Aidbox provides c
 
 Learn more about OAuth 2.0 support:&#x20;
 
-* [OAuth 2.0](oauth-2-0.md)
+{% content-ref url="oauth-2-0.md" %}
+[oauth-2-0.md](oauth-2-0.md)
+{% endcontent-ref %}
 
 ## Token Introspection
 
 Validate and inspect OAuth 2.0 tokens issued by external Identity Providers.
 
-* [Token Introspector](token-introspector.md)
+{% content-ref url="token-introspector.md" %}
+[token-introspector.md](token-introspector.md)
+{% endcontent-ref %}
 
 ## Authentication of Users Logging into the Aidbox Console UI
 
@@ -41,4 +47,6 @@ Two-factor authentication is also supported. See [Two Factor Authentication](../
 
 Integrate with external Identity Providers (IdPs) for SSO to Aidbox Console UI.
 
-* [SSO with External Identity Provider](sso-with-external-identity-provider.md)
+{% content-ref url="sso-with-external-identity-provider.md" %}
+[sso-with-external-identity-provider.md](sso-with-external-identity-provider.md)
+{% endcontent-ref %}

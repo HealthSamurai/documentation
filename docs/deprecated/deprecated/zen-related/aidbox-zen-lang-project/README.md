@@ -26,15 +26,23 @@ Once you set up your project for one Aidbox instance you can reuse it across mul
 Aidbox configuration project is sometimes referred to as Aidbox Project or just project. It should not be confused with Aidbox User Portal projects containing licenses.
 {% endhint %}
 
-* [Aidbox configuration project structure](aidbox-configuration-project-structure.md)
+{% content-ref url="aidbox-configuration-project-structure.md" %}
+[aidbox-configuration-project-structure.md](aidbox-configuration-project-structure.md)
+{% endcontent-ref %}
 
 ## Features supported by configuration projects
 
-* [Enable IGs](enable-igs.md)
+{% content-ref url="enable-igs.md" %}
+[enable-igs.md](enable-igs.md)
+{% endcontent-ref %}
 
-* [Seed v2](seed-v2.md)
+{% content-ref url="seed-v2.md" %}
+[seed-v2.md](seed-v2.md)
+{% endcontent-ref %}
 
-* [Broken Reference](broken-reference)
+{% content-ref url="broken-reference" %}
+[Broken link](broken-reference)
+{% endcontent-ref %}
 
 ## Use Aidbox configuration project
 
@@ -50,7 +58,9 @@ Configuration projects can be provided either as a git repository URL or as a lo
 
 Setting up a self-hosted project is done by providing access to project files.
 
-* [Broken Reference](broken-reference)
+{% content-ref url="broken-reference" %}
+[Broken link](broken-reference)
+{% endcontent-ref %}
 
 ### Production installation
 
@@ -78,7 +88,9 @@ Aidbox configuration projects will be supported on AWS Marketplace in upcoming r
 
 ### Configuration projects in self-hosted instances
 
-* [Broken Reference](broken-reference)
+{% content-ref url="broken-reference" %}
+[Broken link](broken-reference)
+{% endcontent-ref %}
 
 ## Examples
 

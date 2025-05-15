@@ -140,4 +140,6 @@ compose:
 
 Learn about other methods for loading IGs here:
 
-* [Upload FHIR Implementation Guide](./)
+{% content-ref url="./" %}
+[.](./README.md)
+{% endcontent-ref %}

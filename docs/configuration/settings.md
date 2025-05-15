@@ -79,5 +79,7 @@ In some cases there're specific settings defined in products: Smartbox, Multibox
 
 ### Settings reference documentation
 
-* [Settings reference](../reference/settings/)
+{% content-ref url="../reference/settings/" %}
+[settings](../reference/settings/README.md)
+{% endcontent-ref %}
 

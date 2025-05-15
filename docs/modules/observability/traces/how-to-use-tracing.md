@@ -72,5 +72,7 @@ POST /telemetry/main/otel-trace-exporter/$flush
 
 Check all available Aidbox OTEL traces exporter configuration options are here:&#x20;
 
-* [OTEL traces exporter parameters](otel-traces-exporter-parameters.md)
+{% content-ref url="otel-traces-exporter-parameters.md" %}
+[otel-traces-exporter-parameters.md](otel-traces-exporter-parameters.md)
+{% endcontent-ref %}
 

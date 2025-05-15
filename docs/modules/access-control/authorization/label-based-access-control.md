@@ -264,4 +264,6 @@ user:
 
 ## See also
 
-* [How to enable labels-based access control](../../../tutorials/security-access-control-tutorials/how-to-enable-labels-based-access-control.md)
+{% content-ref url="../../../tutorials/security-access-control-tutorials/how-to-enable-labels-based-access-control.md" %}
+[how-to-enable-labels-based-access-control.md](../../../tutorials/security-access-control-tutorials/how-to-enable-labels-based-access-control.md)
+{% endcontent-ref %}

@@ -21,7 +21,9 @@ Be aware of using `Best effort` with batch transactions. Messages are generated 
 Please note that `at least once`approach uses **transactional** Kafka producers. Please make sure that `transaction.state.log.replication.factor` is less or equal then the number of brokers in your Kafka cluster. Otherwise sending messages from Aidbox to Kafka may fail with `Timeout expired after ...ms while awaiting InitProducerId`error.
 {% endhint %}
 
-* [Aidbox topic-based subscriptions](./)
+{% content-ref url="./" %}
+[.](./README.md)
+{% endcontent-ref %}
 
 ## Configuration
 

@@ -14,7 +14,9 @@ See [Train model page](./train-model.md).
 
 Configure Aidbox MDM module to use your model
 
-* [Configure MDM module](configure-mdm-module.md)
+{% content-ref url="configure-mdm-module.md" %}
+[configure-mdm-module.md](configure-mdm-module.md)
+{% endcontent-ref %}
 
 ## Find duplicates
 
@@ -24,4 +26,6 @@ Use `$match` operation to find duplicates. See [Find duplicated page](./find-dup
 
 Learn more about mathematics behind probabilistic matching
 
-* [Mathematical details](mathematical-details.md)
+{% content-ref url="mathematical-details.md" %}
+[mathematical-details.md](mathematical-details.md)
+{% endcontent-ref %}

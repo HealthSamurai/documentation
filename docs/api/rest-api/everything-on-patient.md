@@ -83,8 +83,14 @@ The next step is to optimize the request.&#x20;
 
 See:
 
-* [Indexes](../../deployment-and-maintenance/indexes/)
+{% content-ref url="../../deployment-and-maintenance/indexes/" %}
+[indexes](../../deployment-and-maintenance/indexes/README.md)
+{% endcontent-ref %}
 
-* [Create indexes manually](../../deployment-and-maintenance/indexes/create-indexes-manually.md)
+{% content-ref url="../../deployment-and-maintenance/indexes/create-indexes-manually.md" %}
+[create-indexes-manually.md](../../deployment-and-maintenance/indexes/create-indexes-manually.md)
+{% endcontent-ref %}
 
-* [Get suggested indexes](../../deployment-and-maintenance/indexes/get-suggested-indexes.md)
+{% content-ref url="../../deployment-and-maintenance/indexes/get-suggested-indexes.md" %}
+[get-suggested-indexes.md](../../deployment-and-maintenance/indexes/get-suggested-indexes.md)
+{% endcontent-ref %}

@@ -4,4 +4,6 @@ Tracing allows you to monitor the flow of each request through Aidbox. Aidbox pr
 
 In the next article, you will learn how to enable traces in Aidbox:
 
-* [How to use tracing](how-to-use-tracing.md)
+{% content-ref url="how-to-use-tracing.md" %}
+[how-to-use-tracing.md](how-to-use-tracing.md)
+{% endcontent-ref %}

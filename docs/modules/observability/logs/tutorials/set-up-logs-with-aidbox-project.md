@@ -28,7 +28,9 @@ To attach an appender:
 
 More detailed appenders information can be found in tech reference section.
 
-* [Log appenders](../technical-reference/log-appenders.md)
+{% content-ref url="../technical-reference/log-appenders.md" %}
+[log-appenders.md](../technical-reference/log-appenders.md)
+{% endcontent-ref %}
 
 ### stdout-appender
 
@@ -174,7 +176,9 @@ Transformations is the tool to filter and alter log messages.
 
 The full list of supported transformations can be found in the technical reference.
 
-* [Log transformations](../technical-reference/log-transformations.md)
+{% content-ref url="../technical-reference/log-transformations.md" %}
+[log-transformations.md](../technical-reference/log-transformations.md)
+{% endcontent-ref %}
 
 ### Filter noisy :w/req
 

@@ -62,10 +62,18 @@ To monitor the current state of tasks, workflow, and services Workflow Engine pr
 
 * [resource-generation-with-map-to-fhir-bundle-task-and-subscription-triggers.md](../../other/other-deprecated-tutorials/resource-generation-with-map-to-fhir-bundle-task-and-subscription-triggers.md) - How to create an encounter when a specific observation is created.
 
-* [Task](task/)
+{% content-ref url="task/" %}
+[task](task/README.md)
+{% endcontent-ref %}
 
-* [Workflow](workflow/)
+{% content-ref url="workflow/" %}
+[workflow](workflow/README.md)
+{% endcontent-ref %}
 
-* [Services](services.md)
+{% content-ref url="services.md" %}
+[services.md](services.md)
+{% endcontent-ref %}
 
-* [Monitoring](monitoring.md)
+{% content-ref url="monitoring.md" %}
+[monitoring.md](monitoring.md)
+{% endcontent-ref %}

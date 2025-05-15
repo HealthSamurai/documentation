@@ -654,7 +654,9 @@ Stripping is only applied during the masking.
 
 Follow the link below to learn how Aidbox metrics work.
 
-* [Metrics](../../modules/observability/metrics/)
+{% content-ref url="../../modules/observability/metrics/" %}
+[metrics](../../modules/observability/metrics/README.md)
+{% endcontent-ref %}
 
 #### **BOX\_METRICS\_PORT**
 

@@ -12,7 +12,9 @@ SubscriptionTopic is configured by Aidbox configuration project by zen-lang.
 Since the 2405 release, using Aidbox in FHIR schema validation engine is recommended, which is incompatible with zen or Entity/Attribute options. Setup Aidbox with FHIR Schema validation engine
 {% endhint %}
 
-* [Aidbox configuration project](../aidbox-zen-lang-project/)
+{% content-ref url="../aidbox-zen-lang-project/" %}
+[aidbox-zen-lang-project](../aidbox-zen-lang-project/README.md)
+{% endcontent-ref %}
 
 In general, to set up the topic in Aidbox configuration project, you need the following steps:
 

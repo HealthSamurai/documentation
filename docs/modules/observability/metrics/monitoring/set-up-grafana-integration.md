@@ -8,7 +8,9 @@ description: >-
 
 Before setting up Grafana integration, ensure you have set up the Aidbox Metrics Server. Check the guide below on how to do it.
 
-* [Use Aidbox Metrics Server](use-aidbox-metrics-server.md)
+{% content-ref url="use-aidbox-metrics-server.md" %}
+[use-aidbox-metrics-server.md](use-aidbox-metrics-server.md)
+{% endcontent-ref %}
 
 {% hint style="info" %}
 Please start [a discussion](https://github.com/Aidbox/Issues/discussions) or [contact](../../../../overview/contact-us.md) us if you have questions, feedback, or suggestions.

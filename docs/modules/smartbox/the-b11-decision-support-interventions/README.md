@@ -14,7 +14,11 @@ These updates aim to enhance patient safety and support better clinical decision
 \
 Aidbox provides the following components to comply with the criteria:
 
-* [Source attributes](source-attributes.md)
+{% content-ref url="source-attributes.md" %}
+[source-attributes.md](source-attributes.md)
+{% endcontent-ref %}
 
-* [Feedback Sections](feedback-sections.md)
+{% content-ref url="feedback-sections.md" %}
+[feedback-sections.md](feedback-sections.md)
+{% endcontent-ref %}
 

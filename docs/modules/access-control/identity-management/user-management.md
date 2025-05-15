@@ -30,9 +30,13 @@ Two building blocks are involved:
 
 See also:
 
-* [SSO with External Identity Provider](../authentication/sso-with-external-identity-provider.md)
+{% content-ref url="../authentication/sso-with-external-identity-provider.md" %}
+[sso-with-external-identity-provider.md](../authentication/sso-with-external-identity-provider.md)
+{% endcontent-ref %}
 
-* [Token Introspector](../authentication/token-introspector.md)
+{% content-ref url="../authentication/token-introspector.md" %}
+[token-introspector.md](../authentication/token-introspector.md)
+{% endcontent-ref %}
 
 ## Automatically create users from external systems
 

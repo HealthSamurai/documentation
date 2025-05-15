@@ -9,8 +9,14 @@ In ABAC for FHIR, access decisions are based on policies that consider multiple 
 3. **Action Attributes**: The type of action being requested on the FHIR resources, such as read, write, update, or delete operations.
 4. **Contextual Attributes**: The context of the access request, which might include the time of the request, the location from which the request originates, or the urgency of the situation.
 
-* [AccessPolicy](accesspolicy.md)
+{% content-ref url="accesspolicy.md" %}
+[accesspolicy.md](accesspolicy.md)
+{% endcontent-ref %}
 
-* [Evaluation engines](evaluation-engines.md)
+{% content-ref url="evaluation-engines.md" %}
+[evaluation-engines.md](evaluation-engines.md)
+{% endcontent-ref %}
 
-* [Label-based Access Control](../../access-control/authorization/label-based-access-control.md)
+{% content-ref url="../../access-control/authorization/label-based-access-control.md" %}
+[label-based-access-control.md](../../access-control/authorization/label-based-access-control.md)
+{% endcontent-ref %}

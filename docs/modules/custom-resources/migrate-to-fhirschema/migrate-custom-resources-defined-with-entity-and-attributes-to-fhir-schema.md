@@ -4,11 +4,17 @@
 
 The materials in this section describe what to do next with the resulting FHIR Schema resource or set of resources. They explain how to load them into Aidbox, either one by one or via IG. Additionally, they outline the requirements for FHIR Schema to define a Custom Resource and provide a detailed FHIR Schema specification.
 
-* [FHIR Schema Validator](../../profiling-and-validation/fhir-schema-validator/)
+{% content-ref url="../../profiling-and-validation/fhir-schema-validator/" %}
+[fhir-schema-validator](../../profiling-and-validation/fhir-schema-validator/README.md)
+{% endcontent-ref %}
 
-* [How to create FHIR NPM package](../../../tutorials/other-tutorials/how-to-create-fhir-npm-package.md)
+{% content-ref url="../../../tutorials/other-tutorials/how-to-create-fhir-npm-package.md" %}
+[how-to-create-fhir-npm-package.md](../../../tutorials/other-tutorials/how-to-create-fhir-npm-package.md)
+{% endcontent-ref %}
 
-* [Upload FHIR Implementation Guide](../../../tutorials/validation-tutorials/upload-fhir-implementation-guide/)
+{% content-ref url="../../../tutorials/validation-tutorials/upload-fhir-implementation-guide/" %}
+[upload-fhir-implementation-guide](../../../tutorials/validation-tutorials/upload-fhir-implementation-guide/README.md)
+{% endcontent-ref %}
 
 
 
@@ -470,11 +476,15 @@ If you have only one FHIRSchema that replaces your custom-defined Entity/Attribu
 
 If you have multiple schemas replacing a set of resources and want to work with this set of entities as a package (ImplementationGuide), refer to this guide on how to create your own FHIR NPM package with ImplementationGuide entities.
 
-* [How to create FHIR NPM package](../../../tutorials/other-tutorials/how-to-create-fhir-npm-package.md)
+{% content-ref url="../../../tutorials/other-tutorials/how-to-create-fhir-npm-package.md" %}
+[how-to-create-fhir-npm-package.md](../../../tutorials/other-tutorials/how-to-create-fhir-npm-package.md)
+{% endcontent-ref %}
 
 **Loading the FHIR NPM Package**
 
-* [Upload FHIR Implementation Guide](../../../tutorials/validation-tutorials/upload-fhir-implementation-guide/)
+{% content-ref url="../../../tutorials/validation-tutorials/upload-fhir-implementation-guide/" %}
+[upload-fhir-implementation-guide](../../../tutorials/validation-tutorials/upload-fhir-implementation-guide/README.md)
+{% endcontent-ref %}
 
 #### **Important Notes:**
 

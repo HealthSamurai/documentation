@@ -10,7 +10,9 @@ description: >-
 
 To begin using FHIR IGs, enable the FHIR Schema validator engine in Aidbox.
 
-* [FHIR Schema Validator](README.md)
+{% content-ref url="README.md" %}
+[README.md](README.md)
+{% endcontent-ref %}
 
 **Example configuration**
 

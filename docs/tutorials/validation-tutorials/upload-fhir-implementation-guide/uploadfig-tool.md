@@ -10,7 +10,9 @@ description: >-
 
 Set up Aidbox with the FHIR Schema validation engine. Following the guide below:
 
-* [Setup Aidbox with FHIR Schema validation engine](../../../modules/profiling-and-validation/fhir-schema-validator/setup-aidbox-with-fhir-schema-validation-engine.md)
+{% content-ref url="../../../modules/profiling-and-validation/fhir-schema-validator/setup-aidbox-with-fhir-schema-validation-engine.md" %}
+[setup-aidbox-with-fhir-schema-validation-engine.md](../../../modules/profiling-and-validation/fhir-schema-validator/setup-aidbox-with-fhir-schema-validation-engine.md)
+{% endcontent-ref %}
 
 ## 2. Setup UploadFIG
 
@@ -86,4 +88,6 @@ This command initiates the upload process, sending the specified IG package to y
 
 Learn about other methods for loading IGs here:
 
-* [Upload FHIR Implementation Guide](./)
+{% content-ref url="./" %}
+[.](./README.md)
+{% endcontent-ref %}

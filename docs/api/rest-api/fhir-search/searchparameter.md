@@ -476,13 +476,17 @@ Note: if you use `_total=none` you still get `total` when you don't use `_page` 
 
 See:
 
-* [Include and Revinclude](include-and-revinclude.md)
+{% content-ref url="include-and-revinclude.md" %}
+[include-and-revinclude.md](include-and-revinclude.md)
+{% endcontent-ref %}
 
 ### \_revinclude
 
 See:
 
-* [Include and Revinclude](include-and-revinclude.md)
+{% content-ref url="include-and-revinclude.md" %}
+[include-and-revinclude.md](include-and-revinclude.md)
+{% endcontent-ref %}
 
 ### \_filter
 
@@ -553,7 +557,9 @@ GET /fhir/Patient?_filter=.name isnull true
 
 See:
 
-* [Chaining](chaining.md)
+{% content-ref url="chaining.md" %}
+[chaining.md](chaining.md)
+{% endcontent-ref %}
 
 ### \_source
 

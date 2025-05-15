@@ -1,5 +1,9 @@
 # R4B API Reference
 
-* [Subscription API](subscription-api.md)
+{% content-ref url="subscription-api.md" %}
+[subscription-api.md](subscription-api.md)
+{% endcontent-ref %}
 
-* [SubscriptionTopic API](subscriptiontopic-api.md)
+{% content-ref url="subscriptiontopic-api.md" %}
+[subscriptiontopic-api.md](subscriptiontopic-api.md)
+{% endcontent-ref %}

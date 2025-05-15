@@ -38,8 +38,14 @@ The list of supported IGs for use in the environment variable here is located [h
 
 Other methods for loading IGs:
 
-* [IG Package from Aidbox Registry](aidbox-ui/ig-package-from-aidbox-registry.md)
+{% content-ref url="aidbox-ui/ig-package-from-aidbox-registry.md" %}
+[ig-package-from-aidbox-registry.md](aidbox-ui/ig-package-from-aidbox-registry.md)
+{% endcontent-ref %}
 
-* [Public URL to IG Package](aidbox-ui/public-url-to-ig-package.md)
+{% content-ref url="aidbox-ui/public-url-to-ig-package.md" %}
+[public-url-to-ig-package.md](aidbox-ui/public-url-to-ig-package.md)
+{% endcontent-ref %}
 
-* [Local IG Package](aidbox-ui/local-ig-package.md)
+{% content-ref url="aidbox-ui/local-ig-package.md" %}
+[local-ig-package.md](aidbox-ui/local-ig-package.md)
+{% endcontent-ref %}

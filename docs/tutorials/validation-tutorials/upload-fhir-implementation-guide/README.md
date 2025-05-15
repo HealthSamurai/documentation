@@ -4,13 +4,23 @@ Uploading FHIR Implementation Guides (IGs) to Aidbox can be performed using vari
 
 ### Methods to upload FHIR IG to Aidbox: 
 
-* [Environment Variable](environment-variable.md)
+{% content-ref url="environment-variable.md" %}
+[environment-variable.md](environment-variable.md)
+{% endcontent-ref %}
 
-* [IG Package from Aidbox Registry](aidbox-ui/ig-package-from-aidbox-registry.md)
+{% content-ref url="aidbox-ui/ig-package-from-aidbox-registry.md" %}
+[ig-package-from-aidbox-registry.md](aidbox-ui/ig-package-from-aidbox-registry.md)
+{% endcontent-ref %}
 
-* [Public URL to IG Package](aidbox-ui/public-url-to-ig-package.md)
+{% content-ref url="aidbox-ui/public-url-to-ig-package.md" %}
+[public-url-to-ig-package.md](aidbox-ui/public-url-to-ig-package.md)
+{% endcontent-ref %}
 
-* [Local IG Package](aidbox-ui/local-ig-package.md)
+{% content-ref url="aidbox-ui/local-ig-package.md" %}
+[local-ig-package.md](aidbox-ui/local-ig-package.md)
+{% endcontent-ref %}
 
-* [Aidbox FHIR API](aidbox-fhir-api.md)
+{% content-ref url="aidbox-fhir-api.md" %}
+[aidbox-fhir-api.md](aidbox-fhir-api.md)
+{% endcontent-ref %}
 

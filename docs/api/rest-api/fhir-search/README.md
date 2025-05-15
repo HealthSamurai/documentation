@@ -103,7 +103,9 @@ SearchParameter can be:
 
 See also:
 
-* [SearchParameter](searchparameter.md)
+{% content-ref url="searchparameter.md" %}
+[searchparameter.md](searchparameter.md)
+{% endcontent-ref %}
 
 ## Search Parameter Types
 
@@ -176,7 +178,9 @@ GET /fhir/Practitioner?_revinclude=Patient:practitioner
 
 See also:
 
-* [Include and Revinclude](include-and-revinclude.md)
+{% content-ref url="include-and-revinclude.md" %}
+[include-and-revinclude.md](include-and-revinclude.md)
+{% endcontent-ref %}
 
 ## Chaining
 
@@ -189,7 +193,9 @@ There are two types of chaining:
 
 See also:
 
-* [Chaining](chaining.md)
+{% content-ref url="chaining.md" %}
+[chaining.md](chaining.md)
+{% endcontent-ref %}
 
 ## Other ways to search
 
@@ -205,6 +211,10 @@ It is also possible to use GraphQL to search for resources.
 
 See also:
 
-* [Aidbox Search](../aidbox-search.md)
+{% content-ref url="../aidbox-search.md" %}
+[aidbox-search.md](../aidbox-search.md)
+{% endcontent-ref %}
 
-* [GraphQL API](../../graphql-api.md)
+{% content-ref url="../../graphql-api.md" %}
+[graphql-api.md](../../graphql-api.md)
+{% endcontent-ref %}

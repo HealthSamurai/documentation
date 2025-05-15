@@ -5,7 +5,9 @@
 which is incompatible with zen or Entity/Attribute options. 
 [Setup Aidbox with FHIR Schema validation engine](broken-reference)
 
-* [🏗️ FHIR Terminology Repository](fhir-terminology-repository/)
+{% content-ref url="fhir-terminology-repository/" %}
+[fhir-terminology-repository](fhir-terminology-repository/README.md)
+{% endcontent-ref %}
 
 ## `BOX_FEATURES_FTR_PULL_ENABLE`
 

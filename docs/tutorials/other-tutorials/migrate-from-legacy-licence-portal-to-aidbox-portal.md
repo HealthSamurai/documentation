@@ -12,11 +12,15 @@ The Aidbox User Portal allows you to create Aidbox licenses and manage all the l
 
 #### Create a project
 
-* [Projects](../../overview/aidbox-user-portal/projects.md)
+{% content-ref url="../../overview/aidbox-user-portal/projects.md" %}
+[projects.md](../../overview/aidbox-user-portal/projects.md)
+{% endcontent-ref %}
 
 #### Get a new license
 
-* [Licenses](../../overview/aidbox-user-portal/licenses.md)
+{% content-ref url="../../overview/aidbox-user-portal/licenses.md" %}
+[licenses.md](../../overview/aidbox-user-portal/licenses.md)
+{% endcontent-ref %}
 
 * **Production licenses** are licenses for Production or Staging environments. The default expiration of these licenses is 2 weeks but Health Samurai team will extend the expiration according to the agreement.
 * **Development licenses** are available for your local development. They don’t have an expiration but do impose a database size limit and cannot be used for PHI data.&#x20;

@@ -173,11 +173,15 @@ AIDBOX_FHIR_PACKAGES=hl7.fhir.r4.core#4.0.1:hl7.fhir.us.core#3.1.0
 
 If you have custom resources defined by Entity & Attributes, follow this guide
 
-* [Migrate custom resources defined with Entity & Attributes to FHIR Schema](migrate-custom-resources-defined-with-entity-and-attributes-to-fhir-schema.md)
+{% content-ref url="migrate-custom-resources-defined-with-entity-and-attributes-to-fhir-schema.md" %}
+[migrate-custom-resources-defined-with-entity-and-attributes-to-fhir-schema.md](migrate-custom-resources-defined-with-entity-and-attributes-to-fhir-schema.md)
+{% endcontent-ref %}
 
 If you have custom resources defined by Zen, follow this guide -
 
-* [Migrate custom resources defined with Zen to FHIR Schema](migrate-custom-resources-defined-with-zen-to-fhir-schema.md)
+{% content-ref url="migrate-custom-resources-defined-with-zen-to-fhir-schema.md" %}
+[migrate-custom-resources-defined-with-zen-to-fhir-schema.md](migrate-custom-resources-defined-with-zen-to-fhir-schema.md)
+{% endcontent-ref %}
 
 ### Step 6: Validate Resources and Resolve Issues
 

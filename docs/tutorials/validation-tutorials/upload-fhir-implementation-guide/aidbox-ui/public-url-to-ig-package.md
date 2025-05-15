@@ -27,4 +27,6 @@ See [Getting Started locally guide](../../../../getting-started/run-aidbox-local
 
 Other methods for loading IGs here:
 
-* [Upload FHIR Implementation Guide](../)
+{% content-ref url="../" %}
+[..](../README.md)
+{% endcontent-ref %}

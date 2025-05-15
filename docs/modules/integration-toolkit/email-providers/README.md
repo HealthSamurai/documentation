@@ -13,7 +13,9 @@ The email can be sent using `POST /Notification/<notification-id>/$send`request.
 
 Explained in the following page:
 
-* [Setup SMTP provider](setup-smtp-provider.md)
+{% content-ref url="setup-smtp-provider.md" %}
+[setup-smtp-provider.md](setup-smtp-provider.md)
+{% endcontent-ref %}
 
 ## Notification resource
 
@@ -61,4 +63,6 @@ template: <b>Hello world! {{foo.bar}}</b>
 
 ## See also
 
-* [Email Providers reference](../../../reference/email-providers-reference/)
+{% content-ref url="../../../reference/email-providers-reference/" %}
+[email-providers-reference](../../../reference/email-providers-reference/README.md)
+{% endcontent-ref %}
