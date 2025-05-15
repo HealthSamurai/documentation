@@ -2,7 +2,6 @@
   (:require
    [cheshire.core]
    [clojure.string :as str]
-   [gitbok.markdown]
 
    [http]
    [system]

@@ -157,10 +157,27 @@
                                               blocks)
 
         ;; Process GitHub-style hint blocks
-        content-with-all-markers (find-blocks content-with-hint-markers
-                                             github-hint/github-hint-pattern
-                                             github-hint/parse-github-hint
-                                             blocks)
+        content-with-gh-hint-markers (find-blocks content-with-hint-markers
+                                                  github-hint/github-hint-pattern
+                                                  github-hint/parse-github-hint
+                                                  blocks)
+
+        ;; Try another attempt with different pattern for GitHub-style admonitions
+        ;; This should handle case where there's no blockquote prefix
+        content-with-all-markers (find-blocks content-with-gh-hint-markers
+                                               #"(?m)(?:^>?\s*)?\[\!([A-Z]+)\]\s*\n((?:(?:^>?\s*)?.*(?:\n|$))+)"
+                                               (fn [text]
+                                                 (println "Processing GitHub admonition:" (subs text 0 (min 50 (count text))))
+                                                 (try
+                                                   (let [[_ hint-type content] (re-matches #"(?m)(?:^>?\s*)?\[\!([A-Z]+)\]\s*\n((?:(?:^>?\s*)?.*(?:\n|$))+)" text)]
+                                                     (when (contains? github-hint/supported-types hint-type)
+                                                       {:type :github-hint
+                                                        :hint-type hint-type
+                                                        :content (md/parse (github-hint/extract-content content))}))
+                                                   (catch Exception e
+                                                     (println "Error processing GitHub admonition:" (.getMessage e))
+                                                     nil)))
+                                               blocks)
 
         ;; Clean up any unprocessed markers or syntax at the end of the content
         cleaned-content (-> content-with-all-markers
@@ -239,13 +256,15 @@
         content-text (if (sequential? (:content node))
                        (str/join (map :text (:content node)))
                        (:content node))
-        html-string (str "<div style='margin-top: 1.5rem; margin-bottom: 1.5rem;'>"
-                         "<div style='text-align: right; font-size: 0.75rem; margin-bottom: 0.25rem; color: #6b7280;'>"
+        ;; Use the code-highlight module for syntax highlighting
+        highlighted-code (code-highlight/apply-syntax-highlighting content-text language)
+        html-string (str "<div class='code-block-container' style='margin-top: 1.5rem; margin-bottom: 1.5rem;'>"
+                         "<div class='language-indicator' style='text-align: right; font-size: 0.75rem; margin-bottom: 0.25rem; color: #6b7280;'>"
                          "Language: " (or language "none")
                          "</div>"
                          "<pre style='border-radius: 0.375rem; padding: 1rem; overflow-x: auto; background-color: #1e293b; color: #f8fafc; font-size: 0.875rem; line-height: 1.7;'>"
-                         "<code style='font-family: monospace;'>"
-                         (escape-html content-text)
+                         "<code class='language-" (or language "") "' style='font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, \"Liberation Mono\", \"Courier New\", monospace;'>"
+                         highlighted-code
                          "</code>"
                          "</pre>"
                          "</div>")]
@@ -270,8 +289,9 @@
   (-> transform/default-hiccup-renderers
       (merge hint/renderers
              content-ref/renderers
-             github-hint/renderers)
-      ;; Override code block renderer
+             github-hint/renderers
+             code-highlight/renderers)
+      ;; Override code block renderer with our custom implementation
       (assoc :code-block transform-code-block)))
 
 ;; Debug the renderers
@@ -294,26 +314,7 @@
   (when (str/includes? content "```")
     (debug/log "Content contains code blocks"))
   
-  ;; This will force all content to be wrapped in a div with direct HTML for code blocks
-  (when true
-    (let [code-pattern #"(?s)```([a-zA-Z0-9]*)\n(.*?)\n```"
-          content-with-highlights 
-          (str/replace content 
-                      code-pattern
-                      (fn [[_ lang code]]
-                        (debug/log "Found code block with language:" (or lang "none"))
-                        (str "<div style='margin-top: 1.5rem; margin-bottom: 1.5rem;'>"
-                             "<div style='text-align: right; font-size: 0.75rem; margin-bottom: 0.25rem; color: #6b7280;'>"
-                             "Language: " (or lang "none")
-                             "</div>"
-                             "<pre style='border-radius: 0.375rem; padding: 1rem; overflow-x: auto; background-color: #1e293b; color: #f8fafc; font-size: 0.875rem; line-height: 1.7;'>"
-                             "<code style='font-family: monospace;'>"
-                             (escape-html code)
-                             "</code>"
-                             "</pre>"
-                             "</div>")))]
-      (debug/log "Applied direct code highlighting")
-      (hiccup2/raw content-with-highlights)))
-  
-  ;; Original rendering (will only be reached if we change the when condition above)
+  ;; Let the normal rendering pipeline handle both markdown and code blocks
+  ;; Our custom renderers will be used for code blocks and GitBook widgets
+  (debug/log "Processing markdown with all renderers")
   (transform/->hiccup renderers (parse-markdown-content content)))

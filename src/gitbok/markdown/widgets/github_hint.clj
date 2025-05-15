@@ -7,9 +7,14 @@
    [clojure.string :as str]))
 
 (def github-hint-pattern
-  "Pattern to match GitHub-style admonition blocks in blockquotes.
-   Format: > [!TYPE]\n> Content"
-  #"(?m)^>\s*\[\!([A-Z]+)\]\s*\n((?:>\s*.*(?:\n|$))+)")
+  "Pattern to match GitHub-style admonition blocks.
+   Handles both formats:
+   > [!TYPE]
+   > Content
+   or
+   [!TYPE]
+   Content"
+  #"(?m)^(?:>\s*)?\[\!([A-Z]+)\]\s*\n((?:(?:>\s*)?.*(?:\n|$))+)")
 
 (def supported-types
   "Map of supported hint types to their styling"
@@ -60,12 +65,13 @@
                        :d "M12 2.25c-5.385 0-9.75 4.365-9.75 9.75s4.365 9.75 9.75 9.75 9.75-4.365 9.75-9.75S17.385 2.25 12 2.25zm-1.72 6.97a.75.75 0 10-1.06 1.06L10.94 12l-1.72 1.72a.75.75 0 101.06 1.06L12 13.06l1.72 1.72a.75.75 0 101.06-1.06L13.06 12l1.72-1.72a.75.75 0 10-1.06-1.06L12 10.94l-1.72-1.72z"}]]}})
 
 (defn extract-content
-  "Extract content from blockquote format by removing '> ' prefixes"
+  "Extract content from admonition, removing blockquote prefixes if present"
   [content]
   (->> (str/split-lines content)
-       (map #(if (str/starts-with? % "> ")
-               (subs % 2)
-               (if (= % ">") "" %)))
+       (map #(cond
+               (str/starts-with? % "> ") (subs % 2)
+               (= % ">") ""
+               :else %))
        (str/join "\n")))
 
 (defn parse-github-hint

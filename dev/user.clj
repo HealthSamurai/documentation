@@ -2,8 +2,6 @@
   (:require
    [system.dev :as dev]
    [system]
-   [nextjournal.markdown :as md]
-   [nextjournal.markdown.transform :as md.transform]
    [gitbok.core :as gitbok]))
 
 (comment
@@ -13,4 +11,4 @@
   (system/stop-system context)
 
 
-  ) 
+  )
