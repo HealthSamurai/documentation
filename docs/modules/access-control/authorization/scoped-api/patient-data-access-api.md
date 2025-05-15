@@ -27,9 +27,7 @@ There are two way to define patient context in a request:
 
 ## Enable Patient data access API
 
-{% content-ref url="../../../../tutorials/security-access-control-tutorials/how-to-enable-patient-data-access-api.md" %}
-[how-to-enable-patient-data-access-api.md](../../../../tutorials/security-access-control-tutorials/how-to-enable-patient-data-access-api.md)
-{% endcontent-ref %}
+* [How to enable patient data access API](../../../../tutorials/security-access-control-tutorials/how-to-enable-patient-data-access-api.md)
 
 ### Base url for patient-related FHIR API&#x20;
 

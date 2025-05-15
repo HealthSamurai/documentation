@@ -93,6 +93,4 @@ You can inspect request object [using `__debug` query parameter](../../../tutori
 
 ## Guide: flexible RBAC
 
-{% content-ref url="../../../tutorials/security-access-control-tutorials/rbac/flexible-rbac-built-in-to-aidbox.md" %}
-[flexible-rbac-built-in-to-aidbox.md](../../../tutorials/security-access-control-tutorials/rbac/flexible-rbac-built-in-to-aidbox.md)
-{% endcontent-ref %}
+* [Flexible RBAC built-in to Aidbox](../../../tutorials/security-access-control-tutorials/rbac/flexible-rbac-built-in-to-aidbox.md)

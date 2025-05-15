@@ -10,12 +10,8 @@ Enabling US Core IG allows you to use its various features in Aidbox.
 
 If you are just starting out with Aidbox, proceed to the following page:
 
-{% content-ref url="broken-reference" %}
-[Broken link](broken-reference)
-{% endcontent-ref %}
+* [Broken Reference](broken-reference)
 
 If you already have a running Aidbox instance, proceed to the following page:
 
-{% content-ref url="add-us-core-ig-to-a-running-aidbox-instance.md" %}
-[add-us-core-ig-to-a-running-aidbox-instance.md](add-us-core-ig-to-a-running-aidbox-instance.md)
-{% endcontent-ref %}
+* [Add US Core IG to a running Aidbox instance](add-us-core-ig-to-a-running-aidbox-instance.md)

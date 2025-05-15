@@ -12,9 +12,7 @@ Since the 2405 release, using Aidbox in FHIRSchema mode is recommended, which is
 
 [FHIR Terminology Repository](./README.md), or FTR, is an efficient way to store and handle terminologies. It is the recommended way to work with CodeSystem and ValueSet resources in Aidbox. You can start using it by providing [Aidbox Configuration project](../aidbox-zen-lang-project/README.md) set up with FTR.
 
-{% content-ref url="creating-aidbox-project-with-ftr/" %}
-[creating-aidbox-project-with-ftr](creating-aidbox-project-with-ftr/README.md)
-{% endcontent-ref %}
+* [Create an FTR instance](creating-aidbox-project-with-ftr/)
 
 ## Import terminology bundles
 

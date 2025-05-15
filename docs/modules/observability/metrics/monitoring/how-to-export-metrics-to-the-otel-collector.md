@@ -51,6 +51,4 @@ Open OTEL collector stdout and see the logs.
 
 Check all available Aidbox OTEL metrics exporter configuration options are here:&#x20;
 
-{% content-ref url="../technical-reference/otel-metrics-exporter-parameters.md" %}
-[otel-metrics-exporter-parameters.md](../technical-reference/otel-metrics-exporter-parameters.md)
-{% endcontent-ref %}
+* [OTEL metrics exporter parameters](../technical-reference/otel-metrics-exporter-parameters.md)

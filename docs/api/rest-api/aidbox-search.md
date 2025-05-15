@@ -91,9 +91,7 @@ When using the `:text` modifier, you also need to specify `"text-format"`, refer
 
 See tutorial:
 
-{% content-ref url="../../tutorials/crud-search-tutorials/search-tutorials/create-custom-aidbox-search-resource.md" %}
-[create-custom-aidbox-search-resource.md](../../tutorials/crud-search-tutorials/search-tutorials/create-custom-aidbox-search-resource.md)
-{% endcontent-ref %}
+* [Create custom Aidbox Search resource](../../tutorials/crud-search-tutorials/search-tutorials/create-custom-aidbox-search-resource.md)
 
 ## AidboxQuery
 

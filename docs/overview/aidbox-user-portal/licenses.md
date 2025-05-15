@@ -35,9 +35,7 @@ description: This article describes how to manage Aidbox licenses
 
 ### Create AWS license
 
-{% content-ref url="../../getting-started/run-aidbox-on-aws.md" %}
-[run-aidbox-on-aws.md](../../getting-started/run-aidbox-on-aws.md)
-{% endcontent-ref %}
+* [Run Aidbox on AWS](../../getting-started/run-aidbox-on-aws.md)
 
 ## Delete license
 
@@ -165,6 +163,4 @@ This [quickstart guide](../../getting-started/run-aidbox-locally.md) explains ho
 
 ### Aidbox as a SaaS on AWS
 
-{% content-ref url="../../getting-started/run-aidbox-on-aws.md" %}
-[run-aidbox-on-aws.md](../../getting-started/run-aidbox-on-aws.md)
-{% endcontent-ref %}
+* [Run Aidbox on AWS](../../getting-started/run-aidbox-on-aws.md)

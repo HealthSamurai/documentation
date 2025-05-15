@@ -12,22 +12,16 @@ description: A single place to manage your Aidbox licenses
 
 Managing Aidbox licenses in a project
 
-{% content-ref url="licenses.md" %}
-[licenses.md](licenses.md)
-{% endcontent-ref %}
+* [Licenses](licenses.md)
 
 ### Projects management
 
 The project allows you to organize Aidbox licenses into groups
 
-{% content-ref url="projects.md" %}
-[projects.md](projects.md)
-{% endcontent-ref %}
+* [Projects](projects.md)
 
 ### Members management
 
 Invite your team to the project and manage licenses in a single place
 
-{% content-ref url="members.md" %}
-[members.md](members.md)
-{% endcontent-ref %}
+* [Members](members.md)

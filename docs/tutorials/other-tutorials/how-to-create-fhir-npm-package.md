@@ -179,6 +179,4 @@ or download and install **7-Zip**
 
 Following the guide below, upload the archive to Aidbox.
 
-{% content-ref url="../validation-tutorials/upload-fhir-implementation-guide/aidbox-ui/local-ig-package.md" %}
-[local-ig-package.md](../validation-tutorials/upload-fhir-implementation-guide/aidbox-ui/local-ig-package.md)
-{% endcontent-ref %}
+* [Local IG Package](../validation-tutorials/upload-fhir-implementation-guide/aidbox-ui/local-ig-package.md)

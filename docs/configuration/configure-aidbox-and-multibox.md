@@ -66,25 +66,17 @@ JAVA_OPTS="-Xms4096m -Xmx4096m"
 
 Refer to the following pages for the specific image description and the list of available configuration options.
 
-{% content-ref url="../database/aidboxdb-image/" %}
-[aidboxdb-image](../database/aidboxdb-image/README.md)
-{% endcontent-ref %}
+* [AidboxDB](../database/aidboxdb-image/)
 
-{% content-ref url="../reference/environment-variables/" %}
-[environment-variables](../reference/environment-variables/README.md)
-{% endcontent-ref %}
+* [Environment variables](../reference/environment-variables/)
 
 You can also see the environment variables in the **Settings page** in **AidboxUI**.
 
 If you are looking for the latest versions of the docker images or general release cycle explanation go to the Versioning page.
 
-{% content-ref url="../overview/versioning.md" %}
-[versioning.md](../overview/versioning.md)
-{% endcontent-ref %}
+* [Versioning](../overview/versioning.md)
 
 See also deployment documentation:
 
-{% content-ref url="../deployment-and-maintenance/deploy-aidbox/" %}
-[deploy-aidbox](../deployment-and-maintenance/deploy-aidbox/README.md)
-{% endcontent-ref %}
+* [Deploy Aidbox](../deployment-and-maintenance/deploy-aidbox/)
 

@@ -12,14 +12,8 @@ Since the 2405 release, using Aidbox in FHIRSchema mode is recommended, which is
 
 You can create an FTR instance in the following ways:
 
-{% content-ref url="ftr-from-csv.md" %}
-[ftr-from-csv.md](ftr-from-csv.md)
-{% endcontent-ref %}
+* [FTR from CSV](ftr-from-csv.md)
 
-{% content-ref url="ftr-from-fhir-ig.md" %}
-[ftr-from-fhir-ig.md](ftr-from-fhir-ig.md)
-{% endcontent-ref %}
+* [FTR from FHIR IG](ftr-from-fhir-ig.md)
 
-{% content-ref url="ftr-from-ftr-direct-dependency.md" %}
-[ftr-from-ftr-direct-dependency.md](ftr-from-ftr-direct-dependency.md)
-{% endcontent-ref %}
+* [FTR from FTR — Direct Dependency](ftr-from-ftr-direct-dependency.md)

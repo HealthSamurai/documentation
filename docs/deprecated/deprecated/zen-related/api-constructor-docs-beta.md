@@ -21,17 +21,11 @@ API constructor requires knowledge of [zen language](https://github.com/zen-lang
 
 #### Common API Constructor use cases
 
-{% content-ref url="../../../modules/security-and-access-control/security/access-control-lists-docs-acl.md" %}
-[access-control-lists-docs-acl.md](../../../modules/security-and-access-control/security/access-control-lists-docs-acl.md)
-{% endcontent-ref %}
+* [Access control lists (docs/ACL)](../../../modules/security-and-access-control/security/access-control-lists-docs-acl.md)
 
-{% content-ref url="../../../modules/smartbox/background-information/multitenancy-approach.md" %}
-[multitenancy-approach.md](../../../modules/smartbox/background-information/multitenancy-approach.md)
-{% endcontent-ref %}
+* [Multitenancy approach](../../../modules/smartbox/background-information/multitenancy-approach.md)
 
-{% content-ref url="../other/how-to-guides/smart-on-fhir.md" %}
-[smart-on-fhir.md](../other/how-to-guides/smart-on-fhir.md)
-{% endcontent-ref %}
+* [SMART on FHIR](../other/how-to-guides/smart-on-fhir.md)
 
 #### Usage examples:
 
@@ -172,9 +166,7 @@ Expect target resource type as `:resource` and `:format` (`fhir` or `aidbox`)
 
 See full description and usage examples:
 
-{% content-ref url="../../../modules/security-and-access-control/security/access-control-lists-docs-acl.md" %}
-[access-control-lists-docs-acl.md](../../../modules/security-and-access-control/security/access-control-lists-docs-acl.md)
-{% endcontent-ref %}
+* [Access control lists (docs/ACL)](../../../modules/security-and-access-control/security/access-control-lists-docs-acl.md)
 
 ### Gateway
 

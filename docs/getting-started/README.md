@@ -12,14 +12,8 @@ Discover how to start with Aidbox in just a few minutes.
 
 ## Tutorials
 
-{% content-ref url="../deployment-and-maintenance/deploy-aidbox/run-aidbox-on-managed-postgresql.md" %}
-[run-aidbox-on-managed-postgresql.md](../deployment-and-maintenance/deploy-aidbox/run-aidbox-on-managed-postgresql.md)
-{% endcontent-ref %}
+* [Run Aidbox on managed PostgreSQL](../deployment-and-maintenance/deploy-aidbox/run-aidbox-on-managed-postgresql.md)
 
-{% content-ref url="../deployment-and-maintenance/deploy-aidbox/run-aidbox-in-kubernetes/" %}
-[run-aidbox-in-kubernetes](../deployment-and-maintenance/deploy-aidbox/run-aidbox-in-kubernetes/README.md)
-{% endcontent-ref %}
+* [Run Aidbox on Kubernetes](../deployment-and-maintenance/deploy-aidbox/run-aidbox-in-kubernetes/)
 
-{% content-ref url="upload-sample-data.md" %}
-[upload-sample-data.md](upload-sample-data.md)
-{% endcontent-ref %}
+* [Upload Sample Data](upload-sample-data.md)

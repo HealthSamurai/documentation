@@ -27,6 +27,4 @@ US Core IG contains the following FHIR artifacts:&#x20;
 
 Supported parts of US Core IG are listed on the following page:
 
-{% content-ref url="us-core-ig-support-reference.md" %}
-[us-core-ig-support-reference.md](us-core-ig-support-reference.md)
-{% endcontent-ref %}
+* [US Core IG support reference](us-core-ig-support-reference.md)

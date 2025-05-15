@@ -30,17 +30,11 @@ Aidbox uses [FHIR](https://www.hl7.org/fhir/overview.html) as a foundation and p
 
 You can get Aidbox hosted in the cloud (Aidbox Sandbox or AWS) or get self-hosted Aidbox license for evaluation on your local computer or your own infrastructure.
 
-{% content-ref url="../getting-started/run-aidbox-in-sandbox.md" %}
-[run-aidbox-in-sandbox.md](../getting-started/run-aidbox-in-sandbox.md)
-{% endcontent-ref %}
+* [Run Aidbox in Sandbox](../getting-started/run-aidbox-in-sandbox.md)
 
-{% content-ref url="../getting-started/run-aidbox-locally.md" %}
-[run-aidbox-locally.md](../getting-started/run-aidbox-locally.md)
-{% endcontent-ref %}
+* [Run Aidbox locally](../getting-started/run-aidbox-locally.md)
 
-{% content-ref url="../getting-started/run-aidbox-on-aws.md" %}
-[run-aidbox-on-aws.md](../getting-started/run-aidbox-on-aws.md)
-{% endcontent-ref %}
+* [Run Aidbox on AWS](../getting-started/run-aidbox-on-aws.md)
 
 ### FHIR & Aidbox
 

@@ -20,9 +20,7 @@ Follow the [official Docker guide](https://docs.docker.com/compose/install/#inst
 
 Follow the Getting Started Aidbox guide to get the recommended `docker-compose.yaml`file.
 
-{% content-ref url="../../getting-started/run-aidbox-locally.md" %}
-[run-aidbox-locally.md](../../getting-started/run-aidbox-locally.md)
-{% endcontent-ref %}
+* [Run Aidbox locally](../../getting-started/run-aidbox-locally.md)
 
 ## Change aidbox to multibox
 

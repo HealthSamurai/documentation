@@ -8,9 +8,7 @@ description: Aidbox metrics export types
 
 Aidbox supports the [OpenTelemetry protocol](https://opentelemetry.io/) and exports metrics in Protobuf format to any consumer that supports this specification.
 
-{% content-ref url="monitoring/how-to-export-metrics-to-the-otel-collector.md" %}
-[how-to-export-metrics-to-the-otel-collector.md](monitoring/how-to-export-metrics-to-the-otel-collector.md)
-{% endcontent-ref %}
+* [How to export metrics to the OTEL collector](monitoring/how-to-export-metrics-to-the-otel-collector.md)
 
 ## Export metrics to Prometheus
 

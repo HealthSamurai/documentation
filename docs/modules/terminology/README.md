@@ -20,17 +20,11 @@ In Aidbox, all terminology services are built around non-FHIR **Concept** resour
 
 #### Design/Management phase
 
-{% content-ref url="../../deprecated/deprecated/zen-related/fhir-terminology-repository/ftr-specification.md" %}
-[ftr-specification.md](../../deprecated/deprecated/zen-related/fhir-terminology-repository/ftr-specification.md)
-{% endcontent-ref %}
+* [FTR Specification](../../deprecated/deprecated/zen-related/fhir-terminology-repository/ftr-specification.md)
 
-{% content-ref url="valueset/create-a-valueset.md" %}
-[create-a-valueset.md](valueset/create-a-valueset.md)
-{% endcontent-ref %}
+* [Create a ValueSet](valueset/create-a-valueset.md)
 
-{% content-ref url="terminology-api/" %}
-[terminology-api](./terminology-api/README.md)
-{% endcontent-ref %}
+* [Import external terminologies](terminology-api/)
 
 #### Usage phase
 

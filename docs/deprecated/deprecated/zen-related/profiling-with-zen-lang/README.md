@@ -14,15 +14,11 @@ Aidbox supports a powerful profile validation mechanism powered by [Zen language
 
 1. Write profiles with schemas to validate against
 
-{% content-ref url="write-a-custom-zen-profile.md" %}
-[write-a-custom-zen-profile.md](write-a-custom-zen-profile.md)
-{% endcontent-ref %}
+* [Write a custom zen profile](write-a-custom-zen-profile.md)
 
 2\. Load profiles into your Aidbox instance
 
-{% content-ref url="broken-reference" %}
-[Broken link](broken-reference)
-{% endcontent-ref %}
+* [Broken Reference](broken-reference)
 
 {% hint style="info" %}
 Resource examples and external (not-present) terminologies are not loaded into the storage by default
@@ -46,9 +42,7 @@ Zen FHIR packages require `AIDBOX_CORRECT_AIDBOX_FORMAT=true` environment variab
 
 We recommend to load Zen FHIR packages using an [Aidbox Configuration project](../aidbox-zen-lang-project/README.md). Visit the following page for a detailed guide:
 
-{% content-ref url="../aidbox-zen-lang-project/enable-igs.md" %}
-[enable-igs.md](../aidbox-zen-lang-project/enable-igs.md)
-{% endcontent-ref %}
+* [Enable IGs](../aidbox-zen-lang-project/enable-igs.md)
 
 ### Convert custom FHIR profiles to Zen FHIR package
 

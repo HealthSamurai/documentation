@@ -10,9 +10,7 @@ The GCP Pub/Sub AidboxTopicDestination works in the following way:
 * After the CRUD operation, Aidbox collects unsent messages from the database and sends them to the GCP Pub/Sub.
 * If an error occurs during sending, Aidbox will continue retrying until the message is successfully delivered. So Aidbox guarantees at least once delivery for an event.
 
-{% content-ref url="./" %}
-[.](./README.md)
-{% endcontent-ref %}
+* [Aidbox topic-based subscriptions](./)
 
 ## Configuration
 

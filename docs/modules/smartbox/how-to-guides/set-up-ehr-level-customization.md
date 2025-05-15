@@ -34,9 +34,7 @@ smartbox:
 
 To understand how Aidbox sends emails, please read this page first:
 
-{% content-ref url="../../integration-toolkit/email-providers/" %}
-[email-providers](../../integration-toolkit/email-providers/README.md)
-{% endcontent-ref %}
+* [Email Providers integration](../../integration-toolkit/email-providers/)
 
 ### Reset user password
 
@@ -73,9 +71,7 @@ template: |-
 
 To understand how Aidbox sends emails, please read this page first:
 
-{% content-ref url="../../integration-toolkit/email-providers/" %}
-[email-providers](../../integration-toolkit/email-providers/README.md)
-{% endcontent-ref %}
+* [Email Providers integration](../../integration-toolkit/email-providers/)
 
 ### Confirm email address
 

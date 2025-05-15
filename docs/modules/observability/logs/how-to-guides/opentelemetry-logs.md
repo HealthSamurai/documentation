@@ -70,6 +70,4 @@ POST /telemetry/main/otel-logs-appender/$flush
 
 Check all available Aidbox OTEL logs exporter configuration options are here:
 
-{% content-ref url="../technical-reference/otel-logs-exporter-parameters.md" %}
-[otel-logs-exporter-parameters.md](../technical-reference/otel-logs-exporter-parameters.md)
-{% endcontent-ref %}
+* [OTEL logs exporter parameters](../technical-reference/otel-logs-exporter-parameters.md)

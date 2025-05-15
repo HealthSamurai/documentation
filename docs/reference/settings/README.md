@@ -4,34 +4,18 @@ This section contains documentation about Aidbox configuration settings. These s
 
 The following pages detail specific setting categories:
 
-{% content-ref url="general.md" %}
-[general.md](general.md)
-{% endcontent-ref %}
+* [## General](general.md)
 
-{% content-ref url="fhir.md" %}
-[fhir.md](fhir.md)
-{% endcontent-ref %}
+* [FHIR](fhir.md)
 
-{% content-ref url="security-and-access-control.md" %}
-[security-and-access-control.md](./security-and-access-control.md)
-{% endcontent-ref %}
+* [## Security & Access Control](security-and-access-control.md)
 
-{% content-ref url="modules.md" %}
-[modules.md](modules.md)
-{% endcontent-ref %}
+* [Modules](modules.md)
 
-{% content-ref url="database.md" %}
-[database.md](database.md)
-{% endcontent-ref %}
+* [## Database](database.md)
 
-{% content-ref url="web-server.md" %}
-[web-server.md](web-server.md)
-{% endcontent-ref %}
+* [## Web Server](web-server.md)
 
-{% content-ref url="observability.md" %}
-[observability.md](observability.md)
-{% endcontent-ref %}
+* [Observability](observability.md)
 
-{% content-ref url="zen-project.md" %}
-[zen-project.md](zen-project.md)
-{% endcontent-ref %}
+* [## Zen Project](zen-project.md)

@@ -161,6 +161,4 @@ This request checks that invalid values for `birthsex` field are not allowed.
 
 If you want to learn more about working with IGs in Aidbox, there is a special page dedicated to it.
 
-{% content-ref url="../../aidbox-zen-lang-project/enable-igs.md" %}
-[enable-igs.md](../../aidbox-zen-lang-project/enable-igs.md)
-{% endcontent-ref %}
+* [Enable IGs](../../aidbox-zen-lang-project/enable-igs.md)

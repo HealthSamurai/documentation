@@ -26,6 +26,4 @@ See [Query data from flat views](./query-data-from-flat-views.md).
 
 To dive deeper into the nuances of using SQL on FHIR in Aidbox, consult the reference page.
 
-{% content-ref url="reference.md" %}
-[reference.md](reference.md)
-{% endcontent-ref %}
+* [Reference](reference.md)
