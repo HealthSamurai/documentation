@@ -169,8 +169,7 @@ $ npx -y supergateway --sse <your-box-base-url>/mcp
 Now you can ask your LLM agent to Create, Read, Update or Delete FHIR resources in Aidbox.
 
 {% hint style="warning" %}
-You need to uninstall all node versions below 18 if you use Claude Desktop. \
-
+You need to uninstall all node versions below 18 if you use Claude Desktop.&#x20;
 
 ```
 nvm uninstall v16
