@@ -1,14 +1,14 @@
 # Aidbox topic-based subscriptions
 
 {% hint style="info" %}
-This functionality is available in Aidbox versions 2409 and later and requires [FHIR Schema](../../profiling-and-validation/fhir-schema-validator/) validation engine to be [enabled](../../profiling-and-validation/fhir-schema-validator/).
+This functionality is available in Aidbox versions 2409 and later and requires [FHIR Schema](../../profiling-and-validation/fhir-schema-validator/README.md) validation engine to be [enabled](../../profiling-and-validation/fhir-schema-validator/README.md).
 {% endhint %}
 
 ### Overview
 
 This feature enables dynamic subscriptions to changes in FHIR resources, allowing users/systems to receive notifications through multiple channels, including Kafka.
 
-<figure><img src="broken-reference" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../../.gitbook/assets/image (112).png" alt=""><figcaption></figcaption></figure>
 
 For an application example, refer to [Aidbox Subscriptions & Kafka AidboxTopicDestination](https://github.com/Aidbox/app-examples/tree/main/aidbox-subscriptions-to-kafka)
 
@@ -69,13 +69,12 @@ Ensure that the resource metadata contains the kind-specific `AidboxTopicDestina
 \* required.
 
 #### Currently supported channels
-
 Currently supported channels:
-
-* [Webhook](webhook-aidboxtopicdestination.md)
-* [GCP Pub/Sub](gcp-pub-sub-aidboxtopicdestination.md)
-* [Kafka](kafka-aidboxtopicdestination.md)
+* [Webhook](./webhook-aidboxtopicdestination.md)
+* [GCP Pub/Sub](./gcp-pub-sub-aidboxtopicdestination.md)
+* [Kafka](./kafka-aidboxtopicdestination.md)
 * [NATS](../../../tutorials/subscriptions-tutorials/aidboxtopicsubscription-nats-tutorial.md)
+
 
 ## Notification Shape
 

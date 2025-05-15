@@ -2,13 +2,13 @@
 
 The Password grant type is used by first-party clients to exchange a user's credentials for an access token. Since this involves the client asking the user for their password, it should not be used by third party clients. In this flow, the user's username and password are exchanged directly for an access token. The application acts on behalf of the user. Refer to [OAuth 2.0 spec](https://tools.ietf.org/html/rfc6749#section-4.3) for more details.
 
-![Basic scheme](<../../../../.gitbook/assets/untitled-diagram-page-2 (1).svg>)
+![Basic scheme](../../../../.gitbook/assets/untitled-diagram-page-2.svg)
 
 ### Easy way
 
-The easiest way to test Resource Owner Grant flow is to run through the [Aidbox Sandbox UI](resource-owner-grant.md#auth-sandbox) (_Auth -> Sandbox ->_ Resource Owner).
+The easiest way to test Resource Owner Grant flow is to run through the [Aidbox Sandbox UI](#auth-sandbox) (_Auth -> Sandbox ->_ Resource Owner).
 
-<figure><img src="../../../.gitbook/assets/image%20(6).png" alt=""><figcaption><p>Sandbox UI</p></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (6).png" alt=""><figcaption><p>Sandbox UI</p></figcaption></figure>
 
 ### Configure Client
 

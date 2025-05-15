@@ -16,7 +16,7 @@ FHIR resources must be separated per organizations. Organizations can be nested.
 
 Let's consider the next organization structure. There are two independent organizations Org A & Org D, each of them has nested, dependent organizations. Org B & Org C are nested to Org A, and Org E is nested to Org D.
 
-<figure><img src="broken-reference" alt=""><figcaption><p>Organization hierarchy structure</p></figcaption></figure>
+<figure><img src="../../../../../.gitbook/assets/Screenshot 2023-06-28 at 16.40.54.png" alt=""><figcaption><p>Organization hierarchy structure</p></figcaption></figure>
 
 To achieve such a behavior, you may consider an Aidbox feature called organization-based access control.
 
@@ -74,7 +74,7 @@ The Organization-based [Aidbox API ](../../../../api/rest-api/other/aidbox-and-f
 <AIDBOX_BASE_URL>/Organization/<org-id>/aidbox
 ```
 
-<figure><img src="broken-reference" alt=""><figcaption><p>FHIR APIs reflection in organization-based access control</p></figcaption></figure>
+<figure><img src="../../../../../.gitbook/assets/Screenshot 2023-06-28 at 15.42.54.png" alt=""><figcaption><p>FHIR APIs reflection in organization-based access control</p></figcaption></figure>
 
 ### Try Org-BAC
 
@@ -97,7 +97,7 @@ Now we can read it:
 GET /Organization/org-b/fhir/Patient/pt-1
 ```
 
-Note, that patient has a `https://aidbox.app/tenant-organization-id` extension, which references `org-b`.
+Note, that patient has a  `https://aidbox.app/tenant-organization-id` extension, which references `org-b`.&#x20;
 
 ```
 id: >-
@@ -264,8 +264,8 @@ It is also possible to use org-based url in a `request.url`:
 <pre class="language-yaml"><code class="lang-yaml">POST /
 Accept: text/yaml
 Content-Type: text/yaml
-
-<strong>resourceType: Bundle
+<strong>
+</strong><strong>resourceType: Bundle
 </strong># transaction | batch
 type: transaction
 entry:
@@ -312,7 +312,7 @@ count-query: "SELECT count(*) from patient pt WHERE pt.resource#>>'{meta,organiz
 type: query
 ```
 
-Now `org-id` is automatically available in the query in `{{params.organization}}`.
+Now `org-id` is automatically available in the query in `{{params.organization}}`.&#x20;
 
 ```yaml
 GET /Organization/<org-id>/$query/<query-name>

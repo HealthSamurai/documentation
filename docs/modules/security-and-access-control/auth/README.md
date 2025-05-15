@@ -34,4 +34,4 @@ Aidbox comes with Auth Sandbox - a small app that helps you configure and test a
 This sidebar has been refactored in new Aidbox UI. To enable new UI, go to "Settings" -> "New UI"
 {% endhint %}
 
-<div data-full-width="false"><figure><img src="broken-reference" alt="" width="339"><figcaption><p>Auth Sandbox new UI</p></figcaption></figure> <figure><img src="broken-reference" alt="" width="181"><figcaption><p>Auth Sandbox old UI</p></figcaption></figure></div>
+<div data-full-width="false"><figure><img src="../../../../.gitbook/assets/image (3).png" alt="" width="339"><figcaption><p>Auth Sandbox new UI</p></figcaption></figure> <figure><img src="../../../../.gitbook/assets/image (4).png" alt="" width="181"><figcaption><p>Auth Sandbox old UI</p></figcaption></figure></div>

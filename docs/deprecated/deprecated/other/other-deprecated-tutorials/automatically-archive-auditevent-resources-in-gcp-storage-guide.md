@@ -3,7 +3,7 @@
 {% hint style="warning" %}
 Since the 2405 release, using Aidbox in FHIR schema validation engine is recommended, which is incompatible with zen or Entity/Attribute options.
 
-[Setup Aidbox with FHIR Schema validation engine](broken-reference/)
+[Setup Aidbox with FHIR Schema validation engine](broken-reference)
 {% endhint %}
 
 Follow step-by-step guide to configure scheduled archive operation:
@@ -46,7 +46,7 @@ Follow step-by-step guide to configure scheduled archive operation:
 5. Restart Aidbox.
 6.  Check if new scheduler rules created in Scheduler UI:
 
-    <figure><img src="broken-reference" alt=""><figcaption></figcaption></figure>
+    <figure><img src="../../../../../.gitbook/assets/image (3) (5).png" alt=""><figcaption></figcaption></figure>
 
 Full configuration for this guide:
 
