@@ -44,6 +44,10 @@ while IFS= read -r line; do
     # Try to resolve realpath (diagnostic)
     resolved_path=$(realpath --no-symlinks --relative-to=. "$full_path_md" 2>/dev/null || echo "INVALID_PATH")
     if [[ "$resolved_path" == "INVALID_PATH" || ! -e "$full_path_md" ]]; then
+      # Check if there's a README.md in the directory for directory-style links
+      if [[ -d "$full_path" && -f "$full_path/README.md" ]]; then
+        continue
+      fi
       broken_links+=("$line [BROKEN: target does not exist or path is invalid]")
     fi
   elif [[ -z "$line" ]]; then
