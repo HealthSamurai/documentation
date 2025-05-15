@@ -1,13 +1,13 @@
 // Simple syntax highlighting script
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function () {
   // Add spacing between consecutive code blocks
-  const addSpacingBetweenCodeBlocks = function() {
+  const addSpacingBetweenCodeBlocks = function () {
     const codeContainers = document.querySelectorAll('pre');
-    
-    codeContainers.forEach(function(container, index) {
+
+    codeContainers.forEach(function (container, index) {
       // Add class to container
       container.classList.add('code-block');
-      
+
       // Wrap in a container for spacing
       const wrapper = document.createElement('div');
       wrapper.className = 'code-block-container my-6';
@@ -15,29 +15,29 @@ document.addEventListener('DOMContentLoaded', function() {
       wrapper.appendChild(container);
     });
   };
-  
+
   // Apply syntax highlighting to code blocks
-  const applySyntaxHighlighting = function() {
+  const applySyntaxHighlighting = function () {
     const codeBlocks = document.querySelectorAll('pre code');
-    
-    codeBlocks.forEach(function(block) {
+
+    codeBlocks.forEach(function (block) {
       // Get language from class
       let language = '';
-      block.classList.forEach(function(cls) {
+      block.classList.forEach(function (cls) {
         if (cls.startsWith('language-')) {
           language = cls.replace('language-', '');
         }
       });
-      
+
       // Apply language-specific highlighting
       if (language) {
         applyHighlightingByLanguage(block, language);
       }
     });
   };
-  
+
   // Apply language-specific syntax highlighting
-  const applyHighlightingByLanguage = function(block, language) {
+  const applyHighlightingByLanguage = function (block, language) {
     // Simple patterns for each language
     const patterns = {
       'shell': [
@@ -64,30 +64,52 @@ document.addEventListener('DOMContentLoaded', function() {
         { pattern: /:\s*\d+/g, className: 'num' }       // JSON numbers
       ]
     };
-    
+
     // Get patterns for this language
     const langPatterns = patterns[language] || patterns['shell'];
     if (!langPatterns) return;
-    
+
     // Get the text content
     let content = block.textContent;
     let highlightedContent = content;
-    
+
     // Replace with marked spans
-    langPatterns.forEach(function(p) {
+    langPatterns.forEach(function (p) {
       highlightedContent = highlightedContent.replace(
-        p.pattern, 
+        p.pattern,
         match => `<span class="${p.className}">${match}</span>`
       );
     });
-    
+
     // Replace content if changed
     if (highlightedContent !== content) {
       block.innerHTML = highlightedContent;
     }
   };
-  
+
   // Run all our highlighting functions
   addSpacingBetweenCodeBlocks();
   applySyntaxHighlighting();
-}); 
+});
+
+// Simple script to add spacing between consecutive code blocks
+document.addEventListener('DOMContentLoaded', function () {
+  // Find all pre elements
+  var pres = document.querySelectorAll('pre');
+
+  // Add space between consecutive pre elements
+  for (var i = 1; i < pres.length; i++) {
+    var current = pres[i];
+    var previous = pres[i - 1];
+
+    // Check if they are consecutive (no other elements between them)
+    var nextElement = previous.nextElementSibling;
+    while (nextElement && nextElement.nodeType !== 1) {
+      nextElement = nextElement.nextElementSibling;
+    }
+
+    if (nextElement === current) {
+      current.style.marginTop = '2rem';
+    }
+  }
+});

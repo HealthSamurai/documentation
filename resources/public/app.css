@@ -2,121 +2,489 @@
 @tailwind components;
 @tailwind utilities;
 @import "../../libs/http/resources/public/uui.css";
-@import "./css/code-highlight.css"
 
-.gitbook {
-    @apply max-w-3xl;
+
+/* Base code styling */
+.code-block-container {
+  margin-top: 1.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.code-block-container + .code-block-container {
+  margin-top: 2rem; /* Extra spacing when code blocks follow each other */
+}
+
+pre {
+  border-radius: 0.375rem;
+  padding: 1rem;
+  overflow-x: auto;
+  background-color: #1e293b;
+  color: #f8fafc;
+  font-size: 0.875rem;
+  line-height: 1.7;
+}
+
+code {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+}
+
+/* Specific styling for code blocks */
+.language-shell, .language-bash, .language-sh,
+.language-docker, .language-dockerfile,
+.language-json, .language-javascript, .language-js,
+.language-clojure, .language-clj,
+.language-css, .language-html, .language-sql,
+.language-yaml, .language-yml,
+.language-python, .language-py,
+.language-java {
+  color: #e2e8f0; /* Default text color */
+}
+
+/* Keywords */
+.kwd {
+  color: #93c5fd; /* blue-300 */
+}
+
+/* Strings */
+.str {
+  color: #86efac; /* green-300 */
+}
+
+/* Comments */
+.com {
+  color: #94a3b8; /* slate-400 */
+  font-style: italic;
+}
+
+/* Variables/identifiers */
+.ident {
+  color: #e2e8f0; /* slate-200 */
+}
+
+/* Functions */
+.fn {
+  color: #c4b5fd; /* violet-300 */
+}
+
+/* Numbers */
+.num {
+  color: #fda4af; /* rose-300 */
+}
+
+/* Shell commands */
+.cmd {
+  color: #fb923c; /* orange-400 */
+  font-weight: bold;
+}
+
+/* Docker FROM, COPY, RUN etc. */
+.dockerfile-directive {
+  color: #fb923c; /* orange-400 */
+  font-weight: bold;
+}
+
+/* JSON */
+.key {
+  color: #93c5fd; /* blue-300 */
+}
+
+.value {
+  color: #86efac; /* green-300 */
+}
+
+/* Line numbers if added later */
+.line-number {
+  color: #64748b; /* slate-500 */
+  user-select: none;
+  margin-right: 1rem;
+}
+
+pre {
+  border-radius: 0.375rem;
+  padding: 1rem;
+  margin-top: 1.5rem;
+  margin-bottom: 1.5rem;
+  overflow-x: auto;
+  background-color: #1e293b;
+  color: #f8fafc;
+  font-size: 0.875rem;
+  line-height: 1.7;
+}
+
+code {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas,
+    "Liberation Mono", "Courier New", monospace;
+}
+
+/* GitHub Hint Styles */
+.github-hint {
+  margin: 1.5rem 0 !important;
+  padding: 1rem !important;
+  border-radius: 0.375rem !important;
+  border-width: 1px !important;
+  border-style: solid !important;
+}
+
+.github-hint-header {
+  display: flex !important;
+  align-items: center !important;
+  gap: 0.5rem !important;
+  font-weight: 500 !important;
+  margin-bottom: 0.5rem !important;
+}
+.github-hint-content {
+  margin-top: 0.5rem !important;
+}
+.github-hint.bg-blue-50 {
+  background-color: #eff6ff !important;
+  border-color: #dbeafe !important;
+}
+.github-hint.bg-green-50 {
+  background-color: #f0fdf4 !important;
+  border-color: #dcfce7 !important;
+}
+.github-hint.bg-purple-50 {
+  background-color: #faf5ff !important;
+  border-color: #f3e8ff !important;
+}
+.github-hint.bg-amber-50 {
+  background-color: #fffbeb !important;
+  border-color: #fef3c7 !important;
+}
+.github-hint.bg-red-50 {
+  background-color: #fef2f2 !important;
+  border-color: #fee2e2 !important;
+}
+.github-hint .text-blue-500 {
+  color: #3b82f6 !important;
+}
+.github-hint .text-green-500 {
+  color: #22c55e !important;
+}
+.github-hint .text-purple-500 {
+  color: #a855f7 !important;
+}
+.github-hint .text-amber-500 {
+  color: #f59e0b !important;
+}
+.github-hint .text-red-500 {
+  color: #ef4444 !important;
+}
+.github-hint svg {
+  width: 1.25rem !important;
+  height: 1.25rem !important;
+}
+
+/* Fix for nextjournal markdown code blocks */
+.viewer-code {
+  border-radius: 0.375rem;
+  padding: 1rem !important;
+  overflow-x: auto;
+  background-color: #1e293b !important;
+  color: #f8fafc !important;
+  font-size: 0.875rem;
+  line-height: 1.7;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas,
+    "Liberation Mono", "Courier New", monospace !important;
+}
+
+/* Language-specific styling for viewer-code */
+.viewer-code.language-shell .token,
+.viewer-code.language-bash .token,
+.viewer-code.language-sh .token {
+  color: #fb923c !important; /* commands - orange */
+}
+.viewer-code.language-shell .token.comment,
+.viewer-code.language-bash .token.comment {
+  color: #94a3b8 !important; /* comments - slate-400 */
+  font-style: italic;
+}
+.viewer-code.language-shell .token.string,
+.viewer-code.language-bash .token.string {
+  color: #86efac !important; /* strings - green-300 */
+}
+
+/* Python specific */
+.viewer-code.language-python .token.keyword,
+.viewer-code.language-py .token.keyword {
+  color: #93c5fd !important; /* keywords - blue-300 */
+  font-weight: bold;
+}
+.viewer-code.language-python .token.string,
+.viewer-code.language-py .token.string {
+  color: #86efac !important; /* strings - green-300 */
+}
+.viewer-code.language-python .token.comment,
+.viewer-code.language-py .token.comment {
+  color: #94a3b8 !important; /* comments - slate-400 */
+  font-style: italic;
+}
+.viewer-code.language-python .token.builtin,
+.viewer-code.language-py .token.builtin {
+  color: #c4b5fd !important; /* built-ins - violet */
+}
+
+/* JavaScript specific */
+.viewer-code.language-javascript .token.keyword,
+.viewer-code.language-js .token.keyword {
+  color: #93c5fd !important; /* keywords - blue-300 */
+  font-weight: bold;
+}
+.viewer-code.language-javascript .token.string,
+.viewer-code.language-js .token.string {
+  color: #86efac !important; /* strings - green-300 */
+}
+.viewer-code.language-javascript .token.comment,
+.viewer-code.language-js .token.comment {
+  color: #94a3b8 !important; /* comments - slate-400 */
+  font-style: italic;
+}
+.viewer-code.language-javascript .token.number,
+.viewer-code.language-js .token.number {
+  color: #fda4af !important; /* numbers - rose-300 */
+}
+
+/* JSON */
+.viewer-code.language-json .token.property {
+  color: #93c5fd !important; /* keys - blue-300 */
+}
+.viewer-code.language-json .token.string {
+  color: #86efac !important; /* strings - green-300 */
+}
+.viewer-code.language-json .token.number {
+  color: #fda4af !important; /* numbers - rose-300 */
+}
+.viewer-code.language-json .token.boolean {
+  color: #c4b5fd !important; /* booleans - violet */
+  font-weight: bold;
+}
+
+/* CSS */
+.viewer-code.language-css .token.selector {
+  color: #93c5fd !important; /* selectors - blue-300 */
+}
+.viewer-code.language-css .token.property {
+  color: #fb923c !important; /* properties - orange */
+}
+.viewer-code.language-css .token.value {
+  color: #86efac !important; /* values - green */
+}
+
+/* General tokens for all languages */
+.viewer-code .token.comment {
+  color: #94a3b8 !important; /* comments - slate-400 */
+  font-style: italic;
+}
+.viewer-code .token.string {
+  color: #86efac !important; /* strings - green-300 */
+}
+.viewer-code .token.keyword {
+  color: #93c5fd !important; /* keywords - blue-300 */
+  font-weight: bold;
+}
+.viewer-code .token.number {
+  color: #fda4af !important; /* numbers - rose-300 */
+}
+.viewer-code .token.function {
+  color: #c4b5fd !important; /* functions - violet */
+}
+.viewer-code .token.operator {
+  color: #e2e8f0 !important; /* operators - white */
+}
+.viewer-code .token.punctuation {
+  color: #e2e8f0 !important; /* punctuation - white */
+}
+.viewer-code .token.variable {
+  color: #93c5fd !important; /* variables - blue */
+}
+.viewer-code.language-clojure .token.punctuation {
+  color: #64748b !important; /* clojure brackets - slate-500 */
+}
+
+/* Syntax Highlighting - using inline styles for maximum compatibility */
+span[style*="color:#94a3b8"] {
+  color: #94a3b8;
+} /* slate-400 - comments */
+span[style*="color:#86efac"] {
+  color: #86efac;
+} /* green-300 - strings */
+span[style*="color:#93c5fd"] {
+  color: #93c5fd;
+} /* blue-300 - keywords */
+span[style*="color:#c4b5fd"] {
+  color: #c4b5fd;
+} /* violet-300 - functions */
+span[style*="color:#fda4af"] {
+  color: #fda4af;
+} /* rose-300 - numbers */
+span[style*="color:#fb923c"] {
+  color: #fb923c;
+} /* orange-400 - commands */
+span[style*="color:#64748b"] {
+  color: #64748b;
+} /* slate-500 - delimiters */
+span[style*="color:#fbbf24"] {
+  color: #fbbf24;
+} /* amber-400 - decorators */
+span[style*="color:#e2e8f0"] {
+  color: #e2e8f0;
+} /* slate-200 - identifiers */
+
+/* Add italic style */
+span[style*="font-style:italic"] {
+  font-style: italic;
+}
+
+/* Add bold style */
+span[style*="font-weight:bold"] {
+  font-weight: bold;
+}
+
+/* Better spacing for code blocks */
+.code-block-container {
+  margin-top: 1.5rem;
+  margin-bottom: 1.5rem;
+}
+.code-block-container + .code-block-container {
+  margin-top: 2rem;
+}
+
+/* Add language indicator */
+.language-indicator {
+  font-size: 0.75rem;
+  text-align: right;
+  margin-bottom: 0.25rem;
+  color: #6b7280;
+}
+
+/* Add some spacing after headers */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  margin-top: 1.5rem;
+  margin-bottom: 1rem;
+}
+
+li pre {
+  margin-top: 0.75rem;
+  margin-bottom: 0.75rem;
 }
 
 .gitbook {
+  @apply max-w-3xl;
+}
 
+.gitbook {
+  h1 {
+    @apply mt-6 text-4xl font-bold flex items-center gap-4;
+  }
 
-    h1 {
-        @apply mt-6 text-4xl font-bold flex items-center gap-4;
-    }
+  h2 {
+    @apply mt-6 text-3xl font-semibold relative mx-auto w-full;
+  }
 
-    h2 {
-        @apply mt-6 text-3xl font-semibold relative mx-auto w-full;
-    }
+  h3 {
+    @apply mt-6 text-xl font-semibold relative mx-auto w-full;
+  }
 
-    h3 {
-        @apply mt-6 text-xl font-semibold relative mx-auto w-full;
-    }
+  p {
+    @apply my-4 text-gray-600;
+  }
 
-    p {
-        @apply my-4 text-gray-600;
-    }
-
+  ul {
+    @apply mt-4 ml-8 list-disc;
     ul {
-        @apply mt-4 ml-8 list-disc;
-        ul {
-            @apply list-[circle];
-            margin-top: 0 !important;
-        }
-        ol {
-            margin-top: 0 !important;
-        }
+      @apply list-[circle];
+      margin-top: 0 !important;
     }
-
     ol {
-        @apply mt-4 ml-8 list-decimal;
-        ul {
-            @apply list-[circle];
-            margin-top: 0 !important;
-        }
-        ol {
-            margin-top: 0 !important;
-        }
+      margin-top: 0 !important;
     }
+  }
 
-    pre {
-        @apply p-4 text-xs bg-gray-100  text-black rounded-md overflow-x-auto shadow-md;
-        code {
-            @apply font-mono;
-        }
+  ol {
+    @apply mt-4 ml-8 list-decimal;
+    ul {
+      @apply list-[circle];
+      margin-top: 0 !important;
     }
+    ol {
+      margin-top: 0 !important;
+    }
+  }
 
-    a {
-        @apply text-sky-600;
+  pre {
+    @apply p-4 text-xs bg-gray-100  text-black rounded-md overflow-x-auto shadow-md;
+    code {
+      @apply font-mono;
     }
-    table {
-        @apply mt-4 text-sm;
-        thead {
-            tr {
-                @apply border-b border-gray-400;
-            }
-            th {
-                @apply px-2 py-1 align-top font-semibold text-gray-600;
-            }
-        }
-        tr {
-            @apply border-b border-gray-200;
-        }
-        td {
-            @apply px-2 py-1 align-top;
-        }
-    }
+  }
 
-    p {
-        code {
-            @apply bg-gray-100 text-xs px-2 py-1 rounded text-black font-mono;
-        }
+  a {
+    @apply text-sky-600;
+  }
+  table {
+    @apply mt-4 text-sm;
+    thead {
+      tr {
+        @apply border-b border-gray-400;
+      }
+      th {
+        @apply px-2 py-1 align-top font-semibold text-gray-600;
+      }
     }
-
-    div[role="hint"] {
-        @apply my-4 p-6 border rounded-md shadow;
-
-        &[style="info"] {
-            @apply bg-gray-50 border-gray-200;
-        }
-        &[style="warning"] {
-            @apply bg-yellow-50 border-yellow-200;
-        }
-        &[style="danger"] {
-            @apply bg-red-50 border-red-200;
-        }
+    tr {
+      @apply border-b border-gray-200;
     }
-
-    a[role="content-ref"] {
-        @apply block my-4 p-4 border border-blue-100 rounded-md hover:bg-blue-50;
+    td {
+      @apply px-2 py-1 align-top;
     }
+  }
+
+  p {
+    code {
+      @apply bg-gray-100 text-xs px-2 py-1 rounded text-black font-mono;
+    }
+  }
+
+  div[role="hint"] {
+    @apply my-4 p-6 border rounded-md shadow;
+
+    &[style="info"] {
+      @apply bg-gray-50 border-gray-200;
+    }
+    &[style="warning"] {
+      @apply bg-yellow-50 border-yellow-200;
+    }
+    &[style="danger"] {
+      @apply bg-red-50 border-red-200;
+    }
+  }
+
+  a[role="content-ref"] {
+    @apply block my-4 p-4 border border-blue-100 rounded-md hover:bg-blue-50;
+  }
 }
 
 .nav {
-    summary {
-        list-style: none;
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-    }
+  summary {
+    list-style: none;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
 
-    summary .chevron {
-        transition: 0.4s;
-    }
+  summary .chevron {
+    transition: 0.4s;
+  }
 
-    details[open] > summary {}
+  details[open] > summary {
+  }
 
-    details[open] > summary .chevron {
-        transform: rotate(90deg);
-    }
+  details[open] > summary .chevron {
+    transform: rotate(90deg);
+  }
 }

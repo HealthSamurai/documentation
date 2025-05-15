@@ -57,21 +57,21 @@
            "\\$\\{?[A-Za-z0-9_]+\\}?" :ident ; Variables including ${VAR}
            "\\b\\d+\\b" :num                 ; Numbers
            "^\\s*(\\w+)\\b" :cmd}            ; Commands at line start
-   
+
    :docker {"^\\s*#.*$" :com                 ; Comments
             "\"[^\"]*\"" :str                ; Double quoted strings
             "'[^']*'" :str                   ; Single quoted strings
             "\\b(FROM|RUN|CMD|LABEL|MAINTAINER|EXPOSE|ENV|ADD|COPY|ENTRYPOINT|VOLUME|USER|WORKDIR|ARG|ONBUILD|STOPSIGNAL|HEALTHCHECK|SHELL)\\b" :dockerfile-directive ; Docker directives
             "\\$\\{?[A-Za-z0-9_]+\\}?" :ident ; Variables including ${VAR}
             "\\b\\d+\\b" :num}               ; Numbers
-   
+
    :json {
           "\"([^\"]*?)\"\\s*:" :key          ; JSON keys
           ":\\s*\"([^\"]*?)\"" :str          ; JSON string values
           ":\\s*(true|false|null)" :kwd      ; JSON keywords
           ":\\s*\\d+(\\.\\d+)?(e[+-]?\\d+)?" :num ; JSON numbers (including decimals and scientific notation)
          }
-   
+
    :yaml {
           "^\\s*([a-zA-Z0-9_-]+)\\s*:" :key  ; YAML keys
           ":\\s*\"([^\"]*?)\"" :str          ; YAML string values with quotes
@@ -82,7 +82,7 @@
           ":\\s*(true|false|null|~)" :kwd    ; YAML keywords
           ":\\s*\\d+(\\.\\d+)?(e[+-]?\\d+)?" :num ; YAML numbers
          }
-   
+
    :javascript {
           "//.*$" :com                       ; Single-line comments
           "/\\*[\\s\\S]*?\\*/" :com          ; Multi-line comments
@@ -95,7 +95,7 @@
           "\\b\\d+(\\.\\d+)?(e[+-]?\\d+)?\\b" :num ; Numbers
           "\\b([a-zA-Z_$][a-zA-Z0-9_$]*)\\s*\\(" :fn ; Function calls
          }
-   
+
    :html {
           "<!--[\\s\\S]*?-->" :com           ; HTML comments
           "</?[a-zA-Z][a-zA-Z0-9\\-]*[^>]*>" :tag ; HTML tags
@@ -103,7 +103,7 @@
           "\\b([a-zA-Z][a-zA-Z0-9\\-]*)=" :attr ; Attributes
           "&[a-zA-Z0-9#]+;" :ent             ; HTML entities
          }
-   
+
    :css {
           "/\\*[\\s\\S]*?\\*/" :com          ; CSS comments
           "\\{[^}]*\\}" :block               ; CSS blocks
@@ -114,7 +114,7 @@
           "\\b\\d+(\\.\\d+)?(px|em|rem|%|vh|vw|s|ms|deg|rad|turn)\\b" :value ; Values with units
           "\\b(inherit|initial|unset|auto|none|flex|block|inline|grid)\\b" :kwd ; Common keywords
          }
-   
+
    :python {
           "#.*$" :com                        ; Comments
           "\"\"\"[\\s\\S]*?\"\"\"" :com      ; Docstrings
@@ -128,7 +128,7 @@
           "\\b(self|cls)\\b" :ident          ; Special identifiers
           "@\\w+" :decorator                 ; Decorators
          }
-   
+
    :clojure {
           ";.*$" :com                        ; Comments
           "\"([^\"\\\\]|\\\\.)*?\"" :str     ; Strings
@@ -140,7 +140,7 @@
           "\\b\\d+(\\.\\d+)?M?\\b" :num      ; Numbers
           "true|false|nil" :kwd              ; Constants
          }
-   
+
    :rust {
           "//.*$" :com                       ; Single-line comments
           "/\\*[\\s\\S]*?\\*/" :com          ; Multi-line comments
@@ -154,7 +154,7 @@
           "\\b([A-Z][a-zA-Z0-9_]*)\\b" :type ; Type names (uppercase first letter)
           "#!?\\[[^\\]]+\\]" :attribute      ; Attributes
          }
-   
+
    :go {
           "//.*$" :com                       ; Single-line comments
           "/\\*[\\s\\S]*?\\*/" :com          ; Multi-line comments
@@ -166,7 +166,7 @@
           "\\b\\d+(\\.\\d+)?\\b" :num        ; Numbers
           "\\b([a-zA-Z_][a-zA-Z0-9_]*)\\s*\\(" :fn ; Function calls
          }
-   
+
    :java {
           "//.*$" :com                       ; Single-line comments
           "/\\*[\\s\\S]*?\\*/" :com          ; Multi-line comments
@@ -179,7 +179,7 @@
           "\\b([a-zA-Z_][a-zA-Z0-9_]*)\\s*\\(" :fn ; Method calls
           "@\\w+" :decorator                 ; Annotations
          }
-   
+
    :c {
           "//.*$" :com                       ; Single-line comments
           "/\\*[\\s\\S]*?\\*/" :com          ; Multi-line comments
@@ -192,7 +192,7 @@
           "#include\\s*[<\"][^>\"]*[>\"]" :preprocessor ; Include directives
           "#define\\s+\\w+" :preprocessor     ; Define directives
          }
-   
+
    :http {
           "^(GET|POST|PUT|DELETE|PATCH|HEAD|OPTIONS)\\s+([^\\n]*)" :cmd ; HTTP method
           "^([A-Za-z0-9-]+)\\s*:\\s*([^\\n]*)" :key                    ; HTTP headers
@@ -200,7 +200,7 @@
           ":\\s*\"([^\"]*?)\"" :str                                    ; JSON string in body (if JSON)
           "\"([^\"]*?)\"\\s*:" :key                                    ; JSON keys in body (if JSON)
          }
-   
+
    :markdown {
           "^\\s*#{1,6}\\s+.*$" :heading      ; Headings
           "^\\s*>.*$" :blockquote            ; Blockquotes
@@ -212,7 +212,7 @@
           "^\\s*\\d+\\.\\s+" :ordered-list   ; Ordered list
           "!\\[([^\\]]*)\\]\\([^\\)]*\\)" :image ; Images
          }
-   
+
    ;; Map language aliases to their patterns
    :sh :shell
    :bash :shell
@@ -291,11 +291,11 @@
 
 (defn apply-syntax-highlighting
   "Apply syntax highlighting by tokenizing code with regex patterns.
-   
+
    Parameters:
    - code: The code string to tokenize
    - language: The language identifier
-   
+
    Returns a string with HTML span tags for token highlighting."
   [code language]
   (let [lang-key (keyword (or language ""))
@@ -309,7 +309,7 @@
           (let [regex (re-pattern pattern)
                 style (create-token-style token-type)
                 replacement (str "<span style=\"" style "\">$0</span>")]
-            (swap! highlighted-code 
+            (swap! highlighted-code
                    #(str/replace % regex replacement))))
         @highlighted-code)
       ;; No patterns for this language, return escaped code
@@ -318,43 +318,73 @@
 (defn transform-code-block
   "Transform a code block into highlighted hiccup markup.
    Applies syntax highlighting based on language.
-   
+
    Parameters:
    - ctx: Context parameter
    - node: The code block node from markdown AST
-   
+
    Returns hiccup vector with styled pre/code structure."
   [ctx node]
-  (println "Code block found! Language:" (or (:info node) "none"))
+  (println "Code highlight transform called for node:" (:type node))
   (let [code (if (sequential? (:content node))
                (str/join (map :text (:content node)))
                (:content node))
         info (or (:info node) "")
         language (first (str/split info #"\s+"))
         language-class (get language-classes language "")
-        highlighted-code (if (not-empty language)
-                           (apply-syntax-highlighting code language)
-                           (escape-html code))]
+
+        ;; Add simple syntax highlighting for common tokens
+        ;; This will be applied as inline styles
+        highlighted-code (cond
+                           ;; Shell/Bash highlighting
+                           (contains? #{"bash" "shell" "sh"} language)
+                           (-> (escape-html code)
+                               (str/replace #"(^|[\n])(\s*#[^\n]*)" "$1<span style=\"color:#94a3b8;font-style:italic\">$2</span>")
+                               (str/replace #"(^|[\n])(\s*\w+)" "$1<span style=\"color:#fb923c;font-weight:bold\">$2</span>")
+                               (str/replace #"\"([^\"]*)\"" "<span style=\"color:#86efac\">\"$1\"</span>")
+                               (str/replace #"\$\w+" "<span style=\"color:#c4b5fd\">$0</span>"))
+
+                           ;; Python highlighting
+                           (contains? #{"python" "py"} language)
+                           (-> (escape-html code)
+                               (str/replace #"(^|[\n])(\s*#[^\n]*)" "$1<span style=\"color:#94a3b8;font-style:italic\">$2</span>")
+                               (str/replace #"\b(def|class|if|elif|else|for|while|try|except|finally|with|import|from|as|pass|return|raise)\b" "<span style=\"color:#93c5fd;font-weight:bold\">$1</span>")
+                               (str/replace #"\b(True|False|None|self)\b" "<span style=\"color:#c4b5fd;font-weight:bold\">$1</span>")
+                               (str/replace #"\"([^\"]*)\"" "<span style=\"color:#86efac\">\"$1\"</span>")
+                               (str/replace #"'([^']*)'" "<span style=\"color:#86efac\">'$1'</span>")
+                               (str/replace #"\b\d+(\.\d+)?\b" "<span style=\"color:#fda4af\">$0</span>"))
+
+                           ;; JavaScript/TypeScript highlighting
+                           (contains? #{"javascript" "js" "typescript" "ts"} language)
+                           (-> (escape-html code)
+                               (str/replace #"(\/\/[^\n]*)" "<span style=\"color:#94a3b8;font-style:italic\">$1</span>")
+                               (str/replace #"\b(var|let|const|function|return|if|else|for|while|switch|case|break|continue|class|new|this|import|export|from|async|await)\b" "<span style=\"color:#93c5fd;font-weight:bold\">$1</span>")
+                               (str/replace #"\b(true|false|null|undefined)\b" "<span style=\"color:#c4b5fd;font-weight:bold\">$1</span>")
+                               (str/replace #"\"([^\"]*)\"" "<span style=\"color:#86efac\">\"$1\"</span>")
+                               (str/replace #"'([^']*)'" "<span style=\"color:#86efac\">'$1'</span>")
+                               (str/replace #"(\b\d+(\.\d+)?)\b" "<span style=\"color:#fda4af\">$1</span>")
+                               (str/replace #"\b([a-zA-Z_$][a-zA-Z0-9_$]*)\(" "<span style=\"color:#c4b5fd\">$1</span>("))
+
+                           ;; JSON highlighting
+                           (= language "json")
+                           (-> (escape-html code)
+                               (str/replace #"\"([^\"]+)\":" "<span style=\"color:#93c5fd\">\"$1\"</span>:")
+                               (str/replace #":\\s*\"([^\"]*)\"" ": <span style=\"color:#86efac\">\"$1\"</span>")
+                               (str/replace #":\\s*(\d+(\.\d+)?)" ": <span style=\"color:#fda4af\">$1</span>")
+                               (str/replace #":\\s*(true|false|null)" ": <span style=\"color:#c4b5fd;font-weight:bold\">$1</span>"))
+
+                           ;; Default - just escape HTML
+                           :else (escape-html code))]
+
     ;; Add a language indicator and properly highlighted code
     [:div.code-block-container.my-6
      [:div.language-indicator.text-xs.text-right.mb-1.text-slate-500
       (str "Language: " (or language "none"))]
      [:pre.rounded-md.p-4.overflow-x-auto.bg-slate-800.text-white.text-sm.leading-relaxed
-      {:class (if (not-empty language-class) 
-                "with-language-highlight" 
-                "no-language-highlight")}
-      ;; Use raw HTML for highlighted code with spans
-      (hiccup2.core/raw 
-        (str "<code class=\"language-" (or language "") "\">" 
-             highlighted-code 
-             "</code>"))]]))
+      [:code
+       {:class (if (not-empty language-class) language-class "")}
+       (hiccup2/raw highlighted-code)]]]))
 
-;; Register code block transformer
+;; Export renderers for use in other modules
 (def renderers
   {:code-block transform-code-block})
-
-;; Transform function to intercept the default rendering
-(defn replace-default-code-renderer
-  "Replace the default code block renderer with our enhanced version"
-  [renderers]
-  (assoc renderers :code-block transform-code-block)) 
