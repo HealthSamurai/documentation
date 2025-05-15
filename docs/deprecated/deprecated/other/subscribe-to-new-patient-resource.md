@@ -36,7 +36,7 @@ channel:
 
 After that, aidbox sends a handshake notification on channel.endpoint, which you can see on your opened tab with RequestCatcher.
 
-![](../../../../.gitbook/assets/screenshot-2020-11-11-at-20.06.20.png)
+![](../../../../.gitbook/assets/screenshot-2020-11-11-at-20-06-20.png)
 
 Let's create a new patient then.
 
@@ -53,7 +53,7 @@ name:
 
 Then you can back to RequestCatcher service and see a new notification.
 
-![](../../../../.gitbook/assets/screenshot-2020-11-11-at-20.06.57.png)
+![](../../../../.gitbook/assets/screenshot-2020-11-11-at-20-06-57.png)
 
 And next, you can see **SubsNotification** resource created for this notification in Aidbox.
 

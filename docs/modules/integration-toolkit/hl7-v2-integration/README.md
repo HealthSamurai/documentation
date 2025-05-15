@@ -80,7 +80,7 @@ In cases where some repeatable custom top-level segments are in mixed order, an 
 
 Access the Aidbox UI and navigate to the "HL7 v2" tab in the left menu, then click the "New" button in the top right corner.
 
-![](../../../../.gitbook/assets/screenshot-2019-11-14-at-18.20.41.png)
+![](../../../../.gitbook/assets/screenshot-2019-11-14-at-18-20-41.png)
 
 Copy-paste a following test message to the "New Message" form:
 
@@ -98,11 +98,11 @@ IN2||353333833|0000003333^RETIRED|||||||||||||||||||||||||||||||||Y|||CHR||||W||
 
 Pick an Hl7v2Config instance using the radio button and click the "Create" button:
 
-![](../../../../.gitbook/assets/screenshot-2019-11-21-at-18.04.04.png)
+![](../../../../.gitbook/assets/screenshot-2019-11-21-at-18-04-04.png)
 
 You'll see a newly created message with additional information like status, parsed structure, outcome, etc.:
 
-![](../../../../.gitbook/assets/screenshot-2019-11-14-at-18.50.57.png)
+![](../../../../.gitbook/assets/screenshot-2019-11-14-at-18-50-57.png)
 
 ### Submitting a Message with the REST API
 

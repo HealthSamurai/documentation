@@ -81,7 +81,7 @@ id: provider
 resourceType: AidboxConfig
 ```
 
-![](../../../../.gitbook/assets/group-4-1-.png)
+![](../../../../.gitbook/assets/group-4-1.png)
 
 ![](../../../../.gitbook/assets/group-6.png)
 
