@@ -150,7 +150,7 @@ Save a token from the response to connect to MCP server.
 Aidbox MCP server config:
 
 ```shell-session
-$ npx -y supergateway --sse <your-box-base-url>/mcp
+$ npx -y supergateway --sse <your-box-base-url>/sse
 ```
 
 ```json
