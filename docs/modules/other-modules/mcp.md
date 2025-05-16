@@ -61,6 +61,10 @@ accept: application/json
       "resourceType": "Operation"
     },
     {
+      "id": "mcp-sse",
+      "resourceType": "Operation"
+    },
+    {
       "id": "mcp-client-messages",
       "resourceType": "Operation"
     }
@@ -111,6 +115,10 @@ accept: application/json
         },
         {
           "resourceType": "Operation",
+          "id": "mcp-sse"
+        },
+        {
+          "resourceType": "Operation",
           "id": "mcp-client-messages"
         }
       ]
@@ -154,7 +162,7 @@ $ npx -y supergateway --sse <your-box-base-url>/mcp
         "-y",
         "supergateway",
         "--sse",
-        "<your-box-base-url>/mcp",
+        "<your-box-base-url>/sse",
         "--oauth2Bearer", // add this only if you created a client and got a token
         "<your-aidbox-token>" // add this only if you created a client and got a token
       ]
