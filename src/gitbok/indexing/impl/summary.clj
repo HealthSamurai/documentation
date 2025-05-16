@@ -2,7 +2,6 @@
   (:require
    [clojure.string :as str]
    [gitbok.constants :as const]
-   [gitbok.indexing.impl.summary]
    [system]
    [uui]))
 
@@ -74,13 +73,13 @@
                                                        (count-whitespace x) :title (trim-l x)}))
                                               (treefy)))))))))
 
-(defn set [context]
+(defn set-summary [context]
   (system/set-system-state
    context
    [const/SUMMARY_STATE]
    (parse-summary)))
 
-(defn get [context]
+(defn get-summary [context]
   (system/get-system-state context [const/SUMMARY_STATE]))
 
 (comment
@@ -90,4 +89,4 @@
    (->> ["a" "  b" "  c" "x" " x1" " x2"]
         (mapv (fn [x] {:i (count-whitespace x) :l (str/trim x)}))))
 
-  (def context gitbok.core/context))
+  )

@@ -2,7 +2,6 @@
   "Widget for handling code blocks with syntax highlighting.
    Supports various languages and provides proper spacing between consecutive blocks."
   (:require
-   [nextjournal.markdown.transform :as transform]
    [clojure.string :as str]
    [hiccup2.core :as hiccup2]))
 
@@ -317,14 +316,8 @@
 
 (defn transform-code-block
   "Transform a code block into highlighted hiccup markup.
-   Applies syntax highlighting based on language.
-
-   Parameters:
-   - ctx: Context parameter
-   - node: The code block node from markdown AST
-
-   Returns hiccup vector with styled pre/code structure."
-  [ctx node]
+   Applies syntax highlighting based on language."
+  [_ctx node]
   (println "Code highlight transform called for node:" (:type node))
   (let [code (if (sequential? (:content node))
                (str/join (map :text (:content node)))

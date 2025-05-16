@@ -12,12 +12,12 @@
           (for [[_ page-name filepath] (re-seq link-pattern summary-text)]
             [filepath (common/sanitize-page-name page-name)]))))
 
-(defn uri+page-link [current-uri relative-page-link]
+(defn uri+page-link [current-uri _relative-page-link]
   (str "docs" current-uri))
 
-(defn set [context]
+(defn set-idx [context]
   (system/set-system-state context [const/FILE->URI_IDX]
                            (file->uri-idx context)))
 
-(defn get [context]
+(defn get-idx [context]
   (system/get-system-state context [const/FILE->URI_IDX]))

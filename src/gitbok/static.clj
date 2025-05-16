@@ -8,7 +8,7 @@
 (defn
   ^{:http {:path "/css/:file" :method :get}}
   handle-css
-  [context request]
+  [_context request]
   (let [file (get-in request [:params :file])
         file-path (str "resources/public/css/" file)]
     (println "Serving CSS file:" file-path)
@@ -18,7 +18,7 @@
 (defn
   ^{:http {:path "/static/:file" :method :get}}
   handle-static
-  [context request]
+  [_context request]
   (let [file (get-in request [:params :file])
         file-path (str "resources/public/static/" file)]
     (println "Serving static file:" file-path)

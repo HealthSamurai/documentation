@@ -2,13 +2,12 @@
   (:require
    [cheshire.core]
    [clojure.string :as str]
-
    [http]
    [system]
    [uui]
    [gitbok.ui]))
 
-(defn collect-broken-links [context]
+(defn collect-broken-links [_context]
  ;; todo
   ;; (->> (gitbok.state/uri->file-idx context)
   ;;      #_#_(sort-by #(:path (second %)))

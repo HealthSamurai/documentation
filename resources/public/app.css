@@ -175,6 +175,48 @@ code {
   height: 1.25rem !important;
 }
 
+/* GitBook Hint Styles */
+.gitbook-hint {
+  margin: 1.5rem 0 !important;
+  padding: 1rem !important;
+  border-radius: 0.375rem !important; 
+  border-left-width: 4px !important;
+}
+
+.gitbook-hint .hint-content {
+  display: flex !important;
+  gap: 0.75rem !important;
+}
+
+.gitbook-hint .hint-icon {
+  flex-shrink: 0 !important;
+}
+
+.gitbook-hint .hint-icon svg {
+  width: 1.25rem !important;
+  height: 1.25rem !important;
+}
+
+.gitbook-hint.bg-blue-50 {
+  background-color: #eff6ff !important;
+  border-color: #3b82f6 !important;
+}
+
+.gitbook-hint.bg-yellow-50 {
+  background-color: #fffbeb !important;
+  border-color: #f59e0b !important;
+}
+
+.gitbook-hint.bg-green-50 {
+  background-color: #f0fdf4 !important;
+  border-color: #22c55e !important;
+}
+
+.gitbook-hint.bg-red-50 {
+  background-color: #fef2f2 !important;
+  border-color: #ef4444 !important;
+}
+
 /* Fix for nextjournal markdown code blocks */
 .viewer-code {
   border-radius: 0.375rem;

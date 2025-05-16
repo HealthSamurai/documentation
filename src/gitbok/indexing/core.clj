@@ -30,6 +30,6 @@
     (str "/docs/" (get uri->file-idx fixed-url "readme/README.md"))))
 
 (defn page-link->uri [context ^String current-page-uri ^String relative-page-link]
-  (let [current-filepath (uri->filepath (gitbok.indexing.impl.uri-to-file/get context) current-page-uri)
+  (let [current-filepath (uri->filepath (gitbok.indexing.impl.uri-to-file/get-idx context) current-page-uri)
         real-file-path (common/get-filepath current-filepath relative-page-link)]
     (get file->uri-idx real-file-path "/")))

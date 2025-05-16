@@ -38,9 +38,9 @@
             :else
             (recur (rest lines) section stack acc)))))))
 
-(defn get [context]
+(defn get-idx [context]
   (system/get-system-state context [const/URI->FILE_IDX]))
 
-(defn set [context]
+(defn set-idx [context]
   (system/set-system-state context [const/URI->FILE_IDX]
                            (uri->file-idx context)))

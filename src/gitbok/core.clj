@@ -18,7 +18,7 @@
 (set! *warn-on-reflection* true)
 
 (defn read-content [context uri]
-  (let [filepath (indexing/uri->filepath (uri-to-file/get context) uri)
+  (let [filepath (indexing/uri->filepath (uri-to-file/get-idx context) uri)
         content (slurp (str "." filepath)) ]
     (if (str/starts-with? content "---")
       (last (str/split content #"---\n" 3))
@@ -85,9 +85,9 @@
   (gitbok.static/register-endpoints context)
 
   ;; Set up indexing
-  (uri-to-file/set context)
-  (file-to-uri/set context)
-  (summary/set context)
+  (uri-to-file/set-idx context)
+  (file-to-uri/set-idx context)
+  (summary/set-summary context)
   {})
 
 (def default-config
