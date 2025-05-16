@@ -70,9 +70,9 @@ Enables watcher which reloads zen namespaces when they change.
 
 ### Task executor service workers<a href="#zen-project.default-service-workers" id="zen-project.default-service-workers"></a>
 
-The default number of service workers.
+The default number of task executor service workers.
 
-<table data-header-hidden="true"><thead><tr><th width="200"></th><th></th></tr></thead><tbody><tr><td>ID</td><td><code>zen-project.default-service-workers</code></td></tr><tr><td>Type</td><td>Int</td></tr><tr><td>Default value</td><td>(no default)</td></tr><tr><td>Environment variable</td><td><code>BOX_ZEN_PROJECT_DEFAULT_SERVICE_WORKERS</code></td></tr><tr><td>Deprecated environment variables</td><td><code>AIDBOX_ZEN_DEFAULT_SERVICE_WORKERS</code></td></tr><tr><td>Sensitive</td><td><code>false</code> — value will be visible in plaintext in Admin UI</td></tr><tr><td>Set via</td><td>Admin UI → Settings<br />Environment variables</td></tr><tr><td>Hot reload</td><td><code>false</code> — setting requires system restart</td></tr></tbody></table>
+<table data-header-hidden="true"><thead><tr><th width="200"></th><th></th></tr></thead><tbody><tr><td>ID</td><td><code>zen-project.default-service-workers</code></td></tr><tr><td>Type</td><td>Int</td></tr><tr><td>Default value</td><td><code>3</code></td></tr><tr><td>Environment variable</td><td><code>BOX_ZEN_PROJECT_DEFAULT_SERVICE_WORKERS</code></td></tr><tr><td>Deprecated environment variables</td><td><code>AIDBOX_ZEN_DEFAULT_SERVICE_WORKERS</code></td></tr><tr><td>Sensitive</td><td><code>false</code> — value will be visible in plaintext in Admin UI</td></tr><tr><td>Set via</td><td>Admin UI → Settings<br />Environment variables</td></tr><tr><td>Hot reload</td><td><code>false</code> — setting requires system restart</td></tr></tbody></table>
 
 ### Zen config expose<a href="#zen-project.config.expose" id="zen-project.config.expose"></a>
 
