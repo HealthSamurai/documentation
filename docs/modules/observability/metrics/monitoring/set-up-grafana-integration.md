@@ -66,7 +66,7 @@ content-type: application/edn
           :kibana-url "https://my.kibana.url.com"}}
 ```
 
-<figure><img src="../../../../.gitbook/assets/Screen%20Shot%202022-12-06%20at%2008.44.55.png" alt=""><figcaption><p>Grafana Aidbox Dashboard</p></figcaption></figure>
+<figure><img src="../../../../.gitbook/assets/05226a22-ad04-4ae4-9252-af88c686bd84.png" alt=""><figcaption><p>Grafana Aidbox Dashboard</p></figcaption></figure>
 
 ### `aidbox.metrics/update-cluster-dashboard`
 

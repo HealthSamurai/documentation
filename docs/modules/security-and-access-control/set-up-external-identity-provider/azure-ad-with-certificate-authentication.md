@@ -83,7 +83,7 @@ Than you may download the certificate in order to upload it to Azure AD by follo
 
 Upload the certificate into Azure AD
 
-<figure><img src="../../../.gitbook/assets/Screenshot 2023-07-17 at 16.50.45.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/19b0358b-f8d7-48d3-a710-1e1fa54ade08.png" alt=""><figcaption></figcaption></figure>
 
 It may take few minutes when Azure starts processing the uploaded certificate.
 

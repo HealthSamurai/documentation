@@ -16,7 +16,7 @@ Aidbox OAuth module supports Client Credentials Grant flow in different formats.
 
 The easiest way to test Client Credentials Grant flow is to run through the [Aidbox Sandbox UI](#auth-sandbox) (_Auth -> Sandbox -> Client Credentials_).
 
-<figure><img src="../../../.gitbook/assets/image (103).png" alt=""><figcaption><p>Sandbox UI</p></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/016836ab-2b47-4ff1-bd81-5fd5f8896f6d.png" alt=""><figcaption><p>Sandbox UI</p></figcaption></figure>
 
 ### Configure Client
 

@@ -16,7 +16,7 @@ Use of `ancestors` attribute is optional and we still support `hierarchy` attrib
 
 For example, source terminology structure looks as follows:
 
-![](<../../../../.gitbook/assets/image (95).png>)
+![](<72f9a38f-9b32-4c1a-a965-56d146ca442d.png>)
 
 This is how ancestors hierarchy is supposed to be represented in Aidbox `Concept` resource:
 

@@ -81,7 +81,7 @@ background-sdc-theme
 
 To understand what each color is look at the image below:
 
-<figure><img src="../../../.gitbook/assets/CleanShot%202023-02-16%20at%2011.34.05.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="0a0cc319-a1b7-4114-8f7d-b087fa9cc29c.png" alt=""><figcaption></figcaption></figure>
 
 ### Font
 
@@ -114,7 +114,7 @@ brand-image-theme
 
 Your images will be placed as following:
 
-<figure><img src="../../../.gitbook/assets/CleanShot%202023-02-17%20at%2018.28.22.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/12d68ff8-1068-427c-9ed7-98bdf5a776a2.png" alt=""><figcaption></figcaption></figure>
 
 So full theme could look like this:
 

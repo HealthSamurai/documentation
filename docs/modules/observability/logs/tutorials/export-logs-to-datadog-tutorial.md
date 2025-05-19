@@ -12,19 +12,19 @@ You need to enable Datadog Logs API and create an API Key
 
 To create a new API key go to [Datadog](https://app.datadoghq.com/) then go to Integrations -> APIs:
 
-![](../../../../.gitbook/assets/image%20\(11\)%20\(2\)%20\(1\).png)
+![](24ed01b8-a8f8-4512-bb93-2acb88a67b3e.png)
 
 Click API Keys
 
-![](../../../../.gitbook/assets/image%20\(13\).png)
+![](b3df2c18-df8a-443f-ac63-ccf8f9f7bdc5.png)
 
 Enter the name of the new key and click Create API Key
 
-![](../../../../.gitbook/assets/image%20\(15\)%20\(1\).png)
+![](c12ed7a0-ed34-4241-90ea-f68fa1a406fa.png)
 
 Copy the newly generated key
 
-![](../../../../.gitbook/assets/image%20\(16\).png)
+![](50ca7105-ac37-4859-9ca2-0fee901bb78e.png)
 
 ## Configure Aidbox
 
@@ -48,7 +48,7 @@ Go to Logs -> Configuration
 
 Click edit on Preprocessing for JSON logs
 
-![](../../../../.gitbook/assets/image%20\(19\).png)
+![](8dc801a0-d998-435c-ac9c-a73e84d526f7.png)
 
 Set the attributes
 
@@ -66,11 +66,11 @@ Now add a facet for the event.
 
 Go to logs then click add on the left
 
-![](../../../../.gitbook/assets/image%20\(23\)%20\(2\).png)
+![](dd3e2706-a448-40ec-b286-328c21c65227.png)
 
 Use `@ev` path for the new facet
 
-![](../../../../.gitbook/assets/image%20\(24\)%20\(1\).png)
+![](e1119164-27bc-41d0-b42c-3159a3256a56.png)
 
 In this guide, we will add a metric for authorization failures
 
@@ -80,31 +80,31 @@ Go to Logs -> Generate Metrics
 
 Click Add a new metric
 
-![](../../../../.gitbook/assets/image%20\(26\)%20\(1\).png)
+![](7daea20d-4808-4060-87ef-3c964deb4254.png)
 
 Define a query for the `auth/authorize-failed` event
 
-![](../../../../.gitbook/assets/image%20\(27\)%20\(1\).png)
+![](f79665ba-7d90-4e8f-86b2-2ab3dfd0595d.png)
 
 Enter the name for the new metric and click Create metric
 
-![](../../../../.gitbook/assets/image%20\(28\).png)
+![](36321f5b-8e5b-4de1-aed2-4a9482dae447.png)
 
 Now we can see our metric in the Metrics Explorer
 
-![](../../../../.gitbook/assets/image%20\(29\)%20\(1\).png)
+![](6ebc86c6-16d7-42ac-9226-ed5ddf98a2bc.png)
 
 And we can define monitoring to alert if there are too many authorization failures. To do this navigate to Monitors -> New Monitor
 
-![](../../../../.gitbook/assets/image%20\(30\).png)
+![](816d254f-244b-447c-9ec4-f26d65dcf0b3.png)
 
 Select monitor type "metric"
 
-![](../../../../.gitbook/assets/image%20\(31\)%20\(1\).png)
+![](3030e22e-bb9c-4568-9bcc-4824e8235316.png)
 
 Set up monitoring options
 
-![](../../../../.gitbook/assets/image%20\(32\)%20\(1\).png)
+![](a6088ddf-a566-46b3-ab9e-48a3aa824450.png)
 
 And notifications
 
@@ -112,7 +112,7 @@ And notifications
 
 Now we can see our monitor on the Monitor page
 
-![](../../../../.gitbook/assets/image%20\(34\).png)
+![](1dfd30b4-e490-4982-bd4d-d4c28dc907cd.png)
 
 It takes some time for Datadog to set up the monitor. After a while, it will become green
 
@@ -120,15 +120,15 @@ It takes some time for Datadog to set up the monitor. After a while, it will bec
 
 And when there are too many authorization failures in a short period of time, it changes the status to warning
 
-![](../../../../.gitbook/assets/image%20\(36\)%20\(1\).png)
+![](f2acc928-122c-4730-a439-e507fbdc2bdb.png)
 
 Then when it hits the threshold, the alert is created
 
-![](../../../../.gitbook/assets/image%20\(37\).png)
+![](c0721bd1-fd50-4c27-b898-1b6444d32977.png)
 
 On the Monitor page, you can see statistics
 
-![](../../../../.gitbook/assets/image%20\(38\).png)
+![](a0f32af2-1e72-43a1-ac6a-9860cfa89597.png)
 
 {% hint style="warning" %}
 By default Aidbox sends logs as bundles of multiple records so if there's not enough data **you won't see any logs in Datadog**. For testing purposes reduce bundle size to 1 record by setting environment variable:

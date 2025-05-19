@@ -26,7 +26,7 @@ Aidbox acts as [Audit record repository](https://profiles.ihe.net/ITI/TF/Volume1
 * `POST /fhir/AuditEvent` to record events
 * `GET /fhir/AuditEvent` to receive them
 
-<figure><img src="../../../.gitbook/assets/Screenshot%202023-09-07%20at%2013.23.08.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/3dd57312-f3bb-41cd-b955-6c73b6a13805.png" alt=""><figcaption></figcaption></figure>
 
 ## Next steps
 

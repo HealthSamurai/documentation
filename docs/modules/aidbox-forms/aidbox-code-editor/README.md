@@ -17,7 +17,7 @@ This tool is based on domain-specific language (DSL) which gives flexibility and
 
 We have presented the form as a layered structure. To design the form, you need to describe the necessary layers using DSL.
 
-<figure><img src="../../../../.gitbook/assets/Screenshot 2022-08-23 at 17.24.50.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../../.gitbook/assets/8590de2b-148a-48ef-a986-5400aa020e5f.png" alt=""><figcaption></figcaption></figure>
 
 **Each** **layer** is responsible for solving a **specific problem**:
 
