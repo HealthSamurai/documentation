@@ -74,7 +74,7 @@ When a new workflow is created by [Broken link](broken-reference) or by [service
 
 Below is a representation of a Workflow Instance life cycle.
 
-<figure><img src="../../../../../../.gitbook/assets/8be722dc-b0f9-4ccc-8cda-331ca9d2bccd.png" alt="" width="563"><figcaption><p>Workflow instance lifecycle</p></figcaption></figure>
+<figure><img src="../../../../../../.gitbook/assets/image (46) (1).png" alt="" width="563"><figcaption><p>Workflow instance lifecycle</p></figcaption></figure>
 
 After the workflow is created, the decision task with the same definition is created to move the workflow to the `in-progress` state and to execute the workflow body until the new internal workflow activity is started. Then the decision task is completed with a successful outcome.
 

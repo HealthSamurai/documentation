@@ -10,7 +10,7 @@ Aidbox offers multiple ways to debug access policies.
 
 [Access policy dev tool](debug-access-control.md#access-policy-dev-tool) simplifies development & debugging AccessPolicy resources. It was introduced in March v2303 release of Aidbox.
 
-<figure><img src="../../../.gitbook/assets/c2f36c64-6764-4d07-9ddf-a2af928f1d42.png" alt=""><figcaption><p>Access policy dev tool UI</p></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/Screenshot 2023-03-23 at 11.40.41.png" alt=""><figcaption><p>Access policy dev tool UI</p></figcaption></figure>
 
 ## `__debug` query-string parameter
 

@@ -41,14 +41,14 @@ ResearchStudy references to Group of patients invloved in the research with [`Re
 
 ResearchStudy doesn't have references to collaborators. So, we will introduce one and make a linkage with Aidbox User.
 
-<figure><img src="../../.gitbook/assets/174092e6-9370-4d94-938b-c0f15840282e.png" alt=""><figcaption><p><em>Data model of Research study repository application</em></p></figcaption></figure>
+<figure><img src="../../.gitbook/assets/Relationship-based access control.png" alt=""><figcaption><p><em>Data model of Research study repository application</em></p></figcaption></figure>
 
 As ResearchStudy resource is a core of our model, it's reasonable to make the list of available studies a starting point on UI. So we may imagine user's flow within UI.
 
 * Researcher enters the system and see the list of studies, they involved into as a collaborator.
 * They can drill down to a study to see details and search over related patients and observations.
 
-<figure><img src="../../.gitbook/assets/d60ac2a5-9e15-4393-942a-8c199596612d.png" alt=""><figcaption><p><em>UI pages &#x26; FHIR requests for Research study repository application</em></p></figcaption></figure>
+<figure><img src="../../.gitbook/assets/Relationship-based access control (1).png" alt=""><figcaption><p><em>UI pages &#x26; FHIR requests for Research study repository application</em></p></figcaption></figure>
 
 Once we defined our data model, UI pages and FHIR requests, we may start implementing this.
 
@@ -107,7 +107,7 @@ Accept: text/yaml
 
 The picture below, demonstrates the key data we uploaded. Jane has access to 'Smoking research', and both users have access to 'Diet research'.
 
-<figure><img src="../../.gitbook/assets/3cb0fcba-f62b-4f5d-8bef-5ad0b0e4c584.png" alt=""><figcaption><p><em>Sample data for research study repository application</em></p></figcaption></figure>
+<figure><img src="../../.gitbook/assets/Relationship-based access control(2).png" alt=""><figcaption><p><em>Sample data for research study repository application</em></p></figcaption></figure>
 
 ## Write access policies
 

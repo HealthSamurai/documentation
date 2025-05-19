@@ -16,7 +16,7 @@ Authorization: Basic {base64(Client.id + ':' + Client.secret)}
 
 The easiest way to test Basic Auth is to run through the [Aidbox Sandbox UI](#auth-sandbox) (_Auth -> Sandbox -> Basic Auth_).
 
-<figure><img src="../../../../.gitbook/assets/998009f6-9ceb-436e-acce-35ef2c46cf99.png" alt=""><figcaption><p>Sandbox UI</p></figcaption></figure>
+<figure><img src="../../../../.gitbook/assets/image (2) (3).png" alt=""><figcaption><p>Sandbox UI</p></figcaption></figure>
 
 ### Register Client
 

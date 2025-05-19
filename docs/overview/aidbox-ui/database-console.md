@@ -10,7 +10,7 @@ Work In Progress
 
 ### Database Console
 
-<figure><img src="../../../.gitbook/assets/664e0474-7d1a-43b1-8b09-0b92412a225b.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/Screenshot 2024-10-17 at 11.15.38.png" alt=""><figcaption></figcaption></figure>
 
 On this page you can send SQL requests to the database using `$psql` endpoint.
 
