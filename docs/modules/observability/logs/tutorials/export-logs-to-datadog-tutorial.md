@@ -44,7 +44,7 @@ aidbox:
 
 Go to Logs -> Configuration
 
-![](../../../../.gitbook/assets/image%20\(18\).png)
+![](../../../../.gitbook/assets/4dfc4a0f-231d-497f-b406-3a529d217fbd.png)
 
 Click edit on Preprocessing for JSON logs
 
@@ -60,7 +60,7 @@ Set the attributes
 | Trace Id attributes | ctx     |
 | Message attributes  | msg,err |
 
-![](../../../../.gitbook/assets/image%20\(22\)%20\(1\).png)
+![](../../../../.gitbook/assets/10b9bc5b-c12d-4122-8094-ea69497a947a.png)
 
 Now add a facet for the event.
 
@@ -76,7 +76,7 @@ In this guide, we will add a metric for authorization failures
 
 Go to Logs -> Generate Metrics
 
-![](../../../../.gitbook/assets/image%20\(25\)%20\(1\).png)
+![](../../../../.gitbook/assets/979456ca-138c-4e25-b0ea-338c51e6cc5f.png)
 
 Click Add a new metric
 
@@ -108,7 +108,7 @@ Set up monitoring options
 
 And notifications
 
-![](../../../../.gitbook/assets/image%20\(33\).png)
+![](../../../../.gitbook/assets/c030cede-0c2a-4431-b588-eafb63b39f28.png)
 
 Now we can see our monitor on the Monitor page
 
@@ -116,7 +116,7 @@ Now we can see our monitor on the Monitor page
 
 It takes some time for Datadog to set up the monitor. After a while, it will become green
 
-![](../../../../.gitbook/assets/image%20\(35\).png)
+![](../../../../.gitbook/assets/dbf5778d-584c-46de-b75c-f99cb2d5b5fa.png)
 
 And when there are too many authorization failures in a short period of time, it changes the status to warning
 

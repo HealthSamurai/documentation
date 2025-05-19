@@ -80,7 +80,7 @@ GET {{base}}/fhir/Patient
 POST {{base}}/fhir/Patient
 ```
 
-![](../../.gitbook/assets/policy2%20\(1\).png)
+![](../../.gitbook/assets/b2538743-014e-4118-b98a-a8ac04ff9e42.png)
 
 ## Policy Debugging
 

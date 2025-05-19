@@ -109,7 +109,7 @@ To generate SMART App launch URI use [RPC API](../../../../../api/other/rpc-api.
 
 ## Standalone Launch
 
-![Standalone launch sequence](../../../../../.gitbook/assets/image%20\(101\).png)
+![Standalone launch sequence](../../../../../.gitbook/assets/ba6f8059-a548-4dcc-8f02-880c4bc6447b.png)
 
 Authorization code flow with SMART on FHIR Standalone Launch:
 

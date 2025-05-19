@@ -30,7 +30,7 @@ The Aidbox starter repository you cloned by following the guide from [Prerequisi
 
 ## Add the required IG packages as dependencies
 
-Update `zen-package.edn` so that it reflects information about the new project’ dependencies.
+Update `zen-package.edn` so that it reflects information about the new project's dependencies.
 
 ```clojure
 ;; zen-package.edn
@@ -40,7 +40,7 @@ Update `zen-package.edn` so that it reflects information about the new project�
 
 A dependency is any other zen project. It is common to include FHIR IG packages this way. We provide a number of [prepackaged FHIR IGs](https://github.com/orgs/zen-fhir/repositories) which you can use similarly to the example above.
 
-You also need to update an entry file, `zrc/system.edn`. It is used, among other things, for importing and loading all the project’s files, including its dependencies.
+You also need to update an entry file, `zrc/system.edn`. It is used, among other things, for importing and loading all the project's files, including its dependencies.
 
 ```clojure
 ;; zrc/system.edn
@@ -126,7 +126,7 @@ Open your profile by clicking its name
 
 Test the data against this profile using **validate** tab
 
-![](../../../../.gitbook/assets/image%20\(93\).png)
+![](../../../../.gitbook/assets/ababb707-285c-41f4-8344-25779c02033a.png)
 
 If your profile is tagged `zen.fhir/profile-schema` it can be used to validate your data\
 On FHIR CRUD API requests a profile will be applied if data includes `:zen.fhir/profileUri` in the `meta.profile` attribute:
