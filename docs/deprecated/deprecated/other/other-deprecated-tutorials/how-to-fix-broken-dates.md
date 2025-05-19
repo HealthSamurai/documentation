@@ -4,12 +4,8 @@ In some cases, you can have invalid data in your database- after importing data,
 
 For example, we have Patient resource with incorrect `birthDate` in the database. If we will try to search Patient by date, we will catch an error:
 
-{% swagger method="get" path="/Patient?birthDate=2020-02-01" baseUrl="/fhir" summary="" %}
-{% swagger-description %}
+<mark style="color:blue;">`GET`</mark> `/fhir/Patient?birthDate=2020-02-01`
 
-{% endswagger-description %}
-
-{% swagger-response status="500: Internal Server Error" description="" %}
 ```javascript
 resourceType: OperationOutcome
 id: >-
@@ -22,8 +18,6 @@ issue:
     code: exception
     diagnostics: 'ERROR: date/time field value out of range: "2020-02-30T00:00:00"'
 ```
-{% endswagger-response %}
-{% endswagger %}
 
 To fix this error we should find all incorrect dates in table via SQL query
 
@@ -31,7 +25,7 @@ To fix this error we should find all incorrect dates in table via SQL query
 select max((resource#>>'{birthDate}')::date) from patient;
 ```
 
-In response we catch an error&#x20;
+In response we catch an error
 
 ```
 ERROR: date/time field value out of range: "2020-02-30"
@@ -44,6 +38,3 @@ update patient
 set resource = resource || '{"birthDate": "2020-02-29"}'
 where resource#>>'{birthDate}' = '2020-02-30';
 ```
-
-
-

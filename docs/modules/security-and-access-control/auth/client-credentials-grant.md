@@ -8,13 +8,13 @@ description: >-
 
 The Client Credentials grant is used when applications request an access token to access their own resources, not on behalf of a user (for example, background services and daemons). It must be used only by confidential clients.
 
-![Basic scheme](../../../../.gitbook/assets/untitled-diagram.svg)
+![Basic scheme](<../../../../.gitbook/assets/untitled-diagram (1).svg>)
 
 Aidbox OAuth module supports Client Credentials Grant flow in different formats. The first one is in strict adherence to [specification](https://tools.ietf.org/html/rfc6749#section-4.4.2) for better compatibility. The second one uses JSON request as a more modern and simple way. Read the official [OAuth 2.0 specification](https://tools.ietf.org/html/rfc6749#section-4.4) for more details.
 
 ### Easy way
 
-The easiest way to test Client Credentials Grant flow is to run through the [Aidbox Sandbox UI](#auth-sandbox) (_Auth -> Sandbox -> Client Credentials_).
+The easiest way to test Client Credentials Grant flow is to run through the [Aidbox Sandbox UI](client-credentials-grant.md#auth-sandbox) (_Auth -> Sandbox -> Client Credentials_).
 
 <figure><img src="../../../.gitbook/assets/016836ab-2b47-4ff1-bd81-5fd5f8896f6d.png" alt=""><figcaption><p>Sandbox UI</p></figcaption></figure>
 

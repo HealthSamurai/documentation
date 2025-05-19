@@ -10,7 +10,7 @@ description: >-
 Aidbox notebooks is a beta. Please join [the discussion](https://github.com/Aidbox/Issues/discussions/412) or [contact](../contact-us.md) us if you want to contribute.
 {% endhint %}
 
-A notebook is a single page where you can run code ([REST](../../api/rest-api/README.md), [SQL](../../api/rest-api/other/sql-endpoints.md), [RPC](../../api/other/rpc-api.md)) check the output, and complement it with text. Using Aidbox notebook you can easily create custom scenarios with your Aidbox data, save it for later use or share it with your colleagues and the Aidbox community.
+A notebook is a single page where you can run code ([REST](../../api/rest-api/), [SQL](../../api/rest-api/other/sql-endpoints.md), [RPC](../../api/other/rpc-api.md)) check the output, and complement it with text. Using Aidbox notebook you can easily create custom scenarios with your Aidbox data, save it for later use or share it with your colleagues and the Aidbox community.
 
 So now you can easily:
 
@@ -29,19 +29,17 @@ So now you can easily:
 
 When clicking the notebooks tab in Aidbox UI you will get to the notebooks page. This page consists of your personal notebooks and Aidbox community notebooks.
 
-![](../../../.gitbook/assets/2021-09-03_09-49-41.png)
+![](<../../../.gitbook/assets/2021-09-03_09-49-41 (1).png>)
 
 ## Create a notebook
 
 You can create a notebook by clicking **new** in the notebooks menu. Each notebook consists of a title, subtitle, and a block of cells.
-
 
 After you create your cell click the **play** icon to see the answer.
 
 ## Save a notebook
 
 You can save a notebook for later use or share it with your team. The saved notebook will be available in **My notebooks section.**
-
 
 ## Share a notebook
 
