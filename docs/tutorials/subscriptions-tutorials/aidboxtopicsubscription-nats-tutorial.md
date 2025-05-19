@@ -66,7 +66,7 @@ docker compose up
 
 Now, in AidboxUI, go to **FHIR Packages -> io.healthsamurai.topic** and make sure that NATS profiles are present.
 
-<figure><img src="../../../.gitbook/assets/79572dc601854dba84cfc1327714f893.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (181).png" alt=""><figcaption></figcaption></figure>
 
 ## Basic Usage
 

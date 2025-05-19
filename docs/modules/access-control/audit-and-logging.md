@@ -17,7 +17,7 @@ Aidbox provides comprehensive audit and logging capabilities:
 
 Aidbox supports the FHIR [BALP](https://profiles.ihe.net/ITI/BALP/index.html) Implementation Guide.
 
-<figure><img src="../../../.gitbook/assets/22ac05d730ca4957a4e21ac0ff942a4c.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (175).png" alt=""><figcaption></figcaption></figure>
 
 #### Aidbox as a source of audit events
 

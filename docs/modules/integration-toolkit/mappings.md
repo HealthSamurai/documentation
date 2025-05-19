@@ -213,6 +213,6 @@ body:
 
 ### Mapping Editor in the Aidbox UI
 
-![Mapping Editor UI](../../../.gitbook/assets/screenshot-2019-09-16-at-17-26-13.png)
+![Mapping Editor UI](../../../.gitbook/assets/screenshot-2019-09-16-at-17.26.13.png)
 
 There is a Mapping Editor in the Aidbox UI with a built-in syntax checker and Debug capabilities. Search for the "Mappings" item in the left navigation menu.

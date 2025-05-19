@@ -8,6 +8,8 @@ description: >-
 
 {% embed url="https://www.youtube.com/watch?v=BtLxICcQNWw&feature=youtu.be" %}
 
+
+
 Create Client & AccessPolicy for your API agent - in our case curl
 
 ```yaml
@@ -80,3 +82,4 @@ bq query 'select id from test.entities'
 # remove dataset
 bq rm -r test
 ```
+

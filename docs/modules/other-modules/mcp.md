@@ -177,7 +177,8 @@ $ npx -y supergateway --sse <your-box-base-url>/sse
 Now you can ask your LLM agent to Create, Read, Update or Delete FHIR resources in Aidbox.
 
 {% hint style="warning" %}
-You need to uninstall all node versions below 18 if you use Claude Desktop.&#x20;
+You need to uninstall all node versions below 18 if you use Claude Desktop. \
+
 
 ```
 nvm uninstall v16
@@ -211,4 +212,4 @@ Select `SSE` in `Transport Type` dropdown. And set URL to `<your-aidbox-base-url
 
 Now you can discover tools and use them.
 
-<figure><img src="../../../.gitbook/assets/b42cf3753e2642d89db372604133a866.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/Screenshot 2025-05-07 at 14.24.30.png" alt=""><figcaption></figcaption></figure>

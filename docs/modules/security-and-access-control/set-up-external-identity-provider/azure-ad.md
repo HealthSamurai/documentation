@@ -61,7 +61,7 @@ As for the endpoints, you'll find them by clicking on **Endpoints**, copying the
 
 The JSON document will contain both `authorize_endpoint` and `token_endpoint`.
 
-<figure><img src="../../../../.gitbook/assets/d1d7cb4566cb4a5e95d8d7f2f1ee10db.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../../.gitbook/assets/image (129).png" alt=""><figcaption></figcaption></figure>
 
 ## Log in to Aidbox
 

@@ -34,7 +34,7 @@ Open in browser [http://localhost:8080/](http://localhost:8080)
 
 ### 4. Activate your Aidbox instance
 
-<figure><img src="../../.gitbook/assets/fde0359e61fd40a6a9844b5000faecf9.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (163).png" alt=""><figcaption></figcaption></figure>
 
 * Using AidboxID\
   AidboxID is a unique identifier within the Aidbox ecosystem used for product activation
@@ -51,7 +51,7 @@ For security, Aidbox generates a unique password for each instance.
 
 Use Getting Started Notebooks to explore basic Aidbox features
 
-<figure><img src="../../.gitbook/assets/10d6f7b05e96498c826e9a1aefe79459.png" alt="Aidbox UI: notebooks"><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/Screenshot 2024-05-30 at 20.23.23.png" alt="Aidbox UI: notebooks"><figcaption></figcaption></figure>
 
 {% hint style="info" %}
 **Aidbox Notebooks**
