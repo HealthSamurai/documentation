@@ -29,7 +29,7 @@ So now you can easily:
 
 When clicking the notebooks tab in Aidbox UI you will get to the notebooks page. This page consists of your personal notebooks and Aidbox community notebooks.
 
-![](../../.gitbook/assets/2021-09-03_09-49-41.png)
+![](../../../.gitbook/assets/2021-09-03_09-49-41.png)
 
 ## Create a notebook
 
@@ -51,27 +51,27 @@ If you choose to share as a _file_, Aidbox will download the notebook as a `.htm
 
 If you choose to share as a _link_, Aidbox will generate a unique link, such as [https://aidbox.app/ExportedNotebook/fa061348-1851-4962-b39e-ba496eba23bd](https://aidbox.app/ExportedNotebook/fa061348-1851-4962-b39e-ba496eba23bd), and copy it to your clipboard. You can also share notebooks directly from the notebooks grid.\\
 
-<figure><img src="9f1c3969-3d7b-42d1-b747-ca75b53f94f8.png" alt=""><figcaption><p>Share Aidbox notebook</p></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/9f1c3969-3d7b-42d1-b747-ca75b53f94f8.png" alt=""><figcaption><p>Share Aidbox notebook</p></figcaption></figure>
 
-<figure><img src="../../.gitbook/assets/346cd4ea-360f-4d00-a49e-64b3f88812ac.png" alt=""><figcaption><p>Snare notebook from notebook grid</p></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/346cd4ea-360f-4d00-a49e-64b3f88812ac.png" alt=""><figcaption><p>Snare notebook from notebook grid</p></figcaption></figure>
 
 ## Preview a notebook
 
 You don't need a running Aidbox instance to preview a notebook. You can open the downloaded `.html` file in any browser and view its contents.
 
-<figure><img src="651a93f4-0681-44ee-a7c9-53dcc01bf546.png" alt=""><figcaption><p>Notebook preview</p></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/651a93f4-0681-44ee-a7c9-53dcc01bf546.png" alt=""><figcaption><p>Notebook preview</p></figcaption></figure>
 
 ## Upload a notebook
 
 To upload the notebook click `upload` button and select appropriate option.
 
-<figure><img src="6edf62be-8154-4f91-815d-b45f5ebc6c7b.png" alt=""><figcaption><p>Upload Aidbox notebook</p></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/6edf62be-8154-4f91-815d-b45f5ebc6c7b.png" alt=""><figcaption><p>Upload Aidbox notebook</p></figcaption></figure>
 
 If you selected `as file` option, upload notebook `.html` file
 
 If you selected `as link` option, paste the notebook share link and click `upload` button
 
-<figure><img src="0d9f1be8-fe57-44cc-8f5c-7a9b41cbf204.png" alt=""><figcaption><p>Upload via link</p></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/0d9f1be8-fe57-44cc-8f5c-7a9b41cbf204.png" alt=""><figcaption><p>Upload via link</p></figcaption></figure>
 
 ## Publish a notebook
 

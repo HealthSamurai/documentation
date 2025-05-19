@@ -116,9 +116,9 @@ Features:
 * Aidbox Portal integration: play with your data in the sandbox, interactively see the result of ViewDefinition;
 * Local Aidbox integration: pass URL and headers to send requests to local Aidbox
 
-<figure><img src="../../.gitbook/assets/1273849a-3cbc-4524-89af-555a3e9d4cd3.png" alt=""><figcaption><p>ViewDefinition Builder: VD form, resource page, flat view</p></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/1273849a-3cbc-4524-89af-555a3e9d4cd3.png" alt=""><figcaption><p>ViewDefinition Builder: VD form, resource page, flat view</p></figcaption></figure>
 
-<figure><img src="../../.gitbook/assets/8dabf57f-6e67-4251-ba03-3ae56a9f3847.png" alt=""><figcaption><p>ViewDefinition Builder: VD code, resource schema page</p></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/8dabf57f-6e67-4251-ba03-3ae56a9f3847.png" alt=""><figcaption><p>ViewDefinition Builder: VD code, resource schema page</p></figcaption></figure>
 
 ## Additional options
 
