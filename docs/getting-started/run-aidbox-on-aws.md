@@ -30,26 +30,4 @@ You can check your license status on the licenses list page. Wait a couple of mi
 
 Now you can open your instance URL and enter user/password credentials from license page
 
-<<<<<<< HEAD
 <figure><img src="../../.gitbook/assets/855a9ce6ecaf4d2b910e465393006911.png" alt=""><figcaption></figcaption></figure>
-||||||| parent of 36787814 (rename referenced images with strange names and change their names in docs)
-&#x20;
-
-<<<<<<< HEAD
-<figure><img src="../../../.gitbook/assets/Screen Shot 2022-08-29 at 13.04.30.png" alt=""><figcaption></figcaption></figure>
-=======
-&#x20;
-
-<<<<<<< HEAD
-<figure><img src="../../../.gitbook/assets/a21c9ce7-9f08-4764-b602-e81480ac6b24.png" alt=""><figcaption></figcaption></figure>
->>>>>>> 36787814 (rename referenced images with strange names and change their names in docs)
-||||||| parent of 3b542bdc (Revert "rename referenced images with strange names and change their names in docs")
-<figure><img src="../../../.gitbook/assets/a21c9ce7-9f08-4764-b602-e81480ac6b24.png" alt=""><figcaption></figcaption></figure>
-=======
-<figure><img src="../../../.gitbook/assets/Screen Shot 2022-08-29 at 13.04.30.png" alt=""><figcaption></figcaption></figure>
->>>>>>> 3b542bdc (Revert "rename referenced images with strange names and change their names in docs")
-||||||| parent of b5aa02ed (update image names and references)
-<figure><img src="../../../.gitbook/assets/Screen Shot 2022-08-29 at 13.04.30.png" alt=""><figcaption></figcaption></figure>
-=======
-<figure><img src="5f5d7437-afc9-4164-a778-5486460cea59.png" alt=""><figcaption></figcaption></figure>
->>>>>>> b5aa02ed (update image names and references)
