@@ -216,8 +216,6 @@ We are now preparing Aidbox Workflow/Task SDK. By using it, you can probably sim
 
 Once you have the task definition above, your custom task can be implemented in any programming language by using [Task Executor API](task-executor-api.md), according to the following diagram.
 
-<figure><img src="../../../../../../.gitbook/assets/Workflow &#x26; Task Runtime.png" alt=""><figcaption></figcaption></figure>
-
 Initially, a request to the Task Service API should be made, either by using **`awf.task/long-poll`** or **`awf.task/poll`**, to fetch a new task created by [task-user-api.md](task-user-api.md).
 
 Next, a **`awf.task/start`** request should be sent to update the task status to `in-progress`. After receiving the response, your implemented task should begin execution.
