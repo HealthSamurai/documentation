@@ -1,4 +1,14 @@
 #!/usr/bin/env bash
+
+# This script checks if the SUMMARY.md file is in sync with the actual files in the docs directory.
+# It compares:
+# 1. All files referenced in SUMMARY.md (extracted using all-files-from-summary.sh)
+# 2. All .md files present in the docs directory (using all-files.sh)
+# The script reports:
+# - Files in docs/ that aren't referenced in SUMMARY.md
+# - Paths in SUMMARY.md that don't exist as actual files
+# It exits with error code 1 if discrepancies are found, blocking pushes until fixed.
+
 set -e
 echo -e '\nChecking if summary.md file and filetree are synced'
 

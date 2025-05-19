@@ -1,5 +1,10 @@
 #!/bin/bash
 
+# This script extracts all links from Markdown files in the docs directory.
+# It finds both Markdown links [text](link) and HTML img src attributes.
+# Results are sorted by number of links per file and output to out/all_links_by_file.txt.
+# Release notes and deprecated files are put at the end of the output.
+
 mkdir -p out
 
 declare -A file_links
@@ -7,11 +12,11 @@ declare -A file_links
 declare -a files
 
 while IFS= read -r -d '' file; do
-  # Combine markdown links and HTML img tags, sort and remove duplicates
+  # Combine markdown links and HTML src attributes, sort and remove duplicates
   links=$(
     {
       grep -oP '\[[^\]]+\]\([^\)]+\)' "$file"
-      grep -oP '<img[^>]*src="[^"]+"' "$file" | sed 's/.*src="\([^"]*\)".*/  <img src="\1"/'
+      grep -oP 'src="[^"]+"' "$file" | sed 's/src="\([^"]*\)".*/  src="\1"/'
     } | sort | uniq
   )
   count=$(echo "$links" | grep -c .)

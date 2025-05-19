@@ -1,5 +1,11 @@
 #!/bin/bash
 
+# This script identifies unused image assets in the .gitbook/assets directory.
+# It first extracts all references to assets in the documentation,
+# then checks each asset file to see if it's referenced anywhere.
+# The list of unused assets is saved to out/unused_assets.txt and printed
+# to the console if any are found.
+
 grep -rhoP "\.gitbook/assets/[^>]+?\.(png|jpg|jpeg|gif|svg|webp|bmp|tiff|ico|pdf|sql)" docs/ > out/all_gitbook_asset_links.txt
 
 find .gitbook/assets -type f | while read asset; do

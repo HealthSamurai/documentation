@@ -1,5 +1,12 @@
 #!/bin/bash
 
+# This script converts absolute URLs (https://docs.aidbox.app/) to relative links in markdown files.
+# It processes all .md files in the docs directory and:
+# 1. Identifies links with absolute Aidbox URLs
+# 2. Calculates the relative path from the current file to the target file
+# 3. Replaces the absolute URL with a relative one
+# 4. Falls back to "broken-reference" if the target file doesn't exist
+
 set -euo pipefail
 
 find docs/ -type f -name '*.md' | while read srcfile; do

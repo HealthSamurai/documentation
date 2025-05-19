@@ -1,5 +1,12 @@
 #!/bin/bash
 
+# This script fixes relative links that end with a slash by appending 'README.md'.
+# It processes all markdown files in the docs directory and:
+# - Converts links like [text](path/) to [text](path/README.md)
+# - Preserves anchors in links like [text](path/#anchor) -> [text](path/README.md#anchor)
+# - Skips links to "broken-reference/" and absolute URLs (http/https)
+# This helps ensure that links to directories properly point to their README files.
+
 # For all markdown files in docs/, append 'README.md' to relative links ending with a slash,
 # except for 'broken-reference/' and absolute links (http/https), including links with anchors.
 find docs/ -type f -name '*.md' | while read file; do

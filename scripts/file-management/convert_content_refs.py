@@ -1,6 +1,21 @@
 #!/usr/bin/env python3
+
+# This script converts GitBook content-ref blocks to standard markdown links.
+# It processes all markdown files in the docs directory and:
+# 1. Identifies {% content-ref url="..." %} blocks
+# 2. Extracts the referenced URL
+# 3. Attempts to find the title of the referenced page by:
+#    - Reading the first markdown header from the file
+#    - Falling back to first non-empty line if no header is found
+#    - Using a formatted version of the filename if the file can't be read
+# 4. Converts each content-ref block to a markdown list item with a link
+# The script reports the number of files processed and modified.
+
 import os
 import re
+
+
+# converts gitbook content_ref references to usual markdown references
 
 def extract_title_from_content(content):
     # Skip YAML frontmatter if present
@@ -8,19 +23,19 @@ def extract_title_from_content(content):
         parts = content.split('---', 2)
         if len(parts) >= 3:
             content = parts[2].lstrip()
-    
+
     # Try to find the first markdown header
     header_match = re.search(r'^#\s+(.+)$', content, re.MULTILINE)
     if header_match:
         return header_match.group(1).strip()
-    
+
     # If no header found, try to find the first non-empty line
     lines = content.split('\n')
     for line in lines:
         line = line.strip()
         if line and not line.startswith('---'):
             return line
-    
+
     return "Untitled"
 
 def get_title_from_file(file_path):
@@ -34,16 +49,16 @@ def get_title_from_file(file_path):
                     content = f.read()
                 return extract_title_from_content(content)
             return os.path.basename(file_path).replace('-', ' ').title()
-        
+
         # Regular file
         if os.path.isfile(file_path):
             with open(file_path, 'r', encoding='utf-8') as f:
                 content = f.read()
             return extract_title_from_content(content)
-        
+
         # File doesn't exist
         return os.path.basename(file_path).replace('-', ' ').title()
-    
+
     except Exception as e:
         print(f"Warning: Could not read title from {file_path}: {e}")
         return os.path.basename(file_path).replace('-', ' ').title()
@@ -51,13 +66,13 @@ def get_title_from_file(file_path):
 def convert_content_ref_to_link(match, base_path):
     # Extract URL from the content-ref block
     url = re.search(r'url="([^"]+)"', match.group(0)).group(1)
-    
+
     # Construct absolute path to the referenced file
     ref_path = os.path.normpath(os.path.join(os.path.dirname(base_path), url))
-    
+
     # Get title from the referenced file
     title = get_title_from_file(ref_path)
-    
+
     # Create markdown list item with link
     return f'* [{title}]({url})'
 
@@ -100,4 +115,4 @@ def main():
     print(f"Files modified: {files_modified}")
 
 if __name__ == "__main__":
-    main() 
+    main()

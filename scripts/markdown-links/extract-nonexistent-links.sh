@@ -1,5 +1,11 @@
 #!/bin/bash
 
+# This script checks for broken relative links in the documentation.
+# It parses the output from extract-all-links.sh and validates if each relative link
+# points to an existing file. Links to external sites, anchors, and reference docs are skipped.
+# The script reports errors only for broken links in non-deprecated files.
+# Output is saved to out/all_nonexistent_links_by_file.txt.
+
 mkdir -p out
 
 output="out/all_nonexistent_links_by_file.txt"
@@ -13,10 +19,12 @@ while IFS= read -r line; do
     current_file=$(echo "$line" | sed 's/ (.*//;s/ links.*//')
     file_header="$line"
     broken_links=()
-  elif echo "$line" | grep -qE '^  \[.*\]\([^)]+\)' || echo "$line" | grep -qE '^  <img.*src="[^"]+'; then
-    # Extract link from markdown or HTML img tag
+  elif echo "$line" | grep -qE '^  \[.*\]\([^)]+\)' || echo "$line" | grep -qE '^  <img.*src="[^"]+' || echo "$line" | grep -qE '^  src="[^"]+'; then
+    # Extract link from markdown or HTML src attribute
     if echo "$line" | grep -qE '^  \[.*\]\([^)]+\)'; then
       link=$(echo "$line" | sed -n 's/.*](\([^)]*\)).*/\1/p')
+    elif echo "$line" | grep -qE '^  src="[^"]+'; then
+      link=$(echo "$line" | sed -n 's/.*src="\([^"]*\)".*/\1/p')
     else
       link=$(echo "$line" | sed -n 's/.*src="\([^"]*\)".*/\1/p')
     fi
@@ -70,8 +78,22 @@ echo "Generated $output"
 if [[ -s out/all_nonexistent_links_by_file.txt ]]; then
   # Only consider file header lines (ending with 'links):')
   files=$(grep 'links):$' out/all_nonexistent_links_by_file.txt | sed 's/ (.*//')
-  if [[ -n "$files" ]] && echo "$files" | grep -qv '^docs/deprecated/'; then
-    echo -e '\nERROR: Broken relative links found outside docs/deprecated directory. See details in out/all_nonexistent_links_by_file.txt. Fix them before pushing.'
+  
+  # Check for non-deprecated files with broken links
+  non_deprecated_files=$(echo "$files" | grep -v '^docs/deprecated/')
+  
+  if [[ -n "$non_deprecated_files" ]]; then
+    echo -e '\nERROR: Broken relative links found outside docs/deprecated directory:'
+    echo "$non_deprecated_files" | head -5
+    if [[ $(echo "$non_deprecated_files" | wc -l) -gt 5 ]]; then
+      echo "... and more (total $(echo "$non_deprecated_files" | wc -l) files)"
+    fi
+    echo "See full details in out/all_nonexistent_links_by_file.txt"
+    
+    # Extract a few examples of broken links for quick reference
+    echo -e "\nExamples of broken links:"
+    grep -v "^docs/deprecated/" out/all_nonexistent_links_by_file.txt | grep -A 1 "links):" | grep -v "^--$" | head -10
+    
     exit 1
   else
     echo -e '\nOnly deprecated files have broken relative links. Skipping error.'

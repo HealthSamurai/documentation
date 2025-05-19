@@ -1,3 +1,14 @@
+#!/usr/bin/env python3
+
+# This script sanitizes image filenames in the .gitbook/assets directory and updates all references.
+# It performs the following operations:
+# 1. Identifies image files with non-standard characters in their names
+# 2. Creates sanitized versions of these filenames (letters, numbers, dashes, underscores only)
+# 3. Renames the actual files in the assets directory
+# 4. Updates all references in markdown files to use the new filenames
+# 5. Handles URL-encoded characters in both filenames and references
+# For any empty names after sanitization, it generates a random filename.
+
 import os
 import re
 import urllib.parse

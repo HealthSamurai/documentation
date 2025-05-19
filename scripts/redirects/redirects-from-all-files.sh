@@ -1,5 +1,11 @@
 #!/usr/bin/env bash
 
+# This script generates redirects for documentation files based on common segments.
+# It processes all files in the docs directory and creates redirects for paths where
+# specific segments (like "api", "crud", etc.) might have "-1" suffix variations.
+# For example, it will create redirects from "api-1/resource" to "api/resource".
+# The output is saved as YAML in out/redirects.yaml for use in web server configuration.
+
 segments=("api" "bulk-api" "readme" "modules" "crud" "plan-api" "rest-api" )
 
 declare -A redirects

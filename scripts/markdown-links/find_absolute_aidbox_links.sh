@@ -1,5 +1,10 @@
 #!/bin/bash
 
+# This script detects absolute links to https://docs.aidbox.app/ in the documentation.
+# It checks all markdown files outside the reference directory and reports any absolute URLs.
+# Results are saved to out/absolute_aidbox_links.txt in a markdown table format.
+# The script exits with error code 42 if any absolute links are found.
+
 echo 'Checking that we do not use absolute reference https://docs.aidbox.app/ in docs/ directory'
 mkdir -p out
 OUTPUT="out/absolute_aidbox_links.txt"
