@@ -38,7 +38,7 @@ If you have already configured Aidbox to enable the MCP server:
 1. Set [`module.mcp.server-enabled` setting](../../reference/settings/modules.md#module.mcp.server-enabled) to `true`
 2. Set up Access Control for MCP endpoints via `AccessPolicy`
 
-#### Option 1. Public MCP Endpointb
+#### Option 1. Public MCP Endpoint
 
 {% hint style="warning" %}
 The easiest but unsafe way to test MCP Server. Recommended for local development tests.
