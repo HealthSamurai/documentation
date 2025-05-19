@@ -67,7 +67,7 @@ PUT /fhir/StructureDefinition/insurance-plan
 
 When StructureDefinition is created, you can inspect it in the "Fhir Packages" Aidbox UI page.&#x20;
 
-<figure><img src="../../../.gitbook/assets/image (110).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/a92a2359-c9a0-497b-a34f-fdf6236897cc.png" alt=""><figcaption></figcaption></figure>
 
 We can use the defined extension like this:&#x20;
 

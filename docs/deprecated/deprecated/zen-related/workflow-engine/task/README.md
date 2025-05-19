@@ -92,7 +92,7 @@ When a new task is created by [task-user-api.md](task-user-api.md) or by [servic
 
 Below is a representation of a Task Instance life cycle.
 
-<div align="center"><figure><img src="../../../../../../.gitbook/assets/image (23) (1).png" alt="" width="375"><figcaption><p>Task lifecycle</p></figcaption></figure></div>
+<div align="center"><figure><img src="../../../../../../.gitbook/assets/2f589684-ac7b-46e1-b30a-5bc9c4134b4b.png" alt="" width="375"><figcaption><p>Task lifecycle</p></figcaption></figure></div>
 
 After the creation of tasks, their status will be changed by Task Service to `ready`, or `waiting`, depending on the `executeAt` field.
 

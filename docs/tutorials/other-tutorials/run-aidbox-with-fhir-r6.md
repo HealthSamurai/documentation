@@ -47,4 +47,4 @@ docker compose up
 
 All imported canonical resources are available in the FHIR Packages tab
 
-<figure><img src="../../../.gitbook/assets/Screenshot 2025-04-11 at 12.40.22.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/de742604-946f-41ef-9255-a786bef7e19c.png" alt=""><figcaption></figcaption></figure>

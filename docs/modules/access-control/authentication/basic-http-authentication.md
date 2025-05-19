@@ -12,7 +12,7 @@ Basic Auth does not natively provide features such as session invalidation, and 
 
 ## Basic Auth in Aidbox Sandbox
 
-<figure><img src="../../../../.gitbook/assets/sandbox-basic-auth (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../../.gitbook/assets/48911060-d25b-4ae6-a6f2-c352a3701a0c.png" alt=""><figcaption></figcaption></figure>
 
 The easiest way to test Basic Auth is to run through the Aidbox Sandbox UI (_Auth -> Sandbox -> Basic Auth_).
 

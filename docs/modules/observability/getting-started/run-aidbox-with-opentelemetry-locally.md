@@ -13,7 +13,7 @@ It introduces you to:
 * The Aidbox installation process with Docker & Docker Compose,
 * Logs & metrics & traces exporting to Elasticsearch & Prometheus & Zipkin using OpenTelemetry collector service.
 
-<figure><img src="../../../.gitbook/assets/Telemetry (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/693a6450-75e6-4821-96d7-56c532bc8510.png" alt=""><figcaption></figcaption></figure>
 
 {% hint style="warning" %}
 <img src="../../../.gitbook/assets/docker.png" alt="" data-size="original">
@@ -54,15 +54,15 @@ Kibana should be available on [http://localhost:5602](http://localhost:5602) add
 
 Go to [Index Management](http://localhost:5602/app/management/data/index_management/indices) page in Kibana (Menu → Stack Management → Index Management). You should see `aidbox_logs` index there.
 
-<figure><img src="../../../.gitbook/assets/Screenshot 2023-09-27 at 15.19.04.png" alt=""><figcaption><p>Index management page</p></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/d36c1088-8426-4ca2-ba0c-9c797ac4f891.png" alt=""><figcaption><p>Index management page</p></figcaption></figure>
 
 Then we should go to [Data Views](http://localhost:5602/app/management/kibana/dataViews) page (Menu → Stack Management → Data Views) and create a data view there.
 
-<figure><img src="../../../.gitbook/assets/Screenshot 2023-09-27 at 15.19.50.png" alt=""><figcaption><p>Data view creation</p></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/3bddd99b-d6a2-4278-8140-ed941214cac4.png" alt=""><figcaption><p>Data view creation</p></figcaption></figure>
 
 Then go to [Discover](http://localhost:5602/app/discover) page (Menu → Discover) and observe your logs.
 
-<figure><img src="../../../.gitbook/assets/Screenshot 2023-09-27 at 15.21.57.png" alt=""><figcaption><p>Log discover page</p></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/e52e91b2-7f93-4e0f-908d-691c9c33ba84.png" alt=""><figcaption><p>Log discover page</p></figcaption></figure>
 
 ### 4. Discover Aidbox metrics with Grafana
 
@@ -78,11 +78,11 @@ Navigate to `Dashboards->Aidbox Dashboards->Aidbox Dashboard` to see the dashboa
 
 Zipkin should be available on [http://localhost:9411/](http://localhost:9411/zipkin/) address. To see traces in Zipkin click the `Run query` button.
 
-<figure><img src="../../../.gitbook/assets/Screenshot 2023-10-06 at 11.32.14.png" alt=""><figcaption><p>Traces list in Zipkin</p></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/785bfd80-caea-4cfd-8491-69ec69588f30.png" alt=""><figcaption><p>Traces list in Zipkin</p></figcaption></figure>
 
 Click the `Show` button to see all spans of a certain request.
 
-<figure><img src="../../../.gitbook/assets/Screenshot 2023-10-06 at 11.32.34.png" alt=""><figcaption><p>Trace view in Zipkin</p></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/ba0c320f-302c-4385-bd58-d3a26fa44bb8.png" alt=""><figcaption><p>Trace view in Zipkin</p></figcaption></figure>
 
 ## Next Steps
 

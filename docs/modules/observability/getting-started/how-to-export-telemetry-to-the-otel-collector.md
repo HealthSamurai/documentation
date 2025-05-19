@@ -14,7 +14,7 @@ Aidbox supports exporting telemetry using the Protobuf protocol in line with the
 
 1. [OTEL collector](https://opentelemetry.io/docs/collector/) should be deployed and [configured](https://opentelemetry.io/docs/collector/configuration/) to receive logs, metrics and traces.
 
-<figure><img src="../../../../.gitbook/assets/Telemetry (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../../.gitbook/assets/98301d63-7f7a-4232-b493-f6a359620f47.png" alt=""><figcaption></figcaption></figure>
 
 ## How to enable export telemetry to the OTEL collector
 

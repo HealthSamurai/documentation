@@ -35,7 +35,7 @@ derivation: constraint
 
 When the extension is created, you can inspect it in "FHIR Packages" Aidbox UI page.
 
-<figure><img src="../../../.gitbook/assets/image (111).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/c1b079fc-f08c-4049-be0d-29b13361407f.png" alt=""><figcaption></figcaption></figure>
 
 Usage of the extension:
 

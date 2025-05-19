@@ -8,7 +8,7 @@ The Password grant type is used by first-party clients to exchange a user's cred
 
 The easiest way to test Resource Owner Grant flow is to run through the [Aidbox Sandbox UI](#auth-sandbox) (_Auth -> Sandbox ->_ Resource Owner).
 
-<figure><img src="../../../.gitbook/assets/image (6).png" alt=""><figcaption><p>Sandbox UI</p></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/abf55208-87c6-4cbb-aa4a-46e2559610df.png" alt=""><figcaption><p>Sandbox UI</p></figcaption></figure>
 
 ### Configure Client
 
