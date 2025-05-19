@@ -653,7 +653,6 @@
     * [App Development Deprecated Tutorials](deprecated/deprecated/other/app-development-deprecated-tutorials/README.md)
       * [Receive logs from your app](deprecated/deprecated/other/app-development-deprecated-tutorials/receive-logs-from-your-app/README.md)
         * [X-Audit header](deprecated/deprecated/other/app-development-deprecated-tutorials/receive-logs-from-your-app/x-audit-header.md)
-      * [Working with Aidbox from .NET](deprecated/deprecated/other/app-development-deprecated-tutorials/working-with-aidbox-from-net.md)
       * [Patient Encounter notification Application](deprecated/deprecated/other/app-development-deprecated-tutorials/patient-encounter-notification-application.md)
     * [Other Deprecated Tutorials](deprecated/deprecated/other/other-deprecated-tutorials/README.md)
       * [Resource generation with map-to-fhir-bundle-task and subscription triggers](deprecated/deprecated/other/other-deprecated-tutorials/resource-generation-with-map-to-fhir-bundle-task-and-subscription-triggers.md)
