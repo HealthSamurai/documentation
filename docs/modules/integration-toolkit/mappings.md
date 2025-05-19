@@ -212,7 +212,4 @@ body:
 ```
 
 ### Mapping Editor in the Aidbox UI
-
-![Mapping Editor UI](8ea54920-cea2-4a28-8638-39b8ac801caf.png)
-
 There is a Mapping Editor in the Aidbox UI with a built-in syntax checker and Debug capabilities. Search for the "Mappings" item in the left navigation menu.
