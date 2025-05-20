@@ -116,6 +116,10 @@ Options for Setting EnableWhen Rules:
 * `conditions` - define conditions using the "enableWhen" constructor.
 * `expression` - use [FHIRPath](https://hl7.org/fhirpath/) expressions or [the FHIRPath Editor](fhirpath-editor.md) to describe the desired behavior.
 
+{% hint style="info" %}
+Be careful when using existence logic for EnableWhen rules. For example, the checkbox widget has `exists = false` when untouched and `exists = true` if the checkbox has been checked or unchecked. Use equality conditions instead.
+{% endhint %}
+
 #### Calculation rule
 
 Calculated expression allows answers to questions to be calculated based on answers to other questions. For example, the determination of a score.
