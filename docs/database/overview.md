@@ -19,7 +19,8 @@ Compatible with all PostgreSQL deployments
 
 * **Initialization**: Aidbox automatically creates all database objects, including tables, starting indexes, and other required structures
 * **Schema migrations**: Automatically handled during Aidbox version upgrades
-* **Monitoring**: Use standard PostgreSQL monitoring tools
+* **Monitoring**:&#x20;
+  * Aidbox provides [OpenTelemetry metrics for PostgreSQL monitoring](../modules/observability/metrics/technical-reference/opentelemetry-metrics.md#postgres)
 * **Backup/Restore**: Use standard PostgreSQL methods:
   * Native PostgreSQL backup tools
   * Cloud provider solutions
