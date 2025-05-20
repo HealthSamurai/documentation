@@ -30,7 +30,10 @@ Compatible with all PostgreSQL deployments
 
 * [AidboxDB](aidboxdb-image/) is a PostgreSQL distribution based on the official PostgreSQL release&#x20;
 * Includes Aidbox-specific extensions and the WAL-G backup tool
-* Standard PostgreSQL installations remain fully supported\
+* Standard PostgreSQL installations remain fully supported
 
+#### What's next
 
-Check [Database Schema](database-schema.md) for technical details on schema and query capabilities.
+1. Check [Database Schema](database-schema.md) for technical details on schema and query capabilities.
+2. Required and optional [PostgreSQL Extensions](postgresql-extensions.md)
+3. [AidboxDB](aidboxdb-image/)
