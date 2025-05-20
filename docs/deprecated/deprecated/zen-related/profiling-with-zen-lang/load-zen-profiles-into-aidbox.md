@@ -108,11 +108,11 @@ docker compose up
 
 Open Aidbox in your browser and click `Profiles` tab in the left menu:
 
-![](933f22cc-01ba-4360-ad12-25740507c1d5.png)
+![](../../../../../.gitbook/assets/933f22cc-01ba-4360-ad12-25740507c1d5.png)
 
 You should see the list of zen namespaces loaded.
 
-![](83831180-ea97-4757-8429-470369ff856e.png)
+![](../../../../../.gitbook/assets/83831180-ea97-4757-8429-470369ff856e.png)
 
 {% hint style="info" %}
 On this page you see the namespaces that are explicitly included in the zen project or used by Aidbox
@@ -120,7 +120,7 @@ On this page you see the namespaces that are explicitly included in the zen proj
 
 Open your profile by clicking its name
 
-![](1cc50e54-b61a-4043-ab71-8351bd27244e.png)
+![](../../../../../.gitbook/assets/1cc50e54-b61a-4043-ab71-8351bd27244e.png)
 
 ## Start validation
 

@@ -25,7 +25,7 @@
 4.  Enter the required parameters.\
 
 
-    <figure><img src="ed9a9a48-423f-412a-a330-2e51a0bdbaac.png" alt=""><figcaption></figcaption></figure>
+    <figure><img src="../../../.gitbook/assets/ed9a9a48-423f-412a-a330-2e51a0bdbaac.png" alt=""><figcaption></figcaption></figure>
 
     \
     5\. Configure the private IP access to the database instance. \
@@ -101,7 +101,7 @@ CREATE EXTENSION pg_stat_statements;
 4.  Set Auto scaling to 1 and leave other properties by default.\
 
 
-    <figure><img src="../../.gitbook/assets/5144e1da-0054-4d9e-a2fc-742d9eee8972.png" alt=""><figcaption></figcaption></figure>
+    <figure><img src="../../../.gitbook/assets/5144e1da-0054-4d9e-a2fc-742d9eee8972.png" alt=""><figcaption></figcaption></figure>
 5.  Configure Memory and CPU Limits\
 
 
@@ -109,7 +109,7 @@ CREATE EXTENSION pg_stat_statements;
 6.  Enable **"Second generation"** execution environment for better performance\
 
 
-    <figure><img src="../../../9aef845b-9f25-4dc1-aaa6-275db56cf35f.png" alt=""><figcaption></figcaption></figure>
+    <figure><img src="../../../.gitbook/assets/9aef845b-9f25-4dc1-aaa6-275db56cf35f.png" alt=""><figcaption></figcaption></figure>
 7.  In the container properties, add environment variables.\
 
 

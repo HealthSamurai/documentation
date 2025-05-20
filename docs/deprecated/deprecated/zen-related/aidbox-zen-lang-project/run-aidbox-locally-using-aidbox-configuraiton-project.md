@@ -17,7 +17,7 @@ It introduces you to:
 * Aidbox UI features that make the Aidbox instance transparent for you.
 
 {% hint style="warning" %}
-<img src="./docker.png" alt="" data-size="original">
+<img src="../../../../../.gitbook/assets/docker.png" alt="" data-size="original">
 
 Please **make sure** that both [Docker & Docker Compose](https://docs.docker.com/engine/install/) are installed.
 {% endhint %}

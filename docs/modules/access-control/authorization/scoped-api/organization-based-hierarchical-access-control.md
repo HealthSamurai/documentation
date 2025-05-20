@@ -74,7 +74,7 @@ The Organization-based [Aidbox API ](../../../../api/rest-api/other/aidbox-and-f
 <AIDBOX_BASE_URL>/Organization/<org-id>/aidbox
 ```
 
-<figure><img src="4ec1a26c-d58c-4ff9-9d3b-87f4698f41d8.png" alt=""><figcaption><p>FHIR APIs reflection in organization-based access control</p></figcaption></figure>
+<figure><img src="../../../../../.gitbook/assets/4ec1a26c-d58c-4ff9-9d3b-87f4698f41d8.png" alt=""><figcaption><p>FHIR APIs reflection in organization-based access control</p></figcaption></figure>
 
 ### Try Org-BAC
 

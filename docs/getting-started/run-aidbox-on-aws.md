@@ -14,7 +14,7 @@ On the next scerrn click to the **"Subscribe"** button
 
 On the last screen click on **"Set Up Your Account"** button.
 
-<figure><img src="364655e6-fe79-4498-ba65-23b6bfb1fc8f.png" alt=""><figcaption><p>Set Up Your Account screen</p></figcaption></figure>
+<figure><img src="../../.gitbook/assets/364655e6-fe79-4498-ba65-23b6bfb1fc8f.png" alt=""><figcaption><p>Set Up Your Account screen</p></figcaption></figure>
 
 After that, you will be redirected to the Aidbox user portal page. Log in in to Aidbox user portal and create new license.
 
@@ -26,7 +26,7 @@ On license create page select product type and fill all required fields. On "Hos
 
 You can check your license status on the licenses list page. Wait a couple of minutes until we install your environment and order certificates. As a result in "Hosting" section status should be changed to **Running**
 
-<figure><img src="9727732b-5bcd-43bd-880a-c1827c61f56c.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/9727732b-5bcd-43bd-880a-c1827c61f56c.png" alt=""><figcaption></figcaption></figure>
 
 Now you can open your instance URL and enter user/password credentials from license page
 

@@ -81,7 +81,7 @@ background-sdc-theme
 
 To understand what each color is look at the image below:
 
-<figure><img src="0a0cc319-a1b7-4114-8f7d-b087fa9cc29c.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../../.gitbook/assets/0a0cc319-a1b7-4114-8f7d-b087fa9cc29c.png" alt=""><figcaption></figcaption></figure>
 
 ### Font
 

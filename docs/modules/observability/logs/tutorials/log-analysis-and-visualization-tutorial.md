@@ -44,11 +44,11 @@ The example below will help you read REST API logs:
 
 Please put + to toggle `Time`, `w_m`, `w_r`_,_`w_url`, `d`, `w_st`, `w_uid` fields into the document table:
 
-![](5027d2cd-2a95-4b43-9201-33d0cc38fbef.png)
+![](../../../../../.gitbook/assets/5027d2cd-2a95-4b43-9201-33d0cc38fbef.png)
 
 Now you can browse and explore REST API logs
 
-![](d729a589-5d2a-4e95-82c5-e3bbfa80f3d0.png)
+![](../../../../../.gitbook/assets/d729a589-5d2a-4e95-82c5-e3bbfa80f3d0.png)
 
 _Kibana's **Discover** enables you to quickly search and filter your data, get information about the structure of the fields, and visualize your data with **Lens** and **Maps**. You can customize and save your searches and place them on a dashboard._
 

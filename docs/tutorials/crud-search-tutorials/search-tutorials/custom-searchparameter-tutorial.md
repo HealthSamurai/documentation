@@ -22,7 +22,7 @@ In AidboxUI, go to **FHIR Packages -> hl7.fhir.r4.core** and click on "SearchPar
 
 Getting all Patient SearchParameters from r4:
 
-<figure><img src="f580f1c7-ea30-4acf-b358-983585638c89.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../../.gitbook/assets/f580f1c7-ea30-4acf-b358-983585638c89.png" alt=""><figcaption></figcaption></figure>
 
 Clicking on `Patient-active` SearchParameter gives us an actual definition of it:
 

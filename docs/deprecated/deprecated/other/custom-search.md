@@ -187,7 +187,7 @@ Aidbox uses PostgreSQL (open-source DBMS), which allows expressing very complex 
 
 Let's get a list of patients. Access the `DB Console` of our box and run the following code snippets:
 
-![DB Console](<9954ab5e-c595-432b-9ed0-15c7daa149b2.png>)
+![DB Console](../../../../.gitbook/assets/9954ab5e-c595-432b-9ed0-15c7daa149b2.png)
 
 {% code title="patients.sql" %}
 ```sql

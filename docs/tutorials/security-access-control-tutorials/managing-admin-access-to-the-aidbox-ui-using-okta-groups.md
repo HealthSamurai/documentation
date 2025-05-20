@@ -20,7 +20,7 @@ Go to **Applications -> Applications** in Okta portal and click "**Create App In
 * Sign-in method: OIDC - OpenID Connect
 * Application type: Web Application
 
-<figure><img src="9c23353d-cbc1-4c94-99cc-fa54bccce8ff.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/9c23353d-cbc1-4c94-99cc-fa54bccce8ff.png" alt=""><figcaption></figcaption></figure>
 
 Enter Application details:
 
@@ -30,12 +30,12 @@ Enter Application details:
   * Refresh Token
   * Implicit (hybrid)
 
-<figure><img src="d32c096e-490a-4693-bccd-365dff9d20b0.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/d32c096e-490a-4693-bccd-365dff9d20b0.png" alt=""><figcaption></figcaption></figure>
 
 * Sign-in redirect URIs: `http://localhost:8080/auth/callback/okta-identity-provider`
 * Controlled access: Skip group assignment for now
 
-<figure><img src="80085c63-a2c8-45ab-a72c-89bd01b63b44.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/80085c63-a2c8-45ab-a72c-89bd01b63b44.png" alt=""><figcaption></figcaption></figure>
 
 Assign the application to your personal account in Okta:
 
@@ -43,7 +43,7 @@ Assign the application to your personal account in Okta:
 
 Checkout **Client ID** and **Client secret**:
 
-<figure><img src="a23dbebb-d35f-4ac6-9632-a5d4012dac23.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/a23dbebb-d35f-4ac6-9632-a5d4012dac23.png" alt=""><figcaption></figcaption></figure>
 
 ### Create an IdentityProvider in Aidbox
 
@@ -83,7 +83,7 @@ accept: application/json
 
 Go to the Aidbox login page. You should see **Sign in with MyOkta** button.&#x20;
 
-<figure><img src="02dfedda-b968-4ec7-a448-91e04b6e5da8.png" alt="" width="375"><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/02dfedda-b968-4ec7-a448-91e04b6e5da8.png" alt="" width="375"><figcaption></figcaption></figure>
 
 Press this button and log in with Okta user into Aidbox.
 
@@ -91,7 +91,7 @@ You should not be able to see much in the Aidbox because there's no access polic
 
 Relogin with admin and check the user created in Aidbox for your Okta user. Go to **IAM -> User** and click on the user ID.
 
-<figure><img src="8de0d7cc-12d6-40db-aef7-2289cd24e361.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/8de0d7cc-12d6-40db-aef7-2289cd24e361.png" alt=""><figcaption></figcaption></figure>
 
 User Resource is Aidbox is updated every time the user logs in using external Identity Provider. Source of the user information is configured using `userinfo-source` element in IdentityProvider configuration resource.&#x20;
 
@@ -103,7 +103,7 @@ In Okta go to **Directory -> Groups** and create group `Aidbox-Admins`
 
 Add your user to the group
 
-<figure><img src="558f0157-148f-4154-b88a-1092a8b5b975.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/558f0157-148f-4154-b88a-1092a8b5b975.png" alt=""><figcaption></figcaption></figure>
 
 ### Customize ID token in Okta to include groups
 
@@ -121,7 +121,7 @@ In Okta go to **Security -> API** drill down to the `default` authorization serv
 
 Relogin into Aidbox using **Sign in with MyOkta** button. The user is updated with Okta groups data. Relogin with admin and check.
 
-<figure><img src="301037f2-cf92-49e7-813c-12a97818c4eb.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/301037f2-cf92-49e7-813c-12a97818c4eb.png" alt=""><figcaption></figcaption></figure>
 
 ### Create the AccessPolicy
 

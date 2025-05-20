@@ -24,15 +24,15 @@ The Basic Audit Log Patterns (BALP) Implementation Guide is a Content Profile th
 
 Navigate to the **FHIR Packages** screen in Aidbox Console UI.
 
-<figure><img src="df034719-9732-4901-b0d9-454a517cc130.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/df034719-9732-4901-b0d9-454a517cc130.png" alt=""><figcaption></figcaption></figure>
 
 Click the **Import FHIR Package** button.
 
-<figure><img src="8cb5550f-5ef0-4834-bfc9-c86fdd0e687e.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/8cb5550f-5ef0-4834-bfc9-c86fdd0e687e.png" alt=""><figcaption></figcaption></figure>
 
 Find the BALP package and hit the Import button.
 
-<figure><img src="5596c50e-f2a4-4259-a77f-67d411142281.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/5596c50e-f2a4-4259-a77f-67d411142281.png" alt=""><figcaption></figcaption></figure>
 
 ### Run some auditable operations
 
@@ -62,7 +62,7 @@ To see audit logs with the Audit event viewer app, navigate to the **Audit Log**
 
 And find the audit event, produced by the patient create operation.
 
-<figure><img src="01d17537-0703-43a2-a5c5-8c1c7baa0536.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/01d17537-0703-43a2-a5c5-8c1c7baa0536.png" alt=""><figcaption></figcaption></figure>
 
 ### Use FHIR API to create Audit Log Event
 

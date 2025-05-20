@@ -17,11 +17,11 @@ description: This guide shows how to set-up Keycloak identity provider with Aidb
 
 * Click the `Clients` menu item in the left sidebar
 
-<figure><img src="339fa2f3-93eb-4fc0-8543-9a768cdabade.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../../.gitbook/assets/339fa2f3-93eb-4fc0-8543-9a768cdabade.png" alt=""><figcaption></figcaption></figure>
 
 *   Then click the `Create client` button\\
 
-    <figure><img src="3efd7a64-6f24-45a9-94e5-6cfe6ec972dc.png" alt=""><figcaption></figcaption></figure>
+    <figure><img src="../../../../.gitbook/assets/3efd7a64-6f24-45a9-94e5-6cfe6ec972dc.png" alt=""><figcaption></figcaption></figure>
 *   Enter the client data\\
 
     <figure><img src="../../../../.gitbook/assets/3616ac7b-66ae-407e-99d7-7e937092c969.png" alt=""><figcaption></figcaption></figure>

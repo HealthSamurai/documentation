@@ -30,7 +30,7 @@ Follow the process and Register your App.
 
 Navigate to **Certificates, Identifiers & Profiles -> Identifiers** section and create a new Identifier for your Service
 
-<figure><img src="779f9f4c-b68d-46d9-b599-126e0f38b620.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../../.gitbook/assets/779f9f4c-b68d-46d9-b599-126e0f38b620.png" alt=""><figcaption></figcaption></figure>
 
 Drill down in the registered service and enable **"Sign in with Apple"**
 
@@ -40,7 +40,7 @@ Click **"Configure"** button.
 
 Select App ID you created as a **Primary App ID** and add a new **Website URL**
 
-<figure><img src="b92cd421-659f-4bca-967c-3e602e09f09c.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../../.gitbook/assets/b92cd421-659f-4bca-967c-3e602e09f09c.png" alt=""><figcaption></figcaption></figure>
 
 Apple allows  HTTPS URLs only. In local development, you can tunnel your local Aidbox URL `http://localhost:8080` to HTTPS using [Ngrok](https://ngrok.com) or a similar tunnelling tool.
 
@@ -54,15 +54,15 @@ Enable **"Sign in with Apple"** and click the "Configure" button.
 
 &#x20;
 
-<figure><img src="e33106c5-46a1-4c20-b4e3-28ba030fa5e7.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../../.gitbook/assets/e33106c5-46a1-4c20-b4e3-28ba030fa5e7.png" alt=""><figcaption></figcaption></figure>
 
 Select you App as a **"Primary App Id".**
 
-<figure><img src="38224bfc-51af-4d11-93ce-ba7fec8cd994.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../../.gitbook/assets/38224bfc-51af-4d11-93ce-ba7fec8cd994.png" alt=""><figcaption></figcaption></figure>
 
 Register your Key and download the Key.
 
-<figure><img src="64770e19-bdd2-47ea-b973-026b333cae89.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../../.gitbook/assets/64770e19-bdd2-47ea-b973-026b333cae89.png" alt=""><figcaption></figcaption></figure>
 
 ### Create an IdentityProvider in Aidbox
 
@@ -71,7 +71,7 @@ Login to Aidbox UI.&#x20;
 Use REST Console to execute the request below.
 
 * `<kid>` should be your Key Id\
-  ![](<c0983653-1f5d-49c1-9481-b71546e287a8.png>)
+  ![](../../../../.gitbook/assets/c0983653-1f5d-49c1-9481-b71546e287a8.png)
 * `<apple-service-id>`should be your Apple service id, e.g. `local.aidbox.svc`
 * `<apple-private-key>` put your private key, that you've downloaded, here.
 *   `<team-id>`should be your Apple team Id\

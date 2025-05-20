@@ -14,7 +14,7 @@ If you do not have an Okta account, create it to get your authorization server (
 
 Find your **okta domain**. You can do it in **Security -> API**
 
-![](<516afbbe-5649-40da-ba46-cc5614c31915.png>)
+![](../../../../.gitbook/assets/516afbbe-5649-40da-ba46-cc5614c31915.png)
 
 ## Create a Client (Application) in Okta
 
@@ -23,11 +23,11 @@ Go to **Application -> Application** in Okta and create a new one.
 * Check **Authorization Code** Grant Type
 * Set Sign-in url to _**\<box-url>**/auth/callback/**\<identity-provider-id>**_
 
-![](<093539e0-2f3e-400d-80ed-391d22dda32e.png>)
+![](../../../../.gitbook/assets/093539e0-2f3e-400d-80ed-391d22dda32e.png)
 
 Checkout **Client ID** and **Client secret**
 
-![](<77a76270-c1c9-4007-951c-9b8247f5054a.png>)
+![](../../../../.gitbook/assets/77a76270-c1c9-4007-951c-9b8247f5054a.png)
 
 ## Create an IdentityProvider in Aidbox
 
@@ -65,6 +65,6 @@ client:
 
 Go to your Aidbox base URL, you will be redirected to the login page - you should see **"Log in with \<provider.title or .type>"** button. Press this button and log in with Okta user into aidbox.
 
-![](<14fcd369-0ddd-417b-bc92-6ac436a06c50.png>)
+![](../../../../.gitbook/assets/14fcd369-0ddd-417b-bc92-6ac436a06c50.png)
 
 This user will be logged into Aidbox Console, but without any permissions. Read more in [Access Control Section](../security/README.md) about permissions.

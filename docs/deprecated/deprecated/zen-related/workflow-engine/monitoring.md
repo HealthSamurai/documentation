@@ -24,11 +24,11 @@ Task detailed view allows you to check the results, params, log of task instance
 
 The workflow list displays all started workflows in the system.
 
-<div data-full-width="true"><figure><img src="e830137a-d778-4c26-9a67-4ca08d66002e.png" alt=""><figcaption><p>Workflow list</p></figcaption></figure></div>
+<div data-full-width="true"><figure><img src="../../../../../.gitbook/assets/e830137a-d778-4c26-9a67-4ca08d66002e.png" alt=""><figcaption><p>Workflow list</p></figcaption></figure></div>
 
 The workflow details view allows you to check the results and parameters of the selected workflow instance and all activities launched by it.
 
-<div data-full-width="true"><figure><img src="76040283-821c-4bca-ad9d-5fa3e1d3f826.png" alt=""><figcaption><p>Workflow result</p></figcaption></figure></div>
+<div data-full-width="true"><figure><img src="../../../../../.gitbook/assets/76040283-821c-4bca-ad9d-5fa3e1d3f826.png" alt=""><figcaption><p>Workflow result</p></figcaption></figure></div>
 
 <div data-full-width="true"><figure><img src="../../../../../.gitbook/assets/6b96e391-a3ca-49b2-98a6-d0ba82ed94ef.png" alt=""><figcaption><p>Workflow params</p></figcaption></figure></div>
 
@@ -40,7 +40,7 @@ From the Activity tab, you can review all tasks and workflows launched by the se
 
 Scheduler rule list displays the list of all rules defined in Aidbox Project.
 
-<div data-full-width="true"><figure><img src="af3b2b10-893f-4c31-943a-06a5eeb1a8bc.png" alt=""><figcaption><p>Scheduler rule list</p></figcaption></figure></div>
+<div data-full-width="true"><figure><img src="../../../../../.gitbook/assets/af3b2b10-893f-4c31-943a-06a5eeb1a8bc.png" alt=""><figcaption><p>Scheduler rule list</p></figcaption></figure></div>
 
 The detailed rule view displays the definition of the selected rule and other information about its execution.
 
