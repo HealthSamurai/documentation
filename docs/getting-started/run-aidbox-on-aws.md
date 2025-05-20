@@ -22,7 +22,7 @@ After that, you will be redirected to the Aidbox user portal page. Log in in to 
 
 On license create page select product type and fill all required fields. On "Hosting" section you need select **AWS** options. If you successfully subscribe on AWS you will see a green message "You have an active AWS subscription...". Select the hosting zone and click create button.
 
-<figure><img src="../../.gitbook/assets/5e3dfcb3a54f42e4b96660147272ef9f (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/e864520b-9041-422f-aebb-7f84117586b7.png" alt=""><figcaption></figcaption></figure>
 
 You can check your license status on the licenses list page. Wait a couple of minutes until we install your environment and order certificates. As a result in "Hosting" section status should be changed to **Running**
 

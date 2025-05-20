@@ -10,7 +10,7 @@ The Authorization Code Grant is an OAuth 2.0 flow that regular web apps use in o
 
 In this flow the application receives authorization from the user. Once the user has authorized the application, they get redirected back to it with a temporary access code in the URL. The application exchanges that code for an access token. For more detailed information read [OAuth 2.0 specification](https://tools.ietf.org/html/rfc6749#section-4.1).
 
-![Basic scheme](<../../../../.gitbook/assets/untitled-diagram-page-3 (1).svg>)
+![Basic scheme](../../../../.gitbook/assets/authorization-code-gant.svg)
 
 For applications that are able to securely store a secret it is recommended to supply the secret in the token request due to security considerations. Otherwise, if the application is unable to securely store a secret (i.e. a frontend-only app), we suggest using [PKCE](https://datatracker.ietf.org/doc/html/rfc7636). Both methods are supported by Aidbox.
 
