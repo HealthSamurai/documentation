@@ -50,7 +50,7 @@ In **the "Customize your Instance -> Connections"** section, enable the "**Priva
 1.  Open **Cloud SQL Studio**.\
 
 
-    <figure><img src="7875abc8-9a2d-4f11-8412-d96f1bd0617e.png" alt=""><figcaption></figcaption></figure>
+    <figure><img src="../../../.gitbook/assets/7875abc8-9a2d-4f11-8412-d96f1bd0617e.png" alt=""><figcaption></figcaption></figure>
 2.  Connect to the **postgres** database with the username **postgres** and the password you've chosen when you created the database.\
 
 
@@ -101,7 +101,7 @@ CREATE EXTENSION pg_stat_statements;
 4.  Set Auto scaling to 1 and leave other properties by default.\
 
 
-    <figure><img src="5144e1da-0054-4d9e-a2fc-742d9eee8972.png" alt=""><figcaption></figcaption></figure>
+    <figure><img src="../../.gitbook/assets/5144e1da-0054-4d9e-a2fc-742d9eee8972.png" alt=""><figcaption></figcaption></figure>
 5.  Configure Memory and CPU Limits\
 
 
@@ -109,7 +109,7 @@ CREATE EXTENSION pg_stat_statements;
 6.  Enable **"Second generation"** execution environment for better performance\
 
 
-    <figure><img src="9aef845b-9f25-4dc1-aaa6-275db56cf35f.png" alt=""><figcaption></figcaption></figure>
+    <figure><img src="../../../9aef845b-9f25-4dc1-aaa6-275db56cf35f.png" alt=""><figcaption></figcaption></figure>
 7.  In the container properties, add environment variables.\
 
 
@@ -186,14 +186,14 @@ CREATE EXTENSION pg_stat_statements;
 9. Click the "**Create**" button and wait for the service to deploy successfully.\
 
 
-<figure><img src="c72b5c74-925a-4c5b-ab30-f8e33f230640.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/c72b5c74-925a-4c5b-ab30-f8e33f230640.png" alt=""><figcaption></figcaption></figure>
 
-8. Access the service via the URL.\
+10. Access the service via the URL.\
 
 
-<figure><img src="f2713806-c5b6-4fb7-9494-dd2c5d59c5c0.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/f2713806-c5b6-4fb7-9494-dd2c5d59c5c0.png" alt=""><figcaption></figcaption></figure>
 
-9. [Activate](../../getting-started/run-aidbox-locally.md#id-4.-activate-your-aidbox-instance) the Aidbox instance.
+11. [Activate](../../getting-started/run-aidbox-locally.md#id-4.-activate-your-aidbox-instance) the Aidbox instance.
 
 ## What's next
 
