@@ -2,12 +2,12 @@
 
 Aidbox uses PostgreSQL as its database engine, leveraging its robust JSON capabilities, reliability, and performance for healthcare data storage.
 
-#### Version compatibility
+## Version compatibility
 
 * Minimum: PostgreSQL 12 (required for JSON path support). For older versions, use PostgreSQL with `jsonknife` extension
 * Actively supported: Three most recent versions (currently 17, 16, 15)
 
-#### Deployment options
+## Deployment options
 
 Compatible with all PostgreSQL deployments
 
@@ -15,7 +15,7 @@ Compatible with all PostgreSQL deployments
 * self-hosted installations&#x20;
 * on-premises deployments
 
-#### Database Management
+## Database Management
 
 * **Initialization**: Aidbox automatically creates all database objects, including tables, starting indexes, and other required structures
 * **Schema migrations**: Automatically handled during Aidbox version upgrades
@@ -27,13 +27,13 @@ Compatible with all PostgreSQL deployments
   * [Kubernetes operators](aidboxdb-image/ha-aidboxdb.md)
   * Custom scripts
 
-#### AidboxDB Distribution
+## AidboxDB Distribution
 
 * [AidboxDB](aidboxdb-image/) is a PostgreSQL distribution based on the official PostgreSQL release&#x20;
 * Includes Aidbox-specific extensions and the WAL-G backup tool
 * Standard PostgreSQL installations remain fully supported
 
-#### What's next
+## What's next
 
 1. Check [Database Schema](database-schema.md) for technical details on schema and query capabilities.
 2. Required and optional [PostgreSQL Extensions](postgresql-extensions.md)
