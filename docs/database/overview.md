@@ -1,18 +1,36 @@
 # Overview
 
-Aidbox requires a PostgreSQL database for operation. The minimum supported PostgreSQL version is 12, which is required for JSON path support functionality (for older versions, you should use `jsonknife` extension). Aidbox actively maintains compatibility with the three most recent PostgreSQL versions (currently 17, 16, and 15).
+Aidbox uses PostgreSQL as its database engine, leveraging its robust JSON capabilities, reliability, and performance for healthcare data storage.
 
-PostgreSQL can be deployed in any environment: cloud-managed services (such as [AWS RDS](../deployment-and-maintenance/deploy-aidbox/run-aidbox-on-managed-postgresql.md#aurora-postgresql), Google Cloud SQL, [Azure Database](../deployment-and-maintenance/deploy-aidbox/run-aidbox-on-managed-postgresql.md#azure-database-for-postgresql-flexible-server)), self-hosted installations, or on-premises deployments. Aidbox is compatible with any of these deployment options.
+#### Version compatibility
 
-During initialization, Aidbox automatically creates all necessary database objects, including tables, indexes, and other required structures. Schema migrations are also handled automatically by Aidbox during version upgrades.
+* Minimum: PostgreSQL 12 (required for JSON path support). For older versions, use PostgreSQL with `jsonknife` extension
+* Actively supported: Three most recent versions (currently 17, 16, 15)
 
-Database backup and restore operations are not managed by Aidbox. These operations should be implemented using standard database management approaches:
+#### Deployment options
 
-* Native PostgreSQL backup tools
-* Cloud provider backup solutions
-* [Kubernetes operators](aidboxdb-image/ha-aidboxdb.md)
-* Custom backup scripts
+Compatible with all PostgreSQL deployments
 
-Health Samurai provides [AidboxDB](aidboxdb-image/) - a PostgreSQL distribution based on the official PostgreSQL release. AidboxDB includes additional database extensions for specific Aidbox features, and wal-g backup tool. This distribution is optional and standard PostgreSQL installations are supported.
+* cloud-managed services (such as [AWS RDS](../deployment-and-maintenance/deploy-aidbox/run-aidbox-on-managed-postgresql.md#aurora-postgresql), [Google Cloud SQL](https://cloud.google.com/sql/postgresq), [Azure Database](../deployment-and-maintenance/deploy-aidbox/run-aidbox-on-managed-postgresql.md#azure-database-for-postgresql-flexible-server), etc)
+* self-hosted installations&#x20;
+* on-premises deployments
 
-For technical details about database schema and query capabilities, refer to the [Database Schema](database-schema.md) documentation.
+#### Database Management
+
+* **Initialization**: Aidbox automatically creates all database objects, including tables, starting indexes, and other required structures
+* **Schema migrations**: Automatically handled during Aidbox version upgrades
+* **Monitoring**: Use standard PostgreSQL monitoring tools
+* **Backup/Restore**: Use standard PostgreSQL methods:
+  * Native PostgreSQL backup tools
+  * Cloud provider solutions
+  * [Kubernetes operators](aidboxdb-image/ha-aidboxdb.md)
+  * Custom scripts
+
+#### AidboxDB Distribution
+
+* [AidboxDB](aidboxdb-image/) is a PostgreSQL distribution based on the official PostgreSQL release&#x20;
+* Includes Aidbox-specific extensions and the WAL-G backup tool
+* Standard PostgreSQL installations remain fully supported\
+
+
+Check [Database Schema](database-schema.md) for technical details on schema and query capabilities.
