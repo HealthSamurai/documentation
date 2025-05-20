@@ -318,6 +318,10 @@ it is displayed on the form as a drop-down list.
 
 The Checkbox widget allows users to toggle between two states: checked (true) and unchecked (false). This widget is ideal for scenarios where a binary choice is needed, such as accepting terms and conditions or indicating a simple yes/no answer.
 
+{% hint style="info" %}
+Checkboxes have an indeterminate state when the widget is untouched.
+{% endhint %}
+
 **Settings:**
 
 * **Required**: When using this flag, the initial value for the checkbox is set to false automatically. If the user does not change it when filling out the form, this value is included in the completed QuestionnaireResponse.
