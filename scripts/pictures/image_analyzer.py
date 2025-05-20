@@ -244,46 +244,7 @@ def collect_all_image_references():
     print(f"Processed {processed_files} markdown files")
     return image_references
 
-def check_missing_images():
-    """
-    Check for missing images in documentation
-    """
-    missing_images = []
-    processed_files = 0
-    total_images = 0
-
-    # Walk through all markdown files in the documentation directory
-    for root, _, files in os.walk(DOCS_DIR):
-        for file in files:
-            if not file.endswith('.md'):
-                continue
-
-            file_path = os.path.join(root, file)
-            images_found, _ = process_file(file_path, missing_images)
-
-            total_images += images_found
-            processed_files += 1
-
-    # Print summary
-    print("\n=== SUMMARY ===")
-    print(f"Processed files: {processed_files}")
-    print(f"Total image references: {total_images}")
-    print(f"Missing images found: {len(missing_images)}")
-
-    if missing_images:
-        print("\nMissing images:")
-        for entry in missing_images:
-            print(f"  {entry['image']} in file {entry['file']}")
-        return False, missing_images
-
-    print("\nAll images found successfully!")
-    return True, []
-
 def process_file(file_path, missing_images):
-    """
-    Process a single markdown file, check for missing image references
-    Returns (total_images_found, total_missing)
-    """
     total_found = 0
     total_missing = 0
 
@@ -291,57 +252,48 @@ def process_file(file_path, missing_images):
         with open(file_path, 'r', encoding='utf-8') as f:
             content = f.read()
 
-        # Process all types of image references
+        # Find all image references
+        image_patterns = [
+            # Match src="..." or href="..." with any image extension
+            r'(?:src|href)=["\']([^"\']*\.(?:png|jpg|jpeg|gif|svg|webp|bmp|tiff))["\']',
+            # Match src='...' or href='...' with any image extension
+            r'(?:src|href)=\'([^\']*\.(?:png|jpg|jpeg|gif|svg|webp|bmp|tiff))\'',
+            # Match src=<...> or href=<...> with any image extension
+            r'(?:src|href)=<([^>]*\.(?:png|jpg|jpeg|gif|svg|webp|bmp|tiff))>',
+            # Match markdown image links with any image extension
+            r'!\[.*?\]\(([^)]*\.(?:png|jpg|jpeg|gif|svg|webp|bmp|tiff))\)'
+        ]
 
-        # 1. Pattern for HTML attributes src= and href=
-        html_pattern = r'(?:src|href)=(?:"([^"]+)"|\'([^\']+)\'|<([^>]+)>)'
-        html_matches = re.finditer(html_pattern, content)
+        for pattern in image_patterns:
+            matches = list(re.finditer(pattern, content, re.DOTALL | re.IGNORECASE))
+            for match in matches:
+                image_path = match.group(1)
+                if not image_path:
+                    continue
 
-        for match in html_matches:
-            # Get image path (from group 1, 2 or 3)
-            image_path = match.group(1) or match.group(2) or match.group(3)
+                # Skip URLs starting with http/https
+                if image_path.startswith(('http://', 'https://')):
+                    continue
 
-            # Skip if not referencing assets or not an image
-            if not image_path or '.gitbook/assets' not in image_path:
-                continue
+                # Normalize the path to handle relative paths
+                if image_path.startswith('../../'):
+                    image_path = image_path.replace('../../', '.gitbook/assets/')
+                elif image_path.startswith('../'):
+                    image_path = image_path.replace('../', '.gitbook/assets/')
 
-            # Check if it's an image by extension
-            _, ext = os.path.splitext(image_path.lower())
-            if ext not in ['.png', '.jpg', '.jpeg', '.gif', '.svg', '.webp', '.bmp', '.tiff']:
-                continue
-
-            total_found += 1
-
-            # Find the actual file
-            actual_file = find_actual_file(file_path, image_path)
-            if not actual_file:
-                missing_images.append({
-                    'file': file_path,
-                    'image': image_path
-                })
-                total_missing += 1
-
-        # 2. Standard image links in markdown format
-        # Need line-by-line approach for correct handling of escaped characters
-        content_lines = content.split('\n')
-        for line in content_lines:
-            # Skip lines that don't contain potential image references
-            if '![' not in line or '.gitbook/assets' not in line:
-                continue
-
-            # Use simplified pattern to extract path between () symbols
-            img_match = re.search(r'!\[.*?\]\((.*?\.gitbook/assets/.*?)\)', line)
-            if img_match:
-                image_path = img_match.group(1)
+                # If path doesn't contain .gitbook/assets, add it
+                if '.gitbook/assets' not in image_path:
+                    image_path = os.path.join('.gitbook/assets', image_path)
 
                 total_found += 1
-
-                # Find the actual file
                 actual_file = find_actual_file(file_path, image_path)
                 if not actual_file:
                     missing_images.append({
                         'file': file_path,
-                        'image': image_path
+                        'image': image_path,
+                        'context': 'Image reference',
+                        'raw_match': match.group(0)[:100] + '...' if len(match.group(0)) > 100 else match.group(0),
+                        'original_path': match.group(1)  # Store original path for reference
                     })
                     total_missing += 1
 
@@ -349,6 +301,45 @@ def process_file(file_path, missing_images):
         print(f"Error processing file {file_path}: {str(e)}")
 
     return total_found, total_missing
+
+def check_missing_images():
+    missing_images = []
+    processed_files = 0
+    total_images = 0
+
+    for root, _, files in os.walk(DOCS_DIR):
+        for file in files:
+            if not file.endswith('.md'):
+                continue
+
+            file_path = os.path.join(root, file)
+            images_found, _ = process_file(file_path, missing_images)
+            total_images += images_found
+            processed_files += 1
+
+    print("\n=== SUMMARY ===")
+    print(f"Processed files: {processed_files}")
+    print(f"Total image references: {total_images}")
+    print(f"Missing images found: {len(missing_images)}")
+
+    if missing_images:
+        print("\nMissing images:")
+        # Group missing images by file for better readability
+        missing_by_file = defaultdict(list)
+        for entry in missing_images:
+            missing_by_file[entry['file']].append(entry)
+
+        for file_path, entries in sorted(missing_by_file.items()):
+            print(f"\nFile: {file_path}")
+            for entry in entries:
+                print(f"  - {entry['image']} ({entry['context']})")
+                print(f"    Original path: {entry['original_path']}")
+                if 'raw_match' in entry:
+                    print(f"    Context: {entry['raw_match']}")
+        return False, missing_images
+
+    print("\nAll images found successfully!")
+    return True, []
 
 def find_unused_images(show_duplicates=True):
     """
@@ -540,6 +531,10 @@ def main():
     Main function to run all checks
     """
     print("=== CHECKING FOR MISSING IMAGES ===")
+    # Add debug flag
+    debug_mode = True
+    if debug_mode:
+        print("\nRunning in debug mode - will show detailed matching information")
     missing_ok, _ = check_missing_images()
     print()
 
