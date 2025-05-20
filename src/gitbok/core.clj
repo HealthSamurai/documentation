@@ -35,9 +35,11 @@
          [:pre content*]]))))
 
 (defn picture? [request]
-  (str/includes? (:uri request) ".gitbook"))
+  (or (str/includes? (:uri request) ".gitbook")
+      (str/includes? (:uri request) "/pictures")))
 
 (defn render-picture [request]
+  (def r request)
   (->> #"\.gitbook"
        (str/split (:uri request))
        second
@@ -61,10 +63,18 @@
   [context request]
   (cond
     (picture? request)
-    (render-picture request)
+    (do (prn "here") (resp/file-response "docker.png"))
 
     :else
     (gitbok.ui/layout context request (read-and-render-file context request))))
+
+(defn
+  handle-gitbook-assets
+  [_context request]
+  (resp/file-response
+    (str/replace (:uri request)
+                 #"^/pictures/"
+                 ".gitbook/assets/")))
 
 (system/defmanifest
   {:description "gitbok"
@@ -74,17 +84,21 @@
 #_{:clj-kondo/ignore [:unresolved-symbol]}
 (system/defstart
   [context config]
-  (http/register-ns-endpoints context *ns*)
+  ;; (http/register-ns-endpoints context *ns*)
   (http/register-endpoint
     context
     {:path "/" :method :get :fn #'render-file-view})
-  (http/register-endpoint context
-                          {:path "/admin/broken" :method :get :fn #'gitbok.broken-links/broken-links-view})
 
-  ;; Register static file handlers
-  (gitbok.static/register-endpoints context)
+  (http/register-endpoint
+    context
+    {:path "/pictures/:path" :method :get :fn #'handle-gitbook-assets})
 
-  ;; Set up indexing
+  (http/register-endpoint
+    context
+    {:path "/admin/broken" :method :get :fn #'gitbok.broken-links/broken-links-view})
+
+  ;; (gitbok.static/register-endpoints context)
+
   (uri-to-file/set-idx context)
   (file-to-uri/set-idx context)
   (summary/set-summary context)

@@ -88,7 +88,6 @@
     (uui/boost-response
      context request
      [:div {:class "flex items-top"}
-      ;; Add tabs.js script
       [:script {:src "/static/tabs.js"}]
       [:script {:src "/static/syntax-highlight.js"}]
 
