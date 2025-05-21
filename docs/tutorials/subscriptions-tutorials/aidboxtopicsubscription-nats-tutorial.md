@@ -53,14 +53,14 @@ mkdir username-password
     # ...
     environment:
       BOX_MODULE_LOAD: io.healthsamurai.topic-destination.nats.core
-      BOX_MODULE_JAR: "/topic-destination-nats-2505.1.jar"
+      BOX_MODULE_JAR: "/topic-destination-nats-2505.2.jar"
       # ... other envs ...
 ```
 
 3. Download **.jar** NATS module file from [our bucket](https://console.cloud.google.com/storage/browser/aidbox-modules?authuser=1\&inv=1\&invt=AbwkFA\&pageState=\(%22StorageObjectListTable%22:\(%22f%22:%22%255B%255D%22\)\)) and place it next to **docker-compose.yaml**.
 
 ```sh
-curl -O https://storage.googleapis.com/aidbox-modules/topic-destination-nats/topic-destination-nats-2505.1.jar
+curl -O https://storage.googleapis.com/aidbox-modules/topic-destination-nats/topic-destination-nats-2505.2.jar
 ```
 
 4. Install NATS CLIs: **nats-server** and **nsc** using [golang](https://go.dev/doc/install).
