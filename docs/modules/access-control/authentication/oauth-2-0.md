@@ -115,6 +115,6 @@ This flow is designed for **Single Page Applications (SPAs)**, which run in the 
 
 ## Auth Sandbox
 
-<figure><img src="../../../.gitbook/assets/sandbox-ro.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../../.gitbook/assets/sandbox-ro.png" alt=""><figcaption></figcaption></figure>
 
 Aidbox provides a sandbox environment for testing OAuth 2.0 flows. You can use the sandbox to test each flow through the Aidbox Sandbox UI (_Auth -> Sandbox -> Basic Auth_).
