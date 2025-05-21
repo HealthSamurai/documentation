@@ -82,6 +82,3 @@ It can be implemented using FHIR Consent resource:
 1. Store Consent resource.
 2. Check if consent is granted for the operation using the Search API.
 
-
-
-**See tutorial: TODO (see jira 243)**
