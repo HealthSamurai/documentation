@@ -7,6 +7,7 @@
 ## Before you begin
 * Make sure your Aidbox version is newer than 2504
 * Setup the local Aidbox instance using getting started [guide](../../getting-started/run-aidbox-locally.md)
+* [Install golang](https://go.dev/doc/install). Make sure that go packages are in your $PATH variable.
 
 ## What is NATS?
 
@@ -63,9 +64,10 @@ mkdir username-password
 curl -O https://storage.googleapis.com/aidbox-modules/topic-destination-nats/topic-destination-nats-2505.2.jar
 ```
 
-4. Install NATS CLIs: **nats-server** and **nsc** using [golang](https://go.dev/doc/install).
+4. Install NATS CLIs: **nats**, **nats-server** and **nsc** using [golang](https://go.dev/doc/install).
 
 ```sh
+go install github.com/nats-io/natscli/nats@latest
 go install github.com/nats-io/nats-server/v2@latest
 go install github.com/nats-io/nsc/v2@latest
 ```
@@ -307,7 +309,7 @@ Acknowledged message
 ```
 cd username-password
 ```
-3. Create `nats-server.conf`.
+3. Create new `nats-server.conf` file.
 ```
 port: 4222
 
@@ -346,6 +348,10 @@ nats --user alice --password secret1 pub mysubject.hello "hello from alice"
 ```
 7. Add `username` and `password` properties in `AidboxTopicDestination` resource.
 ```json
+POST /fhir/AidboxTopicDestination
+content-type: application/json
+accept: application/json
+
 {
   "resourceType": "AidboxTopicDestination",
   "meta": {
@@ -389,6 +395,9 @@ name:
 - family: smith
 ```
 9. See the output of bob's subscription.
+```
+{"topic":"mysubject.hello","value":{"resourceType":"Bundle","type":"history","timestamp":"2025-05-21T13:36:33Z","entry":[{"resource":{"resourceType":"AidboxSubscriptionStatus","status":"active","type":"event-notification","notificationEvent":[{"eventNumber":1,"focus":{"reference":"Patient/89ae88de-c15b-4aac-a393-9168f2dc507c"}}],"topic":"patient-topic","topic-destination":{"reference":"AidboxTopicDestination/nats-core-destination"}}},{"request":{"method":"POST","url":"/fhir/Patient"},"fullUrl":"http://localhost:8080/fhir/Patient/89ae88de-c15b-4aac-a393-9168f2dc507c","resource":{"name":[{"family":"smith"}],"id":"89ae88de-c15b-4aac-a393-9168f2dc507c","resourceType":"Patient","meta":{"lastUpdated":"2025-05-21T13:36:33.378705Z","versionId":"14","extension":[{"url":"ex:createdAt","valueInstant":"2025-05-21T13:36:33.378705Z"}]}}}]}}
+```
 
 ## JWT authentication
 
