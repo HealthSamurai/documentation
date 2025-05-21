@@ -21,7 +21,6 @@
                           :alt (match 1)})}))
 
 (defn image-renderer [ctx node]
-  (def t node)
   [:img {:src
          (some->
            node :attrs :src

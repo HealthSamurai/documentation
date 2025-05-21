@@ -2,6 +2,7 @@
   (:require
    [clojure.string :as str]
    [gitbok.markdown.widgets.big-links :as big-links]
+   [gitbok.markdown.widgets.link :as link]
    [gitbok.markdown.widgets.image :as image]
    [gitbok.markdown.widgets.code-highlight :as code-highlight]
    [gitbok.markdown.widgets.content-ref :as content-ref]
@@ -12,7 +13,6 @@
    [nextjournal.markdown.utils :as u]
    [edamame.core :as edamame]
    [clojure.zip :as z]))
-
 
 (def custom-doc
   (update u/empty-doc
@@ -28,20 +28,20 @@
 (def renderers
   (assoc transform/default-hiccup-renderers
          :big-link big-links/big-link-renderer
-         :image image/image-renderer))
+         :image image/image-renderer
+         :link link/link-renderer))
 
 (defn render-gitbook
-  "Render GitBook-compatible markdown to hiccup."
   [content]
   (let [parsed (parse-markdown-content content)
         rendered (transform/->hiccup renderers parsed)]
     rendered))
 
-
 #_(def readme (slurp "./docs/readme/README.md"))
+
 #_(parse-markdown-content readme)
 
-
-#_(render-gitbook "[[[../tutorials/some-tutorial.md]]]")
+#_(parse-markdown-content "See [hello](../../hello.md)")
+#_(render-gitbook "See [hello](../../hello.md)")
 
 #_(render-gitbook readme)
