@@ -15,7 +15,8 @@ and data protection in your system.
 Want to try it out? Check out our tutorials:
 
 * [Managing Admin Access to the Aidbox UI Using Okta Groups](../../tutorials/security-access-control-tutorials/managing-admin-access-to-the-aidbox-ui-using-okta-groups.md)
-* Consent Based Access Control Tutorial TODO
-* Audit & Logging Tutorial TODO
-* Other tutorials TODO
+* [SMART App Launch using Aidbox and Keycloak](authorization/smart-on-fhir/example-smart-app-launch-using-aidbox-and-keycloak.md)
+* [How to configure Audit Log](../../tutorials/security-access-control-tutorials/how-to-configure-audit-log.md)
+
+
 
