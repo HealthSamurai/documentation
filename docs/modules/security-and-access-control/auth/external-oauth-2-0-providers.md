@@ -8,7 +8,7 @@ description: Aidbox as a Resource Server
 We have prepared guides detailing the setup process for the most frequently requested IdP solutions. You may choose to utilize one of these guides, or you can browse down this page and explore that article.
 {% endhint %}
 
-<table data-column-title-hidden data-view="cards"><thead><tr><th></th><th data-hidden></th><th data-hidden></th><th data-hidden data-card-cover data-type="files"></th><th data-hidden data-card-target data-type="content-ref"></th></tr></thead><tbody><tr><td>Aidbox</td><td></td><td></td><td></td><td><a href="../set-up-external-identity-provider/aidbox.md">aidbox.md</a></td></tr><tr><td>Okta</td><td></td><td></td><td></td><td><a href="../set-up-external-identity-provider/okta.md">okta.md</a></td></tr><tr><td>Microsoft Azure AD</td><td></td><td></td><td></td><td><a href="../set-up-external-identity-provider/azure-ad.md">azure-ad.md</a></td></tr><tr><td>Keycloak</td><td></td><td></td><td></td><td><a href="../set-up-external-identity-provider/keycloak.md">keycloak.md</a></td></tr></tbody></table>
+<table data-column-title-hidden data-view="cards"><thead><tr><th></th><th data-hidden></th><th data-hidden></th><th data-hidden data-card-cover data-type="files"></th><th data-hidden data-card-target data-type="content-ref"></th></tr></thead><tbody><tr><td>Aidbox</td><td></td><td></td><td></td><td><a href="../../../tutorials/security-access-control-tutorials/aidbox.md">aidbox.md</a></td></tr><tr><td>Okta</td><td></td><td></td><td></td><td><a href="../../../tutorials/security-access-control-tutorials/okta.md">okta.md</a></td></tr><tr><td>Microsoft Azure AD</td><td></td><td></td><td></td><td><a href="../../../tutorials/security-access-control-tutorials/azure-ad.md">azure-ad.md</a></td></tr><tr><td>Keycloak</td><td></td><td></td><td></td><td><a href="../../../tutorials/security-access-control-tutorials/keycloak.md">keycloak.md</a></td></tr></tbody></table>
 
 Aidbox can validate access tokens issued by 3rd-party servers. This way Aidbox acts as a Resource Server and leaves Identity management to a separate server.
 
@@ -144,6 +144,6 @@ link:
 
 ## How to set-up identity provider
 
-{% content-ref url="../set-up-external-identity-provider/" %}
-[set-up-external-identity-provider](../set-up-external-identity-provider/README.md)
+{% content-ref url="../set-up-external-identity-provider.md" %}
+[set-up-external-identity-provider.md](../set-up-external-identity-provider.md)
 {% endcontent-ref %}

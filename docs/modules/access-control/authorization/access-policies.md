@@ -157,7 +157,188 @@ matcho:
     practitioner: .user.data.practitioner_id 
 ```
 
+### SQL engine
+
+The `sql` engine executes an SQL statement and uses its return value as an evaluation result. Thus, the statement should return a single row with just one column:
+
+```sql
+SELECT true FROM patient WHERE id = {{jwt.patient_id}} LIMIT 1;
+```
+
+SQL statement can refer to request fields with a double curly braces interpolation. The string inside the braces will be used as a path to value in the request object.
+
+The SQL engine is sometimes the only way to perform complex checks when the AccesPolicy needs to check data stored in the database but not in the request context.
+
+#### Example
+
+Suppose that we are checking a request that comes with a `User` resource referencing a `Practitioner` through `User.data.practitioner_id` element. The following policy allows requests only to `/fhir/Patient/<patient_id>` URLs and only to those patients who have a `Patient.generalPractitioner` element referencing the same practitioner as a `User` of our current request. In other words, `User` as a `Practitioner` is only allowed to see his own patients — those who reference him as their `generalPractitioner`.
+
+```yaml
+resourceType: AccessPolicy
+id: practitioner-only-allowed-to-see-his-patients
+engine: sql
+sql:
+  query: |
+    SELECT
+      {{user}} IS NOT NULL
+      AND {{user.data.practitioner_id}} IS NOT NULL
+      AND {{uri}} LIKE '/fhir/Patient/%'
+      AND resource->'generalPractitioner' @>
+    jsonb_build_array(jsonb_build_object('resourceType',
+        'Practitioner', 'id', {{user.data.practitioner_id}}::text))
+      FROM patient WHERE id = {{params.resource/id}};
+```
+
+#### Interpolation Rules
+
+You can parameterize your SQL queries with request object using `{{path}}` syntax. For example, to get a user role provided `{user: {data: {role: "admin"}}}` you write `{{user.data.role}}`. Parameter expressions are escaped by default to protect from SQL injection.
+
+For dynamic queries — to parameterize table name, for example — you have to use `{{!path}}` syntax. The expression `SELECT true from {{!params.resource/type}} limit 1` when a request contains `{params: {"resource/type": "Patient"}}` will be transformed into `SELECT true from "patient".` By default, identifier names are double-quoted and lower-cased.
+
+#### More examples
+
+In this example, `User` as a `Practitioner` is only allowed to see the conditions of his patients — those who reference him as their `generalPractitioner`.
+
+```
+PUT /AccessPolicy/practitioner-only-allowed-to-see-his-patients-conditions
+
+resourceType: AccessPolicy
+id: practitioner-only-allowed-to-see-his-patients-conditions
+engine: sql
+sql:
+  query: |
+    SELECT 1
+    FROM condition c
+    JOIN patient p ON (
+      c.resource @> (
+        $JSON${
+          "subject":{
+            "id":"$JSON$
+            ||
+            p.id
+            ||
+            $JSON$",
+            "resourceType":"Patient"
+          }
+        }$JSON$
+      )::jsonb
+    )
+    WHERE
+      {{user}} IS NOT NULL
+      AND ({{user.data.practitioner_id}})::text IS NOT NULL
+      AND ({{uri}})::text LIKE '/fhir/Condition/%'
+      AND p.resource @> (
+        $JSON${
+          "generalPractitioner":[{
+            "id":"$JSON$
+            ||
+            ({{user.data.practitioner_id}})::text
+            ||
+            $JSON$",
+            "resourceType":"Practitioner"
+          }]
+        }$JSON$
+      )::jsonb
+      AND c.id = {{params.resource/id}}
+```
+
+### JSON Schema
+
+`json-schema` engine allows you to use [JSON Schema](https://json-schema.org) to validate the request object. It is specified under `schema` a field of `AccessPolicy` resource. The currently supported JSON Schema version is **draft-07**.
+
+{% hint style="info" %}
+Fields with empty values `— []`, `{}`, `""`, `null` — are removed from the request before access policy checks are applied. Make sure to specify all necessary fields as `required.`
+{% endhint %}
+
+{% hint style="info" %}
+It is recommended to use Matcho engine instead of JSON Schema engine. Matcho engine is more expressive due to its special keys.
+{% endhint %}
+
+#### Example
+
+The following policy requires `request.params.resource/type` to be present and have a value of `"Organization"`:
+
+```yaml
+resourceType: AccessPolicy
+engine: json-schema
+schema:
+  properties:
+    params:
+      required: [resource/type]
+    properties:
+      resource/type:
+        const:
+          Organization
+```
+
+### Complex
+
+The `complex` engine allows you to combine several rules with `and` and `or` operators. You can use any engine rule to define a rule and even `complex` engine itself but it is forbidden to have both `and` and `or` keys on the same level. Rules are defined as an array of objects that must include an engine with a set of corresponding keys.
+
+#### How AND & OR work
+
+Aidbox applies inner policies one after the other top-bottom.
+
+#### AND rule
+
+Aidbox applies policies till one of two events happens:
+
+1. One policy rejects the access. No further policies are applied. The access is rejected
+2. There are no more policies to evaluate. It means the access is granted
+
+#### OR rule
+
+Aidbox applies policies till at least one grants access. If it has happened no further policies are applied.
+
+#### Example 1
+
+```yaml
+resourceType: AccessPolicy
+engine: complex
+and:
+  - { engine: "sql", sql: { query: "select true" } }       # check-1
+  - engine: complex
+    or:
+      - { engine: "sql", sql: { query: "select false" } }  # check-2
+      - { engine: "sql", sql: { query: "select false" } }  # check-3
+```
+
+Policy in the example above represents the following logical expression:\
+`check-1 AND (check-2 OR check-3)`
+
+#### Example 2
+
+Let's split the SQL policy example from above into two separate rules and combine them under `and` rule:
+
+```yaml
+resourceType: AccessPolicy
+engine: complex
+and:
+  # Rule: request.user && request.user.data.practitioner_id are required
+  - engine: json-schema
+    schema:
+      type: object
+      required: ["user"]
+      properties:
+        user:
+          type: object
+          required: ["data"]
+          properties:
+            data:
+              type: object
+              required: ["practitioner_id"]
+  # Rule: current practitioner is patient’s generalPractitioner
+  - engine: sql
+    sql:
+      query: |
+        SELECT
+          {{uri}} LIKE '/fhir/Patient/%'
+          AND resource->'generalPractitioner' @>
+        jsonb_build_array(jsonb_build_object('resourceType',
+            'Practitioner', 'id', {{user.data.practitioner_id}}::text))
+          FROM patient WHERE id = {{params.resource/id}};
+```
+
 ## See also
 
 * [AccessPolicy resource schema](../../../reference/system-resources-reference/iam-module-resources.md#accesspolicy)
-* TODO: How to write & debug accesspolicies tutorial

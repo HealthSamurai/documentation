@@ -1,18 +1,16 @@
 # SSO with External Identity Provider
 
-todo: it is connected Aidbox UI but not stated
-
 ## What is SSO?
 
 **Single Sign-On (SSO)** lets users log in once and access multiple systems without having to log in again. It's like having one key that unlocks many doors.
 
-## How SSO Works with Aidbox
+## How SSO Works with Aidbox UI&#x20;
 
 Aidbox can connect to external identity providers (IdPs) like Google, Auth0, Okta, or your organization's identity system. This means:
 
 1. Users log in through the identity provider they already use
 2. The identity provider confirms who they are
-3. Aidbox trusts this confirmation and grants access
+3. Aidbox trusts this confirmation and allows the User to log in
 
 ## How Aidbox Integrates with External Identity Providers
 
@@ -46,7 +44,36 @@ From the user's perspective, the login process is simple:
 
 
 
-**TODO  Tutorials:**
+## See Also
 
-* **How to configure SSO with the external identity provider**
-* **How to configure TokenIntrospector**
+{% content-ref url="../../../tutorials/security-access-control-tutorials/managing-admin-access-to-the-aidbox-ui-using-okta-groups.md" %}
+[managing-admin-access-to-the-aidbox-ui-using-okta-groups.md](../../../tutorials/security-access-control-tutorials/managing-admin-access-to-the-aidbox-ui-using-okta-groups.md)
+{% endcontent-ref %}
+
+{% content-ref url="../../../tutorials/security-access-control-tutorials/keycloak.md" %}
+[keycloak.md](../../../tutorials/security-access-control-tutorials/keycloak.md)
+{% endcontent-ref %}
+
+{% content-ref url="../../../tutorials/security-access-control-tutorials/github.md" %}
+[github.md](../../../tutorials/security-access-control-tutorials/github.md)
+{% endcontent-ref %}
+
+{% content-ref url="../../../tutorials/security-access-control-tutorials/azure-ad.md" %}
+[azure-ad.md](../../../tutorials/security-access-control-tutorials/azure-ad.md)
+{% endcontent-ref %}
+
+{% content-ref url="../../../tutorials/security-access-control-tutorials/azure-ad-with-certificate-authentication.md" %}
+[azure-ad-with-certificate-authentication.md](../../../tutorials/security-access-control-tutorials/azure-ad-with-certificate-authentication.md)
+{% endcontent-ref %}
+
+{% content-ref url="../../../tutorials/security-access-control-tutorials/microsoft-ad-fs.md" %}
+[microsoft-ad-fs.md](../../../tutorials/security-access-control-tutorials/microsoft-ad-fs.md)
+{% endcontent-ref %}
+
+{% content-ref url="../../../tutorials/security-access-control-tutorials/apple.md" %}
+[apple.md](../../../tutorials/security-access-control-tutorials/apple.md)
+{% endcontent-ref %}
+
+{% content-ref url="../../../tutorials/security-access-control-tutorials/aidbox.md" %}
+[aidbox.md](../../../tutorials/security-access-control-tutorials/aidbox.md)
+{% endcontent-ref %}

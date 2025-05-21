@@ -2,9 +2,7 @@
 description: This article explains how access control performs in Aidbox
 ---
 
-# Overview
-
-## How is HTTP request processed? <a href="#how-is-http-request-processed" id="how-is-http-request-processed"></a>
+# How is an HTTP request processed in Aidbox
 
 When an HTTP request reaches Aidbox, it goes through several steps. The request can be rejected at any step due to checks being performed on the current step.
 
@@ -15,7 +13,7 @@ Set of HTTP request steps:
 3. Authorization
 4. Request processing
 
-<figure><img src="../../../../.gitbook/assets/http-request-processing-pipeline.png" alt=""><figcaption><p>HTTP request processing pipeline</p></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/http-request-processing-pipeline.png" alt=""><figcaption><p>HTTP request processing pipeline</p></figcaption></figure>
 
 ### Authentication
 
@@ -123,19 +121,17 @@ Authorization decides if a request can be processed by the desired handler. By t
 
 Aidbox applies `AccessPolicy` resources the request one after the other. It does it until any policy grants the permission.
 
-<figure><img src="../../../../.gitbook/assets/if-policy-allowed-request-others-are-skipped.png" alt=""><figcaption><p>If a policy allowed the request, other policies may be skipped</p></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/if-policy-allowed-request-others-are-skipped.png" alt=""><figcaption><p>If a policy allowed the request, other policies may be skipped</p></figcaption></figure>
 
 Access policies work as `OR` logic gate. In the example below the third policy is skipped due to the second one granted the request in.
 
-<figure><img src="../../../../.gitbook/assets/no-access-policy-allowed-request.png" alt=""><figcaption><p>Request rejected if no access policy allowed it</p></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/no-access-policy-allowed-request.png" alt=""><figcaption><p>Request rejected if no access policy allowed it</p></figcaption></figure>
 
 If there is no policy allowing the request, Aidbox rejects the request with the 401 (Unauthorized) response.
 
 ### What is a public route?
 
 The route is public anyone can access it. To make root public, create an `AccessPolicy` allowing access to it without any restrictions.
-
-
 
 ## **How Sensitive Values are Stored in the Database**
 
@@ -156,11 +152,9 @@ Upon first start after upgrading to 2410, Aidbox automatically hashes existing r
 * `GET /Session/<id>/_history`
 
 {% hint style="warning" %}
-It is strongly recommended to delete the history tables for the `Client` and `Session` resources to prevent access to the original un-hashed secret values.\
-
+It is strongly recommended to delete the history tables for the `Client` and `Session` resources to prevent access to the original un-hashed secret values.\\
 
 To delete the history, execute the following SQL commands in the DB console:\
 `truncate client_history;`\
 `truncate session_history;`
 {% endhint %}
-
