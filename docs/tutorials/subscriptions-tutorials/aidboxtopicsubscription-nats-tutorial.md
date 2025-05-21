@@ -22,8 +22,9 @@ In Aidbox, create [AidboxTopicDestination](../../modules/topic-based-subscriptio
 
 ```sh
 mkdir nats && cd nats
-mkdir jwt-auth
 mkdir jetstream
+mkdir jwt-auth
+mkdir username-password
 ```
 
 2. Go to the [getting started guide](../../getting-started/run-aidbox-locally.md). Create **docker-compose.yaml** and add these lines:
@@ -35,7 +36,7 @@ mkdir jetstream
     - "host.docker.internal:host-gateway"
     volumes:
     # module jar to turn on nats support
-    - ./topic-destination-nats-2505.1.jar:/topic-destination-nats-2505.1.jar
+    - ./topic-destination-nats-2505.2.jar:/topic-destination-nats-2505.2.jar
     # creds used in authentication
     - ./jwt-auth/creds:/creds
     # ...
@@ -288,6 +289,95 @@ Data:
 
 Acknowledged message
 ```
+
+## Username/Password authentication
+1. Turn off the previous nats-server (`Ctrl+C`).
+2. Change working directory.
+```
+cd username-password
+```
+3. Create `nats-server.conf`.
+```
+port: 4222
+
+authorization {
+  users = [
+    {
+      user: "alice"
+      password: "secret1"
+      permissions = {
+        publish = ["mysubject.>"]
+        subscribe = []
+      }
+    },
+    {
+      user: "bob"
+      password: "secret2"
+      permissions = {
+        publish = []
+        subscribe = ["mysubject.>"]
+      }
+    }
+  ]
+}
+```
+4. Start nats with this config:
+```shell
+nats-server -c nats-server.conf
+```
+5. Check that bob can read:
+```shell
+nats --user bob --password secret2 sub mysubject.hello
+```
+6. Check that alice can publish:
+```shell
+nats --user alice --password secret1 pub mysubject.hello "hello from alice"
+```
+7. Add `username` and `password` properties in `AidboxTopicDestination` resource.
+```json
+{
+  "resourceType": "AidboxTopicDestination",
+  "meta": {
+    "profile": [
+      "http://aidbox.app/StructureDefinition/aidboxtopicdestination-nats-core-best-effort"
+    ]
+  },
+  "kind": "nats-core-best-effort",
+  "id": "nats-core-destination",
+  "topic": "patient-topic",
+  "parameter": [
+    {
+      "name": "url",
+      "valueString": "nats://host.docker.internal:4222"
+    },
+    {
+      "name": "subject",
+      "valueString": "mysubject.hello"
+    },
+    {
+      "name": "username",
+      "valueString": "alice"
+    },
+    {
+      "name": "password",
+      "valueString": "secret1"
+    },
+    {
+      "name": "sslContext",
+      "valueString": "none"
+    }
+  ]
+}
+```
+8. Post the patient with a name.
+
+```
+POST /fhir/Patient
+
+name:
+- family: smith
+```
+9. See the output of bob's subscription.
 
 ## JWT authentication
 
