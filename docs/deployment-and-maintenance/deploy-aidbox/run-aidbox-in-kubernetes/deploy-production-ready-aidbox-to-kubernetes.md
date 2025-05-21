@@ -250,7 +250,7 @@ metadata:
 data:
   AIDBOX_BASE_URL: https://my.box.url
   AIDBOX_FHIR_PACKAGES: 'hl7.fhir.r4.core#4.0.1' # your packages
-  AIDBOX_TERMINOLOGY_SERVICE_BASE_URL: 'https://tx.fhir.org/r4'
+  AIDBOX_TERMINOLOGY_SERVICE_BASE_URL: 'https://tx.health-samurai.io/fhir'
   AIDBOX_BOX_ID: aidbox
   AIDBOX_PORT: '8080'
   AIDBOX_STDOUT_PRETTY: all
