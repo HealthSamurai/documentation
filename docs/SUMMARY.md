@@ -43,7 +43,7 @@
     * [How to enable hierarchical access control](tutorials/security-access-control-tutorials/how-to-enable-hierarchical-access-control.md)
     * [How to configure Audit Log](tutorials/security-access-control-tutorials/how-to-configure-audit-log.md)
     * [How is an HTTP request processed in Aidbox](tutorials/security-access-control-tutorials/overview.md)
-    * [Hot to configure SSO with another Aidbox instance to access Aidbox UI](tutorials/security-access-control-tutorials/aidbox.md)
+    * [How to configure SSO with another Aidbox instance to access Aidbox UI](tutorials/security-access-control-tutorials/aidbox.md)
     * [How to configure SSO with Okta to access Aidbox UI](tutorials/security-access-control-tutorials/okta.md)
     * [How to configure sign-in with Apple for access to the Aidbox UI](tutorials/security-access-control-tutorials/apple.md)
     * [How to configure Azure AD SSO for access to the Aidbox UI](tutorials/security-access-control-tutorials/azure-ad.md)
