@@ -4,6 +4,10 @@
 
 * Learn how to integrate [AidboxTopicSubscriptions](../../modules/topic-based-subscriptions/wip-dynamic-subscriptiontopic-with-destinations/README.md) with core NATS / NATS JetStream
 
+## Before you begin
+* Make sure your Aidbox version is newer than 2504
+* Setup the local Aidbox instance using getting started [guide](../../getting-started/run-aidbox-locally.md)
+
 ## What is NATS?
 
 [NATS](https://nats.io/) is a high-performance, open-source messaging broker designed for communication between services and microservices. It provides simple and fast message delivery using the publish/subscribe (pub/sub) pattern and supports various application interaction scenarios.
@@ -18,7 +22,14 @@ In Aidbox, create [AidboxTopicDestination](../../modules/topic-based-subscriptio
 
 ## Setting up
 
-1. Create a directory structure.
+1. Create a directory structure like this:
+```
+.
+├── docker-compose.yaml
+├── jetstream/
+├── jwt-auth/
+└── username-password/
+```
 
 ```sh
 mkdir nats && cd nats
@@ -27,7 +38,7 @@ mkdir jwt-auth
 mkdir username-password
 ```
 
-2. Go to the [getting started guide](../../getting-started/run-aidbox-locally.md). Create **docker-compose.yaml** and add these lines:
+2. Go to the [getting started guide](../../getting-started/run-aidbox-locally.md). Set up and edit **docker-compose.yaml** and add these lines:
 
 ```yaml
   aidbox:
@@ -52,7 +63,7 @@ mkdir username-password
 curl -O https://storage.googleapis.com/aidbox-modules/topic-destination-nats/topic-destination-nats-2505.1.jar
 ```
 
-4. Install NATS CLIs: **nats-server** and **nsc**.
+4. Install NATS CLIs: **nats-server** and **nsc** using [golang](https://go.dev/doc/install).
 
 ```sh
 go install github.com/nats-io/nats-server/v2@latest
