@@ -33,7 +33,7 @@ AIDBOX_FHIR_PACKAGES=hl7.fhir.r4.core#4.0.1
 To validate coded values with an external Terminology service, set it in the following environment variable.
 
 ```
-AIDBOX_TERMINOLOGY_SERVICE_BASE_URL=https://tx.fhir.org/r4
+AIDBOX_TERMINOLOGY_SERVICE_BASE_URL=https://tx.health-samurai.io/fhir
 ```
 
 {% hint style="warning" %}
