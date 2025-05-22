@@ -8,7 +8,7 @@ description: >-
 
 The Client Credentials grant is used when applications request an access token to access their own resources, not on behalf of a user (for example, background services and daemons). It must be used only by confidential clients.
 
-![Basic scheme](../../../../.gitbook/assets/f1f7a1f5-30e2-46e6-a7e2-e6e4a8fd4efd.svg)
+![Basic scheme](<../../../../.gitbook/assets/f1f7a1f5-30e2-46e6-a7e2-e6e4a8fd4efd (1).svg>)
 
 Aidbox OAuth module supports Client Credentials Grant flow in different formats. The first one is in strict adherence to [specification](https://tools.ietf.org/html/rfc6749#section-4.4.2) for better compatibility. The second one uses JSON request as a more modern and simple way. Read the official [OAuth 2.0 specification](https://tools.ietf.org/html/rfc6749#section-4.4) for more details.
 
@@ -193,7 +193,7 @@ status: 200
 
 ### Revoke Access Token (Close Session)
 
-Aidbox create Session (resource) for each Acce∂ss Token that can be closed with the special endpoint `DELETE /Session` with the token in the Authorization header:
+Aidbox create Session (resource) for each Access Token that can be closed with the special endpoint `DELETE /Session` with the token in the Authorization header:
 
 {% code title="close-session" %}
 ```yaml

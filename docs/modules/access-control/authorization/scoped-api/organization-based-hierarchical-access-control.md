@@ -97,7 +97,7 @@ Now we can read it:
 GET /Organization/org-b/fhir/Patient/pt-1
 ```
 
-Note, that patient has a  `https://aidbox.app/tenant-organization-id` extension, which references `org-b`.&#x20;
+Note, that patient has a `https://aidbox.app/tenant-organization-id` extension, which references `org-b`.
 
 ```
 id: >-
@@ -264,8 +264,8 @@ It is also possible to use org-based url in a `request.url`:
 <pre class="language-yaml"><code class="lang-yaml">POST /
 Accept: text/yaml
 Content-Type: text/yaml
-<strong>
-</strong><strong>resourceType: Bundle
+
+<strong>resourceType: Bundle
 </strong># transaction | batch
 type: transaction
 entry:
@@ -312,7 +312,7 @@ count-query: "SELECT count(*) from patient pt WHERE pt.resource#>>'{meta,organiz
 type: query
 ```
 
-Now `org-id` is automatically available in the query in `{{params.organization}}`.&#x20;
+Now `org-id` is automatically available in the query in `{{params.organization}}`.
 
 ```yaml
 GET /Organization/<org-id>/$query/<query-name>
@@ -355,3 +355,9 @@ meta:
 ```
 GET /Organization/org-b/fhir/Practitioner/prac-1
 ```
+
+## See also
+
+{% content-ref url="../../../../tutorials/security-access-control-tutorials/how-to-enable-hierarchical-access-control.md" %}
+[how-to-enable-hierarchical-access-control.md](../../../../tutorials/security-access-control-tutorials/how-to-enable-hierarchical-access-control.md)
+{% endcontent-ref %}
