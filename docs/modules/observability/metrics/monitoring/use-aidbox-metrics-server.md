@@ -10,7 +10,7 @@ Define`BOX_METRICS_PORT`environment variable with monitoring server port number.
 
 ## Start metrics server
 
-Aidbox exposes metrics on the endpoint `<AIDBOX_BASE_URL>/<BOX_METRICS_PORT>`.
+Aidbox exposes metrics on the endpoint `<AIDBOX_BASE_URL>:<BOX_METRICS_PORT>`.
 
 {% hint style="info" %}
 To check if the monitoring server works make the `GET <AIDBOX_BASE_URL>:<BOX_METRICS_PORT>` request. The output should be a string "aidbox metrics".
