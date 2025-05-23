@@ -37,8 +37,15 @@ Security Labels framework is a mechanism to restrict access to bundles, resource
 
 Aidbox does not have an explicit concept of roles. But you can use Access Policies to achieve role-based access control.
 
-**TODO**\
-**See tutorial: Role-Based Access Control**
+See tutorials:
+
+{% content-ref url="../../../tutorials/security-access-control-tutorials/rbac/rbac-with-jwt-containing-role.md" %}
+[rbac-with-jwt-containing-role.md](../../../tutorials/security-access-control-tutorials/rbac/rbac-with-jwt-containing-role.md)
+{% endcontent-ref %}
+
+{% content-ref url="../../../tutorials/security-access-control-tutorials/rbac/flexible-rbac-built-in-to-aidbox.md" %}
+[flexible-rbac-built-in-to-aidbox.md](../../../tutorials/security-access-control-tutorials/rbac/flexible-rbac-built-in-to-aidbox.md)
+{% endcontent-ref %}
 
 ## Attribute-Based Access Control
 

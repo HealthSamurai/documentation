@@ -13,7 +13,7 @@ Each `Role` resource assigns a role to a `User.` `AccessPolicy` resource has an 
 ## Create a practitioner
 
 ```yaml
-POST /Practitioner
+POST /fhir/Practitioner
 
 id: pr-1
 resourceType: Practitioner
@@ -27,7 +27,7 @@ name:
 Aidbox does not store any role information in a User resource. So create a user as usual.
 
 ```yaml
-POST /User
+POST /fhir/User
 
 id: user-1
 password: password
@@ -45,21 +45,19 @@ You can put any additional data into `context` property.
 Create a `Role` resource which assigns a role to the user we created.
 
 ```yaml
-POST /Role
+POST /fhir/Role
 
 id: practioner-role-user-1
 resourceType: Role
 user:
-  id: user-1
-  resourceType: User
+  reference: User/user-1
 name: practitioner
 links:
   practitioner:
-    id: pr-1
-    resourceType: 'Practitioner'
+    reference: Practitioner/pr-1
 ```
 
-If you need to assign same role to multiple users then just create multiple `Role` resources with same `name` property.
+If you need to assign the same role to multiple users, then just create multiple `Role` resources with the same `name` property.
 
 ## Create an access policy
 
@@ -75,11 +73,14 @@ resourceType: AccessPolicy
 
 roleName: practitioner
 engine: matcho
+link:
+  - id: FhirRead
+    resourceType: Operation
 matcho:
-  uri: '#/Practitioner/.*'
+  uri: '#/fhir/Practitioner/.*'
   request-method: get
   params:
-    resource/id: .role.links.practitioner.id
+    resource/id: .session.role.0.links.practitioner.id
 ```
 
 ## Try it
@@ -89,7 +90,7 @@ Log in as `user-1`.
 Read your data
 
 ```http
-GET /Practitioner/pr-1
+GET /fhir/Practitioner/pr-1
 ```
 
 Aidbox returns you a Practitioner resource.
@@ -99,12 +100,12 @@ Aidbox returns you a Practitioner resource.
 When you make a query
 
 ```
-GET /Practitioner/pr-1
+GET /fhir/Practitioner/pr-1
 ```
 
 Aidbox router stores data in the request object:
 
-* Uri `/Practitioner/pr-1` in the `uri` property.
+* Uri `/fhir/Practitioner/pr-1` in the `uri` property.
 * Method `get` in the `request-method` property.
 * path parameter `pr-1` in the `params.resource/id` property.
 

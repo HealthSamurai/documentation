@@ -21,7 +21,7 @@ In this guide, the external auth server URL is `https://auth.example.com`
 ## Create `TokenIntrospector`
 
 ```
-PUT /TokenIntrospector/external-auth-server
+PUT /fhir/TokenIntrospector/external-auth-server
 content-type: text/yaml
 
 resourceType: TokenIntrospector
@@ -39,12 +39,14 @@ Currently, we use a common `secret` to validate our introspector works. In produ
 ## Create `AccessPolicy` for the role `manager`
 
 ```http
-PUT /AccessPolicy/as-manager-get-users-list
+PUT /fhir/AccessPolicy/as-manager-get-users-list
 content-type: text/yaml
 
 resourceType: AccessPolicy
 id: as-manager-get-users-list
 engine: json-schema
+link:
+  - reference: Operation/FhirSearch
 schema:
   required:
   - jwt
@@ -92,7 +94,7 @@ Make an HTTP request providing `authorization` header with the `JWT` as a `Beare
 {% tabs %}
 {% tab title="Request" %}
 ```javascript
-GET /User
+GET /fhir/User
 content-type: text/yaml
 Authorization: Bearer eyJ0...1eAo
 ```
