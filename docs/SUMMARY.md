@@ -51,6 +51,7 @@
     * [How to configure Azure AD SSO with certificate authentication for access to the Aidbox UI](tutorials/security-access-control-tutorials/azure-ad-with-certificate-authentication.md)
     * [How to configure GitHub SSO for access to Aidbox UI](tutorials/security-access-control-tutorials/github.md)
     * [How to configure Keycloak for access for AidboxUI](tutorials/security-access-control-tutorials/keycloak.md)
+    * [How to implement Consent-based Access Control using FHIR Search and Aidbox Access Policy](tutorials/security-access-control-tutorials/how-to-implement-consent-based-access-control-using-fhir-search-and-aidbox-access-policy.md)
   * [Terminology Tutorials](tutorials/terminology-tutorials/README.md)
     * [Load ICD-10 terminology into Aidbox](tutorials/terminology-tutorials/load-icd-10-terminology-into-aidbox.md)
     * [Uploading IG terminology content to external FHIR terminology server](tutorials/terminology-tutorials/uploading-ig-terminology-content-to-external-fhir-terminology-server.md)
