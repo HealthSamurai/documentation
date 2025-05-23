@@ -41,7 +41,9 @@ SQL on FHIR utilizes ViewDefinition resources to describe the structure of flat 
 
 The view is described with its name, resource type, status, and the declaration of the rows it contains. In this example, we define a flat view named `obs_view` for Observations, that will have 2 fields: `id`, defined as the Observation's id, and `pid`, defined as the subject Patient's id.
 
-This example only scratches the surface. For more complex examples, see[query-data-from-flat-views.md](query-data-from-flat-views.md). For an in-depth overview of ViewDefinition's structure consult[reference.md](reference.md).
+This example only scratches the surface. For more complex examples, see [query-data-from-flat-views.md](query-data-from-flat-views.md). 
+
+For an in-depth overview of ViewDefinition's structure consult [reference](reference.md).
 
 ## Creating flat views
 
@@ -49,7 +51,7 @@ This example only scratches the surface. For more complex examples, see[query-da
 
 To create a flat view of the resource, you have to define it with a special resource called ViewDefinition. You can do it with a View Definitions editor in Aidbox UI.
 
-<figure><img src="../../.gitbook/assets/2023-09-25-151846.png" alt=""><figcaption><p>View Definitions editor</p></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/2023-09-25-151846.png" alt=""><figcaption><p>View Definitions editor</p></figcaption></figure>
 
 View definitions you've created can be viewed in a menu in the right part of the screen. There also are several samples to get you started. Note that samples are presented as View Definitions only and have no corresponding views in the database by default.
 
