@@ -36,7 +36,7 @@ UI Builder gives you an ability to change _version_ related properties and helps
 
 It warns you when:
 
-* you change an ID of Questionnaire is there are already Questionnaire with this new ID
+* you change an ID of Questionnaire and there is Questionnaire with such ID already exists
 * there is other questionaire with same URL+VERSION - preventing you from doing unconsistency
 * you trying to move Questionnaire into status 'active' without URL specified.
 * you trying to edit Questionnaire in status 'active' or 'retired'
