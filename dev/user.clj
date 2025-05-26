@@ -8,7 +8,8 @@
    [nextjournal.markdown.transform :as md.transform]
    [nextjournal.markdown.utils :as u]
    [edamame.core :as edamame]
-   [clojure.zip :as z]))
+   [clojure.zip :as z]
+   [gitbok.markdown.core]))
 
 (comment
   (dev/update-libs)

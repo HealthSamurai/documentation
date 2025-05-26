@@ -8,6 +8,7 @@
    [gitbok.indexing.impl.file-to-uri :as file-to-uri]
    [gitbok.indexing.impl.summary :as summary]
    [gitbok.indexing.impl.uri-to-file :as uri-to-file]
+   [gitbok.search]
    [gitbok.ui]
    [gitbok.static]
    [http]
@@ -34,19 +35,6 @@
          [:pre (pr-str e)]
          [:pre content*]]))))
 
-(defn picture? [request]
-  (or (str/includes? (:uri request) ".gitbook")
-      (str/includes? (:uri request) "/pictures")))
-
-(defn render-picture [request]
-  (def r request)
-  (->> #"\.gitbook"
-       (str/split (:uri request))
-       second
-       http/url-decode
-       (str "./docs/.gitbook")
-       resp/file-response))
-
 (defn read-and-render-file
   [context request]
   [:div.gitbook
@@ -61,12 +49,9 @@
   ^{:http {:path "/:path*"}}
   render-file-view
   [context request]
-  (cond
-    (picture? request)
-    (do (prn "here") (resp/file-response "docker.png"))
-
-    :else
-    (gitbok.ui/layout context request (read-and-render-file context request))))
+  (gitbok.ui/layout
+    context request
+    (read-and-render-file context request)))
 
 (defn
   handle-gitbook-assets
@@ -84,24 +69,50 @@
 #_{:clj-kondo/ignore [:unresolved-symbol]}
 (system/defstart
   [context config]
-  ;; (http/register-ns-endpoints context *ns*)
   (http/register-endpoint
     context
-    {:path "/" :method :get :fn #'render-file-view})
-
-  (http/register-endpoint
-    context
-    {:path "/pictures/:path" :method :get :fn #'handle-gitbook-assets})
+    {:path "/"
+     :method :get
+     :fn #'render-file-view})
 
   (http/register-endpoint
     context
-    {:path "/admin/broken" :method :get :fn #'gitbok.broken-links/broken-links-view})
+    {:path "/pictures/:path"
+     :method :get
+     :fn #'handle-gitbook-assets})
 
-  ;; (gitbok.static/register-endpoints context)
+  ;; todo
+  ;; (http/register-endpoint
+  ;;   context
+  ;;   {:path "/admin/broken" :method :get :fn #'gitbok.broken-links/broken-links-view})
 
+  (println "slurping all md files")
+  (indexing/set-md-files-idx context)
+  (println "parsing every markdown page in doc.")
+  (indexing/set-parsed-markdown-index
+    context
+    (indexing/get-md-files-idx context))
+
+  (println "set search idx")
+  (indexing/set-search-idx
+    context
+    (indexing/get-parsed-markdown-index context))
+
+  ;; todo reuse md-files-idx
   (uri-to-file/set-idx context)
   (file-to-uri/set-idx context)
   (summary/set-summary context)
+
+  ;; (http/register-endpoint
+  ;;   context
+  ;;   {:path "/search" :method :get :fn #'gitbok.search/search-view})
+
+  ;; (http/register-endpoint
+  ;;   context
+  ;;   {:path "/search/results" :method :get :fn #'gitbok.search/search-results-view})
+
+
+  (println "setup done!")
   {})
 
 (def default-config

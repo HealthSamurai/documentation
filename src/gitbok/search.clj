@@ -1,0 +1,49 @@
+(ns gitbok.search
+  (:require [gitbok.indexing.core :as indexing]
+            [cheshire.core]
+            [clojure.string :as str]
+            [gitbok.ui]
+            [gitbok.static]
+            [http]
+            [ring.util.response :as resp]
+            [system]
+            [uui]))
+
+(defn search [context query]
+  (indexing/search context query))
+
+(defn
+  ^{:http {:path "/search/results"}}
+  search-results-view
+  [context request]
+  (let [query (get-in request [:params "q"])
+        results (search context query)]
+    [:div.space-y-4
+     (if (empty? results)
+       [:div.text-gray-500.text-center.py-4 "No results found"]
+       (for [result results]
+         [:div.p-4.bg-white.rounded-lg.shadow-sm.hover:shadow-md.transition-shadow
+          [:a.block {:href (:uri result)}
+           [:h3.text-lg.font-medium.text-blue-600 (:title result)]
+           [:p.text-gray-600.mt-1 (:summary result)]]]))]))
+
+(defn
+  ^{:http {:path "/search"}}
+  search-view
+  [context request]
+  (gitbok.ui/layout
+    context request
+    [:div.flex.flex-col.items-center.min-h-screen.bg-gray-50.p-4
+     [:div.w-full.max-w-2xl.mt-8
+      [:div.relative
+       [:input#search-input.w-full.px-4.py-3.text-lg.rounded-lg.border.border-gray-300.shadow-sm.focus:outline-none.focus:ring-2.focus:ring-blue-500.focus:border-transparent
+        {:type "text"
+         :placeholder "Search documentation..."
+         :hx-get "/search/results"
+         :hx-trigger "keyup changed delay:500ms, search"
+         :hx-target "#search-results"
+         :hx-indicator ".htmx-indicator"
+         :hx-params "q"}]
+       [:div.htmx-indicator.absolute.right-3.top-3
+        [:div.animate-spin.rounded-full.h-6.w-6.border-b-2.border-blue-500]]]
+      [:div#search-results.mt-4.space-y-4]]]))

@@ -37,9 +37,9 @@
         rendered (transform/->hiccup renderers parsed)]
     rendered))
 
-#_(def readme (slurp "./docs/readme/README.md"))
+#_(def readme (slurp "./docs/getting-started/run-aidbox-locally.md"))
 
-#_(parse-markdown-content readme)
+#_(:content (parse-markdown-content readme))
 
 #_(parse-markdown-content "See [hello](../../hello.md)")
 #_(render-gitbook "See [hello](../../hello.md)")

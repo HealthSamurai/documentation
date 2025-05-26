@@ -3,6 +3,8 @@
         context/system         {:local/root "./libs/system"}
         hiccup/hiccup          {:mvn/version "2.0.0-RC4"}
         ring/ring-core         {:mvn/version "1.14.1"}
+        org.msync/lucene-clj   {:mvn/version "0.2.0-SNAPSHOT"}
+
 
         io.github.nextjournal/markdown {:mvn/version "0.6.157"}
         ;; commonmark-hiccup/commonmark-hiccup      {:mvn/version "0.2.0"}
