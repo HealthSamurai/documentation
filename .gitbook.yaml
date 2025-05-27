@@ -24,6 +24,67 @@ redirects:
     api-1/api/search-1/other/search-with-related-resources: api/rest-api/fhir-search/include-and-revinclude.md
     api-1/api/search-1/search-parameters-list/_include-and-_revinclude: api/rest-api/fhir-search/include-and-revinclude.md
 
+    api-1/api/crud-1/fhir-and-aidbox-crud: api/rest-api/crud/README.md
+    api-1/api/other/usdpsql: api/rest-api/other/sql-endpoints.md
+    api-1/api/search-1/chained-parameters: api/rest-api/fhir-search/chaining.md
+    api-1/api/search-1/configure-search-api: reference/settings/fhir.md
+    api-1/api/search-1/custom-search-parameter/custom-search-parameters: tutorials/crud-search-tutorials/search-tutorials/custom-searchparameter-tutorial.md
+    api-1/api/search-1/custom-search-parameter/search-resource: api/rest-api/aidbox-search.md
+    api-1/api/search-1/custom-search-parameter: tutorials/crud-search-tutorials/search-tutorials/custom-searchparameter-tutorial.md
+    api-1/api/search-1/other/custom-search: tutorials/crud-search-tutorials/search-tutorials/custom-searchparameter-tutorial.md
+    api-1/api/search-1/searchparameter: api/rest-api/fhir-search/searchparameter.md
+    api-1/api/search-1/search-parameters-list/_count-and-_page: api/rest-api/fhir-search/searchparameter.md
+    api-1/api/search-1/search-parameters-list/_elements: api/rest-api/fhir-search/searchparameter.md
+    api-1/api/search-1/search-parameters-list/_explain: api/rest-api/aidbox-search.md
+    api-1/api/search-1/search-parameters-list/_filter: api/rest-api/fhir-search/searchparameter.md
+    api-1/api/search-1/search-parameters-list/_ilike: api/rest-api/fhir-search/searchparameter.md
+    api-1/api/search-1/search-parameters-list/_lastupdated: api/rest-api/fhir-search/searchparameter.md
+    api-1/api/search-1/search-parameters-list/_profile: api/rest-api/fhir-search/searchparameter.md
+    api-1/api/search-1/search-parameters-list/_result: api/rest-api/aidbox-search.md
+    api-1/api/search-1/search-parameters-list/_sort: api/rest-api/fhir-search/searchparameter.md
+    api-1/api/search-1/search-parameters-list/_source: api/rest-api/fhir-search/searchparameter.md
+    api-1/api/search-1/search-parameters-list/_total-or-_countmethod: api/rest-api/fhir-search/searchparameter.md
+    api-1/api/search-1/searchparameter-types/date-search: api/rest-api/fhir-search/searchparameter.md
+    api-1/api/search-1/searchparameter-types/token-search: api/rest-api/fhir-search/searchparameter.md
+    api-1/bulk-api-1/import-from-a-bucket: api/bulk-api/bulk-import-from-an-s3-bucket.md
+    api-1/bulk-api-1/usdimport-and-fhir-usdimport: api/bulk-api/import-and-fhir-import.md
+    api-1/bulk-api-1/usdload: api/bulk-api/load-and-fhir-load.md
+    api-1/fhir-api/search-1/custom-search: api/rest-api/fhir-search/README.md
+    api-1/fhir-api/search-1/reference-search: api/rest-api/fhir-search/searchparameter.md
+    api-1/fhir-api/search-1/search-parameters-list/_lastupdated: api/rest-api/fhir-search/searchparameter.md
+    api-1/fhir-api/search-1/search-parameters-list/_timeout: api/rest-api/aidbox-search.md
+    api-1/other/compartments: modules/access-control/authorization/scoped-api/compartments-api.md
+    api-1/transaction: api/batch-transaction.md
+    api/rest-api/crud-1/fhir-and-aidbox-crud: api/rest-api/crud/README.md
+    app-development/aidbox-sdk/aidbox-apps: app-development/aidbox-sdk/apps.md
+    apple-app-site-association: tutorials/security-access-control-tutorials/apple.md
+    getting-started/editions-and-pricing: getting-started/licensing-and-support.md
+    getting-started/run-aidbox-locally-with-docker: getting-started/licensing-and-support.md
+    modules-1/smartbox/how-to-guides/pass-inferno-tests-with-smartbox/~/comments: modules/smartbox/how-to-guides/pass-inferno-tests-with-smartbox.md
+    modules/aidbox-forms/aidbox-ui-builder-alpha/form-creation/how-to-guides/how-to: modules/aidbox-forms/aidbox-ui-builder-alpha/form-creation/how-to-guides/README.md
+    modules/observability/logging-and-audit: modules/access-control/audit-and-logging.md
+    modules/observability/logging-and-audit/readme-1/datadog-guide: modules/observability/logs/tutorials/export-logs-to-datadog-tutorial.md
+    modules/observability/logging-and-audit/readme-1/how-to-explore-and-visualize-aidbox-logs-with-kibana-and-grafana: modules/observability/logs/tutorials/log-analysis-and-visualization-tutorial.md
+    modules/security-and-access-control/authentication/access-to-aidboxui: modules/access-control/authentication/README.md
+    modules/security-and-access-control/authentication: modules/access-control/authentication/README.md
+    modules/security-and-access-control/how-to-guides/smart-app: deprecated/deprecated/other/how-to-guides/smart-on-fhir/get-a-smart-app-launched.md
+    modules/security-and-access-control/how-to-guides/smart-on-fhir/smart-on-fhir-app-launch: deprecated/deprecated/other/how-to-guides/smart-on-fhir/get-a-smart-app-launched.md
+    modules/security-and-access-control/patient-data-access-api/smart-on-fhir: modules/access-control/authorization/smart-on-fhir/README.md
+    modules/security-and-access-control/smart-on-fhir/smart-scopes: modules/access-control/authorization/smart-on-fhir/smart-scopes-for-limiting-access.md
+    modules/security-and-access-control/technical-reference/overview: reference/system-resources-reference/iam-module-resources.md
+    modules/terminology/usdtranslate-on-conceptmap: modules/terminology/translate-on-conceptmap.md
+    modules/topic-based-subscriptions/subscriptions-1: modules/topic-based-subscriptions/README.md
+    overview/aidbox-ui/rest-console-1: overview/aidbox-ui/rest-console.md
+    overview/faq: modules/eprescription/frequently-asked-questions.md
+    readme-1/readme-1-1/access-policy: modules/access-control/authorization/access-policies.md
+    readme-1/readme-1-1/basic-auth-tutorial: modules/security-and-access-control/auth/basic-auth.md
+    readme-1/readme-1-1/rbac/role-based-access-control-with-jwt-containing-role: tutorials/security-access-control-tutorials/rbac/README.md
+    readme-1/readme-1-1/relationship-based-access-control-in-aidbox: tutorials/security-access-control-tutorials/rbac/README.md
+    readme-1/subscriptions: modules/topic-based-subscriptions/README.md
+    readme-1/validation-tutorials/upload-fhir-implementation-guide/uploading-fhir-ig-using-uploadfig-library: tutorials/validation-tutorials/upload-fhir-implementation-guide/uploadfig-tool.md
+    storage-1/database: database/overview.md
+    storage-1/other/s3-compatible-storages: storage/aws-s3.md
+
     # generated using script scripts/redirects-from-all-files.sh
     # api-1 -> api, same with bulk-1 etc
     api-1/batch-transaction: api/batch-transaction.md
