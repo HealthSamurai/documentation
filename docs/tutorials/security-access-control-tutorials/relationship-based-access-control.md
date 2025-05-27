@@ -77,7 +77,7 @@ extensionUrl: urn:extension:researchStudyMember
 ```
 
 {% hint style="warning" %}
-If you use zen profiles, Attribute resources will be disabled. Thus, you will need to define your attributes in [zen]().
+If you use zen profiles, Attribute resources will be disabled. Thus, you will need to define your attributes in [zen](relationship-based-access-control.md).
 {% endhint %}
 
 ### Upload sample data
@@ -161,7 +161,7 @@ matcho:
 
 matcho engine compares incoming request with defined pattern, if the key is not specified in pattern, it will be ignore while checking. `_include`, `_revinclude` and `_with` parameters expands the list of returning data with related resources. As far we want to leave only ResearchStudy resources, we excluded them explicitly.
 
-Read more on [AccessPolicy best practicies guide](../../modules/security-and-access-control/security/accesspolicy-best-practices.md).
+Read more on [AccessPolicy best practicies guide](accesspolicy-best-practices.md).
 {% endhint %}
 
 Let's check it.
@@ -491,4 +491,4 @@ And we met this requirement using ReBAC authorization model. In order to achieve
 
 ### What's next
 
-Writing access policies may be tricky some time, Aidbox has tooling to [debug AccessPolicy](./debug-access-control.md).
+Writing access policies may be tricky some time, Aidbox has tooling to [debug AccessPolicy](debug-access-control.md).

@@ -1,26 +1,56 @@
----
-description: This guide explains how Access control debug tools work
----
+# Debug Access Control
 
-# Debug access control
+There are 5 different ways to debug access control in Aidbox:
 
-Aidbox offers multiple ways to debug access policies.
+* Access policy dev tool
+* **\_\_debug** search parameter
+* **x-debug** header
+* **su** header
+* **/auth/test-policy** endpoint
+
+We recommend using Access Policy Dev Tool.
 
 ## Access policy dev tool
 
-[Access policy dev tool](debug-access-control.md#access-policy-dev-tool) simplifies development & debugging AccessPolicy resources. It was introduced in March v2303 release of Aidbox.
+Access policy dev tool simplifies development and debugging AccessPolicies. It was introduced in March v2303 release of Aidbox.
 
 <figure><img src="../../../.gitbook/assets/43825a0a-ff36-48f3-9a37-c84e3dc5a49e.png" alt=""><figcaption><p>Access policy dev tool UI</p></figcaption></figure>
 
+The dev tool is a part of Aidbox UI Console, which aims
+
+* to edit AccessPolicy resource, and
+* to give a nice view for AccessPolicy debug output for a specific request in the same place.
+
+The dev tool is split into two sides, the editor side and the result side. On the left side, you define
+
+* [AccessPolicy resource](../../modules/access-control/authorization/access-policies.md) and
+* HTTP request you are going to debug.
+
+When you press the **Save & Run** button, the dev tool saves AccessPolicy and performs policy debug operation for the specified request, and displays the result on the right side. You can see there
+
+* _Evaluate policy result._ List of all access policies and the result of evaluation.
+* _Parsed HTTP request._ It's an internal representation of the request, which Aidbox passes to the eval-policy function.
+
+To use the Access policy dev tool, [Aidbox Development mode](../../reference/settings/security-and-access-control.md#security.dev-mode) setting must be enabled.
+
+### Sending the request as a user
+
+By default, Aidbox sends requests with your current session (your identity and permissions). To authenticate with another session, add an  `Authorization` header to the request, e.g.
+
+```
+GET /fhir/Patient
+Authorization: Bearer eyJ...w5c
+```
+
 ## `__debug` query-string parameter
 
-There is a special query-string parameter `__debug=policy` you can pass to every Aidbox request. It will toggle debug mode for Request Authorization Layer, and in this mode instead of actual response client will get an object containing:
+There is a special query-string parameter `__debug=policy` you can pass to every Aidbox request. It will toggle debug mode for Request Authorization Layer, and in this mode, instead of the actual response client will get an object containing:of the&#x20;
 
 * full request object;
 * an array of existing AccessPolicies;
 * evaluation result for every AccessPolicy (under `AccessPolicy.evalResult`).
 
-Define `AIDBOX_DEV_MODE` to enable `__debug` parameter
+To use the header, [Aidbox Development mode](../../reference/settings/security-and-access-control.md#security.dev-mode) setting must be enabled.
 
 ## `x-debug: policy` request header
 
@@ -35,34 +65,30 @@ x-debug: policy
 # :auth/trace-policy {:access-policy-id :policy-2, :policy-type "json-schema",...
 ```
 
+To use the header, [Aidbox Development mode](../../reference/settings/security-and-access-control.md#security.dev-mode) setting must be enabled.
+
 ## `su` request header
 
 `su` header allows to switch user on behalf of whom request is executed. Use `su=<user/client id>` to check how access control works for that user.
 
-`su` header functionality can be enabled with `box_debug_su_enable` env
-
-{% code title="Example" %}
-```
-box_debug_su_enable=true
-```
-{% endcode %}
+To use the header, [SU enable setting](../../reference/settings/security-and-access-control.md#security.debug-su-enable) must be enabled.
 
 {% hint style="info" %}
 `su` header is only available to admin users, who have at least one `AccessPolicy` with `engine` = `allow` linked to them.
 {% endhint %}
 
-### Example
+Usual request without the header as an admin:
 
 ```http
-# Request as an admin:
 GET /fhir/Patient
 
 # Response:
 Status: 200
 ```
 
+Request on behalf of User `myid`  who has no access to the Patient search:
+
 ```http
-# Request on behalf of `myid` User who has no access to Patient search:
 GET /fhir/Patient
 su: myid
 
@@ -72,14 +98,22 @@ Status: 403
 
 ## `/auth/test-policy` Operation
 
-You can use a special operation `POST /auth/test-policy` to design policy without creating an AccessPolicy resource and for different users and clients. Post on the `/auth/test-policy` with a simulated **request** attribute (you can provide existing `user-id` and `client-id` — Aidbox will find and populate request) and temporal policy in the **policy** attribute. If you want to test JWT auth, put your token in the `headers.authorization` with the `Bearer` prefix — the token will be parsed and its claims appear in the `request.jwt`. JWT in a header is parsed but not validated. This allows you to test JWT policy without **TokenIntrospector** registration.
+You can use a special operation `POST /auth/test-policy` to design AccessPolicy without creating it.
 
-The response contains a result of evaluated policy.
+Post on the `/auth/test-policy` with:
+
+* &#x20;a simulated **request** (you can provide existing `user-id` and `client-id`),
+* policy code in the **policy** attribute.&#x20;
+
+If you want to test JWT auth, put your token in the `headers.authorization` with the `Bearer` prefix. In this case, the token will be parsed, and its claims appear in the `request.jwt`.&#x20;
+
+JWT in a header is parsed but not validated.&#x20;
+
+This allows you to test JWT policy without **TokenIntrospector** registration.
 
 ```yaml
 POST /auth/test-policy
 
--- simulate request document
 request:
   uri: '/Patient'
   request-method: get
@@ -99,9 +133,11 @@ policy:
   engine: sql
   sql:
     query: 'SELECT {{user.role}} FROM {{!params.resource/type}}'
+```
 
--- response
+The response contains a result of evaluated policy.
 
+```yaml
 request:
   uri: /Patient
   request-method: get
@@ -115,12 +151,16 @@ operation:
   action: proto.operations/search
   module: proto
   id: Search
--- original policy
 policy:
   engine: sql
   sql: {query: 'SELECT {{user.role}} FROM {{!params.resource/type}}'}
--- result of policy evaluation
 result:
   eval-result: false
   query: ['SELECT ? FROM "patient"', admin]
 ```
+
+## See also
+
+{% content-ref url="accesspolicy-best-practices.md" %}
+[accesspolicy-best-practices.md](accesspolicy-best-practices.md)
+{% endcontent-ref %}

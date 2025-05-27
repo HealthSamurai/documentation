@@ -592,11 +592,11 @@ Minor updates:
   * Released [FHIR to C-CDA bidirectional converter](../modules/integration-toolkit/ccda-converter/) (beta). Supported sections:
     * Allergies, Encounters, Immunizations, Problems, Vital Signs, Results, Social History, Procedures, Medications
 * Security and Access control
-  * Developed [access policy dev tool](../modules/security-and-access-control/security/access-policy-dev-tool.md)
+  * Developed [access policy dev tool](../tutorials/security-access-control-tutorials/access-policy-dev-tool.md)
   * Added tutorials and guides:
     * [Auth overview article](../tutorials/security-access-control-tutorials/overview.md)
     * How to implement the ReBAC authorization model in Aidbox within AccessPolicy
-    * [Access policy best practices](../modules/security-and-access-control/security/accesspolicy-best-practices.md)
+    * [Access policy best practices](../tutorials/security-access-control-tutorials/accesspolicy-best-practices.md)
 * Aidbox user portal
   * Added FHIR R4B zenFHIR package to configuration options
 * Aidbox Forms

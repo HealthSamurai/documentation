@@ -2,9 +2,10 @@
 description: >-
   Access policy dev tool simplifies development & debugging AccessPolicy
   resources
+hidden: true
 ---
 
-# Access policy dev tool
+# Deprecated Access policy dev tool
 
 Access policy dev tool simplifies development & debugging AccessPolicy resources. It was introduced in March v2303 release of Aidbox.
 
@@ -19,11 +20,11 @@ The dev tool is a part of Aidbox UI Console, which aims
 * to edit AccessPolicy resource, and
 * to give a nice view for AccessPolicy debug output for specific request in the same place.
 
-<figure><img src="../../../../.gitbook/assets/282099be-926f-4dc0-a525-0fec435c5e3b.png" alt=""><figcaption><p>Access policy dev tool</p></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/282099be-926f-4dc0-a525-0fec435c5e3b.png" alt=""><figcaption><p>Access policy dev tool</p></figcaption></figure>
 
 The dev tool is split on two sides, editor side and result side. On the left side you define
 
-* [AccessPolicy resource](../../access-control/authorization/access-policies.md) and
+* [AccessPolicy resource](../../modules/access-control/authorization/access-policies.md) and
 * HTTP request you are going to debug.
 
 When you press the Save\&Run button, the dev tool saves AccessPolicy and performs policy debug operation for the specified request, and displays the result on the right side. You can see there
@@ -35,11 +36,11 @@ When you press the Save\&Run button, the dev tool saves AccessPolicy and perform
 
 To get to the dev tool from AccessPolicy list page, click the _dev tool_ link on a AccessPolicy you want to debug.
 
-<figure><img src="../../../../.gitbook/assets/f8b6e4e1-0152-46fd-a7c4-458763789da6.png" alt=""><figcaption><p>AccessPolicy list with the link to dev tool</p></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/f8b6e4e1-0152-46fd-a7c4-458763789da6.png" alt=""><figcaption><p>AccessPolicy list with the link to dev tool</p></figcaption></figure>
 
 To get to the dev tool from AccessPolicy view page, click the link on the top right corner.
 
-<figure><img src="../../../../.gitbook/assets/250622b2-6629-4bf9-af83-a2d8d38d2757.png" alt=""><figcaption><p>AccessPolicy view page with the link to dev tool</p></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/250622b2-6629-4bf9-af83-a2d8d38d2757.png" alt=""><figcaption><p>AccessPolicy view page with the link to dev tool</p></figcaption></figure>
 
 ## Tips
 

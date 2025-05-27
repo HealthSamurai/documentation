@@ -87,10 +87,15 @@ AccessPolicy instance can be linked to User, Client or Operation resources with 
 **Performance consideration.** Link your policy to User, Client or Operation. Otherwise, it will be evaluated for every request, increasing the number of checks.
 {% endhint %}
 
-**TODO Tutorials**
+See tutorials:
 
-* **Best practice - use Access Policies for complex access control logic**
-* **Debugging Access Policies**
+{% content-ref url="../../../tutorials/security-access-control-tutorials/accesspolicy-best-practices.md" %}
+[accesspolicy-best-practices.md](../../../tutorials/security-access-control-tutorials/accesspolicy-best-practices.md)
+{% endcontent-ref %}
+
+{% content-ref url="../../../tutorials/security-access-control-tutorials/debug-access-control.md" %}
+[debug-access-control.md](../../../tutorials/security-access-control-tutorials/debug-access-control.md)
+{% endcontent-ref %}
 
 ## Evaluation engines
 

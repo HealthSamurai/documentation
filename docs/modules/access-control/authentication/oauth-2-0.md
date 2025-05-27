@@ -2,7 +2,7 @@
 
 [Aidbox](https://www.health-samurai.io/aidbox) uses the OAuth 2.0 authorization framework to provide secure access to the FHIR API and support each authorization flow described in the [OAuth 2.0 Authorization Framework RFC](https://tools.ietf.org/html/rfc6749).
 
-The OAuth 2.0 authorization framework enables a third-party application to obtain limited access to an HTTP service, either on behalf of a resource owner by orchestrating an approval interaction between the resource owner and the HTTP service, or by allowing the third-party application to obtain access on its behalf.&#x20;
+The OAuth 2.0 authorization framework enables a third-party application to obtain limited access to an HTTP service, either on behalf of a resource owner by orchestrating an approval interaction between the resource owner and the HTTP service, or by allowing the third-party application to obtain access on its behalf.
 
 More details can be found in the [OAuth 2.0 Authorization Framework RFC](https://tools.ietf.org/html/rfc6749).
 
@@ -27,8 +27,6 @@ sequenceDiagram
 This flow is for trusted apps that need to access their resources on a server, not a user’s. The app uses its ID and secret (like a username and password for the app) to ask the authorization server for an access token. Once it gets the token, the app can use it to access the resources. It’s like the app saying, _“It’s me, let me in!”_ No user is involved here — just the app proving who it is.
 
 Use this flow with **Backend/Server applications** that are capable of securely storing secrets.
-
-**See also: TODO How to configure Client Credentials Grant**
 
 ## Authorization Code Grant
 
@@ -57,8 +55,6 @@ The Authorization Code grant is used by **server-side applications** that are ca
 
 Since this is a redirection-based flow, the client must be capable of interacting with the resource owner's user-agent (typically a web browser) and capable of receiving incoming requests (via redirection) from the authorization server.
 
-**TODO: Tutorial: How to configure Authorization Code Grant**
-
 ## Resource Owner Credentials Grant
 
 ```mermaid
@@ -81,8 +77,6 @@ sequenceDiagram
 In this flow, a user gives their username and password directly to the app. The app then sends these to the authorization server to get an access token. With the token, the app can access the user’s resources. It’s simple but risky since the app handles the user’s credentials. Imagine the user saying, _“Here’s my login; go get the token for me.”_
 
 This flow suits **Native applications** (e.g., mobile or desktop apps) where users trust the application enough to provide their username and password directly. It can also be used in **Regular web applications** in some cases, though this is less common due to security concerns. It’s a straightforward option when the application can securely handle user credentials.
-
-**TODO Tutorial: How to configure Resource Owner Credentials Grant**
 
 ## Implicit Grant
 
@@ -110,8 +104,6 @@ sequenceDiagram
 This flow is for apps that can’t keep secrets, like mobile or single-page apps. The user logs into the authorization server and approves the app. The server sends the access token directly back through the redirect URL (often in the web address). It’s less secure since the token is visible to the browser, but it works for these apps. It’s like the user saying, _“Give the app the key right now!”_
 
 This flow is designed for **Single Page Applications (SPAs)**, which run in the browser and cannot securely store secrets. It’s also applicable to some **Native applications** for simplicity. In this flow, the access token is returned directly via a redirect URL, making it suitable for apps without server-side logic, though it’s considered less secure.
-
-**TODO Tutorial: How to configure Implicit Grant**
 
 ## Auth Sandbox
 

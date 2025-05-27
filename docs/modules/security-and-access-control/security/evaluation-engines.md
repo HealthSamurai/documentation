@@ -23,7 +23,7 @@ It is recommended to use Matcho engine. In 90% of cases, it is enough. Sometimes
 
 All access policies are listed in **Access Control -> Access Policy** Aidbox UI page.
 
-To debug the created access policy, use [Access policy dev tool](access-policy-dev-tool.md).
+To debug the created access policy, use [Access policy dev tool](../../../tutorials/security-access-control-tutorials/access-policy-dev-tool.md).
 
 ## Allow engine
 
@@ -75,14 +75,14 @@ matcho:
 
 * Strings, numbers, and booleans are compared by value.
 * If the pattern is a dictionary, search for its inclusion into a test subject. This check is nested and recursive.
-  * Pattern: `{x: 1}`&#x20;
+  * Pattern: `{x: 1}`
     * matches: `{x: 1}`, `{x: 1, y: 2, ...}`
-    * doesn't match: `{z: 1}`&#x20;
-  * Pattern `{a: {b: 5}`&#x20;
+    * doesn't match: `{z: 1}`
+  * Pattern `{a: {b: 5}`
     * matches: `{a: {b: 5, c: 6, ...}, d: 7}`
-    * doesn't match: `{a: {c: 5}}`, `{b: {a: 5}}`&#x20;
+    * doesn't match: `{a: {c: 5}}`, `{b: {a: 5}}`
 * If a pattern is an array, search for its elements in the order given.
-  * Pattern `[1, 2]`&#x20;
+  * Pattern `[1, 2]`
     * matches `[1, 2]`, `[1, 2, 3, …]`
     * doesn't match: `[2, 1]`
 
@@ -90,27 +90,27 @@ matcho:
 
 If a string starts with `#` , it is treated as a regular expression.
 
-* Pattern `{a: "#\\d+"}`&#x20;
+* Pattern `{a: "#\\d+"}`
   * matches: `{a: "2345"}`
   * doesn't match: `{a: "abc"}`
 
 #### Special string literals (postfixed with `?`)
 
 * **present?** — matches non-`null` values
-  * Pattern `{a: "present?"}`&#x20;
+  * Pattern `{a: "present?"}`
     * matches: `{a: 5}`,`{a: {b: 6}}`
     * doesn't match: `{b: 5}`
 * **nil?** — matches `null` values;
 * **not-blank?** — matches a non-empty string.
 
-#### Matching values from the request context&#x20;
+#### Matching values from the request context
 
 If a string starts with `.` , it is interpreted as a path in the provided request context.
 
-* Pattern: `{params: {user_id: ".user.id"}}`&#x20;
+* Pattern: `{params: {user_id: ".user.id"}}`
   * matches: `{user: {id: 1}, params: {user_id: 1}}` where `user.id == param.user_id`.
 
-In this example, $matcho will evaluate true only if 'a' is equal to my-value from the context.&#x20;
+In this example, $matcho will evaluate true only if 'a' is equal to my-value from the context.
 
 ```
 POST /$matcho
@@ -123,12 +123,12 @@ resource: {'a': 'value'}
 #### Special keys
 
 * **$enum** — value must be equal to one of the items in the enumeration. Strings, numbers, and booleans are supported.
-  * Pattern: `{request-method: {$enum: ["get", "post"]}}`&#x20;
+  * Pattern: `{request-method: {$enum: ["get", "post"]}}`
     * matches: `{request-method: "post"},` `{request-method: "get"}`
     * doesn't match: `{request-method: "put"}`
 *   **$one-of —** value must match any of the patterns. Should be used in cases, when **$enum** can not be used.
 
-    * Pattern `{a: {$one-of: [{b: "present?"}, {c: "present?"}]}}`&#x20;
+    * Pattern `{a: {$one-of: [{b: "present?"}, {c: "present?"}]}}`
       * matches `{a: {c: 5}}`
       * doesn't match: `{a: {d: 5}`, `{a: {b: null}`
 
@@ -150,7 +150,7 @@ resource: {'a': 'value'}
               - id: present?
                 resource/type: Patient
         ```
-    * **Incorrect usage example.**&#x20;
+    * **Incorrect usage example.**
 
     In this case, the `$one-of` key is improperly combined with the `resource/type` key within the same `params` block:
 
@@ -173,16 +173,16 @@ resource: {'a': 'value'}
 Example: `{resource: {patient: {$reference: {id: '.user.data.patient_id'}}}`
 
 * **$contains** — collection must contain at least one match.
-  * Pattern: `{type: {$contains: {system: "loinc"}}`&#x20;
+  * Pattern: `{type: {$contains: {system: "loinc"}}`
     * matches `{type: [{system: "snomed"}, {system: "loinc"}]}`
 * **$every** — each item in a collection must satisfy a pattern.
-  * Pattern: `{col: {"$every": {foo: "bar"}}`&#x20;
+  * Pattern: `{col: {"$every": {foo: "bar"}}`
     * matches: `{col: [{foo: "bar"}, {foo: "bar", baz: "quux"}]}`
 *   **$not** — negates a pattern.
 
-    * Pattern: `{message: {$not: {status: private}}`&#x20;
-      * matches: `{message: {status: public}}`&#x20;
-      * doesn't match: `{message: {status: private}}`.&#x20;
+    * Pattern: `{message: {$not: {status: private}}`
+      * matches: `{message: {status: public}}`
+      * doesn't match: `{message: {status: private}}`.
 
     **Be careful** when using **$not**, as it is possible to create policies that are too permissive.
 
@@ -344,7 +344,7 @@ sql:
 
 ### Interpolation Rules
 
-You can parameterize your SQL queries with request object using `{{path}}` syntax. For example, to get a user role provided  `{user: {data: {role: "admin"}}}` you write `{{user.data.role}}`. Parameter expressions are escaped by default to protect from SQL injection.
+You can parameterize your SQL queries with request object using `{{path}}` syntax. For example, to get a user role provided `{user: {data: {role: "admin"}}}` you write `{{user.data.role}}`. Parameter expressions are escaped by default to protect from SQL injection.
 
 For dynamic queries — to parameterize table name, for example — you have to use `{{!path}}` syntax. The expression `SELECT true from {{!params.resource/type}} limit 1` when a request contains `{params: {"resource/type": "Patient"}}` will be transformed into `SELECT true from "patient".` By default, identifier names are double-quoted and lower-cased.
 

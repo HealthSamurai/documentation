@@ -4,26 +4,41 @@ description: Access policies creating and maintaning recommendations
 
 # AccessPolicy best practices
 
-## Naming
+## Link AccessPolicy to `User` , `Client` or `Operation`&#x20;
 
-Access policy naming is an important aspect as good name makes it is easier to understand and manage policies.
+An `AccessPolicy` instance can be linked to `User`, `Client` or `Operation` resources using the`AccessPolicy.link` field.&#x20;
 
-### Add `as-` prefix to describe the audience of the policy
+When authorizing a request, Aidbox evaluates all relevant `AccessPolicy` rules — those linked to the associated `User`, `Client`, and `Operation`, as well as any global policies.
 
-Name should describe the intended user, user group or application who was granted permissions, such as "practitioner" in the example provided. This way, anyone looking at the name can quickly identify the intended audience for the policy.
+If no links are specified, the policy is treated as a **global policy**. It means that **if you do not link your AccessPolicy to `User`, `Client` or `Operation` resource, it evaluates on every request, which affects performance.**
 
-For example, `as-practitioner-use-graphql`
+### Using Client and Operation in AccessPolicy
 
-### Explain what resources is granted access to
+We can find `id` of Operation in **APIs -> Operations** page.
 
-Additionally, it's helpful to include information about the resource being accessed in the policy name. For example, "use-graphql" in the example above gives context to the type of resource being accessed.
+<figure><img src="../../.gitbook/assets/image (1).png" alt=""><figcaption></figcaption></figure>
 
-### Several good names examples
+This policy will be evaluated on every request from  `myclient` Client. It allows  `myclient` Client  reading every resource by ID.&#x20;
 
-* `as-patient-upload-profile-photo`
-* `as-practitioner-get-user-notifications`
-* `as-anoymous-verify-one-time-password`
-* `as-smart-app-read-patient-details`
+```json
+{
+  "resourceType": "AccessPolicy",
+  "link": [{"reference": "Client/myclient"}],
+  "engine": "matcho",
+  "matcho": {"operation": {"id": "FhirRead"}}
+}
+```
+
+Note that in the case of multiple links in the `link` field, it is interpreted as `OR` operation. This policy will allow everything to Client `myclient` and `FhirRead` operation to anybody.
+
+```json
+{
+  "id": "wrong-access-policy",
+  "resourceType": "AccessPolicy",
+  "link": [{"reference": "Client/myclient"}, {"reference": "Operation/FhirRead"}],
+  "engine": "allow"
+}
+```
 
 ## `.` path should be tested for `present?`
 
@@ -71,9 +86,9 @@ When using **only** the `or` operator in the `complex` policy, it is recommended
 
 It gives profits:
 
-1. Tiny policies give well grained access control
+1. Tiny policies give well-grained access control
 2. Small policies are easy to maintain
-3. Aidbox logs access policy which granted access. If you have "fat" policy, it is not transparent what exact rule let a request in. When there are tiny policies, it is clear who passed the request.
+3. Aidbox logs the access policy that granted access. If you have "a fat" policy, it is not transparent what exact rule lets a request in. When there are tiny policies, it is clear who passed the request.
 
 For example, we have such an access policy.
 
@@ -96,7 +111,7 @@ or:
       request-method: post
 ```
 
-That policy should be splitted to two ones.
+That policy should be splitted into two ones.
 
 ```yaml
 # see patients list & read certain patient resource
@@ -126,7 +141,7 @@ matcho:
 Replacing RegEx patterns with plain string comparison can improve policy readability.
 
 ```
-"#^/Obseravtion$" → "/Obseravtion"
+"#^/Observation$" → "/Observation"
 ```
 
 ### `$one-of` instead of `|` operator
@@ -168,4 +183,25 @@ matcho:
     _assoc: nil?
 ```
 
-Now the policy accepts GET /Practitioner request with any search parameters except `_include`, `_revinclude`, `_with`, `_assoc`.
+## Naming
+
+Access policy naming is an important aspect as a good name makes it easier to understand and manage policies.
+
+### Add `as-` prefix to describe the audience of the policy
+
+Name should describe the intended user, user group, or application that was granted permissions, such as "practitioner" in the example provided. This way, anyone looking at the name can quickly identify the intended audience for the policy.
+
+For example, `as-practitioner-use-graphql`
+
+### Explain what resources is granted access to
+
+Additionally, it's helpful to include information about the resource being accessed in the policy name. For example, "use-graphql" in the example above gives context to the type of resource being accessed.
+
+### Several good names examples
+
+* `as-patient-upload-profile-photo`
+* `as-practitioner-get-user-notifications`
+* `as-anoymous-verify-one-time-password`
+* `as-smart-app-read-patient-details`
+
+##

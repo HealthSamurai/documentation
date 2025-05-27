@@ -1,7 +1,5 @@
 # Application/Client Management
 
-**TODO: no links to tutorials or references!**
-
 To provide programmatic access to the Aidbox API, you have to use a `Client` resource. The primary purpose of the Client resource is to facilitate authentication and access control within Aidbox.
 
 In Aidbox, a Client represents an application or service that needs to interact with the FHIR server programmatically. Clients are using Basic and OAuth2 authentication flows to authenticate requests to Aidbox.
