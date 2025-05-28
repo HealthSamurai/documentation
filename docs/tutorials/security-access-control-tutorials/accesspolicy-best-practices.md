@@ -18,7 +18,7 @@ We can find `id` of Operation in **APIs -> Operations** page.
 
 <figure><img src="../../.gitbook/assets/image (1).png" alt=""><figcaption></figcaption></figure>
 
-This policy will be evaluated on every request from  `myclient` Client. It allows  `myclient` Client  reading every resource by ID.&#x20;
+The following policy will be evaluated on every request from  `myclient` Client. It allows  `myclient` Client  reading every resource by ID.&#x20;
 
 ```json
 {
@@ -29,7 +29,7 @@ This policy will be evaluated on every request from  `myclient` Client. It allow
 }
 ```
 
-Note that in the case of multiple links in the `link` field, it is interpreted as `OR` operation. This policy will allow everything to Client `myclient` and `FhirRead` operation to anybody.
+Note that in the case of multiple links in the `link` field, it is interpreted as `OR` operation. This policy will allow everything for Client `myclient` and `FhirRead` operation to anybody.
 
 ```json
 {
@@ -42,7 +42,7 @@ Note that in the case of multiple links in the `link` field, it is interpreted a
 
 ## `.` path should be tested for `present?`
 
-Path parameter is useful, but there is a corner case with it. If both values are absent, then the check evaluates to true statement.
+The path parameter is useful, but there is a corner case with it. If both values are absent, then the check evaluates to a true statement.
 
 ```yaml
 id: as-patient-create-owned-observation
@@ -72,8 +72,7 @@ engine: matcho
 matcho:
   user:
     data:
-      patient:
-        id: present?
+      patient: present?
   uri: /Observation
   body:
     subject: .user.data.patient
@@ -88,7 +87,7 @@ It gives profits:
 
 1. Tiny policies give well-grained access control
 2. Small policies are easy to maintain
-3. Aidbox logs the access policy that granted access. If you have "a fat" policy, it is not transparent what exact rule lets a request in. When there are tiny policies, it is clear who passed the request.
+3. Aidbox logs the access policy that granted access. If you have a "fat" policy, it is not transparent what exact rule lets a request in. When there are tiny policies, it is clear who passed the request.
 
 For example, we have such an access policy.
 
@@ -111,7 +110,7 @@ or:
       request-method: post
 ```
 
-That policy should be splitted into two ones.
+That policy should be split into two policies.
 
 ```yaml
 # see patients list & read certain patient resource
@@ -156,7 +155,7 @@ $one-of:
 
 ## Disable unsafe search parameters
 
-By default access policy in Aidbox allows all the search parameters. Access policies checks only fields, specified in the policy and ignore others. It do nothing with semantic of the operation.
+By default access policy in Aidbox allows all the search parameters. Access policies check only fields specified in the policy and ignore others. It does nothing with the semantics of the operation.
 
 Let's say you want to make GET /Practitioner publicly available, and you make the following AccessPolicy.
 
@@ -185,15 +184,15 @@ matcho:
 
 ## Naming
 
-Access policy naming is an important aspect as a good name makes it easier to understand and manage policies.
+Access policy naming is an important aspect, as a good name makes it easier to understand and manage policies.
 
 ### Add `as-` prefix to describe the audience of the policy
 
-Name should describe the intended user, user group, or application that was granted permissions, such as "practitioner" in the example provided. This way, anyone looking at the name can quickly identify the intended audience for the policy.
+The name should describe the intended user, user group, or application that was granted permissions, such as "practitioner" in the example provided. This way, anyone looking at the name can quickly identify the intended audience for the policy.
 
 For example, `as-practitioner-use-graphql`
 
-### Explain what resources is granted access to
+### Explain what resources are granted access to
 
 Additionally, it's helpful to include information about the resource being accessed in the policy name. For example, "use-graphql" in the example above gives context to the type of resource being accessed.
 
@@ -201,7 +200,6 @@ Additionally, it's helpful to include information about the resource being acces
 
 * `as-patient-upload-profile-photo`
 * `as-practitioner-get-user-notifications`
-* `as-anoymous-verify-one-time-password`
+* `as-anonymous-verify-one-time-password`
 * `as-smart-app-read-patient-details`
 
-##
