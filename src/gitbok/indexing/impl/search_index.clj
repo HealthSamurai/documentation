@@ -1,11 +1,13 @@
 (ns gitbok.indexing.impl.search-index
   (:require
    [system]
-
    [msync.lucene.analyzers :as analyzers]
    [msync.lucene :as lucene]
    [msync.lucene.document :as ld]
+   [clojure.string :as str]
+   [msync.lucene.query :as q]
    [gitbok.constants :as const]))
+
 
 (defn process-text [text-nodes]
   (mapv :text text-nodes))
@@ -54,12 +56,22 @@
 
 (def selected-keys #{:h1 :h2 :h3 :text})
 
+(defn get-title [parsed-md-file]
+  (->> parsed-md-file
+       (some #(when (= :heading (:type %))  %))
+       :content
+       first
+       :text))
+
 (defn parsed-md->pre-index [parsed-md]
-  (let [groupped-by-type (->>
+  (let [title (get-title parsed-md)
+        _ (def parsed-md parsed-md)
+        _ (when-not title (throw (Exception. "!!!!!!!!!!!!") ) )
+
+        groupped-by-type (->>
                            parsed-md
                            (flatten-nodes)
                            (group-by :type))
-
         good-headings
         (merge (dissoc groupped-by-type :heading)
                (flatten-headings-to-map
@@ -70,7 +82,7 @@
         paragraphs (process-paragraph (:paragraph good-text))
         index (update good-text :text concat paragraphs)
         index (update index :text vec)]
-    (select-keys index selected-keys)))
+    (assoc (select-keys index selected-keys) :title title)))
 
 (def default-analyzer (analyzers/standard-analyzer))
 
@@ -79,33 +91,50 @@
 (def gitbok-data-analyzer
   (analyzers/per-field-analyzer
    default-analyzer
-   {
-    ;; :title keyword-analyzer
-    :h1 keyword-analyzer
-    ;; :h2 keyword-analyzer
-    ;; :h3 keyword-analyzer
-    ;; :text keyword-analyzer
+   {:title default-analyzer
+    :h1 default-analyzer
+    :h2 keyword-analyzer
+    :h3 keyword-analyzer
+    :text keyword-analyzer
     }))
+
+(defn replace-nils [data]
+  (mapv (fn [{:keys [h1 title h2 h3 text] :as d}]
+          (cond-> d
+            (not h1)
+            (assoc :h1 "")
+
+            (not h2)
+            (assoc :h2 "")
+
+            (not h3)
+            (assoc :h3 "")
+
+            (not text)
+            (assoc :text "")
+
+            (not title)
+            (assoc :title ""))) data))
 
 (defn create-search-index [data]
   (let [index (lucene/create-index!
                 :type :memory
                 :analyzer gitbok-data-analyzer)
-        data (mapv #(select-keys % [:h1]) data)
-        data (remove empty? data)]
+        data (mapv #(select-keys % [:h1 :title]) data)
+        data (remove empty? data)
+        ;; data (replace-nils data)
+        ]
+    (def data data)
+    (first data)
+    (filter #(= "FHIR Search" (:title %)) data)
     (lucene/index!
       index
       data
-      {:stored-fields  [#_:title :h1
-                        #_#_#_:h2 :h3 :text
-                        ]
-       :suggest-fields [#_:title :h1
-                        #_#_#_:h2 :h3 :text
-                        ]
+      {:stored-fields  [:title :h1 :h2 :h3 :text]
+       ;; :suggest-fields [:title :h1 :h2]
        ;; :context-fn     :Genre
-
        })
-    ))
+    index))
 
 (defn parsed-md-idx->index [parsed-md-idx]
   (create-search-index
@@ -113,11 +142,23 @@
             (parsed-md->pre-index (:content page)))
           parsed-md-idx)))
 
+
+;; todo
+;; ---
+;; description: Aidbox has support of GCP Pub/Sub integration
+;; ---
+
+;; (q/parse "title" {:analyzer gitbok-data-analyzer} )
 (defn search [index q]
+  (def q q)
+  (def index index)
   (lucene/search
     index
-    {:title q}
-    {:results-per-page 3
+    {:title q
+     #_#{"fhir" "search"}}
+    {:results-per-page 5
+     :analyzer gitbok-data-analyzer
+     :field-name :title
      :hit->doc
      #(ld/document->map %)
      ;; #(ld/document->map % :multi-fields [:h1 :h2 :title])

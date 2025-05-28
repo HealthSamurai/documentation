@@ -94,4 +94,5 @@
                            [const/SEARCH_IDX]))
 
 (defn search [context q]
+  (def context context)
   (search-index/search (get-search-idx context) q))

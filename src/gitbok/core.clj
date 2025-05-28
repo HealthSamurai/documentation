@@ -86,13 +86,12 @@
   ;;   context
   ;;   {:path "/admin/broken" :method :get :fn #'gitbok.broken-links/broken-links-view})
 
-  (println "slurping all md files")
+  (def context context)
   (indexing/set-md-files-idx context)
-  (println "parsing every markdown page in doc.")
   (indexing/set-parsed-markdown-index
     context
     (indexing/get-md-files-idx context))
-
+  (first (indexing/get-parsed-markdown-index context))
   (println "set search idx")
   (indexing/set-search-idx
     context
@@ -103,13 +102,13 @@
   (file-to-uri/set-idx context)
   (summary/set-summary context)
 
-  ;; (http/register-endpoint
-  ;;   context
-  ;;   {:path "/search" :method :get :fn #'gitbok.search/search-view})
+  (http/register-endpoint
+    context
+    {:path "/search" :method :get :fn #'gitbok.search/search-view})
 
-  ;; (http/register-endpoint
-  ;;   context
-  ;;   {:path "/search/results" :method :get :fn #'gitbok.search/search-results-view})
+  (http/register-endpoint
+    context
+    {:path "/search/results" :method :get :fn #'gitbok.search/search-results-view})
 
 
   (println "setup done!")
