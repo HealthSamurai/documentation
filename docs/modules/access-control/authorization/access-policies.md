@@ -347,3 +347,5 @@ and:
 ## See also
 
 * [AccessPolicy resource schema](../../../reference/system-resources-reference/iam-module-resources.md#accesspolicy)
+* [AccessPolicy best practices](../../../tutorials/security-access-control-tutorials/accesspolicy-best-practices.md)
+* [Debug access control](../../../tutorials/security-access-control-tutorials/debug-access-control.md)
