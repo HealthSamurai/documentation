@@ -48,22 +48,21 @@ Here’s an example of a policy that illustrates this behavior:
 
 ```json
 {
- "link": [
-  {
-   "id": "FhirCreate",
-   "resourceType": "Operation"
-  }
- ],
- "engine": "matcho",
- "matcho": {
-  "uri": "/fhir/Observation",
-  "body": {
-   "subject": ".user.data.patient"
+  "engine": "matcho",
+  "id": "as-patient-create-owned-observation",
+  "link": [
+    {
+      "reference": "Operation/FhirCreate"
+    }
+  ],
+  "matcho": {
+    "uri": "/fhir/Observation",
+    "body": {
+      "subject": ".user.data.patient"
+    },
+    "request-method": "post"
   },
-  "request-method": "post"
- },
- "id": "as-patient-create-owned-observation",
- "resourceType": "AccessPolicy"
+  "resourceType": "AccessPolicy"
 }
 ```
 
@@ -79,27 +78,26 @@ To fix this, we need to explicitly require that `.user.data.patient` exists:
 
 ```json
 {
- "link": [
-  {
-   "id": "FhirCreate",
-   "resourceType": "Operation"
-  }
- ],
- "engine": "matcho",
- "matcho": {
-  "uri": "/fhir/Observation",
-  "body": {
-   "subject": ".user.data.patient"
+  "engine": "matcho",
+  "id": "as-patient-create-owned-observation",
+  "link": [
+    {
+      "reference": "Operation/FhirCreate"
+    }
+  ],
+  "matcho": {
+    "uri": "/fhir/Observation",
+    "body": {
+      "subject": ".user.data.patient"
+    },
+    "user": {
+      "data": {
+        "patient": "present?"
+      }
+    },
+    "request-method": "post"
   },
-  "user": {
-   "data": {
-    "patient": "present?"
-   }
-  },
-  "request-method": "post"
- },
- "id": "as-patient-create-owned-observation",
- "resourceType": "AccessPolicy"
+  "resourceType": "AccessPolicy"
 }
 ```
 
