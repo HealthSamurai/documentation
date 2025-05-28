@@ -57,7 +57,7 @@ To use the header, [Aidbox Development mode](../../reference/settings/security-a
 For requests with the `x-debug: policy` header, details of access policy evaluation will be logged.
 
 ```yaml
-GET /Patient
+GET /fhir/Patient
 x-debug: policy
 
 # in aidbox logs
@@ -115,7 +115,7 @@ This allows you to test JWT policy without **TokenIntrospector** registration.
 POST /auth/test-policy
 
 request:
-  uri: '/Patient'
+  uri: '/fhir/Patient'
   request-method: get
   headers:
     authorization: Bearer <your-jwt>
@@ -139,7 +139,7 @@ The response contains a result of evaluated policy.
 
 ```yaml
 request:
-  uri: /Patient
+  uri: /fhir/Patient
   request-method: get
   user: {role: admin}
   params: {resource/type: Patient}
