@@ -32,10 +32,11 @@ redirects:
     api-1/api/search-1/custom-search-parameter/search-resource: api/rest-api/aidbox-search.md
     api-1/api/search-1/custom-search-parameter: tutorials/crud-search-tutorials/search-tutorials/custom-searchparameter-tutorial.md
     api-1/api/search-1/other/custom-search: tutorials/crud-search-tutorials/search-tutorials/custom-searchparameter-tutorial.md
+    api-1/fhir-api/search-1/custom-search: tutorials/crud-search-tutorials/search-tutorials/custom-searchparameter-tutorial.md
     api-1/api/search-1/searchparameter: api/rest-api/fhir-search/searchparameter.md
     api-1/api/search-1/search-parameters-list/_count-and-_page: api/rest-api/fhir-search/searchparameter.md
     api-1/api/search-1/search-parameters-list/_elements: api/rest-api/fhir-search/searchparameter.md
-    api-1/api/search-1/search-parameters-list/_explain: api/rest-api/aidbox-search.md
+    api-1/api/search-1/search-parameters-list/_explain: api/rest-api/aidbox-search.md#aidbox-special-search-parameters
     api-1/api/search-1/search-parameters-list/_filter: api/rest-api/fhir-search/searchparameter.md
     api-1/api/search-1/search-parameters-list/_ilike: api/rest-api/fhir-search/searchparameter.md
     api-1/api/search-1/search-parameters-list/_lastupdated: api/rest-api/fhir-search/searchparameter.md
@@ -49,7 +50,6 @@ redirects:
     api-1/bulk-api-1/import-from-a-bucket: api/bulk-api/bulk-import-from-an-s3-bucket.md
     api-1/bulk-api-1/usdimport-and-fhir-usdimport: api/bulk-api/import-and-fhir-import.md
     api-1/bulk-api-1/usdload: api/bulk-api/load-and-fhir-load.md
-    api-1/fhir-api/search-1/custom-search: api/rest-api/fhir-search/README.md
     api-1/fhir-api/search-1/reference-search: api/rest-api/fhir-search/searchparameter.md
     api-1/fhir-api/search-1/search-parameters-list/_lastupdated: api/rest-api/fhir-search/searchparameter.md
     api-1/fhir-api/search-1/search-parameters-list/_timeout: api/rest-api/aidbox-search.md
@@ -59,7 +59,7 @@ redirects:
     app-development/aidbox-sdk/aidbox-apps: app-development/aidbox-sdk/apps.md
     apple-app-site-association: tutorials/security-access-control-tutorials/apple.md
     getting-started/editions-and-pricing: getting-started/licensing-and-support.md
-    getting-started/run-aidbox-locally-with-docker: getting-started/licensing-and-support.md
+    getting-started/run-aidbox-locally-with-docker: getting-started/run-aidbox-locally.md
     modules-1/smartbox/how-to-guides/pass-inferno-tests-with-smartbox/~/comments: modules/smartbox/how-to-guides/pass-inferno-tests-with-smartbox.md
     modules/aidbox-forms/aidbox-ui-builder-alpha/form-creation/how-to-guides/how-to: modules/aidbox-forms/aidbox-ui-builder-alpha/form-creation/how-to-guides/README.md
     modules/observability/logging-and-audit: modules/access-control/audit-and-logging.md
