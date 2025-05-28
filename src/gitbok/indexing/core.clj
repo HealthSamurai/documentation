@@ -87,8 +87,7 @@
   (system/set-system-state
     context
     [const/SEARCH_IDX]
-    (create-search-index
-      parsed-md-index)))
+    (create-search-index parsed-md-index)))
 
 (defn get-search-idx [context]
   (system/get-system-state context

@@ -65,12 +65,11 @@
                (flatten-headings-to-map
                  (heading-level-preprocess
                    (:heading groupped-by-type))))
-
         good-text
         (update good-headings :text process-text)
-
         paragraphs (process-paragraph (:paragraph good-text))
-        index (update good-text :text concat paragraphs)]
+        index (update good-text :text concat paragraphs)
+        index (update index :text vec)]
     (select-keys index selected-keys)))
 
 (def default-analyzer (analyzers/standard-analyzer))
@@ -80,24 +79,35 @@
 (def gitbok-data-analyzer
   (analyzers/per-field-analyzer
    default-analyzer
-   {:h1 keyword-analyzer
-    :h2 keyword-analyzer}))
+   {
+    ;; :title keyword-analyzer
+    :h1 keyword-analyzer
+    ;; :h2 keyword-analyzer
+    ;; :h3 keyword-analyzer
+    ;; :text keyword-analyzer
+    }))
 
-(defn create-search-index [pre-index]
-  (lucene/index!
-    (lucene/create-index!
-      :type :memory
-      :analyzer gitbok-data-analyzer)
-    pre-index
-    {:stored-fields  [:title :h1 :h2]
-     :suggest-fields [:title :h1 :h2]
-     ;; :context-fn     :Genre
-     }))
+(defn create-search-index [data]
+  (let [index (lucene/create-index!
+                :type :memory
+                :analyzer gitbok-data-analyzer)
+        data (mapv #(select-keys % [:h1]) data)
+        data (remove empty? data)]
+    (lucene/index!
+      index
+      data
+      {:stored-fields  [#_:title :h1
+                        #_#_#_:h2 :h3 :text
+                        ]
+       :suggest-fields [#_:title :h1
+                        #_#_#_:h2 :h3 :text
+                        ]
+       ;; :context-fn     :Genre
+
+       })
+    ))
 
 (defn parsed-md-idx->index [parsed-md-idx]
-  (def parsed-md-idx parsed-md-idx)
-  (type parsed-md-idx)
-  (:content (first parsed-md-idx))
   (create-search-index
     (mapv (fn [page]
             (parsed-md->pre-index (:content page)))
