@@ -42,7 +42,9 @@ Note that in the case of multiple links in the `link` field, it is interpreted a
 
 ## `.` path should be tested for `present?`
 
-The path parameter is useful, but there is a corner case with it. If both values are absent, then the check evaluates to a true statement.
+The path parameter is useful, but there’s a corner case to be aware of: if **both values are missing**, the check may still evaluate to true.
+
+Here’s an example of a policy that illustrates this behavior:
 
 ```yaml
 id: as-patient-create-owned-observation
@@ -55,7 +57,7 @@ matcho:
   request-method: post
 ```
 
-This policy allows the following request.
+This policy would allow the following request, even if `subject` and `user.data.patient` are both missing:
 
 ```yaml
 POST /Observation
@@ -63,7 +65,7 @@ POST /Observation
 status: final
 ```
 
-Fixed version requires `.user.data.patient` exists
+To fix this, we need to explicitly require that `.user.data.patient` exists:
 
 ```yaml
 id: as-patient-create-owned-observation
@@ -78,6 +80,8 @@ matcho:
     subject: .user.data.patient
   request-method: post
 ```
+
+This version ensures the `subject` value is only checked if `.user.data.patient` is actually present.
 
 ## `complex` engine with `or` operator
 
