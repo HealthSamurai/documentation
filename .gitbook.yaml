@@ -17,8 +17,12 @@ redirects:
     modules-1/observability/metrics/monitoring/aidbox-metrics-server: modules/observability/metrics/monitoring/aidbox-metrics-server.md
 
     # See Site insights -> Broken URLs in gitbook ui
-    api-1/fhir-api: api/rest-api
+    security-and-access-control-1/security/accesspolicy-best-practices: tutorials/security-access-control-tutorials/accesspolicy-best-practices.md
+    app-development-guides/tutorials/patient-encounter-notification-application: deprecated/deprecated/other/app-development-deprecated-tutorials/patient-encounter-notification-application.md
+    api/crud: api/rest-api/crud/README.md
+    api-1/fhir-api: api/rest-api/README.md
     api-1/api/search-1: api/rest-api/fhir-search/README.md
+    api-1/api/search-1/search-parameters-list/_search-language: api/rest-api/aidbox-search.md
     security-and-access-control-1/auth/external-oauth-2.0-providers/configure-okta: modules/security-and-access-control/set-up-external-identity-provider/okta.md
     modules-1/aidbox-forms/aidbox-ui-builder-alpha/embedding-renderer: modules/aidbox-forms/aidbox-ui-builder-alpha/embedding.md
     api-1/api/search-1/other/search-with-related-resources: api/rest-api/fhir-search/include-and-revinclude.md
