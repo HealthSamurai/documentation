@@ -46,39 +46,61 @@ The path parameter is useful, but there’s a corner case to be aware of: if **b
 
 Here’s an example of a policy that illustrates this behavior:
 
-```yaml
-id: as-patient-create-owned-observation
-resourceType: AccessPolicy
-engine: matcho
-matcho:
-  uri: /Observation
-  body:
-    subject: .user.data.patient
-  request-method: post
+```json
+{
+ "link": [
+  {
+   "id": "FhirCreate",
+   "resourceType": "Operation"
+  }
+ ],
+ "engine": "matcho",
+ "matcho": {
+  "uri": "/fhir/Observation",
+  "body": {
+   "subject": ".user.data.patient"
+  },
+  "request-method": "post"
+ },
+ "id": "as-patient-create-owned-observation",
+ "resourceType": "AccessPolicy"
+}
 ```
 
 This policy would allow the following request, even if `subject` and `user.data.patient` are both missing:
 
-```yaml
-POST /Observation
+```json
+POST /fhir/Observation
 
-status: final
+{"status": "final"}
 ```
 
 To fix this, we need to explicitly require that `.user.data.patient` exists:
 
-```yaml
-id: as-patient-create-owned-observation
-resourceType: AccessPolicy
-engine: matcho
-matcho:
-  user:
-    data:
-      patient: present?
-  uri: /Observation
-  body:
-    subject: .user.data.patient
-  request-method: post
+```json
+{
+ "link": [
+  {
+   "id": "FhirCreate",
+   "resourceType": "Operation"
+  }
+ ],
+ "engine": "matcho",
+ "matcho": {
+  "uri": "/fhir/Observation",
+  "body": {
+   "subject": ".user.data.patient"
+  },
+  "user": {
+   "data": {
+    "patient": "present?"
+   }
+  },
+  "request-method": "post"
+ },
+ "id": "as-patient-create-owned-observation",
+ "resourceType": "AccessPolicy"
+}
 ```
 
 This version ensures the `subject` value is only checked if `.user.data.patient` is actually present.
@@ -170,14 +192,14 @@ matcho:
   request-method: GET
 ```
 
-This policy accepts GET /Practitioner request with any search parameter, including unsafe ones (e.g. `_include`, `_revinclude`, `_with`, `_assoc`).
+This policy accepts `GET /fhir/Practitioner` request with any search parameter, including unsafe ones (e.g. `_include`, `_revinclude`, `_with`, `_assoc`).
 
 You may explicitly restrict _unsafe_ search parameters.
 
 ```yaml
 engine: matcho
 matcho:
-  uri: /Practitioner
+  uri: /fhir/Practitioner
   request-method: GET
   params:
     _include: nil?
