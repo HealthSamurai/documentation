@@ -555,7 +555,8 @@ Base module includes the following resource types:
 <tr><td width="290">scopeSchema</td><td width="70">0..1</td><td width="150">Object</td><td>Schema defining the scope for mapping.</td></tr>
 <tr><td width="290">text</td><td width="70">0..1</td><td width="150"></td><td>Human-readable text about the mapping.</td></tr>
 <tr><td width="290">text.<strong>status</strong></td><td width="70">0..1</td><td width="150">string</td><td>Status of the text.</td></tr>
-<tr><td width="290">text.<strong>div</strong></td><td width="70">0..1</td><td width="150">string</td><td>HTML representation of the text.</td></tr></tbody>
+<tr><td width="290">text.<strong>div</strong></td><td width="70">0..1</td><td width="150">string</td><td>HTML representation of the text.</td></tr>
+<tr><td width="290">type</td><td width="70">0..1</td><td width="150">string</td><td>Type of the mapping.</td></tr></tbody>
 </table>
 
 
