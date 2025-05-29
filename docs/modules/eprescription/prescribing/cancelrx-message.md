@@ -17,7 +17,7 @@ To send a CancelRx message, follow these steps:
 
 CancelRx requires the same FHIR resources as [NewRx](newrx-message.md) message, with identical validation rules and required fields. The only difference is that for CancelRx the MedicationRequest **must be in either "active" or "completed" status**.
 
-#### Status Management
+### Status Management
 
 The cancellation status is tracked via two extensions on MedicationRequest:
 
@@ -27,3 +27,7 @@ The cancellation status is tracked via two extensions on MedicationRequest:
 Main MedicationRequest status values remain same as for [NewRx](newrx-message.md). The system will track cancellation workflow via status extensions until we receive a final response from the pharmacy. Only upon receiving a positive cancellation acknowledgment, the MedicationRequest status will be updated to `cancelled`. This helps maintain clear audit trail of prescription state transitions.
 
 It's expected to get a response from pharmacy within 48 hours. If no response is received within this time frame, status will be updated to `unknown` <sub>_(since 2.0)_</sub>.
+
+#### Status flow
+
+<figure><img src="../../../.gitbook/assets/image.png" alt=""><figcaption></figcaption></figure>
