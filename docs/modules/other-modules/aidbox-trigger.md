@@ -1,5 +1,9 @@
 # AidboxTrigger
 
+{% hint style="warning" %}
+The AidboxTrigger resource is available starting from version 2506 and is currently in the alpha stage.
+{% endhint %}
+
 {% hint style="info" %}
 AidboxTrigger is available in FHIR schema mode and allows you to execute custom SQL statements automatically when FHIR resources are created, updated, or deleted.
 {% endhint %}
@@ -29,6 +33,10 @@ To set up an AidboxTrigger, create an `AidboxTrigger` resource with the followin
   "sql": "INSERT INTO audit_log (resource_id, action) VALUES ({{id}}, 'created');"
 }
 ```
+
+{% hint style="warning" %}
+Only SQL statements that modify data (INSERT, UPDATE, DELETE) can be executed. Be cautious when designing your triggers, as this limitation prevents data retrieval operations and ensures that the triggers focus solely on data manipulation.
+{% endhint %}
 
 #### Required fields
 
@@ -80,7 +88,7 @@ POST /fhir/AidboxTrigger
 Content-Type: application/json
 
 {
-  "action": "create",
+  "action": ["create"],
   "sql": "INSERT INTO patient_audit (id, resource_type, encounter_id, action) VALUES ({{id}}, 'Patient', (SELECT id FROM encounter where resource#>>'{subject,id}' = {{id}} LIMIT 1), 'create');",
   "resource": "Patient"
 }
@@ -95,7 +103,7 @@ POST /fhir/AidboxTrigger
 Content-Type: application/json
 
 {
-  "action": "create",
+  "action": ["create"],
   "sql": "INSERT INTO patient_stats (total_patients) VALUES (1) ON CONFLICT (id) DO UPDATE SET total_patients = patient_stats.total_patients + 1;",
   "resource": "Patient"  
 }
@@ -117,7 +125,7 @@ POST /fhir/AidboxTrigger
 Content-Type: application/json
 
 {
-  "action": "create", 
+  "action": ["create"],
   "sql": "INVALID SQL STATEMENT",
   "resource": "Patient"
 }
@@ -166,8 +174,6 @@ Content-Type: application/json
 ```
 
 ## Best Practices
-
-### Performance Considerations
 
 - Keep trigger SQL statements lightweight and fast
 - Avoid complex queries that might slow down FHIR operations
