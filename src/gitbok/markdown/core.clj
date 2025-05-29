@@ -33,7 +33,7 @@
 
 (defn render-gitbook
   [content]
-  (let [[filepath parsed] (parse-markdown-content content)
+  (let [{:keys [parsed]} (parse-markdown-content [nil content])
         rendered (transform/->hiccup renderers parsed)]
     rendered))
 

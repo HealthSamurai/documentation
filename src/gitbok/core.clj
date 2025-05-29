@@ -37,13 +37,17 @@
 
 (defn read-and-render-file
   [context request]
+  ;; todo do not read, get from idx
+  (def request request)
   [:div.gitbook
    (try
-     (read-and-render-file* context (:uri request))
+     (read-and-render-file* context
+                            (:uri request))
      (catch Exception e
        [:div {:role "alert"}
         (.getMessage e)
         [:pre (pr-str e)]]))])
+
 
 (defn
   ^{:http {:path "/:path*"}}
@@ -52,6 +56,16 @@
   (gitbok.ui/layout
     context request
     (read-and-render-file context request)))
+
+(def readme-path "readme")
+(defn
+  ^{:http {:path "/"}}
+  redirect-to-readme
+  [context request]
+  (let [request
+        (update request :uri
+                #(if (= "/" %) readme-path %))]
+    (render-file-view context request)))
 
 (defn
   handle-gitbook-assets
@@ -69,11 +83,18 @@
 #_{:clj-kondo/ignore [:unresolved-symbol]}
 (system/defstart
   [context config]
+  (http/register-ns-endpoints context *ns*)
+  (http/register-endpoint
+    context
+    {:path "/:path*"
+     :method :get
+     :fn #'render-file-view})
+
   (http/register-endpoint
     context
     {:path "/"
      :method :get
-     :fn #'render-file-view})
+     :fn #'redirect-to-readme})
 
   (http/register-endpoint
     context
@@ -93,8 +114,6 @@
     context
     (indexing/get-md-files-idx context))
 
-  (def hhh (indexing/get-parsed-markdown-index context))
-  (first hhh)
   (indexing/set-search-idx
     context
     (indexing/get-parsed-markdown-index context))
@@ -104,15 +123,18 @@
   (file-to-uri/set-idx context)
 
   (summary/set-summary context)
+  (def sum (summary/get-summary context))
 
   (http/register-endpoint
     context
-    {:path "/search" :method :get :fn #'gitbok.search/search-view})
+    {:path "/search" :method
+     :get :fn #'gitbok.search/search-view})
 
   (http/register-endpoint
     context
-    {:path "/search/results" :method :get :fn #'gitbok.search/search-results-view})
-
+    {:path "/search/results"
+     :method :get
+     :fn #'gitbok.search/search-results-view})
 
   (println "setup done!")
   {})
