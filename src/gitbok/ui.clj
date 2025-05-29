@@ -7,18 +7,19 @@
    [uui]
    [uui.heroicons :as ico]))
 
-(defn render-menu [items & [open]]
+(defn render-menu [items]
   (if (:children items)
-    [:details {:class "" :open open}
+    [:details {:class ""}
      [:summary {:class "flex items-center"}
-      [:div {:class "flex-1"} (:title items)]
+      [:div {:class "flex-1 clickable-summary"} (:title items)]
       (ico/chevron-right "chevron size-5 text-gray-400")]
      [:div {:class "ml-4 border-l border-gray-200"}
       (for [c (:children items)]
-        (render-menu c open))]]
+        (render-menu c))]]
     [:div (:title items)]))
 
 (defn menu [summary]
+  (def summary summary)
   [:div
    [:a {:href "/admin/broken" :class "block px-5 py-1"} "Broken Links"]
    [:a {:href "/search" :class "block px-5 py-1"} "Search"]
@@ -27,7 +28,7 @@
       [:div {:class "pl-4 mt-4 mb-2"}
        [:b (:title item)]]
       (for [ch (:children item)]
-        (render-menu ch false))])])
+        (render-menu ch))])])
 
 (defn layout [context request content]
   (if (uui/hx-target request)
@@ -38,6 +39,7 @@
     (uui/boost-response
      context request
      [:div {:class "flex items-top"}
+      [:script {:src "/static/toc.js"}]
       ;; [:script {:src "/static/tabs.js"}]
       ;; [:script {:src "/static/syntax-highlight.js"}]
 

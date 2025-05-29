@@ -22,7 +22,7 @@
 (defn parse-markdown-link [text]
   (if-let [match (re-find #"\[(.*?)\]\((.*?)\)" text)]
     (let [href (nth match 2)]
-      [:a {:class "px-4 text-gray-500 block hover:bg-gray-50 py-1"
+      [:a {:class "px-4 text-gray-500 block hover:bg-gray-50 py-1 clickable-summary"
            :href (str "/" (file->href href))
            :hx-target "#content"
            :hx-swap "outerHTML"}
@@ -70,8 +70,8 @@
      (mapv (fn [x] (update x :children (fn [chld]
                                          (->> chld
                                               (mapv (fn [x]
-                                                      {:i
-                                                       (count-whitespace x) :title (trim-l x)}))
+                                                      {:i (count-whitespace x)
+                                                       :title (trim-l x)}))
                                               (treefy)))))))))
 
 (defn set-summary [context]
@@ -88,6 +88,4 @@
 
   (treefy
    (->> ["a" "  b" "  c" "x" " x1" " x2"]
-        (mapv (fn [x] {:i (count-whitespace x) :l (str/trim x)}))))
-
-  )
+        (mapv (fn [x] {:i (count-whitespace x) :l (str/trim x)})))))
