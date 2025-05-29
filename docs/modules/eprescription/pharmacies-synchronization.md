@@ -120,13 +120,14 @@ POST /e-prescription/directories/pharmacies/sync?nightly=false
 
 The backup file mechanism ensures that the previously downloaded organizations' data is preserved before overwriting it with new data. This provides a fallback in case of errors or data corruption during the synchronization process.
 
-* All files are stored in the `./data/` directory.
+* All files are stored in the `/data` directory.
 * The file names are based on the synchronization type:
   * `nightly-organizations.csv` for nightly updates.
   * `full-organizations.csv` for full updates.
 * The backup file name is the same as the current file with a `.backup` suffix:
   * `nightly-organizations.csv.backup`
   * `full-organizations.csv.backup`
+* You can restore pharmacies from backup file using a direct endpoint `/api/directories/pharmacies/restore` <sub>_(since 4.0)_</sub>
 
 ### Environment variables
 

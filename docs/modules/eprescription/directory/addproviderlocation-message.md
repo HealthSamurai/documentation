@@ -25,6 +25,7 @@ The following FHIR resources are needed to create an AddProviderLocation message
    * Must have name
    * Contains prescriber's information
 3. **Location** (Required)
+   * PractitionerRole can have multiple Locations, so for Location to be selected it's required for it to have a tag with system `urn:app:aidbox:e-prescriptions:surescripts:providerDirectory` (value does not matter)
    * Must have address
    * Must have primary phone number (exactly 10 digits)
    * Must have primary fax number

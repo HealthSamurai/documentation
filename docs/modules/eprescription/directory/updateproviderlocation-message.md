@@ -6,7 +6,8 @@ UpdateProviderLocation is a message type used to update an existing provider loc
 
 ### How to Send UpdateProviderLocation Message
 
-To send an UpdateProviderLocation message, use the following endpoint:`PUT /directories/providers`
+To send an UpdateProviderLocation message, use the following endpoint:\
+`PUT /directories/providers`
 
 The required payload is a PractitionerRole identifier.
 

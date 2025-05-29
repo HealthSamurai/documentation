@@ -43,7 +43,7 @@ Controlled substances currently not supported, but we are working on it.
 
 ## Requirements
 
-* Aidbox with FHIR r4b
+* Aidbox with FHIR r4b and FHIRSchema
 * Surescripts direct contract
 * User Interface for prescribing\
   **We provide an API-based solution. A user interface is required to obtain Surescripts certification**
