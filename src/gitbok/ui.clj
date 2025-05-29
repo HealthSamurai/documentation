@@ -31,7 +31,8 @@
           :hx-swap "innerHTML"
           :hx-push-url "false"
           :hx-trigger "click, keydown[key=='k'][ctrlKey||metaKey] from:body"
-          :hx-on ":after-request \"document.querySelector('#search-input')?.focus()\"}
+          :hx-on ":after-request \"document.querySelector('#search-input')?.focus()\""
+          }
       "Search"
       [:span {:class "text-xs text-gray-400"} "⌘K"]]]]
    (for [item summary]

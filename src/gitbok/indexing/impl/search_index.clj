@@ -52,7 +52,7 @@
                         (process-text (filter-types #{:text} content)))
                       paragraph-nodes))))
 
-(def selected-keys #{:h1 :h2 :h3 :text})
+(def selected-keys #{:h1 :h2 :h3 :h4 :text})
 
 (defn get-title [parsed-md-file]
   (->> parsed-md-file
@@ -94,6 +94,7 @@
     :h1 default-analyzer
     :h2 default-analyzer
     :h3 default-analyzer
+    :h4 default-analyzer
     :text default-analyzer
     :filepath keyword-analyzer}))
 
@@ -110,6 +111,7 @@
          (update :h1 clean-field)
          (update :h2 clean-field)
          (update :h3 clean-field)
+         (update :h4 clean-field)
          (update :text clean-field)))
    items))
 
@@ -122,7 +124,7 @@
         (mapv
          #(select-keys %
                        [:h1 :title :filepath
-                        :h2 :h3 :text])
+                        :h2 :h3 :h4 :text])
          data)
         data (remove empty? data)]
     (lucene/index!
@@ -132,6 +134,7 @@
                       :h1
                       :h2
                       :h3
+                      :h4
                       :text
                       :filepath]})
     index))
@@ -150,10 +153,11 @@
 
 (defn search [index q]
   (let [fields [[:title 100]
-                [:h1 50]
-                [:h2 25]
+                [:h1 100] ;; not sure...
+                [:h2 50]
                 [:h3 12]
-                [:text 6]]]
+                [:h4 6]
+                [:text 3]]]
     (->>
      (for [[field priority] fields]
        (->>

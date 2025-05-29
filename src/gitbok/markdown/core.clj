@@ -4,16 +4,10 @@
    [gitbok.markdown.widgets.big-links :as big-links]
    [gitbok.markdown.widgets.link :as link]
    [gitbok.markdown.widgets.image :as image]
-   [gitbok.markdown.widgets.code-highlight :as code-highlight]
-   [gitbok.markdown.widgets.content-ref :as content-ref]
-   [gitbok.markdown.widgets.github-hint :as github-hint]
-   [gitbok.markdown.widgets.hint :as hint]
    [nextjournal.markdown :as md]
    [nextjournal.markdown.transform :as transform]
    [hiccup2.core]
    [nextjournal.markdown.utils :as u]
-   [edamame.core :as edamame]
-   [clojure.zip :as z]
    [uui]))
 
 (def custom-doc
@@ -32,23 +26,26 @@
          :big-link big-links/big-link-renderer
          :image image/image-renderer
          :link link/link-renderer
+         :html-inline
+         (fn [_ctx node]
+           (uui/raw (-> node :content first :text)))
          :html-block
          (fn [_ctx node]
            (uui/raw (-> node :content first :text)))))
 
 (defn render-toc-item [item]
   (let [content (->> (:content item)
+                     (remove (fn [node] (= :html-inline (:type node))))
                      (map #(if (= :text (:type %))
                              (:text %)
                              (->> (:content %)
                                   (map :text)
-                                  (clojure.string/join ""))))
-                     (clojure.string/join ""))
-        href (str "#" (:id (:attrs item)))]
-    [:div {:class (str "pl-" (* (if (:heading-level item)
-                                  (dec (:heading-level item))
-                                  0)
-                                4))}
+                                  (str/join " "))))
+                     (str/join " "))
+        href (str "#" (:id (:attrs item)))
+        level (when (= :toc (:type item))
+                (:heading-level item))]
+    [:div {:class (when (not= 1 level) "pl-4")}
      [:a {:href href
           :class "block py-1 text-sm text-gray-600 hover:text-gray-900"}
       content]
@@ -62,7 +59,8 @@
     (transform/->hiccup renderers parsed)]
    (when toc
      [:div {:class "w-64 flex-shrink-0 sticky top-0 h-screen overflow-auto p-6 bg-gray-50 border-l border-gray-200"}
-      [:div {:class "text-sm font-medium text-gray-900 mb-4"} "On this page"]
+      [:div {:class "text-sm font-medium text-gray-900 mb-4"}
+       "On this page"]
       (for [item (:children toc)]
         (render-toc-item item))])])
 

@@ -19,12 +19,9 @@
 (set! *warn-on-reflection* true)
 
 (defn read-content [context uri]
-  (def context context)
   (indexing/uri->filepath (uri-to-file/get-idx context) "api/rest-api/fhir-search")
   (let [filepath (indexing/uri->filepath (uri-to-file/get-idx context) uri)
         content (slurp (str "." filepath))]
-    (println "filepath " filepath)
-    (def filepath filepath)
     (if (str/starts-with? content "---")
       (last (str/split content #"---\n" 3))
       content)))
@@ -53,15 +50,23 @@
         (.getMessage e)
         [:pre (pr-str e)]]))])
 
+(defn picture-url? [url]
+  (when url
+    (str/includes? url ".gitbook/assets")))
+
 (defn
   ^{:http {:path "/:path*"}}
   render-file-view
   [context request]
-  (gitbok.ui/layout
-   context request
-   (read-and-render-file context request)))
+  (def request request)
+  (if (picture-url? (:uri request))
+    (resp/file-response (subs (:uri request) 1))
+    (gitbok.ui/layout
+     context request
+     (read-and-render-file context request))))
 
 (def readme-path "readme")
+
 (defn
   ^{:http {:path "/"}}
   redirect-to-readme
