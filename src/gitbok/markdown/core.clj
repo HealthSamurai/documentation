@@ -22,8 +22,8 @@
           image/image-tokenizer))
 
 (defn parse-markdown-content
-  [content]
-  (md/parse* custom-doc content))
+  [[filepath content]]
+  {:filepath filepath :parsed (md/parse* custom-doc content)})
 
 (def renderers
   (assoc transform/default-hiccup-renderers
@@ -33,7 +33,7 @@
 
 (defn render-gitbook
   [content]
-  (let [parsed (parse-markdown-content content)
+  (let [[filepath parsed] (parse-markdown-content content)
         rendered (transform/->hiccup renderers parsed)]
     rendered))
 

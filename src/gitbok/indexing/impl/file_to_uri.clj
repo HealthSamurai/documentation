@@ -1,6 +1,7 @@
 (ns gitbok.indexing.impl.file-to-uri
   (:require
    [system]
+   [clojure.string :as str]
    [gitbok.constants :as const]
    [gitbok.indexing.impl.summary]
    [gitbok.indexing.impl.common :as common]))
@@ -10,10 +11,11 @@
         link-pattern #"\[([^\]]+)\]\(([^)]+)\)"]
     (into {}
           (for [[_ page-name filepath] (re-seq link-pattern summary-text)]
-            [filepath (common/sanitize-page-name page-name)]))))
-
-(defn uri+page-link [current-uri _relative-page-link]
-  (str "docs" current-uri))
+            [filepath
+             (str (str/replace filepath #"/[^/]*$" "") "/"
+                  (if (str/ends-with? filepath (str/lower-case "readme.md"))
+                    ""
+                    (common/sanitize-page-name page-name)))]))))
 
 (defn set-idx [context]
   (system/set-system-state context [const/FILE->URI_IDX]
@@ -21,3 +23,6 @@
 
 (defn get-idx [context]
   (system/get-system-state context [const/FILE->URI_IDX]))
+
+(defn filepath->uri [context filepath]
+  (get (get-idx context) filepath))

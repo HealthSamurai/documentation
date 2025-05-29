@@ -88,11 +88,13 @@
 
   (def context context)
   (indexing/set-md-files-idx context)
+
   (indexing/set-parsed-markdown-index
     context
     (indexing/get-md-files-idx context))
-  (first (indexing/get-parsed-markdown-index context))
-  (println "set search idx")
+
+  (def hhh (indexing/get-parsed-markdown-index context))
+  (first hhh)
   (indexing/set-search-idx
     context
     (indexing/get-parsed-markdown-index context))
@@ -100,6 +102,7 @@
   ;; todo reuse md-files-idx
   (uri-to-file/set-idx context)
   (file-to-uri/set-idx context)
+
   (summary/set-summary context)
 
   (http/register-endpoint

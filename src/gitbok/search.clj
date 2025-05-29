@@ -10,29 +10,39 @@
             [uui]))
 
 (defn search [context query]
-  (def query query)
-  (def context context)
-  (indexing/search context "\"contact\"")
-  (def ans (indexing/search context query))
+  (indexing/search context query))
 
-  ans)
+  (defn page-view [result]
+    (let [hit-by (:hit-by result)
+          {:keys [title h1 h2 h3 text]} (:hit result)]
+      [:div.p-4.bg-white.rounded-lg.shadow-sm.hover:shadow-md.transition-shadow
+       [:a {:href (:uri result)} title]
+       (when-not (= :title hit-by)
+         [:div
+          (when h1 [:h1 h1])
+          (when h2 [:h2 h1])
+          (when h2 [:h3 h1])])]))
 
 (defn
   ^{:http {:path "/search/results"}}
   search-results-view
   [context request]
   (let [query (get-in request [:query-params :q])
-        results (search context query)]
+        results (search context query)
+        results
+        (mapv
+          (fn [res]
+            (assoc res :uri
+                   (indexing/filepath->uri context (-> res :hit :filepath))))
+          results)]
+    (def results results)
     (gitbok.ui/layout
       context request
       [:div.space-y-4
        (if (empty? results)
          [:div.text-gray-500.text-center.py-4 "No results found"]
          (for [result results]
-           [:div.p-4.bg-white.rounded-lg.shadow-sm.hover:shadow-md.transition-shadow
-            [:a.block #_{:href (:uri result)}
-             [:h3.text-lg.font-medium.text-blue-600 (:title (:hit result))]
-             [:p.text-gray-600.mt-1 (:h1 result)]]]))])))
+           (page-view result)))])))
 
 (defn
   ^{:http {:path "/search"}}

@@ -8,7 +8,6 @@
    [msync.lucene.query :as q]
    [gitbok.constants :as const]))
 
-
 (defn process-text [text-nodes]
   (mapv :text text-nodes))
 
@@ -48,7 +47,6 @@
    {}
    coll))
 
-
 (defn process-paragraph [paragraph-nodes]
   (vec (flatten (mapv (fn [{:keys [content]}]
                         (process-text (filter-types #{:text} content)))
@@ -58,25 +56,26 @@
 
 (defn get-title [parsed-md-file]
   (->> parsed-md-file
-       (some #(when (= :heading (:type %))  %))
+       (some #(when (and
+                     (= :heading (:type %))
+                     (-> % :content first :text
+                         (str/starts-with? "description")
+                         not))  %))
        :content
        first
        :text))
 
 (defn parsed-md->pre-index [parsed-md]
   (let [title (get-title parsed-md)
-        _ (def parsed-md parsed-md)
-        _ (when-not title (throw (Exception. "!!!!!!!!!!!!") ) )
-
         groupped-by-type (->>
-                           parsed-md
-                           (flatten-nodes)
-                           (group-by :type))
+                          parsed-md
+                          (flatten-nodes)
+                          (group-by :type))
         good-headings
         (merge (dissoc groupped-by-type :heading)
                (flatten-headings-to-map
-                 (heading-level-preprocess
-                   (:heading groupped-by-type))))
+                (heading-level-preprocess
+                 (:heading groupped-by-type))))
         good-text
         (update good-headings :text process-text)
         paragraphs (process-paragraph (:paragraph good-text))
@@ -96,70 +95,65 @@
     :h2 keyword-analyzer
     :h3 keyword-analyzer
     :text keyword-analyzer
-    }))
-
-(defn replace-nils [data]
-  (mapv (fn [{:keys [h1 title h2 h3 text] :as d}]
-          (cond-> d
-            (not h1)
-            (assoc :h1 "")
-
-            (not h2)
-            (assoc :h2 "")
-
-            (not h3)
-            (assoc :h3 "")
-
-            (not text)
-            (assoc :text "")
-
-            (not title)
-            (assoc :title ""))) data))
+    :filepath keyword-analyzer}))
 
 (defn create-search-index [data]
+  (def da1 data)
+  (first da1)
   (let [index (lucene/create-index!
-                :type :memory
-                :analyzer gitbok-data-analyzer)
-        data (mapv #(select-keys % [:h1 :title]) data)
-        data (remove empty? data)
-        ;; data (replace-nils data)
-        ]
-    (def data data)
-    (first data)
-    (filter #(= "FHIR Search" (:title %)) data)
+               :type :memory
+               :analyzer gitbok-data-analyzer)
+        data
+        (mapv #(select-keys % [:h1 :title :filepath]) data)
+        data (remove empty? data)]
     (lucene/index!
-      index
-      data
-      {:stored-fields  [:title :h1 :h2 :h3 :text]
-       ;; :suggest-fields [:title :h1 :h2]
-       ;; :context-fn     :Genre
-       })
+     index
+     data
+     {:stored-fields [:title
+                      :h1
+                      :h2
+                      :h3
+                      :text
+                      :filepath]})
     index))
 
 (defn parsed-md-idx->index [parsed-md-idx]
   (create-search-index
-    (mapv (fn [page]
-            (parsed-md->pre-index (:content page)))
-          parsed-md-idx)))
+   (mapv (fn [{:keys [filepath parsed]}]
+           (assoc
+            (parsed-md->pre-index
+             (:content parsed))
+            :filepath filepath))
+         parsed-md-idx)))
 
-
-;; todo
-;; ---
-;; description: Aidbox has support of GCP Pub/Sub integration
-;; ---
-
-;; (q/parse "title" {:analyzer gitbok-data-analyzer} )
 (defn search [index q]
-  (def q q)
-  (def index index)
-  (lucene/search
-    index
-    {:title q
-     #_#{"fhir" "search"}}
-    {:results-per-page 5
-     :analyzer gitbok-data-analyzer
-     :field-name :title
-     :hit->doc
-     #(ld/document->map %)
-     ;; #(ld/document->map % :multi-fields [:h1 :h2 :title])
-     :fuzzy? true}))
+  (let [fields [[:title 100]
+                [:h1 50]
+                [:h2 25]
+                [:h3 12]
+                [:text 6]]]
+    (->>
+     (for [[field priority] fields]
+       (->>
+        (concat
+         (lucene/search
+          index
+          {field q}
+          {:results-per-page 2
+           :hit->doc ld/document->map})
+         (lucene/search
+          index
+          {field q}
+          {:results-per-page 2
+           :fuzzy? true
+           :hit->doc ld/document->map}))
+        (filter seq)
+        (mapv (fn [result]
+                (-> result
+                    (update :score (partial * priority))
+                    (assoc :hit-by field)
+                    (assoc :filepath ()))))))
+
+     (flatten)
+     (distinct)
+     (sort-by :score >))))

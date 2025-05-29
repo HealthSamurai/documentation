@@ -33,6 +33,9 @@
   [context]
   (gitbok.indexing.impl.file-to-uri/file->uri-idx context))
 
+(defn filepath->uri [context filepath]
+  (gitbok.indexing.impl.file-to-uri/filepath->uri context filepath))
+
 (defn uri->filepath [uri->file-idx ^String uri]
   (let [fixed-url (if (= "/" (subs uri 0 1)) (subs uri 1) uri)]
     (str "/docs/" (get uri->file-idx fixed-url "readme/README.md"))))
@@ -48,15 +51,16 @@
   (search-index/parsed-md-idx->index parsed-md-index))
 
 (defn list-markdown-files [dir]
-  (->> (file-seq (clojure.java.io/file dir))
-       (filter #(.isFile %))
-       (filter #(clojure.string/ends-with? (.getName %) ".md"))
-       (map #(.getAbsolutePath %))))
+  (let [dir-length (count dir)]
+    (->> (file-seq (clojure.java.io/file dir))
+         (filter #(.isFile %))
+         (filter #(clojure.string/ends-with? (.getName %) ".md"))
+         (map #(-> % .getPath (subs (inc dir-length)))))))
 
 (defn slurp-md-files! [dir]
   (reduce (fn [acc filename]
-              (assoc acc filename (slurp filename)))
-            {}
+              (assoc acc filename
+                     (slurp (str dir "/" filename)))) {}
             (list-markdown-files dir)))
 
 (defn set-md-files-idx [context]
@@ -75,7 +79,7 @@
     context
     [const/PARSED_MARKDOWN_IDX]
     (mapv markdown/parse-markdown-content
-          (vals md-files-idx))))
+          md-files-idx)))
 
 (defn get-parsed-markdown-index [context]
   (system/get-system-state
