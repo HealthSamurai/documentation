@@ -19,7 +19,6 @@
     [:div (:title items)]))
 
 (defn menu [summary]
-  (def summary summary)
   [:div
    [:a {:href "/admin/broken" :class "block px-5 py-1"} "Broken Links"]
    [:a {:href "/search" :class "block px-5 py-1"} "Search"]

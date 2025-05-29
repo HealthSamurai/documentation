@@ -123,8 +123,6 @@
   (file-to-uri/set-idx context)
 
   (summary/set-summary context)
-  (def sum (summary/get-summary context))
-
   (http/register-endpoint
     context
     {:path "/search" :method

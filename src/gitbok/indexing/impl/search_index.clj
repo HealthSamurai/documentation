@@ -145,6 +145,9 @@
             :filepath filepath))
          parsed-md-idx)))
 
+(defn distinct-by [f coll]
+  (vals (into {} (map (juxt f identity)) coll)))
+
 (defn search [index q]
   (let [fields [[:title 100]
                 [:h1 50]
@@ -175,4 +178,5 @@
 
      (flatten)
      (distinct)
+     (distinct-by (juxt :hit-by :doc-id))
      (sort-by :score >))))
