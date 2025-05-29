@@ -92,19 +92,38 @@
    default-analyzer
    {:title default-analyzer
     :h1 default-analyzer
-    :h2 keyword-analyzer
-    :h3 keyword-analyzer
-    :text keyword-analyzer
+    :h2 default-analyzer
+    :h3 default-analyzer
+    :text default-analyzer
     :filepath keyword-analyzer}))
 
+(defn clean-field [item]
+  (let [col? (sequential? item)
+        without-nils (if col? (remove nil? item) item)
+        default? (empty? without-nils)]
+    (if default? ["-"] without-nils)))
+
+(defn ensure-headings-and-text [items]
+  (mapv
+   (fn [item]
+     (-> item
+         (update :h1 clean-field)
+         (update :h2 clean-field)
+         (update :h3 clean-field)
+         (update :text clean-field)))
+   items))
+
 (defn create-search-index [data]
-  (def da1 data)
-  (first da1)
   (let [index (lucene/create-index!
                :type :memory
                :analyzer gitbok-data-analyzer)
+        data (ensure-headings-and-text data)
         data
-        (mapv #(select-keys % [:h1 :title :filepath]) data)
+        (mapv
+         #(select-keys %
+                       [:h1 :title :filepath
+                        :h2 :h3 :text])
+         data)
         data (remove empty? data)]
     (lucene/index!
      index
