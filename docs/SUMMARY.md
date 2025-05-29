@@ -470,6 +470,7 @@
     * [Find duplicates: $match](modules/other-modules/mdm/find-duplicates-match.md)
     * [Mathematical details](modules/other-modules/mdm/mathematical-details.md)
   * [MCP](modules/other-modules/mcp.md)
+  * [AidboxTrigger](modules/other-modules/aidbox-trigger.md)
 
 ## Database
 
