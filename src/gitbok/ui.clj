@@ -20,8 +20,19 @@
 
 (defn menu [summary]
   [:div
-   [:a {:href "/admin/broken" :class "block px-5 py-1"} "Broken Links"]
-   [:a {:href "/search" :class "block px-5 py-1"} "Search"]
+   [:div {:class "px-5 py-1"}
+    [:div {:class "flex flex-col gap-2"}
+     [:a {:href "/admin/broken" :class "block w-full"} "Broken Links"]
+     [:a {:href "/search"
+          :class "block w-full flex items-center gap-2"
+          :id "search-link"
+          :hx-get "/search"
+          :hx-target "#content"
+          :hx-swap "innerHTML"
+          :hx-trigger "click, keydown[key=='k'][ctrlKey||metaKey] from:body"
+          :hx-on ":after-request \"document.querySelector('#search-input')?.focus()"}
+      "Search"
+      [:span {:class "text-xs text-gray-400"} "⌘K"]]]]
    (for [item summary]
      [:div
       [:div {:class "pl-4 mt-4 mb-2"}
@@ -45,4 +56,4 @@
       [:div.nav
        {:class "px-6 py-6 w-80 text-sm h-screen overflow-auto bg-gray-50 shadow-md"}
        (menu (summary/get-summary context))]
-      [:div#content {:class "m-x-auto flex-1 py-6 px-12  h-screen overflow-auto"} content]])))
+      [:div#content {:class "m-x-auto flex-1 py-6 px-12 max-w-4xl h-screen overflow-auto"} content]])))

@@ -33,23 +33,37 @@
          :image image/image-renderer
          :link link/link-renderer
          :html-block
-         (fn [ctx node]
-           (uui/raw (-> node :content first :text)))
-         ;; :text (fn [_ctx node]
-         ;;         (let [text (:text node)]
-         ;;           (if (= text "<>")
-         ;;             [:<>]
-         ;;             text)))
-         ))
+         (fn [_ctx node]
+           (uui/raw (-> node :content first :text)))))
 
-;; todo reuse :toc
-(defn render-gitbook
-  [content]
-  (let [{:keys [parsed]} (parse-markdown-content [nil content])
-        rendered (transform/->hiccup renderers parsed)]
-    rendered))
+(defn render-toc-item [item]
+  (let [content (->> (:content item)
+                    (map #(if (= :text (:type %))
+                           (:text %)
+                           (->> (:content %)
+                                (map :text)
+                                (clojure.string/join ""))))
+                    (clojure.string/join ""))
+        href (str "#" (:id (:attrs item)))]
+    [:div {:class (str "pl-" (* (dec (:heading-level item)) 4))}
+     [:a {:href href
+          :class "block py-1 text-sm text-gray-600 hover:text-gray-900"}
+      content]
+     (when (:children item)
+       (for [child (:children item)]
+         (render-toc-item child)))]))
 
- #_(def readme (slurp "./docs/getting-started/run-aidbox-locally.md"))
+(defn render-gitbook [{:keys [toc] :as parsed}]
+  [:div {:class "flex gap-8"}
+   [:div {:class "flex-1 min-w-0"}
+    (transform/->hiccup renderers parsed)]
+   (when toc
+     [:div {:class "w-64 flex-shrink-0 sticky top-0 h-screen overflow-auto p-6 bg-gray-50 border-l border-gray-200"}
+      [:div {:class "text-sm font-medium text-gray-900 mb-4"} "On this page"]
+      (for [item (:children toc)]
+        (render-toc-item item))])])
+
+#_(def readme (slurp "./docs/getting-started/run-aidbox-locally.md"))
 
 #_(:parsed (parse-markdown-content [nil readme]))
 

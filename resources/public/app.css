@@ -416,7 +416,7 @@ li pre {
 }
 
 .gitbook {
-  @apply max-w-3xl;
+  @apply max-w-4xl mx-auto w-full;
 }
 
 .gitbook {

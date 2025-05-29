@@ -20,15 +20,17 @@
 
 (defn read-content [context uri]
   (let [filepath (indexing/uri->filepath (uri-to-file/get-idx context) uri)
-        content (slurp (str "." filepath)) ]
+        content (slurp (str "." filepath))]
     (if (str/starts-with? content "---")
       (last (str/split content #"---\n" 3))
       content)))
 
 (defn read-and-render-file* [context uri]
-  (let [content* (read-content context uri)]
+  (let [content* (read-content context uri)
+        parsed-md
+        (:parsed (markdown/parse-markdown-content [nil content*]))]
     (try
-      (markdown/render-gitbook content*)
+      (markdown/render-gitbook parsed-md)
       (catch Exception e
         [:div {:role "alert"}
          (.getMessage e)
@@ -38,7 +40,6 @@
 (defn read-and-render-file
   [context request]
   ;; todo do not read, get from idx
-  (def request request)
   [:div.gitbook
    (try
      (read-and-render-file* context
@@ -48,14 +49,13 @@
         (.getMessage e)
         [:pre (pr-str e)]]))])
 
-
 (defn
   ^{:http {:path "/:path*"}}
   render-file-view
   [context request]
   (gitbok.ui/layout
-    context request
-    (read-and-render-file context request)))
+   context request
+   (read-and-render-file context request)))
 
 (def readme-path "readme")
 (defn
@@ -71,9 +71,9 @@
   handle-gitbook-assets
   [_context request]
   (resp/file-response
-    (str/replace (:uri request)
-                 #"^/pictures/"
-                 ".gitbook/assets/")))
+   (str/replace (:uri request)
+                #"^/pictures/"
+                ".gitbook/assets/")))
 
 (system/defmanifest
   {:description "gitbok"
@@ -85,22 +85,22 @@
   [context config]
   (http/register-ns-endpoints context *ns*)
   (http/register-endpoint
-    context
-    {:path "/:path*"
-     :method :get
-     :fn #'render-file-view})
+   context
+   {:path "/:path*"
+    :method :get
+    :fn #'render-file-view})
 
   (http/register-endpoint
-    context
-    {:path "/"
-     :method :get
-     :fn #'redirect-to-readme})
+   context
+   {:path "/"
+    :method :get
+    :fn #'redirect-to-readme})
 
   (http/register-endpoint
-    context
-    {:path "/pictures/:path"
-     :method :get
-     :fn #'handle-gitbook-assets})
+   context
+   {:path "/pictures/:path"
+    :method :get
+    :fn #'handle-gitbook-assets})
 
   ;; todo
   ;; (http/register-endpoint
@@ -111,12 +111,12 @@
   (indexing/set-md-files-idx context)
 
   (indexing/set-parsed-markdown-index
-    context
-    (indexing/get-md-files-idx context))
+   context
+   (indexing/get-md-files-idx context))
 
   (indexing/set-search-idx
-    context
-    (indexing/get-parsed-markdown-index context))
+   context
+   (indexing/get-parsed-markdown-index context))
 
   ;; todo reuse md-files-idx
   (uri-to-file/set-idx context)
@@ -124,15 +124,15 @@
 
   (summary/set-summary context)
   (http/register-endpoint
-    context
-    {:path "/search" :method
-     :get :fn #'gitbok.search/search-view})
+   context
+   {:path "/search" :method
+    :get :fn #'gitbok.search/search-view})
 
   (http/register-endpoint
-    context
-    {:path "/search/results"
-     :method :get
-     :fn #'gitbok.search/search-results-view})
+   context
+   {:path "/search/results"
+    :method :get
+    :fn #'gitbok.search/search-results-view})
 
   (println "setup done!")
   {})
