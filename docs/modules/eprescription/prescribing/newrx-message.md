@@ -55,9 +55,15 @@ The following FHIR resources are needed to create a NewRx message:
 
 The system performs extensive validation checks for each resource, any validation failure will prevent the **whole group** from being submitted and return appropriate error details to the client.
 
-#### Status Management
+### Status Management
 
 Once accepted, system will update the MedicationRequest status to `active` with "Submission started" reason and generate a unique identifier **MessageId** for the submission by which you can track a message at Surescripts side.
+
+#### Status flow
+
+<figure><img src="../../../.gitbook/assets/image.png" alt=""><figcaption></figcaption></figure>
+
+#### Status structure
 
 Statuses stored in the MedicationRequest resource like this:
 
@@ -85,7 +91,7 @@ Statuses stored in the MedicationRequest resource like this:
 }
 ```
 
-**Properties**
+#### **Status properties**
 
 First `statusReason.coding` is always main code while the rest are description ones.
 
@@ -97,7 +103,7 @@ First `statusReason.coding` is always main code while the rest are description o
 | statusReason.coding.code    | Status code, transaction error code or description code (see NCPDP reference)                               |
 | statusReason.coding.display | Meaning of code (see NCPDP reference)                                                                       |
 
-**Statuses**
+#### **Statuses description**
 
 | Status           | How to handle                                                                               |
 | ---------------- | ------------------------------------------------------------------------------------------- |
