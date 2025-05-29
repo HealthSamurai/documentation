@@ -37,7 +37,10 @@
   (gitbok.indexing.impl.file-to-uri/filepath->uri context filepath))
 
 (defn uri->filepath [uri->file-idx ^String uri]
-  (let [fixed-url (if (= "/" (subs uri 0 1)) (subs uri 1) uri)]
+  (let [uri (if (= "/" (subs uri 0 1)) (subs uri 1) uri)
+        fixed-url (if (= "/" (subs uri (dec (count uri))))
+                    (subs uri 0 (dec (count uri)))
+                    uri)]
     (str "/docs/" (get uri->file-idx fixed-url "readme/README.md"))))
 
 (defn page-link->uri [context ^String current-page-uri ^String relative-page-link]

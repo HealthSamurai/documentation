@@ -22,7 +22,8 @@
            :h2 "Found in heading 2"
            :h3 "Found in heading 3"
            "Found in content")])
-      [:a.text-lg.font-medium.text-blue-600.hover:text-blue-800 {:href (:uri result)}
+      [:a.text-lg.font-medium.text-blue-600.hover:text-blue-800
+       {:href (str "/" (:uri result))}
        title]
       (when-not (= :title hit-by)
         (case hit-by

@@ -29,8 +29,9 @@
           :hx-get "/search"
           :hx-target "#content"
           :hx-swap "innerHTML"
+          :hx-push-url "false"
           :hx-trigger "click, keydown[key=='k'][ctrlKey||metaKey] from:body"
-          :hx-on ":after-request \"document.querySelector('#search-input')?.focus()"}
+          :hx-on ":after-request \"document.querySelector('#search-input')?.focus()\"}
       "Search"
       [:span {:class "text-xs text-gray-400"} "⌘K"]]]]
    (for [item summary]
@@ -56,4 +57,4 @@
       [:div.nav
        {:class "px-6 py-6 w-80 text-sm h-screen overflow-auto bg-gray-50 shadow-md"}
        (menu (summary/get-summary context))]
-      [:div#content {:class "m-x-auto flex-1 py-6 px-12 max-w-4xl h-screen overflow-auto"} content]])))
+      [:div#content {:class "m-x-auto flex-1 py-6 px-12 h-screen overflow-auto"} content]])))

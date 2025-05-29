@@ -19,8 +19,12 @@
 (set! *warn-on-reflection* true)
 
 (defn read-content [context uri]
+  (def context context)
+  (indexing/uri->filepath (uri-to-file/get-idx context) "api/rest-api/fhir-search")
   (let [filepath (indexing/uri->filepath (uri-to-file/get-idx context) uri)
         content (slurp (str "." filepath))]
+    (println "filepath " filepath)
+    (def filepath filepath)
     (if (str/starts-with? content "---")
       (last (str/split content #"---\n" 3))
       content)))

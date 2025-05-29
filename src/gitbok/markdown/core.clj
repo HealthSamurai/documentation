@@ -1,20 +1,20 @@
 (ns gitbok.markdown.core
   (:require
-    [clojure.string :as str]
-    [gitbok.markdown.widgets.big-links :as big-links]
-    [gitbok.markdown.widgets.link :as link]
-    [gitbok.markdown.widgets.image :as image]
-    [gitbok.markdown.widgets.code-highlight :as code-highlight]
-    [gitbok.markdown.widgets.content-ref :as content-ref]
-    [gitbok.markdown.widgets.github-hint :as github-hint]
-    [gitbok.markdown.widgets.hint :as hint]
-    [nextjournal.markdown :as md]
-    [nextjournal.markdown.transform :as transform]
-    [hiccup2.core]
-    [nextjournal.markdown.utils :as u]
-    [edamame.core :as edamame]
-    [clojure.zip :as z]
-    [uui]))
+   [clojure.string :as str]
+   [gitbok.markdown.widgets.big-links :as big-links]
+   [gitbok.markdown.widgets.link :as link]
+   [gitbok.markdown.widgets.image :as image]
+   [gitbok.markdown.widgets.code-highlight :as code-highlight]
+   [gitbok.markdown.widgets.content-ref :as content-ref]
+   [gitbok.markdown.widgets.github-hint :as github-hint]
+   [gitbok.markdown.widgets.hint :as hint]
+   [nextjournal.markdown :as md]
+   [nextjournal.markdown.transform :as transform]
+   [hiccup2.core]
+   [nextjournal.markdown.utils :as u]
+   [edamame.core :as edamame]
+   [clojure.zip :as z]
+   [uui]))
 
 (def custom-doc
   (update u/empty-doc
@@ -38,14 +38,17 @@
 
 (defn render-toc-item [item]
   (let [content (->> (:content item)
-                    (map #(if (= :text (:type %))
-                           (:text %)
-                           (->> (:content %)
-                                (map :text)
-                                (clojure.string/join ""))))
-                    (clojure.string/join ""))
+                     (map #(if (= :text (:type %))
+                             (:text %)
+                             (->> (:content %)
+                                  (map :text)
+                                  (clojure.string/join ""))))
+                     (clojure.string/join ""))
         href (str "#" (:id (:attrs item)))]
-    [:div {:class (str "pl-" (* (dec (:heading-level item)) 4))}
+    [:div {:class (str "pl-" (* (if (:heading-level item)
+                                  (dec (:heading-level item))
+                                  0)
+                                4))}
      [:a {:href href
           :class "block py-1 text-sm text-gray-600 hover:text-gray-900"}
       content]
