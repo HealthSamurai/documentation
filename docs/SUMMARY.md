@@ -86,7 +86,7 @@
 
 ## Overview
 
-* [Licensing and Support](getting-started/licensing-and-support.md)
+* [Licensing and Support](overview/licensing-and-support.md)
 * [Aidbox user portal](overview/aidbox-user-portal/README.md)
   * [Projects](overview/aidbox-user-portal/projects.md)
   * [Licenses](overview/aidbox-user-portal/licenses.md)

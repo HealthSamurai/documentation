@@ -16,6 +16,7 @@ redirects:
     api-1/fhir-api/search-1/search-parameters-list/_include-and-_revinclude: api/rest-api/fhir-search/include-and-revinclude.md
     modules-1/observability/metrics/monitoring/aidbox-metrics-server: modules/observability/metrics/monitoring/aidbox-metrics-server.md
 
+    getting-started/lisensing-and-support: overview/licensing-and-support.md
     # See Site insights -> Broken URLs in gitbook ui
     security-and-access-control-1/security/accesspolicy-best-practices: tutorials/security-access-control-tutorials/accesspolicy-best-practices.md
     app-development-guides/tutorials/patient-encounter-notification-application: deprecated/deprecated/other/app-development-deprecated-tutorials/patient-encounter-notification-application.md
