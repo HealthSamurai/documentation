@@ -3,6 +3,9 @@
 @tailwind utilities;
 @import "../../libs/http/resources/public/uui.css";
 
+details[open] > summary .chevron {
+  transform: rotate(90deg);
+}
 
 .gitbook {
   h1 {
@@ -87,10 +90,6 @@
 
     summary .chevron {
       transition: 0.4s;
-    }
-
-    details[open] > summary .chevron {
-      transform: rotate(90deg);
     }
   }
 }

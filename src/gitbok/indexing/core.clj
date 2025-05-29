@@ -41,6 +41,10 @@
         fixed-url (if (= "/" (subs uri (dec (count uri))))
                     (subs uri 0 (dec (count uri)))
                     uri)]
+    (def fixed-url fixed-url)
+    (def uri->file-idx uri->file-idx)
+    (get uri->file-idx "readme/features")
+    (get uri->file-idx "readme/features")
     (str "/docs/" (get uri->file-idx fixed-url "readme/README.md"))))
 
 (defn page-link->uri [context ^String current-page-uri ^String relative-page-link]

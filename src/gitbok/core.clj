@@ -19,7 +19,6 @@
 (set! *warn-on-reflection* true)
 
 (defn read-content [context uri]
-  (indexing/uri->filepath (uri-to-file/get-idx context) "api/rest-api/fhir-search")
   (let [filepath (indexing/uri->filepath (uri-to-file/get-idx context) uri)
         content (slurp (str "." filepath))]
     (if (str/starts-with? content "---")
@@ -27,6 +26,8 @@
       content)))
 
 (defn read-and-render-file* [context uri]
+  (def uri uri)
+  (def context context)
   (let [content* (read-content context uri)
         parsed-md
         (:parsed (markdown/parse-markdown-content [nil content*]))]
@@ -54,13 +55,30 @@
   (when url
     (str/includes? url ".gitbook/assets")))
 
+(defn todo
+  [context request]
+  (gitbok.ui/layout
+   context request
+   [:div.gitbook
+    (let [content* (slurp "./todo.md")
+         parsed-md (:parsed (markdown/parse-markdown-content [nil content*]))]
+     (try
+       (markdown/render-gitbook parsed-md)
+       (catch Exception e
+         [:div {:role "alert"}
+          (.getMessage e)
+          [:pre (pr-str e)]
+          [:pre content*]])))]))
+
 (defn
   ^{:http {:path "/:path*"}}
   render-file-view
   [context request]
-  (def request request)
-  (if (picture-url? (:uri request))
+  (cond
+    (picture-url? (:uri request))
     (resp/file-response (subs (:uri request) 1))
+
+    :else
     (gitbok.ui/layout
      context request
      (read-and-render-file context request))))
@@ -107,9 +125,15 @@
 
   (http/register-endpoint
    context
-   {:path "/pictures/:path"
+   {:path "/todo"
     :method :get
-    :fn #'handle-gitbook-assets})
+    :fn #'todo})
+
+  ;; (http/register-endpoint
+  ;;  context
+  ;;  {:path "/pictures/:path"
+  ;;   :method :get
+  ;;   :fn #'handle-gitbook-assets})
 
   ;; todo
   ;; (http/register-endpoint

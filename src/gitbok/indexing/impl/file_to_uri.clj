@@ -26,12 +26,3 @@
 
 (defn filepath->uri [context filepath]
   (get (get-idx context) filepath))
-
-(for [[page-name filepath]
-      [["FHIR Search" "api/rest-api/fhir-search/README.md"]]]
-  [filepath
-   (str (str/replace filepath #"/[^/]*$" "") "/"
-        (if (str/ends-with? (str/lower-case filepath)
-                            "readme.md")
-          ""
-          (common/sanitize-page-name page-name)))])

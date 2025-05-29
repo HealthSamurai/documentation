@@ -677,6 +677,10 @@ video {
   display: grid;
 }
 
+.contents {
+  display: contents;
+}
+
 .list-item {
   display: list-item;
 }
@@ -738,10 +742,6 @@ video {
 
 .max-w-2xl {
   max-width: 42rem;
-}
-
-.max-w-4xl {
-  max-width: 56rem;
 }
 
 .flex-1 {
@@ -1233,6 +1233,10 @@ video {
   transition-duration: 150ms;
 }
 
+details[open] > summary .chevron {
+  transform: rotate(90deg);
+}
+
 .gitbook {
   h1 {
     margin-top: 1.5rem;
@@ -1467,9 +1471,6 @@ video {
     }
     summary .chevron {
       transition: 0.4s;
-    }
-    details[open] > summary .chevron {
-      transform: rotate(90deg);
     }
   }
 }
