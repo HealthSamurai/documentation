@@ -1,17 +1,21 @@
 (ns gitbok.markdown.widgets.link
   (:require
-    [clojure.string :as str]
-    [gitbok.markdown.widgets.code-highlight :as code-highlight]
-    [gitbok.markdown.widgets.content-ref :as content-ref]
-    [gitbok.markdown.widgets.github-hint :as github-hint]
-    [gitbok.markdown.widgets.hint :as hint]
-    [nextjournal.markdown :as md]
-    [nextjournal.markdown.transform :as transform]
-    [nextjournal.markdown.utils :as u]
-    [edamame.core :as edamame]
-    [clojure.zip :as z]))
+   [clojure.string :as str]
+   [gitbok.indexing.core :as indexing]))
 
-(defn link-renderer [_ctx node]
-  (def node node)
-  [:a {:href (-> node :attrs :href (str/replace #"\.md$" ""))}
+(defn href [context node filepath]
+  (let [href (-> node :attrs :href)]
+    (if (str/starts-with? href "http")
+      href
+      (-> (indexing/page-link->uri
+            context
+            filepath
+            href)
+          ;; (str/replace #"README\.md|readme\.md" "")
+          ;; (str/replace #"\.md|\.MD" "")
+
+          ))))
+
+(defn link-renderer [context filepath ctx node]
+  [:a {:href (href context node filepath)}
    (-> node :content (get 0) :text)])

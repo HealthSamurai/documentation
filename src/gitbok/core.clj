@@ -18,21 +18,19 @@
 
 (set! *warn-on-reflection* true)
 
-(defn read-content [context uri]
-  (let [filepath (indexing/uri->filepath (uri-to-file/get-idx context) uri)
-        content (slurp (str "." filepath))]
+(defn read-content [_context filepath]
+  (let [content (slurp filepath)]
     (if (str/starts-with? content "---")
       (last (str/split content #"---\n" 3))
       content)))
 
 (defn read-and-render-file* [context uri]
-  (def uri uri)
-  (def context context)
-  (let [content* (read-content context uri)
-        parsed-md
-        (:parsed (markdown/parse-markdown-content [nil content*]))]
+  (let [filepath (str "." (indexing/uri->filepath (uri-to-file/get-idx context) uri))
+        content* (read-content context filepath)
+        {:keys [parsed]}
+        (markdown/parse-markdown-content [filepath content*])]
     (try
-      (markdown/render-gitbook parsed-md)
+      (markdown/render-gitbook context filepath parsed)
       (catch Exception e
         [:div {:role "alert"}
          (.getMessage e)
@@ -63,7 +61,7 @@
     (let [content* (slurp "./todo.md")
          parsed-md (:parsed (markdown/parse-markdown-content [nil content*]))]
      (try
-       (markdown/render-gitbook parsed-md)
+       (markdown/render-gitbook context "todo.md" parsed-md)
        (catch Exception e
          [:div {:role "alert"}
           (.getMessage e)
@@ -77,6 +75,10 @@
   (cond
     (picture-url? (:uri request))
     (resp/file-response (subs (:uri request) 1))
+
+    ;; todo
+    (= (:uri request) "/favicon.ico")
+    {:status 404}
 
     :else
     (gitbok.ui/layout
@@ -140,20 +142,21 @@
   ;;   context
   ;;   {:path "/admin/broken" :method :get :fn #'gitbok.broken-links/broken-links-view})
 
-  (def context context)
   (indexing/set-md-files-idx context)
 
-  (indexing/set-parsed-markdown-index
+  (markdown/set-parsed-markdown-index
    context
    (indexing/get-md-files-idx context))
 
   (indexing/set-search-idx
    context
-   (indexing/get-parsed-markdown-index context))
+   (markdown/get-parsed-markdown-index context))
 
   ;; todo reuse md-files-idx
   (uri-to-file/set-idx context)
   (file-to-uri/set-idx context)
+  (def file1 (file-to-uri/get-idx context))
+  (take 10 file1)
 
   (summary/set-summary context)
   (http/register-endpoint
