@@ -186,10 +186,11 @@ GET <AIDBOX_BASE_URL>/Organization/<org-id>/fhir/<resource-type>
 {% hint style="warning" %}
 The search API does not support search parameters:
 
-* `_has`
 * `_assoc`
-* `_with`
+* `_with`&#x20;
 {% endhint %}
+
+Since 2505, [\_has search parameter](../../../../api/rest-api/fhir-search/chaining.md) is supported.
 
 ### $everything
 
