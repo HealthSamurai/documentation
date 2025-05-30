@@ -54,11 +54,7 @@
       - Organization-based hierarchical access control
       - Compartments API
       - Patient data access API
-    * **Multibox** 
     * Security Labels Framework
-    * **Role Based Access Control**
-    * **Attribute Based Access Control**
-    * **Consent Based Access Control**
   - Audit & Logging
     * Audit Events in Aidbox
     * Standalone Audit Event Repository  
