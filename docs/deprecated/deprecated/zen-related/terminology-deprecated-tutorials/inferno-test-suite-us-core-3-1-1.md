@@ -5,7 +5,7 @@ This page is related to Aidbox project configuration.
 
 Since the 2405 release, using Aidbox in FHIR schema validation engine is recommended, which is incompatible with zen or Entity/Attribute options.
 
-[Setup Aidbox with FHIR Schema validation engine](broken-reference)
+[Setup Aidbox with FHIR Schema validation engine](broken-reference/)
 {% endhint %}
 
 In this tutorial we will guide you how to setup Aidbox US Core FHIR Implementation Guide and pass Inferno US Core 3.1.1 confromance tests.
@@ -14,7 +14,7 @@ In this tutorial we will guide you how to setup Aidbox US Core FHIR Implementati
 
 To correctly set up Aidbox, we'll utilize the Aidbox configuration projects.
 
-There's an [existing guide](broken-reference) for this process. Adhere to this guide, but note a variation when you reach the `Configure the Aidbox` step: instead of using the recommended configuration projects (R4,R4B,R5,etc.) — clone this specific project:
+There's an [existing guide](broken-reference/) for this process. Adhere to this guide, but note a variation when you reach the `Configure the Aidbox` step: instead of using the recommended configuration projects (R4,R4B,R5,etc.) — clone this specific project:
 
 ```
 git clone \
@@ -33,7 +33,7 @@ If you already have a running Aidbox instance, please refer to the following gui
 {% endhint %}
 
 {% content-ref url="../../../../tutorials/validation-tutorials/upload-fhir-implementation-guide/" %}
-[upload-fhir-implementation-guide](../../../../tutorials/validation-tutorials/upload-fhir-implementation-guide/README.md)
+[upload-fhir-implementation-guide](../../../../tutorials/validation-tutorials/upload-fhir-implementation-guide/)
 {% endcontent-ref %}
 
 ## Uploading test data samples
@@ -59,7 +59,7 @@ The link in `input.url` points to an archive containing data samples generated b
 
 ## Obtaining OAuth credentials
 
-To obtain OAuth credentials, please refer to this [video guide](../../../../modules/security-and-access-control/auth/client-credentials-grant.md#auth-sandbox). Keep obtained access token for the following steps.
+To obtain OAuth credentials, please refer to this [video guide](../../../../tutorials/security-access-control-tutorials/client-credentials-grant.md#auth-sandbox). Keep obtained access token for the following steps.
 
 ## (Optional) Forwarding your local Aidbox deployment to the public web
 

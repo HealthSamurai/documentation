@@ -12,9 +12,9 @@ Aidbox is a mature and reliable FHIR platform that enables rapid development of 
 
 * [Features](features.md)
 * [Architecture](architecture.md)
-* [Licensing and support](../getting-started/licensing-and-support.md)
+* [Licensing and support](../overview/licensing-and-support.md)
 * [Release notes](../overview/release-notes.md)
-* [Run Aidbox on Kubernetes](../deployment-and-maintenance/deploy-aidbox/run-aidbox-in-kubernetes/README.md)
+* [Run Aidbox on Kubernetes](../deployment-and-maintenance/deploy-aidbox/run-aidbox-in-kubernetes/)
 
 ## Platform
 
@@ -26,4 +26,4 @@ Aidbox is a mature and reliable FHIR platform that enables rapid development of 
 
 ## Support
 
-<table data-view="cards"><thead><tr><th></th><th></th><th data-hidden data-card-cover data-type="files"></th><th data-hidden data-card-target data-type="content-ref"></th></tr></thead><tbody><tr><td><strong>Aidbox Community</strong></td><td>Join the public Telegram chat, ask questions and share experience.</td><td><a href="../../.gitbook/assets/sp1.png">sp1.png</a></td><td><a href="https://t.me/aidbox">https://t.me/aidbox</a></td></tr><tr><td><strong>Issue Tracker</strong></td><td>Report bugs and requests in the public Issue Tracker.</td><td><a href=".gitbook/assets/sp2.png">sp2.png</a></td><td><a href="https://github.com/Aidbox/Issues/issues">https://github.com/Aidbox/Issues/issues</a></td></tr><tr><td><strong>Contact Us</strong></td><td>Connect with Samurai to get support and guidance directly.</td><td><a href=".gitbook/assets/sp3.png">sp3.png</a></td><td><a href="https://www.health-samurai.io/contacts">https://www.health-samurai.io/contacts</a></td></tr></tbody></table>
+<table data-view="cards"><thead><tr><th></th><th></th><th data-hidden data-card-cover data-type="files"></th><th data-hidden data-card-target data-type="content-ref"></th></tr></thead><tbody><tr><td><strong>Aidbox Community</strong></td><td>Join the public Telegram chat, ask questions and share experience.</td><td><a href="../../.gitbook/assets/sp1.png">sp1.png</a></td><td><a href="https://t.me/aidbox">https://t.me/aidbox</a></td></tr><tr><td><strong>Issue Tracker</strong></td><td>Report bugs and requests in the public Issue Tracker.</td><td></td><td><a href="https://github.com/Aidbox/Issues/issues">https://github.com/Aidbox/Issues/issues</a></td></tr><tr><td><strong>Contact Us</strong></td><td>Connect with Samurai to get support and guidance directly.</td><td></td><td><a href="https://www.health-samurai.io/contacts">https://www.health-samurai.io/contacts</a></td></tr></tbody></table>

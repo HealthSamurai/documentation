@@ -32,7 +32,7 @@ jwt:
 
 When Aidbox validates the JWT token, it tries to find a matching `TokenIntrospector` using `jwt.iss` and `type` attributes. If suitable TokenIntrospector is found, token is being validated with either JWK obtained from `jwks_uri` or with `jwt.secret`, depending on the signing algorithm. Token expiration (`exp` claim) is also being checked.
 
-If JWT is valid, Aidbox will put it's claims into the request object under `jwt` key, so you'll be able to access them with [AccessPolicy checks](../security/accesspolicy.md). If the token failed validation (it's expired or signature isn't correct) then the client will get a 401 "Unauthorised" response.
+If JWT is valid, Aidbox will put it's claims into the request object under `jwt` key, so you'll be able to access them with [AccessPolicy checks](broken-reference). If the token failed validation (it's expired or signature isn't correct) then the client will get a 401 "Unauthorised" response.
 
 ## Validating Opaque (non-JWT) Tokens
 
@@ -144,6 +144,6 @@ link:
 
 ## How to set-up identity provider
 
-{% content-ref url="../set-up-external-identity-provider.md" %}
-[set-up-external-identity-provider.md](../set-up-external-identity-provider.md)
+{% content-ref url="../../../tutorials/security-access-control-tutorials/set-up-external-identity-provider.md" %}
+[set-up-external-identity-provider.md](../../../tutorials/security-access-control-tutorials/set-up-external-identity-provider.md)
 {% endcontent-ref %}

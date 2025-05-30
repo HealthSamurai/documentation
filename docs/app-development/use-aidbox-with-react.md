@@ -13,9 +13,9 @@ This quickstart guide demonstrates how to launch a PHR sample app on the Aidbox 
 The guide helps you to explore the following Aidbox features:
 
 * [REST Console](../overview/aidbox-ui/rest-console.md): execute and debug HTTP requests directly within Aidbox.
-* [Access Control](../modules/security-and-access-control/security/README.md): manage fine-grained data access through the API.
+* [Access Control](broken-reference): manage fine-grained data access through the API.
 * [Data Import endpoint](../api/bulk-api/import-and-fhir-import.md): Efficiently load FHIR data into Aidbox.
-* [JavaScript SDK](./aidbox-sdk/aidbox-javascript-sdk.md): Streamline JS app development on Aidbox effortlessly.
+* [JavaScript SDK](aidbox-sdk/aidbox-javascript-sdk.md): Streamline JS app development on Aidbox effortlessly.
 
 ## 1. Run Aidbox and set up Access Control
 
@@ -47,7 +47,7 @@ engine: allow
 ```
 
 {% hint style="info" %}
-By default, Aidbox has a policy that locks down access to all data. You need to enable data sharing by adding Access Policies for Clients. Aidbox supports different ways to describe these policies, like JSON Schema, SQL, or Macho DSL. [Learn more](../modules/security-and-access-control/security/README.md).
+By default, Aidbox has a policy that locks down access to all data. You need to enable data sharing by adding Access Policies for Clients. Aidbox supports different ways to describe these policies, like JSON Schema, SQL, or Macho DSL. [Learn more](broken-reference).
 {% endhint %}
 
 ## **2. Import the sample data into Aidbox**
@@ -115,7 +115,7 @@ npm run dev
 
 ## Next Steps
 
-* Explore the [Aidbox JavaScript SDK](./aidbox-sdk/aidbox-javascript-sdk.md) for advanced features.
-* Unlock additional capabilities of [Aidbox UI](../overview/aidbox-ui/README.md).
-* Dive into the built-in [Access Control module](../modules/security-and-access-control/security/README.md).
+* Explore the [Aidbox JavaScript SDK](aidbox-sdk/aidbox-javascript-sdk.md) for advanced features.
+* Unlock additional capabilities of [Aidbox UI](../overview/aidbox-ui/).
+* Dive into the built-in [Access Control module](broken-reference).
 * Play around with the [$import endpoint](../api/bulk-api/import-and-fhir-import.md) to load FHIR data.

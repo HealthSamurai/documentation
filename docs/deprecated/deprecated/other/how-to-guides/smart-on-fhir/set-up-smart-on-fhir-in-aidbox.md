@@ -4,7 +4,7 @@ description: This guide shows how to get set up SMART on FHIR in Aidbox
 
 # Set up SMART on FHIR in Aidbox
 
-SMART on FHIR specifies authentication/authorization scheme for FHIR Applications. This scheme extends OAuth 2.0 and OpenID. To enable [SMART on FHIR](https://smarthealthit.org/) you need to create an [Aidbox project](../../../zen-related/aidbox-zen-lang-project/README.md) and configure SMART API routes using the [Aidbox API Constructor](../../../zen-related/api-constructor-docs-beta.md).
+SMART on FHIR specifies authentication/authorization scheme for FHIR Applications. This scheme extends OAuth 2.0 and OpenID. To enable [SMART on FHIR](https://smarthealthit.org/) you need to create an [Aidbox project](../../../zen-related/aidbox-zen-lang-project/) and configure SMART API routes using the [Aidbox API Constructor](../../../zen-related/api-constructor-docs-beta.md).
 
 {% hint style="info" %}
 You can use the configuration provided in the [Aidbox project samples](https://github.com/Aidbox/aidbox-project-samples) repo.
@@ -31,7 +31,7 @@ To use SMART on FHIR you need to create a few resources like Client and AccessPo
 
 ### Client
 
-Let's create an [Aidbox Client](broken-reference):
+Let's create an [Aidbox Client](broken-reference/):
 
 ```yaml
 POST /Client
@@ -57,7 +57,7 @@ The `launch_uri` parameter here specifies the launch URI for the EHR-based SMART
 
 ### Access Policies
 
-You likely want to add some [Access Policies](../../../../../modules/security-and-access-control/security/README.md) to allow users see their data. Here we provide some examples for reference:
+You likely want to add some [Access Policies](broken-reference) to allow users see their data. Here we provide some examples for reference:
 
 ```yaml
 PUT /

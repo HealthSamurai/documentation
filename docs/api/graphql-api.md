@@ -617,9 +617,9 @@ BOX_FEATURES_GRAPHQL_REFERENCE__ANY=true
 
 ### Enable access control in GraphQL
 
-By default, if the `POST /$graphql` request passes request, it can query every resource without access control checks.&#x20;
+By default, if the `POST /$graphql` request passes request, it can query every resource without access control checks.
 
-To enable access control, set the environmental variable: &#x20;
+To enable access control, set the environmental variable:
 
 ```
 BOX_FEATURES_GRAPHQL_ACCESS__CONTROL=rest-search
@@ -649,7 +649,7 @@ matcho:
   uri: /Patient
 ```
 
-Of course, any [AccessPolicy engine](../modules/security-and-access-control/security/evaluation-engines.md) can be used. For example, using `sql` engine to allow the request if  `organization_id` in the JWT is the same as `Patient.managingOrganization`:
+Of course, any [AccessPolicy engine](broken-reference) can be used. For example, using `sql` engine to allow the request if `organization_id` in the JWT is the same as `Patient.managingOrganization`:
 
 ```yaml
 PUT /AccessPolicy/my-client-allow-patient

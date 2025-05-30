@@ -1,4 +1,4 @@
-# API constructor (docs/beta)
+# API constructor (/beta)
 
 {% hint style="warning" %}
 Since the 2405 release, using Aidbox in FHIRSchema mode is recommended, which is incompatible with zen or Entity/Attribute options.
@@ -21,8 +21,8 @@ API constructor requires knowledge of [zen language](https://github.com/zen-lang
 
 #### Common API Constructor use cases
 
-{% content-ref url="../../../modules/security-and-access-control/security/access-control-lists-docs-acl.md" %}
-[access-control-lists-docs-acl.md](../../../modules/security-and-access-control/security/access-control-lists-docs-acl.md)
+{% content-ref url="access-control-lists-docs-acl.md" %}
+[access-control-lists-docs-acl.md](access-control-lists-docs-acl.md)
 {% endcontent-ref %}
 
 {% content-ref url="../../../modules/smartbox/background-information/multitenancy-approach.md" %}
@@ -73,7 +73,7 @@ AIDBOX_ZEN_ENTRYPOINT=mybox/box
 
 {% hint style="info" %}
 The namespace with entrypoint symbol must be loaded: file containing namespace mentioned in `AIDBOX_ZEN_PATHS` and imported or specified directly in`AIDBOX_ZEN_ENTRYPOINT` env.\
-[More info on loading namespace](aidbox-zen-lang-project/README.md)
+[More info on loading namespace](aidbox-zen-lang-project/)
 {% endhint %}
 
 Entrypoint symbol must be tagged with `aidbox/system` tag. `aidbox/system` describes a set of services to start and configurations.
@@ -94,7 +94,7 @@ A service contains `engine` and its configuration.
 #### Available engines:
 
 * `aidbox/http` - Describes http service, contains set of `apis`. Each api must be tagged with `aidbox.rest/api`.
-* `aidbox/seed` - Creates provided fixtures on start. Described [here](aidbox-zen-lang-project/README.md#seed-import).
+* `aidbox/seed` - Creates provided fixtures on start. Described [here](aidbox-zen-lang-project/#seed-import).
 
 #### Example
 
@@ -172,8 +172,8 @@ Expect target resource type as `:resource` and `:format` (`fhir` or `aidbox`)
 
 See full description and usage examples:
 
-{% content-ref url="../../../modules/security-and-access-control/security/access-control-lists-docs-acl.md" %}
-[access-control-lists-docs-acl.md](../../../modules/security-and-access-control/security/access-control-lists-docs-acl.md)
+{% content-ref url="access-control-lists-docs-acl.md" %}
+[access-control-lists-docs-acl.md](access-control-lists-docs-acl.md)
 {% endcontent-ref %}
 
 ### Gateway

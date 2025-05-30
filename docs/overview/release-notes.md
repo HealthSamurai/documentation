@@ -34,11 +34,11 @@
 
 * Aidbox FHIR server
   * Supported [FHIRPath patch](../api/rest-api/crud/patch.md#fhirpath-patch)
-  * Supported [Apple](../tutorials/security-access-control-tutorials/apple.md) as an [external identity provider](../modules/security-and-access-control/set-up-external-identity-provider.md)
+  * Supported [Apple](../tutorials/security-access-control-tutorials/apple.md) as an [external identity provider](../tutorials/security-access-control-tutorials/set-up-external-identity-provider.md)
   * Released `deprecated/capabilities`endpoint to detect deprectated zen and Entity/Atributes entities and updated the [migration guide](../modules/custom-resources/migrate-to-fhirschema/).
   * Implemented a 24-hour grace period for all Aidbox instances that cannot connect to the Aidbox portal for license verification. Also available in versions 2502, 2501, 2412, 2411, 2410, 2402, 2306, and 2302.
   * Supported [OTEL collector](../modules/observability/) configuration as an [Aidbox setting](../reference/settings/observability.md#otel). Updated [Aidbox example](https://github.com/Aidbox/examples/tree/main/OpenTelemetry) that shows how to launch and explore the Aidbox observability features (logs, traces, and metrics) locally.
-  * Added new [AuditEvents](../modules/security-and-access-control/audit/) for password changes and unsuccessful login attempts.
+  * Added new [AuditEvents](broken-reference) for password changes and unsuccessful login attempts.
   * Added a synthetic data import progress bar on the Aidbox UI home page.
 * Aidbox Forms
   * Added Wound Assessment Form and Risk Assessment Form to the public [Aidbox Form Gallery](https://form-builder.aidbox.app/), featuring coded fields, extraction, conditional logic, and calculations.
@@ -153,7 +153,7 @@ Minor updates:
   * Released Aidbox UI home page
   * Implemented hashing for sensitive elements User, Client and Session records. it is strongly recommended to delete the history tables for these resources to prevent access to the original un-hashed secret values.
   * Introduced ["Authorize Inline Requests"](../api/rest-api/fhir-search/include-and-revinclude.md#authorize-inline-requests-mode) mode, ensuring that users can only retrieve resources they are authorized to view when using `_include` and `_revinclude` parameters in search requests.
-  * Added [Audit Logs](../modules/security-and-access-control/audit/audit-log.md) for SQL endpoints
+  * Added [Audit Logs](broken-reference) for SQL endpoints
   * Added configurable CORS settings, allowing users to [enable CORS](../reference/environment-variables/optional-environment-variables.md#box_web_cors_enabled) and [specify allowed origins](../reference/environment-variables/optional-environment-variables.md#box_web_cors_origins).
   * Fixed critical vulnerabilities and bugs
 * Aidbox Forms
@@ -200,7 +200,7 @@ Minor updates:
   * Released a [demo of publishing a completed QuestionnaireResponse to Kafka topic](https://github.com/Aidbox/app-examples/tree/main/aidbox-subscriptions-to-kafka)
   * Added an option to connect a self-hosted Aidbox instance to the [ViewDefinition builder](https://sqlonfhir.aidbox.app/?utm_source=aidbox-docs\&utm_medium=release-notes)
   * Enhanced [SQL on FHIR spec coverage](https://fhir.github.io/sql-on-fhir-v2)
-  * Supported [Audit logging](../modules/security-and-access-control/audit/) using external identity providers
+  * Supported [Audit logging](broken-reference) using external identity providers
 * [Aidbox Forms](../modules/aidbox-forms/)
   * UI builder updates (FHIR Questionnaire-based):
     * [Supported Multilingual Forms](../modules/aidbox-forms/aidbox-ui-builder-alpha/form-creation/multilingual-forms.md)
@@ -333,7 +333,7 @@ Minor updates:
 * SDK
   * Added basic FHIR Profiles support to [Python SDK](https://github.com/Aidbox/aidbox-python)
 * Security and access control
-  * Added Access policy matcho engine [$one-of operator](../modules/security-and-access-control/security/evaluation-engines.md#matcho) to fetch the list of the available values from the request context
+  * Added Access policy matcho engine [$one-of operator](broken-reference) to fetch the list of the available values from the request context
   * Supported history endpoint within [the Organisation-based access control](../modules/access-control/authorization/scoped-api/organization-based-hierarchical-access-control.md#history)
   * Documented [GitHub as an external identity provider](https://github.com/HealthSamurai/sansara/issues/4016)
   * Published [guide on how to use self-signed SSL certificates](../deployment-and-maintenance/deploy-aidbox/run-aidbox-in-kubernetes/self-signed-ssl-certificates.md) when deploying Aidbox
@@ -537,7 +537,7 @@ Minor updates:
   * Added new supported sections:
     * Functional Status, Health Concerns, Mental Status, Plan of Treatment, Payers, Family History, Nutrition, and Medical Equipment
 * Security and access control
-  * Introduced [AuditEvent viewer](../modules/security-and-access-control/audit/)
+  * Introduced [AuditEvent viewer](broken-reference)
 * [Aidbox Forms](../modules/aidbox-forms/)
   * Added integration with Aidbox [Workflow Engine](../deprecated/deprecated/zen-related/workflow-engine/): add task to launch form
   * Added minor features:
@@ -855,7 +855,7 @@ Minor updates:
 * Enhanced `POST /` operation error handling and added [FHIR bundle resource documentation](../api/rest-api/bundle.md).
 * Enhanced GraphQL with ConceptMap.group property support
 * Reviewed first-class extensions with zen-lang and updated docs.
-* Reviewed and updated [Aidbox multitenancy docs](../modules/security-and-access-control/security/multitenancy.md).
+* Reviewed and updated [Aidbox multitenancy docs](broken-reference).
 
 ## March 2022 _`2203`_
 

@@ -19,7 +19,7 @@ OAuth 2.0 is the industry-standard protocol for authorization. Aidbox provides c
 * Resource Owner Password Flow
 * Implicit Flow (legacy)
 
-Learn more about OAuth 2.0 support:&#x20;
+Learn more about OAuth 2.0 support:
 
 {% content-ref url="oauth-2-0.md" %}
 [oauth-2-0.md](oauth-2-0.md)
@@ -37,11 +37,11 @@ Validate and inspect OAuth 2.0 tokens issued by external Identity Providers.
 
 ### Using Aidbox internal Identity Provider
 
-Aidbox supports username/password authentication for login to the Aidbox Console UI.&#x20;
+Aidbox supports username/password authentication for login to the Aidbox Console UI.
 
-See[ Identity Management](../identity-management/README.md#user-management) for managing Users and Passwords.&#x20;
+See[ Identity Management](../identity-management/#user-management) for managing Users and Passwords.
 
-Two-factor authentication is also supported. See [Two Factor Authentication](../../security-and-access-control/auth/two-factor-authentication.md) for the tutorial.
+Two-factor authentication is also supported. See [Two Factor Authentication](../../../tutorials/security-access-control-tutorials/two-factor-authentication.md) for the tutorial.
 
 ### Single Sign-On (SSO) with external Identity Provider
 

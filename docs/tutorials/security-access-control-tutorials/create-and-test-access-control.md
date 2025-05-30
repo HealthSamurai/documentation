@@ -102,7 +102,7 @@ POST {{base}}/fhir/Patient
 
 ![](../../.gitbook/assets/policy4.png)
 
-See the full documentation [Access Policies](../../modules/security-and-access-control/security/accesspolicy.md).
+See the full documentation [Access Policies](broken-reference).
 
 ## Access Policies for Users
 
@@ -307,7 +307,7 @@ The results of the schema validation should be the following:
 | GET          | True                   | True             |
 | POST         | True                   | False            |
 
-See the full documentation [Resource Owner Credentials Grant](../../modules/security-and-access-control/auth/resource-owner-grant.md).
+See the full documentation [Resource Owner Credentials Grant](resource-owner-grant.md).
 
 ## Signed RPC policy token
 

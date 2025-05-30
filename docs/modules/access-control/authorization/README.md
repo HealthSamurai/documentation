@@ -4,7 +4,7 @@ Aidbox supports different authorization mechanisms.
 
 ## Access Policies
 
-An Access Policy consists of a set of rules, where:
+An [Access Policy](access-policies.md) consists of a set of rules, where:
 
 * All rules within a policy must evaluate to true for the policy to be granted
 * Access is granted if at least one Access Policy evaluates to true
@@ -12,16 +12,38 @@ An Access Policy consists of a set of rules, where:
 
 ## SMART scopes
 
-SMART scopes check that there are scopes in a request for a specific operation; if not, reject the request.\
+[SMART scopes](smart-on-fhir/) check that there are scopes in a request for a specific operation; if not, reject the request.\
 For example, `GET /fhir/Observation` require `Observation.read` scope. Scopes can be taken from application grants.
 
 ## Scoped APIs
 
 Scoped APIs are special APIs limited to resources within a specific compartment. Such API do not require complicated access control logic, because this logic is built into the API definition.
 
-* Compartments API - API for resources within a certain [FHIR compartment](https://www.hl7.org/fhir/compartmentdefinition.html)
-* Patient Data API - API for patient-related resources that allows access to resources that belong to a specific patient
-* Organization-based hierarchical access control - API to control access to resources within a specific organization. Supports hierarchical access control
+* [Compartments API](scoped-api/compartments-api.md) - API for resources within a certain [FHIR compartment](https://www.hl7.org/fhir/compartmentdefinition.html)
+* [Patient Data API](scoped-api/patient-data-access-api.md) - API for patient-related resources that allows access to resources that belong to a specific patient
+* [Organization-based hierarchical access control](scoped-api/organization-based-hierarchical-access-control.md) - API to control access to resources within a specific organization. Supports hierarchical access control
+
+## Multibox
+
+Multibox is a type of Aidbox distribution that isolates data to separate databases in the same PostgreSQL cluster and provides separate base URLs for each of them. Separate APIs with different base URLs are used for different tenants. Multibox allows hosting hundreds and thousands of Aidbox services in a single runtime.
+
+{% hint style="success" %}
+* Data isolation is guaranteed by the separation of databases and APIs.
+* Each tenant has its own unique base URL.
+* Each tenant can have a different configuration, e.g. different FHIR versions.
+* Query performance of a tenant database is not affected by the data size of other tenants.
+{% endhint %}
+
+{% hint style="warning" %}
+* Due to the database separation, it may be difficult to perform analytics, migrations, etc. across multiple tenants.
+* Data can't be easily shared between tenants, e.g., terminologies, Practitioner, Organization resources etc.
+{% endhint %}
+
+See also:
+
+{% content-ref url="../../../tutorials/security-access-control-tutorials/run-multibox-locally.md" %}
+[run-multibox-locally.md](../../../tutorials/security-access-control-tutorials/run-multibox-locally.md)
+{% endcontent-ref %}
 
 ## Security Labels framework
 

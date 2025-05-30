@@ -67,4 +67,4 @@ The JSON document will contain both `authorize_endpoint` and `token_endpoint`.
 
 ## Log in to Aidbox
 
-Go to your Aidbox base URL. You will be redirected to the log in page where you should now see `Sign in with Azure AD` button. Press this button and log in with Azure AD user. This user will be logged in to Aidbox Console but he won’t have any permissions. Read more in [Access Control Section](../../modules/security-and-access-control/security/) about permissions.
+Go to your Aidbox base URL. You will be redirected to the log in page where you should now see `Sign in with Azure AD` button. Press this button and log in with Azure AD user. This user will be logged in to Aidbox Console but he won’t have any permissions. Read more in [Access Control Section](broken-reference) about permissions.

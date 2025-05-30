@@ -61,11 +61,11 @@ You can edit zen files in `zrc` directory and they will be automatically reloade
 
 ### Start form designing
 
-See [Design form in Aidbox UI Builder](./aidbox-ui-builder-alpha/README.md)
+See [Design form in Aidbox UI Builder](aidbox-ui-builder-alpha/)
 
 ## Enable Audit log
 
-Aidbox Forms support [Audit logs](../security-and-access-control/audit/README.md).
+Aidbox Forms support [Audit logs](broken-reference).
 
 To enable Audit logging with Aidbox project, edit the `zrc/sdc-box.edn` file:
 
@@ -105,8 +105,8 @@ Restart Aidbox. Aidbox will start recording audit logs and you can see them in t
 
 Learn more about Audit logs:
 
-{% content-ref url="../security-and-access-control/audit/" %}
-[audit](../security-and-access-control/audit/README.md)
+{% content-ref url="broken-reference" %}
+[Broken link](broken-reference)
 {% endcontent-ref %}
 
 ## Disable SDC operations
