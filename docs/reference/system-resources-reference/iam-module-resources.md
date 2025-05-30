@@ -138,13 +138,16 @@ IAM module includes the following resource types:
 <tr><td width="290">auth.<strong>authorization_code</strong>.<strong>token_format</strong></td><td width="70">0..1</td><td width="150">string</td><td>Format of the access token. 
 
 <strong>Allowed values</strong>: `jwt`</td></tr>
-<tr><td width="290">auth.<strong>authorization_code</strong>.<strong>audience</strong></td><td width="70">0..*</td><td width="150">string</td><td>Intended audience for issued tokens.</td></tr>
-<tr><td width="290">auth.<strong>authorization_code</strong>.<strong>secret_required</strong></td><td width="70">0..1</td><td width="150">boolean</td><td>Whether client secret is required for token exchange.</td></tr>
-<tr><td width="290">auth.<strong>authorization_code</strong>.<strong>pkce</strong></td><td width="70">0..1</td><td width="150">boolean</td><td>Whether PKCE (Proof Key for Code Exchange) is required.</td></tr>
-<tr><td width="290">auth.<strong>authorization_code</strong>.<strong>redirect_uri</strong></td><td width="70">0..1</td><td width="150">url</td><td>Redirect URI for the authorization code flow.</td></tr>
-<tr><td width="290">auth.<strong>authorization_code</strong>.<strong>access_token_expiration</strong></td><td width="70">0..1</td><td width="150">integer</td><td>Expiration time for access tokens in seconds.</td></tr>
 <tr><td width="290">auth.<strong>authorization_code</strong>.<strong>refresh_token_expiration</strong></td><td width="70">0..1</td><td width="150">integer</td><td>Expiration time for refresh tokens in seconds.</td></tr>
+<tr><td width="290">auth.<strong>authorization_code</strong>.<strong>pkce</strong></td><td width="70">0..1</td><td width="150">boolean</td><td>Whether PKCE (Proof Key for Code Exchange) is required.</td></tr>
+<tr><td width="290">auth.<strong>authorization_code</strong>.<strong>access_token_expiration</strong></td><td width="70">0..1</td><td width="150">integer</td><td>Expiration time for access tokens in seconds.</td></tr>
+<tr><td width="290">auth.<strong>authorization_code</strong>.<strong>secret_required</strong></td><td width="70">0..1</td><td width="150">boolean</td><td>Whether client secret is required for token exchange.</td></tr>
 <tr><td width="290">auth.<strong>authorization_code</strong>.<strong>refresh_token</strong></td><td width="70">0..1</td><td width="150">boolean</td><td>Whether to issue refresh tokens with this grant type.</td></tr>
+<tr><td width="290">auth.<strong>authorization_code</strong>.<strong>default_identity_provider</strong></td><td width="70">0..1</td><td width="150">Reference</td><td>Default IdentityProvider that will be used instead of Aidbox login. 
+
+<strong>Allowed references</strong>: IdentityProvider</td></tr>
+<tr><td width="290">auth.<strong>authorization_code</strong>.<strong>audience</strong></td><td width="70">0..*</td><td width="150">string</td><td>Intended audience for issued tokens.</td></tr>
+<tr><td width="290">auth.<strong>authorization_code</strong>.<strong>redirect_uri</strong></td><td width="70">0..1</td><td width="150">url</td><td>Redirect URI for the authorization code flow.</td></tr>
 <tr><td width="290">auth.<strong>token_exchange</strong></td><td width="70">0..1</td><td width="150">BackboneElement</td><td>Configuration for the token exchange grant type.</td></tr>
 <tr><td width="290">auth.<strong>token_exchange</strong>.<strong>token_format</strong></td><td width="70">0..1</td><td width="150">string</td><td>Format of the access token. 
 
