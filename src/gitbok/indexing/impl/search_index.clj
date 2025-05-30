@@ -165,12 +165,12 @@
          (lucene/search
           index
           {field q}
-          {:results-per-page 2
+          {:results-per-page 5
            :hit->doc ld/document->map})
          (lucene/search
           index
           {field q}
-          {:results-per-page 2
+          {:results-per-page 5
            :fuzzy? true
            :hit->doc ld/document->map}))
         (filter seq)
