@@ -3,7 +3,15 @@
 ## May 2025 _`edge`_
 
 * Aidbox FHIR server
-  *
+  * Introduced [Aidbox MCP Server](../modules/other-modules/mcp.md) (early-access)
+  * Supported FHIRPath `resolve() : collection` function
+  * Added an option to specify the default IdentityProvider in the Aidbox [Client resource](../reference/system-resources-reference/iam-module-resources.md#client) that will be used instead of the Aidbox login screen
+  * Supported conditional references in [transaction bundles](../api/rest-api/bundle.md)
+  * Optimized Aidbox startup time
+  * Aidbox UI:
+    * Dedicated resource page with user-friendly preview
+    * Navigation breadcrumbs for faster context switching
+  * Fixed bugs on Aidbox UI, resource validation, and incorrect handling of PUT operation in bundles.
 * Aidbox Forms
   * Supported full functionality of [template-based extraction](https://docs.aidbox.app/modules/aidbox-forms/aidbox-ui-builder-alpha/form-creation/form-settings#template-based-extraction) to extract QuestionnaireResponse into FHIR resources using predefined templates, with dynamic referencing between extracted resources and the template bundle extracted as a single resource.
   * Improved the [FHIRPath expression editor](https://docs.aidbox.app/modules/aidbox-forms/aidbox-ui-builder-alpha/form-creation/fhirpath-editor) for calculation, enable-when, and population expressions: including basic patient demographic pre-filling (e.g., name, gender, DOB).
