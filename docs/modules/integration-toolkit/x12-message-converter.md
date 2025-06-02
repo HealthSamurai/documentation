@@ -10,8 +10,11 @@ Aidbox includes `/x12/parse` and `/x12/generate` endpoints to allow the conversi
 * **271**
 * **834**
 * **835**
-* **837**
-* **837 Dental**&#x20;
+* **837 Professional**&#x20;
+* **837 Dental (**`005010X224`, `005010X224A2`, `005010X224A3`)
+* **837 Institutional (**`005010X223A2`, `005010X223`)
+
+
 
 ### Parsing a message
 
