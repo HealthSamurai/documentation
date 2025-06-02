@@ -1,6 +1,10 @@
 # Release Notes
 
-## May 2025 _`edge`_
+## June 2025 _`edge`_
+
+_`Work in progress`_
+
+## May 2025 _`latest, 2505`_
 
 * Aidbox FHIR server
   * Introduced [Aidbox MCP Server](../modules/other-modules/mcp.md) (early-access)
@@ -17,8 +21,14 @@
   * Improved the [FHIRPath expression editor](https://docs.aidbox.app/modules/aidbox-forms/aidbox-ui-builder-alpha/form-creation/fhirpath-editor) for calculation, enable-when, and population expressions: including basic patient demographic pre-filling (e.g., name, gender, DOB).
   * Added the ability to hide the form title when embedding as a web component.
   * Improved the Form Navigation Bar to display top-level groups when using a form with pages.
+* #### Minor updates
+  * `2504.1` - Forms enhancements
+  * `2503.4` - Forms enhancements
+  * `2410.5` - Fixed vulnerabilities
+  * `2402-lts` - Fixed vulnerabilities
+  * `2306-lts` - Fixed vulnerabilities
 
-## April 2025 _`latest, 2504`_
+## April 2025 _`stable, 2504`_
 
 * Aidbox FHIR server
   * Supported FHIR 6.0.0-ballot3 as a package in [Aidbox FHIR Package registry](../modules/profiling-and-validation/fhir-schema-validator/aidbox-fhir-igs-registry.md) and published a tutorial on [running Aidbox with FHIR 6.0.0-ballot3 locally and in the Aidbox sandbox](../tutorials/other-tutorials/run-aidbox-with-fhir-r6.md).
@@ -38,7 +48,7 @@
   * `2501.8` - Fixed vulnerabilities and minor Forms issues
   * `2402-lts` - Fixed vulnerabilities
 
-## March 2025 _`stable, 2503`_
+## March 2025 _`2503`_
 
 * Aidbox FHIR server
   * Supported [FHIRPath patch](../api/rest-api/crud/patch.md#fhirpath-patch)
