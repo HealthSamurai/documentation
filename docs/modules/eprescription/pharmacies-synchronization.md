@@ -146,7 +146,7 @@ The backup file mechanism ensures that the previously downloaded organizations' 
     "tag": [
       {
         "system": "urn:app:aidbox:e-prescriptions:surescripts",
-        "version": "v6_1_erx"
+        "code": "v6_1_erx"
       },
       {
         "system": "urn:app:aidbox:e-prescriptions:surescripts:serviceLevel",
