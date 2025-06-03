@@ -4,7 +4,7 @@ This tutorial will guide you through the process of setting up and using Postman
 
 ## Prerequisites
 
-* Aidbox instance up and running
+* Aidbox instance up and running. Yiou can [run Aidbox locally](../../getting-started/run-aidbox-locally.md) or [in the Health Samurai sandbox](../../getting-started/run-aidbox-in-sandbox.md).
 * Postman installed on your computer
 * Basic understanding of REST APIs and FHIR
 
