@@ -1,5 +1,5 @@
 
-# Aidbox Network Requirements FAQ
+# FAQ
 
 ## What network access does Aidbox require to function properly?
 
