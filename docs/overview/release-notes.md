@@ -2,19 +2,24 @@
 
 ## June 2025 _`edge`_
 
-_`Work in progress`_
+* Aidbox FHIR server
+  * Supported multiple keys for [TokenIntrospector resource](../reference/system-resources-reference/iam-module-resources.md#tokenintrospector).
+  * Increased the maximum length for base64Binary to handle large files stored in the AIdbox database.&#x20;
 
 ## May 2025 _`latest, 2505`_
 
 * Aidbox FHIR server
   * Introduced [Aidbox MCP Server](../modules/other-modules/mcp.md) (early-access)
-  * Supported FHIRPath `resolve() : collection` function
-  * Added an option to specify the default IdentityProvider in the Aidbox [Client resource](../reference/system-resources-reference/iam-module-resources.md#client) that will be used instead of the Aidbox login screen
+  * Supported FHIRPath `resolve()` function in [AidboxSubscriptionTopics](../modules/topic-based-subscriptions/wip-dynamic-subscriptiontopic-with-destinations/) `fhirPathCriteria` to specify triggers based on linked resources. For example, get only Encounters for specific patients in subscriptions.
+  * Added an option to specify the default IdentityProvider in the Aidbox [Client resource](../reference/system-resources-reference/iam-module-resources.md#client) that will be used instead of the Aidbox login screen.
+  * Introduced [AidboxTrigger](../modules/other-modules/aidbox-trigger.md) that enables automatic execution of SQL statements in response to FHIR resource operations.&#x20;
   * Supported conditional references in [transaction bundles](../api/rest-api/bundle.md)
   * Optimized Aidbox startup time
   * Aidbox UI:
     * Dedicated resource page with user-friendly preview
     * Navigation breadcrumbs for faster context switching
+  * Enhanced `.well-known/smart-configuration` endpoint
+  * Enhanced Aidbox grant screen to show the list of scopes that are the intersection of the scopes requested by the SMART app and the scopes allowed to the Client.
   * Fixed bugs on Aidbox UI, resource validation, and incorrect handling of PUT operation in bundles.
 * Aidbox Forms
   * Supported full functionality of [template-based extraction](https://docs.aidbox.app/modules/aidbox-forms/aidbox-ui-builder-alpha/form-creation/form-settings#template-based-extraction) to extract QuestionnaireResponse into FHIR resources using predefined templates, with dynamic referencing between extracted resources and the template bundle extracted as a single resource.
