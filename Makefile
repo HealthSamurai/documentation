@@ -12,3 +12,6 @@ tailwind:
 
 build-tailwind:
 	npx tailwindcss -i ./resources/public/app.css -o ./resources/public/app.build.css --config ./tailwind.config.js
+
+compile-java:
+	javac -cp "$(shell clojure -Spath)" -d classes java/gitbok/ai/AssistantWithSources.java
