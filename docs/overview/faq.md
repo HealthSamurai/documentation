@@ -25,4 +25,4 @@ Only the **JWT license token** is sent to `https://aidbox.app` during the verifi
 
 ## Does Aidbox collect any telemetry?
 
-Yes. Aidbox may send basic usage statistics to `https://ph.aidbox.app` to help improve the product. You can [read more and configure this behavior here](../../reference/settings/general#usage-stats).
+Yes. Aidbox may send basic usage statistics to `https://ph.aidbox.app` to help improve the product. You can [read more and configure this behavior here](../reference/settings/general#usage-stats).
