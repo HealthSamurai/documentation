@@ -109,7 +109,7 @@
   * [DB Queries](overview/aidbox-ui/db-queries.md)
 * [Versioning](overview/versioning.md)
 * [Release Notes](overview/release-notes.md)
-* [FAQ](/overview/faq.md)
+* [FAQ](overview/faq.md)
 * [Contact us](overview/contact-us.md)
 
 ## Configuration
