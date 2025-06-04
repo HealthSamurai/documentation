@@ -8,10 +8,11 @@ To ensure full functionality, the Aidbox container must be able to make **outbou
 
 | Purpose                      | Address                                                      | Port |
 |-----------------------------|---------------------------------------------------------------|------|
-| License verification        | `https://aidbox.app`                                          | 443  |
+| License portal              | `https://aidbox.app`, `https://*.aidbox.app`                  | 443  |
 | Terminology server (TxBox)  | `https://tx.health-samurai.io/fhir`                           | 443  |
 | IG Package fetch on startup | `https://storage.googleapis.com/fhir-schema-registry/`        | 443  |
-| Usage statistics reporting  | `https://ph.aidbox.app`                                       | 443  |
+| Aidbox documentation*       | `https://docs.aidbox.app/`                                    | 443  |
+*Not required for Aidbox to function, but access is recommended for reference and development.
 
 If you're using a firewall or proxy, make sure **TCP connections to port 443** are allowed for the domains above. You may also want to explicitly allow access to:
 
