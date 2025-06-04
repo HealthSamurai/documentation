@@ -31,12 +31,17 @@
          :image image/image-renderer
          :link (partial link/link-renderer context filepath)
          :internal-link link/link-renderer
-         :heading
-         (comp
-           (fn [header-hiccup]
-             (update-in header-hiccup [1 :id]
-                        (fn [id] (str/replace id #"^-|-$" ""))))
-           (:heading transform/default-hiccup-renderers))
+         ;; :heading
+         ;; (comp
+         ;;   (fn [header-hiccup]
+         ;;     (cond-> header-hiccup
+         ;;
+         ;;       (-> header-hiccup (get 1) :id)
+         ;;       (update-in
+         ;;         [1 :id]
+         ;;         (fn [id]
+         ;;           (str/replace id #"^-|-$" "")))))
+         ;;   (:heading transform/default-hiccup-renderers))
          :html-inline
          (fn [_ctx node]
            (uui/raw (-> node :content first :text)))
@@ -45,14 +50,16 @@
            (uui/raw (-> node :content first :text)))))
 
 (defn render-toc-item [item]
-  (let [content (->> (:content item)
-                     (remove (fn [node] (= :html-inline (:type node))))
-                     (map #(if (= :text (:type %))
-                             (:text %)
-                             (->> (:content %)
-                                  (map :text)
-                                  (str/join " "))))
-                     (str/join " "))
+  (let [content
+        (->> (:content item)
+             (remove (fn [node]
+                       (= :html-inline (:type node))))
+             (map #(if (= :text (:type %))
+                     (:text %)
+                     (->> (:content %)
+                          (map :text)
+                          (str/join " "))))
+             (str/join " "))
         href (str "#" (utils/s->url-slug (:id (:attrs item))))
         level (when (= :toc (:type item))
                 (:heading-level item))]
