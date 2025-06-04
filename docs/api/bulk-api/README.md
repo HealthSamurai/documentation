@@ -24,10 +24,6 @@ The list of available Bulk API endpoints:
 [import-and-fhir-import.md](import-and-fhir-import.md)
 {% endcontent-ref %}
 
-{% content-ref url="import-and-fhir-import.md" %}
-[import-and-fhir-import.md](./import-and-fhir-import.md)
-{% endcontent-ref %}
-
 ## Read more
 
 * Load Synthea with Bulk API [tutorial](../../tutorials/bulk-api-tutorials/synthea-by-bulk-api.md)
