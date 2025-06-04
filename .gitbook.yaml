@@ -11,6 +11,9 @@ redirects:
     modules/aidbox-forms/aidbox-ui-builder-alpha/embedding-builder: modules/aidbox-forms/aidbox-ui-builder-alpha/embedding.md
     modules/aidbox-forms/aidbox-ui-builder-alpha/embedding-renderer: modules/aidbox-forms/aidbox-ui-builder-alpha/embedding.md
 
+
+
+    modules/security-and-access-control/overview: modules/access-control/README.md
     tutorials/security-and-access-control/basic-auth-tutorial: modules/security-and-access-control/auth/basic-auth.md
     security-and-access-control-1/security/access-control: modules/access-control/authorization/access-policies.md
     api-1/fhir-api/search-1/search-parameters-list/_include-and-_revinclude: api/rest-api/fhir-search/include-and-revinclude.md

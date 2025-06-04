@@ -48,4 +48,4 @@ Go to this [page](./form-creation/README.md) to start designing a form.
 
 If you already have ready-made FHIR Questionnaires (your own or from external sources), you can load them into the Aidbox Forms module via `POST/` operation or using Import Questionnaire button on the Form Templates page, open them in the UI Builder, customise and save them.
 
-Go to this[page](./import-questionnaire.md) to start it.
+Go to this [page](./import-questionnaire.md) to start it.

@@ -9,7 +9,9 @@
 (defn uri->file-idx
   [_]
   (let [summary-text (gitbok.indexing.impl.summary/read-summary)
-        lines (str/split-lines summary-text)]
+        lines (str/split-lines summary-text)
+        readme-count (count "readme.md")
+        md-count (count ".md")]
     (loop [lines lines
            section nil
            stack []
@@ -30,13 +32,22 @@
             (let [indent (->> line (re-find #"^(\s*)\*") second count)
                   level (quot indent 2)
                   [_ title path] (re-matches #"\s*\*\s+\[([^\]]+)\]\(([^)]+)\)" line)
-                  readme? (str/starts-with? path "readme")
-                  new-stack (if readme?
-                              ["readme" title]
-                              (-> stack (subvec 0 level) (conj title)))
+                  readme? (str/ends-with? (str/lower-case path) "readme.md")
+                  new-stack (-> stack (subvec 0 level) (conj title))
                   prefix (if section (str section "/") "")
-                  full-path (str prefix (str/join "/" (mapv utils/s->url-slug new-stack)))]
-              (recur (rest lines) section new-stack (assoc acc full-path path)))
+                  full-path (str prefix (str/join "/" (mapv utils/s->url-slug new-stack)))
+                  url2 (subs path 0 (- (count path)
+                                       (if readme? readme-count md-count)))
+                  url2 (if (str/ends-with? url2 "/")
+                         (subs url2 0 (dec (count url2)))
+                         url2)]
+          (recur (rest lines) section new-stack
+                 (assoc acc
+                        (str full-path "-hui")
+                        (str path " " readme?)
+                        full-path path
+                        ;; todo migrate all urls to [title]s
+                        url2 path)))
 
             :else
             (recur (rest lines) section stack acc)))))))
