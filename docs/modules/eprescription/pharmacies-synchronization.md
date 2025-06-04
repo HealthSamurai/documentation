@@ -150,11 +150,11 @@ The backup file mechanism ensures that the previously downloaded organizations' 
       },
       {
         "system": "urn:app:aidbox:e-prescriptions:surescripts:serviceLevel",
-        "display": "New"
+        "code": "New"
       },
       {
         "system": "urn:app:aidbox:e-prescriptions:surescripts:serviceLevel",
-        "display": "Cancel"
+        "code": "Cancel"
       }
     ],
     "source": "surescripts"
