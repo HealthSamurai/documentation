@@ -17,7 +17,7 @@ To ensure full functionality, the Aidbox container must be able to make **outbou
 
 If you're using a firewall or proxy, make sure **TCP connections to port 443** are allowed for the domains above. You may also want to explicitly allow access to:
 
-- `104.155.179.23:443` – IP address of `https://aidbox.app` (used for license verification)
+- `104.155.179.23:443` – IP address of `https://*.aidbox.app` and `https://*.health-samurai.io/fhir` 
 
 ## What data is transmitted during license verification?
 
