@@ -6,7 +6,7 @@ To ensure full functionality, the Aidbox container must be able to make **outbou
 
 ### Required Internet Addresses
 
-| Purpose                      | Address                                                      | Port |
+| Purpose                     | Address                                                       | Port |
 |-----------------------------|---------------------------------------------------------------|------|
 | License portal              | `https://aidbox.app`, `https://*.aidbox.app`                  | 443  |
 | Terminology server (TxBox)  | `https://tx.health-samurai.io/fhir`                           | 443  |
@@ -25,4 +25,4 @@ Only the **JWT license token** is sent to `https://aidbox.app` during the verifi
 
 ## Does Aidbox collect any telemetry?
 
-Yes. Aidbox may send basic usage statistics to `https://ph.aidbox.app` to help improve the product. You can [read more and configure this behavior here](../../reference/settings/general.md#usage-stats).
+Yes. Aidbox may send basic usage statistics to `https://ph.aidbox.app` to help improve the product. You can [read more and configure this behavior here](https://docs.aidbox.app/reference/settings/general#usage-stats).
