@@ -8,6 +8,7 @@
    [nextjournal.markdown.transform :as transform]
    [system]
    [gitbok.constants :as const]
+   [gitbok.utils :as utils]
    [hiccup2.core]
    [nextjournal.markdown.utils :as u]
    [uui]))
@@ -30,6 +31,12 @@
          :image image/image-renderer
          :link (partial link/link-renderer context filepath)
          :internal-link link/link-renderer
+         :heading
+         (comp
+           (fn [header-hiccup]
+             (update-in header-hiccup [1 :id]
+                        (fn [id] (str/replace id #"^-|-$" ""))))
+           (:heading transform/default-hiccup-renderers))
          :html-inline
          (fn [_ctx node]
            (uui/raw (-> node :content first :text)))
@@ -46,7 +53,7 @@
                                   (map :text)
                                   (str/join " "))))
                      (str/join " "))
-        href (str "#" (:id (:attrs item)))
+        href (str "#" (utils/s->url-slug (:id (:attrs item))))
         level (when (= :toc (:type item))
                 (:heading-level item))]
     [:div {:class (when (not= 1 level) "pl-4")}
@@ -57,10 +64,13 @@
        (for [child (:children item)]
          (render-toc-item child)))]))
 
+(defn render-md [context filepath parsed]
+  (transform/->hiccup (renderers context filepath) parsed))
+
 (defn render-gitbook [context filepath {:keys [toc] :as parsed}]
   [:div {:class "flex gap-8"}
    [:div {:class "flex-1 min-w-0"}
-    (transform/->hiccup (renderers context filepath) parsed)]
+    (render-md context filepath parsed)]
    (when toc
      [:div {:class "w-64 flex-shrink-0 sticky top-0 h-screen overflow-auto p-6 bg-gray-50 border-l border-gray-200"}
       [:div {:class "text-sm font-medium text-gray-900 mb-4"}
@@ -79,12 +89,3 @@
   (system/get-system-state
    context
    [const/PARSED_MARKDOWN_IDX]))
-
-#_(def readme (slurp "./docs/getting-started/run-aidbox-locally.md"))
-
-#_(:parsed (parse-markdown-content [nil readme]))
-
-#_(parse-markdown-content [nil "See [hello](../../hello.md)"])
-#_(render-gitbook "See [hello](../../hello.md)")
-
-#_(render-gitbook readme)

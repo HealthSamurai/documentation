@@ -14,6 +14,7 @@
    [http]
    [ring.util.response :as resp]
    [system]
+   [gitbok.utils :as utils]
    [uui]))
 
 (set! *warn-on-reflection* true)
@@ -53,21 +54,6 @@
   (when url
     (str/includes? url ".gitbook/assets")))
 
-(defn todo
-  [context request]
-  (gitbok.ui/layout
-   context request
-   [:div.gitbook
-    (let [content* (slurp "./todo.md")
-         parsed-md (:parsed (markdown/parse-markdown-content [nil content*]))]
-     (try
-       (markdown/render-gitbook context "todo.md" parsed-md)
-       (catch Exception e
-         [:div {:role "alert"}
-          (.getMessage e)
-          [:pre (pr-str e)]
-          [:pre content*]])))]))
-
 (defn
   ^{:http {:path "/:path*"}}
   render-file-view
@@ -96,14 +82,6 @@
                 #(if (= "/" %) readme-path %))]
     (render-file-view context request)))
 
-(defn
-  handle-gitbook-assets
-  [_context request]
-  (resp/file-response
-   (str/replace (:uri request)
-                #"^/pictures/"
-                ".gitbook/assets/")))
-
 (system/defmanifest
   {:description "gitbok"
    :deps ["http"]
@@ -124,12 +102,6 @@
    {:path "/"
     :method :get
     :fn #'redirect-to-readme})
-
-  (http/register-endpoint
-   context
-   {:path "/todo"
-    :method :get
-    :fn #'todo})
 
   ;; (http/register-endpoint
   ;;  context
@@ -155,8 +127,6 @@
   ;; todo reuse md-files-idx
   (uri-to-file/set-idx context)
   (file-to-uri/set-idx context)
-  (def file1 (file-to-uri/get-idx context))
-  (take 10 file1)
 
   (summary/set-summary context)
   (http/register-endpoint

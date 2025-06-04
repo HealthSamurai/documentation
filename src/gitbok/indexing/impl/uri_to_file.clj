@@ -4,6 +4,7 @@
    [gitbok.constants :as const]
    [gitbok.indexing.impl.common :as common]
    [gitbok.indexing.impl.summary]
+   [gitbok.utils :as utils]
    [system]))
 
 (defn uri->file-idx
@@ -24,7 +25,7 @@
 
             (str/starts-with? trimmed "## ")
             (let [section-title (str/trim (subs trimmed 3))]
-              (recur (rest lines) (common/sanitize-page-name section-title) [] acc))
+              (recur (rest lines) (utils/s->url-slug section-title) [] acc))
 
             (re-matches #"\s*\*\s+\[([^\]]+)\]\(([^)]+)\)" line)
             (let [indent (->> line (re-find #"^(\s*)\*") second count)
@@ -32,7 +33,7 @@
                   [_ title path] (re-matches #"\s*\*\s+\[([^\]]+)\]\(([^)]+)\)" line)
                   new-stack (-> stack (subvec 0 level) (conj title))
                   prefix (if section (str section "/") "")
-                  full-path (str prefix (str/join "/" (mapv common/sanitize-page-name new-stack)))]
+                  full-path (str prefix (str/join "/" (mapv utils/s->url-slug new-stack)))]
               (recur (rest lines) section new-stack (assoc acc full-path path)))
 
             :else

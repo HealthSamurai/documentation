@@ -4,7 +4,7 @@
    [clojure.string :as str]
    [gitbok.constants :as const]
    [gitbok.indexing.impl.summary]
-   [gitbok.indexing.impl.common :as common]))
+   [gitbok.utils :as utils]))
 
 (defn file->uri-idx [_]
   (let [summary-text (gitbok.indexing.impl.summary/read-summary)
@@ -15,7 +15,7 @@
              (str (str/replace filepath #"/[^/]*$" "") "/"
                   (if (str/ends-with? (str/lower-case filepath) "readme.md")
                     ""
-                    (common/sanitize-page-name page-name)))]))))
+                    (utils/s->url-slug page-name)))]))))
 
 (defn set-idx [context]
   (system/set-system-state context [const/FILE->URI_IDX]

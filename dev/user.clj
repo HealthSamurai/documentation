@@ -5,7 +5,7 @@
    [clojure.string :as str]
    [gitbok.indexing.impl.uri-to-file :as uri-to-file]
    [gitbok.core :as gitbok]
-   [gitbok.markdown.core]))
+   [gitbok.markdown.core :as markdown]))
 
 (comment
   (dev/update-libs)
@@ -18,6 +18,12 @@
 
   (take 10 uri->file-idx)
   (filter
-   (fn [[url file]]
-     (str/starts-with? url "readme"))
-   uri->file-idx))
+    (fn [[url file]]
+      (str/starts-with? url "i"))
+    uri->file-idx)
+
+  (def r "# _count")
+  (def parsed (:parsed (markdown/parse-markdown-content [nil r])))
+  (markdown/render-md context nil parsed)
+
+  )
