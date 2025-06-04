@@ -26,7 +26,7 @@
       content)))
 
 (defn read-and-render-file* [context uri]
-  (let [filepath (str "." (indexing/uri->filepath (uri-to-file/get-idx context) uri))
+  (let [filepath (str "." (indexing/uri->filepath context uri))
         content* (read-content context filepath)
         {:keys [parsed]}
         (markdown/parse-markdown-content [filepath content*])]

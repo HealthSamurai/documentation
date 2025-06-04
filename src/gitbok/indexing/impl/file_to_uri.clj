@@ -7,15 +7,18 @@
    [gitbok.utils :as utils]))
 
 (defn file->uri-idx [_]
+  ;; todo do not read summary again
   (let [summary-text (gitbok.indexing.impl.summary/read-summary)
         link-pattern #"\[([^\]]+)\]\(([^)]+)\)"]
     (into {}
           (for [[_ page-name filepath] (re-seq link-pattern summary-text)]
             [filepath
-             (str (str/replace filepath #"/[^/]*$" "") "/"
-                  (if (str/ends-with? (str/lower-case filepath) "readme.md")
-                    ""
-                    (utils/s->url-slug page-name)))]))))
+             {:title page-name
+              :uri
+              (str (str/replace filepath #"/[^/]*$" "") "/"
+                   (if (str/ends-with? (str/lower-case filepath) "readme.md")
+                     ""
+                     (utils/s->url-slug page-name)))}]))))
 
 (defn set-idx [context]
   (system/set-system-state context [const/FILE->URI_IDX]
@@ -25,4 +28,4 @@
   (system/get-system-state context [const/FILE->URI_IDX]))
 
 (defn filepath->uri [context filepath]
-  (get (get-idx context) filepath))
+  (:uri (get (get-idx context) filepath)))

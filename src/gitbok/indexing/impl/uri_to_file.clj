@@ -6,6 +6,13 @@
    [gitbok.utils :as utils]
    [system]))
 
+(defn uri->filepath [uri->file-idx ^String uri]
+(let [uri (if (= "/" (subs uri 0 1)) (subs uri 1) uri)
+        fixed-url (if (= "/" (subs uri (dec (count uri))))
+                    (subs uri 0 (dec (count uri)))
+                    uri)]
+    (str "/docs/" (get uri->file-idx fixed-url "readme/README.md"))))
+
 (defn uri->file-idx
   [_]
   (let [summary-text (gitbok.indexing.impl.summary/read-summary)

@@ -18,6 +18,8 @@
           :text-tokenizers
           conj
           big-links/big-link-tokenizer
+          big-links/content-ref-tokenizer
+          big-links/end-content-ref-tokenizer
           image/image-tokenizer))
 
 (defn parse-markdown-content
@@ -27,10 +29,13 @@
 
 (defn renderers [context filepath]
   (assoc transform/default-hiccup-renderers
-         :big-link big-links/big-link-renderer
+         :big-link (partial big-links/big-link-renderer context filepath)
+         :big-link1 (partial big-links/big-link-renderer context filepath)
          :image image/image-renderer
          :link (partial link/link-renderer context filepath)
          :internal-link link/link-renderer
+         :nothing
+         (fn [_ctx _node] "")
          :heading
          (comp
            (fn [header-hiccup]

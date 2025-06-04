@@ -1,8 +1,7 @@
 (ns gitbok.indexing.core
   (:require
    [gitbok.indexing.impl.summary]
-   [gitbok.indexing.impl.uri-to-file]
-   [gitbok.indexing.impl.file-to-uri]
+   [gitbok.indexing.impl.uri-to-file :as uri-to-file]
    [gitbok.indexing.impl.common :as common]
    [gitbok.indexing.impl.search-index :as search-index]
    [gitbok.indexing.impl.file-to-uri :as file-to-uri]
@@ -10,11 +9,8 @@
    [system]
    [clojure.java.io :as io]
    [clojure.string :as str]
-   [clojure.java.io]
    [uui]
-   [http])
-  (:import [java.nio.file Files Paths]
-           [java.nio.file.attribute BasicFileAttributes]))
+   [http]))
 
 (set! *warn-on-reflection* true)
 
@@ -36,12 +32,8 @@
 (defn filepath->uri [context filepath]
   (gitbok.indexing.impl.file-to-uri/filepath->uri context filepath))
 
-(defn uri->filepath [uri->file-idx ^String uri]
-  (let [uri (if (= "/" (subs uri 0 1)) (subs uri 1) uri)
-        fixed-url (if (= "/" (subs uri (dec (count uri))))
-                    (subs uri 0 (dec (count uri)))
-                    uri)]
-    (str "/docs/" (get uri->file-idx fixed-url "readme/README.md"))))
+(defn uri->filepath [context ^String uri]
+  (gitbok.indexing.impl.uri-to-file/uri->filepath (uri-to-file/get-idx context) uri))
 
 (defn page-link->uri [context
                       ^String current-page-filepath
@@ -54,9 +46,7 @@
         (last (re-matches #".*#(.*)" relative-page-link))
 
         relative-page-link
-        (str/replace
-         relative-page-link
-         #"#.*$" "")
+        (str/replace relative-page-link #"#.*$" "")
 
         current-page-filename
         (last (str/split current-page-filepath #"/"))
@@ -85,7 +75,9 @@
                "user.dir")))
 
             path (if (str/starts-with? path "/") (subs path 1) path)
-            path (str "/" (get file->uri-idx path))]
+            _ (def path path)
+            _ (def file->uri-idx file->uri-idx)
+            path (str "/" (:uri (get file->uri-idx path)))]
 
         (if section
           (str path "#" section)

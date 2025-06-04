@@ -16,7 +16,17 @@
 
 
   (def r "### Load dataset")
-  (def parsed (:parsed (markdown/parse-markdown-content [nil r])))
+
+(def abc
+ "{% content-ref url=\"../getting-started/run-aidbox-locally.md\" %}
+[run-aidbox-locally.md](../getting-started/run-aidbox-locally.md)
+{% endcontent-ref %}")
+
+  (def abc "```clojure
+    (print 'hi)
+    ```")
+
+  (def parsed (:content (:parsed (markdown/parse-markdown-content [nil abc]))))
   (markdown/render-md context nil parsed)
 
   (def uri->file-idx
