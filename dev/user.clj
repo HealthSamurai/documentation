@@ -19,7 +19,7 @@
   (take 10 uri->file-idx)
   (filter
     (fn [[url file]]
-      (str/starts-with? url "i"))
+      (str/starts-with? url "modules/aidbox-forms/aidbox-ui-builder-alpha"))
     uri->file-idx)
 
   (def r "### Load dataset")
