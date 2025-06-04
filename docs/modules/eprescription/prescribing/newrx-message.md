@@ -61,7 +61,7 @@ Once accepted, system will update the MedicationRequest status to `active` with 
 
 #### Status flow
 
-<figure><img src="../../../.gitbook/assets/image (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 #### Status structure
 

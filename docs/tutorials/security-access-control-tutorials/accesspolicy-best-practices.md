@@ -16,7 +16,7 @@ If no links are specified, the policy is treated as a **global policy**. It mean
 
 We can find `id` of Operation in **APIs -> Operations** page.
 
-<figure><img src="../../.gitbook/assets/image (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 The following policy will be evaluated on every request from  `myclient` Client. It allows  `myclient` Client  reading every resource by ID.&#x20;
 
