@@ -31,17 +31,16 @@
          :image image/image-renderer
          :link (partial link/link-renderer context filepath)
          :internal-link link/link-renderer
-         ;; :heading
-         ;; (comp
-         ;;   (fn [header-hiccup]
-         ;;     (cond-> header-hiccup
-         ;;
-         ;;       (-> header-hiccup (get 1) :id)
-         ;;       (update-in
-         ;;         [1 :id]
-         ;;         (fn [id]
-         ;;           (str/replace id #"^-|-$" "")))))
-         ;;   (:heading transform/default-hiccup-renderers))
+         :heading
+         (comp
+           (fn [header-hiccup]
+             (cond-> header-hiccup
+               (-> header-hiccup (get 1) :id)
+               (update-in
+                 [1 :id]
+                 (fn [id]
+                   (str/replace id #"^-|-$" "")))))
+           (:heading transform/default-hiccup-renderers))
          :html-inline
          (fn [_ctx node]
            (uui/raw (-> node :content first :text)))
