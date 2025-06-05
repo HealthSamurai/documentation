@@ -14,6 +14,12 @@
   (def context (system/start-system gitbok/default-config))
   (system/stop-system context)
 
+  (def i (uri-to-file/get-idx context))
+
+  (count i)
+  (take 10 i)
+
+
 
   (def r "### Load dataset")
 

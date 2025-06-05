@@ -143,7 +143,6 @@
   ;; todo reuse md-files-idx
   (uri-to-file/set-idx context)
   (file-to-uri/set-idx context)
-
   (summary/set-summary context)
   (http/register-endpoint
    context

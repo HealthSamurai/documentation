@@ -13,7 +13,8 @@
         {:git/url "https://github.com/nextjournal/markdown.git"
          :sha "5829ec101331b1702841094f4dc897ee46f0ddcd"}
 
-        ;; recompile java automatically
+        clj-commons/clj-yaml {:mvn/version "1.0.29"}
+        ;; recompile java automaticallydeps
         virgil/virgil {:mvn/version "0.4.0"}
 
         ;; rag

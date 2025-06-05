@@ -10,18 +10,18 @@
 - [ ] Big page reference
 - [ ] Tabs
 - [ ] Code
-  - [ ] json
-  - [ ] yaml
-  - [ ] rest console
+  - [x] json
+  - [x] yaml
+  - [x] rest console
   - [ ] db console
-  - [ ] shell
+  - [x] shell
 
 ## Redirects
 - [ ] poc
 - [ ] 404 analytics?
 
 ## Links
-- [x] handle external links
+- [ ] handle external links
 - [x] 404 page
 
 ## CI
