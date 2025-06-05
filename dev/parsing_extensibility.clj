@@ -173,3 +173,22 @@
 ;;    {:type :text, :text "somecontent"}
 ;;    {:type :softbreak}
 ;;    {:type :text, :text "%}"}]}]
+
+(def parsed
+  (md/parse* u/empty-doc "```shell\n(println 1)\n```"))
+
+(md.transform/->hiccup
+  md.transform/default-hiccup-renderers
+  #_(assoc md.transform/default-hiccup-renderers
+
+         ;; :doc specify a custom container for the whole doc
+         ;; :doc (partial md.transform/into-markup [:div.viewer-markdown])
+         ;; :text is funkier when it's zinc toned
+         ;; :text (fn [_ctx node] [:span {:style {:color "#71717a"}} (:text node)])
+         ;; :plain fragments might be nice, but paragraphs help when no reagent is at hand
+         ;; :plain (partial md.transform/into-markup [:p {:style {:margin-top "-1.2rem"}}])
+         ;; :ruler gets to be funky, too
+         ;; :ruler (constantly [:hr {:style {:border "2px dashed #71717a"}}])
+
+         )
+  parsed)

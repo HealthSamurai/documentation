@@ -52,6 +52,14 @@
      context request
      [:div {:class "flex items-top"}
       [:script {:src "/static/toc.js"}]
+      [:link {:rel "stylesheet" :href "/static/github.min.css"}]
+      [:script {:src "/static/highlight.min.js"}]
+      [:script {:src "/static/json.min.js"}]
+      [:script {:src "/static/bash.min.js"}]
+      [:script {:src "/static/yaml.min.js"}]
+      [:script {:src "/static/json.min.js"}]
+      [:script {:src "/static/http.min.js"}]
+      [:script "hljs.highlightAll();"]
       ;; [:script {:src "/static/tabs.js"}]
       ;; [:script {:src "/static/syntax-highlight.js"}]
 

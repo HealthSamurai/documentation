@@ -47,7 +47,9 @@ details[open] > summary .chevron {
   }
 
   pre {
-    @apply p-4 text-xs bg-gray-100  text-black rounded-md overflow-x-auto shadow-md;
+    @apply p-4 text-xs
+    /* bg-gray-100 */
+    text-black rounded-md overflow-x-auto shadow-md;
     code {
       @apply font-mono;
     }
