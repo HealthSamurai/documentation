@@ -1,5 +1,9 @@
 # Todo
 
+## techdolg
+- [ ] do not read on refresh
+- [ ] cache htmx
+
 ## Widgets
 - [ ] Hint
 - [ ] Warning
@@ -17,7 +21,8 @@
 - [ ] 404 analytics?
 
 ## Links
-- [ ] handle external links
+- [x] handle external links
+- [x] 404 page
 
 ## CI
 - [ ] check links

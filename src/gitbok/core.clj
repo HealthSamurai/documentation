@@ -25,18 +25,39 @@
       (last (str/split content #"---\n" 3))
       content)))
 
+(defn not-found-view [context uri]
+  (let [search-term (last (str/split uri #"/"))
+        search-results (gitbok.search/search context search-term)]
+    [:div.min-h-screen.flex.items-center.justify-center
+     [:div.max-w-2xl.w-full.px-4
+      [:div
+       [:h2.mt-4.text-3xl.font-semibold.text-gray-700.text-center "Page not found"]
+       (when (seq search-results)
+         [:div.mt-8
+          [:h3.text-lg.font-medium.text-gray-900 "You might be looking for:"]
+          [:ul.mt-4.space-y-2.text-left
+           (for [search-res (take 5 (utils/distinct-by #(-> % :hit :title) search-results))]
+             [:li
+              [:a.text-blue-600.hover:text-blue-800.text-lg.flex.items-start
+               {:href (file-to-uri/filepath->uri
+                        context (:filepath (:hit search-res)))}
+               (:title (:hit search-res))]])]])]]]))
+
 (defn read-and-render-file* [context uri]
-  (let [filepath (str "." (indexing/uri->filepath context uri))
-        content* (read-content context filepath)
-        {:keys [parsed]}
-        (markdown/parse-markdown-content [filepath content*])]
-    (try
-      (markdown/render-gitbook context filepath parsed)
-      (catch Exception e
-        [:div {:role "alert"}
-         (.getMessage e)
-         [:pre (pr-str e)]
-         [:pre content*]]))))
+  (let [filepath (indexing/uri->filepath context uri)]
+    (if filepath
+      (let [filepath (str "." (indexing/uri->filepath context uri))
+            content* (read-content context filepath)
+            {:keys [parsed]}
+            (markdown/parse-markdown-content [filepath content*])]
+        (try
+          (markdown/render-gitbook context filepath parsed)
+          (catch Exception e
+            [:div {:role "alert"}
+             (.getMessage e)
+             [:pre (pr-str e)]
+             [:pre content*]])))
+      (not-found-view context uri))))
 
 (defn read-and-render-file
   [context request]
@@ -103,11 +124,6 @@
     :method :get
     :fn #'redirect-to-readme})
 
-  ;; (http/register-endpoint
-  ;;  context
-  ;;  {:path "/pictures/:path"
-  ;;   :method :get
-  ;;   :fn #'handle-gitbook-assets})
 
   ;; todo
   ;; (http/register-endpoint

@@ -5,8 +5,7 @@
    [msync.lucene :as lucene]
    [msync.lucene.document :as ld]
    [clojure.string :as str]
-   [msync.lucene.query :as q]
-   [gitbok.constants :as const]))
+   [gitbok.utils :as utils]))
 
 (defn process-text [text-nodes]
   (mapv :text text-nodes))
@@ -148,9 +147,6 @@
             :filepath filepath))
          parsed-md-idx)))
 
-(defn distinct-by [f coll]
-  (vals (into {} (map (juxt f identity)) coll)))
-
 (defn search [index q]
   (let [fields [[:title 100]
                 [:h1 100] ;; not sure...
@@ -182,5 +178,5 @@
 
      (flatten)
      (distinct)
-     (distinct-by (juxt :hit-by :doc-id))
+     (utils/distinct-by (juxt :hit-by :doc-id))
      (sort-by :score >))))

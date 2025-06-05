@@ -63,5 +63,3 @@
     file-to-uri)
 
   )
-
-(subs "hello.md" 0 (- (count "hello.md") 3) )

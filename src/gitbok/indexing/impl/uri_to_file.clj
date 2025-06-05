@@ -7,11 +7,13 @@
    [system]))
 
 (defn uri->filepath [uri->file-idx ^String uri]
-(let [uri (if (= "/" (subs uri 0 1)) (subs uri 1) uri)
+  (let [uri (if (= "/" (subs uri 0 1)) (subs uri 1) uri)
         fixed-url (if (= "/" (subs uri (dec (count uri))))
                     (subs uri 0 (dec (count uri)))
-                    uri)]
-    (str "/docs/" (get uri->file-idx fixed-url "readme/README.md"))))
+                    uri)
+        file (get uri->file-idx fixed-url)]
+    (when file
+      (str "/docs/" file))))
 
 (defn uri->file-idx
   [_]
@@ -48,13 +50,13 @@
                   url2 (if (str/ends-with? url2 "/")
                          (subs url2 0 (dec (count url2)))
                          url2)]
-          (recur (rest lines) section new-stack
-                 (assoc acc
-                        (str full-path "-hui")
-                        (str path " " readme?)
-                        full-path path
+              (recur (rest lines) section new-stack
+                     (assoc acc
+                            (str full-path "-hui")
+                            (str path " " readme?)
+                            full-path path
                         ;; todo migrate all urls to [title]s
-                        url2 path)))
+                            url2 path)))
 
             :else
             (recur (rest lines) section stack acc)))))))
