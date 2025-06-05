@@ -11,8 +11,7 @@ redirects:
     modules/aidbox-forms/aidbox-ui-builder-alpha/embedding-builder: modules/aidbox-forms/aidbox-ui-builder-alpha/embedding.md
     modules/aidbox-forms/aidbox-ui-builder-alpha/embedding-renderer: modules/aidbox-forms/aidbox-ui-builder-alpha/embedding.md
 
-
-
+    modules/security-and-access-control/security/accesspolicy: modules/access-control/authorization/access-policies.md
     modules/security-and-access-control/overview: modules/access-control/README.md
     tutorials/security-and-access-control/basic-auth-tutorial: modules/security-and-access-control/auth/basic-auth.md
     security-and-access-control-1/security/access-control: modules/access-control/authorization/access-policies.md
