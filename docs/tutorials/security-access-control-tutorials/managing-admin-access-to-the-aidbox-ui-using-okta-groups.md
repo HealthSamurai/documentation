@@ -159,4 +159,4 @@ Now you can relogin with your Okta user and the user will be granted admin acces
 
 ## What's next
 
-* See more about Aidbox Security [security-and-access-control](../../modules/security-and-access-control/README.md)
+* See more about Aidbox Security [security-and-access-control](../../modules/access-control/README.md)
