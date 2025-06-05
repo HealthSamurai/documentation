@@ -17,9 +17,9 @@
   (update u/empty-doc
           :text-tokenizers
           conj
-          big-links/big-link-tokenizer
-          big-links/content-ref-tokenizer
-          big-links/end-content-ref-tokenizer
+          big-links/big-link-tokenizer ;; [[]]
+          ;; big-links/content-ref-tokenizer
+          ;; big-links/end-content-ref-tokenizer
           image/image-tokenizer))
 
 (defn parse-markdown-content

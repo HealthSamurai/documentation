@@ -43,6 +43,28 @@
                         context (:filepath (:hit search-res)))}
                (:title (:hit search-res))]])]])]]]))
 
+(defn find-children-files [context filepath]
+  (let [index (file-to-uri/get-idx context)
+        filepath (if (str/ends-with? filepath "/")
+                   (subs filepath 0 (dec (count filepath)))
+                  filepath)
+        dir (subs filepath 0 (str/last-index-of filepath "/"))
+        dir (if (str/starts-with? dir "./docs/")
+              (subs dir 7)
+              dir)]
+    (filterv (fn [[file _info]]
+               (and (str/starts-with? file dir)
+                    (not= file filepath)))
+             index))
+  )
+
+(defn render-empty-page [context filepath parsed-heading]
+  [:div [:h1 (-> parsed-heading :content first :text)]
+   (for [[path {:keys [title uri]}] (find-children-files context filepath)]
+     [:div title])
+
+   ])
+
 (defn read-and-render-file* [context uri]
   (let [filepath (indexing/uri->filepath context uri)]
     (if filepath
@@ -51,7 +73,10 @@
             {:keys [parsed]}
             (markdown/parse-markdown-content [filepath content*])]
         (try
-          (markdown/render-gitbook context filepath parsed)
+          (if (and (= 1 (count (:content parsed)))
+                   (= :heading (:type (first (:content parsed)))))
+            (render-empty-page context filepath (first (:content parsed)))
+            (markdown/render-gitbook context filepath parsed))
           (catch Exception e
             [:div {:role "alert"}
              (.getMessage e)

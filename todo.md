@@ -1,5 +1,7 @@
 # Todo
 
+- [ ] empty page with links
+
 ## techdolg
 - [ ] do not read on refresh
 - [ ] cache htmx
@@ -7,7 +9,7 @@
 ## Widgets
 - [ ] Hint
 - [ ] Warning
-- [ ] Big page reference
+- [ ] Big page references
 - [ ] Tabs
 - [ ] Code
   - [x] json
@@ -51,3 +53,5 @@
 ## Tests
 - [ ] page-link->uri
 - [ ] check "orphan" pages
+- [ ] some redirects are 404 already
+- [ ] using .. in url should be not possible
