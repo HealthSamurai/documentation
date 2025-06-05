@@ -1,7 +1,7 @@
 ---
 description: >-
   Aidbox forms supports Observation-based extraction, Definition-based
-  extraction and Template-base extraction
+  extraction and Template-based extraction
 ---
 
 # How to extract data from forms
@@ -384,13 +384,13 @@ In response you will find entry which updates Patient `id2`  with filled `teleco
 
 ## Template-based extraction
 
-Template-based extraction is a new way to extract data with user-friendly UI and simple settings. To extract data from form just create template with visual or code editor.
+Template-based extraction is a new way to extract data with user-friendly UI and simple setup. To extract data from form just create template with visual or code editor.
 
 In this guide we will create form with template that updates Patient information.
 
 ### Form setup
 
-Let's create a form that updates Patient resource. Any item in Questionnaire that you want to extract using this approach must be placed inside a group.
+Let's create a form that updates Patient resource.
 
 Create in builder group called Patient and four items, so your form in item tree should look like this:
 
