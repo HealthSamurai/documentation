@@ -1,7 +1,7 @@
 ---
 description: >-
-  Aidbox forms supports Observation-based extraction and Definition-based
-  extraction
+  Aidbox forms supports Observation-based extraction, Definition-based
+  extraction and Template-base extraction
 ---
 
 # How to extract data from forms
@@ -298,7 +298,7 @@ For each item in "Patient" group enable data-extraction in builder and choose "D
 * `Patient.telecom.value` for phone name item
 * `Patient.telecom.system` for system name item
 
-#### 3. Setting widget
+#### 3. Setting widgets
 
 1. Select `system` widget in outline
 2. Select `Hidden` and `Readonly` properties
@@ -380,4 +380,106 @@ parameter:
       request: {method: PUT, url: /Patient/id2}
 ```
 
-In response you will find enty which updates Patient `id2`  with filled `telecom` . In our example it is `phone` type with `+1222333444` numbers.
+In response you will find entry which updates Patient `id2`  with filled `telecom` . In our example it is `phone` type with `+1222333444` numbers.
+
+## Template-based extraction
+
+Template-based extraction is a new way to extract data with user-friendly UI and simple settings. To extract data from form just create template with visual or code editor.
+
+In this guide we will create form with template that updates Patient information.
+
+### Form setup
+
+Let's create a form that updates Patient resource. Any item in Questionnaire that you want to extract using this approach must be placed inside a group.
+
+Create in builder group called Patient and four items, so your form in item tree should look like this:
+
+```
+Patient [group]
+  - family name [string]
+  - given name [string]
+  - birth date [date]
+  - patient-id [string]
+```
+
+{% hint style="info" %}
+`patient-id` needed for updating Patient resource and store ID. If you want create new resource do not create this field
+{% endhint %}
+
+#### 1. Setting group extraction template
+
+1. Select group in outline
+2. Expand `Data extraction` section
+3. Check `Extract`&#x20;
+4. Select `Template`
+5. Click `Add template` and select `New resource`&#x20;
+
+After this steps will opens Resource Template Editor for your template. Now let's create extraction context.
+
+1. Fill your `Template name`&#x20;
+2. Select `Patient` into Resource Type&#x20;
+3. Select `Existing` into New or existing resource&#x20;
+4. Select local items answers `patient-id`  into pick resource id
+
+When aidbox mets this group during the extraction process, it will fetch Patient resource with id = `patient-id` of QuestionnaireResponse.&#x20;
+
+Now assemble template what data need to extract
+
+1. Find `Name` and click `add value`&#x20;
+2. Into created bundle `0` find `family` and again press `add value`&#x20;
+3. Pick a value into local items answers `family name`&#x20;
+4. Repeat this steps for other items `given name` and `birth date`&#x20;
+
+Your template is ready for extraction.
+
+#### 2. Setting widgets
+
+This steps needs only for updating Patient resource. If you want create new resource skip this section.
+
+1. Select `patient-id` widget in outline
+2. Select `Hidden`  property
+3. Expand `Population` section&#x20;
+4. Select `Expression` and fill it with `%subject.id`
+
+Now `patient-id` item will populate id from Patient resource and will store it for our extraction which one we need to update.&#x20;
+
+### Usage
+
+Now let's call `$extract` operation again or click "Extract" in Debug panel in Extraction tab:
+
+```
+resourceType: Bundle
+type: transaction
+entry:
+- resource:
+    name:
+    - family: John
+      given:
+      - Doe
+    birthDate: '2024-08-17'
+    resourceType: Patient
+    id: id1
+    identifier:
+    - value: ''
+      system: ''
+  request:
+    method: PUT
+    url: /Patient/id1
+- resource:
+    resourceType: Provenance
+    recorded: '2024-08-13T11:32:02.855923Z'
+    target:
+    - reference: Patient/id1
+    agent:
+    - who:
+        reference: Patient/id1
+    entity:
+    - what:
+        reference: QuestionnaireResponse/0935069e-2396-41d6-9f27-eafbd812cc98
+      role: source
+  request:
+    method: POST
+    url: /Provenance
+```
+
+In response you will find entry which updates Patient `id1`  with filled `family name` , `given name` and `birthdate`.
