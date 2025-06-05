@@ -73,8 +73,8 @@ params:
   token: <your-token>
   name: <license-name>
   product: aidbox 
-  # standard | development | ci
-  type: standard
+  # production | development | ci
+  type: production
 ```
 
 ### Delete license
