@@ -4,7 +4,7 @@ description: This guide explains how to configure Aidbox to trust external JWT
 
 # Set-up token introspection
 
-Token introspection is the setup when Aidbox trusts `JWT` issued by external server.
+Token introspection is the setup when Aidbox trusts JWT issued by external server.
 
 {% hint style="info" %}
 In this guide external auth server URL is `https://auth.example.com`
