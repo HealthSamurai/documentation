@@ -6,12 +6,17 @@
    [gitbok.markdown.widgets.image :as image]
    [nextjournal.markdown :as md]
    [nextjournal.markdown.transform :as transform]
+   [hickory.core]
    [system]
    [gitbok.constants :as const]
    [gitbok.utils :as utils]
    [hiccup2.core]
    [nextjournal.markdown.utils :as u]
    [uui]))
+
+(defn parse-html [html]
+  (map hickory.core/as-hiccup
+       (hickory.core/parse-fragment html)))
 
 (def custom-doc
   (update u/empty-doc
@@ -27,6 +32,48 @@
   {:filepath filepath
    :parsed (md/parse* custom-doc content)})
 
+(defn render-cards-from-table
+  [[_ _ _ tbody]]
+  (let [rows (->> tbody
+                  (filter vector?)
+                  (filter #(= :tr (first %))))]
+    [:div
+     {:class "grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"}
+     (for [row rows
+           :let [[title desc footer pic1 pic2]
+                 (->> row (filter vector?)
+                      (mapv (fn [a] (into [:div] (next (next a))))))
+                 pic1 (first (filterv
+                              #(and (sequential? %) (= (first %) :a))
+                              pic1))
+                 pic2 (first (filterv
+                              #(and (sequential? %) (= (first %) :a))
+                              pic2))
+                 pic-href1 (get-in pic1 [1 :href])
+                 pic-href2 (get-in pic2 [1 :href])
+                 pic-footer
+                 (get-in
+                  (first (filterv
+                          #(and (sequential? %) (= (first %) :a))
+                          footer))
+
+                  [1 :href])
+                 img-href
+                 (first (filter (fn [s]
+                                  (when s (re-matches #".*(png|jpg|jpeg|svg)$" s)))
+                                [pic-footer pic-href1 pic-href2]))]]
+
+       [:div {:class "flex flex-col bg-white rounded-2xl shadow overflow-hidden h-full min-h-[300px]"}
+        (when img-href [:img {:src img-href}])
+        [:div
+         {:class
+          (str "flex flex-col gap-2 p-4 flex-1 "
+               (when-not img-href "justify-start"))}
+         [:a {:href pic-href1
+              :class "text-lg hover:underline"} title]
+         [:p {:class "text-gray-600 text-sm"} desc]
+         (when-not pic-footer footer)]])]))
+
 (defn renderers [context filepath]
   (assoc transform/default-hiccup-renderers
          :big-link (partial big-links/render-big-link context filepath)
@@ -38,20 +85,26 @@
          (fn [_ctx _node] "")
          :heading
          (comp
-           (fn [header-hiccup]
-             (cond-> header-hiccup
-               (-> header-hiccup (get 1) :id)
-               (update-in
-                 [1 :id]
-                 (fn [id]
-                   (str/replace id #"^-|-$" "")))))
-           (:heading transform/default-hiccup-renderers))
+          (fn [header-hiccup]
+            (cond-> header-hiccup
+              (-> header-hiccup (get 1) :id)
+              (update-in
+               [1 :id]
+               (fn [id]
+                 (str/replace id #"^-|-$" "")))))
+          (:heading transform/default-hiccup-renderers))
          :html-inline
          (fn [_ctx node]
-           (uui/raw (-> node :content first :text)))
+           (let [c (first (parse-html (-> node :content first :text)))]
+             (if (and c (= :table (first c)))
+               (render-cards-from-table c)
+               (uui/raw (-> node :content first :text)))))
          :html-block
          (fn [_ctx node]
-           (uui/raw (-> node :content first :text)))))
+           (let [c (first (parse-html (-> node :content first :text)))]
+             (if (and c (= :table (first c)))
+               (render-cards-from-table c)
+               (uui/raw (-> node :content first :text)))))))
 
 (defn render-toc-item [item]
   (let [content

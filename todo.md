@@ -1,10 +1,19 @@
 # Todo
 
-- [ ] empty page with links
+# most important
+- [x] redirects
+- [x] handle external links in toc
+- [ ] pictures size
+- [ ] pictures in tables?
+- [ ] widgets
+- [ ] tracking
+- [ ] deploy
+- [ ] ci that do not allow absolute references 
+- [ ] 404 analytics?
 
-## techdolg
+## techdebt
 - [ ] do not read on refresh
-- [ ] cache htmx
+- [ ] cache html
 
 ## Widgets
 - [ ] Hint
@@ -15,26 +24,17 @@
   - [x] json
   - [x] yaml
   - [x] rest console
-  - [ ] db console
+  - [x] sql
   - [x] shell
-
-## Redirects
-- [ ] poc
-- [ ] 404 analytics?
-
-## Links
-- [ ] handle external links
-- [x] 404 page
 
 ## CI
 - [ ] check links
-- [ ] redirects
+- [ ] check redirects
 
 ## UX
-- [ ] move page
+- [ ] move page with references and save redirect
 - [ ] create page
 - [ ] write page in ui?
-- [ ] gitbook-like placeholder for empty pages
 
 ## UI
 - [ ] pretty design
