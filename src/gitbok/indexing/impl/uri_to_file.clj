@@ -23,9 +23,9 @@
         lines (str/split-lines summary-text)
         readme-count (count "readme.md")
         md-count (count ".md")
-        redirects (into {}
-                        (mapv (fn [[k v]] [(name k) v])
-                              (redirects/redirects-from-file)))
+        redirects (->> (redirects/redirects-from-file)
+                       (mapv (fn [[k v]] [(subs (str k) 1) v]))
+                       (into {}))
         index
         (loop [lines lines
                section nil
@@ -46,20 +46,24 @@
                 (re-matches #"\s*\*\s+\[([^\]]+)\]\(([^)]+)\)" line)
                 (let [indent (->> line (re-find #"^(\s*)\*") second count)
                       level (quot indent 2)
-                      [_ title path] (re-matches #"\s*\*\s+\[([^\]]+)\]\(([^)]+)\)" line)
+                      [_ title path]
+                      (re-matches #"\s*\*\s+\[([^\]]+)\]\(([^)]+)\)" line)
                       readme? (str/ends-with? (str/lower-case path) "readme.md")
                       new-stack (-> stack (subvec 0 level) (conj title))
                       prefix (if section (str section "/") "")
                       full-path (str prefix (str/join "/" (mapv utils/s->url-slug new-stack)))
-                      url2 (subs path 0 (- (count path)
-                                           (if readme? readme-count md-count)))
+                      url2 (subs path 0
+                                 (- (count path)
+
+                                    (if readme?
+                                      readme-count
+                                      md-count)))
                       url2 (if (str/ends-with? url2 "/")
                              (subs url2 0 (dec (count url2)))
                              url2)]
+                  (def url2 url2)
                   (recur (rest lines) section new-stack
                          (assoc acc
-                                (str full-path "-hui")
-                                (str path " " readme?)
                                 full-path path
                             ;; todo migrate all urls to [title]s
                                 url2 path)))
@@ -67,13 +71,18 @@
                 :else
                 (recur (rest lines) section stack acc)))))
         diff
-        (nth (clojure.data/diff (set (keys (spit "hui.txt" redirects)))
+        (nth (clojure.data/diff (set (keys redirects))
                                 (set (keys index))) 2)]
-    (when diff
-      (doseq [p diff]
-        (println "url: " p)
-        (println "file in index:" (get index p))
-        (println "file in redirect:" (get redirects p))))
+    (def redirects redirects)
+    (filter
+     (fn [[url file]]
+       (str/includes? url "api/crud"))
+     redirects)
+(when diff
+  (doseq [p diff]
+    (println "url: " p)
+    (println "file in index:" (get index p))
+    (println "file in redirect:" (get redirects p))))
     (merge index redirects)))
 
 (defn get-idx [context]

@@ -14,27 +14,6 @@
   (def context (system/start-system gitbok/default-config))
   (system/stop-system context)
 
-  (def i (uri-to-file/get-idx context))
-
-  (count i)
-  (take 10 i)
-
-
-
-  (def r "### Load dataset")
-
-(def abc
- "{% content-ref url=\"../getting-started/run-aidbox-locally.md\" %}
-[run-aidbox-locally.md](../getting-started/run-aidbox-locally.md)
-{% endcontent-ref %}")
-
-  (def abc "```clojure
-    (print 'hi)
-    ```")
-
-  (def parsed (:content (:parsed (markdown/parse-markdown-content [nil abc]))))
-  (markdown/render-md context nil parsed)
-
   (def uri->file-idx
     (uri-to-file/get-idx context))
 
@@ -44,10 +23,8 @@
     (fn [[url file]]
       (and
         ;; (str/starts-with? url "modules/aidbox-forms/aidbox-ui-builder-alpha/")
-           (str/starts-with? file "modules/aidbox-forms/aidbox-ui-builder-alpha/README.md")
-           )
-
-      )
+           (str/starts-with? url "api/crud")
+           ))
     uri->file-idx)
 
   (def file-to-uri
