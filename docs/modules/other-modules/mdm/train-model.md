@@ -50,10 +50,3 @@ linker.save_zen_model_edn('model.edn')
 ```
 
 This will create a file with model symbol. You will need it to set up MDM module in Aidbox
-
-## References
-
-### Zen symbols
-
-* [aidbox.mdm/model](../../../reference/zen-schema-reference/aidbox/mdm/model.md)
-* [aidbox.mdm/splink-engine](../../../reference/zen-schema-reference/aidbox/mdm/splink-engine.md)

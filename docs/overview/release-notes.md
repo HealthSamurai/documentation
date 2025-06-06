@@ -92,7 +92,7 @@
   * Added an [endpoint for generating a form from PDF](../reference/aidbox-forms-reference/generating-questionnaire-from-pdf-api.md)
   * Added support for systemversion in valuesets
   * Added an ability to [intercept requests](../modules/aidbox-forms/aidbox-ui-builder-alpha/embedding.md#step-4-optional-configure-requests-interception) made to the Aidbox server endpoints from Form Builder and Renderer when embedding as web-component
-  * Supported [max decimal places](../modules/aidbox-forms/aidbox-ui-builder-alpha/form-creation/widgets/#decimal)
+  * Supported [max decimal places](../modules/aidbox-forms/aidbox-ui-builder-alpha/form-creation/widgets.md#decimal)
 
 Minor updates:
 

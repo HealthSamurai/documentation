@@ -318,14 +318,14 @@ on `start-workflow`/`read-workflow` rpcs call - adds items :id information to pa
 
 You can use [Workflow API](../../../deprecated/deprecated/forms/workflow-api-docs-deprecated.md): 
 * [get-workflow](../../../deprecated/deprecated/forms/workflow-api-docs-deprecated.md#get-workflow) - get workflow definition
-* [get-workflows](../../deprecated/deprecated/forms/workflow-api-docs-deprecated.md#get-workflows) - return existed workflows
-* [start-workflow](../../deprecated/deprecated/forms/workflow-api-docs-deprecated.md#start-workflow) - start WF and launch forms
-* [save-step](../../deprecated/deprecated/forms/workflow-api-docs-deprecated.md#save-step) - save document through WF, mark step as in-progress
-* [skip-step](../../deprecated/deprecated/forms/workflow-api-docs-deprecated.md#skip-step) - skip WF step
-* [amend-step](../../deprecated/deprecated/forms/workflow-api-docs-deprecated.md#amend-step) - amend WF step
-* [complete-step](../../deprecated/deprecated/forms/workflow-api-docs-deprecated.md#complete-step) - try complete WF step with document, call sign on it.
-* [complete-workflow](../../deprecated/deprecated/forms/workflow-api-docs-deprecated.md#complete-workflow) - complete WF
-* [cancel-workflow](../../deprecated/deprecated/forms/workflow-api-docs-deprecated.md#cancel-workflow) - try cancel WF
-* [amend-workflow](../../deprecated/deprecated/forms/workflow-api-docs-deprecated.md#amend-workflow) - amend completed WF
-* [add-workflow-note](../../deprecated/deprecated/forms/workflow-api-docs-deprecated.md#add-workflow-note) - add addendum note to the given WF
-* [get-workflow-addendums](../../deprecated/deprecated/forms/workflow-api-docs-deprecated.md#get-workflow-addendums) - get list of addendums for the given WF
+* [get-workflows](../../../deprecated/deprecated/forms/workflow-api-docs-deprecated.md#get-workflows) - return existed workflows
+* [start-workflow](../../../deprecated/deprecated/forms/workflow-api-docs-deprecated.md#start-workflow) - start WF and launch forms
+* [save-step](../../../deprecated/deprecated/forms/workflow-api-docs-deprecated.md#save-step) - save document through WF, mark step as in-progress
+* [skip-step](../../../deprecated/deprecated/forms/workflow-api-docs-deprecated.md#skip-step) - skip WF step
+* [amend-step](../../../deprecated/deprecated/forms/workflow-api-docs-deprecated.md#amend-step) - amend WF step
+* [complete-step](../../../deprecated/deprecated/forms/workflow-api-docs-deprecated.md#complete-step) - try complete WF step with document, call sign on it.
+* [complete-workflow](../../../deprecated/deprecated/forms/workflow-api-docs-deprecated.md#complete-workflow) - complete WF
+* [cancel-workflow](../../../deprecated/deprecated/forms/workflow-api-docs-deprecated.md#cancel-workflow) - try cancel WF
+* [amend-workflow](../../../deprecated/deprecated/forms/workflow-api-docs-deprecated.md#amend-workflow) - amend completed WF
+* [add-workflow-note](../../../deprecated/deprecated/forms/workflow-api-docs-deprecated.md#add-workflow-note) - add addendum note to the given WF
+* [get-workflow-addendums](../../../deprecated/deprecated/forms/workflow-api-docs-deprecated.md#get-workflow-addendums) - get list of addendums for the given WF

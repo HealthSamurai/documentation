@@ -20,7 +20,8 @@ This way of enabling OTEL capabilities is available in Aidbox versions 2503 and 
 
 ## How to enable traces export to the OTEL collector
 
-To  enable exporting traces to the OTEL collector set the OTEL collector traces receiver endpoint to the Aidbox setting [observability.otel.traces-url](../../../../reference/settings/observability.md#observability.otel.traces-url)
+To  enable exporting traces to the OTEL collector set the OTEL collector traces receiver endpoint to the Aidbox 
+setting [observability.otel.traces-url](../../../reference/settings/observability.md#observability.otel.traces-url)
 
 ## How to check the OTEL collector receives traces&#x20;
 

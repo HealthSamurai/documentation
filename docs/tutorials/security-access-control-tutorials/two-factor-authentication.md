@@ -85,7 +85,7 @@ resourceType: AidboxConfig
 
 ![](../../../../.gitbook/assets/group-6.png)
 
-![2FA Form](../../../../.gitbook/assets/2fa-form.png)
+![2FA Form](../../../.gitbook/assets/2fa-form.png)
 
 When the user scans the QR code and enters the token, he is redirected to the 2FA settings page. Aidbox saves that 2FA is enabled for this user into the User.twoFactor attribute.
 
