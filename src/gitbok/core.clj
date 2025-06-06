@@ -6,12 +6,14 @@
    [gitbok.markdown.core :as markdown]
    [gitbok.indexing.core :as indexing]
    [gitbok.indexing.impl.file-to-uri :as file-to-uri]
+   [gitbok.markdown.widgets.big-links :as big-links]
    [gitbok.indexing.impl.summary :as summary]
    [gitbok.indexing.impl.uri-to-file :as uri-to-file]
    [gitbok.search]
    [gitbok.ui]
    [gitbok.static]
    [http]
+   [clojure.java.io :as io]
    [ring.util.response :as resp]
    [system]
    [gitbok.utils :as utils]
@@ -40,30 +42,41 @@
              [:li
               [:a.text-blue-600.hover:text-blue-800.text-lg.flex.items-start
                {:href (file-to-uri/filepath->uri
-                        context (:filepath (:hit search-res)))}
+                       context (:filepath (:hit search-res)))}
                (:title (:hit search-res))]])]])]]]))
 
 (defn find-children-files [context filepath]
-  (let [index (file-to-uri/get-idx context)
-        filepath (if (str/ends-with? filepath "/")
-                   (subs filepath 0 (dec (count filepath)))
-                  filepath)
-        dir (subs filepath 0 (str/last-index-of filepath "/"))
-        dir (if (str/starts-with? dir "./docs/")
-              (subs dir 7)
-              dir)]
-    (filterv (fn [[file _info]]
-               (and (str/starts-with? file dir)
-                    (not= file filepath)))
-             index))
-  )
+  (when
+   (and filepath
+        (str/ends-with? (str/lower-case filepath) "readme.md"))
+    (let [index (file-to-uri/get-idx context)
+          filepath (if (str/ends-with? filepath "/")
+                     (subs filepath 0 (dec (count filepath)))
+                     filepath)
+          filepath
+          (if (str/starts-with? filepath "./docs/")
+            (subs filepath 7)
+            filepath)
+          dir (.getParent (io/file filepath))]
+      (filterv
+       (fn [[file _info]]
+         (and
+          (str/starts-with? file dir)
+          (not= file filepath)
+          (or
+           (= dir (.getParent (io/file file)))
+           (and
+            (= dir (.getParent (io/file (.getParent (io/file file)))))
+            (str/ends-with? (str/lower-case file) "readme.md")))))
+       index))))
 
 (defn render-empty-page [context filepath parsed-heading]
   [:div [:h1 (-> parsed-heading :content first :text)]
-   (for [[path {:keys [title uri]}] (find-children-files context filepath)]
-     [:div title])
-
-   ])
+   (for [[_path {:keys [title uri]}]
+         (find-children-files context filepath)]
+     (big-links/big-link-view
+       (str "/" uri)
+       title))])
 
 (defn read-and-render-file* [context uri]
   (let [filepath (indexing/uri->filepath context uri)]
@@ -106,7 +119,8 @@
   [context request]
   (cond
     (picture-url? (:uri request))
-    (resp/file-response (subs (:uri request) 1))
+    (resp/file-response (subs (str/replace (:uri request)
+                                           #"%20" " ") 1))
 
     ;; todo
     (= (:uri request) "/favicon.ico")
@@ -149,8 +163,7 @@
     :method :get
     :fn #'redirect-to-readme})
 
-
-  ;; todo
+;; todo
   ;; (http/register-endpoint
   ;;   context
   ;;   {:path "/admin/broken" :method :get :fn #'gitbok.broken-links/broken-links-view})

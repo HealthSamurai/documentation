@@ -11,6 +11,10 @@
                           :text (match 2)
                           :alt (match 1)})}))
 
-(defn image-renderer [ctx node]
-  [:img {:src (some-> node :attrs :src)
-         :alt (:alt node)}])
+(defn image-renderer [_ctx node]
+  [:img {:src (some->
+                node
+                :attrs
+                :src)
+         :alt (or (:alt node)
+                  (:title (:attrs node)))}])

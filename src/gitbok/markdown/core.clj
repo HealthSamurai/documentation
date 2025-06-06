@@ -29,8 +29,8 @@
 
 (defn renderers [context filepath]
   (assoc transform/default-hiccup-renderers
-         :big-link (partial big-links/big-link-renderer context filepath)
-         :big-link1 (partial big-links/big-link-renderer context filepath)
+         :big-link (partial big-links/render-big-link context filepath)
+         :big-link1 (partial big-links/render-big-link context filepath)
          :image image/image-renderer
          :link (partial link/link-renderer context filepath)
          :internal-link link/link-renderer
