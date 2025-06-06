@@ -3,6 +3,8 @@
    [clojure.string :as str]
    [gitbok.markdown.widgets.big-links :as big-links]
    [gitbok.markdown.widgets.link :as link]
+   ;; [gitbok.indexing.impl.file-to-uri :as file-to-uri]
+   [gitbok.indexing.core :as indexing]
    [gitbok.markdown.widgets.image :as image]
    [nextjournal.markdown :as md]
    [nextjournal.markdown.transform :as transform]
@@ -33,7 +35,7 @@
    :parsed (md/parse* custom-doc content)})
 
 (defn render-cards-from-table
-  [[_ _ _ tbody]]
+  [context filepath [_ _ _ tbody]]
   (let [rows (->> tbody
                   (filter vector?)
                   (filter #(= :tr (first %))))]
@@ -56,23 +58,27 @@
                   (first (filterv
                           #(and (sequential? %) (= (first %) :a))
                           footer))
-
                   [1 :href])
+                 pic-footer? (when pic-footer (re-matches #".*(png|jpg|jpeg|svg)$" pic-footer))
+                 title-filepath (when-not pic-footer? pic-footer)
+                 title-href
+                 (when title-filepath
+                   (indexing/page-link->uri context filepath title-filepath))
                  img-href
                  (first (filter (fn [s]
                                   (when s (re-matches #".*(png|jpg|jpeg|svg)$" s)))
                                 [pic-footer pic-href1 pic-href2]))]]
-
        [:div {:class "flex flex-col bg-white rounded-2xl shadow overflow-hidden h-full min-h-[300px]"}
         (when img-href [:img {:src img-href}])
         [:div
          {:class
           (str "flex flex-col gap-2 p-4 flex-1 "
                (when-not img-href "justify-start"))}
-         [:a {:href pic-href1
+         [:a {:href (or title-href title-filepath)
               :class "text-lg hover:underline"} title]
          [:p {:class "text-gray-600 text-sm"} desc]
-         (when-not pic-footer footer)]])]))
+         ;; todo here learn more contains bad link
+         (when-not pic-footer? footer)]])]))
 
 (defn renderers [context filepath]
   (assoc transform/default-hiccup-renderers
@@ -97,13 +103,13 @@
          (fn [_ctx node]
            (let [c (first (parse-html (-> node :content first :text)))]
              (if (and c (= :table (first c)))
-               (render-cards-from-table c)
+               (render-cards-from-table context filepath c)
                (uui/raw (-> node :content first :text)))))
          :html-block
          (fn [_ctx node]
            (let [c (first (parse-html (-> node :content first :text)))]
              (if (and c (= :table (first c)))
-               (render-cards-from-table c)
+               (render-cards-from-table context filepath c)
                (uui/raw (-> node :content first :text)))))))
 
 (defn render-toc-item [item]

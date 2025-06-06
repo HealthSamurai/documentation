@@ -3,8 +3,8 @@
 # most important
 - [x] redirects
 - [x] handle external links in toc
+- [x] pictures in tables?
 - [ ] pictures size
-- [ ] pictures in tables?
 - [ ] widgets
 - [ ] tracking
 - [ ] deploy
@@ -16,6 +16,7 @@
 - [ ] cache html
 
 ## Widgets
+- [x] cards
 - [ ] Hint
 - [ ] Warning
 - [ ] Big page references
@@ -38,6 +39,8 @@
 
 ## UI
 - [ ] pretty design
+- [ ] mobile view
+- [ ] zoom level
 
 ## Pictures
 - [ ] size
@@ -48,7 +51,6 @@
 - [ ] next/prev pages
 - [ ] pretty render system resource reference 
 - [ ] feedback buttons?
-
 
 ## Tests
 - [ ] page-link->uri
