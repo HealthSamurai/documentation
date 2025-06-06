@@ -74,36 +74,28 @@
   [:div [:h1 (-> parsed-heading :content first :text)]
    (for [[_path {:keys [title uri]}]
          (find-children-files context filepath)]
-     (big-links/big-link-view
-       (str "/" uri)
-       title))])
-
-(defn read-and-render-file* [context uri]
-  (let [filepath (indexing/uri->filepath context uri)]
-    (if filepath
-      (let [filepath (str "." (indexing/uri->filepath context uri))
-            content* (read-content context filepath)
-            {:keys [parsed]}
-            (markdown/parse-markdown-content [filepath content*])]
-        (try
-          (if (and (= 1 (count (:content parsed)))
-                   (= :heading (:type (first (:content parsed)))))
-            (render-empty-page context filepath (first (:content parsed)))
-            (markdown/render-gitbook context filepath parsed))
-          (catch Exception e
-            [:div {:role "alert"}
-             (.getMessage e)
-             [:pre (pr-str e)]
-             [:pre content*]])))
-      (not-found-view context uri))))
+     (big-links/big-link-view (str "/" uri) title))])
 
 (defn read-and-render-file
   [context request]
   ;; todo do not read, get from idx
   [:div.gitbook
    (try
-     (read-and-render-file* context
-                            (:uri request))
+     (let [uri (:uri request)
+           filepath (str "." (indexing/uri->filepath context uri))
+           content* (read-content context filepath)
+           {:keys [parsed]}
+           (markdown/parse-markdown-content [filepath content*])]
+       (try
+         (if (and (= 1 (count (:content parsed)))
+                  (= :heading (:type (first (:content parsed)))))
+           (render-empty-page context filepath (first (:content parsed)))
+           (markdown/render-gitbook context filepath parsed))
+         (catch Exception e
+           [:div {:role "alert"}
+            (.getMessage e)
+            [:pre (pr-str e)]
+            [:pre content*]])))
      (catch Exception e
        [:div {:role "alert"}
         (.getMessage e)
@@ -127,9 +119,19 @@
     {:status 404}
 
     :else
-    (gitbok.ui/layout
-     context request
-     (read-and-render-file context request))))
+    (let [filepath (indexing/uri->filepath context (:uri request))]
+      (def f filepath)
+      (def context context )
+      (def request request)
+      (if filepath
+        (gitbok.ui/layout
+         context request
+         (read-and-render-file context request))
+
+        (gitbok.ui/layout
+          context request
+          {:status 404
+           :body (not-found-view context (:uri request))})))))
 
 (def readme-path "readme")
 
