@@ -6,7 +6,7 @@
 # - All relative links point to existing files
 # - Summary files are in sync with actual files
 
-bash ./scripts/markdown-links/find_absolute_aidbox_links.sh || exit 1
+python ./scripts/markdown-links/find_absolute_aidbox_links.py || exit 1
 bash ./scripts/markdown-links/extract-broken-links.sh || exit 1
 bash ./scripts/markdown-links/extract-nonexistent-links.sh || exit 1
 bash ./scripts/summary/check-summary-vs-files.sh
