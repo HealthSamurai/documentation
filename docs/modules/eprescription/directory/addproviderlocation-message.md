@@ -63,11 +63,11 @@ The following FHIR resources are needed to create an AddProviderLocation message
           "tag": [
             {
               "system": "urn:app:aidbox:e-prescriptions:surescripts:serviceLevel",
-              "display": "New"
+              "code": "New"
             },
             {
               "system": "urn:app:aidbox:e-prescriptions:surescripts:serviceLevel",
-              "display": "Cancel"
+              "code": "Cancel"
             }
           ]
         },
