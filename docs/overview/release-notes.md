@@ -22,8 +22,8 @@
   * Enhanced Aidbox grant screen to show the list of scopes that are the intersection of the scopes requested by the SMART app and the scopes allowed to the Client.
   * Fixed bugs on Aidbox UI, resource validation, and incorrect handling of PUT operation in bundles.
 * Aidbox Forms
-  * Supported full functionality of [template-based extraction](https://docs.aidbox.app/modules/aidbox-forms/aidbox-ui-builder-alpha/form-creation/form-settings#template-based-extraction) to extract QuestionnaireResponse into FHIR resources using predefined templates, with dynamic referencing between extracted resources and the template bundle extracted as a single resource.
-  * Improved the [FHIRPath expression editor](https://docs.aidbox.app/modules/aidbox-forms/aidbox-ui-builder-alpha/form-creation/fhirpath-editor) for calculation, enable-when, and population expressions: including basic patient demographic pre-filling (e.g., name, gender, DOB).
+  * Supported full functionality of [template-based extraction](../modules/aidbox-forms/aidbox-ui-builder-alpha/form-creation/form-settings.md#template-based-extraction) to extract QuestionnaireResponse into FHIR resources using predefined templates, with dynamic referencing between extracted resources and the template bundle extracted as a single resource.
+  * Improved the [FHIRPath expression editor](../modules/aidbox-forms/aidbox-ui-builder-alpha/form-creation/fhirpath-editor.md) for calculation, enable-when, and population expressions: including basic patient demographic pre-filling (e.g., name, gender, DOB).
   * Added the ability to hide the form title when embedding as a web component.
   * Improved the Form Navigation Bar to display top-level groups when using a form with pages.
 * #### Minor updates
