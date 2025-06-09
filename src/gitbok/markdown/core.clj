@@ -3,9 +3,9 @@
    [clojure.string :as str]
    [gitbok.markdown.widgets.big-links :as big-links]
    [gitbok.markdown.widgets.link :as link]
-   ;; [gitbok.indexing.impl.file-to-uri :as file-to-uri]
    [gitbok.indexing.core :as indexing]
    [gitbok.markdown.widgets.image :as image]
+   [gitbok.markdown.widgets.github-hint :as github-hint]
    [nextjournal.markdown :as md]
    [nextjournal.markdown.transform :as transform]
    [hickory.core]
@@ -16,10 +16,25 @@
    [nextjournal.markdown.utils :as u]
    [uui]))
 
-(defn hack-md [md-file]
+(defn hack-content-ref [md-file]
   (str/replace md-file
                #"\{% content-ref.*%\}\s*\n\[[^\]]*\]\(([^)]*)\)\s*\n\{% endcontent-ref %\}"
                "[[$1]]"))
+
+(defn hack-info
+  "{% hint style=\"info\" %}<content>{% endhint %} -> > [!NOTE]\n>"
+  [md-file]
+  (str/replace
+   md-file
+   #"(?s)\{% hint style=\"([^\"]+)\" %\}\n(.*?)\n\{% endhint %\}"
+   (fn [[_ style content]]
+     (str "> [!" (str/upper-case style) "] "
+          (str/replace content #"\n" "\n> " )))))
+
+(defn hack-md [md-file]
+  (-> md-file
+      hack-content-ref
+      hack-info))
 
 (defn parse-html [html]
   (map hickory.core/as-hiccup
@@ -90,6 +105,8 @@
          :image image/image-renderer
          :link (partial link/link-renderer context filepath)
          :internal-link link/link-renderer
+         :blockquote
+         github-hint/github-hint-renderer
          :nothing
          (fn [_ctx _node] "")
          :heading

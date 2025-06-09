@@ -137,58 +137,20 @@
 ;;
 
 
-(def text "hello\n{%\nsomecontent\n%}")
+(def text "hello\n{hui\nsomecontent\npizda}")
 
 (def my-tokenizer
   (u/normalize-tokenizer
-   {:regex #"(?s)\{(.*)\}"
+   {:regex #"(?s)\{hui\n(.*)\npizda\}"
     :handler (fn [match]
                {:type :some-type
                 :text (match 1)})}))
 
 ((:tokenizer-fn my-tokenizer) text)
-;; ([["{%\nsomecontent\n%}" "\nsomecontent\n"] 6 23])
 
 (u/tokenize-text-node my-tokenizer {} {:text text})
-;; ({:type :text,
-;;   :text "hello\n",
-;;   :doc-handler #function[clojure.zip/append-child]}
-;;  {:doc-handler
-;;   #function[nextjournal.markdown.utils/normalize-tokenizer/fn--5739],
-;;   :match ["{%\nsomecontent\n%}" "\nsomecontent\n"],
-;;   :text "hello\n{%\nsomecontent\n%}",
-;;   :start 6,
-;;   :end 23})
 
 (:content
   (md/parse*
     (update u/empty-doc :text-tokenizers conj my-tokenizer)
     text))
-;; [{:type :paragraph,
-;;   :content
-;;   [{:type :text, :text "hello"}
-;;    {:type :softbreak}
-;;    {:type :text, :text "{%"}
-;;    {:type :softbreak}
-;;    {:type :text, :text "somecontent"}
-;;    {:type :softbreak}
-;;    {:type :text, :text "%}"}]}]
-
-(def parsed
-  (md/parse* u/empty-doc "```shell\n(println 1)\n```"))
-
-(md.transform/->hiccup
-  md.transform/default-hiccup-renderers
-  #_(assoc md.transform/default-hiccup-renderers
-
-         ;; :doc specify a custom container for the whole doc
-         ;; :doc (partial md.transform/into-markup [:div.viewer-markdown])
-         ;; :text is funkier when it's zinc toned
-         ;; :text (fn [_ctx node] [:span {:style {:color "#71717a"}} (:text node)])
-         ;; :plain fragments might be nice, but paragraphs help when no reagent is at hand
-         ;; :plain (partial md.transform/into-markup [:p {:style {:margin-top "-1.2rem"}}])
-         ;; :ruler gets to be funky, too
-         ;; :ruler (constantly [:hr {:style {:border "2px dashed #71717a"}}])
-
-         )
-  parsed)

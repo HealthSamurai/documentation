@@ -17,7 +17,14 @@
   (:content
     (:parsed
       (markdown/parse-markdown-content
-        ["configuration/settings.md" "[[../init-bundle.md]]"])))
+        ["configuration/settings.md"
+         "> Hi!\n> A\n>B"])))
+
+  (:content
+    (:parsed
+      (markdown/parse-markdown-content
+        ["configuration/settings.md"
+         "{% hint style=\"info\" %}\nWhen this feature is enabled, schema generation will take 2 minutes (approximately), Until the schema is generated GraphQL requests will wait.\n{% endhint %}"])))
 
   (def uri->file-idx
     (uri-to-file/get-idx context))
@@ -31,13 +38,4 @@
            (str/starts-with? url "api/crud")
            ))
     uri->file-idx)
-
-  ;; bad pages
-  (filter
-    (fn [[file uri]]
-      (and (not= uri (subs file 0 (- (count file) (count ".md"))))
-           (not (str/starts-with? file "https"))
-           (not (str/ends-with? file "README.md"))))
-    file-to-uri)
-
   )
