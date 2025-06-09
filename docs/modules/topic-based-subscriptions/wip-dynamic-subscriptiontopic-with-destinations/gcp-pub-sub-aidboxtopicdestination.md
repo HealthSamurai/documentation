@@ -1,7 +1,7 @@
 # GCP Pub/Sub AidboxTopicDestination
 
 {% hint style="info" %}
-This functionality is available starting from version 2411 and requires [FHIR Schema](../../modules/profiling-and-validation/fhir-schema-validator/) validation engine to be [enabled](../../modules/profiling-and-validation/fhir-schema-validator/).
+This functionality is available starting from version 2411 and requires [FHIR Schema](../../profiling-and-validation/fhir-schema-validator/) validation engine to be [enabled](../../profiling-and-validation/fhir-schema-validator/).
 {% endhint %}
 
 The GCP Pub/Sub AidboxTopicDestination works in the following way:
@@ -10,8 +10,8 @@ The GCP Pub/Sub AidboxTopicDestination works in the following way:
 * After the CRUD operation, Aidbox collects unsent messages from the database and sends them to the GCP Pub/Sub.
 * If an error occurs during sending, Aidbox will continue retrying until the message is successfully delivered. So Aidbox guarantees at least once delivery for an event.
 
-{% content-ref url="../../modules/topic-based-subscriptions/wip-dynamic-subscriptiontopic-with-destinations.md" %}
-[wip-dynamic-subscriptiontopic-with-destinations.md](../../modules/topic-based-subscriptions/wip-dynamic-subscriptiontopic-with-destinations.md)
+{% content-ref url="./" %}
+[.](./)
 {% endcontent-ref %}
 
 ## Configuration

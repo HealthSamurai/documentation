@@ -3,7 +3,7 @@
 ## Overview
 
 {% hint style="warning" %}
-While FHIR topic-based subscriptions are functional, they will no longer receive active development or new features. For enhanced capabilities and ongoing support, please use [Aidbox topic-based subscriptions](../../../../modules/topic-based-subscriptions/wip-dynamic-subscriptiontopic-with-destinations.md). This newer implementation offers improved performance, flexibility, and will continue to be developed to meet future needs.
+While FHIR topic-based subscriptions are functional, they will no longer receive active development or new features. For enhanced capabilities and ongoing support, please use [Aidbox topic-based subscriptions](../../../../modules/topic-based-subscriptions/wip-dynamic-subscriptiontopic-with-destinations/). This newer implementation offers improved performance, flexibility, and will continue to be developed to meet future needs.
 {% endhint %}
 
 Aidbox's Topic-Based Subscription module offers a robust and efficient mechanism designed to allow clients to ask for notifications when data changes. It is an active notification system, an Aidbox server actively sends notifications to clients as changes occur.

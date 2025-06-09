@@ -1,14 +1,14 @@
 # Aidbox topic-based subscriptions
 
 {% hint style="info" %}
-This functionality is available in Aidbox versions 2409 and later and requires [FHIR Schema](../profiling-and-validation/fhir-schema-validator/) validation engine to be [enabled](../profiling-and-validation/fhir-schema-validator/).
+This functionality is available in Aidbox versions 2409 and later and requires [FHIR Schema](../../profiling-and-validation/fhir-schema-validator/) validation engine to be [enabled](../../profiling-and-validation/fhir-schema-validator/).
 {% endhint %}
 
 ### Overview
 
 This feature enables dynamic subscriptions to changes in FHIR resources, allowing users/systems to receive notifications through multiple channels, including Kafka.
 
-<figure><img src="../../../.gitbook/assets/eb0e6bfe-79a6-4f5e-bb16-1913eb0106d0.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../../.gitbook/assets/eb0e6bfe-79a6-4f5e-bb16-1913eb0106d0.png" alt=""><figcaption></figcaption></figure>
 
 For an application example, refer to [Aidbox Subscriptions & Kafka AidboxTopicDestination](https://github.com/Aidbox/app-examples/tree/main/aidbox-subscriptions-to-kafka)
 
@@ -70,23 +70,23 @@ Ensure that the resource metadata contains the kind-specific `AidboxTopicDestina
 
 ## Currently supported channels
 
-{% content-ref url="../../tutorials/subscriptions-tutorials/webhook-aidboxtopicdestination.md" %}
-[webhook-aidboxtopicdestination.md](../../tutorials/subscriptions-tutorials/webhook-aidboxtopicdestination.md)
+{% content-ref url="webhook-aidboxtopicdestination.md" %}
+[webhook-aidboxtopicdestination.md](webhook-aidboxtopicdestination.md)
 {% endcontent-ref %}
 
-* [Webhook](../../tutorials/subscriptions-tutorials/webhook-aidboxtopicdestination.md)
+* [Webhook](webhook-aidboxtopicdestination.md)
 *
 
-{% content-ref url="../../tutorials/subscriptions-tutorials/gcp-pub-sub-aidboxtopicdestination.md" %}
-[gcp-pub-sub-aidboxtopicdestination.md](../../tutorials/subscriptions-tutorials/gcp-pub-sub-aidboxtopicdestination.md)
+{% content-ref url="gcp-pub-sub-aidboxtopicdestination.md" %}
+[gcp-pub-sub-aidboxtopicdestination.md](gcp-pub-sub-aidboxtopicdestination.md)
 {% endcontent-ref %}
 
-{% content-ref url="../../tutorials/subscriptions-tutorials/kafka-aidboxtopicdestination.md" %}
-[kafka-aidboxtopicdestination.md](../../tutorials/subscriptions-tutorials/kafka-aidboxtopicdestination.md)
+{% content-ref url="kafka-aidboxtopicdestination.md" %}
+[kafka-aidboxtopicdestination.md](kafka-aidboxtopicdestination.md)
 {% endcontent-ref %}
 
-{% content-ref url="../../tutorials/subscriptions-tutorials/aidboxtopicsubscription-nats-tutorial.md" %}
-[aidboxtopicsubscription-nats-tutorial.md](../../tutorials/subscriptions-tutorials/aidboxtopicsubscription-nats-tutorial.md)
+{% content-ref url="../../../tutorials/subscriptions-tutorials/aidboxtopicsubscription-nats-tutorial.md" %}
+[aidboxtopicsubscription-nats-tutorial.md](../../../tutorials/subscriptions-tutorials/aidboxtopicsubscription-nats-tutorial.md)
 {% endcontent-ref %}
 
 ## Notification Shape

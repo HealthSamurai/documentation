@@ -1,7 +1,7 @@
 # Kafka AidboxTopicDestination
 
 {% hint style="info" %}
-This functionality is available in Aidbox versions 2409 and later and requires [FHIR Schema](../../modules/profiling-and-validation/fhir-schema-validator/) validation engine to be [enabled](../../modules/profiling-and-validation/fhir-schema-validator/setup-aidbox-with-fhir-schema-validation-engine.md).
+This functionality is available in Aidbox versions 2409 and later and requires [FHIR Schema](../../profiling-and-validation/fhir-schema-validator/) validation engine to be [enabled](../../profiling-and-validation/fhir-schema-validator/setup-aidbox-with-fhir-schema-validation-engine.md).
 {% endhint %}
 
 This page describes an AidboxTopicDestination which allows to store events described by an AidboxSubscriptionTopic in Kafka.
@@ -21,8 +21,8 @@ Be aware of using `Best effort` with batch transactions. Messages are generated 
 Please note that `at least once`approach uses **transactional** Kafka producers. Please make sure that `transaction.state.log.replication.factor` is less or equal then the number of brokers in your Kafka cluster. Otherwise sending messages from Aidbox to Kafka may fail with `Timeout expired after ...ms while awaiting InitProducerId`error.
 {% endhint %}
 
-{% content-ref url="../../modules/topic-based-subscriptions/wip-dynamic-subscriptiontopic-with-destinations.md" %}
-[wip-dynamic-subscriptiontopic-with-destinations.md](../../modules/topic-based-subscriptions/wip-dynamic-subscriptiontopic-with-destinations.md)
+{% content-ref url="./" %}
+[.](./)
 {% endcontent-ref %}
 
 ## Configuration

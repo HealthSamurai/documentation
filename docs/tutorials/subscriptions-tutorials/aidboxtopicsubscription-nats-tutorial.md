@@ -2,7 +2,7 @@
 
 ## Objectives
 
-* Learn how to integrate [AidboxTopicSubscriptions](../../modules/topic-based-subscriptions/wip-dynamic-subscriptiontopic-with-destinations.md) with core NATS / NATS JetStream
+* Learn how to integrate [AidboxTopicSubscriptions](../../modules/topic-based-subscriptions/wip-dynamic-subscriptiontopic-with-destinations/) with core NATS / NATS JetStream
 
 ## Before you begin
 
@@ -20,7 +20,7 @@ Core NATS is a lightweight pub/sub system where messages are delivered to subscr
 
 JetStream is an extension of NATS that provides message persistence, replay, and acknowledgment (at least once delivery). It allows you to create streams, store messages, manage consumers, and ensure that important events are not lost even in the case of failure.
 
-In Aidbox, create [AidboxTopicDestination](../../modules/topic-based-subscriptions/wip-dynamic-subscriptiontopic-with-destinations.md#aidboxtopicdestination) with `http://aidbox.app/StructureDefinition/aidboxtopicdestination-nats-core-best-effort` profile to integrate with Core NATS and `http://aidbox.app/StructureDefinition/aidboxtopicdestination-nats-jetstream-at-least-once` to integrate with NATS JetStream.
+In Aidbox, create [AidboxTopicDestination](../../modules/topic-based-subscriptions/wip-dynamic-subscriptiontopic-with-destinations/#aidboxtopicdestination) with `http://aidbox.app/StructureDefinition/aidboxtopicdestination-nats-core-best-effort` profile to integrate with Core NATS and `http://aidbox.app/StructureDefinition/aidboxtopicdestination-nats-jetstream-at-least-once` to integrate with NATS JetStream.
 
 ## Setting up
 
