@@ -89,12 +89,12 @@ AccessPolicy instance can be linked to User, Client or Operation resources with 
 
 See tutorials:
 
-{% content-ref url="../../../tutorials/security-access-control-tutorials/accesspolicy-best-practices.md" %}
-[accesspolicy-best-practices.md](../../../tutorials/security-access-control-tutorials/accesspolicy-best-practices.md)
+{% content-ref url="../../tutorials/security-access-control-tutorials/accesspolicy-best-practices.md" %}
+[accesspolicy-best-practices.md](../../tutorials/security-access-control-tutorials/accesspolicy-best-practices.md)
 {% endcontent-ref %}
 
-{% content-ref url="../../../tutorials/security-access-control-tutorials/debug-access-control.md" %}
-[debug-access-control.md](../../../tutorials/security-access-control-tutorials/debug-access-control.md)
+{% content-ref url="../../tutorials/security-access-control-tutorials/debug-access-control.md" %}
+[debug-access-control.md](../../tutorials/security-access-control-tutorials/debug-access-control.md)
 {% endcontent-ref %}
 
 ## Evaluation engines
@@ -133,7 +133,7 @@ link:
 
 Matcho engine leverages [Matcho](https://github.com/HealthSamurai/matcho) pattern matching, it has compact and declarative syntax with limited expressivity. It is well-suited for writing all sorts of rules and thus is one of the easiest options to specify `AccessPolicy` checks.
 
-To test the Matcho engine without creating AccessPolicy and sending a request, you can use the [$matcho endpoint](../../../api/rest-api/other/matcho.md).
+To test the Matcho engine without creating AccessPolicy and sending a request, you can use the [$matcho endpoint](../../api/rest-api/other/matcho.md).
 
 #### Example
 
@@ -346,6 +346,6 @@ and:
 
 ## See also
 
-* [AccessPolicy resource schema](../../../reference/system-resources-reference/iam-module-resources.md#accesspolicy)
-* [AccessPolicy best practices](../../../tutorials/security-access-control-tutorials/accesspolicy-best-practices.md)
-* [Debug access control](../../../tutorials/security-access-control-tutorials/debug-access-control.md)
+* [AccessPolicy resource schema](../../reference/system-resources-reference/iam-module-resources.md#accesspolicy)
+* [AccessPolicy best practices](../../tutorials/security-access-control-tutorials/accesspolicy-best-practices.md)
+* [Debug access control](../../tutorials/security-access-control-tutorials/debug-access-control.md)

@@ -25,7 +25,7 @@ Go to **Applications -> Applications** in Okta portal and click "**Create App In
 Enter Application details:
 
 * App integration name: Aidbox
-* Grant type:&#x20;
+* Grant type:
   * Authorization Code
   * Refresh Token
   * Implicit (hybrid)
@@ -47,7 +47,7 @@ Checkout **Client ID** and **Client secret**:
 
 ### Create an IdentityProvider in Aidbox
 
-Login to Aidbox UI.&#x20;
+Login to Aidbox UI.
 
 Use REST Console to execute the request below.
 
@@ -81,7 +81,7 @@ accept: application/json
 
 ### Login into Aidbox using Okta user
 
-Go to the Aidbox login page. You should see **Sign in with MyOkta** button.&#x20;
+Go to the Aidbox login page. You should see **Sign in with MyOkta** button.
 
 <figure><img src="../../../.gitbook/assets/02dfedda-b968-4ec7-a448-91e04b6e5da8.png" alt="" width="375"><figcaption></figcaption></figure>
 
@@ -93,7 +93,7 @@ Relogin with admin and check the user created in Aidbox for your Okta user. Go t
 
 <figure><img src="../../../.gitbook/assets/8de0d7cc-12d6-40db-aef7-2289cd24e361.png" alt=""><figcaption></figcaption></figure>
 
-User Resource is Aidbox is updated every time the user logs in using external Identity Provider. Source of the user information is configured using `userinfo-source` element in IdentityProvider configuration resource.&#x20;
+User Resource is Aidbox is updated every time the user logs in using external Identity Provider. Source of the user information is configured using `userinfo-source` element in IdentityProvider configuration resource.
 
 ### Create the Aidbox-Admins group in Okta
 
@@ -159,4 +159,4 @@ Now you can relogin with your Okta user and the user will be granted admin acces
 
 ## What's next
 
-* See more about Aidbox Security [security-and-access-control](../../modules/access-control/README.md)
+* See more about Aidbox Security [security-and-access-control](../../access-control/access-control.md)

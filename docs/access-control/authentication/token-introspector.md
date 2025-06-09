@@ -16,7 +16,7 @@ Aidbox TokenIntrospector supports two main types of tokens:
 
 ## TokenIntrospector Schema
 
-See [TokenIntrospector schema](../../../reference/system-resources-reference/iam-module-resources.md#tokenintrospector).
+See [TokenIntrospector schema](../../reference/system-resources-reference/iam-module-resources.md#tokenintrospector).
 
 ## Token Validation Process
 
@@ -29,4 +29,5 @@ See [TokenIntrospector schema](../../../reference/system-resources-reference/iam
 5. If the policy allows access, the request proceeds
 
 ## See also
-[Set up token introspection tutorial](../../../tutorials/security-access-control-tutorials/set-up-token-introspection.md)
+
+[Set up token introspection tutorial](../../tutorials/security-access-control-tutorials/set-up-token-introspection.md)

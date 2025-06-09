@@ -24,7 +24,7 @@ The dev tool is a part of Aidbox UI Console, which aims
 
 The dev tool is split on two sides, editor side and result side. On the left side you define
 
-* [AccessPolicy resource](../../modules/access-control/authorization/access-policies.md) and
+* [AccessPolicy resource](../../access-control/authorization/access-policies.md) and
 * HTTP request you are going to debug.
 
 When you press the Save\&Run button, the dev tool saves AccessPolicy and performs policy debug operation for the specified request, and displays the result on the right side. You can see there

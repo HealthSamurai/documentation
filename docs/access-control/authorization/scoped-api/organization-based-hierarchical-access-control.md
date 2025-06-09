@@ -16,7 +16,7 @@ FHIR resources must be separated per organizations. Organizations can be nested.
 
 Let's consider the next organization structure. There are two independent organizations Org A & Org D, each of them has nested, dependent organizations. Org B & Org C are nested to Org A, and Org E is nested to Org D.
 
-<figure><img src="../../../../../.gitbook/assets/d31fcf9c-4ae7-4932-87ac-0b725ce1c7a3.png" alt=""><figcaption><p>Organization hierarchy structure</p></figcaption></figure>
+<figure><img src="../../../../.gitbook/assets/d31fcf9c-4ae7-4932-87ac-0b725ce1c7a3.png" alt=""><figcaption><p>Organization hierarchy structure</p></figcaption></figure>
 
 To achieve such a behavior, you may consider an Aidbox feature called organization-based access control.
 
@@ -68,13 +68,13 @@ The Organization-based FHIR API base url:
 <AIDBOX_BASE_URL>/Organization/<org-id>/fhir
 ```
 
-The Organization-based [Aidbox API ](../../../../api/rest-api/other/aidbox-and-fhir-formats.md)base url:
+The Organization-based [Aidbox API ](../../../api/rest-api/other/aidbox-and-fhir-formats.md)base url:
 
 ```
 <AIDBOX_BASE_URL>/Organization/<org-id>/aidbox
 ```
 
-<figure><img src="../../../../../.gitbook/assets/4ec1a26c-d58c-4ff9-9d3b-87f4698f41d8.png" alt=""><figcaption><p>FHIR APIs reflection in organization-based access control</p></figcaption></figure>
+<figure><img src="../../../../.gitbook/assets/4ec1a26c-d58c-4ff9-9d3b-87f4698f41d8.png" alt=""><figcaption><p>FHIR APIs reflection in organization-based access control</p></figcaption></figure>
 
 ### Try Org-BAC
 
@@ -169,7 +169,7 @@ PUT <AIDBOX_BASE_URL>/Organization/<org-id>/fhir/<resource-type>/<id>
 <pre><code><strong>PATCH &#x3C;AIDBOX_BASE_URL>/Organization/&#x3C;org-id>/fhir/&#x3C;resource-type>/&#x3C;id>?[_method={ json-patch | merge-patch | fhirpath-patch }]
 </strong></code></pre>
 
-All PATCH methods are supported. See also [patch.md](../../../../api/rest-api/crud/patch.md)
+All PATCH methods are supported. See also [patch.md](../../../api/rest-api/crud/patch.md)
 
 ### Delete
 
@@ -190,7 +190,7 @@ The search API does not support search parameters:
 * `_with`&#x20;
 {% endhint %}
 
-Since 2505, [\_has search parameter](../../../../api/rest-api/fhir-search/chaining.md) is supported.
+Since 2505, [\_has search parameter](../../../api/rest-api/fhir-search/chaining.md) is supported.
 
 ### $everything
 
@@ -198,7 +198,7 @@ Since 2505, [\_has search parameter](../../../../api/rest-api/fhir-search/chaini
 GET <AIDBOX_BASE_URL>/Organization/<org-id>/fhir/Patient/$everything
 ```
 
-See also [$everything on Patient](../../../../api/rest-api/everything-on-patient.md)
+See also [$everything on Patient](../../../api/rest-api/everything-on-patient.md)
 
 ### $document
 
@@ -206,7 +206,7 @@ See also [$everything on Patient](../../../../api/rest-api/everything-on-patient
 GET <AIDBOX_BASE_URL>/Organization/<org-id>/fhir/Composition/$document
 ```
 
-See also [$document endpoint](../../../../api/rest-api/other/document.md)
+See also [$document endpoint](../../../api/rest-api/other/document.md)
 
 ### History
 
@@ -286,7 +286,7 @@ entry:
     id: 'pt-4'
 </code></pre>
 
-See also [Transactions page](../../../../api/batch-transaction.md)
+See also [Transactions page](../../../api/batch-transaction.md)
 
 ### Metadata
 
@@ -297,7 +297,7 @@ GET <AIDBOX_BASE_URL>/Organization/<org-id>/fhir/metadata
 ### AidboxQuery
 
 {% hint style="info" %}
-[Learn more about AidboxQuery](../../../../api/rest-api/aidbox-search.md#aidboxquery).
+[Learn more about AidboxQuery](../../../api/rest-api/aidbox-search.md#aidboxquery).
 {% endhint %}
 
 To use `$query` endpoint under organization-based hierarchical access control, it is necessary to create explicitly `organization` param in `AidboxQuery`.
@@ -327,7 +327,7 @@ POST /Organization/<org-id>/aidbox/$graphql
 
 Since version 2503 GraphQL is supported in OrgBAC mode. Note that it can be accessed only on the non-FHIR endpoint, because our GraphQL implementation is slightly different from FHIR.
 
-See also: [graphql-api.md](../../../../api/graphql-api.md)
+See also: [graphql-api.md](../../../api/graphql-api.md)
 
 ## Shared resource mode
 
@@ -359,6 +359,6 @@ GET /Organization/org-b/fhir/Practitioner/prac-1
 
 ## See also
 
-{% content-ref url="../../../../tutorials/security-access-control-tutorials/how-to-enable-hierarchical-access-control.md" %}
-[how-to-enable-hierarchical-access-control.md](../../../../tutorials/security-access-control-tutorials/how-to-enable-hierarchical-access-control.md)
+{% content-ref url="../../../tutorials/security-access-control-tutorials/how-to-enable-hierarchical-access-control.md" %}
+[how-to-enable-hierarchical-access-control.md](../../../tutorials/security-access-control-tutorials/how-to-enable-hierarchical-access-control.md)
 {% endcontent-ref %}

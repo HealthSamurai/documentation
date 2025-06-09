@@ -41,8 +41,8 @@ Multibox is a type of Aidbox distribution that isolates data to separate databas
 
 See also:
 
-{% content-ref url="../../../tutorials/security-access-control-tutorials/run-multibox-locally.md" %}
-[run-multibox-locally.md](../../../tutorials/security-access-control-tutorials/run-multibox-locally.md)
+{% content-ref url="../../tutorials/security-access-control-tutorials/run-multibox-locally.md" %}
+[run-multibox-locally.md](../../tutorials/security-access-control-tutorials/run-multibox-locally.md)
 {% endcontent-ref %}
 
 ## Security Labels framework
@@ -61,12 +61,12 @@ Aidbox does not have an explicit concept of roles. But you can use Access Polici
 
 See tutorials:
 
-{% content-ref url="../../../tutorials/security-access-control-tutorials/rbac/rbac-with-jwt-containing-role.md" %}
-[rbac-with-jwt-containing-role.md](../../../tutorials/security-access-control-tutorials/rbac/rbac-with-jwt-containing-role.md)
+{% content-ref url="../../tutorials/security-access-control-tutorials/rbac/rbac-with-jwt-containing-role.md" %}
+[rbac-with-jwt-containing-role.md](../../tutorials/security-access-control-tutorials/rbac/rbac-with-jwt-containing-role.md)
 {% endcontent-ref %}
 
-{% content-ref url="../../../tutorials/security-access-control-tutorials/rbac/flexible-rbac-built-in-to-aidbox.md" %}
-[flexible-rbac-built-in-to-aidbox.md](../../../tutorials/security-access-control-tutorials/rbac/flexible-rbac-built-in-to-aidbox.md)
+{% content-ref url="../../tutorials/security-access-control-tutorials/rbac/flexible-rbac-built-in-to-aidbox.md" %}
+[flexible-rbac-built-in-to-aidbox.md](../../tutorials/security-access-control-tutorials/rbac/flexible-rbac-built-in-to-aidbox.md)
 {% endcontent-ref %}
 
 ## Attribute-Based Access Control
@@ -100,8 +100,8 @@ There is no full support for attribute-based access control in Aidbox. But some 
 
 See tutorials:
 
-* [Allow Patient to see its own data](../../../tutorials/security-access-control-tutorials/allow-patients-to-see-their-own-data.md)
-* [Relationship-based access control](../../../tutorials/security-access-control-tutorials/relationship-based-access-control.md)
+* [Allow Patient to see its own data](../../tutorials/security-access-control-tutorials/allow-patients-to-see-their-own-data.md)
+* [Relationship-based access control](../../tutorials/security-access-control-tutorials/relationship-based-access-control.md)
 
 ## Consent-Based Access Control
 
@@ -113,7 +113,7 @@ It can be implemented using FHIR Consent resource:
 
 See the following tutorial:
 
-{% content-ref url="../../../tutorials/security-access-control-tutorials/how-to-implement-consent-based-access-control-using-fhir-search-and-aidbox-access-policy.md" %}
-[how-to-implement-consent-based-access-control-using-fhir-search-and-aidbox-access-policy.md](../../../tutorials/security-access-control-tutorials/how-to-implement-consent-based-access-control-using-fhir-search-and-aidbox-access-policy.md)
+{% content-ref url="../../tutorials/security-access-control-tutorials/how-to-implement-consent-based-access-control-using-fhir-search-and-aidbox-access-policy.md" %}
+[how-to-implement-consent-based-access-control-using-fhir-search-and-aidbox-access-policy.md](../../tutorials/security-access-control-tutorials/how-to-implement-consent-based-access-control-using-fhir-search-and-aidbox-access-policy.md)
 {% endcontent-ref %}
 

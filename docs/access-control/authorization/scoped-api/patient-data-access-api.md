@@ -27,11 +27,11 @@ There are two way to define patient context in a request:
 
 ## Enable Patient data access API
 
-{% content-ref url="../../../../tutorials/security-access-control-tutorials/how-to-enable-patient-data-access-api.md" %}
-[how-to-enable-patient-data-access-api.md](../../../../tutorials/security-access-control-tutorials/how-to-enable-patient-data-access-api.md)
+{% content-ref url="../../../tutorials/security-access-control-tutorials/how-to-enable-patient-data-access-api.md" %}
+[how-to-enable-patient-data-access-api.md](../../../tutorials/security-access-control-tutorials/how-to-enable-patient-data-access-api.md)
 {% endcontent-ref %}
 
-### Base url for patient-related FHIR API&#x20;
+### Base url for patient-related FHIR API
 
 ```yaml
 <AIDBOX_BASE_URL>/patient/fhir
@@ -39,7 +39,7 @@ There are two way to define patient context in a request:
 
 Let's create two patients and Observations for a first patient.
 
-<figure><img src="../../../../../.gitbook/assets/37bb7e6d-517d-45cd-8d6c-5bbebaf1c31c.png" alt=""><figcaption><p>Two Patient resources and an Observation</p></figcaption></figure>
+<figure><img src="../../../../.gitbook/assets/37bb7e6d-517d-45cd-8d6c-5bbebaf1c31c.png" alt=""><figcaption><p>Two Patient resources and an Observation</p></figcaption></figure>
 
 {% code title="status: 200 OK" %}
 ```yaml
@@ -126,8 +126,6 @@ body:
 GET /patient/fhir/Observation
 X-Patient-id: pt-2
 ```
-
-
 {% endtab %}
 
 {% tab title="Response" %}

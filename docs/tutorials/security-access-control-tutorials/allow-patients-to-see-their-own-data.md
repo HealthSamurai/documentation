@@ -310,7 +310,7 @@ resource:
 {% endtab %}
 {% endtabs %}
 
-Now, when we've created a `CompartmentDefinition` resource, we can access patient-related resources with such requests: `GET /Patient/{patient-id}/{resource}`. To know in detail about how compartments work, see the [Compartments tutorial](../../modules/access-control/authorization/scoped-api/compartments-api.md).
+Now, when we've created a `CompartmentDefinition` resource, we can access patient-related resources with such requests: `GET /Patient/{patient-id}/{resource}`. To know in detail about how compartments work, see the [Compartments tutorial](../../access-control/authorization/scoped-api/compartments-api.md).
 
 And that's it! We don't even need to add more policies, since we already have the policy that allows the user to access URIs that match `/Patient/.*` regex.
 

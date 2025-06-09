@@ -68,7 +68,6 @@ Here's how to create your own custom print template:
 Let's consider a basic example for clarity: there is a form with three fields (see Figure 1). The task is to create a print version where a table will be generated. In the left column of the table, the title and response from the textarea field will be placed, in the right column - the response from the datetime field, and the field with the signature should not be displayed at all.
 
 {% tabs %}
-
 {% tab title="Questionnaire" %}
 ```yaml
 url: http://forms.aidbox.io/questionnaire/test-pdf
@@ -190,7 +189,6 @@ parameter:
       string: 'test-template'
 ```
 
-
 ### Template Render Context
 
 When rendering a template, the template engine has the following variables in the context:
@@ -207,7 +205,7 @@ To avoid repetitions in templates, we supported a custom tag `include-resource`.
 
 ## FAQ
 
-**Q: Why am I Getting 404?** A: Verify that all IDs provided in the request are correct. That includes template, Questionnaire, and QuestionnaireResponse IDs. If any of the IDs cannot be found, either because they do not exist or belong to another [Organization](../../../access-control/authorization/scoped-api/organization-based-hierarchical-access-control.md), the operation will return 404.
+**Q: Why am I Getting 404?** A: Verify that all IDs provided in the request are correct. That includes template, Questionnaire, and QuestionnaireResponse IDs. If any of the IDs cannot be found, either because they do not exist or belong to another [Organization](../../../../access-control/authorization/scoped-api/organization-based-hierarchical-access-control.md), the operation will return 404.
 
 **Q: Can I use the same template for both Questionnaire and QuestionnaireResponse?** A: Yes, the same SDCPrintTemplate can be used for rendering both Questionnaire and QuestionnaireResponse resources, provided it is designed to accommodate the structure of both resource types. However, if you want to create your own template that is suitable for both Questionnaire and QuestionnaireResponse, you will need to consider the differences in the FHIR standard between these resources.
 

@@ -61,7 +61,7 @@ npm install
 
 ### How to use
 
-**Important:** Before we start we have to make sure that aidbox client [is configured](../../modules/access-control/authentication/basic-http-authentication.md) and your [access policies](../../modules/access-control/authorization/access-policies.md) provide granular access to resources you're trying to reach.
+**Important:** Before we start we have to make sure that aidbox client [is configured](../../access-control/authentication/basic-http-authentication.md) and your [access policies](../../access-control/authorization/access-policies.md) provide granular access to resources you're trying to reach.
 
 ```javascript
 import { Client } from "aidbox-sdk"

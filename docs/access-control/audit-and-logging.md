@@ -17,7 +17,7 @@ Aidbox provides comprehensive audit and logging capabilities:
 
 Aidbox supports the FHIR [BALP](https://profiles.ihe.net/ITI/BALP/index.html) Implementation Guide.
 
-<figure><img src="../../../.gitbook/assets/63f5c07d-e571-42d6-922e-b8b0e4c48000.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/63f5c07d-e571-42d6-922e-b8b0e4c48000.png" alt=""><figcaption></figcaption></figure>
 
 #### Aidbox as a source of audit events
 
@@ -32,19 +32,17 @@ When audit logging is enabled, Aidbox produces audit logs for significant events
 
 Aidbox is an [Audit record repository](https://profiles.ihe.net/ITI/TF/Volume1/ch-9.html#9.1.1.3) (ARR) for FHIR AuditEvent resources. Aidbox supports
 
-* `POST /fhir/AuditEvent` to record events&#x20;
+* `POST /fhir/AuditEvent` to record events
 * `GET /fhir/AuditEvent` to receive them
-
 
 ## FHIR Resource versioning
 
 A separate version is recorded in the history table each time a resource is created, updated, or deleted.
 
-All versions can be accessed using the [\_history](../../api/rest-api/history.md) operation.
+All versions can be accessed using the [\_history](../api/rest-api/history.md) operation.
 
 ## Logging configuration
 
-Aidbox automatically logs all auth, API, database, and network events, so in most cases, basic audit logs may be derived from [Aidbox logs](../observability/logs/README.md).
+Aidbox automatically logs all auth, API, database, and network events, so in most cases, basic audit logs may be derived from [Aidbox logs](../modules/observability/logs/).
 
-Aidbox also provides ways to [extend](../observability/logs/extending-aidbox-logs.md) Aidbox logs.
-
+Aidbox also provides ways to [extend](../modules/observability/logs/extending-aidbox-logs.md) Aidbox logs.

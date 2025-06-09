@@ -2,7 +2,7 @@
 
 {% hint style="info" %}
 This functionality is available starting from version 2411.\
-The [FHIR Schema Validator Engine](../../../profiling-and-validation/fhir-schema-validator/README.md) should be enabled.
+The [FHIR Schema Validator Engine](../../../modules/profiling-and-validation/fhir-schema-validator/) should be enabled.
 {% endhint %}
 
 Aidbox successfully passes the Inferno SMART App Launch Test Kit STU1.
@@ -13,7 +13,7 @@ Aidbox successfully passes the Inferno SMART App Launch Test Kit STU1.
 Aidbox must be publicly available from the Internet in order to Inferno could reach Aidbox and run tests.\
 \
 • Run Aidbox on [Aidbox Portal](https://aidbox.app/)\
-• Run Aidbox [locally](../../../../getting-started/run-aidbox-locally.md)
+• Run Aidbox [locally](../../../getting-started/run-aidbox-locally.md)
 {% endhint %}
 
 Once you have your Aidbox instance up and running you need to upload necessary resources for Inferno:

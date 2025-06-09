@@ -2,16 +2,16 @@
 
 {% hint style="info" %}
 This functionality is available starting from version 2411.\
-The [FHIR Schema Validator Engine](../../../profiling-and-validation/fhir-schema-validator/README.md) must be enabled.
+The [FHIR Schema Validator Engine](../../../modules/profiling-and-validation/fhir-schema-validator/) must be enabled.
 {% endhint %}
 
 Aidbox fully supports [version 1 ](https://www.hl7.org/fhir/smart-app-launch/1.0.0/scopes-and-launch-context/index.html)of SMART on FHIR scopes:
 
-<figure><img src="../../../../../.gitbook/assets/smart-scopes-v1.png" alt=""><figcaption><p>SMART scopes V1</p></figcaption></figure>
+<figure><img src="../../../../.gitbook/assets/smart-scopes-v1.png" alt=""><figcaption><p>SMART scopes V1</p></figcaption></figure>
 
 And support everything except search parameters in [version 2](https://build.fhir.org/ig/HL7/smart-app-launch/scopes-and-launch-context.html) of SMART on FHIR scopes:
 
-<figure><img src="../../../../../.gitbook/assets/smart-scope-v2.png" alt=""><figcaption><p>SMART scopes V2</p></figcaption></figure>
+<figure><img src="../../../../.gitbook/assets/smart-scope-v2.png" alt=""><figcaption><p>SMART scopes V2</p></figcaption></figure>
 
 If a requested operation is not permitted by the scopes, Aidbox will deny access. If access is granted, Aidbox will retrieve and return only the data allowed by the specified scopes and context.
 
@@ -27,7 +27,7 @@ To enable scope checking in the Access Control layer, the JWT access token must 
 
 \* - required claim
 
-For scope checking, Aidbox accepts any valid JWT tokens issued by [external servers](../../../../tutorials/security-access-control-tutorials/set-up-token-introspection.md) if they contain the specified scopes and Aidbox can issue its own JWT tokens with all the required claims.
+For scope checking, Aidbox accepts any valid JWT tokens issued by [external servers](../../../tutorials/security-access-control-tutorials/set-up-token-introspection.md) if they contain the specified scopes and Aidbox can issue its own JWT tokens with all the required claims.
 
 ### Example
 

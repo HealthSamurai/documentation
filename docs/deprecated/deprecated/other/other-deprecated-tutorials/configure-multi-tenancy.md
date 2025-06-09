@@ -5,7 +5,7 @@ description: This guide shows how to build multi-tenancy with AccessPolicy
 # Configure multi-tenancy
 
 {% hint style="warning" %}
-This is outdated approach. Please, use [Organization-Based Access Control](../../../../modules/access-control/authorization/scoped-api/organization-based-hierarchical-access-control.md) instead.
+This is outdated approach. Please, use [Organization-Based Access Control](../../../../access-control/authorization/scoped-api/organization-based-hierarchical-access-control.md) instead.
 {% endhint %}
 
 Aidbox stores all the tenants in a single database and serves number of them at once. It obtains `tenant-id` from each request and returns the data belonging to the tenant.
@@ -20,7 +20,7 @@ Aidbox stores all the tenants in a single database and serves number of them at 
 
 ### Add `Client`
 
-There are several ways to create client. We use the simplest one to do it: [Basic Auth](broken-reference).
+There are several ways to create client. We use the simplest one to do it: [Basic Auth](broken-reference/).
 
 ```yaml
 PUT /Client/org1

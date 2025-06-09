@@ -28,8 +28,8 @@ This flow is for trusted apps that need to access their resources on a server, n
 
 Use this flow with **Backend/Server applications** that are capable of securely storing secrets.
 
-{% content-ref url="../../../tutorials/security-access-control-tutorials/client-credentials-grant.md" %}
-[client-credentials-grant.md](../../../tutorials/security-access-control-tutorials/client-credentials-grant.md)
+{% content-ref url="../../tutorials/security-access-control-tutorials/client-credentials-grant.md" %}
+[client-credentials-grant.md](../../tutorials/security-access-control-tutorials/client-credentials-grant.md)
 {% endcontent-ref %}
 
 ## Authorization Code Grant
@@ -59,8 +59,8 @@ The Authorization Code grant is used by **server-side applications** that are ca
 
 Since this is a redirection-based flow, the client must be capable of interacting with the resource owner's user-agent (typically a web browser) and capable of receiving incoming requests (via redirection) from the authorization server.
 
-{% content-ref url="../../../tutorials/security-access-control-tutorials/authorization-code-grant.md" %}
-[authorization-code-grant.md](../../../tutorials/security-access-control-tutorials/authorization-code-grant.md)
+{% content-ref url="../../tutorials/security-access-control-tutorials/authorization-code-grant.md" %}
+[authorization-code-grant.md](../../tutorials/security-access-control-tutorials/authorization-code-grant.md)
 {% endcontent-ref %}
 
 ## Resource Owner Credentials Grant
@@ -86,8 +86,8 @@ In this flow, a user gives their username and password directly to the app. The 
 
 This flow suits **Native applications** (e.g., mobile or desktop apps) where users trust the application enough to provide their username and password directly. It can also be used in **Regular web applications** in some cases, though this is less common due to security concerns. It’s a straightforward option when the application can securely handle user credentials.
 
-{% content-ref url="../../../tutorials/security-access-control-tutorials/resource-owner-grant.md" %}
-[resource-owner-grant.md](../../../tutorials/security-access-control-tutorials/resource-owner-grant.md)
+{% content-ref url="../../tutorials/security-access-control-tutorials/resource-owner-grant.md" %}
+[resource-owner-grant.md](../../tutorials/security-access-control-tutorials/resource-owner-grant.md)
 {% endcontent-ref %}
 
 ## Implicit Grant
@@ -117,8 +117,8 @@ This flow is for apps that can’t keep secrets, like mobile or single-page apps
 
 This flow is designed for **Single Page Applications (SPAs)**, which run in the browser and cannot securely store secrets. It’s also applicable to some **Native applications** for simplicity. In this flow, the access token is returned directly via a redirect URL, making it suitable for apps without server-side logic, though it’s considered less secure.
 
-{% content-ref url="../../../tutorials/security-access-control-tutorials/implicit-grant.md" %}
-[implicit-grant.md](../../../tutorials/security-access-control-tutorials/implicit-grant.md)
+{% content-ref url="../../tutorials/security-access-control-tutorials/implicit-grant.md" %}
+[implicit-grant.md](../../tutorials/security-access-control-tutorials/implicit-grant.md)
 {% endcontent-ref %}
 
 ## Token exchange
@@ -131,12 +131,12 @@ A SMART on FHIR app receives an access token from the EHR system, which it uses 
 
 Instead of requiring the user to log in again, you can configure token exchange in Aidbox to accept the EHR-issued token and exchange it for an Aidbox-issued token — seamlessly enabling secure backend access.
 
-{% content-ref url="../../../tutorials/security-access-control-tutorials/token-exchange.md" %}
-[token-exchange.md](../../../tutorials/security-access-control-tutorials/token-exchange.md)
+{% content-ref url="../../tutorials/security-access-control-tutorials/token-exchange.md" %}
+[token-exchange.md](../../tutorials/security-access-control-tutorials/token-exchange.md)
 {% endcontent-ref %}
 
 ## Auth Sandbox
 
-<figure><img src="../../../../.gitbook/assets/sandbox-ro.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/sandbox-ro.png" alt=""><figcaption></figcaption></figure>
 
 Aidbox provides a sandbox environment for testing OAuth 2.0 flows. You can use the sandbox to test each flow through the Aidbox Sandbox UI (_Auth -> Sandbox -> Basic Auth_).

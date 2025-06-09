@@ -33,12 +33,12 @@ The public name of your app, which the users will see.
 
 **Client OAuth Type**
 
-Plan API uses OAuth 2.0 Authorization Code grant type to authenticate your app with the FHIR server. Two auth options are available to choose from:&#x20;
+Plan API uses OAuth 2.0 Authorization Code grant type to authenticate your app with the FHIR server. Two auth options are available to choose from:
 
-* _Authorization Code + Secret_&#x20;
+* _Authorization Code + Secret_
 * _Authorization Code + PKCE_
 
-First option is used to tell the auth server to utilize the Client Secret to authenticate your app.&#x20;
+First option is used to tell the auth server to utilize the Client Secret to authenticate your app.
 
 {% hint style="danger" %}
 Only select _Authorization Code + Secret_ if your app can securely store the Client Secret and keep it confidential.
@@ -47,7 +47,7 @@ Only select _Authorization Code + Secret_ if your app can securely store the Cli
 For insecure implementations, such as mobile apps, the PKCE (Proof Key for Code Exchange) flow is available. It utilizes a dynamic secret string to authenticate your app, as opposed to a static one that must be secured by the app itself. It is generally recommended to use PKCE flow when available, so if your app supports it, you probably will always want to use it over a static secret.
 
 {% hint style="info" %}
-For more information about the OAuth Authorization Code flow, refer to the [page in the docs](../../../modules/access-control/authentication/oauth-2-0.md) and the [OAuth 2.0 specification](https://datatracker.ietf.org/doc/html/rfc6749).
+For more information about the OAuth Authorization Code flow, refer to the [page in the docs](../../../access-control/authentication/oauth-2-0.md) and the [OAuth 2.0 specification](https://datatracker.ietf.org/doc/html/rfc6749).
 {% endhint %}
 
 **Redirect URL**
@@ -101,7 +101,7 @@ The final step is promoting your app to the production Member Portal, so that he
 To send a Production Request, first click on _“Edit”_ button on the app you wish to publish. On the details form, there is a button that says _"Send Request"_.
 
 {% hint style="warning" %}
-Before you commit to promoting your app, please make sure you have entered the correct app details that you intend to use on production.&#x20;
+Before you commit to promoting your app, please make sure you have entered the correct app details that you intend to use on production.
 {% endhint %}
 
 Requests with pre-production app configurations should not be sent out. However, if you have sent a request with incorrect app information, you can still update the form with the correct details. Saving the form will result in updating the request as well, as long as it is pending review. You can find the current status of your Production Request under the _“App Status”_ section of the form.
@@ -118,7 +118,7 @@ As soon as your Production Request has been reviewed, you will receive an email 
 
 If your app has been rejected, the rejection reason will be specified in the email. You will be able to edit your app and send another request.
 
-If your app has been approved, congratulations! It is now available on the Member Portal for the health plan beneficiaries.&#x20;
+If your app has been approved, congratulations! It is now available on the Member Portal for the health plan beneficiaries.
 
 {% hint style="info" %}
 The Client ID and the Client Secret used on production will be the same as the ones used in the sandbox.
@@ -132,8 +132,8 @@ Should you need to update the app details used on production after the app has b
 
 ## API permissions and scopes
 
-Access tokens have scopes, which define permissions and the resources that the token can access. 
-Scopes are primarily utilized to determine the type of data an application is requesting.
+Access tokens have scopes, which define permissions and the resources that the token can access.\
+Scopes are primarily utilized to determine the type of data an application is requesting.\
 Scopes should be explicitly declared. In case of using a wildcard, only supported scopes will be provided.
 
 {% hint style="info" %}
@@ -176,4 +176,3 @@ HealthcareService
 OrganizationAffiliation
 InsurancePlan
 ```
-

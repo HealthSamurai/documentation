@@ -302,4 +302,4 @@ accept: application/json
 }
 ```
 
-You can learn more about different authentication methods here: [Authentication](../../modules/access-control/authentication/).
+You can learn more about different authentication methods here: [Authentication](../../access-control/authentication/).

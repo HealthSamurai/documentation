@@ -133,7 +133,7 @@ Minor updates:
 * Aidbox
   * Supported [SMART App Launch scopes v1 and v2](../modules/smartbox/) for Aidbox on FHIR Schema validation engine and reworked [SMART on FHIR](../modules/smartbox/) documentation
   * Added example of [SMART App Launch using Aidbox and Keycloak](https://github.com/Aidbox/examples/tree/main/smart-app-launch)
-  * Supported enabling [OrgBAC (Organization-based hierarchical access control)](../modules/access-control/authorization/scoped-api/organization-based-hierarchical-access-control.md) using an [environment variable](../tutorials/security-access-control-tutorials/how-to-enable-hierarchical-access-control.md) if an Aidox instance uses FHIR Schema validator
+  * Supported enabling [OrgBAC (Organization-based hierarchical access control)](../access-control/authorization/scoped-api/organization-based-hierarchical-access-control.md) using an [environment variable](../tutorials/security-access-control-tutorials/how-to-enable-hierarchical-access-control.md) if an Aidox instance uses FHIR Schema validator
   * Fixed security issues and bugs
 *   Aidbox Forms
 
@@ -328,7 +328,7 @@ Minor updates:
 ## February 2024 _`2402,LTS`_
 
 * Security and Access Control
-  * Released beta version of [Label-based Access Control](../modules/access-control/authorization/label-based-access-control.md) to control access to data based on the classification of the data (privacy, sensitivity, etc) and the attributes of the requester.
+  * Released beta version of [Label-based Access Control](../access-control/authorization/label-based-access-control.md) to control access to data based on the classification of the data (privacy, sensitivity, etc) and the attributes of the requester.
 * Data API
   * Supported FHIR-conformant [`_include` and `_revinclude` parameters](../reference/settings/fhir.md)
   * Added parameter to set the maximum number of import retries for [/v2/$import](../api/bulk-api/import-and-fhir-import.md#v2-import-on-top-of-the-workflow-engine)
@@ -357,7 +357,7 @@ Minor updates:
   * Added basic FHIR Profiles support to [Python SDK](https://github.com/Aidbox/aidbox-python)
 * Security and access control
   * Added Access policy matcho engine [$one-of operator](broken-reference/) to fetch the list of the available values from the request context
-  * Supported history endpoint within [the Organisation-based access control](../modules/access-control/authorization/scoped-api/organization-based-hierarchical-access-control.md#history)
+  * Supported history endpoint within [the Organisation-based access control](../access-control/authorization/scoped-api/organization-based-hierarchical-access-control.md#history)
   * Documented [GitHub as an external identity provider](https://github.com/HealthSamurai/sansara/issues/4016)
   * Published [guide on how to use self-signed SSL certificates](../deployment-and-maintenance/deploy-aidbox/run-aidbox-in-kubernetes/self-signed-ssl-certificates.md) when deploying Aidbox
   * Fixed the code\_verifier to behave according to the RFC
@@ -459,7 +459,7 @@ Minor updates:
 * Ops
   * Supported Open Telemetry exporter for logs & metrics
 * Security and access control
-  * Supported [Bundle batch operation in Multitenant API](../modules/access-control/authorization/scoped-api/organization-based-hierarchical-access-control.md#bundle)
+  * Supported [Bundle batch operation in Multitenant API](../access-control/authorization/scoped-api/organization-based-hierarchical-access-control.md#bundle)
   * Added Audit Log UI on Aidbox Console
 * [Aidbox Forms](../modules/aidbox-forms/)
   * Added autocomplete for literals and keywords
@@ -477,8 +477,8 @@ Minor updates:
 * Integrations
   * Supported FHIR R4B and R5 [Topic-based subscriptions](../deprecated/deprecated/zen-related/topic-based-subscriptions/)
 * Security and access control
-  * Added [Capability Statement ](../modules/access-control/authorization/scoped-api/organization-based-hierarchical-access-control.md#metadata)endpoint for multitenant API
-  * Added [bundle transaction](../modules/access-control/authorization/scoped-api/organization-based-hierarchical-access-control.md#bundle) for multitenant API
+  * Added [Capability Statement ](../access-control/authorization/scoped-api/organization-based-hierarchical-access-control.md#metadata)endpoint for multitenant API
+  * Added [bundle transaction](../access-control/authorization/scoped-api/organization-based-hierarchical-access-control.md#bundle) for multitenant API
   * Added [stdout appender](../reference/environment-variables/optional-environment-variables.md#aidbox_stdout_google_json) for logs in [Google format](https://cloud.google.com/logging/docs/reference/v2/rest/v2/LogEntry)
   * Added access policy usage in UI console on AccessPolicy page
   * Added a neat UI to rotate credentials and download certificates on IdentityProvider view page
@@ -506,7 +506,7 @@ Minor updates:
   * Supported C-CDA to work as a standalone service
   * Added an option to inspect intermediate conversion tree
 * Security and access control
-  * Added [shared resources](../modules/access-control/authorization/scoped-api/organization-based-hierarchical-access-control.md#shared-resource-mode) in the [Organisation-based access control](../modules/access-control/authorization/scoped-api/organization-based-hierarchical-access-control.md)
+  * Added [shared resources](../access-control/authorization/scoped-api/organization-based-hierarchical-access-control.md#shared-resource-mode) in the [Organisation-based access control](../access-control/authorization/scoped-api/organization-based-hierarchical-access-control.md)
   * Supported Azure AD asymmetric authentication
   * Added security dashboard in the Aidbox UI
   * Added a form to create an IdentityProvider resource
@@ -532,7 +532,7 @@ Minor updates:
 * [C-CDA / FHIR converter](../modules/integration-toolkit/ccda-converter/)
   * Supported modifying and creating new mappings using [the Aidbox Configuration Project](../deprecated/deprecated/zen-related/aidbox-zen-lang-project/aidbox-project-environment-variables/zen-configuration.md)
 * Security and access control
-  * Added [hierarchical organization-based access control](../modules/access-control/authorization/scoped-api/organization-based-hierarchical-access-control.md) (multi-tenancy on organization-level resources)
+  * Added [hierarchical organization-based access control](../access-control/authorization/scoped-api/organization-based-hierarchical-access-control.md) (multi-tenancy on organization-level resources)
   * Added [How to enable hierarchical access control](../tutorials/security-access-control-tutorials/how-to-enable-hierarchical-access-control.md) tutorial
 * Ops
   * Released new [PostgreSQL Aidboxdb images 15.3, 14.8, 13.11](../database/aidboxdb-image/)

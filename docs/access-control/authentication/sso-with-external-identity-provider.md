@@ -46,34 +46,34 @@ From the user's perspective, the login process is simple:
 
 ## See Also
 
-{% content-ref url="../../../tutorials/security-access-control-tutorials/managing-admin-access-to-the-aidbox-ui-using-okta-groups.md" %}
-[managing-admin-access-to-the-aidbox-ui-using-okta-groups.md](../../../tutorials/security-access-control-tutorials/managing-admin-access-to-the-aidbox-ui-using-okta-groups.md)
+{% content-ref url="../../tutorials/security-access-control-tutorials/managing-admin-access-to-the-aidbox-ui-using-okta-groups.md" %}
+[managing-admin-access-to-the-aidbox-ui-using-okta-groups.md](../../tutorials/security-access-control-tutorials/managing-admin-access-to-the-aidbox-ui-using-okta-groups.md)
 {% endcontent-ref %}
 
-{% content-ref url="../../../tutorials/security-access-control-tutorials/keycloak.md" %}
-[keycloak.md](../../../tutorials/security-access-control-tutorials/keycloak.md)
+{% content-ref url="../../tutorials/security-access-control-tutorials/keycloak.md" %}
+[keycloak.md](../../tutorials/security-access-control-tutorials/keycloak.md)
 {% endcontent-ref %}
 
-{% content-ref url="../../../tutorials/security-access-control-tutorials/github.md" %}
-[github.md](../../../tutorials/security-access-control-tutorials/github.md)
+{% content-ref url="../../tutorials/security-access-control-tutorials/github.md" %}
+[github.md](../../tutorials/security-access-control-tutorials/github.md)
 {% endcontent-ref %}
 
-{% content-ref url="../../../tutorials/security-access-control-tutorials/azure-ad.md" %}
-[azure-ad.md](../../../tutorials/security-access-control-tutorials/azure-ad.md)
+{% content-ref url="../../tutorials/security-access-control-tutorials/azure-ad.md" %}
+[azure-ad.md](../../tutorials/security-access-control-tutorials/azure-ad.md)
 {% endcontent-ref %}
 
-{% content-ref url="../../../tutorials/security-access-control-tutorials/azure-ad-with-certificate-authentication.md" %}
-[azure-ad-with-certificate-authentication.md](../../../tutorials/security-access-control-tutorials/azure-ad-with-certificate-authentication.md)
+{% content-ref url="../../tutorials/security-access-control-tutorials/azure-ad-with-certificate-authentication.md" %}
+[azure-ad-with-certificate-authentication.md](../../tutorials/security-access-control-tutorials/azure-ad-with-certificate-authentication.md)
 {% endcontent-ref %}
 
-{% content-ref url="../../../tutorials/security-access-control-tutorials/microsoft-ad-fs.md" %}
-[microsoft-ad-fs.md](../../../tutorials/security-access-control-tutorials/microsoft-ad-fs.md)
+{% content-ref url="../../tutorials/security-access-control-tutorials/microsoft-ad-fs.md" %}
+[microsoft-ad-fs.md](../../tutorials/security-access-control-tutorials/microsoft-ad-fs.md)
 {% endcontent-ref %}
 
-{% content-ref url="../../../tutorials/security-access-control-tutorials/apple.md" %}
-[apple.md](../../../tutorials/security-access-control-tutorials/apple.md)
+{% content-ref url="../../tutorials/security-access-control-tutorials/apple.md" %}
+[apple.md](../../tutorials/security-access-control-tutorials/apple.md)
 {% endcontent-ref %}
 
-{% content-ref url="../../../tutorials/security-access-control-tutorials/aidbox.md" %}
-[aidbox.md](../../../tutorials/security-access-control-tutorials/aidbox.md)
+{% content-ref url="../../tutorials/security-access-control-tutorials/aidbox.md" %}
+[aidbox.md](../../tutorials/security-access-control-tutorials/aidbox.md)
 {% endcontent-ref %}

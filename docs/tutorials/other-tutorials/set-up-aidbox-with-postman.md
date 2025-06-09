@@ -104,12 +104,12 @@ Content-Type: application/json
 
 ### Additional Resources
 
-{% content-ref url="../../modules/access-control/" %}
-[access-control](../../modules/access-control/)
+{% content-ref url="../../access-control/access-control.md" %}
+[access-control.md](../../access-control/access-control.md)
 {% endcontent-ref %}
 
-{% content-ref url="../../modules/access-control/authorization/access-policies.md" %}
-[access-policies.md](../../modules/access-control/authorization/access-policies.md)
+{% content-ref url="../../access-control/authorization/access-policies.md" %}
+[access-policies.md](../../access-control/authorization/access-policies.md)
 {% endcontent-ref %}
 
 {% content-ref url="../security-access-control-tutorials/accesspolicy-best-practices.md" %}
