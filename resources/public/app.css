@@ -129,6 +129,27 @@ details[open] > summary .chevron {
     }
   }
 
+  figure {
+    @apply flex flex-col items-center justify-center my-6;
+  }
+
+  figure img {
+    @apply max-w-full h-auto mx-auto;
+  }
+
+  figure figcaption {
+    @apply mt-2 text-sm text-gray-600 text-center;
+  }
+
+  blockquote img {
+    @apply max-w-[300px];
+  }
+
+  blockquote span {
+    @apply max-w-[300px];
+  }
+
+/* <span class="inline-flex max-w-[300px] align-middle"><img data-testid="zoom-image" alt="" loading="lazy" fetchpriority="low" sizes="300px" width="1202" height="309"></span> */
   .nav {
     summary {
       list-style: none;
