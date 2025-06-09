@@ -1,7 +1,7 @@
 # Aidbox SubSubscriptions
 
 {% hint style="warning" %}
-While Aidbox SubSubscriptions are stable and fully functional, they will no longer receive active development or new features. For enhanced capabilities and ongoing support, please use [Aidbox topic-based subscriptions](wip-dynamic-subscriptiontopic-with-destinations/README.md). This newer implementation offers improved performance, flexibility, and will continue to be developed to meet future needs.&#x20;
+While Aidbox SubSubscriptions are stable and fully functional, they will no longer receive active development or new features. For enhanced capabilities and ongoing support, please use [Aidbox topic-based subscriptions](wip-dynamic-subscriptiontopic-with-destinations.md). This newer implementation offers improved performance, flexibility, and will continue to be developed to meet future needs.
 {% endhint %}
 
 Aidbox subscriptions module is a way to subscribe and get notifications about updating resources on the server. It is a common denominator of FHIR R4/R5 subscriptions specification with some extensions.

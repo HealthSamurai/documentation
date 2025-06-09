@@ -1,7 +1,7 @@
 # Set up SubscriptionTopic
 
 {% hint style="warning" %}
-While FHIR topic-based subscriptions are functional, they will no longer receive active development or new features. For enhanced capabilities and ongoing support, please use [Aidbox topic-based subscriptions](../../../../modules/topic-based-subscriptions/wip-dynamic-subscriptiontopic-with-destinations/README.md). This newer implementation offers improved performance, flexibility, and will continue to be developed to meet future needs.
+While FHIR topic-based subscriptions are functional, they will no longer receive active development or new features. For enhanced capabilities and ongoing support, please use [Aidbox topic-based subscriptions](../../../../modules/topic-based-subscriptions/wip-dynamic-subscriptiontopic-with-destinations.md). This newer implementation offers improved performance, flexibility, and will continue to be developed to meet future needs.
 {% endhint %}
 
 This page describes how to set up SubscriptionTopic for each Topic Queue Storage type.
@@ -13,7 +13,7 @@ Since the 2405 release, using Aidbox in FHIR schema validation engine is recomme
 {% endhint %}
 
 {% content-ref url="../aidbox-zen-lang-project/" %}
-[aidbox-zen-lang-project](../aidbox-zen-lang-project/README.md)
+[aidbox-zen-lang-project](../aidbox-zen-lang-project/)
 {% endcontent-ref %}
 
 In general, to set up the topic in Aidbox configuration project, you need the following steps:
@@ -30,7 +30,7 @@ SubscriptionTopic-based services rely on [PostgreSQL Logical Replication](https:
 
 ### Self Hosted Database
 
-If you use [aidboxdb-image](../../../../database/aidboxdb-image/README.md) then it's already configured to work properly with SubscriptionTopic.
+If you use [aidboxdb-image](../../../../database/aidboxdb-image/) then it's already configured to work properly with SubscriptionTopic.
 
 Otherwise, check that `wal_level` is set to `logical` in `postgresql.conf` file:
 

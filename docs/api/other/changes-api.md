@@ -217,4 +217,4 @@ In this case, the application will likely start its next iteration from getting 
 If the missing a single event is crucial for your situation, the potential solutions could be:
 
 1. Periodically re-read all changes to ensure no events have been missed.
-2. Implement the solution based on [wip-dynamic-subscriptiontopic-with-destinations](../../modules/topic-based-subscriptions/wip-dynamic-subscriptiontopic-with-destinations/README.md) which can provide you `at-least-once` delivery guaranties.
+2. Implement the solution based on [wip-dynamic-subscriptiontopic-with-destinations](../../modules/topic-based-subscriptions/wip-dynamic-subscriptiontopic-with-destinations.md) which can provide you `at-least-once` delivery guaranties.

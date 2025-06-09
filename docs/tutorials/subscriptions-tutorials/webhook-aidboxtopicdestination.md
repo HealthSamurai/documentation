@@ -1,7 +1,7 @@
 # Webhook AidboxTopicDestination
 
 {% hint style="info" %}
-This functionality is available starting from version 2410 and requires [FHIR Schema](../../profiling-and-validation/fhir-schema-validator/README.md) validation engine to be [enabled](../../profiling-and-validation/fhir-schema-validator/README.md).
+This functionality is available starting from version 2410 and requires [FHIR Schema](../../modules/profiling-and-validation/fhir-schema-validator/) validation engine to be [enabled](../../modules/profiling-and-validation/fhir-schema-validator/).
 {% endhint %}
 
 This page describes an AidboxTopicDestination, which allows sending events described by an AidboxSubscriptionTopic to a specific HTTP endpoint.
@@ -12,13 +12,13 @@ The webhook AidboxTopicDestination works in the following way:
 * After the CRUD operation, Aidbox collects unsent messages (refer to the `maxEventNumberInBatch` parameter) from the database and sends them to the specified endpoint via a POST request.
 * If an error occurs during sending, Aidbox will continue retrying until the message is successfully delivered.
 
-{% content-ref url="./" %}
-[.](./README.md)
+{% content-ref url="../../modules/topic-based-subscriptions/wip-dynamic-subscriptiontopic-with-destinations.md" %}
+[wip-dynamic-subscriptiontopic-with-destinations.md](../../modules/topic-based-subscriptions/wip-dynamic-subscriptiontopic-with-destinations.md)
 {% endcontent-ref %}
 
 ## Configuration
 
-To use Webhook with [#aidboxsubscriptiontopic](#aidboxsubscriptiontopic) you have to create [#aidboxtopicdestination](#aidboxtopicdestination) resource.
+To use Webhook with [#aidboxsubscriptiontopic](webhook-aidboxtopicdestination.md#aidboxsubscriptiontopic) you have to create [#aidboxtopicdestination](webhook-aidboxtopicdestination.md#aidboxtopicdestination) resource.
 
 You need to specify the following profile:
 
@@ -142,5 +142,4 @@ accept: application/json
 
 Response format:
 
-<table data-full-width="false"><thead><tr><th width="243">Property</th><th width="151">Type</th><th>Description</th></tr></thead><tbody><tr><td><code>messageBatchesDelivered</code></td><td>valueDecimal</td><td>Total number of batches that have been successfully delivered.</td></tr><tr><td><code>messageBatchesDeliveryAttempts</code></td><td>valueDecimal</td><td><p>Number of batch delivery attempts that failed. </p><p>It represents the overall failed delivery attempts.</p></td></tr><tr><td><code>messagesDelivered</code></td><td>valueDecimal</td><td>Total number of events that have been successfully delivered.</td></tr><tr><td><code>messagesDeliveryAttempts</code></td><td>valueDecimal</td><td><p>Number of delivery attempts that failed. </p><p>It represents the overall failed delivery attempts.</p></td></tr><tr><td><code>messagesInProcess</code></td><td>valueDecimal</td><td>Current number of events in the buffer being processed for delivery.</td></tr><tr><td><code>messagesQueued</code></td><td>valueDecimal</td><td>Number of events pending in the queue for send.</td></tr><tr><td><code>startTimestamp</code></td><td>valueDateTime</td><td><code>AidboxTopicDestination</code> start time in UTC.</td></tr><tr><td><code>status</code></td><td>valueString</td><td><code>AidboxTopicDestination</code> status is always <code>active</code>, which means that <code>AidboxTopicDestination</code> will try to send all received notifications.</td></tr><tr><td><code>lastErrorDetail</code></td><td>part</td><td>Information about errors of the latest failed attempt to send an event. This parameter can be repeated up to 5 times. Includes the following parameters.</td></tr><tr><td><p><code>lastErrorDetail</code></p><p><code>.message</code></p></td><td>valueString</td><td>Error message of the given error.</td></tr><tr><td><p><code>lastErrorDetail</code></p><p><code>.timestamp</code></p></td><td>valueDateTime</td><td>Timestamp of the given error.</td></tr></tbody></table>
-
+<table data-full-width="false"><thead><tr><th width="243">Property</th><th width="151">Type</th><th>Description</th></tr></thead><tbody><tr><td><code>messageBatchesDelivered</code></td><td>valueDecimal</td><td>Total number of batches that have been successfully delivered.</td></tr><tr><td><code>messageBatchesDeliveryAttempts</code></td><td>valueDecimal</td><td><p>Number of batch delivery attempts that failed.</p><p>It represents the overall failed delivery attempts.</p></td></tr><tr><td><code>messagesDelivered</code></td><td>valueDecimal</td><td>Total number of events that have been successfully delivered.</td></tr><tr><td><code>messagesDeliveryAttempts</code></td><td>valueDecimal</td><td><p>Number of delivery attempts that failed.</p><p>It represents the overall failed delivery attempts.</p></td></tr><tr><td><code>messagesInProcess</code></td><td>valueDecimal</td><td>Current number of events in the buffer being processed for delivery.</td></tr><tr><td><code>messagesQueued</code></td><td>valueDecimal</td><td>Number of events pending in the queue for send.</td></tr><tr><td><code>startTimestamp</code></td><td>valueDateTime</td><td><code>AidboxTopicDestination</code> start time in UTC.</td></tr><tr><td><code>status</code></td><td>valueString</td><td><code>AidboxTopicDestination</code> status is always <code>active</code>, which means that <code>AidboxTopicDestination</code> will try to send all received notifications.</td></tr><tr><td><code>lastErrorDetail</code></td><td>part</td><td>Information about errors of the latest failed attempt to send an event. This parameter can be repeated up to 5 times. Includes the following parameters.</td></tr><tr><td><p><code>lastErrorDetail</code></p><p><code>.message</code></p></td><td>valueString</td><td>Error message of the given error.</td></tr><tr><td><p><code>lastErrorDetail</code></p><p><code>.timestamp</code></p></td><td>valueDateTime</td><td>Timestamp of the given error.</td></tr></tbody></table>

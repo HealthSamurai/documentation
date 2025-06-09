@@ -2,9 +2,10 @@
 
 ## Objectives
 
-* Learn how to integrate [AidboxTopicSubscriptions](../../modules/topic-based-subscriptions/wip-dynamic-subscriptiontopic-with-destinations/README.md) with core NATS / NATS JetStream
+* Learn how to integrate [AidboxTopicSubscriptions](../../modules/topic-based-subscriptions/wip-dynamic-subscriptiontopic-with-destinations.md) with core NATS / NATS JetStream
 
 ## Before you begin
+
 * Make sure your Aidbox version is newer than 2504
 * Setup the local Aidbox instance using getting started [guide](../../getting-started/run-aidbox-locally.md)
 * [Install golang](https://go.dev/doc/install). Make sure that go packages are in your $PATH variable.
@@ -19,11 +20,12 @@ Core NATS is a lightweight pub/sub system where messages are delivered to subscr
 
 JetStream is an extension of NATS that provides message persistence, replay, and acknowledgment (at least once delivery). It allows you to create streams, store messages, manage consumers, and ensure that important events are not lost even in the case of failure.
 
-In Aidbox, create [AidboxTopicDestination](../../modules/topic-based-subscriptions/wip-dynamic-subscriptiontopic-with-destinations/README.md#aidboxtopicdestination) with `http://aidbox.app/StructureDefinition/aidboxtopicdestination-nats-core-best-effort` profile to integrate with Core NATS and `http://aidbox.app/StructureDefinition/aidboxtopicdestination-nats-jetstream-at-least-once` to integrate with NATS JetStream.
+In Aidbox, create [AidboxTopicDestination](../../modules/topic-based-subscriptions/wip-dynamic-subscriptiontopic-with-destinations.md#aidboxtopicdestination) with `http://aidbox.app/StructureDefinition/aidboxtopicdestination-nats-core-best-effort` profile to integrate with Core NATS and `http://aidbox.app/StructureDefinition/aidboxtopicdestination-nats-jetstream-at-least-once` to integrate with NATS JetStream.
 
 ## Setting up
 
 1. Create a directory structure like this:
+
 ```
 .
 ├── docker-compose.yaml
@@ -304,12 +306,16 @@ Acknowledged message
 ```
 
 ## Username/Password authentication
+
 1. Turn off the previous nats-server (`Ctrl+C`).
 2. Change working directory.
+
 ```
 cd username-password
 ```
+
 3. Create new `nats-server.conf` file.
+
 ```
 port: 4222
 
@@ -334,19 +340,27 @@ authorization {
   ]
 }
 ```
+
 4. Start nats with this config:
+
 ```shell
 nats-server -c nats-server.conf
 ```
+
 5. Check that bob can read:
+
 ```shell
 nats --user bob --password secret2 sub mysubject.hello
 ```
+
 6. Check that alice can publish:
+
 ```shell
 nats --user alice --password secret1 pub mysubject.hello "hello from alice"
 ```
+
 7. Add `username` and `password` properties in `AidboxTopicDestination` resource.
+
 ```json
 POST /fhir/AidboxTopicDestination
 content-type: application/json
@@ -386,6 +400,7 @@ accept: application/json
   ]
 }
 ```
+
 8. Post the patient with a name.
 
 ```
@@ -394,7 +409,9 @@ POST /fhir/Patient
 name:
 - family: smith
 ```
+
 9. See the output of bob's subscription.
+
 ```
 {"topic":"mysubject.hello","value":{"resourceType":"Bundle","type":"history","timestamp":"2025-05-21T13:36:33Z","entry":[{"resource":{"resourceType":"AidboxSubscriptionStatus","status":"active","type":"event-notification","notificationEvent":[{"eventNumber":1,"focus":{"reference":"Patient/89ae88de-c15b-4aac-a393-9168f2dc507c"}}],"topic":"patient-topic","topic-destination":{"reference":"AidboxTopicDestination/nats-core-destination"}}},{"request":{"method":"POST","url":"/fhir/Patient"},"fullUrl":"http://localhost:8080/fhir/Patient/89ae88de-c15b-4aac-a393-9168f2dc507c","resource":{"name":[{"family":"smith"}],"id":"89ae88de-c15b-4aac-a393-9168f2dc507c","resourceType":"Patient","meta":{"lastUpdated":"2025-05-21T13:36:33.378705Z","versionId":"14","extension":[{"url":"ex:createdAt","valueInstant":"2025-05-21T13:36:33.378705Z"}]}}}]}}
 ```
