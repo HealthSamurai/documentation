@@ -16,6 +16,11 @@
    [nextjournal.markdown.utils :as u]
    [uui]))
 
+(defn hack-md [md-file]
+  (str/replace md-file
+               #"\{% content-ref.*%\}\s*\n\[[^\]]*\]\(([^)]*)\)\s*\n\{% endcontent-ref %\}"
+               "[[$1]]"))
+
 (defn parse-html [html]
   (map hickory.core/as-hiccup
        (hickory.core/parse-fragment html)))
@@ -24,15 +29,13 @@
   (update u/empty-doc
           :text-tokenizers
           conj
-          big-links/big-link-tokenizer ;; [[]]
-          ;; big-links/content-ref-tokenizer
-          ;; big-links/end-content-ref-tokenizer
+          big-links/big-link-tokenizer
           image/image-tokenizer))
 
 (defn parse-markdown-content
   [[filepath content]]
   {:filepath filepath
-   :parsed (md/parse* custom-doc content)})
+   :parsed (md/parse* custom-doc (hack-md content))})
 
 (defn render-cards-from-table
   [context filepath [_ _ _ tbody]]
@@ -108,7 +111,10 @@
          :html-block
          (fn [_ctx node]
            (let [c (first (parse-html (-> node :content first :text)))]
-             (if (and c (= :table (first c)))
+             (if (and c
+                      (= :table (first c))
+                      (not= {:data-header-hidden "true"}
+                            (second c)))
                (render-cards-from-table context filepath c)
                (uui/raw (-> node :content first :text)))))))
 
@@ -152,8 +158,7 @@
   (system/set-system-state
    context
    [const/PARSED_MARKDOWN_IDX]
-   (mapv parse-markdown-content
-         md-files-idx)))
+   (mapv parse-markdown-content md-files-idx)))
 
 (defn get-parsed-markdown-index [context]
   (system/get-system-state

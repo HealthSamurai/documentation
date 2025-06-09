@@ -7,7 +7,10 @@
 
 (def big-link-tokenizer
   (u/normalize-tokenizer
-   {:regex #"\[\[\[([^\]]+)\]\]\]"
+   {:regex
+    #"\[\[(.+)\]\]"
+    ;; [[[ ]]]
+    ;; #"\[\[\[([^\]]+)\]\]\]"
     :handler (fn [match]
                {:type :big-link
                 :text (match 1)})}))
@@ -18,60 +21,41 @@
 
 (defn href [context url filepath]
   (if (and url (str/starts-with? url "http"))
-     url
-      (str "/" (-> (indexing/page-link->uri
-             context
-             filepath
-             url)))))
+    url
+    (let [uri (-> (indexing/page-link->uri
+                   context
+                   filepath
+                   url))]
+      (if (str/starts-with? uri "/")
+        uri
+        (str "/" uri)))))
 
 (defn big-link-view [href title]
- [:div.content-ref
-  {:class "my-4 p-4 border border-gray-200 rounded-md bg-gray-50 hover:bg-gray-100 transition-colors flex items-center"}
-  [:div.content-ref-icon
-   {:class "mr-3 text-blue-500"}
-   [:span icon]]
-  [:div.content-ref-content
-   {:class "flex-1"}
-   [:a.content-ref-link
-    {:href href
-     :class "text-blue-600 hover:text-blue-800 font-medium"}
-    title]]])
+  [:div.content-ref
+   {:class "my-4 p-4 border border-gray-200 rounded-md bg-gray-50 hover:bg-gray-100 transition-colors flex items-center"}
+   [:div.content-ref-icon
+    {:class "mr-3 text-blue-500"}
+    [:span icon]]
+   [:div.content-ref-content
+    {:class "flex-1"}
+    [:a.content-ref-link
+     {:href href
+      :class "text-blue-600 hover:text-blue-800 font-medium"}
+     title]]])
 
 (defn render-big-link
- ([context filepath url]
-  (render-big-link context filepath nil {:text url}))
- ([context filepath _ctx node]
-  (let [href (href context (:text node) filepath)
-        uri (href context
-                  (:text node) filepath)
-        uri (if (and uri (str/starts-with? uri "/"))
-             (subs uri 1)
-             uri)
-        file (indexing/uri->filepath context uri)
-        file (if (str/starts-with? file "/docs")
-              (subs file 6)
-              file)
-        title
-        (or (:title (get (file-to-uri/get-idx context) file))
-            (:text node))]
-   (big-link-view href title))))
-
-;; (def content-ref-tokenizer
-;;   (u/normalize-tokenizer
-;;    {:regex
-;;     #"\{% content-ref(.*)%\}"
-;;     :handler (fn [match]
-;;                {:type :big-link1
-;;                 :text
-;;                 (some->> (first match)
-;;                          (re-find
-;;                           #"url=\"(.*)\"")
-;;                          (second))})}))
-;;
-;; (def end-content-ref-tokenizer
-;;   (u/normalize-tokenizer
-;;    {:regex
-;;     #"\{% endcontent-ref %\}"
-;;     :handler (fn [_]
-;;                {:type :nothing})}))
-;;
+  ([context filepath url]
+   (render-big-link context filepath nil {:text url}))
+  ([context filepath _ctx node]
+   (let [uri (href context (:text node) filepath)
+         uri (if (and uri (str/starts-with? uri "/"))
+               (subs uri 1)
+               uri)
+         file (indexing/uri->filepath context uri)
+         file (if (and file (str/starts-with? file "/docs"))
+                (subs file 6)
+                file)
+         title
+         (or (:title (get (file-to-uri/get-idx context) file))
+             (:text node))]
+     (big-link-view (str "/" uri) title))))

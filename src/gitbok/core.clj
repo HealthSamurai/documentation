@@ -120,9 +120,6 @@
 
     :else
     (let [filepath (indexing/uri->filepath context (:uri request))]
-      (def f filepath)
-      (def context context )
-      (def request request)
       (if filepath
         (gitbok.ui/layout
          context request

@@ -14,6 +14,11 @@
   (def context (system/start-system gitbok/default-config))
   (system/stop-system context)
 
+  (:content
+    (:parsed
+      (markdown/parse-markdown-content
+        ["configuration/settings.md" "[[../init-bundle.md]]"])))
+
   (def uri->file-idx
     (uri-to-file/get-idx context))
 
@@ -26,16 +31,6 @@
            (str/starts-with? url "api/crud")
            ))
     uri->file-idx)
-
-  (def file-to-uri
-    (file-to-uri/get-idx context))
-
-  (take 10 file-to-uri)
-
-  (filter
-    (fn [[file uri]]
-      (str/starts-with? file "modules/aidbox-forms/aidbox-ui-builder"))
-    file-to-uri)
 
   ;; bad pages
   (filter
