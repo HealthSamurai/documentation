@@ -1,4 +1,5 @@
 (ns gitbok.core
+  (:gen-class)
   (:require
    [cheshire.core]
    [clojure.string :as str]
@@ -17,8 +18,8 @@
    [ring.util.response :as resp]
    [system]
    [gitbok.utils :as utils]
-   [uui]))
-
+   [uui])
+  )
 (set! *warn-on-reflection* true)
 
 (defn read-content [_context filepath]
@@ -195,6 +196,13 @@
   (println "setup done!")
   {})
 
+(def port 8081)
 (def default-config
   {:services ["http" "uui" "gitbok.core"]
-   :http {:port 8081}})
+   :http {:port port}})
+
+(defn -main [& args]
+  (println "Server started")
+  (println "port " port)
+  (system/start-system default-config)
+  )

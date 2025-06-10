@@ -72,7 +72,6 @@
      (menu (summary/get-summary context))]
     [:div#content {:class "flex-1 py-6 px-12 overflow-auto"} content]]])
 
-
 (defn response1 [body status]
   {:status (or status 200)
    :headers {"content-type" "text/html; ; charset=utf-8"}
@@ -81,12 +80,12 @@
 (defn layout [context request content]
   (let [body (if (map? content) (:body content) content)
         status (if (map? content) (:status content 200) 200)]
-   (response1
+    (response1
      (if (uui/hx-target request)
-      [:div#content
-       {:class "m-x-auto flex-1 py-6 px-12  h-screen overflow-auto"}
-       body]
-      (uui/document
-       context request
-       (layout-view context body)))
+       [:div#content
+        {:class "m-x-auto flex-1 py-6 px-12  h-screen overflow-auto"}
+        body]
+       (uui/document
+        context request
+        (layout-view context body)))
      status)))

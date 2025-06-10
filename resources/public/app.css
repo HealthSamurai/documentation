@@ -162,4 +162,7 @@ details[open] > summary .chevron {
       transition: 0.4s;
     }
   }
+
+  /* Add more space at the end of pages */
+  padding-bottom: 8rem;
 }

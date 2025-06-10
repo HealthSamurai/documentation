@@ -1,10 +1,12 @@
+.PHONY: clean build uberjar
+
 init:
 	mkdir -p .git/hooks
-	ln -sf ../../scripts/prepush.sh .git/hooks/pre-push
-	npm install
-	git submodule update --init --recursive
+	cp .git/hooks/pre-commit.sample .git/hooks/pre-commit
+	chmod +x .git/hooks/pre-commit
 
 repl:
+	# clj -M:dev:test:build
 	clj -M:dev:test
 
 tailwind:
@@ -13,5 +15,5 @@ tailwind:
 build-tailwind:
 	npx tailwindcss -i ./resources/public/app.css -o ./resources/public/app.build.css --config ./tailwind.config.js
 
-compile-java:
-	javac -cp "$(shell clojure -Spath)" -d classes java/gitbok/ai/AssistantWithSources.java
+uberjar:
+	clojure -T:build uber

@@ -1,4 +1,7 @@
-{:paths ["src" "resources" "java" "classes"]
+{:paths ["src" "resources"
+         ;; "java" "classes"
+         "libs"
+         ]
  :deps {org.clojure/clojure    {:mvn/version "1.12.0"}
         context/system         {:local/root "./libs/system"}
         context/http           {:local/root "./libs/http"}
@@ -56,4 +59,11 @@
   {:extra-deps {lambdaisland/kaocha {:mvn/version "1.77.1236"}}
    :extra-paths ["test"]
    ;; :jvm-opts   ^:replace ["-XX:-OmitStackTraceInFastThrow"]
-   #_#_:main-opts  ["-m" "kaocha.runner"]}}}
+   #_#_:main-opts  ["-m" "kaocha.runner"]}
+
+  :build
+  {:deps {io.github.clojure/tools.build {:git/tag "v0.10.9" :git/sha "e405aac"}}
+   :ns-default build
+   ;; :extra-paths ["dev" "test" "resources"]
+   ;; :paths ["src" "resources"]
+   }}}
