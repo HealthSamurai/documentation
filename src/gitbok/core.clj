@@ -18,8 +18,7 @@
    [ring.util.response :as resp]
    [system]
    [gitbok.utils :as utils]
-   [uui])
-  )
+   [uui]))
 (set! *warn-on-reflection* true)
 
 (defn read-content [_context filepath]
@@ -127,9 +126,9 @@
          (read-and-render-file context request))
 
         (gitbok.ui/layout
-          context request
-          {:status 404
-           :body (not-found-view context (:uri request))})))))
+         context request
+         {:status 404
+          :body (not-found-view context (:uri request))})))))
 
 (def readme-path "readme")
 
@@ -196,13 +195,19 @@
   (println "setup done!")
   {})
 
-(def port 8081)
+(def default-port 8081)
 (def default-config
   {:services ["http" "uui" "gitbok.core"]
-   :http {:port port}})
+   :http {:port default-port}})
+
 
 (defn -main [& args]
-  (println "Server started")
-  (println "port " port)
-  (system/start-system default-config)
-  )
+  (let [p (System/getenv "PORT")
+        port (or
+               (when p
+                 (try (Integer/parseInt p)
+                      (catch Exception _ nil)))
+               default-port)]
+    (println "Server started")
+    (println "port " port)
+    (system/start-system default-config)))
