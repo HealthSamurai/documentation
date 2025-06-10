@@ -458,6 +458,7 @@
     * [FDB](modules/eprescription/medications/fdb.md)
   * [References](modules/eprescription/tutorials/README.md)
     * [Environment Variables](modules/eprescription/environment-variables.md)
+    * [List of metrics](modules/eprescription/tutorials/list-of-metrics.md)
   * [Frequently Asked Questions](modules/eprescription/frequently-asked-questions.md)
 * [Other modules](modules/other-modules/README.md)
   * [MDM](modules/other-modules/mdm/README.md)
