@@ -1,0 +1,44 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app.kubernetes.io/managed-by: fluxcd
+    app.kubernetes.io/name: gitbok
+  name: gitbok
+  namespace: gitbok
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: gitbok
+  template:
+    metadata:
+      labels:
+        app.kubernetes.io/name: gitbok
+    spec:
+      containers:
+      - name: main
+        image: faridco/gitbok
+        imagePullPolicy: Always
+        env:
+          - name: PORT
+            value: "8080"
+        ports:
+          - containerPort: 8080
+            name: main
+            protocol: TCP
+        resources:
+          limits:
+            cpu: 500m
+            memory: 128Mi
+          requests:
+            cpu: 10m
+            memory: 64Mi
+        securityContext:
+          allowPrivilegeEscalation: false
+          capabilities:
+            drop:
+            - ALL
+      restartPolicy: Always
+      securityContext:
+        runAsNonRoot: true
