@@ -580,9 +580,20 @@ Generate private key with `openssl genrsa -traditional -out key.pem 2048` in you
 
 Use next env vars to pass RSA keypair:
 
+```yaml
+BOX_AUTH_KEYS_PRIVATE: "-----BEGIN RSA PRIVATE KEY-----\n...\n-----END RSA PRIVATE KEY-----"
+BOX_AUTH_KEYS_PUBLIC: "-----BEGIN PUBLIC KEY-----\n...\n-----END PUBLIC KEY-----"
 ```
-BOX_AUTH_KEYS_PRIVATE=-----BEGIN RSA PRIVATE KEY-----\n...\n-----END RSA PRIVATE KEY-----
-BOX_AUTH_KEYS_PUBLIC=-----BEGIN PUBLIC KEY-----\n...\n-----END PUBLIC KEY-----
+
+You can also use YAML multi-line strings for passing values of the keys:
+
+```yaml
+      BOX_AUTH_KEYS_PUBLIC: |
+        -----BEGIN PUBLIC KEY-----
+        MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAtknsklLTP1y6HPtR2oYs
+        ...
+        ewIDAQAB
+        -----END PUBLIC KEY-----
 ```
 
 #### Generate secret
@@ -655,7 +666,7 @@ Stripping is only applied during the masking.
 Follow the link below to learn how Aidbox metrics work.
 
 {% content-ref url="../../modules/observability/metrics/" %}
-[metrics](../../modules/observability/metrics/README.md)
+[metrics](../../modules/observability/metrics/)
 {% endcontent-ref %}
 
 #### **BOX\_METRICS\_PORT**
