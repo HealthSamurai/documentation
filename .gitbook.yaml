@@ -4,6 +4,7 @@ structure:
   summary: SUMMARY.md
 
 redirects:
+    reference/configuration/environment-variables/optional-environment-variables: reference/environment-variables/optional-environment-variables.md
     plan-api/plan-api-overview: api-1/plan-api/plan-api-overview.md
     plan-api: api-1/plan-api/README.md
     plan-api/patient-access-api: api-1/plan-api/patient-access-api.md
