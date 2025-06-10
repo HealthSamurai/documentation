@@ -1,10 +1,8 @@
 # CRUD internals
 
-
-They all are unlogged queries.
+Aidbox uses both `<resource>` and `<resource_history>` tables in CRUD.
 
 ## Create
-
 ```http
 POST /fhir/Patient
 
@@ -227,7 +225,3 @@ archived_deleted AS (
 )
 SELECT * FROM archived_deleted;
 ```
-
-## See also
-- [How to delete-data](../tutorials/crud-search-tutorials/delete-data.md) tutorial
-- [Set up uniqueness in resource](/tutorials/crud-search-tutorials/set-up-uniqueness-in-resource.md) tutorial
