@@ -34,6 +34,7 @@
   [:div
    {:class "flex flex-col h-screen"}
    [:script {:src "/static/toc.js"}]
+   [:script {:src "/static/tabs.js"}]
    [:link {:rel "stylesheet" :href "/static/github.min.css"}]
    [:script {:src "/static/highlight.min.js"}]
    [:script {:src "/static/json.min.js"}]

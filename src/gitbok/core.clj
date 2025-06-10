@@ -85,7 +85,7 @@
            filepath (str "." (indexing/uri->filepath context uri))
            content* (read-content context filepath)
            {:keys [parsed]}
-           (markdown/parse-markdown-content [filepath content*])]
+           (markdown/parse-markdown-content context [filepath content*])]
        (try
          (if (and (= 1 (count (:content parsed)))
                   (= :heading (:type (first (:content parsed)))))
@@ -141,6 +141,10 @@
                 #(if (= "/" %) readme-path %))]
     (render-file-view context request)))
 
+(defn healthcheck
+  [context request]
+  {:status 200 :body {:status "ok"}})
+
 (system/defmanifest
   {:description "gitbok"
    :deps ["http"]
@@ -149,24 +153,12 @@
 #_{:clj-kondo/ignore [:unresolved-symbol]}
 (system/defstart
   [context config]
-  (http/register-ns-endpoints context *ns*)
-  (http/register-endpoint
-   context
-   {:path "/:path*"
-    :method :get
-    :fn #'render-file-view})
+  ;; (http/register-ns-endpoints context *ns*)
 
-  (http/register-endpoint
-   context
-   {:path "/"
-    :method :get
-    :fn #'redirect-to-readme})
-
-;; todo
-  ;; (http/register-endpoint
-  ;;   context
-  ;;   {:path "/admin/broken" :method :get :fn #'gitbok.broken-links/broken-links-view})
-
+  ;; order is important
+  (uri-to-file/set-idx context)
+  (file-to-uri/set-idx context)
+  (summary/set-summary context)
   (indexing/set-md-files-idx context)
 
   (markdown/set-parsed-markdown-index
@@ -178,9 +170,7 @@
    (markdown/get-parsed-markdown-index context))
 
   ;; todo reuse md-files-idx
-  (uri-to-file/set-idx context)
-  (file-to-uri/set-idx context)
-  (summary/set-summary context)
+
   (http/register-endpoint
    context
    {:path "/search" :method
@@ -191,6 +181,23 @@
    {:path "/search/results"
     :method :get
     :fn #'gitbok.search/search-results-view})
+
+  (http/register-endpoint
+    context
+    {:path "/healthcheck" :method
+     :get :fn #'healthcheck})
+
+  (http/register-endpoint
+   context
+   {:path "/:path*"
+    :method :get
+    :fn #'render-file-view})
+
+  (http/register-endpoint
+   context
+   {:path "/"
+    :method :get
+    :fn #'redirect-to-readme})
 
   (println "setup done!")
   {})

@@ -3,9 +3,10 @@
    [clojure.string :as str]
    [gitbok.markdown.widgets.big-links :as big-links]
    [gitbok.markdown.widgets.link :as link]
-   [gitbok.indexing.core :as indexing]
    [gitbok.markdown.widgets.image :as image]
    [gitbok.markdown.widgets.github-hint :as github-hint]
+   [gitbok.markdown.widgets.cards :as cards]
+   [gitbok.markdown.widgets.tabs :as tabs]
    [nextjournal.markdown :as md]
    [nextjournal.markdown.transform :as transform]
    [hickory.core]
@@ -16,29 +17,7 @@
    [nextjournal.markdown.utils :as u]
    [uui]))
 
-(defn hack-content-ref [md-file]
-  (str/replace md-file
-               #"\{% content-ref.*%\}\s*\n\[[^\]]*\]\(([^)]*)\)\s*\n\{% endcontent-ref %\}"
-               "[[$1]]"))
-
-(defn hack-info
-  "{% hint style=\"info\" %}<content>{% endhint %} -> > [!NOTE]\n>"
-  [md-file]
-  (str/replace
-   md-file
-   #"(?s)\{% hint style=\"([^\"]+)\" %\}\n(.*?)\n\{% endhint %\}"
-   (fn [[_ style content]]
-     (str "> [!" (str/upper-case style) "] "
-          (str/replace content #"\n" "\n> " )))))
-
-(defn hack-md [md-file]
-  (-> md-file
-      hack-content-ref
-      hack-info))
-
-(defn parse-html [html]
-  (map hickory.core/as-hiccup
-       (hickory.core/parse-fragment html)))
+(declare hack-md)
 
 (def custom-doc
   (update u/empty-doc
@@ -48,55 +27,13 @@
           image/image-tokenizer))
 
 (defn parse-markdown-content
-  [[filepath content]]
+  [context [filepath content]]
   {:filepath filepath
-   :parsed (md/parse* custom-doc (hack-md content))})
+   :parsed (md/parse* custom-doc (hack-md context filepath content))})
 
-(defn render-cards-from-table
-  [context filepath [_ _ _ tbody]]
-  (let [rows (->> tbody
-                  (filter vector?)
-                  (filter #(= :tr (first %))))]
-    [:div
-     {:class "grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"}
-     (for [row rows
-           :let [[title desc footer pic1 pic2]
-                 (->> row (filter vector?)
-                      (mapv (fn [a] (into [:div] (next (next a))))))
-                 pic1 (first (filterv
-                              #(and (sequential? %) (= (first %) :a))
-                              pic1))
-                 pic2 (first (filterv
-                              #(and (sequential? %) (= (first %) :a))
-                              pic2))
-                 pic-href1 (get-in pic1 [1 :href])
-                 pic-href2 (get-in pic2 [1 :href])
-                 pic-footer
-                 (get-in
-                  (first (filterv
-                          #(and (sequential? %) (= (first %) :a))
-                          footer))
-                  [1 :href])
-                 pic-footer? (when pic-footer (re-matches #".*(png|jpg|jpeg|svg)$" pic-footer))
-                 title-filepath (when-not pic-footer? pic-footer)
-                 title-href
-                 (when title-filepath
-                   (indexing/page-link->uri context filepath title-filepath))
-                 img-href
-                 (first (filter (fn [s]
-                                  (when s (re-matches #".*(png|jpg|jpeg|svg)$" s)))
-                                [pic-footer pic-href1 pic-href2]))]]
-       [:div {:class "flex flex-col bg-white rounded-2xl shadow overflow-hidden h-full min-h-[300px]"}
-        (when img-href [:img {:src img-href}])
-        [:div
-         {:class
-          (str "flex flex-col gap-2 p-4 flex-1 "
-               (when-not img-href "justify-start"))}
-         [:a {:href (or title-href title-filepath)
-              :class "text-lg hover:underline"} title]
-         [:p {:class "text-gray-600 text-sm"} desc]
-         ;; todo here learn more contains bad link
-         (when-not pic-footer? footer)]])]))
+(defn parse-html [html]
+  (map hickory.core/as-hiccup
+       (hickory.core/parse-fragment html)))
 
 (defn renderers [context filepath]
   (assoc transform/default-hiccup-renderers
@@ -123,7 +60,7 @@
          (fn [_ctx node]
            (let [c (first (parse-html (-> node :content first :text)))]
              (if (and c (= :table (first c)))
-               (render-cards-from-table context filepath c)
+               (cards/render-cards-from-table context filepath c)
                (uui/raw (-> node :content first :text)))))
          :html-block
          (fn [_ctx node]
@@ -132,7 +69,7 @@
                       (= :table (first c))
                       (not= {:data-header-hidden "true"}
                             (second c)))
-               (render-cards-from-table context filepath c)
+               (cards/render-cards-from-table context filepath c)
                (uui/raw (-> node :content first :text)))))))
 
 (defn render-toc-item [item]
@@ -171,11 +108,19 @@
       (for [item (:children toc)]
         (render-toc-item item))])])
 
+(defn hack-md [context filepath md-file]
+  (->> md-file
+       big-links/hack-content-ref
+       github-hint/hack-info
+       (tabs/hack-tabs context filepath
+                       parse-markdown-content
+                       render-md)))
+
 (defn set-parsed-markdown-index [context md-files-idx]
   (system/set-system-state
    context
    [const/PARSED_MARKDOWN_IDX]
-   (mapv parse-markdown-content md-files-idx)))
+   (mapv #(parse-markdown-content context %) md-files-idx)))
 
 (defn get-parsed-markdown-index [context]
   (system/get-system-state

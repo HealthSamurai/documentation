@@ -9,6 +9,7 @@
    [system]
    [clojure.java.io :as io]
    [clojure.string :as str]
+   [gitbok.utils :as utils]
    [uui]
    [http]))
 
@@ -55,10 +56,11 @@
     (if same-page?
       (str "#" section)
       (let [file->uri-idx (file-to-uri/get-idx context)
+            _ (when-not file->uri-idx (throw (Exception. "no idx")))
             current-page-filepath
             (cond
               (str/starts-with? current-page-filepath "/docs")
-              (subs current-page-filepath 6)
+              (utils/safe-subs current-page-filepath 6)
 
               (str/starts-with? current-page-filepath "./docs")
               (subs current-page-filepath 7)
@@ -66,7 +68,7 @@
               :else
               current-page-filepath)
             path
-            (subs
+            (utils/safe-subs
              (common/get-filepath
               current-page-filepath
               relative-page-link)
@@ -74,9 +76,7 @@
               (System/getProperty
                "user.dir")))
 
-            path (if (str/starts-with? path "/") (subs path 1) path)
-            _ (def path path)
-            _ (def file->uri-idx file->uri-idx)
+            path (if (str/starts-with? path "/") (utils/safe-subs path 1) path)
             path (str "/" (:uri (get file->uri-idx path)))]
 
         (if section
@@ -95,10 +95,16 @@
          (filter #(clojure.string/ends-with? (.getName %) ".md"))
          (map #(-> % .getPath (subs (inc dir-length)))))))
 
+(defn read-content [_context filepath]
+  (let [content (slurp filepath)]
+    (if (str/starts-with? content "---")
+      (last (str/split content #"---\n" 3))
+      content)))
+
 (defn slurp-md-files! [dir]
   (reduce (fn [acc filename]
             (assoc acc filename
-                   (slurp (str dir "/" filename)))) {}
+                   (read-content nil (str dir "/" filename)))) {}
           (list-markdown-files dir)))
 
 (defn set-md-files-idx [context]

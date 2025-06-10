@@ -59,3 +59,8 @@
          (or (:title (get (file-to-uri/get-idx context) file))
              (:text node))]
      (big-link-view (str "/" uri) title))))
+
+(defn hack-content-ref [md-file]
+  (str/replace md-file
+               #"\{% content-ref.*%\}\s*\n\[[^\]]*\]\(([^)]*)\)\s*\n\{% endcontent-ref %\}"
+               "[[$1]]"))

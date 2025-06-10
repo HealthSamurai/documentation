@@ -1,6 +1,7 @@
 (ns gitbok.markdown.widgets.github-hint
   "Widget for handling GitHub-style hint/admonition blocks."
   (:require
+   [clojure.string :as str]
    [nextjournal.markdown.transform :as transform]))
 
 (def hint-styles
@@ -22,3 +23,13 @@
      [:blockquote {:class class}]
      (mapv #(transform/->hiccup ctx %)
            content))))
+
+(defn hack-info
+  "{% hint style=\"info\" %}<content>{% endhint %} -> > [!NOTE]\n>"
+  [md-file]
+  (str/replace
+   md-file
+   #"(?s)\{% hint style=\"([^\"]+)\" %\}\n(.*?)\n\{% endhint %\}"
+   (fn [[_ style content]]
+     (str "> [!" (str/upper-case style) "] "
+          (str/replace content #"\n" "\n> ")))))
