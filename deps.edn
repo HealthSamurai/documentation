@@ -17,8 +17,9 @@
          :sha "5829ec101331b1702841094f4dc897ee46f0ddcd"}
 
         clj-commons/clj-yaml {:mvn/version "1.0.29"}
+
         ;; recompile java automaticallydeps
-        virgil/virgil {:mvn/version "0.4.0"}
+        ;; virgil/virgil {:mvn/version "0.4.0"}
 
         ;; rag
         ;; may be overhead but couldn't start without it
@@ -26,14 +27,13 @@
         ;; io.github.zmedelis/bosquet {:mvn/version "2024.08.08"}
         ;; org.apache.opennlp/opennlp-tools {:mvn/version "1.9.4"}
         ;; dev.langchain4j/langchain4j-open-ai {:mvn/version "0.36.2"}
-
-        dev.langchain4j/langchain4j-cohere {:mvn/version "1.0.1-beta6"}
-        ;;
-        dev.langchain4j/langchain4j-easy-rag {:mvn/version "1.0.1-beta6"}
-        dev.langchain4j/langchain4j-document-parser-apache-pdfbox {:mvn/version "1.0.1-beta6"}
-        dev.langchain4j/langchain4j {:mvn/version "1.0.1"}
-        dev.langchain4j/langchain4j-ollama {:mvn/version "1.0.1-beta6"}
-        dev.langchain4j/langchain4j-embeddings-all-minilm-l6-v2 {:mvn/version "1.0.1-beta6"}}
+        ;; dev.langchain4j/langchain4j-cohere {:mvn/version "1.0.1-beta6"}
+        ;; dev.langchain4j/langchain4j-easy-rag {:mvn/version "1.0.1-beta6"}
+        ;; dev.langchain4j/langchain4j-document-parser-apache-pdfbox {:mvn/version "1.0.1-beta6"}
+        ;; dev.langchain4j/langchain4j {:mvn/version "1.0.1"}
+        ;; dev.langchain4j/langchain4j-ollama {:mvn/version "1.0.1-beta6"}
+        ;; dev.langchain4j/langchain4j-embeddings-all-minilm-l6-v2 {:mvn/version "1.0.1-beta6"}
+        }
  :aliases
  {:dev
   {:extra-paths ["dev" "test" "resources"]
