@@ -22,7 +22,7 @@
   [:div
    [:div {:class "px-5 py-1"}
     [:div {:class "flex flex-col gap-2"}
-     [:a {:href "/admin/broken" :class "block w-full"} "Broken Links"]]]
+     #_[:a {:href "/admin/broken" :class "block w-full"} "Broken Links"]]]
    (for [item summary]
      [:div
       [:div {:class "pl-4 mt-4 mb-2"}

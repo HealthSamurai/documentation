@@ -21,9 +21,6 @@
 
   (filter
     (fn [[url file]]
-      (and
-        ;; (str/starts-with? url "modules/aidbox-forms/aidbox-ui-builder-alpha/")
-           (str/starts-with? url "api/crud")
-           ))
+      (str/starts-with? url "overview/faq"))
     uri->file-idx)
   )

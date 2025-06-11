@@ -61,7 +61,6 @@
                       url2 (if (str/ends-with? url2 "/")
                              (subs url2 0 (dec (count url2)))
                              url2)]
-                  (def url2 url2)
                   (recur (rest lines) section new-stack
                          (assoc acc
                                 full-path path
@@ -73,16 +72,12 @@
         diff
         (nth (clojure.data/diff (set (keys redirects))
                                 (set (keys index))) 2)]
-    (def redirects redirects)
-    (filter
-     (fn [[url file]]
-       (str/includes? url "api/crud"))
-     redirects)
-(when diff
-  (doseq [p diff]
-    (println "url: " p)
-    (println "file in index:" (get index p))
-    (println "file in redirect:" (get redirects p))))
+
+    (when diff
+      (doseq [p diff]
+        (println "url: " p)
+        (println "file in index:" (get index p))
+        (println "file in redirect:" (get redirects p))))
     (merge index redirects)))
 
 (defn get-idx [context]

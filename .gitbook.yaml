@@ -83,7 +83,6 @@ redirects:
     modules/terminology/usdtranslate-on-conceptmap: modules/terminology/translate-on-conceptmap.md
     modules/topic-based-subscriptions/subscriptions-1: modules/topic-based-subscriptions/README.md
     overview/aidbox-ui/rest-console-1: overview/aidbox-ui/rest-console.md
-    overview/faq: modules/eprescription/frequently-asked-questions.md
     readme-1/readme-1-1/access-policy: modules/access-control/authorization/access-policies.md
     readme-1/readme-1-1/basic-auth-tutorial: modules/security-and-access-control/auth/basic-auth.md
     readme-1/readme-1-1/rbac/role-based-access-control-with-jwt-containing-role: tutorials/security-access-control-tutorials/rbac/README.md
