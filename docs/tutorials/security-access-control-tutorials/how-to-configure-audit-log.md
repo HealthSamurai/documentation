@@ -6,7 +6,7 @@ description: >-
 
 # How to configure Audit Log
 
-## Objectives
+Objectives
 
 * Enable audit logging in Aidbox.
 * Receive audit logs from the FHIR API.
@@ -60,15 +60,299 @@ To see audit logs with the FHIR API, run `GET /fhir/AuditEvent?_sort=-createdAt`
 
 To see audit logs with the Audit event viewer app, navigate to the **Audit Log** tab in Aidbox Console UI.
 
-<figure><img src="../../.gitbook/assets/cae433a3-05ca-487a-8004-782c49d5b753.png" alt=""><figcaption></figcaption></figure>
-
 And find the audit event, produced by the patient create operation.
 
 <figure><img src="../../../.gitbook/assets/01d17537-0703-43a2-a5c5-8c1c7baa0536.png" alt=""><figcaption></figcaption></figure>
 
 ## **External Audit Repository Configuration**
 
-Aidbox can also send Audit Events to a dedicated, external repository.&#x20;
+Aidbox supports forwarding audit data to an external repository. It batches individual **AuditEvent** resources into a FHIR `Bundle` of type `collection` and send the bundle to the configured repository endpoint with an HTTP `POST` request.
+
+To configure an external Audit log repository, use the following settings:
+
+* security.audit-log.repository-url
+* security.audit-log.file-path
+* security.audit-log.flush-interval
+* security.audit-log.retry-interval
+* security.audit-log.batch-count
+
+Audit log Bundle example:
+
+```json
+{
+  "resourceType": "Bundle",
+  "type": "collection",
+  "entry": [
+    {
+      "resource": {
+        "resourceType": "AuditEvent",
+        "id": "audit-1",
+        "meta": {
+          "profile": [
+            "https://profiles.ihe.net/ITI/BALP/StructureDefinition/IHE.BasicAudit.Update"
+          ]
+        },
+        "type": {
+          "system": "http://terminology.hl7.org/CodeSystem/audit-event-type",
+          "code": "rest",
+          "display": "Restful Operation"
+        },
+        "subtype": [
+          {
+            "system": "http://hl7.org/fhir/restful-interaction",
+            "code": "update",
+            "display": "update"
+          }
+        ],
+        "action": "U",
+        "recorded": "2025-06-09T14:44:48.924655Z",
+        "outcome": "0",
+        "agent": [
+          {
+            "type": {
+              "coding": [
+                {
+                  "system": "http://dicom.nema.org/resources/ontology/DCM",
+                  "code": "110152",
+                  "display": "Destination Role ID"
+                }
+              ]
+            },
+            "who": {
+              "display": "Aidbox",
+              "type": "Device"
+            },
+            "requestor": false,
+            "network": {
+              "address": "http://localhost:8765",
+              "type": "5"
+            }
+          },
+          {
+            "type": {
+              "coding": [
+                {
+                  "system": "http://dicom.nema.org/resources/ontology/DCM",
+                  "code": "110153",
+                  "display": "Source Role ID"
+                }
+              ]
+            },
+            "who": {
+              "identifier": {
+                "system": "http://localhost:8765",
+                "value": "box-ui"
+              },
+              "type": "Device"
+            },
+            "requestor": false,
+            "network": {
+              "address": "0:0:0:0:0:0:0:1",
+              "type": "2"
+            }
+          },
+          {
+            "requestor": true,
+            "altId": "admin",
+            "who": {
+              "identifier": {
+                "type": {
+                  "coding": [
+                    {
+                      "system": "urn:system:aidbox",
+                      "code": "UID",
+                      "display": "User ID"
+                    }
+                  ]
+                },
+                "system": "http://localhost:8765",
+                "value": "admin"
+              }
+            }
+          }
+        ],
+        "source": {
+          "site": "http://localhost:8765",
+          "observer": {
+            "display": "Aidbox",
+            "type": "Device"
+          },
+          "type": [
+            {
+              "system": "http://terminology.hl7.org/CodeSystem/security-source-type",
+              "code": "4",
+              "display": "Application Server"
+            }
+          ]
+        },
+        "entity": [
+          {
+            "what": {
+              "resourceType": "Patient",
+              "id": "pt-3"
+            },
+            "type": {
+              "system": "http://terminology.hl7.org/CodeSystem/audit-entity-type",
+              "code": "2",
+              "display": "System Object"
+            },
+            "role": {
+              "system": "http://terminology.hl7.org/CodeSystem/object-role",
+              "code": "4",
+              "display": "Domain Resource"
+            }
+          },
+          {
+            "what": {
+              "identifier": {
+                "value": "a34460d947050a96"
+              }
+            },
+            "type": {
+              "system": "https://profiles.ihe.net/ITI/BALP/CodeSystem/BasicAuditEntityType",
+              "code": "XrequestId"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "resource": {
+        "resourceType": "AuditEvent",
+        "id": "audit-2",
+        "meta": {
+          "profile": [
+            "https://profiles.ihe.net/ITI/BALP/StructureDefinition/IHE.BasicAudit.Update"
+          ]
+        },
+        "type": {
+          "system": "http://terminology.hl7.org/CodeSystem/audit-event-type",
+          "code": "rest",
+          "display": "Restful Operation"
+        },
+        "subtype": [
+          {
+            "system": "http://hl7.org/fhir/restful-interaction",
+            "code": "update",
+            "display": "update"
+          }
+        ],
+        "action": "U",
+        "recorded": "2025-06-09T14:44:48.924655Z",
+        "outcome": "0",
+        "agent": [
+          {
+            "type": {
+              "coding": [
+                {
+                  "system": "http://dicom.nema.org/resources/ontology/DCM",
+                  "code": "110152",
+                  "display": "Destination Role ID"
+                }
+              ]
+            },
+            "who": {
+              "display": "Aidbox",
+              "type": "Device"
+            },
+            "requestor": false,
+            "network": {
+              "address": "http://localhost:8765",
+              "type": "5"
+            }
+          },
+          {
+            "type": {
+              "coding": [
+                {
+                  "system": "http://dicom.nema.org/resources/ontology/DCM",
+                  "code": "110153",
+                  "display": "Source Role ID"
+                }
+              ]
+            },
+            "who": {
+              "identifier": {
+                "system": "http://localhost:8765",
+                "value": "box-ui"
+              },
+              "type": "Device"
+            },
+            "requestor": false,
+            "network": {
+              "address": "0:0:0:0:0:0:0:1",
+              "type": "2"
+            }
+          },
+          {
+            "requestor": true,
+            "altId": "admin",
+            "who": {
+              "identifier": {
+                "type": {
+                  "coding": [
+                    {
+                      "system": "urn:system:aidbox",
+                      "code": "UID",
+                      "display": "User ID"
+                    }
+                  ]
+                },
+                "system": "http://localhost:8765",
+                "value": "admin"
+              }
+            }
+          }
+        ],
+        "source": {
+          "site": "http://localhost:8765",
+          "observer": {
+            "display": "Aidbox",
+            "type": "Device"
+          },
+          "type": [
+            {
+              "system": "http://terminology.hl7.org/CodeSystem/security-source-type",
+              "code": "4",
+              "display": "Application Server"
+            }
+          ]
+        },
+        "entity": [
+          {
+            "what": {
+              "resourceType": "Patient",
+              "id": "pt-3"
+            },
+            "type": {
+              "system": "http://terminology.hl7.org/CodeSystem/audit-entity-type",
+              "code": "2",
+              "display": "System Object"
+            },
+            "role": {
+              "system": "http://terminology.hl7.org/CodeSystem/object-role",
+              "code": "4",
+              "display": "Domain Resource"
+            }
+          },
+          {
+            "what": {
+              "identifier": {
+                "value": "a34460d947050a96"
+              }
+            },
+            "type": {
+              "system": "https://profiles.ihe.net/ITI/BALP/CodeSystem/BasicAuditEntityType",
+              "code": "XrequestId"
+            }
+          }
+        ]
+      }
+    }
+  ]
+}
+
+```
 
 ## Use FHIR API to create Audit Log Event
 
