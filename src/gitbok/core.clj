@@ -108,7 +108,7 @@
    (->> parsed-md-index
         (mapv
          (fn [{:keys [filepath parsed]}]
-           (println "filepath " filepath)
+           (println "render filepath " filepath)
            [filepath (render-file* context filepath parsed)]))
         (into {}))))
 
@@ -136,9 +136,9 @@
   (cond
     (picture-url? (:uri request))
     (resp/resource-response
-        (subs (str/replace (:uri request)
-                           #"%20" " ")
-              10))
+     (subs (str/replace (:uri request)
+                        #"%20" " ")
+           10))
 
     ;; todo
     (= (:uri request) "/favicon.ico")
@@ -182,33 +182,26 @@
   ;; (http/register-ns-endpoints context *ns*)
 
   ;; order is important
-  (println "1")
   ; 1. read summary. create toc htmx.
   (summary/set-summary context)
-  (println "2")
   ; 2. get uris from summary (using slugging), merge with redirects
   (uri-to-file/set-idx context)
-  (println "3")
   ; 3. reverse file to uri idx
   (file-to-uri/set-idx context)
   (def ftu (file-to-uri/get-idx context))
   (take 10 ftu)
-  (println "4")
   ; 4. using files from summary (step 3), read all files into memory
   (indexing/set-md-files-idx
    context
    (file-to-uri/get-idx context))
-  (println "5")
   ; 5. parse all files into memory, some things are already rendered as plain html
   (markdown/set-parsed-markdown-index
    context
    (indexing/get-md-files-idx context))
-  (println "6")
   ; 6. using parsed markdown, set search index
   (indexing/set-search-idx
    context
    (markdown/get-parsed-markdown-index context))
-  (println "7")
   ;; 7. render it on start
   (render-all!
    context

@@ -4,7 +4,8 @@
    [gitbok.constants :as const]
    [clojure.java.io :as io]
    [system]
-   [uui]))
+   [uui]
+   [uui.heroicons :as ico]))
 
 (defn count-whitespace [s] (count (re-find #"^\s*" s)))
 
@@ -26,7 +27,10 @@
                href (str "/" href))
        :hx-target "#content"
        :hx-swap "outerHTML"}
-   title])
+   [:span {:class "flex items-center gap-2"}
+    title
+    (when (str/starts-with? href "http")
+      (ico/arrow-top-right-on-square "size-4 text-gray-400"))]])
 
 (defn parse-md-link [line]
   (when-let [match (re-find #"\[(.*?)\]\((.*?)\)"
@@ -72,16 +76,25 @@
        (if (nil? l)
          (if cur (conj acc cur) acc)
          (if (str/starts-with? (str/trim l) "#")
-           (if cur
-             (recur (conj acc cur) {:title (str/replace l #"\<.*\>" "") :children []} ls)
-             (recur acc {:title (str/replace l #"\<.*\>" "") :children []} ls))
-           (recur acc (if (str/blank? l) cur (update cur :children conj l)) ls))))
+
+           (recur (if cur (conj acc cur) acc)
+                  {:title (str/replace (str/replace l #"\<.*\>" "") #"#" "")
+                   :children []}
+                  ls)
+           (recur acc
+                  (if (str/blank? l)
+                    cur
+                    (update cur :children conj l))
+                  ls))))
      (mapv (fn [x] (update x :children (fn [chld]
                                          (->> chld
                                               (mapv (fn [x]
                                                       {:i (count-whitespace x)
                                                        :title (render-md-link x)}))
-                                              (treefy)))))))))
+                                              (treefy))))))
+     ;; (drop 1)
+
+     )))
 
 (defn set-summary [context]
   (system/set-system-state

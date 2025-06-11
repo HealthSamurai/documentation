@@ -3,7 +3,8 @@
    [clojure.string :as str]
    [gitbok.indexing.core :as indexing]
    [gitbok.indexing.impl.file-to-uri :as file-to-uri]
-   [nextjournal.markdown.utils :as u]))
+   [nextjournal.markdown.utils :as u]
+   [uui.heroicons :as ico]))
 
 (def big-link-tokenizer
   (u/normalize-tokenizer
@@ -14,10 +15,6 @@
     :handler (fn [match]
                {:type :big-link
                 :text (match 1)})}))
-
-(def icon
-  {:dangerouslySetInnerHTML
-   {:__html "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"24\" height=\"24\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6\"></path><polyline points=\"15 3 21 3 21 9\"></polyline><line x1=\"10\" y1=\"14\" x2=\"21\" y2=\"3\"></line></svg>"}})
 
 (defn href [context url filepath]
   (if (and url (str/starts-with? url "http"))
@@ -32,16 +29,14 @@
 
 (defn big-link-view [href title]
   [:div.content-ref
-   {:class "my-4 p-4 border border-gray-200 rounded-md bg-gray-50 hover:bg-gray-100 transition-colors flex items-center"}
-   [:div.content-ref-icon
-    {:class "mr-3 text-blue-500"}
-    [:span icon]]
+   {:class "border border-aidbox-border rounded-lg bg-aidbox-bg-primary hover:bg-aidbox-bg-primary transition-all duration-200 flex items-center shadow-sm hover:shadow-md"}
    [:div.content-ref-content
     {:class "flex-1"}
     [:a.content-ref-link
      {:href href
-      :class "text-blue-600 hover:text-blue-800 font-medium"}
-     title]]])
+      :class "text-aidbox-text-primary hover:text-aidbox-link font-medium text-lg transition-colors duration-200"}
+     title]]
+   (ico/chevron-right "chevron size-5 text-gray-400")])
 
 (defn render-big-link
   ([context filepath url]

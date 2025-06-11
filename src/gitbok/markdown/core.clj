@@ -87,7 +87,7 @@
                 (:heading-level item))]
     [:div {:class (when (not= 1 level) "pl-4")}
      [:a {:href href
-          :class "block py-1 text-sm text-gray-600 hover:text-gray-900"}
+          :class "toc-link block py-1 text-sm text-aidbox-text-primary hover:text-aidbox-current transition-colors duration-200"}
       content]
      (when (:children item)
        (for [child (:children item)]
@@ -97,17 +97,11 @@
   (transform/->hiccup (renderers context filepath) parsed))
 
 (defn render-gitbook [context filepath {:keys [toc] :as parsed}]
-  (def fil filepath)
-  (def context context)
-  (def parsed parsed)
-  (:content parsed)
-  [:div {:class "flex gap-8"}
+  [:div {:class "flex"}
    [:div {:class "flex-1 min-w-0"}
-    (render-md context fil parsed)]
+    (render-md context filepath parsed)]
    (when toc
-     [:div {:class "w-64 flex-shrink-0 sticky top-0 h-screen overflow-auto p-6 bg-gray-50 border-l border-gray-200"}
-      [:div {:class "text-sm font-medium text-gray-900 mb-4"}
-       "On this page"]
+     [:div {:class "toc-container"}
       (for [item (:children toc)]
         (render-toc-item item))])])
 
