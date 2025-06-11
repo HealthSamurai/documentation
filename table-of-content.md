@@ -26,7 +26,7 @@
     * Include and Revinclude
     * Chained parameters
     * Performance Considerations
-  - Aidbox Search 
+  - Aidbox Search
   - SQL API
     * SQL on FHIR - ViewDefinitions
     * AidboxQuery
@@ -37,7 +37,7 @@
   - Compartments API
 * Subscriptions & Reactive API
   - Topic based subscriptions
-  - Polling for changes  
+  - Polling for changes
 * Auth
   - Identity Management
     * Users
@@ -57,9 +57,11 @@
     * Security Labels Framework
   - Audit & Logging
     * Audit Events in Aidbox
-    * Standalone Audit Event Repository  
+    * Standalone Audit Event Repository
 * Database
-  - Database Schema & Storage Format 
+  - Requirements
+  - Database Schema & Storage Format
+  - FHIR CRUD SQL
   - Query Resources & Search API SQL
   - Aidbox's functions
   - Indexes & Performance
@@ -70,9 +72,9 @@
     - Releases/versions
     - PostgreSQL Extensions
     - HA AidboxDB (CloudNativePGOperator/Crunchy)
-       
+
 * Storage (TODO: Should we put it to API or keep at the top level)
-  - Storing Files  
+  - Storing Files
 * FHIR Configuration (Artifact Repository)
   - Choose FHIR Version
   - Load IG (FHIR Packages)
@@ -131,7 +133,7 @@
     * Newsletter
     * Contact Health Samurai
 
-    
+
 
 
 Smartbox?
