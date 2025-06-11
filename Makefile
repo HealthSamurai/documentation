@@ -6,7 +6,6 @@ init:
 	chmod +x .git/hooks/pre-commit
 
 repl:
-	# clj -M:dev:test:build
 	clj -M:dev:test
 
 tailwind:

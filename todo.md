@@ -1,59 +1,52 @@
 # Todo
 
-# most important
-- [x] redirects
-- [x] handle external links in toc
-- [x] pictures in tables?
-- [ ] pictures size
-- [ ] widgets
-- [ ] tracking
+## Most important
+
 - [ ] deploy
-- [ ] ci that do not allow absolute references 
+- [ ] ci
+- [ ] design (Kirill)
+- [ ] new UI to move pages (handles references and creates redirect)
+- [ ] tracking
 - [ ] 404 analytics?
 
-## techdebt
+## CI
+
+- [ ] check links
+  - [ ] verify summary & files
+  - [ ] grep `broken-reference` does not exists
+  - [ ] make sure every link is valid = check that file exists (clojure tests)
+  - [ ] check absolute references
+- [ ] check redirects, some are 404 already
+
+# bugs/techdebt
+
 - [ ] do not read on refresh
 - [ ] cache html
-
-## Widgets
-- [x] cards
-- [ ] Hint
-- [ ] Warning
-- [ ] Big page references
-- [ ] Tabs
-- [ ] Code
-  - [x] json
-  - [x] yaml
-  - [x] rest console
-  - [x] sql
-  - [x] shell
-
-## CI
-- [ ] check links
-- [ ] check redirects
+- [ ] rm huge image history from repo
+- [ ] redirects with sections should work api-1/api/search-1/search-parameters-list/\_explain: api/rest-api/aidbox-search.md#aidbox-special-search-parameters
+- [ ] table and cards http://localhost:8081/api-1/api/search-1/search-parameters-list/_filter
 
 ## UX
+
 - [ ] move page with references and save redirect
 - [ ] create page
 - [ ] write page in ui?
 
 ## UI
+
 - [ ] pretty design
 - [ ] mobile view
-- [ ] zoom level
-
-## Pictures
-- [ ] size
-- [ ] pictures in tables?
-
-## Features
-- [ ] tracking
-- [ ] next/prev pages
-- [ ] pretty render system resource reference 
-- [ ] feedback buttons?
+- [ ] check that everything nice in zoom level
 
 ## Tests
-- [ ] page-link->uri
-- [ ] check "orphan" pages
-- [ ] some redirects are 404 already
+
+- [ ] test page-link->uri function
 - [ ] using .. in url should be not possible
+
+## Features
+
+- [ ] rag
+- [ ] tracking
+- [ ] next/prev pages
+- [ ] pretty render system resource reference
+- [ ] feedback buttons?

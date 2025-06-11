@@ -47,5 +47,3 @@
          [:p {:class "text-gray-600 text-sm"} desc]
          ;; todo here learn more contains bad link
          (when-not pic-footer? footer)]])]))
-
-

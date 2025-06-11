@@ -59,7 +59,8 @@
          :html-inline
          (fn [_ctx node]
            (let [c (first (parse-html (-> node :content first :text)))]
-             (if (and c (= :table (first c)))
+             (if (and c (= :table (first c))
+                      (= {:data-view "cards"} (second c)))
                (cards/render-cards-from-table context filepath c)
                (uui/raw (-> node :content first :text)))))
          :html-block
@@ -67,8 +68,7 @@
            (let [c (first (parse-html (-> node :content first :text)))]
              (if (and c
                       (= :table (first c))
-                      (not= {:data-header-hidden "true"}
-                            (second c)))
+                      (= {:data-view "cards"} (second c)))
                (cards/render-cards-from-table context filepath c)
                (uui/raw (-> node :content first :text)))))))
 
