@@ -9,9 +9,10 @@ description: >-
 ## Objectives
 
 * Enable audit logging in Aidbox.
+* Receive audit logs from the FHIR API.
 * View audit log event in the Audit log viewer UI application.
 * Send Audit Events to an external Audit record repository.
-* Receive audit logs from the FHIR API.
+* Create Audit Event using FHIR API.
 
 ## Configure Audit Log
 
@@ -67,7 +68,7 @@ And find the audit event, produced by the patient create operation.
 
 ## **External Audit Repository Configuration**
 
-WIP
+Aidbox can also send Audit Events to a dedicated, external repository.&#x20;
 
 ## Use FHIR API to create Audit Log Event
 
