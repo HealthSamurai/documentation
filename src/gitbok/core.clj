@@ -80,10 +80,19 @@
      (big-links/big-link-view (str "/" uri) title))])
 
 (defn render-file* [context filepath parsed]
-  (if (and (= 1 (count (:content parsed)))
-           (= :heading (:type (first (:content parsed)))))
-    (render-empty-page context filepath (first (:content parsed)))
-    (markdown/render-gitbook context filepath parsed)))
+  [:div {:class "grid grid-cols-[1fr_17.5rem] gap-8"}
+   [:div {:class "min-w-0"}
+    (if (and (= 1 (count (:content parsed)))
+             (= :heading (:type (first (:content parsed)))))
+      (render-empty-page context filepath (first (:content parsed)))
+      (markdown/render-md context filepath parsed))]
+   [:div {:class "w-70 flex-shrink-0 sticky top-0 h-screen overflow-auto p-6 border-l border-gray-200 bg-white min-h-screen max-w-70 min-w-70"}
+    (when
+     (and (:toc parsed)
+          (-> parsed :toc :children first :children seq))
+      [:div {:class "w-full max-w-full overflow-hidden"}
+       (for [item (-> parsed :toc :children first :children)]
+         (markdown/render-toc-item item))])]])
 
 (defn read-markdown-file [context filepath]
   (let [content* (read-content context filepath)
@@ -117,7 +126,7 @@
 
 (defn render-file
   [context uri]
-  [:div.gitbook
+  [:div
    (try
      (let [uri (:uri uri)
            filepath (indexing/uri->filepath context uri)]

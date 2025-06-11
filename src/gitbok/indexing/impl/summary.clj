@@ -22,7 +22,7 @@
         (str/replace #"^/" ""))))
 
 (defn render-markdown-link-in-toc [title href]
-  [:a {:class "block px-4 py-1.5 text-gray-700 hover:bg-gray-100 hover:text-red-600 transition-colors duration-200 rounded-md mx-2 my-0.5 clickable-summary no-underline"
+  [:a {:class "block px-4 py-1.5 text-tint-strong/70 hover:bg-tint-hover hover:text-tint-strong transition-colors duration-200 rounded-md mx-2 my-0.5 clickable-summary no-underline"
        :href (if (str/starts-with? href "http")
                href (str "/" href))
        :hx-target "#content"
@@ -30,7 +30,7 @@
    [:span {:class "flex items-center gap-2"}
     title
     (when (str/starts-with? href "http")
-      (ico/arrow-top-right-on-square "size-4 text-gray-400"))]])
+      (ico/arrow-top-right-on-square "size-4 text-tint-strong/40"))]])
 
 (defn parse-md-link [line]
   (when-let [match (re-find #"\[(.*?)\]\((.*?)\)"
@@ -100,9 +100,7 @@
                                         {:i (count-whitespace x)
                                          :title (render-md-link x)}))
                                 (treefy)))))))]
-    summary
-    #_(into (get-in summary [0 :children])
-            (drop 1 summary))))
+    summary))
 
 (defn set-summary [context]
   (system/set-system-state

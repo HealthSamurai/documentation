@@ -28,12 +28,12 @@
         (str "/" uri)))))
 
 (defn big-link-view [href title]
-  [:div {:class "my-6 p-4 border border-gray-200 rounded-lg bg-white hover:border-red-600 transition-all duration-200 flex items-center shadow-sm hover:shadow-md cursor-pointer"}
+  [:div {:class "my-6 p-4 border border-tint-subtle rounded-lg bg-tint-base hover:border-primary-9 transition-all duration-200 flex items-center shadow-sm hover:shadow-md cursor-pointer"}
    [:div {:class "flex-1"}
     [:a {:href href
-         :class "text-gray-900 hover:text-red-600 font-medium text-lg transition-colors duration-200 no-underline block w-full h-full"}
+         :class "text-tint-strong hover:text-primary-9 font-medium text-lg transition-colors duration-200 no-underline block w-full h-full"}
      title]]
-   (ico/chevron-right "chevron size-5 text-gray-400")])
+   (ico/chevron-right "chevron size-5 text-tint-strong/40")])
 
 (defn render-big-link
   ([context filepath url]

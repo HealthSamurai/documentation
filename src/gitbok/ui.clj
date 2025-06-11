@@ -5,28 +5,28 @@
    [gitbok.indexing.impl.summary :as summary]
    [system]
    [uui]
+   [clojure.string :as str]
    [uui.heroicons :as ico]))
 
 (defn render-menu [items]
   (if (:children items)
-    [:details {:class ""}
+    [:details
      [:summary {:class "flex items-center justify-between font-medium text-gray-900 hover:bg-gray-100 transition-colors duration-200 cursor-pointer"}
       [:div {:class "flex-1 clickable-summary"} (:title items)]
       (ico/chevron-right "chevron size-5 text-gray-400 transition-transform duration-200")]
-     [:div {:class "ml-4 border-l border-gray-200"}
+     [:div {:class "border-l border-gray-200 ml-4"}
       (for [c (:children items)]
         (render-menu c))]]
     [:div (:title items)]))
 
 (defn menu [summary]
   [:div {:class "w-100 flex-shrink-0 sticky top-0 h-screen overflow-y-auto py-4 bg-white"}
-   [:div {:class "px-5 py-1"}
-    [:div {:class "flex flex-col gap-2"}
-     #_[:a {:href "/admin/broken" :class "block w-full"} "Broken Links"]]]
    (for [item summary]
      [:div
-      [:div {:class "pl-4 mt-4 mb-2"}
-       [:b (:title item)]]
+      (when-not
+        (str/blank? (:title item))
+        [:div {:class "mt-4 mb-2 mx-2 px-4"}
+         [:b (:title item)]])
       (for [ch (:children item)]
         (render-menu ch))])])
 
