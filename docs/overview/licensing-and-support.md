@@ -54,14 +54,14 @@ For non-profit educational institutions, the Health Samurai provides Aidbox lice
 
 We know that starting with new technology is a challenge. That's why we are inviting Aidbox users to subscribe to one of Aidbox Support tiers from their first days with Aidbox. It might be the time when you need Aidbox Support the most.
 
-Health Samurai offers four support tiers: Basic, Professional, Enterprise, and Ultimate. Below is what you need to know about each of them:\\
+Health Samurai offers four support tiers: Basic, Professional, Enterprise, and Ultimate. Below is what you need to know about each of them:
 
 | **Aidbox Support**   | **What is included**                                                                                                                                                                                                                                       | **Price** |
 | -------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------- |
-| Basic Support        | <ul><li>Account manager</li><li>Basic Aidbox consulting</li></ul>                                                                                                                                                                                          | $         |
-| Professional Support | <ul><li>Chat with Aidbox engineers</li><li>Monthly video conferences with Aidbox engineers</li><li>Priority fixing of non-blocking issues**</li><li>Priority release of new Aidbox features**</li><li>Aidbox performance optimization consulting</li></ul> | \$$       |
-| Enterprise Support   | <ul><li>Chat with Aidbox engineers</li><li>Weekly conferences with Aidbox engineers</li><li>Aidbox product enhancement or feature release**</li><li>FHIR and Aidbox consultative review and guidance</li></ul>                                             | \$$$      |
-| Ultimate Support     | <ul><li>Custom Aidbox build</li><li>Dedicated Engineers</li><li>Aidbox development for the Client</li><li>Participation in the Client’s project launch</li></ul>                                                                                           | \$$\$$    |
+| Basic Support        | <ul><li>Account manager</li><li>Basic Aidbox consulting</li></ul>                                                                                                                                                                                          | \$         |
+| Professional Support | <ul><li>Chat with Aidbox engineers</li><li>Monthly video conferences with Aidbox engineers</li><li>Priority fixing of non-blocking issues**</li><li>Priority release of new Aidbox features**</li><li>Aidbox performance optimization consulting</li></ul> | \$\$       |
+| Enterprise Support   | <ul><li>Chat with Aidbox engineers</li><li>Weekly conferences with Aidbox engineers</li><li>Aidbox product enhancement or feature release**</li><li>FHIR and Aidbox consultative review and guidance</li></ul>                                             | \$\$\$      |
+| Ultimate Support     | <ul><li>Custom Aidbox build</li><li>Dedicated Engineers</li><li>Aidbox development for the Client</li><li>Participation in the Client’s project launch</li></ul>                                                                                           | \$\$\$\$    |
 
 \*\* - during the next three releases
 

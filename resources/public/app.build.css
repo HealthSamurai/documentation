@@ -1120,6 +1120,17 @@ video {
   margin-bottom: calc(1rem * var(--tw-space-y-reverse));
 }
 
+.divide-y > :not([hidden]) ~ :not([hidden]) {
+  --tw-divide-y-reverse: 0;
+  border-top-width: calc(1px * calc(1 - var(--tw-divide-y-reverse)));
+  border-bottom-width: calc(1px * var(--tw-divide-y-reverse));
+}
+
+.divide-tint-subtle > :not([hidden]) ~ :not([hidden]) {
+  --tw-divide-opacity: 1;
+  border-color: rgb(251 249 249 / var(--tw-divide-opacity, 1));
+}
+
 .self-center {
   align-self: center;
 }
@@ -1192,6 +1203,10 @@ video {
 
 .border-l {
   border-left-width: 1px;
+}
+
+.border-r {
+  border-right-width: 1px;
 }
 
 .border-aidbox-border {
@@ -1268,6 +1283,10 @@ video {
   border-color: rgb(254 240 138 / var(--tw-border-opacity, 1));
 }
 
+.border-tint-subtle\/50 {
+  border-color: rgb(251 249 249 / 0.5);
+}
+
 .bg-aidbox-bg-primary {
   --tw-bg-opacity: 1;
   background-color: rgb(255 255 255 / var(--tw-bg-opacity, 1));
@@ -1321,6 +1340,16 @@ video {
 .bg-yellow-50 {
   --tw-bg-opacity: 1;
   background-color: rgb(254 252 232 / var(--tw-bg-opacity, 1));
+}
+
+.bg-red-500 {
+  --tw-bg-opacity: 1;
+  background-color: rgb(239 68 68 / var(--tw-bg-opacity, 1));
+}
+
+.bg-tint-subtle {
+  --tw-bg-opacity: 1;
+  background-color: rgb(251 249 249 / var(--tw-bg-opacity, 1));
 }
 
 .object-contain {
@@ -1751,6 +1780,10 @@ video {
 .text-yellow-800 {
   --tw-text-opacity: 1;
   color: rgb(133 77 14 / var(--tw-text-opacity, 1));
+}
+
+.text-tint-strong\/80 {
+  color: rgb(31 28 28 / 0.8);
 }
 
 .underline {
@@ -2616,6 +2649,10 @@ details[open] > summary .chevron {
   color: rgb(156 163 175 / var(--tw-text-opacity, 1));
 }
 
+.last\:border-r-0:last-child {
+  border-right-width: 0px;
+}
+
 .hover\:border-gray-400:hover {
   --tw-border-opacity: 1;
   border-color: rgb(156 163 175 / var(--tw-border-opacity, 1));
@@ -2639,6 +2676,10 @@ details[open] > summary .chevron {
 .hover\:bg-tint-hover:hover {
   --tw-bg-opacity: 1;
   background-color: rgb(246 241 240 / var(--tw-bg-opacity, 1));
+}
+
+.hover\:bg-tint-subtle\/30:hover {
+  background-color: rgb(251 249 249 / 0.3);
 }
 
 .hover\:text-blue-800:hover {

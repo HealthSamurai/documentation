@@ -47,58 +47,45 @@
 
          :heading
          (comp
-          (fn [header-hiccup]
-            (let [tag (first header-hiccup)
-                  ;; attrs (second header-hiccup)
-                  ;; content (nthrest header-hiccup 2)
-                  level (case tag
-                          :h1 1
-                          :h2 2
-                          :h3 3
-                          :h4 4
-                          :h5 5
-                          :h6 6
-                          4)
-                  classes (case level
-                            1 "mt-6 text-4xl font-bold text-gray-900 pb-4 mb-8"
-                            2 "mt-8 text-2xl font-semibold text-gray-900 pb-2 mb-6"
-                            3 "mt-6 text-xl font-semibold text-gray-900 mb-4"
-                            4 "mt-4 text-lg font-medium text-gray-900 mb-3"
-                            5 "mt-3 text-base font-medium text-gray-900 mb-2"
-                            6 "mt-2 text-sm font-medium text-gray-900 mb-1"
-                            "text-gray-900")]
-              (cond-> header-hiccup
-                (-> header-hiccup (get 1) :id)
-                (update-in
-                 [1 :id]
-                 (fn [id]
-                   (str/replace id #"^-|-$" "")))
-                :always
-                (update-in
-                 [1 :class]
-                 (fnil
-                  (fn [existing-class]
-                    (str/trim
-                     (str existing-class " " classes))) "")))))
-          (:heading transform/default-hiccup-renderers))
+           (fn [header-hiccup]
+             (let [tag (first header-hiccup)
+                   ;; attrs (second header-hiccup)
+                   ;; content (nthrest header-hiccup 2)
+                   level (case tag
+                           :h1 1
+                           :h2 2
+                           :h3 3
+                           :h4 4
+                           :h5 5
+                           :h6 6
+                           4)
+                   classes (case level
+                             1 "mt-6 text-4xl font-bold text-gray-900 pb-4 mb-8"
+                             2 "mt-8 text-2xl font-semibold text-gray-900 pb-2 mb-6"
+                             3 "mt-6 text-xl font-semibold text-gray-900 mb-4"
+                             4 "mt-4 text-lg font-medium text-gray-900 mb-3"
+                             5 "mt-3 text-base font-medium text-gray-900 mb-2"
+                             6 "mt-2 text-sm font-medium text-gray-900 mb-1"
+                             "text-gray-900")]
+               (cond-> header-hiccup
+                 (-> header-hiccup (get 1) :id)
+                 (update-in
+                   [1 :id]
+                   (fn [id]
+                     (str/replace id #"^-|-$" "")))
+                 :always
+                 (update-in
+                   [1 :class]
+                   (fnil
+                     (fn [existing-class]
+                       (str/trim
+                         (str existing-class " " classes))) "")))))
+           (:heading transform/default-hiccup-renderers))
 
          :bullet-list
-         (fn [ctx node] (def node node)
+         (fn [ctx node]
            (into [:ul {:class "mt-4 ml-8 list-disc text-gray-900"}]
                  (mapv #(transform/->hiccup ctx %) (:content node))))
-
-         #_(comp
-          (fn [ul-hiccup]
-            (def ul-hiccup ul-hiccup)
-            (into
-               [:ul {:class "mt-4 ml-8 list-disc text-gray-900"}]
-               (nthrest ul-hiccup 1))
-            ;; (update-in
-            ;;  ul-hiccup [1 :class]
-            ;;  (fnil (fn [existing-class]
-            ;;          (str/trim (str existing-class " mt-4 ml-8 list-disc text-gray-900"))) ""))
-            )
-          (:bullet-list transform/default-hiccup-renderers))
 
          ;; :ordered-list
          ;; (comp
@@ -117,6 +104,36 @@
          ;;                                     (str/trim (str existing-class " mb-2")))))
          ;;  (:list-item transform/default-hiccup-renderers))
 
+         :table
+         (fn [ctx node]
+           (def node node)
+           (into [:table {:class "min-w-full border border-tint-subtle rounded-lg bg-white shadow-sm my-6"}]
+                 (mapv #(transform/->hiccup ctx %) (:content node))))
+
+         :table-head
+         (fn [ctx node]
+           (into [:thead {:class "border-b border-tint-subtle"}]
+                 (mapv #(transform/->hiccup ctx %) (:content node))))
+
+         :table-body
+         (fn [ctx node]
+           (into [:tbody {:class "divide-y divide-tint-subtle"}]
+                 (mapv #(transform/->hiccup ctx %) (:content node))))
+
+         :table-row
+         (fn [ctx node]
+           (into [:tr {:class "hover:bg-tint-hover transition-colors duration-200"}]
+                 (mapv #(transform/->hiccup ctx %) (:content node))))
+
+         :table-data
+         (fn [ctx node]
+           (into [:td {:class "px-4 py-3 text-sm border-r border-tint-subtle/50 last:border-r-0 text-tint-strong/80 text-left"}]
+                 (mapv #(transform/->hiccup ctx %) (:content node))))
+
+         :table-header
+         (fn [ctx node]
+           (into [:th {:class "px-4 py-4 text-sm border-r border-tint-subtle/50 last:border-r-0 text-tint-strong font-semibold text-left"}]
+                 (mapv #(transform/->hiccup ctx %) (:content node))))
 
          :html-inline
          (fn [_ctx node]
