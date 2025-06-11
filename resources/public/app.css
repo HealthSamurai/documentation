@@ -388,7 +388,7 @@ details[open] > summary .chevron {
 }
 
 /* Images in blockquotes */
-.gitbook blockquote img {
+.gitbook .hint img {
   max-width: 300px !important;
   height: auto !important;
 }
