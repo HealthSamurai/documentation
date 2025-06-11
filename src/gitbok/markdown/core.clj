@@ -61,8 +61,8 @@
                            4)
                    classes (case level
                              1 "mt-6 text-4xl font-bold text-gray-900 pb-4 mb-8"
-                             2 "mt-8 text-2xl font-semibold text-gray-900 pb-2 mb-6"
-                             3 "mt-6 text-xl font-semibold text-gray-900 mb-4"
+                             2 "mt-8 text-3xl font-semibold text-gray-900 pb-2 mb-6"
+                             3 "mt-6 text-2xl font-semibold text-gray-900 mb-4"
                              4 "mt-4 text-lg font-medium text-gray-900 mb-3"
                              5 "mt-3 text-base font-medium text-gray-900 mb-2"
                              6 "mt-2 text-sm font-medium text-gray-900 mb-1"
@@ -81,6 +81,11 @@
                        (str/trim
                          (str existing-class " " classes))) "")))))
            (:heading transform/default-hiccup-renderers))
+
+         :paragraph
+         (fn [ctx node]
+           (into [:p {:class "my-4 text-gray-900 leading-relaxed"}]
+                 (mapv #(transform/->hiccup ctx %) (:content node))))
 
          :bullet-list
          (fn [ctx node]
@@ -106,9 +111,8 @@
 
          :table
          (fn [ctx node]
-           (def node node)
            (into [:table {:class "min-w-full border border-tint-subtle rounded-lg bg-white shadow-sm my-6"}]
-                 (mapv #(transform/->hiccup ctx %) (:content node))))
+                   (mapv #(transform/->hiccup ctx %) (:content node))))
 
          :table-head
          (fn [ctx node]
@@ -137,19 +141,31 @@
 
          :html-inline
          (fn [_ctx node]
+           (def nn node)
            (let [c (first (parse-html (-> node :content first :text)))]
              (if (and c (= :table (first c))
                       (= {:data-view "cards"} (second c)))
                (cards/render-cards-from-table context filepath c)
                (uui/raw (-> node :content first :text)))))
+               
          :html-block
          (fn [_ctx node]
            (let [c (first (parse-html (-> node :content first :text)))]
-             (if (and c
+             (cond
+               (and c
                       (= :table (first c))
                       (= {:data-view "cards"} (second c)))
                (cards/render-cards-from-table context filepath c)
+
+               (and c
+                    (= :table (first c))
+                    (= {:data-header-hidden ""} (second c)))
+               (uui/raw (-> node :content first :text
+                            (str/replace #"\<thead.*/thead>" "")))
+
+               :else
                (uui/raw (-> node :content first :text)))))))
+
 
 (defn render-toc-item [item]
   (let [content

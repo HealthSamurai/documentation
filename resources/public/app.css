@@ -29,6 +29,38 @@
   --aidbox-shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
 }
 
+ul {
+  @apply mt-4 ml-8 list-disc text-gray-900;
+}
+
+table {
+  @apply min-w-full border border-tint-subtle rounded-lg bg-white shadow-sm my-6;
+}
+
+thead {
+  @apply border-b border-tint-subtle;
+}
+
+tbody {
+  @apply divide-y divide-tint-subtle;
+}
+
+tr {
+  @apply hover:bg-tint-hover transition-colors duration-200;
+}
+
+td {
+  @apply px-4 py-3 text-sm border-r border-tint-subtle/50 last:border-r-0 text-tint-strong/80 text-left;
+}
+
+th {
+  @apply px-4 py-4 text-sm border-r border-tint-subtle/50 last:border-r-0 text-tint-strong font-semibold text-left;
+}
+
+strong {
+  @apply text-black font-semibold;
+}
+
 /* Base styles - REPLACED WITH TAILWIND */
 /* body {
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
@@ -619,15 +651,15 @@ details[open] > summary .chevron {
   .main-container {
     padding: 0 0.75rem !important;
   }
-  
+
   .toc-container {
     width: 240px;
   }
-  
+
   .nav {
     width: 240px;
   }
-  
+
   .flex.gap-8 .toc-container {
     width: 240px !important;
   }
@@ -638,23 +670,23 @@ details[open] > summary .chevron {
     padding: 0 0.5rem !important;
     flex-direction: column !important;
   }
-  
+
   .gitbook {
     padding: 1rem 0;
   }
-  
+
   .gitbook h1 {
     font-size: 2rem;
   }
-  
+
   .gitbook h2 {
     font-size: 1.5rem;
   }
-  
+
   .gitbook h3 {
     font-size: 1.25rem;
   }
-  
+
   .nav {
     position: fixed;
     top: 0;
@@ -664,11 +696,11 @@ details[open] > summary .chevron {
     z-index: 1000;
     transition: left 0.3s ease;
   }
-  
+
   .nav.open {
     left: 0;
   }
-  
+
   .toc-container {
     width: 100%;
     position: static;
@@ -676,11 +708,11 @@ details[open] > summary .chevron {
     border-left: none;
     border-top: 1px solid var(--aidbox-border);
   }
-  
+
   .flex.gap-8 {
     flex-direction: column !important;
   }
-  
+
   .flex.gap-8 .toc-container {
     width: 100% !important;
   }
@@ -698,12 +730,12 @@ details[open] > summary .chevron {
     --aidbox-border: #334155;
     --aidbox-border-hover: #475569;
   }
-  
+
   .gitbook pre {
     background-color: #1e293b;
     color: #e2e8f0;
   }
-  
+
   .gitbook p code {
     background-color: #334155;
     color: #e2e8f0;
