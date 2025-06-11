@@ -74,7 +74,9 @@
        index))))
 
 (defn render-empty-page [context filepath parsed-heading]
-  [:div [:h1 (-> parsed-heading :content first :text)]
+  [:div 
+   [:h1 {:class "mt-6 text-4xl font-bold text-gray-900 pb-4 mb-8"} 
+   (-> parsed-heading :content first :text)]
    (for [[_path {:keys [title uri]}]
          (find-children-files context filepath)]
      (big-links/big-link-view (str "/" uri) title))])
