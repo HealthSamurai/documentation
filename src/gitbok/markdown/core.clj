@@ -42,10 +42,9 @@
          :image image/image-renderer
          :link (partial link/link-renderer context filepath)
          :internal-link link/link-renderer
-         :blockquote
-         github-hint/github-hint-renderer
-         :nothing
-         (fn [_ctx _node] "")
+
+         :blockquote github-hint/github-hint-renderer
+
          :heading
          (comp
           (fn [header-hiccup]
@@ -98,9 +97,13 @@
   (transform/->hiccup (renderers context filepath) parsed))
 
 (defn render-gitbook [context filepath {:keys [toc] :as parsed}]
+  (def fil filepath)
+  (def context context)
+  (def parsed parsed)
+  (:content parsed)
   [:div {:class "flex gap-8"}
    [:div {:class "flex-1 min-w-0"}
-    (render-md context filepath parsed)]
+    (render-md context fil parsed)]
    (when toc
      [:div {:class "w-64 flex-shrink-0 sticky top-0 h-screen overflow-auto p-6 bg-gray-50 border-l border-gray-200"}
       [:div {:class "text-sm font-medium text-gray-900 mb-4"}

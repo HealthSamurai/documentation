@@ -1,5 +1,7 @@
 (ns build
-  (:require [clojure.tools.build.api :as b]))
+  (:require
+    [clojure.java.io :as io]
+    [clojure.tools.build.api :as b]))
 
 (def lib  'gitbok)
 (def main 'gitbok.core)
@@ -22,8 +24,13 @@
 
   (let [opts (uber-opts opts)]
     (println "Copying files...")
-    (b/copy-dir {:src-dirs   ["resources" "src"]
+
+    (b/copy-dir {:src-dirs ["resources" "src" "docs" ".gitbook"]
                  :target-dir class-dir})
+
+    (b/copy-file {:src ".gitbook.yaml"
+                  :target (str class-dir "/resources/.gitbook.yaml")})
+
     (b/write-file {:path (str class-dir "/version") :string version})
 
     (println "Compiling files...")

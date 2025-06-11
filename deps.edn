@@ -1,6 +1,11 @@
-{:paths ["src" "resources"
+{:paths ["src"
          ;; "java" "classes"
          "libs"
+
+         "resources"
+         "docs"
+         ".gitbook.yaml"
+         ".gitbook"
          ]
  :deps {org.clojure/clojure    {:mvn/version "1.12.0"}
         context/system         {:local/root "./libs/system"}

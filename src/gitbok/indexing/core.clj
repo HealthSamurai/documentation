@@ -91,27 +91,30 @@
 (defn list-markdown-files [dir]
   (let [dir-length (count dir)]
     (->> (file-seq (clojure.java.io/file dir))
-         (filter #(.isFile %))
-         (filter #(clojure.string/ends-with? (.getName %) ".md"))
-         (map #(-> % .getPath (subs (inc dir-length)))))))
+         (filter #(.isFile ^java.io.File %))
+         (filter #(clojure.string/ends-with? (.getName ^java.io.File %) ".md"))
+         (map #(-> ^java.io.File % .getPath (subs (inc dir-length)))))))
 
-(defn read-content [_context filepath]
-  (let [content (slurp filepath)]
+(defn read-content [filepath]
+  (let [content (slurp (io/resource filepath))]
     (if (str/starts-with? content "---")
       (last (str/split content #"---\n" 3))
       content)))
 
-(defn slurp-md-files! [dir]
+(defn slurp-md-files! [filepaths-from-summary]
+  ;; "docs" is in resources classpath in deps.edn
   (reduce (fn [acc filename]
-            (assoc acc filename
-                   (read-content nil (str dir "/" filename)))) {}
-          (list-markdown-files dir)))
+            (if (str/starts-with? filename "http")
+              acc
+              (assoc acc filename
+                     (read-content filename)))) {}
+          filepaths-from-summary))
 
-(defn set-md-files-idx [context]
+(defn set-md-files-idx [context file-to-uri-idx]
   (system/set-system-state
    context
    [const/MD_FILES_IDX]
-   (slurp-md-files! "./docs")))
+   (slurp-md-files! (keys file-to-uri-idx))))
 
 (defn get-md-files-idx [context]
   (system/get-system-state

@@ -2,7 +2,6 @@
   (:require [gitbok.indexing.core :as indexing]
             [cheshire.core]
             [gitbok.ui]
-            [gitbok.static]
             [http]
             [system]
             [uui]))

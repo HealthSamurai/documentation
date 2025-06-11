@@ -9,13 +9,12 @@
    [system]))
 
 (defn uri->filepath [uri->file-idx ^String uri]
-  (let [uri (if (= "/" (subs uri 0 1)) (subs uri 1) uri)
-        fixed-url (if (= "/" (subs uri (dec (count uri))))
-                    (subs uri 0 (dec (count uri)))
-                    uri)
-        file (get uri->file-idx fixed-url)]
-    (when file
-      (str "/docs/" file))))
+  (when (and uri (> (count uri) 1))
+    (let [uri (if (= "/" (subs uri 0 1)) (subs uri 1) uri)
+          fixed-url (if (= "/" (subs uri (dec (count uri))))
+                      (subs uri 0 (dec (count uri)))
+                      uri)]
+      (get uri->file-idx fixed-url))))
 
 (defn uri->file-idx
   [_]

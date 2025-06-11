@@ -28,5 +28,4 @@
   (system/get-system-state context [const/FILE->URI_IDX]))
 
 (defn filepath->uri [context filepath]
-  (def f filepath )
   (:uri (get (get-idx context) filepath)))

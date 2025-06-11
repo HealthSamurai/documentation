@@ -2,6 +2,7 @@
   (:gen-class)
   (:require
    [cheshire.core]
+   [gitbok.constants :as const]
    [clojure.string :as str]
    [gitbok.broken-links]
    [gitbok.markdown.core :as markdown]
@@ -12,17 +13,19 @@
    [gitbok.indexing.impl.uri-to-file :as uri-to-file]
    [gitbok.search]
    [gitbok.ui]
-   [gitbok.static]
    [http]
    [clojure.java.io :as io]
    [ring.util.response :as resp]
    [system]
    [gitbok.utils :as utils]
    [uui]))
+
 (set! *warn-on-reflection* true)
 
+(def dev? (= "true" (System/getenv "DEV")))
+
 (defn read-content [_context filepath]
-  (let [content (slurp filepath)]
+  (let [content (slurp (io/resource filepath))]
     (if (str/starts-with? content "---")
       (last (str/split content #"---\n" 3))
       content)))
@@ -76,34 +79,55 @@
          (find-children-files context filepath)]
      (big-links/big-link-view (str "/" uri) title))])
 
-(defn read-and-render-file
-  [context request]
-  ;; todo do not read, get from idx
-  [:div.gitbook
-   (try
-     (let [uri (:uri request)
-           filepath (str "." (indexing/uri->filepath context uri))
-           content* (read-content context filepath)
-           {:keys [parsed]}
-           (markdown/parse-markdown-content context [filepath content*])]
-       (try
-         (if (and (= 1 (count (:content parsed)))
-                  (= :heading (:type (first (:content parsed)))))
-           (render-empty-page context filepath (first (:content parsed)))
-           (markdown/render-gitbook context filepath parsed))
-         (catch Exception e
-           [:div {:role "alert"}
-            (.getMessage e)
-            [:pre (pr-str e)]
-            [:pre content*]])))
-     (catch Exception e
-       [:div {:role "alert"}
-        (.getMessage e)
-        [:pre (pr-str e)]]))])
+(defn render-file* [context filepath parsed]
+  (if (and (= 1 (count (:content parsed)))
+           (= :heading (:type (first (:content parsed)))))
+    (render-empty-page context filepath (first (:content parsed)))
+    (markdown/render-gitbook context filepath parsed)))
+
+(defn read-markdown-file [context filepath]
+  (let [content* (read-content context filepath)
+        {:keys [parsed]}
+        (markdown/parse-markdown-content context [filepath content*])]
+    (try
+      (render-file* context filepath parsed)
+      (catch Exception e
+        [:div {:role "alert"}
+         (.getMessage e)
+         [:pre (pr-str e)]
+         [:pre content*]]))))
 
 (defn picture-url? [url]
   (when url
     (str/includes? url ".gitbook/assets")))
+
+(defn render-all! [context parsed-md-index]
+  (system/set-system-state
+   context
+   [const/RENDERED]
+   (->> parsed-md-index
+        (mapv
+         (fn [{:keys [filepath parsed]}]
+           (println "filepath " filepath)
+           [filepath (render-file* context filepath parsed)]))
+        (into {}))))
+
+(defn get-rendered [context filepath]
+  (get (system/get-system-state context [const/RENDERED]) filepath))
+
+(defn render-file
+  [context uri]
+  [:div.gitbook
+   (try
+     (let [uri (:uri uri)
+           filepath (indexing/uri->filepath context uri)]
+       (if dev?
+         (read-markdown-file context filepath)
+         (get-rendered context filepath)))
+     (catch Exception e
+       [:div {:role "alert"}
+        (.getMessage e)
+        [:pre (pr-str e)]]))])
 
 (defn
   ^{:http {:path "/:path*"}}
@@ -111,8 +135,10 @@
   [context request]
   (cond
     (picture-url? (:uri request))
-    (resp/file-response (subs (str/replace (:uri request)
-                                           #"%20" " ") 1))
+    (resp/resource-response
+        (subs (str/replace (:uri request)
+                           #"%20" " ")
+              10))
 
     ;; todo
     (= (:uri request) "/favicon.ico")
@@ -123,7 +149,7 @@
       (if filepath
         (gitbok.ui/layout
          context request
-         (read-and-render-file context request))
+         (render-file context request))
 
         (gitbok.ui/layout
          context request
@@ -156,20 +182,37 @@
   ;; (http/register-ns-endpoints context *ns*)
 
   ;; order is important
-  (uri-to-file/set-idx context)
-  (file-to-uri/set-idx context)
+  (println "1")
+  ; 1. read summary. create toc htmx.
   (summary/set-summary context)
-  (indexing/set-md-files-idx context)
-
+  (println "2")
+  ; 2. get uris from summary (using slugging), merge with redirects
+  (uri-to-file/set-idx context)
+  (println "3")
+  ; 3. reverse file to uri idx
+  (file-to-uri/set-idx context)
+  (def ftu (file-to-uri/get-idx context))
+  (take 10 ftu)
+  (println "4")
+  ; 4. using files from summary (step 3), read all files into memory
+  (indexing/set-md-files-idx
+   context
+   (file-to-uri/get-idx context))
+  (println "5")
+  ; 5. parse all files into memory, some things are already rendered as plain html
   (markdown/set-parsed-markdown-index
    context
    (indexing/get-md-files-idx context))
-
+  (println "6")
+  ; 6. using parsed markdown, set search index
   (indexing/set-search-idx
    context
    (markdown/get-parsed-markdown-index context))
-
-  ;; todo reuse md-files-idx
+  (println "7")
+  ;; 7. render it on start
+  (render-all!
+   context
+   (markdown/get-parsed-markdown-index context))
 
   (http/register-endpoint
    context
@@ -183,9 +226,9 @@
     :fn #'gitbok.search/search-results-view})
 
   (http/register-endpoint
-    context
-    {:path "/healthcheck" :method
-     :get :fn #'healthcheck})
+   context
+   {:path "/healthcheck" :method
+    :get :fn #'healthcheck})
 
   (http/register-endpoint
    context
@@ -207,14 +250,13 @@
   {:services ["http" "uui" "gitbok.core"]
    :http {:port default-port}})
 
-
 (defn -main [& args]
   (let [p (System/getenv "PORT")
         port (or
-               (when p
-                 (try (Integer/parseInt p)
-                      (catch Exception _ nil)))
-               default-port)]
+              (when p
+                (try (Integer/parseInt p)
+                     (catch Exception _ nil)))
+              default-port)]
     (println "Server started")
     (println "port " port)
     (system/start-system default-config)))

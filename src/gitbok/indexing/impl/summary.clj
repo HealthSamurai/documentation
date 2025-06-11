@@ -2,6 +2,7 @@
   (:require
    [clojure.string :as str]
    [gitbok.constants :as const]
+   [clojure.java.io :as io]
    [system]
    [uui]))
 
@@ -19,19 +20,26 @@
         (str/replace #"/$" "")
         (str/replace #"^/" ""))))
 
-(defn parse-markdown-link [text]
-  (if-let [match (re-find #"\[(.*?)\]\((.*?)\)" text)]
-    (let [href (nth match 2)
-          href (file->href href)]
-      [:a {:class "px-4 text-gray-500 block hover:bg-gray-50 py-1 clickable-summary"
-           :href (if (str/starts-with? href "http") href (str "/" href))
-           :hx-target "#content"
-           :hx-swap "outerHTML"}
-       (uui/raw (nth match 1))])
-    text))
+(defn render-markdown-link-in-toc [title href]
+  [:a {:class "px-4 text-gray-500 block hover:bg-gray-50 py-1 clickable-summary"
+       :href (if (str/starts-with? href "http")
+               href (str "/" href))
+       :hx-target "#content"
+       :hx-swap "outerHTML"}
+   title])
 
-(defn trim-l [l]
-  (parse-markdown-link (str/replace (str/trim l) #"\s*\*\s*" "")))
+(defn parse-md-link [line]
+  (when-let [match (re-find #"\[(.*?)\]\((.*?)\)"
+                          (str/replace (str/trim line) #"\s*\*\s*" ""))]
+    (let [href (nth match 2)
+          href (file->href href)
+          title (nth match 1)]
+      {:title title :href href})))
+
+(defn render-md-link [line]
+  (if-let [parsed (parse-md-link line)]
+    (render-markdown-link-in-toc (:title parsed) (:href parsed))
+    line))
 
 (defn collect-children [x ls]
   (loop [[{i :i :as l} & ls :as pls] ls acc []]
@@ -51,10 +59,10 @@
         (recur ls (conj acc l))))))
 
 (defn read-summary []
-  (slurp const/SUMMARY_PATH))
+  (slurp (io/resource const/SUMMARY_PATH)))
 
 (defn parse-summary
-  "Read SUMMARY.md and parse into hashmap tree."
+  "Read SUMMARY.md and parse and render."
   []
   (let [sum (read-summary)]
     (->>
@@ -72,7 +80,7 @@
                                          (->> chld
                                               (mapv (fn [x]
                                                       {:i (count-whitespace x)
-                                                       :title (trim-l x)}))
+                                                       :title (render-md-link x)}))
                                               (treefy)))))))))
 
 (defn set-summary [context]
