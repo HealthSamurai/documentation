@@ -22,7 +22,7 @@
         (str/replace #"^/" ""))))
 
 (defn render-markdown-link-in-toc [title href]
-  [:a {:class "px-4 text-gray-500 block hover:bg-gray-50 py-1 clickable-summary"
+  [:a {:class "block px-4 py-1.5 text-gray-700 hover:bg-gray-100 hover:text-red-600 transition-colors duration-200 rounded-md mx-2 my-0.5 clickable-summary no-underline"
        :href (if (str/starts-with? href "http")
                href (str "/" href))
        :hx-target "#content"
@@ -34,7 +34,7 @@
 
 (defn parse-md-link [line]
   (when-let [match (re-find #"\[(.*?)\]\((.*?)\)"
-                          (str/replace (str/trim line) #"\s*\*\s*" ""))]
+                            (str/replace (str/trim line) #"\s*\*\s*" ""))]
     (let [href (nth match 2)
           href (file->href href)
           title (nth match 1)]
@@ -65,36 +65,44 @@
 (defn read-summary []
   (slurp (io/resource const/SUMMARY_PATH)))
 
+(defn title [s]
+  (let [t (str/trim (str/replace (str/replace s #"\<.*\>" "") #"#" ""))]
+    (if (= "Table of contents" t) "" t)))
+
 (defn parse-summary
   "Read SUMMARY.md and parse and render."
   []
-  (let [sum (read-summary)]
-    (->>
-     (loop [acc []
-            cur nil
-            [l & ls] (str/split sum #"\n")]
-       (if (nil? l)
-         (if cur (conj acc cur) acc)
-         (if (str/starts-with? (str/trim l) "#")
+  (let [sum (read-summary)
+        summary
+        (->>
+         (loop [acc []
+                cur nil
+                [l & ls] (str/split sum #"\n")]
+           (if (nil? l)
+             (if cur (conj acc cur) acc)
+             (if (str/starts-with? (str/trim l) "#")
+               (recur
+                (if cur (conj acc cur) acc)
+                {:title (title l)
+                 :children []}
+                ls)
+               (recur acc
+                      (if (str/blank? l)
+                        cur
+                        (update cur :children conj l))
+                      ls))))
 
-           (recur (if cur (conj acc cur) acc)
-                  {:title (str/replace (str/replace l #"\<.*\>" "") #"#" "")
-                   :children []}
-                  ls)
-           (recur acc
-                  (if (str/blank? l)
-                    cur
-                    (update cur :children conj l))
-                  ls))))
-     (mapv (fn [x] (update x :children (fn [chld]
-                                         (->> chld
-                                              (mapv (fn [x]
-                                                      {:i (count-whitespace x)
-                                                       :title (render-md-link x)}))
-                                              (treefy))))))
-     ;; (drop 1)
-
-     )))
+         (mapv (fn [x]
+                 (update x :children
+                         (fn [chld]
+                           (->> chld
+                                (mapv (fn [x]
+                                        {:i (count-whitespace x)
+                                         :title (render-md-link x)}))
+                                (treefy)))))))]
+    summary
+    #_(into (get-in summary [0 :children])
+            (drop 1 summary))))
 
 (defn set-summary [context]
   (system/set-system-state

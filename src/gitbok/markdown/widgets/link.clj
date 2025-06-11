@@ -17,5 +17,6 @@
           ))))
 
 (defn link-renderer [context filepath ctx node]
-  [:a {:href (href context node filepath)}
+  [:a {:href (href context node filepath)
+       :class "text-red-600 underline underline-offset-2 decoration-1 hover:text-red-700 hover:decoration-2 transition-all duration-200"}
    (-> node :content (get 0) :text)])

@@ -28,13 +28,10 @@
         (str "/" uri)))))
 
 (defn big-link-view [href title]
-  [:div.content-ref
-   {:class "border border-aidbox-border rounded-lg bg-aidbox-bg-primary hover:bg-aidbox-bg-primary transition-all duration-200 flex items-center shadow-sm hover:shadow-md"}
-   [:div.content-ref-content
-    {:class "flex-1"}
-    [:a.content-ref-link
-     {:href href
-      :class "text-aidbox-text-primary hover:text-aidbox-link font-medium text-lg transition-colors duration-200"}
+  [:div {:class "my-6 p-4 border border-gray-200 rounded-lg bg-white hover:border-red-600 transition-all duration-200 flex items-center shadow-sm hover:shadow-md cursor-pointer"}
+   [:div {:class "flex-1"}
+    [:a {:href href
+         :class "text-gray-900 hover:text-red-600 font-medium text-lg transition-colors duration-200 no-underline block w-full h-full"}
      title]]
    (ico/chevron-right "chevron size-5 text-gray-400")])
 

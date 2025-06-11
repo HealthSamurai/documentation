@@ -3,7 +3,7 @@
 @tailwind utilities;
 @import "../../libs/http/resources/public/uui.css";
 
-/* Custom CSS variables for Aidbox-style theming */
+/* Custom CSS variables for Aidbox-style theming - KEPT FOR REFERENCE */
 :root {
   --aidbox-primary: #3b82f6;
   --aidbox-primary-dark: #2563eb;
@@ -29,28 +29,28 @@
   --aidbox-shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
 }
 
-/* Base styles */
-body {
+/* Base styles - REPLACED WITH TAILWIND */
+/* body {
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
   line-height: 1.6;
   color: var(--aidbox-text-primary);
   background-color: var(--aidbox-bg-primary);
   margin: 0;
   padding: 0;
-}
+} */
 
-/* Main layout container */
-.main-container {
+/* Main layout container - REPLACED WITH TAILWIND */
+/* .main-container {
   max-width: 1600px !important;
   margin: 0 auto !important;
   padding: 0 1rem !important;
   display: flex !important;
   gap: 2rem !important;
   min-height: 100vh !important;
-}
+} */
 
-/* Global link styles - no underlines by default */
-a {
+/* Global link styles - REPLACED WITH TAILWIND */
+/* a {
   color: var(--aidbox-link);
   text-decoration: none;
   transition: all 0.2s ease;
@@ -58,10 +58,10 @@ a {
 
 a:hover {
   color: var(--aidbox-link-hover);
-}
+} */
 
-/* Header links - no underlines */
-header a,
+/* Header links - REPLACED WITH TAILWIND */
+/* header a,
 .header a,
 .navbar a,
 .top-nav a,
@@ -78,10 +78,10 @@ header a:hover,
 .search a:hover {
   color: var(--aidbox-link-hover);
   text-decoration: none;
-}
+} */
 
-/* Big Links (Content Reference Cards) - Aidbox Style */
-.content-ref {
+/* Big Links (Content Reference Cards) - REPLACED WITH TAILWIND */
+/* .content-ref {
   margin: 1.5rem 0;
   padding: 1rem;
   border: 1px solid var(--aidbox-border);
@@ -124,12 +124,11 @@ header a:hover,
 .content-ref-link:hover {
   color: var(--aidbox-link) !important;
   text-decoration: none !important;
-}
+} */
 
-/* Navigation styles */
-.nav {
+/* Navigation styles - REPLACED WITH TAILWIND */
+/* .nav {
   background-color: var(--aidbox-bg-primary);
-  /* border-right: 1px solid var(--aidbox-border); */
   width: 300px;
   flex-shrink: 0;
   position: sticky;
@@ -144,12 +143,10 @@ header a:hover,
   display: flex;
   justify-content: space-between;
   align-items: center;
-  /* padding: 0.5rem 1rem; */
   font-weight: 500;
   color: var(--aidbox-text-primary);
   transition: all 0.2s ease;
   min-height: auto;
-  /* line-height: 1.4; */
 }
 
 .nav summary:hover {
@@ -190,10 +187,10 @@ details[open] > summary .chevron {
   background-color: var(--aidbox-link);
   color: white;
   text-decoration: none;
-}
+} */
 
-/* TOC (Table of Contents) styles */
-.toc {
+/* TOC (Table of Contents) styles - REPLACED WITH TAILWIND */
+/* .toc {
   background-color: var(--aidbox-bg-primary);
   border-left: 1px solid var(--aidbox-border);
 }
@@ -226,10 +223,10 @@ details[open] > summary .chevron {
   color: var(--aidbox-link);
   font-weight: 500;
   text-decoration: none;
-}
+} */
 
-/* TOC container styling */
-.toc-container {
+/* TOC container styling - REPLACED WITH TAILWIND */
+/* .toc-container {
   background-color: var(--aidbox-bg-primary);
   border-left: 1px solid var(--aidbox-border);
   padding: 1.5rem;
@@ -239,10 +236,10 @@ details[open] > summary .chevron {
   top: 0;
   height: 100vh;
   overflow: auto;
-}
+} */
 
-/* TOC links - ensure no underlines */
-.toc-container a,
+/* TOC links - REPLACED WITH TAILWIND */
+/* .toc-container a,
 .toc-link {
   color: var(--aidbox-text-primary);
   text-decoration: none !important;
@@ -264,26 +261,25 @@ details[open] > summary .chevron {
   color: var(--aidbox-link);
   font-weight: 500;
   text-decoration: none !important;
-}
+} */
 
-/* Main content area */
-.gitbook {
+/* Main content area - REPLACED WITH TAILWIND */
+/* .gitbook {
   max-width: 100%;
   padding-bottom: 2rem 0;
   background-color: var(--aidbox-bg-primary);
   flex: 1;
   min-width: 0;
-}
+} */
 
-/* Content wrapper for proper margins */
-.content-wrapper {
-  /* max-width: 800px !important; */
+/* Content wrapper - REPLACED WITH TAILWIND */
+/* .content-wrapper {
   margin: 0 auto !important;
   padding: 0 0.5rem !important;
-}
+} */
 
-/* Typography */
-.gitbook h1 {
+/* Typography - REPLACED WITH TAILWIND */
+/* .gitbook h1 {
   @apply mt-6 text-4xl font-bold flex items-center gap-4;
   color: var(--aidbox-text-primary);
   padding-bottom: 1rem;
@@ -314,10 +310,10 @@ details[open] > summary .chevron {
   @apply my-4;
   color: var(--aidbox-text-primary);
   line-height: 1.7;
-}
+} */
 
-/* Links in content - ONLY these have underlines */
-.gitbook a {
+/* Links in content - REPLACED WITH TAILWIND */
+/* .gitbook a {
   color: var(--aidbox-link);
   text-decoration: underline;
   text-underline-offset: 2px;
@@ -328,10 +324,10 @@ details[open] > summary .chevron {
 .gitbook a:hover {
   color: var(--aidbox-link-hover);
   text-decoration-thickness: 2px;
-}
+} */
 
-/* Blockquotes */
-.gitbook blockquote {
+/* Blockquotes - REPLACED WITH TAILWIND */
+/* .gitbook blockquote {
   @apply my-6 p-6 rounded-lg border-l-4;
   background-color: var(--aidbox-bg-secondary);
   border-color: var(--aidbox-primary);
@@ -385,16 +381,16 @@ details[open] > summary .chevron {
 .gitbook blockquote p {
   @apply my-0;
   color: var(--aidbox-text-primary);
-}
+} */
 
-/* Images in blockquotes */
+/* Images in hints - KEPT FOR FUNCTIONALITY */
 .gitbook .hint img {
   max-width: 300px !important;
   height: auto !important;
 }
 
-/* Lists */
-.gitbook ul {
+/* Lists - REPLACED WITH TAILWIND */
+/* .gitbook ul {
   @apply mt-4 ml-8 list-disc;
   color: var(--aidbox-text-primary);
 }
@@ -424,33 +420,17 @@ details[open] > summary .chevron {
 
 .gitbook li {
   margin-bottom: 0.5rem;
-}
+} */
 
-/* .gitbook pre { */
-/*   @apply p-6 text-sm rounded-lg overflow-x-auto; */
-/*   background-color: #1e293b; */
-/*   color: #e2e8f0; */
-/*   border: 1px solid var(--aidbox-border); */
-/*   box-shadow: var(--aidbox-shadow-md); */
-/*   margin: 1.5rem 0; */
-/* } */
-/**/
-/* .gitbook pre code { */
-/*   @apply font-mono; */
-/*   background: none; */
-/*   padding: 0; */
-/*   color: inherit; */
-/* } */
-
-/* Inline code */
-.gitbook p code {
+/* Inline code - REPLACED WITH TAILWIND */
+/* .gitbook p code {
   @apply bg-gray-100 text-sm px-2 py-1 rounded font-mono;
   color: var(--aidbox-text-primary);
   border: 1px solid var(--aidbox-border);
-}
+} */
 
-/* Tables */
-.gitbook table {
+/* Tables - REPLACED WITH TAILWIND */
+/* .gitbook table {
   @apply mt-6 text-sm w-full;
   border-collapse: collapse;
   box-shadow: var(--aidbox-shadow);
@@ -484,10 +464,10 @@ details[open] > summary .chevron {
 .gitbook table td {
   @apply px-4 py-3;
   color: var(--aidbox-text-primary);
-}
+} */
 
-/* Images and figures */
-.gitbook figure {
+/* Images and figures - REPLACED WITH TAILWIND */
+/* .gitbook figure {
   @apply flex flex-col items-center justify-center my-8;
 }
 
@@ -499,10 +479,10 @@ details[open] > summary .chevron {
 .gitbook figure figcaption {
   @apply mt-3 text-sm text-center;
   color: var(--aidbox-text-muted);
-}
+} */
 
-/* Buttons */
-.btn {
+/* Buttons - REPLACED WITH TAILWIND */
+/* .btn {
   @apply inline-flex items-center px-4 py-2 rounded-lg font-medium transition-all duration-200;
   text-decoration: none;
   border: 1px solid transparent;
@@ -532,10 +512,10 @@ details[open] > summary .chevron {
   border-color: var(--aidbox-border-hover);
   transform: translateY(-1px);
   box-shadow: var(--aidbox-shadow-md);
-}
+} */
 
-/* Cards */
-.card {
+/* Cards - REPLACED WITH TAILWIND */
+/* .card {
   @apply p-6 rounded-lg border;
   background-color: var(--aidbox-bg-primary);
   border-color: var(--aidbox-border);
@@ -546,10 +526,10 @@ details[open] > summary .chevron {
 .card:hover {
   box-shadow: var(--aidbox-shadow-md);
   transform: translateY(-2px);
-}
+} */
 
-/* Search box */
-.search-box {
+/* Search box - REPLACED WITH TAILWIND */
+/* .search-box {
   @apply w-full px-4 py-2 rounded-lg border;
   background-color: var(--aidbox-bg-primary);
   border-color: var(--aidbox-border);
@@ -561,10 +541,10 @@ details[open] > summary .chevron {
   outline: none;
   border-color: var(--aidbox-primary);
   box-shadow: 0 0 0 3px rgb(59 130 246 / 0.1);
-}
+} */
 
-/* Breadcrumbs */
-.breadcrumb {
+/* Breadcrumbs - REPLACED WITH TAILWIND */
+/* .breadcrumb {
   @apply flex items-center space-x-2 text-sm;
   color: var(--aidbox-text-muted);
   margin-bottom: 1rem;
@@ -583,10 +563,10 @@ details[open] > summary .chevron {
 
 .breadcrumb .separator {
   color: var(--aidbox-text-muted);
-}
+} */
 
-/* Tags */
-.tag {
+/* Tags - REPLACED WITH TAILWIND */
+/* .tag {
   @apply inline-flex items-center px-2 py-1 rounded text-xs font-medium;
   background-color: var(--aidbox-bg-secondary);
   color: var(--aidbox-text-secondary);
@@ -615,10 +595,10 @@ details[open] > summary .chevron {
   background-color: #fef2f2;
   color: var(--aidbox-error);
   border-color: #fca5a5;
-}
+} */
 
-/* Three-column layout support */
-.flex.gap-8 {
+/* Three-column layout support - REPLACED WITH TAILWIND */
+/* .flex.gap-8 {
   display: flex !important;
   gap: 2rem !important;
   width: 100%;
@@ -632,22 +612,22 @@ details[open] > summary .chevron {
 .flex.gap-8 .toc-container {
   width: 280px !important;
   flex-shrink: 0 !important;
-}
+} */
 
-/* Responsive design */
-@media (max-width: 1200px) {
+/* Responsive design - REPLACED WITH TAILWIND */
+/* @media (max-width: 1200px) {
   .main-container {
     padding: 0 0.75rem !important;
   }
-
+  
   .toc-container {
     width: 240px;
   }
-
+  
   .nav {
     width: 240px;
   }
-
+  
   .flex.gap-8 .toc-container {
     width: 240px !important;
   }
@@ -658,23 +638,23 @@ details[open] > summary .chevron {
     padding: 0 0.5rem !important;
     flex-direction: column !important;
   }
-
+  
   .gitbook {
     padding: 1rem 0;
   }
-
+  
   .gitbook h1 {
     font-size: 2rem;
   }
-
+  
   .gitbook h2 {
     font-size: 1.5rem;
   }
-
+  
   .gitbook h3 {
     font-size: 1.25rem;
   }
-
+  
   .nav {
     position: fixed;
     top: 0;
@@ -684,11 +664,11 @@ details[open] > summary .chevron {
     z-index: 1000;
     transition: left 0.3s ease;
   }
-
+  
   .nav.open {
     left: 0;
   }
-
+  
   .toc-container {
     width: 100%;
     position: static;
@@ -696,18 +676,18 @@ details[open] > summary .chevron {
     border-left: none;
     border-top: 1px solid var(--aidbox-border);
   }
-
+  
   .flex.gap-8 {
     flex-direction: column !important;
   }
-
+  
   .flex.gap-8 .toc-container {
     width: 100% !important;
   }
-}
+} */
 
-/* Dark mode support */
-@media (prefers-color-scheme: dark) {
+/* Dark mode support - REPLACED WITH TAILWIND */
+/* @media (prefers-color-scheme: dark) {
   :root {
     --aidbox-bg-primary: #0f172a;
     --aidbox-bg-secondary: #1e293b;
@@ -718,19 +698,19 @@ details[open] > summary .chevron {
     --aidbox-border: #334155;
     --aidbox-border-hover: #475569;
   }
-
+  
   .gitbook pre {
     background-color: #1e293b;
     color: #e2e8f0;
   }
-
+  
   .gitbook p code {
     background-color: #334155;
     color: #e2e8f0;
   }
-}
+} */
 
-/* Add more space at the end of pages */
-.gitbook {
+/* Add more space at the end of pages - REPLACED WITH TAILWIND */
+/* .gitbook {
   padding-bottom: 8rem;
-}
+} */
