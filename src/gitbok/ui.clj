@@ -25,7 +25,7 @@
      [:div
       (when-not
        (str/blank? (:title item))
-        [:div {:class "mt-4 mb-2 mx-2"}
+        [:div {:class "mt-4 mb-2 mx-4"}
          [:b (:title item)]])
       (for [ch (:children item)]
         (render-menu ch))])])
@@ -81,6 +81,7 @@
      [:div {:class "mx-auto px-2"} content]]]])
 
 (defn response1 [body status]
+  (def b body)
   {:status (or status 200)
    :headers {"content-type" "text/html; ; charset=utf-8"}
    :body (uui/hiccup body)})

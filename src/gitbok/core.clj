@@ -82,6 +82,11 @@
      (big-links/big-link-view (str "/" uri) title))])
 
 (defn render-file* [context filepath parsed]
+   (def parsed parsed)
+(def context context)
+(def filepath filepath)
+
+   (def item (-> parsed :toc :children first :children first))
   [:div {:class "flex gap-8"}
    [:div {:class "flex-1 min-w-0"}
     (if (and (= 1 (count (:content parsed)))

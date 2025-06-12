@@ -47,38 +47,38 @@
 
          :heading
          (comp
-           (fn [header-hiccup]
-             (let [tag (first header-hiccup)
-                   level (case tag
-                           :h1 1
-                           :h2 2
-                           :h3 3
-                           :h4 4
-                           :h5 5
-                           :h6 6
-                           4)
-                   classes (case level
-                             1 "mt-6 text-4xl font-bold text-gray-900 pb-4 mb-8"
-                             2 "mt-8 text-3xl font-semibold text-gray-900 pb-2 mb-6"
-                             3 "mt-6 text-2xl font-semibold text-gray-900 mb-4"
-                             4 "mt-4 text-lg font-medium text-gray-900 mb-3"
-                             5 "mt-3 text-base font-medium text-gray-900 mb-2"
-                             6 "mt-2 text-sm font-medium text-gray-900 mb-1"
-                             "text-gray-900")]
-               (cond-> header-hiccup
-                 (-> header-hiccup (get 1) :id)
-                 (update-in
-                   [1 :id]
-                   (fn [id]
-                     (str/replace id #"^-|-$" "")))
-                 :always
-                 (update-in
-                   [1 :class]
-                   (fnil
-                     (fn [existing-class]
-                       (str/trim
-                         (str existing-class " " classes))) "")))))
-           (:heading transform/default-hiccup-renderers))
+          (fn [header-hiccup]
+            (let [tag (first header-hiccup)
+                  level (case tag
+                          :h1 1
+                          :h2 2
+                          :h3 3
+                          :h4 4
+                          :h5 5
+                          :h6 6
+                          4)
+                  classes (case level
+                            1 "mt-6 text-4xl font-bold text-gray-900 pb-4 mb-8"
+                            2 "mt-8 text-3xl font-semibold text-gray-900 pb-2 mb-6"
+                            3 "mt-6 text-2xl font-semibold text-gray-900 mb-4"
+                            4 "mt-4 text-lg font-medium text-gray-900 mb-3"
+                            5 "mt-3 text-base font-medium text-gray-900 mb-2"
+                            6 "mt-2 text-sm font-medium text-gray-900 mb-1"
+                            "text-gray-900")]
+              (cond-> header-hiccup
+                (-> header-hiccup (get 1) :id)
+                (update-in
+                 [1 :id]
+                 (fn [id]
+                   (str/replace id #"^-|-$" "")))
+                :always
+                (update-in
+                 [1 :class]
+                 (fnil
+                  (fn [existing-class]
+                    (str/trim
+                     (str existing-class " " classes))) "")))))
+          (:heading transform/default-hiccup-renderers))
 
          :paragraph
          (fn [ctx node]
@@ -110,7 +110,7 @@
          :table
          (fn [ctx node]
            (into [:table {:class "min-w-full border border-tint-subtle rounded-lg bg-white shadow-sm my-6"}]
-                   (mapv #(transform/->hiccup ctx %) (:content node))))
+                 (mapv #(transform/->hiccup ctx %) (:content node))))
 
          :table-head
          (fn [ctx node]
@@ -151,8 +151,8 @@
            (let [c (first (parse-html (-> node :content first :text)))]
              (cond
                (and c
-                      (= :table (first c))
-                      (= {:data-view "cards"} (second c)))
+                    (= :table (first c))
+                    (= {:data-view "cards"} (second c)))
                (cards/render-cards-from-table context filepath c)
 
                (and c
@@ -164,36 +164,36 @@
                :else
                (uui/raw (-> node :content first :text)))))))
 
-
 (defn render-toc-item [item]
-  (let [content
-        (->> (:content item)
-             (remove (fn [node]
-                       (= :html-inline (:type node))))
-             (map #(if (= :text (:type %))
-                     (:text %)
-                     (->> (:content %)
-                          (map :text)
-                          (str/join " "))))
-             (str/join " "))
-        href (str "#" (utils/s->url-slug (:id (:attrs item))))
-        level (when (= :toc (:type item))
-                (:heading-level item))
-        padding-class (case (long level)
-                        1 "pl-0"
-                        2 "pl-4"
-                        3 "pl-8"
-                        4 "pl-12"
-                        5 "pl-16"
-                        6 "pl-20"
-                        "pl-0")]
-    [:div {:class "w-full"}
-     [:a {:href href
-          :class (str padding-class)}
-      content]
-     (when (:children item)
-       (for [child (:children item)]
-         (render-toc-item child)))]))
+  [:div {:class "w-full"}
+   (when (:content item)
+     (let [content
+           (->> (:content item)
+                (remove (fn [node]
+                          (= :html-inline (:type node))))
+                (map #(if (= :text (:type %))
+                        (:text %)
+                        (->> (:content %)
+                             (map :text)
+                             (str/join " "))))
+                (str/join " "))
+           href (str "#" (utils/s->url-slug (:id (:attrs item))))
+           level (when (= :toc (:type item))
+                   (:heading-level item))
+           padding-class (case (long level)
+                           1 "pl-0"
+                           2 "pl-4"
+                           3 "pl-8"
+                           4 "pl-12"
+                           5 "pl-16"
+                           6 "pl-20"
+                           "pl-0")] [:a {:href href
+                                         :class (str padding-class)}
+                                     content]))
+
+   (when (:children item)
+     (for [child (:children item)]
+       (render-toc-item child)))])
 
 (defn render-md [context filepath parsed]
   (transform/->hiccup (renderers context filepath) parsed))

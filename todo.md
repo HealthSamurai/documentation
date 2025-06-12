@@ -24,7 +24,6 @@
 - [ ] cache html
 - [ ] rm huge image history from repo
 - [ ] redirects with sections should work api-1/api/search-1/search-parameters-list/\_explain: api/rest-api/aidbox-search.md#aidbox-special-search-parameters
-- [ ] table and cards http://localhost:8081/api-1/api/search-1/search-parameters-list/_filter
 
 ## UX
 
