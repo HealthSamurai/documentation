@@ -39,7 +39,7 @@ Aidbox is an [Audit record repository](https://profiles.ihe.net/ITI/TF/Volume1/c
 
 Aidbox can also send Audit Events to a dedicated, external repository. In this case, Aidbox groups outgoing events into a single **FHIR Bundle** of type `collection` and delivers it to the target endpoint.
 
-For setup instructions and payload examples, see the **External Audit Repository Configuration** section of [the guide](../tutorials/security-access-control-tutorials/how-to-configure-audit-log.md).
+For setup instructions and payload examples, see the [**External Audit Repository Configuration**](../tutorials/security-access-control-tutorials/how-to-configure-audit-log.md#external-audit-repository-configuration) section of the guide.
 
 ## FHIR Resource versioning
 
