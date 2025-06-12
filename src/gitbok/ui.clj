@@ -11,9 +11,9 @@
 (defn render-menu [items]
   (if (:children items)
     [:details
-     [:summary {:class "flex items-center justify-between font-medium text-gray-900 hover:bg-gray-100 transition-colors duration-200 cursor-pointer"}
+     [:summary {:class "flex items-center justify-between font-medium text-gray-900 hover:bg-gray-100 transition-colors duration-200 cursor-pointer group"}
       [:div {:class "flex-1 clickable-summary"} (:title items)]
-      (ico/chevron-right "chevron size-5 text-gray-400 transition-transform duration-200")]
+      (ico/chevron-right "chevron size-5 text-gray-400 group-hover:text-primary-9 transition-colors duration-200")]
      [:div {:class "border-l border-gray-200 ml-4"}
       (for [c (:children items)]
         (render-menu c))]]

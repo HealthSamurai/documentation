@@ -27,7 +27,7 @@
                href (str "/" href))
        :hx-target "#content"
        :hx-swap "outerHTML"}
-   [:span {:class "flex items-center gap-2"}
+   [:span {:class "flex items-center gap-2 mx-2"}
     title
     (when (str/starts-with? href "http")
       (ico/arrow-top-right-on-square "size-4 text-tint-strong/40"))]])

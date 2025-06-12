@@ -2966,6 +2966,11 @@ details[open] > summary .chevron {
   --tw-ring-color: rgb(59 130 246 / var(--tw-ring-opacity, 1));
 }
 
+.group:hover .group-hover\:text-primary-9 {
+  --tw-text-opacity: 1;
+  color: rgb(217 86 64 / var(--tw-text-opacity, 1));
+}
+
 @media (min-width: 640px) {
   .sm\:size-4 {
     width: 1rem;

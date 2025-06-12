@@ -1,6 +1,6 @@
 # Run Aidbox on AWS
 
-Sign in to your AWS account
+Sign in to your AWS account.
 
 Open [Aidbox FHIR platform product page](https://aws.amazon.com/marketplace/pp/prodview-l5djlpvsd6o5g) in AWS Marketplace
 
