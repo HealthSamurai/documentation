@@ -25,40 +25,41 @@
      [:div
       (when-not
         (str/blank? (:title item))
-        [:div {:class "mt-4 mb-2 mx-2 px-4"}
+        [:div {:class "mt-4 mb-2 mx-2"}
          [:b (:title item)]])
       (for [ch (:children item)]
         (render-menu ch))])])
 
 (defn nav []
-  [:div {:class "flex items-center justify-between w-full py-3 min-h-16 px-4 sm:px-6 md:px-8 max-w-screen-2xl mx-auto bg-white border-b border-gray-200 flex-shrink-0"}
-   [:div {:class "flex max-w-full lg:basis-72 min-w-0 shrink items-center justify-start gap-2 lg:gap-4"}
-    [:a {:href "/" :class "group/headerlogo min-w-0 shrink flex items-center"}
-     [:img {:alt "Aidbox Logo"
-            :class "block object-contain size-8"
-            :src "/.gitbook/assets/aidbox_logo.jpg"}]
-     [:div {:class "text-pretty line-clamp-2 tracking-tight max-w-[18ch] lg:max-w-[24ch] font-semibold ms-3 text-base/tight lg:text-lg/tight text-gray-900"}
-      "Aidbox User Docs"]]]
+  [:div {:class "w-full bg-white border-b border-gray-200 flex-shrink-0"}
+   [:div {:class "flex items-center justify-between py-3 min-h-16 px-4 sm:px-6 md:px-8 max-w-screen-2xl mx-auto"}
+    [:div {:class "flex max-w-full lg:basis-72 min-w-0 shrink items-center justify-start gap-2 lg:gap-4"}
+     [:a {:href "/" :class "group/headerlogo min-w-0 shrink flex items-center"}
+      [:img {:alt "Aidbox Logo"
+             :class "block object-contain size-8"
+             :src "/.gitbook/assets/aidbox_logo.jpg"}]
+      [:div {:class "text-pretty line-clamp-2 tracking-tight max-w-[18ch] lg:max-w-[24ch] font-semibold ms-3 text-base/tight lg:text-lg/tight text-gray-900"}
+       "Aidbox User Docs"]]]
 
-   [:div {:class "flex items-center"}
-    [:a {:href "/search"
-         :class "flex items-center gap-2 px-3 py-2 bg-gray-100 border border-gray-300 rounded-md text-gray-700 text-sm transition-all duration-200 hover:bg-gray-200 hover:border-gray-400"
-         :id "search-link"
-         :hx-get "/search"
-         :hx-target "#content"
-         :hx-swap "innerHTML"
-         :hx-push-url "false"
-         :hx-on ":after-request \"document.querySelector('#search-input')?.focus()\""}
-     [:svg {:class "size-4" :fill "none" :stroke "currentColor" :viewBox "0 0 24 24"}
-      [:path {:stroke-linecap "round" :stroke-linejoin "round" :stroke-width "2" :d "m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607Z"}]]
+    [:div {:class "flex items-center"}
+     [:a {:href "/search"
+          :class "flex items-center gap-2 px-3 py-2 bg-gray-100 border border-gray-300 rounded-md text-gray-700 text-sm transition-all duration-200 hover:bg-gray-200 hover:border-gray-400"
+          :id "search-link"
+          :hx-get "/search"
+          :hx-target "#content"
+          :hx-swap "innerHTML"
+          :hx-push-url "false"
+          :hx-on ":after-request \"document.querySelector('#search-input')?.focus()\""}
+      [:svg {:class "size-4" :fill "none" :stroke "currentColor" :viewBox "0 0 24 24"}
+       [:path {:stroke-linecap "round" :stroke-linejoin "round" :stroke-width "2" :d "m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607Z"}]]
 
-     [:span {:class "text-xs text-gray-400"} "⌘K"]]]])
+      [:span {:class "text-xs text-gray-400"} "⌘K"]]]]])
 
 (defn layout-view [context content]
   [:div
    (nav)
    [:div
-    {:class "flex px-4 sm:px-6 md:px-8 max-w-screen-2xl mx-auto site-full-width:max-w-full gap-8"}
+    {:class "flex px-4 sm:px-6 md:px-8 max-w-screen-2xl mx-auto site-full-width:max-w-full gap-20"}
     (menu (summary/get-summary context))
     [:div#content {:class "flex-1 py-6 overflow-auto"}
      [:div {:class "mx-auto px-2"} content]]]])

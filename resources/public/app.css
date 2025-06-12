@@ -29,6 +29,14 @@
   --aidbox-shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
 }
 
+/* #content a { */
+/*   @apply text-primary-9 underline underline-offset-2 decoration-1 hover:text-primary-10 hover:decoration-2 transition-all duration-200 inline-flex items-center gap-1; */
+/* } */
+
+.link {
+  @apply text-primary-9 underline underline-offset-2 decoration-1 hover:text-primary-10 hover:decoration-2 transition-all duration-200 inline-flex items-center gap-1;
+}
+
 ul {
   @apply mt-4 ml-8 list-disc text-gray-900;
 }

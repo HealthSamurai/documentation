@@ -9,15 +9,11 @@
     (if (str/starts-with? href "http")
       href
       (-> (indexing/page-link->uri
-            context
-            filepath
-            href)
-          ;; (str/replace #"README\.md|readme\.md" "")
-          ;; (str/replace #"\.md|\.MD" "")
+           context
+           filepath
+           href)))))
 
-          ))))
-
-(defn link-renderer [context filepath ctx node]
+(defn link-renderer [context filepath _ctx node]
   (let [href (href context node filepath)
         is-external (str/starts-with? href "http")]
     [:a {:href href

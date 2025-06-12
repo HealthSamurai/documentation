@@ -685,6 +685,10 @@ video {
   margin-bottom: 1.5rem;
 }
 
+.-ml-1 {
+  margin-left: -0.25rem;
+}
+
 .-mt-px {
   margin-top: -1px;
 }
@@ -824,6 +828,11 @@ video {
   display: none;
 }
 
+.size-2 {
+  width: 0.5rem;
+  height: 0.5rem;
+}
+
 .size-3 {
   width: 0.75rem;
   height: 0.75rem;
@@ -885,6 +894,10 @@ video {
   width: 1.5rem;
 }
 
+.w-60 {
+  width: 15rem;
+}
+
 .w-64 {
   width: 16rem;
 }
@@ -909,6 +922,10 @@ video {
   min-width: 10rem;
 }
 
+.min-w-60 {
+  min-width: 15rem;
+}
+
 .min-w-full {
   min-width: 100%;
 }
@@ -919,6 +936,10 @@ video {
 
 .max-w-4xl {
   max-width: 56rem;
+}
+
+.max-w-60 {
+  max-width: 15rem;
 }
 
 .max-w-7xl {
@@ -1032,8 +1053,8 @@ video {
   grid-template-columns: repeat(3, minmax(0, 1fr));
 }
 
-.grid-cols-\[1fr_17\.5rem\] {
-  grid-template-columns: 1fr 17.5rem;
+.grid-cols-\[1fr_15rem\] {
+  grid-template-columns: 1fr 15rem;
 }
 
 .flex-row {
@@ -1072,8 +1093,20 @@ video {
   justify-content: space-between;
 }
 
+.gap-1 {
+  gap: 0.25rem;
+}
+
+.gap-12 {
+  gap: 3rem;
+}
+
 .gap-2 {
   gap: 0.5rem;
+}
+
+.gap-20 {
+  gap: 5rem;
 }
 
 .gap-3 {
@@ -1084,16 +1117,16 @@ video {
   gap: 1rem;
 }
 
+.gap-40 {
+  gap: 10rem;
+}
+
 .gap-6 {
   gap: 1.5rem;
 }
 
 .gap-8 {
   gap: 2rem;
-}
-
-.gap-1 {
-  gap: 0.25rem;
 }
 
 .space-x-2 > :not([hidden]) ~ :not([hidden]) {
@@ -1325,6 +1358,11 @@ video {
 .bg-green-50 {
   --tw-bg-opacity: 1;
   background-color: rgb(240 253 244 / var(--tw-bg-opacity, 1));
+}
+
+.bg-primary-9 {
+  --tw-bg-opacity: 1;
+  background-color: rgb(217 86 64 / var(--tw-bg-opacity, 1));
 }
 
 .bg-red-500 {
@@ -1739,6 +1777,10 @@ video {
   color: rgb(217 86 64 / var(--tw-text-opacity, 1));
 }
 
+.text-primary-9\/60 {
+  color: rgb(217 86 64 / 0.6);
+}
+
 .text-red-500 {
   --tw-text-opacity: 1;
   color: rgb(239 68 68 / var(--tw-text-opacity, 1));
@@ -1789,10 +1831,6 @@ video {
 .text-yellow-800 {
   --tw-text-opacity: 1;
   color: rgb(133 77 14 / var(--tw-text-opacity, 1));
-}
-
-.text-primary-9\/60 {
-  color: rgb(217 86 64 / 0.6);
 }
 
 .underline {
@@ -1932,6 +1970,32 @@ video {
   --aidbox-shadow: 0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1);
   --aidbox-shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
   --aidbox-shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+}
+
+/* #content a { */
+
+/*   @apply text-primary-9 underline underline-offset-2 decoration-1 hover:text-primary-10 hover:decoration-2 transition-all duration-200 inline-flex items-center gap-1; */
+
+/* } */
+
+.link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+  --tw-text-opacity: 1;
+  color: rgb(217 86 64 / var(--tw-text-opacity, 1));
+  text-decoration-line: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 2px;
+  transition-property: all;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-duration: 200ms;
+}
+
+.link:hover {
+  --tw-text-opacity: 1;
+  color: rgb(202 72 51 / var(--tw-text-opacity, 1));
+  text-decoration-thickness: 2px;
 }
 
 ul {
@@ -2809,6 +2873,10 @@ details[open] > summary .chevron {
 
 .hover\:underline:hover {
   text-decoration-line: underline;
+}
+
+.hover\:no-underline:hover {
+  text-decoration-line: none;
 }
 
 .hover\:decoration-2:hover {

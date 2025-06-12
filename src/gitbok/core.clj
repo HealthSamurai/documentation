@@ -74,21 +74,21 @@
        index))))
 
 (defn render-empty-page [context filepath parsed-heading]
-  [:div 
-   [:h1 {:class "mt-6 text-4xl font-bold text-gray-900 pb-4 mb-8"} 
+  [:div
+   [:h1 {:class "mt-6 text-4xl font-bold text-gray-900 pb-4 mb-8"}
    (-> parsed-heading :content first :text)]
    (for [[_path {:keys [title uri]}]
          (find-children-files context filepath)]
      (big-links/big-link-view (str "/" uri) title))])
 
 (defn render-file* [context filepath parsed]
-  [:div {:class "grid grid-cols-[1fr_17.5rem] gap-8"}
+  [:div {:class "grid grid-cols-[1fr_15rem] gap-8"}
    [:div {:class "min-w-0"}
     (if (and (= 1 (count (:content parsed)))
              (= :heading (:type (first (:content parsed)))))
       (render-empty-page context filepath (first (:content parsed)))
       (markdown/render-md context filepath parsed))]
-   [:div {:class "w-70 flex-shrink-0 sticky top-0 h-screen overflow-auto p-6 border-l border-gray-200 bg-white min-h-screen max-w-70 min-w-70"}
+   [:div {:class "flex-shrink-0 sticky top-0 h-screen overflow-auto p-6 bg-white min-h-screen"}
     (when
      (and (:toc parsed)
           (-> parsed :toc :children first :children seq))

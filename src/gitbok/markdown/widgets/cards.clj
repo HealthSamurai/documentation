@@ -35,7 +35,18 @@
                  img-href
                  (first (filter (fn [s]
                                   (when s (re-matches #".*(png|jpg|jpeg|svg)$" s)))
-                                [pic-footer pic-href1 pic-href2]))]]
+                                [pic-footer pic-href1 pic-href2]))
+
+                 processed-footer
+                 (when-not pic-footer?
+                   (if (and (sequential? footer) (= (first footer) :div))
+                     (let [footer-content (second footer)]
+                       (if (and (sequential? footer-content) (= (first footer-content) :a))
+                         [:div
+                          [:a (assoc (second footer-content) :class "link")
+                           (nth footer-content 2)]]
+                         footer))
+                     footer))]]
        [:div {:class "flex flex-col bg-white rounded-2xl shadow overflow-hidden h-full min-h-[300px]"}
         (when img-href [:img {:src img-href}])
         [:div
@@ -45,5 +56,4 @@
          [:a {:href (or title-href title-filepath)
               :class "text-lg hover:underline"} title]
          [:p {:class "text-gray-600 text-sm"} desc]
-         ;; todo here learn more contains bad link
-         (when-not pic-footer? footer)]])]))
+         processed-footer]])]))

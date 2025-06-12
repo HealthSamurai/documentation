@@ -22,7 +22,7 @@
         (str/replace #"^/" ""))))
 
 (defn render-markdown-link-in-toc [title href]
-  [:a {:class "block px-4 py-1.5 text-tint-strong/70 hover:bg-tint-hover hover:text-tint-strong transition-colors duration-200 rounded-md mx-2 my-0.5 clickable-summary no-underline"
+  [:a {:class "block py-1.5 text-tint-strong/70 hover:bg-tint-hover hover:text-tint-strong transition-colors duration-200 rounded-md mx-2 my-0.5 clickable-summary no-underline"
        :href (if (str/starts-with? href "http")
                href (str "/" href))
        :hx-target "#content"
