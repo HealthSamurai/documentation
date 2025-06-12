@@ -31,7 +31,7 @@
         (render-menu ch))])])
 
 (defn nav []
-  [:div {:class "w-full bg-white border-b border-gray-200 flex-shrink-0"}
+  [:div {:class "w-full bg-white border-b border-gray-200 flex-shrink-0 sticky top-0 z-50"}
    [:div {:class "flex items-center justify-between py-3 min-h-16 px-4 sm:px-6 md:px-8 max-w-screen-2xl mx-auto"}
     [:div {:class "flex max-w-full lg:basis-72 min-w-0 shrink items-center justify-start gap-2 lg:gap-4"}
      [:a {:href "/" :class "group/headerlogo min-w-0 shrink flex items-center"}
@@ -44,18 +44,18 @@
     [:div {:class "flex items-center gap-4"}
      [:div {:class "hidden md:flex items-center gap-4"}
       [:a {:href "/getting-started/run-aidbox-locally"
-           :class "text-sm text-gray-700 hover:text-primary-9 transition-colors duration-200 no-underline"}
+           :class "text-gray-700 hover:text-primary-9 transition-colors duration-200 no-underline"}
        "Run Aidbox locally"]
       [:a {:href "/getting-started/run-aidbox-in-sandbox"
-           :class "text-sm text-gray-700 hover:text-primary-9 transition-colors duration-200 no-underline"}
+           :class "text-gray-700 hover:text-primary-9 transition-colors duration-200 no-underline"}
        "Run Aidbox in Sandbox"]
       [:a {:href "https://bit.ly/3R7eLke"
            :target "_blank"
-           :class "text-sm text-gray-700 hover:text-primary-9 transition-colors duration-200 no-underline"}
+           :class "text-gray-700 hover:text-primary-9 transition-colors duration-200 no-underline"}
        "Talk to us"]
       [:a {:href "https://connect.health-samurai.io/"
            :target "_blank"
-           :class "text-sm text-gray-700 hover:text-primary-9 transition-colors duration-200 no-underline"}
+           :class "text-gray-700 hover:text-primary-9 transition-colors duration-200 no-underline"}
        "Ask community"]]
 
      [:a {:href "/search"
