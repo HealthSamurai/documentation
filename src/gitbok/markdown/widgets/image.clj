@@ -1,6 +1,7 @@
 (ns gitbok.markdown.widgets.image
   (:require
-    [nextjournal.markdown.utils :as u]))
+    [clojure.string :as str]
+   [nextjournal.markdown.utils :as u]))
 
 (def github-image-regex #"\!\[([^\]]*)\]\(([^)]+)\)")
 
@@ -13,9 +14,25 @@
 
 (defn image-renderer [_ctx node]
   [:img {:src (some->
-                node
-                :attrs
-                :src)
+               node
+               :attrs
+               :src)
          :alt (or (:alt node)
                   (:title (:attrs node)))
          :class "max-w-full h-auto mx-auto rounded-lg shadow-lg my-6"}])
+
+(def youtube-tokenizer
+  (u/normalize-tokenizer
+    {:regex
+     ;; #"(?s)\{hui (.*?) hui\}"
+     ;; #"\{hui (.*?) hui\}"
+
+     #"\{\%.*embed.*url=\"(.*?)\".*\%\}"
+     :handler
+     (fn [match]
+       {:type :embed
+        :url (match 1)})}))
+
+(defn hack-youtube
+ [md]
+ (str/replace md #"url=\"https://www.youtube.com(.*?)\"" "url=\"$1\""))

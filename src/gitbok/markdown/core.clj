@@ -24,7 +24,8 @@
           :text-tokenizers
           conj
           big-links/big-link-tokenizer
-          image/image-tokenizer))
+          image/image-tokenizer
+          image/youtube-tokenizer))
 
 (defn parse-markdown-content
   [context [filepath content]]
@@ -42,6 +43,27 @@
          :image image/image-renderer
          :link (partial link/link-renderer context filepath)
          :internal-link link/link-renderer
+         :embed
+         (fn [_ctx node]
+           (let [url (:url node)
+                 content (:content node)
+                 is-youtube (str/includes? url "/watch")
+                 video-id
+                 (when is-youtube
+                   (second (re-find #"v=([^&]+)" url)))
+                 embed-url
+                 (when video-id
+                   (str "https://www.youtube.com/embed/" video-id))]
+             [:div {:class "my-6"}
+              (when embed-url
+                [:div {:class "relative w-full h-0 pb-[56.25%] rounded-lg overflow-hidden shadow-lg"}
+                 [:iframe {:src embed-url
+                           :class "absolute top-0 left-0 w-full h-full border-0"
+                           :allowfullscreen true
+                           :allow "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"}]])
+              (when (and content (not (str/blank? (str/trim content))))
+                [:div {:class "mt-4 text-sm text-gray-600 italic"}
+                 (str/trim content)])]))
 
          :blockquote github-hint/github-hint-renderer
 
@@ -139,7 +161,6 @@
 
          :html-inline
          (fn [_ctx node]
-           (def nn node)
            (let [c (first (parse-html (-> node :content first :text)))]
              (if (and c (= :table (first c))
                       (= {:data-view "cards"} (second c)))
@@ -202,6 +223,7 @@
   (->> md-file
        big-links/hack-content-ref
        github-hint/hack-info
+       image/hack-youtube
        (tabs/hack-tabs context filepath
                        parse-markdown-content
                        render-md)))
