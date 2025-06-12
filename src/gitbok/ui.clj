@@ -20,9 +20,9 @@
     [:div (:title items)]))
 
 (defn menu [summary]
-  [:div {:class "w-100 flex-shrink-0 sticky top-0 h-screen overflow-y-auto py-4 bg-white"}
+  [:div {:class "w-[17.5rem] flex-shrink-0 sticky top-0 h-screen overflow-y-auto py-4 bg-white"}
    (for [item summary]
-     [:div
+     [:div {:class "break-words"}
       (when-not
        (str/blank? (:title item))
         [:div {:class "mt-4 mb-2 mx-4"}
