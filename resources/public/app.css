@@ -528,20 +528,20 @@ details[open] > summary .chevron {
   color: var(--aidbox-text-primary);
 } */
 
-/* Images and figures - REPLACED WITH TAILWIND */
-/* .gitbook figure {
+
+#content figure {
   @apply flex flex-col items-center justify-center my-8;
 }
 
-.gitbook figure img {
+#content figure img {
   @apply max-w-full h-auto mx-auto rounded-lg;
   box-shadow: var(--aidbox-shadow-lg);
 }
 
-.gitbook figure figcaption {
+ #content figure figcaption {
   @apply mt-3 text-sm text-center;
   color: var(--aidbox-text-muted);
-} */
+}
 
 /* Buttons - REPLACED WITH TAILWIND */
 /* .btn {

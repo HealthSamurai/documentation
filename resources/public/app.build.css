@@ -2592,21 +2592,31 @@ details[open] > summary .chevron {
   color: var(--aidbox-text-primary);
 } */
 
-/* Images and figures - REPLACED WITH TAILWIND */
-
-/* .gitbook figure {
-  @apply flex flex-col items-center justify-center my-8;
+#content figure {
+  margin-top: 2rem;
+  margin-bottom: 2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 }
 
-.gitbook figure img {
-  @apply max-w-full h-auto mx-auto rounded-lg;
+#content figure img {
+  margin-left: auto;
+  margin-right: auto;
+  height: auto;
+  max-width: 100%;
+  border-radius: 0.5rem;
   box-shadow: var(--aidbox-shadow-lg);
 }
 
-.gitbook figure figcaption {
-  @apply mt-3 text-sm text-center;
+#content figure figcaption {
+  margin-top: 0.75rem;
+  text-align: center;
+  font-size: 0.875rem;
+  line-height: 1.25rem;
   color: var(--aidbox-text-muted);
-} */
+}
 
 /* Buttons - REPLACED WITH TAILWIND */
 
