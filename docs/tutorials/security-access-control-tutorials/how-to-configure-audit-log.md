@@ -68,13 +68,13 @@ And find the audit event, produced by the patient create operation.
 
 Aidbox supports forwarding audit data to an external repository. It batches individual **AuditEvent** resources into a FHIR `Bundle` of type `collection` and send the bundle to the configured repository endpoint with an HTTP `POST` request.
 
-To configure an external Audit log repository, use the following [settings](https://security.audit-log.enabled):
+To configure an external Audit log repository, use the following settings:
 
-* security.audit-log.repository-url
-* security.audit-log.file-path
-* security.audit-log.flush-interval
-* security.audit-log.retry-interval
-* security.audit-log.batch-count
+* [security.audit-log.repository-urle](../../reference/settings/security-and-access-control.md#security.audit-log.repository-url)
+* [security.audit-log.file-path](../../reference/settings/security-and-access-control.md#security.audit-log.file-path)
+* [security.audit-log.flush-interval](../../reference/settings/security-and-access-control.md#security.audit-log.flush-interval)
+* [security.audit-log.retry-interval](../../reference/settings/security-and-access-control.md#security.audit-log.retry-interval)
+* [security.audit-log.batch-count](../../reference/settings/security-and-access-control.md#security.audit-log.batch-count)
 
 Audit log Bundle example:
 
