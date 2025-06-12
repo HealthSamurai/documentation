@@ -56,6 +56,7 @@ inputs:
 {% endtab %}
 {% endtabs %}")
 
+  (def content "`code1`")
   (def p
     (markdown/parse-markdown-content context [""  content]))
 

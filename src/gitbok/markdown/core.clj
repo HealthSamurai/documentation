@@ -119,7 +119,7 @@
 
          :monospace
          (fn [_ctx node]
-           [:code {:class "text-sm px-1 border border-gray-200 rounded"
+           [:code {:class "px-1 border border-gray-200 rounded"
                    :style "background-color: #fbf9f9;"}
              (-> node :content first :text)])
 
