@@ -41,6 +41,10 @@ ul {
   @apply mt-4 ml-8 list-disc text-gray-900;
 }
 
+li {
+  @apply mb-2;
+}
+
 table {
   @apply min-w-full border border-tint-subtle rounded-lg bg-white shadow-sm my-6;
 }

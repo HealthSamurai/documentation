@@ -49,8 +49,6 @@
          (comp
            (fn [header-hiccup]
              (let [tag (first header-hiccup)
-                   ;; attrs (second header-hiccup)
-                   ;; content (nthrest header-hiccup 2)
                    level (case tag
                            :h1 1
                            :h2 2
@@ -89,6 +87,7 @@
 
          :bullet-list
          (fn [ctx node]
+           (def node node)
            (into [:ul {:class "mt-4 ml-8 list-disc text-gray-900"}]
                  (mapv #(transform/->hiccup ctx %) (:content node))))
 
@@ -147,7 +146,7 @@
                       (= {:data-view "cards"} (second c)))
                (cards/render-cards-from-table context filepath c)
                (uui/raw (-> node :content first :text)))))
-               
+
          :html-block
          (fn [_ctx node]
            (let [c (first (parse-html (-> node :content first :text)))]

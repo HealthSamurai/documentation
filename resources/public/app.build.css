@@ -2006,6 +2006,10 @@ ul {
   color: rgb(17 24 39 / var(--tw-text-opacity, 1));
 }
 
+li {
+  margin-bottom: 0.5rem;
+}
+
 table {
   margin-top: 1.5rem;
   margin-bottom: 1.5rem;
@@ -2873,10 +2877,6 @@ details[open] > summary .chevron {
 
 .hover\:underline:hover {
   text-decoration-line: underline;
-}
-
-.hover\:no-underline:hover {
-  text-decoration-line: none;
 }
 
 .hover\:decoration-2:hover {
