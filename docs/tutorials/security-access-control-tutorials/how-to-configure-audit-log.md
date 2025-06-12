@@ -66,6 +66,10 @@ And find the audit event, produced by the patient create operation.
 
 ## **External Audit Repository Configuration**
 
+{% hint style="warning" %}
+This functionality is available starting from version 2506.
+{% endhint %}
+
 Aidbox supports forwarding audit data to an external repository. It batches individual **AuditEvent** resources into a FHIR `Bundle` of type `collection` and send the bundle to the configured repository endpoint with an HTTP `POST` request.
 
 To configure an external Audit log repository, use the following settings:
