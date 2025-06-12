@@ -45,6 +45,23 @@ li {
   @apply mb-2;
 }
 
+/* TOC Sticky positioning */
+.toc-container {
+  position: sticky !important;
+  top: 0 !important;
+  height: 100vh !important;
+  overflow-y: auto !important;
+  max-height: 100vh !important;
+}
+
+.toc a {
+  @apply block py-2 text-sm text-tint-strong/70 hover:text-tint-strong transition-colors duration-200 no-underline truncate max-w-full overflow-hidden;
+}
+
+.toc a.active {
+  @apply text-primary-9 font-medium;
+}
+
 table {
   @apply min-w-full border border-tint-subtle rounded-lg bg-white shadow-sm my-6;
 }
@@ -428,7 +445,8 @@ details[open] > summary .chevron {
 } */
 
 /* Images in hints - KEPT FOR FUNCTIONALITY */
-.gitbook .hint img {
+.hint img
+{
   max-width: 300px !important;
   height: auto !important;
 }

@@ -82,19 +82,19 @@
      (big-links/big-link-view (str "/" uri) title))])
 
 (defn render-file* [context filepath parsed]
-  [:div {:class "grid grid-cols-[1fr_15rem] gap-8"}
-   [:div {:class "min-w-0"}
+  [:div {:class "flex gap-8"}
+   [:div {:class "flex-1 min-w-0"}
     (if (and (= 1 (count (:content parsed)))
              (= :heading (:type (first (:content parsed)))))
       (render-empty-page context filepath (first (:content parsed)))
       (markdown/render-md context filepath parsed))]
-   [:div {:class "flex-shrink-0 sticky top-0 h-screen overflow-auto p-6 bg-white min-h-screen"}
-    (when
+   (when
      (and (:toc parsed)
           (-> parsed :toc :children first :children seq))
-      [:div {:class "w-full max-w-full overflow-hidden"}
+     [:div {:class "toc-container flex-shrink-0 sticky top-0 h-screen overflow-y-auto p-6 bg-white w-60"}
+      [:div {:class "toc w-full max-w-full"}
        (for [item (-> parsed :toc :children first :children)]
-         (markdown/render-toc-item item))])]])
+         (markdown/render-toc-item item))]])])
 
 (defn read-markdown-file [context filepath]
   (let [content* (read-content context filepath)

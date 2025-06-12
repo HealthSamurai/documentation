@@ -82,12 +82,11 @@
 
          :paragraph
          (fn [ctx node]
-           (into [:p {:class "my-4 text-gray-900 leading-relaxed"}]
+           (into [:p {:class "my-4 text-lg text-gray-900 leading-relaxed"}]
                  (mapv #(transform/->hiccup ctx %) (:content node))))
 
          :bullet-list
          (fn [ctx node]
-           (def node node)
            (into [:ul {:class "mt-4 ml-8 list-disc text-gray-900"}]
                  (mapv #(transform/->hiccup ctx %) (:content node))))
 
@@ -180,7 +179,7 @@
         href (str "#" (utils/s->url-slug (:id (:attrs item))))
         level (when (= :toc (:type item))
                 (:heading-level item))
-        padding-class (case level
+        padding-class (case (long level)
                         1 "pl-0"
                         2 "pl-4"
                         3 "pl-8"
@@ -190,7 +189,7 @@
                         "pl-0")]
     [:div {:class "w-full"}
      [:a {:href href
-          :class (str "block py-1 text-sm text-tint-strong/70 hover:text-tint-strong transition-colors duration-200 no-underline truncate max-w-full overflow-hidden " padding-class)}
+          :class (str padding-class)}
       content]
      (when (:children item)
        (for [child (:children item)]

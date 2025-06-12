@@ -24,7 +24,7 @@
    (for [item summary]
      [:div
       (when-not
-        (str/blank? (:title item))
+       (str/blank? (:title item))
         [:div {:class "mt-4 mb-2 mx-2"}
          [:b (:title item)]])
       (for [ch (:children item)]
@@ -41,7 +41,23 @@
       [:div {:class "text-pretty line-clamp-2 tracking-tight max-w-[18ch] lg:max-w-[24ch] font-semibold ms-3 text-base/tight lg:text-lg/tight text-gray-900"}
        "Aidbox User Docs"]]]
 
-    [:div {:class "flex items-center"}
+    [:div {:class "flex items-center gap-4"}
+     [:div {:class "hidden md:flex items-center gap-4"}
+      [:a {:href "/getting-started/run-aidbox-locally"
+           :class "text-sm text-gray-700 hover:text-primary-9 transition-colors duration-200 no-underline"}
+       "Run Aidbox locally"]
+      [:a {:href "/getting-started/run-aidbox-in-sandbox"
+           :class "text-sm text-gray-700 hover:text-primary-9 transition-colors duration-200 no-underline"}
+       "Run Aidbox in Sandbox"]
+      [:a {:href "https://bit.ly/3R7eLke"
+           :target "_blank"
+           :class "text-sm text-gray-700 hover:text-primary-9 transition-colors duration-200 no-underline"}
+       "Talk to us"]
+      [:a {:href "https://connect.health-samurai.io/"
+           :target "_blank"
+           :class "text-sm text-gray-700 hover:text-primary-9 transition-colors duration-200 no-underline"}
+       "Ask community"]]
+
      [:a {:href "/search"
           :class "flex items-center gap-2 px-3 py-2 bg-gray-100 border border-gray-300 rounded-md text-gray-700 text-sm transition-all duration-200 hover:bg-gray-200 hover:border-gray-400"
           :id "search-link"
@@ -61,7 +77,7 @@
    [:div
     {:class "flex px-4 sm:px-6 md:px-8 max-w-screen-2xl mx-auto site-full-width:max-w-full gap-20"}
     (menu (summary/get-summary context))
-    [:div#content {:class "flex-1 py-6 overflow-auto"}
+    [:div#content {:class "flex-1 py-2"}
      [:div {:class "mx-auto px-2"} content]]]])
 
 (defn response1 [body status]
@@ -75,6 +91,7 @@
     [:script {:src "/static/htmx.min.js"}]
     [:script {:src "/static/app.js"}]
     [:script {:src "/static/toc.js"}]
+    [:script {:src "/static/toc-scroll.js"}]
     [:script {:src "/static/tabs.js"}]
     [:link {:rel "stylesheet" :href "/static/github.min.css"}]
     [:script {:src "/static/highlight.min.js"}]
@@ -94,7 +111,7 @@
     (response1
      (if (uui/hx-target request)
        [:div#content
-        {:class "flex-1 py-6 overflow-auto"}
+        {:class "flex-1 py-6"}
         [:script "hljs.highlightAll();"]
         [:div {:class "mx-auto px-2"} body]]
        (document
