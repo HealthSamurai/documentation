@@ -620,6 +620,10 @@ video {
   position: sticky;
 }
 
+.left-0 {
+  left: 0px;
+}
+
 .right-3 {
   right: 0.75rem;
 }
@@ -630,10 +634,6 @@ video {
 
 .top-3 {
   top: 0.75rem;
-}
-
-.left-0 {
-  left: 0px;
 }
 
 .z-50 {
@@ -866,6 +866,10 @@ video {
   height: 2rem;
 }
 
+.h-0 {
+  height: 0px;
+}
+
 .h-6 {
   height: 1.5rem;
 }
@@ -884,10 +888,6 @@ video {
 
 .h-screen {
   height: 100vh;
-}
-
-.h-0 {
-  height: 0px;
 }
 
 .min-h-16 {
@@ -918,16 +918,16 @@ video {
   width: 20rem;
 }
 
+.w-\[17\.5rem\] {
+  width: 17.5rem;
+}
+
 .w-\[96vw\] {
   width: 96vw;
 }
 
 .w-full {
   width: 100%;
-}
-
-.w-\[17\.5rem\] {
-  width: 17.5rem;
 }
 
 .min-w-0 {
@@ -982,12 +982,12 @@ video {
   max-width: 1024px;
 }
 
-.max-w-xs {
-  max-width: 20rem;
-}
-
 .max-w-sm {
   max-width: 24rem;
+}
+
+.max-w-xs {
+  max-width: 20rem;
 }
 
 .flex-1 {
@@ -1402,6 +1402,11 @@ video {
   background-color: rgb(239 68 68 / var(--tw-bg-opacity, 1));
 }
 
+.bg-red-600 {
+  --tw-bg-opacity: 1;
+  background-color: rgb(220 38 38 / var(--tw-bg-opacity, 1));
+}
+
 .bg-tint-base {
   --tw-bg-opacity: 1;
   background-color: rgb(255 255 255 / var(--tw-bg-opacity, 1));
@@ -1420,11 +1425,6 @@ video {
 .bg-yellow-50 {
   --tw-bg-opacity: 1;
   background-color: rgb(254 252 232 / var(--tw-bg-opacity, 1));
-}
-
-.bg-red-600 {
-  --tw-bg-opacity: 1;
-  background-color: rgb(220 38 38 / var(--tw-bg-opacity, 1));
 }
 
 .object-contain {
@@ -1539,6 +1539,10 @@ video {
   padding-bottom: 1rem;
 }
 
+.pb-\[56\.25\%\] {
+  padding-bottom: 56.25%;
+}
+
 .pl-0 {
   padding-left: 0px;
 }
@@ -1601,10 +1605,6 @@ video {
 
 .pt-4 {
   padding-top: 1rem;
-}
-
-.pb-\[56\.25\%\] {
-  padding-bottom: 56.25%;
 }
 
 .text-left {
@@ -2945,11 +2945,6 @@ details[open] > summary .chevron {
   background-color: rgb(246 241 240 / var(--tw-bg-opacity, 1));
 }
 
-.hover\:bg-red-700:hover {
-  --tw-bg-opacity: 1;
-  background-color: rgb(185 28 28 / var(--tw-bg-opacity, 1));
-}
-
 .hover\:text-blue-800:hover {
   --tw-text-opacity: 1;
   color: rgb(30 64 175 / var(--tw-text-opacity, 1));
@@ -2978,16 +2973,6 @@ details[open] > summary .chevron {
 .hover\:text-tint-strong:hover {
   --tw-text-opacity: 1;
   color: rgb(31 28 28 / var(--tw-text-opacity, 1));
-}
-
-.hover\:text-red-600:hover {
-  --tw-text-opacity: 1;
-  color: rgb(220 38 38 / var(--tw-text-opacity, 1));
-}
-
-.hover\:text-white:hover {
-  --tw-text-opacity: 1;
-  color: rgb(255 255 255 / var(--tw-text-opacity, 1));
 }
 
 .hover\:underline:hover {

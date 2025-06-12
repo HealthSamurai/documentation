@@ -76,17 +76,17 @@
 (defn render-empty-page [context filepath parsed-heading]
   [:div
    [:h1 {:class "mt-6 text-4xl font-bold text-gray-900 pb-4 mb-8"}
-   (-> parsed-heading :content first :text)]
+    (-> parsed-heading :content first :text)]
    (for [[_path {:keys [title uri]}]
          (find-children-files context filepath)]
      (big-links/big-link-view (str "/" uri) title))])
 
 (defn render-file* [context filepath parsed]
-   (def parsed parsed)
-(def context context)
-(def filepath filepath)
+  (def parsed parsed)
+  (def context context)
+  (def filepath filepath)
 
-   (def item (-> parsed :toc :children first :children first))
+  (def item (-> parsed :toc :children first :children first))
   [:div {:class "flex gap-8"}
    [:div {:class "flex-1 min-w-0"}
     (if (and (= 1 (count (:content parsed)))
@@ -94,8 +94,8 @@
       (render-empty-page context filepath (first (:content parsed)))
       (markdown/render-md context filepath parsed))]
    (when
-     (and (:toc parsed)
-          (-> parsed :toc :children first :children seq))
+    (and (:toc parsed)
+         #_(-> parsed :toc :children first :children seq))
      [:div {:class "toc-container flex-shrink-0 sticky top-0 h-screen overflow-y-auto p-6 bg-white w-60"}
       [:div {:class "toc w-full max-w-full"}
        (for [item (-> parsed :toc :children first :children)]
