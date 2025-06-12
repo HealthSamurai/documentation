@@ -112,6 +112,7 @@ Unlike **attributes**, which can only store string values and are defined in the
 - `onFetch` (optional): A custom fetch handler that allows you to intercept and modify network requests. The function receives the URL and request options as arguments.
 - `onAlert` (optional): A custom alert handler that allows you to intercept and handle alerts, overriding the visual alert display. The function receives the alert object as an argument.
 - `onChange` (optional): A custom callback function that is invoked when the questionnaire response is modified, without affecting the default behavior. The function receives the updated questionnaire response as an argument.
+- `onPreviewAttachment` (optional): A custom callback function that allows you to handle attachment previews, enabling external editors or viewers. The function receives the attachment object as an argument.
 {% endtab %}
 
 {% endtabs %}
@@ -195,6 +196,34 @@ For more complex use cases, such as attaching authorization headers or storing q
 {% endtab %}
 
 {% endtabs %}
+
+### onPreviewAttachment: show attachments with external editor
+
+Allows to preview attachments in an external editor or viewer.
+
+Return `false` to use default Aidbox Forms attachment preview, or `true` to prevent default behavior and show your previewer.
+
+```html
+<aidbox-form-renderer id="aidbox-form-renderer" />
+
+<script>
+  const renderer = document.getElementById('aidbox-form-renderer');
+  
+  renderer.onPreviewAttachment = (attachment) => {
+    // attachment is an FHIR attachment object
+    // e.g., open attachment in external editor
+    if(attachment.contentType === "application/dicom") {
+      window.open(attachment.data, '_blank'); // if it's a data URL
+      window.open(attachment.url, '_blank'); // if it's stored in S3
+      return true;
+    }
+  
+    return false;
+    
+  };
+</script>
+```
+
 
 #### onChange: React to Form Updates
 
