@@ -71,17 +71,20 @@
 
       [:span {:class "text-xs text-gray-400"} "⌘K"]]]]])
 
+(defn content-div [content]
+  [:div#content {:class "flex-1 py-6 max-w-6xl min-w-0 overflow-x-hidden"}
+   [:script "hljs.highlightAll();"]
+   [:div {:class "mx-auto px-2 max-w-full"} content]])
+
 (defn layout-view [context content]
   [:div
    (nav)
    [:div
     {:class "flex px-4 sm:px-6 md:px-8 max-w-screen-2xl mx-auto site-full-width:max-w-full gap-20"}
     (menu (summary/get-summary context))
-    [:div#content {:class "flex-1 py-2"}
-     [:div {:class "mx-auto px-2"} content]]]])
+    (content-div content)]])
 
 (defn response1 [body status]
-  (def b body)
   {:status (or status 200)
    :headers {"content-type" "text/html; ; charset=utf-8"}
    :body (uui/hiccup body)})
@@ -111,10 +114,7 @@
         status (if (map? content) (:status content 200) 200)]
     (response1
      (if (uui/hx-target request)
-       [:div#content
-        {:class "flex-1 py-6"}
-        [:script "hljs.highlightAll();"]
-        [:div {:class "mx-auto px-2"} body]]
+       (content-div body)
        (document
         (layout-view context body)))
      status)))

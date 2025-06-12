@@ -23,4 +23,41 @@
     (fn [[url file]]
       (str/starts-with? url "overview/faq"))
     uri->file-idx)
+
+  (def content
+    "```yaml
+POST /v2/fhir/$import
+Accept: text/yaml
+Content-Type: text/yaml
+
+id: synthea-100
+inputs:
+- resourceType: AllergyIntolerance
+  url: url1
+- resourceType: CarePlan
+  url: url2
+```")
+
+  (def content
+"{% tabs %}
+{% tab title=\"100 ~ 300MB\" %}
+```yaml
+POST /v2/fhir/$import
+Accept: text/yaml
+Content-Type: text/yaml
+
+id: synthea-100
+inputs:
+- resourceType: AllergyIntolerance
+  url: url1
+- resourceType: CarePlan
+  url: url2
+```
+{% endtab %}
+{% endtabs %}")
+
+  (def p
+    (markdown/parse-markdown-content context [""  content]))
+
+  (markdown/render-md context "" (:parsed p))
   )

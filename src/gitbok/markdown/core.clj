@@ -64,9 +64,7 @@
               (when (and content (not (str/blank? (str/trim content))))
                 [:div {:class "mt-4 text-sm text-gray-600 italic"}
                  (str/trim content)])]))
-
          :blockquote github-hint/github-hint-renderer
-
          :heading
          (comp
           (fn [header-hiccup]
@@ -109,18 +107,16 @@
 
          :bullet-list
          (fn [ctx node]
-           (into [:ul {:class "mt-4 ml-8 list-disc text-gray-900"}]
-                 (mapv #(transform/->hiccup ctx %) (:content node))))
+           (into [:ul {:class "mt-4 ml-8 list-disc text-gray-900 text-lg"}]
+                 (mapv #(transform/->hiccup ctx %)
+                       (:content node))))
 
          ;; :ordered-list
-         ;; (comp
-         ;;  (fn [ol-hiccup]
-         ;;    (update-in
-         ;;      ol-hiccup
-         ;;      [1 :class]
-         ;;      (fn [existing-class]
-         ;;        (str/trim (str existing-class " mt-4 ml-8 list-decimal text-gray-900")))))
-         ;;  (:ordered-list transform/default-hiccup-renderers))
+         ;; (fn [ctx node]
+         ;;   (into [:ul {:class "mt-4 ml-8 list-disc text-gray-900"}]
+         ;;         (mapv #(transform/->hiccup ctx %)
+         ;;               (:content node))))
+
          ;;
          ;; :list-item
          ;; (comp

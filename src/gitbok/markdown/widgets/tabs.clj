@@ -81,26 +81,33 @@
 (defn- render-tabs-hiccup [context filepath tabs-data
                            parse-markdown-content-fn
                            render-md-fn]
-  (let [tabs (for [{:keys [title text start end]} (:tabs tabs-data)
-                   :let [parsed-content (:parsed (parse-markdown-content-fn context [filepath text]))
-                         rendered-content (render-md-fn context filepath parsed-content)]]
-               {:title title
-                :content rendered-content
-                :start start
-                :end end})]
+  (let [tabs
+        (for [{:keys [title text start end]} (:tabs tabs-data)
+              :let [parsed-content (:parsed (parse-markdown-content-fn context [filepath text]))
+                    rendered-content (render-md-fn context filepath parsed-content)]]
+          {:title title
+           :content rendered-content
+           :start start
+           :end end})]
     [:div {:class "bg-white border border-gray-200 rounded-lg overflow-hidden"}
      [:div {:class "flex border-b border-gray-200"}
-      (for [[idx {:keys [title]}] (map-indexed vector tabs)]
-        [:button {:class (str "px-4 py-2 text-sm font-medium border-b-2 transition-colors "
-                              (if (= idx 0) "border-blue-500 text-blue-600" "border-transparent text-gray-500 hover:text-gray-700"))
-                  :data-tab idx
-                  :onclick (str "switchTab(this, " idx ")")}
+      (for [[idx {:keys [title]}]
+            (map-indexed vector tabs)]
+        [:button
+         {:class
+          (str "px-4 py-2 text-sm font-medium border-b-2 transition-colors "
+               (if (= idx 0)
+                 "border-blue-500 text-blue-600"
+                 "border-transparent text-gray-500 hover:text-gray-700"))
+          :data-tab idx
+          :onclick (str "switchTab(this, " idx ")")}
          title])]
-     [:div {:class "p-4"}
+     (into
+      [:div {:class "p-4 overflow-x-auto"}]
       (for [[idx {:keys [content]}] (map-indexed vector tabs)]
         [:div {:class (str "tab-content " (if (= idx 0) "block" "hidden"))
                :data-tab idx}
-         content])]]))
+         content]))]))
 
 (defn hack-tabs [context filepath
                  parse-markdown-content-fn
@@ -108,16 +115,20 @@
                  content]
   (let [tabs-data (parse-tabs content)
         sorted-tabs (sort-by :start > tabs-data)]
-    (reduce (fn [content tab-data]
-              (let [hiccup
-                    (render-tabs-hiccup context filepath tab-data
-                                        parse-markdown-content-fn
-                                        render-md-fn)
-                    html
-                    (hiccup2.core/html hiccup)]
-                (str (utils/safe-subs content 0 (:start tab-data))
-                     html
-                     (utils/safe-subs content (:end tab-data)))))
-            content
-            sorted-tabs)))
+    (reduce
+     (fn [content tab-data]
+       (let [hiccup
+             (render-tabs-hiccup context filepath tab-data
+                                  parse-markdown-content-fn
+                                  render-md-fn)
+             html
+             (hiccup2.core/html hiccup)
+             processed-html
+             (str/replace html #"\n\n" "\n\u00A0\n")]
+         (str
+          (utils/safe-subs content 0 (:start tab-data))
+          processed-html
+          (utils/safe-subs content (:end tab-data)))))
+     content
+     sorted-tabs)))
 

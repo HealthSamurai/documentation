@@ -20,10 +20,9 @@
 
 # bugs/techdebt
 
-- [ ] do not read on refresh
-- [ ] cache html
 - [ ] rm huge image history from repo
 - [ ] redirects with sections should work api-1/api/search-1/search-parameters-list/\_explain: api/rest-api/aidbox-search.md#aidbox-special-search-parameters
+- [ ] {% code title="Status: 200" lineNumbers="true" %}
 
 ## UX
 
