@@ -111,19 +111,17 @@
                  (mapv #(transform/->hiccup ctx %)
                        (:content node))))
 
-         ;; :ordered-list
-         ;; (fn [ctx node]
-         ;;   (into [:ul {:class "mt-4 ml-8 list-disc text-gray-900"}]
-         ;;         (mapv #(transform/->hiccup ctx %)
-         ;;               (:content node))))
+         :code
+         (fn [_ctx node]
+           [:pre {:class "border border-gray-200 text-gray-800 rounded-lg overflow-x-auto max-w-full my-6 shadow-sm"}
+            [:code {:class "text-sm leading-relaxed block p-4"}
+             (-> node :content first :text)]])
 
-         ;;
-         ;; :list-item
-         ;; (comp
-         ;;  (fn [li-hiccup]
-         ;;    (update-in li-hiccup [1 :class] (fn [existing-class]
-         ;;                                     (str/trim (str existing-class " mb-2")))))
-         ;;  (:list-item transform/default-hiccup-renderers))
+         :monospace
+         (fn [_ctx node]
+           [:code {:class "text-sm px-1 border border-gray-200 rounded"
+                   :style "background-color: #fbf9f9;"}
+             (-> node :content first :text)])
 
          :table
          (fn [ctx node]
@@ -204,9 +202,10 @@
                            4 "pl-12"
                            5 "pl-16"
                            6 "pl-20"
-                           "pl-0")] [:a {:href href
-                                         :class (str padding-class)}
-                                     content]))
+                           "pl-0")]
+       [:a {:href href
+            :class (str padding-class)}
+        content]))
 
    (when (:children item)
      (for [child (:children item)]

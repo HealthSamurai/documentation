@@ -543,6 +543,22 @@ details[open] > summary .chevron {
   color: var(--aidbox-text-muted);
 }
 
+#content pre {
+  /* @apply relative overflow-auto border border-tint-subtle bg-tint-subtle rounded-md straight-corners:rounded-sm shadow-sm; */
+
+/* hide-scroll relative overflow-auto border border-tint-subtle bg-tint-subtle theme-muted:bg-tint-base [grid-area:2/1] contrast-more:border-tint contrast-more:bg-tint-base [html.theme-bold.sidebar-filled_&]:bg-tint-base rounded-md straight-corners:rounded-sm shadow-sm */
+  /* @apply relative overflow-auto border border-tint-subtle bg-tint-subtle rounded-md shadow-sm [grid-area:2/1]; */
+  /* @apply relative overflow-auto border border-tint-subtle rounded-md shadow-sm [grid-area:2/1]; */
+  /* @apply border-red-500 ; */
+  @apply  border border-gray-200 text-gray-800 rounded-lg overflow-x-auto max-w-full my-6 shadow-sm;
+
+/* bg-gray-50 */
+}
+
+#content pre code {
+  @apply text-sm leading-relaxed block p-4;
+}
+
 /* Buttons - REPLACED WITH TAILWIND */
 /* .btn {
   @apply inline-flex items-center px-4 py-2 rounded-lg font-medium transition-all duration-200;
