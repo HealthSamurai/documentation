@@ -5,7 +5,7 @@ metadata:
   namespace: gitbok
 spec:
   ports:
-  - name: main
+  - name: http
     port: 80
     protocol: TCP
     targetPort: 8080

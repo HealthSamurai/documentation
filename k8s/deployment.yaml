@@ -25,7 +25,7 @@ spec:
             value: "8080"
         ports:
           - containerPort: 8080
-            name: main
+            name: http
             protocol: TCP
         securityContext:
           allowPrivilegeEscalation: false
