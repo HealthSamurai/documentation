@@ -18,12 +18,11 @@
        [:div {:class "border-l border-gray-200 ml-4"}
         (for [c (:children item)]
           (render-menu url c))]]
-      [:div (when open? {:class "summary-opened-page"})
-       (let [link-element (:title item)
+      (let [link-element (:title item)
              current-class (get-in link-element [1 :class] "")
              active-class (if open? " active" "")
              updated-class (str current-class active-class)]
-         (assoc-in link-element [1 :class] updated-class))])))
+         (assoc-in link-element [1 :class] updated-class)))))
 
 (defn menu [summary url]
   [:div#navigation {:class "w-[17.5rem] flex-shrink-0 sticky top-16 h-[calc(100vh-4rem)] overflow-y-auto py-4 bg-white"}

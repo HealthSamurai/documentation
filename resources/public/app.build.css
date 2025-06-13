@@ -2207,19 +2207,10 @@ li {
 }
 
 #navigation a {
-  margin-left: 0.5rem;
-  margin-right: 0.5rem;
-  margin-top: 0.125rem;
-  margin-bottom: 0.125rem;
   display: block;
   border-radius: 0.375rem;
-  padding-left: 1rem;
-  padding-right: 1rem;
-  padding-top: 0.375rem;
-  padding-bottom: 0.375rem;
   --tw-text-opacity: 1;
   color: rgb(55 65 81 / var(--tw-text-opacity, 1));
-  text-decoration-line: none;
   transition-property: color, background-color, border-color, text-decoration-color, fill, stroke;
   transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
   transition-duration: 200ms;
@@ -2227,7 +2218,7 @@ li {
 
 #navigation a:hover {
   --tw-bg-opacity: 1;
-  background-color: rgb(243 244 246 / var(--tw-bg-opacity, 1));
+  background-color: rgb(246 241 240 / var(--tw-bg-opacity, 1));
   --tw-text-opacity: 1;
   color: rgb(220 38 38 / var(--tw-text-opacity, 1));
 }
@@ -2428,6 +2419,11 @@ strong {
 .hover\:border-primary-9:hover {
   --tw-border-opacity: 1;
   border-color: rgb(217 86 64 / var(--tw-border-opacity, 1));
+}
+
+.hover\:bg-\[\#f6f1f0\]:hover {
+  --tw-bg-opacity: 1;
+  background-color: rgb(246 241 240 / var(--tw-bg-opacity, 1));
 }
 
 .hover\:bg-gray-100:hover {

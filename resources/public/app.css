@@ -75,7 +75,7 @@ li {
 }
 
 #navigation a {
-  @apply block px-4 py-1.5 text-gray-700 hover:bg-gray-100 hover:text-red-600 transition-colors duration-200 rounded-md mx-2 my-0.5 no-underline;
+  @apply block  text-gray-700 hover:bg-[#f6f1f0] hover:text-red-600 transition-colors duration-200 rounded-md;
 }
 
 /* Mark element styling for beta tags */
