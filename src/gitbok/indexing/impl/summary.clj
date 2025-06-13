@@ -22,9 +22,8 @@
         (str/replace #"^/" ""))))
 
 (defn render-markdown-link-in-toc [title href]
-  [:a {:class "block py-1.5 text-tint-strong/70 hover:bg-tint-hover hover:text-tint-strong transition-colors duration-200 rounded-md mx-2 my-0.5 clickable-summary no-underline"
-       :href (if (str/starts-with? href "http")
-               href (str "/" href))
+  [:a {:class "block py-1.5 text-tint-strong/70 hover:bg-tint-hover hover:text-tint-strong transition-colors duration-200 rounded-md mx-2 my-0.5 clickable-summary"
+       :href href
        :hx-target "#content"
        :hx-swap "outerHTML"}
    [:span {:class "flex items-center gap-2 mx-2"}
@@ -39,11 +38,6 @@
           href (file->href href)
           title (nth match 1)]
       {:title title :href href})))
-
-(defn render-md-link [line]
-  (if-let [parsed (parse-md-link line)]
-    (render-markdown-link-in-toc (:title parsed) (:href parsed))
-    line))
 
 (defn collect-children [x ls]
   (loop [[{i :i :as l} & ls :as pls] ls acc []]
@@ -97,8 +91,15 @@
                          (fn [chld]
                            (->> chld
                                 (mapv (fn [x]
-                                        {:i (count-whitespace x)
-                                         :title (render-md-link x)}))
+                                        (let [parsed  (parse-md-link x)
+                                              href (:href parsed)
+                                              href
+                                              (if (str/starts-with? href "http")
+                                                href (str "/" href))]
+                                          {:i (count-whitespace x)
+                                           :parsed parsed
+                                           :href href
+                                           :title (render-markdown-link-in-toc (:title parsed) href)})))
                                 (treefy)))))))]
     summary))
 

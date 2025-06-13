@@ -8,27 +8,33 @@
    [clojure.string :as str]
    [uui.heroicons :as ico]))
 
-(defn render-menu [items]
-  (if (:children items)
-    [:details
-     [:summary {:class "flex items-center justify-between font-medium text-gray-900 hover:bg-gray-100 transition-colors duration-200 cursor-pointer group"}
-      [:div {:class "flex-1 clickable-summary"} (:title items)]
-      (ico/chevron-right "chevron size-5 text-gray-400 group-hover:text-primary-9 transition-colors duration-200")]
-     [:div {:class "border-l border-gray-200 ml-4"}
-      (for [c (:children items)]
-        (render-menu c))]]
-    [:div (:title items)]))
+(defn render-menu [url item]
+  (let [open? (str/starts-with? url (:href item))]
+    (if (:children item)
+      [:details (when open? {:open ""})
+       [:summary {:class "flex items-center justify-between font-medium text-gray-900 hover:bg-gray-100 transition-colors duration-200 cursor-pointer group"}
+        [:div {:class "flex-1 clickable-summary"} (:title item)]
+        (ico/chevron-right "chevron size-5 text-gray-400 group-hover:text-primary-9 transition-colors duration-200")]
+       [:div {:class "border-l border-gray-200 ml-4"}
+        (for [c (:children item)]
+          (render-menu url c))]]
+      [:div (when open? {:class "summary-opened-page"})
+       (let [link-element (:title item)
+             current-class (get-in link-element [1 :class] "")
+             active-class (if open? " active" "")
+             updated-class (str current-class active-class)]
+         (assoc-in link-element [1 :class] updated-class))])))
 
-(defn menu [summary]
-  [:div {:class "w-[17.5rem] flex-shrink-0 sticky top-16 h-[calc(100vh-4rem)] overflow-y-auto py-4 bg-white"}
+(defn menu [summary url]
+  [:div#navigation {:class "w-[17.5rem] flex-shrink-0 sticky top-16 h-[calc(100vh-4rem)] overflow-y-auto py-4 bg-white"}
    (for [item summary]
      [:div {:class "break-words"}
       (when-not
-       (str/blank? (:title item))
+        (str/blank? (:title item))
         [:div {:class "mt-4 mb-2 mx-4"}
          [:b (:title item)]])
       (for [ch (:children item)]
-        (render-menu ch))])])
+        (render-menu url ch))])])
 
 (defn nav []
   [:div {:class "w-full bg-white border-b border-gray-200 flex-shrink-0 sticky top-0 z-50"}
@@ -76,12 +82,12 @@
    [:script "hljs.highlightAll();"]
    [:div {:class "mx-auto px-2 max-w-full"} content]])
 
-(defn layout-view [context content]
+(defn layout-view [context content uri]
   [:div
    (nav)
    [:div
     {:class "flex px-4 sm:px-6 md:px-8 max-w-screen-2xl mx-auto site-full-width:max-w-full gap-20"}
-    (menu (summary/get-summary context))
+    (menu (summary/get-summary context) uri)
     (content-div content)]])
 
 (defn response1 [body status]
@@ -97,6 +103,7 @@
     [:script {:src "/static/toc.js"}]
     [:script {:src "/static/toc-scroll.js"}]
     [:script {:src "/static/tabs.js"}]
+    [:script {:src "/static/navigation-sync.js"}]
     [:link {:rel "stylesheet" :href "/static/github.min.css"}]
     [:script {:src "/static/highlight.min.js"}]
     [:script {:src "/static/json.min.js"}]
@@ -117,5 +124,5 @@
      (if (uui/hx-target request)
        (content-div body)
        (document
-        (layout-view context body)))
+        (layout-view context body (:uri request))))
      status)))
