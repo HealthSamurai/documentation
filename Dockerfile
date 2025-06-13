@@ -1,9 +1,7 @@
 FROM clojure:tools-deps AS builder
 WORKDIR /srv
 COPY . /srv/
-RUN --mount=target=/root/.m2,type=cache,sharing=locked \
-    make uberjar
-
+RUN make uberjar
 
 FROM bellsoft/liberica-openjre-alpine-musl:24 AS final
 COPY --from=builder /srv/target/gitbok.jar /gitbok.jar
