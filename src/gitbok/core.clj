@@ -249,12 +249,13 @@
   {})
 
 (def default-port 8081)
-(def default-config
+
+(defn default-config [port]
   {:services ["http" "uui" "gitbok.core"]
-   :http {:port default-port}})
+   :http {:port port}})
 
 (defn -main [& args]
-  (let [p (System/getenv "PORT")
+  (let [p (def p (System/getenv "PORT"))
         port (or
               (when p
                 (try (Integer/parseInt p)
@@ -262,4 +263,4 @@
               default-port)]
     (println "Server started")
     (println "port " port)
-    (system/start-system default-config)))
+    (system/start-system (default-config p))))
