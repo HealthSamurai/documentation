@@ -1,6 +1,6 @@
 (ns gitbok.indexing.impl.redirects
   (:require
-   [clojure.java.io :as io]
+   [gitbok.utils :as utils]
    [clj-yaml.core :as yaml]))
 
 (def ^:const ^:private
@@ -8,6 +8,6 @@
   ".gitbook.yaml")
 
 (defn redirects-from-file []
-  (let [content (slurp (io/resource file))]
+  (let [content (utils/slurp-resource file)]
     (when content
       (:redirects (yaml/parse-string content)))))

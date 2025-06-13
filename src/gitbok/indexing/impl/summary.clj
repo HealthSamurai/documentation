@@ -2,7 +2,7 @@
   (:require
    [clojure.string :as str]
    [gitbok.constants :as const]
-   [clojure.java.io :as io]
+   [gitbok.utils :as utils]
    [system]
    [uui]
    [uui.heroicons :as ico]))
@@ -57,7 +57,7 @@
         (recur ls (conj acc l))))))
 
 (defn read-summary []
-  (slurp (io/resource const/SUMMARY_PATH)))
+  (utils/slurp-resource const/SUMMARY_PATH))
 
 (defn title [s]
   (let [t (str/trim (str/replace (str/replace s #"\<.*\>" "") #"#" ""))]

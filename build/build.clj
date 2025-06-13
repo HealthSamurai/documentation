@@ -32,7 +32,7 @@
     ;;               :target (str class-dir "/resources/.gitbook.yaml")})
 
     (b/copy-file {:src ".gitbook.yaml"
-                  :target (str class-dir ".gitbook.yaml")})
+                  :target (str class-dir "/" ".gitbook.yaml")})
 
     (b/write-file {:path (str class-dir "/version") :string version})
 

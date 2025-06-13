@@ -96,7 +96,7 @@
          (map #(-> ^java.io.File % .getPath (subs (inc dir-length)))))))
 
 (defn read-content [filepath]
-  (let [content (slurp (io/resource filepath))]
+  (let [content (utils/slurp-resource filepath)]
     (if (str/starts-with? content "---")
       (last (str/split content #"---\n" 3))
       content)))

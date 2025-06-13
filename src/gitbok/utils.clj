@@ -1,5 +1,7 @@
 (ns gitbok.utils
-  (:require [clojure.string :as str]))
+  (:require
+    [clojure.string :as str]
+    [clojure.java.io :as io]))
 
 (defn s->url-slug [s]
   (when s
@@ -20,4 +22,8 @@
                (<= end (count s)))
       (subs s start end))))
 
-
+(defn slurp-resource [path]
+  (if-let [r
+           (io/resource path)]
+    (slurp r)
+    (throw (Exception. (str "Cannot find " path)))))
