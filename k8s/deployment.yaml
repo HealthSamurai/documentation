@@ -18,7 +18,7 @@ spec:
     spec:
       containers:
       - name: main
-        image: spicyfalafel/gitbok
+        image: ghcr.io/healthsamurai/documentation:latest
         imagePullPolicy: Always
         env:
           - name: PORT
