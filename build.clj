@@ -38,3 +38,6 @@
 
     (println "Creating uberjar...")
     (b/uber opts)))
+
+(defn -main []
+  (uber))
