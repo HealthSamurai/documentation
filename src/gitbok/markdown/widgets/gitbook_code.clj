@@ -53,7 +53,7 @@
                 first-line (first lines)
                 rest-lines (rest lines)]
             (if (and first-line (str/includes? first-line "%}"))
-              (let [attr-end (.indexOf first-line "%}")
+              (let [attr-end (.indexOf ^String first-line "%}")
                     attr-string (utils/safe-subs first-line 0 attr-end)
                     attributes (parse-attributes attr-string)
                     code-content (str/join "\n" rest-lines)]
@@ -81,13 +81,15 @@
         line-numbers (get (:attributes code-data) :lineNumbers)
         content (:content code-data)
         parsed-content (:parsed (parse-markdown-content-fn context [filepath content]))
-        rendered-content (render-md-fn context filepath parsed-content)]
-
+        raw-html (render-md-fn context filepath parsed-content)
+        raw-html (if line-numbers
+                   (str/replace raw-html #"nohljsln" "")
+                   raw-html)]
     [:div {:class "bg-white border border-gray-200 rounded-lg overflow-hidden"}
      (when title
        [:div {:class "bg-gray-50 px-4 py-3 border-b border-gray-200"}
         [:h3 {:class "text-lg font-medium text-gray-900"} title]])
-     rendered-content]))
+     raw-html]))
 
 (defn hack-gitbook-code
   [context filepath

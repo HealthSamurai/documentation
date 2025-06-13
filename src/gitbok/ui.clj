@@ -19,17 +19,17 @@
         (for [c (:children item)]
           (render-menu url c))]]
       (let [link-element (:title item)
-             current-class (get-in link-element [1 :class] "")
-             active-class (if open? " active" "")
-             updated-class (str current-class active-class)]
-         (assoc-in link-element [1 :class] updated-class)))))
+            current-class (get-in link-element [1 :class] "")
+            active-class (if open? " active" "")
+            updated-class (str current-class active-class)]
+        (assoc-in link-element [1 :class] updated-class)))))
 
 (defn menu [summary url]
   [:div#navigation {:class "w-[17.5rem] flex-shrink-0 sticky top-16 h-[calc(100vh-4rem)] overflow-y-auto py-4 bg-white"}
    (for [item summary]
      [:div {:class "break-words"}
       (when-not
-        (str/blank? (:title item))
+       (str/blank? (:title item))
         [:div {:class "mt-4 mb-2 mx-4"}
          [:b (:title item)]])
       (for [ch (:children item)]
@@ -79,6 +79,7 @@
 (defn content-div [content]
   [:div#content {:class "flex-1 py-6 max-w-6xl min-w-0 overflow-x-hidden"}
    [:script "hljs.highlightAll();"]
+   ;; [:script "hljs.initLineNumbersOnLoad();"]
    [:div {:class "mx-auto px-2 max-w-full"} content]])
 
 (defn layout-view [context content uri]
@@ -105,6 +106,7 @@
     [:script {:src "/static/navigation-sync.js"}]
     [:link {:rel "stylesheet" :href "/static/github.min.css"}]
     [:script {:src "/static/highlight.min.js"}]
+    [:script {:src "/static/highlightjs-line-numbers.min.js"}]
     [:script {:src "/static/json.min.js"}]
     [:script {:src "/static/bash.min.js"}]
     [:script {:src "/static/yaml.min.js"}]
@@ -112,6 +114,7 @@
     [:script {:src "/static/http.min.js"}]
     [:script {:src "/static/graphql.min.js"}]
     [:script "hljs.highlightAll();"]
+    ;; [:script "hljs.initLineNumbersOnLoad();"]
     [:link {:rel "stylesheet", :href "/static/app.build.css"}]
     [:meta {:name "htmx-config", :content "{\"scrollIntoViewOnBoost\":false}"}]]
    [:body {:hx-boost "true"} body]])
