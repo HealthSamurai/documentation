@@ -83,14 +83,14 @@
 
 (defn render-file* [context filepath parsed]
   [:div {:class "flex gap-8"}
-   [:div {:class "flex-1 min-w-0"}
+   [:div {:class "flex-1 min-w-0 max-w-4xl"}
     (if (and (= 1 (count (:content parsed)))
              (= :heading (:type (first (:content parsed)))))
       (render-empty-page context filepath (first (:content parsed)))
       (markdown/render-md context filepath parsed))]
    (when
     (:toc parsed)
-     [:div {:class "toc-container flex-shrink-0 sticky top-0 h-screen overflow-y-auto p-6 bg-white w-60"}
+     [:div {:class "toc-container fixed top-16 right-16 h-[calc(100vh-4rem)] overflow-y-auto p-6 bg-white w-60 rounded-lg z-50"}
       [:div {:class "toc w-full max-w-full"}
        (for [item (-> parsed :toc :children first :children)]
          (markdown/render-toc-item item))]])])

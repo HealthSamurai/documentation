@@ -20,7 +20,7 @@
     [:div (:title items)]))
 
 (defn menu [summary]
-  [:div {:class "w-[17.5rem] flex-shrink-0 sticky top-0 h-screen overflow-y-auto py-4 bg-white"}
+  [:div {:class "w-[17.5rem] flex-shrink-0 sticky top-16 h-[calc(100vh-4rem)] overflow-y-auto py-4 bg-white"}
    (for [item summary]
      [:div {:class "break-words"}
       (when-not
@@ -104,6 +104,7 @@
     [:script {:src "/static/yaml.min.js"}]
     [:script {:src "/static/json.min.js"}]
     [:script {:src "/static/http.min.js"}]
+    [:script {:src "/static/graphql.min.js"}]
     [:script "hljs.highlightAll();"]
     [:link {:rel "stylesheet", :href "/static/app.build.css"}]
     [:meta {:name "htmx-config", :content "{\"scrollIntoViewOnBoost\":false}"}]]

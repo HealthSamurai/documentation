@@ -45,13 +45,24 @@ li {
   @apply mb-2;
 }
 
-/* TOC Sticky positioning */
+/* TOC Fixed positioning with margin */
 .toc-container {
-  position: sticky !important;
-  top: 0 !important;
-  height: 100vh !important;
+  position: fixed !important;
+  top: 4rem !important;
+  right: 10rem !important;
+  height: calc(100vh - 4rem) !important;
   overflow-y: auto !important;
-  max-height: 100vh !important;
+  z-index: 50 !important;
+}
+
+/* Ensure parent containers don't interfere with sticky positioning */
+.flex.gap-8 {
+  overflow: visible !important;
+  position: relative !important;
+}
+
+.flex.gap-8 > div {
+  overflow: visible !important;
 }
 
 .toc a {

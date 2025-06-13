@@ -624,16 +624,40 @@ video {
   left: 0px;
 }
 
+.right-0 {
+  right: 0px;
+}
+
+.right-16 {
+  right: 4rem;
+}
+
 .right-3 {
   right: 0.75rem;
+}
+
+.right-8 {
+  right: 2rem;
 }
 
 .top-0 {
   top: 0px;
 }
 
+.top-16 {
+  top: 4rem;
+}
+
+.top-20 {
+  top: 5rem;
+}
+
 .top-3 {
   top: 0.75rem;
+}
+
+.z-40 {
+  z-index: 40;
 }
 
 .z-50 {
@@ -751,6 +775,10 @@ video {
 
 .mr-4 {
   margin-right: 1rem;
+}
+
+.mr-60 {
+  margin-right: 15rem;
 }
 
 .ms-3 {
@@ -878,8 +906,17 @@ video {
   height: 96vh;
 }
 
+.h-\[calc\(100vh-4rem\)\] {
+  height: calc(100vh - 4rem);
+}
+
 .h-auto {
   height: auto;
+}
+
+.h-fit {
+  height: -moz-fit-content;
+  height: fit-content;
 }
 
 .h-full {
@@ -1618,6 +1655,10 @@ video {
   padding-right: 0.75rem;
 }
 
+.pr-60 {
+  padding-right: 15rem;
+}
+
 .pt-1 {
   padding-top: 0.25rem;
 }
@@ -1632,6 +1673,14 @@ video {
 
 .pt-4 {
   padding-top: 1rem;
+}
+
+.pr-80 {
+  padding-right: 20rem;
+}
+
+.pr-96 {
+  padding-right: 24rem;
 }
 
 .text-left {
@@ -2102,14 +2151,26 @@ li {
   margin-bottom: 0.5rem;
 }
 
-/* TOC Sticky positioning */
+/* TOC Fixed positioning with margin */
 
 .toc-container {
-  position: sticky !important;
-  top: 0 !important;
-  height: 100vh !important;
+  position: fixed !important;
+  top: 4rem !important;
+  right: 10rem !important;
+  height: calc(100vh - 4rem) !important;
   overflow-y: auto !important;
-  max-height: 100vh !important;
+  z-index: 50 !important;
+}
+
+/* Ensure parent containers don't interfere with sticky positioning */
+
+.flex.gap-8 {
+  overflow: visible !important;
+  position: relative !important;
+}
+
+.flex.gap-8 > div {
+  overflow: visible !important;
 }
 
 .toc a {
@@ -2685,6 +2746,15 @@ details[open] > summary .chevron {
   flex-direction: column;
   align-items: center;
   justify-content: center;
+}
+
+#content figure.gap-8 {
+  overflow: visible;
+  position: relative;
+}
+
+#content figure.gap-8 > div {
+  overflow: visible;
 }
 
 #content figure img {
