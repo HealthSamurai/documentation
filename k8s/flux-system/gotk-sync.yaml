@@ -7,7 +7,7 @@ metadata:
 spec:
   interval: 1m0s
   ref:
-    semver: ">=1.0.0"
+    branch: master
   secretRef:
     name: gitbok
   url: https://github.com/HealthSamurai/documentation.git
