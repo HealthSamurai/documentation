@@ -7,7 +7,7 @@ init:
 
 repl:
 	cp .gitbook.yaml resources
-	DEV=true clj -M:dev:test
+	DEV=true clj -M:dev:test:build
 
 tailwind:
 	npx tailwindcss -i ./resources/public/app.css -o ./resources/public/app.build.css --config ./tailwind.config.js --watch

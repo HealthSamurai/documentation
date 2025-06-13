@@ -1,13 +1,14 @@
 (ns build
   (:require
-    [clojure.java.io :as io]
-    [clojure.tools.build.api :as b]))
+    ;; [clojure.java.io :as io]
+   [clojure.tools.build.api :as b]))
 
 (def lib  'gitbok)
 (def main 'gitbok.core)
 (def class-dir "target/classes")
-(def version "1.0.0"
-  #_(b/git-process {:git-args ["describe" "--tags"]}))
+(def version
+  (or (System/getenv "VERSION")
+      (b/git-process {:git-args ["rev-parse" "--short" "HEAD"]})))
 
 (defn- uber-opts [opts]
   (merge opts
@@ -34,6 +35,7 @@
     (b/copy-file {:src ".gitbook.yaml"
                   :target (str class-dir "/" ".gitbook.yaml")})
 
+    (println "VERSION " version)
     (b/write-file {:path (str class-dir "/version") :string version})
 
     (println "Compiling files...")

@@ -4,6 +4,7 @@
    [http]
    [gitbok.indexing.impl.summary :as summary]
    [system]
+   [gitbok.utils :as utils]
    [uui]
    [clojure.string :as str]
    [uui.heroicons :as ico]))
@@ -33,7 +34,8 @@
         [:div {:class "mt-4 mb-2 mx-4"}
          [:b (:title item)]])
       (for [ch (:children item)]
-        (render-menu url ch))])])
+        (render-menu url ch))])
+   [:div "version " (utils/slurp-resource "version")]])
 
 (defn nav []
   [:div {:class "w-full bg-white border-b border-gray-200 flex-shrink-0 sticky top-0 z-50"}
@@ -84,6 +86,7 @@
 
 (defn layout-view [context content uri]
   [:div
+
    (nav)
    [:div
     {:class "flex px-4 sm:px-6 md:px-8 max-w-screen-2xl mx-auto site-full-width:max-w-full gap-20"}

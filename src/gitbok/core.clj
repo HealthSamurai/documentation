@@ -186,6 +186,24 @@
    :deps ["http"]
    :config {:history {:type "boolean"}}})
 
+(def default-port 8081)
+
+(def port
+  (let [p (System/getenv "PORT")]
+    (or
+     (cond
+       (not p)
+       nil
+
+       (string? p)
+       (try (Integer/parseInt p)
+            (catch Exception _ nil)))
+     default-port)))
+
+(def default-config
+  {:services ["http" "uui" "gitbok.core"]
+   :http {:port port}})
+
 #_{:clj-kondo/ignore [:unresolved-symbol]}
 (system/defstart
   [context config]
@@ -246,21 +264,14 @@
     :fn #'redirect-to-readme})
 
   (println "setup done!")
+
+  (println "PORT env "(System/getenv "PORT"))
+  (println "port " port)
+  (println "version " (utils/slurp-resource "version"))
   {})
 
-(def default-port 8081)
-
-(defn default-config [port]
-  {:services ["http" "uui" "gitbok.core"]
-   :http {:port port}})
-
 (defn -main [& args]
-  (let [p (def p (System/getenv "PORT"))
-        port (or
-              (when p
-                (try (Integer/parseInt p)
-                     (catch Exception _ nil)))
-              default-port)]
+  (let []
     (println "Server started")
     (println "port " port)
-    (system/start-system (default-config port))))
+    (system/start-system default-config)))
