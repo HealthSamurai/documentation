@@ -12,78 +12,47 @@ env:
   IMAGE_NAME: ${{ github.repository }}
 
 jobs:
-  # test:
-  #   runs-on: ubuntu-latest
-  #   steps:
-  #     - name: Checkout code
-  #       uses: actions/checkout@v4
-  #
-  #     - name: Setup Java
-  #       uses: actions/setup-java@v4
-  #       with:
-  #         distribution: 'temurin'
-  #         java-version: '17'
-  #
-  #     - name: Setup Clojure
-  #       uses: DeLaGuardo/setup-clojure@v5.0
-  #       with:
-  #         cli: true
-  #
-  #     - name: Cache Clojure dependencies
-  #       uses: actions/cache@v4
-  #       with:
-  #         path: |
-  #           ~/.m2
-  #           ~/.gitlibs
-  #           .cpcache
-  #         key: ${{ runner.os }}-clojure-${{ hashFiles('**/deps.edn') }}
-  #         restore-keys: |
-  #           ${{ runner.os }}-clojure-
-
-        # - name: Run tests
-        #   run: clojure -X:test
-
   build:
-    # needs: test
     runs-on: ubuntu-latest
     if: github.event_name == 'push' && (startsWith(github.ref, 'refs/tags/v') || github.ref == 'refs/heads/main' || github.ref == 'refs/heads/master')
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
 
-      - name: Setup Java
-        uses: actions/setup-java@v4
-        with:
-          distribution: 'temurin'
-          java-version: '17'
 
-      - name: Setup Node.js
-        uses: actions/setup-node@v4
+      - name: Prepare java
+        uses: actions/setup-java@v3
         with:
-          node-version: '18'
-          cache: 'npm'
+          distribution: 'zulu'
+          java-version: '8'
 
-      - name: Setup Clojure
+      - name: Install clojure tools
         uses: DeLaGuardo/setup-clojure@13.4
         with:
-          cli: true
+          cli: 1.10.1.693              # Clojure CLI based on tools.deps
 
-      - name: Cache Clojure dependencies
-        uses: actions/cache@v4
-        with:
-          path: |
-            ~/.m2
-            ~/.gitlibs
-            .cpcache
-          key: ${{ runner.os }}-clojure-${{ hashFiles('**/deps.edn') }}
-          restore-keys: |
-            ${{ runner.os }}-clojure-
+      # - name: Cache Clojure dependencies
+      #   uses: actions/cache@v4
+      #   with:
+      #     path: |
+      #       ~/.m2
+      #       ~/.gitlibs
+      #       .cpcache
+      #     key: ${{ runner.os }}-clojure-${{ hashFiles('**/deps.edn') }}
+      #     restore-keys: |
+      #       ${{ runner.os }}-clojure-
 
-      - name: Install npm dependencies
-        run: npm install
+      # - name: Setup Node.js
+      #   uses: actions/setup-node@v4
+      #   with:
+      #     node-version: '18'
+      #     cache: 'npm'
 
-      - name: Build Tailwind CSS
-        run: make build-tailwind
+      # - name: Install npm dependencies (tailwind)
+      #   run: npm install
+
+      # - name: Build Tailwind CSS
+      #   run: make build-tailwind
 
       - name: Build uberjar
         run: make uberjar
