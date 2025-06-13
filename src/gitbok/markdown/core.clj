@@ -7,6 +7,7 @@
    [gitbok.markdown.widgets.github-hint :as github-hint]
    [gitbok.markdown.widgets.cards :as cards]
    [gitbok.markdown.widgets.tabs :as tabs]
+   [gitbok.markdown.widgets.gitbook-code :as gitbook-code]
    [nextjournal.markdown :as md]
    [nextjournal.markdown.transform :as transform]
    [hickory.core]
@@ -113,7 +114,7 @@
 
          :code
          (fn [_ctx node]
-           [:pre {:class "border border-gray-200 text-gray-800 rounded-lg overflow-x-auto max-w-full my-6 shadow-sm"}
+           [:pre {:class "border border-gray-200 text-gray-800 rounded-lg overflow-x-auto max-w-full shadow-sm"}
             [:code {:class "text-sm leading-relaxed block p-4"}
              (-> node :content first :text)]])
 
@@ -221,7 +222,10 @@
        image/hack-youtube
        (tabs/hack-tabs context filepath
                        parse-markdown-content
-                       render-md)))
+                       render-md)
+       (gitbook-code/hack-gitbook-code context filepath
+                                       parse-markdown-content
+                                       render-md)))
 
 (defn set-parsed-markdown-index [context md-files-idx]
   (system/set-system-state

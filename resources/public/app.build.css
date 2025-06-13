@@ -2087,10 +2087,6 @@ video {
   transition-duration: 200ms;
 }
 
-.\[grid-area\:2\/1\] {
-  grid-area: 2/1;
-}
-
 /* Custom CSS variables for Aidbox-style theming - KEPT FOR REFERENCE */
 
 :root {
@@ -2368,13 +2364,6 @@ strong {
 }
 
 #content pre {
-  /* @apply relative overflow-auto border border-tint-subtle bg-tint-subtle rounded-md straight-corners:rounded-sm shadow-sm; */
-  /* hide-scroll relative overflow-auto border border-tint-subtle bg-tint-subtle theme-muted:bg-tint-base [grid-area:2/1] contrast-more:border-tint contrast-more:bg-tint-base [html.theme-bold.sidebar-filled_&]:bg-tint-base rounded-md straight-corners:rounded-sm shadow-sm */
-  /* @apply relative overflow-auto border border-tint-subtle bg-tint-subtle rounded-md shadow-sm [grid-area:2/1]; */
-  /* @apply relative overflow-auto border border-tint-subtle rounded-md shadow-sm [grid-area:2/1]; */
-  /* @apply border-red-500 ; */
-  margin-top: 1.5rem;
-  margin-bottom: 1.5rem;
   max-width: 100%;
   overflow-x: auto;
   border-radius: 0.5rem;
@@ -2527,13 +2516,6 @@ strong {
   color: rgb(217 86 64 / var(--tw-text-opacity, 1));
 }
 
-@media (prefers-contrast: more) {
-  .contrast-more\:bg-tint-base {
-    --tw-bg-opacity: 1;
-    background-color: rgb(255 255 255 / var(--tw-bg-opacity, 1));
-  }
-}
-
 @media (min-width: 640px) {
   .sm\:size-4 {
     width: 1rem;
@@ -2597,10 +2579,5 @@ strong {
   .print\:p-0 {
     padding: 0px;
   }
-}
-
-html.theme-bold.sidebar-filled .\[html\.theme-bold\.sidebar-filled_\&\]\:bg-tint-base {
-  --tw-bg-opacity: 1;
-  background-color: rgb(255 255 255 / var(--tw-bg-opacity, 1));
 }
 
