@@ -40,4 +40,4 @@
     (b/uber opts)))
 
 (defn -main []
-  (uber))
+  (uber {}))
