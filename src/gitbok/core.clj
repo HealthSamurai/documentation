@@ -263,4 +263,4 @@
               default-port)]
     (println "Server started")
     (println "port " port)
-    (system/start-system (default-config p))))
+    (system/start-system (default-config port))))
