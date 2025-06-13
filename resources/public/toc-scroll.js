@@ -8,7 +8,22 @@ document.addEventListener('DOMContentLoaded', function() {
   console.log('Found TOC links:', tocLinks.length);
   console.log('Found headings:', headings.length);
   
+  // Debug: log all TOC links
+  tocLinks.forEach((link, index) => {
+    console.log(`TOC link ${index}:`, link.href, link.textContent);
+  });
+  
+  // Debug: log all headings
+  headings.forEach((heading, index) => {
+    console.log(`Heading ${index}:`, heading.id, heading.textContent);
+  });
+  
   if (tocLinks.length === 0 || headings.length === 0) return;
+
+  // Function to escape CSS selector
+  function escapeCssSelector(selector) {
+    return selector.replace(/[!"#$%&'()*+,.\/:;<=>?@[\\\]^`{|}~]/g, '\\$&');
+  }
 
   // Function to determine active section
   function updateActiveSection() {
@@ -28,6 +43,9 @@ document.addEventListener('DOMContentLoaded', function() {
       }
     }
     
+    console.log('Current scroll position:', scrollPosition);
+    console.log('Current section:', currentSection);
+    
     // Remove active class from all links
     tocLinks.forEach(link => {
       link.classList.remove('active');
@@ -35,9 +53,13 @@ document.addEventListener('DOMContentLoaded', function() {
     
     // Add active class to current section
     if (currentSection) {
-      const activeLink = document.querySelector(`.toc a[href="#${currentSection}"]`);
+      const escapedId = escapeCssSelector(currentSection);
+      const activeLink = document.querySelector(`.toc a[href="#${escapedId}"]`);
+      console.log('Looking for link with href:', `#${escapedId}`);
+      console.log('Found active link:', activeLink);
       if (activeLink) {
         activeLink.classList.add('active');
+        console.log('Added active class to:', activeLink.textContent);
       }
     }
   }
@@ -93,7 +115,8 @@ document.addEventListener('htmx:afterSwap', function(event) {
         });
         
         if (currentSection) {
-          const activeLink = document.querySelector(`.toc a[href="#${currentSection}"]`);
+          const escapedId = escapeCssSelector(currentSection);
+          const activeLink = document.querySelector(`.toc a[href="#${escapedId}"]`);
           if (activeLink) {
             activeLink.classList.add('active');
           }

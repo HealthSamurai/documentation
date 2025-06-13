@@ -91,7 +91,9 @@
                 (update-in
                  [1 :id]
                  (fn [id]
-                   (str/replace id #"^-|-$" "")))
+                   (-> id
+                       (str/replace #"^-|-$" "")
+                       (utils/s->url-slug))))
                 :always
                 (update-in
                  [1 :class]

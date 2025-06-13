@@ -146,3 +146,12 @@ strong {
   @apply text-sm leading-relaxed block p-4;
 }
 
+/* TOC active state styles */
+.toc a.active {
+  @apply text-primary-9 font-medium ;
+}
+
+.toc a {
+  @apply block py-2 text-tint-strong/70 hover:text-tint-strong transition-colors duration-200 no-underline truncate max-w-full overflow-hidden;
+}
+
