@@ -46,14 +46,16 @@
                           [:a (assoc (second footer-content) :class "link")
                            (nth footer-content 2)]]
                          footer))
-                     footer))]]
+                     footer))
+                 href  (or title-href title-filepath pic-href1)]]
+
        [:div {:class "flex flex-col bg-white rounded-2xl shadow overflow-hidden h-full min-h-[300px]"}
         (when img-href [:img {:src img-href}])
         [:div
          {:class
           (str "flex flex-col gap-2 p-4 flex-1 "
                (when-not img-href "justify-start"))}
-         [:a {:href (or title-href title-filepath)
+         [:a {:href href
               :class "text-lg hover:underline"} title]
          [:p {:class "text-gray-600 text-sm"} desc]
          processed-footer]])]))

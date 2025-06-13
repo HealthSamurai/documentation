@@ -7,6 +7,7 @@ init:
 
 repl:
 	cp .gitbook.yaml resources
+	echo 'dev' > resources/version
 	DEV=true clj -M:dev:test:build
 
 tailwind:

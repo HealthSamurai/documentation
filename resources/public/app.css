@@ -146,7 +146,6 @@ strong {
   @apply text-sm leading-relaxed block p-4;
 }
 
-/* TOC active state styles */
 .toc a.active {
   @apply text-primary-9 font-medium ;
 }
