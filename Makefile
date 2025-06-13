@@ -16,7 +16,7 @@ build-tailwind:
 	npx tailwindcss -i ./resources/public/app.css -o ./resources/public/app.build.css --config ./tailwind.config.js
 
 uberjar:
-	clojure -T:build uber
+	clj -T:build uber
 
 docker-build:
 	docker buildx create --name gitbok || true
