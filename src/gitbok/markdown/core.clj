@@ -116,8 +116,9 @@
 
          :code
          (fn [_ctx node]
+           (def nn node)
            [:pre {:class "border border-gray-200 text-gray-800 rounded-lg overflow-x-auto max-w-full shadow-sm"}
-            [:code.nohljsln {:class "text-sm leading-relaxed block p-4"}
+            [:code.nohljsln {:class "text-sm leading-relaxed block py-4"}
              (-> node :content first :text)]])
 
          :monospace

@@ -103,11 +103,13 @@
           :onclick (str "switchTab(this, " idx ")")}
          title])]
      (into
-      [:div {:class "px-4 overflow-x-auto"}]
+      [:div {:class "overflow-x-auto"}]
       (for [[idx {:keys [content]}] (map-indexed vector tabs)]
         [:div {:class (str "tab-content " (if (= idx 0) "block" "hidden"))
                :data-tab idx}
-         content]))]))
+         (if (= :pre (first content))
+           content
+           [:div {:class "px-4"} content])]))]))
 
 (defn hack-tabs [context filepath
                  parse-markdown-content-fn
