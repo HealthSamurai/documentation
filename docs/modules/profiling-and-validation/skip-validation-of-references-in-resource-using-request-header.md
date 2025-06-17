@@ -2,9 +2,11 @@
 
 ### Skip validation of references in resource using request header
 
-`aidbox-validation-skip` header allows to skip resource reference validations.
+`aidbox-validation-skip` header allows to skip resource reference validations. It allows creating and updating resources containing
+references to non-existent target resources. Useful for staged data loading or systems with eventual consistency but may compromise referential
+integrity and generally is not recommended to use in production installations.
 
-The header functionality can be enabled with `box_features_validation_skip_reference` env.
+The header functionality can be enabled with `BOX_FHIR_VALIDATION_SKIP_REFERENCE` env. Check the [settings reference](../reference/settings/fhir#fhir.validation.skip-reference) for more details.
 
 {% code title="Example" %}
 ```yaml
