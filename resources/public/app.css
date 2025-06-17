@@ -41,14 +41,21 @@ li {
   @apply mb-2;
 }
 
-/* TOC Fixed positioning with margin */
+/* TOC Sticky positioning */
 .toc-container {
-  position: fixed !important;
+  position: sticky !important;
   top: 4rem !important;
-  right: 10rem !important;
   height: calc(100vh - 4rem) !important;
   overflow-y: auto !important;
   z-index: 50 !important;
+  align-self: flex-start !important;
+  flex-shrink: 0 !important;
+}
+
+/* Ensure parent flex container allows sticky positioning */
+.flex.gap-8 {
+  align-items: flex-start !important;
+  overflow: visible !important;
 }
 
 /* Hide TOC on mobile devices */
@@ -56,7 +63,7 @@ li {
   .toc-container {
     display: none !important;
   }
-
+  
   /* Hide navigation on mobile by default */
   #navigation {
     display: none !important;
@@ -78,17 +85,17 @@ li {
     border-radius: 0 !important;
     border: none !important;
   }
-
+  
   /* Mobile hamburger button */
   .mobile-menu-button {
     display: block !important;
   }
-
+  
   /* Desktop menu button */
   .desktop-menu-button {
     display: none !important;
   }
-
+  
   /* Adjust layout for mobile */
   .flex.gap-20 {
     gap: 0 !important;
@@ -100,7 +107,7 @@ li {
   .mobile-menu-button {
     display: none !important;
   }
-
+  
   .desktop-menu-button {
     display: block !important;
   }
@@ -129,16 +136,6 @@ li {
 
 .mobile-menu-overlay.active {
   display: block;
-}
-
-/* Ensure parent containers don't interfere with sticky positioning */
-.flex.gap-8 {
-  overflow: visible !important;
-  position: relative !important;
-}
-
-.flex.gap-8 > div {
-  overflow: visible !important;
 }
 
 .toc a
