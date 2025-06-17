@@ -8,7 +8,7 @@ The header functionality can be enabled with `BOX_FHIR_VALIDATION_SKIP_REFERENCE
 
 {% code title="Example" %}
 ```yaml
-box_features_validation_skip_reference=true
+BOX_FHIR_VALIDATION_SKIP_REFERENCE=true
 ```
 {% endcode %}
 
