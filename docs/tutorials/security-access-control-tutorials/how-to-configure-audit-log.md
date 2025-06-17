@@ -79,6 +79,7 @@ To configure an external Audit log repository, use the following settings:
 * [security.audit-log.flush-interval](../../reference/settings/security-and-access-control.md#security.audit-log.flush-interval)
 * [security.audit-log.retry-interval](../../reference/settings/security-and-access-control.md#security.audit-log.retry-interval)
 * [security.audit-log.batch-count](../../reference/settings/security-and-access-control.md#security.audit-log.batch-count)
+* [security.audit-log.request-headers](../../reference/settings/security-and-access-control.md#security.audit-log.request-headers)
 
 Audit log Bundle example:
 
