@@ -41,6 +41,13 @@
   [:div {:class "w-full bg-white border-b border-gray-200 flex-shrink-0 sticky top-0 z-50"}
    [:div {:class "flex items-center justify-between py-3 min-h-16 px-4 sm:px-6 md:px-8 max-w-screen-2xl mx-auto"}
     [:div {:class "flex max-w-full lg:basis-72 min-w-0 shrink items-center justify-start gap-2 lg:gap-4"}
+     [:button {:class "mobile-menu-button md:hidden"
+               :onclick "toggleMobileMenu()"
+               :type "button"
+               :aria-label "Toggle mobile menu"}
+      [:svg {:class "size-6" :fill "none" :stroke "currentColor" :viewBox "0 0 24 24"}
+       [:path {:stroke-linecap "round" :stroke-linejoin "round" :stroke-width "2" :d "M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5"}]]]
+
      [:a {:href "/" :class "group/headerlogo min-w-0 shrink flex items-center"}
       [:img {:alt "Aidbox Logo"
              :class "block object-contain size-8"
@@ -86,7 +93,6 @@
 
 (defn layout-view [context content uri]
   [:div
-
    (nav)
    [:div
     {:class "flex px-4 sm:px-6 md:px-8 max-w-screen-2xl mx-auto site-full-width:max-w-full gap-20"}
@@ -107,6 +113,7 @@
     [:script {:src "/static/toc-scroll.js"}]
     [:script {:src "/static/tabs.js"}]
     [:script {:src "/static/navigation-sync.js"}]
+    [:script {:src "/static/mobile-menu.js"}]
     [:link {:rel "stylesheet" :href "/static/github.min.css"}]
     [:script {:src "/static/highlight.min.js"}]
     [:script {:src "/static/highlightjs-line-numbers.min.js"}]
