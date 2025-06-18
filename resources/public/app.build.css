@@ -825,10 +825,6 @@ video {
   margin-top: 2rem;
 }
 
-.mt-0\.5 {
-  margin-top: 0.125rem;
-}
-
 .line-clamp-2 {
   overflow: hidden;
   display: -webkit-box;
@@ -2534,8 +2530,8 @@ strong {
 #content pre code {
   display: block;
   padding: 1rem;
-  font-size: 0.875rem;
-  line-height: 1.25rem;
+  font-size: 1rem;
+  line-height: 1.5rem;
   line-height: 1.625;
 }
 

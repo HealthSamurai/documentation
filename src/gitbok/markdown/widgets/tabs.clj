@@ -89,7 +89,7 @@
            :content rendered-content
            :start start
            :end end})]
-    [:div {:class "bg-white border border-gray-200 rounded-lg overflow-hidden"}
+    [:div {:class "bg-white border border-gray-200 rounded-lg overflow-hidden my-4"}
      [:div {:class "flex border-b border-gray-200"}
       (for [[idx {:keys [title]}]
             (map-indexed vector tabs)]

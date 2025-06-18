@@ -78,11 +78,11 @@
                            parse-markdown-content-fn
                            render-md-fn]
   (let [title (get (:attributes code-data) :title)
-        line-numbers (get (:attributes code-data) :lineNumbers)
+        ;; line-numbers (get (:attributes code-data) :lineNumbers)
         content (:content code-data)
         parsed-content (:parsed (parse-markdown-content-fn context [filepath content]))
         raw-html (render-md-fn context filepath parsed-content)
-        raw-html (if line-numbers
+        #_(if line-numbers
                    (str/replace raw-html #"nohljsln" "")
                    raw-html)]
     [:div {:class "bg-white border border-gray-200 rounded-lg overflow-hidden"}

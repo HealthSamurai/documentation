@@ -51,7 +51,7 @@
           (:content node))
 
         class
-        (str "rounded-lg border p-4 " (:bg colors) " " (:border colors) " " (:text colors))]
+        (str "my-4 rounded-lg border p-4 " (:bg colors) " " (:border colors) " " (:text colors))]
     [:div
      {:class class}
      [:div {:class "flex gap-3"}

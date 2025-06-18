@@ -217,7 +217,7 @@ strong {
 }
 
 #content pre code {
-  @apply text-sm leading-relaxed block p-4;
+  @apply text-base leading-relaxed block p-4;
 }
 
 /* Hint styles - remove extra margins */

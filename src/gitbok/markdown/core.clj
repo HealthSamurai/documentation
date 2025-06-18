@@ -71,21 +71,13 @@
          (comp
           (fn [header-hiccup]
             (let [tag (first header-hiccup)
-                  level (case tag
-                          :h1 1
-                          :h2 2
-                          :h3 3
-                          :h4 4
-                          :h5 5
-                          :h6 6
-                          4)
-                  classes (case level
-                            1 "mt-6 text-4xl font-bold text-gray-900 pb-4 mb-8"
-                            2 "mt-8 text-3xl font-semibold text-gray-900 pb-2 mb-6"
-                            3 "mt-6 text-2xl font-semibold text-gray-900 mb-4"
-                            4 "mt-4 text-lg font-medium text-gray-900 mb-3"
-                            5 "mt-3 text-base font-medium text-gray-900 mb-2"
-                            6 "mt-2 text-sm font-medium text-gray-900 mb-1"
+                  classes (case tag
+                            :h1 "mt-6 text-4xl font-bold text-gray-900 pb-4 mb-8"
+                            :h2 "mt-8 text-3xl font-semibold text-gray-900 pb-2 mb-6"
+                            :h3 "mt-6 text-2xl font-semibold text-gray-900 mb-4"
+                            :h4 "mt-4 text-lg font-semibold text-gray-900 mb-3"
+                            :h5 "mt-3 text-base font-semibold text-gray-900 mb-2"
+                            :h6 "mt-2 text-sm font-semibold text-gray-900 mb-1"
                             "text-gray-900")]
               (cond-> header-hiccup
                 (-> header-hiccup (get 1) :id)
@@ -117,8 +109,8 @@
 
          :code
          (fn [_ctx node]
-           [:pre {:class "border border-gray-200 text-gray-800 rounded-lg overflow-x-auto max-w-full shadow-sm my-4"}
-            [:code.nohljsln {:class "text-base leading-relaxed block py-4"}
+           [:pre
+            [:code.nohljsln
              (-> node :content first :text)]])
 
          :monospace
