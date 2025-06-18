@@ -74,7 +74,7 @@ Aidbox supports forwarding audit data to an external repository. It batches indi
 
 To configure an external Audit log repository, use the following settings:
 
-* [security.audit-log.repository-urle](../../reference/settings/security-and-access-control.md#security.audit-log.repository-url)
+* [security.audit-log.repository-url](../../reference/settings/security-and-access-control.md#security.audit-log.repository-url)
 * [security.audit-log.file-path](../../reference/settings/security-and-access-control.md#security.audit-log.file-path)
 * [security.audit-log.flush-interval](../../reference/settings/security-and-access-control.md#security.audit-log.flush-interval)
 * [security.audit-log.retry-interval](../../reference/settings/security-and-access-control.md#security.audit-log.retry-interval)
