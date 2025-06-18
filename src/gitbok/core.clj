@@ -1,10 +1,8 @@
 (ns gitbok.core
-  (:gen-class)
   (:require
    [cheshire.core]
    [gitbok.constants :as const]
    [clojure.string :as str]
-   [gitbok.broken-links]
    [gitbok.markdown.core :as markdown]
    [gitbok.indexing.core :as indexing]
    [gitbok.indexing.impl.file-to-uri :as file-to-uri]
@@ -18,7 +16,8 @@
    [ring.util.response :as resp]
    [system]
    [gitbok.utils :as utils]
-   [uui]))
+   [uui])
+  (:gen-class))
 
 (set! *warn-on-reflection* true)
 
