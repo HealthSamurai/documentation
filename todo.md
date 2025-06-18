@@ -44,8 +44,8 @@
 
 ## Features
 
+- [ ] last updated
 - [ ] rag
 - [ ] tracking
-- [ ] next/prev pages
 - [ ] pretty render system resource reference
 - [ ] feedback buttons?
