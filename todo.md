@@ -12,10 +12,10 @@
 ## CI
 
 - [ ] check links
-  - [ ] verify summary & files
+  - [x] verify summary & files
   - [ ] grep `broken-reference` does not exists
   - [ ] make sure every link is valid = check that file exists (clojure tests)
-  - [ ] check absolute references
+  - [x] check absolute references
 - [ ] check redirects, some are 404 already
 
 # bugs/techdebt
@@ -33,9 +33,7 @@
 
 ## UI
 
-- [ ] pretty design
 - [ ] mobile view
-- [ ] check that everything nice in zoom level
 
 ## Tests
 

@@ -676,6 +676,10 @@ video {
   margin: 0px;
 }
 
+.m-4 {
+  margin: 1rem;
+}
+
 .mx-2 {
   margin-left: 0.5rem;
   margin-right: 0.5rem;
@@ -797,10 +801,6 @@ video {
   margin-top: 0px;
 }
 
-.mt-0\.5 {
-  margin-top: 0.125rem;
-}
-
 .mt-12 {
   margin-top: 3rem;
 }
@@ -823,6 +823,10 @@ video {
 
 .mt-8 {
   margin-top: 2rem;
+}
+
+.mt-0\.5 {
+  margin-top: 0.125rem;
 }
 
 .line-clamp-2 {
@@ -2429,8 +2433,11 @@ td {
   padding-top: 0.75rem;
   padding-bottom: 0.75rem;
   text-align: left;
-  font-size: 0.875rem;
-  line-height: 1.25rem;
+  font-size: 1rem;
+  line-height: 1.5rem;
+  line-height: 1.625;
+  --tw-text-opacity: 1;
+  color: rgb(17 24 39 / var(--tw-text-opacity, 1));
   color: rgb(31 28 28 / 0.8);
 }
 
@@ -2462,8 +2469,6 @@ strong {
   --tw-text-opacity: 1;
   color: rgb(0 0 0 / var(--tw-text-opacity, 1));
 }
-
-/* Images in hints - KEPT FOR FUNCTIONALITY */
 
 .hint img
 {
@@ -2522,12 +2527,31 @@ strong {
   box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
 }
 
+#content pre + pre {
+  margin-top: 1rem;
+}
+
 #content pre code {
   display: block;
   padding: 1rem;
   font-size: 0.875rem;
   line-height: 1.25rem;
   line-height: 1.625;
+}
+
+/* Hint styles - remove extra margins */
+
+.hint p:first-child {
+  margin-top: 0px;
+}
+
+.hint p:last-child {
+  margin-bottom: 0px;
+}
+
+.hint p {
+  margin-top: 0.5rem;
+  margin-bottom: 0.5rem;
 }
 
 .toc a.active {

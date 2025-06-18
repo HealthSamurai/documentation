@@ -103,7 +103,7 @@
           :onclick (str "switchTab(this, " idx ")")}
          title])]
      (into
-      [:div {:class "overflow-x-auto"}]
+      [:div {:class "overflow-x-auto py-4"}]
       (for [[idx {:keys [content]}] (map-indexed vector tabs)]
         [:div {:class (str "tab-content " (if (= idx 0) "block" "hidden"))
                :data-tab idx}

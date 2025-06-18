@@ -6,12 +6,6 @@
    [nextjournal.markdown.transform :as transform]
    [uui.heroicons :as ico]))
 
-(def hint-styles
-  {"!NOTE" "note"
-   "!SUCCESS" "tip"
-   "!TIP" "tip"
-   "!WARNING" "warning"})
-
 (def hint-icons
   {"!NOTE" (ico/information-circle "size-5 text-blue-600")
    "!SUCCESS" (ico/check-circle "size-5 text-emerald-600")
@@ -61,10 +55,10 @@
     [:div
      {:class class}
      [:div {:class "flex gap-3"}
-      [:div {:class "flex-shrink-0 mt-0.5"}
+      [:div {:class "flex-shrink-0"}
        icon]
       (into
-         [:div.hint {:class "flex-1 space-y-2"}]
+         [:div.hint {:class "flex-1"}]
          (mapv #(transform/->hiccup ctx %)
              content))]]))
 

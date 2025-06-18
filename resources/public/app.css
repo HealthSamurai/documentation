@@ -63,7 +63,7 @@ li {
   .toc-container {
     display: none !important;
   }
-  
+
   /* Hide navigation on mobile by default */
   #navigation {
     display: none !important;
@@ -85,17 +85,17 @@ li {
     border-radius: 0 !important;
     border: none !important;
   }
-  
+
   /* Mobile hamburger button */
   .mobile-menu-button {
     display: block !important;
   }
-  
+
   /* Desktop menu button */
   .desktop-menu-button {
     display: none !important;
   }
-  
+
   /* Adjust layout for mobile */
   .flex.gap-20 {
     gap: 0 !important;
@@ -107,7 +107,7 @@ li {
   .mobile-menu-button {
     display: none !important;
   }
-  
+
   .desktop-menu-button {
     display: block !important;
   }
@@ -175,7 +175,7 @@ tr {
 }
 
 td {
-  @apply px-4 py-3 text-sm border-r border-tint-subtle/50 last:border-r-0 text-tint-strong/80 text-left;
+  @apply px-4 py-3 text-base text-gray-900 leading-relaxed border-r border-tint-subtle/50 last:border-r-0 text-tint-strong/80 text-left;
 }
 
 th {
@@ -187,7 +187,6 @@ strong {
 }
 
 
-/* Images in hints - KEPT FOR FUNCTIONALITY */
 .hint img
 {
   max-width: 300px !important;
@@ -210,11 +209,28 @@ strong {
 }
 
 #content pre {
-  @apply  border border-gray-200 text-gray-800 rounded-lg overflow-x-auto max-w-full shadow-sm;
+  @apply border border-gray-200 text-gray-800 rounded-lg overflow-x-auto max-w-full shadow-sm;
+}
+
+#content pre + pre {
+  @apply mt-4;
 }
 
 #content pre code {
   @apply text-sm leading-relaxed block p-4;
+}
+
+/* Hint styles - remove extra margins */
+.hint p:first-child {
+  @apply mt-0;
+}
+
+.hint p:last-child {
+  @apply mb-0;
+}
+
+.hint p {
+  @apply my-2;
 }
 
 .toc a.active {
