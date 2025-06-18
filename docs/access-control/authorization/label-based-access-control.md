@@ -262,6 +262,12 @@ user:
   resourceType: User
 ```
 
+## Postman Demo
+
+Try Label-based Access Control in Postman. Please read the description in the Postman collection before running requests.
+
+[![Run In Postman](https://run.pstmn.io/button.svg)](https://app.getpostman.com/run-collection/29474015-9232ba75-0304-42ef-81b9-7876ad34f2b9?action=collection%2Ffork\&source=rip_markdown\&collection-url=entityId%3D29474015-9232ba75-0304-42ef-81b9-7876ad34f2b9%26entityType%3Dcollection%26workspaceId%3D2d672c60-467f-40b4-984f-2285facae57d)
+
 ## See also
 
 {% content-ref url="../../tutorials/security-access-control-tutorials/how-to-enable-labels-based-access-control.md" %}
