@@ -142,21 +142,25 @@
         (.getMessage e)
         [:pre (pr-str e)]]))])
 
+(defn add-active-class [item add?]
+  (let [link-element (:title item)
+        current-class (get-in link-element [1 :class] "")
+        active-class (if add? " active" "")
+        updated-class (str current-class active-class)]
+    (assoc-in link-element [1 :class] updated-class)))
+
 (defn render-menu [url item]
   (let [open? (str/starts-with? url (:href item))]
     (if (:children item)
       [:details (when open? {:open ""})
        [:summary {:class "flex items-center justify-between font-medium text-gray-900 hover:bg-gray-100 transition-colors duration-200 cursor-pointer group"}
-        [:div {:class "flex-1 clickable-summary"} (:title item)]
+        [:div {:class "flex-1 clickable-summary"}
+         (add-active-class item (= url (:href item)))]
         (ico/chevron-right "chevron size-5 text-gray-400 group-hover:text-primary-9 transition-colors duration-200")]
        [:div {:class "border-l border-gray-200 ml-4"}
         (for [c (:children item)]
           (render-menu url c))]]
-      (let [link-element (:title item)
-            current-class (get-in link-element [1 :class] "")
-            active-class (if open? " active" "")
-            updated-class (str current-class active-class)]
-        (assoc-in link-element [1 :class] updated-class)))))
+      (add-active-class item open?))))
 
 (defn menu [summary url]
   [:div#navigation {:class "w-[17.5rem] flex-shrink-0 sticky top-16 h-[calc(100vh-4rem)] overflow-y-auto py-4 bg-white"}
@@ -224,6 +228,8 @@
      [:div {:class "flex-1 w-full sm:w-auto"}
       (when prev-page-url
         [:a {:href prev-page-url
+             :hx-target "#content"
+             :hx-swap "outerHTML"
              :class "inline-flex items-center justify-center w-full sm:w-auto px-4 py-3 sm:py-2 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-md hover:bg-gray-50 hover:text-primary-9 transition-colors duration-200"}
          [:svg {:class "mr-2 size-4" :fill "none" :stroke "currentColor" :viewBox "0 0 24 24"}
           [:path {:stroke-linecap "round" :stroke-linejoin "round" :stroke-width "2" :d "M15 19l-7-7 7-7"}]]
@@ -272,10 +278,9 @@
    [:head
     [:script {:src "/static/htmx.min.js"}]
     [:script {:src "/static/app.js"}]
-    [:script {:src "/static/toc.js"}]
     [:script {:src "/static/toc-scroll.js"}]
     [:script {:src "/static/tabs.js"}]
-    [:script {:src "/static/navigation-sync.js"}]
+    [:script {:src "/static/toc.js"}]
     [:script {:src "/static/mobile-menu.js"}]
     [:script {:src "/static/keyboard-navigation.js"}]
     [:link {:rel "stylesheet" :href "/static/github.min.css"}]

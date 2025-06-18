@@ -1,6 +1,6 @@
 // careful here
 document.addEventListener('click', function (e) {
-  const link = e.target.closest('.clickable-summary a');
+  const link = e.target.closest('.clickable-summary a, #navigation a');
 
   if (!link) return;
 
@@ -8,6 +8,17 @@ document.addEventListener('click', function (e) {
 
   const details = link.closest('details');
   const href = link.getAttribute('href');
+
+
+  // Remove active class from all navigation links
+  const allLinks = document.querySelectorAll('#navigation a');
+
+  allLinks.forEach(a => {
+    a.classList.remove('active');
+  });
+
+  // Add active class to clicked link
+  link.classList.add('active');
 
   if (details && !details.open) {
     details.open = true;
