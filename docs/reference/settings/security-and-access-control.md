@@ -46,7 +46,7 @@ Max count of Audit Log batch (FHIR bandle entry count).
 
 <table data-header-hidden="true"><thead><tr><th width="200"></th><th></th></tr></thead><tbody><tr><td>ID</td><td><code>security.audit-log.batch-count</code></td></tr><tr><td>Type</td><td>Int</td></tr><tr><td>Default value</td><td><code>1000</code></td></tr><tr><td>Environment variable</td><td><code>BOX_SECURITY_AUDIT_LOG_BATCH_COUNT</code></td></tr><tr><td>Available from</td><td><code>2506</code></td></tr><tr><td>Sensitive</td><td><code>false</code> — value will be visible in plaintext in Admin UI</td></tr><tr><td>Set via</td><td>Admin UI → Settings<br />Environment variables</td></tr><tr><td>Hot reload</td><td><code>false</code> — setting requires system restart</td></tr></tbody></table>
 
-### Audit log request headers<a href="#security.audit-log.request-headers" id="security.audit-log.request-headers"></a>
+### Audit Log request headers<a href="#security.audit-log.request-headers" id="security.audit-log.request-headers"></a>
 
 The headers for Audit Log external repository requests, formatted as HeaderName:HeaderValue
 HeaderName:HeaderValue.
