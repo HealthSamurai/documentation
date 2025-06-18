@@ -119,7 +119,7 @@
    [const/RENDERED]
    (->> parsed-md-index
         (mapv
-         (fn [{:keys [filepath parsed]}]
+         (fn [{:keys [filepath _parsed]}]
            (println "render filepath " filepath)
            [filepath (read-markdown-file context filepath)]))
         (into {}))))
@@ -128,12 +128,10 @@
   (get (system/get-system-state context [const/RENDERED]) filepath))
 
 (defn render-file
-  [context uri]
+  [context filepath]
   [:div
    (try
-     (let [uri (:uri uri)
-           filepath (indexing/uri->filepath context uri)
-           result (if dev?
+     (let [result (if dev?
                     (read-markdown-file context filepath)
                     (get-rendered context filepath))]
        (if (map? result)
@@ -220,11 +218,32 @@
 
       [:span {:class "text-xs text-gray-400"} "⌘K"]]]]])
 
-(defn content-div [content]
+(defn navigation-buttons [context uri]
+  (let [[prev-page-url next-page-url] (summary/get-prev-next-pages context uri)]
+    [:div {:class "flex flex-col sm:flex-row justify-between items-center mt-12 pt-8 border-t border-gray-200 gap-4"}
+     [:div {:class "flex-1 w-full sm:w-auto"}
+      (when prev-page-url
+        [:a {:href prev-page-url
+             :class "inline-flex items-center justify-center w-full sm:w-auto px-4 py-3 sm:py-2 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-md hover:bg-gray-50 hover:text-primary-9 transition-colors duration-200"}
+         [:svg {:class "mr-2 size-4" :fill "none" :stroke "currentColor" :viewBox "0 0 24 24"}
+          [:path {:stroke-linecap "round" :stroke-linejoin "round" :stroke-width "2" :d "M15 19l-7-7 7-7"}]]
+         "Previous"])]
+     [:div {:class "hidden sm:block flex-1 text-center"}
+      [:span {:class "text-sm text-gray-500"} "Use ← → arrow keys to navigate"]]
+     [:div {:class "flex-1 w-full sm:w-auto text-right"}
+      (when next-page-url
+        [:a {:href next-page-url
+             :class "inline-flex items-center justify-center w-full sm:w-auto px-4 py-3 sm:py-2 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-md hover:bg-gray-50 hover:text-primary-9 transition-colors duration-200"}
+         "Next"
+         [:svg {:class "ml-2 size-4" :fill "none" :stroke "currentColor" :viewBox "0 0 24 24"}
+          [:path {:stroke-linecap "round" :stroke-linejoin "round" :stroke-width "2" :d "M9 5l7 7-7 7"}]]])]]))
+
+(defn content-div [context uri content]
   [:div#content {:class "flex-1 py-6 max-w-6xl min-w-0 overflow-x-hidden"}
    [:script "hljs.highlightAll();"]
-   ;; [:script "hljs.initLineNumbersOnLoad();"]
-   [:div {:class "mx-auto px-2 max-w-full"} content]])
+   [:script "window.scrollTo(0, 0);"]
+   [:div {:class "mx-auto px-2 max-w-full"} content]
+   (navigation-buttons context uri)])
 
 (defn get-toc [context filepath]
   (let [rendered (get-rendered context filepath)]
@@ -238,7 +257,8 @@
    [:div
     {:class "flex px-4 sm:px-6 md:px-8 max-w-screen-2xl mx-auto site-full-width:max-w-full gap-20"}
     (menu (summary/get-summary context) uri)
-    (content-div content)
+    [:div {:class "flex-1"}
+     (content-div context uri content)]
     (when-let [filepath (indexing/uri->filepath context uri)]
       (get-toc context filepath))]])
 
@@ -257,6 +277,7 @@
     [:script {:src "/static/tabs.js"}]
     [:script {:src "/static/navigation-sync.js"}]
     [:script {:src "/static/mobile-menu.js"}]
+    [:script {:src "/static/keyboard-navigation.js"}]
     [:link {:rel "stylesheet" :href "/static/github.min.css"}]
     [:script {:src "/static/highlight.min.js"}]
     [:script {:src "/static/highlightjs-line-numbers.min.js"}]
@@ -269,45 +290,57 @@
     [:script "hljs.highlightAll();"]
     ;; [:script "hljs.initLineNumbersOnLoad();"]
     [:link {:rel "stylesheet", :href "/static/app.build.css"}]
-    [:meta {:name "htmx-config", :content "{\"scrollIntoViewOnBoost\":false}"}]]
-   [:body {:hx-boost "true"} body]])
+    [:meta {:name "htmx-config",
+            :content "{\"scrollIntoViewOnBoost\":false,\"scrollBehavior\":\"smooth\"}"}]]
+   [:body {:hx-boost "true"
+           :hx-on "htmx:afterSwap: window.scrollTo(0, 0); hljs.highlightAll();"}
+    body]])
 
 (defn layout [context request content]
   (let [body (if (map? content) (:body content) content)
-        status (if (map? content) (:status content 200) 200)]
+        status (if (map? content) (:status content 200) 200)
+        hx-current-url (get-in request [:headers "hx-current-url"])
+        uri (or (when hx-current-url
+                  (if (str/includes? hx-current-url "://")
+                    (second (str/split hx-current-url #"://[^/]+"))
+                    hx-current-url))
+                (:uri request))
+        is-hx-target (uui/hx-target request)]
     (response1
-     (if (uui/hx-target request)
-       (content-div body)
-       (document
-        (layout-view context body (:uri request))))
+     (cond
+       is-hx-target
+       (content-div context uri body)
+
+       :else
+       (document (layout-view context body uri)))
      status)))
 
 (defn
   ^{:http {:path "/:path*"}}
   render-file-view
   [context request]
-  (cond
-    (picture-url? (:uri request))
-    (resp/resource-response
-     (subs (str/replace (:uri request)
-                        #"%20" " ")
-           10))
+  (let [uri (:uri request)]
+    (cond
+      (picture-url? uri)
+      (resp/resource-response
+        (subs (str/replace uri #"%20" " ")
+             10))
 
-    ;; todo
-    (= (:uri request) "/favicon.ico")
-    {:status 404}
+      ;; todo
+      (= uri "/favicon.ico")
+      {:status 404}
 
-    :else
-    (let [filepath (indexing/uri->filepath context (:uri request))]
-      (if filepath
-        (layout
-         context request
-         (render-file context request))
+      :else
+      (let [filepath (indexing/uri->filepath context uri)]
+        (if filepath
+          (layout
+           context request
+           (render-file context filepath))
 
-        (layout
-         context request
-         {:status 404
-          :body (not-found-view context (:uri request))})))))
+          (layout
+           context request
+           {:status 404
+            :body (not-found-view context uri)}))))))
 
 (def readme-path "readme")
 

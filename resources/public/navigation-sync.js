@@ -1,6 +1,6 @@
 // Navigation synchronization for HTMX
 document.addEventListener('htmx:afterSwap', function(event) {
-  if (event.target.id === 'content') {
+  if (event.target.id === 'content' || event.target.tagName === 'BODY') {
     console.log('Content updated, syncing navigation state');
     
     // Get current URL from the loaded content or window location
@@ -11,32 +11,24 @@ document.addEventListener('htmx:afterSwap', function(event) {
   }
 });
 
+// Function to update navigation state
 function updateNavigationState(currentUrl) {
-  console.log('Updating navigation state for URL:', currentUrl);
-  
-  // Remove all active classes from navigation
-  const allNavLinks = document.querySelectorAll('#navigation a');
-  allNavLinks.forEach(link => {
+  // Remove active class from all navigation links
+  const allLinks = document.querySelectorAll('.clickable-summary a');
+  allLinks.forEach(link => {
     link.classList.remove('active');
   });
   
-  // Remove all opened states from details
-  const allDetails = document.querySelectorAll('#navigation details');
-  allDetails.forEach(detail => {
-    detail.removeAttribute('open');
-  });
-  
-  // Find and highlight current page
-  const currentLink = document.querySelector(`#navigation a[href="${currentUrl}"]`);
+  // Add active class to current page link
+  const currentLink = document.querySelector(`.clickable-summary a[href="${currentUrl}"]`);
   if (currentLink) {
     currentLink.classList.add('active');
-    
-    // Open parent details elements
-    let parent = currentLink.closest('details');
-    while (parent) {
-      parent.setAttribute('open', '');
-      parent = parent.parentElement.closest('details');
-    }
+  }
+  
+  // Open parent details if link is inside a collapsed section
+  const currentDetails = currentLink?.closest('details');
+  if (currentDetails && !currentDetails.open) {
+    currentDetails.open = true;
   }
 }
 

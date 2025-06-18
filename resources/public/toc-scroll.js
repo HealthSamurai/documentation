@@ -83,7 +83,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
 // Handle HTMX events to update TOC on navigation
 document.addEventListener('htmx:afterSwap', function(event) {
-  if (event.target.id === 'content') {
+  if (event.target.id === 'content' || event.target.tagName === 'BODY') {
     console.log('HTMX content swap detected, reinitializing TOC spy');
     
     // Reinitialize TOC spy after loading new content

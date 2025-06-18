@@ -71,32 +71,39 @@
         (->>
          (loop [acc []
                 cur nil
-                [l & ls] (str/split sum #"\n")]
+                [l & ls] (str/split sum #"\n")
+                j 0]
            (if (nil? l)
              (if cur (conj acc cur) acc)
              (if (str/starts-with? (str/trim l) "#")
                (recur
                 (if cur (conj acc cur) acc)
                 {:title (title l)
+                 :j j
                  :children []}
-                ls)
+                ls
+                (inc j))
                (recur acc
                       (if (str/blank? l)
                         cur
-                        (update cur :children conj l))
-                      ls))))
+                        (update cur :children conj {:md-link l
+                                                    :j j}))
+                      ls
+                      (inc j)))))
 
          (mapv (fn [x]
                  (update x :children
                          (fn [chld]
                            (->> chld
                                 (mapv (fn [x]
-                                        (let [parsed  (parse-md-link x)
+                                        (let [md-link (:md-link x)
+                                              parsed (parse-md-link md-link)
                                               href (:href parsed)
                                               href
                                               (if (str/starts-with? href "http")
                                                 href (str "/" href))]
-                                          {:i (count-whitespace x)
+                                          {:i (count-whitespace md-link)
+                                           :j (:j x)
                                            :parsed parsed
                                            :href href
                                            :title (render-markdown-link-in-toc (:title parsed) href)})))
@@ -112,9 +119,66 @@
 (defn get-summary [context]
   (system/get-system-state context [const/SUMMARY_STATE]))
 
+(defn flatten-navigation [items]
+  (reduce (fn [acc item]
+            (let [acc-with-item (conj acc (dissoc item :children))]
+              (if (:children item)
+                (vec (concat acc-with-item
+                             (vec (mapv (fn [x] (dissoc x :children))
+                                        (flatten-navigation (:children item))))))
+                acc-with-item)))
+          []
+          items))
+
+(defn get-navigation-links [context]
+  (let [summary (gitbok.indexing.impl.summary/get-summary context)
+        flattened (gitbok.indexing.impl.summary/flatten-navigation summary)]
+    (filterv (fn [item]
+               (and (:parsed item)
+                    (:href item)
+                    (not= (:href item) "")))
+             flattened)))
+
+(defn first-matching-index [pred coll]
+  (some (fn [[idx val]]
+          (when (pred val) idx))
+        (map-indexed vector coll)))
+
+(defn normalize-uri [uri]
+  (-> uri
+      (str/replace #"^https?://[^/]+" "")
+      (str/replace #"^/" "")
+      (str/replace #"\.md$" "")
+      (str/replace #"/$" "")))
+
+(defn find-page-by-uri [all-pages uri]
+  (let [normalized-uri (normalize-uri uri)]
+    (first-matching-index
+     (fn [item]
+       (and (:parsed item)
+            (:href item)
+            (= (normalize-uri (:href item)) normalized-uri)))
+     all-pages)))
+
+(defn get-prev-next-pages [context uri]
+  (let [all-pages (get-navigation-links context)
+        c (count all-pages)
+        current-page-idx (find-page-by-uri all-pages uri)]
+    (when current-page-idx
+      [(when (<= 0 (dec current-page-idx))
+         (:href (nth
+                 all-pages
+                 (dec current-page-idx))))
+       (when (< (inc current-page-idx) c)
+         (:href (nth
+                 all-pages
+                 (inc current-page-idx))))])))
+
 (comment
   (parse-summary)
+  (count (flatten-navigation (parse-summary)))
 
   (treefy
    (->> ["a" "  b" "  c" "x" " x1" " x2"]
         (mapv (fn [x] {:i (count-whitespace x) :l (str/trim x)})))))
+
