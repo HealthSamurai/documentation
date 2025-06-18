@@ -468,6 +468,12 @@
     * [Mathematical details](modules/other-modules/mdm/mathematical-details.md)
   * [MCP](modules/other-modules/mcp.md)
   * [AidboxTrigger](modules/other-modules/aidbox-trigger.md)
+  * [HL7v2](modules/other-modules/hl7v2/README.md)
+    * [Getting started](modules/other-modules/hl7v2/getting-started.md)
+    * [FHIR resources](modules/other-modules/hl7v2/fhir-resources.md)
+    * [Default mappings](modules/other-modules/hl7v2/default-mappings.md)
+    * [Module limitations](modules/other-modules/hl7v2/module-limitations.md)
+    * [Message lifecycle](modules/other-modules/hl7v2/message-lifecycle.md)
 
 ## Database
 
