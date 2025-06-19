@@ -132,9 +132,24 @@
 
          :code
          (fn [_ctx node]
-           [:pre
-            [:code.nohljsln
-             (-> node :content first :text)]])
+           (if (= "mermaid" (:info node))
+             [:div
+              [:pre.mermaid (-> node :content first :text)]
+              [:script
+               (uui/raw "if (typeof mermaid === 'undefined') {
+                  var script = document.createElement('script');
+                  script.src = '/static/mermaid.min.js';
+                  script.onload = function() {
+                    mermaid.initialize({ startOnLoad: true });
+                  };
+                  document.head.appendChild(script);
+                } else {
+                  mermaid.initialize({ startOnLoad: true });
+                }")]]
+
+             [:pre
+              [:code.nohljsln
+               (-> node :content first :text)]]))
 
          :monospace
          (fn [_ctx node]

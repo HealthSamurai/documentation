@@ -3,7 +3,7 @@
 ## Most important
 
 - [ ] deploy
-- [ ] ci
+- [x] ci
 - [ ] design (Kirill)
 - [ ] new UI to move pages (handles references and creates redirect)
 - [ ] tracking
@@ -11,11 +11,6 @@
 
 ## CI
 
-- [ ] check links
-  - [x] verify summary & files
-  - [ ] grep `broken-reference` does not exists
-  - [ ] make sure every link is valid = check that file exists (clojure tests)
-  - [x] check absolute references
 - [ ] check redirects, some are 404 already
 
 # bugs/techdebt
@@ -23,17 +18,12 @@
 - [ ] rm huge image history from repo
 - [ ] redirects with sections should work api-1/api/search-1/search-parameters-list/\_explain: api/rest-api/aidbox-search.md#aidbox-special-search-parameters
 - [ ] {% code title="Status: 200" lineNumbers="true" %}
-- [ ] code in tabs padding
 
 ## UX
 
 - [ ] move page with references and save redirect
 - [ ] create page
 - [ ] write page in ui?
-
-## UI
-
-- [ ] mobile view
 
 ## Tests
 
@@ -42,6 +32,7 @@
 
 ## Features
 
+- [ ] descriptions
 - [ ] last updated
 - [ ] rag
 - [ ] tracking

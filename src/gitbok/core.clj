@@ -344,7 +344,7 @@
     (cond
       (picture-url? uri)
       (resp/resource-response
-        (subs (str/replace uri #"%20" " ")
+       (subs (str/replace uri #"%20" " ")
              10))
 
       ;; todo
