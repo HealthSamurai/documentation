@@ -49,6 +49,11 @@
         relative-page-link
         (str/replace relative-page-link #"#.*$" "")
 
+        relative-page-link
+        (if (str/ends-with? (str/lower-case relative-page-link) "/")
+          (str relative-page-link "README.md")
+          relative-page-link)
+
         current-page-filename
         (last (str/split current-page-filepath #"/"))
 
@@ -77,6 +82,7 @@
                "user.dir")))
 
             path (if (str/starts-with? path "/") (utils/safe-subs path 1) path)
+            _ (def path path)
             path (str "/" (:uri (get file->uri-idx path)))]
 
         (if section
