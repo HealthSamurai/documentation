@@ -649,7 +649,7 @@ matcho:
   uri: /Patient
 ```
 
-Of course, any [AccessPolicy engine](broken-reference) can be used. For example, using `sql` engine to allow the request if `organization_id` in the JWT is the same as `Patient.managingOrganization`:
+Of course, any [AccessPolicy engine](../access-control/authorization/access-policies.md) can be used. For example, using `sql` engine to allow the request if `organization_id` in the JWT is the same as `Patient.managingOrganization`:
 
 ```yaml
 PUT /AccessPolicy/my-client-allow-patient

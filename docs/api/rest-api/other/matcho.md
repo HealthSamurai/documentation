@@ -8,7 +8,7 @@ Matcho DSL is used to define rules for [AccessPolicy](../../../access-control/au
 
 ## Definition
 
-Matcho DSL syntax is described [here](broken-reference).
+Matcho DSL syntax is described [here](../../../reference/matcho-dsl-reference.md).
 
 ## Debug endpoint
 

@@ -102,7 +102,7 @@ POST {{base}}/fhir/Patient
 
 ![](../../.gitbook/assets/policy4.png)
 
-See the full documentation [Access Policies](broken-reference).
+See the full documentation [Access Policies](../../access-control/authorization/access-policies.md).
 
 ## Access Policies for Users
 
