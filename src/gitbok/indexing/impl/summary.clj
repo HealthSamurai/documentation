@@ -163,17 +163,22 @@
 (defn get-prev-next-pages [context uri]
   (let [all-pages (get-navigation-links context)
         c (count all-pages)
-        current-page-idx (find-page-by-uri all-pages uri)]
-    (when current-page-idx
-      [(when (<= 0 (dec current-page-idx))
-         (:href (nth
-                 all-pages
-                 (dec current-page-idx))))
-       (when (< (inc current-page-idx) c)
-         (:href (nth
-                 all-pages
-                 (inc current-page-idx))))])))
+        current-page-idx (find-page-by-uri all-pages uri)
+        prev-page
+        (when (and current-page-idx (<= 0 (dec current-page-idx)))
+          (nth
+           all-pages
+           (dec current-page-idx)))
 
+        next-page
+        (when (and current-page-idx (< (inc current-page-idx) c))
+          (nth
+           all-pages
+           (inc current-page-idx)))]
+
+    (when current-page-idx
+      [[(:href prev-page) (-> prev-page :parsed :title)]
+       [(:href next-page) (-> next-page :parsed :title)]])))
 (comment
   (parse-summary)
   (count (flatten-navigation (parse-summary)))

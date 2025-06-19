@@ -222,26 +222,45 @@
       [:span {:class "text-xs text-gray-400"} "⌘K"]]]]])
 
 (defn navigation-buttons [context uri]
-  (let [[prev-page-url next-page-url] (summary/get-prev-next-pages context uri)]
+  (let [[[prev-page-url prev-page-title] [next-page-url next-page-title]]
+        (summary/get-prev-next-pages context uri)]
     [:div {:class "flex flex-col sm:flex-row justify-between items-center mt-12 pt-8 border-t border-gray-200 gap-4"}
      [:div {:class "flex-1 w-full sm:w-auto"}
       (when prev-page-url
         [:a {:href prev-page-url
              :hx-target "#content"
              :hx-swap "outerHTML"
-             :class "inline-flex items-center justify-center w-full sm:w-auto px-4 py-3 sm:py-2 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-md hover:bg-gray-50 hover:text-primary-9 transition-colors duration-200"}
-         [:svg {:class "mr-2 size-4" :fill "none" :stroke "currentColor" :viewBox "0 0 24 24"}
-          [:path {:stroke-linecap "round" :stroke-linejoin "round" :stroke-width "2" :d "M15 19l-7-7 7-7"}]]
-         "Previous"])]
+             :class "group text-sm p-2.5 flex gap-4 flex-1 flex-row-reverse items-center pl-4 border border-gray-300 rounded hover:border-orange-500 text-pretty md:p-4 md:text-base"}
+         [:span {:class "flex flex-col flex-1 text-right"}
+          [:span {:class "text-xs text-gray-500"} "Previous"]
+          [:span {:class "text-gray-700 group-hover:text-orange-600 line-clamp-2"} prev-page-title]]
+         [:svg {:class "size-4 text-gray-400 group-hover:text-orange-600"
+                :fill "none"
+                :stroke "currentColor"
+                :viewBox "0 0 24 24"
+                :stroke-width "2"}
+          [:path {:stroke-linecap "round"
+                  :stroke-linejoin "round"
+                  :d "M15 19l-7-7 7-7"}]]])]
      [:div {:class "hidden sm:block flex-1 text-center"}
       [:span {:class "text-sm text-gray-500"} "Use ← → arrow keys to navigate"]]
-     [:div {:class "flex-1 w-full sm:w-auto text-right"}
+     [:div {:class "flex-1 w-full sm:w-auto text-left"}
       (when next-page-url
         [:a {:href next-page-url
-             :class "inline-flex items-center justify-center w-full sm:w-auto px-4 py-3 sm:py-2 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-md hover:bg-gray-50 hover:text-primary-9 transition-colors duration-200"}
-         "Next"
-         [:svg {:class "ml-2 size-4" :fill "none" :stroke "currentColor" :viewBox "0 0 24 24"}
-          [:path {:stroke-linecap "round" :stroke-linejoin "round" :stroke-width "2" :d "M9 5l7 7-7 7"}]]])]]))
+             :hx-target "#content"
+             :hx-swap "outerHTML"
+             :class "group text-sm p-2.5 flex gap-4 flex-1 items-center pr-4 border border-gray-300 rounded hover:border-orange-500 text-pretty md:p-4 md:text-base"}
+         [:span {:class "flex flex-col flex-1"}
+          [:span {:class "text-xs text-gray-500"} "Next"]
+          [:span {:class "text-gray-700 group-hover:text-orange-600 line-clamp-2"} next-page-title]]
+         [:svg {:class "size-4 text-gray-400 group-hover:text-orange-600"
+                :fill "none"
+                :stroke "currentColor"
+                :viewBox "0 0 24 24"
+                :stroke-width "2"}
+          [:path {:stroke-linecap "round"
+                  :stroke-linejoin "round"
+                  :d "M9 5l7 7-7 7"}]]])]]))
 
 (defn content-div [context uri content]
   [:div#content {:class "flex-1 py-6 max-w-6xl min-w-0 overflow-x-hidden"}
