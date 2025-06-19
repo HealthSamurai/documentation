@@ -1,7 +1,7 @@
 # Database Overview
 
 * How data are stored in Aidbox?
-* How data inserted and updated
+* How data inserted, updated and deleted?
   * crud &  history
   * transaction (tx, batch vs transaction)
   * bulk inserts, updates and deletes
@@ -24,7 +24,6 @@
 Aidbox exclusively uses PostgreSQL as its database.
 FHIR resources are stored almost in their original form within [JSONB columns](https://www.postgresql.org/docs/current/datatype-json.html), 
 which provide efficient binary storage and indexing capabilities. 
-
 
 Since FHIR resources are inherently nested documents, JSONB offers the ideal balance of flexibility and performance for storing them in a relational database. This approach enables you to leverage the full power of PostgreSQL features including SQL queries, transactions, and advanced indexing while maintaining the hierarchical structure of FHIR data.
 
@@ -106,17 +105,8 @@ To create a resource, you can use a standard `INSERT` statement. When inserting 
 - `resource` - the actual resource data in JSONB format.
 
 ```SQL
-insert into Patient (
-    id,
-    txid,
-    status,
-    resource
-) values (
-    gen_random_uuid(),
-    nextval('transaction_id_seq'),
-    'created',
-    '{"gender": "male", "birthDate": "2024-01-01"}'
-)
+insert into patient (id, txid, status, resource) 
+ values ( gen_random_uuid(), nextval('transaction_id_seq'), 'created', '{"gender": "male", "birthDate": "2024-01-01"}')
 ```
 
 ### Read
