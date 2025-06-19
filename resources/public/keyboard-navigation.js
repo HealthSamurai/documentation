@@ -5,6 +5,11 @@ document.addEventListener('keydown', function (event) {
     return;
   }
 
+  // Don't handle Alt+Arrow combinations (system hotkeys)
+  if (event.altKey) {
+    return;
+  }
+
   // Left arrow key (Previous page)
   if (event.key === 'ArrowLeft') {
     const buttons = Array.from(document.querySelectorAll('a[href*="/"]'));
