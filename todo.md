@@ -15,9 +15,13 @@
 
 # bugs/techdebt
 
-- [ ] rm huge image history from repo
+- [ ] code bug http://localhost:8081/api/rest-api/other/validate
+- [ ] browser history api is buggy
 - [ ] redirects with sections should work api-1/api/search-1/search-parameters-list/\_explain: api/rest-api/aidbox-search.md#aidbox-special-search-parameters
+- [ ] rm huge image history from repo
 - [ ] {% code title="Status: 200" lineNumbers="true" %}
+- [ ] next/prev arrow keys do not use htmx
+- [ ] handle next/prev buttons with long titles
 
 ## UX
 
@@ -32,9 +36,11 @@
 
 ## Features
 
+- [ ] copy button in code
 - [ ] descriptions
 - [ ] last updated
 - [ ] rag
 - [ ] tracking
 - [ ] pretty render system resource reference
 - [ ] feedback buttons?
+- [ ] breadcrumb
