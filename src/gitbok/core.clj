@@ -224,7 +224,7 @@
 (defn navigation-buttons [context uri]
   (let [[[prev-page-url prev-page-title] [next-page-url next-page-title]]
         (summary/get-prev-next-pages context uri)]
-    [:div {:class "flex flex-col sm:flex-row justify-between items-center mt-12 pt-8 border-t border-gray-200 gap-4"}
+    [:div {:class "flex flex-col sm:flex-row justify-between items-center mt-8 pt-4 gap-4"}
      [:div {:class "flex-1 w-full sm:w-auto"}
       (when prev-page-url
         [:a {:href prev-page-url
