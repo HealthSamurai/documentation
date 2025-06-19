@@ -49,7 +49,7 @@
          (fn [ctx node]
            (into
             [:ol
-             {:class "min-w-0 space-y-2 mx-auto w-full decoration-primary/6 page-full-width:ml-0 max-w-3xl page-api-block:ml-0"}]
+             {:class "min-w-0 space-y-2 w-full decoration-primary/6 page-full-width:ml-0 max-w-3xl page-api-block:ml-0"}]
             (map-indexed
              (fn [idx child]
                (transform/->hiccup ctx (assoc child :numbered-list-idx idx)))
