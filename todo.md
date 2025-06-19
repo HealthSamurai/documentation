@@ -22,6 +22,7 @@
 - [ ] {% code title="Status: 200" lineNumbers="true" %}
 - [ ] next/prev arrow keys do not use htmx
 - [ ] handle next/prev buttons with long titles
+- [ ] big next button here http://localhost:8081/
 
 ## UX
 

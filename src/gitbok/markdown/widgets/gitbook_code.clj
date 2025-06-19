@@ -108,10 +108,15 @@
              (hiccup2.core/html hiccup)
 
              processed-html
-             (str/replace html #"\n\n" "\n\u00A0\n")
-
-             processed-html
-             (str/replace processed-html #"\n" "\n\u00A0")]
+             (->
+              html
+              (str/replace #"\n\n" "\n\u00A0\n")
+              ;; (str/replace #"\n" "\n\u00A0")
+              (str/replace #"\n\<" "<")
+              (str/replace #"\n\s*\<" "<")
+              (str/replace #"\n \<" "<")
+               ;; (str/replace #"}\<" "}\n<")
+               )]
          (str
           (utils/safe-subs content 0 (:start code-block))
           processed-html
