@@ -132,7 +132,8 @@
 
          :code
          (fn [_ctx node]
-           (if (= "mermaid" (:info node))
+           (def nn node)
+           (if (str/starts-with? (:info node) "mermaid")
              [:div
               [:pre.mermaid (-> node :content first :text)]
               [:script
