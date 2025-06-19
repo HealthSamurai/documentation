@@ -1,36 +1,94 @@
 # Database Overview
 
-TODO: mention that SQL is the main strength.
+* How data are stored in Aidbox?
+* How data inserted and updated
+  * crud &  history
+  * transaction (tx, batch vs transaction)
+  * bulk inserts, updates and deletes
+  * migrations
+* How to query data?
+  * using FHIR search
+  * using SQL
+  * SQL on FHIR (using ViewDefinitions)
 
-Aidbox uses PostgreSQL as its database engine, leveraging its robust JSONB capabilities, reliability, and performance for healthcare data storage.
+* Which PostgreSQL can be used with Aidbox?
+  * which extensions are used
+* How to optimize performance?
+  * indexes & monitoring
+  * performance tuning
+  * materialized views
+  * postgres configuration
 
-## Storage model
+## How data are stored in Aidbox?
 
-All FHIR data is stored in PostgreSQL JSONb data format. It gives better performance and flexibility.
+Aidbox exclusively uses PostgreSQL as its database.
+FHIR resources are stored almost in their original form within [JSONB columns](https://www.postgresql.org/docs/current/datatype-json.html), 
+which provide efficient binary storage and indexing capabilities. 
 
-For each resource type Aidbox creates their own table:
+
+Since FHIR resources are inherently nested documents, JSONB offers the ideal balance of flexibility and performance for storing them in a relational database. This approach enables you to leverage the full power of PostgreSQL features including SQL queries, transactions, and advanced indexing while maintaining the hierarchical structure of FHIR data.
+
+JSONB's schema-less nature allows for seamless evolution of your data model - you can add new elements, extensions, or migrate existing data without requiring database schema changes.
+
+For each resource type, Aidbox creates two tables:
+- A main table with the resource type name in lowercase to store the current versions of resources
+- A history table with the `_history` postfix to store the complete version history of resources, which Aidbox updates transactionally.
+
+Aidbox uses normalized approach (one source of truth) and does not use additional columns or tables 
+for search and metadata. Aidbox generates sophisticated SQL queries to implement FHIR Searches and other operations.
+As well this allows you to query and modify data directly, if you follow basic storage principles.
+
+For example, for the `Patient` resource type, Aidbox creates `patient` and `patient_history` tables.
 
 ```SQL
-select * from Patient limit 1;
+select * from patient limit 1;
 ```
 
-Result:
+| Column        | Type         | Description                                    | Value                                           |
+| ------------- | ------------ | ---------------------------------------------- | ----------------------------------------------- |
+| resource_type | text         | Resource type                                  | Patient                                         |
+| id            | text         | Resource ID                                    | 2193c2e7-4d66-74c6-17c5-6d0c1c094fc2            |
+| txid          | bigint       | Version ID                                     | 178246                                          |
+| ts            | timestamptz  | Updated at                                     | 2025-06-09T08:51:07.533413Z                     |
+| cts           | timestamptz  | Created at                                     | 2025-06-09T08:51:07.533413Z                     |
+| status        | text         | Status (created, updated, deleted)             | created                                         |
+| resource      | jsonb        | Resource data in JSONB format                  | `{"gender": "male", "birthDate": "2025-01-01"}` |
 
-TODO: add `type` and `description` columns.
+The main resource table contains a `resource` column in JSONB format that stores the FHIR resource data minus id, resourceType, meta.lastUpdated and meta.versionId, which are stored in separate columns.
 
-| Column        | Value                                           |
-| ------------- | ----------------------------------------------- |
-| resource_type | Patient                                         |
-| id            | 2193c2e7-4d66-74c6-17c5-6d0c1c094fc2            |
-| txid          | 178246                                          |
-| ts            | 2025-06-09T08:51:07.533413Z                     |
-| cts           | 2025-06-09T08:51:07.533413Z                     |
-| status        | created                                         |
-| resource      | `{"gender": "male", "birthDate": "2025-01-01"}` |
+See [Database Schema](./database-schema.md) for more details about database schema.
 
-Resource table contains `resource` column in JSONB format that stores FHIR resource data. And several additional columns for versioning, status, and other metadata. When Aidbox responses, all values from different columns are converted into one object on the fly.
 
-See [Database Schema](./database-schema.md) page for full details about Aidbox database schema.
+##  How data inserted, updated and deleted?
+
+* FHIR CRUD with history
+  * id management
+  * status
+  * tx (versionid)
+  * ts and cts
+  * history tables...
+* Bulk inserts
+* Bulk updates and deletes
+
+This is a list of rules how to update data directly!!!!
+
+For create operation Aidbox generates insert statement with all required columns. 
+id is text. User can control id by providing it or aidbox generates uuid
+we assign global versionid for traceablity - txid (see transactions).
+we set cts to creation time.
+
+We do not validate data in database, this is done in Aidbox.
+
+for update we move previous resource to history table and insert new one and change status.
+duplicate optimization ... Update ts (updated at time)
+
+for deletes we create two records in history table - one current one and another with status deleted and ts set to deletion time.
+
+for bulk import we use copy command from postgresql for efficient data import (what about history? what about duplicates?)
+
+you can write transactional updates and deletes using sql:
+* update example
+* delete/truncate example
 
 ## CRUD interactions
 
