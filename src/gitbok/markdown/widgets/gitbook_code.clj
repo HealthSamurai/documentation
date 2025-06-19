@@ -85,7 +85,7 @@
         #_(if line-numbers
                    (str/replace raw-html #"nohljsln" "")
                    raw-html)]
-    [:div {:class "bg-white border border-gray-200 rounded-lg overflow-hidden"}
+    [:div {:class "bg-white border border-gray-200 rounded-lg overflow-hidden mb-4"}
      (when title
        [:div {:class "bg-gray-50 px-4 py-3 border-b border-gray-200"}
         [:h3 {:class "text-lg font-medium text-gray-900"} title]])

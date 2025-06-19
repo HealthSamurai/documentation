@@ -131,7 +131,6 @@ issue:
   code: invalid
   expression: [Patient.test]
   diagnostics: extra property
-
 ```
 {% endcode %}
 
