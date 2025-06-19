@@ -214,7 +214,7 @@
           :hx-get "/search"
           :hx-target "#content"
           :hx-swap "innerHTML"
-          :hx-push-url "false"
+          :hx-push-url "true"
           :hx-on ":after-request \"document.querySelector('#search-input')?.focus()\""}
       [:svg {:class "size-4" :fill "none" :stroke "currentColor" :viewBox "0 0 24 24"}
        [:path {:stroke-linecap "round" :stroke-linejoin "round" :stroke-width "2" :d "m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607Z"}]]
@@ -229,6 +229,7 @@
       (when prev-page-url
         [:a {:href prev-page-url
              :hx-target "#content"
+             :hx-push-url "true"
              :hx-swap "outerHTML"
              :class "group text-sm p-2.5 flex gap-4 flex-1 flex-row-reverse items-center pl-4 border border-gray-300 rounded hover:border-orange-500 text-pretty md:p-4 md:text-base"}
          [:span {:class "flex flex-col flex-1 text-right"}
@@ -246,6 +247,7 @@
       (when next-page-url
         [:a {:href next-page-url
              :hx-target "#content"
+             :hx-push-url "true"
              :hx-swap "outerHTML"
              :class "group text-sm p-2.5 flex gap-4 flex-1 items-center pr-4 border border-gray-300 rounded hover:border-orange-500 text-pretty md:p-4 md:text-base"}
          [:span {:class "flex flex-col flex-1"}
