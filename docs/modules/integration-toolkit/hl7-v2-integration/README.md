@@ -12,17 +12,22 @@ Video version of this tutorial
 
 ## Introduction
 
-HL7 v2 is still the most widely-used standard for healthcare IT systems integration. If you're developing software that receives information from other systems within a hospital/clinic, most likely it will be HL7 v2 messages.
+HL7 v2 is still the most widely-used standard for healthcare IT systems integration. 
+If you're developing software that receives information from other systems within a hospital/clinic, most likely it will be HL7 v2 messages.
 
-To process those messages, react to them and modify data stored in your Aidbox, there is a Hl7v2-in module. It provides two resources: `Hl7v2Config` and `Hl7v2Message`. `Hl7v2Config`determines how messages will be parsed and processed. `Hl7v2Message` represents a single received HL7 v2 message and contains raw representation, status (processed/error), error description in case of error and other useful information.
-
+To process those messages, react to them and modify data stored in your Aidbox, there is a Hl7v2-in module. 
+It provides two resources: `Hl7v2Config` and `Hl7v2Message`. 
+- `Hl7v2Config`determines how messages will be parsed and processed. 
+- `Hl7v2Message` represents a single received HL7 v2 message and contains raw representation, status (processed/error), error description in case of error and other useful information.
 Both `Hl7v2Config` and `Hl7v2Message` are managed with standard CRUD API.
 
 ### Mapper module
 
-Most likely when a new HL7 v2 message is received, you want to make changes in the database — create, update or delete  FHIR resources. It's where the [Mapper module](../mappings.md) comes on stage — HL7v2-IN module parses the message and then passes message data to the Mapping resource specified in `Hl7v2Config` instance via the `mapping` reference.
+Most likely when a new HL7 v2 message is received, you want to make changes in the database — create, update or delete FHIR resources.
+The [Mapper module](../mappings.md) comes on stage. HL7v2 module parses the message and then passes message data to the Mapping resource specified in `Hl7v2Config` instance via the `mapping` reference.
 
-Here is an example of a mapping which creates a new Patient resource with a name taken from the `PID.5` field each time a new message is received:
+Here is an example of a mapping which creates a new Patient resource with a name taken from the `PID.5` field 
+each time a new message is received:
 
 ```yaml
 PUT /Mapping/test
@@ -66,15 +71,23 @@ mapping:
 
 #### Strict and Non-strict Parsing
 
-The `isStrict` attribute specifies if message parsing will be strict or not. When `isStrict` is true, HL7 v2 parser will fail on any schema error like missing required field or segment. If `isStrict` is false, then parser will try to produce AST of the message even when required fields are missing or segment hierarchy is broken. In this case, you have a chance to get `null` values in your mapping for fields which you don't expect to be `null`.
+The `isStrict` attribute specifies if message parsing will be strict or not. 
+
+When `isStrict` is true, HL7 v2 parser will fail on any schema error like missing required field or segment. 
+
+If `isStrict` is false, then parser will try to produce AST of the message even when required fields are missing or segment hierarchy is broken. In this case, you have a chance to get `null` values in your mapping for fields which you don't expect to be `null`.
 
 #### Mapping Entrypoint
 
-Refer to a mapping which will process your messages with the `mapping` attribute. Please note that you aren't obligated to keep all of your mapping logic inside a single `Mapping` resource — you can have one as an entrypoint and then dispatch execution to other mappings with the `$include` directive.
+Refer to a mapping which will process your messages with the `mapping` attribute. 
+Please note that you aren't obligated to keep all of your mapping logic inside a single `Mapping` 
+resource — you can have one as an entrypoint and then dispatch execution to other mappings with the `$include` directive.
 
 **Sort for mixed ordered custom segments**
 
-In cases where some repeatable custom top-level segments are in mixed order, an error will most likely occur. The `sortTopLevelExtensions` attribute specifies whether such segments must be ordered before parsing. It does not affect segments that are already included in some group.
+In cases where some repeatable custom top-level segments are in mixed order, an error will most likely occur. 
+The `sortTopLevelExtensions` attribute specifies whether such segments must be ordered before parsing. 
+It does not affect segments that are already included in some group.
 
 ### Submitting a Message with Aidbox UI
 
