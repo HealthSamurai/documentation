@@ -1,19 +1,11 @@
 # SQL endpoints
 
-{% swagger baseUrl="<base-url>/$sql" path="" method="get" summary="$sql" %}
-{% swagger-description %}
-Execute SQL in Aidbox
-{% endswagger-description %}
+## $sql
+Execute SQL in Aidbox.
 
-{% swagger-parameter in="body" name="body" type="array" %}
-JSON: SQL string or jdbc friendly array  [SQL, param, param]
-{% endswagger-parameter %}
-
-{% swagger-response status="200" description="" %}
-```
-```
-{% endswagger-response %}
-{% endswagger %}
+Supported params:
+- SQL string 
+- jdbc friendly array [SQL, param, param]
 
 Example request:
 
@@ -31,7 +23,7 @@ SELECT count(*) FROM patient
 {% endtab %}
 
 {% tab title="With jdbc params" %}
-```
+```yaml
 POST /$sql?_format=yaml
 
 ["SELECT count(*) FROM patient where resource->'status' = ?", true]
