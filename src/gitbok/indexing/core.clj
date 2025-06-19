@@ -94,13 +94,6 @@
   [parsed-md-index]
   (search-index/parsed-md-idx->index parsed-md-index))
 
-(defn list-markdown-files [dir]
-  (let [dir-length (count dir)]
-    (->> (file-seq (clojure.java.io/file dir))
-         (filter #(.isFile ^java.io.File %))
-         (filter #(clojure.string/ends-with? (.getName ^java.io.File %) ".md"))
-         (map #(-> ^java.io.File % .getPath (subs (inc dir-length)))))))
-
 (defn read-content [filepath]
   (let [content (utils/slurp-resource filepath)]
     (if (str/starts-with? content "---")
@@ -140,3 +133,11 @@
 
 (defn search [context q]
   (search-index/search (get-search-idx context) q))
+
+(defn filepath->href [context filepath href]
+  (if (str/starts-with? href "http")
+    href
+    (-> (page-link->uri
+          context
+          filepath
+          href))))

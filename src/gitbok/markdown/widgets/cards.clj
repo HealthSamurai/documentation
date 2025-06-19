@@ -42,13 +42,20 @@
                    (if (and (sequential? footer) (= (first footer) :div))
                      (let [footer-content (second footer)]
                        (if (and (sequential? footer-content) (= (first footer-content) :a))
-                         [:div
-                          [:a (assoc (second footer-content) :class "link")
-                           (nth footer-content 2)]]
+                         (let [opts
+                               (-> footer-content
+                                   second
+                                   (assoc :class "link")
+                                   (update
+                                     :href
+                                     #(indexing/filepath->href context filepath %)))]
+                           [:div
+                            [:a
+                             opts
+                             (nth footer-content 2)]])
                          footer))
                      footer))
                  href  (or title-href title-filepath pic-href1)]]
-
        [:div {:class "flex flex-col bg-white rounded-2xl shadow overflow-hidden h-full min-h-[300px]"}
         (when img-href [:img {:src img-href}])
         [:div

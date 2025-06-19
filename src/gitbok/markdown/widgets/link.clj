@@ -6,19 +6,11 @@
 
 (defn href [context node filepath]
   (let [href (-> node :attrs :href)]
-    (def hh href)
-    (if (str/starts-with? href "http")
-      href
-      (-> (indexing/page-link->uri
-           context
-           filepath
-           href)))))
+    (indexing/filepath->href context filepath href)))
 
 (defn link-renderer [context filepath _ctx node]
-  (def node node)
   (let [href (href context node filepath)
         is-external (str/starts-with? href "http")]
-    (def href1 href)
     [:a {:href href
          :class "text-primary-9 underline underline-offset-2 decoration-1 hover:text-primary-10 hover:decoration-2 transition-all duration-200 inline-flex items-center gap-1"}
      (or (-> node :content (get 0) :text)
