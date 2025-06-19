@@ -197,8 +197,11 @@ The following tags are available:
 | [get-questionnaire](#get-questionnaire)         | When loading the form                                     | Fetches the questionnaire by ID.                 |
 | [get-response](#get-response)                   | When loading a saved response                             | Fetches the QuestionnaireResponse resource.      |
 | [search-choice-options](#search-choice-options) | When opening/searching dropdown for choice item           | Fetches options from a ValueSet or other source. |
-| [upload-attachment](#upload-attachment)         | When a file is selected in an attachment input            | Uploads file and returns file URL.               |
+| [get-upload-attachment-link](#get-upload-attachment-link)         | When a file is selected in an attachment input            | Fetches the signed url to upload the file.               |
+| [upload-attachment](#upload-attachment)         | When a file is uploaded to S3-like storage            | Uploads file and returns file URL.               |
+| [get-delete-attachment-link](#get-delete-attachment-link)         | When an attachment is cleared by the user                 | Fetches the signed url to delete the file.                   |
 | [delete-attachment](#delete-attachment)         | When an attachment is cleared by the user                 | Deletes the file from storage.                   |
+
 | [save-response](#save-response)                 | When auto-saving an in-progress response                  | Persists progress with `in-progress` status.     |
 | [repopulate](#repopulate)                       | When user clicks "Repopulate"                             | Refreshes form with updated subject/context.     |
 | [submit-response](#submit-response)             | When user clicks "Submit"                                 | Submits or amends the form.                      |
@@ -208,10 +211,9 @@ The following tags are available:
 {% endtabs %}
 
 
+### get-delete-attachment-link
 
-### delete-attachment
-
-Triggered in renderer when the attachment input field is cleared.
+Triggered in renderer when the attachment input field is cleared to obtain the URL for deleting the attachment.
 
 **Request**
 
@@ -220,6 +222,29 @@ DELETE /$sdc-file/<filepath> HTTP/1.1
 ```
 
 Where `<filepath>` is the path of the attachment being deleted.
+
+** Response**
+
+```json
+{
+  "url": "<delete-url>"
+}
+```
+
+Where `<delete-url>` is the signed URL that can be used to delete the attachment file.
+
+
+### delete-attachment
+
+Triggered in renderer when the attachment input field is cleared.
+
+**Request**
+
+```http
+DELETE /<delete-url> HTTP/1.1
+```
+
+Where `<delete-url>` is the url obtained from the [get-delete-attachment-link](#get-delete-attachment-link) request.
 
 **Response**
 
@@ -808,6 +833,34 @@ Where `<sub-questionnaire-url>` is the canonical URL of the sub-questionnaire be
 
 Where `<bundle>` is the [bundle](https://www.hl7.org/fhir/bundle.html) containing zero or one [questionnaire](https://www.hl7.org/fhir/questionnaire.html) resource.
 
+### get-upload-attachment-link
+
+Triggered when a file is selected in the attachment input field to obtain the URL for uploading the attachment.
+
+**Request**
+
+```http
+POST /$sdc-file/ HTTP/1.1
+Content-Type: application/json
+
+{
+    "filename": "<file-name>"
+}
+```
+
+Where `<file-name>` is the path and name of the file being uploaded.
+```
+
+**Response**
+
+```json
+{
+  "url": "<upload-url>"
+}
+```
+
+Where `<upload-url>` is the signed URL that can be used to upload the attachment file. This URL is typically a pre-signed URL for S3-like storage services.
+
 ### upload-attachment
 
 Triggered when a file is selected in the attachment input field.
@@ -815,32 +868,18 @@ Triggered when a file is selected in the attachment input field.
 **Request**
 
 ```http
-POST /$sdc-file HTTP/1.1 
-Content-Type: multipart/form-data; boundary=------------------------boundary12345
-
---------------------------boundary12345
-Content-Disposition: form-data; name="file"; filename="example.txt"
-Content-Type: text/plain
+POST /<upload-url> HTTP/1.1 
 
 <file-content>
---------------------------boundary12345
-Content-Disposition: form-data; name="filename"
 
-<file-name>
---------------------------boundary12345--
 ```
 
-Where `<file-content>` is the content of the file being uploaded and `<file-name>` is the path and name of the file.
+Where `<upload-url>` is the signed URL that can be used to upload the attachment file.
 
 **Response**
 
-```json
-{
-  "url": "<file-url>"
-}
-```
+Only status code is returned, typically `200 OK` if the upload was successful. The response body is not processed by the frontend.
 
-Where `<file-url>` is the URL of the uploaded file which will further be used to either download or [delete](request-interception.md#delete-attachment) the file.
 
 ### validate-questionnaire
 

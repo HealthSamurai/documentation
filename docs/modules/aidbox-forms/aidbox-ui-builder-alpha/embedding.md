@@ -284,6 +284,27 @@ Return `false` to use default Aidbox Forms attachment preview, or `true` to prev
 
 {% endtabs %}
 
+#### contentHeight: Adjust Component Height
+To ensure the component fits well within your layout, you can get the current content height of the component and adjust its height accordingly. This is particularly useful when embedding the component in a responsive design.
+
+```html
+<aidbox-form-renderer id="aidbox-form-renderer" />
+
+<script>
+  const renderer = document.getElementById('aidbox-form-renderer');
+
+  console.log("Current content height:", renderer.contentHeight);
+</script>
+```
+
+Additionally, you can set the height of the component dynamically based on the content height by settings the `style` attribute to auto:
+
+```html
+<aidbox-form-renderer id="aidbox-form-renderer" style="height: auto" /> 
+```
+
+
+
 # Controlled Mode (Deprecated)
 
 Controlled mode gives full manual control over loading, updating, and persisting a Questionnaire and QuestionnaireResponse at the application level. The system does not automatically save changes, so the developer must handle data flow and storage. Depending on the use case, making requests to the intended endpoints, as normal mode does, may still be necessary.
