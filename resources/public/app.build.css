@@ -725,6 +725,11 @@ video {
   margin-bottom: 1.5rem;
 }
 
+.mx-0 {
+  margin-left: 0px;
+  margin-right: 0px;
+}
+
 .-ml-1 {
   margin-left: -0.25rem;
 }
@@ -823,6 +828,10 @@ video {
 
 .mt-8 {
   margin-top: 2rem;
+}
+
+.mr-1 {
+  margin-right: 0.25rem;
 }
 
 .line-clamp-2 {
@@ -951,6 +960,10 @@ video {
   min-height: 100vh;
 }
 
+.min-h-\[1lh\] {
+  min-height: 1lh;
+}
+
 .w-6 {
   width: 1.5rem;
 }
@@ -999,6 +1012,10 @@ video {
   min-width: 100%;
 }
 
+.min-w-6 {
+  min-width: 1.5rem;
+}
+
 .max-w-2xl {
   max-width: 42rem;
 }
@@ -1045,6 +1062,10 @@ video {
 
 .max-w-xs {
   max-width: 20rem;
+}
+
+.max-w-3xl {
+  max-width: 48rem;
 }
 
 .flex-1 {
@@ -1844,6 +1865,10 @@ video {
   line-height: 1.625;
 }
 
+.leading-normal {
+  line-height: 1.5;
+}
+
 .tracking-tight {
   letter-spacing: -0.025em;
 }
@@ -2586,6 +2611,11 @@ strong {
   color: rgb(156 163 175 / var(--tw-text-opacity, 1));
 }
 
+.before\:content-\[--pseudoBefore--content\]::before {
+  --tw-content: var(--pseudoBefore--content);
+  content: var(--tw-content);
+}
+
 .last\:border-r-0:last-child {
   border-right-width: 0px;
 }
@@ -2795,4 +2825,16 @@ strong {
   .print\:p-0 {
     padding: 0px;
   }
+}
+
+.\[\&\:is\(h2\)\>div\]\:mt-0:is(h2)>div {
+  margin-top: 0px;
+}
+
+.\[\&\:is\(h3\)\>div\]\:mt-0:is(h3)>div {
+  margin-top: 0px;
+}
+
+.\[\&\:is\(h4\)\>div\]\:mt-0:is(h4)>div {
+  margin-top: 0px;
 }
