@@ -23,7 +23,7 @@ If the answer is "**No**," use a public client.
 
 Client shall be [Authorization Code Grant](../../../authentication/oauth-2-0.md) Client with several required values:
 
-<table><thead><tr><th width="445">Client resource field</th><th>Description</th></tr></thead><tbody><tr><td><code>auth.authorization_code.token_format</code></td><td>Fixed value - <code>jwt</code></td></tr><tr><td><code>auth.authorization_code.secret_required</code></td><td><code>true</code> - for confidential Client<br><code>false</code> - for public Client</td></tr><tr><td><code>smart.launch_uri</code></td><td>SMART Application launch endpoint</td></tr><tr><td><code>type</code></td><td>Fixed value - <code>smart-app</code></td></tr><tr><td><code>secret</code></td><td>Only for confidential Client</td></tr></tbody></table>
+<table><thead><tr><th width="445">Client resource field</th><th>Description</th></tr></thead><tbody><tr><td><code>auth.authorization_code.token_format</code></td><td>Fixed value - <code>jwt</code></td></tr><tr><td><code>auth.authorization_code.secret_required</code></td><td><code>true</code> - for confidential Client<br><code>false</code> - for public Client</td></tr><tr><td><code>smart.launch_uri</code></td><td>SMART Application launch endpoint</td></tr><tr><td><code>type</code></td><td>Fixed value - <code>smart-app</code></td></tr><tr><td><code>secret</code></td><td>Only for confidential Client</td></tr><tr><td><code>scope</code></td><td>List of scopes this client is authorized to request.</td></tr></tbody></table>
 
 ### Example
 
@@ -121,7 +121,7 @@ accept: application/json
 
 SMART Launch Interaction Diagram:
 
-<figure><img src="../../../../.gitbook/assets/svgviewer-output.svg" alt=""><figcaption><p>SMART App Launch Ffow</p></figcaption></figure>
+<figure><img src="../../../../../.gitbook/assets/svgviewer-output.svg" alt=""><figcaption><p>SMART App Lunch Ffow</p></figcaption></figure>
 
 ## Standalone launch
 
