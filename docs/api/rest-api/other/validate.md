@@ -23,7 +23,7 @@ $validate supports two ways to pass arguments:
 
 {% code title="By FHIR spec it receives a Parameters resource as a body:" %}
 ```yaml
-POST .../$validate
+POST /$validate
 
 resourceType: Parameters
 parameter:
@@ -39,7 +39,7 @@ parameter:
 
 {% code title="Parameters are specified in query string; body is the resource to validate:" %}
 ```http
-POST .../$validate?mode=<mode>&profile=<StructureDefinition.url>
+POST /$validate?mode=<mode>&profile=<StructureDefinition.url>
 
 <resource>
 ```

@@ -1,9 +1,9 @@
 (ns gitbok.markdown.widgets.gitbook-code
   (:require
-    [clojure.string :as str]
-    [gitbok.utils :as utils]
-    [hiccup2.core]))
-
+   [clojure.string :as str]
+   [gitbok.utils :as utils]
+   [uui]
+   [hiccup2.core]))
 
 ;; {% code title="My cool code" lineNumbers="true" %}
 ;; ```
@@ -16,9 +16,9 @@
     (let [pattern #"(\w+)=\"([^\"]+)\""
           matches (re-seq pattern attr-string)
           attrs (reduce (fn [acc [_ key value]]
-                         (assoc acc (keyword key) value))
-                       {}
-                       matches)]
+                          (assoc acc (keyword key) value))
+                        {}
+                        matches)]
       attrs)))
 
 (defn- parse-code-blocks [content]
@@ -83,8 +83,8 @@
         parsed-content (:parsed (parse-markdown-content-fn context [filepath content]))
         raw-html (render-md-fn context filepath parsed-content)
         #_(if line-numbers
-                   (str/replace raw-html #"nohljsln" "")
-                   raw-html)]
+            (str/replace raw-html #"nohljsln" "")
+            raw-html)]
     [:div {:class "bg-white border border-gray-200 rounded-lg overflow-hidden mb-4"}
      (when title
        [:div {:class "bg-gray-50 px-4 py-3 border-b border-gray-200"}
@@ -102,12 +102,16 @@
      (fn [content code-block]
        (let [hiccup
              (render-code-hiccup context filepath code-block
-                                  parse-markdown-content-fn
-                                  render-md-fn)
+                                 parse-markdown-content-fn
+                                 render-md-fn)
              html
              (hiccup2.core/html hiccup)
+
              processed-html
-             (str/replace html #"\n\n" "\n\u00A0\n")]
+             (str/replace html #"\n\n" "\n\u00A0\n")
+
+             processed-html
+             (str/replace processed-html #"\n" "\n\u00A0")]
          (str
           (utils/safe-subs content 0 (:start code-block))
           processed-html
