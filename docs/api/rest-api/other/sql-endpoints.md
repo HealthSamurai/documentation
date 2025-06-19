@@ -35,7 +35,7 @@ POST /$sql?_format=yaml
 {% endtab %}
 {% endtabs %}
 
-### SQL migrations
+## SQL migrations
 
 Aidbox provides `POST and GET /db/migrations` operations to enable SQL migrations, which can be used to migrate/transform data, create helper functions, views etc.
 
