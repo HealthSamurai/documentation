@@ -242,8 +242,6 @@
           [:path {:stroke-linecap "round"
                   :stroke-linejoin "round"
                   :d "M15 19l-7-7 7-7"}]]])]
-     [:div {:class "hidden sm:block flex-1 text-center"}
-      [:span {:class "text-sm text-gray-500"} "Use ← → arrow keys to navigate"]]
      [:div {:class "flex-1 w-full sm:w-auto text-left"}
       (when next-page-url
         [:a {:href next-page-url
