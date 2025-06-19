@@ -95,7 +95,6 @@ parameter:
 - name: resource
   resource: {name: [{given: [John]}]}
 
-
 # Response
 HTTP 200 OK
 
