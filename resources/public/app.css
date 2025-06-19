@@ -151,9 +151,9 @@ li {
   @apply block  text-gray-700 hover:bg-[#f6f1f0] hover:text-red-600 transition-colors duration-200 rounded-md;
 }
 
-/* Mark element styling for beta tags */
-mark {
-  @apply bg-blue-100 text-blue-800 px-2 py-1 rounded text-sm font-medium;
+/* Mark element styling for "beta" tag */
+
+mark[style*="background-color:blue"] {
   background-color: #dbeafe !important;
   color: #1e40af !important;
 }
