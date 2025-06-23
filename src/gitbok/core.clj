@@ -225,8 +225,8 @@
   (let [[[prev-page-url prev-page-title] [next-page-url next-page-title]]
         (summary/get-prev-next-pages context uri)]
     [:div {:class "flex flex-col sm:flex-row justify-between items-center mt-8 pt-4 gap-4"}
-     [:div {:class "flex-1 w-full sm:w-auto"}
-      (when prev-page-url
+     (when prev-page-url
+       [:div {:class "flex-1 w-full sm:w-auto"}
         [:a {:href prev-page-url
              :hx-target "#content"
              :hx-push-url "true"
@@ -242,9 +242,9 @@
                 :stroke-width "2"}
           [:path {:stroke-linecap "round"
                   :stroke-linejoin "round"
-                  :d "M15 19l-7-7 7-7"}]]])]
-     [:div {:class "flex-1 w-full sm:w-auto text-left"}
-      (when next-page-url
+                  :d "M15 19l-7-7 7-7"}]]]])
+     (when next-page-url
+       [:div {:class "flex-1 w-full sm:w-auto text-left"}
         [:a {:href next-page-url
              :hx-target "#content"
              :hx-push-url "true"
@@ -260,7 +260,7 @@
                 :stroke-width "2"}
           [:path {:stroke-linecap "round"
                   :stroke-linejoin "round"
-                  :d "M9 5l7 7-7 7"}]]])]]))
+                  :d "M9 5l7 7-7 7"}]]]])]))
 
 (defn content-div [context uri content]
   [:div#content {:class "flex-1 py-6 max-w-6xl min-w-0 overflow-x-hidden"}

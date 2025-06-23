@@ -198,7 +198,6 @@
          :html-block
          (fn [_ctx node]
            (let [c (first (parse-html (-> node :content first :text)))]
-             (println "html block")
              (cond
                (and c
                     (= :table (first c))
