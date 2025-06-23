@@ -18,5 +18,6 @@ if grep -rn "\[.*\](broken-reference" docs/ --include="*.md" --exclude-dir="depr
     exit 1
 fi
 
+python ./scripts/redirects.py || exit 1
 # maybe later...
 # python ./scripts/pictures/image_analyzer.py || exit 1
