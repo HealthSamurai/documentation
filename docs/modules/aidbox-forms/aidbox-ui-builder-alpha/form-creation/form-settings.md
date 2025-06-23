@@ -126,7 +126,7 @@ They can be referenced with `%expr-name` literal.
 Example: `%patient.name.first().given` where `%patient` is\
 an expression name _patient_, prefixed with _%_ symbol.
 
-For more details of usage, look at how-to guide [here](./how-to-guides/how-to-calculate-form-filling-percentage.md).
+For more details of usage, look at how-to guide [here](how-to-guides/how-to-calculate-form-filling-percentage.md).
 
 ## Extraction
 
@@ -158,18 +158,16 @@ It uses predefined templates embedded in the Questionnaire to extract answers in
 Template-based extraction is currently in **preview.** Not all functionality is available yet and may be subject to change.
 {% endhint %}
 
-#### &#x20;  **Current Logic:**
+#### **Current Logic:**
 
-* Templates are included in the Questionnaire as **contained resources** and referenced using the [`sdc-questionnaire-templateExtract`](https://build.fhir.org/ig/HL7/sdc/StructureDefinition-sdc-questionnaire-templateExtract.html) or [`sdc-questionnaire-templateExtractBundle`](https://build.fhir.org/ig/HL7/sdc/StructureDefinition-sdc-questionnaire-templateExtractBundle.html) extensions.&#x20;
+* Templates are included in the Questionnaire as **contained resources** and referenced using the [`sdc-questionnaire-templateExtract`](https://build.fhir.org/ig/HL7/sdc/StructureDefinition-sdc-questionnaire-templateExtract.html) or [`sdc-questionnaire-templateExtractBundle`](https://build.fhir.org/ig/HL7/sdc/StructureDefinition-sdc-questionnaire-templateExtractBundle.html) extensions.
 
 {% hint style="info" %}
 `templateExtract` and `templateExtractBundle` should not be used at the same time.
 {% endhint %}
 
-
 * There is one location where you can place the `templateExtractBundle` extension:
   * **At the root level of the Questionnaire:** Used when you want to extract several resources and control properties of Bundle and it's entries.
-
 * There are two options where you can place the `templateExtract` extension:
   * **At the root level of the Questionnaire:** Used when you want to extract a single resource based on multiple answers from the form.
   * **At the item level:** Used when you want to extract data from specific questions or create a separate resource per repeated item.
@@ -178,7 +176,6 @@ Template-based extraction is currently in **preview.** Not all functionality is 
   * When `templateExtract` is placed on a repeatable item, the engine creates a new resource for each answer.
   * When extracting to a field that is an array (e.g., `Patient.address`), repeated answers can be added as multiple entries in the same resource.
 * Use of the [`allocateId`](https://build.fhir.org/ig/HL7/sdc/StructureDefinition-sdc-questionnaire-extractAllocateId.html) extension allows generation of unique IDs and referencing between related resources.
-
 * There is a way to make references between extracted resources:
   * In template, where you want to put reference - you put `templateExtractValue` extension with a FHIRPath expression referencing variable (for example `%newPatientId` )
   * In item that contain template which you want to reference - you should put `fullUrl` extension into `templateExtract` extension and reference the same variable (for example `%newPatientId` )
@@ -192,7 +189,7 @@ In Form UI Builder referencing resources greatly simplified and many steps are d
 
 You should just select resource in dropdown when you specify value of a reference (for example RelatedPerson.patient)
 {% endhint %}
-    
+
 * There is a way to extract new resource or modify existed.
   * When creating new resource - you fill template as is - without any additional effort
   * When updating existed resource - there are a couple of actions should be done before.
@@ -200,7 +197,6 @@ You should just select resource in dropdown when you specify value of a referenc
     * item should be populated with existed resource-id in `$populate` step
     * `resourceId` extension with FHIRPath should be added to `templateExtract` extension, and FHIRPath expression should extracts id from hidden item.
 
-    
 {% hint style="info" %}
 In Form UI Builder exracting reference to resource from item slightly simplified, but other parts should be added manually (adding hidden item and it's population)
 {% endhint %}
@@ -219,6 +215,20 @@ In Form UI Builder exracting reference to resource from item slightly simplified
 * Close the Resource Template Editor panel if everything is correct, or discard changes.
 
 For detailed instructions and examples of using templates for data extraction, visit the Template-Based Extraction Guide.
+
+## Extensions
+
+Aidbox Forms provide ability to add and edit extensions that are not covered in Forms Builder. Users can edit raw Questionnaire json.
+
+Extensions editor represents three fields for adding your own custom extension. To add extension you need follow three simple steps:
+
+1. `URL` — write down your extension's Url;
+2. `Type` — choose type of extension's value. Also you can write custom FHIRPath / FHIRQuery valueExpression just choose `Expression` type;
+3. `Value` — pick a value.
+
+{% hint style="info" %}
+Known extensions can not be added
+{% endhint %}
 
 ## Additional Information Settings
 
