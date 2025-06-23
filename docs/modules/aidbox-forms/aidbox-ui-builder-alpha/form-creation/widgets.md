@@ -257,7 +257,7 @@ Aidbox Forms provide three options for pre-filling the field:
 
 Aidbox Forms provide ability to add and edit extensions that are not covered in Forms Builder. Users can edit raw Questionnaire json.
 
-Extensions editor represents three fields for adding your own custom extension. To add extension you need three simple steps:
+Extensions editor represents three fields for adding your own custom extension. To add extension you need follow three simple steps:
 
 1. `URL` — write down your extension's Url;
 2. `Type` — choose type of extension's value. Also you can write custom FHIRPath / FHIRQuery valueExpression just choose `Expression` type;
