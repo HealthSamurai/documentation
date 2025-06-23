@@ -386,6 +386,7 @@ The Attachment widget allows users to upload files as part of their form submiss
 **Additional Functionality:**
 
 * **File Preview**: When using the form, the attached file can be viewed by opening it in a separate page. To do this, the user needs to click on the eye icon.
+  * Also File Preview can be embedded with your's custom external viewer or editor: [documentation](../embedding.md#onpreviewattachment-show-attachments-with-external-editor). External viewer or editor can support your own filetypes set or make possible editing files before submiting questionnaire.
 * **File Download:** When using the form, the attached file can be downloaded by clicking on the arrow pointing down icon.
 * Supported file types for preview in browsers (Chrome , Firefox, Safari):
   * **Images**: PNG, AVIF, GIF, JPEG, SVG, WEBP, BMP, ICO
