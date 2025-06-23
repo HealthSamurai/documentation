@@ -326,13 +326,19 @@ The Choice widget allows users to select one or more options from a predefined l
 **Settings:**
 
 * **Multiple Selection**: An option to allow the user to select more than one choice. To enable multiple selection, need to set repeats flag.
-* **Options**: A list of values that the user can choose from.
+
+**Options**:&#x20;
+
+* **Static:** A list of values that the user can choose from.
   * Each option should have a display text, code and system. The user can fill in values ​​or use the import option. In this case, the user will be given the opportunity to select a terminology server, select a valueset in it and find the needed coded value, then the code, system and display will be automatically filled in.
   * Optionally, the user can include a score to each option and show the score if needed, which will be taken into account in the calculations. To do this, need to click on the include score and show score boxes.
   * Instead of inlining options into the form, the use can use a ValueSet that is stored in the Aidbox instance. To do this, the user need to click on the ValueSet box and select the ValueSet.
-* **Use ValueSet**: Use predefined options in ValueSet
+* **ValueSet**: Use predefined options in ValueSet
   * **Use external terminology server**: You can specify external terminology server which will be used to `$expand` ValueSet options
   * **Expansion parameters**: Optionally, you can set additional parameters for `$expand` operation. For example, you can choose what CodeSystem version need to use.
+* **Expression:** Use a FHIRPath / FHIRQuery expression with conditions and logic.
+  * **FHIRPath:** Allows create logic with answers depends on other items. You can filter options with your conditions.
+  * **FHIRQuery:** Allows dynamically fetch answer options via FHIRQuery from your Aidbox instance resources.
 
 ### Open Choice
 
@@ -342,12 +348,21 @@ it is displayed on the form as a drop-down list.
 
 **Settings:**
 
-* **Options**: A list of values that the user can choose from.
+* **Open choice label:** By default the ability to choose your own option is displayed as "specify other..", but the user can redefine the label for this.
+* **Multiple Selection**: Not supported yet, but can be supported on demand.
+
+**Options**:&#x20;
+
+* **Static:** A list of values that the user can choose from.
   * Each option should have a display text, code and system. The user can fill in values ​​or use the import option. In this case, the user will be given the opportunity to select a terminology server, select a valueset in it and find the needed coded value, then the code, system and display will be automatically filled in.
   * Optionally, the user can include a score to each option and show the score if needed, which will be taken into account in the calculations. To do this, need to click on the include score and show score boxes.
   * Instead of inlining options into the form, the use can use a ValueSet that is stored in the Aidbox instance. To do this, the user need to click on the ValueSet box and select the ValueSet.
-* **Open choice label:** By default the ability to choose your own option is displayed as "specify other..", but the user can redefine the label for this.
-* **Multiple Selection**: Not supported yet, but can be supported on demand.
+* **ValueSet**: Use predefined options in ValueSet
+  * **Use external terminology server**: You can specify external terminology server which will be used to `$expand` ValueSet options
+  * **Expansion parameters**: Optionally, you can set additional parameters for `$expand` operation. For example, you can choose what CodeSystem version need to use.
+* **Expression:** Use a FHIRPath / FHIRQuery expression with conditions and logic.
+  * **FHIRPath:** Allows create logic with answers depends on other items. You can filter options with your conditions.
+  * **FHIRQuery:** Allows dynamically fetch answer options via FHIRQuery from your Aidbox instance resources.
 
 ### Checkbox
 
@@ -368,11 +383,21 @@ The Radio Button widget allows users to select one option from a set of predefin
 
 **Settings:**
 
-* **Options**: A list of values that the user can choose from.
-  * Each option should have a display text, code and system. The user can fill in values ​​or use the import option. In this case, the user will be given the opportunity to select a terminology server, select a valueset in it and find the needed coded value, then the code, system and display will be automatically filled in.
-  * Optionally, the user can include a score to each option and show the score if needed, which will be taken into account in the calculations. To do this, need to click on the include score and show score boxes.
 * **Orientation**: Display orientation of the options (vertical or horizontal).
 * **Column Count**: The number of columns used to display the options.
+
+**Options**:&#x20;
+
+* **Static:** A list of values that the user can choose from.
+  * Each option should have a display text, code and system. The user can fill in values ​​or use the import option. In this case, the user will be given the opportunity to select a terminology server, select a valueset in it and find the needed coded value, then the code, system and display will be automatically filled in.
+  * Optionally, the user can include a score to each option and show the score if needed, which will be taken into account in the calculations. To do this, need to click on the include score and show score boxes.
+  * Instead of inlining options into the form, the use can use a ValueSet that is stored in the Aidbox instance. To do this, the user need to click on the ValueSet box and select the ValueSet.
+* **ValueSet**: Use predefined options in ValueSet
+  * **Use external terminology server**: You can specify external terminology server which will be used to `$expand` ValueSet options
+  * **Expansion parameters**: Optionally, you can set additional parameters for `$expand` operation. For example, you can choose what CodeSystem version need to use.
+* **Expression:** Use a FHIRPath / FHIRQuery expression with conditions and logic.
+  * **FHIRPath:** Allows create logic with answers depends on other items. You can filter options with your conditions.
+  * **FHIRQuery:** Allows dynamically fetch answer options via FHIRQuery from your Aidbox instance resources.
 
 ### Checkbox List
 
@@ -380,13 +405,22 @@ The Checkbox List widget allows users to select multiple options from a predefin
 
 **Settings:**
 
-* **Options**: A list of values that the user can choose from.
-  * Each option should have a display text, code and system. The user can fill in values ​​or use the import option. In this case, the user will be given the opportunity to select a terminology server, select a valueset in it and find the needed coded value, then the code, system and display will be automatically filled in.
-  * Optionally, the user can include a score to each option and show the score if needed, which will be taken into account in the calculations. To do this, need to click on the include score and show score boxes.
-  * Instead of inlining options into the form, the use can use a ValueSet that is stored in the Aidbox instance. To do this, the user need to click on the ValueSet box and select the ValueSet.
 * **Orientation**: Display orientation of the options (vertical or horizontal).
 * **Column Count**: The number of columns used to display the options.
 * **Multiple Selection**: An option to allow the user to select more than one choice. To enable multiple selection, need to set repeats flag, by default, this flag is set.
+
+**Options**:&#x20;
+
+* **Static:** A list of values that the user can choose from.
+  * Each option should have a display text, code and system. The user can fill in values ​​or use the import option. In this case, the user will be given the opportunity to select a terminology server, select a valueset in it and find the needed coded value, then the code, system and display will be automatically filled in.
+  * Optionally, the user can include a score to each option and show the score if needed, which will be taken into account in the calculations. To do this, need to click on the include score and show score boxes.
+  * Instead of inlining options into the form, the use can use a ValueSet that is stored in the Aidbox instance. To do this, the user need to click on the ValueSet box and select the ValueSet.
+* **ValueSet**: Use predefined options in ValueSet
+  * **Use external terminology server**: You can specify external terminology server which will be used to `$expand` ValueSet options
+  * **Expansion parameters**: Optionally, you can set additional parameters for `$expand` operation. For example, you can choose what CodeSystem version need to use.
+* **Expression:** Use a FHIRPath / FHIRQuery expression with conditions and logic.
+  * **FHIRPath:** Allows create logic with answers depends on other items. You can filter options with your conditions.
+  * **FHIRQuery:** Allows dynamically fetch answer options via FHIRQuery from your Aidbox instance resources.
 
 ### Attachment
 
@@ -421,3 +455,18 @@ It can be used in calculation fields where the result of an expression or formul
 
 * **Decimal Representation**: The user can input rational numbers, supporting values like 12,34. The decimal point is not supported as a separator.
 * **Max Decimal Places**: The user can set a **maximum number of decimal places** to restrict the number of digits after the decimal point. This serves as a form validation feature, warning users if they input a value with more decimal places than allowed. For example, if the maximum decimal places are set to 2, an error message will appear if the user enters a value like 3,14159 with the message "Answer exceeds maximum decimal places: 2."
+
+### Reference
+
+The Reference widget allows users to select a reference to a resource into their form.&#x20;
+
+**Settings:**
+
+* **Resource Type:** The user can choose which resource will be represent into answer list
+
+**Options**:&#x20;
+
+* **Resource Type:** Used to determine the options for this widget.
+* **Expression:** Use a FHIRPath / FHIRQuery expression with conditions and logic.
+  * **FHIRPath:** Allows create logic with answers depends on other items. You can filter options with your conditions.
+  * **FHIRQuery:** Allows dynamically fetch answer options via FHIRQuery from your Aidbox instance resources.
