@@ -132,9 +132,9 @@
 
          :code
          (fn [_ctx node]
-           (if (str/starts-with? (:info node) "mermaid")
+           (if (and (:indo node) (str/starts-with? (:info node) "mermaid"))
              [:div
-              [:pre.mermaid (-> node :content first :text)]
+              [:pre.mermaid (uui/raw (-> node :content first :text))]
               [:script
                (uui/raw "if (typeof mermaid === 'undefined') {
                   var script = document.createElement('script');
@@ -149,7 +149,7 @@
 
              [:pre
               [:code.nohljsln
-               (-> node :content first :text)]]))
+               (uui/raw (-> node :content first :text))]]))
 
          :monospace
          (fn [_ctx node]
