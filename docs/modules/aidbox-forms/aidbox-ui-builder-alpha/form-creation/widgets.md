@@ -294,7 +294,7 @@ Known extensions can not be added
 | Signature                                   | A control for capturing a signature.                                                                                                                                                                                                                                                      | Custom        |
 | [Annotation Pad](widgets.md#annotation-pad) | A control for capturing visual information, sketches, or handwritten notes that cannot be easily captured through text inputs.                                                                                                                                                            | Custom        |
 | [Speech to text](widgets.md#speech-to-text) | A control to input text by speaking, which is then automatically transcribed into the form.                                                                                                                                                                                               | Custom        |
-| Reference                                   | Question with a reference to another resource (practitioner, organization, etc.) as an answer                                                                                                                                                                                             | FHIR          |
+| [Reference](widgets.md#reference)           | Question with a reference to another resource (practitioner, organization, etc.) as an answer                                                                                                                                                                                             | FHIR          |
 | [Radio Button](widgets.md#radio-button)     | A control where choices are listed with a button beside them. The button can be toggled to select or de-select a given choice. Selecting one item deselects all others.                                                                                                                   | FHIR          |
 | [Checkbox List](widgets.md#checkbox-list)   | A control where choices are listed with a box beside them. The box can be toggled to select or de-select a given choice with multiple selections.                                                                                                                                         | FHIR          |
 
@@ -458,7 +458,7 @@ It can be used in calculation fields where the result of an expression or formul
 
 ### Reference
 
-The Reference widget allows users to select a reference to a resource into their form.&#x20;
+The Reference widget allows users to select a reference to another resource such as practitioner, organization, etc. as an answer into their form.&#x20;
 
 **Settings:**
 
