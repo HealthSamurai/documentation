@@ -253,6 +253,20 @@ Aidbox Forms provide three options for pre-filling the field:
 2. **Observation:** Used to pre-fill a field with values ​​that are stored in the database in the Observation resources. To do this, the user needs to select the time period during which these observations could have been made. The mechanism is described in more detail in the [FHIR SDC specification.](https://build.fhir.org/ig/HL7/sdc/populate.html#observation-based-population)
 3. **Expression:** This approach to population is more generic. It supports retrieving data from any queryable FHIR resources available in the database. Those queries can be based on the context in which the QuestionnaireResponse is being generated and/or on the results of other queries. The user needs to use [FHIRPath](https://hl7.org/fhirpath/) for this purpose or [The FHIRPath Editor](fhirpath-editor.md). For more detail go to the [FHIR SDC specification.](https://build.fhir.org/ig/HL7/sdc/populate.html#expression-based-population)
 
+### Extensions
+
+Aidbox Forms provide ability to add and edit extensions that are not covered in Forms Builder. Users can edit raw Questionnaire json.
+
+Extensions editor represents three fields for adding your own custom extension. To add extension you need three simple steps:
+
+1. `URL` — write down your extension's Url;
+2. `Type` — choose type of extension's value. Also you can write custom FHIRPath / FHIRQuery valueExpression just choose `Expression` type;
+3. `Value` — pick a value.
+
+{% hint style="info" %}
+Known extensions can not be added
+{% endhint %}
+
 ## Description of widgets
 
 | Widget                                      | Description                                                                                                                                                                                                                                                                               | FHIR / Custom |
