@@ -276,6 +276,7 @@
         * [How to: populate forms with data](modules/aidbox-forms/aidbox-ui-builder-alpha/form-creation/how-to-guides/how-to-populate-forms-with-data.md)
         * [How to extract data from forms](modules/aidbox-forms/aidbox-ui-builder-alpha/form-creation/how-to-guides/how-to-extract-data-from-forms.md)
         * [How to calculate form filling percentage](modules/aidbox-forms/aidbox-ui-builder-alpha/form-creation/how-to-guides/how-to-calculate-form-filling-percentage.md)
+        * [How to use answer expression into forms](modules/aidbox-forms/aidbox-ui-builder-alpha/form-creation/how-to-guides/how-to-use-answer-expression-into-forms.md)
       * [Multilingual forms](modules/aidbox-forms/aidbox-ui-builder-alpha/form-creation/multilingual-forms.md)
       * [FHIRPath Editor](modules/aidbox-forms/aidbox-ui-builder-alpha/form-creation/fhirpath-editor.md)
     * [Import Questionnaire](modules/aidbox-forms/aidbox-ui-builder-alpha/import-questionnaire.md)
