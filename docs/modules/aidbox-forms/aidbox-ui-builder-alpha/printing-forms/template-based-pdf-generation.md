@@ -153,7 +153,6 @@ content: |
       <table class="border-collapse w-full">
         <tr class="break-inside-avoid">
           
-{% raw %}
 {% for item in items %}
             {% if item.linkId = "textarea" %}
               <td class="border border-slate-700 p-1">
@@ -166,7 +165,6 @@ content: |
               </td>
             {% endif %}
           {% endfor %}
-{% endraw %}
         </tr>
       </table>
     </article>

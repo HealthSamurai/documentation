@@ -2,7 +2,7 @@
 description: Aidbox forms supports fetching answers into question with conditions and logic
 ---
 
-# How to use answer expression into forms
+# How to create form with dynamical answers into questions
 
 ## What is answer expression
 
@@ -85,7 +85,7 @@ Now let's setup second group with FHIR Query expression:
 Take note: Actual linkId may differ! You must select `linkId` equals to `Gender` widget.&#x20;
 {% endhint %}
 
-### Usage
+## Usage
 
 Now let's try to answer on questions:
 
