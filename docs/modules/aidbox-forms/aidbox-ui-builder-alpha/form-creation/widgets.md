@@ -148,11 +148,15 @@ Example:
 
 ### Data Extraction
 
-Aidbox Forms provide ability for [collecting data from QuestionnaireResponse](data-extraction.md).
+Three options of data extraction are supported at the item level of Questionnaire: Observation-base, Definition-Based and Template-Based.
+
+For detailed instructions and example of extracting data visit the[ Data Extraction page](data-extraction.md) and our [How-to guides](how-to-guides/how-to-extract-data-from-forms.md).
 
 ### Population
 
-Aidbox Forms provide ability for [pre-filling the fields](widgets.md#population).
+In order to pre-fill the form with data that is in the database. You need to define the incomming parameters for the widget, which will then be used in field that you want to pre-fill with data.
+
+For detailed instructions and example of populating data visit the[ Population page](population.md) and our [How-to guides](how-to-guides/how-to-populate-forms-with-data.md).
 
 ### Extensions
 
