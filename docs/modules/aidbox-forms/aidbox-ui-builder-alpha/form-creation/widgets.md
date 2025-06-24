@@ -336,13 +336,16 @@ The Choice widget allows users to select one or more options from a predefined l
 * **ValueSet**: Use predefined options in ValueSet
   * **Use external terminology server**: You can specify external terminology server which will be used to `$expand` ValueSet options
   * **Expansion parameters**: Optionally, you can set additional parameters for `$expand` operation. For example, you can choose what CodeSystem version need to use.
-* **Expression:** Use a FHIRPath / FHIRQuery expression with conditions and logic.
-  * **FHIRPath:** Allows create logic with answers depends on other items. You can filter options with your conditions.
-  * **FHIRQuery:** Allows dynamically fetch answer options via FHIRQuery from your Aidbox instance resources.
+*   **Expression:** Use a FHIRPath / FHIRQuery expression with conditions and logic.
 
-{% hint style="info" %}
-How to use Answer Expression see our [example](how-to-guides/how-to-use-answer-expression-into-forms.md)
-{% endhint %}
+    * **FHIRPath:** Allows create logic with answers depends on other items. You can filter options with your conditions.
+    * **FHIRQuery:** Allows dynamically fetch answer options via FHIRQuery from your Aidbox instance resources.
+
+
+
+    {% hint style="info" %}
+    How to use Answer Expression see our [example](how-to-guides/how-to-use-answer-expression-into-forms.md)
+    {% endhint %}
 
 ### Open Choice
 
