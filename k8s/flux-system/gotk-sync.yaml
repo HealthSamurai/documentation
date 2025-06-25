@@ -8,8 +8,8 @@ spec:
   interval: 1m0s
   ref:
     branch: master
-  secretRef:
-    name: gitbok
+  timeout: 5m0s
+  # recurseSubmodules: true
   url: https://github.com/HealthSamurai/documentation.git
 ---
 apiVersion: kustomize.toolkit.fluxcd.io/v1
