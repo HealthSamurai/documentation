@@ -10,7 +10,7 @@ Aidbox is transitioning to the FHIR Schema engine. Existing zen and Entity/Attri
 
 The migration process involves six key steps:
 
-1. Identify deprecated entities defined with zen and Entity/Attributes&#x20;
+1. Identify deprecated entities defined with zen and Entity/Attributes
 2. Set up a parallel environment with FHIR Schema
 3. Migrate profiles
 4. Migrate custom resources
@@ -77,9 +77,6 @@ Launch a parallel Aidbox instance configured to use the FHIR Schema, connected t
 Below is an example of a `docker-compose` file with two Aidbox instances running on the same database: the first Aidbox (`aidbox_zen`) is configured with a zen configuration project and uses zen validation mode, while the second (`aidbox_schema`) is set up to use the FHIR Schema.
 
 ```yaml
-version: '3.7'
-volumes:
-  aidbox_pg_data: {}
 version: '3.7'
 volumes:
   aidbox_pg_data: {}
@@ -159,7 +156,7 @@ services:
       - "./zen-packages:/aidbox-project/zen-packages"
 ```
 
-For detailed FHIR Schema engine configuration instructions, refer to the [FHIR Schema setup documentation](../../profiling-and-validation/fhir-schema-validator/README.md).
+For detailed FHIR Schema engine configuration instructions, refer to the [FHIR Schema setup documentation](../../profiling-and-validation/fhir-schema-validator/).
 
 ### Step 3: Migrate FHIR Packages to FHIR Schema
 
