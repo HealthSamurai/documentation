@@ -3,8 +3,8 @@
 ## Most important
 
 - [ ] deploy
+- [ ] analytics
 - [ ] new UI to move pages (handles references and creates redirect)
-- [ ] tracking
 - [ ] 404 analytics?
 
 # bugs/techdebt
@@ -47,3 +47,4 @@
 - [ ] embed url http://localhost:8081/deprecated/deprecated/zen-related/aidbox-zen-lang-project/aidbox-configuration-project-structure
 - [ ] expand widget http://localhost:8081/deprecated/deprecated/zen-related/aidbox-zen-lang-project/custom-resources-using-aidbox-project
 - [ ] http://localhost:8081/deprecated/deprecated/zen-related/us-core-ig/us-core-ig-support-reference
+- [ ] handle prefix e.g. localhost:8081/docs

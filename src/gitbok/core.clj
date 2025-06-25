@@ -426,7 +426,7 @@
         :hx-indicator ".htmx-indicator"}]
       [:div.htmx-indicator.absolute.right-3.top-3
        [:div.animate-spin.rounded-full.h-6.w-6.border-b-2.border-blue-500]]]
-     [:div#search-results.mt-4.space-y-4]]]))
+     [:div#search-results.mt-4.space-y-4]]] "Search"))
 
 (defn
   ^{:http {:path "/search/results"}}
@@ -446,7 +446,7 @@
       (if (empty? results)
         [:div.text-gray-500.text-center.py-4 "No results found"]
         (for [result results]
-          (gitbok.search/page-view result)))])))
+          (gitbok.search/page-view result)))] "Search results")))
 
 #_{:clj-kondo/ignore [:unresolved-symbol]}
 (system/defstart
