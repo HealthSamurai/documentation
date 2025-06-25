@@ -394,13 +394,9 @@
 (def port
   (let [p (System/getenv "PORT")]
     (or
-     (cond
-       (not p)
-       nil
-
-       (string? p)
-       (try (Integer/parseInt p)
-            (catch Exception _ nil)))
+      (when (string? p)
+        (try (Integer/parseInt p)
+             (catch Exception _ nil)))
      default-port)))
 
 (def default-config
