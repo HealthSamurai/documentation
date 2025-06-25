@@ -7,7 +7,6 @@
    [gitbok.indexing.impl.file-to-uri :as file-to-uri]
    [gitbok.constants :as const]
    [system]
-   [clojure.java.io :as io]
    [clojure.string :as str]
    [gitbok.utils :as utils]
    [uui]
@@ -82,7 +81,6 @@
                "user.dir")))
 
             path (if (str/starts-with? path "/") (utils/safe-subs path 1) path)
-            _ (def path path)
             path (str "/" (:uri (get file->uri-idx path)))]
 
         (if section

@@ -23,6 +23,8 @@
 - [ ] cant see the header when pressing on heading link (have to scroll)
 - [ ] http://localhost:8081/deprecated/deprecated/zen-related/aidbox-zen-lang-project/set-up-and-use-configuration-projects
 - [ ] http://localhost:8081/deprecated/deprecated/zen-related/aidbox-zen-lang-project/enable-igs
+- [ ] enhance search ui
+- [ ] title in htmx
 
 
 ## UX

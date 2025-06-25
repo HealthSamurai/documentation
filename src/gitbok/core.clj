@@ -291,9 +291,10 @@
    :headers {"content-type" "text/html; ; charset=utf-8"}
    :body (uui/hiccup body)})
 
-(defn document [body]
+(defn document [body title]
   [:html
    [:head
+    [:title title]
     [:script {:src "/static/htmx.min.js"}]
     [:script {:src "/static/app.js"}]
     [:script {:src "/static/toc-scroll.js"}]
@@ -319,7 +320,7 @@
            :hx-on "htmx:afterSwap: window.scrollTo(0, 0); hljs.highlightAll();"}
     body]])
 
-(defn layout [context request content]
+(defn layout [context request content title]
   (let [body (if (map? content) (:body content) content)
         status (if (map? content) (:status content 200) 200)
         hx-current-url (get-in request [:headers "hx-current-url"])
@@ -335,7 +336,8 @@
        (content-div context uri body)
 
        :else
-       (document (layout-view context body uri)))
+       (document (layout-view context body uri)
+                 title))
      status)))
 
 (defn
@@ -355,16 +357,17 @@
              10))
 
       :else
-      (let [filepath (indexing/uri->filepath context uri)]
+      (let [filepath (indexing/uri->filepath context uri)
+            title (:title (get (indexing/file->uri-idx context) filepath))]
         (if filepath
           (layout
            context request
-           (render-file context filepath))
+           (render-file context filepath) title)
 
           (layout
            context request
            {:status 404
-            :body (not-found-view context uri)}))))))
+            :body (not-found-view context uri)} "Not found"))))))
 
 (def readme-path "readme")
 
