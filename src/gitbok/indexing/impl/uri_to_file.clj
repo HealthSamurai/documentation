@@ -73,10 +73,12 @@
                                 (set (keys index))) 2)]
 
     (when diff
+      (println "diff between redirects and summary urls")
       (doseq [p diff]
-        (println "url: " p)
-        (println "file in index:" (get index p))
-        (println "file in redirect:" (get redirects p))))
+        (println "-------")
+        (printf "record in summary: {%s %s}\n" p (get index p))
+        (printf "file in redirect: {%s %s}\n" p (get redirects p))
+        (println "-------")))
     (merge index redirects)))
 
 (defn get-idx [context]

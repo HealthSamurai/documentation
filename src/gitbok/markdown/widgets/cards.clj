@@ -5,7 +5,6 @@
 
 (defn render-cards-from-table
   [context filepath [_ _ _ tbody]]
-  (println "render ")
   (let [rows (->> tbody
                   (filter vector?)
                   (filter #(= :tr (first %))))]

@@ -5,11 +5,9 @@ structure:
 
 redirects:
     # See Site insights -> Broken URLs in gitbook ui
-    access-control/authentication: access-control/authentication/README.md
     access-control/authentication/access-to-aidboxui: access-control/authentication/README.md
     access-control/how-to-guides/smart-app: deprecated/deprecated/other/how-to-guides/smart-on-fhir/get-a-smart-app-launched.md
     access-control/how-to-guides/smart-on-fhir/smart-on-fhir-app-launch: deprecated/deprecated/other/how-to-guides/smart-on-fhir/get-a-smart-app-launched.md
-    access-control/overview: access-control/access-control.md
     access-control/patient-data-access-api/smart-on-fhir: access-control/authorization/smart-on-fhir/README.md
     access-control/security/accesspolicy: access-control/authorization/access-policies.md
     access-control/smart-on-fhir/smart-scopes: access-control/authorization/smart-on-fhir/smart-scopes-for-limiting-access.md
