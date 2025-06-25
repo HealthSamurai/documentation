@@ -110,7 +110,7 @@
 
 (defn picture-url? [url]
   (when url
-    (str/includes? url ".gitbook/assets")))
+    (str/starts-with? url "/.gitbook/assets")))
 
 (defn render-all! [context parsed-md-index]
   (system/set-system-state
@@ -343,15 +343,16 @@
   render-file-view
   [context request]
   (let [uri (:uri request)]
+
     (cond
+      (= uri "/favicon.ico")
+      (resp/resource-response
+       "public/favicon.ico")
+
       (picture-url? uri)
       (resp/resource-response
        (subs (str/replace uri #"%20" " ")
              10))
-
-      ;; todo
-      (= uri "/favicon.ico")
-      {:status 404}
 
       :else
       (let [filepath (indexing/uri->filepath context uri)]
