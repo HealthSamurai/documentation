@@ -100,4 +100,4 @@ In Form UI Builder exracting reference to resource from item slightly simplified
 * Test and debug the extraction using the debug console. For this purpose, enter test data in the form.
 * Close the Resource Template Editor panel if everything is correct, or discard changes.
 
-For detailed instructions and examples of using templates for data extraction, visit the Template-Based Extraction Guide.
+For detailed instructions and examples of using templates for data extraction, visit the [Template-Based Extraction Guide](how-to-guides/how-to-extract-data-from-forms.md#template-based-extraction).

@@ -1,12 +1,12 @@
 ---
 description: >-
   The article describes how to write FhirPath expressions for calculations,
-  enable-when logic and population using the FHIRPath editor
+  enable-when logic and population using the FHIRPath visual editor
 ---
 
-# FHIRPath Editor
+# FHIRPath Expressions with visual  editor
 
-The **FHIRPath Expression Editor** is a tool designed for non-technical users working with electronic medical forms based on the FHIR Questionnaire resource. It offers a **low-code environment** for creating, editing, and testing FHIRPath expressions that support dynamic behavior, calculations, data population, and named expressions within forms.
+The **FHIRPath Expression visual editor** is a tool designed for non-technical users working with electronic medical forms based on the FHIR Questionnaire resource. It offers a **low-code environment** for creating, editing, and testing FHIRPath expressions that support dynamic behavior, calculations, data population, and named expressions within forms.
 
 **Key Use Cases:**
 
@@ -15,7 +15,7 @@ The **FHIRPath Expression Editor** is a tool designed for non-technical users wo
 * Pre-fill form fields using existing data
 * Define and reuse named expressions
 
-## How to Use the FHIRPath Editor
+## How to Use the FHIRPath Visual Editor
 
 **1. Create an Expression**
 
