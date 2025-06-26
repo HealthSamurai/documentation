@@ -10,6 +10,7 @@
    [gitbok.indexing.core :as indexing]
    [gitbok.indexing.impl.file-to-uri :as file-to-uri]
    [gitbok.markdown.widgets.big-links :as big-links]
+   [gitbok.markdown.widgets.headers :as headers]
    [gitbok.indexing.impl.summary :as summary]
    [gitbok.indexing.impl.uri-to-file :as uri-to-file]
    [gitbok.search]
@@ -75,19 +76,18 @@
             (str/ends-with? (str/lower-case file) "readme.md")))))
        index))))
 
-(defn render-empty-page [context filepath parsed-heading]
+(defn render-empty-page [context filepath title]
   [:div
-   [:h1 {:class "mt-6 text-4xl font-bold text-gray-900 pb-4 mb-8"}
-    (-> parsed-heading :content first :text)]
+   (headers/render-h1
+     (markdown/renderers context filepath) title)
    (for [[_path {:keys [title uri]}]
          (find-children-files context filepath)]
      (big-links/big-link-view (str "/" uri) title))])
 
-(defn render-file* [context filepath parsed]
+(defn render-file* [context filepath parsed title]
   [:div {:class "flex-1 min-w-0 max-w-4xl"}
-   (if (and (= 1 (count (:content parsed)))
-            (= :heading (:type (first (:content parsed)))))
-     (render-empty-page context filepath (first (:content parsed)))
+   (if (= 1 (count (:content parsed)))
+     (render-empty-page context filepath title)
      (markdown/render-md context filepath parsed))])
 
 (defn render-toc [parsed]
@@ -99,12 +99,14 @@
 
 (defn read-markdown-file [context filepath]
   (let [content* (read-content context filepath)
-        {:keys [parsed description]}
+        {:keys [parsed description title]}
         (markdown/parse-markdown-content context [filepath content*])]
     (try
-      {:content (render-file* context filepath parsed)
+      {:content (render-file* context filepath parsed title)
        :description (or description
-                        (subs content* 0 150))
+                        (if (>= (count content*) 150)
+                          (subs content* 0 150)
+                          content*))
        :toc (render-toc parsed)}
       (catch Exception e
         {:content [:div {:role "alert"}
