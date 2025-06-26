@@ -320,7 +320,7 @@
           "author" { "@type" "Organization", "name" "HealthSamurai"}}))]
     [:title (str title " | Aidbox User Docs")]
     [:link {:rel "canonical" :href page-url}]
-    [:link {:rel "stylesheet", :href "/static/app.build.css"}]
+    [:link {:rel "stylesheet", :href "/static/app.min.css"}]
     [:script {:src "/static/htmx.min.js"}]
     [:meta {:name "htmx-config",
             :content "{\"scrollIntoViewOnBoost\":false,\"scrollBehavior\":\"smooth\"}"}]
