@@ -68,7 +68,7 @@
               :hx-push-url "true"
               :hx-swap "outerHTML"}
         [:div {:class "flex flex-col bg-white rounded-2xl shadow overflow-hidden h-full min-h-[300px]"}
-         (when img-href [:img {:src img-href}])
+         (when img-href [:img {:src img-href :alt "card"}])
          [:div
           {:class
            (str "flex flex-col gap-2 p-4 flex-1 "
