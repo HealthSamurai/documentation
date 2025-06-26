@@ -300,6 +300,11 @@
    [:head
     [:meta {:charset "utf-8"}]
     [:meta {:name "description" :content description}]
+    [:meta {:property "og:title" :content title}]
+    [:meta {:property "og:description" :content description}]
+    [:meta {:property "og:url" :content page-url}]
+    [:meta {:property "og:type" :content "article"}]
+    [:meta {:property "og:image" :content "/.gitbook/assets/aidbox_logo.jpg"}]
     [:title (str title " | Aidbox User Docs")]
     [:link {:rel "canonical" :href page-url}]
     [:link {:rel "stylesheet", :href "/static/app.build.css"}]
