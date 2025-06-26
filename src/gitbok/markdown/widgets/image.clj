@@ -18,7 +18,7 @@
                :attrs
                :src)
          :alt (or (:alt node)
-                  (:title (:attrs node)))
+                  (:title (:attrs node)) "")
          :class "max-w-full h-auto mx-auto rounded-lg shadow-lg my-6"}])
 
 (def youtube-tokenizer
