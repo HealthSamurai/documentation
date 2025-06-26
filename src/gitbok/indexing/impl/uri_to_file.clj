@@ -87,3 +87,6 @@
 (defn set-idx [context]
   (system/set-system-state context [const/URI->FILE_IDX]
                            (uri->file-idx context)))
+
+(defn all-urls [context]
+  (keys (get-idx context)))

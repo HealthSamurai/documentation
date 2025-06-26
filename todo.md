@@ -5,7 +5,7 @@
 - [ ] SEO stuff
   - [x] meta.description
   - [x] canonical link in head
-  - [ ] sitemap.xml
+  - [x] sitemap.xml
   - [ ] open graph
   - [ ] twitter card
 - [ ] analytics

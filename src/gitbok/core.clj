@@ -2,6 +2,8 @@
   (:require
    [cheshire.core]
    [gitbok.constants :as const]
+   [gitbok.indexing.impl.sitemap :as sitemap]
+   [edamame.core :as edamame]
    [clojure.string :as str]
    [gitbok.markdown.core :as markdown]
    [gitbok.indexing.core :as indexing]
@@ -387,6 +389,18 @@
            "Not found"
            "Page not found"))))))
 
+(defn sitemap-xml
+  [context _]
+  {:status 200
+   :headers {"content-type" "application/xml"}
+   :body (sitemap/get-sitemap context)})
+
+(defn sitemap-pages-xml
+  [context _]
+  {:status 200
+   :headers {"content-type" "application/xml"}
+   :body (sitemap/get-sitemap-pages context)})
+
 (def readme-path "readme")
 
 (defn
@@ -462,6 +476,10 @@
         (for [result results]
           (gitbok.search/page-view result)))] "Search results" "Search results")))
 
+(def base-url
+  (or (System/getenv "BASE_URL")
+      "https://gitbok.cs.aidbox.dev"))
+
 #_{:clj-kondo/ignore [:unresolved-symbol]}
 (system/defstart
   [context config]
@@ -489,6 +507,13 @@
   (render-all!
    context
    (markdown/get-parsed-markdown-index context))
+  (println "generating sitemap.xml")
+  ;; 8. generate sitemap.xml
+  (sitemap/set-sitemap context base-url)
+  (sitemap/set-sitemap-pages
+   context
+   base-url
+   (edamame/parse-string (utils/slurp-resource "lastmod.edn")))
 
   (http/register-endpoint
    context
@@ -505,6 +530,18 @@
    context
    {:path "/healthcheck" :method
     :get :fn #'healthcheck})
+
+  (http/register-endpoint
+   context
+   {:path "/sitemap.xml"
+    :method :get
+    :fn #'sitemap-xml})
+
+  (http/register-endpoint
+   context
+   {:path "/sitemap-pages.xml"
+    :method :get
+    :fn #'sitemap-pages-xml})
 
   (http/register-endpoint
    context

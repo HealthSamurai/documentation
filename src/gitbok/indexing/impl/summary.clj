@@ -137,7 +137,8 @@
     (filterv (fn [item]
                (and (:parsed item)
                     (:href item)
-                    (not= (:href item) "")))
+                    (not= (:href item) "")
+                    (not (str/starts-with? (:href item) "http"))))
              flattened)))
 
 (defn first-matching-index [pred coll]
@@ -187,4 +188,3 @@
   (treefy
    (->> ["a" "  b" "  c" "x" " x1" " x2"]
         (mapv (fn [x] {:i (count-whitespace x) :l (str/trim x)})))))
-
