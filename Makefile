@@ -1,13 +1,15 @@
 .PHONY: clean build uberjar test
 
-init:
+init-test:
+	cp .gitbook.yaml resources
+	echo 'dev' > resources/version
 	mkdir -p .git/hooks
+
+init:
 	cp .git/hooks/pre-commit.sample .git/hooks/pre-commit
 	chmod +x .git/hooks/pre-commit
 
-repl:
-	cp .gitbook.yaml resources
-	echo 'dev' > resources/version
+repl: init-test
 	DEV=true BASE_URL=http://localhost:8081 clj -M:dev:test:build
 
 tailwind:
@@ -25,5 +27,5 @@ uberjar:
 docker-clean:
 	docker buildx rm gitbok || true
 
-test:
+test: init-test
 	clojure -M:test:kaocha
