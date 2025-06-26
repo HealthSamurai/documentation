@@ -7,7 +7,6 @@
   - [x] canonical link in head
   - [x] sitemap.xml
   - [x] open graph
-  - [ ] twitter card
 - [ ] analytics
 - [ ] new UI to move pages (handles references and creates redirect)
 

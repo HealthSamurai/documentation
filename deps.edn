@@ -22,7 +22,7 @@
          :sha "5829ec101331b1702841094f4dc897ee46f0ddcd"}
         org.clojure/data.xml {:mvn/version "0.0.8"}
         clj-commons/clj-yaml {:mvn/version "1.0.29"}
-
+        borkdude/edamame {:mvn/version "1.4.31"}
         ;; recompile java automaticallydeps
         ;; virgil/virgil {:mvn/version "0.4.0"}
 
