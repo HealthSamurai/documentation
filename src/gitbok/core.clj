@@ -14,6 +14,7 @@
    [gitbok.indexing.impl.summary :as summary]
    [gitbok.indexing.impl.uri-to-file :as uri-to-file]
    [gitbok.search]
+   [ring.middleware.gzip :refer [wrap-gzip]]
    [uui.heroicons :as ico]
    [http]
    [clojure.java.io :as io]
@@ -30,8 +31,8 @@
 
 (def logo-url
   (utils/concat-urls
-    base-url
-    "/.gitbook/assets/aidbox_logo.jpg"))
+   base-url
+   "/.gitbook/assets/aidbox_logo.jpg"))
 
 (def dev? (= "true" (System/getenv "DEV")))
 
@@ -84,7 +85,7 @@
 (defn render-empty-page [context filepath title]
   [:div
    (headers/render-h1
-     (markdown/renderers context filepath) title)
+    (markdown/renderers context filepath) title)
    (for [[_path {:keys [title uri]}]
          (find-children-files context filepath)]
      (big-links/big-link-view (str "/" uri) title))])
@@ -318,15 +319,15 @@
     [:meta {:property "og:url" :content page-url}]
     [:meta {:property "og:type" :content "article"}]
     [:meta {:property "og:image" :content open-graph-image}]
-    [:script {:type "application/ld+json" }
+    [:script {:type "application/ld+json"}
      (uui/raw
-       (json/generate-string
-         {"@context" "https://schema.org"
+      (json/generate-string
+       {"@context" "https://schema.org"
 
-          "@type" "TechArticle"
-          "headline" title
-          "description" description
-          "author" { "@type" "Organization", "name" "HealthSamurai"}}))]
+        "@type" "TechArticle"
+        "headline" title
+        "description" description
+        "author" {"@type" "Organization", "name" "HealthSamurai"}}))]
     [:title (str title " | Aidbox User Docs")]
     [:link {:rel "canonical" :href page-url}]
     [:link {:rel "stylesheet", :href "/static/app.min.css"}]
@@ -351,7 +352,7 @@
     [:script "hljs.highlightAll();"]
     [:script
      (uui/raw
-       "!function(t,e){var o,n,p,r;e.__SV||(window.posthog=e,e._i=[],e.init=function(i,s,a){function g(t,e){var o=e.split(\".\");2==o.length&&(t=t[o[0]],e=o[1]),t[e]=function(){t.push([e].concat(Array.prototype.slice.call(arguments,0)))}}(p=t.createElement(\"script\")).type=\"text/javascript\",p.crossOrigin=\"anonymous\",p.async=!0,p.src=s.api_host.replace(\".i.posthog.com\",\"-assets.i.posthog.com\")+\"/static/array.js\",(r=t.getElementsByTagName(\"script\")[0]).parentNode.insertBefore(p,r);var u=e;for(void 0!==a?u=e[a]=[]:a=\"posthog\",u.people=u.people||[],u.toString=function(t){var e=\"posthog\";return\"posthog\"!==a&&(e+=\".\"+a),t||(e+=\" (stub)\"),e},u.people.toString=function(){return u.toString(1)+\".people (stub)\"},o=\"init Ie Ts Ms Ee Es Rs capture Ge calculateEventProperties Os register register_once register_for_session unregister unregister_for_session js getFeatureFlag getFeatureFlagPayload isFeatureEnabled reloadFeatureFlags updateEarlyAccessFeatureEnrollment getEarlyAccessFeatures on onFeatureFlags onSurveysLoaded onSessionId getSurveys getActiveMatchingSurveys renderSurvey canRenderSurvey canRenderSurveyAsync identify setPersonProperties group resetGroups setPersonPropertiesForFlags resetPersonPropertiesForFlags setGroupPropertiesForFlags resetGroupPropertiesForFlags reset get_distinct_id getGroups get_session_id get_session_replay_url alias set_config startSessionRecording stopSessionRecording sessionRecordingStarted captureException loadToolbar get_property getSessionProperty Ds Fs createPersonProfile Ls Ps opt_in_capturing opt_out_capturing has_opted_in_capturing has_opted_out_capturing clear_opt_in_out_capturing Cs debug I As getPageViewId captureTraceFeedback captureTraceMetric\".split(\" \"),n=0;n<o.length;n++)g(u,o[n]);e._i.push([i,s,a])},e.__SV=1)}(document,window.posthog||[]);
+      "!function(t,e){var o,n,p,r;e.__SV||(window.posthog=e,e._i=[],e.init=function(i,s,a){function g(t,e){var o=e.split(\".\");2==o.length&&(t=t[o[0]],e=o[1]),t[e]=function(){t.push([e].concat(Array.prototype.slice.call(arguments,0)))}}(p=t.createElement(\"script\")).type=\"text/javascript\",p.crossOrigin=\"anonymous\",p.async=!0,p.src=s.api_host.replace(\".i.posthog.com\",\"-assets.i.posthog.com\")+\"/static/array.js\",(r=t.getElementsByTagName(\"script\")[0]).parentNode.insertBefore(p,r);var u=e;for(void 0!==a?u=e[a]=[]:a=\"posthog\",u.people=u.people||[],u.toString=function(t){var e=\"posthog\";return\"posthog\"!==a&&(e+=\".\"+a),t||(e+=\" (stub)\"),e},u.people.toString=function(){return u.toString(1)+\".people (stub)\"},o=\"init Ie Ts Ms Ee Es Rs capture Ge calculateEventProperties Os register register_once register_for_session unregister unregister_for_session js getFeatureFlag getFeatureFlagPayload isFeatureEnabled reloadFeatureFlags updateEarlyAccessFeatureEnrollment getEarlyAccessFeatures on onFeatureFlags onSurveysLoaded onSessionId getSurveys getActiveMatchingSurveys renderSurvey canRenderSurvey canRenderSurveyAsync identify setPersonProperties group resetGroups setPersonPropertiesForFlags resetPersonPropertiesForFlags setGroupPropertiesForFlags resetGroupPropertiesForFlags reset get_distinct_id getGroups get_session_id get_session_replay_url alias set_config startSessionRecording stopSessionRecording sessionRecordingStarted captureException loadToolbar get_property getSessionProperty Ds Fs createPersonProfile Ls Ps opt_in_capturing opt_out_capturing has_opted_in_capturing has_opted_out_capturing clear_opt_in_out_capturing Cs debug I As getPageViewId captureTraceFeedback captureTraceMetric\".split(\" \"),n=0;n<o.length;n++)g(u,o[n]);e._i.push([i,s,a])},e.__SV=1)}(document,window.posthog||[]);
        posthog.init('phc_uO4ImMUxOljaWPDRr7lWu9TYpBrpIs4R1RwLu8uLRmx', {
                                                                         api_host: 'https://ph.aidbox.app',
                                                                         defaults: '2025-05-24',
@@ -505,6 +506,12 @@
         (for [result results]
           (gitbok.search/page-view result)))] "Search results" "Search results")))
 
+(defn gzip-middleware [f]
+  (fn [ctx req]
+    (let [ring-handler (fn [req] (f ctx req))
+          gzip-handler (wrap-gzip ring-handler)]
+      (gzip-handler req))))
+
 #_{:clj-kondo/ignore [:unresolved-symbol]}
 (system/defstart
   [context config]
@@ -542,19 +549,23 @@
 
   (http/register-endpoint
    context
-   {:path "/search" :method
-    :get :fn #'search-view})
+   {:path "/search"
+    :method :get
+    :middleware [gzip-middleware]
+    :fn #'search-view})
 
   (http/register-endpoint
    context
    {:path "/search/results"
     :method :get
+    :middleware [gzip-middleware]
     :fn #'search-results-view})
 
   (http/register-endpoint
    context
-   {:path "/healthcheck" :method
-    :get :fn #'healthcheck})
+   {:path "/healthcheck"
+    :method :get
+    :fn #'healthcheck})
 
   (http/register-endpoint
    context
@@ -566,18 +577,21 @@
    context
    {:path "/sitemap-pages.xml"
     :method :get
+    :middleware [gzip-middleware]
     :fn #'sitemap-pages-xml})
 
   (http/register-endpoint
    context
    {:path "/:path*"
     :method :get
+    :middleware [gzip-middleware]
     :fn #'render-file-view})
 
   (http/register-endpoint
    context
    {:path "/"
     :method :get
+    :middleware [gzip-middleware]
     :fn #'redirect-to-readme})
 
   (println "setup done!")
