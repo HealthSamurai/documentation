@@ -11,3 +11,4 @@ node_modules
 target
 resources/.gitbook.yaml
 resources/lastmod.edn
+.cursor/
