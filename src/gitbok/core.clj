@@ -29,11 +29,6 @@
   (or (System/getenv "BASE_URL")
       "https://gitbok.cs.aidbox.dev"))
 
-(def logo-url
-  (utils/concat-urls
-   base-url
-   "/.gitbook/assets/aidbox_logo.jpg"))
-
 (def dev? (= "true" (System/getenv "DEV")))
 
 (defn read-content [_context filepath]
@@ -362,7 +357,8 @@
            :hx-on "htmx:afterSwap: window.scrollTo(0, 0); hljs.highlightAll();"}
     body]])
 
-(defn layout [context request content title description]
+(defn layout [context request
+              {:keys [content title description filepath]}]
   (let [body (if (map? content) (:body content) content)
         status (if (map? content) (:status content 200) 200)
         hx-current-url (get-in request [:headers "hx-current-url"])
@@ -383,7 +379,10 @@
         title
         description
         (utils/concat-urls base-url uri)
-        logo-url))
+        (utils/concat-urls
+         base-url
+         (str "public/og-preview/"
+              (str/replace filepath #".md" ".png")))))
      status)))
 
 (defn
@@ -391,7 +390,6 @@
   render-file-view
   [context request]
   (let [uri (:uri request)]
-
     (cond
       (= uri "/favicon.ico")
       (resp/resource-response
@@ -402,6 +400,9 @@
        (subs (str/replace uri #"%20" " ")
              10))
 
+      (str/starts-with? uri "/public/og-preview")
+      (resp/resource-response uri)
+
       :else
       (let [filepath (indexing/uri->filepath context uri)
             title (:title (get (indexing/file->uri-idx context) filepath))
@@ -409,15 +410,21 @@
         (if filepath
           (layout
            context request
-           content
-           title description)
+           {:content
+            content
+            :title
+            title
+            :description
+            description
+            :filepath filepath})
 
           (layout
            context request
-           {:status 404
-            :body (not-found-view context uri)}
-           "Not found"
-           "Page not found"))))))
+           {:content
+            {:status 404
+             :body (not-found-view context uri)}
+            :title "Not found"
+            :description "Page not found"}))))))
 
 (defn sitemap-xml
   [context _]
@@ -471,20 +478,23 @@
   [context request]
   (layout
    context request
-   [:div.flex.flex-col.items-center.min-h-screen.bg-gray-50.p-4
-    [:div.w-full.max-w-2xl.mt-8
-     [:div.relative
-      [:input#search-input.w-full.px-4.py-3.text-lg.rounded-lg.border.border-gray-300.shadow-sm.focus:outline-none.focus:ring-2.focus:ring-blue-500.focus:border-transparent
-       {:type "text"
-        :name "q"
-        :placeholder "Search documentation..."
-        :hx-get "/search/results"
-        :hx-trigger "keyup changed delay:500ms, search"
-        :hx-target "#search-results"
-        :hx-indicator ".htmx-indicator"}]
-      [:div.htmx-indicator.absolute.right-3.top-3
-       [:div.animate-spin.rounded-full.h-6.w-6.border-b-2.border-blue-500]]]
-     [:div#search-results.mt-4.space-y-4]]] "Search" "Search results"))
+   {:content
+    [:div.flex.flex-col.items-center.min-h-screen.bg-gray-50.p-4
+     [:div.w-full.max-w-2xl.mt-8
+      [:div.relative
+       [:input#search-input.w-full.px-4.py-3.text-lg.rounded-lg.border.border-gray-300.shadow-sm.focus:outline-none.focus:ring-2.focus:ring-blue-500.focus:border-transparent
+        {:type "text"
+         :name "q"
+         :placeholder "Search documentation..."
+         :hx-get "/search/results"
+         :hx-trigger "keyup changed delay:500ms, search"
+         :hx-target "#search-results"
+         :hx-indicator ".htmx-indicator"}]
+       [:div.htmx-indicator.absolute.right-3.top-3
+        [:div.animate-spin.rounded-full.h-6.w-6.border-b-2.border-blue-500]]]
+      [:div#search-results.mt-4.space-y-4]]]
+    :title "Search"
+    :description "Search"}))
 
 (defn
   ^{:http {:path "/search/results"}}
@@ -500,11 +510,14 @@
          results)]
     (layout
      context request
-     [:div.space-y-4
-      (if (empty? results)
-        [:div.text-gray-500.text-center.py-4 "No results found"]
-        (for [result results]
-          (gitbok.search/page-view result)))] "Search results" "Search results")))
+     {:content
+      [:div.space-y-4
+       (if (empty? results)
+         [:div.text-gray-500.text-center.py-4 "No results found"]
+         (for [result results]
+           (gitbok.search/page-view result)))]
+      :title "Search results"
+      :description "Search results"})))
 
 (defn gzip-middleware [f]
   (fn [ctx req]

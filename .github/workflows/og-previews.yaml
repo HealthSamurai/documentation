@@ -1,0 +1,32 @@
+name: Build and Generate OG Previews
+
+on:
+  push:
+    paths:
+      - 'docs/**'
+      - 'scripts/generate-og.sh'
+  pull_request:
+    paths:
+      - 'docs/**'
+      - 'scripts/generate-og.sh'
+
+jobs:
+  build-opengraph-previews:
+    runs-on: ubuntu-latest
+    needs: test
+    if: github.event_name == 'pull_request' || (github.event_name == 'push' && (startsWith(github.ref, 'refs/tags/v') || github.ref == 'refs/heads/main' || github.ref == 'refs/heads/master'))
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Install ImageMagick
+        run: sudo apt-get update && sudo apt-get install -y imagemagick
+
+      - name: Generate OG images
+        run: bash scripts/generate-og.sh
+
+      - name: Upload OG images artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: og-previews
+          path: resources/public/og-preview/
