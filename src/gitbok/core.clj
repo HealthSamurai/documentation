@@ -5,6 +5,7 @@
    [edamame.core :as edamame]
    [clojure.string :as str]
    [cheshire.core :as json]
+   [hiccup2.core]
    [gitbok.markdown.core :as markdown]
    [gitbok.indexing.core :as indexing]
    [gitbok.indexing.impl.file-to-uri :as file-to-uri]
@@ -296,10 +297,11 @@
 (defn response1 [body status]
   {:status (or status 200)
    :headers {"content-type" "text/html; ; charset=utf-8"}
-   :body (uui/hiccup body)})
+   :body (str "<!DOCTYPE html>\n"
+              (hiccup2.core/html body))})
 
 (defn document [body title description page-url open-graph-image]
-  [:html
+  [:html {:lang "en"}
    [:head
     [:meta {:charset "utf-8"}]
     [:meta {:name "viewport" :content "width=device-width, initial-scale=1.0"}]
