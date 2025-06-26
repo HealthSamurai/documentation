@@ -1,10 +1,10 @@
 (ns gitbok.core
   (:require
-   [cheshire.core]
    [gitbok.constants :as const]
    [gitbok.indexing.impl.sitemap :as sitemap]
    [edamame.core :as edamame]
    [clojure.string :as str]
+   [cheshire.core :as json]
    [gitbok.markdown.core :as markdown]
    [gitbok.indexing.core :as indexing]
    [gitbok.indexing.impl.file-to-uri :as file-to-uri]
@@ -309,6 +309,15 @@
     [:meta {:property "og:url" :content page-url}]
     [:meta {:property "og:type" :content "article"}]
     [:meta {:property "og:image" :content open-graph-image}]
+    [:script {:type "application/ld+json" }
+     (uui/raw
+       (json/generate-string
+         {"@context" "https://schema.org"
+
+          "@type" "TechArticle"
+          "headline" title
+          "description" description
+          "author" { "@type" "Organization", "name" "HealthSamurai"}}))]
     [:title (str title " | Aidbox User Docs")]
     [:link {:rel "canonical" :href page-url}]
     [:link {:rel "stylesheet", :href "/static/app.build.css"}]
