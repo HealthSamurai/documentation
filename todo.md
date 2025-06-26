@@ -6,7 +6,7 @@
   - [x] meta.description
   - [x] canonical link in head
   - [x] sitemap.xml
-  - [ ] open graph
+  - [x] open graph
   - [ ] twitter card
 - [ ] analytics
 - [ ] new UI to move pages (handles references and creates redirect)

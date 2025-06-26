@@ -22,6 +22,9 @@
   (:gen-class))
 
 (set! *warn-on-reflection* true)
+(def base-url
+  (or (System/getenv "BASE_URL")
+      "https://gitbok.cs.aidbox.dev"))
 
 (def dev? (= "true" (System/getenv "DEV")))
 
@@ -295,7 +298,7 @@
    :headers {"content-type" "text/html; ; charset=utf-8"}
    :body (uui/hiccup body)})
 
-(defn document [body title description page-url]
+(defn document [body title description page-url open-graph-image]
   [:html
    [:head
     [:meta {:charset "utf-8"}]
@@ -355,10 +358,12 @@
        (content-div context uri body)
 
        :else
-       (document (layout-view context body uri)
-                 title
-                 description
-                 (str "https://gitbok.cs.aidbox.dev" uri)))
+       (document
+        (layout-view context body uri)
+        title
+        description
+        (str base-url uri)
+        (str base-url "/.gitbook/assets/aidbox_logo.png")))
      status)))
 
 (defn
@@ -480,10 +485,6 @@
         [:div.text-gray-500.text-center.py-4 "No results found"]
         (for [result results]
           (gitbok.search/page-view result)))] "Search results" "Search results")))
-
-(def base-url
-  (or (System/getenv "BASE_URL")
-      "https://gitbok.cs.aidbox.dev"))
 
 #_{:clj-kondo/ignore [:unresolved-symbol]}
 (system/defstart
