@@ -6,9 +6,10 @@
    [clojure.data.xml :as xml]))
 
 (defn make-url-entry-with-lastmod [loc lastmod]
-  {:tag :url
-   :content [{:tag :loc :content [loc]}
-             {:tag :lastmod :content [lastmod]}]})
+ (xml/sexp-as-element
+  [:url
+   [:loc loc]
+   [:lastmod lastmod]]))
 
 (defn generate-sitemap-pages [context base-url all-related-urls lastmod-page]
   (let [content
@@ -24,9 +25,9 @@
 
         urlset
         (xml/sexp-as-element
-          {:tag :urlset
-           :attrs {:xmlns "http://www.sitemaps.org/schemas/sitemap/0.9"}
-           :content content})]
+         [:urlset
+          {:xmlns "http://www.sitemaps.org/schemas/sitemap/0.9"}
+          content])]
     (xml/emit-str urlset)))
 
 (defn set-sitemap [context base-url]
@@ -35,13 +36,10 @@
    [const/SITEMAP]
    (xml/emit-str
     (xml/sexp-as-element
-      {:tag :sitemapindex
-       :attrs {:xmlns "http://www.sitemaps.org/schemas/sitemap/0.9"}
-       :content
-       [{:tag :sitemap
-         :content
-         [{:tag :loc :content
-           [(str base-url "/sitemap-pages.xml")]}]}]}))))
+     [:sitemapindex
+      {:xmlns "http://www.sitemaps.org/schemas/sitemap/0.9"}
+      [:sitemap
+       [:loc [(str base-url "/sitemap-pages.xml")]]]]))))
 
 (defn get-sitemap [context]
   (system/get-system-state context [const/SITEMAP]))
