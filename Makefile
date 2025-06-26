@@ -1,4 +1,4 @@
-.PHONY: clean build uberjar
+.PHONY: clean build uberjar minify build-production build-seo check-optimization test
 
 init:
 	mkdir -p .git/hooks
@@ -16,6 +16,19 @@ tailwind:
 build-tailwind:
 	npx tailwindcss -i ./resources/public/app.css -o ./resources/public/app.build.css --config ./tailwind.config.js
 
+minify:
+	npm run minify-css
+	npm run minify-js
+
+build-production:
+	npm run build-production
+
+build-seo:
+	npm run build-seo
+
+check-optimization:
+	npm run check-optimization
+
 uberjar:
 	clojure -M:build -m build
 
@@ -26,7 +39,9 @@ docker-build:
 		--builder gitbok \
 		-t faridco/gitbok \
 		--push \
-		.
 
 docker-clean:
 	docker buildx rm gitbok || true
+
+test:
+	clojure -M:test:kaocha
