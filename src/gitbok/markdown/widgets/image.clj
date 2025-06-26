@@ -19,6 +19,7 @@
                :src)
          :alt (or (:alt node)
                   (:title (:attrs node)) "")
+         :loading "lazy"
          :class "max-w-full h-auto mx-auto rounded-lg shadow-lg my-6"}])
 
 (def youtube-tokenizer
