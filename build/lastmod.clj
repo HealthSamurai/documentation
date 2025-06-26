@@ -29,3 +29,8 @@
     (spit save-path (pr-str data))
     (println "Saved:" save-path)))
 
+(defn -main [& _]
+  (generate-lastmod-file!
+   "docs"
+   "resources/lastmod.edn")
+  (System/exit 0))

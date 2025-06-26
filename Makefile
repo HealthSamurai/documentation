@@ -1,6 +1,9 @@
 .PHONY: clean build uberjar test
 
-init-test:
+lastmod:
+	clojure -M:build -m lastmod
+
+init-test: lastmod
 	cp .gitbook.yaml resources
 	echo 'dev' > resources/version
 	mkdir -p .git/hooks
@@ -9,7 +12,7 @@ init:
 	cp .git/hooks/pre-commit.sample .git/hooks/pre-commit
 	chmod +x .git/hooks/pre-commit
 
-repl: init-test
+repl: init-test lastmod
 	DEV=true BASE_URL=http://localhost:8081 clj -M:dev:test:build
 
 tailwind:
@@ -21,7 +24,7 @@ build-tailwind:
 build-tailwind-min:
 	npx tailwindcss -i ./resources/public/app.css -o ./resources/public/app.min.css --config ./tailwind.config.js --minify
 
-uberjar:
+uberjar: lastmod
 	clojure -M:build -m build
 
 docker-clean:
