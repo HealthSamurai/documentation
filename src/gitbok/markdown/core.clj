@@ -7,6 +7,7 @@
    [gitbok.markdown.widgets.github-hint :as github-hint]
    [gitbok.markdown.widgets.cards :as cards]
    [gitbok.markdown.widgets.tabs :as tabs]
+   [gitbok.markdown.widgets.description :as description]
    [gitbok.markdown.widgets.gitbook-code :as gitbook-code]
    [nextjournal.markdown :as md]
    [nextjournal.markdown.transform :as transform]
@@ -31,7 +32,13 @@
 (defn parse-markdown-content
   [context [filepath content]]
   {:filepath filepath
-   :parsed (md/parse* custom-doc (hack-md context filepath content))})
+   :description
+   (description/parse-description content)
+   :title (description/parse-title content)
+   :parsed
+   (md/parse*
+     custom-doc
+     (hack-md context filepath content))})
 
 (defn parse-html [html]
   (map hickory.core/as-hiccup
@@ -92,33 +99,34 @@
                  (str/trim content)])]))
          :blockquote github-hint/github-hint-renderer
          :heading
-         (comp
-          (fn [header-hiccup]
-            (let [tag (first header-hiccup)
-                  classes (case tag
-                            :h1 "mt-6 text-4xl font-bold text-gray-900 pb-4 mb-8"
-                            :h2 "mt-8 text-3xl font-semibold text-gray-900 pb-2 mb-6"
-                            :h3 "mt-6 text-2xl font-semibold text-gray-900 mb-4"
-                            :h4 "mt-4 text-lg font-semibold text-gray-900 mb-3"
-                            :h5 "mt-3 text-base font-semibold text-gray-900 mb-2"
-                            :h6 "mt-2 text-sm font-semibold text-gray-900 mb-1"
-                            "text-gray-900")]
-              (cond-> header-hiccup
-                (-> header-hiccup (get 1) :id)
-                (update-in
-                 [1 :id]
-                 (fn [id]
-                   (-> id
-                       (str/replace #"^-|-$" "")
-                       (utils/s->url-slug))))
-                :always
-                (update-in
-                 [1 :class]
-                 (fnil
-                  (fn [existing-class]
-                    (str/trim
-                     (str existing-class " " classes))) "")))))
-          (:heading transform/default-hiccup-renderers))
+         (fn [ctx node]
+           ((comp
+             (fn [header-hiccup]
+               (let [tag (first header-hiccup)
+                     classes (case tag
+                               :h1 "mt-6 text-4xl font-bold text-gray-900 pb-4"
+                               :h2 "mt-8 text-3xl font-semibold text-gray-900 pb-2 mb-6"
+                               :h3 "mt-6 text-2xl font-semibold text-gray-900 mb-4"
+                               :h4 "mt-4 text-lg font-semibold text-gray-900 mb-3"
+                               :h5 "mt-3 text-base font-semibold text-gray-900 mb-2"
+                               :h6 "mt-2 text-sm font-semibold text-gray-900 mb-1"
+                               "text-gray-900")]
+                 (cond-> header-hiccup
+                   (-> header-hiccup (get 1) :id)
+                   (update-in
+                    [1 :id]
+                    (fn [id]
+                      (-> id
+                          (str/replace #"^-|-$" "")
+                          (utils/s->url-slug))))
+                   :always
+                   (update-in
+                    [1 :class]
+                    (fnil
+                     (fn [existing-class]
+                       (str/trim
+                        (str existing-class " " classes))) "")))))
+             (:heading transform/default-hiccup-renderers)) ctx node))
 
          :paragraph
          (fn [ctx node]
@@ -254,12 +262,18 @@
        big-links/hack-content-ref
        github-hint/hack-info
        image/hack-youtube
-       (tabs/hack-tabs context filepath
+       (tabs/hack-tabs context
+                       filepath
                        parse-markdown-content
                        render-md)
-       (gitbook-code/hack-gitbook-code context filepath
+       (gitbook-code/hack-gitbook-code context
+                                       filepath
                                        parse-markdown-content
-                                       render-md)))
+                                       render-md)
+       (description/hack-h1-and-description context
+                                            filepath
+                                            md/parse
+                                            render-md)))
 
 (defn set-parsed-markdown-index [context md-files-idx]
   (system/set-system-state

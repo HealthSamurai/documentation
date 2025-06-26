@@ -25,18 +25,9 @@
     uri->file-idx)
 
   (def content
-    "```yaml
-POST /v2/fhir/$import
-Accept: text/yaml
-Content-Type: text/yaml
-
-id: synthea-100
-inputs:
-- resourceType: AllergyIntolerance
-  url: url1
-- resourceType: CarePlan
-  url: url2
-```")
+    "---
+description: This page explains how to make Aidbox respect self-signed SSL certificates
+---")
 
   (def content
 "{% tabs %}

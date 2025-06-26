@@ -2,10 +2,14 @@
 
 ## Most important
 
-- [ ] deploy
+- [ ] SEO stuff
+  - [x] meta.description
+  - [ ] canonical links in head
+  - [ ] sitemap.xml
+  - [ ] open graph
+  - [ ] twitter card
 - [ ] analytics
 - [ ] new UI to move pages (handles references and creates redirect)
-- [ ] 404 analytics?
 
 # bugs/techdebt
 
@@ -35,6 +39,7 @@
 
 ## Features
 
+- [ ] intercom
 - [ ] copy button in code
 - [ ] descriptions
 - [ ] last updated

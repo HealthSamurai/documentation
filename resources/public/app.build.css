@@ -2182,6 +2182,8 @@ video {
   transition-duration: 200ms;
 }
 
+/* @import "../../libs/http/resources/public/uui.css"; */
+
 /* Custom CSS variables for Aidbox-style theming - KEPT FOR REFERENCE */
 
 :root {

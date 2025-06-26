@@ -1,0 +1,6 @@
+User-agent: *
+Allow: /~gitbook/image?*
+Allow: /~gitbook/icon?*
+Disallow: /*?
+Allow: /
+Sitemap: https://docs.aidbox.app/sitemap.xml

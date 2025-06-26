@@ -93,10 +93,7 @@
   (search-index/parsed-md-idx->index parsed-md-index))
 
 (defn read-content [filepath]
-  (let [content (utils/slurp-resource filepath)]
-    (if (str/starts-with? content "---")
-      (last (str/split content #"---\n" 3))
-      content)))
+  (utils/slurp-resource filepath))
 
 (defn slurp-md-files! [filepaths-from-summary]
   ;; "docs" is in resources classpath in deps.edn
@@ -136,6 +133,6 @@
   (if (str/starts-with? href "http")
     href
     (-> (page-link->uri
-          context
-          filepath
-          href))))
+         context
+         filepath
+         href))))

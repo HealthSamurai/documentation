@@ -53,28 +53,17 @@
 
 (def selected-keys #{:h1 :h2 :h3 :h4 :text})
 
-(defn get-title [parsed-md-file]
-  (->> parsed-md-file
-       (some #(when (and
-                     (= :heading (:type %))
-                     (-> % :content first :text
-                         (str/starts-with? "description")
-                         not))  %))
-       :content
-       first
-       :text))
-
-(defn parsed-md->pre-index [parsed-md]
-  (let [title (get-title parsed-md)
-        groupped-by-type (->>
+(defn parsed-md->pre-index [parsed-md title]
+  (let [groupped-by-type (->>
                           parsed-md
                           (flatten-nodes)
                           (group-by :type))
         good-headings
-        (merge (dissoc groupped-by-type :heading)
-               (flatten-headings-to-map
-                (heading-level-preprocess
-                 (:heading groupped-by-type))))
+        (merge
+          (dissoc groupped-by-type :heading)
+          (flatten-headings-to-map
+            (heading-level-preprocess
+              (:heading groupped-by-type))))
         good-text
         (update good-headings :text process-text)
         paragraphs (process-paragraph (:paragraph good-text))
@@ -140,11 +129,17 @@
 
 (defn parsed-md-idx->index [parsed-md-idx]
   (create-search-index
-   (mapv (fn [{:keys [filepath parsed]}]
+   (mapv (fn [{:keys [filepath
+                      parsed
+                      title
+                      _description]}]
+           (when-not title
+             (throw (Exception. (str "Cannot find title in " title))))
            (assoc
-            (parsed-md->pre-index
-             (:content parsed))
-            :filepath filepath))
+             (parsed-md->pre-index
+               (:content parsed)
+               title)
+             :filepath filepath))
          parsed-md-idx)))
 
 (defn search [index q]

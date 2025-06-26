@@ -1,7 +1,7 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-@import "../../libs/http/resources/public/uui.css";
+/* @import "../../libs/http/resources/public/uui.css"; */
 
 /* Custom CSS variables for Aidbox-style theming - KEPT FOR REFERENCE */
 :root {

@@ -24,10 +24,7 @@
 (def dev? (= "true" (System/getenv "DEV")))
 
 (defn read-content [_context filepath]
-  (let [content (slurp (io/resource filepath))]
-    (if (str/starts-with? content "---")
-      (last (str/split content #"---\n" 3))
-      content)))
+  (utils/slurp-resource filepath))
 
 (defn not-found-view [context uri]
   (let [search-term (last (str/split uri #"/"))
@@ -96,10 +93,12 @@
 
 (defn read-markdown-file [context filepath]
   (let [content* (read-content context filepath)
-        {:keys [parsed]}
+        {:keys [parsed description]}
         (markdown/parse-markdown-content context [filepath content*])]
     (try
       {:content (render-file* context filepath parsed)
+       :description (or description
+                        (subs content* 0 150))
        :toc (render-toc parsed)}
       (catch Exception e
         {:content [:div {:role "alert"}
@@ -128,18 +127,21 @@
 
 (defn render-file
   [context filepath]
-  [:div
-   (try
-     (let [result (if dev?
-                    (read-markdown-file context filepath)
-                    (get-rendered context filepath))]
-       (if (map? result)
-         (:content result)
-         result))
-     (catch Exception e
-       [:div {:role "alert"}
-        (.getMessage e)
-        [:pre (pr-str e)]]))])
+  (let [result
+        (try
+          (if dev?
+            (read-markdown-file context filepath)
+            (get-rendered context filepath))
+          (catch Exception e
+            [:div {:role "alert"}
+             (.getMessage e)
+             [:pre (pr-str e)]]))]
+    {:content
+     [:div
+      (if (map? result)
+        (:content result)
+        result)]
+     :description (:description result)}))
 
 (defn add-active-class [item add?]
   (let [link-element (:title item)
@@ -263,7 +265,7 @@
                   :d "M9 5l7 7-7 7"}]]]])]))
 
 (defn content-div [context uri content]
-  [:div#content {:class "flex-1 py-6 max-w-6xl min-w-0 overflow-x-hidden"}
+  [:main#content {:class "flex-1 py-6 max-w-6xl min-w-0 overflow-x-hidden"}
    [:script "hljs.highlightAll();"]
    [:script "window.scrollTo(0, 0);"]
    [:div {:class "mx-auto px-2 max-w-full"} content]
@@ -291,13 +293,15 @@
    :headers {"content-type" "text/html; ; charset=utf-8"}
    :body (uui/hiccup body)})
 
-(defn document [body title]
+(defn document [body title description]
   [:html
    [:head
+    [:meta {:charset "utf-8"}]
+    [:meta {:name "description" :content description}]
     [:title (str title " | Aidbox User Docs")]
     [:script
      (uui/raw
-     "!function(t,e){var o,n,p,r;e.__SV||(window.posthog=e,e._i=[],e.init=function(i,s,a){function g(t,e){var o=e.split(\".\");2==o.length&&(t=t[o[0]],e=o[1]),t[e]=function(){t.push([e].concat(Array.prototype.slice.call(arguments,0)))}}(p=t.createElement(\"script\")).type=\"text/javascript\",p.crossOrigin=\"anonymous\",p.async=!0,p.src=s.api_host.replace(\".i.posthog.com\",\"-assets.i.posthog.com\")+\"/static/array.js\",(r=t.getElementsByTagName(\"script\")[0]).parentNode.insertBefore(p,r);var u=e;for(void 0!==a?u=e[a]=[]:a=\"posthog\",u.people=u.people||[],u.toString=function(t){var e=\"posthog\";return\"posthog\"!==a&&(e+=\".\"+a),t||(e+=\" (stub)\"),e},u.people.toString=function(){return u.toString(1)+\".people (stub)\"},o=\"init Ie Ts Ms Ee Es Rs capture Ge calculateEventProperties Os register register_once register_for_session unregister unregister_for_session js getFeatureFlag getFeatureFlagPayload isFeatureEnabled reloadFeatureFlags updateEarlyAccessFeatureEnrollment getEarlyAccessFeatures on onFeatureFlags onSurveysLoaded onSessionId getSurveys getActiveMatchingSurveys renderSurvey canRenderSurvey canRenderSurveyAsync identify setPersonProperties group resetGroups setPersonPropertiesForFlags resetPersonPropertiesForFlags setGroupPropertiesForFlags resetGroupPropertiesForFlags reset get_distinct_id getGroups get_session_id get_session_replay_url alias set_config startSessionRecording stopSessionRecording sessionRecordingStarted captureException loadToolbar get_property getSessionProperty Ds Fs createPersonProfile Ls Ps opt_in_capturing opt_out_capturing has_opted_in_capturing has_opted_out_capturing clear_opt_in_out_capturing Cs debug I As getPageViewId captureTraceFeedback captureTraceMetric\".split(\" \"),n=0;n<o.length;n++)g(u,o[n]);e._i.push([i,s,a])},e.__SV=1)}(document,window.posthog||[]);
+      "!function(t,e){var o,n,p,r;e.__SV||(window.posthog=e,e._i=[],e.init=function(i,s,a){function g(t,e){var o=e.split(\".\");2==o.length&&(t=t[o[0]],e=o[1]),t[e]=function(){t.push([e].concat(Array.prototype.slice.call(arguments,0)))}}(p=t.createElement(\"script\")).type=\"text/javascript\",p.crossOrigin=\"anonymous\",p.async=!0,p.src=s.api_host.replace(\".i.posthog.com\",\"-assets.i.posthog.com\")+\"/static/array.js\",(r=t.getElementsByTagName(\"script\")[0]).parentNode.insertBefore(p,r);var u=e;for(void 0!==a?u=e[a]=[]:a=\"posthog\",u.people=u.people||[],u.toString=function(t){var e=\"posthog\";return\"posthog\"!==a&&(e+=\".\"+a),t||(e+=\" (stub)\"),e},u.people.toString=function(){return u.toString(1)+\".people (stub)\"},o=\"init Ie Ts Ms Ee Es Rs capture Ge calculateEventProperties Os register register_once register_for_session unregister unregister_for_session js getFeatureFlag getFeatureFlagPayload isFeatureEnabled reloadFeatureFlags updateEarlyAccessFeatureEnrollment getEarlyAccessFeatures on onFeatureFlags onSurveysLoaded onSessionId getSurveys getActiveMatchingSurveys renderSurvey canRenderSurvey canRenderSurveyAsync identify setPersonProperties group resetGroups setPersonPropertiesForFlags resetPersonPropertiesForFlags setGroupPropertiesForFlags resetGroupPropertiesForFlags reset get_distinct_id getGroups get_session_id get_session_replay_url alias set_config startSessionRecording stopSessionRecording sessionRecordingStarted captureException loadToolbar get_property getSessionProperty Ds Fs createPersonProfile Ls Ps opt_in_capturing opt_out_capturing has_opted_in_capturing has_opted_out_capturing clear_opt_in_out_capturing Cs debug I As getPageViewId captureTraceFeedback captureTraceMetric\".split(\" \"),n=0;n<o.length;n++)g(u,o[n]);e._i.push([i,s,a])},e.__SV=1)}(document,window.posthog||[]);
     posthog.init('phc_uO4ImMUxOljaWPDRr7lWu9TYpBrpIs4R1RwLu8uLRmx', {
         api_host: 'https://ph.aidbox.app',
         defaults: '2025-05-24',
@@ -328,7 +332,7 @@
            :hx-on "htmx:afterSwap: window.scrollTo(0, 0); hljs.highlightAll();"}
     body]])
 
-(defn layout [context request content title]
+(defn layout [context request content title description]
   (let [body (if (map? content) (:body content) content)
         status (if (map? content) (:status content 200) 200)
         hx-current-url (get-in request [:headers "hx-current-url"])
@@ -345,7 +349,8 @@
 
        :else
        (document (layout-view context body uri)
-                 title))
+                 title
+                 description))
      status)))
 
 (defn
@@ -366,16 +371,20 @@
 
       :else
       (let [filepath (indexing/uri->filepath context uri)
-            title (:title (get (indexing/file->uri-idx context) filepath))]
+            title (:title (get (indexing/file->uri-idx context) filepath))
+            {:keys [description content]} (render-file context filepath)]
         (if filepath
           (layout
            context request
-           (render-file context filepath) title)
+           content
+           title description)
 
           (layout
            context request
            {:status 404
-            :body (not-found-view context uri)} "Not found"))))))
+            :body (not-found-view context uri)}
+           "Not found"
+           "Page not found"))))))
 
 (def readme-path "readme")
 
@@ -389,7 +398,7 @@
     (render-file-view context request)))
 
 (defn healthcheck
-  [context request]
+  [_ _]
   {:status 200 :body {:status "ok"}})
 
 (system/defmanifest
@@ -402,9 +411,9 @@
 (def port
   (let [p (System/getenv "PORT")]
     (or
-      (when (string? p)
-        (try (Integer/parseInt p)
-             (catch Exception _ nil)))
+     (when (string? p)
+       (try (Integer/parseInt p)
+            (catch Exception _ nil)))
      default-port)))
 
 (def default-config
@@ -430,7 +439,7 @@
         :hx-indicator ".htmx-indicator"}]
       [:div.htmx-indicator.absolute.right-3.top-3
        [:div.animate-spin.rounded-full.h-6.w-6.border-b-2.border-blue-500]]]
-     [:div#search-results.mt-4.space-y-4]]] "Search"))
+     [:div#search-results.mt-4.space-y-4]]] "Search" "Search results"))
 
 (defn
   ^{:http {:path "/search/results"}}
@@ -450,12 +459,11 @@
       (if (empty? results)
         [:div.text-gray-500.text-center.py-4 "No results found"]
         (for [result results]
-          (gitbok.search/page-view result)))] "Search results")))
+          (gitbok.search/page-view result)))] "Search results" "Search results")))
 
 #_{:clj-kondo/ignore [:unresolved-symbol]}
 (system/defstart
   [context config]
-  ;; (http/register-ns-endpoints context *ns*)
 
   ;; order is important
   ; 1. read summary. create toc htmx.
@@ -464,8 +472,6 @@
   (uri-to-file/set-idx context)
   ; 3. reverse file to uri idx
   (file-to-uri/set-idx context)
-  (def ftu (file-to-uri/get-idx context))
-  (take 10 ftu)
   ; 4. using files from summary (step 3), read all files into memory
   (indexing/set-md-files-idx
    context
@@ -518,7 +524,7 @@
   (println "version " (utils/slurp-resource "version"))
   {})
 
-(defn -main [& args]
+(defn -main [& _args]
   (println "Server started")
   (println "port " port)
   (system/start-system default-config))
