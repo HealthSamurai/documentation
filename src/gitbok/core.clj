@@ -28,6 +28,11 @@
   (or (System/getenv "BASE_URL")
       "https://gitbok.cs.aidbox.dev"))
 
+(def logo-url
+  (utils/concat-urls
+    base-url
+    "/.gitbook/assets/aidbox_logo.jpg"))
+
 (def dev? (= "true" (System/getenv "DEV")))
 
 (defn read-content [_context filepath]
@@ -376,8 +381,8 @@
         (layout-view context body uri)
         title
         description
-        (str base-url uri)
-        (str base-url "/.gitbook/assets/aidbox_logo.png")))
+        (utils/concat-urls base-url uri)
+        logo-url))
      status)))
 
 (defn

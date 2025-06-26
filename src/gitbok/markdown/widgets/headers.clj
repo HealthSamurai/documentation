@@ -1,6 +1,5 @@
 (ns gitbok.markdown.widgets.headers
   (:require
-
    [nextjournal.markdown.transform :as transform]
    [gitbok.utils :as utils]
    [clojure.string :as str]))

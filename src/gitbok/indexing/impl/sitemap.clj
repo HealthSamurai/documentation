@@ -2,6 +2,7 @@
   (:require
    [clojure.string :as str]
    [gitbok.constants :as const]
+   [gitbok.utils :as utils]
    [system]
    [gitbok.indexing.impl.uri-to-file :as uri-to-file]
    [clojure.data.xml :as xml]))
@@ -29,7 +30,7 @@
                  "1.0"
                  "0.5")]
              (make-url-entry-with-lastmod
-              (str (java.net.URL. (java.net.URL. base-url) related-url))
+              (utils/concat-urls base-url related-url)
               (get lastmod-page filepath)
               priority)))
          all-related-urls)

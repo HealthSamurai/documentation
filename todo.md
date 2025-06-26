@@ -7,6 +7,7 @@
   - [x] canonical link in head
   - [x] sitemap.xml
   - [x] open graph
+- [ ] fix 503
 - [ ] analytics
 - [ ] new UI to move pages (handles references and creates redirect)
 
