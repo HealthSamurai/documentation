@@ -16,10 +16,7 @@ repl: init-test lastmod
 	DEV=true BASE_URL=http://localhost:8081 clj -M:dev:test:build
 
 tailwind:
-	npx tailwindcss -i ./resources/public/app.css -o ./resources/public/app.build.css --config ./tailwind.config.js --watch
-
-build-tailwind:
-	npx tailwindcss -i ./resources/public/app.css -o ./resources/public/app.build.css --config ./tailwind.config.js
+	npx tailwindcss -i ./resources/public/app.css -o ./resources/public/app.build.css --config ./tailwind.config.js --minify --watch
 
 build-tailwind-min:
 	npx tailwindcss -i ./resources/public/app.css -o ./resources/public/app.min.css --config ./tailwind.config.js --minify
