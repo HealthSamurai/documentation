@@ -305,14 +305,14 @@
       (:toc rendered)
       nil)))
 
-(defn layout-view [context content uri filepath]
+(defn layout-view [context body uri filepath]
   [:div
    (nav)
    [:div
     {:class "flex px-4 sm:px-6 md:px-8 max-w-screen-2xl mx-auto site-full-width:max-w-full gap-20"}
     (menu (summary/get-summary context) uri)
     [:div {:class "flex-1"}
-     (content-div context uri content filepath)]
+     (content-div context uri body filepath)]
     (when-let [filepath (indexing/uri->filepath context uri)]
       (get-toc context filepath))]])
 
@@ -394,6 +394,14 @@
          (str "public/og-preview/"
               (str/replace filepath #".md" ".png")))))
      status)))
+
+(defn get-toc-view
+  [context request]
+  (let [uri (str/replace (:uri request) #"^/toc" "")
+        filepath (indexing/uri->filepath context uri)]
+    (if filepath
+      (response1 (get-toc context filepath) 200)
+      (response1 [:div] 404))))
 
 (defn
   ^{:http {:path "/:path*"}}
@@ -619,6 +627,13 @@
 
   (http/register-endpoint
    context
+   {:path "/toc/:path*"
+    :method :get
+    :middleware [gzip-middleware]
+    :fn #'get-toc-view})
+
+  (http/register-endpoint
+   context
    {:path "/healthcheck"
     :method :get
     :fn #'healthcheck})
@@ -631,8 +646,8 @@
   {})
 
 (defn -main [& _args]
- (.addShutdownHook (Runtime/getRuntime)
-                   (Thread. #(println "Got SIGTERM.")))
+  (.addShutdownHook (Runtime/getRuntime)
+                    (Thread. #(println "Got SIGTERM.")))
   (println "Server started")
   (println "port " port)
   (system/start-system default-config))

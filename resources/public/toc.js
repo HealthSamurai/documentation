@@ -25,7 +25,15 @@ document.addEventListener('click', function (e) {
   }
 
   setTimeout(() => {
-    htmx.ajax('GET', href, { target: '#content', swap: 'outerHTML' });
+    htmx.ajax('GET', href, {
+      target: '#content',
+      swap: 'outerHTML'
+    });
+
+    htmx.ajax('GET', '/toc' + href, {
+      target: '.toc-container',
+      swap: 'outerHTML'
+    });
   }, 150);
 });
 
