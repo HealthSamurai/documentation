@@ -174,7 +174,7 @@ If you have custom resources defined by Entity & Attributes, follow this guide
 [migrate-custom-resources-defined-with-entity-and-attributes-to-fhir-schema.md](migrate-custom-resources-defined-with-entity-and-attributes-to-fhir-schema.md)
 {% endcontent-ref %}
 
-If you have custom resources defined by Zen, follow this guide -
+If you have custom resources defined by Zen, follow this guide
 
 {% content-ref url="migrate-custom-resources-defined-with-zen-to-fhir-schema.md" %}
 [migrate-custom-resources-defined-with-zen-to-fhir-schema.md](migrate-custom-resources-defined-with-zen-to-fhir-schema.md)
@@ -184,7 +184,9 @@ If you have custom resources defined by Zen, follow this guide -
 
 If you have custom Aidbox SearchParameters defined via Zen or Entities, use this migration guide
 
-{% embed url="https://docs.aidbox.app/tutorials/crud-search-tutorials/search-tutorials/migrate-from-aidbox-searchparameter-to-fhir-searchparameter" %}
+{% content-ref url="../../../tutorials/crud-search-tutorials/search-tutorials/migrate-from-aidbox-searchparameter-to-fhir-searchparameter.md" %}
+[migrate-from-aidbox-searchparameter-to-fhir-searchparameter.md](../../../tutorials/crud-search-tutorials/search-tutorials/migrate-from-aidbox-searchparameter-to-fhir-searchparameter.md)
+{% endcontent-ref %}
 
 ### Step 6: Validate Resources and Resolve Issues
 
