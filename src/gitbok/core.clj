@@ -631,6 +631,8 @@
   {})
 
 (defn -main [& _args]
+ (.addShutdownHook (Runtime/getRuntime)
+                   (Thread. #(println "Got SIGTERM.")))
   (println "Server started")
   (println "port " port)
   (system/start-system default-config))
