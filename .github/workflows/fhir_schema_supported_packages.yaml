@@ -16,12 +16,12 @@ jobs:
       run: curl -s https://raw.githubusercontent.com/babashka/babashka/master/install | bash
 
     - name: Execute bb task
-      run: bb -m fhir-schema-doc 
+      run: bb -m fhir-schema-doc
 
     - name: Commit and push
       run: |
         git config --local user.email "action@github.com"
         git config --local user.name "GitHub Action"
-        git add docs/modules/profiling-and-validation/fhir-schema-validator/supported-implementation-guides.md
-        git commit -m "Update supported-implementation-guides.md" -a
+        git add docs/modules/profiling-and-validation/fhir-schema-validator/aidbox-fhir-igs-registry.md
+        git commit -m "Update aidbox-fhir-igs-registry.md" -a
         git push
