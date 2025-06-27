@@ -14,3 +14,4 @@
 
 (def ^:const SITEMAP_PAGES ::sitemap-pages)
 (def ^:const SITEMAP ::sitemap)
+(def ^:const LASTMOD ::lastmod)

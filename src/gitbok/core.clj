@@ -25,6 +25,7 @@
   (:gen-class))
 
 (set! *warn-on-reflection* true)
+
 (def base-url
   (or (System/getenv "BASE_URL")
       "https://gitbok.cs.aidbox.dev"))
@@ -284,11 +285,16 @@
                   :stroke-linejoin "round"
                   :d "M9 5l7 7-7 7"}]]]])]))
 
-(defn content-div [context uri content]
+(defn content-div [context uri content filepath]
   [:main#content {:class "flex-1 py-6 max-w-6xl min-w-0 overflow-x-hidden"}
    [:script "window.scrollTo(0, 0);"]
    [:div {:class "mx-auto px-2 max-w-full"} content]
-   (navigation-buttons context uri)])
+   (navigation-buttons context uri)
+   [:p {:class "mt-4 text-gray-600"}
+    "Last updated "
+    (get
+     (system/get-system-state context [const/LASTMOD])
+     filepath)]])
 
 (defn get-toc [context filepath]
   (let [rendered (get-rendered context filepath)]
@@ -296,14 +302,14 @@
       (:toc rendered)
       nil)))
 
-(defn layout-view [context content uri]
+(defn layout-view [context content uri filepath]
   [:div
    (nav)
    [:div
     {:class "flex px-4 sm:px-6 md:px-8 max-w-screen-2xl mx-auto site-full-width:max-w-full gap-20"}
     (menu (summary/get-summary context) uri)
     [:div {:class "flex-1"}
-     (content-div context uri content)]
+     (content-div context uri content filepath)]
     (when-let [filepath (indexing/uri->filepath context uri)]
       (get-toc context filepath))]])
 
@@ -371,11 +377,11 @@
     (response1
      (cond
        is-hx-target
-       (content-div context uri body)
+       (content-div context uri body filepath)
 
        :else
        (document
-        (layout-view context body uri)
+        (layout-view context body uri filepath)
         title
         description
         (utils/concat-urls base-url uri)
@@ -555,6 +561,12 @@
   (println "generating sitemap.xml")
   ;; 8. generate sitemap.xml
   (sitemap/set-sitemap context base-url)
+
+  (system/set-system-state
+   context
+   [const/LASTMOD]
+   (edamame/parse-string (utils/slurp-resource "lastmod.edn")))
+
   (sitemap/set-sitemap-pages
    context
    base-url
