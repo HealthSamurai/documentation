@@ -294,10 +294,10 @@
          (get
           (system/get-system-state context [const/LASTMOD])
           filepath)]
-    [:p {:class "mt-4 text-gray-600"
-         :id "lastupdated"
-         :data-updated-at lastupdated}
-     "Last updated " lastupdated])])
+     [:p {:class "mt-4 text-gray-600"
+          :id "lastupdated"
+          :data-updated-at lastupdated}
+      "Last updated " lastupdated])])
 
 (defn get-toc [context filepath]
   (let [rendered (get-rendered context filepath)]
@@ -592,12 +592,6 @@
 
   (http/register-endpoint
    context
-   {:path "/healthcheck"
-    :method :get
-    :fn #'healthcheck})
-
-  (http/register-endpoint
-   context
    {:path "/sitemap.xml"
     :method :get
     :fn #'sitemap-xml})
@@ -622,6 +616,12 @@
     :method :get
     :middleware [gzip-middleware]
     :fn #'redirect-to-readme})
+
+  (http/register-endpoint
+   context
+   {:path "/healthcheck"
+    :method :get
+    :fn #'healthcheck})
 
   (println "setup done!")
 
