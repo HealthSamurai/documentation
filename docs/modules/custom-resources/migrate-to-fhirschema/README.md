@@ -180,6 +180,12 @@ If you have custom resources defined by Zen, follow this guide -
 [migrate-custom-resources-defined-with-zen-to-fhir-schema.md](migrate-custom-resources-defined-with-zen-to-fhir-schema.md)
 {% endcontent-ref %}
 
+### Step 5: Migrate SearchParameters
+
+If you have custom Aidbox SearchParameters defined via Zen or Entities, use this migration guide
+
+{% embed url="https://docs.aidbox.app/tutorials/crud-search-tutorials/search-tutorials/migrate-from-aidbox-searchparameter-to-fhir-searchparameter" %}
+
 ### Step 6: Validate Resources and Resolve Issues
 
 Since the FHIR Schema validation engine is more reliable and validates all the FHIR container cases, we need to validate existing data with FHIR Schema using [Aidbox Asynchronous Validation API](../../profiling-and-validation/asynchronous-resource-validation.md).
