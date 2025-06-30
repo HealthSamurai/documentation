@@ -205,7 +205,7 @@
    [:div {:class "flex items-center justify-between py-3 min-h-16 px-4 sm:px-6 md:px-8 max-w-screen-2xl mx-auto"}
     [:div {:class "flex max-w-full lg:basis-72 min-w-0 shrink items-center justify-start gap-2 lg:gap-4"}
      [:button {:class "mobile-menu-button md:hidden"
-               :onclick "toggleMobileMenu()"
+               :id "mobile-menu-toggle"
                :type "button"
                :aria-label "Toggle mobile menu"}
       [:svg {:class "size-6" :fill "none" :stroke "currentColor" :viewBox "0 0 24 24"}
@@ -313,6 +313,7 @@
 (defn layout-view [context body uri filepath]
   [:div
    (nav)
+   [:div.mobile-menu-overlay]
    [:div
     {:class "flex px-4 sm:px-6 md:px-8 max-w-screen-2xl mx-auto site-full-width:max-w-full gap-20"}
     (menu (summary/get-summary context) uri)
