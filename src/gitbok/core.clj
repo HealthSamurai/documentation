@@ -328,7 +328,7 @@
      :headers {"content-type" "text/html; ; charset=utf-8"
                "Cache-Control" "public, max-age=86400"
                "Last-Modified" (utils/iso-to-http-date lastmod)
-               "ETag" (utils/etag html)}
+               "ETag" (utils/etag lastmod)}
      :body html}))
 
 (defn document [body {:keys [title description page-url open-graph-image]}]
