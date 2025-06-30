@@ -379,7 +379,7 @@
                     hx-current-url))
                 (:uri request))
         is-hx-target (uui/hx-target request)]
-    (response1
+   (response1
      (cond
        is-hx-target
        (content-div context uri body filepath true)
@@ -395,7 +395,7 @@
         (utils/concat-urls
          base-url
          (str "public/og-preview/"
-              (str/replace filepath #".md" ".png")))))
+              (when filepath (str/replace filepath #".md" ".png"))))))
      status)))
 
 (defn get-toc-view
@@ -428,9 +428,10 @@
 
       :else
       (let [filepath (indexing/uri->filepath context uri)
+            _ (def f filepath)
             title (:title (get (indexing/file->uri-idx context) filepath))
             {:keys [description content]} (render-file context filepath)]
-        (if filepath
+       (if filepath
           (layout
            context request
            {:content content
