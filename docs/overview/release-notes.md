@@ -11,6 +11,7 @@
   * Implemented the ability to add and edit [custom extensions](https://docs.aidbox.app/modules/aidbox-forms/aidbox-ui-builder-alpha/form-creation/widgets#extensions) in the Form Builder.
   * Added the ability to[ download file attachments](https://docs.aidbox.app/modules/aidbox-forms/aidbox-ui-builder-alpha/form-creation/widgets#attachment).
   * Added the ability to[ embed external services](https://docs.aidbox.app/modules/aidbox-forms/aidbox-ui-builder-alpha/embedding#onpreviewattachment-show-attachments-with-external-editor) in the file preview.
+  * Added the ability to [set the height of the web component](https://docs.aidbox.app/modules/aidbox-forms/aidbox-ui-builder-alpha/embedding) dynamically.
   * Created the [How-to guide](https://docs.aidbox.app/modules/aidbox-forms/aidbox-ui-builder-alpha/form-creation/how-to-guides/how-to-extract-data-from-forms#template-based-extraction) for template-based extraction.
 
 ## May 2025 _`latest, 2505`_
