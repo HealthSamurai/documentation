@@ -105,7 +105,8 @@
 
 (defn render-toc [parsed]
   (when (:toc parsed)
-    [:div {:class "toc-container sticky top-16 h-[calc(100vh-4rem)] overflow-y-auto p-6 bg-white w-60 rounded-lg z-50"}
+    [:nav {:class "toc-container sticky top-16 h-[calc(100vh-4rem)] overflow-y-auto p-6 bg-white w-60 rounded-lg z-50"
+           :aria-label "On-page navigation"}
      [:div {:class "toc w-full max-w-full"}
       (for [item (-> parsed :toc :children first :children)]
         (markdown/render-toc-item item))]]))
@@ -186,7 +187,8 @@
       (add-active-class item open?))))
 
 (defn menu [summary url]
-  [:div#navigation {:class "w-[17.5rem] flex-shrink-0 sticky top-16 h-[calc(100vh-4rem)] overflow-y-auto py-4 bg-white"}
+  [:nav#navigation {:class "w-[17.5rem] flex-shrink-0 sticky top-16 h-[calc(100vh-4rem)] overflow-y-auto py-4 bg-white"
+                    :aria-label "Documentation menu"}
    (for [item summary]
      [:div {:class "break-words"}
       (when-not
@@ -198,7 +200,8 @@
    [:div "version " (utils/slurp-resource "version")]])
 
 (defn nav []
-  [:div {:class "w-full bg-white border-b border-gray-200 flex-shrink-0 sticky top-0 z-50"}
+  [:nav {:class "w-full bg-white border-b border-gray-200 flex-shrink-0 sticky top-0 z-50"
+         :aria-label "Main site menu"}
    [:div {:class "flex items-center justify-between py-3 min-h-16 px-4 sm:px-6 md:px-8 max-w-screen-2xl mx-auto"}
     [:div {:class "flex max-w-full lg:basis-72 min-w-0 shrink items-center justify-start gap-2 lg:gap-4"}
      [:button {:class "mobile-menu-button md:hidden"
@@ -382,7 +385,7 @@
                     hx-current-url))
                 (:uri request))
         is-hx-target (uui/hx-target request)]
-   (response1
+    (response1
      (cond
        is-hx-target
        (content-div context uri body filepath true)
@@ -434,7 +437,7 @@
             _ (def f filepath)
             title (:title (get (indexing/file->uri-idx context) filepath))
             {:keys [description content]} (render-file context filepath)]
-       (if filepath
+        (if filepath
           (layout
            context request
            {:content content
