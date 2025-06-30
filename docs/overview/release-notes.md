@@ -7,12 +7,12 @@
   * Increased the maximum length for base64Binary to handle large files stored in the AIdbox database.
 * Aidbox Forms
   * Supported the FHIRPath Factory API for populating a choice item with answerValueSet and other use cases.&#x20;
-  * Supported the [`answerExpression` feature ](https://docs.aidbox.app/modules/aidbox-forms/aidbox-ui-builder-alpha/form-creation/widgets#choice)to dynamically fetch answerOptions via FHIRQuery or filter answerOptions using FHIRPath. See the [How-to guide](../modules/aidbox-forms/aidbox-ui-builder-alpha/form-creation/how-to-guides/how-to-use-answer-expression-into-forms.md) for more details.
-  * Implemented the ability to add and edit [custom extensions](https://docs.aidbox.app/modules/aidbox-forms/aidbox-ui-builder-alpha/form-creation/widgets#extensions) in the Form Builder.
-  * Added the ability to[ download file attachments](https://docs.aidbox.app/modules/aidbox-forms/aidbox-ui-builder-alpha/form-creation/widgets#attachment).
-  * Added the ability to[ embed external services](https://docs.aidbox.app/modules/aidbox-forms/aidbox-ui-builder-alpha/embedding#onpreviewattachment-show-attachments-with-external-editor) in the file preview.
-  * Added the ability to [set the height of the web component](https://docs.aidbox.app/modules/aidbox-forms/aidbox-ui-builder-alpha/embedding) dynamically.
-  * Created the [How-to guide](https://docs.aidbox.app/modules/aidbox-forms/aidbox-ui-builder-alpha/form-creation/how-to-guides/how-to-extract-data-from-forms#template-based-extraction) for template-based extraction.
+  * Supported the [`answerExpression` feature ](../modules/aidbox-forms/aidbox-ui-builder-alpha/form-creation/widgets#choice)to dynamically fetch answerOptions via FHIRQuery or filter answerOptions using FHIRPath. See the [How-to guide](../modules/aidbox-forms/aidbox-ui-builder-alpha/form-creation/how-to-guides/how-to-use-answer-expression-into-forms.md) for more details.
+  * Implemented the ability to add and edit [custom extensions](../modules/aidbox-forms/aidbox-ui-builder-alpha/form-creation/widgets#extensions) in the Form Builder.
+  * Added the ability to[ download file attachments](../modules/aidbox-forms/aidbox-ui-builder-alpha/form-creation/widgets#attachment).
+  * Added the ability to[ embed external services](../modules/aidbox-forms/aidbox-ui-builder-alpha/embedding#onpreviewattachment-show-attachments-with-external-editor) in the file preview.
+  * Added the ability to [set the height of the web component](../modules/aidbox-forms/aidbox-ui-builder-alpha/embedding) dynamically.
+  * Created the [How-to guide](../modules/aidbox-forms/aidbox-ui-builder-alpha/form-creation/how-to-guides/how-to-extract-data-from-forms#template-based-extraction) for template-based extraction.
 
 ## May 2025 _`latest, 2505`_
 
