@@ -338,9 +338,12 @@
     [:meta {:property "og:url" :content page-url}]
     [:meta {:property "og:type" :content "article"}]
     [:meta {:property "og:image" :content open-graph-image}]
+    [:meta {:name "htmx-config",
+            :content "{\"scrollIntoViewOnBoost\":false,\"scrollBehavior\":\"smooth\"}"}]
     [:link {:rel "icon" :type "image/x-icon" :href "/favicon.ico"}]
     [:link {:rel "shortcut icon" :type "image/x-icon" :href "/favicon.ico"}]
     [:link {:rel "apple-touch-icon" :href "/favicon.ico"}]
+    [:link {:rel "canonical" :href page-url}]
     [:script {:type "application/ld+json"}
      (uui/raw
       (json/generate-string
@@ -351,25 +354,20 @@
         "description" description
         "author" {"@type" "Organization", "name" "HealthSamurai"}}))]
     [:title (str title " | Aidbox User Docs")]
-    [:link {:rel "canonical" :href page-url}]
+
     [:link {:rel "stylesheet", :href "/static/app.min.css"}]
     [:script {:src "/static/htmx.min.js"}]
-    [:meta {:name "htmx-config",
-            :content "{\"scrollIntoViewOnBoost\":false,\"scrollBehavior\":\"smooth\"}"}]
-    [:script {:src "/static/toc-scroll.js"}]
     [:script {:src "/static/tabs.js"}]
     [:script {:src "/static/toc.js"}]
     [:script {:src "/static/mobile-menu.js"}]
-    [:script {:src "/static/keyboard-navigation.js"}]
-    [:script {:src "/static/lastupdated.js"}]
-    [:script
-     (uui/raw
-      "!function(t,e){var o,n,p,r;e.__SV||(window.posthog=e,e._i=[],e.init=function(i,s,a){function g(t,e){var o=e.split(\".\");2==o.length&&(t=t[o[0]],e=o[1]),t[e]=function(){t.push([e].concat(Array.prototype.slice.call(arguments,0)))}}(p=t.createElement(\"script\")).type=\"text/javascript\",p.crossOrigin=\"anonymous\",p.async=!0,p.src=s.api_host.replace(\".i.posthog.com\",\"-assets.i.posthog.com\")+\"/static/array.js\",(r=t.getElementsByTagName(\"script\")[0]).parentNode.insertBefore(p,r);var u=e;for(void 0!==a?u=e[a]=[]:a=\"posthog\",u.people=u.people||[],u.toString=function(t){var e=\"posthog\";return\"posthog\"!==a&&(e+=\".\"+a),t||(e+=\" (stub)\"),e},u.people.toString=function(){return u.toString(1)+\".people (stub)\"},o=\"init Ie Ts Ms Ee Es Rs capture Ge calculateEventProperties Os register register_once register_for_session unregister unregister_for_session js getFeatureFlag getFeatureFlagPayload isFeatureEnabled reloadFeatureFlags updateEarlyAccessFeatureEnrollment getEarlyAccessFeatures on onFeatureFlags onSurveysLoaded onSessionId getSurveys getActiveMatchingSurveys renderSurvey canRenderSurvey canRenderSurveyAsync identify setPersonProperties group resetGroups setPersonPropertiesForFlags resetPersonPropertiesForFlags setGroupPropertiesForFlags resetGroupPropertiesForFlags reset get_distinct_id getGroups get_session_id get_session_replay_url alias set_config startSessionRecording stopSessionRecording sessionRecordingStarted captureException loadToolbar get_property getSessionProperty Ds Fs createPersonProfile Ls Ps opt_in_capturing opt_out_capturing has_opted_in_capturing has_opted_out_capturing clear_opt_in_out_capturing Cs debug I As getPageViewId captureTraceFeedback captureTraceMetric\".split(\" \"),n=0;n<o.length;n++)g(u,o[n]);e._i.push([i,s,a])},e.__SV=1)}(document,window.posthog||[]);
-       posthog.init('phc_uO4ImMUxOljaWPDRr7lWu9TYpBrpIs4R1RwLu8uLRmx', {
-                                                                        api_host: 'https://ph.aidbox.app',
-                                                                        defaults: '2025-05-24',
-                                                                        person_profiles: 'identified_only', // or 'always' to create profiles for anonymous users as well
-                                                                        })")]]
+    [:script {:defer true
+              :src "/static/keyboard-navigation.js"}]
+    [:script {:defer true
+              :src "/static/toc-scroll.js"}]
+    [:script {:defer true
+              :src "/static/lastupdated.js"}]
+    [:script {:defer true
+              :src "/static/posthog.js"}]]
    [:body {:hx-boost "true"
            :hx-on "htmx:afterSwap: window.scrollTo(0, 0); updateLastUpdated();"}
     body]])
