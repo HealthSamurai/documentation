@@ -10,5 +10,4 @@ node_modules
 .cpcache
 target
 resources/.gitbook.yaml
-resources/lastmod.edn
 .cursor/

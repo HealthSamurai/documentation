@@ -1,0 +1,27 @@
+name: Generate lastmod.edn from git
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: '0 0 * * *'
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v2
+
+    - name: Install Babashka
+      run: curl -s https://raw.githubusercontent.com/babashka/babashka/master/install | bash
+
+    - name: Execute bb task
+      run: bb -m lastmod
+
+    - name: Commit and push
+      run: |
+        git config --local user.email "action@github.com"
+        git config --local user.name "GitHub Action"
+        git add resources/lastmod.edn
+        git commit -m "Generate lastmod.edn" -a
+        git push

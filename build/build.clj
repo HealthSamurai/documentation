@@ -1,6 +1,5 @@
 (ns build
   (:require
-   [lastmod]
    [clojure.tools.build.api :as b]))
 
 (def lib  'gitbok)
@@ -25,9 +24,6 @@
 
   (let [opts (uber-opts opts)]
     (println "Copying files...")
-    (lastmod/generate-lastmod-file!
-      "docs"
-      "resources/lastmod.edn")
     (b/copy-dir {:src-dirs ["resources" "docs" ".gitbook"]
                  :target-dir class-dir})
 
