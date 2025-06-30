@@ -104,7 +104,6 @@ redirects:
     api-1/rest-api-1/everything-on-patient: api/rest-api/everything-on-patient.md
     api-1/rest-api-1/fhir-search/chaining: api/rest-api/fhir-search/chaining.md
     api-1/rest-api-1/fhir-search/include-and-revinclude: api/rest-api/fhir-search/include-and-revinclude.md
-    api-1/rest-api-1/fhir-search/performance-considerations: api/rest-api/fhir-search/performance-considerations.md
     api-1/rest-api-1/fhir-search/searchparameter: api/rest-api/fhir-search/searchparameter.md
     api-1/rest-api-1/history: api/rest-api/history.md
     api-1/rest-api-1/other/aidbox-and-fhir-formats: api/rest-api/other/aidbox-and-fhir-formats.md
@@ -132,7 +131,6 @@ redirects:
     api-1/rest-api/everything-on-patient: api/rest-api/everything-on-patient.md
     api-1/rest-api/fhir-search/chaining: api/rest-api/fhir-search/chaining.md
     api-1/rest-api/fhir-search/include-and-revinclude: api/rest-api/fhir-search/include-and-revinclude.md
-    api-1/rest-api/fhir-search/performance-considerations: api/rest-api/fhir-search/performance-considerations.md
     api-1/rest-api/fhir-search/searchparameter: api/rest-api/fhir-search/searchparameter.md
     api-1/rest-api/history: api/rest-api/history.md
     api-1/rest-api/other/aidbox-and-fhir-formats: api/rest-api/other/aidbox-and-fhir-formats.md
@@ -176,7 +174,6 @@ redirects:
     api/rest-api-1/everything-on-patient: api/rest-api/everything-on-patient.md
     api/rest-api-1/fhir-search/chaining: api/rest-api/fhir-search/chaining.md
     api/rest-api-1/fhir-search/include-and-revinclude: api/rest-api/fhir-search/include-and-revinclude.md
-    api/rest-api-1/fhir-search/performance-considerations: api/rest-api/fhir-search/performance-considerations.md
     api/rest-api-1/fhir-search/searchparameter: api/rest-api/fhir-search/searchparameter.md
     api/rest-api-1/history: api/rest-api/history.md
     api/rest-api-1/other/aidbox-and-fhir-formats: api/rest-api/other/aidbox-and-fhir-formats.md
