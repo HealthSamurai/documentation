@@ -74,9 +74,6 @@ Ensure that the resource metadata contains the kind-specific `AidboxTopicDestina
 [webhook-aidboxtopicdestination.md](webhook-aidboxtopicdestination.md)
 {% endcontent-ref %}
 
-* [Webhook](webhook-aidboxtopicdestination.md)
-*
-
 {% content-ref url="gcp-pub-sub-aidboxtopicdestination.md" %}
 [gcp-pub-sub-aidboxtopicdestination.md](gcp-pub-sub-aidboxtopicdestination.md)
 {% endcontent-ref %}
