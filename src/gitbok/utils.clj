@@ -1,7 +1,13 @@
 (ns gitbok.utils
   (:require
    [clojure.string :as str]
-   [clojure.java.io :as io]))
+   [hiccup2.core]
+   [clojure.java.io :as io])
+  (:import [java.time Instant ZoneId ZonedDateTime]
+           [java.time.format DateTimeFormatter]
+           [java.util Locale]))
+
+(set! *warn-on-reflection* true)
 
 (defn s->url-slug [s]
   (when s
@@ -48,3 +54,17 @@
       (str/replace #"(?m)^>\s?" "")
       (str/replace #"\\([\\`*_{}\[\]()#+\-.!])" "$1")
       (str/trim)))
+
+(defn etag [lastmod-iso-date]
+  (str "\"" lastmod-iso-date "\""))
+
+(defn ->html [hiccup]
+  (str "<!DOCTYPE html>\n" (hiccup2.core/html hiccup)))
+
+(def http-date-formatter
+  (DateTimeFormatter/ofPattern "EEE, dd MMM yyyy HH:mm:ss 'GMT'" Locale/US))
+
+(defn iso-to-http-date [iso-string]
+  (let [instant (Instant/parse iso-string)
+        zoned (ZonedDateTime/ofInstant instant (ZoneId/of "GMT"))]
+    (.format ^DateTimeFormatter http-date-formatter zoned)))

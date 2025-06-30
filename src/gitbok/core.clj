@@ -321,13 +321,16 @@
     (when-let [filepath (indexing/uri->filepath context uri)]
       (get-toc context filepath))]])
 
-(defn response1 [body status]
-  {:status (or status 200)
-   :headers {"content-type" "text/html; ; charset=utf-8"}
-   :body (str "<!DOCTYPE html>\n"
-              (hiccup2.core/html body))})
+(defn response1 [body status lastmod]
+  (let [html (utils/->html body)]
+    {:status (or status 200)
+     :headers {"content-type" "text/html; ; charset=utf-8"
+               "Cache-Control" "public, max-age=86400"
+               "Last-Modified" (utils/iso-to-http-date lastmod)
+               "ETag" (utils/etag html)}
+     :body html}))
 
-(defn document [body title description page-url open-graph-image]
+(defn document [body {:keys [title description page-url open-graph-image]}]
   [:html {:lang "en"}
    [:head
     [:meta {:charset "utf-8"}]
@@ -391,24 +394,45 @@
        :else
        (document
         (layout-view context body uri filepath)
-        title
-        description
-        (if (get request :/)
+        {:title title :description description
+         :canonical-url
+         (if (get request :/)
+           base-url
+           (utils/concat-urls base-url uri))
+         :og-preview
+         (utils/concat-urls
           base-url
-          (utils/concat-urls base-url uri))
-        (utils/concat-urls
-         base-url
-         (str "public/og-preview/"
-              (when filepath (str/replace filepath #".md" ".png"))))))
-     status)))
+          (str "public/og-preview/"
+               (when filepath (str/replace filepath #".md" ".png"))))}))
+     status
+     (get
+      (system/get-system-state context [const/LASTMOD])
+      filepath))))
 
 (defn get-toc-view
   [context request]
   (let [uri (str/replace (:uri request) #"^/toc" "")
-        filepath (indexing/uri->filepath context uri)]
+        filepath (indexing/uri->filepath context uri)
+        lastmod
+        (when filepath
+          (get
+           (system/get-system-state context [const/LASTMOD])
+           filepath))]
     (if filepath
-      (response1 (get-toc context filepath) 200)
-      (response1 [:div] 404))))
+      (response1 (get-toc context filepath) 200 lastmod)
+      (response1 [:div] 404 nil))))
+
+(defn check-cache-lastmod [request last-mod]
+  (let [if-modified-since
+        (get-in request [:headers "if-modified-since"])
+        lastmod (utils/iso-to-http-date last-mod)]
+    (and if-modified-since
+         lastmod
+         (= if-modified-since lastmod))))
+
+(defn check-cache-etag [request etag]
+  (let [if-none-match (get-in request [:headers "if-none-match"])]
+    (and if-none-match (= if-none-match etag))))
 
 (defn
   ^{:http {:path "/:path*"}}
@@ -416,6 +440,7 @@
   [context request]
   (let [uri (:uri request)]
     (cond
+
       (= uri "/favicon.ico")
       (resp/resource-response "public/favicon.ico")
 
@@ -431,17 +456,28 @@
       (resp/resource-response uri)
 
       :else
-      (let [filepath (indexing/uri->filepath context uri)
-            _ (def f filepath)
-            title (:title (get (indexing/file->uri-idx context) filepath))
-            {:keys [description content]} (render-file context filepath)]
+      (let [filepath (indexing/uri->filepath context uri)]
         (if filepath
-          (layout
-           context request
-           {:content content
-            :title title
-            :description description
-            :filepath filepath})
+          (let [lastmod
+                (get
+                 (system/get-system-state context [const/LASTMOD])
+                 filepath)
+                etag (utils/etag lastmod)]
+            (if (or (check-cache-etag request lastmod)
+                    (check-cache-lastmod request lastmod))
+              {:status 304
+               :headers {"Cache-Control" "public, max-age=86400"
+                         "Last-Modified" lastmod
+                         "ETag" etag}}
+              (let [title (:title (get (indexing/file->uri-idx context) filepath))
+                    {:keys [description content]}
+                    (render-file context filepath)]
+                (layout
+                 context request
+                 {:content content
+                  :title title
+                  :description description
+                  :filepath filepath}))))
 
           (layout
            context request
