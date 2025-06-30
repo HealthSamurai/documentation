@@ -118,9 +118,9 @@
       {:content (render-file* context filepath parsed title content*)
        :description (or description
                         (let [stripped (utils/strip-markdown content*)]
-                         (if (>= (count stripped) 150)
-                          (subs stripped 0 150)
-                          stripped)))
+                          (if (>= (count stripped) 150)
+                            (subs stripped 0 150)
+                            stripped)))
        :toc (render-toc parsed)}
       (catch Exception e
         {:content [:div {:role "alert"}
@@ -389,7 +389,9 @@
         (layout-view context body uri filepath)
         title
         description
-        (utils/concat-urls base-url uri)
+        (if (get request :/)
+          base-url
+          (utils/concat-urls base-url uri))
         (utils/concat-urls
          base-url
          (str "public/og-preview/"
@@ -453,15 +455,14 @@
    :headers {"content-type" "application/xml"}
    :body (sitemap/get-sitemap-pages context)})
 
-(def readme-path "readme")
-
 (defn
   ^{:http {:path "/"}}
   redirect-to-readme
   [context request]
   (let [request
-        (update request :uri
-                #(if (= "/" %) readme-path %))]
+        (assoc request
+               :uri "/readme"
+               :/ true)]
     (render-file-view context request)))
 
 (defn healthcheck
