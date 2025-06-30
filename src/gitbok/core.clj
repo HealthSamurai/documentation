@@ -285,9 +285,10 @@
                   :stroke-linejoin "round"
                   :d "M9 5l7 7-7 7"}]]]])]))
 
-(defn content-div [context uri content filepath]
+(defn content-div [context uri content filepath & [htmx?]]
   [:main#content {:class "flex-1 py-6 max-w-6xl min-w-0 overflow-x-hidden"}
-   [:script "window.scrollTo(0, 0); updateLastUpdated();"]
+   (when htmx?
+     [:script "window.scrollTo(0, 0); updateLastUpdated();"])
    [:div {:class "mx-auto px-2 max-w-full"} content]
    (navigation-buttons context uri)
    (let [lastupdated
@@ -348,7 +349,6 @@
     [:script {:src "/static/htmx.min.js"}]
     [:meta {:name "htmx-config",
             :content "{\"scrollIntoViewOnBoost\":false,\"scrollBehavior\":\"smooth\"}"}]
-    [:script {:src "/static/app.js"}]
     [:script {:src "/static/toc-scroll.js"}]
     [:script {:src "/static/tabs.js"}]
     [:script {:src "/static/toc.js"}]
@@ -381,7 +381,7 @@
     (response1
      (cond
        is-hx-target
-       (content-div context uri body filepath)
+       (content-div context uri body filepath true)
 
        :else
        (document
@@ -632,17 +632,16 @@
     :middleware [gzip-middleware]
     :fn #'get-toc-view})
 
+  (println "setup done!")
+  (println "PORT env " (System/getenv "PORT"))
+  (println "port " port)
+  (println "version " (utils/slurp-resource "version"))
+
   (http/register-endpoint
    context
    {:path "/healthcheck"
     :method :get
     :fn #'healthcheck})
-
-  (println "setup done!")
-
-  (println "PORT env " (System/getenv "PORT"))
-  (println "port " port)
-  (println "version " (utils/slurp-resource "version"))
   {})
 
 (defn -main [& _args]
