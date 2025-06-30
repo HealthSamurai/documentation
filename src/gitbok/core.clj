@@ -415,6 +415,9 @@
       (= uri "/favicon.ico")
       (resp/resource-response "public/favicon.ico")
 
+      (= uri "/robots.txt")
+      (resp/resource-response "public/robots.txt")
+
       (picture-url? uri)
       (resp/resource-response
        (subs (str/replace uri #"%20" " ")
