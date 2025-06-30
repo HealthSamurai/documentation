@@ -2,7 +2,7 @@
 description: In this guide we will generate synthea data and load it into aidbox
 ---
 
-# 🎓 Synthea by Bulk APi
+# Synthea by Bulk API
 
 ### Generate synthea data
 
@@ -173,9 +173,8 @@ inputs:
   url: https://storage.googleapis.com/aidbox-public/synthea/100/Procedure.ndjson.gz
 ```
 
-Operation will return 200  instantly and you can monitor import status with:
+Operation will return 200 instantly and you can monitor import status with:
 
 ```yaml
 GET /BulkImportStatus/synthea
 ```
-

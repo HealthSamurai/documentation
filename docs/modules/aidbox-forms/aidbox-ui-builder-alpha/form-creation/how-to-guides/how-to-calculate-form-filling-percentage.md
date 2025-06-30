@@ -1,4 +1,4 @@
-# How to: calculate form filling percentage
+# How to calculate form filling percentage
 
 ## What is form filling percentage
 
@@ -11,29 +11,25 @@ Data completeness is essential for downstream use (e.g., analytics, clinical dec
 User feedback: Form filling percentage gives users a sense of progress and can reduce drop-off rates.
 
 ## Example Use Case
+
 A patient intake app displays a FHIR Questionnaire for demographics and medical history. The QuestionnaireResponse captures patient input. You want to show “78% complete” based on how many fields the patient filled before submission.
 
-## Solution 
+## Solution
 
-In this tutorial, we will calculate a form filling percentage using the following formula: 
+In this tutorial, we will calculate a form filling percentage using the following formula:
 
-Form Filling Percentage=(Number of Answered Items/ Total Enabled Questionnaire Items)×100
-
+Form Filling Percentage=(Number of Answered Items/ Total Enabled Questionnaire Items)×100
 
 To show the form filling progress, we define a special Questionnaire.item which calculates the form filling percentage.
-
 
 ### Warning
 
 This solution will work correctly with Aidbox version v2503 or later (available from March 25, 2025, if you're using the Edge channel)
 
-
 ## Steps to calculate the form filling percentage
 
 1. To calculate the form filling progress, we have to create an item with `type = integer` and set `readOnly = true`.
-
 2. This item **must** be placed at the end of the Questionnaire.item array and include a calculatedExpression with the following value:
-
 
 ```fhirpath
 (%resource.repeat(item)
@@ -62,17 +58,16 @@ This expression identifies all items that should be answered and that have been 
 **Specifics of the approach:**
 
 1. Considers nested items (e.g., groups of questions)
-2. For Questionnaire with enableWhen logic (conditional questions that appear based on previous answers): only enabled items are taken into account when calculating the form filling percentage. 
-This may result in form filling percentage decrease when a user answer triggers a new section of answers to be enabled.
-3. Questionnaire.item which are excluded when calculating Total Questionnaire Items:
+2. For Questionnaire with enableWhen logic (conditional questions that appear based on previous answers): only enabled items are taken into account when calculating the form filling percentage.\
+   This may result in form filling percentage decrease when a user answer triggers a new section of answers to be enabled.
+3. Questionnaire.item which are excluded when calculating Total Questionnaire Items:
 
-- hidden items
-- disabled items
-- computed items
-- readonly items
-- group items
-- display items
-
+* hidden items
+* disabled items
+* computed items
+* readonly items
+* group items
+* display items
 
 ## Final Questionnaire with example items.
 

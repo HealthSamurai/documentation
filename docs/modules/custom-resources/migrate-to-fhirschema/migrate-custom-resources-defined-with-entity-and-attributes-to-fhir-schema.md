@@ -5,7 +5,7 @@
 The materials in this section describe what to do next with the resulting FHIR Schema resource or set of resources. They explain how to load them into Aidbox, either one by one or via IG. Additionally, they outline the requirements for FHIR Schema to define a Custom Resource and provide a detailed FHIR Schema specification.
 
 {% content-ref url="../../profiling-and-validation/fhir-schema-validator/" %}
-[fhir-schema-validator](../../profiling-and-validation/fhir-schema-validator/README.md)
+[fhir-schema-validator](../../profiling-and-validation/fhir-schema-validator/)
 {% endcontent-ref %}
 
 {% content-ref url="../../../tutorials/other-tutorials/how-to-create-fhir-npm-package.md" %}
@@ -13,10 +13,8 @@ The materials in this section describe what to do next with the resulting FHIR S
 {% endcontent-ref %}
 
 {% content-ref url="../../../tutorials/validation-tutorials/upload-fhir-implementation-guide/" %}
-[upload-fhir-implementation-guide](../../../tutorials/validation-tutorials/upload-fhir-implementation-guide/README.md)
+[upload-fhir-implementation-guide](../../../tutorials/validation-tutorials/upload-fhir-implementation-guide/)
 {% endcontent-ref %}
-
-
 
 ## Obtain FHIRSchema
 
@@ -44,7 +42,7 @@ Please double-check the compilation results, as they may contain transformation 
 
 #### Example: Concept entity
 
-Here's an example of migrating a custom Aidbox resource, [Concept](../../terminology/concept/README.md). This resource mirrors FHIR's CodeSystem `concept` property and extends it in various ways.
+Here's an example of migrating a custom Aidbox resource, [Concept](../../terminology/concept/). This resource mirrors FHIR's CodeSystem `concept` property and extends it in various ways.
 
 {% tabs %}
 {% tab title="Request" %}
@@ -160,8 +158,6 @@ accept: application/json
 }
 ```
 {% endcode %}
-
-
 {% endtab %}
 {% endtabs %}
 
@@ -461,16 +457,14 @@ For more information about this instruction, refer to the relevant [section](htt
 
 #### Handling resulting FHIR Schemas
 
-To deliver the FHIR Schema(s) and related Entities you authored 
-to Aidbox, follow these steps. 
-Ensure that your Aidbox is configured to run with the 
-FHIRSchema validation engine. Here's 
-[a guide describing how to achieve that](../../profiling-and-validation/fhir-schema-validator/README.md).
+To deliver the FHIR Schema(s) and related Entities you authored\
+to Aidbox, follow these steps.\
+Ensure that your Aidbox is configured to run with the\
+FHIRSchema validation engine. Here's[a guide describing how to achieve that](../../profiling-and-validation/fhir-schema-validator/).
 
 **Single FHIRSchema Delivery**
 
 If you have only one FHIRSchema that replaces your custom-defined Entity/Attributes, follow [this guide](../custom-resources-using-fhir-schema.md) to deliver a single FHIRSchema to Aidbox.
-
 
 **Multiple Schemas as a Package**
 
@@ -483,7 +477,7 @@ If you have multiple schemas replacing a set of resources and want to work with 
 **Loading the FHIR NPM Package**
 
 {% content-ref url="../../../tutorials/validation-tutorials/upload-fhir-implementation-guide/" %}
-[upload-fhir-implementation-guide](../../../tutorials/validation-tutorials/upload-fhir-implementation-guide/README.md)
+[upload-fhir-implementation-guide](../../../tutorials/validation-tutorials/upload-fhir-implementation-guide/)
 {% endcontent-ref %}
 
 #### **Important Notes:**

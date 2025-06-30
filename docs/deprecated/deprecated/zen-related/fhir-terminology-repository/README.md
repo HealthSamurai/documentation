@@ -2,12 +2,12 @@
 description: FHIR Terminology Repository (FTR), repository layout specification, tools
 ---
 
-# 🏗️ FHIR Terminology Repository
+# FHIR Terminology Repository
 
 {% hint style="warning" %}
 Since the 2405 release, using Aidbox in FHIRSchema mode is recommended, which is incompatible with zen or Entity/Attribute options.
 
-[Broken link](broken-reference)
+[Broken link](broken-reference/)
 {% endhint %}
 
 **FTR** (FHIR Terminology Repository) it's an open specification for repository layout, formats and algorithms to distribute FHIR terminologies as ValueSets.
@@ -19,7 +19,7 @@ You can store the resulting FTR on s3 like storage or a regular file system. Aid
 {% endcontent-ref %}
 
 {% content-ref url="creating-aidbox-project-with-ftr/" %}
-[creating-aidbox-project-with-ftr](creating-aidbox-project-with-ftr/README.md)
+[creating-aidbox-project-with-ftr](creating-aidbox-project-with-ftr/)
 {% endcontent-ref %}
 
 ### Ready to use FTRs

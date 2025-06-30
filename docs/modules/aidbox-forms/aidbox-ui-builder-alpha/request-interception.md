@@ -155,61 +155,53 @@ To manipulate extraction results before they are processed:
 
 ## Request Tags
 
-Request tags are used to differentiate between different types of requests. They are passed as a property in the `init` object and can be used to identify the request type in the interception function.
+Request tags are used to differentiate between different types of requests. They are passed as a property in the `init` object and can be used to identify the request type in the interception function.\
 The following tags are available:
 
-
 {% tabs %}
-
 {% tab title="Builder" %}
-
-| Tag                                                           | When                                                          | Description                                         |
-|---------------------------------------------------------------|---------------------------------------------------------------|-----------------------------------------------------|
-| [get-config](#get-config)                                     | During component initialization (if config is referenced)     | Loads SDCConfig for themes, localization, etc.      |
-| [get-theme](#get-theme)                                       | During initialization if config references a theme            | Fetches the theme used by builder.                  |
-| [get-themes](#get-themes)                                     | On initialization or after saving a theme                     | Loads available themes for theme selector.          |
-| [get-fhir-metadata](#get-fhir-metadata)                       | During builder startup                                        | Fetches CapabilityStatement for autocomplete.       |
-| [get-fhir-schemas](#get-fhir-schemas)                         | During builder startup                                        | Loads JSON schemas for FHIR resources.              |
-| [get-questionnaire](#get-questionnaire)                       | When initializing the form for editing                        | Loads questionnaire by ID.                          |
-| [get-assembled-questionnaire](#get-assembled-questionnaire)   | After loading questionnaire with sub-questionnaire references | Fetches a fully assembled version.                  |
-| [get-sub-questionnaire](#get-sub-questionnaire)               | When opening a sub-questionnaire reference                    | Loads a sub-questionnaire by canonical URL.         |
-| [search-sub-questionnaires](#search-sub-questionnaires)       | When searching for sub-questionnaires                         | Lists sub-questionnaires by extension/title.        |
-| [search-questionnaires-by-url](#search-questionnaires-by-url) | Before saving a questionnaire                                 | Checks if canonical URL is already in use.          |
-| [create-questionnaire](#create-questionnaire)                 | When saving a new questionnaire                               | Creates a new Questionnaire resource.               |
-| [save-questionnaire](#save-questionnaire)                     | When updating an existing questionnaire                       | Saves changes to the questionnaire.                 |
-| [create-sub-questionnaire](#create-sub-questionnaire)         | When saving an outline item as sub-questionnaire              | Creates a canonical sub-questionnaire.              |
-| [import-questionnaire](#import-questionnaire)                 | When clicking the "Import" button                             | Imports a new questionnaire JSON.                   |
-| [populate](#populate)                                         | When clicking "Populate" in debug panel                       | Prefills fields using subject/context.              |
-| [extract](#extract)                                           | When clicking "Extract" in debug panel                        | Extracts resources from the questionnaire response. |
-| [validate-questionnaire](#validate-questionnaire)             | When clicking "Validate Questionnaire" in debug panel         | Validates questionnaire resource.                   |
-| [validate-response](#validate-response)                       | When clicking "Validate Response" in debug panel              | Validates questionnaire response resource           |
-| [create-theme](#create-theme)                                 | When saving a new theme                                       | Creates a new QuestionnaireTheme.                   |
-| [save-theme](#save-theme)                                     | When saving changes to an existing theme                      | Updates the theme resource.                         |
-
+| Tag                                                                                  | When                                                          | Description                                         |
+| ------------------------------------------------------------------------------------ | ------------------------------------------------------------- | --------------------------------------------------- |
+| [get-config](request-interception.md#get-config)                                     | During component initialization (if config is referenced)     | Loads SDCConfig for themes, localization, etc.      |
+| [get-theme](request-interception.md#get-theme)                                       | During initialization if config references a theme            | Fetches the theme used by builder.                  |
+| [get-themes](request-interception.md#get-themes)                                     | On initialization or after saving a theme                     | Loads available themes for theme selector.          |
+| [get-fhir-metadata](request-interception.md#get-fhir-metadata)                       | During builder startup                                        | Fetches CapabilityStatement for autocomplete.       |
+| [get-fhir-schemas](request-interception.md#get-fhir-schemas)                         | During builder startup                                        | Loads JSON schemas for FHIR resources.              |
+| [get-questionnaire](request-interception.md#get-questionnaire)                       | When initializing the form for editing                        | Loads questionnaire by ID.                          |
+| [get-assembled-questionnaire](request-interception.md#get-assembled-questionnaire)   | After loading questionnaire with sub-questionnaire references | Fetches a fully assembled version.                  |
+| [get-sub-questionnaire](request-interception.md#get-sub-questionnaire)               | When opening a sub-questionnaire reference                    | Loads a sub-questionnaire by canonical URL.         |
+| [search-sub-questionnaires](request-interception.md#search-sub-questionnaires)       | When searching for sub-questionnaires                         | Lists sub-questionnaires by extension/title.        |
+| [search-questionnaires-by-url](request-interception.md#search-questionnaires-by-url) | Before saving a questionnaire                                 | Checks if canonical URL is already in use.          |
+| [create-questionnaire](request-interception.md#create-questionnaire)                 | When saving a new questionnaire                               | Creates a new Questionnaire resource.               |
+| [save-questionnaire](request-interception.md#save-questionnaire)                     | When updating an existing questionnaire                       | Saves changes to the questionnaire.                 |
+| [create-sub-questionnaire](request-interception.md#create-sub-questionnaire)         | When saving an outline item as sub-questionnaire              | Creates a canonical sub-questionnaire.              |
+| [import-questionnaire](request-interception.md#import-questionnaire)                 | When clicking the "Import" button                             | Imports a new questionnaire JSON.                   |
+| [populate](request-interception.md#populate)                                         | When clicking "Populate" in debug panel                       | Prefills fields using subject/context.              |
+| [extract](request-interception.md#extract)                                           | When clicking "Extract" in debug panel                        | Extracts resources from the questionnaire response. |
+| [validate-questionnaire](request-interception.md#validate-questionnaire)             | When clicking "Validate Questionnaire" in debug panel         | Validates questionnaire resource.                   |
+| [validate-response](request-interception.md#validate-response)                       | When clicking "Validate Response" in debug panel              | Validates questionnaire response resource           |
+| [create-theme](request-interception.md#create-theme)                                 | When saving a new theme                                       | Creates a new QuestionnaireTheme.                   |
+| [save-theme](request-interception.md#save-theme)                                     | When saving changes to an existing theme                      | Updates the theme resource.                         |
 {% endtab %}
 
 {% tab title="Renderer" %}
+| Tag                                                                              | When                                                      | Description                                      |
+| -------------------------------------------------------------------------------- | --------------------------------------------------------- | ------------------------------------------------ |
+| [get-config](request-interception.md#get-config)                                 | During component initialization (if config is referenced) | Loads SDCConfig for theming/localization.        |
+| [get-theme](request-interception.md#get-theme)                                   | During initialization if config references a theme        | Fetches the theme used by renderer.              |
+| [get-questionnaire](request-interception.md#get-questionnaire)                   | When loading the form                                     | Fetches the questionnaire by ID.                 |
+| [get-response](request-interception.md#get-response)                             | When loading a saved response                             | Fetches the QuestionnaireResponse resource.      |
+| [search-choice-options](request-interception.md#search-choice-options)           | When opening/searching dropdown for choice item           | Fetches options from a ValueSet or other source. |
+| [get-upload-attachment-link](request-interception.md#get-upload-attachment-link) | When a file is selected in an attachment input            | Fetches the signed url to upload the file.       |
+| [upload-attachment](request-interception.md#upload-attachment)                   | When a file is uploaded to S3-like storage                | Uploads file and returns file URL.               |
+| [get-delete-attachment-link](request-interception.md#get-delete-attachment-link) | When an attachment is cleared by the user                 | Fetches the signed url to delete the file.       |
+| [delete-attachment](request-interception.md#delete-attachment)                   | When an attachment is cleared by the user                 | Deletes the file from storage.                   |
 
-| Tag                                             | When                                                      | Description                                      |
-|-------------------------------------------------|-----------------------------------------------------------|--------------------------------------------------|
-| [get-config](#get-config)                       | During component initialization (if config is referenced) | Loads SDCConfig for theming/localization.        |
-| [get-theme](#get-theme)                         | During initialization if config references a theme        | Fetches the theme used by renderer.              |
-| [get-questionnaire](#get-questionnaire)         | When loading the form                                     | Fetches the questionnaire by ID.                 |
-| [get-response](#get-response)                   | When loading a saved response                             | Fetches the QuestionnaireResponse resource.      |
-| [search-choice-options](#search-choice-options) | When opening/searching dropdown for choice item           | Fetches options from a ValueSet or other source. |
-| [get-upload-attachment-link](#get-upload-attachment-link)         | When a file is selected in an attachment input            | Fetches the signed url to upload the file.               |
-| [upload-attachment](#upload-attachment)         | When a file is uploaded to S3-like storage            | Uploads file and returns file URL.               |
-| [get-delete-attachment-link](#get-delete-attachment-link)         | When an attachment is cleared by the user                 | Fetches the signed url to delete the file.                   |
-| [delete-attachment](#delete-attachment)         | When an attachment is cleared by the user                 | Deletes the file from storage.                   |
-
-| [save-response](#save-response)                 | When auto-saving an in-progress response                  | Persists progress with `in-progress` status.     |
-| [repopulate](#repopulate)                       | When user clicks "Repopulate"                             | Refreshes form with updated subject/context.     |
-| [submit-response](#submit-response)             | When user clicks "Submit"                                 | Submits or amends the form.                      |
-
+\| [save-response](request-interception.md#save-response) | When auto-saving an in-progress response | Persists progress with `in-progress` status. |\
+\| [repopulate](request-interception.md#repopulate) | When user clicks "Repopulate" | Refreshes form with updated subject/context. |\
+\| [submit-response](request-interception.md#submit-response) | When user clicks "Submit" | Submits or amends the form. |
 {% endtab %}
-
 {% endtabs %}
-
 
 ### get-delete-attachment-link
 
@@ -223,7 +215,7 @@ DELETE /$sdc-file/<filepath> HTTP/1.1
 
 Where `<filepath>` is the path of the attachment being deleted.
 
-** Response**
+\*\* Response\*\*
 
 ```json
 {
@@ -232,7 +224,6 @@ Where `<filepath>` is the path of the attachment being deleted.
 ```
 
 Where `<delete-url>` is the signed URL that can be used to delete the attachment file.
-
 
 ### delete-attachment
 
@@ -244,7 +235,7 @@ Triggered in renderer when the attachment input field is cleared.
 DELETE /<delete-url> HTTP/1.1
 ```
 
-Where `<delete-url>` is the url obtained from the [get-delete-attachment-link](#get-delete-attachment-link) request.
+Where `<delete-url>` is the url obtained from the [get-delete-attachment-link](request-interception.md#get-delete-attachment-link) request.
 
 **Response**
 
@@ -540,7 +531,7 @@ Content-Type: appliation/json
 Where `<response>` is the response being submitted.
 
 {% hint style="info" %}
-#### Status Value
+**Status Value**
 
 Since auto-save is only enabled for non-completed forms, the `response` parameter always has the status `in-progress`.
 {% endhint %}
@@ -578,7 +569,7 @@ Content-Type: appliation/json
 Where `<response>` is the response being submitted.
 
 {% hint style="info" %}
-#### Status Value
+**Status Value**
 
 The `response` parameter contains the current status, and the Aidbox backend is responsible for transitioning it to the appropriate new state. Therefore, if you need to, for example, intercept an amending submission, you should check for the condition `response.status = 'completed'`.
 {% endhint %}
@@ -849,7 +840,8 @@ Content-Type: application/json
 ```
 
 Where `<file-name>` is the path and name of the file being uploaded.
-```
+
+````
 
 **Response**
 
@@ -857,7 +849,7 @@ Where `<file-name>` is the path and name of the file being uploaded.
 {
   "url": "<upload-url>"
 }
-```
+````
 
 Where `<upload-url>` is the signed URL that can be used to upload the attachment file. This URL is typically a pre-signed URL for S3-like storage services.
 
@@ -879,7 +871,6 @@ Where `<upload-url>` is the signed URL that can be used to upload the attachment
 **Response**
 
 Only status code is returned, typically `200 OK` if the upload was successful. The response body is not processed by the frontend.
-
 
 ### validate-questionnaire
 
@@ -926,7 +917,6 @@ Where `<questionnaire-response>` is the response being validated.
 ```
 
 Where `<operation-outcome>` is the [operation outcome](https://www.hl7.org/fhir/operationoutcome.html) of the validation.
-
 
 ## Sequence Diagram
 

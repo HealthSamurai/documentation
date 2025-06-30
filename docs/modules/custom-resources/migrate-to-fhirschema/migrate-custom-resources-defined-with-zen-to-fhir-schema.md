@@ -5,20 +5,20 @@
 The materials in this section describe what to do next with the resulting FHIR Schema resource or set of resources. They explain how to load them into Aidbox, either one by one or via IG. Additionally, they outline the requirements for FHIR Schema to define a Custom Resource and provide a detailed FHIR Schema specification.
 
 {% content-ref url="../../profiling-and-validation/fhir-schema-validator/" %}
-[fhir-schema-validator](../../profiling-and-validation/fhir-schema-validator/README.md)
+[fhir-schema-validator](../../profiling-and-validation/fhir-schema-validator/)
 {% endcontent-ref %}
 
 {% content-ref url="../../../tutorials/other-tutorials/how-to-create-fhir-npm-package.md" %}
 [how-to-create-fhir-npm-package.md](../../../tutorials/other-tutorials/how-to-create-fhir-npm-package.md)
 {% endcontent-ref %}
 
-{% content-ref url="../../../tutorials/validation-tutorials/upload-fhir-implementation-guide/README.md" %}
-[upload-fhir-implementation-guide](../../../tutorials/validation-tutorials/upload-fhir-implementation-guide/README.md)
+{% content-ref url="../../../tutorials/validation-tutorials/upload-fhir-implementation-guide/" %}
+[upload-fhir-implementation-guide](../../../tutorials/validation-tutorials/upload-fhir-implementation-guide/)
 {% endcontent-ref %}
 
 ## Obtain FHIRSchema
 
-In the following sections, we will describe how to obtain the FHIR Schema from a Zen resource definition.&#x20;
+In the following sections, we will describe how to obtain the FHIR Schema from a Zen resource definition.
 
 ## Semi-Automated approach
 
@@ -229,11 +229,11 @@ In the following steps, we will use the same custom resource example, `EmailSche
 
 **Get Zen definition**
 
-Open your [Aidbox configuration project](../../../deprecated/deprecated/zen-related/aidbox-zen-lang-project/README.md) and find custom resource definitions. It should look similar to `EmailSchedule` definition example.&#x20;
+Open your [Aidbox configuration project](../../../deprecated/deprecated/zen-related/aidbox-zen-lang-project/) and find custom resource definitions. It should look similar to `EmailSchedule` definition example.
 
 ### Translate zen definition `:keys` to FHIRSchema element entry
 
-The FHIRSchema `elements` is similar to `:keys` field in Zen definition, serving the same purpose: defining properties for a resource.&#x20;
+The FHIRSchema `elements` is similar to `:keys` field in Zen definition, serving the same purpose: defining properties for a resource.
 
 For example, we have `name` key in `EmailSchedule` custom resource:
 
@@ -243,7 +243,7 @@ For example, we have `name` key in `EmailSchedule` custom resource:
 ...}
 ```
 
-It states that the `name` property must be a `string`. This property is located on the top level, indicating it is the root field in the resource.&#x20;
+It states that the `name` property must be a `string`. This property is located on the top level, indicating it is the root field in the resource.
 
 To describe it as a FHIRSchema element, do the following:
 
@@ -367,14 +367,14 @@ The `zen/any` type for a Zen definition indicates that the value is arbitrary an
 
 **FHIRSchema Equivalent**
 
-To describe `zen/any` use `any` without `additionalProperties`.&#x20;
+To describe `zen/any` use `any` without `additionalProperties`.
 
 ```json
 {"elements":
  {"data": {"any": true}}}
 ```
 
-#### **Handling `:require`**   &#x20;
+#### **Handling `:require`**
 
 The `:require` instruction indicates that the described property is required and must be present in a resource instance.
 
@@ -553,13 +553,13 @@ For more information about this instruction, refer to the relevant [section](htt
 
 **Handling resulting FHIR Schemas**
 
-To deliver the FHIR Schema(s) and related Entities you authored to Aidbox, follow these steps. 
-Ensure that your Aidbox is configured to run with the FHIRSchema validation engine. 
-Here's [a guide describing how to achieve that](../../profiling-and-validation/fhir-schema-validator/README.md).
+To deliver the FHIR Schema(s) and related Entities you authored to Aidbox, follow these steps.\
+Ensure that your Aidbox is configured to run with the FHIRSchema validation engine.\
+Here's [a guide describing how to achieve that](../../profiling-and-validation/fhir-schema-validator/).
 
 **Single FHIRSchema Delivery**
 
-If you have only one FHIRSchema that replaces your custom-defined Zen definition, 
+If you have only one FHIRSchema that replaces your custom-defined Zen definition,\
 follow [this guide](../custom-resources-using-fhir-schema.md) to deliver a single FHIRSchema to Aidbox.
 
 **Multiple Schemas as a Package**
@@ -573,7 +573,7 @@ If you have multiple schemas replacing a set of resources and want to work with 
 **Loading the FHIR NPM Package**
 
 {% content-ref url="../../../tutorials/validation-tutorials/upload-fhir-implementation-guide/" %}
-[upload-fhir-implementation-guide](../../../tutorials/validation-tutorials/upload-fhir-implementation-guide/README.md)
+[upload-fhir-implementation-guide](../../../tutorials/validation-tutorials/upload-fhir-implementation-guide/)
 {% endcontent-ref %}
 
 **Important Notes:**

@@ -1,9 +1,9 @@
-# 🎓 Migrate to git Aidbox Configuration Projects
+# Migrate to git Aidbox Configuration Projects
 
 {% hint style="warning" %}
 Since the 2405 release, using Aidbox in FHIR schema validation engine is recommended, which is incompatible with zen or Entity/Attribute options.
 
-[Setup Aidbox with FHIR Schema validation engine](broken-reference)
+[Setup Aidbox with FHIR Schema validation engine](broken-reference/)
 {% endhint %}
 
 November 2022 release of Aidbox comes with a couple of features to reduce the startup time when using FHIR IG packages. First, we prepared a new version for our distribution of those packages which allows for their more efficient load into the Aidbox. Second, for those using configuration projects, it is now possible to remount downloaded IGs.
@@ -88,4 +88,4 @@ List such dependencies using `AIDBOX_ZEN_PACKAGE_LOAD:`
 
 ### If you have zip with zen configuration files
 
-In this [guide](broken-reference) you will find instructions on how to create zen-packages and how to store/import your zen-configs. As a result, you will get a zen-package that can be stored on a filesystem or git repo server, so you can easily declare this package as a dependency in your `AIDBOX_ZEN_PACKAGE_LOAD` or `BOX_PROJECT_GIT_TARGET__PATH`.
+In this [guide](broken-reference/) you will find instructions on how to create zen-packages and how to store/import your zen-configs. As a result, you will get a zen-package that can be stored on a filesystem or git repo server, so you can easily declare this package as a dependency in your `AIDBOX_ZEN_PACKAGE_LOAD` or `BOX_PROJECT_GIT_TARGET__PATH`.
