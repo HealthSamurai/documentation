@@ -1,0 +1,16 @@
+node_modules
+.git
+out
+test
+docs
+fonts
+k8s
+dev
+libs
+scripts
+bb
+build
+
+*.log
+*.tmp
+*.swp
