@@ -364,7 +364,7 @@
                                                                         person_profiles: 'identified_only', // or 'always' to create profiles for anonymous users as well
                                                                         })")]]
    [:body {:hx-boost "true"
-           :hx-on "htmx:afterSwap: window.scrollTo(0, 0); hljs.highlightAll(); updateLastUpdated()"}
+           :hx-on "htmx:afterSwap: window.scrollTo(0, 0); updateLastUpdated();"}
     body]])
 
 (defn layout [context request
