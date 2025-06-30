@@ -335,6 +335,9 @@
     [:meta {:property "og:url" :content page-url}]
     [:meta {:property "og:type" :content "article"}]
     [:meta {:property "og:image" :content open-graph-image}]
+    [:link {:rel "icon" :type "image/x-icon" :href "/favicon.ico"}]
+    [:link {:rel "shortcut icon" :type "image/x-icon" :href "/favicon.ico"}]
+    [:link {:rel "apple-touch-icon" :href "/favicon.ico"}]
     [:script {:type "application/ld+json"}
      (uui/raw
       (json/generate-string
