@@ -32,3 +32,19 @@
   (str (java.net.URL.
         (java.net.URL. url1)
         url2)))
+
+(defn strip-markdown [text]
+  (-> text
+      (str/replace #"<table[\s\S]*?</table>" "")
+      (str/replace #"<.*?>" "")
+      (str/replace #"\[([^\]]+)\]\([^)]+\)" "$1")
+      (str/replace #"\!\[.*?\]\(.*?\)" "")
+      (str/replace #"`([^`]+)`" "$1")
+      (str/replace #"(?m)^\s{0,3}#{1,6}\s*" "")
+      (str/replace #"(?m)^\s*([-*+]|\d+\.)\s+" "")
+      (str/replace #"(\*\*|__)(.*?)\1" "$2")
+      (str/replace #"(\*|_)(.*?)\1" "$2")
+      (str/replace #"(?m)^(-{3,}|_{3,}|\*{3,})$" "")
+      (str/replace #"(?m)^>\s?" "")
+      (str/replace #"\\([\\`*_{}\[\]()#+\-.!])" "$1")
+      (str/trim)))

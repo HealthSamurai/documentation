@@ -117,9 +117,10 @@
     (try
       {:content (render-file* context filepath parsed title content*)
        :description (or description
-                        (if (>= (count content*) 150)
-                          (subs content* 0 150)
-                          content*))
+                        (let [stripped (utils/strip-markdown content*)]
+                         (if (>= (count stripped) 150)
+                          (subs stripped 0 150)
+                          stripped)))
        :toc (render-toc parsed)}
       (catch Exception e
         {:content [:div {:role "alert"}
@@ -410,8 +411,7 @@
   (let [uri (:uri request)]
     (cond
       (= uri "/favicon.ico")
-      (resp/resource-response
-       "public/favicon.ico")
+      (resp/resource-response "public/favicon.ico")
 
       (picture-url? uri)
       (resp/resource-response
@@ -428,12 +428,9 @@
         (if filepath
           (layout
            context request
-           {:content
-            content
-            :title
-            title
-            :description
-            description
+           {:content content
+            :title title
+            :description description
             :filepath filepath})
 
           (layout
