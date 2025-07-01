@@ -1,10 +1,25 @@
 # Release Notes
 
-## June 2025 _`edge`_
+## Jule 2025 _`edge`_
 
 * Aidbox FHIR server
-  * Supported multiple keys for [TokenIntrospector resource](../reference/system-resources-reference/iam-module-resources.md#tokenintrospector).
-  * Increased the maximum length for base64Binary to handle large files stored in the AIdbox database.
+* Aidbox Forms
+
+## June 2025 _`latest, 2506`_
+
+* Aidbox FHIR server
+  * Support for sending AuditEvents to the [external FHIR AuditRecord Repository](../access-control/audit-and-logging.md#external-audit-record-repository-support).
+  * Updated behavior for development licenses that exceed the database size limit: the instance will now log a warning instead of shutting down.
+  * Added the ability to use [FHIR Factory API](https://build.fhir.org/fhirpath.html#factory) in the FHIRPath engine.
+  * Changes in the building of the `aidboxone` image: the latest LTS version of Java (21)  is used for building the application jar, and the latest version of Java (24) is used for running the application.
+  * Improvements in the [AidboxSubscriptionTopics](../modules/topic-based-subscriptions/wip-dynamic-subscriptiontopic-with-destinations/) resource - removed unnecessary ValueSet bindings.
+  * Supported multiple key types for the [TokenIntrospector resource](../reference/system-resources-reference/iam-module-resources.md#tokenintrospector).
+  * Increased the maximum length for `base64Binary`  type to handle large files stored in the AIdbox database.
+  * Multiple bug fixes and optimizations in the Resource Browser in Aidbox UI.
+  * Fixed bug in generating Trace ID within integration with [OTEL collector](../modules/observability/).
+  * Support for creating custom resources with logical resource profiles.
+  * Added the ability to update or delete a custom StructureDefinition.
+  * Improvements in license management functionality.
 * Aidbox Forms
   * Supported the FHIRPath Factory API for populating a choice item with answerValueSet and other use cases.
   * Supported the [`answerExpression` feature ](../modules/aidbox-forms/aidbox-ui-builder-alpha/form-creation/widgets.md#choice)to dynamically fetch answerOptions via FHIRQuery or filter answerOptions using FHIRPath. See the [How-to guide](../modules/aidbox-forms/aidbox-ui-builder-alpha/form-creation/how-to-guides/how-to-use-answer-expression-into-forms.md) for more details.
@@ -13,8 +28,22 @@
   * Added the ability to[ embed external services](../modules/aidbox-forms/aidbox-ui-builder-alpha/embedding.md#onpreviewattachment-show-attachments-with-external-editor) in the file preview.
   * Added the ability to [set the height of the web component](../modules/aidbox-forms/aidbox-ui-builder-alpha/embedding.md) dynamically.
   * Created the [How-to guide](../modules/aidbox-forms/aidbox-ui-builder-alpha/form-creation/how-to-guides/how-to-extract-data-from-forms.md#template-based-extraction) for template-based extraction.
+* Minor updates
+  * `2505.2` - Fixed vulnerabilities
+  * `2505.1` - Minor UI improvements
+  * `2504.2` - Fixed vulnerabilities
+  * `2503.5` - Fixed vulnerabilities
+  * `2502.7` - Fixed vulnerabilities
+  * `2501.9` - Fixed vulnerabilities
+  * `2412.5` - Fixed vulnerabilities
+  * `2411.4` - Fixed vulnerabilities
+  * `2410.7` - Fixed vulnerabilities
+  * `2409.3` - Fixed vulnerabilities
+  * `2408.3` - Fixed vulnerabilities
+  * `2407.2` - Fixed vulnerabilities
+  * `2405` - Fixed vulnerabilities
 
-## May 2025 _`latest, 2505`_
+## May 2025 _`stable, 2505`_
 
 * Aidbox FHIR server
   * Introduced [Aidbox MCP Server](../modules/other-modules/mcp.md) (early-access)
@@ -41,7 +70,7 @@
   * `2402-lts` - Fixed vulnerabilities
   * `2306-lts` - Fixed vulnerabilities
 
-## April 2025 _`stable, 2504`_
+## April 2025 _`2504`_
 
 * Aidbox FHIR server
   * Supported FHIR 6.0.0-ballot3 as a package in [Aidbox FHIR Package registry](../modules/profiling-and-validation/fhir-schema-validator/aidbox-fhir-igs-registry.md) and published a tutorial on [running Aidbox with FHIR 6.0.0-ballot3 locally and in the Aidbox sandbox](../tutorials/other-tutorials/run-aidbox-with-fhir-r6.md).
