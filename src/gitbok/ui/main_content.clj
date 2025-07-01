@@ -104,15 +104,16 @@
      (markdown/render-md context filepath parsed))])
 
 (defn content-div [context uri content filepath & [htmx?]]
-  [:main#content {:class "flex-1 py-6 max-w-6xl min-w-0 overflow-x-hidden"}
-   (when htmx?
-     [:script "window.scrollTo(0, 0); updateLastUpdated();"])
-   [:div {:class "mx-auto px-2 max-w-full"} content]
-   (navigation-buttons context uri)
-   (let [lastupdated
-         (indexing/get-lastmod context filepath)]
-     (when lastupdated
-       [:p {:class "mt-4 text-gray-600"
-            :id "lastupdated"
-            :data-updated-at lastupdated}
-        "Last updated " lastupdated]))])
+  [:main#content
+   [:article {:class "flex-1 py-6 max-w-6xl min-w-0 overflow-x-hidden"}
+    (when htmx?
+      [:script "window.scrollTo(0, 0); updateLastUpdated();"])
+    [:div {:class "mx-auto px-2 max-w-full"} content]
+    (navigation-buttons context uri)
+    (let [lastupdated
+          (indexing/get-lastmod context filepath)]
+      (when lastupdated
+        [:p {:class "mt-4 text-gray-600"
+             :id "lastupdated"
+             :data-updated-at lastupdated}
+         "Last updated " lastupdated]))]])
