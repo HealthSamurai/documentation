@@ -60,8 +60,11 @@ jobs:
            submodules: 'recursive'
            fetch-depth: 0
 
-      - name: Install npm dependencies (tailwind)
+      - name: Install npm dependencies
         run: npm install
+
+      - name: Minify JS and overwrite originals
+        run: make minify-js
 
       - name: Build Tailwind CSS
         run: make build-tailwind-min 
