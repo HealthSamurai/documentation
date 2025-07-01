@@ -24,8 +24,10 @@
 (defn render-markdown-link-in-toc [title href]
   [:a {:class "block py-1.5 text-tint-strong/70 hover:bg-tint-hover hover:text-tint-strong transition-colors duration-200 rounded-md mx-2 my-0.5 clickable-summary"
        :href href
+       :data-hx-nav true
+       :hx-get (str href "?partial=true")
        :hx-target "#content"
-       :hx-push-url "true"
+       :hx-push-url href
        :hx-swap "outerHTML"}
    [:span {:class "flex items-center gap-2 mx-2"}
     title

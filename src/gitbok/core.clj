@@ -325,10 +325,13 @@
 (defn response1 [body status lastmod]
   (let [html (utils/->html body)]
     {:status (or status 200)
-     :headers {"content-type" "text/html; ; charset=utf-8"
-               "Cache-Control" "public, max-age=86400"
-               "Last-Modified" (utils/iso-to-http-date lastmod)
-               "ETag" (utils/etag lastmod)}
+     :headers
+     (cond-> {"content-type" "text/html; ; charset=utf-8"}
+       true
+       (assoc
+        "Cache-Control" "public, max-age=86400"
+        "Last-Modified" (utils/iso-to-http-date lastmod)
+        "ETag" (utils/etag lastmod)))
      :body html}))
 
 (defn document [body {:keys [title description page-url open-graph-image]}]
@@ -386,29 +389,30 @@
                     (second (str/split hx-current-url #"://[^/]+"))
                     hx-current-url))
                 (:uri request))
-        is-hx-target (uui/hx-target request)]
-    (response1
-     (cond
-       is-hx-target
-       (content-div context uri body filepath true)
+        is-hx-target (uui/hx-target request)
+        body (cond
+               is-hx-target
+               (content-div context uri body filepath true)
 
-       :else
-       (document
-        (layout-view context body uri filepath)
-        {:title title :description description
-         :canonical-url
-         (if (get request :/)
-           base-url
-           (utils/concat-urls base-url uri))
-         :og-preview
-         (utils/concat-urls
-          base-url
-          (str "public/og-preview/"
-               (when filepath (str/replace filepath #".md" ".png"))))}))
-     status
-     (get
-      (system/get-system-state context [const/LASTMOD])
-      filepath))))
+               :else
+               (document
+                (layout-view context body uri filepath)
+                {:title title :description description
+                 :canonical-url
+                 (if (get request :/)
+                   base-url
+                   (utils/concat-urls base-url uri))
+                 :og-preview
+                 (utils/concat-urls
+                  base-url
+                  (str "public/og-preview/"
+                       (when filepath (str/replace filepath #".md" ".png"))))}))
+
+        lastmod (get
+                 (system/get-system-state context [const/LASTMOD])
+                 filepath)]
+
+    (response1 body status lastmod)))
 
 (defn get-toc-view
   [context request]
@@ -439,7 +443,12 @@
   ^{:http {:path "/:path*"}}
   render-file-view
   [context request]
-  (let [uri (:uri request)]
+  (let [uri (:uri request)
+        uri-without-partial (cond-> uri
+                              (str/ends-with? uri "?partial=true")
+                              (subs 0 (- (count uri)
+                                         (count "?partial=true"))))]
+
     (cond
 
       (= uri "/favicon.ico")
@@ -457,7 +466,7 @@
       (resp/resource-response uri)
 
       :else
-      (let [filepath (indexing/uri->filepath context uri)]
+      (let [filepath (indexing/uri->filepath context uri-without-partial)]
         (if filepath
           (let [lastmod
                 (get
@@ -465,7 +474,7 @@
                  filepath)
                 etag (utils/etag lastmod)]
             (if (or (check-cache-etag request lastmod)
-                    (check-cache-lastmod request lastmod))
+                     (check-cache-lastmod request lastmod))
               {:status 304
                :headers {"Cache-Control" "public, max-age=86400"
                          "Last-Modified" lastmod
@@ -484,7 +493,7 @@
            context request
            {:content
             {:status 404
-             :body (not-found-view context uri)}
+             :body (not-found-view context uri-without-partial)}
             :title "Not found"
             :description "Page not found"}))))))
 
