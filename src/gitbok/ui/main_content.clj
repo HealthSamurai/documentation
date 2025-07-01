@@ -5,6 +5,7 @@
    [gitbok.indexing.impl.file-to-uri :as file-to-uri]
    [clojure.string :as str]
    [system]
+   [uui]
    [gitbok.markdown.core :as markdown]
    [gitbok.indexing.impl.summary :as summary]
    [gitbok.markdown.widgets.big-links :as big-links]
@@ -98,7 +99,9 @@
       [:script {:src "/static/json.min.js"}]
       [:script {:src "/static/http.min.js"}]
       [:script {:src "/static/graphql.min.js"}]
-      [:script "hljs.highlightAll();"]])
+      [:script
+       (uui/raw
+        "hljs.highlightAll(); setTimeout(function() { if (typeof initializeCopyButtons === 'function') { initializeCopyButtons(); } }, 100);")]])
    (if (= 1 (count (:content parsed)))
      (render-empty-page context filepath title)
      (markdown/render-md context filepath parsed))])

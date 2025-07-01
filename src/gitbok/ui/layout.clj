@@ -72,6 +72,7 @@
     [:script {:src "/static/tabs.js"}]
     [:script {:src "/static/toc.js"}]
     [:script {:src "/static/mobile-menu.js"}]
+    [:script {:src "/static/copy-code.js"}]
     [:script {:defer true
               :src "/static/keyboard-navigation.js"}]
     [:script {:defer true
@@ -106,8 +107,8 @@
            {:title title :description description
             :canonical-url
             (if (get request :/)
-             base-url
-             (when base-url (utils/concat-urls base-url uri)))
+              base-url
+              (when base-url (utils/concat-urls base-url uri)))
             :og-preview
             (when base-url
               (utils/concat-urls

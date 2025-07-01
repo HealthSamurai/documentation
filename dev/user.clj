@@ -50,8 +50,9 @@ inputs:
 
   (def content "`code1`")
   (def content "# title")
+  (def content "# header1\nsometext\n\n## header2\ntext2")
   (def p
-    (markdown/parse-markdown-content context [""  content]))
+    (:content (:parsed (markdown/parse-markdown-content context [""  content]))))
 
   (markdown/render-md context "" (:parsed p))
   )

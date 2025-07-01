@@ -231,13 +231,13 @@ strong {
   #content pre {
     overflow-x: auto;
     -webkit-overflow-scrolling: touch;
-    max-width: 100vw;
-    margin-left: -1rem;
-    margin-right: -1rem;
+    max-width: 100%;
+    margin-left: 0;
+    margin-right: 0;
     padding-left: 1rem;
     padding-right: 1rem;
   }
-  
+
   #content pre code {
     min-width: max-content;
     white-space: pre;
@@ -265,4 +265,34 @@ strong {
 
 .toc a {
   @apply block py-2 text-tint-strong/70 hover:text-tint-strong transition-colors duration-200 no-underline truncate max-w-full overflow-hidden;
+}
+
+/* Code block copy button styles */
+.copy-code-btn {
+  @apply z-10;
+}
+
+.copy-code-btn:hover {
+  @apply bg-gray-600;
+}
+
+.copy-code-btn:focus {
+  @apply outline-none ring-2 ring-blue-500 ring-offset-2;
+}
+
+/* Ensure code blocks have proper spacing for copy button */
+pre {
+  @apply relative;
+}
+
+/* Improve code block appearance */
+pre code {
+  @apply block w-full;
+}
+
+/* Hide copy button on mobile */
+@media (max-width: 767px) {
+  .copy-code-btn {
+    display: none !important;
+  }
 }
