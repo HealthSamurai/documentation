@@ -238,7 +238,7 @@ DELETE /$sdc-file/<filepath> HTTP/1.1
 
 Where `<filepath>` is the path of the attachment being deleted.
 
-** Response**
+**Response**
 
 ```json
 {
