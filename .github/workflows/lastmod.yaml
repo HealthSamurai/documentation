@@ -11,6 +11,8 @@ jobs:
     steps:
     - name: Checkout repository
       uses: actions/checkout@v2
+      with: 
+        fetch-depth: 0
 
     - name: Install Babashka
       run: curl -s https://raw.githubusercontent.com/babashka/babashka/master/install | bash
