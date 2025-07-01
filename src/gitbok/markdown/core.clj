@@ -30,11 +30,6 @@
           image/image-tokenizer
           image/youtube-tokenizer))
 
-(defn parse [context filepath content]
-  (md/parse*
-   custom-doc
-   (hack-md context filepath content)))
-
 (defn parse-markdown-content
   [context [filepath content]]
   {:filepath filepath
