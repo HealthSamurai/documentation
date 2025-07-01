@@ -15,6 +15,7 @@
      [:a {:href "/" :class "group/headerlogo min-w-0 shrink flex items-center"}
       [:img {:alt "Aidbox Logo"
              :class "block object-contain size-8"
+             :fetchpriority "high"
              :src "/.gitbook/assets/aidbox_logo.jpg"}]
       [:div {:class "text-pretty line-clamp-2 tracking-tight max-w-[18ch] lg:max-w-[24ch] font-semibold ms-3 text-base/tight lg:text-lg/tight text-gray-900"}
        "Aidbox User Docs"]]]
