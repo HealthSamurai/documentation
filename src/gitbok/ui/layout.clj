@@ -27,7 +27,7 @@
     (when filepath
       (right-toc/get-right-toc context filepath))]])
 
-(defn document [body {:keys [title description page-url open-graph-image]}]
+(defn document [body {:keys [title description canonical-url open-graph-image]}]
   [:html {:lang "en"}
    [:head
     [:meta {:charset "utf-8"}]
@@ -35,7 +35,7 @@
     [:meta {:name "description" :content description}]
     [:meta {:property "og:title" :content title}]
     [:meta {:property "og:description" :content description}]
-    [:meta {:property "og:url" :content page-url}]
+    [:meta {:property "og:url" :content canonical-url}]
     [:meta {:property "og:type" :content "article"}]
     [:meta {:property "og:image" :content open-graph-image}]
     [:meta {:name "htmx-config",
@@ -43,7 +43,7 @@
     [:link {:rel "icon" :type "image/x-icon" :href "/favicon.ico"}]
     [:link {:rel "shortcut icon" :type "image/x-icon" :href "/favicon.ico"}]
     [:link {:rel "apple-touch-icon" :href "/favicon.ico"}]
-    [:link {:rel "canonical" :href page-url}]
+    [:link {:rel "canonical" :href canonical-url}]
     [:script {:type "application/ld+json"}
      (uui/raw
       (json/generate-string
