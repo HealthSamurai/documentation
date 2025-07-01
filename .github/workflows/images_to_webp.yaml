@@ -22,5 +22,5 @@ jobs:
         run: |
           git config user.name "GitHub Action"
           git config user.email "action@github.com"
-          git add .gitbook/assets/**/*.webp
+          git add .gitbook/assets/
           git diff --quiet && echo "No changes to commit" || (git commit -m "Add WebP images" && git push)
