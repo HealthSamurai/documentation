@@ -1,0 +1,26 @@
+name: Convert images to WebP
+
+on:
+  push:
+    paths:
+      - '.gitbook/assets/**'
+
+jobs:
+  convert-images:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v3
+
+      - name: Install libwebp
+        run: sudo apt-get update && sudo apt-get install -y webp
+
+      - name: Run WebP conversion script
+        run: bash ./scripts/generate-webp.sh
+
+      - name: Commit and push WebP images
+        run: |
+          git config user.name "GitHub Action"
+          git config user.email "action@github.com"
+          git add .gitbook/assets/**/*.webp
+          git diff --quiet && echo "No changes to commit" || (git commit -m "Add WebP images" && git push)
