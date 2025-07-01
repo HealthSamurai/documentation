@@ -1,4 +1,4 @@
-# How to run Aidbox using different Java version
+# How to run Aidbox using a different Java version
 
 Starting from version 2506 Aidbox uses the following approach for building `aidboxone` image:&#x20;
 
@@ -15,7 +15,7 @@ That gives you the ability to run the Aidbox on any version of Java between LTS 
 
 * Run Aidbox locally using Docker by following [this](../../getting-started/run-aidbox-locally.md) guide.&#x20;
 
-## Create a Managed PostgreSQL Database
+## Build and run custom Docker Image
 
 1. Navigate to the  `aidbox` directory when the `docker-compose.yaml` is located.
 2.  Create the file with the name `Dockerfile` and the following context:\

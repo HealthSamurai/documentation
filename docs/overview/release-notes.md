@@ -11,7 +11,7 @@
   * Support for sending AuditEvents to the [external FHIR AuditRecord Repository](../access-control/audit-and-logging.md#external-audit-record-repository-support).
   * Updated behavior for development licenses that exceed the database size limit: the instance will now log a warning instead of shutting down.
   * Added the ability to use [FHIR Factory API](https://build.fhir.org/fhirpath.html#factory) in the FHIRPath engine.
-  * Changes in the building of the `aidboxone` image: the latest LTS version of Java (21)  is used for building the application jar, and the latest version of Java (24) is used for running the application. Check the following [tutorial](../tutorials/other-tutorials/how-to-run-aidbox-in-gcp-cloud-run-1.md) to see how you can leverage this.
+  * Changes in the building of the `aidboxone` image: the latest LTS version of Java (21)  is used for building the application jar, and the latest version of Java (24) is used for running the application. Check the following [tutorial](../tutorials/other-tutorials/how-to-run-aidbox-using-different-java.md) to see how you can leverage this.
   * Improvements in the [AidboxSubscriptionTopics](../modules/topic-based-subscriptions/wip-dynamic-subscriptiontopic-with-destinations/) resource - removed unnecessary ValueSet bindings.
   * Supported multiple key types for the [TokenIntrospector resource](../reference/system-resources-reference/iam-module-resources.md#tokenintrospector).
   * Increased the maximum length for `base64Binary`  type to handle large files stored in the AIdbox database.
