@@ -47,6 +47,7 @@
     [:meta {:name "twitter:description" :content description}]
     [:meta {:name "twitter:image" :content og-preview}]
     [:meta {:name "twitter:site" :content "@health_samurai"}]
+    [:meta {:name "robots" :content "index, follow"}]
 
     [:meta {:name "htmx-config",
             :content "{\"scrollIntoViewOnBoost\":false,\"scrollBehavior\":\"smooth\"}"}]
@@ -54,6 +55,7 @@
     [:link {:rel "shortcut icon" :type "image/x-icon" :href "/favicon.ico"}]
     [:link {:rel "apple-touch-icon" :href "/favicon.ico"}]
     [:link {:rel "canonical" :href canonical-url}]
+
     [:script {:type "application/ld+json"}
      (uui/raw
       (json/generate-string
