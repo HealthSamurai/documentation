@@ -27,17 +27,27 @@
     (when filepath
       (right-toc/get-right-toc context filepath))]])
 
-(defn document [body {:keys [title description canonical-url open-graph-image]}]
+(defn document [body {:keys [title description canonical-url og-preview lastmod]}]
   [:html {:lang "en"}
    [:head
     [:meta {:charset "utf-8"}]
     [:meta {:name "viewport" :content "width=device-width, initial-scale=1.0"}]
     [:meta {:name "description" :content description}]
     [:meta {:property "og:title" :content title}]
+    [:meta {:property "og:site_name" :content "Aidbox User Docs"}]
+    [:meta {:property "article:modified_time" :content lastmod}]
     [:meta {:property "og:description" :content description}]
     [:meta {:property "og:url" :content canonical-url}]
     [:meta {:property "og:type" :content "article"}]
-    [:meta {:property "og:image" :content open-graph-image}]
+    [:meta {:property "og:locale" :content "en_US"}]
+    [:meta {:property "og:image" :content og-preview}]
+
+    [:meta {:name "twitter:card" :content "summary_large_image"}]
+    [:meta {:name "twitter:title" :content title}]
+    [:meta {:name "twitter:description" :content description}]
+    [:meta {:name "twitter:image" :content og-preview}]
+    [:meta {:name "twitter:site" :content "@health_samurai"}]
+
     [:meta {:name "htmx-config",
             :content "{\"scrollIntoViewOnBoost\":false,\"scrollBehavior\":\"smooth\"}"}]
     [:link {:rel "icon" :type "image/x-icon" :href "/favicon.ico"}]
@@ -99,7 +109,8 @@
               (utils/concat-urls
                base-url
                (str "public/og-preview/"
-                    (when filepath (str/replace filepath #".md" ".png")))))}))
+                    (when filepath (str/replace filepath #".md" ".png")))))
+            :lastmod lastmod}))
 
         lastmod (when filepath
                   (or lastmod
