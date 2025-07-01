@@ -132,7 +132,8 @@
 
              [:pre
               [:code.nohljsln
-               (uui/raw (-> node :content first :text))]]))
+               ;; protect from xss, do not use raw
+               (-> node :content first :text)]]))
 
          :monospace
          (fn [_ctx node]
