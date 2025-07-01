@@ -30,6 +30,11 @@
           image/image-tokenizer
           image/youtube-tokenizer))
 
+(defn parse [context filepath content]
+  (md/parse*
+   custom-doc
+   (hack-md context filepath content)))
+
 (defn parse-markdown-content
   [context [filepath content]]
   {:filepath filepath
@@ -197,7 +202,7 @@
                :else
                (uui/raw (-> node :content first :text)))))))
 
-(defn render-toc-item [item]
+(defn render-right-toc-item [item]
   [:div {:class "w-full"}
    (when (:content item)
      (let [content
@@ -227,7 +232,7 @@
 
    (when (:children item)
      (for [child (:children item)]
-       (render-toc-item child)))])
+       (render-right-toc-item child)))])
 
 (defn render-md [context filepath parsed]
   (transform/->hiccup (renderers context filepath) parsed))
@@ -260,3 +265,18 @@
   (system/get-system-state
    context
    [const/PARSED_MARKDOWN_IDX]))
+
+(defn get-rendered [context filepath]
+  (get (system/get-system-state context [const/RENDERED])
+       filepath))
+
+(defn render-all! [context parsed-md-index read-markdown-file]
+  (system/set-system-state
+    context
+    [const/RENDERED]
+    (->> parsed-md-index
+         (mapv
+           (fn [{:keys [filepath _parsed]}]
+             (println "render filepath " filepath)
+             [filepath (read-markdown-file context filepath)]))
+         (into {}))))

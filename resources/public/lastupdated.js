@@ -31,12 +31,13 @@ function formatRelativeTime(date) {
   return rtf.format(value, unit);
 }
 
-function updateLastUpdated()
-{
+function updateLastUpdated() {
   const el = document.getElementById("lastupdated");
-  const isoTime = el.getAttribute("data-updated-at");
-  const relative = formatRelativeTime(isoTime);
-  el.textContent = "Last updated " + relative;
+  if (el) {
+    const isoTime = el.getAttribute("data-updated-at");
+    const relative = formatRelativeTime(isoTime);
+    el.textContent = "Last updated " + relative;
+  }
 }
 
 document.addEventListener('DOMContentLoaded', function () {

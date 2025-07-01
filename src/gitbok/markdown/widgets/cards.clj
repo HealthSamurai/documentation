@@ -56,16 +56,17 @@
                                     :href
                                     #(indexing/filepath->href context filepath %)))]
                            [:a
-                             opts
-                             (nth footer-content 2)])
+                            opts
+                            (nth footer-content 2)])
                          three))
                      three))
                  href (or title-href title-filepath pic-href1 pic-href2)]]
        [:div {:href href
               :class "block hover:shadow-lg hover:border hover:border-gray-400 transition-all duration-200 rounded-2xl cursor-pointer"
-              :hx-get href
+              :hx-get (str href "?partial=true")
               :hx-target "#content"
-              :hx-push-url "true"
+              ;; :hx-push-url "true"
+              :hx-push-url href
               :hx-swap "outerHTML"}
         [:div {:class "flex flex-col bg-white rounded-2xl shadow overflow-hidden h-full min-h-[300px]"}
          (when img-href [:img {:src img-href :alt "card"}])

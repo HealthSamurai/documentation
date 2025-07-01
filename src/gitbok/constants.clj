@@ -12,6 +12,6 @@
 (def ^:const SUMMARY_PATH "SUMMARY.md")
 (def ^:const RENDERED ::rendered)
 
-(def ^:const SITEMAP_PAGES ::sitemap-pages)
 (def ^:const SITEMAP ::sitemap)
+
 (def ^:const LASTMOD ::lastmod)

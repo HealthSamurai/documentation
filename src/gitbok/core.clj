@@ -4,20 +4,21 @@
    [gitbok.indexing.impl.sitemap :as sitemap]
    [edamame.core :as edamame]
    [clojure.string :as str]
-   [cheshire.core :as json]
    [hiccup2.core]
    [gitbok.markdown.core :as markdown]
    [gitbok.indexing.core :as indexing]
    [gitbok.indexing.impl.file-to-uri :as file-to-uri]
-   [gitbok.markdown.widgets.big-links :as big-links]
-   [gitbok.markdown.widgets.headers :as headers]
    [gitbok.indexing.impl.summary :as summary]
    [gitbok.indexing.impl.uri-to-file :as uri-to-file]
-   [gitbok.search]
+   [gitbok.ui.main-content :as main-content]
+   [gitbok.ui.right-toc :as right-toc]
+   [gitbok.ui.layout :as layout]
+   [gitbok.ui.not-found :as not-found]
+   [gitbok.ui.search]
+   [gitbok.ui.left-navigation :as left-navigation]
    [ring.middleware.gzip :refer [wrap-gzip]]
-   [uui.heroicons :as ico]
+   [gitbok.http]
    [http]
-   [clojure.java.io :as io]
    [ring.util.response :as resp]
    [system]
    [gitbok.utils :as utils]
@@ -32,97 +33,23 @@
 
 (def dev? (= "true" (System/getenv "DEV")))
 
-(defn read-content [_context filepath]
-  (utils/slurp-resource filepath))
-
-(defn not-found-view [context uri]
-  (let [search-term (last (str/split uri #"/"))
-        search-results (gitbok.search/search context search-term)]
-    [:div.min-h-screen.flex.items-center.justify-center
-     [:div.max-w-2xl.w-full.px-4
-      [:div
-       [:h2.mt-4.text-3xl.font-semibold.text-gray-700.text-center "Page not found"]
-       (when (seq search-results)
-         [:div.mt-8
-          [:h3.text-lg.font-medium.text-gray-900 "You might be looking for:"]
-          [:ul.mt-4.space-y-2.text-left
-           (for [search-res (take 5 (utils/distinct-by #(-> % :hit :title) search-results))]
-             [:li
-              [:a.text-blue-600.hover:text-blue-800.text-lg.flex.items-start
-               {:href (file-to-uri/filepath->uri
-                       context (:filepath (:hit search-res)))}
-               (:title (:hit search-res))]])]])]]]))
-
-(defn find-children-files [context filepath]
-  (when
-   (and filepath
-        (str/ends-with? (str/lower-case filepath) "readme.md"))
-    (let [index (file-to-uri/get-idx context)
-          filepath (if (str/ends-with? filepath "/")
-                     (subs filepath 0 (dec (count filepath)))
-                     filepath)
-          filepath
-          (if (str/starts-with? filepath "./docs/")
-            (subs filepath 7)
-            filepath)
-          dir (.getParent (io/file filepath))]
-      (filterv
-       (fn [[file _info]]
-         (and
-          (str/starts-with? file dir)
-          (not= file filepath)
-          (or
-           (= dir (.getParent (io/file file)))
-           (and
-            (= dir (.getParent (io/file (.getParent (io/file file)))))
-            (str/ends-with? (str/lower-case file) "readme.md")))))
-       index))))
-
-(defn render-empty-page [context filepath title]
-  [:div
-   (headers/render-h1
-    (markdown/renderers context filepath) title)
-   (for [[_path {:keys [title uri]}]
-         (find-children-files context filepath)]
-     (big-links/big-link-view (str "/" uri) title))])
-
-(defn render-file* [context filepath parsed title raw-content]
-  [:div {:class "flex-1 min-w-0 max-w-4xl"}
-   (when (re-find #"```" raw-content)
-     [:div
-      [:link {:rel "stylesheet" :href "/static/github.min.css"}]
-      [:script {:src "/static/highlight.min.js"}]
-      [:script {:src "/static/json.min.js"}]
-      [:script {:src "/static/bash.min.js"}]
-      [:script {:src "/static/yaml.min.js"}]
-      [:script {:src "/static/json.min.js"}]
-      [:script {:src "/static/http.min.js"}]
-      [:script {:src "/static/graphql.min.js"}]
-      [:script "hljs.highlightAll();"]])
-   (if (= 1 (count (:content parsed)))
-     (render-empty-page context filepath title)
-     (markdown/render-md context filepath parsed))])
-
-(defn render-toc [parsed]
-  (when (:toc parsed)
-    [:nav {:class "toc-container sticky top-16 h-[calc(100vh-4rem)] overflow-y-auto p-6 bg-white w-60 rounded-lg z-50"
-           :aria-label "On-page navigation"}
-     [:div {:class "toc w-full max-w-full"}
-      (for [item (-> parsed :toc :children first :children)]
-        (markdown/render-toc-item item))]]))
-
 (defn read-markdown-file [context filepath]
-  (let [content* (read-content context filepath)
+  (let [content* (utils/slurp-resource filepath)
         {:keys [parsed description title]}
-        (markdown/parse-markdown-content context [filepath content*])]
+        (markdown/parse-markdown-content
+         context
+         [filepath content*])]
     (try
-      {:content (render-file* context filepath parsed title content*)
-       :description (or description
-                        (let [stripped (utils/strip-markdown content*)]
-                          (if (>= (count stripped) 150)
-                            (subs stripped 0 150)
-                            stripped)))
-       :toc (render-toc parsed)}
+      {:content
+       (main-content/render-file* context filepath parsed title content*)
+       :description
+       (or
+        description
+        (let [stripped (utils/strip-markdown content*)]
+          (if (>= (count stripped) 150)
+            (subs stripped 0 150)
+            stripped)))
+       :toc (right-toc/render-right-toc parsed)}
       (catch Exception e
         {:content [:div {:role "alert"}
                    (.getMessage e)
@@ -134,27 +61,13 @@
   (when url
     (str/starts-with? url "/.gitbook/assets")))
 
-(defn render-all! [context parsed-md-index]
-  (system/set-system-state
-   context
-   [const/RENDERED]
-   (->> parsed-md-index
-        (mapv
-         (fn [{:keys [filepath _parsed]}]
-           (println "render filepath " filepath)
-           [filepath (read-markdown-file context filepath)]))
-        (into {}))))
-
-(defn get-rendered [context filepath]
-  (get (system/get-system-state context [const/RENDERED]) filepath))
-
 (defn render-file
   [context filepath]
   (let [result
         (try
           (if dev?
             (read-markdown-file context filepath)
-            (get-rendered context filepath))
+            (markdown/get-rendered context filepath))
           (catch Exception e
             [:div {:role "alert"}
              (.getMessage e)
@@ -165,266 +78,6 @@
         (:content result)
         result)]
      :description (:description result)}))
-
-(defn add-active-class [item add?]
-  (let [link-element (:title item)
-        current-class (get-in link-element [1 :class] "")
-        active-class (if add? " active" "")
-        updated-class (str current-class active-class)]
-    (assoc-in link-element [1 :class] updated-class)))
-
-(defn render-menu [url item]
-  (let [open? (str/starts-with? url (:href item))]
-    (if (:children item)
-      [:details (when open? {:open ""})
-       [:summary {:class "flex items-center justify-between font-medium text-gray-900 hover:bg-gray-100 transition-colors duration-200 cursor-pointer group"}
-        [:div {:class "flex-1 clickable-summary"}
-         (add-active-class item (= url (:href item)))]
-        (ico/chevron-right "chevron size-5 text-gray-400 group-hover:text-primary-9 transition-colors duration-200")]
-       [:div {:class "border-l border-gray-200 ml-4"}
-        (for [c (:children item)]
-          (render-menu url c))]]
-      (add-active-class item open?))))
-
-(defn menu [summary url]
-  [:nav#navigation {:class "w-[17.5rem] flex-shrink-0 sticky top-16 h-[calc(100vh-4rem)] overflow-y-auto py-4 bg-white"
-                    :aria-label "Documentation menu"}
-   (for [item summary]
-     [:div {:class "break-words"}
-      (when-not
-       (str/blank? (:title item))
-        [:div {:class "mt-4 mb-2 mx-4"}
-         [:b (:title item)]])
-      (for [ch (:children item)]
-        (render-menu url ch))])
-   [:div "version " (utils/slurp-resource "version")]])
-
-(defn nav []
-  [:nav {:class "w-full bg-white border-b border-gray-200 flex-shrink-0 sticky top-0 z-50"
-         :aria-label "Main site menu"}
-   [:div {:class "flex items-center justify-between py-3 min-h-16 px-4 sm:px-6 md:px-8 max-w-screen-2xl mx-auto"}
-    [:div {:class "flex max-w-full lg:basis-72 min-w-0 shrink items-center justify-start gap-2 lg:gap-4"}
-     [:button {:class "mobile-menu-button md:hidden"
-               :id "mobile-menu-toggle"
-               :type "button"
-               :aria-label "Toggle mobile menu"}
-      [:svg {:class "size-6" :fill "none" :stroke "currentColor" :viewBox "0 0 24 24"}
-       [:path {:stroke-linecap "round" :stroke-linejoin "round" :stroke-width "2" :d "M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5"}]]]
-
-     [:a {:href "/" :class "group/headerlogo min-w-0 shrink flex items-center"}
-      [:img {:alt "Aidbox Logo"
-             :class "block object-contain size-8"
-             :src "/.gitbook/assets/aidbox_logo.jpg"}]
-      [:div {:class "text-pretty line-clamp-2 tracking-tight max-w-[18ch] lg:max-w-[24ch] font-semibold ms-3 text-base/tight lg:text-lg/tight text-gray-900"}
-       "Aidbox User Docs"]]]
-
-    [:div {:class "flex items-center gap-4"}
-     [:div {:class "hidden md:flex items-center gap-4"}
-      [:a {:href "/getting-started/run-aidbox-locally"
-           :class "text-gray-700 hover:text-primary-9 transition-colors duration-200 no-underline"}
-       "Run Aidbox locally"]
-      [:a {:href "/getting-started/run-aidbox-in-sandbox"
-           :class "text-gray-700 hover:text-primary-9 transition-colors duration-200 no-underline"}
-       "Run Aidbox in Sandbox"]
-      [:a {:href "https://bit.ly/3R7eLke"
-           :target "_blank"
-           :class "text-gray-700 hover:text-primary-9 transition-colors duration-200 no-underline"}
-       "Talk to us"]
-      [:a {:href "https://connect.health-samurai.io/"
-           :target "_blank"
-           :class "text-gray-700 hover:text-primary-9 transition-colors duration-200 no-underline"}
-       "Ask community"]]
-
-     [:a {:href "/search"
-          :class "flex items-center gap-2 px-3 py-2 bg-gray-100 border border-gray-300 rounded-md text-gray-700 text-sm transition-all duration-200 hover:bg-gray-200 hover:border-gray-400"
-          :id "search-link"
-          :hx-get "/search"
-          :hx-target "#content"
-          :hx-swap "innerHTML"
-          :hx-push-url "true"
-          :hx-on ":after-request \"document.querySelector('#search-input')?.focus()\""}
-      [:svg {:class "size-4" :fill "none" :stroke "currentColor" :viewBox "0 0 24 24"}
-       [:path {:stroke-linecap "round" :stroke-linejoin "round" :stroke-width "2" :d "m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607Z"}]]
-
-      [:span {:class "text-xs text-gray-400"} "⌘K"]]]]])
-
-(defn navigation-buttons [context uri]
-  (let [[[prev-page-url prev-page-title] [next-page-url next-page-title]]
-        (summary/get-prev-next-pages context uri)]
-    [:div {:class "flex flex-col sm:flex-row justify-between items-center mt-8 pt-4 gap-4"}
-     (when prev-page-url
-       [:div {:class "flex-1 w-full sm:w-auto"}
-        [:a {:href prev-page-url
-             ;; :hx-target "#content"
-             ;; :hx-push-url prev-page-url
-             ;; :hx-get (str prev-page-url "?partial=true")
-             ;; :hx-swap "outerHTML"
-             :class "group text-sm p-2.5 flex gap-4 flex-1 flex-row-reverse items-center pl-4 border border-gray-300 rounded hover:border-orange-500 text-pretty md:p-4 md:text-base"}
-         [:span {:class "flex flex-col flex-1 text-right"}
-          [:span {:class "text-xs text-gray-500"} "Previous"]
-          [:span {:class "text-gray-700 group-hover:text-orange-600 line-clamp-2"} prev-page-title]]
-         [:svg {:class "size-4 text-gray-400 group-hover:text-orange-600"
-                :fill "none"
-                :stroke "currentColor"
-                :viewBox "0 0 24 24"
-                :stroke-width "2"}
-          [:path {:stroke-linecap "round"
-                  :stroke-linejoin "round"
-                  :d "M15 19l-7-7 7-7"}]]]])
-     (when next-page-url
-       [:div {:class "flex-1 w-full sm:w-auto text-left"}
-        [:a {:href next-page-url
-             ;; :hx-target "#content"
-             ;; :hx-push-url next-page-url
-             ;; :hx-get (str next-page-url "?partial=true")
-             ;; :hx-swap "outerHTML"
-             :class "group text-sm p-2.5 flex gap-4 flex-1 items-center pr-4 border border-gray-300 rounded hover:border-orange-500 text-pretty md:p-4 md:text-base"}
-         [:span {:class "flex flex-col flex-1"}
-          [:span {:class "text-xs text-gray-500"} "Next"]
-          [:span {:class "text-gray-700 group-hover:text-orange-600 line-clamp-2"} next-page-title]]
-         [:svg {:class "size-4 text-gray-400 group-hover:text-orange-600"
-                :fill "none"
-                :stroke "currentColor"
-                :viewBox "0 0 24 24"
-                :stroke-width "2"}
-          [:path {:stroke-linecap "round"
-                  :stroke-linejoin "round"
-                  :d "M9 5l7 7-7 7"}]]]])]))
-
-(defn content-div [context uri content filepath & [htmx?]]
-  [:main#content {:class "flex-1 py-6 max-w-6xl min-w-0 overflow-x-hidden"}
-   (when htmx?
-     [:script "window.scrollTo(0, 0); updateLastUpdated();"])
-   [:div {:class "mx-auto px-2 max-w-full"} content]
-   (navigation-buttons context uri)
-   (let [lastupdated
-         (get
-          (system/get-system-state context [const/LASTMOD])
-          filepath)]
-     (when lastupdated
-       [:p {:class "mt-4 text-gray-600"
-            :id "lastupdated"
-            :data-updated-at lastupdated}
-        "Last updated " lastupdated]))])
-
-(defn get-toc [context filepath]
-  (let [rendered (get-rendered context filepath)]
-    (if (map? rendered)
-      (:toc rendered)
-      nil)))
-
-(defn layout-view [context body uri filepath]
-  [:div
-   (nav)
-   [:div.mobile-menu-overlay]
-   [:div
-    {:class "flex px-4 sm:px-6 md:px-8 max-w-screen-2xl mx-auto site-full-width:max-w-full gap-20"}
-    (menu (summary/get-summary context) uri)
-    [:div {:class "flex-1"}
-     (content-div context uri body filepath)]
-    (when filepath
-      (get-toc context filepath))]])
-
-(defn response1 [body status lastmod & [cache?]]
-  (let [html (utils/->html body)]
-    {:status (or status 200)
-     :headers
-     (cond-> {"content-type" "text/html; ; charset=utf-8"}
-       (and true lastmod)
-       (assoc
-        "Cache-Control" "public, max-age=86400"
-        "Last-Modified" (utils/iso-to-http-date lastmod)
-        "ETag" (utils/etag lastmod)))
-     :body html}))
-
-(defn document [body {:keys [title description page-url open-graph-image]}]
-  [:html {:lang "en"}
-   [:head
-    [:meta {:charset "utf-8"}]
-    [:meta {:name "viewport" :content "width=device-width, initial-scale=1.0"}]
-    [:meta {:name "description" :content description}]
-    [:meta {:property "og:title" :content title}]
-    [:meta {:property "og:description" :content description}]
-    [:meta {:property "og:url" :content page-url}]
-    [:meta {:property "og:type" :content "article"}]
-    [:meta {:property "og:image" :content open-graph-image}]
-    [:meta {:name "htmx-config",
-            :content "{\"scrollIntoViewOnBoost\":false,\"scrollBehavior\":\"smooth\"}"}]
-    [:link {:rel "icon" :type "image/x-icon" :href "/favicon.ico"}]
-    [:link {:rel "shortcut icon" :type "image/x-icon" :href "/favicon.ico"}]
-    [:link {:rel "apple-touch-icon" :href "/favicon.ico"}]
-    [:link {:rel "canonical" :href page-url}]
-    [:script {:type "application/ld+json"}
-     (uui/raw
-      (json/generate-string
-       {"@context" "https://schema.org"
-
-        "@type" "TechArticle"
-        "headline" title
-        "description" description
-        "author" {"@type" "Organization", "name" "HealthSamurai"}}))]
-    [:title (str title " | Aidbox User Docs")]
-
-    [:link {:rel "stylesheet", :href "/static/app.min.css"}]
-    [:script {:src "/static/htmx.min.js"}]
-    [:script {:src "/static/tabs.js"}]
-    [:script {:src "/static/toc.js"}]
-    [:script {:src "/static/mobile-menu.js"}]
-    [:script {:defer true
-              :src "/static/keyboard-navigation.js"}]
-    [:script {:defer true
-              :src "/static/toc-scroll.js"}]
-    [:script {:defer true
-              :src "/static/lastupdated.js"}]
-    [:script {:defer true
-              :src "/static/posthog.js"}]]
-   [:body {:hx-boost "true"
-           :hx-on "htmx:afterSwap: window.scrollTo(0, 0); updateLastUpdated();"}
-    body]])
-
-(defn layout [context request
-              {:keys [content title description filepath]}]
-  (let [body (if (map? content) (:body content) content)
-        status (if (map? content) (:status content 200) 200)
-        hx-current-url (get-in request [:headers "hx-current-url"])
-        _ (println "hx-current-url " hx-current-url)
-        _ (println "uri uri " (:uri request))
-        uri (:uri request)
-        is-hx-target (uui/hx-target request)
-        body (cond
-               is-hx-target
-               (content-div context uri body filepath true)
-
-               :else
-               (document
-                (layout-view context body uri filepath)
-                {:title title :description description
-                 :canonical-url
-                 (if (get request :/) base-url (utils/concat-urls base-url uri))
-                 :og-preview
-                 (utils/concat-urls
-                  base-url
-                  (str "public/og-preview/"
-                       (when filepath (str/replace filepath #".md" ".png"))))}))
-
-        lastmod (when filepath
-                  (get
-                   (system/get-system-state context [const/LASTMOD])
-                   filepath))]
-    (response1 body status lastmod is-hx-target)))
-
-(defn get-toc-view
-  [context request]
-  (let [uri (str/replace (:uri request) #"^/toc" "")
-        filepath (indexing/uri->filepath context uri)
-        lastmod
-        (when filepath
-          (get
-           (system/get-system-state context [const/LASTMOD])
-           filepath))]
-    (if filepath
-      (response1 (get-toc context filepath) 200 lastmod true)
-      (response1 [:div] 404 nil))))
 
 (defn check-cache-lastmod [request last-mod]
   (let [if-modified-since
@@ -442,13 +95,7 @@
   ^{:http {:path "/:path*"}}
   render-file-view
   [context request]
-  (let [uri (:uri request)
-        uri-without-partial
-        (cond-> uri
-          (str/ends-with? uri "?partial=true")
-          (subs 0 (- (count uri)
-                     (count "?partial=true"))))
-        partial? (= uri uri-without-partial)]
+  (let [uri (:uri request)]
 
     (cond
 
@@ -467,15 +114,12 @@
       (resp/resource-response uri)
 
       :else
-      (let [filepath (indexing/uri->filepath context uri-without-partial)]
-        (if filepath
-          (let [lastmod
-                (get
-                 (system/get-system-state context [const/LASTMOD])
-                 filepath)
+      (let [filepath (indexing/uri->filepath context uri)]
+       (if filepath
+          (let [lastmod (indexing/get-lastmod context filepath)
                 etag (utils/etag lastmod)]
             (if (or (check-cache-etag request lastmod)
-                         (check-cache-lastmod request lastmod))
+                    (check-cache-lastmod request lastmod))
               {:status 304
                :headers {"Cache-Control" "public, max-age=86400"
                          "Last-Modified" lastmod
@@ -483,18 +127,21 @@
               (let [title (:title (get (indexing/file->uri-idx context) filepath))
                     {:keys [description content]}
                     (render-file context filepath)]
-                (layout
+                (layout/layout
                  context request
                  {:content content
+                  :lastmod lastmod
                   :title title
                   :description description
-                  :filepath filepath}))))
+                  :filepath filepath
+                  :base-url base-url}))))
 
-          (layout
+          (layout/layout
            context request
-           {:content
+           {:base-url base-url
+            :content
             {:status 404
-             :body (not-found-view context uri-without-partial)}
+             :body (not-found/not-found-view context uri)}
             :title "Not found"
             :description "Page not found"}))))))
 
@@ -537,53 +184,6 @@
   {:services ["http" "uui" "gitbok.core"]
    :http {:port port}})
 
-(defn
-  ^{:http {:path "/search"}}
-  search-view
-  [context request]
-  (layout
-   context request
-   {:content
-    [:div.flex.flex-col.items-center.min-h-screen.bg-gray-50.p-4
-     [:div.w-full.max-w-2xl.mt-8
-      [:div.relative
-       [:input#search-input.w-full.px-4.py-3.text-lg.rounded-lg.border.border-gray-300.shadow-sm.focus:outline-none.focus:ring-2.focus:ring-blue-500.focus:border-transparent
-        {:type "text"
-         :name "q"
-         :placeholder "Search documentation..."
-         :hx-get "/search/results"
-         :hx-trigger "keyup changed delay:500ms, search"
-         :hx-target "#search-results"
-         :hx-indicator ".htmx-indicator"}]
-       [:div.htmx-indicator.absolute.right-3.top-3
-        [:div.animate-spin.rounded-full.h-6.w-6.border-b-2.border-blue-500]]]
-      [:div#search-results.mt-4.space-y-4]]]
-    :title "Search"
-    :description "Search"}))
-
-(defn
-  ^{:http {:path "/search/results"}}
-  search-results-view
-  [context request]
-  (let [query (get-in request [:query-params :q])
-        results (gitbok.search/search context query)
-        results
-        (mapv
-         (fn [res]
-           (assoc res :uri
-                  (indexing/filepath->uri context (-> res :hit :filepath))))
-         results)]
-    (layout
-     context request
-     {:content
-      [:div.space-y-4
-       (if (empty? results)
-         [:div.text-gray-500.text-center.py-4 "No results found"]
-         (for [result results]
-           (gitbok.search/page-view result)))]
-      :title "Search results"
-      :description "Search results"})))
-
 (defn gzip-middleware [f]
   (fn [ctx req]
     (let [ring-handler (fn [req] (f ctx req))
@@ -614,45 +214,37 @@
    context
    (markdown/get-parsed-markdown-index context))
   ;; 7. render it on start
-  (render-all!
+  (markdown/render-all!
    context
-   (markdown/get-parsed-markdown-index context))
+   (markdown/get-parsed-markdown-index context) read-markdown-file)
   (println "generating sitemap.xml")
   ;; 8. generate sitemap.xml
-  (sitemap/set-sitemap context base-url
-                       (edamame/parse-string (utils/slurp-resource "lastmod.edn")))
-
-  (system/set-system-state
+  (sitemap/set-sitemap
    context
-   [const/LASTMOD]
+   base-url
    (edamame/parse-string (utils/slurp-resource "lastmod.edn")))
+
+  (indexing/set-lastmod context)
 
   (http/register-endpoint
    context
    {:path "/search"
     :method :get
     :middleware [gzip-middleware]
-    :fn #'search-view})
+    :fn #'gitbok.ui.search/search-view})
 
   (http/register-endpoint
    context
    {:path "/search/results"
     :method :get
     :middleware [gzip-middleware]
-    :fn #'search-results-view})
+    :fn #'gitbok.ui.search/search-results-view})
 
   (http/register-endpoint
    context
    {:path "/sitemap.xml"
     :method :get
     :fn #'sitemap-xml})
-
-  (http/register-endpoint
-   context
-   {:path "/sitemap-pages.xml"
-    :method :get
-    :middleware [gzip-middleware]
-    :fn #'sitemap-pages-xml})
 
   (http/register-endpoint
    context
@@ -673,7 +265,14 @@
    {:path "/toc/:path*"
     :method :get
     :middleware [gzip-middleware]
-    :fn #'get-toc-view})
+    :fn #'right-toc/get-toc-view})
+
+  ;; (http/register-endpoint
+  ;;  context
+  ;;  {:path "/navigation"
+  ;;   :method :get
+  ;;   :middleware [gzip-middleware]
+  ;;   :fn #'left-navigation/get-navigation-view})
 
   (println "setup done!")
   (println "PORT env " (System/getenv "PORT"))

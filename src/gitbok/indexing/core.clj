@@ -6,6 +6,7 @@
    [gitbok.indexing.impl.search-index :as search-index]
    [gitbok.indexing.impl.file-to-uri :as file-to-uri]
    [gitbok.constants :as const]
+   [edamame.core :as edamame]
    [system]
    [clojure.string :as str]
    [gitbok.utils :as utils]
@@ -136,3 +137,15 @@
          context
          filepath
          href))))
+
+(defn get-lastmod [context filepath]
+  (when filepath
+    (get
+      (system/get-system-state context [const/LASTMOD])
+      filepath)))
+
+(defn set-lastmod [context]
+  (system/set-system-state
+   context
+   [const/LASTMOD]
+   (edamame/parse-string (utils/slurp-resource "lastmod.edn"))))
