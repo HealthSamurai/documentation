@@ -22,17 +22,22 @@
         (str/replace #"^/" ""))))
 
 (defn render-markdown-link-in-toc [title href]
-  [:a {:class "block py-1.5 text-tint-strong/70 hover:bg-tint-hover hover:text-tint-strong transition-colors duration-200 rounded-md mx-2 my-0.5 clickable-summary"
-       :href href
-       :data-hx-nav true
-       :hx-get (str href "?partial=true")
-       :hx-target "#content"
-       :hx-push-url href
-       :hx-swap "outerHTML"}
-   [:span {:class "flex items-center gap-2 mx-2"}
-    title
-    (when (str/starts-with? href "http")
-      (ico/arrow-top-right-on-square "size-4 text-tint-strong/40"))]])
+  (let [is-external (str/starts-with? href "http")
+        link-attrs {:class "block py-1.5 text-tint-strong/70 hover:bg-tint-hover hover:text-tint-strong transition-colors duration-200 rounded-md mx-2 my-0.5 clickable-summary"
+                    :href href}]
+    [:a (cond-> link-attrs
+          is-external (assoc :target "_blank" :rel "noopener noreferrer")
+          (not is-external) (assoc :data-hx-nav true
+                                  :hx-get (str href "?partial=true")
+                                  :hx-target "#content"
+                                  :hx-push-url href
+                                  :hx-swap "outerHTML"
+                                  :hx-boost "false"
+                                  :data-hx-boost "false"))
+     [:span {:class "flex items-center gap-2 mx-2"}
+      title
+      (when is-external
+        (ico/arrow-top-right-on-square "size-4 text-tint-strong/40"))]]))
 
 (defn parse-md-link [line]
   (when-let [match (re-find #"\[(.*?)\]\((.*?)\)"

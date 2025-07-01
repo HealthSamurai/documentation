@@ -50,7 +50,7 @@
     [:meta {:name "robots" :content "index, follow"}]
 
     [:meta {:name "htmx-config",
-            :content "{\"scrollIntoViewOnBoost\":false,\"scrollBehavior\":\"smooth\"}"}]
+            :content "{\"scrollIntoViewOnBoost\":false,\"scrollBehavior\":\"smooth\",\"allowEval\":false}"}]
     [:link {:rel "icon" :type "image/x-icon" :href "/favicon.ico"}]
     [:link {:rel "shortcut icon" :type "image/x-icon" :href "/favicon.ico"}]
     [:link {:rel "apple-touch-icon" :href "/favicon.ico"}]
@@ -105,7 +105,9 @@
            (layout-view context body uri filepath)
            {:title title :description description
             :canonical-url
-            (if (get request :/) base-url (when base-url (utils/concat-urls base-url uri)))
+            (if (get request :/)
+             base-url
+             (when base-url (utils/concat-urls base-url uri)))
             :og-preview
             (when base-url
               (utils/concat-urls

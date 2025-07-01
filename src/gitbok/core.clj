@@ -1,6 +1,5 @@
 (ns gitbok.core
   (:require
-   [gitbok.constants :as const]
    [gitbok.indexing.impl.sitemap :as sitemap]
    [edamame.core :as edamame]
    [clojure.string :as str]
@@ -15,7 +14,6 @@
    [gitbok.ui.layout :as layout]
    [gitbok.ui.not-found :as not-found]
    [gitbok.ui.search]
-   [gitbok.ui.left-navigation :as left-navigation]
    [ring.middleware.gzip :refer [wrap-gzip]]
    [gitbok.http]
    [http]
@@ -114,7 +112,7 @@
 
       :else
       (let [filepath (indexing/uri->filepath context uri)]
-       (if filepath
+        (if filepath
           (let [lastmod (indexing/get-lastmod context filepath)
                 etag (utils/etag lastmod)]
             (if (or (check-cache-etag request lastmod)

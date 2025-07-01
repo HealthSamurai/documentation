@@ -2,29 +2,24 @@
 
 ## Most important
 
-- [ ] fix 503
 - [ ] analytics
-- [ ] new UI to move pages (handles references and creates redirect)
 - [ ] handle prefix e.g. localhost:8081/docs
+- [ ] fix 503 between updates
+- [ ] new UI to move pages (handles references and creates redirect)
 
 # bugs/techdebt
 
 - [ ] code bug http://localhost:8081/deprecated/deprecated/entity-attribute/custom-resources-using-entity
 - [ ] browser history api is buggy
-- [ ] {% code title="Status: 200" lineNumbers="true" %}
 - [ ] handle next/prev buttons with long titles
-- [ ] next/prev order is strange
 - [ ] rm huge image history from repo
-- [ ] next/prev arrow keys do not use htmx
 - [ ] redirects with sections should work api-1/api/search-1/search-parameters-list/\_explain: api/rest-api/aidbox-search.md#aidbox-special-search-parameters
 - [ ] test page-link->uri function
-- [ ] cannot open new page in separate link in navigation
 - [ ] bug http://localhost:8081/deprecated/deprecated/other/other-deprecated-tutorials/automatically-archive-auditevent-resources-in-gcp-storage-guide
 - [ ] cant see the header when pressing on heading link (have to scroll)
 - [ ] http://localhost:8081/deprecated/deprecated/zen-related/aidbox-zen-lang-project/set-up-and-use-configuration-projects
 - [ ] http://localhost:8081/deprecated/deprecated/zen-related/aidbox-zen-lang-project/enable-igs
 - [ ] enhance search ui
-- [ ] title in htmx
 
 ## UX
 
@@ -36,8 +31,6 @@
 
 - [ ] intercom
 - [ ] copy button in code
-- [ ] descriptions
-- [ ] last updated
 - [ ] rag
 - [ ] tracking
 - [ ] pretty render system resource reference
