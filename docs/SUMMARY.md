@@ -96,6 +96,7 @@
     * [Migrate from legacy licence portal to Aidbox portal](tutorials/other-tutorials/migrate-from-legacy-licence-portal-to-aidbox-portal.md)
     * [Set up Aidbox with Postman](tutorials/other-tutorials/set-up-aidbox-with-postman.md)
     * [How to run Aidbox in GCP Cloud Run](tutorials/other-tutorials/how-to-run-aidbox-in-gcp-cloud-run.md)
+    * [How to run Aidbox using different Java version](tutorials/other-tutorials/how-to-run-aidbox-in-gcp-cloud-run-1.md)
 
 ## Overview
 
