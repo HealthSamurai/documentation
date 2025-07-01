@@ -155,13 +155,14 @@ To manipulate extraction results before they are processed:
 
 ## Request Tags
 
-Request tags are used to differentiate between different types of requests. They are passed as a property in the `init` object and can be used to identify the request type in the interception function.\
+Request tags are used to differentiate between different types of requests. They are passed as a property in the `init` object and can be used to identify the request type in the interception function.
 The following tags are available:
 
 {% tabs %}
 {% tab title="Builder" %}
+
 | Tag                                                                                  | When                                                          | Description                                         |
-| ------------------------------------------------------------------------------------ | ------------------------------------------------------------- | --------------------------------------------------- |
+|--------------------------------------------------------------------------------------|---------------------------------------------------------------|-----------------------------------------------------|
 | [get-config](request-interception.md#get-config)                                     | During component initialization (if config is referenced)     | Loads SDCConfig for themes, localization, etc.      |
 | [get-theme](request-interception.md#get-theme)                                       | During initialization if config references a theme            | Fetches the theme used by builder.                  |
 | [get-themes](request-interception.md#get-themes)                                     | On initialization or after saving a theme                     | Loads available themes for theme selector.          |
@@ -180,28 +181,50 @@ The following tags are available:
 | [extract](request-interception.md#extract)                                           | When clicking "Extract" in debug panel                        | Extracts resources from the questionnaire response. |
 | [validate-questionnaire](request-interception.md#validate-questionnaire)             | When clicking "Validate Questionnaire" in debug panel         | Validates questionnaire resource.                   |
 | [validate-response](request-interception.md#validate-response)                       | When clicking "Validate Response" in debug panel              | Validates questionnaire response resource           |
+| [validate-bundle](request-interception.md#validate-bundle)                           | When clicking "Extract" in debug panel to validate bundle     | Validates extracted bundle of resources.            |
 | [create-theme](request-interception.md#create-theme)                                 | When saving a new theme                                       | Creates a new QuestionnaireTheme.                   |
 | [save-theme](request-interception.md#save-theme)                                     | When saving changes to an existing theme                      | Updates the theme resource.                         |
+
 {% endtab %}
 
 {% tab title="Renderer" %}
-| Tag                                                                              | When                                                      | Description                                      |
-| -------------------------------------------------------------------------------- | --------------------------------------------------------- | ------------------------------------------------ |
-| [get-config](request-interception.md#get-config)                                 | During component initialization (if config is referenced) | Loads SDCConfig for theming/localization.        |
-| [get-theme](request-interception.md#get-theme)                                   | During initialization if config references a theme        | Fetches the theme used by renderer.              |
-| [get-questionnaire](request-interception.md#get-questionnaire)                   | When loading the form                                     | Fetches the questionnaire by ID.                 |
-| [get-response](request-interception.md#get-response)                             | When loading a saved response                             | Fetches the QuestionnaireResponse resource.      |
-| [search-choice-options](request-interception.md#search-choice-options)           | When opening/searching dropdown for choice item           | Fetches options from a ValueSet or other source. |
-| [get-upload-attachment-link](request-interception.md#get-upload-attachment-link) | When a file is selected in an attachment input            | Fetches the signed url to upload the file.       |
-| [upload-attachment](request-interception.md#upload-attachment)                   | When a file is uploaded to S3-like storage                | Uploads file and returns file URL.               |
-| [get-delete-attachment-link](request-interception.md#get-delete-attachment-link) | When an attachment is cleared by the user                 | Fetches the signed url to delete the file.       |
-| [delete-attachment](request-interception.md#delete-attachment)                   | When an attachment is cleared by the user                 | Deletes the file from storage.                   |
 
-\| [save-response](request-interception.md#save-response) | When auto-saving an in-progress response | Persists progress with `in-progress` status. |\
-\| [repopulate](request-interception.md#repopulate) | When user clicks "Repopulate" | Refreshes form with updated subject/context. |\
-\| [submit-response](request-interception.md#submit-response) | When user clicks "Submit" | Submits or amends the form. |
+| Tag                                                                                | When                                                        | Description                                      |
+|------------------------------------------------------------------------------------|-------------------------------------------------------------|--------------------------------------------------|
+| [get-config](request-interception.md#get-config)                                   | During component initialization (if config is referenced)   | Loads SDCConfig for theming/localization.        |
+| [get-theme](request-interception.md#get-theme)                                     | During initialization if config references a theme          | Fetches the theme used by renderer.              |
+| [get-questionnaire](request-interception.md#get-questionnaire)                     | When loading the form                                       | Fetches the questionnaire by ID.                 |
+| [get-response](request-interception.md#get-response)                               | When loading a saved response                               | Fetches the QuestionnaireResponse resource.      |
+| [search-choice-options](request-interception.md#search-choice-options)             | When opening/searching dropdown for choice item             | Fetches options from a ValueSet or other source. |
+| [get-upload-attachment-link](request-interception.md#get-upload-attachment-link)   | When a file is selected in an attachment input              | Fetches the signed url to upload the file.       |
+| [upload-attachment](request-interception.md#upload-attachment)                     | When a file is uploaded to S3-like storage                  | Uploads file and returns file URL.               |
+| [get-preview-attachment-link](request-interception.md#get-preview-attachment-link) | When preview/download button in attachment input is clicked | Fetches the file content for preview/download.   |
+| [get-delete-attachment-link](request-interception.md#get-delete-attachment-link)   | When an attachment is cleared by the user                   | Fetches the signed url to delete the file.       |
+| [delete-attachment](request-interception.md#delete-attachment)                     | When an attachment is cleared by the user                   | Deletes the file from storage.                   |
+| [save-response](request-interception.md#save-response)                             | When auto-saving an in-progress response                    | Persists progress with `in-progress` status.     |
+| [repopulate](request-interception.md#repopulate)                                   | When user clicks "Repopulate"                               | Refreshes form with updated subject/context.     |
+| [submit-response](request-interception.md#submit-response)                         | When user clicks "Submit"                                   | Submits or amends the form.                      |
+
 {% endtab %}
+
 {% endtabs %}
+
+### get-preview-attachment-link
+
+Triggered in renderer when preview or download button in the attachment input field is clicked.
+
+**Request**
+
+```http
+GET /<file-url> HTTP/1.1
+```
+
+Where `<file-url>` is the URL of the attachment file.
+
+**Response**
+
+The response is the file content, which can be displayed in the browser or downloaded. The response headers should include `Content-Type` to handle the file correctly.
+
 
 ### get-delete-attachment-link
 
@@ -215,7 +238,7 @@ DELETE /$sdc-file/<filepath> HTTP/1.1
 
 Where `<filepath>` is the path of the attachment being deleted.
 
-\*\* Response\*\*
+** Response**
 
 ```json
 {
@@ -841,15 +864,13 @@ Content-Type: application/json
 
 Where `<file-name>` is the path and name of the file being uploaded.
 
-````
-
 **Response**
 
 ```json
 {
   "url": "<upload-url>"
 }
-````
+```
 
 Where `<upload-url>` is the signed URL that can be used to upload the attachment file. This URL is typically a pre-signed URL for S3-like storage services.
 
@@ -918,6 +939,30 @@ Where `<questionnaire-response>` is the response being validated.
 
 Where `<operation-outcome>` is the [operation outcome](https://www.hl7.org/fhir/operationoutcome.html) of the validation.
 
+
+### validate-bundle
+
+Triggered when the "Extract" button is clicked in the builder debug panel to validate the extraction results.
+
+**Request**
+
+```http
+POST /fhir/Bundle/$validate HTTP/1.1
+Content-Type: application/json
+
+<bundle>
+```
+
+Where `<bundle>` is the bundle of resources extracted from the questionnaire response.
+
+**Response**
+
+```json
+<operation-outcome>
+```
+
+Where `<operation-outcome>` is the [operation outcome](https://www.hl7.org/fhir/operationoutcome.html) of the validation.
+
 ## Sequence Diagram
 
 ### Builder
@@ -964,6 +1009,7 @@ sequenceDiagram
 
     User->>Builder: Click "Extract"
     Builder->>Aidbox Server: extract
+    Builder->>Aidbox Server: validate-bundle
 
     User->>Builder: Click "Validate Questionnaire"
     Builder->>Aidbox Server: validate-questionnaire
@@ -1002,7 +1048,11 @@ sequenceDiagram
     Renderer->>Aidbox Server: upload-attachment
 
     User->>Renderer: Remove uploaded file
+    Renderer->>Aidbox Server: get-delete-attachment-link
     Renderer->>Aidbox Server: delete-attachment
+    
+    User->>Renderer: Preview/download file
+    Renderer->>Aidbox Server: get-preview-attachment-link
 
     User->>Renderer: Modify answers in form
     Renderer->>Aidbox Server: save-response
