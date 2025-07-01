@@ -252,13 +252,13 @@
   (let [[[prev-page-url prev-page-title] [next-page-url next-page-title]]
         (summary/get-prev-next-pages context uri)]
     [:div {:class "flex flex-col sm:flex-row justify-between items-center mt-8 pt-4 gap-4"}
-     (if prev-page-url
+     (when prev-page-url
        [:div {:class "flex-1 w-full sm:w-auto"}
         [:a {:href prev-page-url
-             :hx-target "#content"
-             :hx-push-url prev-page-url
-             :hx-get (str prev-page-url "?partial=true")
-             :hx-swap "outerHTML"
+             ;; :hx-target "#content"
+             ;; :hx-push-url prev-page-url
+             ;; :hx-get (str prev-page-url "?partial=true")
+             ;; :hx-swap "outerHTML"
              :class "group text-sm p-2.5 flex gap-4 flex-1 flex-row-reverse items-center pl-4 border border-gray-300 rounded hover:border-orange-500 text-pretty md:p-4 md:text-base"}
          [:span {:class "flex flex-col flex-1 text-right"}
           [:span {:class "text-xs text-gray-500"} "Previous"]
@@ -270,15 +270,14 @@
                 :stroke-width "2"}
           [:path {:stroke-linecap "round"
                   :stroke-linejoin "round"
-                  :d "M15 19l-7-7 7-7"}]]]]
-       uri)
-     (if next-page-url
+                  :d "M15 19l-7-7 7-7"}]]]])
+     (when next-page-url
        [:div {:class "flex-1 w-full sm:w-auto text-left"}
         [:a {:href next-page-url
-             :hx-target "#content"
-             :hx-push-url next-page-url
-             :hx-get (str next-page-url "?partial=true")
-             :hx-swap "outerHTML"
+             ;; :hx-target "#content"
+             ;; :hx-push-url next-page-url
+             ;; :hx-get (str next-page-url "?partial=true")
+             ;; :hx-swap "outerHTML"
              :class "group text-sm p-2.5 flex gap-4 flex-1 items-center pr-4 border border-gray-300 rounded hover:border-orange-500 text-pretty md:p-4 md:text-base"}
          [:span {:class "flex flex-col flex-1"}
           [:span {:class "text-xs text-gray-500"} "Next"]
@@ -290,8 +289,7 @@
                 :stroke-width "2"}
           [:path {:stroke-linecap "round"
                   :stroke-linejoin "round"
-                  :d "M9 5l7 7-7 7"}]]]]
-       uri)]))
+                  :d "M9 5l7 7-7 7"}]]]])]))
 
 (defn content-div [context uri content filepath & [htmx?]]
   [:main#content {:class "flex-1 py-6 max-w-6xl min-w-0 overflow-x-hidden"}
@@ -324,15 +322,15 @@
     (menu (summary/get-summary context) uri)
     [:div {:class "flex-1"}
      (content-div context uri body filepath)]
-    (when-let [filepath (indexing/uri->filepath context uri)]
+    (when filepath
       (get-toc context filepath))]])
 
-(defn response1 [body status lastmod]
+(defn response1 [body status lastmod & [cache?]]
   (let [html (utils/->html body)]
     {:status (or status 200)
      :headers
      (cond-> {"content-type" "text/html; ; charset=utf-8"}
-       lastmod
+       (and true lastmod)
        (assoc
         "Cache-Control" "public, max-age=86400"
         "Last-Modified" (utils/iso-to-http-date lastmod)
@@ -389,11 +387,9 @@
   (let [body (if (map? content) (:body content) content)
         status (if (map? content) (:status content 200) 200)
         hx-current-url (get-in request [:headers "hx-current-url"])
-        uri (or (when hx-current-url
-                  (if (str/includes? hx-current-url "://")
-                    (second (str/split hx-current-url #"://[^/]+"))
-                    hx-current-url))
-                (:uri request))
+        _ (println "hx-current-url " hx-current-url)
+        _ (println "uri uri " (:uri request))
+        uri (:uri request)
         is-hx-target (uui/hx-target request)
         body (cond
                is-hx-target
@@ -404,9 +400,7 @@
                 (layout-view context body uri filepath)
                 {:title title :description description
                  :canonical-url
-                 (if (get request :/)
-                   base-url
-                   (utils/concat-urls base-url uri))
+                 (if (get request :/) base-url (utils/concat-urls base-url uri))
                  :og-preview
                  (utils/concat-urls
                   base-url
@@ -417,8 +411,7 @@
                   (get
                    (system/get-system-state context [const/LASTMOD])
                    filepath))]
-
-    (response1 body status lastmod)))
+    (response1 body status lastmod is-hx-target)))
 
 (defn get-toc-view
   [context request]
@@ -430,7 +423,7 @@
            (system/get-system-state context [const/LASTMOD])
            filepath))]
     (if filepath
-      (response1 (get-toc context filepath) 200 lastmod)
+      (response1 (get-toc context filepath) 200 lastmod true)
       (response1 [:div] 404 nil))))
 
 (defn check-cache-lastmod [request last-mod]
@@ -454,7 +447,8 @@
         (cond-> uri
           (str/ends-with? uri "?partial=true")
           (subs 0 (- (count uri)
-                     (count "?partial=true"))))]
+                     (count "?partial=true"))))
+        partial? (= uri uri-without-partial)]
 
     (cond
 
@@ -481,7 +475,7 @@
                  filepath)
                 etag (utils/etag lastmod)]
             (if (or (check-cache-etag request lastmod)
-                    (check-cache-lastmod request lastmod))
+                         (check-cache-lastmod request lastmod))
               {:status 304
                :headers {"Cache-Control" "public, max-age=86400"
                          "Last-Modified" lastmod
