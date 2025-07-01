@@ -252,11 +252,12 @@
   (let [[[prev-page-url prev-page-title] [next-page-url next-page-title]]
         (summary/get-prev-next-pages context uri)]
     [:div {:class "flex flex-col sm:flex-row justify-between items-center mt-8 pt-4 gap-4"}
-     (when prev-page-url
+     (if prev-page-url
        [:div {:class "flex-1 w-full sm:w-auto"}
         [:a {:href prev-page-url
              :hx-target "#content"
-             :hx-push-url "true"
+             :hx-push-url prev-page-url
+             :hx-get (str prev-page-url "?partial=true")
              :hx-swap "outerHTML"
              :class "group text-sm p-2.5 flex gap-4 flex-1 flex-row-reverse items-center pl-4 border border-gray-300 rounded hover:border-orange-500 text-pretty md:p-4 md:text-base"}
          [:span {:class "flex flex-col flex-1 text-right"}
@@ -269,12 +270,14 @@
                 :stroke-width "2"}
           [:path {:stroke-linecap "round"
                   :stroke-linejoin "round"
-                  :d "M15 19l-7-7 7-7"}]]]])
-     (when next-page-url
+                  :d "M15 19l-7-7 7-7"}]]]]
+       uri)
+     (if next-page-url
        [:div {:class "flex-1 w-full sm:w-auto text-left"}
         [:a {:href next-page-url
              :hx-target "#content"
-             :hx-push-url "true"
+             :hx-push-url next-page-url
+             :hx-get (str next-page-url "?partial=true")
              :hx-swap "outerHTML"
              :class "group text-sm p-2.5 flex gap-4 flex-1 items-center pr-4 border border-gray-300 rounded hover:border-orange-500 text-pretty md:p-4 md:text-base"}
          [:span {:class "flex flex-col flex-1"}
@@ -287,7 +290,8 @@
                 :stroke-width "2"}
           [:path {:stroke-linecap "round"
                   :stroke-linejoin "round"
-                  :d "M9 5l7 7-7 7"}]]]])]))
+                  :d "M9 5l7 7-7 7"}]]]]
+       uri)]))
 
 (defn content-div [context uri content filepath & [htmx?]]
   [:main#content {:class "flex-1 py-6 max-w-6xl min-w-0 overflow-x-hidden"}
@@ -299,10 +303,11 @@
          (get
           (system/get-system-state context [const/LASTMOD])
           filepath)]
-     [:p {:class "mt-4 text-gray-600"
-          :id "lastupdated"
-          :data-updated-at lastupdated}
-      "Last updated " lastupdated])])
+     (when lastupdated
+       [:p {:class "mt-4 text-gray-600"
+            :id "lastupdated"
+            :data-updated-at lastupdated}
+        "Last updated " lastupdated]))])
 
 (defn get-toc [context filepath]
   (let [rendered (get-rendered context filepath)]
@@ -327,7 +332,7 @@
     {:status (or status 200)
      :headers
      (cond-> {"content-type" "text/html; ; charset=utf-8"}
-       true
+       lastmod
        (assoc
         "Cache-Control" "public, max-age=86400"
         "Last-Modified" (utils/iso-to-http-date lastmod)
@@ -408,9 +413,10 @@
                   (str "public/og-preview/"
                        (when filepath (str/replace filepath #".md" ".png"))))}))
 
-        lastmod (get
-                 (system/get-system-state context [const/LASTMOD])
-                 filepath)]
+        lastmod (when filepath
+                  (get
+                   (system/get-system-state context [const/LASTMOD])
+                   filepath))]
 
     (response1 body status lastmod)))
 
@@ -444,10 +450,11 @@
   render-file-view
   [context request]
   (let [uri (:uri request)
-        uri-without-partial (cond-> uri
-                              (str/ends-with? uri "?partial=true")
-                              (subs 0 (- (count uri)
-                                         (count "?partial=true"))))]
+        uri-without-partial
+        (cond-> uri
+          (str/ends-with? uri "?partial=true")
+          (subs 0 (- (count uri)
+                     (count "?partial=true"))))]
 
     (cond
 
@@ -474,7 +481,7 @@
                  filepath)
                 etag (utils/etag lastmod)]
             (if (or (check-cache-etag request lastmod)
-                     (check-cache-lastmod request lastmod))
+                    (check-cache-lastmod request lastmod))
               {:status 304
                :headers {"Cache-Control" "public, max-age=86400"
                          "Last-Modified" lastmod

@@ -150,6 +150,7 @@
 
 (defn normalize-uri [uri]
   (-> uri
+      (str/replace #"\?partial=true" "")
       (str/replace #"^https?://[^/]+" "")
       (str/replace #"^/" "")
       (str/replace #"\.md$" "")
