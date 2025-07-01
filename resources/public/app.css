@@ -210,6 +210,9 @@ strong {
 
 #content pre {
   @apply border border-gray-200 text-gray-800 rounded-lg overflow-x-auto max-w-full shadow-sm;
+  white-space: pre;
+  word-wrap: normal;
+  overflow-wrap: normal;
 }
 
 #content pre + pre {
@@ -218,6 +221,29 @@ strong {
 
 #content pre code {
   @apply text-base leading-relaxed block p-4;
+  white-space: pre;
+  word-wrap: normal;
+  overflow-wrap: normal;
+}
+
+/* Mobile code scrolling */
+@media (max-width: 767px) {
+  #content pre {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    max-width: 100vw;
+    margin-left: -1rem;
+    margin-right: -1rem;
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+  
+  #content pre code {
+    min-width: max-content;
+    white-space: pre;
+    word-wrap: normal;
+    overflow-wrap: normal;
+  }
 }
 
 /* Hint styles - remove extra margins */

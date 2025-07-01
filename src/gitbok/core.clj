@@ -96,7 +96,6 @@
   render-file-view
   [context request]
   (let [uri (:uri request)]
-
     (cond
 
       (= uri "/favicon.ico")
@@ -266,13 +265,6 @@
     :method :get
     :middleware [gzip-middleware]
     :fn #'right-toc/get-toc-view})
-
-  ;; (http/register-endpoint
-  ;;  context
-  ;;  {:path "/navigation"
-  ;;   :method :get
-  ;;   :middleware [gzip-middleware]
-  ;;   :fn #'left-navigation/get-navigation-view})
 
   (println "setup done!")
   (println "PORT env " (System/getenv "PORT"))
