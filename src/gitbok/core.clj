@@ -504,12 +504,6 @@
    :headers {"content-type" "application/xml"}
    :body (sitemap/get-sitemap context)})
 
-(defn sitemap-pages-xml
-  [context _]
-  {:status 200
-   :headers {"content-type" "application/xml"}
-   :body (sitemap/get-sitemap-pages context)})
-
 (defn
   ^{:http {:path "/"}}
   redirect-to-readme
@@ -625,16 +619,12 @@
    (markdown/get-parsed-markdown-index context))
   (println "generating sitemap.xml")
   ;; 8. generate sitemap.xml
-  (sitemap/set-sitemap context base-url)
+  (sitemap/set-sitemap context base-url
+                       (edamame/parse-string (utils/slurp-resource "lastmod.edn")))
 
   (system/set-system-state
    context
    [const/LASTMOD]
-   (edamame/parse-string (utils/slurp-resource "lastmod.edn")))
-
-  (sitemap/set-sitemap-pages
-   context
-   base-url
    (edamame/parse-string (utils/slurp-resource "lastmod.edn")))
 
   (http/register-endpoint

@@ -13,7 +13,7 @@
    [:priority priority ]
    [:lastmod lastmod]])
 
-(defn generate-sitemap-pages [context base-url all-related-urls lastmod-page]
+(defn generate-sitemap [context base-url all-related-urls lastmod-page]
   (let [content
         (mapv
          (fn [related-url]
@@ -43,29 +43,15 @@
           content))]
     (xml/emit-str urlset)))
 
-(defn set-sitemap [context base-url]
+(defn set-sitemap [context base-url lastmod]
   (system/set-system-state
    context
    [const/SITEMAP]
-   (xml/emit-str
-    (xml/sexp-as-element
-     [:sitemapindex
-      {:xmlns "http://www.sitemaps.org/schemas/sitemap/0.9"}
-      [:sitemap
-       [:loc (str base-url "/sitemap-pages.xml")]]]))))
-
-(defn get-sitemap [context]
-  (system/get-system-state context [const/SITEMAP]))
-
-(defn set-sitemap-pages [context base-url lastmod]
-  (system/set-system-state
-   context
-   [const/SITEMAP_PAGES]
-   (generate-sitemap-pages
+   (generate-sitemap
     context
     base-url
     (uri-to-file/all-urls context)
     lastmod)))
 
-(defn get-sitemap-pages [context]
-  (system/get-system-state context [const/SITEMAP_PAGES]))
+(defn get-sitemap [context]
+  (system/get-system-state context [const/SITEMAP]))
