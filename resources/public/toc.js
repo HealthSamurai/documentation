@@ -50,7 +50,6 @@ window.addEventListener("popstate", () => {
 });
 
 function updateActiveNavItem(pathname) {
-  console.log('updateActiveNavItem', pathname);
   // Remove active class from all navigation links
   const allLinks = document.querySelectorAll('#navigation a');
   allLinks.forEach(a => {
@@ -61,7 +60,7 @@ function updateActiveNavItem(pathname) {
   const matchingLink = document.querySelector(`#navigation a[href="${pathname}"]`);
   if (matchingLink) {
     matchingLink.classList.add('active');
-    
+
     // Open parent details if needed
     const details = matchingLink.closest('details');
     if (details && !details.open) {
@@ -95,7 +94,7 @@ document.addEventListener('DOMContentLoaded', function() {
   navLinks.forEach(link => {
     link.setAttribute('data-hx-boost', 'false');
   });
-  
+
   // Update active navigation item on page load
   updateActiveNavItem(window.location.pathname);
 });

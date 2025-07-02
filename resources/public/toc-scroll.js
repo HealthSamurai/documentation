@@ -6,6 +6,28 @@ document.addEventListener('DOMContentLoaded', function() {
 
   if (tocLinks.length === 0 || headings.length === 0) return;
 
+  // Handle TOC link clicks with smooth scrolling and header offset
+  tocLinks.forEach(link => {
+    link.addEventListener('click', function(e) {
+      const href = this.getAttribute('href');
+      if (href && href.startsWith('#')) {
+        e.preventDefault();
+        const targetId = href.substring(1);
+        const targetElement = document.getElementById(targetId);
+        
+        if (targetElement) {
+          const headerHeight = 64; // 4rem = 64px
+          const targetPosition = targetElement.offsetTop - headerHeight - 20; // Extra 20px for breathing room
+          
+          window.scrollTo({
+            top: targetPosition,
+            behavior: 'smooth'
+          });
+        }
+      }
+    });
+  });
+
   // Function to escape CSS selector
   function escapeCssSelector(selector) {
     return selector.replace(/[!"#$%&'()*+,.\/:;<=>?@[\\\]^`{|}~]/g, '\\$&');
@@ -69,6 +91,27 @@ document.addEventListener('htmx:afterSwap', function(event) {
       const tocLinks = document.querySelectorAll('.toc a[href^="#"]');
       const headings = document.querySelectorAll('h1[id], h2[id], h3[id], h4[id], h5[id], h6[id]');
 
+      // Re-add click handlers for TOC links
+      tocLinks.forEach(link => {
+        link.addEventListener('click', function(e) {
+          const href = this.getAttribute('href');
+          if (href && href.startsWith('#')) {
+            e.preventDefault();
+            const targetId = href.substring(1);
+            const targetElement = document.getElementById(targetId);
+            
+            if (targetElement) {
+              const headerHeight = 64; // 4rem = 64px
+              const targetPosition = targetElement.offsetTop - headerHeight - 20; // Extra 20px for breathing room
+              
+              window.scrollTo({
+                top: targetPosition,
+                behavior: 'smooth'
+              });
+            }
+          }
+        });
+      });
 
       if (tocLinks.length > 0 && headings.length > 0) {
         // Update active section
