@@ -573,7 +573,7 @@ parameter:
 
 ## How to populate items with Factory API
 
-Populating Choice items can be complicated bacause it needs Coding type answer or it can use ValueSet. FHIRPath expression supports Factory API which makes populating more easily.
+Populating Choice items can be complicated bacause it needs Coding type answer or it can use ValueSet. FHIRPath expression supports [Factory API](https://build.fhir.org/fhirpath.html#factory) which makes populating more easily.
 
 ### 1. Populating a choice item:
 
