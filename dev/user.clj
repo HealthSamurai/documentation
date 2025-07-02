@@ -7,13 +7,22 @@
    [gitbok.indexing.impl.file-to-uri :as file-to-uri]
    [gitbok.indexing.impl.summary :as summary]
    [gitbok.core :as gitbok]
+   [clj-reload.core :as reload]
    [gitbok.markdown.core :as markdown]))
 
 (comment
-  (dev/update-libs)
+
+  (reload/init {:dirs ["src"]})
 
   (def context (system/start-system gitbok/default-config))
-  (system/stop-system context)
+
+  (reload/reload)
+
+  (do (reload/reload)
+      (system/stop-system context)
+      (def context (system/start-system gitbok/default-config)))
+
+  (dev/update-libs)
 
   (def uri->file-idx
     (uri-to-file/get-idx context))

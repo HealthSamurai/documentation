@@ -46,7 +46,9 @@
                  cider/cider-nrepl             {:mvn/version "LATEST"}
                  cider/piggieback              {:mvn/version "0.5.3"}
                  zprint/zprint                 {:mvn/version "1.2.9"}
-                 hashp/hashp                   {:mvn/version "0.2.2"}}
+                 hashp/hashp                   {:mvn/version "0.2.2"}
+                 io.github.tonsky/clj-reload {:mvn/version "0.9.8"}
+                 io.github.tonsky/clojure-plus {:mvn/version "1.6.1"}}
 
    :main-opts   ["-m" "nrepl.cmdline"
                  "-b" "0.0.0.0"

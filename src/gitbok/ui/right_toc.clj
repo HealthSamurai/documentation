@@ -42,7 +42,7 @@
 (defn render-right-toc [parsed]
   (when (:toc parsed)
     [:nav#toc-container {:class "toc-container sticky top-16 h-[calc(100vh-4rem)] overflow-y-auto p-6 bg-white w-60 rounded-lg z-50"
-           :aria-label "On-page navigation"}
+                         :aria-label "On-page navigation"}
      [:div {:class "toc w-full max-w-full"}
       (for [item (-> parsed :toc :children first :children)]
         (render-right-toc-item item))]]))

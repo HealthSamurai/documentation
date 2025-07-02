@@ -60,10 +60,10 @@
                           (group-by :type))
         good-headings
         (merge
-          (dissoc groupped-by-type :heading)
-          (flatten-headings-to-map
-            (heading-level-preprocess
-              (:heading groupped-by-type))))
+         (dissoc groupped-by-type :heading)
+         (flatten-headings-to-map
+          (heading-level-preprocess
+           (:heading groupped-by-type))))
         good-text
         (update good-headings :text process-text)
         paragraphs (process-paragraph (:paragraph good-text))
@@ -136,11 +136,34 @@
            (when-not title
              (throw (Exception. (str "Cannot find title in " title))))
            (assoc
-             (parsed-md->pre-index
-               (:content parsed)
-               title)
-             :filepath filepath))
+            (parsed-md->pre-index
+             (:content parsed)
+             title)
+            :filepath filepath))
          parsed-md-idx)))
+
+(defn clean-search-res [search-res]
+  (update search-res :hit
+          (fn [hit-map]
+            (cond-> hit-map
+
+              (= "-" (:title hit-map))
+              (dissoc :title)
+
+              (= "-" (:h1 hit-map))
+              (dissoc :h1)
+
+              (= "-" (:h2 hit-map))
+              (dissoc :h2)
+
+              (= "-" (:h3 hit-map))
+              (dissoc :h3)
+
+              (= "-" (:h4 hit-map))
+              (dissoc :h4)
+
+              (= "-" (:text hit-map))
+              (dissoc :text)))))
 
 (defn search [index q]
   (let [fields [[:title 100]
@@ -169,7 +192,7 @@
                 (-> result
                     (update :score (partial * priority))
                     (assoc :hit-by field)
-                    (assoc :filepath ()))))))
+                    (clean-search-res))))))
 
      (flatten)
      (distinct)

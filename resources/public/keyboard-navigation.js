@@ -32,3 +32,20 @@ document.addEventListener('keydown', function (event) {
     }
   }
 });
+
+document.addEventListener('DOMContentLoaded', function() {
+    // Focus search input if on search page
+    const searchInput = document.getElementById('search-input');
+    if (searchInput && window.location.pathname === '/search') {
+        searchInput.focus();
+    }
+
+    // Keyboard shortcuts
+    document.addEventListener('keydown', function(e) {
+        // Cmd/Ctrl + K for search
+        if ((e.metaKey || e.ctrlKey) && e.key === 'k') {
+            e.preventDefault();
+            window.location.href = '/search';
+        }
+    });
+});

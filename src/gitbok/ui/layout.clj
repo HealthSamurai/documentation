@@ -94,6 +94,7 @@
         status (if (map? content) (:status content 200) 200)
         uri (:uri request)
         is-hx-target (uui/hx-target request)
+        is-search-page (str/includes? uri "/search")
         body
         (cond
           is-hx-target
@@ -116,7 +117,9 @@
             :lastmod lastmod
             :favicon-url (gitbok.http/get-prefixed-url context "/favicon.ico")}))
 
-        lastmod (when filepath
-                  (or lastmod
-                      (indexing/get-lastmod context filepath)))]
+        lastmod (if is-search-page
+                  nil
+                  (when filepath
+                    (or lastmod
+                        (indexing/get-lastmod context filepath))))]
     (gitbok.http/response1 body status lastmod)))
