@@ -100,8 +100,9 @@
       [:script {:src "/static/http.min.js"}]
       [:script {:src "/static/graphql.min.js"}]
       [:script
+       {:defer true}
        (uui/raw
-        "if ( document.querySelectorAll('pre code:not(.hljs)') > 0) { hljs.highlightAll(); } setTimeout(function() { if (typeof initializeCopyButtons === 'function') { initializeCopyButtons(); } }, 100);")]])
+        "if ( document.querySelectorAll('pre code:not(.hljs)') > 0 && (typeof hljs !== 'undefined')) { hljs.highlightAll(); } setTimeout(function() { if (typeof initializeCopyButtons === 'function') { initializeCopyButtons(); } }, 100);")]])
    (if (= 1 (count (:content parsed)))
      (render-empty-page context filepath title)
      (markdown/render-md context filepath parsed))])
