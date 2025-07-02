@@ -1,3 +1,9 @@
+// Global function to escape CSS selector
+window.escapeCssSelector = function(selector) {
+  if (!selector) return '';
+  return selector.replace(/[!"#$%&'()*+,.\/:;<=>?@[\\\]^`{|}~]/g, '\\$&');
+};
+
 // TOC Scroll Spy - tracks active section on scroll
 document.addEventListener('DOMContentLoaded', function() {
 
@@ -28,10 +34,7 @@ document.addEventListener('DOMContentLoaded', function() {
     });
   });
 
-  // Function to escape CSS selector
-  function escapeCssSelector(selector) {
-    return selector.replace(/[!"#$%&'()*+,.\/:;<=>?@[\\\]^`{|}~]/g, '\\$&');
-  }
+
 
   // Function to determine active section
   function updateActiveSection() {
@@ -57,8 +60,8 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 
     // Add active class to current section
-    if (currentSection) {
-      const escapedId = escapeCssSelector(currentSection);
+    if (currentSection && typeof window.escapeCssSelector === 'function') {
+      const escapedId = window.escapeCssSelector(currentSection);
       const activeLink = document.querySelector(`.toc a[href="#${escapedId}"]`);
       if (activeLink) {
         activeLink.classList.add('active');
@@ -133,8 +136,8 @@ document.addEventListener('htmx:afterSwap', function(event) {
           link.classList.remove('active');
         });
 
-        if (currentSection) {
-          const escapedId = escapeCssSelector(currentSection);
+        if (currentSection && typeof window.escapeCssSelector === 'function') {
+          const escapedId = window.escapeCssSelector(currentSection);
           const activeLink = document.querySelector(`.toc a[href="#${escapedId}"]`);
           if (activeLink) {
             activeLink.classList.add('active');
