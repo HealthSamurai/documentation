@@ -570,3 +570,67 @@ parameter:
       valueReference:
         reference: Encounter/enc-1
 ```
+
+## How to populate items with Factory API
+
+Populating Choice items can be complicated bacause it needs Coding type answer or it can use ValueSet. FHIRPath expression supports Factory API which makes populating more easily.
+
+### 1. Populating a choice item:
+
+Populating patient's gender is tricky because `Patient.gender` is a code while choice item has Coding type. In this case you need to filter out existing options by match code with `Patient.gender`:
+
+```
+%qitem.answerOption.valueCoding.where(code=%subject.gender)
+```
+
+With factory api it becomes:
+
+```
+%factory.Coding(system, code, display, version)
+```
+
+Also it supports variables `%patient` or `%subject` . Let's populate patient' gender into Choice item using Factory API.
+
+For this example we will use:
+
+* `%subject` parameter, which will contain `Patient` resource;
+* `FHIRPath` expressions to retrieve data;
+* `%factory()` expression for construct coding answer.
+
+```
+%factory.Coding(%subject.gender.coding.system, %subject.gender.coding.code, %subject.gender.coding.display, %subject.gender.coding.version)
+```
+
+Now call `$populate` operation or press `Populate` button with subject patient into debug panel and see QuestionnaireResponse:
+
+```
+item:
+        - linkId: NuUi_eHv
+          text: Gender
+          answer:
+            - valueCoding:
+                system: system
+                code: male
+                display: Male
+                version: '2'
+```
+
+### 2. Populating a choice item with answerValueSet
+
+In populate time we don't know codes in ValueSet that is linked to question. So populate these items is impossible. But with Factory API, we could construct coding. For example let's populate patient's marital status into choice item which uses ValueSet [`http://hl7.org/fhir/ValueSet/marital-status`](http://hl7.org/fhir/ValueSet/marital-status)&#x20;
+
+```
+%factory.Coding(%subject.maritalStatus.coding.system, %subject.maritalStatus.coding.code, %subject.maritalStatus.coding.display, %subject.maritalStatus.coding.version)
+```
+
+Now call `$populate` operation or press `Populate` button with subject patient into debug panel and see QuestionnaireResponse:
+
+```
+linkId: Marital Status
+          text: Marital Status
+          answer:
+            - valueCoding:
+                system: http://terminology.hl7.org/CodeSystem/v3-MaritalStatus
+                code: D
+                display: Divorced
+```

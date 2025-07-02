@@ -21,7 +21,7 @@
   * Added the ability to update or delete a custom StructureDefinition.
   * Improvements in license management functionality.
 * Aidbox Forms
-  * Supported the FHIRPath Factory API for populating a choice item with answerValueSet and other use cases.
+  * Supported the FHIRPath Factory API for populating a choice item with answerValueSet and other use cases. See the [How-to guide](../modules/aidbox-forms/aidbox-ui-builder-alpha/form-creation/how-to-guides/how-to-populate-forms-with-data.md#how-to-populate-items-with-factory-api) for more details.
   * Supported the [`answerExpression` feature ](../modules/aidbox-forms/aidbox-ui-builder-alpha/form-creation/widgets.md#choice)to dynamically fetch answerOptions via FHIRQuery or filter answerOptions using FHIRPath. See the [How-to guide](../modules/aidbox-forms/aidbox-ui-builder-alpha/form-creation/how-to-guides/how-to-use-answer-expression-into-forms.md) for more details.
   * Implemented the ability to add and edit [custom extensions](../modules/aidbox-forms/aidbox-ui-builder-alpha/form-creation/widgets.md#extensions) in the Form Builder.
   * Added the ability to[ download file attachments](../modules/aidbox-forms/aidbox-ui-builder-alpha/form-creation/widgets.md#attachment).
