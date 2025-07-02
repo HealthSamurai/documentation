@@ -48,6 +48,7 @@
             stripped)))
        :toc (right-toc/render-right-toc parsed)}
       (catch Exception e
+        (println "cannot render file " filepath)
         {:content [:div {:role "alert"}
                    (.getMessage e)
                    [:pre (pr-str e)]

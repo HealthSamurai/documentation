@@ -3,14 +3,11 @@
 ## Most important
 
 - [ ] analytics
-- [ ] handle prefix e.g. localhost:8081/docs
-- [ ] fix 503 between updates
 - [ ] new UI to move pages (handles references and creates redirect)
 
 # bugs/techdebt
 
 - [ ] code bug http://localhost:8081/deprecated/deprecated/entity-attribute/custom-resources-using-entity
-- [ ] browser history api is buggy
 - [ ] handle next/prev buttons with long titles
 - [ ] rm huge image history from repo
 - [ ] redirects with sections should work api-1/api/search-1/search-parameters-list/\_explain: api/rest-api/aidbox-search.md#aidbox-special-search-parameters

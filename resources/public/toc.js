@@ -45,6 +45,31 @@ document.addEventListener('click', function (e) {
   });
 });
 
+window.addEventListener("popstate", () => {
+  updateActiveNavItem(window.location.pathname);
+});
+
+function updateActiveNavItem(pathname) {
+  console.log('updateActiveNavItem', pathname);
+  // Remove active class from all navigation links
+  const allLinks = document.querySelectorAll('#navigation a');
+  allLinks.forEach(a => {
+    a.classList.remove('active');
+  });
+
+  // Find the matching link and add active class
+  const matchingLink = document.querySelector(`#navigation a[href="${pathname}"]`);
+  if (matchingLink) {
+    matchingLink.classList.add('active');
+    
+    // Open parent details if needed
+    const details = matchingLink.closest('details');
+    if (details && !details.open) {
+      details.open = true;
+    }
+  }
+}
+
 document.addEventListener('keydown', function (e) {
   if ((e.ctrlKey || e.metaKey) && e.key === 'k') {
     e.preventDefault();
@@ -70,6 +95,9 @@ document.addEventListener('DOMContentLoaded', function() {
   navLinks.forEach(link => {
     link.setAttribute('data-hx-boost', 'false');
   });
+  
+  // Update active navigation item on page load
+  updateActiveNavItem(window.location.pathname);
 });
 
 // Re-disable HTMX boost after HTMX content swaps
