@@ -46,18 +46,21 @@ document.addEventListener('click', function (e) {
 });
 
 window.addEventListener("popstate", () => {
-  updateActiveNavItem(window.location.pathname);
+  // Add delay to ensure DOM is updated
+  setTimeout(() => {
+    updateActiveNavItem(window.location.pathname);
+  }, 100);
 });
 
 function updateActiveNavItem(pathname) {
-  // Remove active class from all navigation links
+
   const allLinks = document.querySelectorAll('#navigation a');
   allLinks.forEach(a => {
     a.classList.remove('active');
   });
 
-  // Find the matching link and add active class
   const matchingLink = document.querySelector(`#navigation a[href="${pathname}"]`);
+
   if (matchingLink) {
     matchingLink.classList.add('active');
 
@@ -66,6 +69,8 @@ function updateActiveNavItem(pathname) {
     if (details && !details.open) {
       details.open = true;
     }
+  } else {
+    console.log('No matching link found for pathname:', pathname);
   }
 }
 
@@ -107,11 +112,15 @@ document.addEventListener('htmx:afterSwap', function() {
   });
 });
 
+// Update active nav item after HTMX settles
+document.addEventListener('htmx:afterSettle', function() {
+  updateActiveNavItem(window.location.pathname);
+});
+
 // Handle modifier key clicks for navigation links
 document.addEventListener('click', function(e) {
   const link = e.target.closest('a');
   if (link && (e.ctrlKey || e.metaKey || e.shiftKey || e.altKey || e.button !== 0)) {
-    console.log('Modifier key click detected on link:', link.href);
 
     // For Ctrl+click or Cmd+click, open in new tab
     if (e.ctrlKey || e.metaKey) {
