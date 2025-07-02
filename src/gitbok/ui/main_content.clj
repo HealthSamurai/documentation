@@ -47,7 +47,7 @@
 (defn navigation-buttons [context uri]
   (let [[[prev-page-url prev-page-title] [next-page-url next-page-title]]
         (summary/get-prev-next-pages context uri)]
-    [:div {:class "flex flex-col sm:flex-row justify-between items-center mt-8 pt-4 gap-4"}
+    [:div {:class "flex flex-col sm:flex-row justify-between items-start mt-8 pt-4 gap-4"}
      (when prev-page-url
        [:div {:class "flex-1 w-full sm:w-auto"}
         [:a {:href prev-page-url
@@ -55,11 +55,11 @@
              ;; :hx-push-url prev-page-url
              ;; :hx-get (str prev-page-url "?partial=true")
              ;; :hx-swap "outerHTML"
-             :class "group text-sm p-2.5 flex gap-4 flex-1 flex-row-reverse items-center pl-4 border border-gray-300 rounded hover:border-orange-500 text-pretty md:p-4 md:text-base"}
-         [:span {:class "flex flex-col flex-1 text-right"}
+             :class "group text-sm p-2.5 flex gap-4 flex-1 flex-row-reverse items-center pl-4 border border-gray-300 rounded hover:border-orange-500 text-pretty md:p-4 md:text-base h-[80px]"}
+         [:span {:class "flex flex-col flex-1 text-right justify-center"}
           [:span {:class "text-xs text-gray-500"} "Previous"]
           [:span {:class "text-gray-700 group-hover:text-orange-600 line-clamp-2"} prev-page-title]]
-         [:svg {:class "size-4 text-gray-400 group-hover:text-orange-600"
+         [:svg {:class "size-4 text-gray-400 group-hover:text-orange-600 flex-shrink-0"
                 :fill "none"
                 :stroke "currentColor"
                 :viewBox "0 0 24 24"
@@ -68,17 +68,17 @@
                   :stroke-linejoin "round"
                   :d "M15 19l-7-7 7-7"}]]]])
      (when next-page-url
-       [:div {:class "flex-1 w-full sm:w-auto text-left"}
+       [:div {:class "flex-1 w-full sm:w-auto"}
         [:a {:href next-page-url
              ;; :hx-target "#content"
              ;; :hx-push-url next-page-url
              ;; :hx-get (str next-page-url "?partial=true")
              ;; :hx-swap "outerHTML"
-             :class "group text-sm p-2.5 flex gap-4 flex-1 items-center pr-4 border border-gray-300 rounded hover:border-orange-500 text-pretty md:p-4 md:text-base"}
-         [:span {:class "flex flex-col flex-1"}
+             :class "group text-sm p-2.5 flex gap-4 flex-1 items-center pr-4 border border-gray-300 rounded hover:border-orange-500 text-pretty md:p-4 md:text-base h-[80px]"}
+         [:span {:class "flex flex-col flex-1 justify-center"}
           [:span {:class "text-xs text-gray-500"} "Next"]
           [:span {:class "text-gray-700 group-hover:text-orange-600 line-clamp-2"} next-page-title]]
-         [:svg {:class "size-4 text-gray-400 group-hover:text-orange-600"
+         [:svg {:class "size-4 text-gray-400 group-hover:text-orange-600 flex-shrink-0"
                 :fill "none"
                 :stroke "currentColor"
                 :viewBox "0 0 24 24"
