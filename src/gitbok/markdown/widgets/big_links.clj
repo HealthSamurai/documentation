@@ -1,5 +1,6 @@
 (ns gitbok.markdown.widgets.big-links
   (:require
+   [gitbok.http]
    [clojure.string :as str]
    [gitbok.indexing.core :as indexing]
    [gitbok.indexing.impl.file-to-uri :as file-to-uri]
@@ -10,8 +11,6 @@
   (u/normalize-tokenizer
    {:regex
     #"\[\[(.+)\]\]"
-    ;; [[[ ]]]
-    ;; #"\[\[\[([^\]]+)\]\]\]"
     :handler (fn [match]
                {:type :big-link
                 :text (match 1)})}))
@@ -40,6 +39,7 @@
    (render-big-link context filepath nil {:text url}))
   ([context filepath _ctx node]
    (let [uri (href context (:text node) filepath)
+         uri (gitbok.http/url-without-prefix context uri)
          uri (if (and uri (str/starts-with? uri "/"))
                (subs uri 1)
                uri)

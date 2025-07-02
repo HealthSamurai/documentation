@@ -1,6 +1,7 @@
 (ns gitbok.markdown.widgets.cards
   (:require
    [hiccup2.core]
+   [gitbok.http]
    [gitbok.indexing.core :as indexing]))
 
 (defn render-cards-from-table
@@ -40,8 +41,8 @@
                    (indexing/page-link->uri context filepath title-filepath))
                  img-href
                  (first (filter (fn [s]
-                                  (when s (re-matches #".*(png|jpg|jpeg|svg)$" s)))
-                                [pic-footer pic-href1 pic-href2]))
+                                   (when s (re-matches #".*(png|jpg|jpeg|svg)$" s)))
+                                 [pic-footer pic-href1 pic-href2]))
 
                  processed-footer
                  (when-not pic-footer?
@@ -66,7 +67,7 @@
               :hx-get (str href "?partial=true")
               :hx-target "#content"
               ;; :hx-push-url "true"
-              :hx-push-url href
+              :hx-push-url (gitbok.http/get-absolute-url context href)
               :hx-swap "outerHTML"}
         [:div {:class "flex flex-col bg-white rounded-2xl shadow overflow-hidden h-full min-h-[300px]"}
          (when img-href [:img {:src img-href :alt "card"}])

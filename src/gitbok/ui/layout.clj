@@ -10,12 +10,11 @@
    [cheshire.core :as json]
    [uui]
    [system]
-   [clojure.string :as str]
-   [gitbok.utils :as utils]))
+   [clojure.string :as str]))
 
 (defn layout-view [context body uri filepath]
   [:div
-   (main-navigation/nav)
+   (main-navigation/nav context)
    [:div.mobile-menu-overlay]
    [:div
     {:class "flex px-4 sm:px-6 md:px-8 max-w-screen-2xl mx-auto site-full-width:max-w-full gap-20"}
@@ -27,7 +26,7 @@
     (when filepath
       (right-toc/get-right-toc context filepath))]])
 
-(defn document [body {:keys [title description canonical-url og-preview lastmod]}]
+(defn document [body {:keys [title description canonical-url og-preview lastmod favicon-url]}]
   [:html {:lang "en"}
    [:head
     [:meta {:charset "utf-8"}]
@@ -51,9 +50,9 @@
 
     [:meta {:name "htmx-config",
             :content "{\"scrollIntoViewOnBoost\":false,\"scrollBehavior\":\"smooth\",\"allowEval\":false}"}]
-    [:link {:rel "icon" :type "image/x-icon" :href "/favicon.ico"}]
-    [:link {:rel "shortcut icon" :type "image/x-icon" :href "/favicon.ico"}]
-    [:link {:rel "apple-touch-icon" :href "/favicon.ico"}]
+    [:link {:rel "icon" :type "image/x-icon" :href favicon-url}]
+    [:link {:rel "shortcut icon" :type "image/x-icon" :href favicon-url}]
+    [:link {:rel "apple-touch-icon" :href favicon-url}]
     [:link {:rel "canonical" :href canonical-url}]
 
     [:script {:type "application/ld+json"}
@@ -90,7 +89,6 @@
                       title
                       description
                       filepath
-                      base-url
                       lastmod]}]
   (let [body (if (map? content) (:body content) content)
         status (if (map? content) (:status content 200) 200)
@@ -106,19 +104,19 @@
            (layout-view context body uri filepath)
            {:title title :description description
             :canonical-url
+            ;; / and /readme is same
             (if (get request :/)
-              base-url
-              (when base-url (utils/concat-urls base-url uri)))
+              (gitbok.http/get-url context)
+              (gitbok.http/get-absolute-url context uri))
             :og-preview
-            (when base-url
-              (utils/concat-urls
-               base-url
-               (str "public/og-preview/"
-                    (when filepath (str/replace filepath #".md" ".png")))))
-            :lastmod lastmod}))
+            (gitbok.http/get-absolute-url
+             context
+             (str "public/og-preview/"
+                  (when filepath (str/replace filepath #".md" ".png"))))
+            :lastmod lastmod
+            :favicon-url (gitbok.http/get-prefixed-url context "/favicon.ico")}))
 
         lastmod (when filepath
                   (or lastmod
                       (indexing/get-lastmod context filepath)))]
-    (gitbok.http/response1
-     body status lastmod is-hx-target)))
+    (gitbok.http/response1 body status lastmod)))

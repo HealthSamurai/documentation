@@ -2,6 +2,7 @@
   (:require
    [clojure.string :as str]
    [hiccup2.core]
+   [system]
    [clojure.java.io :as io])
   (:import [java.time Instant ZoneId ZonedDateTime]
            [java.time.format DateTimeFormatter]
@@ -34,10 +35,19 @@
     (slurp r)
     (throw (Exception. (str "Cannot find " path)))))
 
-(defn concat-urls [url1 url2]
-  (str (java.net.URL.
-        (java.net.URL. url1)
-        url2)))
+(defn concat-urls [& parts]
+  (let [clean (fn [s] (str/replace s #"^/|/$" ""))
+        url
+        (->> parts
+             (remove nil?)
+             (remove #(= (str/trim %) "/"))
+             (map-indexed (fn [i part]
+                            (when part
+                              (if (zero? i)
+                                (str/replace part #"/+$" "")
+                                (clean part)))))
+             (str/join "/"))]
+    (if (= "" url) "/" url)))
 
 (defn strip-markdown [text]
   (-> text
@@ -68,3 +78,7 @@
   (let [instant (Instant/parse iso-string)
         zoned (ZonedDateTime/ofInstant instant (ZoneId/of "GMT"))]
     (.format ^DateTimeFormatter http-date-formatter zoned)))
+
+(defn absolute-url
+  [base-url prefix relative-url]
+  (concat-urls base-url (or prefix "/") relative-url))

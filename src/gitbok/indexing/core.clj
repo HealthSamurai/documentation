@@ -10,6 +10,7 @@
    [system]
    [clojure.string :as str]
    [gitbok.utils :as utils]
+   [gitbok.http]
    [uui]
    [http]))
 
@@ -82,7 +83,7 @@
                "user.dir")))
 
             path (if (str/starts-with? path "/") (utils/safe-subs path 1) path)
-            path (str "/" (:uri (get file->uri-idx path)))]
+            path (gitbok.http/get-prefixed-url context (str "/" (:uri (get file->uri-idx path))))]
 
         (if section
           (str path "#" section)

@@ -15,3 +15,7 @@
 (def ^:const SITEMAP ::sitemap)
 
 (def ^:const LASTMOD ::lastmod)
+
+(def ^:const PORT ::port)
+(def ^:const PREFIX ::prefix)
+(def ^:const BASE_URL ::base-url)

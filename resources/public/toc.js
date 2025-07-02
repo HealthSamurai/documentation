@@ -6,14 +6,12 @@ document.addEventListener('click', function (e) {
 
   // Allow default behavior for modifier key clicks (Ctrl+click, Cmd+click, etc.)
   if (e.ctrlKey || e.metaKey || e.shiftKey || e.altKey || e.button !== 0) {
-    console.log('Modifier key detected, allowing default behavior');
     return;
   }
 
   // Allow default behavior for external links
   const href = link.getAttribute('href');
   if (href && (href.startsWith('http://') || href.startsWith('https://'))) {
-    console.log('External link detected, allowing default behavior');
     return;
   }
 
@@ -40,8 +38,8 @@ document.addEventListener('click', function (e) {
   }
 
   // Use HTMX to load content
-  htmx.ajax('GET', href + '?partial=true', {
-    target: '#content',
+  htmx.ajax('GET', '/toc' + href, {
+    target: '#toc-container',
     swap: 'outerHTML',
     pushUrl: href
   });
@@ -87,7 +85,7 @@ document.addEventListener('click', function(e) {
   const link = e.target.closest('a');
   if (link && (e.ctrlKey || e.metaKey || e.shiftKey || e.altKey || e.button !== 0)) {
     console.log('Modifier key click detected on link:', link.href);
-    
+
     // For Ctrl+click or Cmd+click, open in new tab
     if (e.ctrlKey || e.metaKey) {
       e.preventDefault();
@@ -95,7 +93,7 @@ document.addEventListener('click', function(e) {
       window.open(link.href, '_blank');
       return;
     }
-    
+
     // For other modifier keys, allow default behavior
     return;
   }

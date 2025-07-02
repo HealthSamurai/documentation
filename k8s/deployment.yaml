@@ -32,6 +32,8 @@ spec:
         env:
           - name: PORT
             value: "8080"
+          - name: BASE_URL
+            value: "https://gitbok.cs.aidbox.dev"
         ports:
           - containerPort: 8080
             name: http

@@ -25,11 +25,10 @@
 
 (set! *warn-on-reflection* true)
 
-(def base-url
-  (or (System/getenv "BASE_URL")
-      "https://gitbok.cs.aidbox.dev"))
-
 (def dev? (= "true" (System/getenv "DEV")))
+(def prefix (or (System/getenv "DOCS_PREFIX") "/"))
+(def base-url (or (System/getenv "BASE_URL")
+                  "http://localhost:8081"))
 
 (defn read-markdown-file [context filepath]
   (let [content* (utils/slurp-resource filepath)
@@ -89,29 +88,44 @@
   (let [if-none-match (get-in request [:headers "if-none-match"])]
     (and if-none-match (= if-none-match etag))))
 
-(defn
-  ^{:http {:path "/:path*"}}
-  render-file-view
+(defn render-pictures [_ request]
+  (let [uri (:uri request)
+        uri-without-prefix
+        (if (str/starts-with? uri prefix)
+          (subs uri (count prefix))
+          uri)]
+    (resp/resource-response
+     (->
+      uri-without-prefix
+      (str/replace #"%20" " ")
+      (str/replace-first #".*.gitbook/" "")))))
+
+(defn render-favicon [_ _]
+  (resp/resource-response "public/favicon.ico"))
+
+(defn render-file-view
   [context request]
-  (let [uri (:uri request)]
+  (let [uri (:uri request)
+        uri-without-prefix (if (str/starts-with? uri prefix)
+                             (subs uri (count prefix))
+                             uri)]
+    (def uri uri)
+    (def uri-without-prefix uri-without-prefix)
     (cond
 
-      (= uri "/favicon.ico")
-      (resp/resource-response "public/favicon.ico")
-
-      (= uri "/robots.txt")
+      (or (= uri-without-prefix "/robots.txt")
+          (= uri "/robots.txt"))
       (resp/resource-response "public/robots.txt")
 
-      (picture-url? uri)
-      (resp/resource-response
-       (subs (str/replace uri #"%20" " ")
-             10))
+      (or (picture-url? uri-without-prefix)
+          (picture-url? uri))
+      (render-pictures context request)
 
-      (str/starts-with? uri "/public/og-preview")
-      (resp/resource-response uri)
+      (str/starts-with? uri-without-prefix "/public/og-preview")
+      (resp/resource-response uri-without-prefix)
 
       :else
-      (let [filepath (indexing/uri->filepath context uri)]
+      (let [filepath (indexing/uri->filepath context uri-without-prefix)]
         (if filepath
           (let [lastmod (indexing/get-lastmod context filepath)
                 etag (utils/etag lastmod)]
@@ -130,15 +144,13 @@
                   :lastmod lastmod
                   :title title
                   :description description
-                  :filepath filepath
-                  :base-url base-url}))))
+                  :filepath filepath}))))
 
           (layout/layout
            context request
-           {:base-url base-url
-            :content
+           {:content
             {:status 404
-             :body (not-found/not-found-view context uri)}
+             :body (not-found/not-found-view context uri-without-prefix)}
             :title "Not found"
             :description "Page not found"}))))))
 
@@ -148,13 +160,11 @@
    :headers {"content-type" "application/xml"}
    :body (sitemap/get-sitemap context)})
 
-(defn
-  ^{:http {:path "/"}}
-  redirect-to-readme
+(defn redirect-to-readme
   [context request]
   (let [request
         (assoc request
-               :uri "/readme"
+               :uri (utils/concat-urls prefix "readme")
                :/ true)]
     (render-file-view context request)))
 
@@ -190,6 +200,9 @@
 #_{:clj-kondo/ignore [:unresolved-symbol]}
 (system/defstart
   [context config]
+  (gitbok.http/set-port context port)
+  (gitbok.http/set-prefix context prefix)
+  (gitbok.http/set-base-url context base-url)
 
   ;; order is important
   ; 1. read summary. create toc htmx.
@@ -218,48 +231,61 @@
   ;; 8. generate sitemap.xml
   (sitemap/set-sitemap
    context
-   base-url
    (edamame/parse-string (utils/slurp-resource "lastmod.edn")))
-
+  ;; 9. set lastmod.edn in context for Last Modified metadata
   (indexing/set-lastmod context)
 
   (http/register-endpoint
    context
-   {:path "/search"
+   {:path (utils/concat-urls prefix "/search")
     :method :get
     :middleware [gzip-middleware]
     :fn #'gitbok.ui.search/search-view})
 
   (http/register-endpoint
    context
-   {:path "/search/results"
+   {:path (utils/concat-urls prefix "/search/results")
     :method :get
     :middleware [gzip-middleware]
     :fn #'gitbok.ui.search/search-results-view})
 
   (http/register-endpoint
    context
-   {:path "/sitemap.xml"
+   {:path (utils/concat-urls prefix "/sitemap.xml")
     :method :get
     :fn #'sitemap-xml})
 
   (http/register-endpoint
    context
-   {:path "/:path*"
+   {:path (utils/concat-urls prefix "/:path*")
     :method :get
     :middleware [gzip-middleware]
     :fn #'render-file-view})
 
   (http/register-endpoint
    context
-   {:path "/"
+   {:path "/.gitbook/assets/:path*"
+    :method :get
+    :middleware [gzip-middleware]
+    :fn #'render-pictures})
+
+  (http/register-endpoint
+   context
+   {:path (utils/concat-urls prefix "favicon.ico")
+    :method :get
+    :middleware [gzip-middleware]
+    :fn #'render-favicon})
+
+  (http/register-endpoint
+   context
+   {:path prefix
     :method :get
     :middleware [gzip-middleware]
     :fn #'redirect-to-readme})
 
   (http/register-endpoint
    context
-   {:path "/toc/:path*"
+   {:path (utils/concat-urls prefix "/toc/:path*")
     :method :get
     :middleware [gzip-middleware]
     :fn #'right-toc/get-toc-view})

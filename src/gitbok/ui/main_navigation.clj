@@ -1,6 +1,7 @@
-(ns gitbok.ui.main-navigation)
+(ns gitbok.ui.main-navigation
+  (:require [gitbok.http]))
 
-(defn nav []
+(defn nav [context]
   [:nav {:class "w-full bg-white border-b border-gray-200 flex-shrink-0 sticky top-0 z-50"
          :aria-label "Main site menu"}
    [:div {:class "flex items-center justify-between py-3 min-h-16 px-4 sm:px-6 md:px-8 max-w-screen-2xl mx-auto"}
@@ -12,11 +13,16 @@
       [:svg {:class "size-6" :fill "none" :stroke "currentColor" :viewBox "0 0 24 24"}
        [:path {:stroke-linecap "round" :stroke-linejoin "round" :stroke-width "2" :d "M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5"}]]]
 
-     [:a {:href "/" :class "group/headerlogo min-w-0 shrink flex items-center"}
+     [:a {:href
+          (gitbok.http/get-url context)
+          :class "group/headerlogo min-w-0 shrink flex items-center"}
       [:img {:alt "Aidbox Logo"
              :class "block object-contain size-8"
              :fetchpriority "high"
-             :src "/.gitbook/assets/aidbox_logo.jpg"}]
+             :src
+             (gitbok.http/get-absolute-url
+              context
+              "/.gitbook/assets/aidbox_logo.jpg")}]
       [:div {:class "text-pretty line-clamp-2 tracking-tight max-w-[18ch] lg:max-w-[24ch] font-semibold ms-3 text-base/tight lg:text-lg/tight text-gray-900"}
        "Aidbox User Docs"]]]
 

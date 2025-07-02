@@ -4,6 +4,7 @@
    [gitbok.constants :as const]
    [gitbok.utils :as utils]
    [system]
+   [gitbok.http]
    [gitbok.indexing.impl.uri-to-file :as uri-to-file]
    [clojure.data.xml :as xml]))
 
@@ -13,7 +14,7 @@
    [:priority priority ]
    [:lastmod lastmod]])
 
-(defn generate-sitemap [context base-url all-related-urls lastmod-page]
+(defn generate-sitemap [context all-related-urls lastmod-page]
   (let [content
         (mapv
          (fn [related-url]
@@ -30,7 +31,7 @@
                  "1.0"
                  "0.5")]
              (make-url-entry-with-lastmod
-              (utils/concat-urls base-url related-url)
+              (gitbok.http/get-absolute-url context related-url)
               (get lastmod-page filepath)
               priority)))
          all-related-urls)
@@ -43,13 +44,12 @@
           content))]
     (xml/emit-str urlset)))
 
-(defn set-sitemap [context base-url lastmod]
+(defn set-sitemap [context lastmod]
   (system/set-system-state
    context
    [const/SITEMAP]
    (generate-sitemap
     context
-    base-url
     (uri-to-file/all-urls context)
     lastmod)))
 

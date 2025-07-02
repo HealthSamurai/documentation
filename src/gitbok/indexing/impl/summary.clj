@@ -3,6 +3,7 @@
    [clojure.string :as str]
    [gitbok.constants :as const]
    [gitbok.utils :as utils]
+   [gitbok.http]
    [system]
    [uui]
    [uui.heroicons :as ico]))
@@ -28,12 +29,12 @@
     [:a (cond-> link-attrs
           is-external (assoc :target "_blank" :rel "noopener noreferrer")
           (not is-external) (assoc :data-hx-nav true
-                                  :hx-get (str href "?partial=true")
-                                  :hx-target "#content"
-                                  :hx-push-url href
-                                  :hx-swap "outerHTML"
-                                  :hx-boost "false"
-                                  :data-hx-boost "false"))
+                                   :hx-get (str href "?partial=true")
+                                   :hx-target "#content"
+                                   :hx-push-url href
+                                   :hx-swap "outerHTML"
+                                   :hx-boost "false"
+                                   :data-hx-boost "false"))
      [:span {:class "flex items-center gap-2 mx-2"}
       title
       (when is-external
@@ -73,7 +74,7 @@
 
 (defn parse-summary
   "Read SUMMARY.md and parse and render."
-  []
+  [context]
   (let [sum (read-summary)
         summary
         (->>
@@ -109,7 +110,11 @@
                                               href (:href parsed)
                                               href
                                               (if (str/starts-with? href "http")
-                                                href (str "/" href))]
+                                                href
+                                                (let [h (gitbok.http/get-prefixed-url context href)]
+                                                  (if (str/starts-with? h "/") h
+                                                      (str "/" h))))]
+
                                           {:i (count-whitespace md-link)
                                            :j (:j x)
                                            :parsed parsed
@@ -122,7 +127,7 @@
   (system/set-system-state
    context
    [const/SUMMARY_STATE]
-   (parse-summary)))
+   (parse-summary context)))
 
 (defn get-summary [context]
   (system/get-system-state context [const/SUMMARY_STATE]))
@@ -189,8 +194,6 @@
       [[(:href prev-page) (-> prev-page :parsed :title)]
        [(:href next-page) (-> next-page :parsed :title)]])))
 (comment
-  (parse-summary)
-  (count (flatten-navigation (parse-summary)))
 
   (treefy
    (->> ["a" "  b" "  c" "x" " x1" " x2"]
