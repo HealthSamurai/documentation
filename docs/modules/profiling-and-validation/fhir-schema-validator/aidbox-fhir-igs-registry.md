@@ -320,22 +320,13 @@ Here is the complete list of supported and ready-to-use Implementation Guides (I
 **Versions**
 
 * `KBV.Basis#1.1.3`
-* `KBV.Basis#1.1.3`
-* `KBV.Basis#1.1.2`
 * `KBV.Basis#1.1.2`
 * `KBV.Basis#1.1.1`
-* `KBV.Basis#1.1.1`
-* `KBV.Basis#1.0.4`
 * `KBV.Basis#1.0.4`
 * `KBV.Basis#1.00.003`
-* `KBV.Basis#1.00.003`
-* `KBV.Basis#1.00.002`
 * `KBV.Basis#1.00.002`
 * `KBV.Basis#1.00.001`
-* `KBV.Basis#1.00.001`
 * `KBV.Basis#1.00.000`
-* `KBV.Basis#1.00.000`
-* `KBV.Basis#1.00.000-Alpha1`
 * `KBV.Basis#1.00.000-Alpha1`
 
 
@@ -356,12 +347,8 @@ Here is the complete list of supported and ready-to-use Implementation Guides (I
 **Versions**
 
 * `ans.fhir.fr.mesures#3.1.0`
-* `ans.fhir.fr.mesures#3.1.0`
-* `ans.fhir.fr.mesures#3.1.0-ballot`
 * `ans.fhir.fr.mesures#3.1.0-ballot`
 * `ans.fhir.fr.mesures#3.0.1`
-* `ans.fhir.fr.mesures#3.0.1`
-* `ans.fhir.fr.mesures#3.0.0`
 * `ans.fhir.fr.mesures#3.0.0`
 
 
@@ -372,18 +359,11 @@ Here is the complete list of supported and ready-to-use Implementation Guides (I
 **Versions**
 
 * `ca.on.oh-seris#0.11.0-alpha1.0.1`
-* `ca.on.oh-seris#0.11.0-alpha1.0.1`
-* `ca.on.oh-seris#0.10.0-alpha1.0.5`
 * `ca.on.oh-seris#0.10.0-alpha1.0.5`
 * `ca.on.oh-seris#0.10.0-alpha1.0.4`
-* `ca.on.oh-seris#0.10.0-alpha1.0.4`
-* `ca.on.oh-seris#0.10.0-alpha1.0.3`
 * `ca.on.oh-seris#0.10.0-alpha1.0.3`
 * `ca.on.oh-seris#0.10.0-alpha1.0.2`
-* `ca.on.oh-seris#0.10.0-alpha1.0.2`
 * `ca.on.oh-seris#0.10.0-alpha1.0.1`
-* `ca.on.oh-seris#0.10.0-alpha1.0.1`
-* `ca.on.oh-seris#0.9.0-alpha1.0.1`
 * `ca.on.oh-seris#0.9.0-alpha1.0.1`
 
 
@@ -394,12 +374,8 @@ Here is the complete list of supported and ready-to-use Implementation Guides (I
 **Versions**
 
 * `acme.product.r4#3.0.0`
-* `acme.product.r4#3.0.0`
-* `acme.product.r4#2.0.0`
 * `acme.product.r4#2.0.0`
 * `acme.product.r4#1.0.0`
-* `acme.product.r4#1.0.0`
-* `acme.product.r4#1.0.0-alpha`
 * `acme.product.r4#1.0.0-alpha`
 
 
@@ -471,7 +447,6 @@ Here is the complete list of supported and ready-to-use Implementation Guides (I
 **Versions**
 
 * `Touchstone-ereferralontario.core#0.1.0-beta`
-* `Touchstone-ereferralontario.core#0.1.0-beta`
 
 
 ---
@@ -480,7 +455,6 @@ Here is the complete list of supported and ready-to-use Implementation Guides (I
 
 **Versions**
 
-* `WorkshopJena3.v1#0.0.1-beta`
 * `WorkshopJena3.v1#0.0.1-beta`
 
 
@@ -635,7 +609,6 @@ Here is the complete list of supported and ready-to-use Implementation Guides (I
 **Versions**
 
 * `CarePlanRT.Eng#1.0.0`
-* `CarePlanRT.Eng#1.0.0`
 
 
 ---
@@ -669,7 +642,6 @@ Here is the complete list of supported and ready-to-use Implementation Guides (I
 **Versions**
 
 * `Patient.Hospice-LOC#1.0.1`
-* `Patient.Hospice-LOC#1.0.1`
 
 
 ---
@@ -690,14 +662,6 @@ Here is the complete list of supported and ready-to-use Implementation Guides (I
 * `ca.infoway.io.core#1.0.0-dft-preballot`
 * `ca.infoway.io.core#1.0.0-dft-preballot-beta2`
 * `ca.infoway.io.core#1.0.0-dft-preballot-beta-01`
-* `ca.infoway.io.core#1.0.0-dft-preballot`
-* `ca.infoway.io.core#1.0.0-dft-preballot-beta2`
-* `ca.infoway.io.core#1.0.0-dft-preballot-beta-01`
-* `ca.infoway.io.core#0.3.1-dft-ballot`
-* `ca.infoway.io.core#0.3.1-dft-ballot-alpha`
-* `ca.infoway.io.core#0.3.0-dft-preballot`
-* `ca.infoway.io.core#0.3.0-dft-ballot-2`
-* `ca.infoway.io.core#0.3.0-dft-ballot-1`
 * `ca.infoway.io.core#0.3.1-dft-ballot`
 * `ca.infoway.io.core#0.3.1-dft-ballot-alpha`
 * `ca.infoway.io.core#0.3.0-dft-preballot`
@@ -705,11 +669,6 @@ Here is the complete list of supported and ready-to-use Implementation Guides (I
 * `ca.infoway.io.core#0.3.0-dft-ballot-1`
 * `ca.infoway.io.core#0.2.0-dft`
 * `ca.infoway.io.core#0.2.0-dft-ballot`
-* `ca.infoway.io.core#0.2.0-dft`
-* `ca.infoway.io.core#0.2.0-dft-ballot`
-* `ca.infoway.io.core#0.1.0-dft`
-* `ca.infoway.io.core#0.1.0-DFT-Ballot`
-* `ca.infoway.io.core#0.1.0-DFT-Ballot-pre`
 * `ca.infoway.io.core#0.1.0-dft`
 * `ca.infoway.io.core#0.1.0-DFT-Ballot`
 * `ca.infoway.io.core#0.1.0-DFT-Ballot-pre`
@@ -828,13 +787,6 @@ Here is the complete list of supported and ready-to-use Implementation Guides (I
 **Versions**
 
 * `ans.fhir.fr.annuaire#1.1.0`
-* `ans.fhir.fr.annuaire#1.1.0`
-* `ans.fhir.fr.annuaire#1.1.0-snapshot`
-* `ans.fhir.fr.annuaire#1.1.0-snapshot-6`
-* `ans.fhir.fr.annuaire#1.1.0-snapshot-5`
-* `ans.fhir.fr.annuaire#1.1.0-snapshot-4`
-* `ans.fhir.fr.annuaire#1.1.0-snapshot-3`
-* `ans.fhir.fr.annuaire#1.1.0-snapshot-2`
 * `ans.fhir.fr.annuaire#1.1.0-snapshot`
 * `ans.fhir.fr.annuaire#1.1.0-snapshot-6`
 * `ans.fhir.fr.annuaire#1.1.0-snapshot-5`
@@ -842,18 +794,11 @@ Here is the complete list of supported and ready-to-use Implementation Guides (I
 * `ans.fhir.fr.annuaire#1.1.0-snapshot-3`
 * `ans.fhir.fr.annuaire#1.1.0-snapshot-2`
 * `ans.fhir.fr.annuaire#1.0.1`
-* `ans.fhir.fr.annuaire#1.0.1`
-* `ans.fhir.fr.annuaire#1.0.0`
 * `ans.fhir.fr.annuaire#1.0.0`
 * `ans.fhir.fr.annuaire#1.0.0-ballot`
 * `ans.fhir.fr.annuaire#1.0.0-ballot-4`
 * `ans.fhir.fr.annuaire#1.0.0-ballot-3`
 * `ans.fhir.fr.annuaire#1.0.0-ballot-2`
-* `ans.fhir.fr.annuaire#1.0.0-ballot`
-* `ans.fhir.fr.annuaire#1.0.0-ballot-4`
-* `ans.fhir.fr.annuaire#1.0.0-ballot-3`
-* `ans.fhir.fr.annuaire#1.0.0-ballot-2`
-* `ans.fhir.fr.annuaire#0.1.0`
 * `ans.fhir.fr.annuaire#0.1.0`
 
 
@@ -927,7 +872,6 @@ Here is the complete list of supported and ready-to-use Implementation Guides (I
 
 **Versions**
 
-* `beact.es.publishingtutorial#0.0.1-test`
 * `beact.es.publishingtutorial#0.0.1-test`
 
 
@@ -1074,7 +1018,6 @@ Here is the complete list of supported and ready-to-use Implementation Guides (I
 **Versions**
 
 * `ca-on-covax.v1#1.0.0`
-* `ca-on-covax.v1#1.0.0`
 
 
 ---
@@ -1113,8 +1056,6 @@ Here is the complete list of supported and ready-to-use Implementation Guides (I
 **Versions**
 
 * `IHE.ITI.PIXm#3.0.0`
-* `IHE.ITI.PIXm#3.0.0`
-* `IHE.ITI.PIXm#2.2.0`
 * `IHE.ITI.PIXm#2.2.0`
 
 
@@ -1124,7 +1065,6 @@ Here is the complete list of supported and ready-to-use Implementation Guides (I
 
 **Versions**
 
-* `MIO.KBV.Mutterpass#1.0.0`
 * `MIO.KBV.Mutterpass#1.0.0`
 
 
@@ -1168,10 +1108,6 @@ Here is the complete list of supported and ready-to-use Implementation Guides (I
 * `ca.on.mi.pkg#0.9.0-beta-3-testing`
 * `ca.on.mi.pkg#0.9.0-beta-2-testing`
 * `ca.on.mi.pkg#0.9.0-beta-1-testing`
-* `ca.on.mi.pkg#0.9.0-beta-previewf`
-* `ca.on.mi.pkg#0.9.0-beta-3-testing`
-* `ca.on.mi.pkg#0.9.0-beta-2-testing`
-* `ca.on.mi.pkg#0.9.0-beta-1-testing`
 
 
 ---
@@ -1200,7 +1136,6 @@ Here is the complete list of supported and ready-to-use Implementation Guides (I
 
 **Versions**
 
-* `ANS.annuaire.fhir.r4#0.2.0`
 * `ANS.annuaire.fhir.r4#0.2.0`
 
 
@@ -1272,34 +1207,6 @@ Here is the complete list of supported and ready-to-use Implementation Guides (I
 
 **Versions**
 
-* `ca.on.health.sadie#0.1.9-beta`
-* `ca.on.health.sadie#0.1.8-beta`
-* `ca.on.health.sadie#0.1.7-beta`
-* `ca.on.health.sadie#0.1.6-beta`
-* `ca.on.health.sadie#0.1.5-beta`
-* `ca.on.health.sadie#0.1.4-beta`
-* `ca.on.health.sadie#0.1.3-beta`
-* `ca.on.health.sadie#0.1.27-beta`
-* `ca.on.health.sadie#0.1.26-beta`
-* `ca.on.health.sadie#0.1.25-beta`
-* `ca.on.health.sadie#0.1.24-beta`
-* `ca.on.health.sadie#0.1.23-beta`
-* `ca.on.health.sadie#0.1.22-beta`
-* `ca.on.health.sadie#0.1.21-beta`
-* `ca.on.health.sadie#0.1.20-beta`
-* `ca.on.health.sadie#0.1.2-beta`
-* `ca.on.health.sadie#0.1.19-beta`
-* `ca.on.health.sadie#0.1.18-beta`
-* `ca.on.health.sadie#0.1.17-beta`
-* `ca.on.health.sadie#0.1.16-beta`
-* `ca.on.health.sadie#0.1.15-beta`
-* `ca.on.health.sadie#0.1.14-beta`
-* `ca.on.health.sadie#0.1.13-beta`
-* `ca.on.health.sadie#0.1.12-beta`
-* `ca.on.health.sadie#0.1.11-beta`
-* `ca.on.health.sadie#0.1.10-beta`
-* `ca.on.health.sadie#0.1.1-beta`
-* `ca.on.health.sadie#0.1.0-beta`
 * `ca.on.health.sadie#0.1.9-beta`
 * `ca.on.health.sadie#0.1.8-beta`
 * `ca.on.health.sadie#0.1.7-beta`
@@ -1405,36 +1312,20 @@ Here is the complete list of supported and ready-to-use Implementation Guides (I
 **Versions**
 
 * `acme.usecase.r4#1.1.7`
-* `acme.usecase.r4#1.1.7`
-* `acme.usecase.r4#1.1.6`
 * `acme.usecase.r4#1.1.6`
 * `acme.usecase.r4#1.1.5`
-* `acme.usecase.r4#1.1.5`
-* `acme.usecase.r4#1.1.3`
 * `acme.usecase.r4#1.1.3`
 * `acme.usecase.r4#1.1.2-preview1`
-* `acme.usecase.r4#1.1.2-preview1`
-* `acme.usecase.r4#0.1.1`
 * `acme.usecase.r4#0.1.1`
 * `acme.usecase.r4#0.1.0`
-* `acme.usecase.r4#0.1.0`
-* `acme.usecase.r4#0.0.9`
 * `acme.usecase.r4#0.0.9`
 * `acme.usecase.r4#0.0.8`
-* `acme.usecase.r4#0.0.8`
-* `acme.usecase.r4#0.0.7`
 * `acme.usecase.r4#0.0.7`
 * `acme.usecase.r4#0.0.6`
-* `acme.usecase.r4#0.0.6`
-* `acme.usecase.r4#0.0.5`
 * `acme.usecase.r4#0.0.5`
 * `acme.usecase.r4#0.0.4`
-* `acme.usecase.r4#0.0.4`
-* `acme.usecase.r4#0.0.3`
 * `acme.usecase.r4#0.0.3`
 * `acme.usecase.r4#0.0.2`
-* `acme.usecase.r4#0.0.2`
-* `acme.usecase.r4#0.0.1`
 * `acme.usecase.r4#0.0.1`
 
 
@@ -1464,7 +1355,6 @@ Here is the complete list of supported and ready-to-use Implementation Guides (I
 **Versions**
 
 * `SFM.030521#1.0.0`
-* `SFM.030521#1.0.0`
 
 
 ---
@@ -1493,7 +1383,6 @@ Here is the complete list of supported and ready-to-use Implementation Guides (I
 **Versions**
 
 * `ans.fhir.fr.cdl#3.0.0`
-* `ans.fhir.fr.cdl#3.0.0`
 
 
 ---
@@ -1516,12 +1405,8 @@ Here is the complete list of supported and ready-to-use Implementation Guides (I
 **Versions**
 
 * `basisprofil.tiplu.de.r4#1.1.3`
-* `basisprofil.tiplu.de.r4#1.1.3`
-* `basisprofil.tiplu.de.r4#1.1.2`
 * `basisprofil.tiplu.de.r4#1.1.2`
 * `basisprofil.tiplu.de.r4#1.1.1`
-* `basisprofil.tiplu.de.r4#1.1.1`
-* `basisprofil.tiplu.de.r4#1.1.0`
 * `basisprofil.tiplu.de.r4#1.1.0`
 
 
@@ -1532,7 +1417,6 @@ Here is the complete list of supported and ready-to-use Implementation Guides (I
 **Versions**
 
 * `OntarioacCDRFHIRImplementationGuide-0.10.00#0.1.0`
-* `OntarioacCDRFHIRImplementationGuide-0.10.00#0.1.0`
 
 
 ---
@@ -1541,8 +1425,6 @@ Here is the complete list of supported and ready-to-use Implementation Guides (I
 
 **Versions**
 
-* `at.unofficial.au.base#2.2.0-ballot2`
-* `at.unofficial.au.base#2.2.0-ballot`
 * `at.unofficial.au.base#2.2.0-ballot2`
 * `at.unofficial.au.base#2.2.0-ballot`
 
@@ -1584,7 +1466,6 @@ Here is the complete list of supported and ready-to-use Implementation Guides (I
 **Versions**
 
 * `TInterop.23#1.0.0-alpha`
-* `TInterop.23#1.0.0-alpha`
 
 
 ---
@@ -1593,7 +1474,6 @@ Here is the complete list of supported and ready-to-use Implementation Guides (I
 
 **Versions**
 
-* `Arkhn.core#0.0.2`
 * `Arkhn.core#0.0.2`
 
 
@@ -1904,8 +1784,6 @@ Here is the complete list of supported and ready-to-use Implementation Guides (I
 **Versions**
 
 * `ans.fhir.fr.cds#2.0.0`
-* `ans.fhir.fr.cds#2.0.0`
-* `ans.fhir.fr.cds#2.0.0-ballot`
 * `ans.fhir.fr.cds#2.0.0-ballot`
 
 
@@ -2010,7 +1888,6 @@ Here is the complete list of supported and ready-to-use Implementation Guides (I
 **Versions**
 
 * `ForgePatientChart.0830#0.1.0`
-* `ForgePatientChart.0830#0.1.0`
 
 
 ---
@@ -2094,7 +1971,6 @@ Here is the complete list of supported and ready-to-use Implementation Guides (I
 **Versions**
 
 * `FHIR.DGMC#0.1.0`
-* `FHIR.DGMC#0.1.0`
 
 
 ---
@@ -2133,7 +2009,6 @@ Here is the complete list of supported and ready-to-use Implementation Guides (I
 **Versions**
 
 * `ans.annuaire.fhir.r4#0.2.0-pat23`
-* `ans.annuaire.fhir.r4#0.2.0-pat23`
 
 
 ---
@@ -2142,7 +2017,6 @@ Here is the complete list of supported and ready-to-use Implementation Guides (I
 
 **Versions**
 
-* `DL.base#1.1.0`
 * `DL.base#1.1.0`
 
 
@@ -2171,7 +2045,6 @@ Here is the complete list of supported and ready-to-use Implementation Guides (I
 
 **Versions**
 
-* `NRLF.poc#1.0.1`
 * `NRLF.poc#1.0.1`
 
 
@@ -2296,7 +2169,6 @@ Here is the complete list of supported and ready-to-use Implementation Guides (I
 **Versions**
 
 * `HIE2.packages#0.1.1`
-* `HIE2.packages#0.1.1`
 
 
 ---
@@ -2305,7 +2177,6 @@ Here is the complete list of supported and ready-to-use Implementation Guides (I
 
 **Versions**
 
-* `BCPatientSummary.Draft#0.0.1-draft`
 * `BCPatientSummary.Draft#0.0.1-draft`
 
 
@@ -2369,9 +2240,6 @@ Here is the complete list of supported and ready-to-use Implementation Guides (I
 **Versions**
 
 * `amwell.fhir.profiles#2.0.0`
-* `amwell.fhir.profiles#2.0.0`
-* `amwell.fhir.profiles#1.0.1-preview`
-* `amwell.fhir.profiles#1.0.0-preview`
 * `amwell.fhir.profiles#1.0.1-preview`
 * `amwell.fhir.profiles#1.0.0-preview`
 
@@ -2404,8 +2272,6 @@ Here is the complete list of supported and ready-to-use Implementation Guides (I
 **Versions**
 
 * `KBV.ITA.ERP#1.0.1`
-* `KBV.ITA.ERP#1.0.1`
-* `KBV.ITA.ERP#1.0.0`
 * `KBV.ITA.ERP#1.0.0`
 
 
@@ -2453,8 +2319,6 @@ Here is the complete list of supported and ready-to-use Implementation Guides (I
 **Versions**
 
 * `KBV.MIO.Impfpass#1.1.0-Kommentierung`
-* `KBV.MIO.Impfpass#1.1.0-Kommentierung`
-* `KBV.MIO.Impfpass#1.00.000`
 * `KBV.MIO.Impfpass#1.00.000`
 
 
@@ -2505,8 +2369,6 @@ Here is the complete list of supported and ready-to-use Implementation Guides (I
 **Versions**
 
 * `basisprofil.de#0.2.40`
-* `basisprofil.de#0.2.40`
-* `basisprofil.de#0.2.30`
 * `basisprofil.de#0.2.30`
 
 
@@ -2672,7 +2534,6 @@ Here is the complete list of supported and ready-to-use Implementation Guides (I
 **Versions**
 
 * `STB.ACTIVE#1.43.0`
-* `STB.ACTIVE#1.43.0`
 
 
 ---
@@ -2817,99 +2678,53 @@ Here is the complete list of supported and ready-to-use Implementation Guides (I
 **Versions**
 
 * `ca.on.oh.mha-pds#0.9.0-alpha-1.9.7.38`
-* `ca.on.oh.mha-pds#0.9.0-alpha-1.9.7.38`
-* `ca.on.oh.mha-pds#0.9.0-alpha-1.9.7.37`
 * `ca.on.oh.mha-pds#0.9.0-alpha-1.9.7.37`
 * `ca.on.oh.mha-pds#0.9.0-alpha-1.9.7.36`
-* `ca.on.oh.mha-pds#0.9.0-alpha-1.9.7.36`
-* `ca.on.oh.mha-pds#0.9.0-alpha-1.9.7.35`
 * `ca.on.oh.mha-pds#0.9.0-alpha-1.9.7.35`
 * `ca.on.oh.mha-pds#0.9.0-alpha-1.9.7.34`
-* `ca.on.oh.mha-pds#0.9.0-alpha-1.9.7.34`
-* `ca.on.oh.mha-pds#0.9.0-alpha-1.9.7.33`
 * `ca.on.oh.mha-pds#0.9.0-alpha-1.9.7.33`
 * `ca.on.oh.mha-pds#0.9.0-alpha-1.9.7.32`
-* `ca.on.oh.mha-pds#0.9.0-alpha-1.9.7.32`
-* `ca.on.oh.mha-pds#0.9.0-alpha-1.9.7.31`
 * `ca.on.oh.mha-pds#0.9.0-alpha-1.9.7.31`
 * `ca.on.oh.mha-pds#0.9.0-alpha-1.9.7.30`
-* `ca.on.oh.mha-pds#0.9.0-alpha-1.9.7.30`
-* `ca.on.oh.mha-pds#0.9.0-alpha-1.9.7.29`
 * `ca.on.oh.mha-pds#0.9.0-alpha-1.9.7.29`
 * `ca.on.oh.mha-pds#0.9.0-alpha-1.9.7.28`
-* `ca.on.oh.mha-pds#0.9.0-alpha-1.9.7.28`
-* `ca.on.oh.mha-pds#0.9.0-alpha-1.9.7.27`
 * `ca.on.oh.mha-pds#0.9.0-alpha-1.9.7.27`
 * `ca.on.oh.mha-pds#0.9.0-alpha-1.9.7.26`
-* `ca.on.oh.mha-pds#0.9.0-alpha-1.9.7.26`
-* `ca.on.oh.mha-pds#0.9.0-alpha-1.9.7.25`
 * `ca.on.oh.mha-pds#0.9.0-alpha-1.9.7.25`
 * `ca.on.oh.mha-pds#0.9.0-alpha-1.9.7.24`
-* `ca.on.oh.mha-pds#0.9.0-alpha-1.9.7.24`
-* `ca.on.oh.mha-pds#0.9.0-alpha-1.9.7.23`
 * `ca.on.oh.mha-pds#0.9.0-alpha-1.9.7.23`
 * `ca.on.oh.mha-pds#0.9.0-alpha-1.9.7.22`
-* `ca.on.oh.mha-pds#0.9.0-alpha-1.9.7.22`
-* `ca.on.oh.mha-pds#0.9.0-alpha-1.9.7.21`
 * `ca.on.oh.mha-pds#0.9.0-alpha-1.9.7.21`
 * `ca.on.oh.mha-pds#0.9.0-alpha-1.9.7.20`
-* `ca.on.oh.mha-pds#0.9.0-alpha-1.9.7.20`
-* `ca.on.oh.mha-pds#0.9.0-alpha-1.9.7.19`
 * `ca.on.oh.mha-pds#0.9.0-alpha-1.9.7.19`
 * `ca.on.oh.mha-pds#0.9.0-alpha-1.9.7.18`
-* `ca.on.oh.mha-pds#0.9.0-alpha-1.9.7.18`
-* `ca.on.oh.mha-pds#0.9.0-alpha-1.9.7.17`
 * `ca.on.oh.mha-pds#0.9.0-alpha-1.9.7.17`
 * `ca.on.oh.mha-pds#0.9.0-alpha-1.9.7.16`
-* `ca.on.oh.mha-pds#0.9.0-alpha-1.9.7.16`
-* `ca.on.oh.mha-pds#0.9.0-alpha-1.9.7.15`
 * `ca.on.oh.mha-pds#0.9.0-alpha-1.9.7.15`
 * `ca.on.oh.mha-pds#0.9.0-alpha-1.9.7.14`
-* `ca.on.oh.mha-pds#0.9.0-alpha-1.9.7.14`
-* `ca.on.oh.mha-pds#0.9.0-alpha-1.9.7.13`
 * `ca.on.oh.mha-pds#0.9.0-alpha-1.9.7.13`
 * `ca.on.oh.mha-pds#0.9.0-alpha-1.9.7.11`
-* `ca.on.oh.mha-pds#0.9.0-alpha-1.9.7.11`
-* `ca.on.oh.mha-pds#0.9.0-alpha-1.9.7.10`
 * `ca.on.oh.mha-pds#0.9.0-alpha-1.9.7.10`
 * `ca.on.oh.mha-pds#0.9.0-alpha-1.9.7.9`
 * `ca.on.oh.mha-pds#0.9.0-alpha-1.9.7.8`
-* `ca.on.oh.mha-pds#0.9.0-alpha-1.9.7.8`
-* `ca.on.oh.mha-pds#0.9.0-alpha-1.9.7.7`
 * `ca.on.oh.mha-pds#0.9.0-alpha-1.9.7.7`
 * `ca.on.oh.mha-pds#0.9.0-alpha-1.9.7.6`
-* `ca.on.oh.mha-pds#0.9.0-alpha-1.9.7.6`
-* `ca.on.oh.mha-pds#0.9.0-alpha-1.9.7.5`
 * `ca.on.oh.mha-pds#0.9.0-alpha-1.9.7.5`
 * `ca.on.oh.mha-pds#0.9.0-alpha-1.9.7.4`
-* `ca.on.oh.mha-pds#0.9.0-alpha-1.9.7.4`
-* `ca.on.oh.mha-pds#0.9.0-alpha-1.9.7.3`
 * `ca.on.oh.mha-pds#0.9.0-alpha-1.9.7.3`
 * `ca.on.oh.mha-pds#0.9.0-alpha-1.9.7.2`
-* `ca.on.oh.mha-pds#0.9.0-alpha-1.9.7.2`
-* `ca.on.oh.mha-pds#0.9.0-alpha-1.9.7.1`
 * `ca.on.oh.mha-pds#0.9.0-alpha-1.9.7.1`
 * `ca.on.oh.mha-pds#0.9.0-alpha-1.9.7`
 * `ca.on.oh.mha-pds#0.9.0-alpha-1.9.6`
-* `ca.on.oh.mha-pds#0.9.0-alpha-1.9.6`
-* `ca.on.oh.mha-pds#0.9.0-alpha-1.9.4`
 * `ca.on.oh.mha-pds#0.9.0-alpha-1.9.4`
 * `ca.on.oh.mha-pds#0.9.0-alpha-1.9.3`
-* `ca.on.oh.mha-pds#0.9.0-alpha-1.9.3`
 * `ca.on.oh.mha-pds#0.9.0-alpha-1.9.2`
-* `ca.on.oh.mha-pds#0.9.0-alpha-1.9.2`
-* `ca.on.oh.mha-pds#0.9.0-alpha-1.9.1`
 * `ca.on.oh.mha-pds#0.9.0-alpha-1.9.1`
 * `ca.on.oh.mha-pds#0.9.0-alpha-1.9`
 * `ca.on.oh.mha-pds#0.9.0-alpha-1.8`
-* `ca.on.oh.mha-pds#0.9.0-alpha-1.8`
-* `ca.on.oh.mha-pds#0.9.0-alpha-1.7`
 * `ca.on.oh.mha-pds#0.9.0-alpha-1.7`
 * `ca.on.oh.mha-pds#0.9.0-alpha-1.6`
-* `ca.on.oh.mha-pds#0.9.0-alpha-1.6`
 * `ca.on.oh.mha-pds#0.9.0-alpha-1.5`
-* `ca.on.oh.mha-pds#0.9.0-alpha-1.5`
-* `ca.on.oh.mha-pds#0.9.0-alpha-1.4`
 * `ca.on.oh.mha-pds#0.9.0-alpha-1.4`
 
 
@@ -3026,7 +2841,6 @@ Here is the complete list of supported and ready-to-use Implementation Guides (I
 **Versions**
 
 * `Pseudo.Frog#1.0.0`
-* `Pseudo.Frog#1.0.0`
 
 
 ---
@@ -3089,7 +2903,6 @@ Here is the complete list of supported and ready-to-use Implementation Guides (I
 
 **Versions**
 
-* `PGO.02#1.02.1`
 * `PGO.02#1.02.1`
 
 
@@ -3254,33 +3067,12 @@ Here is the complete list of supported and ready-to-use Implementation Guides (I
 **Versions**
 
 * `ca.ab.fhir.psab#1.1.0`
-* `ca.ab.fhir.psab#1.1.0`
-* `ca.ab.fhir.psab#1.1.0-pre4`
-* `ca.ab.fhir.psab#1.1.0-pre3`
-* `ca.ab.fhir.psab#1.1.0-pre2`
-* `ca.ab.fhir.psab#1.1.0-pre1`
 * `ca.ab.fhir.psab#1.1.0-pre4`
 * `ca.ab.fhir.psab#1.1.0-pre3`
 * `ca.ab.fhir.psab#1.1.0-pre2`
 * `ca.ab.fhir.psab#1.1.0-pre1`
 * `ca.ab.fhir.psab#1.0.1`
-* `ca.ab.fhir.psab#1.0.1`
 * `ca.ab.fhir.psab#1.0.0`
-* `ca.ab.fhir.psab#1.0.0`
-* `ca.ab.fhir.psab#0.3.0-pre9`
-* `ca.ab.fhir.psab#0.3.0-pre8`
-* `ca.ab.fhir.psab#0.3.0-pre7`
-* `ca.ab.fhir.psab#0.3.0-pre6`
-* `ca.ab.fhir.psab#0.3.0-pre5`
-* `ca.ab.fhir.psab#0.3.0-pre4`
-* `ca.ab.fhir.psab#0.3.0-pre3`
-* `ca.ab.fhir.psab#0.3.0-pre2`
-* `ca.ab.fhir.psab#0.3.0-pre14`
-* `ca.ab.fhir.psab#0.3.0-pre13`
-* `ca.ab.fhir.psab#0.3.0-pre12`
-* `ca.ab.fhir.psab#0.3.0-pre11`
-* `ca.ab.fhir.psab#0.3.0-pre10`
-* `ca.ab.fhir.psab#0.3.0-pre1`
 * `ca.ab.fhir.psab#0.3.0-pre9`
 * `ca.ab.fhir.psab#0.3.0-pre8`
 * `ca.ab.fhir.psab#0.3.0-pre7`
@@ -3304,7 +3096,6 @@ Here is the complete list of supported and ready-to-use Implementation Guides (I
 **Versions**
 
 * `Package.JSON#1.0.0`
-* `Package.JSON#1.0.0`
 
 
 ---
@@ -3324,18 +3115,11 @@ Here is the complete list of supported and ready-to-use Implementation Guides (I
 **Versions**
 
 * `NHSD.Assets.STU3#1.6.0`
-* `NHSD.Assets.STU3#1.6.0`
-* `NHSD.Assets.STU3#1.5.0`
 * `NHSD.Assets.STU3#1.5.0`
 * `NHSD.Assets.STU3#1.4.0`
-* `NHSD.Assets.STU3#1.4.0`
-* `NHSD.Assets.STU3#1.3.0`
 * `NHSD.Assets.STU3#1.3.0`
 * `NHSD.Assets.STU3#1.2.0`
-* `NHSD.Assets.STU3#1.2.0`
 * `NHSD.Assets.STU3#1.1.0`
-* `NHSD.Assets.STU3#1.1.0`
-* `NHSD.Assets.STU3#1.0.0`
 * `NHSD.Assets.STU3#1.0.0`
 
 
@@ -3355,7 +3139,6 @@ Here is the complete list of supported and ready-to-use Implementation Guides (I
 **Versions**
 
 * `NTT.HealthgenIG#0.0.1`
-* `NTT.HealthgenIG#0.0.1`
 
 
 ---
@@ -3364,7 +3147,6 @@ Here is the complete list of supported and ready-to-use Implementation Guides (I
 
 **Versions**
 
-* `ans.cisis.nde.fhir.r4#1.0.0`
 * `ans.cisis.nde.fhir.r4#1.0.0`
 
 
@@ -3480,7 +3262,6 @@ Here is the complete list of supported and ready-to-use Implementation Guides (I
 **Versions**
 
 * `Test.Luxottica2#0.0.1-beta`
-* `Test.Luxottica2#0.0.1-beta`
 
 
 ---
@@ -3489,7 +3270,6 @@ Here is the complete list of supported and ready-to-use Implementation Guides (I
 
 **Versions**
 
-* `Test.Template#0.0.1`
 * `Test.Template#0.0.1`
 
 
@@ -3652,32 +3432,18 @@ Here is the complete list of supported and ready-to-use Implementation Guides (I
 **Versions**
 
 * `Kontaktregister.Profiles#0.1.23`
-* `Kontaktregister.Profiles#0.1.23`
-* `Kontaktregister.Profiles#0.1.22`
 * `Kontaktregister.Profiles#0.1.22`
 * `Kontaktregister.Profiles#0.1.21`
-* `Kontaktregister.Profiles#0.1.21`
-* `Kontaktregister.Profiles#0.1.20`
 * `Kontaktregister.Profiles#0.1.20`
 * `Kontaktregister.Profiles#0.1.9`
-* `Kontaktregister.Profiles#0.1.9`
-* `Kontaktregister.Profiles#0.1.8`
 * `Kontaktregister.Profiles#0.1.8`
 * `Kontaktregister.Profiles#0.1.7`
-* `Kontaktregister.Profiles#0.1.7`
-* `Kontaktregister.Profiles#0.1.6`
 * `Kontaktregister.Profiles#0.1.6`
 * `Kontaktregister.Profiles#0.1.5`
-* `Kontaktregister.Profiles#0.1.5`
-* `Kontaktregister.Profiles#0.1.4`
 * `Kontaktregister.Profiles#0.1.4`
 * `Kontaktregister.Profiles#0.1.3`
-* `Kontaktregister.Profiles#0.1.3`
-* `Kontaktregister.Profiles#0.1.2`
 * `Kontaktregister.Profiles#0.1.2`
 * `Kontaktregister.Profiles#0.1.1`
-* `Kontaktregister.Profiles#0.1.1`
-* `Kontaktregister.Profiles#0.1.0`
 * `Kontaktregister.Profiles#0.1.0`
 
 
@@ -3854,7 +3620,6 @@ Here is the complete list of supported and ready-to-use Implementation Guides (I
 **Versions**
 
 * `ca.infoway.vc.ps#0.0.3`
-* `ca.infoway.vc.ps#0.0.3`
 
 
 ---
@@ -3978,7 +3743,6 @@ Here is the complete list of supported and ready-to-use Implementation Guides (I
 **Versions**
 
 * `ca.on.ehr.r4#1.0.0`
-* `ca.on.ehr.r4#1.0.0`
 * `ca.on.ehr.r4#1.0.0-snapshot8`
 * `ca.on.ehr.r4#1.0.0-snapshot7`
 * `ca.on.ehr.r4#1.0.0-snapshot6`
@@ -3987,20 +3751,10 @@ Here is the complete list of supported and ready-to-use Implementation Guides (I
 * `ca.on.ehr.r4#1.0.0-snapshot3`
 * `ca.on.ehr.r4#1.0.0-snapshot2`
 * `ca.on.ehr.r4#1.0.0-snapshot1`
-* `ca.on.ehr.r4#1.0.0-snapshot5`
-* `ca.on.ehr.r4#1.0.0-snapshot4`
-* `ca.on.ehr.r4#1.0.0-snapshot3`
-* `ca.on.ehr.r4#1.0.0-snapshot2`
-* `ca.on.ehr.r4#1.0.0-snapshot1`
-* `ca.on.ehr.r4#0.9.4`
 * `ca.on.ehr.r4#0.9.4`
 * `ca.on.ehr.r4#0.9.3`
-* `ca.on.ehr.r4#0.9.3`
-* `ca.on.ehr.r4#0.9.2`
 * `ca.on.ehr.r4#0.9.2`
 * `ca.on.ehr.r4#0.9.1`
-* `ca.on.ehr.r4#0.9.1`
-* `ca.on.ehr.r4#0.9.0`
 * `ca.on.ehr.r4#0.9.0`
 
 
@@ -4010,7 +3764,6 @@ Here is the complete list of supported and ready-to-use Implementation Guides (I
 
 **Versions**
 
-* `PHIS.IG.CreateTest#0.0.1`
 * `PHIS.IG.CreateTest#0.0.1`
 
 
@@ -4049,15 +3802,9 @@ Here is the complete list of supported and ready-to-use Implementation Guides (I
 **Versions**
 
 * `ca.infoway.io.cafex#2.2.0-DFT-Ballot`
-* `ca.infoway.io.cafex#2.2.0-DFT-Ballot`
-* `ca.infoway.io.cafex#2.1.0-DFT-preBallot`
-* `ca.infoway.io.cafex#2.1.0-DFT-Ballot`
 * `ca.infoway.io.cafex#2.1.0-DFT-preBallot`
 * `ca.infoway.io.cafex#2.1.0-DFT-Ballot`
 * `ca.infoway.io.cafex#2.0.0`
-* `ca.infoway.io.cafex#2.0.0`
-* `ca.infoway.io.cafex#2.0.0-dft-pre`
-* `ca.infoway.io.cafex#2.0.0-DFT-Ballot`
 * `ca.infoway.io.cafex#2.0.0-dft-pre`
 * `ca.infoway.io.cafex#2.0.0-DFT-Ballot`
 
@@ -4080,8 +3827,6 @@ Here is the complete list of supported and ready-to-use Implementation Guides (I
 **Versions**
 
 * `acme.canada.2023#1.2.0`
-* `acme.canada.2023#1.2.0`
-* `acme.canada.2023#0.0.1-alpha`
 * `acme.canada.2023#0.0.1-alpha`
 
 
@@ -4091,7 +3836,6 @@ Here is the complete list of supported and ready-to-use Implementation Guides (I
 
 **Versions**
 
-* `bbmri.cz#0.1.0`
 * `bbmri.cz#0.1.0`
 
 
@@ -4122,38 +3866,21 @@ Here is the complete list of supported and ready-to-use Implementation Guides (I
 **Versions**
 
 * `br.ufg.cgis.rnds-lite#0.2.4`
-* `br.ufg.cgis.rnds-lite#0.2.4`
-* `br.ufg.cgis.rnds-lite#0.2.3`
 * `br.ufg.cgis.rnds-lite#0.2.3`
 * `br.ufg.cgis.rnds-lite#0.2.2`
-* `br.ufg.cgis.rnds-lite#0.2.2`
-* `br.ufg.cgis.rnds-lite#0.2.1`
 * `br.ufg.cgis.rnds-lite#0.2.1`
 * `br.ufg.cgis.rnds-lite#0.2.0`
-* `br.ufg.cgis.rnds-lite#0.2.0`
-* `br.ufg.cgis.rnds-lite#0.1.8`
 * `br.ufg.cgis.rnds-lite#0.1.8`
 * `br.ufg.cgis.rnds-lite#0.1.7`
-* `br.ufg.cgis.rnds-lite#0.1.7`
-* `br.ufg.cgis.rnds-lite#0.1.6`
 * `br.ufg.cgis.rnds-lite#0.1.6`
 * `br.ufg.cgis.rnds-lite#0.1.5`
-* `br.ufg.cgis.rnds-lite#0.1.5`
-* `br.ufg.cgis.rnds-lite#0.1.4`
 * `br.ufg.cgis.rnds-lite#0.1.4`
 * `br.ufg.cgis.rnds-lite#0.1.3`
-* `br.ufg.cgis.rnds-lite#0.1.3`
-* `br.ufg.cgis.rnds-lite#0.1.2`
 * `br.ufg.cgis.rnds-lite#0.1.2`
 * `br.ufg.cgis.rnds-lite#0.1.1`
-* `br.ufg.cgis.rnds-lite#0.1.1`
-* `br.ufg.cgis.rnds-lite#0.1.0`
 * `br.ufg.cgis.rnds-lite#0.1.0`
 * `br.ufg.cgis.rnds-lite#0.0.3`
-* `br.ufg.cgis.rnds-lite#0.0.3`
 * `br.ufg.cgis.rnds-lite#0.0.2`
-* `br.ufg.cgis.rnds-lite#0.0.2`
-* `br.ufg.cgis.rnds-lite#0.0.1`
 * `br.ufg.cgis.rnds-lite#0.0.1`
 
 
@@ -4201,7 +3928,6 @@ Here is the complete list of supported and ready-to-use Implementation Guides (I
 
 **Versions**
 
-* `ASIC.Package#0.0.1-draft`
 * `ASIC.Package#0.0.1-draft`
 
 
@@ -4320,7 +4046,6 @@ Here is the complete list of supported and ready-to-use Implementation Guides (I
 
 **Versions**
 
-* `Koppeltaalv2.00#0.7.0-preview`
 * `Koppeltaalv2.00#0.7.0-preview`
 
 
@@ -4448,10 +4173,7 @@ Here is the complete list of supported and ready-to-use Implementation Guides (I
 **Versions**
 
 * `br.ufg.cgis.ig#0.0.3`
-* `br.ufg.cgis.ig#0.0.3`
 * `br.ufg.cgis.ig#0.0.2`
-* `br.ufg.cgis.ig#0.0.2`
-* `br.ufg.cgis.ig#0.0.1`
 * `br.ufg.cgis.ig#0.0.1`
 
 
@@ -4647,7 +4369,6 @@ Here is the complete list of supported and ready-to-use Implementation Guides (I
 **Versions**
 
 * `Berkay.Sandbox#0.0.1`
-* `Berkay.Sandbox#0.0.1`
 
 
 ---
@@ -4773,7 +4494,6 @@ Here is the complete list of supported and ready-to-use Implementation Guides (I
 **Versions**
 
 * `UK.NHSDigital.BARS.R4#0.1.0-test`
-* `UK.NHSDigital.BARS.R4#0.1.0-test`
 
 
 ---
@@ -4877,8 +4597,6 @@ Here is the complete list of supported and ready-to-use Implementation Guides (I
 **Versions**
 
 * `acme.profiling.tutorial.r4#2.0.0`
-* `acme.profiling.tutorial.r4#2.0.0`
-* `acme.profiling.tutorial.r4#1.0.0`
 * `acme.profiling.tutorial.r4#1.0.0`
 
 
@@ -4897,7 +4615,6 @@ Here is the complete list of supported and ready-to-use Implementation Guides (I
 
 **Versions**
 
-* `PCR.R4.1-1-0-pkg#1.1.0`
 * `PCR.R4.1-1-0-pkg#1.1.0`
 
 
@@ -5033,13 +4750,6 @@ Here is the complete list of supported and ready-to-use Implementation Guides (I
 * `ca.on.dhdr.r4.v4#0.1.2-beta`
 * `ca.on.dhdr.r4.v4#0.1.1-beta`
 * `ca.on.dhdr.r4.v4#0.1.0-beta`
-* `ca.on.dhdr.r4.v4#0.1.2-beta`
-* `ca.on.dhdr.r4.v4#0.1.1-beta`
-* `ca.on.dhdr.r4.v4#0.1.0-beta`
-* `ca.on.dhdr.r4.v4#0.0.9-beta`
-* `ca.on.dhdr.r4.v4#0.0.8-beta`
-* `ca.on.dhdr.r4.v4#0.0.7-beta`
-* `ca.on.dhdr.r4.v4#0.0.6-beta`
 * `ca.on.dhdr.r4.v4#0.0.9-beta`
 * `ca.on.dhdr.r4.v4#0.0.8-beta`
 * `ca.on.dhdr.r4.v4#0.0.7-beta`
@@ -5052,7 +4762,6 @@ Here is the complete list of supported and ready-to-use Implementation Guides (I
 
 **Versions**
 
-* `PathologyEncounterTissue.tryout#0.1.1`
 * `PathologyEncounterTissue.tryout#0.1.1`
 
 
@@ -5076,20 +4785,12 @@ Here is the complete list of supported and ready-to-use Implementation Guides (I
 **Versions**
 
 * `bonsai.first.test.r4#0.1.9`
-* `bonsai.first.test.r4#0.1.9`
-* `bonsai.first.test.r4#0.1.8`
 * `bonsai.first.test.r4#0.1.8`
 * `bonsai.first.test.r4#0.1.6`
-* `bonsai.first.test.r4#0.1.6`
-* `bonsai.first.test.r4#0.1.5`
 * `bonsai.first.test.r4#0.1.5`
 * `bonsai.first.test.r4#0.1.4`
-* `bonsai.first.test.r4#0.1.4`
-* `bonsai.first.test.r4#0.1.3`
 * `bonsai.first.test.r4#0.1.3`
 * `bonsai.first.test.r4#0.1.2`
-* `bonsai.first.test.r4#0.1.2`
-* `bonsai.first.test.r4#0.1.1`
 * `bonsai.first.test.r4#0.1.1`
 
 
@@ -5109,9 +4810,6 @@ Here is the complete list of supported and ready-to-use Implementation Guides (I
 **Versions**
 
 * `ca.infoway.io.ca-csd#1.0.2`
-* `ca.infoway.io.ca-csd#1.0.2`
-* `ca.infoway.io.ca-csd#1.0.3-DFT`
-* `ca.infoway.io.ca-csd#1.0.1-dft-ballot`
 * `ca.infoway.io.ca-csd#1.0.3-DFT`
 * `ca.infoway.io.ca-csd#1.0.1-dft-ballot`
 
@@ -5202,7 +4900,6 @@ Here is the complete list of supported and ready-to-use Implementation Guides (I
 
 **Versions**
 
-* `ca.on.oh-olis#2.0.0-0.0.1`
 * `ca.on.oh-olis#2.0.0-0.0.1`
 
 
@@ -5312,41 +5009,23 @@ Here is the complete list of supported and ready-to-use Implementation Guides (I
 **Versions**
 
 * `accdr.fhir.ig.pkg#0.9.0-alpha-0.9.23`
-* `accdr.fhir.ig.pkg#0.9.0-alpha-0.9.23`
-* `accdr.fhir.ig.pkg#0.9.0-alpha-0.9.22`
 * `accdr.fhir.ig.pkg#0.9.0-alpha-0.9.22`
 * `accdr.fhir.ig.pkg#0.9.0-alpha-0.9.21`
-* `accdr.fhir.ig.pkg#0.9.0-alpha-0.9.21`
-* `accdr.fhir.ig.pkg#0.9.0-alpha-0.9.20`
 * `accdr.fhir.ig.pkg#0.9.0-alpha-0.9.20`
 * `accdr.fhir.ig.pkg#0.9.0-alpha-0.9.19`
-* `accdr.fhir.ig.pkg#0.9.0-alpha-0.9.19`
-* `accdr.fhir.ig.pkg#0.9.0-alpha-0.9.18`
 * `accdr.fhir.ig.pkg#0.9.0-alpha-0.9.18`
 * `accdr.fhir.ig.pkg#0.9.0-alpha-0.9.17`
-* `accdr.fhir.ig.pkg#0.9.0-alpha-0.9.17`
-* `accdr.fhir.ig.pkg#0.9.0-alpha-0.9.16`
 * `accdr.fhir.ig.pkg#0.9.0-alpha-0.9.16`
 * `accdr.fhir.ig.pkg#0.9.27`
 * `accdr.fhir.ig.pkg#0.9.26`
-* `accdr.fhir.ig.pkg#0.9.26`
-* `accdr.fhir.ig.pkg#0.9.25`
 * `accdr.fhir.ig.pkg#0.9.25`
 * `accdr.fhir.ig.pkg#0.9.24`
-* `accdr.fhir.ig.pkg#0.9.24`
-* `accdr.fhir.ig.pkg#0.9.23`
 * `accdr.fhir.ig.pkg#0.9.23`
 * `accdr.fhir.ig.pkg#0.9.22`
-* `accdr.fhir.ig.pkg#0.9.22`
-* `accdr.fhir.ig.pkg#0.9.21`
 * `accdr.fhir.ig.pkg#0.9.21`
 * `accdr.fhir.ig.pkg#0.9.20`
-* `accdr.fhir.ig.pkg#0.9.20`
-* `accdr.fhir.ig.pkg#0.9.19`
 * `accdr.fhir.ig.pkg#0.9.19`
 * `accdr.fhir.ig.pkg#0.9.18`
-* `accdr.fhir.ig.pkg#0.9.18`
-* `accdr.fhir.ig.pkg#0.9.15`
 * `accdr.fhir.ig.pkg#0.9.15`
 
 
@@ -5479,8 +5158,6 @@ Here is the complete list of supported and ready-to-use Implementation Guides (I
 **Versions**
 
 * `KBV.MIO.ZAEB#1.1.0-Kommentierung`
-* `KBV.MIO.ZAEB#1.1.0-Kommentierung`
-* `KBV.MIO.ZAEB#1.00.000`
 * `KBV.MIO.ZAEB#1.00.000`
 
 
@@ -5872,7 +5549,6 @@ Here is the complete list of supported and ready-to-use Implementation Guides (I
 **Versions**
 
 * `KBV.MIO.U-Heft#1.0.0`
-* `KBV.MIO.U-Heft#1.0.0`
 
 
 ---
@@ -5949,7 +5625,6 @@ Here is the complete list of supported and ready-to-use Implementation Guides (I
 
 **Versions**
 
-* `Northwell.Person.Extensions#1.0.0-alpha`
 * `Northwell.Person.Extensions#1.0.0-alpha`
 
 
@@ -6189,7 +5864,6 @@ Here is the complete list of supported and ready-to-use Implementation Guides (I
 **Versions**
 
 * `KBV.ITA.VOS#1.10.010`
-* `KBV.ITA.VOS#1.10.010`
 
 
 ---
@@ -6207,7 +5881,6 @@ Here is the complete list of supported and ready-to-use Implementation Guides (I
 
 **Versions**
 
-* `Northwell.Extensions#0.0.1`
 * `Northwell.Extensions#0.0.1`
 
 
@@ -6297,7 +5970,6 @@ Here is the complete list of supported and ready-to-use Implementation Guides (I
 
 **Versions**
 
-* `MyHIE.v4#2.0.0-alpha`
 * `MyHIE.v4#2.0.0-alpha`
 
 
@@ -6420,7 +6092,6 @@ Here is the complete list of supported and ready-to-use Implementation Guides (I
 **Versions**
 
 * `acme.fsh.ig.example#0.0.1-demo`
-* `acme.fsh.ig.example#0.0.1-demo`
 
 
 ---
@@ -6532,7 +6203,6 @@ Here is the complete list of supported and ready-to-use Implementation Guides (I
 **Versions**
 
 * `NICEProfiling.v23Q1#0.1.0`
-* `NICEProfiling.v23Q1#0.1.0`
 
 
 ---
@@ -6551,8 +6221,6 @@ Here is the complete list of supported and ready-to-use Implementation Guides (I
 **Versions**
 
 * `basisprofil.tiplu.de.r4.dev#1.0.1`
-* `basisprofil.tiplu.de.r4.dev#1.0.1`
-* `basisprofil.tiplu.de.r4.dev#1.0.0`
 * `basisprofil.tiplu.de.r4.dev#1.0.0`
 
 
@@ -6571,7 +6239,6 @@ Here is the complete list of supported and ready-to-use Implementation Guides (I
 
 **Versions**
 
-* `AndersonSanto.Tarefa6#1.0.0`
 * `AndersonSanto.Tarefa6#1.0.0`
 
 
@@ -6633,7 +6300,6 @@ Here is the complete list of supported and ready-to-use Implementation Guides (I
 **Versions**
 
 * `IdHIE.0v#0.0.1`
-* `IdHIE.0v#0.0.1`
 
 
 ---
@@ -6651,7 +6317,6 @@ Here is the complete list of supported and ready-to-use Implementation Guides (I
 
 **Versions**
 
-* `LogicNets.NCCN#0.8.1`
 * `LogicNets.NCCN#0.8.1`
 
 
@@ -6754,15 +6419,6 @@ Here is the complete list of supported and ready-to-use Implementation Guides (I
 * `ca.infoway.io.erec#1.1.1-dft-ballot`
 * `ca.infoway.io.erec#1.1.0-dft-ballot`
 * `ca.infoway.io.erec#1.1.0-dft-ab`
-* `ca.infoway.io.erec#1.1.1-dft-ballot`
-* `ca.infoway.io.erec#1.1.0-dft-ballot`
-* `ca.infoway.io.erec#1.1.0-dft-ab`
-* `ca.infoway.io.erec#1.0.3-dft-projectathon`
-* `ca.infoway.io.erec#1.0.2-dft`
-* `ca.infoway.io.erec#1.0.2-dft-projectathon`
-* `ca.infoway.io.erec#1.0.1-dft`
-* `ca.infoway.io.erec#1.0.0-dft`
-* `ca.infoway.io.erec#1.0.0-dft-ballot`
 * `ca.infoway.io.erec#1.0.3-dft-projectathon`
 * `ca.infoway.io.erec#1.0.2-dft`
 * `ca.infoway.io.erec#1.0.2-dft-projectathon`
@@ -6828,7 +6484,6 @@ Here is the complete list of supported and ready-to-use Implementation Guides (I
 
 **Versions**
 
-* `OntarioContextManagement.core#0.1.0`
 * `OntarioContextManagement.core#0.1.0`
 
 
@@ -6919,7 +6574,6 @@ Here is the complete list of supported and ready-to-use Implementation Guides (I
 **Versions**
 
 * `SocialCareDataService.STU3#0.0.1`
-* `SocialCareDataService.STU3#0.0.1`
 
 
 ---
@@ -6987,8 +6641,6 @@ Here is the complete list of supported and ready-to-use Implementation Guides (I
 **Versions**
 
 * `ca.argentixinfo.howtopub#1.1.0`
-* `ca.argentixinfo.howtopub#1.1.0`
-* `ca.argentixinfo.howtopub#1.0.0`
 * `ca.argentixinfo.howtopub#1.0.0`
 
 
@@ -7186,70 +6838,38 @@ Here is the complete list of supported and ready-to-use Implementation Guides (I
 **Versions**
 
 * `ca.on.oh-setp#0.9.0-alpha1.0.33`
-* `ca.on.oh-setp#0.9.0-alpha1.0.33`
-* `ca.on.oh-setp#0.9.0-alpha1.0.32`
 * `ca.on.oh-setp#0.9.0-alpha1.0.32`
 * `ca.on.oh-setp#0.9.0-alpha1.0.31`
-* `ca.on.oh-setp#0.9.0-alpha1.0.31`
-* `ca.on.oh-setp#0.9.0-alpha1.0.30`
 * `ca.on.oh-setp#0.9.0-alpha1.0.30`
 * `ca.on.oh-setp#0.9.0-alpha1.0.29`
-* `ca.on.oh-setp#0.9.0-alpha1.0.29`
-* `ca.on.oh-setp#0.9.0-alpha1.0.28`
 * `ca.on.oh-setp#0.9.0-alpha1.0.28`
 * `ca.on.oh-setp#0.9.0-alpha1.0.27`
-* `ca.on.oh-setp#0.9.0-alpha1.0.27`
-* `ca.on.oh-setp#0.9.0-alpha1.0.26`
 * `ca.on.oh-setp#0.9.0-alpha1.0.26`
 * `ca.on.oh-setp#0.9.0-alpha1.0.25`
-* `ca.on.oh-setp#0.9.0-alpha1.0.25`
-* `ca.on.oh-setp#0.9.0-alpha1.0.24`
 * `ca.on.oh-setp#0.9.0-alpha1.0.24`
 * `ca.on.oh-setp#0.9.0-alpha1.0.23`
-* `ca.on.oh-setp#0.9.0-alpha1.0.23`
-* `ca.on.oh-setp#0.9.0-alpha1.0.22`
 * `ca.on.oh-setp#0.9.0-alpha1.0.22`
 * `ca.on.oh-setp#0.9.0-alpha1.0.18`
-* `ca.on.oh-setp#0.9.0-alpha1.0.18`
-* `ca.on.oh-setp#0.9.0-alpha1.0.17`
 * `ca.on.oh-setp#0.9.0-alpha1.0.17`
 * `ca.on.oh-setp#0.9.0-alpha1.0.16`
-* `ca.on.oh-setp#0.9.0-alpha1.0.16`
-* `ca.on.oh-setp#0.9.0-alpha1.0.15`
 * `ca.on.oh-setp#0.9.0-alpha1.0.15`
 * `ca.on.oh-setp#0.9.0-alpha1.0.14`
-* `ca.on.oh-setp#0.9.0-alpha1.0.14`
-* `ca.on.oh-setp#0.9.0-alpha1.0.13`
 * `ca.on.oh-setp#0.9.0-alpha1.0.13`
 * `ca.on.oh-setp#0.9.0-alpha1.0.12`
-* `ca.on.oh-setp#0.9.0-alpha1.0.12`
-* `ca.on.oh-setp#0.9.0-alpha1.0.11`
 * `ca.on.oh-setp#0.9.0-alpha1.0.11`
 * `ca.on.oh-setp#0.9.0-alpha1.0.10`
-* `ca.on.oh-setp#0.9.0-alpha1.0.10`
-* `ca.on.oh-setp#0.9.0-alpha1.0.9`
 * `ca.on.oh-setp#0.9.0-alpha1.0.9`
 * `ca.on.oh-setp#0.9.0-alpha1.0.8`
-* `ca.on.oh-setp#0.9.0-alpha1.0.8`
-* `ca.on.oh-setp#0.9.0-alpha1.0.7`
 * `ca.on.oh-setp#0.9.0-alpha1.0.7`
 * `ca.on.oh-setp#0.9.0-alpha-1.0.6`
-* `ca.on.oh-setp#0.9.0-alpha-1.0.6`
-* `ca.on.oh-setp#0.9.0-alpha1.0.5`
 * `ca.on.oh-setp#0.9.0-alpha1.0.5`
 * `ca.on.oh-setp#1.0.41`
 * `ca.on.oh-setp#1.0.40`
 * `ca.on.oh-setp#1.0.39`
-* `ca.on.oh-setp#1.0.39`
-* `ca.on.oh-setp#1.0.38`
 * `ca.on.oh-setp#1.0.38`
 * `ca.on.oh-setp#1.0.37`
-* `ca.on.oh-setp#1.0.37`
-* `ca.on.oh-setp#1.0.36`
 * `ca.on.oh-setp#1.0.36`
 * `ca.on.oh-setp#1.0.35`
-* `ca.on.oh-setp#1.0.35`
-* `ca.on.oh-setp#1.0.34`
 * `ca.on.oh-setp#1.0.34`
 
 
@@ -7269,7 +6889,6 @@ Here is the complete list of supported and ready-to-use Implementation Guides (I
 **Versions**
 
 * `ca.ab.fhir.aberec1#1.0.2`
-* `ca.ab.fhir.aberec1#1.0.1`
 * `ca.ab.fhir.aberec1#1.0.1`
 
 
@@ -7305,7 +6924,6 @@ Here is the complete list of supported and ready-to-use Implementation Guides (I
 
 **Versions**
 
-* `alpha.core.r4#1.0.0`
 * `alpha.core.r4#1.0.0`
 
 
@@ -7351,7 +6969,6 @@ Here is the complete list of supported and ready-to-use Implementation Guides (I
 **Versions**
 
 * `acme.dallas.cowboy#0.1.0-alpha`
-* `acme.dallas.cowboy#0.1.0-alpha`
 
 
 ---
@@ -7360,7 +6977,6 @@ Here is the complete list of supported and ready-to-use Implementation Guides (I
 
 **Versions**
 
-* `acme.minneapolis.cowboy#0.1.0`
 * `acme.minneapolis.cowboy#0.1.0`
 
 
@@ -7429,7 +7045,6 @@ Here is the complete list of supported and ready-to-use Implementation Guides (I
 **Versions**
 
 * `br.gov.saude.ccu#0.0.1`
-* `br.gov.saude.ccu#0.0.1`
 
 
 ---
@@ -7467,8 +7082,6 @@ Here is the complete list of supported and ready-to-use Implementation Guides (I
 * `ca.on.dhdr.r4#4.0.3-snapshot3`
 * `ca.on.dhdr.r4#4.0.3-snapshot2`
 * `ca.on.dhdr.r4#4.0.3-snapshot1`
-* `ca.on.dhdr.r4#4.0.3-snapshot2`
-* `ca.on.dhdr.r4#4.0.3-snapshot1`
 
 
 ---
@@ -7487,8 +7100,6 @@ Here is the complete list of supported and ready-to-use Implementation Guides (I
 **Versions**
 
 * `IHE.ITI.PDQm#2.3.0`
-* `IHE.ITI.PDQm#2.3.0`
-* `IHE.ITI.PDQm#2.2.1`
 * `IHE.ITI.PDQm#2.2.1`
 
 
@@ -7618,14 +7229,9 @@ Here is the complete list of supported and ready-to-use Implementation Guides (I
 **Versions**
 
 * `ans.fr.nos#1.5.0`
-* `ans.fr.nos#1.5.0`
-* `ans.fr.nos#1.4.0`
 * `ans.fr.nos#1.4.0`
 * `ans.fr.nos#1.3.0`
-* `ans.fr.nos#1.3.0`
 * `ans.fr.nos#1.2.0`
-* `ans.fr.nos#1.2.0`
-* `ans.fr.nos#1.1.0`
 * `ans.fr.nos#1.1.0`
 
 
@@ -7660,7 +7266,6 @@ Here is the complete list of supported and ready-to-use Implementation Guides (I
 
 **Versions**
 
-* `TigaCoreHUB.Patient#1.1.0`
 * `TigaCoreHUB.Patient#1.1.0`
 
 
@@ -7773,10 +7378,7 @@ Here is the complete list of supported and ready-to-use Implementation Guides (I
 **Versions**
 
 * `ans.fhir.fr.eclaire#0.3.0`
-* `ans.fhir.fr.eclaire#0.3.0`
 * `ans.fhir.fr.eclaire#0.2.0`
-* `ans.fhir.fr.eclaire#0.2.0`
-* `ans.fhir.fr.eclaire#0.1.0`
 * `ans.fhir.fr.eclaire#0.1.0`
 
 
@@ -7813,7 +7415,6 @@ Here is the complete list of supported and ready-to-use Implementation Guides (I
 
 **Versions**
 
-* `ca.bc.bcy-ids#1.0.0`
 * `ca.bc.bcy-ids#1.0.0`
 
 
@@ -7875,7 +7476,6 @@ Here is the complete list of supported and ready-to-use Implementation Guides (I
 * `asdmc.draft#0.2.1`
 * `asdmc.draft#0.2.0`
 * `asdmc.draft#0.1.0`
-* `asdmc.draft#0.1.0`
 
 
 ---
@@ -7894,7 +7494,6 @@ Here is the complete list of supported and ready-to-use Implementation Guides (I
 
 **Versions**
 
-* `ca.on.oh.corhealth#0.2.0-beta`
 * `ca.on.oh.corhealth#0.2.0-beta`
 
 
@@ -7994,7 +7593,6 @@ Here is the complete list of supported and ready-to-use Implementation Guides (I
 **Versions**
 
 * `Modelisationdesstructuresetdesprofessionnels.sept2021#0.1.0`
-* `Modelisationdesstructuresetdesprofessionnels.sept2021#0.1.0`
 
 
 ---
@@ -8022,7 +7620,6 @@ Here is the complete list of supported and ready-to-use Implementation Guides (I
 
 **Versions**
 
-* `CanonicalVersioningTest-0.01.01#0.01.01-alpha`
 * `CanonicalVersioningTest-0.01.01#0.01.01-alpha`
 
 
@@ -8133,7 +7730,6 @@ Here is the complete list of supported and ready-to-use Implementation Guides (I
 **Versions**
 
 * `PharmacyClaimProfile.test#1.0.1-beta`
-* `PharmacyClaimProfile.test#1.0.1-beta`
 
 
 ---
@@ -8151,7 +7747,6 @@ Here is the complete list of supported and ready-to-use Implementation Guides (I
 
 **Versions**
 
-* `STB.DRAFT#1.29.0`
 * `STB.DRAFT#1.29.0`
 
 
@@ -8225,7 +7820,6 @@ Here is the complete list of supported and ready-to-use Implementation Guides (I
 **Versions**
 
 * `CygnetHealth.00.00.01#0.0.1`
-* `CygnetHealth.00.00.01#0.0.1`
 
 
 ---
@@ -8285,7 +7879,6 @@ Here is the complete list of supported and ready-to-use Implementation Guides (I
 
 **Versions**
 
-* `DGUV.Basis#1.0.0`
 * `DGUV.Basis#1.0.0`
 
 
@@ -8381,36 +7974,20 @@ Here is the complete list of supported and ready-to-use Implementation Guides (I
 **Versions**
 
 * `acme.base#2.0.3`
-* `acme.base#2.0.3`
-* `acme.base#2.0.2`
 * `acme.base#2.0.2`
 * `acme.base#2.0.1`
-* `acme.base#2.0.1`
-* `acme.base#2.0.0`
 * `acme.base#2.0.0`
 * `acme.base#2.0.0-rc1`
-* `acme.base#2.0.0-rc1`
-* `acme.base#1.0.0`
 * `acme.base#1.0.0`
 * `acme.base#0.0.11`
-* `acme.base#0.0.11`
-* `acme.base#0.0.9`
 * `acme.base#0.0.9`
 * `acme.base#0.0.8`
-* `acme.base#0.0.8`
-* `acme.base#0.0.7`
 * `acme.base#0.0.7`
 * `acme.base#0.0.6`
-* `acme.base#0.0.6`
-* `acme.base#0.0.5`
 * `acme.base#0.0.5`
 * `acme.base#0.0.4`
-* `acme.base#0.0.4`
-* `acme.base#0.0.2`
 * `acme.base#0.0.2`
 * `acme.base#0.0.1`
-* `acme.base#0.0.1`
-* `acme.base#0.0.10-no-move-examples`
 * `acme.base#0.0.10-no-move-examples`
 
 
@@ -8450,11 +8027,7 @@ Here is the complete list of supported and ready-to-use Implementation Guides (I
 **Versions**
 
 * `ca.on.oh-erec-ig#0.12.3-alpha1.0.3`
-* `ca.on.oh-erec-ig#0.12.3-alpha1.0.3`
 * `ca.on.oh-erec-ig#0.12.3-alpha1.0.2`
-* `ca.on.oh-erec-ig#0.12.3-alpha1.0.2`
-* `ca.on.oh-erec-ig#0.12.3-alpha1.0.1`
-* `ca.on.oh-erec-ig#0.12.2-alpha1.0.1`
 * `ca.on.oh-erec-ig#0.12.3-alpha1.0.1`
 * `ca.on.oh-erec-ig#0.12.2-alpha1.0.1`
 
@@ -8508,10 +8081,7 @@ Here is the complete list of supported and ready-to-use Implementation Guides (I
 **Versions**
 
 * `ans.fhir.fr.pdsm#3.1.0`
-* `ans.fhir.fr.pdsm#3.1.0`
 * `ans.fhir.fr.pdsm#3.0.1`
-* `ans.fhir.fr.pdsm#3.0.1`
-* `ans.fhir.fr.pdsm#3.0.0`
 * `ans.fhir.fr.pdsm#3.0.0`
 
 
@@ -8521,7 +8091,6 @@ Here is the complete list of supported and ready-to-use Implementation Guides (I
 
 **Versions**
 
-* `RapportEndoscopieQuebec.test#0.0.1-test`
 * `RapportEndoscopieQuebec.test#0.0.1-test`
 
 
@@ -8583,12 +8152,8 @@ Here is the complete list of supported and ready-to-use Implementation Guides (I
 **Versions**
 
 * `ans.cnsa.fhir#0.1.2`
-* `ans.cnsa.fhir#0.1.2`
-* `ans.cnsa.fhir#0.1.1`
 * `ans.cnsa.fhir#0.1.1`
 * `ans.cnsa.fhir#0.1.0`
-* `ans.cnsa.fhir#0.1.0`
-* `ans.cnsa.fhir#0.0.1`
 * `ans.cnsa.fhir#0.0.1`
 
 
@@ -8630,10 +8195,7 @@ Here is the complete list of supported and ready-to-use Implementation Guides (I
 **Versions**
 
 * `ca.on.oh-erec#0.12.1-alpha1.0.3`
-* `ca.on.oh-erec#0.12.1-alpha1.0.3`
 * `ca.on.oh-erec#0.12.1-alpha1.0.2`
-* `ca.on.oh-erec#0.12.1-alpha1.0.2`
-* `ca.on.oh-erec#0.12.1-alpha1.0.1`
 * `ca.on.oh-erec#0.12.1-alpha1.0.1`
 
 
@@ -8644,14 +8206,9 @@ Here is the complete list of supported and ready-to-use Implementation Guides (I
 **Versions**
 
 * `Vital.MedikationsplanPlus#1.1.0`
-* `Vital.MedikationsplanPlus#1.1.0`
-* `Vital.MedikationsplanPlus#1.0.0`
 * `Vital.MedikationsplanPlus#1.0.0`
 * `Vital.MedikationsplanPlus#0.3.0`
-* `Vital.MedikationsplanPlus#0.3.0`
 * `Vital.MedikationsplanPlus#0.2.0`
-* `Vital.MedikationsplanPlus#0.2.0`
-* `Vital.MedikationsplanPlus#0.1.0`
 * `Vital.MedikationsplanPlus#0.1.0`
 
 
@@ -8771,7 +8328,6 @@ Here is the complete list of supported and ready-to-use Implementation Guides (I
 **Versions**
 
 * `LS.fhir.r4.DevDays2019.labobservations#0.1.0-beta`
-* `LS.fhir.r4.DevDays2019.labobservations#0.1.0-beta`
 
 
 ---
@@ -8867,7 +8423,6 @@ Here is the complete list of supported and ready-to-use Implementation Guides (I
 **Versions**
 
 * `agha.fhir.genclipr#0.1.0`
-* `agha.fhir.genclipr#0.1.0`
 
 
 ---
@@ -8894,66 +8449,35 @@ Here is the complete list of supported and ready-to-use Implementation Guides (I
 **Versions**
 
 * `acme.base.r4#4.1.7`
-* `acme.base.r4#4.1.7`
-* `acme.base.r4#4.1.6`
 * `acme.base.r4#4.1.6`
 * `acme.base.r4#4.1.5`
-* `acme.base.r4#4.1.5`
-* `acme.base.r4#4.1.4`
 * `acme.base.r4#4.1.4`
 * `acme.base.r4#4.1.3`
-* `acme.base.r4#4.1.3`
-* `acme.base.r4#4.1.2`
 * `acme.base.r4#4.1.2`
 * `acme.base.r4#4.1.1`
-* `acme.base.r4#4.1.1`
-* `acme.base.r4#4.1.0`
 * `acme.base.r4#4.1.0`
 * `acme.base.r4#4.0.18`
-* `acme.base.r4#4.0.18`
-* `acme.base.r4#4.0.17`
 * `acme.base.r4#4.0.17`
 * `acme.base.r4#4.0.16`
-* `acme.base.r4#4.0.16`
-* `acme.base.r4#4.0.15`
 * `acme.base.r4#4.0.15`
 * `acme.base.r4#4.0.14`
-* `acme.base.r4#4.0.14`
-* `acme.base.r4#4.0.13`
 * `acme.base.r4#4.0.13`
 * `acme.base.r4#4.0.12`
-* `acme.base.r4#4.0.12`
-* `acme.base.r4#4.0.11`
 * `acme.base.r4#4.0.11`
 * `acme.base.r4#4.0.10`
-* `acme.base.r4#4.0.10`
-* `acme.base.r4#4.0.9`
 * `acme.base.r4#4.0.9`
 * `acme.base.r4#4.0.7`
-* `acme.base.r4#4.0.7`
-* `acme.base.r4#4.0.6`
 * `acme.base.r4#4.0.6`
 * `acme.base.r4#4.0.5`
-* `acme.base.r4#4.0.5`
-* `acme.base.r4#4.0.4`
 * `acme.base.r4#4.0.4`
 * `acme.base.r4#4.0.3`
-* `acme.base.r4#4.0.3`
-* `acme.base.r4#4.0.2`
 * `acme.base.r4#4.0.2`
 * `acme.base.r4#4.0.1`
-* `acme.base.r4#4.0.1`
-* `acme.base.r4#4.0.0`
 * `acme.base.r4#4.0.0`
 * `acme.base.r4#3.0.0`
-* `acme.base.r4#3.0.0`
-* `acme.base.r4#2.0.0`
 * `acme.base.r4#2.0.0`
 * `acme.base.r4#1.0.0`
-* `acme.base.r4#1.0.0`
 * `acme.base.r4#1.0.0-beta2`
-* `acme.base.r4#1.0.0-beta2`
-* `acme.base.r4#0.0.1-alpha2`
 * `acme.base.r4#0.0.1-alpha2`
 
 
@@ -9038,12 +8562,8 @@ Here is the complete list of supported and ready-to-use Implementation Guides (I
 **Versions**
 
 * `ans.fhir.fr.tddui#1.1.0`
-* `ans.fhir.fr.tddui#1.1.0`
-* `ans.fhir.fr.tddui#1.1.0-ballot`
 * `ans.fhir.fr.tddui#1.1.0-ballot`
 * `ans.fhir.fr.tddui#1.0.1`
-* `ans.fhir.fr.tddui#1.0.1`
-* `ans.fhir.fr.tddui#1.0.1-ballot`
 * `ans.fhir.fr.tddui#1.0.1-ballot`
 
 
@@ -9053,7 +8573,6 @@ Here is the complete list of supported and ready-to-use Implementation Guides (I
 
 **Versions**
 
-* `apo.cdl.test#0.0.1-alpha`
 * `apo.cdl.test#0.0.1-alpha`
 
 
@@ -9116,7 +8635,6 @@ Here is the complete list of supported and ready-to-use Implementation Guides (I
 
 **Versions**
 
-* `MyHIE.v4-test#2.1.0-alpha`
 * `MyHIE.v4-test#2.1.0-alpha`
 
 
@@ -9328,7 +8846,6 @@ Here is the complete list of supported and ready-to-use Implementation Guides (I
 **Versions**
 
 * `Test20171286.neu#0.8.15`
-* `Test20171286.neu#0.8.15`
 
 
 ---
@@ -9338,7 +8855,6 @@ Here is the complete list of supported and ready-to-use Implementation Guides (I
 **Versions**
 
 * `NHSDigital.FHIR.STU3#1.0.0`
-* `NHSDigital.FHIR.STU3#1.0.0`
 
 
 ---
@@ -9347,7 +8863,6 @@ Here is the complete list of supported and ready-to-use Implementation Guides (I
 
 **Versions**
 
-* `CGM.FHIR.Workshop#1.0.0-beta`
 * `CGM.FHIR.Workshop#1.0.0-beta`
 
 
@@ -9405,7 +8920,6 @@ Here is the complete list of supported and ready-to-use Implementation Guides (I
 
 **Versions**
 
-* `HL7France-Clinicalprofils.072021#0.1.0`
 * `HL7France-Clinicalprofils.072021#0.1.0`
 
 
@@ -9591,16 +9105,10 @@ Here is the complete list of supported and ready-to-use Implementation Guides (I
 **Versions**
 
 * `ans.cisis.fhir.r4#3.0.0`
-* `ans.cisis.fhir.r4#3.0.0`
-* `ans.cisis.fhir.r4#3.0.0-pat23v2`
-* `ans.cisis.fhir.r4#3.0.0-pat23`
 * `ans.cisis.fhir.r4#3.0.0-pat23v2`
 * `ans.cisis.fhir.r4#3.0.0-pat23`
 * `ans.cisis.fhir.r4#2.1.0`
-* `ans.cisis.fhir.r4#2.1.0`
 * `ans.cisis.fhir.r4#2.0.0`
-* `ans.cisis.fhir.r4#2.0.0`
-* `ans.cisis.fhir.r4#1.0.0`
 * `ans.cisis.fhir.r4#1.0.0`
 
 
@@ -9745,30 +9253,17 @@ Here is the complete list of supported and ready-to-use Implementation Guides (I
 **Versions**
 
 * `ca.on.consent.r4#0.10.11`
-* `ca.on.consent.r4#0.10.11`
-* `ca.on.consent.r4#0.10.10`
 * `ca.on.consent.r4#0.10.10`
 * `ca.on.consent.r4#0.10.9`
-* `ca.on.consent.r4#0.10.9`
-* `ca.on.consent.r4#0.10.8`
 * `ca.on.consent.r4#0.10.8`
 * `ca.on.consent.r4#0.10.7`
-* `ca.on.consent.r4#0.10.7`
-* `ca.on.consent.r4#0.10.6`
 * `ca.on.consent.r4#0.10.6`
 * `ca.on.consent.r4#0.10.5`
-* `ca.on.consent.r4#0.10.5`
-* `ca.on.consent.r4#0.10.4`
 * `ca.on.consent.r4#0.10.4`
 * `ca.on.consent.r4#0.10.3`
-* `ca.on.consent.r4#0.10.3`
-* `ca.on.consent.r4#0.10.2`
 * `ca.on.consent.r4#0.10.2`
 * `ca.on.consent.r4#0.10.1`
-* `ca.on.consent.r4#0.10.1`
 * `ca.on.consent.r4#0.10.0`
-* `ca.on.consent.r4#0.10.0`
-* `ca.on.consent.r4#0.9.0`
 * `ca.on.consent.r4#0.9.0`
 
 
@@ -9804,8 +9299,6 @@ Here is the complete list of supported and ready-to-use Implementation Guides (I
 **Versions**
 
 * `ca.on.oh-cms#1.0.2-alpha1.0.2`
-* `ca.on.oh-cms#1.0.2-alpha1.0.2`
-* `ca.on.oh-cms#1.0.1-alpha1.0.1`
 * `ca.on.oh-cms#1.0.1-alpha1.0.1`
 
 
@@ -9815,7 +9308,6 @@ Here is the complete list of supported and ready-to-use Implementation Guides (I
 
 **Versions**
 
-* `br.go.ses.core#0.0.1`
 * `br.go.ses.core#0.0.1`
 
 
@@ -9848,8 +9340,6 @@ Here is the complete list of supported and ready-to-use Implementation Guides (I
 **Versions**
 
 * `ans.fhir.fr.telesurveillance#0.1.0`
-* `ans.fhir.fr.telesurveillance#0.1.0`
-* `ans.fhir.fr.telesurveillance#0.1.0-ballot`
 * `ans.fhir.fr.telesurveillance#0.1.0-ballot`
 
 
@@ -9935,12 +9425,8 @@ Here is the complete list of supported and ready-to-use Implementation Guides (I
 **Versions**
 
 * `acme.canada#0.0.4`
-* `acme.canada#0.0.4`
-* `acme.canada#0.0.3`
 * `acme.canada#0.0.3`
 * `acme.canada#0.0.2`
-* `acme.canada#0.0.2`
-* `acme.canada#0.0.1`
 * `acme.canada#0.0.1`
 
 
@@ -9990,10 +9476,7 @@ Here is the complete list of supported and ready-to-use Implementation Guides (I
 **Versions**
 
 * `KBV.ITA.FOR#1.0.3`
-* `KBV.ITA.FOR#1.0.3`
 * `KBV.ITA.FOR#1.0.2`
-* `KBV.ITA.FOR#1.0.2`
-* `KBV.ITA.FOR#1.0.1`
 * `KBV.ITA.FOR#1.0.1`
 
 
@@ -10120,7 +9603,6 @@ Here is the complete list of supported and ready-to-use Implementation Guides (I
 **Versions**
 
 * `ca-on-dhdr-r4.v09#0.9.0`
-* `ca-on-dhdr-r4.v09#0.9.0`
 
 
 ---
@@ -10139,7 +9621,6 @@ Here is the complete list of supported and ready-to-use Implementation Guides (I
 
 **Versions**
 
-* `bla.abel.org#1.0.1`
 * `bla.abel.org#1.0.1`
 
 
@@ -10209,7 +9690,6 @@ Here is the complete list of supported and ready-to-use Implementation Guides (I
 **Versions**
 
 * `ca.clicsante.base#1.0.0`
-* `ca.clicsante.base#1.0.0`
 
 
 ---
@@ -10241,18 +9721,11 @@ Here is the complete list of supported and ready-to-use Implementation Guides (I
 **Versions**
 
 * `ans.fhir.fr.ror#0.5.0`
-* `ans.fhir.fr.ror#0.5.0`
-* `ans.fhir.fr.ror#0.4.0`
 * `ans.fhir.fr.ror#0.4.0`
 * `ans.fhir.fr.ror#0.4.0-snapshot-1`
-* `ans.fhir.fr.ror#0.4.0-snapshot-1`
-* `ans.fhir.fr.ror#0.3.0`
 * `ans.fhir.fr.ror#0.3.0`
 * `ans.fhir.fr.ror#0.2.0`
-* `ans.fhir.fr.ror#0.2.0`
 * `ans.fhir.fr.ror#0.1.1`
-* `ans.fhir.fr.ror#0.1.1`
-* `ans.fhir.fr.ror#0.1.0`
 * `ans.fhir.fr.ror#0.1.0`
 
 
@@ -10290,13 +9763,6 @@ Here is the complete list of supported and ready-to-use Implementation Guides (I
 **Versions**
 
 * `ca.infoway.io.psca#2.1.0-DFT-Ballot`
-* `ca.infoway.io.psca#2.1.0-DFT-Ballot`
-* `ca.infoway.io.psca#2.0.3-DFT-Ballot`
-* `ca.infoway.io.psca#2.0.2-DFT-Ballot`
-* `ca.infoway.io.psca#2.0.0-DFT-preBallot`
-* `ca.infoway.io.psca#2.0.0-DFT-Ballot`
-* `ca.infoway.io.psca#2.0.0-DFT-Ballot-alpha2`
-* `ca.infoway.io.psca#2.0.0-DFT-Ballot-alpha-1`
 * `ca.infoway.io.psca#2.0.3-DFT-Ballot`
 * `ca.infoway.io.psca#2.0.2-DFT-Ballot`
 * `ca.infoway.io.psca#2.0.0-DFT-preBallot`
@@ -10304,24 +9770,14 @@ Here is the complete list of supported and ready-to-use Implementation Guides (I
 * `ca.infoway.io.psca#2.0.0-DFT-Ballot-alpha2`
 * `ca.infoway.io.psca#2.0.0-DFT-Ballot-alpha-1`
 * `ca.infoway.io.psca#1.1.0`
-* `ca.infoway.io.psca#1.1.0`
-* `ca.infoway.io.psca#1.0.0`
 * `ca.infoway.io.psca#1.0.0`
 * `ca.infoway.io.psca#1.0.0-projectathon-pre`
 * `ca.infoway.io.psca#1.0.0-pre`
-* `ca.infoway.io.psca#1.0.0-projectathon-pre`
-* `ca.infoway.io.psca#1.0.0-pre`
-* `ca.infoway.io.psca#0.4.0-pre`
 * `ca.infoway.io.psca#0.4.0-pre`
 * `ca.infoway.io.psca#0.3.2`
-* `ca.infoway.io.psca#0.3.2`
-* `ca.infoway.io.psca#0.3.1`
 * `ca.infoway.io.psca#0.3.1`
 * `ca.infoway.io.psca#0.3.0`
-* `ca.infoway.io.psca#0.3.0`
 * `ca.infoway.io.psca#0.3.0-pre`
-* `ca.infoway.io.psca#0.3.0-pre`
-* `ca.infoway.io.psca#0.0.4`
 * `ca.infoway.io.psca#0.0.4`
 
 
@@ -10380,7 +9836,6 @@ Here is the complete list of supported and ready-to-use Implementation Guides (I
 **Versions**
 
 * `Test.Training#1.0.0`
-* `Test.Training#1.0.0`
 
 
 ---
@@ -10429,8 +9884,6 @@ Here is the complete list of supported and ready-to-use Implementation Guides (I
 **Versions**
 
 * `KBV.ITA.EAU#1.0.2`
-* `KBV.ITA.EAU#1.0.2`
-* `KBV.ITA.EAU#1.0.1`
 * `KBV.ITA.EAU#1.0.1`
 
 
@@ -10534,8 +9987,6 @@ Here is the complete list of supported and ready-to-use Implementation Guides (I
 **Versions**
 
 * `PCR.Core.STU3#1.0.1`
-* `PCR.Core.STU3#1.0.1`
-* `PCR.Core.STU3#1.0.0`
 * `PCR.Core.STU3#1.0.0`
 
 
@@ -10546,10 +9997,7 @@ Here is the complete list of supported and ready-to-use Implementation Guides (I
 **Versions**
 
 * `HL7Norway.STU3.no.basis#1.0.3`
-* `HL7Norway.STU3.no.basis#1.0.3`
 * `HL7Norway.STU3.no.basis#1.0.2`
-* `HL7Norway.STU3.no.basis#1.0.2`
-* `HL7Norway.STU3.no.basis#1.0.1`
 * `HL7Norway.STU3.no.basis#1.0.1`
 
 
@@ -10631,8 +10079,6 @@ Here is the complete list of supported and ready-to-use Implementation Guides (I
 **Versions**
 
 * `acme.product#0.0.3`
-* `acme.product#0.0.3`
-* `acme.product#0.0.2-beta`
 * `acme.product#0.0.2-beta`
 
 
@@ -10735,52 +10181,28 @@ Here is the complete list of supported and ready-to-use Implementation Guides (I
 **Versions**
 
 * `ca.on.oh-ereferral-econsult#0.12.0-alpha1.0.7`
-* `ca.on.oh-ereferral-econsult#0.12.0-alpha1.0.7`
-* `ca.on.oh-ereferral-econsult#0.12.0-alpha1.0.6`
 * `ca.on.oh-ereferral-econsult#0.12.0-alpha1.0.6`
 * `ca.on.oh-ereferral-econsult#0.12.0-alpha1.0.5`
-* `ca.on.oh-ereferral-econsult#0.12.0-alpha1.0.5`
-* `ca.on.oh-ereferral-econsult#0.12.0-alpha1.0.4`
 * `ca.on.oh-ereferral-econsult#0.12.0-alpha1.0.4`
 * `ca.on.oh-ereferral-econsult#0.12.0-alpha1.0.3`
-* `ca.on.oh-ereferral-econsult#0.12.0-alpha1.0.3`
-* `ca.on.oh-ereferral-econsult#0.12.0-projectathon1.0.2`
-* `ca.on.oh-ereferral-econsult#0.12.0-alpha1.0.2`
 * `ca.on.oh-ereferral-econsult#0.12.0-projectathon1.0.2`
 * `ca.on.oh-ereferral-econsult#0.12.0-alpha1.0.2`
 * `ca.on.oh-ereferral-econsult#0.12.0-projectathon1.0.1`
 * `ca.on.oh-ereferral-econsult#0.12.0-alpha1.0.1`
-* `ca.on.oh-ereferral-econsult#0.12.0-projectathon1.0.1`
-* `ca.on.oh-ereferral-econsult#0.12.0-alpha1.0.1`
-* `ca.on.oh-ereferral-econsult#0.11.1-alpha1.0.12`
 * `ca.on.oh-ereferral-econsult#0.11.1-alpha1.0.12`
 * `ca.on.oh-ereferral-econsult#0.11.1-alpha1.0.11`
-* `ca.on.oh-ereferral-econsult#0.11.1-alpha1.0.11`
-* `ca.on.oh-ereferral-econsult#0.11.1-alpha1.0.10`
 * `ca.on.oh-ereferral-econsult#0.11.1-alpha1.0.10`
 * `ca.on.oh-ereferral-econsult#0.11.0-alpha1.0.8`
-* `ca.on.oh-ereferral-econsult#0.11.0-alpha1.0.8`
-* `ca.on.oh-ereferral-econsult#0.11.0-alpha1.0.7`
 * `ca.on.oh-ereferral-econsult#0.11.0-alpha1.0.7`
 * `ca.on.oh-ereferral-econsult#0.11.0-alpha1.0.6`
 * `ca.on.oh-ereferral-econsult#0.11.0-alpha-1.0.6`
-* `ca.on.oh-ereferral-econsult#0.11.0-alpha1.0.6`
-* `ca.on.oh-ereferral-econsult#0.11.0-alpha-1.0.6`
-* `ca.on.oh-ereferral-econsult#0.11.0-alpha1.0.5`
 * `ca.on.oh-ereferral-econsult#0.11.0-alpha1.0.5`
 * `ca.on.oh-ereferral-econsult#0.11.0-alpha1.0.4`
-* `ca.on.oh-ereferral-econsult#0.11.0-alpha1.0.4`
-* `ca.on.oh-ereferral-econsult#0.11.1-alpha1.0.3`
-* `ca.on.oh-ereferral-econsult#0.11.0-alpha1.0.3`
 * `ca.on.oh-ereferral-econsult#0.11.1-alpha1.0.3`
 * `ca.on.oh-ereferral-econsult#0.11.0-alpha1.0.3`
 * `ca.on.oh-ereferral-econsult#0.11.1-alpha1.0.2`
 * `ca.on.oh-ereferral-econsult#0.11.0-alpha-1.0.2`
-* `ca.on.oh-ereferral-econsult#0.11.1-alpha1.0.2`
-* `ca.on.oh-ereferral-econsult#0.11.0-alpha-1.0.2`
 * `ca.on.oh-ereferral-econsult#0.11.1-alpha1.0.1`
-* `ca.on.oh-ereferral-econsult#0.11.1-alpha1.0.1`
-* `ca.on.oh-ereferral-econsult#0.11.1-alpha1.0.0`
 * `ca.on.oh-ereferral-econsult#0.11.1-alpha1.0.0`
 
 
@@ -10861,7 +10283,6 @@ Here is the complete list of supported and ready-to-use Implementation Guides (I
 **Versions**
 
 * `SUPPORT.R4#3.0.0`
-* `SUPPORT.R4#3.0.0`
 
 
 ---
@@ -10888,7 +10309,6 @@ Here is the complete list of supported and ready-to-use Implementation Guides (I
 
 **Versions**
 
-* `BRCore-01.00.00#1.0.0`
 * `BRCore-01.00.00#1.0.0`
 
 
@@ -11069,19 +10489,11 @@ Here is the complete list of supported and ready-to-use Implementation Guides (I
 **Versions**
 
 * `ca.on.oh-dhdr#4.0.2-alpha1.0.6`
-* `ca.on.oh-dhdr#4.0.2-alpha1.0.6`
-* `ca.on.oh-dhdr#4.0.2-alpha1.0.5`
 * `ca.on.oh-dhdr#4.0.2-alpha1.0.5`
 * `ca.on.oh-dhdr#4.0.2-alpha1.0.4`
-* `ca.on.oh-dhdr#4.0.2-alpha1.0.4`
-* `ca.on.oh-dhdr#4.0.2-alpha1.0.3`
 * `ca.on.oh-dhdr#4.0.2-alpha1.0.3`
 * `ca.on.oh-dhdr#4.0.2-alpha1.0.2`
-* `ca.on.oh-dhdr#4.0.2-alpha1.0.2`
 * `ca.on.oh-dhdr#4.0.2-alpha1.0.1`
-* `ca.on.oh-dhdr#4.0.2-alpha1.0.1`
-* `ca.on.oh-dhdr#4.0.2-alpha1.0.0`
-* `ca.on.oh-dhdr#4.0.1-alpha1.0.0`
 * `ca.on.oh-dhdr#4.0.2-alpha1.0.0`
 * `ca.on.oh-dhdr#4.0.1-alpha1.0.0`
 
@@ -11133,10 +10545,7 @@ Here is the complete list of supported and ready-to-use Implementation Guides (I
 **Versions**
 
 * `ans.fhir.fr.sas#1.1.0`
-* `ans.fhir.fr.sas#1.1.0`
 * `ans.fhir.fr.sas#1.0.0`
-* `ans.fhir.fr.sas#1.0.0`
-* `ans.fhir.fr.sas#1.0.0-ballot`
 * `ans.fhir.fr.sas#1.0.0-ballot`
 
 
@@ -11248,7 +10657,6 @@ Here is the complete list of supported and ready-to-use Implementation Guides (I
 **Versions**
 
 * `ai4health.it.test.r4#0.0.8`
-* `ai4health.it.test.r4#0.0.8`
 
 
 ---
@@ -11257,7 +10665,6 @@ Here is the complete list of supported and ready-to-use Implementation Guides (I
 
 **Versions**
 
-* `acme.cowboy.fsh#0.0.1`
 * `acme.cowboy.fsh#0.0.1`
 
 
@@ -11281,7 +10688,6 @@ Here is the complete list of supported and ready-to-use Implementation Guides (I
 
 **Versions**
 
-* `ans.fhir.fr.gap#3.0.0`
 * `ans.fhir.fr.gap#3.0.0`
 
 
@@ -11334,8 +10740,6 @@ Here is the complete list of supported and ready-to-use Implementation Guides (I
 **Versions**
 
 * `NaminderSTU3.testing#1.0.1`
-* `NaminderSTU3.testing#1.0.1`
-* `NaminderSTU3.testing#1.0.0`
 * `NaminderSTU3.testing#1.0.0`
 
 
@@ -11397,7 +10801,6 @@ Here is the complete list of supported and ready-to-use Implementation Guides (I
 **Versions**
 
 * `NCN2.01#0.0.02`
-* `NCN2.01#0.0.02`
 
 
 ---
@@ -11406,7 +10809,6 @@ Here is the complete list of supported and ready-to-use Implementation Guides (I
 
 **Versions**
 
-* `DIFUTURE.trustcenter.sp#1.0.0-beta-1`
 * `DIFUTURE.trustcenter.sp#1.0.0-beta-1`
 
 
@@ -11445,7 +10847,6 @@ Here is the complete list of supported and ready-to-use Implementation Guides (I
 
 **Versions**
 
-* `ca-on.fhir.ig.covaxon#0.1.10`
 * `ca-on.fhir.ig.covaxon#0.1.10`
 
 
@@ -11490,7 +10891,6 @@ Here is the complete list of supported and ready-to-use Implementation Guides (I
 **Versions**
 
 * `Formation.FHIR#1.0.1`
-* `Formation.FHIR#1.0.1`
 
 
 ---
@@ -11500,8 +10900,6 @@ Here is the complete list of supported and ready-to-use Implementation Guides (I
 **Versions**
 
 * `aws.dummy#0.0.2`
-* `aws.dummy#0.0.2`
-* `aws.dummy#0.0.1`
 * `aws.dummy#0.0.1`
 
 
@@ -11718,14 +11116,8 @@ Here is the complete list of supported and ready-to-use Implementation Guides (I
 
 * `ans.fhir.fr.sdo#4.0.4`
 * `ans.fhir.fr.sdo#4.0.3`
-* `ans.fhir.fr.sdo#4.0.3`
-* `ans.fhir.fr.sdo#4.0.2`
 * `ans.fhir.fr.sdo#4.0.2`
 * `ans.fhir.fr.sdo#4.0.1`
-* `ans.fhir.fr.sdo#4.0.1`
-* `ans.fhir.fr.sdo#4.0.3-ballot`
-* `ans.fhir.fr.sdo#4.0.2-ballot-3`
-* `ans.fhir.fr.sdo#4.0.2-ballot-2`
 * `ans.fhir.fr.sdo#4.0.3-ballot`
 * `ans.fhir.fr.sdo#4.0.2-ballot-3`
 * `ans.fhir.fr.sdo#4.0.2-ballot-2`
@@ -11845,7 +11237,6 @@ Here is the complete list of supported and ready-to-use Implementation Guides (I
 **Versions**
 
 * `MyDummyProject.01#0.0.1`
-* `MyDummyProject.01#0.0.1`
 
 
 ---
@@ -11884,18 +11275,11 @@ Here is the complete list of supported and ready-to-use Implementation Guides (I
 **Versions**
 
 * `ca.on.oh.erec#0.12.0-alpha1.0.4`
-* `ca.on.oh.erec#0.12.0-alpha1.0.4`
 * `ca.on.oh.erec#0.12.0-alpha1.0.3`
-* `ca.on.oh.erec#0.12.0-alpha1.0.3`
-* `ca.on.oh.erec#0.12.0-projectathon1.0.2`
-* `ca.on.oh.erec#0.12.0-alpha1.0.2`
 * `ca.on.oh.erec#0.12.0-projectathon1.0.2`
 * `ca.on.oh.erec#0.12.0-alpha1.0.2`
 * `ca.on.oh.erec#0.12.0-projectathon1.0.1`
 * `ca.on.oh.erec#0.12.0-alpha1.0.1`
-* `ca.on.oh.erec#0.12.0-projectathon1.0.1`
-* `ca.on.oh.erec#0.12.0-alpha1.0.1`
-* `ca.on.oh.erec#0.12.0-alpha1.0.0`
 * `ca.on.oh.erec#0.12.0-alpha1.0.0`
 
 
@@ -12024,7 +11408,6 @@ Here is the complete list of supported and ready-to-use Implementation Guides (I
 **Versions**
 
 * `acme.fsh.example#0.0.1-demo`
-* `acme.fsh.example#0.0.1-demo`
 
 
 ---
@@ -12077,7 +11460,6 @@ Here is the complete list of supported and ready-to-use Implementation Guides (I
 **Versions**
 
 * `NorthwellHealth.Extensions.Person#0.0.1`
-* `NorthwellHealth.Extensions.Person#0.0.1`
 
 
 ---
@@ -12096,8 +11478,6 @@ Here is the complete list of supported and ready-to-use Implementation Guides (I
 **Versions**
 
 * `SupportedHospitalDischarge.STU3#0.1.2`
-* `SupportedHospitalDischarge.STU3#0.1.2`
-* `SupportedHospitalDischarge.STU3#0.1.0`
 * `SupportedHospitalDischarge.STU3#0.1.0`
 
 
@@ -12127,12 +11507,8 @@ Here is the complete list of supported and ready-to-use Implementation Guides (I
 **Versions**
 
 * `Eu.Dedalus.D4Solutions.COVID-19#1.0.2`
-* `Eu.Dedalus.D4Solutions.COVID-19#1.0.2`
-* `Eu.Dedalus.D4Solutions.COVID-19#1.0.1`
 * `Eu.Dedalus.D4Solutions.COVID-19#1.0.1`
 * `Eu.Dedalus.D4Solutions.COVID-19#1.0.0`
-* `Eu.Dedalus.D4Solutions.COVID-19#1.0.0`
-* `Eu.Dedalus.D4Solutions.COVID-19#1.0.0-develop`
 * `Eu.Dedalus.D4Solutions.COVID-19#1.0.0-develop`
 
 
@@ -12202,7 +11578,6 @@ Here is the complete list of supported and ready-to-use Implementation Guides (I
 **Versions**
 
 * `ans.fr.terminologies#1.0.0`
-* `ans.fr.terminologies#0.1.0-ballot`
 * `ans.fr.terminologies#0.1.0-ballot`
 
 
