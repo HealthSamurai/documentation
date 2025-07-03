@@ -109,6 +109,8 @@
                       filepath
                       toc
                       lastmod]}]
+ (def ff filepath)
+ (def d description)
   (let [body (if (map? content) (:body content) content)
         status (if (map? content) (:status content 200) 200)
         uri (:uri request)

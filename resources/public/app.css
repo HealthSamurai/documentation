@@ -34,12 +34,12 @@
 }
 
 ul {
-  @apply mt-4 ml-8 list-disc text-gray-900;
+  @apply ml-8 list-disc text-gray-900;
 }
 
-li {
-  @apply mb-2;
-}
+/* li { */
+/*   @apply mb-2; */
+/* } */
 
 /* TOC Sticky positioning */
 .toc-container {

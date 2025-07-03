@@ -55,7 +55,7 @@
          (fn [ctx node]
            (into
             [:ol
-             {:class "min-w-0 space-y-2 w-full decoration-primary/6 page-full-width:ml-0 max-w-3xl page-api-block:ml-0"}]
+             {:class "min-w-0 w-full decoration-primary/6 page-full-width:ml-0 max-w-3xl page-api-block:ml-0 space-y-2"}]
             (map-indexed
              (fn [idx child]
                (transform/->hiccup
@@ -69,9 +69,9 @@
              [:li {:class "leading-normal flex items-start"}
               [:div {:class "text-base leading-normal mr-1 flex min-h-[1lh] min-w-6 items-center justify-center text-tint"}
                [:div (str (inc numbered-list-idx) ".")]]
-              [:div {:class "flex min-w-0 flex-1 flex-col space-y-2"}
-               (into [:p {:class "w-full decoration-primary/6 page-full-width:ml-0 max-w-3xl min-h-[1lh] flip-heading-hash [&:is(h2)>div]:mt-0 [&:is(h3)>div]:mt-0 [&:is(h4)>div]:mt-0 mx-0"}]
-                     (mapv #(transform/->hiccup ctx %)
+              [:div {:class "flex min-w-0 flex-1 flex-col"}
+               (into [:div {:class "w-full decoration-primary/6 page-full-width:ml-0 max-w-3xl min-h-[1lh] flip-heading-hash [&:is(h2)>div]:mt-0 [&:is(h3)>div]:mt-0 [&:is(h4)>div]:mt-0 mx-0"}]
+                     (mapv (fn [c] (transform/->hiccup ctx c))
                            (:content node)))]]
              ((:list-item transform/default-hiccup-renderers) ctx node)))
 
@@ -107,7 +107,7 @@
 
          :bullet-list
          (fn [ctx node]
-           (into [:ul {:class "mt-4 ml-8 list-disc text-gray-900 text-base"}]
+           (into [:ul {:class "ml-8 list-disc text-gray-900 text-base space-y-2"}]
                  (mapv #(transform/->hiccup ctx %)
                        (:content node))))
 

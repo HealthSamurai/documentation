@@ -21,10 +21,6 @@ description: This page contains widgets of gitbook.
 
 Lorem [ipsum](./readme) dolor *sit* amet, [consectetur](https://google.com) `adipiscing elit`. Ut **pharetra sapien in massa tristique**, ~~eleifend bibendum~~ ligula porttitor. Integer vehicula scelerisque sapien, et ultrices urna viverra a. Maecenas tristique bibendum fringilla. Nulla ornare massa eu ipsum consequat, id porttitor risus finibus. Suspendisse finibus rhoncus orci, mattis consectetur erat sodales maximus. Nulla bibendum ipsum nulla, rhoncus tincidunt purus ullamcorper non. Quisque eget ex condimentum, finibus leo vel, consequat enim. Pellentesque dignissim leo vitae leo accumsan eleifend. Duis id lacus sit amet elit dictum vehicula nec sed mi. Mauris volutpat vulputate leo, ut facilisis nulla sollicitudin eu. Suspendisse non posuere nibh. Donec sed leo lacinia, facilisis mi vel, porttitor velit.
 
-- [x] Write the press release
-- [ ] Update the website
-- [ ] Contact the media
-
 Bullets:
 - FHIR Configuration
 - API
@@ -33,18 +29,11 @@ Bullets:
 - Extensibility: Apps & SDK
 
 Ordered list:
-1. Start new Inferno session (it's important)
-2. Switch to the `Multi-Patient Authorization and API` sequence
-3. Press the `Run tests` button
-4. Set up the test:
-   * Bulk Data FHIR URL: `[aidbox-url]/tenant/my-clinic/bulk-api`
-   * Backend Services Token Endpoint: `[aidbox-url]/auth/token`
-   * Bulk Data Client ID: `inferno-my-clinic-bulk-client`
-   * Bulk Data Scopes: `system/Patient.read`
-   * Encryption method: `RS384`
-   * Group ID: `test-group-1`
-   * Patient IDs in exported Group: `test-pt-1,test-pt-2`
-5. Press the `Submit` button
+1. One
+2. Two
+   * TwoOne
+   * TwoTwo
+3. Three
 
 ## Big link
 [[./getting-started/run-aidbox-locally.md]]
