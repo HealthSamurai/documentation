@@ -202,6 +202,7 @@ matcho:
     - '#\$openai-chat-completions'
     - '#\$sdc-resource-types'
     - '#\$sdc-resource-schema'
+    - '#\$reference-lookup'
   request-method:
      $one-of:
        - post
@@ -259,6 +260,7 @@ Policies:
 | as-sdc-form-designer-validate-questionnaire-and-response | extract QuestionnaireResponse                         |
 | as-sdc-form-designer-search-valueset                     | search for valuesets                                  |
 | as-sdc-form-designer-search-concepts                     | search for concepts                                   |
+| as-sdc-form-designer-search-references                   | search for references                                 |
 | as-sdc-form-designer-use-ai-tools                        | use AI tools                                          |
 | as-sdc-form-designer-get-fhir-metadata                   | Get FHIR metadata to support Template resource editor |
 
@@ -533,6 +535,29 @@ matcho:
       - post
 ```
 
+**as-sdc-form-designer-search-references**
+
+
+```yaml
+PUT /AccessPolicy/as-sdc-form-designer-search-references
+content-type: text/yaml
+accept: text/yaml
+
+id: as-sdc-form-designer-search-references
+resourceType: AccessPolicy
+engine: matcho
+matcho:
+  user:
+    roles:
+      $contains:
+        value: sdc-form-designer
+  uri: '#\$lookup-reference$'
+  request-method: 
+    $one-of:
+      - get
+      - post
+```
+
 **as-sdc-form-designer-use-ai-tools policy**
 
 Generate Questionnaire from PDF
@@ -593,6 +618,7 @@ Form filler role can load Questionnaire and QuestionnaireResponse, fill and subm
 | as-sdc-form-filler-save-response      | Save changed response                       |
 | as-sdc-form-filler-submit-response    | Submit response                             |
 | as-sdc-form-filler-search-concepts    | Search terminology concepts                 |
+| as-sdc-form-filler-search-references  | Search for references                       |
 
 **as-sdc-form-filler-read-config policy**
 
@@ -723,6 +749,31 @@ matcho:
     $one-of:
        - post
        - get
+```
+
+**as-sdc-form-filler-search-references policy**
+
+Search for references
+
+> Used in reference items with attached resourceType
+
+```yaml
+PUT /AccessPolicy/as-sdc-form-filler-search-references
+content-type: text/yaml
+accept: text/yaml
+
+id: as-sdc-form-filler-search-references
+resourceType: AccessPolicy
+engine: matcho
+matcho:
+  user:
+    roles:
+      $contains:
+        value: sdc-form-designer
+  uri: '#\$lookup-reference$'
+  request-method: 
+    $one-of:
+      - get
 ```
 
 ### Response Manager
