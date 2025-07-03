@@ -42,6 +42,7 @@ for file in Path('docs').rglob('*.md'):
 if results:
     print("\nAbsolute links to https://docs.aidbox.app found. Please fix them before pushing!")
     print("Use bash scripts/replace_absolute_aidbox_links.sh")
+    print(results)
     sys.exit(42)
 else:
     print("\nNo absolute links found (except /reference directory and FAQ).")

@@ -5,6 +5,7 @@
 - [ ] new UI to move pages (handles references and creates redirect)
 
 # bugs/techdebt
+- [ ] https://docs.aidbox.app/deployment-and-maintenance/deploy-aidbox/run-aidbox-in-kubernetes/highly-available-aidbox
 - [ ] rm huge image history from repo
 - [ ] redirects with sections should work api-1/api/search-1/search-parameters-list/\_explain: api/rest-api/aidbox-search.md#aidbox-special-search-parameters
 - [ ] test page-link->uri function
