@@ -155,7 +155,7 @@ query {
       }
     }
   }
-}that
+}
 ```
 
 Response:

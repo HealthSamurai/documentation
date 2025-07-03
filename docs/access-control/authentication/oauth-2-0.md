@@ -21,7 +21,6 @@ sequenceDiagram
   RS ->> AS: verify token
   AS ->> RS: Token valid
   RS ->> ClientApp: 200 OK<br/>{ response data }
-
 ```
 
 This flow is for trusted apps that need to access their resources on a server, not a user’s. The app uses its ID and secret (like a username and password for the app) to ask the authorization server for an access token. Once it gets the token, the app can use it to access the resources. It’s like the app saying, _“It’s me, let me in!”_ No user is involved here — just the app proving who it is.
