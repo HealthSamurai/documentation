@@ -4,9 +4,19 @@
 Run parallel Aidbox replicas supported from **2208** version
 {% endhint %}
 
-### Concept&#x20;
+### Concept
 
 To provide increased High availability, the approach is to run two or more application instances. All incoming traffic is balanced between all running Aidbox instances. In case of failure of one of the instances, the network layer stops receiving incoming traffic to failed instance and distributes it to other available instances. The task of the orchestration system is to detect failure of one of the instances and restart it.
+
+{% hint style="warning" %}
+Attention: by default Aidbox generates both keypair and secret on every startup. This means that on every start all previously generated JWT will be invalid. In order to avoid such undesirable situation, you may pass RSA keypair and secret as Aidbox parameters.
+
+It is required to pass RSA keypair and secret as Aidbox parameters if you have multiple replicas of the same Aidbox/Multibox instance. Check out this section in the docs on how to configure it properly:
+{% endhint %}
+
+{% content-ref url="../../../reference/environment-variables/optional-environment-variables.md" %}
+[optional-environment-variables.md](../../../reference/environment-variables/optional-environment-variables.md)
+{% endcontent-ref %}
 
 ### Configuration
 
@@ -69,7 +79,7 @@ spec:
             failureThreshold: 2
 ```
 
-#### Replicas&#x20;
+#### Replicas
 
 First of all you should specify how many replicas you need
 
