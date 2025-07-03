@@ -2,11 +2,9 @@
 
 ## Most important
 
-- [ ] analytics
 - [ ] new UI to move pages (handles references and creates redirect)
 
 # bugs/techdebt
-- [ ] fix nav icon
 - [ ] rm huge image history from repo
 - [ ] redirects with sections should work api-1/api/search-1/search-parameters-list/\_explain: api/rest-api/aidbox-search.md#aidbox-special-search-parameters
 - [ ] test page-link->uri function
