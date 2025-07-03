@@ -142,8 +142,8 @@
 (defn get-lastmod [context filepath]
   (when filepath
     (get
-      (system/get-system-state context [const/LASTMOD])
-      filepath)))
+     (system/get-system-state context [const/LASTMOD])
+     filepath)))
 
 (defn set-lastmod [context]
   (system/set-system-state

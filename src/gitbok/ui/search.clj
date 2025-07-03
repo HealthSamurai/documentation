@@ -68,11 +68,9 @@
                        (assoc res :uri
                               (indexing/filepath->uri context (-> res :hit :filepath))))
                      search-results)))]
-    (def r results)
     (if (empty? query)
       [:div.text-center.text-gray-500.py-8
-       [:div.text-lg.font-medium.mb-2 "Search Documentation"]
-       [:div.text-sm "Type to search documentation..."]]
+       [:div.text-lg.font-medium.mb-2 "Search Documentation"]]
       (if (empty? results)
         [:div.text-center.text-gray-500.py-8
          [:div.text-lg.font-medium.mb-2 "No results found"]

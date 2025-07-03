@@ -40,7 +40,9 @@
 
                 (str/starts-with? trimmed "## ")
                 (let [section-title (str/trim (subs trimmed 3))]
-                  (recur (rest lines) (utils/s->url-slug section-title) [] acc))
+                  (recur (rest lines)
+                         (utils/s->url-slug section-title)
+                         [] acc))
 
                 (re-matches #"\s*\*\s+\[([^\]]+)\]\(([^)]+)\)" line)
                 (let [indent (->> line (re-find #"^(\s*)\*") second count)
@@ -48,12 +50,19 @@
                       [_ title path]
                       (re-matches #"\s*\*\s+\[([^\]]+)\]\(([^)]+)\)" line)
                       readme? (str/ends-with? (str/lower-case path) "readme.md")
-                      new-stack (-> stack (subvec 0 level) (conj title))
+                      new-stack (-> stack
+                                    (subvec 0 level)
+                                    (conj title))
                       prefix (if section (str section "/") "")
-                      full-path (str prefix (str/join "/" (mapv utils/s->url-slug new-stack)))
+                      full-path
+                      (str
+                       prefix
+                       (str/join "/"
+                                 (mapv
+                                  utils/s->url-slug
+                                  new-stack)))
                       url2 (subs path 0
                                  (- (count path)
-
                                     (if readme?
                                       readme-count
                                       md-count)))

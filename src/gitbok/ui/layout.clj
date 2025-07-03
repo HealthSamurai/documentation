@@ -79,7 +79,9 @@
     [:script {:defer true
               :src "/static/lastupdated.js"}]
     [:script {:defer true
-              :src "/static/posthog.js"}]]
+              :src "/static/posthog.js"}]
+    [:script {:defer true
+              :src "/static/gtm.js"}]]
    [:body {:hx-boost "true"
            :hx-on "htmx:afterSwap: window.scrollTo(0, 0); updateLastUpdated();"}
     body]])
