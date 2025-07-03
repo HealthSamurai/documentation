@@ -11,12 +11,12 @@ metadata:
     keel.sh/trigger: poll
     keel.sh/pollSchedule: "@every 1m"
 spec:
-  replicas: 2
+  replicas: 1
   strategy:
     type: RollingUpdate
     rollingUpdate:
-      maxUnavailable: 1
-      maxSurge: 0
+      maxUnavailable: 0
+      maxSurge: 1
   selector:
     matchLabels:
       app.kubernetes.io/name: gitbok
@@ -42,7 +42,7 @@ spec:
           httpGet:
             path: /healthcheck
             port: 8080
-          initialDelaySeconds: 40
+          initialDelaySeconds: 20
           periodSeconds: 10
           timeoutSeconds: 5
           failureThreshold: 3
