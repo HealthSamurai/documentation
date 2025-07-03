@@ -29,6 +29,13 @@ spec:
       - name: main
         image: ghcr.io/healthsamurai/documentation:latest
         imagePullPolicy: Always
+        resources:
+          requests:
+            memory: "256Mi"
+            cpu: "100m"
+          limits:
+            memory: "512Mi"
+            cpu: "500m"
         env:
           - name: PORT
             value: "8080"
