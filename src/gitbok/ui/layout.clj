@@ -12,7 +12,7 @@
    [system]
    [clojure.string :as str]))
 
-(defn layout-view [context body uri filepath]
+(defn layout-view [context body uri filepath toc]
   [:div
    (main-navigation/nav context)
    [:div.mobile-menu-overlay]
@@ -24,7 +24,7 @@
     [:div {:class "flex-1"}
      (main-content/content-div context uri body filepath)]
     (when filepath
-      (right-toc/get-right-toc context filepath))]])
+      (or (right-toc/get-right-toc context filepath) toc))]])
 
 (defn document [body {:keys [title description canonical-url og-preview lastmod favicon-url]}]
   [:html {:lang "en"}
@@ -71,6 +71,22 @@
     [:script {:src "/static/tabs.js"}]
     [:script {:src "/static/toc.js"}]
     [:script {:src "/static/mobile-menu.js"}]
+    [:link {:rel "stylesheet" :href "/static/github.min.css"}]
+    [:script {:src "/static/highlight.min.js"}]
+    [:script {:src "/static/json.min.js"}]
+    [:script {:src "/static/bash.min.js"}]
+    [:script {:src "/static/yaml.min.js"}]
+    [:script {:src "/static/json.min.js"}]
+    [:script {:src "/static/xml.min.js"}]
+    [:script {:src "/static/http.min.js"}]
+    [:script {:src "/static/graphql.min.js"}]
+    [:script {:src "/static/sql.min.js"}]
+    [:script {:src "/static/javascript.min.js"}]
+    [:script {:src "/static/mermaid.min.js"}]
+    [:script "hljs.highlightAll();"]
+    #_[:script
+     (uui/raw
+      "if ( document.querySelectorAll('pre code:not(.hljs)') > 0 && (typeof hljs !== 'undefined')) { hljs.highlightAll(); } setTimeout(function() { if (typeof initializeCopyButtons === 'function') { initializeCopyButtons(); } }, 100);")]
     [:script {:src "/static/copy-code.js"}]
     [:script {:defer true
               :src "/static/keyboard-navigation.js"}]
@@ -91,6 +107,7 @@
                       title
                       description
                       filepath
+                      toc
                       lastmod]}]
   (let [body (if (map? content) (:body content) content)
         status (if (map? content) (:status content 200) 200)
@@ -104,7 +121,7 @@
 
           :else
           (document
-           (layout-view context body uri filepath)
+           (layout-view context body uri filepath toc)
            {:title title :description description
             :canonical-url
             ;; / and /readme is same

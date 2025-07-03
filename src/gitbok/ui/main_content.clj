@@ -87,22 +87,8 @@
                   :stroke-linejoin "round"
                   :d "M9 5l7 7-7 7"}]]]])]))
 
-(defn render-file* [context filepath parsed title raw-content]
+(defn render-file* [context filepath parsed title _raw-content]
   [:div {:class "flex-1 min-w-0 max-w-4xl"}
-   (when (re-find #"```" raw-content)
-     [:div
-      [:link {:rel "stylesheet" :href "/static/github.min.css"}]
-      [:script {:src "/static/highlight.min.js"}]
-      [:script {:src "/static/json.min.js"}]
-      [:script {:src "/static/bash.min.js"}]
-      [:script {:src "/static/yaml.min.js"}]
-      [:script {:src "/static/json.min.js"}]
-      [:script {:src "/static/http.min.js"}]
-      [:script {:src "/static/graphql.min.js"}]
-      [:script
-       {:defer true}
-       (uui/raw
-        "if ( document.querySelectorAll('pre code:not(.hljs)') > 0 && (typeof hljs !== 'undefined')) { hljs.highlightAll(); } setTimeout(function() { if (typeof initializeCopyButtons === 'function') { initializeCopyButtons(); } }, 100);")]])
    (if (= 1 (count (:content parsed)))
      (render-empty-page context filepath title)
      (markdown/render-md context filepath parsed))])

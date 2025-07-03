@@ -7,10 +7,11 @@
    [uui.heroicons :as ico]))
 
 (def hint-icons
-  {"!NOTE" (ico/information-circle "size-5 text-blue-600")
-   "!SUCCESS" (ico/check-circle "size-5 text-emerald-600")
-   "!TIP" (ico/light-bulb "size-5 text-emerald-600")
-   "!WARNING" (ico/exclamation-circle "size-5 text-amber-600")})
+  {"!NOTE" (ico/information-circle "size-5 text-blue-600" :outline)
+   "!INFO" (ico/information-circle "size-5 text-blue-600" :outline)
+   "!SUCCESS" (ico/check-circle "size-5 text-emerald-600" :outline)
+   "!TIP" (ico/light-bulb "size-5 text-emerald-600" :outline)
+   "!WARNING" (ico/exclamation-circle "size-5 text-amber-600" :outline)})
 
 (def hint-colors
   {"!NOTE" {:bg "bg-blue-50" :border "border-blue-200" :text "text-blue-900"}
@@ -37,8 +38,10 @@
   (let [start (:text (find-by-type node :text))
         typ1 (second (re-matches #"\[(.*)\].*" start))
         typ (or typ1 "!NOTE")
-        colors (get hint-colors typ {:bg "bg-blue-50" :border "border-blue-200" :text "text-blue-900"})
-        icon (get hint-icons typ (ico/information-circle "size-5"))
+        colors (get hint-colors typ
+                    {:bg "bg-blue-50" :border "border-blue-200" :text "text-blue-900"})
+        icon (get hint-icons typ
+                  (ico/information-circle "size-5"))
         content
         (if typ1
           (update-in (:content node) [0 :content 0 :text]

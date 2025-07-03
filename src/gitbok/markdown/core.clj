@@ -26,7 +26,6 @@
           :text-tokenizers
           conj
           big-links/big-link-tokenizer
-          image/image-tokenizer
           image/youtube-tokenizer))
 
 (defn parse-markdown-content
@@ -114,20 +113,11 @@
 
          :code
          (fn [_ctx node]
-           (if (and (:indo node) (str/starts-with? (:info node) "mermaid"))
+           (if (and (:info node) (str/starts-with? (:info node) "mermaid"))
              [:div
               [:pre.mermaid (uui/raw (-> node :content first :text))]
               [:script
-               (uui/raw "if (typeof mermaid === 'undefined') {
-                        var script = document.createElement('script');
-                        script.src = '/static/mermaid.min.js';
-                        script.onload = function() {
-                        mermaid.initialize({ startOnLoad: true });
-                        };
-                        document.head.appendChild(script);
-                        } else {
-                        mermaid.initialize({ startOnLoad: true });
-                        }")]]
+               (uui/raw "mermaid.initialize({ startOnLoad: true });")]]
 
              [:pre
               [:code.nohljsln

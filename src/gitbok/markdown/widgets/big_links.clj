@@ -18,13 +18,15 @@
 (defn href [context url filepath]
   (if (and url (str/starts-with? url "http"))
     url
-    (let [uri (-> (indexing/page-link->uri
-                   context
-                   filepath
-                   url))]
-      (if (str/starts-with? uri "/")
-        uri
-        (str "/" uri)))))
+    (when (and url filepath)
+      (let [uri (-> (indexing/page-link->uri
+                      context
+                      filepath
+                      url))]
+        (when uri
+          (if (str/starts-with? uri "/")
+            uri
+            (str "/" uri)))))))
 
 (defn big-link-view [href title]
   [:div {:class "my-6 p-4 border border-tint-subtle rounded-lg bg-tint-base hover:border-primary-9 transition-all duration-200 flex items-center shadow-sm hover:shadow-md cursor-pointer"}

@@ -5,6 +5,7 @@
    [clojure.string :as str]
    [hiccup2.core]
    [gitbok.markdown.core :as markdown]
+   [gitbok.markdown.widgets]
    [gitbok.indexing.core :as indexing]
    [gitbok.indexing.impl.file-to-uri :as file-to-uri]
    [gitbok.indexing.impl.summary :as summary]
@@ -110,8 +111,6 @@
         uri-without-prefix (if (str/starts-with? uri prefix)
                              (subs uri (count prefix))
                              uri)]
-    (def uri uri)
-    (def uri-without-prefix uri-without-prefix)
     (cond
 
       (or (= uri-without-prefix "/robots.txt")
@@ -168,6 +167,8 @@
                :uri (utils/concat-urls prefix "readme")
                :/ true)]
     (render-file-view context request)))
+
+
 
 (defn healthcheck
   [_ _]
@@ -297,6 +298,13 @@
     :method :get
     :middleware [gzip-middleware]
     :fn #'right-toc/get-toc-view})
+
+  (http/register-endpoint
+   context
+   {:path (utils/concat-urls prefix "/widgets")
+    :method :get
+    :middleware [gzip-middleware]
+    :fn #'gitbok.markdown.widgets/widgets})
 
   (println "setup done!")
   (println "PORT env " (System/getenv "PORT"))

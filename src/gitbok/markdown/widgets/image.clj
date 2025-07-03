@@ -3,18 +3,11 @@
     [clojure.string :as str]
    [nextjournal.markdown.utils :as u]))
 
-(def github-image-regex #"\!\[([^\]]*)\]\(([^)]+)\)")
-
-(def image-tokenizer
-  (u/normalize-tokenizer
-   {:regex github-image-regex
-    :handler (fn [match] {:type :image
-                          :text (match 2)
-                          :alt (match 1)})}))
-
 (defn image-renderer [_ctx node]
   (let [src (some-> node :attrs :src)
-        alt (or (:alt node) (:title (:attrs node)) "")
+        alt (or (:alt node)
+                (:title (:attrs node))
+                (:text (first (:content node)))  "")
         webp-src (when src (str (subs src 0 (clojure.string/last-index-of src ".")) ".webp"))
         fallback-type (cond
                         (clojure.string/ends-with? src ".png") "image/png"
