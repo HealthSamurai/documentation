@@ -12,9 +12,9 @@ To provide increased High availability, the approach is to run two or more appli
 Attention: by default Aidbox generates both keypair and secret on every startup. This means that on every start all previously generated JWT will be invalid. In order to avoid such undesirable situation, you may pass RSA keypair and secret as Aidbox parameters.
 
 It is required to pass RSA keypair and secret as Aidbox parameters if you have multiple replicas of the same Aidbox/Multibox instance. Check out this section in the docs on how to configure it properly:
-{% endhint %}
 
-{% embed url="../../../reference/environment-variables/optional-environment-variables#set-up-rsa-private-public-keys-and-secret" %}
+[#set-up-rsa-private-public-keys-and-secret](../../../reference/environment-variables/optional-environment-variables.md#set-up-rsa-private-public-keys-and-secret "mention")
+{% endhint %}
 
 ### Configuration
 
