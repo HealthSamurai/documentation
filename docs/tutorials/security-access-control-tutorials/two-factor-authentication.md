@@ -2,7 +2,7 @@
 description: This article explains 2FA implementation in Aidbox
 ---
 
-# Two Factor Authentication
+# Configuring Two Factor Authentication in Aidbox Identity Provider
 
 {% hint style="info" %}
 Two Factor Authentication is not supported for external OAuth 2.0 providers

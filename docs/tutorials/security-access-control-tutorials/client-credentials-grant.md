@@ -4,7 +4,7 @@ description: >-
   oAuth 2.0 flow
 ---
 
-# Client Credentials Grant
+# How to configure Client Credentials Grant
 
 The Client Credentials grant is used when applications request an access token to access their own resources, not on behalf of a user (for example, background services and daemons). It must be used only by confidential clients.
 
