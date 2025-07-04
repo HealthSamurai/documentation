@@ -1,0 +1,44 @@
+name: Daily 404 Check
+
+on:
+  schedule:
+    # Run daily at 2 AM UTC
+    - cron: '0 2 * * *'
+  workflow_dispatch: # Allow manual trigger
+
+jobs:
+  check-404:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+      
+    - name: Set up Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: '3.11'
+        
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install requests
+        
+    - name: Start documentation server
+      run: |
+        docker pull ghcr.io/healthsamurai/documentation:latest
+        docker run -d -p 8081:8081 --name docs-server ghcr.io/healthsamurai/documentation:latest
+        
+    - name: Wait for server to start
+      run: |
+        timeout 60 bash -c 'until curl -f http://localhost:8081; do sleep 2; done'
+        
+    - name: Run 404 check script
+      run: |
+        python3 scripts/check_local_urls.py
+        
+    - name: Cleanup
+      if: always()
+      run: |
+        docker stop docs-server || true
+        docker rm docs-server || true 

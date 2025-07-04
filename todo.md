@@ -5,16 +5,18 @@
 - [ ] new UI to move pages (handles references and creates redirect)
 
 # bugs/techdebt
+
+- [ ] crawl all gitbook urls and store into file
 - [ ] rm huge image history from repo
 - [ ] redirects with sections should work api-1/api/search-1/search-parameters-list/\_explain: api/rest-api/aidbox-search.md#aidbox-special-search-parameters
-- [ ] test page-link->uri function
 - [ ] bug http://localhost:8081/deprecated/deprecated/other/other-deprecated-tutorials/automatically-archive-auditevent-resources-in-gcp-storage-guide
 - [ ] http://localhost:8081/deprecated/deprecated/zen-related/aidbox-zen-lang-project/set-up-and-use-configuration-projects
 - [ ] enhance search ui
+- [ ] http://localhost:8081/modules/eprescription/tutorials/environment-variables
+- [ ] http://localhost:8081/modules/aidbox-forms/aidbox-ui-builder-alpha/embedding/request-interception
 
 ## UX
 
-- [ ] move page with references and save redirect
 - [ ] create page
 - [ ] write page in ui?
 
@@ -27,3 +29,4 @@
 - [ ] expand widget http://localhost:8081/deprecated/deprecated/zen-related/aidbox-zen-lang-project/custom-resources-using-aidbox-project
 - [ ] http://localhost:8081/deprecated/deprecated/zen-related/us-core-ig/us-core-ig-support-reference
 - [ ] telegram instant view
+
