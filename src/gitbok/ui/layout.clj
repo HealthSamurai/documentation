@@ -29,6 +29,15 @@
 (defn document [body {:keys [title description canonical-url og-preview lastmod favicon-url]}]
   [:html {:lang "en"}
    [:head
+    (uui/raw "<!-- Google Tag Manager -->")
+    [:script
+     (uui/raw
+      "(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-PMS5LG2');")]
+    (uui/raw "<!-- End Google Tag Manager -->")
     [:meta {:charset "utf-8"}]
     [:meta {:name "viewport" :content "width=device-width, initial-scale=1.0"}]
     [:meta {:name "description" :content description}]
@@ -84,9 +93,6 @@
     [:script {:src "/static/javascript.min.js"}]
     [:script {:src "/static/mermaid.min.js"}]
     [:script "hljs.highlightAll();"]
-    #_[:script
-     (uui/raw
-      "if ( document.querySelectorAll('pre code:not(.hljs)') > 0 && (typeof hljs !== 'undefined')) { hljs.highlightAll(); } setTimeout(function() { if (typeof initializeCopyButtons === 'function') { initializeCopyButtons(); } }, 100);")]
     [:script {:src "/static/copy-code.js"}]
     [:script {:defer true
               :src "/static/keyboard-navigation.js"}]
@@ -96,10 +102,17 @@
               :src "/static/lastupdated.js"}]
     [:script {:defer true
               :src "/static/posthog.js"}]
-    [:script {:defer true
-              :src "/static/gtm.js"}]]
+    #_[:script {:defer true
+                :src "/static/gtm.js"}]]
    [:body {:hx-boost "true"
            :hx-on "htmx:afterSwap: window.scrollTo(0, 0); updateLastUpdated();"}
+    (uui/raw "<!-- Google Tag Manager (noscript) -->")
+    [:noscript
+     [:iframe
+      {:src "https://www.googletagmanager.com/ns.html?id=GTM-PMS5LG2" :height "0" :width "0"
+       :style
+       "display:none;visibility:hidden"}]]
+    (uui/raw "<!-- End Google Tag Manager (noscript) -->")
     body]])
 
 (defn layout [context request
@@ -109,8 +122,6 @@
                       filepath
                       toc
                       lastmod]}]
- (def ff filepath)
- (def d description)
   (let [body (if (map? content) (:body content) content)
         status (if (map? content) (:status content 200) 200)
         uri (:uri request)
