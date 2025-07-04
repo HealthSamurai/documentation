@@ -7,7 +7,7 @@ Run `make init` to set up the pre-push git hook. This hook will automatically ru
 
 ## Run locally
 ```
-docker run -p 8081:8081 --rm ghcr.io/healthsamurai/documentation:latest
+docker pull ghcr.io/healthsamurai/documentation:latest && docker run -p 8081:8081 --rm ghcr.io/healthsamurai/documentation:latest
 ```
 And go to `http:localhost:8081`.
 

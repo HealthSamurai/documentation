@@ -31,11 +31,11 @@ spec:
         imagePullPolicy: Always
         resources:
           requests:
-            memory: "256Mi"
-            cpu: "100m"
-          limits:
-            memory: "512Mi"
             cpu: "500m"
+            memory: "1.5Gi"
+          limits:
+            cpu: "1"
+            memory: "1.5Gi"
         env:
           - name: PORT
             value: "8080"
@@ -49,7 +49,7 @@ spec:
           httpGet:
             path: /healthcheck
             port: 8080
-          initialDelaySeconds: 40
+          initialDelaySeconds: 60
           periodSeconds: 10
           timeoutSeconds: 5
           failureThreshold: 3
@@ -57,7 +57,7 @@ spec:
           httpGet:
             path: /healthcheck
             port: 8080
-          initialDelaySeconds: 40
+          initialDelaySeconds: 60
           periodSeconds: 5
           timeoutSeconds: 3
           failureThreshold: 3
