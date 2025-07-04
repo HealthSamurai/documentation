@@ -2,5 +2,5 @@
 hidden: true
 ---
 
-# How-to guides
+# SMART (/deprecated)
 

@@ -5,7 +5,7 @@ description: >-
 hidden: true
 ---
 
-# Aidbox Code Editor (docs/deprecated)
+# Aidbox Code Editor (/deprecated)
 
 ## Overview
 

@@ -3,7 +3,7 @@ description: >-
   This page describes how to deploy C-CDA <-> FHIR service.
 ---
 
-# Deployment configuration
+# How to deploy the service
 
 There is the configuration project template prepared for the service deployment:
 

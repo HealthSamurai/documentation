@@ -1,2 +1,2 @@
-# FHIR conformance
+# FHIR conformance Deprecated guides
 
