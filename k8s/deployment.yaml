@@ -65,7 +65,7 @@ spec:
           httpGet:
             path: /healthcheck
             port: 8080
-          failureThreshold: 6    # 10s x 6 = 60
+          failureThreshold: 20
           periodSeconds: 10
         securityContext:
           allowPrivilegeEscalation: false
