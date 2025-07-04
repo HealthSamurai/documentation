@@ -37,6 +37,10 @@ ul {
   @apply ml-8 list-disc text-gray-900;
 }
 
+ul > li {
+  @apply mt-2;
+}
+
 /* li { */
 /*   @apply mb-2; */
 /* } */
