@@ -12,8 +12,6 @@
 - [ ] bug http://localhost:8081/deprecated/deprecated/other/other-deprecated-tutorials/automatically-archive-auditevent-resources-in-gcp-storage-guide
 - [ ] http://localhost:8081/deprecated/deprecated/zen-related/aidbox-zen-lang-project/set-up-and-use-configuration-projects
 - [ ] enhance search ui
-- [ ] http://localhost:8081/modules/eprescription/tutorials/environment-variables
-- [ ] http://localhost:8081/modules/aidbox-forms/aidbox-ui-builder-alpha/embedding/request-interception
 
 ## UX
 
@@ -29,4 +27,3 @@
 - [ ] expand widget http://localhost:8081/deprecated/deprecated/zen-related/aidbox-zen-lang-project/custom-resources-using-aidbox-project
 - [ ] http://localhost:8081/deprecated/deprecated/zen-related/us-core-ig/us-core-ig-support-reference
 - [ ] telegram instant view
-
