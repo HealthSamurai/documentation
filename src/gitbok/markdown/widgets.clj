@@ -38,6 +38,7 @@ Ordered list:
 ## Big link
 [[./getting-started/run-aidbox-locally.md]]
 
+{% embed url=\"https://github.com\" %}
 
 ## Table
 | Syntax | Description |

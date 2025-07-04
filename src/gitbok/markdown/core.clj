@@ -51,9 +51,9 @@
              hic
              (filter
               (fn [el]
-                (= "og:image" (:property (second el)))))
+                (= "icon" (:rel (second el)))))
              (first)
-             (last) :content)
+             (last) :href)
      :title (->>
              hic
              (filter
