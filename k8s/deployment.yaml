@@ -41,6 +41,9 @@ spec:
             value: "8080"
           - name: BASE_URL
             value: "https://gitbok.cs.aidbox.dev"
+        args:
+          - "-Xms1g"
+          - "-Xmx1g"
         ports:
           - containerPort: 8080
             name: http
