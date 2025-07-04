@@ -95,7 +95,8 @@
 
 (defn content-div [context uri content filepath & [htmx?]]
   [:main#content
-   [:article {:class "flex-1 py-6 max-w-6xl min-w-0 overflow-x-hidden"}
+   [:div {:class "article"}
+    [:article {:class "article__content flex-1 py-6 max-w-6xl min-w-0 overflow-x-hidden"}
     (when htmx?
       [:script "window.scrollTo(0, 0); updateLastUpdated();"])
     [:div {:class "mx-auto px-2 max-w-full"} content]
@@ -106,4 +107,4 @@
         [:p {:class "mt-4 text-gray-600"
              :id "lastupdated"
              :data-updated-at lastupdated}
-         "Last updated " lastupdated]))]])
+         "Last updated " lastupdated]))]]])
