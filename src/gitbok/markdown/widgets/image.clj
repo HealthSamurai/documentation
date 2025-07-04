@@ -25,14 +25,29 @@
 (def youtube-tokenizer
   (u/normalize-tokenizer
     {:regex
-     #"\{\%.*embed.*url=\"(.*?)\".*\%\}"
+     #"\{\%.*embed(.*?)\%\}"
      :handler
      (fn [match]
        {:type :embed
-        :url (match 1)})}))
+        :body
+        (match 1)})}))
 
 (defn hack-youtube
  [md]
  (-> md
      (str/replace #"url=\"https://www.youtube.com(.*?)\"" "url=\"youtube $1\"")
      (str/replace #"url=\"https://youtu.be(.*?)\"" "url=\"youtube $1\"")))
+
+(defn hack-other-websites [md]
+  (-> md
+      (clojure.string/replace
+        #"\{\% embed url=\"([^\"]+)\" %\}\s*(.*?)\s*\{\% endembed %\}"
+        "{% embed url=\"$1\" title=\"$2\" %}")
+      (str/replace #"url=\"https://(.*?)\"" "url=\"$1\"")))
+
+(def test
+"{% embed url=\"https://github.com/Aidbox/aidbox-project-samples/tree/main/aidbox-project-samples\" %}
+sometitle
+{% endembed %}")
+
+(hack-other-websites test)

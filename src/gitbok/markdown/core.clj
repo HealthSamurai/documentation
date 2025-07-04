@@ -77,27 +77,30 @@
 
          :embed
          (fn [_ctx node]
-           (let [url (:url node)
-                 content (:content node)
+           (let [url (second (re-find #"url=\"(.*?)\"" (:body node)))
+                 title (second (re-find #"title=\"(.*?)\"" (:body node)))
+                 ;; content (:content node)
                  is-youtube (str/starts-with? url "youtube")
                  video-id
                  (when is-youtube
                    (or
                      (second (re-find #"v=([^&]+)" url))
                      (str/replace-first url #"^youtube " "")))
-                 embed-url
+                 youtube-embed-url
                  (when video-id
-                   (str "https://www.youtube.com/embed/" video-id))]
+                   (str "https://www.youtube.com/embed/" video-id))
+                 url (str "https://" url)]
              [:div {:class "my-6"}
-              (when embed-url
+              (if youtube-embed-url
                 [:div {:class "relative w-full h-0 pb-[56.25%] rounded-lg overflow-hidden shadow-lg"}
-                 [:iframe {:src embed-url
+                 [:iframe {:src youtube-embed-url
                            :class "absolute top-0 left-0 w-full h-full border-0"
                            :allowfullscreen true
-                           :allow "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"}]])
-              (when (and content (not (str/blank? (str/trim content))))
+                           :allow "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"}]]
+                (big-links/big-link-view url title))
+              #_(when (and title (not (str/blank? (str/trim title))))
                 [:div {:class "mt-4 text-sm text-gray-600 italic"}
-                 (str/trim content)])]))
+                 (str/trim title)])]))
          :blockquote github-hint/github-hint-renderer
          :heading
          headers/render-heading
@@ -196,6 +199,7 @@
        big-links/hack-content-ref
        github-hint/hack-info
        image/hack-youtube
+       image/hack-other-websites
        (tabs/hack-tabs context
                        filepath
                        parse-markdown-content

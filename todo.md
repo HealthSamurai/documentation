@@ -5,7 +5,7 @@
 - [ ] new UI to move pages (handles references and creates redirect)
 
 # bugs/techdebt
-- [ ] https://docs.aidbox.app/deployment-and-maintenance/deploy-aidbox/run-aidbox-in-kubernetes/highly-available-aidbox
+- [ ] http://localhost:8081/readme/features
 - [ ] rm huge image history from repo
 - [ ] redirects with sections should work api-1/api/search-1/search-parameters-list/\_explain: api/rest-api/aidbox-search.md#aidbox-special-search-parameters
 - [ ] test page-link->uri function
@@ -22,13 +22,10 @@
 
 ## Features
 
-- [ ] intercom
 - [ ] rag
 - [ ] pretty render system resource reference
 - [ ] feedback buttons?
 - [ ] breadcrumb
-- [ ] ci: warn when title in summary is different than h1 header in file
-- [ ] embed url http://localhost:8081/deprecated/deprecated/zen-related/aidbox-zen-lang-project/aidbox-configuration-project-structure
 - [ ] expand widget http://localhost:8081/deprecated/deprecated/zen-related/aidbox-zen-lang-project/custom-resources-using-aidbox-project
 - [ ] http://localhost:8081/deprecated/deprecated/zen-related/us-core-ig/us-core-ig-support-reference
 - [ ] telegram instant view
