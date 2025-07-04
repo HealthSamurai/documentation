@@ -79,10 +79,12 @@
          (fn [_ctx node]
            (let [url (:url node)
                  content (:content node)
-                 is-youtube (str/includes? url "/watch")
+                 is-youtube (str/starts-with? url "youtube")
                  video-id
                  (when is-youtube
-                   (second (re-find #"v=([^&]+)" url)))
+                   (or
+                     (second (re-find #"v=([^&]+)" url))
+                     (str/replace-first url #"^youtube " "")))
                  embed-url
                  (when video-id
                    (str "https://www.youtube.com/embed/" video-id))]

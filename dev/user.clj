@@ -57,11 +57,9 @@ inputs:
 {% endtab %}
 {% endtabs %}")
 
-  (def content "`code1`")
-  (def content "# title")
-  (def content "# header1\nsometext\n\n## header2\ntext2")
+  (def content "{% embed url=\"https://youtu.be/zXzy-is20e8\" %}")
   (def p
     (:content (:parsed (markdown/parse-markdown-content context [""  content]))))
 
-  (markdown/render-md context "" (:parsed p))
+  (markdown/render-md context ""  (:parsed (markdown/parse-markdown-content context [""  content])))
   )

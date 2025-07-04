@@ -33,4 +33,6 @@
 
 (defn hack-youtube
  [md]
- (str/replace md #"url=\"https://www.youtube.com(.*?)\"" "url=\"$1\""))
+ (-> md
+     (str/replace #"url=\"https://www.youtube.com(.*?)\"" "url=\"youtube $1\"")
+     (str/replace #"url=\"https://youtu.be(.*?)\"" "url=\"youtube $1\"")))
