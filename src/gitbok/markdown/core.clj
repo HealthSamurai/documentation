@@ -43,6 +43,25 @@
   (map hickory.core/as-hiccup
        (hickory.core/parse-fragment html)))
 
+(defn get-meta-from-url [url]
+  (let [hic (->> (slurp url)
+                 (parse-html)
+                 (filter vector?))]
+    {:image (->>
+             hic
+             (filter
+              (fn [el]
+                (= "og:image" (:property (second el)))))
+             (first)
+             (last) :content)
+     :title (->>
+             hic
+             (filter
+              (fn [el]
+                (= :title (first el))))
+             (first)
+             (last))}))
+
 (defn renderers [context filepath]
   (assoc transform/default-hiccup-renderers
          :big-link (partial big-links/render-big-link context filepath)
@@ -78,14 +97,13 @@
          :embed
          (fn [_ctx node]
            (let [url (second (re-find #"url=\"(.*?)\"" (:body node)))
-                 title (second (re-find #"title=\"(.*?)\"" (:body node)))
-                 ;; content (:content node)
+                 title-user (second (re-find #"title=\"(.*?)\"" (:body node)))
                  is-youtube (str/starts-with? url "youtube")
                  video-id
                  (when is-youtube
                    (or
-                     (second (re-find #"v=([^&]+)" url))
-                     (str/replace-first url #"^youtube " "")))
+                    (second (re-find #"v=([^&]+)" url))
+                    (str/replace-first url #"^youtube " "")))
                  youtube-embed-url
                  (when video-id
                    (str "https://www.youtube.com/embed/" video-id))
@@ -97,10 +115,8 @@
                            :class "absolute top-0 left-0 w-full h-full border-0"
                            :allowfullscreen true
                            :allow "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"}]]
-                (big-links/big-link-view url title))
-              #_(when (and title (not (str/blank? (str/trim title))))
-                [:div {:class "mt-4 text-sm text-gray-600 italic"}
-                 (str/trim title)])]))
+                (let [{:keys [title image]} (get-meta-from-url url)]
+                  (big-links/big-link-view url (or title-user title url) image)))]))
          :blockquote github-hint/github-hint-renderer
          :heading
          headers/render-heading
@@ -230,11 +246,11 @@
 
 (defn render-all! [context parsed-md-index read-markdown-file]
   (system/set-system-state
-    context
-    [const/RENDERED]
-    (->> parsed-md-index
-         (mapv
-           (fn [{:keys [filepath _parsed]}]
-             (println "render filepath " filepath)
-             [filepath (read-markdown-file context filepath)]))
-         (into {}))))
+   context
+   [const/RENDERED]
+   (->> parsed-md-index
+        (mapv
+         (fn [{:keys [filepath _parsed]}]
+           (println "render filepath " filepath)
+           [filepath (read-markdown-file context filepath)]))
+        (into {}))))
