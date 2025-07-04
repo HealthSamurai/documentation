@@ -586,7 +586,7 @@ Populating patient's gender is tricky because `Patient.gender` is a code while c
 With factory api it becomes:
 
 ```
-%factory.Coding(system, code, display, version)
+%factory.Coding(<<system>>, %patient.gender, %patient.gender)
 ```
 
 Also it supports variables `%patient` or `%subject` . Let's populate patient' gender into Choice item using Factory API.
@@ -619,9 +619,12 @@ item:
 
 In populate time we don't know codes in ValueSet that is linked to question. So populate these items is impossible. But with Factory API, we could construct coding. For example let's populate patient's marital status into choice item which uses ValueSet [`http://hl7.org/fhir/ValueSet/marital-status`](http://hl7.org/fhir/ValueSet/marital-status)&#x20;
 
+{% code fullWidth="false" %}
 ```
+
 %factory.Coding(%subject.maritalStatus.coding.system, %subject.maritalStatus.coding.code, %subject.maritalStatus.coding.display, %subject.maritalStatus.coding.version)
 ```
+{% endcode %}
 
 Now call `$populate` operation or press `Populate` button with subject patient into debug panel and see QuestionnaireResponse:
 
