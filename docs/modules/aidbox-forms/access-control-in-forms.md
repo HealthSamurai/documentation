@@ -551,7 +551,7 @@ matcho:
     roles:
       $contains:
         value: sdc-form-designer
-  uri: '#\$lookup-reference$'
+  uri: '#\$reference-lookup$'
   request-method: 
     $one-of:
       - get
@@ -770,7 +770,7 @@ matcho:
     roles:
       $contains:
         value: sdc-form-designer
-  uri: '#\$lookup-reference$'
+  uri: '#\$reference-lookup$'
   request-method: 
     $one-of:
       - get
