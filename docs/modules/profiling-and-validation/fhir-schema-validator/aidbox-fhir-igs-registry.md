@@ -11577,6 +11577,7 @@ Here is the complete list of supported and ready-to-use Implementation Guides (I
 
 **Versions**
 
+* `ans.fr.terminologies#1.1.0`
 * `ans.fr.terminologies#1.0.0`
 * `ans.fr.terminologies#0.1.0-ballot`
 
