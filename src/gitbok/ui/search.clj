@@ -26,7 +26,7 @@
         show-details (and (not= hit-by "title")
                           (not= hit-by "h1")
                           (seq text))]
-    [:div.mb-4
+    [:div.mb-4.search-result-item
      [:a.flex.gap-4.flex-row.items-center.p-4.border.border-gray-200.rounded-lg.text-base.font-medium.hover:bg-gray-50.group
       {:href uri}
       [:div.size-4
@@ -39,9 +39,6 @@
                 :stroke-linejoin "round"
                 :d "M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"}]]]
       [:div.flex.flex-col.w-full
-       [:div.text-xs.text-gray-500.font-normal.uppercase.tracking-wider.mb-1.flex.flex-wrap.gap-x-2.gap-y-1.items-center
-        [:span.line-clamp-1
-         [:span.flex.items-center.gap-1 "Aidbox"]]]
        [:span.whitespace-break-spaces
         (highlight-text (or title h1 h2 h3 h4 text "Untitled") query)]
        (when show-details
@@ -86,8 +83,8 @@
      context request
      {:content
       [:div.flex.flex-col.items-center.min-h-screen.p-4
-       [:div.w-full.max-w-4xl.mt-8
-        [:div.relative.mb-8
+       [:div.w-full.max-w-4xl.min-w-4xl.mt-8.flex.flex-col.items-center
+        [:div.relative.mb-8.w-full
          [:input#search-input.w-full.px-4.py-4.text-xl.rounded-lg.border.border-gray-300.shadow-sm.focus:outline-none
           {:type "text"
            :name "q"
@@ -99,7 +96,7 @@
            :hx-indicator ".htmx-indicator"}]
          [:div.htmx-indicator.absolute.right-3.top-3
           [:div.animate-spin.rounded-full.h-6.w-6.border-b-2.border-orange-500]]]]
-        [:div#search-results
+        [:div#search-results.w-full
          (search-results-only context request)]]
       :title "Search"
       :description "Search"

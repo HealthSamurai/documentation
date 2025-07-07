@@ -257,6 +257,7 @@ strong {
   }
 }
 
+
 /* Mobile content optimization */
 @media (max-width: 767px) {
   #content {
@@ -343,6 +344,39 @@ strong {
     overflow-x: auto !important;
     white-space: nowrap !important;
   }
+  /* Search results styling */
+  .search-result-item {
+    width: 100% !important;
+    min-width: 100% !important;
+  }
+
+  /* Force search container width */
+#search-results {
+  width: 100% !important;
+  min-width: 100% !important;
+}
+
+#search-input {
+  width: 100% !important;
+  min-width: 100% !important;
+}
+
+/* Desktop search container */
+@media (min-width: 768px) {
+  .min-w-4xl {
+    min-width: 56rem !important;
+  }
+  
+  #search-results {
+    width: 56rem !important;
+    min-width: 56rem !important;
+  }
+
+  #search-input {
+    width: 56rem !important;
+    min-width: 56rem !important;
+  }
+}
 }
 
 /* Hint styles - remove extra margins */
