@@ -1,5 +1,7 @@
 // Navigation click handler
 document.addEventListener('click', function (e) {
+  if (!document.body) return;
+  
   const link = e.target.closest('.clickable-summary a, #navigation a');
 
   if (!link) return;
@@ -38,21 +40,29 @@ document.addEventListener('click', function (e) {
   }
 
   // Use HTMX to load content
-  htmx.ajax('GET', '/toc' + href, {
-    target: '#toc-container',
-    swap: 'outerHTML',
-    pushUrl: href
-  });
+  if (document.body && document.querySelector('#toc-container')) {
+    htmx.ajax('GET', '/toc' + href, {
+      target: '#toc-container',
+      swap: 'outerHTML',
+      pushUrl: href
+    });
+  } else {
+    // Fallback to regular navigation if HTMX target is not available
+    window.location.href = href;
+  }
 });
 
 window.addEventListener("popstate", () => {
   // Add delay to ensure DOM is updated
   setTimeout(() => {
-    updateActiveNavItem(window.location.pathname);
+    if (document.body) {
+      updateActiveNavItem(window.location.pathname);
+    }
   }, 100);
 });
 
 function updateActiveNavItem(pathname) {
+  if (!document.body) return;
 
   const allLinks = document.querySelectorAll('#navigation a');
   allLinks.forEach(a => {
@@ -80,7 +90,7 @@ document.addEventListener('keydown', function (e) {
     const searchInput = document.querySelector('#search-input');
     if (searchInput) {
       searchInput.focus();
-    } else {
+    } else if (document.body && document.querySelector('#content')) {
       htmx.ajax('GET', '/search', { target: '#content', swap: 'innerHTML' })
         .then(() => {
           const searchInput = document.querySelector('#search-input');
@@ -88,6 +98,9 @@ document.addEventListener('keydown', function (e) {
             searchInput.focus();
           }
         });
+    } else {
+      // Fallback to regular navigation
+      window.location.href = '/search';
     }
   }
 });
@@ -95,6 +108,8 @@ document.addEventListener('keydown', function (e) {
 
 // Disable HTMX boost for all navigation links
 document.addEventListener('DOMContentLoaded', function() {
+  if (!document.body) return;
+  
   const navLinks = document.querySelectorAll('#navigation a');
   navLinks.forEach(link => {
     link.setAttribute('data-hx-boost', 'false');
@@ -106,6 +121,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
 // Re-disable HTMX boost after HTMX content swaps
 document.addEventListener('htmx:afterSwap', function() {
+  if (!document.body) return;
   const navLinks = document.querySelectorAll('#navigation a');
   navLinks.forEach(link => {
     link.setAttribute('data-hx-boost', 'false');
@@ -114,11 +130,14 @@ document.addEventListener('htmx:afterSwap', function() {
 
 // Update active nav item after HTMX settles
 document.addEventListener('htmx:afterSettle', function() {
+  if (!document.body) return;
   updateActiveNavItem(window.location.pathname);
 });
 
 // Handle modifier key clicks for navigation links
 document.addEventListener('click', function(e) {
+  if (!document.body) return;
+  
   const link = e.target.closest('a');
   if (link && (e.ctrlKey || e.metaKey || e.shiftKey || e.altKey || e.button !== 0)) {
 
