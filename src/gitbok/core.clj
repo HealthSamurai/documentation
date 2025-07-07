@@ -129,8 +129,9 @@
         (if filepath
           (let [lastmod (indexing/get-lastmod context filepath)
                 etag (utils/etag lastmod)]
-            (if (or (check-cache-etag request lastmod)
-                    (check-cache-lastmod request lastmod))
+            (if (or (check-cache-etag request etag)
+                    (and lastmod
+                         (check-cache-lastmod request lastmod)))
               {:status 304
                :headers {"Cache-Control" "public, max-age=86400"
                          "Last-Modified" lastmod
