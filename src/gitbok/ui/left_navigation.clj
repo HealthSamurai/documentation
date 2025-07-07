@@ -19,7 +19,7 @@
        [:summary {:class "flex items-center justify-between font-medium text-gray-900 hover:bg-gray-100 transition-colors duration-200 cursor-pointer group"}
         [:div {:class "flex-1 clickable-summary"}
          (add-active-class item (= url (:href item)))]
-        (ico/chevron-right "chevron size-5 text-gray-400 group-hover:text-primary-9 transition-all duration-200 transform group-open:rotate-90")]
+        (ico/chevron-right "chevron size-5 text-gray-400 group-hover:text-primary-9 transition-all duration-200 transform group-open:rotate-90 mr-4")]
        [:div {:class "border-l border-gray-200 ml-4"}
         (for [c (:children item)]
           (render-left-navigation url c))]]
