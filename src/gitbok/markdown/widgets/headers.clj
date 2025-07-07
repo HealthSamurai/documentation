@@ -4,6 +4,11 @@
    [gitbok.utils :as utils]
    [clojure.string :as str]))
 
+(defn normalize-heading-id [heading-id]
+  (-> heading-id
+      (str/replace #"^-|-$" "")
+      (utils/s->url-slug)))
+
 (defn render-heading
   [ctx node]
   ((comp
@@ -19,12 +24,7 @@
                       "text-gray-900")]
         (cond-> header-hiccup
           (-> header-hiccup (get 1) :id)
-          (update-in
-           [1 :id]
-           (fn [id]
-             (-> id
-                 (str/replace #"^-|-$" "")
-                 (utils/s->url-slug))))
+          (update-in [1 :id] normalize-heading-id)
           :always
           (update-in
            [1 :class]

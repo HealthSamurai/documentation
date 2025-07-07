@@ -32,7 +32,8 @@
                   "http://localhost:8081"))
 
 (defn read-markdown-file [context filepath]
-  (let [content* (utils/slurp-resource filepath)
+  (let [[filepath _] (str/split filepath #"#")
+        content* (utils/slurp-resource filepath)
         {:keys [parsed description title]}
         (markdown/parse-markdown-content
          context
