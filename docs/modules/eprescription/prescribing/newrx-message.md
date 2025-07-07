@@ -23,10 +23,11 @@ The following FHIR resources are needed to create a NewRx message:
    * Contains core prescription details
    * Must be in "draft" status initially
    * Must include requester medication details and dispense details
+   * Must have `dosageInstruction.text` non-empty
    * Must include **Medication**&#x20;
      * as a reference to resource <sub>_(since 2.0)_</sub>
      * as a reference to `contained` resource
-     * as a codeable cconcept <sub>_(since 2.0)_</sub>
+     * as a codeable concept <sub>_(since 2.0)_</sub>
    * May specify number of refills to specify a number of refills via `dispenseRequest.numberOfRepeatsAllowed`, if not provided - will be 0
 2. **Patient** (Required)
    * Patient demographics
