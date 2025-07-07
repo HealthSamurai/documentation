@@ -23,5 +23,4 @@
 - [ ] pretty render system resource reference
 - [ ] feedback buttons?
 - [ ] breadcrumb
-- [ ] expand widget http://localhost:8081/deprecated/deprecated/zen-related/aidbox-zen-lang-project/custom-resources-using-aidbox-project
 - [ ] http://localhost:8081/deprecated/deprecated/zen-related/us-core-ig/us-core-ig-support-reference

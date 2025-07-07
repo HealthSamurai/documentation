@@ -140,14 +140,14 @@
               [:script
                (uui/raw "mermaid.initialize({ startOnLoad: true });")]]
 
-             [:pre
+             [:pre {:class "max-w-full overflow-x-auto"}
               [:code.nohljsln
                ;; protect from xss, do not use raw
                (-> node :content first :text)]]))
 
          :monospace
          (fn [_ctx node]
-           [:code {:class "px-1 border border-gray-200 rounded"
+           [:code {:class "px-1 border border-gray-200 rounded max-w-full overflow-x-auto"
                    :style "background-color: #fbf9f9;"}
             (-> node :content first :text)])
 

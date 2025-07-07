@@ -41,10 +41,6 @@ ul > li {
   @apply mt-2;
 }
 
-/* li { */
-/*   @apply mb-2; */
-/* } */
-
 /* TOC Sticky positioning */
 .toc-container {
   position: sticky !important;
@@ -155,7 +151,6 @@ ul > li {
   @apply block  text-gray-700 hover:bg-[#f6f1f0] hover:text-red-600 transition-colors duration-200 rounded-md;
 }
 
-/* Mark element styling for "beta" tag */
 
 mark[style*="background-color:blue"] {
   background-color: #dbeafe !important;
@@ -214,9 +209,12 @@ strong {
 
 #content pre {
   @apply border border-gray-200 text-gray-800 rounded-lg overflow-x-auto max-w-full shadow-sm;
-  white-space: pre;
-  word-wrap: normal;
-  overflow-wrap: normal;
+  white-space: pre-wrap !important;
+  word-wrap: break-word !important;
+  overflow-wrap: break-word !important;
+  width: 100% !important;
+  max-width: 100% !important;
+  box-sizing: border-box !important;
 }
 
 #content pre + pre {
@@ -225,9 +223,14 @@ strong {
 
 #content pre code {
   @apply text-base leading-relaxed block p-4;
-  white-space: pre;
-  word-wrap: normal;
-  overflow-wrap: normal;
+  white-space: pre-wrap !important;
+  word-wrap: break-word !important;
+  overflow-wrap: break-word !important;
+  max-width: 100% !important;
+  min-width: 0;
+  display: block;
+  width: 100%;
+  box-sizing: border-box;
 }
 
 /* Mobile code scrolling */
@@ -240,13 +243,17 @@ strong {
     margin-right: 0;
     padding-left: 1rem;
     padding-right: 1rem;
+    white-space: pre-wrap !important;
+    word-wrap: break-word !important;
+    overflow-wrap: break-word !important;
   }
 
   #content pre code {
-    min-width: max-content;
-    white-space: pre;
-    word-wrap: normal;
-    overflow-wrap: normal;
+    min-width: 0;
+    white-space: pre-wrap !important;
+    word-wrap: break-word !important;
+    overflow-wrap: break-word !important;
+    max-width: 100% !important;
   }
 }
 
@@ -299,6 +306,11 @@ pre code {
   .copy-code-btn {
     display: none !important;
   }
+}
+
+#content {
+  max-width: 100% !important;
+  overflow-x: hidden !important;
 }
 
 /* Details and Summary styling */
