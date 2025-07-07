@@ -4887,6 +4887,18 @@ Here is the complete list of supported and ready-to-use Implementation Guides (I
 
 ---
 
+### ca.healthpei.io.core
+
+**Versions**
+
+* `ca.healthpei.io.core#0.1.3-DFT`
+* `ca.healthpei.io.core#0.1.2-DFT`
+* `ca.healthpei.io.core#0.1.1-DFT`
+* `ca.healthpei.io.core#0.1.0-DFT`
+
+
+---
+
 ### test.touchstone.at.package
 
 **Versions**
