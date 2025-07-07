@@ -13,8 +13,12 @@
     (let [uri (if (= "/" (subs uri 0 1)) (subs uri 1) uri)
           fixed-url (if (= "/" (subs uri (dec (count uri))))
                       (subs uri 0 (dec (count uri)))
-                      uri)]
-      (get uri->file-idx fixed-url))))
+                      uri)
+          ;; Handle anchors in redirects
+          filepath (get uri->file-idx fixed-url)]
+      (if (and filepath (str/includes? filepath "#"))
+        (str/replace filepath #"#.*$" "")
+        filepath))))
 
 (defn uri->file-idx
   [_]

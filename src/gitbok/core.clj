@@ -158,7 +158,7 @@
             {:status 404
              :body (not-found/not-found-view context uri-without-prefix)}
             :title "Not found"
-            :description "Page not found"}))))))
+            :description "Page not found"}))))
 
 (defn sitemap-xml
   [context _]
