@@ -1,4 +1,4 @@
-# NewRx Message
+# NewRx Message
 
 ### Overview
 
