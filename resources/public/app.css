@@ -300,3 +300,33 @@ pre code {
     display: none !important;
   }
 }
+
+/* Details and Summary styling */
+#content details {
+  @apply my-6 border border-gray-200 rounded-lg bg-white shadow-sm overflow-hidden;
+}
+
+#content summary {
+  @apply px-6 py-4 border-b border-gray-200 cursor-pointer select-none font-medium text-gray-900 hover:bg-gray-100 transition-colors duration-200 flex items-center justify-between;
+}
+
+#content summary:hover {
+  @apply bg-gray-100;
+}
+
+#content summary::after {
+  content: "▼";
+  @apply text-gray-500 text-sm transition-transform duration-200;
+}
+
+#content details[open] summary::after {
+  transform: rotate(180deg);
+}
+
+#content details > *:not(summary) {
+  @apply px-6 py-4;
+}
+
+#content details > *:not(summary):last-child {
+  @apply pb-6;
+}
