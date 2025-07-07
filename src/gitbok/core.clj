@@ -32,7 +32,7 @@
                   "http://localhost:8081"))
 
 (defn read-markdown-file [context filepath]
-  (let [[filepath _] (str/split filepath #"#")
+  (let [[filepath section] (str/split filepath #"#")
         content* (utils/slurp-resource filepath)
         {:keys [parsed description title]}
         (markdown/parse-markdown-content
@@ -48,6 +48,7 @@
           (if (>= (count stripped) 150)
             (subs stripped 0 150)
             stripped)))
+       :section section
        :toc (right-toc/render-right-toc parsed)}
       (catch Exception e
         (println "cannot render file " filepath)
@@ -77,6 +78,7 @@
       (if (map? result)
         (:content result)
         result)]
+     :section (:section result)
      :description (:description result)}))
 
 (defn check-cache-lastmod [request last-mod]
@@ -138,14 +140,16 @@
                          "Last-Modified" lastmod
                          "ETag" etag}}
               (let [title (:title (get (indexing/file->uri-idx context) filepath))
-                    {:keys [description content]}
+                    {:keys [description content section] :as r123}
                     (render-file context filepath)]
+                (def r123 r123)
                 (layout/layout
                  context request
                  {:content content
                   :lastmod lastmod
                   :title title
                   :description description
+                  :section section
                   :filepath filepath}))))
 
           (layout/layout

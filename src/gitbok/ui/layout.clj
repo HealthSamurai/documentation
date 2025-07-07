@@ -26,7 +26,7 @@
     (when filepath
       (or (right-toc/get-right-toc context filepath) toc))]])
 
-(defn document [body {:keys [title description canonical-url og-preview lastmod favicon-url]}]
+(defn document [body {:keys [title description canonical-url og-preview lastmod favicon-url section]}]
   [:html {:lang "en"}
    [:head
     (uui/raw "<!-- Google Tag Manager -->")
@@ -63,6 +63,8 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 
     [:meta {:name "htmx-config",
             :content "{\"scrollIntoViewOnBoost\":false,\"scrollBehavior\":\"smooth\",\"allowEval\":false}"}]
+    (when section
+      [:meta {:name "scroll-to-id" :content section}])
     [:link {:rel "icon" :type "image/x-icon" :href favicon-url}]
     [:link {:rel "shortcut icon" :type "image/x-icon" :href favicon-url}]
     [:link {:rel "apple-touch-icon" :href favicon-url}]
@@ -106,8 +108,8 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
               :src "/static/lastupdated.js"}]
     [:script {:defer true
               :src "/static/posthog.js"}]
-    #_[:script {:defer true
-                :src "/static/gtm.js"}]]
+    [:script {:defer true
+              :src "/static/scroll-to-id.js"}]]
    [:body {:hx-boost "true"
            :hx-on "htmx:afterSwap: window.scrollTo(0, 0); updateLastUpdated();"}
     (uui/raw "<!-- Google Tag Manager (noscript) -->")
@@ -125,7 +127,8 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                       description
                       filepath
                       toc
-                      lastmod]}]
+                      lastmod
+                      section]}]
   (let [body (if (map? content) (:body content) content)
         status (if (map? content) (:status content 200) 200)
         uri (:uri request)
@@ -139,7 +142,9 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
           :else
           (document
            (layout-view context body uri filepath toc)
-           {:title title :description description
+           {:title title
+            :description description
+            :section section
             :canonical-url
             ;; / and /readme is same
             (if (get request :/)
@@ -158,4 +163,4 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                   (when filepath
                     (or lastmod
                         (indexing/get-lastmod context filepath))))]
-    (gitbok.http/response1 body status lastmod)))
+    (gitbok.http/response1 body status lastmod section)))
