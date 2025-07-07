@@ -1,4 +1,4 @@
-# NewRx Message
+# NewRx Message
 
 ### Overview
 
@@ -22,7 +22,7 @@ The following FHIR resources are needed to create a NewRx message:
 1. **MedicationRequest** (Required)
    * Contains core prescription details
    * Must be in "draft" status initially
-   * Must include requesterц medication details and dispense details
+   * Must include requester medication details and dispense details
    * Must include **Medication**&#x20;
      * as a reference to resource <sub>_(since 2.0)_</sub>
      * as a reference to `contained` resource
