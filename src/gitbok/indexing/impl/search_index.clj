@@ -134,7 +134,7 @@
                       title
                       _description]}]
            (when-not title
-             (throw (Exception. (str "Cannot find title in " title))))
+             (throw (Exception. (str "Cannot find title in " filepath))))
            (assoc
             (parsed-md->pre-index
              (:content parsed)
