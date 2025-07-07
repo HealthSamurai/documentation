@@ -2,8 +2,6 @@
 
 ## Most important
 
-- [ ] 404 uri into posthog using API
-- [ ] breadcrumb
 - [ ] new UI to move pages (handles references and creates redirect)
 
 # bugs/techdebt

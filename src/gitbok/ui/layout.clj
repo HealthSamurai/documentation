@@ -1,6 +1,7 @@
 (ns gitbok.ui.layout
   (:require
    [gitbok.ui.right-toc :as right-toc]
+   [gitbok.ui.breadcrumb :as breadcrumb]
    [gitbok.indexing.impl.summary :as summary]
    [gitbok.ui.main-content :as main-content]
    [gitbok.ui.main-navigation :as main-navigation]
@@ -21,8 +22,7 @@
     (left-navigation/left-navigation
      (summary/get-summary context)
      uri)
-    [:div {:class "flex-1"}
-     (main-content/content-div context uri body filepath)]
+    (main-content/content-div context uri body filepath)
     (when filepath
       (or (right-toc/get-right-toc context filepath) toc))]])
 

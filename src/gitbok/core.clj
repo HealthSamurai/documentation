@@ -140,9 +140,8 @@
                          "Last-Modified" lastmod
                          "ETag" etag}}
               (let [title (:title (get (indexing/file->uri-idx context) filepath))
-                    {:keys [description content section] :as r123}
+                    {:keys [description content section]}
                     (render-file context filepath)]
-                (def r123 r123)
                 (layout/layout
                  context request
                  {:content content
@@ -158,7 +157,7 @@
             {:status 404
              :body (not-found/not-found-view context uri-without-prefix)}
             :title "Not found"
-            :description "Page not found"}))))
+            :description "Page not found"}))))))
 
 (defn sitemap-xml
   [context _]

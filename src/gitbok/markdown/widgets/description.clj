@@ -1,6 +1,7 @@
 (ns gitbok.markdown.widgets.description
   (:require [clj-yaml.core :as yaml]
             [hiccup2.core :as hiccup]
+            [gitbok.ui.breadcrumb :as breadcrumb]
             [clojure.string :as str]))
 
 (defn parse-title [content]
@@ -13,7 +14,7 @@
         title (when h1-line (str/trim (subs h1-line 2)))
         h2-idx (when-not title
                  (some #(when (and (>= % 0)
-                                  (str/starts-with? (str/trim (nth lines %)) "## "))
+                                   (str/starts-with? (str/trim (nth lines %)) "## "))
                           %)
                        (range (count lines))))
         h2-line (when h2-idx (nth lines h2-idx))
@@ -25,10 +26,10 @@
         first-line (str/trim (first lines))
         start-idx (when (= "---" first-line) 0)
         end-idx (when start-idx
-                   (some #(when (and (> % start-idx)
+                  (some #(when (and (> % start-idx)
                                     (= "---" (str/trim (nth lines %))))
-                             %)
-                         (range (inc start-idx) (count lines))))
+                           %)
+                        (range (inc start-idx) (count lines))))
         yaml-lines (when (and start-idx end-idx)
                      (subvec (vec lines)
                              (inc start-idx) end-idx))
@@ -47,7 +48,7 @@
         lines (str/split-lines content)
         start-idx (.indexOf ^java.util.List lines "---")
         end-idx (when (>= start-idx 0)
-                   (+ start-idx 1 (.indexOf ^java.util.List (subvec (vec lines) (inc start-idx)) "---")))
+                  (+ start-idx 1 (.indexOf ^java.util.List (subvec (vec lines) (inc start-idx)) "---")))
         after-frontmatter (if (and end-idx (> end-idx start-idx))
                             (subvec (vec lines) (inc end-idx))
                             lines)
@@ -64,8 +65,8 @@
             header-content (if new-desc [rendered-h1 new-desc] [rendered-h1])
             header-html (str
                          (hiccup/html
-                          (into [:header {:class "mb-8"}]
-                                header-content)))]
+                          (into [:header {:class "mb-8"}
+                                 (breadcrumb/breadcrumb context filepath)] header-content)))]
         (str
          header-html
          "\n"
