@@ -16,7 +16,7 @@
   (let [open? (str/starts-with? url (:href item))]
     (if (:children item)
       [:details.group (when open? {:open ""})
-       [:summary {:class "flex items-center justify-between font-medium text-gray-900 hover:bg-gray-100 transition-colors duration-200 cursor-pointer group"}
+       [:summary {:class "flex items-center justify-between font-medium md:font-medium font-normal text-gray-900 hover:bg-gray-100 transition-colors duration-200 cursor-pointer group"}
         [:div {:class "flex-1 clickable-summary"}
          (add-active-class item (= url (:href item)))]
         (ico/chevron-right "chevron size-5 text-gray-400 group-hover:text-primary-9 transition-all duration-200 transform group-open:rotate-90 mr-4")]
