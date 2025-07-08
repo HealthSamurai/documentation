@@ -23,7 +23,7 @@ FHIR API [ignores](https://www.hl7.org/fhir/http.html#create) `id` in `POST` req
 | **`409`**     | **Conflict**      | Resource with such id already exists                                             |
 | **`422`**     | **Unprocessable** | The proposed resource violated applicable FHIR profiles or server business rules |
 
-### Conditional create
+## Conditional create
 
 {% tabs %}
 {% tab title="FHIR format" %}

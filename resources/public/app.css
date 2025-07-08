@@ -295,22 +295,6 @@ strong {
     hyphens: none !important;
   }
 
-  /* #content ul, */
-  /* #content ol { */
-  /*   max-width: 100% !important; */
-  /*   box-sizing: border-box !important; */
-  /*   word-wrap: break-word !important; */
-  /*   overflow-wrap: break-word !important; */
-  /*   overflow-x: hidden !important; */
-  /* } */
-
-  /* #content ul li, */
-  /* #content ol li { */
-  /*   overflow-x: hidden !important; */
-  /*   word-wrap: break-word !important; */
-  /*   overflow-wrap: break-word !important; */
-  /* } */
-
   /* Force code blocks to scroll on mobile */
   #content pre {
     white-space: pre !important;
@@ -366,13 +350,13 @@ strong {
   }
 
   #search-results {
-    width: 56rem !important;
-    min-width: 56rem !important;
+    width: 80rem !important;
+    min-width: 80rem !important;
   }
 
   #search-input {
-    width: 56rem !important;
-    min-width: 56rem !important;
+    width: 80rem !important;
+    min-width: 80rem !important;
   }
 }
 }

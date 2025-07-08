@@ -61,5 +61,5 @@
         (indexing/get-lastmod context filepath)]
     (if filepath
       (gitbok.http/response1
-       (get-right-toc context filepath) 200 lastmod)
-      (gitbok.http/response1 [:div] 404 nil))))
+       (get-right-toc context filepath) 200 lastmod nil)
+      (gitbok.http/response1 [:div] 404 nil nil))))

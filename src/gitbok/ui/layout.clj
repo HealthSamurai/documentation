@@ -109,7 +109,9 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     [:script {:defer true
               :src "/static/posthog.js"}]
     [:script {:defer true
-              :src "/static/scroll-to-id.js"}]]
+              :src "/static/scroll-to-id.js"}]
+    [:script {:defer true
+              :src "/static/search-toc-hide.js"}]]
    [:body {:hx-boost "true"
            :hx-on "htmx:afterSwap: window.scrollTo(0, 0); updateLastUpdated();"}
     (uui/raw "<!-- Google Tag Manager (noscript) -->")

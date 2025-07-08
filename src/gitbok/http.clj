@@ -7,7 +7,6 @@
 
 (defn response1
   ([body status lastmod section]
-   (def s section)
    (let [html (utils/->html body)]
      {:status (or status 200)
       :headers
