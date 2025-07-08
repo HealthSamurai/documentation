@@ -46,7 +46,7 @@
      [:a {:href "/search"
           :hx-get "/search"
           :hx-target "#content"
-          :hx-push-url "href"
+          :hx-push-url "/search"
           :hx-swap "innerHTML"
           :class "flex items-center gap-2 px-3 py-2 bg-gray-100 border border-gray-300 rounded-md text-gray-700 text-sm transition-all duration-200 hover:bg-gray-200 hover:border-gray-400"}
       [:svg {:class "size-4" :fill "none" :stroke "currentColor" :viewBox "0 0 24 24"}
