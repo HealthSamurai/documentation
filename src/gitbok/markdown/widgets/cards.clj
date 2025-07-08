@@ -63,7 +63,7 @@
                      three))
                  href (or title-href title-filepath pic-href1 pic-href2)]]
        [:div {:href href
-              :class "block hover:shadow-lg hover:border hover:border-gray-400 transition-all duration-200 rounded-2xl cursor-pointer"
+              :class "block hover:shadow-lg hover:border hover:border-gray-400 transition-all duration-200 rounded-2xl cursor-pointer border-2 border-solid"
               :hx-get (str href "?partial=true")
               :hx-target "#content"
               ;; :hx-push-url "true"
