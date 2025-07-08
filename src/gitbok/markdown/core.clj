@@ -1,6 +1,7 @@
 (ns gitbok.markdown.core
   (:require
    [clojure.string :as str]
+   [clojure.walk :as walk]
    [gitbok.markdown.widgets.big-links :as big-links]
    [gitbok.markdown.widgets.link :as link]
    [gitbok.markdown.widgets.headers :as headers]
@@ -61,6 +62,15 @@
                 (= :title (first el))))
              (first)
              (last))}))
+
+(defn remove-selects [form]
+  (walk/postwalk
+   (fn [node]
+     (if (and (vector? node)
+              (= (first node) :select))
+       nil
+       node))
+   form))
 
 (defn renderers [context filepath]
   (assoc transform/default-hiccup-renderers
@@ -203,6 +213,11 @@
                     (= {:data-header-hidden ""} (second c)))
                (uui/raw (-> node :content first :text
                             (str/replace #"\<thead.*/thead>" "")))
+
+               (and c
+                    (= :table (first c))
+                    (= :thead (first (nth c 2))))
+               (update c 2 remove-selects)
 
                :else
                (uui/raw (-> node :content first :text)))))))

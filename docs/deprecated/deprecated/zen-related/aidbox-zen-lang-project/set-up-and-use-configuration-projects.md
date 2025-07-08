@@ -114,8 +114,6 @@ It's more preferable to set up Aidbox with [aidbox.config/config](aidbox-project
   ,,,}}
 ```
 {% endcode %}
-
-This is more preferable way, than configuring Aidbox via envs.
 {% endhint %}
 
 ## Commit your changes
