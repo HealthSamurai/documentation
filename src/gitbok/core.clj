@@ -173,8 +173,6 @@
                :/ true)]
     (render-file-view context request)))
 
-
-
 (defn healthcheck
   [_ _]
   {:status 200 :body {:status "ok"}})
@@ -234,11 +232,13 @@
   (markdown/render-all!
    context
    (markdown/get-parsed-markdown-index context) read-markdown-file)
-  (println "generating sitemap.xml")
   ;; 8. generate sitemap.xml
-  (sitemap/set-sitemap
-   context
-   (edamame/parse-string (utils/slurp-resource "lastmod.edn")))
+  (when-not
+   dev?
+    (println "generating sitemap.xml")
+    (sitemap/set-sitemap
+     context
+     (edamame/parse-string (utils/slurp-resource "lastmod.edn"))))
   ;; 9. set lastmod.edn in context for Last Modified metadata
   (indexing/set-lastmod context)
 
@@ -258,10 +258,8 @@
           (let [result (gitbok.ui.search/search-results-only context request)]
             {:status 200
              :headers {"content-type" "text/html; charset=utf-8"
-                      "Cache-Control" "no-cache, no-store, must-revalidate"}
+                       "Cache-Control" "no-cache, no-store, must-revalidate"}
              :body (gitbok.utils/->html result)}))})
-
-
 
   (http/register-endpoint
    context

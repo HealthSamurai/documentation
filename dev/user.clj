@@ -12,11 +12,8 @@
 
 (comment
 
-  (reload/init {:dirs ["src"]})
-
-  (def context (system/start-system gitbok/default-config))
-
-  (reload/reload)
+  (do (reload/init {:dirs ["src"]})
+      (def context (system/start-system gitbok/default-config)))
 
   (do (reload/reload)
       (system/stop-system context)
