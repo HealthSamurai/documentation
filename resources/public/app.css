@@ -41,6 +41,11 @@ ul > li {
   @apply mt-2;
 }
 
+/* Add margin-bottom to p tags that are not inside li */
+p:not(li p) {
+  @apply my-2;
+}
+
 /* TOC Sticky positioning */
 .toc-container {
   position: sticky !important;
@@ -209,9 +214,7 @@ strong {
 
 #content pre {
   @apply border border-gray-200 text-gray-800 rounded-lg overflow-x-auto max-w-full shadow-sm;
-  white-space: pre-wrap !important;
-  word-wrap: break-word !important;
-  overflow-wrap: break-word !important;
+  white-space: pre !important;
   width: 100% !important;
   max-width: 100% !important;
   box-sizing: border-box !important;
@@ -223,9 +226,7 @@ strong {
 
 #content pre code {
   @apply text-base leading-relaxed block p-4;
-  white-space: pre-wrap !important;
-  word-wrap: break-word !important;
-  overflow-wrap: break-word !important;
+  white-space: pre !important;
   max-width: 100% !important;
   min-width: 0;
   display: block;
@@ -243,16 +244,12 @@ strong {
     margin-right: 0;
     padding-left: 1rem;
     padding-right: 1rem;
-    white-space: pre-wrap !important;
-    word-wrap: break-word !important;
-    overflow-wrap: break-word !important;
+    white-space: pre !important;
   }
 
   #content pre code {
     min-width: 0;
-    white-space: pre-wrap !important;
-    word-wrap: break-word !important;
-    overflow-wrap: break-word !important;
+    white-space: pre !important;
     max-width: 100% !important;
   }
 }
@@ -279,6 +276,11 @@ strong {
     max-width: 100% !important;
     box-sizing: border-box !important;
     overflow-x: hidden !important;
+  }
+
+  /* Preserve horizontal scroll for code blocks */
+  #content pre {
+    overflow-x: auto !important;
   }
 
   #content p,
@@ -309,19 +311,15 @@ strong {
   /*   overflow-wrap: break-word !important; */
   /* } */
 
-  /* Force code blocks to wrap on mobile */
+  /* Force code blocks to scroll on mobile */
   #content pre {
-    white-space: pre-wrap !important;
-    word-wrap: break-word !important;
-    overflow-wrap: break-word !important;
-    overflow-x: hidden !important;
+    white-space: pre !important;
+    overflow-x: auto !important;
   }
 
   #content pre code {
-    white-space: pre-wrap !important;
-    word-wrap: break-word !important;
-    overflow-wrap: break-word !important;
-    overflow-x: hidden !important;
+    white-space: pre !important;
+    overflow-x: auto !important;
   }
 
   /* Handle long URLs and text */
@@ -366,7 +364,7 @@ strong {
   .min-w-4xl {
     min-width: 56rem !important;
   }
-  
+
   #search-results {
     width: 56rem !important;
     min-width: 56rem !important;

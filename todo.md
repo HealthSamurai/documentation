@@ -7,7 +7,6 @@
 # bugs/techdebt
 
 - [ ] rm huge image history from repo
-- [ ] bug http://localhost:8081/deprecated/deprecated/other/other-deprecated-tutorials/automatically-archive-auditevent-resources-in-gcp-storage-guide
 - [ ] http://localhost:8081/deprecated/deprecated/zen-related/aidbox-zen-lang-project/set-up-and-use-configuration-projects
 - [ ] http://localhost:8081/deprecated/deprecated/zen-related/us-core-ig/us-core-ig-support-reference
 

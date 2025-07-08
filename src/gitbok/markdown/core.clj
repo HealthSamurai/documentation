@@ -123,7 +123,7 @@
 
          :paragraph
          (fn [ctx node]
-           (into [:p {:class "my-4 text-base text-gray-900 leading-relaxed"}]
+           (into [:p {:class "text-base text-gray-900 leading-relaxed"}]
                  (mapv #(transform/->hiccup ctx %) (:content node))))
 
          :bullet-list
