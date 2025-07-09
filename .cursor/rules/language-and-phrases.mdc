@@ -1,0 +1,64 @@
+---
+description: 
+globs: 
+alwaysApply: false
+---
+# Language and Phrases for Technical Documentation
+
+## Common Phrases and Transitions
+
+### Opening Phrases
+- "This section explains..."
+- "The following approach..."
+- "To implement this feature..."
+- "This design addresses..."
+- "The limitation of this approach is..."
+
+### Transitional Phrases
+- "So how do you actually..."
+- "But what if..."
+- "This works great, but..."
+- "Similarly..."
+- "On top of that..."
+
+### Concluding Phrases
+- "The key benefit is..."
+- "This approach provides..."
+- "Best practice recommends..."
+- "Performance testing confirms..."
+
+## Technical Explanations
+
+### Show, Don't Just Tell
+When explaining concepts:
+1. State the principle briefly
+2. Show a bad example
+3. Show a good example
+4. Explain the difference
+
+### Explain the "Why"
+Always connect technical decisions to user experience:
+
+**Example:**
+❌ "Use HSL color format."
+✅ "Hex and RGB are the most common formats for representing color on the web, but they're not the most useful. HSL fixes this by representing colors using attributes the human-eye intuitively perceives..."
+
+## Writing Don'ts
+
+### Avoid Academic Language
+- No passive voice when active works better
+- No unnecessarily complex vocabulary
+- No lengthy theoretical explanations
+- No "**Something**: some text" templates
+
+### Don't Over-Explain
+- Trust the reader's intelligence
+- Let examples do the heavy lifting
+- Keep explanations concise
+- Focus on overview, not tutorials
+
+### Avoid Absolutism
+Use qualifying language appropriately:
+- "often" instead of "always"
+- "usually" instead of "must"
+- "might want to" instead of "should"

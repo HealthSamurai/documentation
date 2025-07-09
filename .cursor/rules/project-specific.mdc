@@ -1,0 +1,51 @@
+---
+description:
+globs:
+alwaysApply: false
+---
+# Project-Specific Rules for Aidbox Documentation
+
+## Aidbox Documentation Guidelines
+- Write for developers and architects with basic technical knowledge
+- Assume minimal knowledge of Aidbox
+- Reference FHIR specification for FHIR implementations
+- Include PostgreSQL documentation links for database features
+- Use book-like style similar to PostgreSQL documentation
+- Focus on state of Aidbox, not selling features
+- Add frontmatter descriptions for SEO
+
+## File Management
+- Create section files before merging into overview
+- Use descriptive file names
+- Maintain relative link structure
+- Update log files for tracking progress
+- Keep sources-readed.txt updated with all references
+
+## Quality Checklist
+
+Before publishing, ensure documentation:
+
+- [ ] Starts with a relatable problem
+- [ ] Uses conversational tone with contractions
+- [ ] Includes specific, real-world examples
+- [ ] Breaks complex ideas into digestible chunks
+- [ ] Uses imperative headlines
+- [ ] Provides concrete numbers and measurements
+- [ ] Explains the "why" behind recommendations
+- [ ] Avoids academic or overly technical language
+- [ ] Includes memorable, quotable phrases
+- [ ] Ends sections with clear takeaways
+- [ ] Uses proper markdown formatting
+- [ ] Includes relevant links and references
+- [ ] Has appropriate code highlighting
+- [ ] Follows FHIR specification when applicable
+- [ ] References PostgreSQL features when mentioned
+
+## Key Documentation Files
+
+The main documentation structure is organized in the [docs/](mdc:docs/) directory, with API documentation in [docs/api/](mdc:docs/api/) and various modules in [docs/modules/](mdc:docs/modules/).
+
+## Style Guide Reference
+For detailed writing guidelines, refer to the original style guide at [vibe/styleguide.md](mdc:vibe/styleguide.md).
+
+Remember: The goal is to make complex technical decisions feel approachable and actionable. Write documentation that developers actually want to read.

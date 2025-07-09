@@ -1,0 +1,99 @@
+---
+description: 
+globs: 
+alwaysApply: false
+---
+# Structural Patterns for Technical Documentation
+
+## Problem-Solution Arc
+Each section should follow this structure:
+1. Present the problem (with relatable scenario)
+2. Explain why it happens (brief context)
+3. Show the solution (practical steps)
+4. Provide specific examples
+
+## Section Organization
+- Keep paragraphs to 2-3 sentences maximum
+- Use frequent subheadings (H2, H3, H4)
+- Break up text with visual examples and code blocks
+- One main idea per section
+- Use progressive disclosure: simple → complex → advanced
+
+## Action-Oriented Headlines
+Use imperative mood that tells readers exactly what to do:
+- "Start with too much white space"
+- "Don't use grey text on colored backgrounds"
+- "Limit your choices"
+- "Choose a personality"
+
+## Documentation Structure
+
+### File Organization
+- Use descriptive file names
+- Include frontmatter with description for SEO
+- Structure with clear H1 title and H2 sections
+- Add "See also" sections with related links
+
+### Linking and References
+- Use relative markdown links to related documentation
+- Reference PostgreSQL documentation when mentioning PostgreSQL features
+- Include links to FHIR specification when implementing FHIR features
+- Add references after each section, not within headers
+
+### Code Examples
+- Use appropriate syntax highlighting
+- Include complete, runnable examples when possible
+- Explain what each example demonstrates
+- Use `code` highlighting for technical terms and operations
+
+## Documentation Templates
+
+### Section Template
+```markdown
+## [Imperative Action Headline]
+
+[Opening with a problem/question that hooks the reader]
+
+[Brief explanation of why this matters, 1-2 sentences]
+
+### [Specific Technique or Solution]
+
+[Concrete example with real scenario]
+
+[Show the wrong way with explanation]
+
+[Show the right way with benefits]
+
+[Additional context or edge cases if needed]
+
+[Memorable closing statement or rule of thumb]
+
+See also:
+- [Related documentation link]
+- [Another related link]
+```
+
+### Page Template
+```markdown
+---
+description: [One-line description for SEO and UI]
+---
+
+# [Page Title]
+
+[Overview paragraph explaining what's in this page]
+
+## [Section 1]
+
+[Content following problem-solution arc]
+
+See also:
+- [Related links]
+
+## [Section 2]
+
+[Content following problem-solution arc]
+
+See also:
+- [Related links]
+```
