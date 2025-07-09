@@ -598,10 +598,18 @@ BOX_FHIR_SEARCH_COMPARISONS=true
 
 Use FHIR compliant [date search](https://www.hl7.org/fhir/search.html#prefix).
 
-### BOX\_SEARCH\_INCLUDE\_CONFORMANT
+### BOX\_FHIR\_SEARCH\_INCLUDE\_CONFORMANT
+
+old env:
 
 ```
 BOX_SEARCH_INCLUDE_CONFORMANT=true
+```
+
+new env:
+
+```
+BOX_FHIR_SEARCH_INCLUDE_CONFORMANT=true
 ```
 
 When set to true, the behavior of \_include and \_revinclude becomes FHIR conformant:
@@ -926,10 +934,10 @@ The next step is to configure your database to accept SSL connections. You can d
 
 ### Use different PostgreSQL schema
 
-By default Aidbox uses `public` schema. If you want Aidbox to use different schema, set [JDBC parameter `currentSchema`](https://jdbc.postgresql.org/documentation/head/connect.html#connection-parameters) using environment variable `AIDBOX_DB_PARAM_CURRENT_SCHEMA`:
+By default Aidbox uses `public` schema. If you want Aidbox to use different schema, set [JDBC parameter `currentSchema`](https://jdbc.postgresql.org/documentation/head/connect.html#connection-parameters) using environment variable `BOX_DB_EXTENSION_SCHEMA`:
 
 ```
-AIDBOX_DB_PARAM_CURRENT_SCHEMA=myschema
+BOX_DB_EXTENSION_SCHEMA=myschema
 ```
 
 PostgreSQL extensions can create objects. By default PostgreSQL sets up extension to use current schema. If you are going to share database between multiple applications, we recommend to create a dedicated schema for the extensions.
@@ -1027,10 +1035,18 @@ BOX_TELEMETRY_ERRORS=false
 
 Disable sending anonymous errors data.
 
-#### BOX\_TELEMETRY\_USAGE\_\_STATS
+#### BOX\_USAGE\_STATS
+
+old env:
 
 ```
 BOX_TELEMETRY_USAGE_STATS=false
+```
+
+new env:
+
+```
+BOX_USAGE_STATS=false
 ```
 
 Disable sending anonymous API usage statistics.
