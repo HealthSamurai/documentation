@@ -7,10 +7,10 @@
 # - Summary files are in sync with actual files
 # - Titles in SUMMARY.md match h1 headers in files
 
-python ./scripts/markdown-links/find_absolute_aidbox_links.py || exit 1
-python ./scripts/markdown-links/extract-nonexistent-links.py || exit 1
-python ./scripts/summary/check-summary-vs-files.py || exit 1
-python ./scripts/check-title-mismatch.py || exit 1
+python3 ./scripts/markdown-links/find_absolute_aidbox_links.py || exit 1
+python3 ./scripts/markdown-links/extract-nonexistent-links.py || exit 1
+python3 ./scripts/summary/check-summary-vs-files.py || exit 1
+python3 ./scripts/check-title-mismatch.py || exit 1
 
 # Check for broken-reference links in markdown files
 echo "Checking for broken-reference links..."
@@ -20,6 +20,6 @@ if grep -rn "\[.*\](broken-reference" docs/ --include="*.md" --exclude-dir="depr
     exit 1
 fi
 
-python ./scripts/redirects.py || exit 1
+python3 ./scripts/redirects.py || exit 1
 # maybe later...
 # python ./scripts/pictures/image_analyzer.py || exit 1
