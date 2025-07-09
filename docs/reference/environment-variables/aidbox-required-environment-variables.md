@@ -2,23 +2,19 @@
 
 ### BOX\_WEB\_PORT
 
+old env:
+
+```
+AIDBOX_PORT=<port>
+```
+
+new env:
+
 ```
 BOX_WEB_PORT=<port>
 ```
 
 A port that web server will listen to.
-
-### AIDBOX\_FHIR\_VERSION
-
-```
-AIDBOX_FHIR_VERSION=<fhir version>
-```
-
-`<fhir version>` is one of: `1.0.2`, `1.4.0`, `1.8.0`, `3.0.1`, `3.2.0`, `3.3.0`, `4.0.0`, `4.0.1`, `4.3.0`, `5.0.0`
-
-{% hint style="warning" %}
-We recommend using version 4.0.1
-{% endhint %}
 
 ### AIDBOX\_COMPLIANCE
 
@@ -26,8 +22,16 @@ We recommend using version 4.0.1
 Becomes required if AIDBOX\_FHIR\_SCHEMA\_VALIDATION: true
 {% endhint %}
 
+old env:
+
 ```
 AIDBOX_COMPLIANCE: enabled
+```
+
+new env:
+
+```
+BOX_FHIR_COMPLIANT_MODE: true
 ```
 
 ### PGHOST
@@ -96,8 +100,16 @@ Root User resource id to create on startup.
 
 ### AIDBOX\_ADMIN\_PASSWORD
 
+old env:
+
 ```
 AIDBOX_ADMIN_PASSWORD=<Password for the Aidbox administrator>
+```
+
+new env:
+
+```
+BOX_ADMIN_PASSWORD=<Password for the Aidbox administrator>
 ```
 
 A password for that User.
