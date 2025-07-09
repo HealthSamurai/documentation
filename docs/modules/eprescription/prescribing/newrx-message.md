@@ -492,3 +492,15 @@ Note that you have to put real NCPDP, SPI and NPI values.
   ]
 }
 ```
+
+### Created resources
+
+After the NewRx message is sent, it creates two main resources:
+- **MedicationRequest** with all the references and data about the prescription.
+  - Contains references to **Practitioner**, **Patient**, **Organization** (pharmacy) and others from above.
+- **Provenance** tracking the time and other metadata of the NewRx creation
+  - Other **Provenance** events are created for CancelRx and other (future) Rx events.
+  - You can use this **Provenance** to get the created **.entity** and IDs of e.g. the created **Provider**.
+  - Inside this **.entity**, there are two main sub-entities:
+    - **role: derivation** is ePrescription-sent request.
+    - **role: source** is a Surescript response.
