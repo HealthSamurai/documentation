@@ -1,0 +1,53 @@
+---
+description: 
+globs: 
+alwaysApply: false
+---
+# Core Writing Principles for Technical Documentation
+
+## Problem-First Approach
+Always start with the problem or pain point before introducing solutions. Present challenges clearly and directly using relatable scenarios that readers can visualize.
+
+**Example:**
+❌ "Visual hierarchy is the arrangement of elements in order of importance..."
+✅ "Complex data models stored in relational databases require extensive normalization and multiple joins, making queries slow and maintenance difficult."
+
+## Professional Clarity
+Write in direct, professional tone that respects reader expertise. Avoid overly casual language while maintaining clarity. Use contractions for conversational flow.
+
+**Good phrases:**
+- "This approach provides..."
+- "The implementation uses..."
+- "This design enables..."
+- "Consider the following scenario..."
+
+## Concrete Examples Over Abstract Concepts
+Ground concepts in real-world scenarios. Use specific, actionable examples. Avoid theoretical explanations without practical context.
+
+**Example:**
+❌ "Implement proper spacing in your interface."
+✅ "For example, say you're building a flight booking service. You could start with a feature like 'searching for a flight'."
+
+## Technical Precision
+- Use precise technical language that accurately describes concepts
+- When introducing new terms, provide brief explanations
+- Use `code` highlighting for technical terms, operations, and file names
+- Reference FHIR specification when implementing FHIR features
+
+**Examples:**
+- "Schema-less storage for evolving data models"
+- "Binary JSON for efficient querying"
+- "The `$validate` operation checks resource compliance"
+- "FHIR `Bundle` resources for batch operations"
+
+## Strategic Emphasis
+- **Bold** for introducing new concepts or key takeaways
+- *Italics* sparingly for subtle emphasis
+- • Bullet points for actionable lists
+- Avoid excessive formatting
+
+## Specific Numbers and Measurements
+Be precise with measurements and values:
+- "16px is a great number to start with..."
+- "jumping from 12px to 16px is an increase of 33%"
+- "you want 8-10 shades to choose from"

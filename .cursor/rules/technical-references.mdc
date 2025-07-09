@@ -1,0 +1,43 @@
+---
+description: 
+globs: 
+alwaysApply: false
+---
+# Technical References and Specifications
+
+## FHIR Implementation Guidelines
+When implementing FHIR features, always reference the official FHIR specification:
+- Use proper FHIR resource names and operations
+- Reference the [FHIR HTTP API specification](mdc:https:/www.hl7.org/fhir/http.html) for REST operations
+- Include links to relevant FHIR specification sections
+- Use `code` highlighting for FHIR operations like `$validate`, `$search`, etc.
+
+## PostgreSQL Integration
+When mentioning PostgreSQL features:
+- Reference the [PostgreSQL documentation](mdc:https:/www.postgresql.org/docs/current) for database features
+- Use proper PostgreSQL terminology and syntax
+- Include links to relevant PostgreSQL documentation sections
+- Follow PostgreSQL documentation style for database-related content
+
+## Code Highlighting Standards
+Use `code` highlighting for:
+- Technical terms and operations
+- File names and paths
+- API endpoints and methods
+- Configuration parameters
+- Environment variables
+- Database queries and operations
+
+## External References
+Always include proper references to:
+- FHIR specification for FHIR implementations
+- PostgreSQL documentation for database features
+- Related internal documentation using relative markdown links
+- External APIs and services when mentioned
+
+## Documentation Structure References
+Key documentation directories:
+- [docs/api/](mdc:docs/api) - API documentation
+- [docs/modules/](mdc:docs/modules) - Module documentation
+- [docs/database/](mdc:docs/database) - Database documentation
+- [docs/access-control/](mdc:docs/access-control) - Security documentation
