@@ -190,6 +190,8 @@ When performing a conditional create using a Bundle, note that the `ifNoneExist`
 When performing a POST operation (including within a transaction Bundle), do not include an id field in the resource body. The server will assign a new id automatically if the resource is not existing. 
 
 ```json
+POST /fhir/
+
 {
   "resourceType": "Bundle",
   "type": "transaction",
