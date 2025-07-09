@@ -121,7 +121,7 @@ Aidbox provides access control for inline requests (\_include & \_revinclude) to
 To enable access control for inline requests, set the following environment variable:
 
 ```
-BOX_SEARCH_AUTHORIZE_INLINE_REQUESTS=true
+BOX_FHIR_SEARCH_AUTHORIZE_INLINE_REQUESTS=true
 ```
 
 ### AccessPolicy Examples with Authorize Inline Requests Mode
