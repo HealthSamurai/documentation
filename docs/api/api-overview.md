@@ -17,7 +17,7 @@ See also:
 
 ### Validation
 
-Healthcare data validation ensures that clinical information conforms to predefined constraints and business rules. Aidbox uses [FHIR Schema validation](../docs/modules/profiling-and-validation/fhir-schema-validator/) - a developer-friendly format that simplifies FHIR StructureDefinitions into intuitive, JSON Schema-like representations. FHIR Schema provides enhanced performance, supports advanced features like FHIRPath invariants and slicing, and offers clearer error messages compared to traditional validation approaches.
+Healthcare data validation ensures that clinical information conforms to predefined constraints and business rules. Aidbox uses [FHIR Schema](../modules/profiling-and-validation/fhir-schema-validator/) validation engine -  an engine that uses FHIR Schema format internally. FHIR Schema is a developer-friendly format that simplifies FHIR StructureDefinitions into intuitive, JSON Schema-like representations. FHIR Schema validation engine provides enhanced performance, supports advanced features like FHIRPath invariants and slicing, and offers clearer error messages compared to traditional validation approaches.
 
 Aidbox provides two types of validation:
 
@@ -37,7 +37,7 @@ For example, validating a Patient resource checks required fields like gender co
 See also:
 
 * [Profiling and Validation](../docs/modules/profiling-and-validation/)
-* [FHIR Schema Validator](../docs/modules/profiling-and-validation/fhir-schema-validator/)
+* [FHIR Schema Validator](../modules/profiling-and-validation/fhir-schema-validator/)
 
 ### History
 
