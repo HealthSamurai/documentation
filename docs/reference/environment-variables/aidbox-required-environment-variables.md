@@ -19,7 +19,7 @@ A port that web server will listen to.
 ### AIDBOX\_COMPLIANCE
 
 {% hint style="warning" %}
-Becomes required if AIDBOX\_FHIR\_SCHEMA\_VALIDATION: true
+Becomes required if BOX\_FHIR\_SCHEMA\_VALIDATION: true
 {% endhint %}
 
 old env:
