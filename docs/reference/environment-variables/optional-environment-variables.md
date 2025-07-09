@@ -68,7 +68,7 @@ AIDBOX_DB_PARAM_<parameter name>=<parameter value>
 
 Parameters prefixed with `AIDBOX_DB_PARAM_` will be passed to [JDBC PostgreSQL connection string](https://jdbc.postgresql.org/documentation/use/#connection-parameters).
 
-### BOX\_OBSERVABILITY\_ELASTIC\_SEARCH\_UR
+### BOX\_OBSERVABILITY\_ELASTIC\_SEARCH\_URL
 
 old env:
 
@@ -835,7 +835,7 @@ BOX_MODULE_GRAPHQL_WARMUP_ON_STARTUP=<boolean>
 
 Warmup graphql caches on startup
 
-### BOX\_FEATURES\_GRAPHQL\_TIMEOUT
+### BOX\_MODULE\_GRAPHQL\_TIMEOUT
 
 old env:
 
