@@ -16,7 +16,7 @@ BOX_WEB_PORT=<port>
 
 A port that web server will listen to.
 
-### AIDBOX\_COMPLIANCE
+### BOX\_FHIR\_COMPLIANT\_MODE
 
 {% hint style="warning" %}
 Becomes required if BOX\_FHIR\_SCHEMA\_VALIDATION: true
@@ -74,31 +74,55 @@ PGPASSWORD=<PostgreSQL role password>
 
 A password of that role.
 
-### AIDBOX\_CLIENT\_ID
+### BOX\_ROOT\_CLIENT\_ID
+
+old env:
 
 ```
 AIDBOX_CLIENT_ID=<Aidbox Client resource id>
 ```
 
+new env:
+
+```
+BOX_ROOT_CLIENT_ID=<Aidbox Client resource id>
+```
+
 Root Client resource id to create on startup.
 
-### AIDBOX\_CLIENT\_SECRET
+### BOX\_ROOT\_CLIENT\_SECRET
+
+old env:
 
 ```
 AIDBOX_CLIENT_SECRET=<Secret for the client defined with AIDBOX_CLIENT_ID>
 ```
 
+new env:
+
+```
+BOX_ROOT_CLIENT_SECRET=<Secret for the client defined with AIDBOX_CLIENT
+```
+
 A secret for that Client.
 
-### AIDBOX\_ADMIN\_ID
+### BOX\_ADMIN\_ID
+
+old env:
 
 ```
 AIDBOX_ADMIN_ID=<Aidbox administrator User resource id>
 ```
 
+new env:
+
+```
+BOX_ADMIN_ID=<Aidbox administrator User resource id>
+```
+
 Root User resource id to create on startup.
 
-### AIDBOX\_ADMIN\_PASSWORD
+### BOX\_ADMIN\_PASSWORD
 
 old env:
 
