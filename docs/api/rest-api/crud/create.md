@@ -187,8 +187,6 @@ meta:
 
 When performing a conditional create using a Bundle, note that the `ifNoneExist` field in the request is case-sensitive according to the FHIR specification. Ensure that it is spelled exactly as `ifNoneExist` — using any other casing (e.g., IfNoneExist, ifnoneexist) will result in it being ignored.
 
-When performing a POST operation (including within a transaction Bundle), do not include an id field in the resource body. The server will assign a new id automatically if the resource is not existing. 
-
 ```json
 POST /fhir/
 
