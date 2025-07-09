@@ -232,7 +232,7 @@ See also:
 
 Utility and system endpoints for health checks, versioning, and data transformation.
 
-### [$to-format](rest-api/other/to-format.md)
+*   ### [$to-format](rest-api/other/to-format.md)
 
     Conversion between Aidbox and FHIR formats using `POST /$to-format/fhir` and `POST /$to-format/aidbox` endpoints.
 *   ### [$matcho](rest-api/other/matcho.md)
