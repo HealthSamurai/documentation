@@ -149,7 +149,7 @@ meta:
 A patient was not created, an existing patient was returned.
 
 ### If-None-Exist header
-You can also use the `If-None-Exist` header: 
+You can also use the `If-None-Exist` header just like in the [specification](https://hl7.org/fhir/R4/http.html#ccreate): 
 
 Create a patient if there is no patient with the name Bob.
 
@@ -185,7 +185,7 @@ meta:
 
 ### Conditional create via Bundle
 
-When performing a conditional create using a Bundle, note that the `ifNoneExist` field in the request is case-sensitive according to the FHIR specification. Ensure that it is spelled exactly as `ifNoneExist` — using any other casing (e.g., IfNoneExist, ifnoneexist) will result in it being ignored.
+When performing a conditional create using a Bundle, note that the `ifNoneExist` field in the request is case-sensitive and is defined on the schema [level](https://build.fhir.org/bundle.html#resource). Ensure that it is spelled exactly as `ifNoneExist` — using any other casing (e.g., IfNoneExist, ifnoneexist) will result in it being ignored. You can also use [chained parameters](https://hl7.org/fhir/R4/search.html#chaining) to filter based on fields in a referenced resource. 
 
 ```json
 POST /fhir/
