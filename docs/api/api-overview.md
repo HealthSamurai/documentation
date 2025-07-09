@@ -8,9 +8,10 @@ Healthcare systems must handle complex data workflows while maintaining integrit
 
 At the heart of any healthcare system lies the ability to create, read, update, and delete clinical resources - the fundamental CRUD operations that power everything from patient registration to medication orders. Aidbox implements these operations following the FHIR RESTful API specification, where each resource type gets its own endpoint and standard HTTP methods provide predictable behavior across all resource types. When a nurse creates a new patient record, updates vital signs, or a physician reviews medical history, they're using these CRUD APIs behind the scenes, with Aidbox ensuring each operation maintains data consistency through PostgreSQL's ACID transactions.
 
-The RESTful design means developers work with familiar HTTP patterns: POST to create resources, GET to retrieve them, PUT to update, and DELETE to remove. Each operation returns appropriate HTTP status codes and follows FHIR's versioning strategy through ETags and the _history endpoint. For instance, creating a Patient resource returns a 201 status with the Location header pointing to the newly created resource.
+The RESTful design means developers work with familiar HTTP patterns: POST to create resources, GET to retrieve them, PUT to update, and DELETE to remove. Each operation returns appropriate HTTP status codes and follows FHIR's versioning strategy through ETags and the \_history endpoint. For instance, creating a Patient resource returns a 201 status with the Location header pointing to the newly created resource.
 
 See also:
+
 * [CRUD Operations](rest-api/crud/)
 * [FHIR HTTP API](https://www.hl7.org/fhir/http.html)
 
@@ -19,6 +20,7 @@ See also:
 Healthcare data validation ensures that clinical information conforms to predefined constraints and business rules. Aidbox uses [FHIR Schema validation](../docs/modules/profiling-and-validation/fhir-schema-validator/) - a developer-friendly format that simplifies FHIR StructureDefinitions into intuitive, JSON Schema-like representations. FHIR Schema provides enhanced performance, supports advanced features like FHIRPath invariants and slicing, and offers clearer error messages compared to traditional validation approaches.
 
 Aidbox provides two types of validation:
+
 * **Automatic validation**: Occurs during create/update operations to prevent invalid data from entering the system
 * **Explicit validation**: The `$validate` operation checks resources without persisting them, useful for testing and form validation
 
@@ -33,7 +35,8 @@ For example, validating a Patient resource checks required fields like gender co
 ```
 
 See also:
-* [Profiling and Validation](../docs/modules/profiling-and-validation/README.md)
+
+* [Profiling and Validation](../docs/modules/profiling-and-validation/)
 * [FHIR Schema Validator](../docs/modules/profiling-and-validation/fhir-schema-validator/)
 
 ### History
@@ -43,6 +46,7 @@ In healthcare, knowing not just what data looks like now, but how it changed ove
 The history mechanism works at two levels: instance history tracks changes to individual resources, and type history shows all changes across a resource type. Each history entry includes the complete resource state at that point in time, the HTTP method used (POST, PUT, DELETE), version identifiers, and timestamps. For example, `GET /Patient/123/_history` retrieves all versions of a specific patient, while `GET /Patient/_history?_since=2024-01-01` shows all patient changes since a specific date.
 
 See also:
+
 * [History](rest-api/history.md)
 * [FHIR History](https://www.hl7.org/fhir/http.html#history)
 
@@ -55,6 +59,7 @@ Bundles support different processing modes for different use cases. Transaction 
 Aidbox implements bundle processing exactly as specified in the [FHIR Bundle specification](https://www.hl7.org/fhir/bundle.html), including automatic reference resolution for temporary identifiers, conditional operations, and detailed operation outcomes. The implementation follows FHIR's processing rules precisely, ensuring full compatibility with other FHIR-compliant systems while leveraging PostgreSQL's transaction capabilities for optimal performance.
 
 See also:
+
 * [Bundle](rest-api/bundle.md)
 * [Batch/Transaction](batch-transaction.md)
 * [FHIR Bundle](https://www.hl7.org/fhir/bundle.html)
@@ -63,6 +68,7 @@ See also:
 ### Bulk Import
 
 Healthcare data migrations and integrations often involve millions of records from various scenarios:
+
 * Initial system deployments requiring complete data migration
 * Regular data synchronization with external systems
 * One-time imports from legacy systems or data warehouses
@@ -73,6 +79,7 @@ Traditional RESTful APIs, while perfect for real-time operations, struggle with 
 The choice between `$load` and `$import` depends on your specific use case. The `$load` operation processes data synchronously, making it ideal for smaller datasets (up to hundreds of thousands of records) where you need immediate feedback about success or failure. It streams NDJSON data directly into PostgreSQL using [COPY](https://www.postgresql.org/docs/current/sql-copy.html) commands, providing real-time progress and error reporting. The `$import` operation handles truly massive datasets asynchronously, accepting data via URLs or direct upload, queuing the import job, and processing millions of records in the background while your application continues other work.
 
 See also:
+
 * [`$load`](bulk-api/load-and-fhir-load.md)
 * [`$import`](bulk-api/import-and-fhir-import.md)
 
@@ -81,11 +88,10 @@ See also:
 Beyond the core data management operations, Aidbox provides specialized APIs that address specific healthcare challenges. The Encryption API enables field-level encryption for sensitive data like Social Security numbers or psychiatric notes, ensuring data remains protected even if database backups are compromised. The Sequence API generates guaranteed-unique identifiers crucial for medical record numbers and order IDs, using PostgreSQL sequences to ensure uniqueness even under high concurrency. Batch Upsert combines insert and update operations, perfect for synchronizing data from external systems where you don't know if records already exist.
 
 See also:
+
 * [Encryption API](other/encryption-api.md)
 * [Sequence API](other/sequence-api.md)
 * [Batch Upsert](other/batch-upsert.md)
-
-<!-- This section should be merged to ../docs/api/overview.md -->
 
 ## Data Querying
 
@@ -98,6 +104,7 @@ When building healthcare applications, you often need to find patients by name, 
 The search API follows RESTful conventions where each resource type has its own search endpoint. For example, `GET /Patient?name=smith&gender=male` finds all male patients with "smith" in their name, while `GET /Observation?patient=Patient/123&date=gt2024-01-01` retrieves all observations for a specific patient after January 1st, 2024. Search results include pagination controls, total counts, and can be sorted by any searchable parameter.
 
 See also:
+
 * [FHIR Search](rest-api/fhir-search/)
 * [FHIR Search Specification](https://www.hl7.org/fhir/search.html)
 
@@ -105,19 +112,19 @@ See also:
 
 While FHIR Search provides comprehensive querying capabilities, healthcare applications sometimes need specialized filtering approaches that extend beyond the standard FHIR specification. Aidbox provides several advanced search approaches that offer the flexibility needed for complex clinical workflows.
 
-**[Search Resources](rest-api/aidbox-search.md#search-resource)** allow you to define custom search parameters or override existing FHIR SearchParameters with SQL-based implementations for performance optimization and complex custom searches.
+[**Search Resources**](rest-api/aidbox-search.md#search-resource) allow you to define custom search parameters or override existing FHIR SearchParameters with SQL-based implementations for performance optimization and complex custom searches.
 
-**[AidboxQuery](rest-api/aidbox-search.md#aidboxquery)** provides a general SQL-based search approach with a DSL to build complex queries through a dedicated endpoint, perfect for generating reports and implementing specialized search logic.
+[**AidboxQuery**](rest-api/aidbox-search.md#aidboxquery) provides a general SQL-based search approach with a DSL to build complex queries through a dedicated endpoint, perfect for generating reports and implementing specialized search logic.
 
-**[Dot expressions](rest-api/aidbox-search.md#dot-expressions)** enable search without defining SearchParameters by providing direct access to JSON paths in FHIR resources with optional PostgreSQL type coercion and operators.
+[**Dot expressions**](rest-api/aidbox-search.md#dot-expressions) enable search without defining SearchParameters by providing direct access to JSON paths in FHIR resources with optional PostgreSQL type coercion and operators.
 
-**[$lookup](rest-api/aidbox-search.md#lookup)** provides efficient prefix search for resources by multiple key attributes, designed specifically for type-ahead dropdown scenarios in user interfaces with optimized performance for millions of records.
+[**$lookup**](rest-api/aidbox-search.md#lookup) provides efficient prefix search for resources by multiple key attributes, designed specifically for type-ahead dropdown scenarios in user interfaces with optimized performance for millions of records.
 
 Aidbox also provides special search parameters like `_explain` for query execution plan analysis, `_timeout` for controlling query timeouts, and `_search-language` for multi-language search support.
 
 See also:
-* [Aidbox Search](rest-api/aidbox-search.md)
 
+* [Aidbox Search](rest-api/aidbox-search.md)
 
 ### SQL-on-FHIR
 
@@ -128,6 +135,7 @@ The SQL-on-FHIR implementation provides flat views of FHIR resources that can be
 Aidbox uses [ViewDefinition](https://build.fhir.org/ig/FHIR/sql-on-fhir-v2/StructureDefinition-ViewDefinition.html) resources to define these flat views, automatically creating and maintaining them to ensure they stay synchronized with the underlying FHIR data while providing the performance benefits of PostgreSQL's query optimizer.
 
 See also:
+
 * [SQL-on-FHIR](../modules/sql-on-fhir/)
 * [SQL-on-FHIR Specification](https://build.fhir.org/ig/FHIR/sql-on-fhir-v2/)
 
@@ -138,6 +146,7 @@ Sometimes you need direct access to the underlying database for custom queries, 
 The SQL endpoints support parameterized queries to prevent SQL injection, provide result streaming for large datasets, and include proper error handling and logging. This direct SQL access is particularly useful for data migration scripts, custom analytics pipelines, or integration with external reporting tools that expect SQL interfaces.
 
 See also:
+
 * [SQL APIs](rest-api/other/sql-endpoints.md)
 
 ### GraphQL
@@ -149,17 +158,19 @@ Aidbox's GraphQL API is based on the [FHIR GraphQL specification](https://build.
 The GraphQL implementation includes features like field-level authorization, query complexity analysis to prevent expensive queries, and integration with Aidbox's caching layer for improved performance. Beyond the standard FHIR GraphQL specification, Aidbox adds additional features such as `_include` and `_revinclude` parameters for efficient resource traversal, enabling you to fetch related resources in a single query. The API maintains FHIR semantics while providing the flexibility and efficiency benefits of GraphQL, with additional Aidbox-specific extensions for enhanced functionality.
 
 See also:
+
 * [GraphQL](graphql-api.md)
 
 ### $everything
 
 Clinical workflows often require a complete view of a patient's data - all their encounters, observations, medications, procedures, and other resources in one comprehensive dataset. The `$everything` operation provides this capability by retrieving all resources related to a specific patient or other entity, creating a complete clinical summary that's essential for care coordination and patient handoffs.
 
-The operation follows the [FHIR $everything specification](https://www.hl7.org/fhir/operation-patient-everything.html), which defines how to retrieve all resources related to a patient. 
+The operation follows the [FHIR $everything specification](https://www.hl7.org/fhir/operation-patient-everything.html), which defines how to retrieve all resources related to a patient.
 
 `$everything` is particularly useful for generating patient summaries, supporting care transitions, and providing complete datasets for analytics or research purposes. The operation maintains referential integrity by including all related resources, ensuring that the complete clinical picture is preserved.
 
 See also:
+
 * [$everything](rest-api/everything-on-patient.md)
 * [FHIR $everything Operation](https://www.hl7.org/fhir/operation-patient-everything.html)
 
@@ -168,10 +179,9 @@ See also:
 Beyond the core querying capabilities, Aidbox provides specialized APIs for specific healthcare use cases. The `$document` operation generates FHIR Documents - structured clinical summaries that package complete patient information for care coordination and legal requirements. The `$lastn` operation retrieves the most recent N observations for a patient, useful for trending analysis and clinical decision support.
 
 See also:
+
 * [$document](rest-api/other/document.md)
 * [$lastn](rest-api/other/observation-lastn.md)
-
-<!-- This section should be merged to ../docs/api/overview.md -->
 
 ## Data Feed And Export
 
@@ -186,8 +196,8 @@ The subscription system uses `AidboxSubscriptionTopic` resources to define event
 Aidbox supports multiple delivery channels with guaranteed delivery options, automatic retry logic for failed notifications. The implementation provides flexible payload options from full resources to minimal notifications, optimizing for different use cases and network constraints.
 
 See also:
-* [Subscriptions](../modules/topic-based-subscriptions/)
 
+* [Subscriptions](../modules/topic-based-subscriptions/)
 
 ### Bulk Export
 
@@ -198,6 +208,7 @@ The bulk export system supports NDJSON format for streaming processing, with opt
 Aidbox implements the [FHIR Bulk Data Export specification](https://hl7.org/fhir/uv/bulkdata/export.html), which defines standardized endpoints for bulk export operations. The implementation includes support for group-based exports, patient-specific exports, and system-wide exports, with proper authentication and authorization controls to ensure data security and privacy compliance.
 
 See also:
+
 * [Bulk Export](bulk-api/export.md)
 * [FHIR Bulk Data Export](https://hl7.org/fhir/uv/bulkdata/export.html)
 
@@ -212,6 +223,7 @@ The `$dump-sql` operation extends this capability by allowing you to stream the 
 The `$dump-csv` operation provides direct CSV export for specific resource types, making it easy to integrate with spreadsheet applications, business intelligence tools, or custom analytics platforms that expect CSV input. This operation is optimized for performance and includes proper handling of nested FHIR data structures in flat CSV format.
 
 See also:
+
 * [$dump](bulk-api/dump.md)
 * [$dump-sql](bulk-api/dump-sql.md)
 * [$dump-csv](bulk-api/dump-csv.md)
@@ -225,22 +237,22 @@ The archive system uses task-based operations to upload resources to AWS or GCP 
 Aidbox's implementation provides flexible archiving policies with support for selective restoration, complete data deletion from cloud storage, and comprehensive audit trails. The restore process is designed to be fast and reliable, with safeguards to prevent data duplication when restoring archived resources back to the database.
 
 See also:
-* [Archive / Restore](other/archive-restore-api/) 
 
+* [Archive / Restore](other/archive-restore-api/)
 
 ## Other APIs
 
 Utility and system endpoints for health checks, versioning, and data transformation.
 
-*   ### [$to-format](rest-api/other/to-format.md)
+*   #### [$to-format](rest-api/other/to-format.md)
 
     Conversion between Aidbox and FHIR formats using `POST /$to-format/fhir` and `POST /$to-format/aidbox` endpoints.
-*   ### [$matcho](rest-api/other/matcho.md)
+*   #### [$matcho](rest-api/other/matcho.md)
 
     Endpoint for testing the Matcho engine, which is used in [AccessPolicies](../access-control/authorization/#access-policies).
-*   ### [Health check](rest-api/other/health-check.md)
+*   #### [Health check](rest-api/other/health-check.md)
 
     Check the health and status of the Aidbox instance.
-*   ### [Version](rest-api/other/aidbox-version.md)
+*   #### [Version](rest-api/other/aidbox-version.md)
 
     Retrieve the current version and build information of Aidbox

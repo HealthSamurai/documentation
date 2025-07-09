@@ -188,7 +188,9 @@ issue:
 
 ## Save a QuestionnaireResponse - $save
 
-This operation validates the structure of a QuestionnaireResponse and saves it. It performs basic structural validation but does not validate against the associated Questionnaire definition.
+This operation validates the structure of a QuestionnaireResponse and saves it. It performs basic structural validation, but does not validate against the associated Questionnaire definition.
+
+The operation validates only FHIR structure of QuestionnaireResponse and have associated Questionnaire. Operation doesn't validate for example — required fields like $submit operation
 
 ### URLs
 
@@ -225,7 +227,8 @@ The operation returns:
 {% tab title="Request" %}
 ```http
 POST [base]/fhir/QuestionnaireResponse/$save
-content-type: application/fhir+json
+content-type: application/json
+accept: application/json
 
 {
   "resourceType": "Parameters",
@@ -317,7 +320,7 @@ HTTP status: 200
 {% endtab %}
 
 {% tab title="Validation Failure Response" %}
-HTTP status: 200
+HTTP status: 422
 
 ```json
 {
@@ -349,7 +352,7 @@ HTTP status: 200
                 "text": "Family Name",
                 "answer": [
                   {
-                    "valueString": "Smith"
+                    "valueDecimal": "1,324"
                   }
                 ]
               }
@@ -358,19 +361,27 @@ HTTP status: 200
         ]
       }
     },
-    {
-      "name": "issues",
-      "resource": {
-        "resourceType": "OperationOutcome",
-        "issue": [
-          {
-            "severity": "error",
-            "code": "required",
-            "expression": ["QuestionnaireResponse.item[0].item[2]"],
-            "diagnostics": "Missing required field: Patient Date of Birth"
-          }
-        ]
-      }
+    "issue": [
+     {
+      "severity": "fatal",
+      "code": "invalid",
+      "expression": [
+       "QuestionnaireResponse.item[0].item[1].answer[0].valueDecimal"
+      ],
+      "details": {
+       "coding": [
+        {
+         "system": "http://aidbox.app/CodeSystem/operation-outcome-type",
+         "code": "invalid-type"
+        },
+        {
+         "system": "http://aidbox.app/CodeSystem/schema-id",
+         "code": "QuestionnaireResponse"
+        }
+       ]
+      },
+      "diagnostics": "Invalid type for the field. Expected 'string', but got 'decimal'"
+     }
     }
   ]
 }
@@ -553,7 +564,7 @@ HTTP status: 200
 {% endtab %}
 
 {% tab title="Validation Failure Response" %}
-HTTP status: 200
+HTTP status: 422
 
 ```json
 {
