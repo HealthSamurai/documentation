@@ -121,7 +121,3 @@ Utility and system endpoints for health checks, versioning, and data transformat
 *   ### [Version](rest-api/other/aidbox-version.md)
 
     Retrieve the current version and build information of Aidbox
-
-
-
-### .
