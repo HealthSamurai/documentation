@@ -9,7 +9,9 @@
    [gitbok.markdown.core :as markdown]
    [gitbok.indexing.impl.summary :as summary]
    [gitbok.markdown.widgets.big-links :as big-links]
-   [gitbok.markdown.widgets.headers :as headers]))
+   [gitbok.markdown.widgets.headers :as headers]
+   [gitbok.ui.right-toc :as right-toc]
+   [gitbok.utils :as utils]))
 
 (defn find-children-files [context filepath]
   (when
@@ -88,23 +90,38 @@
                   :d "M9 5l7 7-7 7"}]]]])]))
 
 (defn render-file* [context filepath parsed title _raw-content]
-  [:div {:class "flex-1 min-w-0 max-w-full overflow-x-hidden"}
-   (if (= 1 (count (:content parsed)))
-     (render-empty-page context filepath title)
-     (markdown/render-md context filepath parsed))])
+  {:content [:div {:class "flex-1 min-w-0 max-w-full overflow-x-hidden"}
+             (if (= 1 (count (:content parsed)))
+               (render-empty-page context filepath title)
+               (markdown/render-md context filepath parsed))]
+   :parsed parsed})
 
 (defn content-div [context uri content filepath & [htmx?]]
-  [:main#content
-   [:div {:class "article"}
-    [:article {:class "article__content flex-1 py-6 min-w-0 overflow-x-hidden max-w-full px-4 sm:px-2"}
-     (when htmx?
-       [:script "window.scrollTo(0, 0); updateLastUpdated();"])
-     [:div {:class "mx-auto px-2 max-w-full overflow-x-hidden sm:px-2 px-4"} content]
-     (navigation-buttons context uri)
-     (let [lastupdated
-           (indexing/get-lastmod context filepath)]
-       (when lastupdated
-         [:p {:class "mt-4 text-gray-600"
-              :id "lastupdated"
-              :data-updated-at lastupdated}
-          "Last updated " lastupdated]))]]])
+  (let [parsed (when (map? content) (:parsed content))
+        body (if (map? content) (:content content) content)
+        toc (when filepath
+              (if parsed
+                (let [toc-result (right-toc/render-right-toc parsed)]
+                  toc-result)
+                (try
+                  (let [content* (utils/slurp-resource filepath)
+                        {:keys [parsed]} (markdown/parse-markdown-content context [filepath content*])
+                        toc-result (right-toc/render-right-toc parsed)]
+                    toc-result)
+                  (catch Exception _
+                    nil))))]
+    [:main#content {:class "flex-1 max-w-full items-start gap-8"}
+     [:div {:class "flex items-start gap-8"}
+      [:article {:class "article__content py-6 min-w-0 flex-1 px-4 sm:px-2 max-w-4xl"}
+       (when htmx?
+         [:script "window.scrollTo(0, 0); updateLastUpdated();"])
+       [:div {:class "mx-auto px-2 max-w-full sm:px-2 px-4"} body]
+       (navigation-buttons context uri)
+       (let [lastupdated
+             (indexing/get-lastmod context filepath)]
+         (when lastupdated
+           [:p {:class "mt-4 text-gray-600"
+                :id "lastupdated"
+                :data-updated-at lastupdated}
+            "Last updated " lastupdated]))]
+      toc]]))

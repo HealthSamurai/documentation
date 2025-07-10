@@ -7,4 +7,4 @@
 7. Finally, add a review section to the todo.md file with a summary of the changes you made and any other relevant information.
 8. When you change .clj files, make sure to wait for me to re-eval everything in repl for actual changes in browser.
 9. When use styles, always prefer using tailwind classes and tailwind theme, do not use app.css if not necessary
-10. When you need to test changes, restart the server using clojure-mcp in dev/user.clj
+10. When you need to test changes, restart the server using clojure-mcp in the `user` namespace (see ";; reload server" comment).

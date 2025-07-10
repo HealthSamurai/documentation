@@ -13,18 +13,16 @@
    [system]
    [clojure.string :as str]))
 
-(defn layout-view [context body uri filepath toc]
+(defn layout-view [context body uri filepath]
   [:div
    (main-navigation/nav context)
    [:div.mobile-menu-overlay]
    [:div
-    {:class "flex sm:px-6 md:px-8 max-w-screen-2xl mx-auto site-full-width:max-w-full gap-4 max-md:gap-0 items-start overflow-visible"}
+    {:class "flex sm:px-6 md:px-8 max-w-screen-2xl mx-auto site-full-width:max-w-full gap-8 max-md:gap-0 items-start overflow-visible"}
     (left-navigation/left-navigation
      (summary/get-summary context)
      uri)
-    (main-content/content-div context uri body filepath)
-    (when filepath
-      (or (right-toc/get-right-toc context filepath) toc))]])
+    (main-content/content-div context uri body filepath)]])
 
 (defn document [body {:keys [title description canonical-url og-preview lastmod favicon-url section]}]
   [:html {:lang "en"}
@@ -128,7 +126,6 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                       title
                       description
                       filepath
-                      toc
                       lastmod
                       section]}]
   (let [body (if (map? content) (:body content) content)
@@ -139,11 +136,11 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
         body
         (cond
           is-hx-target
-          (main-content/content-div context uri body filepath true)
+          (main-content/content-div context uri content filepath true)
 
           :else
           (document
-           (layout-view context body uri filepath toc)
+           (layout-view context content uri filepath)
            {:title title
             :description description
             :section section
@@ -156,7 +153,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
             (gitbok.http/get-absolute-url
              context
              (str "public/og-preview/"
-                  (when filepath (str/replace filepath #".md" ".png"))))
+                  (when filepath (str/replace filepath #"\.md" ".png"))))
             :lastmod lastmod
             :favicon-url (gitbok.http/get-prefixed-url context "/favicon.ico")}))
 

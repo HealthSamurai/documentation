@@ -48,15 +48,13 @@
           (if (>= (count stripped) 150)
             (subs stripped 0 150)
             stripped)))
-       :section section
-       :toc (right-toc/render-right-toc parsed)}
+       :section section}
       (catch Exception e
         (println "cannot render file " filepath)
         {:content [:div {:role "alert"}
                    (.getMessage e)
                    [:pre (pr-str e)]
-                   [:pre content*]]
-         :toc nil}))))
+                   [:pre content*]]}))))
 
 (defn picture-url? [url]
   (when url
@@ -74,10 +72,9 @@
              (.getMessage e)
              [:pre (pr-str e)]]))]
     {:content
-     [:div
-      (if (map? result)
-        (:content result)
-        result)]
+     (if (map? result)
+       (:content result) ; This preserves the {:content ... :parsed ...} structure from render-file*
+       [:div result])
      :section (:section result)
      :description (:description result)}))
 
@@ -229,9 +226,10 @@
    context
    (markdown/get-parsed-markdown-index context))
   ;; 7. render it on start
-  (markdown/render-all!
-      context
-      (markdown/get-parsed-markdown-index context) read-markdown-file)
+  (when-not dev?
+    (markdown/render-all!
+     context
+     (markdown/get-parsed-markdown-index context) read-markdown-file))
   ;; 8. generate sitemap.xml
   (when-not
    dev?
@@ -294,13 +292,6 @@
     :method :get
     :middleware [gzip-middleware]
     :fn #'redirect-to-readme})
-
-  (http/register-endpoint
-   context
-   {:path (utils/concat-urls prefix "/toc/:path*")
-    :method :get
-    :middleware [gzip-middleware]
-    :fn #'right-toc/get-toc-view})
 
   (http/register-endpoint
    context

@@ -15,12 +15,12 @@
     (fn [header-hiccup]
       (let [tag (first header-hiccup)
             classes (case tag
-                      :h1 "mt-2 text-4xl font-bold text-gray-900 pb-4"
-                      :h2 "mt-8 text-3xl font-semibold text-gray-900 pb-2 mb-6"
-                      :h3 "mt-6 text-2xl font-semibold text-gray-900 mb-4"
-                      :h4 "mt-4 text-lg font-semibold text-gray-900 mb-3"
-                      :h5 "mt-3 text-base font-semibold text-gray-900 mb-2"
-                      :h6 "mt-2 text-sm font-semibold text-gray-900 mb-1"
+                      :h1 "mt-2 text-4xl font-bold text-gray-900 pb-4 mx-auto"
+                      :h2 "mt-8 text-3xl font-semibold text-gray-900 pb-2 mb-6 mx-auto"
+                      :h3 "mt-6 text-2xl font-semibold text-gray-900 mb-4 mx-auto"
+                      :h4 "mt-4 text-lg font-semibold text-gray-900 mb-3 mx-auto"
+                      :h5 "mt-3 text-base font-semibold text-gray-900 mb-2 mx-auto"
+                      :h6 "mt-2 text-sm font-semibold text-gray-900 mb-1 mx-auto"
                       "text-gray-900")]
         (cond-> header-hiccup
           (-> header-hiccup (get 1) :id)
