@@ -24,8 +24,9 @@
                   cursor-pointer group"}
         [:div {:class "flex-1 clickable-summary"}
          (add-active-class item (= url (:href item)))]
-        (ico/chevron-right "chevron size-3 text-tint-12 group-hover:text-primary-9 transition-all
-                           duration-200 transform rotate-0 group-open:rotate-90 mr-4")]
+        (ico/chevron-right "chevron size-3 text-small font-normal
+                            group-hover:text-primary-9 transition-all
+                            duration-200 transform rotate-0 group-open:rotate-90 mr-4")]
        [:div {:class
               (cond-> "ml-4"
                 open?
@@ -42,7 +43,7 @@
      [:div {:class "break-words"}
       (when-not
        (str/blank? (:title item))
-        [:div {:class "mt-4 mb-2 ml-3 first:mt-2"}
+        [:div {:class "mt-4 mb-1 ml-3 first:mt-2"}
          [:span {:class "text-mini font-semibold text-tint-strong uppercase tracking-wider"}
           (:title item)]])
       (for [ch (:children item)]
