@@ -9,6 +9,7 @@
 - [ ] rm huge image history from repo
 - [ ] http://localhost:8081/deprecated/deprecated/zen-related/aidbox-zen-lang-project/set-up-and-use-configuration-projects
 - [ ] http://localhost:8081/api/bulk-api
+- [ ] cookies banner
 
 ## UX
 

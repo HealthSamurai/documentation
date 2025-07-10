@@ -34,7 +34,7 @@ module.exports = {
                     6: 'rgb(235 228 226)',
                     7: 'rgb(224 215 213)',
                     8: 'rgb(212 202 200)',
-                    9: '#1F1C1CA3',
+                    9: 'rgb(152 126 120)',
                     10: 'rgb(140 114 109)',
                     11: 'rgb(118 108 105)',
                     12: 'rgb(31 28 28)',
@@ -120,6 +120,7 @@ module.exports = {
                     12: 'rgb(22 32 23)',
                     'original': 'rgb(0 201 80)',
                 },
+                // Enhanced Aidbox-inspired design system
                 'aidbox': {
                     primary: '#d95640',
                     'primary-dark': '#ca4833',
@@ -140,24 +141,113 @@ module.exports = {
                     'text-muted': '#6e6e6e',
                     border: '#e0d7d5',
                     'border-hover': '#d8c8c6',
+                },
+                // Header and navigation specific colors
+                'header': {
+                    'bg': 'rgba(255, 255, 255, 0.88)',
+                    'border': 'rgba(31, 28, 28, 0.08)',
+                    'text': 'rgb(31, 28, 28)',
+                },
+                // Code syntax highlighting colors based on Shiki tokens from Aidbox
+                'syntax': {
+                    'text': 'rgb(118 108 105)',
+                    'comment': 'rgba(120, 120, 120, 0.7)',
+                    'keyword': 'rgb(228 0 33)',
+                    'string': 'rgb(187 92 0)',
+                    'function': 'rgb(202 72 51)',
+                    'constant': 'rgb(187 92 0)',
+                    'parameter': 'rgb(187 92 0)',
+                    'punctuation': 'rgb(118 108 105)',
+                    'link': 'rgb(202 72 51)',
+                    'inserted': 'rgb(0 152 23)',
+                    'deleted': 'rgb(228 0 33)',
+                    'changed': 'rgb(31 28 28)',
+                    'expression': 'rgb(0 152 23)',
                 }
             },
             fontFamily: {
-                'sans': ['-apple-system', 'BlinkMacSystemFont', 'Segoe UI', 'Roboto', 'Helvetica Neue', 'Arial', 'sans-serif'],
+                'sans': ['Inter', '"Inter Fallback"', 'system-ui', 'arial'],
+                'content': ['Inter', '"Inter Fallback"', 'system-ui', 'arial'],
+                'mono': ['"IBM Plex Mono"', 'monospace'],
+                'code': ['"JetBrains Mono"', 'ui-monospace', 'Menlo', 'Monaco', '"Cascadia Mono"', '"Segoe UI Mono"', '"Roboto Mono"', '"Oxygen Mono"', '"Ubuntu Monospace"', '"Source Code Pro"', '"Fira Mono"', '"Droid Sans Mono"', '"Courier New"', 'monospace'],
+                'emoji': ['"Noto Color Emoji"', '"Noto Color Emoji Fallback"'],
+            },
+            fontSize: {
+                // Typography scale based on Aidbox analysis
+                'micro': ['12px', '16px'],     // --scalar-micro
+                'mini': ['13px', '18px'],      // --scalar-mini  
+                'small': ['14px', '20px'],     // --scalar-small
+                'base': ['16px', '24px'],      // --scalar-paragraph
+                'lg': ['16px', '26px'],        // h6, h5, h4
+                'xl': ['20px', '32px'],        // h3, h2
+                '2xl': ['21px', '32px'],       // --scalar-font-size-1
+                '3xl': ['24px', '32px'],       // h1 (--scalar-heading-1)
+                '4xl': ['30px', '36px'],       // h2 observed
+                '5xl': ['36px', '40px'],       // h1 observed
+            },
+            lineHeight: {
+                'snug': '1.375',    // --leading-snug
+                'normal': '1.5',    // --leading-normal
+            },
+            fontWeight: {
+                'regular': '400',   // --scalar-regular
+                'medium': '500',    // --scalar-medium, --scalar-semibold
+                'semibold': '600',  // --scalar-bold
+                'bold': '700',      // --scalar-font-bold
             },
             boxShadow: {
                 'aidbox': '0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1)',
                 'aidbox-md': '0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1)',
                 'aidbox-lg': '0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1)',
+                // Header shadow from Aidbox
+                'header': 'rgba(31, 28, 28, 0.08) 0px 1px 0px 0px',
             },
             borderRadius: {
+                'aidbox': '3px',    // --scalar-radius
+                'aidbox-lg': '6px', // --scalar-radius-lg  
+                'aidbox-xl': '8px', // --scalar-radius-xl
                 '2xl': '1rem',
                 '3xl': '1.5rem',
             },
             spacing: {
                 '1.5': '0.375rem',
                 '2.5': '0.625rem',
-            }
+                // Header height from analysis
+                '16': '4rem',  // 64px header height
+            },
+            zIndex: {
+                'header': '30',
+                'sidebar': '20',
+                'overlay': '40',
+            },
+            transitionDuration: {
+                'default': '150ms',  // --default-transition-duration
+            },
+            transitionTimingFunction: {
+                'ease-in-out': 'cubic-bezier(0.4, 0, 0.2, 1)',  // --ease-in-out, --default-transition-timing-function
+            },
+            animation: {
+                'fade-in': 'fadeIn 0.15s ease-in-out',
+                'slide-down': 'slideDown 0.15s ease-in-out',
+                'slide-up': 'slideUp 0.15s ease-in-out',
+            },
+            keyframes: {
+                fadeIn: {
+                    '0%': { opacity: '0' },
+                    '100%': { opacity: '1' },
+                },
+                slideDown: {
+                    '0%': { transform: 'translateY(-8px)', opacity: '0' },
+                    '100%': { transform: 'translateY(0)', opacity: '1' },
+                },
+                slideUp: {
+                    '0%': { transform: 'translateY(8px)', opacity: '0' },
+                    '100%': { transform: 'translateY(0)', opacity: '1' },
+                },
+            },
+            backdropBlur: {
+                'header': '8px',
+            },
         },
     },
     plugins: [],
