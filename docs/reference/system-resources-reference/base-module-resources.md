@@ -36,6 +36,7 @@ Base module includes the following resource types:
 - SubsNotification
 - SubsSubscription
 - TerminologyBundleFile
+- aidbox-legacy-fce
 - ui_history
 - ui_snippet
 
@@ -851,6 +852,24 @@ Base module includes the following resource types:
 <tr><td width="290">status</td><td width="70">0..1</td><td width="150">string</td><td>Current status of the bundle file processing. 
 
 <strong>Allowed values</strong>: `pending` | `in-progress` | `fail` | `success`</td></tr></tbody>
+</table>
+
+
+## aidbox-legacy-fce
+
+<table>
+<thead>
+<tr>
+<th width="290">Path</th>
+<th width="70">Card.</th>
+<th width="150">Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr><td width="290">url</td><td width="70">0..1</td><td width="150"></td><td></td></tr>
+<tr><td width="290">value</td><td width="70">0..1</td><td width="150"></td><td></td></tr>
+<tr><td width="290">valueString</td><td width="70">0..1</td><td width="150">string</td><td></td></tr></tbody>
 </table>
 
 
