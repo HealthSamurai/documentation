@@ -40,24 +40,16 @@
            (render-right-toc-item child)))])))
 
 (defn render-right-toc [parsed]
-  (println "DEBUG render-right-toc - parsed keys:" (keys parsed))
-  (println "DEBUG render-right-toc - has :toc?" (contains? parsed :toc))
   (when (:toc parsed)
-    (println "DEBUG render-right-toc - :toc value:" (:toc parsed))
-    (println "DEBUG render-right-toc - :toc type:" (type (:toc parsed)))
     (let [toc-path (-> parsed :toc :children first :children)
           ;; Handle two different TOC structures:
-          ;; 1. Items with :children (nested structure) 
+          ;; 1. Items with :children (nested structure)
           ;; 2. Items without :children (flat structure)
           actual-items (if (and (seq toc-path) (:children (first toc-path)))
                          (-> toc-path first :children) ; nested structure
                          toc-path)] ; flat structure
-      (println "DEBUG render-right-toc - toc-path:" toc-path)
-      (println "DEBUG render-right-toc - actual-items:" actual-items)
       [:nav#toc-container {:class "w-72 flex-shrink-0 sticky top-16 h-[calc(100vh-4rem)] overflow-y-auto py-6 bg-tint-base border-l border-tint-subtle font-content hidden lg:block"
                            :aria-label "On-page navigation"}
        [:ul {:class "space-y-1 px-4"}
         (for [item actual-items]
           (render-right-toc-item item))]])))
-
-

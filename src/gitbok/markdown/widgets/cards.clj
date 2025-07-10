@@ -1,5 +1,6 @@
 (ns gitbok.markdown.widgets.cards
   (:require
+   [clojure.string :as str]
    [hiccup2.core]
    [gitbok.http]
    [gitbok.indexing.core :as indexing]))
@@ -12,9 +13,30 @@
     [:div
      {:class "grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mt-4"}
      (for [row rows
-           :let [[one two three four five]
-                 (->> row (filter vector?)
-                      (mapv (fn [a] (into [:div] (next (next a))))))
+           :let [cells (->> row (filter vector?)
+                             (mapv (fn [a] (next (next a)))))
+                 ;; Check if first cell is empty or contains a badge
+                 first-cell (first cells)
+                 first-cell-empty? (or (nil? first-cell)
+                                      (and (seq? first-cell) (empty? first-cell))
+                                      (and (string? (first first-cell))
+                                           (empty? (str/trim (first first-cell)))))
+                 has-badge? (and first-cell
+                                (not first-cell-empty?)
+                                (or (and (seq? first-cell)
+                                         (some #(and (vector? %) (= :mark (first %))) first-cell))
+                                    (and (string? (first first-cell))
+                                         (< (count (first first-cell)) 10)
+                                         (re-matches #"(?i)^(beta|alpha|new|preview)$" (first first-cell)))))
+
+                 ;; Adjust cell assignment based on table structure
+                 [badge one two three four five] (cond
+                                                   ;; First cell has badge content
+                                                   has-badge? cells
+                                                   ;; First cell is empty (modules table format)
+                                                   first-cell-empty? (cons nil (rest cells))
+                                                   ;; Standard format (no badge column)
+                                                   :else (cons nil cells))
 
                  pic1 (first (filterv
                               #(and (sequential? %) (= (first %) :a))
@@ -46,21 +68,20 @@
 
                  processed-footer
                  (when-not pic-footer?
-                   (if (and (sequential? three) (= (first three) :div))
-                     (let [footer-content (second three)]
-                       (if (and (sequential? footer-content) (= (first footer-content) :a))
+                   (if (and (sequential? three)
+                            (seq three)
+                            (some #(and (vector? %) (= :a (first %))) three))
+                     (let [footer-link (first (filter #(and (vector? %) (= :a (first %))) three))]
+                       (when footer-link
                          (let [opts
-                               (-> footer-content
+                               (-> footer-link
                                    second
-                                   (assoc :class "text-primary-9 hover:text-primary-10 hover:underline")
+                                   (assoc :class "text-primary-9 hover:text-primary-10 hover:underline underline text-sm")
                                    (update
                                     :href
                                     #(indexing/filepath->href context filepath %)))]
-                           [:a
-                            opts
-                            (nth footer-content 2)])
-                         three))
-                     three))
+                           [:a opts (nth footer-link 2)])))
+                     nil))
                  href (or title-href title-filepath pic-href1 pic-href2)]]
        [:div {:href href
               :class "block hover:shadow-lg transition-all duration-200 cursor-pointer"
@@ -69,12 +90,32 @@
               ;; :hx-push-url "true"
               :hx-push-url (gitbok.http/get-absolute-url context href)
               :hx-swap "outerHTML"}
-        [:div {:class "flex flex-col bg-white shadow overflow-hidden h-full min-h-[300px]"}
+        [:div {:class "flex flex-col bg-white shadow overflow-hidden h-full min-h-[150px] max-h-[300px]"}
          (when img-href [:img {:src img-href :alt "card"}])
          [:div
           {:class
-           (str "flex flex-col gap-1 p-4 flex-1 "
+           (str "flex flex-col gap-0 p-4 flex-1 "
                 (when-not img-href "justify-start"))}
-          [:div {:class "text-lg hover:underline"} one]
-          [:p {:class "text-gray-600 text-sm"} two]
-          processed-footer]]])]))
+          ;; Badge if present
+          (when badge
+            (into [:div {:class "mb-2"}]
+                  (if (seq? badge) badge [badge])))
+          ;; Title with special handling for strong tags
+          (when one
+            (if (and (seq? one) (some #(and (vector? %) (= :strong (first %))) one))
+              ;; If title contains strong tags, apply gray color directly to strong
+              (into [:div {:class "text-sm hover:underline"}]
+                    (map (fn [el]
+                           (if (and (vector? el) (= :strong (first el)))
+                             (assoc el 1 (merge (get el 1 {}) {:class "text-gray-600"}))
+                             el))
+                         one))
+              ;; Otherwise, apply gray to the div
+              (into [:div {:class "text-sm hover:underline text-gray-500"}]
+                    (if (seq? one) one [one]))))
+          ;; Description
+          (when two
+            (into [:p {:class "text-gray-500 text-sm"}]
+                  (if (seq? two) two [two])))
+          (when processed-footer
+            [:div {:class "text-sm mt-2"} processed-footer])]]])]))
