@@ -10,7 +10,10 @@ init:
 	chmod +x .git/hooks/pre-commit
 
 repl: init-test
-	DEV=true BASE_URL=http://localhost:8081 DOCS_PREFIX=/ clj -M:dev:test:build
+	DEV=true BASE_URL=http://localhost:8081 DOCS_PREFIX=/ clj -M:dev:nrepl:test:build
+
+mcp:
+	clojure -X:mcp :port 7888
 
 tailwind:
 	npx tailwindcss -i ./resources/public/app.css -o ./resources/public/app.min.css --config ./tailwind.config.js --minify --watch

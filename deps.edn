@@ -42,25 +42,21 @@
  :aliases
  {:dev
   {:extra-paths ["dev" "test" "resources"]
-   :extra-deps  {refactor-nrepl/refactor-nrepl {:mvn/version "3.6.0"}
-                 cider/cider-nrepl             {:mvn/version "LATEST"}
-                 cider/piggieback              {:mvn/version "0.5.3"}
-                 zprint/zprint                 {:mvn/version "1.2.9"}
-                 hashp/hashp                   {:mvn/version "0.2.2"}
-                 io.github.tonsky/clj-reload {:mvn/version "0.9.8"}
+   :extra-deps  {io.github.tonsky/clj-reload {:mvn/version "0.9.8"}
                  io.github.tonsky/clojure-plus {:mvn/version "1.6.1"}}
+   :jvm-opts []}
 
-   :main-opts   ["-m" "nrepl.cmdline"
-                 "-b" "0.0.0.0"
-                 "--middleware"
-                 "[refactor-nrepl.middleware/wrap-refactor,cider.nrepl/cider-middleware]"]
+  :nrepl {:extra-paths ["test"]
+          :extra-deps {nrepl/nrepl {:mvn/version "1.3.1"}}
+          :jvm-opts ["-Djdk.attach.allowAttachSelf"]
+          :main-opts ["-m" "nrepl.cmdline" "--port" "7888"]}
 
-   :jvm-opts []
-   #_["-Dclojure.compiler.direct-linking=true"
-      "-XX:MaxDirectMemorySize=16g" "-XX:+UseLargePages"
-      "--add-opens=java.base/java.nio=ALL-UNNAMED"
-      "--add-opens=java.base/jdk.internal.ref=ALL-UNNAMED"
-      "--add-opens=java.base/sun.nio.ch=ALL-UNNAMED"]}
+  :mcp
+  {:deps {org.slf4j/slf4j-nop {:mvn/version "2.0.16"} ;; Required for stdio server
+          com.bhauman/clojure-mcp {:git/url "https://github.com/bhauman/clojure-mcp.git"
+                                   :git/sha "d28a6712f7a94b22bbbdf846de4e80c36589aa80"}}
+   :exec-fn clojure-mcp.main/start-mcp-server
+   :exec-args {:port 7888}}
 
   :test
   {:extra-deps {lambdaisland/kaocha {:mvn/version "1.77.1236"}}
