@@ -15,7 +15,7 @@
               after (subs text (+ index (count query)))]
           [:span
            before
-           [:span.bg-orange-600.text-white.p-1.px-0.5.-mx-0.5.py-0.5.rounded match]
+           [:span {:class "bg-orange-600 text-white p-1 px-0.5 -mx-0.5 py-0.5 rounded"} match]
            after])
         text))))
 
@@ -83,20 +83,21 @@
      context request
      {:content
       [:div.flex.flex-col.items-center.min-h-screen.p-4
-       [:div {:class "w-full max-w-4xl min-w-[56rem] mt-8 flex tlex-col items-center"}
+       [:div {:class "w-full max-w-4xl min-w-[56rem] mt-8 flex flex-col items-center"}
         [:div.relative.mb-8.w-full
-         [:input#search-input.w-full.px-4.py-4.text-xl.rounded-lg.border.border-gray-300.shadow-sm.focus:outline-none
-          {:type "text"
-           :name "q"
-           :placeholder "Search documentation..."
-           :value query
-           :hx-get "/search/results-only"
-           :hx-trigger "keyup changed delay:500ms, search"
-           :hx-target "#search-results"
-           :hx-indicator ".htmx-indicator"}]
+         [:input {:id "search-input"
+                  :class "w-full px-4 py-4 text-xl rounded-lg border border-gray-300 shadow-sm focus:outline-none"
+                  :type "text"
+                  :name "q"
+                  :placeholder "Search documentation..."
+                  :value query
+                  :hx-get "/search/results-only"
+                  :hx-trigger "keyup changed delay:500ms, search"
+                  :hx-target "#search-results"
+                  :hx-indicator ".htmx-indicator"}]
          [:div.htmx-indicator.absolute.right-3.top-3
           [:div.animate-spin.rounded-full.h-6.w-6.border-b-2.border-orange-500]]]]
-        [:div#search-results.w-full
+        [:div#search-results {:class "w-full"}
          (search-results-only context request)]]
       :title "Search"
       :description "Search"

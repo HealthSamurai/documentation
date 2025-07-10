@@ -21,57 +21,9 @@
   display: block;
 }
 
-/* ================================================
-   Markdown Content Styles (Must remain for generated content)
-   ================================================ */
-
-/* Typography - Basic elements */
-ul {
-  @apply ml-8 list-disc text-gray-900;
-}
-
-ul > li {
-  @apply mt-2;
-}
-
-/* Add margin-bottom to p tags that are not inside li */
-p:not(li p) {
-  @apply my-2;
-}
-
-strong {
-  @apply text-black font-semibold;
-}
-
-/* Tables */
-table {
-  @apply min-w-full border border-tint-subtle rounded-lg bg-white shadow-sm my-6;
-}
-
-thead {
-  @apply border-b border-tint-subtle;
-}
-
-tbody {
-  @apply divide-y divide-tint-subtle;
-}
-
-tr {
-  @apply hover:bg-tint-hover transition-colors duration-200;
-}
-
-td {
-  @apply px-4 py-3 text-base text-gray-900 leading-relaxed border-r border-tint-subtle/50 last:border-r-0 text-tint-strong/80 text-left;
-}
-
-th {
-  @apply px-4 py-4 text-sm border-r border-tint-subtle/50 last:border-r-0 text-tint-strong font-semibold text-left;
-}
-
-/* Special mark styling */
-mark[style*="background-color:blue"] {
-  background-color: #dbeafe !important;
-  color: #1e40af !important;
+/* Article content - empty class kept for Telegram instant view */
+.article__content {
+  /* Intentionally empty - used as a marker for Telegram instant view */
 }
 
 /* ================================================
@@ -82,6 +34,55 @@ mark[style*="background-color:blue"] {
 #content {
   max-width: 100% !important;
   overflow-x: hidden !important;
+}
+
+/* Typography - Basic elements */
+#content ul {
+  @apply ml-8 list-disc text-gray-900;
+}
+
+#content ul > li {
+  @apply mt-2;
+}
+
+/* Add margin-bottom to p tags that are not inside li */
+#content p:not(li p) {
+  @apply my-2;
+}
+
+#content strong {
+  @apply text-black font-semibold;
+}
+
+/* Special mark styling */
+#content mark[style*="background-color:blue"] {
+  background-color: #dbeafe !important;
+  color: #1e40af !important;
+}
+
+/* Tables */
+#content table {
+  @apply min-w-full border border-tint-subtle rounded-lg bg-white shadow-sm my-6;
+}
+
+#content thead {
+  @apply border-b border-tint-subtle;
+}
+
+#content tbody {
+  @apply divide-y divide-tint-subtle;
+}
+
+#content tr {
+  @apply hover:bg-tint-hover transition-colors duration-200;
+}
+
+#content td {
+  @apply px-4 py-3 text-base text-gray-900 leading-relaxed border-r border-tint-subtle/50 last:border-r-0 text-tint-strong/80 text-left;
+}
+
+#content th {
+  @apply px-4 py-4 text-sm border-r border-tint-subtle/50 last:border-r-0 text-tint-strong font-semibold text-left;
 }
 
 /* Figure and Images */
@@ -99,7 +100,7 @@ mark[style*="background-color:blue"] {
 
 /* Code Blocks */
 #content pre {
-  @apply border border-gray-200 text-gray-800 rounded-lg overflow-x-auto max-w-full shadow-sm;
+  @apply border border-gray-200 text-gray-800 rounded-lg overflow-x-auto max-w-full shadow-sm relative;
   white-space: pre !important;
   width: 100% !important;
   max-width: 100% !important;
@@ -111,22 +112,13 @@ mark[style*="background-color:blue"] {
 }
 
 #content pre code {
-  @apply text-base leading-relaxed block p-4;
+  @apply text-base leading-relaxed block p-4 w-full;
   white-space: pre !important;
   max-width: 100% !important;
   min-width: 0;
   display: block;
   width: 100%;
   box-sizing: border-box;
-}
-
-/* General code block styling (outside #content) */
-pre {
-  @apply relative;
-}
-
-pre code {
-  @apply block w-full;
 }
 
 /* Details and Summary */
@@ -159,40 +151,39 @@ pre code {
   @apply pb-6;
 }
 
-/* ================================================
-   Navigation and UI Components
-   ================================================ */
-
-/* TOC links */
-.toc a {
-  @apply block py-2 text-sm text-tint-strong/70 hover:text-tint-strong transition-colors duration-200 no-underline truncate max-w-full overflow-hidden;
-}
-
-.toc a.active {
-  @apply text-primary-9 font-medium;
-}
-
-/* Navigation active state */
-#navigation a.active {
-  @apply text-primary-9 font-bold;
-}
-
 /* Hint/Admonition styles */
-.hint img {
+#content .hint img {
   max-width: 300px !important;
   height: auto !important;
 }
 
-.hint p:first-child {
+#content .hint p:first-child {
   @apply mt-0;
 }
 
-.hint p:last-child {
+#content .hint p:last-child {
   @apply mb-0;
 }
 
-.hint p {
+#content .hint p {
   @apply my-2;
+}
+
+/* ================================================
+   Navigation Styles (#navigation)
+   ================================================ */
+
+#navigation a.active {
+  @apply text-primary-9 font-bold;
+}
+
+/* TOC container links */
+#toc-container a {
+  @apply block py-2 text-sm text-tint-strong/70 hover:text-tint-strong transition-colors duration-200 no-underline truncate max-w-full overflow-hidden;
+}
+
+#toc-container a.active {
+  @apply text-primary-9 font-medium;
 }
 
 /* ================================================
@@ -201,7 +192,6 @@ pre code {
 
 /* Mobile Navigation */
 @media (max-width: 767px) {
-
   /* Navigation */
   #navigation {
     display: none !important;
@@ -224,15 +214,12 @@ pre code {
   }
 
 
-  /* Search containers */
-  #search-results {
-    width: 100% !important;
-    min-width: 100% !important;
-  }
-
-  #search-input {
-    width: 100% !important;
-    min-width: 100% !important;
+  /* Article content - needed for Telegram instant view */
+  .article__content {
+    max-width: 100vw !important;
+    overflow-x: hidden !important;
+    padding-left: 1rem !important;
+    padding-right: 1rem !important;
   }
 }
 
@@ -306,16 +293,3 @@ pre code {
   }
 }
 
-/* Desktop styles */
-@media (min-width: 768px) {
-  /* Desktop search container */
-  #search-results {
-    width: 80rem !important;
-    min-width: 80rem !important;
-  }
-
-  #search-input {
-    width: 80rem !important;
-    min-width: 80rem !important;
-  }
-}

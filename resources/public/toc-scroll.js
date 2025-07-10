@@ -7,7 +7,7 @@ window.escapeCssSelector = function(selector) {
 // TOC Scroll Spy - tracks active section on scroll
 document.addEventListener('DOMContentLoaded', function() {
 
-  const tocLinks = document.querySelectorAll('.toc a[href^="#"]');
+  const tocLinks = document.querySelectorAll('#toc-container a[href^="#"]');
   const headings = document.querySelectorAll('h1[id], h2[id], h3[id], h4[id], h5[id], h6[id]');
 
   if (tocLinks.length === 0 || headings.length === 0) return;
@@ -62,7 +62,7 @@ document.addEventListener('DOMContentLoaded', function() {
     // Add active class to current section
     if (currentSection && typeof window.escapeCssSelector === 'function') {
       const escapedId = window.escapeCssSelector(currentSection);
-      const activeLink = document.querySelector(`.toc a[href="#${escapedId}"]`);
+      const activeLink = document.querySelector(`#toc-container a[href="#${escapedId}"]`);
       if (activeLink) {
         activeLink.classList.add('active');
       }
@@ -91,7 +91,7 @@ document.addEventListener('htmx:afterSwap', function(event) {
 
     // Reinitialize TOC spy after loading new content
     setTimeout(() => {
-      const tocLinks = document.querySelectorAll('.toc a[href^="#"]');
+      const tocLinks = document.querySelectorAll('#toc-container a[href^="#"]');
       const headings = document.querySelectorAll('h1[id], h2[id], h3[id], h4[id], h5[id], h6[id]');
 
       // Re-add click handlers for TOC links
@@ -138,7 +138,7 @@ document.addEventListener('htmx:afterSwap', function(event) {
 
         if (currentSection && typeof window.escapeCssSelector === 'function') {
           const escapedId = window.escapeCssSelector(currentSection);
-          const activeLink = document.querySelector(`.toc a[href="#${escapedId}"]`);
+          const activeLink = document.querySelector(`#toc-container a[href="#${escapedId}"]`);
           if (activeLink) {
             activeLink.classList.add('active');
           }
