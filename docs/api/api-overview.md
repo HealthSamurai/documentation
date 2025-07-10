@@ -43,7 +43,7 @@ See also:
 
 In healthcare, knowing not just what data looks like now, but how it changed over time, is crucial for understanding patient journeys and tracking resource evolution. Aidbox automatically tracks every change to every resource, maintaining version history that captures what changed and when. This history API enables clinical workflows like reviewing how a patient's condition evolved, understanding medication adjustments over time, or retrieving previous versions of resources.
 
-The history mechanism works at two levels: instance history tracks changes to individual resources, and type history shows all changes across a resource type. Each history entry includes the complete resource state at that point in time, the HTTP method used (POST, PUT, DELETE), version identifiers, and timestamps. For example, `GET /Patient/123/_history` retrieves all versions of a specific patient, while `GET /Patient/_history?_since=2024-01-01` shows all patient changes since a specific date.
+The history mechanism works at two levels: instance history tracks changes to individual resources, and type history shows all changes across a resource type. Each history entry includes the complete resource state at that point in time, the HTTP method used (POST, PUT, DELETE), version identifiers, and timestamps. For example, `GET /fhir/Patient/123/_history` retrieves all versions of a specific patient, while `GET /fhir/Patient/_history?_since=2024-01-01` shows all patient changes since a specific date.
 
 See also:
 

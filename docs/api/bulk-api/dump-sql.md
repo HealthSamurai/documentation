@@ -14,7 +14,7 @@ POST [base]/$dump-sql
 
 ### Query parameters
 
-<table data-header-hidden><thead><tr><th width="150">Parameter</th><th width="169.89801699716716">Required?</th><th width="156">Type</th><th>Description</th></tr></thead><tbody><tr><td>Parameter</td><td>Required?</td><td>Type</td><td>Description</td></tr><tr><td><strong>_format</strong></td><td>false</td><td>String</td><td><ul><li>json/ndjson: return output as ndjosn</li><li>otherwise: return output as TSV</li></ul></td></tr></tbody></table>
+<table data-header-hidden><thead><tr><th width="150">Parameter</th><th width="169.89801699716716">Required?</th><th width="156">Type</th><th>Description</th></tr></thead><tbody><tr><td>Parameter</td><td>Required?</td><td>Type</td><td>Description</td></tr><tr><td><strong>_format</strong></td><td>false</td><td>String</td><td><ul><li>json/ndjson: return output as NDJSON</li><li>otherwise: return output as TSV</li></ul></td></tr></tbody></table>
 
 ### Body parameters
 
