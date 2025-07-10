@@ -83,7 +83,7 @@
      context request
      {:content
       [:div.flex.flex-col.items-center.min-h-screen.p-4
-       [:div {:class "w-full max-w-4xl min-w-[56rem] mt-8 flex flex-col items-center"}
+       [:div {:class "w-full max-w-4xl lg:min-w-[56rem] mt-8 flex flex-col items-center px-4 sm:px-6"}
         [:div.relative.mb-8.w-full
          [:input {:id "search-input"
                   :class "w-full px-4 py-4 text-xl rounded-lg border border-gray-300 shadow-sm focus:outline-none"
