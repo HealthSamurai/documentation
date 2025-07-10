@@ -12,9 +12,11 @@
 
 (comment
 
+  ;; run server
   (do (reload/init {:dirs ["src"]})
       (def context (system/start-system gitbok/default-config)))
 
+  ;; reload server
   (do (reload/reload)
       (system/stop-system context)
       (def context (system/start-system gitbok/default-config)))

@@ -88,7 +88,7 @@
                   :d "M9 5l7 7-7 7"}]]]])]))
 
 (defn render-file* [context filepath parsed title _raw-content]
-  [:div {:class "flex-1 min-w-0 max-w-4xl overflow-x-hidden"}
+  [:div {:class "flex-1 min-w-0 max-w-full overflow-x-hidden"}
    (if (= 1 (count (:content parsed)))
      (render-empty-page context filepath title)
      (markdown/render-md context filepath parsed))])
@@ -96,15 +96,15 @@
 (defn content-div [context uri content filepath & [htmx?]]
   [:main#content
    [:div {:class "article"}
-    [:article {:class "article__content flex-1 py-6 max-w-4xl min-w-0 overflow-x-hidden max-w-full px-4 sm:px-2"}
-    (when htmx?
-      [:script "window.scrollTo(0, 0); updateLastUpdated();"])
-    [:div {:class "mx-auto px-2 max-w-full overflow-x-hidden sm:px-2 px-4"} content]
-    (navigation-buttons context uri)
-    (let [lastupdated
-          (indexing/get-lastmod context filepath)]
-      (when lastupdated
-        [:p {:class "mt-4 text-gray-600"
-             :id "lastupdated"
-             :data-updated-at lastupdated}
-         "Last updated " lastupdated]))]]])
+    [:article {:class "article__content flex-1 py-6 min-w-0 overflow-x-hidden max-w-full px-4 sm:px-2"}
+     (when htmx?
+       [:script "window.scrollTo(0, 0); updateLastUpdated();"])
+     [:div {:class "mx-auto px-2 max-w-full overflow-x-hidden sm:px-2 px-4"} content]
+     (navigation-buttons context uri)
+     (let [lastupdated
+           (indexing/get-lastmod context filepath)]
+       (when lastupdated
+         [:p {:class "mt-4 text-gray-600"
+              :id "lastupdated"
+              :data-updated-at lastupdated}
+          "Last updated " lastupdated]))]]])

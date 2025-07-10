@@ -174,11 +174,7 @@
   @apply text-primary-9 font-bold;
 }
 
-/* TOC container links */
-#toc-container a {
-  @apply block py-2 text-sm text-tint-strong/70 hover:text-tint-strong transition-colors duration-200 no-underline truncate max-w-full overflow-hidden;
-}
-
+/* TOC container - consistent with left navigation */
 #toc-container a.active {
   @apply text-primary-9 font-medium;
 }
