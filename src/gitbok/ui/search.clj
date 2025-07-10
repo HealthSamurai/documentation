@@ -26,7 +26,7 @@
         show-details (and (not= hit-by "title")
                           (not= hit-by "h1")
                           (seq text))]
-    [:div.mb-4.search-result-item
+    [:div {:class "mb-4 !w-full !min-w-full"}
      [:a.flex.gap-4.flex-row.items-center.p-4.border.border-gray-200.rounded-lg.text-base.font-medium.hover:bg-gray-50.group
       {:href uri}
       [:div.size-4

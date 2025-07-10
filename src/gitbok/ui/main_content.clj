@@ -96,7 +96,7 @@
 (defn content-div [context uri content filepath & [htmx?]]
   [:main#content
    [:div {:class "article"}
-    [:article {:class "article__content flex-1 py-6 max-w-4xl min-w-0 overflow-x-hidden"}
+    [:article {:class "article__content flex-1 py-6 max-w-4xl min-w-0 overflow-x-hidden max-w-full px-4 sm:px-2"}
     (when htmx?
       [:script "window.scrollTo(0, 0); updateLastUpdated();"])
     [:div {:class "mx-auto px-2 max-w-full overflow-x-hidden sm:px-2 px-4"} content]

@@ -6,7 +6,7 @@
          :aria-label "Main site menu"}
    [:div {:class "flex items-center justify-between py-3 min-h-16 px-4 sm:px-6 md:px-8 max-w-screen-2xl mx-auto"}
     [:div {:class "flex max-w-full lg:basis-72 min-w-0 shrink items-center justify-start gap-2 lg:gap-4"}
-     [:button {:class "mobile-menu-button md:hidden"
+     [:button {:class "p-2 text-gray-700 hover:text-primary-9 transition-colors duration-200 md:hidden"
                :id "mobile-menu-toggle"
                :type "button"
                :aria-label "Toggle mobile menu"}
