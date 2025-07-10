@@ -25,9 +25,9 @@
 (defn render-markdown-link-in-toc [title href]
   (let [is-external (str/starts-with? href "http")
         link-attrs
-        {:class "block py-1.5 transition-colors duration-200 rounded-md
-         mx-2 my-0.5 clickable-summary text-tint-9 hover:bg-[#f6f1f0]
-         hover:text-primary-9"
+        {:class "block py-1.5 transition-colors duration-200 ease-in-out rounded-aidbox
+         mr-2 my-0.5 clickable-summary text-small text-tint-11 hover:bg-tint-hover
+         hover:text-primary-9 active:hover:bg-primary-2 active:hover:text-primary-9"
          :href href}]
     [:a (cond-> link-attrs
           is-external (assoc :target "_blank" :rel "noopener noreferrer")
@@ -38,7 +38,7 @@
                                    :hx-swap "outerHTML"
                                    :hx-boost "false"
                                    :data-hx-boost "false"))
-     [:span {:class "flex items-center gap-2 mx-2"}
+     [:span {:class "flex items-center gap-2 ml-2"}
       title
       (when is-external
         (ico/arrow-top-right-on-square "size-4"))]]))
