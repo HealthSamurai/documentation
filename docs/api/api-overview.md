@@ -36,7 +36,7 @@ For example, validating a Patient resource checks required fields like gender co
 
 See also:
 
-* [Profiling and Validation](../docs/modules/profiling-and-validation/)
+* [Profiling and Validation](../modules/profiling-and-validation/)
 * [FHIR Schema Validator](../modules/profiling-and-validation/fhir-schema-validator/)
 
 ### History
