@@ -2533,6 +2533,7 @@ Here is the complete list of supported and ready-to-use Implementation Guides (I
 
 **Versions**
 
+* `STB.ACTIVE#1.45.0`
 * `STB.ACTIVE#1.43.0`
 
 
@@ -3743,6 +3744,7 @@ Here is the complete list of supported and ready-to-use Implementation Guides (I
 **Versions**
 
 * `ca.on.ehr.r4#1.0.0`
+* `ca.on.ehr.r4#1.0.0-snapshot9`
 * `ca.on.ehr.r4#1.0.0-snapshot8`
 * `ca.on.ehr.r4#1.0.0-snapshot7`
 * `ca.on.ehr.r4#1.0.0-snapshot6`
@@ -7759,6 +7761,7 @@ Here is the complete list of supported and ready-to-use Implementation Guides (I
 
 **Versions**
 
+* `STB.DRAFT#1.30.0`
 * `STB.DRAFT#1.29.0`
 
 
