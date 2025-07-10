@@ -18,7 +18,7 @@
    (main-navigation/nav context)
    [:div.mobile-menu-overlay]
    [:div
-    {:class "flex sm:px-6 md:px-8 max-w-screen-2xl mx-auto site-full-width:max-w-full gap-20 items-start overflow-visible"}
+    {:class "flex sm:px-6 md:px-8 max-w-screen-2xl mx-auto site-full-width:max-w-full gap-20 max-md:gap-0 items-start overflow-visible"}
     (left-navigation/left-navigation
      (summary/get-summary context)
      uri)

@@ -21,7 +21,7 @@ if (typeof hljs !== 'undefined') {
 
 // Handle window resize to hide buttons on mobile
 window.addEventListener('resize', function() {
-  const copyButtons = document.querySelectorAll('.copy-code-btn');
+  const copyButtons = document.querySelectorAll('button[data-copy-code]');
   copyButtons.forEach(button => {
     if (window.innerWidth <= 768) {
       button.style.display = 'none';
@@ -36,7 +36,7 @@ function initializeCopyButtons() {
 
   preElements.forEach((pre, index) => {
     // Skip if already has copy button
-    if (pre.querySelector('.copy-code-btn')) {
+    if (pre.querySelector('button[data-copy-code]')) {
       return;
     }
 
@@ -52,7 +52,7 @@ function initializeCopyButtons() {
 
     // Create copy button
     const copyButton = document.createElement('button');
-    copyButton.className = 'copy-code-btn';
+    copyButton.setAttribute('data-copy-code', 'true');
     copyButton.style.cssText = 'position: absolute; top: 8px; right: 8px; padding: 4px 8px; font-size: 12px; background: white; color: #374151; border: 1px solid #d1d5db; border-radius: 4px; cursor: pointer; opacity: 0; transition: opacity 0.2s; z-index: 10; box-shadow: 0 2px 4px rgba(0,0,0,0.1); font-weight: 500; display: none;';
     copyButton.innerHTML = 'Copy';
     copyButton.title = 'Copy code';

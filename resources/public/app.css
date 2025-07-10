@@ -5,10 +5,6 @@
 /* ================================================
    Component Classes
    ================================================ */
-.link {
-  @apply text-primary-9 underline underline-offset-2 decoration-1 hover:text-primary-10 hover:decoration-2 transition-all duration-200 inline-flex items-center gap-1;
-}
-
 /* Overlay for mobile menu */
 .mobile-menu-overlay {
   display: none;
@@ -167,23 +163,6 @@ pre code {
    Navigation and UI Components
    ================================================ */
 
-/* TOC Sticky positioning */
-#toc-container {
-  position: sticky !important;
-  top: 4rem !important;
-  height: calc(100vh - 4rem) !important;
-  overflow-y: auto !important;
-  z-index: 50 !important;
-  align-self: flex-start !important;
-  flex-shrink: 0 !important;
-}
-
-/* Ensure parent flex container allows sticky positioning */
-.flex.gap-8 {
-  align-items: flex-start !important;
-  overflow: visible !important;
-}
-
 /* TOC links */
 .toc a {
   @apply block py-2 text-sm text-tint-strong/70 hover:text-tint-strong transition-colors duration-200 no-underline truncate max-w-full overflow-hidden;
@@ -216,29 +195,12 @@ pre code {
   @apply my-2;
 }
 
-/* Code copy button */
-.copy-code-btn {
-  @apply z-10;
-}
-
-.copy-code-btn:hover {
-  @apply bg-gray-600;
-}
-
-.copy-code-btn:focus {
-  @apply outline-none ring-2 ring-blue-500 ring-offset-2;
-}
-
 /* ================================================
    Mobile Responsive Styles
    ================================================ */
 
 /* Mobile Navigation */
 @media (max-width: 767px) {
-  /* TOC Container - hide on mobile */
-  #toc-container {
-    display: none !important;
-  }
 
   /* Navigation */
   #navigation {
@@ -261,20 +223,6 @@ pre code {
     border: none !important;
   }
 
-  /* Layout adjustments */
-  .flex.gap-20 {
-    gap: 0 !important;
-  }
-
-  /* Hide copy button on mobile */
-  .copy-code-btn {
-    display: none !important;
-  }
-
-  /* Article content - empty class kept for Telegram instant view */
-  .article__content {
-    /* Intentionally empty - used as a marker for Telegram instant view */
-  }
 
   /* Search containers */
   #search-results {
@@ -361,10 +309,6 @@ pre code {
 /* Desktop styles */
 @media (min-width: 768px) {
   /* Desktop search container */
-  .min-w-4xl {
-    min-width: 56rem !important;
-  }
-
   #search-results {
     width: 80rem !important;
     min-width: 80rem !important;
