@@ -1,33 +1,6 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-/* @import "../../libs/http/resources/public/uui.css"; */
-
-/* Custom CSS variables for Aidbox-style theming - KEPT FOR REFERENCE */
-:root {
-  --aidbox-primary: #3b82f6;
-  --aidbox-primary-dark: #2563eb;
-  --aidbox-secondary: #64748b;
-  --aidbox-accent: #0ea5e9;
-  --aidbox-success: #10b981;
-  --aidbox-warning: #f59e0b;
-  --aidbox-error: #ef4444;
-  --aidbox-current: #dc2626;
-  --aidbox-current-dark: #b91c1c;
-  --aidbox-link: #dc2626;
-  --aidbox-link-hover: #b91c1c;
-  --aidbox-bg-primary: #ffffff;
-  --aidbox-bg-secondary: #f8fafc;
-  --aidbox-bg-tertiary: #f1f5f9;
-  --aidbox-text-primary: #1e293b;
-  --aidbox-text-secondary: #64748b;
-  --aidbox-text-muted: #94a3b8;
-  --aidbox-border: #e2e8f0;
-  --aidbox-border-hover: #cbd5e1;
-  --aidbox-shadow: 0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1);
-  --aidbox-shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
-  --aidbox-shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
-}
 
 .link {
   @apply text-primary-9 underline underline-offset-2 decoration-1 hover:text-primary-10 hover:decoration-2 transition-all duration-200 inline-flex items-center gap-1;
@@ -149,13 +122,8 @@ p:not(li p) {
 }
 
 #navigation a.active {
-  @apply text-primary-9 font-medium ;
+  @apply text-primary-9 font-bold ;
 }
-
-#navigation a {
-  @apply block  text-gray-700 hover:bg-[#f6f1f0] hover:text-red-600 transition-colors duration-200 rounded-md;
-}
-
 
 mark[style*="background-color:blue"] {
   background-color: #dbeafe !important;
@@ -190,13 +158,11 @@ strong {
   @apply text-black font-semibold;
 }
 
-
 .hint img
 {
   max-width: 300px !important;
   height: auto !important;
 }
-
 
 #content figure {
   @apply flex flex-col items-center justify-center my-8;

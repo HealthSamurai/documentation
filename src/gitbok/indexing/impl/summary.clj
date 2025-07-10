@@ -24,8 +24,11 @@
 
 (defn render-markdown-link-in-toc [title href]
   (let [is-external (str/starts-with? href "http")
-        link-attrs {:class "block py-1.5 text-tint-strong/70 hover:bg-tint-hover hover:text-tint-strong transition-colors duration-200 rounded-md mx-2 my-0.5 clickable-summary"
-                    :href href}]
+        link-attrs
+        {:class "block py-1.5 transition-colors duration-200 rounded-md
+         mx-2 my-0.5 clickable-summary text-tint-9 hover:bg-[#f6f1f0]
+         hover:text-primary-9"
+         :href href}]
     [:a (cond-> link-attrs
           is-external (assoc :target "_blank" :rel "noopener noreferrer")
           (not is-external) (assoc :data-hx-nav true
@@ -38,7 +41,7 @@
      [:span {:class "flex items-center gap-2 mx-2"}
       title
       (when is-external
-        (ico/arrow-top-right-on-square "size-4 text-tint-strong/40"))]]))
+        (ico/arrow-top-right-on-square "size-4"))]]))
 
 (defn parse-md-link [line]
   (when-let [match (re-find #"\[(.*?)\]\((.*?)\)"

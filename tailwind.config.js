@@ -10,7 +10,6 @@ module.exports = {
     theme: {
         extend: {
             colors: {
-                // Gitbook Aidbox color scheme based on CSS variables
                 'primary': {
                     1: 'rgb(255 255 255)',
                     2: 'rgb(255 248 246)',
@@ -35,7 +34,7 @@ module.exports = {
                     6: 'rgb(235 228 226)',
                     7: 'rgb(224 215 213)',
                     8: 'rgb(212 202 200)',
-                    9: 'rgb(152 126 120)',
+                    9: '#1F1C1CA3',
                     10: 'rgb(140 114 109)',
                     11: 'rgb(118 108 105)',
                     12: 'rgb(31 28 28)',
@@ -121,9 +120,8 @@ module.exports = {
                     12: 'rgb(22 32 23)',
                     'original': 'rgb(0 201 80)',
                 },
-                // Legacy colors for backward compatibility
                 'aidbox': {
-                    primary: '#d95640', // Updated to match Gitbook orange
+                    primary: '#d95640',
                     'primary-dark': '#ca4833',
                     secondary: '#64748b',
                     accent: '#0ea5e9',

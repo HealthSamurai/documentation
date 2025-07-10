@@ -229,9 +229,10 @@
    context
    (markdown/get-parsed-markdown-index context))
   ;; 7. render it on start
-  (markdown/render-all!
-   context
-   (markdown/get-parsed-markdown-index context) read-markdown-file)
+  (when-not dev?
+    (markdown/render-all!
+      context
+      (markdown/get-parsed-markdown-index context) read-markdown-file))
   ;; 8. generate sitemap.xml
   (when-not
    dev?
