@@ -61,7 +61,7 @@
          [:span {:class "flex flex-col flex-1 text-right justify-center"}
           [:span {:class "text-xs text-gray-500"} "Previous"]
           [:span {:class "text-gray-700 group-hover:text-orange-600 line-clamp-2"} prev-page-title]]
-         [:svg {:class "size-4 text-gray-400 group-hover:text-orange-600 flex-shrink-0"
+         [:svg {:class "size-4 text-gray-700 group-hover:text-orange-600 flex-shrink-0"
                 :fill "none"
                 :stroke "currentColor"
                 :viewBox "0 0 24 24"
@@ -80,7 +80,7 @@
          [:span {:class "flex flex-col flex-1 justify-center"}
           [:span {:class "text-xs text-gray-500"} "Next"]
           [:span {:class "text-gray-700 group-hover:text-orange-600 line-clamp-2"} next-page-title]]
-         [:svg {:class "size-4 text-gray-400 group-hover:text-orange-600 flex-shrink-0"
+         [:svg {:class "size-4 text-gray-700 group-hover:text-orange-600 flex-shrink-0"
                 :fill "none"
                 :stroke "currentColor"
                 :viewBox "0 0 24 24"
@@ -112,7 +112,7 @@
                     nil))))]
     [:main#content {:class "flex-1 max-w-full items-start gap-8"}
      [:div {:class "flex items-start gap-8"}
-      [:article {:class "article__content py-6 min-w-0 flex-1 px-4 sm:px-2 max-w-4xl"}
+      [:article {:class "article__content py-6 min-w-0 flex-1 px-4 sm:px-2 max-w-5xl"}
        (when htmx?
          [:script "window.scrollTo(0, 0); updateLastUpdated();"])
        [:div {:class "mx-auto px-2 max-w-full sm:px-2 px-4"} body]
