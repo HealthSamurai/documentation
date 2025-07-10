@@ -26,7 +26,7 @@
           link-class (str "block py-2 px-3 text-small font-content text-tint-strong/70 "
                           "hover:bg-tint-hover hover:text-tint-strong "
                           "transition-colors duration-200 ease-in-out no-underline "
-                          "rounded-md relative "
+                          "rounded-md relative border border-transparent hover:border-tint-7 "
                           (when (> level 1)
                             "opacity-80 text-sm"))]
       [:li {:class li-class}
@@ -48,7 +48,7 @@
           actual-items (if (and (seq toc-path) (:children (first toc-path)))
                          (-> toc-path first :children) ; nested structure
                          toc-path)] ; flat structure
-      [:nav#toc-container {:class "w-72 flex-shrink-0 sticky top-16 h-[calc(100vh-4rem)] overflow-y-auto py-6 bg-tint-base border-l border-tint-subtle font-content hidden lg:block"
+      [:nav#toc-container {:class "w-72 flex-shrink-0 sticky top-16 h-[calc(100vh-4rem)] overflow-y-auto py-6 bg-tint-base border border-tint-subtle/50 shadow-sm font-content hidden lg:block"
                            :aria-label "On-page navigation"}
        [:ul {:class "space-y-1 px-4"}
         (for [item actual-items]

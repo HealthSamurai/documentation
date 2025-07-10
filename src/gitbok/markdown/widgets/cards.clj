@@ -14,20 +14,20 @@
      {:class "grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mt-4"}
      (for [row rows
            :let [cells (->> row (filter vector?)
-                             (mapv (fn [a] (next (next a)))))
+                            (mapv (fn [a] (next (next a)))))
                  ;; Check if first cell is empty or contains a badge
                  first-cell (first cells)
                  first-cell-empty? (or (nil? first-cell)
-                                      (and (seq? first-cell) (empty? first-cell))
-                                      (and (string? (first first-cell))
-                                           (empty? (str/trim (first first-cell)))))
+                                       (and (seq? first-cell) (empty? first-cell))
+                                       (and (string? (first first-cell))
+                                            (empty? (str/trim (first first-cell)))))
                  has-badge? (and first-cell
-                                (not first-cell-empty?)
-                                (or (and (seq? first-cell)
-                                         (some #(and (vector? %) (= :mark (first %))) first-cell))
-                                    (and (string? (first first-cell))
-                                         (< (count (first first-cell)) 10)
-                                         (re-matches #"(?i)^(beta|alpha|new|preview)$" (first first-cell)))))
+                                 (not first-cell-empty?)
+                                 (or (and (seq? first-cell)
+                                          (some #(and (vector? %) (= :mark (first %))) first-cell))
+                                     (and (string? (first first-cell))
+                                          (< (count (first first-cell)) 10)
+                                          (re-matches #"(?i)^(beta|alpha|new|preview)$" (first first-cell)))))
 
                  ;; Adjust cell assignment based on table structure
                  [badge one two three four five] (cond
@@ -90,7 +90,7 @@
               ;; :hx-push-url "true"
               :hx-push-url (gitbok.http/get-absolute-url context href)
               :hx-swap "outerHTML"}
-        [:div {:class "flex flex-col bg-white shadow overflow-hidden h-full min-h-[150px] max-h-[300px]"}
+        [:div {:class "flex flex-col bg-white border border-gray-200 hover:border-gray-300 shadow rounded-sm overflow-hidden h-full min-h-[150px] max-h-[300px] transition-colors duration-200"}
          (when img-href [:img {:src img-href :alt "card"}])
          [:div
           {:class
