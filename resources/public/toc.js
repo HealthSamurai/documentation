@@ -40,14 +40,15 @@ document.addEventListener('click', function (e) {
   }
 
   // Use HTMX to load content
-  if (document.body && document.querySelector('#toc-container')) {
+  const tocContainer = document.querySelector('#toc-container');
+  if (document.body && tocContainer && window.innerWidth >= 768) {
     htmx.ajax('GET', '/toc' + href, {
       target: '#toc-container',
       swap: 'outerHTML',
       pushUrl: href
     });
   } else {
-    // Fallback to regular navigation if HTMX target is not available
+    // Fallback to regular navigation if HTMX target is not available or on mobile
     window.location.href = href;
   }
 });
