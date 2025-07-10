@@ -38,7 +38,7 @@
 
 /* Typography - Basic elements */
 #content ul {
-  @apply ml-8 list-disc text-gray-900;
+  @apply ml-8 list-disc text-tint-strong;
 }
 
 #content ul > li {
@@ -51,7 +51,7 @@
 }
 
 #content strong {
-  @apply text-black font-semibold;
+  @apply text-tint-strong font-semibold;
 }
 
 /* Special mark styling */
@@ -62,7 +62,7 @@
 
 /* Tables */
 #content table {
-  @apply min-w-full border border-tint-subtle rounded-lg bg-white shadow-sm my-6;
+  @apply min-w-full border border-tint-subtle rounded-lg bg-tint-base shadow-aidbox my-6;
 }
 
 #content thead {
@@ -78,7 +78,7 @@
 }
 
 #content td {
-  @apply px-4 py-3 text-base text-gray-900 leading-relaxed border-r border-tint-subtle/50 last:border-r-0 text-tint-strong/80 text-left;
+  @apply px-4 py-3 text-base leading-relaxed border-r border-tint-subtle/50 last:border-r-0 text-tint-strong/80 text-left;
 }
 
 #content th {
@@ -100,7 +100,7 @@
 
 /* Code Blocks */
 #content pre {
-  @apply border border-gray-200 text-gray-800 rounded-lg overflow-x-auto max-w-full shadow-sm relative;
+  @apply border border-tint-subtle text-tint-strong rounded-lg overflow-x-auto max-w-full shadow-aidbox relative;
   white-space: pre !important;
   width: 100% !important;
   max-width: 100% !important;
@@ -123,20 +123,17 @@
 
 /* Details and Summary */
 #content details {
-  @apply my-6 border border-gray-200 rounded-lg bg-white shadow-sm overflow-hidden;
+  @apply my-6 border border-tint-subtle rounded-lg bg-tint-base shadow-aidbox overflow-hidden;
 }
 
 #content summary {
-  @apply px-6 py-4 border-b border-gray-200 cursor-pointer select-none font-medium text-gray-900 hover:bg-gray-100 transition-colors duration-200 flex items-center justify-between;
+  @apply px-6 py-4 border-b border-tint-subtle cursor-pointer select-none font-medium text-tint-strong hover:bg-tint-hover transition-colors duration-200 flex items-center justify-between;
 }
 
-#content summary:hover {
-  @apply bg-gray-100;
-}
 
 #content summary::after {
   content: "▼";
-  @apply text-gray-500 text-sm transition-transform duration-200;
+  @apply text-tint-10 text-sm transition-transform duration-200;
 }
 
 #content details[open] summary::after {
@@ -189,8 +186,6 @@
 /* ================================================
    Mobile Responsive Styles
    ================================================ */
-
-/* Mobile Navigation */
 @media (max-width: 767px) {
   /* Navigation */
   #navigation {
@@ -213,7 +208,6 @@
     border: none !important;
   }
 
-
   /* Article content - needed for Telegram instant view */
   .article__content {
     max-width: 100vw !important;
@@ -221,10 +215,8 @@
     padding-left: 1rem !important;
     padding-right: 1rem !important;
   }
-}
 
-/* Mobile content optimization */
-@media (max-width: 767px) {
+  /* Content optimization */
   /* Content container */
   #content {
     max-width: 100vw !important;
