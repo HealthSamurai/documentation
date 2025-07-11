@@ -4893,6 +4893,9 @@ Here is the complete list of supported and ready-to-use Implementation Guides (I
 
 **Versions**
 
+* `ca.healthpei.io.core#0.1.6-DFT`
+* `ca.healthpei.io.core#0.1.5-DFT`
+* `ca.healthpei.io.core#0.1.4-DFT`
 * `ca.healthpei.io.core#0.1.3-DFT`
 * `ca.healthpei.io.core#0.1.2-DFT`
 * `ca.healthpei.io.core#0.1.1-DFT`
