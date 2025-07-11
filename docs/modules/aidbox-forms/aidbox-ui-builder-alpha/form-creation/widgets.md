@@ -311,6 +311,7 @@ The Radio Button widget allows users to select one option from a set of predefin
   * Each option should have a display text, code and system. The user can fill in values ​​or use the import option. In this case, the user will be given the opportunity to select a terminology server, select a valueset in it and find the needed coded value, then the code, system and display will be automatically filled in.
   * Optionally, the user can include a score to each option and show the score if needed, which will be taken into account in the calculations. To do this, need to click on the include score and show score boxes.
   * Instead of inlining options into the form, the use can use a ValueSet that is stored in the Aidbox instance. To do this, the user need to click on the ValueSet box and select the ValueSet.
+  * The user can optionally choose to attach media, adding an additional field to each answer option. This makes it possible to include images or animated GIFs in the answer options.
 * **ValueSet**: Use predefined options in ValueSet
   * **Use external terminology server**: You can specify external terminology server which will be used to `$expand` ValueSet options
   * **Expansion parameters**: Optionally, you can set additional parameters for `$expand` operation. For example, you can choose what CodeSystem version need to use.
@@ -339,6 +340,7 @@ The Checkbox List widget allows users to select multiple options from a predefin
   * Each option should have a display text, code and system. The user can fill in values ​​or use the import option. In this case, the user will be given the opportunity to select a terminology server, select a valueset in it and find the needed coded value, then the code, system and display will be automatically filled in.
   * Optionally, the user can include a score to each option and show the score if needed, which will be taken into account in the calculations. To do this, need to click on the include score and show score boxes.
   * Instead of inlining options into the form, the use can use a ValueSet that is stored in the Aidbox instance. To do this, the user need to click on the ValueSet box and select the ValueSet.
+  * The user can optionally choose to attach media, adding an additional field to each answer option. This makes it possible to include images or animated GIFs in the answer options.
 * **ValueSet**: Use predefined options in ValueSet
   * **Use external terminology server**: You can specify external terminology server which will be used to `$expand` ValueSet options
   * **Expansion parameters**: Optionally, you can set additional parameters for `$expand` operation. For example, you can choose what CodeSystem version need to use.
