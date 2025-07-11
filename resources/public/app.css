@@ -45,7 +45,7 @@ article p:not(li p) {
 }
 
 article strong {
-  @apply text-tint-strong font-semibold;
+  @apply text-tint-strong font-bold;
 }
 
 /* Special mark styling */
