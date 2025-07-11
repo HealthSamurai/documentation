@@ -33,7 +33,7 @@ module.exports = {
                     5: 'rgb(242 236 234)',
                     6: 'rgb(235 228 226)',
                     7: 'rgb(224 215 213)',
-                    8: 'rgb(212 202 200)',
+                    8: 'rgb(229 231 235)',
                     9: 'rgb(152 126 120)',
                     10: 'rgb(140 114 109)',
                     11: 'rgb(118 108 105)',
@@ -41,9 +41,9 @@ module.exports = {
                     'original': 'rgb(120 120 120)',
                     'base': 'rgb(255 255 255)',
                     'subtle': 'rgb(251 249 249)',
-                    'hover': 'rgb(246 241 240)',
+                    'hover': 'rgb(243 245 249)',
                     'active': 'rgb(235 228 226)',
-                    'strong': 'rgb(31 28 28)',
+                    'strong': 'rgb(31 28 28)'
                 },
                 'neutral': {
                     1: 'rgb(255 255 255)',
@@ -175,7 +175,7 @@ module.exports = {
             fontSize: {
                 // Typography scale based on Aidbox analysis
                 'micro': ['12px', '16px'],     // --scalar-micro
-                'mini': ['13px', '18px'],      // --scalar-mini  
+                'mini': ['13px', '18px'],      // --scalar-mini
                 'small': ['14px', '20px'],     // --scalar-small
                 'base': ['16px', '24px'],      // --scalar-paragraph
                 'lg': ['16px', '26px'],        // h6, h5, h4
@@ -204,7 +204,7 @@ module.exports = {
             },
             borderRadius: {
                 'aidbox': '3px',    // --scalar-radius
-                'aidbox-lg': '6px', // --scalar-radius-lg  
+                'aidbox-lg': '6px', // --scalar-radius-lg
                 'aidbox-xl': '8px', // --scalar-radius-xl
                 '2xl': '1rem',
                 '3xl': '1.5rem',

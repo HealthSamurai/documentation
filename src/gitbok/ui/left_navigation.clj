@@ -3,7 +3,14 @@
    [uui.heroicons :as ico]
    [gitbok.http]
    [gitbok.utils :as utils]
-   [clojure.string :as str]))
+   [clojure.string :as str]
+   [gitbok.indexing.impl.summary :as summary]))
+
+(def summary-classes
+  "hover:bg-tint-hover
+  hover:text-primary-9
+  active:hover:bg-primary-2
+  active:hover:text-primary-9")
 
 (defn add-active-class [item add?]
   (let [link-element (:title item)
@@ -23,7 +30,10 @@
                   transition-colors duration-200 ease-in-out
                   cursor-pointer group"}
         [:div {:class "flex-1 clickable-summary"}
-         (add-active-class item (= url (:href item)))]
+         (add-active-class
+          (update item :title
+                  (fn [title] (assoc-in title [1 :class] summary/summary-classes)))
+          (= url (:href item)))]
         (ico/chevron-right "chevron size-3 text-small font-normal
                             group-hover:text-primary-9 transition-all
                             duration-200 transform rotate-0 group-open:rotate-90 mr-4")]

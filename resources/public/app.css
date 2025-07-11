@@ -45,7 +45,7 @@ article p:not(li p) {
 }
 
 article strong {
-  @apply text-tint-strong font-bold;
+  @apply text-tint-strong font-semibold;
 }
 
 /* Special mark styling */
@@ -56,7 +56,8 @@ article mark[style*="background-color:blue"] {
 
 /* Tables */
 article table {
-  @apply min-w-full border border-tint-subtle rounded-lg bg-tint-base shadow-aidbox my-6;
+  @apply min-w-full border border-tint-8 rounded-lg
+  bg-tint-base shadow-aidbox my-6;
 }
 
 article thead {
@@ -85,7 +86,7 @@ article figure {
 }
 
 article figure img {
-  @apply max-w-full h-auto mx-auto rounded-lg;
+  @apply max-w-full h-auto mx-auto rounded-lg shadow-aidbox-lg;
 }
 
 article figure figcaption {

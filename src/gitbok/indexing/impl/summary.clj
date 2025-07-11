@@ -22,12 +22,21 @@
         (str/replace #"/$" "")
         (str/replace #"^/" ""))))
 
+(def summary-classes
+  "block py-1.5 transition-colors duration-200 ease-in-out rounded-aidbox
+   mr-2 my-0.5 clickable-summary text-small text-tint-11")
+
+(def leaf-classes
+  (str summary-classes
+       " hover:bg-tint-hover
+   hover:text-primary-9
+   active:hover:bg-primary-2
+   active:hover:text-primary-9"))
+
 (defn render-markdown-link-in-toc [title href]
   (let [is-external (str/starts-with? href "http")
         link-attrs
-        {:class "block py-1.5 transition-colors duration-200 ease-in-out rounded-aidbox
-         mr-2 my-0.5 clickable-summary text-small text-tint-11 hover:bg-tint-hover
-         hover:text-primary-9 active:hover:bg-primary-2 active:hover:text-primary-9"
+        {:class leaf-classes
          :href href}]
     [:a (cond-> link-attrs
           is-external (assoc :target "_blank" :rel "noopener noreferrer")

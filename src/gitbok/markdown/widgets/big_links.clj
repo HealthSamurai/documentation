@@ -29,7 +29,11 @@
             (str "/" uri)))))))
 
 (defn big-link-view [href title & [image]]
-  [:div {:class "my-6 p-4 border border-tint-subtle rounded-lg bg-tint-base hover:border-primary-9 transition-all duration-200 flex items-center shadow-sm hover:shadow-md cursor-pointer"}
+  [:div {:class "my-6 p-4 border
+         border-tint-8
+         rounded-lg bg-tint-base hover:border-primary-9
+         transition-all duration-200 flex
+         items-center cursor-pointer"}
    (when image
      [:div {:class "w-10 h-10 rounded-full flex items-center justify-center mr-3 flex-shrink-0"}
       [:img {:src image :alt title :class "w-6 h-6 object-contain"}]])
