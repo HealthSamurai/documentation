@@ -20,10 +20,10 @@
                   (:heading-level item))
           ;; Add border styling for nested items like left navigation
           li-class (str
-                     "hover:bg-tint-hover hover:text-tint-strong hover:border-tint-7 max-w-56"
-                     (cond
-                       (= level 2) "break-words py-0.5 border-transparent"
-                       (>= level 3) "break-words ml-2 border-l-2 border-tint-3 my-0"))
+                    "hover:bg-tint-hover hover:text-tint-strong hover:border-tint-7 max-w-56"
+                    (cond
+                      (= level 2) "break-words py-0.5 border-transparent"
+                      (>= level 3) "break-words ml-2 border-l-2 border-tint-3 my-0"))
 
           link-class (str "block px-3 text-small font-content text-tint-strong/70 "
                           "transition-colors duration-200 ease-in-out no-underline "
@@ -52,8 +52,8 @@
                          toc-path)] ; flat structure
       [:nav#toc-container
        {:class "max-w-56 basis-56 flex-shrink-0 sticky top-16 h-[calc(100vh-4rem)]
-        ml-12 overflow-y-auto py-8 bg-tint-base border border-tint-subtle/50
-        shadow-sm font-content hidden lg:block
+        ml-12 overflow-y-auto py-8 bg-tint-base
+        font-content hidden lg:block
         "
         :aria-label "On-page navigation"}
        [:ul {:class "space-y-0.5"}

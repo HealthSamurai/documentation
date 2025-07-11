@@ -38,16 +38,18 @@
                             group-hover:text-primary-9 transition-all
                             duration-200 transform rotate-0 group-open:rotate-90 mr-4")]
        [:div {:class
-              (cond-> "ml-4"
+              (cond-> "ml-4 border-l-2 border-tint-8"
                 open?
-                (str " border-l-2 border-tint-8"))}
+                (str " "))}
         (for [c (:children item)]
           (render-left-navigation url c))]]
       (add-active-class item open?))))
 
 (defn left-navigation [summary url]
   [:nav#navigation
-   {:class "w-80 flex-shrink-0 sticky top-16 h-[calc(100vh-4rem)] overflow-y-auto py-6 bg-tint-base border-r border-tint-subtle font-content lg:mr-20"
+   {:class "w-80 flex-shrink-0 sticky top-16 h-[calc(100vh-4rem)]
+    overflow-y-auto py-6 bg-tint-base border-r border-tint-subtle
+    font-content lg:mr-20 space-y-4"
     :aria-label "Documentation menu"}
    (for [item summary]
      [:div {:class "break-words"}

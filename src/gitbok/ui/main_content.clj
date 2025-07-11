@@ -110,9 +110,10 @@
                     toc-result)
                   (catch Exception _
                     nil))))]
-    [:main#content {:class "flex-1 max-w-6xl items-start"}
+    [:main#content {:class "flex-1 items-start"}
      [:div {:class "flex items-start"}
-      [:article {:class "article__content py-8 min-w-0 flex-1 px-4 sm:px-2 max-w-6xl overflow-hidden"}
+      [:article {:class "article__content py-8 min-w-0 flex-1
+                 px-4 sm:px-2 max-w-5xl overflow-hidden transform-3d"}
        (when htmx?
          [:script "window.scrollTo(0, 0); updateLastUpdated();"])
        [:div {:class "mx-auto px-2 max-w-full sm:px-2 px-4"} body]

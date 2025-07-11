@@ -16,10 +16,10 @@ mcp:
 	clojure -X:mcp :port 7888
 
 tailwind:
-	npx tailwindcss -i ./resources/public/app.css -o ./resources/public/app.min.css --config ./tailwind.config.js --minify --watch
+	npx @tailwindcss/cli -i ./resources/public/app.css -o ./resources/public/app.min.css --minify --watch
 
 build-tailwind-min:
-	npx tailwindcss -i ./resources/public/app.css -o ./resources/public/app.min.css --config ./tailwind.config.js --minify
+	npx @tailwindcss/cli -i ./resources/public/app.css -o ./resources/public/app.min.css --minify
 
 uberjar:
 	clojure -M:build -m build

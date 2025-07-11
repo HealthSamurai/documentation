@@ -43,7 +43,7 @@
                                render-md
                                content]
   (let [description (parse-description content)
-        new-desc (when description [:p {:class "text-lg text-gray-500"} description])
+        new-desc (when description [:p {:class "text-lg text-tint-11"} description])
         title (parse-title content)
         lines (str/split-lines content)
         start-idx (.indexOf ^java.util.List lines "---")

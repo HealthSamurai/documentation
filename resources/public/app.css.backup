@@ -1,118 +1,5 @@
 @import "tailwindcss";
 
-/* Tailwind v4 Theme Configuration */
-@theme {
-  /* Color System - Primary */
-  --color-primary-1: rgb(255 255 255);
-  --color-primary-2: rgb(255 248 246);
-  --color-primary-3: rgb(255 244 240);
-  --color-primary-4: rgb(255 237 232);
-  --color-primary-5: rgb(255 230 223);
-  --color-primary-6: rgb(255 220 212);
-  --color-primary-7: rgb(249 205 196);
-  --color-primary-8: rgb(241 191 181);
-  --color-primary-9: rgb(217 86 64);
-  --color-primary-10: rgb(202 72 51);
-  --color-primary-11: rgb(145 95 86);
-  --color-primary-12: rgb(36 26 24);
-
-  /* Color System - Tint */
-  --color-tint-1: rgb(255 255 255);
-  --color-tint-2: rgb(251 249 249);
-  --color-tint-3: rgb(250 247 246);
-  --color-tint-4: rgb(246 241 240);
-  --color-tint-5: rgb(242 236 234);
-  --color-tint-6: rgb(235 228 226);
-  --color-tint-7: rgb(224 215 213);
-  --color-tint-8: rgb(229 231 235);
-  --color-tint-9: rgb(152 126 120);
-  --color-tint-10: rgb(140 114 109);
-  --color-tint-11: rgb(118 108 105);
-  --color-tint-12: rgb(31 28 28);
-  --color-tint-base: rgb(255 255 255);
-  --color-tint-subtle: rgb(251 249 249);
-  --color-tint-hover: rgb(243 245 249);
-  --color-tint-active: rgb(235 228 226);
-  --color-tint-strong: rgb(31 28 28);
-
-  /* Color System - Neutral */
-  --color-neutral-1: rgb(255 255 255);
-  --color-neutral-2: rgb(250 250 250);
-  --color-neutral-3: rgb(247 247 247);
-  --color-neutral-4: rgb(242 242 242);
-  --color-neutral-5: rgb(237 237 237);
-  --color-neutral-6: rgb(229 229 229);
-  --color-neutral-7: rgb(217 217 217);
-  --color-neutral-8: rgb(204 204 204);
-  --color-neutral-9: rgb(120 120 120);
-  --color-neutral-10: rgb(121 121 121);
-  --color-neutral-11: rgb(110 110 110);
-  --color-neutral-12: rgb(29 29 29);
-
-  /* Color System - Semantic Colors */
-  --color-info-9: rgb(120 120 120);
-  --color-warning-9: rgb(254 154 0);
-  --color-danger-9: rgb(251 44 54);
-  --color-success-9: rgb(0 201 80);
-
-  /* Header colors */
-  --color-header-bg: rgba(255, 255, 255, 0.88);
-  --color-header-border: rgba(31, 28, 28, 0.08);
-  --color-header-text: rgb(31, 28, 28);
-
-  /* Font Families */
-  --font-sans: Inter, "Inter Fallback", system-ui, arial;
-  --font-mono: "IBM Plex Mono", monospace;
-  --font-code: "JetBrains Mono", ui-monospace, Menlo, Monaco, "Cascadia Mono", "Segoe UI Mono", "Roboto Mono", "Oxygen Mono", "Ubuntu Monospace", "Source Code Pro", "Fira Mono", "Droid Sans Mono", "Courier New", monospace;
-
-  /* Font Sizes - Tailwind v4 syntax (Scalar/GitBook compatible) */
-  --text-micro: 0.75rem;  /* 12px - scalar-micro */
-  --text-micro--line-height: 1rem; /* 16px - scalar-line-height-5 */
-
-  --text-mini: 0.8125rem; /* 13px - scalar-mini */
-  --text-mini--line-height: 1.125rem; /* 18px - scalar-line-height-4 */
-
-  --text-small: 0.875rem; /* 14px - scalar-small */
-  --text-small--line-height: 1.25rem; /* 20px - scalar-line-height-3 */
-
-  --text-base: 1rem; /* 16px - scalar-paragraph */
-  --text-base--line-height: 1.5rem; /* 24px - scalar-line-height-2 */
-
-  --text-lg: 1.125rem;
-  --text-lg--line-height: 1.75rem;
-
-  --text-xl: 1.25rem;    /* 20px - scalar-heading-2/3 */
-  --text-xl--line-height: 2rem; /* 32px - scalar-line-height-1 */
-
-  --text-2xl: 1.3125rem; /* 21px - scalar-font-size-1 */
-  --text-2xl--line-height: 2rem; /* 32px */
-
-  --text-3xl: 1.5rem;    /* 24px - scalar-heading-1 */
-  --text-3xl--line-height: 2rem; /* 32px */
-
-  --text-4xl: 1.875rem;  /* 30px - keep for compatibility */
-  --text-4xl--line-height: 2.25rem; /* 36px */
-
-  --text-5xl: 2.25rem;   /* 36px - keep for compatibility */
-  --text-5xl--line-height: 2.5rem; /* 40px */
-
-  /* Shadows */
-  --shadow-aidbox: 0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1);
-  --shadow-aidbox-md: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
-  --shadow-aidbox-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
-  --shadow-header: rgba(31, 28, 28, 0.08) 0px 1px 0px 0px;
-
-  /* Border Radius */
-  --radius-aidbox: 3px;
-  --radius-aidbox-lg: 6px;
-  --radius-aidbox-xl: 8px;
-
-  /* Z-Index */
-  --z-header: 30;
-  --z-sidebar: 20;
-  --z-overlay: 40;
-}
-
 html {
   line-height: 1.625;
 }
@@ -205,7 +92,7 @@ article figure img {
 }
 
 article figure figcaption {
-  @apply mt-3 text-sm text-center text-neutral-9;
+  @apply mt-3 text-sm text-center text-aidbox-text-muted;
 }
 
 /* Code Blocks */
@@ -388,3 +275,4 @@ article .hint p {
     white-space: nowrap !important;
   }
 }
+

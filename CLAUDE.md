@@ -7,3 +7,4 @@
 7. When you change .clj files, to test changes restart the server using clojure-mcp in the `user` namespace (see ";; reload server" comment approx line 20).
 8. When use styles, always prefer using tailwind classes and tailwind theme, do not use app.css if not necessary
 9. Always use sequentialthinking.
+10. Make sure you understand what tailwind v4 is and all its differences between v3. Read the doc https://tailwindcss.com/docs.
