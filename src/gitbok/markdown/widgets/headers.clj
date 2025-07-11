@@ -15,7 +15,7 @@
     (fn [header-hiccup]
       (let [tag (first header-hiccup)
             classes (case tag
-                      :h1 "mt-2 text-5xl font-bold text-gray-900 mx-auto"
+                      :h1 "mt-2 text-5xl font-bold text-gray-900 mx-auto max-w-full break-words"
                       :h2 "mt-8 text-4xl font-semibold text-gray-900 pb-2 mb-4 mx-auto"
                       :h3 "mt-6 text-2xl font-semibold text-gray-900 mb-4 mx-auto"
                       :h4 "mt-4 text-lg font-semibold text-gray-900 mb-3 mx-auto"

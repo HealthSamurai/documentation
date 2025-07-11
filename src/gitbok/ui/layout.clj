@@ -1,7 +1,5 @@
 (ns gitbok.ui.layout
   (:require
-   [gitbok.ui.right-toc :as right-toc]
-   [gitbok.ui.breadcrumb :as breadcrumb]
    [gitbok.indexing.impl.summary :as summary]
    [gitbok.ui.main-content :as main-content]
    [gitbok.ui.main-navigation :as main-navigation]
@@ -18,7 +16,7 @@
    (main-navigation/nav context)
    [:div.mobile-menu-overlay]
    [:div
-    {:class "flex sm:px-6 md:px-8 max-w-screen-2xl mx-auto site-full-width:max-w-full gap-8 max-md:gap-0 items-start overflow-visible"}
+    {:class "flex max-w-screen-2xl mx-auto site-full-width:max-w-full gap-8 max-md:gap-0 items-start overflow-visible"}
     (left-navigation/left-navigation
      (summary/get-summary context)
      uri)
@@ -128,8 +126,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                       filepath
                       lastmod
                       section]}]
-  (let [body (if (map? content) (:body content) content)
-        status (if (map? content) (:status content 200) 200)
+  (let [status (if (map? content) (:status content 200) 200)
         uri (:uri request)
         is-hx-target (uui/hx-target request)
         is-search-page (str/includes? uri "/search")

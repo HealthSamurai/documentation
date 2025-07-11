@@ -30,11 +30,6 @@
    Content Container Styles (#content)
    ================================================ */
 
-/* Base content styles */
-#content {
-  max-width: 100% !important;
-}
-
 /* Typography - Basic elements */
 article ul {
   @apply ml-8 list-disc text-tint-strong;

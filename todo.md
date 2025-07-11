@@ -6,9 +6,8 @@
 
 # bugs/techdebt
 
+- [ ] fix mermaid https://gitbok.cs.aidbox.dev/access-control/authentication/oauth-2-0
 - [ ] rm huge image history from repo
-- [ ] http://localhost:8081/api/bulk-api
-- [ ] http://localhost:8081/tutorials/security-access-control-tutorials/how-to-implement-consent-based-access-control-using-fhir-search-and-aidbox-access-policy
 - [ ] cookies banner
 - [ ] http://localhost:8081/deprecated/deprecated/zen-related/aidbox-zen-lang-project/set-up-and-use-configuration-projects
 
