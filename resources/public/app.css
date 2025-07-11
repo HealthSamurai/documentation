@@ -1,5 +1,7 @@
 @import "tailwindcss";
 
+@plugin 'tailwind-scrollbar';
+
 /* Tailwind v4 Theme Configuration */
 @theme {
   /* Color System - Primary */
