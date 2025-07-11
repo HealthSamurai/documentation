@@ -89,8 +89,32 @@
 (defn clean-field [item]
   (let [col? (sequential? item)
         without-nils (if col? (remove nil? item) item)
-        default? (empty? without-nils)]
-    (if default? ["-"] without-nils)))
+        ;; Enhanced filtering for meaningful text content
+        filtered (if col?
+                   (filter (fn [text]
+                             (when (string? text)
+                               (let [trimmed (str/trim text)
+                                     length (count trimmed)
+                                     ;; Count letters vs total characters
+                                     letter-count (count (re-seq #"\p{L}" trimmed))
+                                     letter-ratio (if (> length 0) (/ letter-count length) 0)
+                                     ;; Check for common stop words and fragments
+                                     stop-words #{"and" "the" "a" "an" "or" "but" "in" "on" "at" "to" "for" "of" "with" "by"}
+                                     is-stop-word? (stop-words (str/lower-case trimmed))
+                                     ;; Check for parenthetical fragments or incomplete sentences
+                                     starts-with-punct? (and (> length 0) (re-matches #"^[^\p{L}].*" trimmed))
+                                     ends-with-punct-only? (and (> length 0) (re-matches #".*[^\p{L}\.]$" trimmed))
+                                     mostly-punct? (< letter-ratio 0.5)]
+                                 (and
+                                  (>= length 8) ; Minimum 8 characters
+                                  (not is-stop-word?) ; Not a common stop word
+                                  (> letter-ratio 0.3) ; At least 30% letters
+                                  (not mostly-punct?) ; Not mostly punctuation
+                                  (not (and starts-with-punct? ends-with-punct-only?)))))) ; Not a fragment
+                           without-nils)
+                   without-nils)
+        default? (empty? filtered)]
+    (if default? ["-"] filtered)))
 
 (defn ensure-headings-and-text [items]
   (mapv
@@ -165,6 +189,96 @@
               (= "-" (:text hit-map))
               (dissoc :text)))))
 
+(defn search-field-for-word
+  "Search a specific field for a word with both exact and fuzzy matching."
+  [index field word priority]
+  (->>
+   (concat
+    (lucene/search
+     index
+     {field word}
+     {:results-per-page 100
+      :hit->doc ld/document->map})
+    (lucene/search
+     index
+     {field word}
+     {:results-per-page 100
+      :fuzzy? true
+      :hit->doc ld/document->map}))
+   (filter seq)
+   (mapv (fn [result]
+           (-> result
+               (update :score (fn [score] (* (or score 0) priority)))
+               (assoc :hit-by field)
+               (assoc :word word)
+               (clean-search-res))))))
+
+(defn find-additional-words-in-title
+  "Find query words that appear in title/h2 but weren't found by Lucene."
+  [doc-results words]
+  (let [doc-hit (first doc-results)
+        title-text (str (:title (:hit doc-hit)) " " (:h2 (:hit doc-hit)))
+        title-text-lower (str/lower-case title-text)]
+    (filter #(str/includes? title-text-lower %) words)))
+
+(defn calculate-word-bonuses
+  "Calculate various bonuses for multi-word matches."
+  [unique-words additional-words words doc-results total-words]
+  (let [all-found-words (set (concat unique-words additional-words))
+        word-count (count all-found-words)
+        title-words (set (map :word (filter #(#{:title :h1} (:hit-by %)) doc-results)))
+        title-multi-word? (> (count title-words) 1)
+        coverage-ratio (double (/ word-count total-words))
+        multi-word-bonus (cond
+                           (>= word-count 3) 20 ; 3+ words: 20x bonus
+                           (= word-count 2) 10 ; 2 words: 10x bonus  
+                           :else 1) ; 1 word: no bonus
+        title-bonus (if title-multi-word? 5 1)
+        coverage-bonus (+ 1.0 (* coverage-ratio 4.0))]
+    {:word-count word-count
+     :all-found-words all-found-words
+     :multi-word-bonus multi-word-bonus
+     :title-bonus title-bonus
+     :coverage-bonus coverage-bonus}))
+
+(defn calculate-document-score
+  "Calculate final score for a document based on found words and bonuses."
+  [doc-results words total-words]
+  (let [unique-words (set (map :word doc-results))
+        additional-words (find-additional-words-in-title doc-results words)
+        field-groups (group-by :hit-by doc-results)
+        field-scores (map (fn [[field field-results]]
+                            (apply max (map :score field-results)))
+                          field-groups)
+        base-score (apply + field-scores)
+        bonuses (calculate-word-bonuses unique-words additional-words words doc-results total-words)
+        word-count (or (:word-count bonuses) 0)
+        ;; Check for exact title match (all query words in title)
+        doc-hit (first doc-results)
+        title-text (str/lower-case (str (:title (:hit doc-hit))))
+        words-in-title (filter #(str/includes? title-text %) words)
+        title-coverage (double (/ (count words-in-title) total-words))
+        exact-title-match? (= title-coverage 1.0)
+        ;; Use additive bonuses instead of multiplicative to prevent inflation
+        multi-word-boost (case word-count
+                           3 50 ; 3+ words: +50 points
+                           2 20 ; 2 words: +20 points  
+                           1 0 ; 1 word: no bonus
+                           0)
+        title-words (set (map :word (filter #(#{:title :h1} (:hit-by %)) doc-results)))
+        title-boost (if (> (count title-words) 1)
+                      15 ; Multiple words in title: +15 points
+                      0) ; Single word in title: no bonus
+        ;; Add significant bonus for exact title matches
+        exact-title-bonus (if exact-title-match? 100 0) ; +100 points for exact title match
+        coverage-ratio (or (:coverage-ratio bonuses) 0.0)
+        coverage-boost (* coverage-ratio 10) ; Up to +10 points for coverage
+        final-score (+ base-score multi-word-boost title-boost exact-title-bonus coverage-boost)
+        result (first doc-results)]
+    (-> result
+        (assoc :score final-score)
+        (dissoc :word))))
+
 (defn search [index q]
   (let [fields [[:title 100]
                 [:h1 100] ;; not sure...
@@ -211,26 +325,7 @@
       (let [all-results (for [word words
                               :when (pos? (count word))]
                           (for [[field priority] fields]
-                            (->>
-                             (concat
-                              (lucene/search
-                               index
-                               {field word}
-                               {:results-per-page 100
-                                :hit->doc ld/document->map})
-                              (lucene/search
-                               index
-                               {field word}
-                               {:results-per-page 100
-                                :fuzzy? true
-                                :hit->doc ld/document->map}))
-                             (filter seq)
-                             (mapv (fn [result]
-                                     (-> result
-                                         (update :score (fn [score] (* (or score 0) priority)))
-                                         (assoc :hit-by field)
-                                         (assoc :word word)
-                                         (clean-search-res)))))))
+                            (search-field-for-word index field word priority)))
             flattened (flatten all-results)
             filtered (filter #(and (map? %) (:score %) (pos? (:score %))) flattened)]
 
@@ -238,48 +333,6 @@
         (->> filtered
              (group-by :doc-id)
              (vals)
-             (map (fn [doc-results]
-                    ;; Count unique words found in this document
-                    (let [unique-words (set (map :word doc-results))
-                          ;; Also check for words that might be in title/h2 but not found by Lucene
-                          doc-hit (first doc-results)
-                          title-text (str (:title (:hit doc-hit)) " " (:h2 (:hit doc-hit)))
-                          title-text-lower (str/lower-case title-text)
-                          additional-words (filter #(str/includes? title-text-lower %) words)
-                          all-found-words (set (concat unique-words additional-words))
-                          word-count (count all-found-words)
-                          ;; Group by field within the document
-                          field-groups (group-by :hit-by doc-results)
-                          ;; Check if multiple words appear in title/h1
-                          title-words (set (map :word (filter #(#{:title :h1} (:hit-by %)) doc-results)))
-                          title-multi-word? (> (count title-words) 1)
-                          ;; Sum scores for each field, keeping the best score per field
-                          field-scores (map (fn [[field field-results]]
-                                              (apply max (map :score field-results)))
-                                            field-groups)
-                          base-score (apply + field-scores)
-                          ;; Calculate coverage ratio
-                          coverage-ratio (double (/ word-count total-words))
-                          ;; Apply aggressive bonuses for multi-word matches
-                          multi-word-bonus (cond
-                                             (>= word-count 3) 20 ; 3+ words: 20x bonus
-                                             (= word-count 2) 10 ; 2 words: 10x bonus  
-                                             :else 1) ; 1 word: no bonus
-                          ;; Additional bonus for multi-word title matches
-                          title-bonus (if title-multi-word? 5 1)
-                          ;; Coverage bonus
-                          coverage-bonus (+ 1.0 (* coverage-ratio 4.0)) ; 1x to 5x based on coverage
-                          ;; Calculate final score
-                          final-score (* base-score multi-word-bonus title-bonus coverage-bonus)
-                          ;; Use the first result as template and update the score
-                          result (first doc-results)]
-
-                      (-> result
-                          (assoc :score final-score)
-                          (assoc :debug-info {:unique-words unique-words
-                                              :additional-words additional-words
-                                              :all-found-words all-found-words
-                                              :title-text title-text})
-                          (dissoc :word)))))
+             (map #(calculate-document-score % words total-words))
              (filter map?)
              (sort-by :score >))))))
