@@ -40,7 +40,7 @@
        [:div {:class
               (cond-> "ml-4"
                 open?
-                (str " border-l-2 border-tint-3"))}
+                (str " border-l-2 border-tint-8"))}
         (for [c (:children item)]
           (render-left-navigation url c))]]
       (add-active-class item open?))))
