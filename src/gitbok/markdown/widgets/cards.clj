@@ -3,6 +3,7 @@
    [clojure.string :as str]
    [hiccup2.core]
    [gitbok.http]
+   [uui]
    [gitbok.indexing.core :as indexing]))
 
 (defn render-cards-from-table
@@ -106,9 +107,11 @@
               ;; If title contains strong tags, apply gray color directly to strong
               (into [:div {:class "text-sm hover:underline"}]
                     (map (fn [el]
-                           (if (and (vector? el) (= :strong (first el)))
-                             (assoc el 1 (merge (get el 1 {}) {:class "text-gray-600"}))
-                             el))
+                           (let [tag (if (and (vector? el) (= :strong (first el)))
+                                       ;; todo update last to use uui/raw
+                                       (assoc el 1 (merge (get el 1 {}) {:class "text-gray-600"}))
+                                       el)]
+                             (update tag (dec (count tag)) #(uui/raw %))))
                          one))
               ;; Otherwise, apply gray to the div
               (into [:div {:class "text-sm hover:underline text-gray-500"}]
