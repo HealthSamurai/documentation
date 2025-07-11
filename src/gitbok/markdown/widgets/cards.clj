@@ -108,7 +108,6 @@
               (into [:div {:class "text-sm hover:underline"}]
                     (map (fn [el]
                            (let [tag (if (and (vector? el) (= :strong (first el)))
-                                       ;; todo update last to use uui/raw
                                        (assoc el 1 (merge (get el 1 {}) {:class "text-gray-600"}))
                                        el)]
                              (update tag (dec (count tag)) #(uui/raw %))))

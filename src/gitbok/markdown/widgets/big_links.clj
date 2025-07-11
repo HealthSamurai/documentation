@@ -35,7 +35,7 @@
       [:img {:src image :alt title :class "w-6 h-6 object-contain"}]])
    [:div {:class "flex-1"}
     [:a {:href href
-         :class "text-tint-strong hover:text-primary-9 font-medium text-lg transition-colors duration-200 no-underline block w-full h-full"}
+         :class "hover:text-primary-9 text-lg transition-colors duration-200 no-underline block w-full h-full"}
      title]]
    (ico/chevron-right "chevron size-5 text-tint-strong/40")])
 
