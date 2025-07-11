@@ -48,4 +48,20 @@ document.addEventListener('DOMContentLoaded', function() {
             window.location.href = '/search';
         }
     });
+
+    // Handle Ctrl+click to open links in new tab
+    document.addEventListener('click', function(e) {
+        // Check if Ctrl key (or Cmd on Mac) is pressed during click
+        if (e.ctrlKey || e.metaKey) {
+            const target = e.target.closest('a[href]');
+            if (target && target.href) {
+                // Prevent HTMX from handling this click
+                e.stopPropagation();
+                e.preventDefault();
+                
+                // Open link in new tab using browser's default behavior
+                window.open(target.href, '_blank');
+            }
+        }
+    }, true); // Use capture phase to handle before HTMX
 });
