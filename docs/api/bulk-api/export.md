@@ -32,9 +32,9 @@ resourceType: GcpServiceAccount
 
 Set the following environment variables:
 
-* `box_bulk__storage_backend=gcp` — backend for export
-* `box_bulk__storage_gcp_service__account` — id of the `GcpServiceAccount` resource
-* `box_bulk__storage_gcp_bucket` — bucket name
+* `BOX_FHIR_BULK_STORAGE_PROVIDER: gcp` — backend for export
+* `BOX_FHIR_BULK_STORAGE_GCP_SERVICE_ACCOUNT` — id of the `GcpServiceAccount` resource
+* `BOX_FHIR_BULK_STORAGE_GCP_BUCKET` — bucket name
 
 ### Azure
 
@@ -62,8 +62,8 @@ container: azureaccountcontainer  # your account container
 
 Set the following environment variables:
 
-* `box_bulk__storage_backend=azure` — backend for export
-* `box_bulk__storage_azure_container=smartboxexporttestcontainer` — id of the `AzureContainer` resource
+* `BOX_FHIR_BULK_STORAGE_PROVIDER: azure` — backend for export
+* `BOX_FHIR_BULK_STORAGE_AZURE_CONTAINER: smartboxexporttestcontainer` — id of the `AzureContainer` resource
 
 ### AWS
 
@@ -81,9 +81,9 @@ resourceType: AwsAccount
 
 Set the following environment variables:
 
-* `box_bulk__storage_backend=aws` — backend for export
-* `box_bulk__storage_aws_account` — id of the `AwsAccount` resource
-* `box_bulk__storage_aws_bucket` — bucket name
+* `BOX_FHIR_BULK_STORAGE_PROVIDER: aws` — backend for export
+* `BOX_FHIR_BULK_STORAGE_AWS_ACCOUNT` — id of the `AwsAccount` resource
+* `BOX_FHIR_BULK_STORAGE_AWS_BUCKET` — bucket name
 
 ## Parameters
 
@@ -313,7 +313,7 @@ Prefer: respond-async
 {% endtab %}
 {% endtabs %}
 
-Delete request on the export status endpoint cancels export.
+A delete request on the export status endpoint cancels export.
 
 {% tabs %}
 {% tab title="Request" %}
@@ -333,7 +333,7 @@ DELETE /fhir/$export-status/<id>
 
 ## Troubleshooting guide
 
-$export operation expects you setup external storage, Aidbox exports data into. In most cases issues with $exoprt are the consequence of incorrect Adbox configuration. In order to exclude this run the following rpc:
+`$export` operation expects you set up external storage, Aidbox exports data into. In most cases, issues with `$exoprt` are the consequences of incorrect Adbox configuration. To exclude this, run the following rpc:
 
 ```
 POST /rpc
@@ -342,7 +342,7 @@ Content-Type: text/yaml
 method: aidbox.bulk/storage-healthcheck
 ```
 
-Normally, you should see something like this in response body:
+Normally, you should see something like this in the response body:
 
 ```
 result:
@@ -355,35 +355,35 @@ result:
       resourceType: GcpServiceAccount
 ```
 
-This means, that integration between Aidbox and your storage setup correctly.
+This means that integration between Aidbox and your storage setup is correct.
 
-What other responses you may see
+Other responses you might see:
 
 ### Storage-type not specified
 
-Storage-type not specified error means, `box_bulk__storage_backend` env variable wasn't setup. Valid values are `aws` and `gcp`.
+The storage-type not specified error means that `BOX_FHIR_BULK_STORAGE_PROVIDER` environment variable wasn't set up. Valid values are `aws` , `azure`  and `gcp`.
 
 ### Unsupported storage-type
 
-unsupported storage-type error means, `box_bulk__storage_backend` env variable has invalid value. Valid values are `aws` and `gcp`.
+The unsupported storage-type error means that `BOX_FHIR_BULK_STORAGE_PROVIDER` environment variable has an invalid value. Valid values are  `aws` , `azure`  and `gcp`.
 
 ### bulk-storage account not specified
 
 This error means account is not specified
 
-* `box_bulk__storage_gcp_service__account` for GCP
-* `box_bulk__storage_aws_account` for AWS
+* `BOX_FHIR_BULK_STORAGE_GCP_SERVICE_ACCOUNT` for GCP
+* `BOX_FHIR_BULK_STORAGE_AWS_ACCOUNT` for AWS
 
 ### Account not found
 
-This means there is no account for aws or gcp
+This means there is no account for AWS or GCP
 
 Create [AWSAccount](../../storage/aws-s3.md) or [GCPServiceAccount](../../storage/gcp-cloud-storage.md), depending on your config.
 
 ### Bucket is not specified
 
-This error means, bucket is not specified.
+This error means that the bucket is not specified.
 
-Specify `box_bulk__storage_gcp_bucket` for GCP.
+Specify `BOX_FHIR_BULK_STORAGE_GCP_BUCKET` for GCP.
 
-Specify `box_bulk__storage_aws_bucket` for AWS.
+Specify `BOX_FHIR_BULK_STORAGE_AWS_BUCKET` for AWS.
