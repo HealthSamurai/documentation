@@ -2,6 +2,7 @@
   (:require [gitbok.ui.layout :as layout]
             [gitbok.indexing.core :as indexing]
             [gitbok.search]
+            [gitbok.utils :as utils]
             [clojure.string :as str]))
 
 (defn highlight-text [text query]
@@ -19,17 +20,21 @@
            after])
         text))))
 
-(defn search-result-item [result query]
-  (let [{:keys [title h1 h2 h3 h4 text]} (:hit result)
-        uri (:uri result)
-        hit-by (:hit-by result)
-        show-details (and (not= hit-by "title")
-                          (not= hit-by "h1")
-                          (seq text))]
-    [:div {:class "mb-4"}
-     [:a.flex.gap-4.flex-row.items-center.p-4.border.border-gray-200.rounded-lg.text-base.font-medium.hover:bg-gray-50.group
+(defn search-result-item [grouped-result query]
+  (let [{:keys [results uri]} grouped-result
+        ;; Get the title from the first result
+        first-result (first results)
+        page-title (or (-> first-result :hit :title)
+                       (-> first-result :hit :h1)
+                       "Untitled")
+        ;; Check if any result is a title match
+        has-title-match? (some #(= (:hit-by %) :title) results)]
+    [:div {:class "mb-4 border border-gray-200 rounded-lg"}
+     ;; Page title - always clickable
+     [:a.flex.gap-4.flex-row.items-center.p-4.text-base.font-medium.hover:bg-gray-50.rounded-t-lg
       {:href uri}
-      [:div.size-4
+      ;; File icon
+      [:div.size-4.flex-shrink-0
        [:svg.size-4.text-gray-400
         {:fill "none"
          :stroke "currentColor"
@@ -38,14 +43,12 @@
         [:path {:stroke-linecap "round"
                 :stroke-linejoin "round"
                 :d "M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"}]]]
-      [:div.flex.flex-col.w-full
+      ;; Page title
+      [:div.flex-grow
        [:span.whitespace-break-spaces
-        (highlight-text (or title h1 h2 h3 h4 text "Untitled") query)]
-       (when show-details
-         [:div.mt-2.border-l-2.border-gray-200.pl-4
-          [:p.text-base.mb-2 (highlight-text (or h1 h2 h3 h4 title "Untitled") query)]
-          [:p.text-sm.line-clamp-3.relative (highlight-text (or text "No content available") query)]])]
-      [:div.p-2.rounded.opacity-60
+        (highlight-text page-title query)]]
+      ;; Arrow icon
+      [:div.p-2.rounded.opacity-60.flex-shrink-0
        [:svg.size-4
         {:fill "none"
          :stroke "currentColor"
@@ -53,7 +56,33 @@
          :stroke-width "2"}
         [:path {:stroke-linecap "round"
                 :stroke-linejoin "round"
-                :d "M9 5l7 7-7 7"}]]]]]))
+                :d "M9 5l7 7-7 7"}]]]]
+     ;; Match locations - only show if not a title match
+     (when-not has-title-match?
+       [:div.border-t.border-gray-100
+        (for [result results]
+          (let [{:keys [hit hit-by]} result
+                {:keys [h1 h2 h3 h4 text]} hit
+                ;; Don't show title matches as they're already in the header
+                show-match? (not= hit-by :title)]
+            (when show-match?
+              (case hit-by
+                :h1 [:a.block.px-4.py-2.hover:bg-blue-50.transition-colors
+                     {:href uri}
+                     [:div.text-base.font-semibold (highlight-text h1 query)]]
+                :h2 [:a.block.px-4.py-2.hover:bg-blue-50.transition-colors
+                     {:href (str uri "#" (utils/s->url-slug h2))}
+                     [:div.text-base.font-medium (highlight-text h2 query)]]
+                :h3 [:a.block.px-4.py-2.hover:bg-blue-50.transition-colors
+                     {:href (str uri "#" (utils/s->url-slug h3))}
+                     [:div.text-sm.font-medium (highlight-text h3 query)]]
+                :h4 [:a.block.px-4.py-2.hover:bg-blue-50.transition-colors
+                     {:href (str uri "#" (utils/s->url-slug h4))}
+                     [:div.text-sm (highlight-text h4 query)]]
+                :text [:a.block.px-4.py-2.hover:bg-blue-50.transition-colors
+                       {:href uri}
+                       [:div.text-sm.text-gray-600
+                        [:p.line-clamp-2 (highlight-text text query)]]]))))])]))
 
 (defn search-results-only [context request]
   (let [query (get-in request [:query-params :q] "")
@@ -63,7 +92,18 @@
                      (fn [res]
                        (assoc res :uri
                               (indexing/filepath->uri context (-> res :hit :filepath))))
-                     search-results)))]
+                     search-results)))
+        ;; Group results by filepath and sort by max score
+        grouped-and-sorted (when results
+                             (let [groups (group-by #(-> % :hit :filepath) results)
+                                  ;; Create vector of [filepath, results, max-score]
+                                   groups-with-scores (mapv (fn [[filepath page-results]]
+                                                              (let [max-score (apply max (map :score page-results))]
+                                                                [filepath page-results max-score]))
+                                                            groups)]
+                              ;; Sort by max score descending
+                               (sort-by #(nth % 2) > groups-with-scores)))]
+
     (if (empty? query)
       [:div.text-center.text-gray-500.py-8
        [:div.text-lg.font-medium.mb-2 "Search Documentation"]]
@@ -72,8 +112,10 @@
          [:div.text-lg.font-medium.mb-2 "No results found"]
          [:div.text-sm "Try different keywords or check spelling"]]
         [:div
-         (for [result results]
-           (search-result-item result query))]))))
+         (for [[filepath page-results _] grouped-and-sorted]
+           (search-result-item {:results page-results
+                                :filepath filepath
+                                :uri (:uri (first page-results))} query))]))))
 
 (defn search-view
   [context request]
