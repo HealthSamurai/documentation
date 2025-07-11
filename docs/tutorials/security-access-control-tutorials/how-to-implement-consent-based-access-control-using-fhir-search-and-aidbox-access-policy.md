@@ -14,7 +14,7 @@
 
 Navigate to the AIdbox REST Console.
 
-<figure><img src="../../.gitbook/assets/image (2).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/rest-console-get.jpg" alt=""><figcaption></figcaption></figure>
 
 Create two Practitioners by executing the following requests.
 

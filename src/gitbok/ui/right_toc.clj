@@ -53,7 +53,8 @@
       [:nav#toc-container
        {:class "max-w-56 basis-56 flex-shrink-0 sticky top-16 h-[calc(100vh-4rem)]
         ml-12 overflow-y-auto py-8 bg-tint-base border border-tint-subtle/50
-        shadow-sm font-content hidden lg:block"
+        shadow-sm font-content hidden lg:block
+        "
         :aria-label "On-page navigation"}
        [:ul {:class "space-y-0.5"}
         (for [item actual-items]
