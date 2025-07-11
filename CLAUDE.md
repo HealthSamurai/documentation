@@ -4,6 +4,6 @@
 4. Then, begin working on the todo items, marking them as complete as you go.
 5. Please every step of the way just give me a high level explanation of what changes you made
 6. Make every task and code change you do as simple as possible. We want to avoid making any massive or complex changes. Every change should impact as little code as possible. Everything is about simplicity.
-7. When you change .clj files, to test changes restart the server using clojure-mcp in the `user` namespace (see ";; reload server" comment).
+7. When you change .clj files, to test changes restart the server using clojure-mcp in the `user` namespace (see ";; reload server" comment approx line 20).
 8. When use styles, always prefer using tailwind classes and tailwind theme, do not use app.css if not necessary
 9. Always use sequentialthinking.

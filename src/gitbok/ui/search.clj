@@ -26,7 +26,7 @@
         show-details (and (not= hit-by "title")
                           (not= hit-by "h1")
                           (seq text))]
-    [:div {:class "mb-4 !w-full !min-w-full"}
+    [:div {:class "mb-4"}
      [:a.flex.gap-4.flex-row.items-center.p-4.border.border-gray-200.rounded-lg.text-base.font-medium.hover:bg-gray-50.group
       {:href uri}
       [:div.size-4
@@ -54,7 +54,6 @@
         [:path {:stroke-linecap "round"
                 :stroke-linejoin "round"
                 :d "M9 5l7 7-7 7"}]]]]]))
-
 
 (defn search-results-only [context request]
   (let [query (get-in request [:query-params :q] "")
@@ -96,9 +95,9 @@
                   :hx-target "#search-results"
                   :hx-indicator ".htmx-indicator"}]
          [:div.htmx-indicator.absolute.right-3.top-3
-          [:div.animate-spin.rounded-full.h-6.w-6.border-b-2.border-orange-500]]]]
+          [:div.animate-spin.rounded-full.h-6.w-6.border-b-2.border-orange-500]]]
         [:div#search-results {:class "w-full"}
-         (search-results-only context request)]]
+         (search-results-only context request)]]]
       :title "Search"
       :description "Search"
       :lastmod nil})))
