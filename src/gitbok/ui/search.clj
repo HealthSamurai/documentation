@@ -104,6 +104,7 @@
                               ;; Sort by max score descending
                                (sort-by #(nth % 2) > groups-with-scores)))]
 
+    (def gg grouped-and-sorted)
     (if (empty? query)
       [:div.text-center.text-gray-500.py-8
        [:div.text-lg.font-medium.mb-2 "Search Documentation"]]

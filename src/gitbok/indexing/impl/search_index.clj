@@ -171,30 +171,115 @@
                 [:h2 50]
                 [:h3 12]
                 [:h4 6]
-                [:text 3]]]
-    (->>
-     (for [[field priority] fields]
-       (->>
-        (concat
-         (lucene/search
-          index
-          {field q}
-          {:results-per-page 5
-           :hit->doc ld/document->map})
-         (lucene/search
-          index
-          {field q}
-          {:results-per-page 5
-           :fuzzy? true
-           :hit->doc ld/document->map}))
-        (filter seq)
-        (mapv (fn [result]
-                (-> result
-                    (update :score (partial * priority))
-                    (assoc :hit-by field)
-                    (clean-search-res))))))
+                [:text 3]]
+        ;; Split query into individual words
+        words (map str/lower-case (str/split (str/trim q) #"\s+"))
+        total-words (count words)]
 
-     (flatten)
-     (distinct)
-     (utils/distinct-by (juxt :hit-by :doc-id))
-     (sort-by :score >))))
+;; Start with single word search to verify it works
+    (if (= 1 total-words)
+      ;; Single word - use original logic
+      (let [results (->>
+                     (for [[field priority] fields]
+                       (->>
+                        (concat
+                         (lucene/search
+                          index
+                          {field q}
+                          {:results-per-page 100
+                           :hit->doc ld/document->map})
+                         (lucene/search
+                          index
+                          {field q}
+                          {:results-per-page 100
+                           :fuzzy? true
+                           :hit->doc ld/document->map}))
+                        (filter seq)
+                        (mapv (fn [result]
+                                (-> result
+                                    (update :score (partial * priority))
+                                    (assoc :hit-by field)
+                                    (clean-search-res))))))
+                     (flatten)
+                     (distinct)
+                     (utils/distinct-by (juxt :hit-by :doc-id))
+                     (sort-by :score >))]
+
+        results)
+
+      ;; Multi-word search
+      (let [all-results (for [word words
+                              :when (pos? (count word))]
+                          (for [[field priority] fields]
+                            (->>
+                             (concat
+                              (lucene/search
+                               index
+                               {field word}
+                               {:results-per-page 100
+                                :hit->doc ld/document->map})
+                              (lucene/search
+                               index
+                               {field word}
+                               {:results-per-page 100
+                                :fuzzy? true
+                                :hit->doc ld/document->map}))
+                             (filter seq)
+                             (mapv (fn [result]
+                                     (-> result
+                                         (update :score (fn [score] (* (or score 0) priority)))
+                                         (assoc :hit-by field)
+                                         (assoc :word word)
+                                         (clean-search-res)))))))
+            flattened (flatten all-results)
+            filtered (filter #(and (map? %) (:score %) (pos? (:score %))) flattened)]
+
+;; Group by document and calculate scores with aggressive multi-word bonuses
+        (->> filtered
+             (group-by :doc-id)
+             (vals)
+             (map (fn [doc-results]
+                    ;; Count unique words found in this document
+                    (let [unique-words (set (map :word doc-results))
+                          ;; Also check for words that might be in title/h2 but not found by Lucene
+                          doc-hit (first doc-results)
+                          title-text (str (:title (:hit doc-hit)) " " (:h2 (:hit doc-hit)))
+                          title-text-lower (str/lower-case title-text)
+                          additional-words (filter #(str/includes? title-text-lower %) words)
+                          all-found-words (set (concat unique-words additional-words))
+                          word-count (count all-found-words)
+                          ;; Group by field within the document
+                          field-groups (group-by :hit-by doc-results)
+                          ;; Check if multiple words appear in title/h1
+                          title-words (set (map :word (filter #(#{:title :h1} (:hit-by %)) doc-results)))
+                          title-multi-word? (> (count title-words) 1)
+                          ;; Sum scores for each field, keeping the best score per field
+                          field-scores (map (fn [[field field-results]]
+                                              (apply max (map :score field-results)))
+                                            field-groups)
+                          base-score (apply + field-scores)
+                          ;; Calculate coverage ratio
+                          coverage-ratio (double (/ word-count total-words))
+                          ;; Apply aggressive bonuses for multi-word matches
+                          multi-word-bonus (cond
+                                             (>= word-count 3) 20 ; 3+ words: 20x bonus
+                                             (= word-count 2) 10 ; 2 words: 10x bonus  
+                                             :else 1) ; 1 word: no bonus
+                          ;; Additional bonus for multi-word title matches
+                          title-bonus (if title-multi-word? 5 1)
+                          ;; Coverage bonus
+                          coverage-bonus (+ 1.0 (* coverage-ratio 4.0)) ; 1x to 5x based on coverage
+                          ;; Calculate final score
+                          final-score (* base-score multi-word-bonus title-bonus coverage-bonus)
+                          ;; Use the first result as template and update the score
+                          result (first doc-results)]
+
+                      (-> result
+                          (assoc :score final-score)
+                          (assoc :debug-info {:unique-words unique-words
+                                              :additional-words additional-words
+                                              :all-found-words all-found-words
+                                              :title-text title-text})
+                          (dissoc :word)))))
+             (filter map?)
+             (sort-by :score >))))))
