@@ -136,11 +136,6 @@ html {
   display: block;
 }
 
-/* Article content - empty class kept for Telegram instant view */
-.article__content {
-  /* Intentionally empty - used as a marker for Telegram instant view */
-}
-
 /* ================================================
    Content Container Styles (#content)
    ================================================ */
@@ -160,7 +155,7 @@ article p:not(li p) {
 }
 
 article strong {
-  @apply text-tint-10 font-bold;
+  @apply font-bold;
 }
 
 article .card strong {
