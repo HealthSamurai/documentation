@@ -85,24 +85,22 @@
                      nil))
                  href (or title-href title-filepath pic-href1 pic-href2)]]
        [:div {:href href
-              :class "card group block hover:shadow-lg transition-all duration-200 cursor-pointer"
+              :class "card group block hover:shadow-lg transition-all duration-200 cursor-pointer
+               flex flex-col bg-white border border-gray-200
+               hover:border-gray-300
+               shadow
+               rounded-sm overflow-hidden h-full
+               min-h-[150px] md:max-h-[300px]
+               transition-colors duration-200"
               :hx-get (str href "?partial=true")
               :hx-target "#content"
               ;; :hx-push-url "true"
               :hx-push-url (gitbok.http/get-absolute-url context href)
               :hx-swap "outerHTML"}
-        [:div {:class "flex flex-col bg-white border border-gray-200
-               hover:border-gray-300
-               shadow
-               rounded-sm overflow-hidden h-full
-               min-h-[150px] max-h-[300px]
-               transition-colors duration-200
-               "}
          (when img-href [:img {:src img-href :alt "card"}])
          [:div
           {:class
            (str "flex flex-col gap-0 p-4 flex-1 " (when-not img-href "justify-start"))}
-          ;; Badge if present
           (when badge
             (into [:div {:class "mb-2"}]
                   (if (seq? badge) badge [badge])))
@@ -111,7 +109,8 @@
                   (if (seq? one) one [one])))
           ;; Description
           (when two
-            (into [:p {:class "text-tint-11 text-sm group-hover:text-gray-900"}]
+            (into [:p {:class "text-tint-11
+                       text-sm group-hover:text-gray-900"}]
                   (if (seq? two) two [two])))
           (when processed-footer
-            [:div {:class "text-sm mt-2"} processed-footer])]]])]))
+            [:div {:class "text-sm mt-2"} processed-footer])]])]))

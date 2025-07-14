@@ -57,7 +57,16 @@
              ;; :hx-push-url prev-page-url
              ;; :hx-get (str prev-page-url "?partial=true")
              ;; :hx-swap "outerHTML"
-             :class "group text-sm p-2.5 flex gap-4 flex-1 flex-row-reverse items-center pl-4 border border-gray-300 rounded hover:border-orange-500 text-pretty md:p-4 md:text-base h-[80px]"}
+             :class "group text-sm
+             flex gap-4 flex-1 flex-row-reverse items-center
+             p-0
+             md:p-2.5 md:pl-4
+             border border-gray-300 rounded
+             hover:border-orange-500
+             text-pretty
+             md:p-4
+             md:text-base
+             md:h-[80px]"}
          [:span {:class "flex flex-col flex-1 text-right justify-center"}
           [:span {:class "text-xs text-gray-500"} "Previous"]
           [:span {:class "text-gray-700 group-hover:text-orange-600 line-clamp-2"} prev-page-title]]
@@ -113,15 +122,15 @@
     [:main#content {:class "flex-1 items-start pl-3"}
      [:div {:class "flex items-start"}
       [:article {:class "article__content py-8 min-w-0 flex-1
-                 px-4 sm:px-2 max-w-5xl overflow-hidden transform-3d"}
+                 sm:px-0 md:px-4 max-w-5xl overflow-hidden transform-3d"}
        (when htmx?
          [:script "window.scrollTo(0, 0); updateLastUpdated();"])
-       [:div {:class "mx-auto px-2 max-w-full sm:px-2 px-4"} body]
+       [:div {:class "mx-auto max-w-full md:px-4"} body]
        (navigation-buttons context uri)
        (let [lastupdated
              (indexing/get-lastmod context filepath)]
          (when lastupdated
-           [:p {:class "mt-4 text-gray-600"
+           [:p {:class "mt-4 text-sm text-tint-11"
                 :id "lastupdated"
                 :data-updated-at lastupdated}
             "Last updated " lastupdated]))]
