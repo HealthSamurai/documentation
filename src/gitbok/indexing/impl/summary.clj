@@ -24,12 +24,12 @@
 
 (def summary-classes
   "block py-1.5 transition-colors duration-200 ease-in-out rounded-aidbox
-   mr-2 my-0.5 clickable-summary text-small text-tint-11")
+   mr-2 my-0.5 clickable-summary text-small text-tint-11
+   hover:text-primary-9")
 
 (def leaf-classes
   (str summary-classes
        " hover:bg-tint-hover
-   hover:text-primary-9
    active:hover:bg-primary-2
    active:hover:text-primary-9"))
 
@@ -47,7 +47,7 @@
                                    :hx-swap "outerHTML"
                                    :hx-boost "false"
                                    :data-hx-boost "false"))
-     [:span {:class "flex items-center gap-2 ml-3"}
+     [:span {:class "flex items-center gap-2 ml-4"}
       title
       (when is-external
         (ico/arrow-top-right-on-square "size-4"))]]))

@@ -6,12 +6,6 @@
    [clojure.string :as str]
    [gitbok.indexing.impl.summary :as summary]))
 
-(def summary-classes
-  "hover:bg-tint-hover
-  hover:text-primary-9
-  active:hover:bg-primary-2
-  active:hover:text-primary-9")
-
 (defn add-active-class [item add?]
   (let [link-element (:title item)
         current-class (get-in link-element [1 :class] "")
@@ -37,10 +31,7 @@
         (ico/chevron-right "chevron size-3 text-small font-normal
                             group-hover:text-primary-9 transition-all
                             duration-200 transform rotate-0 group-open:rotate-90 mr-4")]
-       [:div {:class
-              (cond-> "ml-4 border-l-2 border-tint-8"
-                open?
-                (str " "))}
+       [:div {:class "ml-4 border-l-2 border-tint-8"}
         (for [c (:children item)]
           (render-left-navigation url c))]]
       (add-active-class item open?))))
@@ -51,8 +42,7 @@
     overflow-y-auto py-6 bg-tint-base border-r border-tint-subtle
     font-content lg:mr-20 space-y-4
     scrollbar
-    scrollbar-thin
-    "
+    scrollbar-thin lg:-ms-4"
     ;; todo
 ;; scrollbar-thumb-primary-9
 ;; scrollbar-thumb-rounded-full
@@ -62,7 +52,7 @@
      [:div {:class "break-words"}
       (when-not
        (str/blank? (:title item))
-        [:div {:class "mt-4 mb-1 ml-3 first:mt-2"}
+        [:div {:class "mt-4 mb-1 first:mt-2 ml-4"}
          [:span {:class "text-mini font-semibold text-tint-strong uppercase tracking-wider"}
           (:title item)]])
       (for [ch (:children item)]

@@ -110,7 +110,7 @@
                     toc-result)
                   (catch Exception _
                     nil))))]
-    [:main#content {:class "flex-1 items-start"}
+    [:main#content {:class "flex-1 items-start pl-3"}
      [:div {:class "flex items-start"}
       [:article {:class "article__content py-8 min-w-0 flex-1
                  px-4 sm:px-2 max-w-5xl overflow-hidden transform-3d"}
