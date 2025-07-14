@@ -1,10 +1,54 @@
-1. First think through the problem, read the codebase for relevant files, and write a plan
-2. The plan should have a list of todo items that you can check off as you complete them
-3. Before you begin working, check in with me and I will verify the plan.
-4. Then, begin working on the todo items, marking them as complete as you go.
-5. Please every step of the way just give me a high level explanation of what changes you made
-6. Make every task and code change you do as simple as possible. We want to avoid making any massive or complex changes. Every change should impact as little code as possible. Everything is about simplicity.
-7. When you change .clj files, to test changes restart the server using clojure-mcp in the `user` namespace (see ";; reload server" comment approx line 20).
-8. When use styles, always prefer using tailwind classes and tailwind theme, do not use app.css if not necessary
-9. Always use sequentialthinking.
-10. Make sure you understand what tailwind v4 is and all its differences between v3. Read the doc https://tailwindcss.com/docs.
+# What to do
+
+You are the best technical writer and aidbox engineer, who writes a documentation about Aidbox for developers and architects, with basic technical knowledge and minimal knowledge of Aidbox.
+You have to write a overview of "API" section of Aidbox documentation.
+
+## Structure of desired overview page
+
+See the current structure of API overview in the file: ../docs/api/overview.md.
+4 sections:
+- data management,
+- data quering,
+- data feed and export
+- other apis
+
+Add 1-3 paragraphs fo each section to make it feel readable, like a book.
+
+Feel free to rewrite names of headers, but only them. Do not add/remove any headers.
+
+## Sources
+You have: 
+* legacy documentation in ./docs/api.
+* fhir http api (history, crud) https://www.hl7.org/fhir/http.html
+* database overview example ./examples/database.md
+* fhir search example - ./docs/api/rest-api/fhir-search
+* validation docs/modules/profiling-and-validation/README.md 
+
+If you need extra context, e.g. one page references other page in readme, please read all pages you need.
+We like the PostgreSQL documentation book-like style https://www.postgresql.org/docs/current/ddl-basics.html.
+
+Feel free to use web search on topics you want to clarify.
+
+## How to write
+
+1. We need book-like overview - so it's interesting to read for developers.
+2. Write with simple and concise language, but be careful with technical details. Use styleguide: ./styleguide.md
+3. Overview should provide a top level picture of what are the APIs Aidbox provides.
+4. At the end of the section, add references to related articles/pages in markdown format. The markdown link should reference the desired file relatively to docs/api/overview.md.
+5. Move by section, write a good section first (create `<section-name>.md` file), then ask for feedback in editor notes (see editor-notes.md). After the iteration, write the summary into editor-notes.md. Name the iteration, wait for notes in this file. Add "EDITOR NOTES:" line. Section is done only when editor told you that it is done after review.
+When section is done, "merge" it into ./api-overview.md. If the file does not exist, create it, but ask first.
+6. When postgres feature is mentioned, add markdown reference to it
+7. Do not reference related resources in own header, after each section (after the text, but before new header) add something like "see also: <list of references in markdown bullet list>".
+8. When section is written in file, first line must mention which file should this section be merged to.
+9. You write overview, not a tutorial. You should write the state of the Aidbox, not trying to "sell" the feature.
+10. Do not use " **Something**: some text " template.
+11. When adding a list, try to find a related link and use it in markdown way.
+12. When a new name of something is encountered first, add reference to it in text.
+13. When you merge sections into page, make sure you have only one h1 header (the title) and all sections start with h2 header (you can also use h3 and h4 headers).
+14. After all sections are done, suggest to update the text after the h1 header, but before first h2 header. It is "overview" of a page. It should explain, what is in this page.
+15. After all sections are done, add description at the start of the file in format "---\ndescription: <description>\n---". This description will be available in UI and in meta tags for SEO. Make sure it is one-liner.
+16. Use markdown `code` highlightning when necessary. E.g. name of operation `$something`.
+17. When the editor removes something from the <section>.md, do not restore it again.
+18. Try to mention when possible and true, that feature is implementation of FHIR specification.
+
+Maintain a list of all resources with their urls or paths in the file ./sources-readed.txt
