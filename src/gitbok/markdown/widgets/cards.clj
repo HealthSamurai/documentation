@@ -85,39 +85,33 @@
                      nil))
                  href (or title-href title-filepath pic-href1 pic-href2)]]
        [:div {:href href
-              :class "block hover:shadow-lg transition-all duration-200 cursor-pointer"
+              :class "card group block hover:shadow-lg transition-all duration-200 cursor-pointer"
               :hx-get (str href "?partial=true")
               :hx-target "#content"
               ;; :hx-push-url "true"
               :hx-push-url (gitbok.http/get-absolute-url context href)
               :hx-swap "outerHTML"}
-        [:div {:class "flex flex-col bg-white border border-gray-200 hover:border-gray-300 shadow rounded-sm overflow-hidden h-full min-h-[150px] max-h-[300px] transition-colors duration-200"}
+        [:div {:class "flex flex-col bg-white border border-gray-200
+               hover:border-gray-300
+               shadow
+               rounded-sm overflow-hidden h-full
+               min-h-[150px] max-h-[300px]
+               transition-colors duration-200
+               "}
          (when img-href [:img {:src img-href :alt "card"}])
          [:div
           {:class
-           (str "flex flex-col gap-0 p-4 flex-1 "
-                (when-not img-href "justify-start"))}
+           (str "flex flex-col gap-0 p-4 flex-1 " (when-not img-href "justify-start"))}
           ;; Badge if present
           (when badge
             (into [:div {:class "mb-2"}]
                   (if (seq? badge) badge [badge])))
-          ;; Title with special handling for strong tags
           (when one
-            (if (and (seq? one) (some #(and (vector? %) (= :strong (first %))) one))
-              ;; If title contains strong tags, apply gray color directly to strong
-              (into [:div {:class "text-sm hover:underline"}]
-                    (map (fn [el]
-                           (let [tag (if (and (vector? el) (= :strong (first el)))
-                                       (assoc el 1 (merge (get el 1 {}) {:class "text-gray-600"}))
-                                       el)]
-                             (update tag (dec (count tag)) #(uui/raw %))))
-                         one))
-              ;; Otherwise, apply gray to the div
-              (into [:div {:class "text-sm hover:underline text-gray-500"}]
-                    (if (seq? one) one [one]))))
+            (into [:div {:class "text-sm text-tint-11"}]
+                  (if (seq? one) one [one])))
           ;; Description
           (when two
-            (into [:p {:class "text-gray-500 text-sm"}]
+            (into [:p {:class "text-tint-11 text-sm group-hover:text-gray-900"}]
                   (if (seq? two) two [two])))
           (when processed-footer
             [:div {:class "text-sm mt-2"} processed-footer])]]])]))

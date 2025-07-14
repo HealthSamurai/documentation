@@ -160,7 +160,11 @@ article p:not(li p) {
 }
 
 article strong {
-  @apply text-tint-12 font-semibold;
+  @apply text-tint-10 font-bold;
+}
+
+article .card strong {
+  @apply group-hover:font-bold group-hover:text-tint-12;
 }
 
 /* Special mark styling */
