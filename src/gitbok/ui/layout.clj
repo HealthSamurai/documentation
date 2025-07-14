@@ -126,8 +126,9 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                       description
                       filepath
                       lastmod
-                      section]}]
-  (let [status (if (map? content) (:status content 200) 200)
+                      section
+                      status]}]
+  (let [status (or status 200)
         uri (:uri request)
         is-hx-target (uui/hx-target request)
         is-search-page (str/includes? uri "/search")

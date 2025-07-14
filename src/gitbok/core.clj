@@ -150,9 +150,8 @@
 
           (layout/layout
            context request
-           {:content
-            {:status 404
-             :body (not-found/not-found-view context uri-without-prefix)}
+           {:content (not-found/not-found-view context uri-without-prefix)
+            :status 404
             :title "Not found"
             :description "Page not found"}))))))
 

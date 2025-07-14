@@ -31,6 +31,5 @@ document.addEventListener('DOMContentLoaded', () => {
            (for [search-res (take 5 (utils/distinct-by #(-> % :hit :title) search-results))]
              [:li
               [:a.text-blue-600.hover:text-blue-800.text-lg.flex.items-start
-               {:href (file-to-uri/filepath->uri
-                       context (:filepath (:hit search-res)))}
+               {:href (file-to-uri/filepath->uri context (:filepath (:hit search-res)))}
                (:title (:hit search-res))]])]])]]]))
