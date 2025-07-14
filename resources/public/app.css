@@ -1,7 +1,5 @@
 @import "tailwindcss";
 
-@plugin 'tailwind-scrollbar';
-
 /* Tailwind v4 Theme Configuration */
 @theme {
   /* Color System - Primary */
@@ -389,4 +387,33 @@ article .hint p {
     overflow-x: auto !important;
     white-space: nowrap !important;
   }
+}
+
+#navigation::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+#navigation::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+#navigation::-webkit-scrollbar-thumb {
+  background: transparent;
+  background-clip: content-box;
+  border: 1px solid transparent;
+  border-radius: 20px;
+  transition: background 0.3s ease;
+}
+
+#navigation:hover::-webkit-scrollbar-thumb {
+  background: var(--color-tint-7);
+}
+
+#navigation::-webkit-scrollbar-thumb:active {
+  background: var(--color-tint-7);
+}
+
+#navigation::-webkit-scrollbar-corner {
+  background: transparent;
 }
