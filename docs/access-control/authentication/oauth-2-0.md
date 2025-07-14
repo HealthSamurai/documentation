@@ -17,7 +17,7 @@ sequenceDiagram
   ClientApp ->> AS: POST /auth/token<br/>grant_type=client_credentials<br/>client_id, client_secret
   AS ->> AS: Validate client credentials
   AS ->> ClientApp: 200 OK<br/>{ "access_token": "...", "token_type": "Bearer", "expires_in": 3600 }
-  ClientApp ->> RS: GET /fhir/<resourceType><br>Authorization: Bearer access_token
+  ClientApp ->> RS: GET /fhir/&ltresourceType&gt<br>Authorization: Bearer access_token
   RS ->> AS: verify token
   AS ->> RS: Token valid
   RS ->> ClientApp: 200 OK<br/>{ response data }
@@ -48,7 +48,7 @@ sequenceDiagram
   Client->>AS: POST /token<br/>grant_type=authorization_code<br/>code, client_id, client_secret, redirect_uri
    AS->>Client: 200 OK<br/>{ "access_token": "...", "token_type": "Bearer", "expires_in": 3600 }
   
-  Client->>RS: GET /fhir/<resourceType><br/>Authorization: Bearer access_token
+  Client->>RS: GET /fhir/&ltresourceType&gt<br/>Authorization: Bearer access_token
   RS->>AS: verify token
   AS->>RS: Token valid
   RS->>Client: 200 OK { response data }
@@ -77,7 +77,7 @@ sequenceDiagram
   AS->>ClientApp: 200 OK<br/>{ "access_token": "...", "token_type": "Bearer", "expires_in": 3600 }
   RS ->> AS: verify token
   AS ->> RS: Token valid
-  ClientApp->>RS: GET /fhir<resourceType><br/>Authorization: Bearer access_token
+  ClientApp->>RS: GET /fhir&ltresourceType&gt<br/>Authorization: Bearer access_token
   RS->>ClientApp: 200 OK<br/>{ response data }
 ```
 
@@ -105,7 +105,7 @@ sequenceDiagram
   AS->>User: Login & consent UI
   User->>AS: Enter credentials & grant consent
   AS->>Client: 302 Redirect → redirect_uri<br>access_token=ACCESS_TOKEN
-  Client->>RS: GET /fhir/<resourceType><br>Authorization: Bearer access_token
+  Client->>RS: GET /fhir/&ltresourceType&gt<br>Authorization: Bearer access_token
   RS->>AS: verify token
   AS->>RS: Token valid
   RS-->>Client: 200 OK { response data }
