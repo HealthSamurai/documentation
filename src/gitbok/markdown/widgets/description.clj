@@ -65,7 +65,7 @@
             header-content (if new-desc [rendered-h1 new-desc] [rendered-h1])
             header-html (str
                          (hiccup/html
-                          (into [:header {:class "mb-8"}
+                          (into [:header {:class "mb-12"}
                                  (breadcrumb/breadcrumb context filepath)] header-content)))]
         (str
          header-html
