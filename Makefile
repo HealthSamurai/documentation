@@ -6,8 +6,9 @@ init-test:
 	mkdir -p .git/hooks
 
 init:
-	cp .git/hooks/pre-commit.sample .git/hooks/pre-commit
-	chmod +x .git/hooks/pre-commit
+	rm .git/hooks/pre-push || true
+	cp scripts/prepush.sh .git/hooks/pre-push
+	chmod +x .git/hooks/pre-push
 
 repl: init-test
 	DEV=true BASE_URL=http://localhost:8081 DOCS_PREFIX=/ clj -M:dev:nrepl:test:build
