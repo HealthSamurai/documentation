@@ -3,6 +3,7 @@
 ## Jule 2025 _`edge`_
 
 * Aidbox FHIR server
+  * Support for delegating read-only workload to the[ database read-only replica.](../database/overview.md#postgresql-with-read-only-replica)
 * Aidbox Forms
 
 ## June 2025 _`latest, 2506`_
