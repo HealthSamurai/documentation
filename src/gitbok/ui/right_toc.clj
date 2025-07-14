@@ -43,13 +43,7 @@
 
 (defn render-right-toc [parsed]
   (when (:toc parsed)
-    (let [toc-path (-> parsed :toc :children first :children)
-          ;; Handle two different TOC structures:
-          ;; 1. Items with :children (nested structure)
-          ;; 2. Items without :children (flat structure)
-          actual-items (if (and (seq toc-path) (:children (first toc-path)))
-                         (-> toc-path first :children) ; nested structure
-                         toc-path)] ; flat structure
+    (let [toc (-> parsed :toc :children first :children)]
       [:nav#toc-container
        {:class "max-w-56 basis-56 flex-shrink-0 sticky top-16 h-[calc(100vh-4rem)]
         ml-12 overflow-y-auto py-8 bg-tint-base
@@ -57,5 +51,5 @@
         "
         :aria-label "On-page navigation"}
        [:ul {:class "space-y-0.5"}
-        (for [item actual-items]
+        (for [item toc]
           (render-right-toc-item item))]])))
