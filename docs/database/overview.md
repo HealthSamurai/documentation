@@ -1,15 +1,17 @@
 ---
-description: Complete guide to Aidbox database architecture using PostgreSQL and JSONB for FHIR resource storage, CRUD operations, and querying methods.
+description: >-
+  Complete guide to Aidbox database architecture using PostgreSQL and JSONB for
+  FHIR resource storage, CRUD operations, and querying methods.
 ---
 
 # Database Overview
 
 This article explains how Aidbox stores and manages healthcare data using PostgreSQL as its database engine. You'll learn about:
 
-- **FHIR resource storage** - How Aidbox uses PostgreSQL's JSONB columns for efficient hierarchical data storage
-- **CRUD operations** - Creating, reading, updating, and deleting resources with automatic history tracking
-- **Data querying** - Three approaches: [FHIR search](https://www.hl7.org/fhir/search.html), direct SQL, and [SQL on FHIR](https://build.fhir.org/ig/FHIR/sql-on-fhir-v2/)
-- **PostgreSQL requirements** - Supported versions and deployment options
+* **FHIR resource storage** - How Aidbox uses PostgreSQL's JSONB columns for efficient hierarchical data storage
+* **CRUD operations** - Creating, reading, updating, and deleting resources with automatic history tracking
+* **Data querying** - Three approaches: [FHIR search](https://www.hl7.org/fhir/search.html), direct SQL, and [SQL on FHIR](https://build.fhir.org/ig/FHIR/sql-on-fhir-v2/)
+* **PostgreSQL requirements** - Supported versions and deployment options
 
 Whether you're implementing clinical workflows, building analytics dashboards, or optimizing database performance, this guide provides the technical foundation you need to work effectively with Aidbox's database layer.
 
@@ -59,20 +61,20 @@ Let's peek inside the `patient` table to see what's actually stored:
 SELECT * FROM patient LIMIT 1;
 ```
 
-| Column | Type | Description | Example |
-|--------|------|-------------|---------|
-| **id** | text | Resource ID | `e7c3b-4d66-74c6` |
-| **txid** | bigint | Version ID (global sequence) | `178246` |
-| **ts** | timestamptz | Last updated timestamp | `2025-01-09T10:30:00Z` |
-| **cts** | timestamptz | Created timestamp | `2025-01-09T10:00:00Z` |
-| **status** | text | Resource status | `created`, `updated`, `deleted` |
-| **resource** | jsonb | The actual FHIR resource | `{"name": [...], "gender": "male"}` |
+| Column       | Type        | Description                  | Example                             |
+| ------------ | ----------- | ---------------------------- | ----------------------------------- |
+| **id**       | text        | Resource ID                  | `e7c3b-4d66-74c6`                   |
+| **txid**     | bigint      | Version ID (global sequence) | `178246`                            |
+| **ts**       | timestamptz | Last updated timestamp       | `2025-01-09T10:30:00Z`              |
+| **cts**      | timestamptz | Created timestamp            | `2025-01-09T10:00:00Z`              |
+| **status**   | text        | Resource status              | `created`, `updated`, `deleted`     |
+| **resource** | jsonb       | The actual FHIR resource     | `{"name": [...], "gender": "male"}` |
 
-Notice what's *not* in the JSONB? The `id`, `resourceType`, `meta.lastUpdated`, and `meta.versionId` live as separate columns. This normalized approach gives you the best of both worlds:
+Notice what's _not_ in the JSONB? The `id`, `resourceType`, `meta.lastUpdated`, and `meta.versionId` live as separate columns. This normalized approach gives you the best of both worlds:
 
-- Fast queries on common fields (WHERE id = ?)
-- Full FHIR resource in one place
-- No data duplication
+* Fast queries on common fields (WHERE id = ?)
+* Full FHIR resource in one place
+* No data duplication
 
 ### Why This Design Wins
 
@@ -105,14 +107,15 @@ WHERE resource->'address'->0->>'state' = 'MA';
 The beauty is that these aren't special Aidbox queries - they're standard PostgreSQL JSON operations that any PostgreSQL client (psql, pgAdmin, DBeaver, etc.) can run.
 
 See also:
-- [Database Schema](./database-schema.md) - Detailed table structures and column definitions
-- [PostgreSQL Requirements](./postgresql-requirements.md) - Supported versions and extensions
+
+* [Database Schema](database-schema.md) - Detailed table structures and column definitions
+* [PostgreSQL Requirements](postgresql-requirements.md) - Supported versions and extensions
 
 ## How data inserted, updated and deleted?
 
 Managing healthcare data requires careful tracking of every change. The [FHIR HTTP API](https://www.hl7.org/fhir/http.html) defines standard operations for creating, reading, updating, and deleting resources, along with versioning and history management. Aidbox implements these operations efficiently while maintaining complete resource history for clinical and regulatory compliance.
 
-This section covers how Aidbox performs CRUD (Create, Read, Update, Delete) operations, manages resource history, handles bulk operations, and enables advanced transactional processing. Beyond the standard FHIR API, Aidbox provides direct SQL access for advanced queries and bulk operations - see the [Query section](#how-to-query-data) for details.
+This section covers how Aidbox performs CRUD (Create, Read, Update, Delete) operations, manages resource history, handles bulk operations, and enables advanced transactional processing. Beyond the standard FHIR API, Aidbox provides direct SQL access for advanced queries and bulk operations - see the [Query section](overview.md#how-to-query-data) for details.
 
 ### CRUD Operations with Built-in History
 
@@ -123,11 +126,12 @@ Examples shown in this section are simplified for clarity.
 #### Resource Lifecycle
 
 Each resource in Aidbox has a lifecycle tracked through the `status` column:
-- `created` - Initial resource creation
-- `updated` - Resource has been modified
-- `deleted` - Resource has been soft-deleted (only appears in history)
 
-See also: [Database Schema](./database-schema.md)
+* `created` - Initial resource creation
+* `updated` - Resource has been modified
+* `deleted` - Resource has been soft-deleted (only appears in history)
+
+See also: [Database Schema](database-schema.md)
 
 #### Creating Resources
 
@@ -184,6 +188,7 @@ LIMIT 1;
 #### Updating Resources
 
 Updates in Aidbox follow a two-step process:
+
 1. Archive the current version to history table
 2. Update the main table with new data
 
@@ -224,9 +229,10 @@ DELETE FROM patient WHERE id = 'patient-123';
 ```
 
 After deletion:
-- The resource no longer appears in the main table
-- Two records exist in history: the last version and a deletion marker
-- The resource can still be retrieved for history purposes
+
+* The resource no longer appears in the main table
+* Two records exist in history: the last version and a deletion marker
+* The resource can still be retrieved for history purposes
 
 ### History Management
 
@@ -311,9 +317,10 @@ See also: [Batch Transaction](../api/batch-transaction.md)
 [Conditional operations](https://www.hl7.org/fhir/http.html#cond) in FHIR allow creating, updating, or deleting resources based on search criteria rather than specific IDs. These operations enable stateless clients to manage resources without needing to track exact resource identifiers.
 
 Aidbox supports conditional operations with some differences from the FHIR specification:
-- Uses query parameters instead of `If-None-Exist` headers for consistency
-- Conditional create returns existing resource if match found
-- Conditional operations use the same search parameters as regular queries
+
+* Uses query parameters instead of `If-None-Exist` headers for consistency
+* Conditional create returns existing resource if match found
+* Conditional operations use the same search parameters as regular queries
 
 ```sql
 -- Example: Conditional update using SQL with CTEs
@@ -337,17 +344,17 @@ See [conditional create documentation](../api/rest-api/crud/create.md) for compl
 
 Aidbox provides several bulk operation APIs for efficient data processing:
 
-- [`$import` and `$load`](../api/bulk-api/import-and-fhir-import.md) - Asynchronous bulk import from external sources
-- [`$export` and `$dump`](../api/bulk-api/export.md) - Memory-efficient streaming export 
-- [`$dump-sql`](../api/bulk-api/dump.md) - Export SQL query results
-- [Transaction bundles](../api/batch-transaction.md) - Multiple operations in single HTTP request
-- [Batch upsert](../api/batch-transaction.md) - Lightweight collection upserting
+* [`$import` and `$load`](../api/bulk-api/import-and-fhir-import.md) - Asynchronous bulk import from external sources
+* [`$export` and `$dump`](../api/bulk-api/export.md) - Memory-efficient streaming export
+* [`$dump-sql`](../api/bulk-api/dump.md) - Export SQL query results
+* [Transaction bundles](../api/batch-transaction.md) - Multiple operations in single HTTP request
+* [Batch upsert](../api/batch-transaction.md) - Lightweight collection upserting
 
 #### SQL Bulk Operations
 
 SQL bulk operations are the underlying implementation of Aidbox's bulk APIs. When you use `$import` or `$load`, Aidbox translates these into optimized PostgreSQL operations. For direct database access, you can use these same SQL capabilities.
 
-##### Bulk Inserts with COPY
+**Bulk Inserts with COPY**
 
 For high-performance data import, use PostgreSQL's [COPY command](https://www.postgresql.org/docs/current/sql-copy.html):
 
@@ -363,7 +370,7 @@ COPY patient (id, txid, status, resource)
 FROM '/data/patients.csv' WITH (FORMAT csv, HEADER true);
 ```
 
-##### Bulk Updates
+**Bulk Updates**
 
 ```sql
 -- Update all patients in a city
@@ -374,7 +381,7 @@ SET resource = jsonb_set(resource, '{address,0,city}', '"New York"'),
 WHERE resource->'address'->0->>'city' = 'NY';
 ```
 
-##### Bulk Deletes
+**Bulk Deletes**
 
 ```sql
 -- Archive and delete inactive patients
@@ -392,7 +399,7 @@ DELETE FROM patient
 WHERE id IN (SELECT id FROM to_delete);
 ```
 
-See also: [Bulk API](../api/bulk-api/README.md)
+See also: [Bulk API](../api/bulk-api/)
 
 ## How to query data?
 
@@ -419,7 +426,7 @@ SELECT * FROM observation
 WHERE jsonb_path_query_first(resource, '$.subject.reference') = 'Patient/123';
 ```
 
-#### Token Search  
+#### Token Search
 
 [Token searches](https://www.hl7.org/fhir/search.html#token) use exact matching for coded values like identifiers:
 
@@ -452,7 +459,7 @@ WHERE jsonb_path_query_array(
 )::text ILIKE '%Smith%';
 ```
 
-See also: [FHIR Search](../api/rest-api/fhir-search/README.md)
+See also: [FHIR Search](../api/rest-api/fhir-search/)
 
 ### Direct SQL Access
 
@@ -504,9 +511,10 @@ WHERE resource::text ILIKE '%Boston%';
 
 Aidbox provides additional SQL functions for working with FHIR resources.
 
-See also: 
-- [Aidbox SQL Functions](../reference/aidbox-sql-functions.md)
-- [SQL Endpoints](../api/rest-api/other/sql-endpoints.md)
+See also:
+
+* [Aidbox SQL Functions](../reference/aidbox-sql-functions.md)
+* [SQL Endpoints](../api/rest-api/other/sql-endpoints.md)
 
 ### SQL on FHIR
 
@@ -601,19 +609,18 @@ GROUP BY month, loc.name
 ORDER BY month, encounter_count DESC;
 ```
 
-See also: [SQL on FHIR](../modules/sql-on-fhir/README.md)
+See also: [SQL on FHIR](../modules/sql-on-fhir/)
 
 ### PostgreSQL with Read-only Replica
 
 Aidbox supports delegating read-only queries to a PostgreSQL read-only replica. This feature addresses several critical challenges in high-load FHIR server deployments:
-- Resource Isolation: Prevents poorly performing read queries from affecting the primary database's performance
-- Load Distribution: Distributes database load across multiple database servers
-- Improved Read Performance: Enhances performance for query-heavy workloads
-- System Resilience: Ensures write operations remain responsive even under heavy read load
 
-By using a read-only replica, you can isolate resource-intensive read operations from write operations, 
-preventing situations where a poorly performing search query might consume all database resources 
-and impact overall system availability.
+* Resource Isolation: Prevents poorly performing read queries from affecting the primary database's performance
+* Load Distribution: Distributes database load across multiple database servers
+* Improved Read Performance: Enhances performance for query-heavy workloads
+* System Resilience: Ensures write operations remain responsive even under heavy read load
+
+By using a read-only replica, you can isolate resource-intensive read operations from write operations, preventing situations where a poorly performing search query might consume all database resources and impact overall system availability.
 
 ```mermaid
 graph LR
@@ -624,18 +631,19 @@ graph LR
     aidbox <-->|Reads/Writes| primary
     replica -->|Reads| aidbox
 ```
-{% embed url="https://github.com/Aidbox/examples/tree/main/aidbox-with-ro-replica" title="Aidbox Read-only Replica example" %}
 
-{% content-ref url="../reference/settings/database#read-only-replica" %}
-[Aidbox Database Settings](../reference/settings/database#read-only-replica)
+{% embed url="https://github.com/Aidbox/examples/tree/main/aidbox-with-ro-replica" %}
+
+{% content-ref url="../reference/settings/database.md" %}
+[database.md](../reference/settings/database.md)
 {% endcontent-ref %}
 
 ## Which PostgreSQL can be used with Aidbox?
 
-Aidbox requires [PostgreSQL](https://www.postgresql.org/) version 12 or higher to leverage advanced JSONB features including JSON path support. 
+Aidbox requires [PostgreSQL](https://www.postgresql.org/) version 12 or higher to leverage advanced JSONB features including JSON path support.
 
-Aidbox actively supports the three most recent PostgreSQL versions (currently 17, 16, and 15) and is compatible with all deployment options including cloud-managed services like AWS RDS, Google Cloud SQL, and Azure Database, as well as self-hosted and on-premises installations. 
+Aidbox actively supports the three most recent PostgreSQL versions (currently 17, 16, and 15) and is compatible with all deployment options including cloud-managed services like AWS RDS, Google Cloud SQL, and Azure Database, as well as self-hosted and on-premises installations.
 
-Aidbox automatically handles database initialization, schema migrations, and provides optional [AidboxDB](aidboxdb-image/README.md) - a PostgreSQL distribution with Aidbox-specific extensions.
+Aidbox automatically handles database initialization, schema migrations, and provides optional [AidboxDB](aidboxdb-image/) - a PostgreSQL distribution with Aidbox-specific extensions.
 
-See also: [Requirements](./postgresql-requirements.md)
+See also: [Requirements](postgresql-requirements.md)
