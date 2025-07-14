@@ -8,7 +8,7 @@ Healthcare systems must handle complex data workflows while maintaining integrit
 
 At the heart of any healthcare system lies the ability to create, read, update, and delete clinical resources - the fundamental CRUD operations that power everything from patient registration to medication orders. Aidbox implements these operations following the FHIR RESTful API specification, where each resource type gets its own endpoint and standard HTTP methods provide predictable behavior across all resource types. When a nurse creates a new patient record, updates vital signs, or a physician reviews medical history, they're using these CRUD APIs behind the scenes, with Aidbox ensuring each operation maintains data consistency through PostgreSQL's ACID transactions.
 
-The RESTful design means developers work with familiar HTTP patterns: POST to create resources, GET to retrieve them, PUT to update, and DELETE to remove. Each operation returns appropriate HTTP status codes and follows FHIR's versioning strategy through ETags and the \_history endpoint. For instance, creating a Patient resource returns a 201 status with the Location header pointing to the newly created resource.
+The RESTful design means developers work with familiar HTTP patterns: POST to create resources, GET to retrieve them, PUT to update, and DELETE to remove. Each operation returns appropriate HTTP status codes and follows FHIR's versioning strategy through ETags and the `\_history` endpoint. For instance, creating a Patient resource returns a 201 status with the Location header pointing to the newly created resource.
 
 See also:
 
@@ -17,12 +17,41 @@ See also:
 
 ### Validation
 
-Healthcare data validation ensures that clinical information conforms to predefined constraints and business rules. Aidbox uses [FHIR Schema](../modules/profiling-and-validation/fhir-schema-validator/) validation engine -  an engine that uses FHIR Schema format internally. FHIR Schema is a developer-friendly format that simplifies FHIR StructureDefinitions into intuitive, JSON Schema-like representations. FHIR Schema validation engine provides enhanced performance, supports advanced features like FHIRPath invariants and slicing, and offers clearer error messages compared to traditional validation approaches.
+Healthcare data validation ensures that clinical information conforms to predefined constraints and business rules. Aidbox uses [FHIR Schema](../modules/profiling-and-validation/fhir-schema-validator/) validation engine -  an engine that uses FHIR Schema format internally. FHIR Schema is a developer-friendly format that simplifies FHIR StructureDefinitions into intuitive, JSON Schema-like representations. FHIR Schema validation engine provides enhanced performance, supports [advanced features](../modules/profiling-and-validation/fhir-schema-validator#validator-features) like FHIRPath invariants and slicing.
 
 Aidbox provides two types of validation:
 
 * **Automatic validation**: Occurs during create/update operations to prevent invalid data from entering the system
 * **Explicit validation**: The `$validate` operation checks resources without persisting them, useful for testing and form validation
+
+```mermaid
+flowchart TD
+    subgraph "Automatic Validation"
+        A1[Client: POST/PUT Resource]
+        A2[FHIR Schema Validation]
+        A3{Valid?}
+        A4[Save to Database]
+        A5[Return Success]
+        A6[Return Validation Errors]
+        
+        A1 --> A2 --> A3
+        A3 -->|Yes| A4 --> A5
+        A3 -->|No| A6
+    end
+    
+    subgraph "Explicit Validation"
+        B1[Client: POST /$validate]
+        B2[FHIR Schema Validation]
+        B3[Return Validation Results]
+        
+        B1 --> B2 --> B3
+    end
+    
+    style A4 fill:#90EE90
+    style A5 fill:#90EE90
+    style A6 fill:#FFB6C1
+    style B3 fill:#87CEEB
+```
 
 For example, validating a Patient resource checks required fields like gender codes, date formats, and identifier systems:
 
@@ -42,6 +71,30 @@ See also:
 ### History
 
 In healthcare, knowing not just what data looks like now, but how it changed over time, is crucial for understanding patient journeys and tracking resource evolution. Aidbox automatically tracks every change to every resource, maintaining version history that captures what changed and when. This history API enables clinical workflows like reviewing how a patient's condition evolved, understanding medication adjustments over time, or retrieving previous versions of resources.
+
+```mermaid
+graph LR
+    subgraph "patient_history"
+        V1[V1]
+        V2[V2]
+        V3[V3]
+    end
+    
+    subgraph "patient"
+        V4[current]
+    end
+    
+    V1 --> V2 --> V3 --> V4
+    
+    subgraph "History API"
+        HIST[GET /fhir/Patient/123/_history]
+    end
+    
+    HIST -.-> V1
+    HIST -.-> V2
+    HIST -.-> V3
+    HIST -.-> V4
+```
 
 The history mechanism works at two levels: instance history tracks changes to individual resources, and type history shows all changes across a resource type. Each history entry includes the complete resource state at that point in time, the HTTP method used (POST, PUT, DELETE), version identifiers, and timestamps. For example, `GET /fhir/Patient/123/_history` retrieves all versions of a specific patient, while `GET /fhir/Patient/_history?_since=2024-01-01` shows all patient changes since a specific date.
 
@@ -130,6 +183,23 @@ See also:
 
 Healthcare analytics and reporting often require complex queries that go beyond what FHIR search can express - aggregating data across multiple resources, performing statistical analysis, or generating custom reports. Aidbox implements the [SQL-on-FHIR specification](https://build.fhir.org/ig/HL7/sql-on-fhir-v2/), which bridges this gap by allowing you to write SQL queries directly against FHIR data, treating resources as relational tables while maintaining FHIR's semantic structure.
 
+```mermaid
+graph LR
+    subgraph "FHIR Resource"
+        JSON[Patient JSON<br/>with nested data: <br/>array of names, <br/>array of addresses]
+    end
+    
+    subgraph "ViewDefinition"
+        VD[Flattens JSON<br/>to columns]
+    end
+    
+    subgraph "SQL View"
+        TABLE["id | family | city<br/>1 | Smith | Boston"]
+    end
+    
+    JSON --> VD --> TABLE
+```
+
 The SQL-on-FHIR implementation provides flat views of FHIR resources that can be queried using standard SQL, making it possible to write complex analytical queries using familiar SQL syntax. For example, you can join Patient and Observation resources to analyze lab trends, aggregate medication data across populations, or generate custom reports that combine data from multiple resource types. This approach enables seamless integration with existing analytical tools and BI platforms that expect SQL interfaces.
 
 Aidbox uses [ViewDefinition](https://build.fhir.org/ig/FHIR/sql-on-fhir-v2/StructureDefinition-ViewDefinition.html) resources to define these flat views, automatically creating and maintaining them to ensure they stay synchronized with the underlying FHIR data while providing the performance benefits of PostgreSQL's query optimizer.
@@ -152,6 +222,28 @@ See also:
 ### GraphQL
 
 Modern healthcare applications often need to retrieve complex, nested data structures - a patient's complete medical history including encounters, observations, medications, and procedures, all in a single request. GraphQL provides a flexible query language that allows clients to specify exactly what data they need, reducing over-fetching and under-fetching while providing a single endpoint for all data access.
+
+For example, this GraphQL query retrieves a patient with their name and managing organization in a single request:
+
+```graphql
+query {
+  PatientList {
+    id
+    name {
+      given
+    }
+    managingOrganization {
+      id
+      resource {
+        ... on Organization {
+          name
+          id
+        }
+      }
+    }
+  }
+}
+```
 
 Aidbox's GraphQL API is based on the [FHIR GraphQL specification](https://build.fhir.org/graphql.html) and maps FHIR resources to GraphQL types, allowing you to query FHIR data using GraphQL syntax. For example, a single GraphQL query can retrieve a patient with all their encounters, observations, and medications, with the exact fields and relationships you specify. This approach is particularly valuable for mobile applications and single-page applications that need to minimize network requests.
 
