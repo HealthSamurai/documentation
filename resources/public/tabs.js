@@ -1,11 +1,11 @@
 function switchTab(button, tabIndex) {
-    const tabContainer = button.closest('.bg-white');
+    const tabContainer = button.closest('.bg-tint-1');
     const buttons = tabContainer.querySelectorAll('button[data-tab]');
     const contents = tabContainer.querySelectorAll('.tab-content');
 
     buttons.forEach(btn => {
-        btn.classList.remove('border-blue-500', 'text-blue-600');
-        btn.classList.add('border-transparent', 'text-gray-500');
+        btn.classList.remove('border-primary-9', 'text-primary-9');
+        btn.classList.add('border-transparent', 'text-tint-9');
     });
 
     contents.forEach(content => {
@@ -13,8 +13,8 @@ function switchTab(button, tabIndex) {
         content.classList.remove('block');
     });
 
-    button.classList.remove('border-transparent', 'text-gray-500');
-    button.classList.add('border-blue-500', 'text-blue-600');
+    button.classList.remove('border-transparent', 'text-tint-9');
+    button.classList.add('border-primary-9', 'text-primary-9');
 
     const targetContent = tabContainer.querySelector(`.tab-content[data-tab="${tabIndex}"]`);
     if (targetContent) {

@@ -51,7 +51,7 @@
   flex gap-4 flex-1 items-center
   p-2.5
   border border-tint-5 rounded
-  hover:border-orange-500
+  hover:border-primary-9
   text-pretty
   md:text-base
   md:h-[80px]")
@@ -70,8 +70,8 @@
              :class (str nav-button-classes " flex-row-reverse")}
          [:span {:class "flex flex-col flex-1 text-right justify-center"}
           [:span {:class "text-xs text-tint-9"} "Previous"]
-          [:span {:class "text-tint-11 group-hover:text-orange-600 line-clamp-2"} prev-page-title]]
-         [:svg {:class "size-4 text-tint-11 group-hover:text-orange-600 flex-shrink-0"
+          [:span {:class "text-tint-11 group-hover:text-primary-9 line-clamp-2"} prev-page-title]]
+         [:svg {:class "size-4 text-tint-11 group-hover:text-primary-9 flex-shrink-0"
                 :fill "none"
                 :stroke "currentColor"
                 :viewBox "0 0 24 24"
@@ -89,8 +89,8 @@
              :class nav-button-classes}
          [:span {:class "flex flex-col flex-1 justify-center"}
           [:span {:class "text-xs text-tint-9"} "Next"]
-          [:span {:class "text-tint-11 group-hover:text-orange-600 line-clamp-2"} next-page-title]]
-         [:svg {:class "size-4 text-tint-11 group-hover:text-orange-600 flex-shrink-0"
+          [:span {:class "text-tint-11 group-hover:text-primary-9 line-clamp-2"} next-page-title]]
+         [:svg {:class "size-4 text-tint-11 group-hover:text-primary-9 flex-shrink-0"
                 :fill "none"
                 :stroke "currentColor"
                 :viewBox "0 0 24 24"

@@ -15,12 +15,12 @@
    "!DANGER" (ico/exclamation-triangle "size-5 text-danger-9" :outline)})
 
 (def hint-colors
-  {"!NOTE" {:bg "bg-info-2" :border "border-info-3" :text "text-info-12"}
-   "!INFO" {:bg "bg-info-2" :border "border-info-3" :text "text-info-12"}
-   "!SUCCESS" {:bg "bg-success-2" :border "border-success-3" :text "text-success-12"}
-   "!TIP" {:bg "bg-success-2" :border "border-success-3" :text "text-success-12"}
-   "!WARNING" {:bg "bg-warning-2" :border "border-warning-3" :text "text-warning-12"}
-   "!DANGER" {:bg "bg-danger-2" :border "border-danger-3" :text "text-danger-12"}})
+  {"!NOTE" {:bg "bg-info-2" :text "text-info-12"}
+   "!INFO" {:bg "bg-info-2" :text "text-info-12"}
+   "!SUCCESS" {:bg "bg-success-2" :text "text-success-12"}
+   "!TIP" {:bg "bg-success-2" :text "text-success-12"}
+   "!WARNING" {:bg "bg-warning-2" :text "text-warning-12"}
+   "!DANGER" {:bg "bg-danger-2" :text "text-danger-12"}})
 
 (defn find-by-type [m target-type]
   (loop [current m]
@@ -42,7 +42,7 @@
         typ1 (second (re-matches #"\[(.*)\].*" start))
         typ (or typ1 "!NOTE")
         colors (get hint-colors typ
-                    {:bg "bg-info-2" :border "border-info-3" :text "text-info-12"})
+                    {:bg "bg-info-2" :text "text-info-12"})
         icon (get hint-icons typ
                   (ico/information-circle "size-5"))
         content
@@ -57,7 +57,7 @@
           (:content node))
 
         class
-        (str "my-4 rounded-lg border p-4 " (:bg colors) " " (:border colors) " " (:text colors))]
+        (str "my-4 rounded-lg p-4 " (:bg colors) " " (:text colors))]
     [:div
      {:class class}
      [:div {:class "flex gap-3"}

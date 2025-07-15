@@ -55,19 +55,19 @@
   --color-info-3: rgb(219, 234, 254);
   --color-info-9: rgb(59, 130, 246);
   --color-info-12: rgb(30, 58, 138);
-  
+
   /* Success (emerald-based) */
   --color-success-2: rgb(209, 250, 229);
   --color-success-3: rgb(167, 243, 208);
   --color-success-9: rgb(16, 185, 129);
   --color-success-12: rgb(4, 120, 87);
-  
+
   /* Warning (amber-based) */
-  --color-warning-2: rgb(254, 243, 199);
+  --color-warning-2: rgb(255, 244, 236);
   --color-warning-3: rgb(253, 230, 138);
   --color-warning-9: rgb(245, 158, 11);
   --color-warning-12: rgb(146, 64, 14);
-  
+
   /* Danger (red-based) */
   --color-danger-2: rgb(254, 226, 226);
   --color-danger-3: rgb(252, 165, 165);
@@ -83,6 +83,7 @@
   --font-sans: Inter, "Inter Fallback", system-ui, arial;
   --font-mono: "IBM Plex Mono", monospace;
   --font-code: "JetBrains Mono", ui-monospace, Menlo, Monaco, "Cascadia Mono", "Segoe UI Mono", "Roboto Mono", "Oxygen Mono", "Ubuntu Monospace", "Source Code Pro", "Fira Mono", "Droid Sans Mono", "Courier New", monospace;
+  --font-content: Inter, "Inter Fallback", system-ui, arial;
 
   /* Font Sizes - Tailwind v4 syntax (Scalar/GitBook compatible) */
   --text-micro: 0.75rem;  /* 12px - scalar-micro */

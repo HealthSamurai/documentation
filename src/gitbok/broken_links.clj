@@ -29,7 +29,7 @@
 ;;          [:summary {:class "w-full border-b border-tint-4 py-1 flex items-center space-x-4 cursor-pointer"}
 ;;           [:b {:class "flex-1"} (uui/raw (:title x))]
 ;;           [:a {:class "" :href (str/replace (:path x) #"^docs" "")} "link"]
-;;           [:b {:class "text-red-500"} "(" (count (:broken-links x)) ")"]]
+;;           [:b {:class "text-danger-9"} "(" (count (:broken-links x)) ")"]]
 ;;          [:div {:class "py-6 mb-4"}
 ;;           [:table.uui
 ;;            [:thead [:tr [:th "Title"] [:th "href"]]]
@@ -39,4 +39,4 @@
 ;;                [:td (uui/raw (last bl))]
 ;;                [:td
 ;;                 [:a {:href (first bl)}
-;;                  [:span {:class "text-red-500"} (first bl)]]]])]]]]))]))
+;;                  [:span {:class "text-danger-9"} (first bl)]]]])]]]]))]))

@@ -16,7 +16,7 @@
               after (subs text (+ index (count query)))]
           [:span
            before
-           [:span {:class "bg-orange-600 text-tint-1 p-1 px-0.5 -mx-0.5 py-0.5 rounded"} match]
+           [:span {:class "bg-warning-2 text-tint-12 p-1 px-0.5 -mx-0.5 py-0.5 rounded"} match]
            after])
         text))))
 
@@ -35,7 +35,7 @@
       {:href uri}
       ;; File icon
       [:div.size-4.flex-shrink-0
-       [:svg.size-4.text-tint-6
+       [:svg.size-4.text-tint-9
         {:fill "none"
          :stroke "currentColor"
          :viewBox "0 0 24 24"
@@ -138,7 +138,7 @@
                   :hx-target "#search-results"
                   :hx-indicator ".htmx-indicator"}]
          [:div.htmx-indicator.absolute.right-3.top-3
-          [:div.animate-spin.rounded-full.h-6.w-6.border-b-2.border-orange-500]]]
+          [:div.animate-spin.rounded-full.h-6.w-6.border-b-2.border-warning-9]]]
         [:div#search-results {:class "w-full"}
          (search-results-only context request)]]]
       :title "Search"
