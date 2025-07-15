@@ -105,7 +105,37 @@ See also:
 
 ### Bundle
 
-Real-world healthcare operations rarely involve single, isolated data changes. Admitting a patient might require creating a Patient resource, an Encounter, multiple Observations, and updating various other records - all of which must succeed or fail together. FHIR Bundles solve this by packaging multiple operations into a single atomic transaction. Aidbox's Bundle API processes these multi-operation requests within a single PostgreSQL transaction, ensuring data consistency even in complex workflows.
+Real-world healthcare operations rarely involve single, isolated data changes. Admitting a patient might require creating a Patient resource, an Encounter, multiple Observations, and updating various other records - all of which must succeed or fail together. FHIR Bundles resource solve this by packaging multiple operations into a single atomic transaction. Aidbox's Bundle API processes these multi-operation requests within a single PostgreSQL transaction, ensuring data consistency even in complex workflows.
+
+```http
+POST /fhir
+accept: application/json
+content-type: application/json
+
+{
+  "type": "transaction",
+  "entry": [
+    {
+      "resource": {
+        "gender": "male"
+      },
+      "request": {
+        "method": "PUT",
+        "url": "/Practitioner/pr1"
+      }
+    },
+    {
+      "request": {
+        "method": "POST",
+        "url": "/Patient"
+      },
+      "resource": {
+        "gender": "male"
+      }
+    }
+  ]
+}
+```
 
 Bundles support different processing modes for different use cases. Transaction bundles ensure all-or-nothing processing where every operation must succeed or the entire bundle rolls back - critical for maintaining referential integrity. Batch bundles process operations independently, continuing even if individual operations fail - useful for bulk updates where partial success is acceptable. Message bundles carry event notifications with guaranteed delivery semantics, while document bundles package complete clinical documents like discharge summaries with all their referenced resources.
 
@@ -128,6 +158,45 @@ Healthcare data migrations and integrations often involve millions of records fr
 * Bulk loading of research datasets or population health data
 
 Traditional RESTful APIs, while perfect for real-time operations, struggle with such volumes. Aidbox's bulk import APIs provide two complementary approaches: `$load` for synchronous imports when you need immediate confirmation, and `$import` for asynchronous processing of massive datasets.
+
+```mermaid
+flowchart LR
+    subgraph "External Storage"
+        S3[Cloud Storage]
+    end
+    
+    subgraph "$load (Synchronous)"
+        L1[Upload NDJSON]
+        L2[Stream Processing]
+        L3[PostgreSQL COPY]
+        L4[Immediate Response]
+        
+        L1 --> L2 --> L3 --> L4
+    end
+    
+    subgraph "$import (Asynchronous)"
+        I1[Submit Import Job]
+        I2[Job Queue]
+        I3[Background Processing]
+        I4[PostgreSQL COPY]
+        I5[Job Status API]
+        
+        I1 --> I2 --> I3 --> I4 --> I5
+    end
+    
+    subgraph "Database"
+        DB[(PostgreSQL)]
+    end
+    
+    S3 -->|NDJSON| L1
+    S3 -->|NDJSON| I1
+    L3 --> DB
+    I4 --> DB
+    
+    style L4 fill:#90EE90
+    style I5 fill:#87CEEB
+    style DB fill:#E6E6FA
+```
 
 The choice between `$load` and `$import` depends on your specific use case. The `$load` operation processes data synchronously, making it ideal for smaller datasets (up to hundreds of thousands of records) where you need immediate feedback about success or failure. It streams NDJSON data directly into PostgreSQL using [COPY](https://www.postgresql.org/docs/current/sql-copy.html) commands, providing real-time progress and error reporting. The `$import` operation handles truly massive datasets asynchronously, accepting data via URLs or direct upload, queuing the import job, and processing millions of records in the background while your application continues other work.
 
@@ -200,7 +269,7 @@ graph LR
     JSON --> VD --> TABLE
 ```
 
-The SQL-on-FHIR implementation provides flat views of FHIR resources that can be queried using standard SQL, making it possible to write complex analytical queries using familiar SQL syntax. For example, you can join Patient and Observation resources to analyze lab trends, aggregate medication data across populations, or generate custom reports that combine data from multiple resource types. This approach enables seamless integration with existing analytical tools and BI platforms that expect SQL interfaces.
+The SQL-on-FHIR implementation provides flat views of FHIR resources that can be queried using standard SQL, making it possible to write complex analytical queries using familiar SQL syntax. For example, you can join Patient and Observation resources to analyze lab trends, aggregate medication data across populations, or generate custom reports that combine data from multiple resource types. This approach enables seamless integration with **existing analytical tools** and **BI platforms** that expect SQL interfaces.
 
 Aidbox uses [ViewDefinition](https://build.fhir.org/ig/FHIR/sql-on-fhir-v2/StructureDefinition-ViewDefinition.html) resources to define these flat views, automatically creating and maintaining them to ensure they stay synchronized with the underlying FHIR data while providing the performance benefits of PostgreSQL's query optimizer.
 
@@ -256,6 +325,35 @@ See also:
 ### $everything
 
 Clinical workflows often require a complete view of a patient's data - all their encounters, observations, medications, procedures, and other resources in one comprehensive dataset. The `$everything` operation provides this capability by retrieving all resources related to a specific patient or other entity, creating a complete clinical summary that's essential for care coordination and patient handoffs.
+
+```mermaid
+sequenceDiagram
+    participant Client
+    participant Aidbox
+    participant Database
+    
+    Client->>+Aidbox: GET /Patient/123/$everything
+    
+    Note over Aidbox: Resource Discovery Phase
+    Aidbox->>+Database: Query Patient/123
+    Database-->>-Aidbox: Patient resource
+    
+    Aidbox->>+Database: Query Encounters for Patient/123
+    Database-->>-Aidbox: Related Encounters
+    
+    Aidbox->>+Database: Query Observations for Encounters
+    Database-->>-Aidbox: Observations
+    
+    Aidbox->>+Database: Query Medications for Patient/123
+    Database-->>-Aidbox: Medications
+    
+    Aidbox->>+Database: Query Procedures, Conditions, etc.
+    Database-->>-Aidbox: Other related resources
+    
+    Note over Aidbox: Bundle Assembly Phase
+    
+    Aidbox-->>-Client: FHIR Bundle with complete<br/>clinical summary
+```
 
 The operation follows the [FHIR $everything specification](https://www.hl7.org/fhir/operation-patient-everything.html), which defines how to retrieve all resources related to a patient.
 
