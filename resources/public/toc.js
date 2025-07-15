@@ -128,32 +128,49 @@ document.addEventListener('keydown', function (e) {
 });
 
 
-// Disable HTMX boost for all navigation links
+// Initialize navigation on page load
 document.addEventListener('DOMContentLoaded', function () {
   if (!document.body) return;
-
-  const navLinks = document.querySelectorAll('#navigation a');
-  navLinks.forEach(link => {
-    link.setAttribute('data-hx-boost', 'false');
-  });
-
-  // Update active navigation item on page load
   updateActiveNavItem(window.location.pathname);
 });
 
-// Re-disable HTMX boost after HTMX content swaps
-document.addEventListener('htmx:afterSwap', function () {
-  if (!document.body) return;
-  const navLinks = document.querySelectorAll('#navigation a');
-  navLinks.forEach(link => {
-    link.setAttribute('data-hx-boost', 'false');
-  });
+// Clear any existing HTMX cache to prevent quota issues
+document.addEventListener('DOMContentLoaded', function() {
+  try {
+    // Clear localStorage entries that might be used by HTMX
+    for (let i = localStorage.length - 1; i >= 0; i--) {
+      const key = localStorage.key(i);
+      if (key && key.startsWith('htmx-')) {
+        localStorage.removeItem(key);
+      }
+    }
+  } catch (e) {
+    console.warn('Could not clear HTMX cache:', e);
+  }
 });
 
-// Update active nav item after HTMX settles
-document.addEventListener('htmx:afterSettle', function () {
-  if (!document.body) return;
-  updateActiveNavItem(window.location.pathname);
+// Handle HTMX errors
+document.addEventListener('htmx:historyCacheError', function(event) {
+  console.warn('HTMX history cache error:', event.detail);
+  
+  // Clear storage to prevent further quota issues
+  try {
+    localStorage.clear();
+    sessionStorage.clear();
+  } catch (e) {
+    console.warn('Could not clear storage:', e);
+  }
+  
+  // Prevent the error from bubbling up
+  event.preventDefault();
+  event.stopPropagation();
+  
+  // Force reload the current page to avoid broken state
+  window.location.reload();
+});
+
+document.addEventListener('htmx:responseError', function(event) {
+  console.warn('HTMX response error:', event.detail);
 });
 
 // Handle modifier key clicks for navigation links
