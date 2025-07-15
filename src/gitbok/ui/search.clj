@@ -16,7 +16,7 @@
               after (subs text (+ index (count query)))]
           [:span
            before
-           [:span {:class "bg-orange-600 text-white p-1 px-0.5 -mx-0.5 py-0.5 rounded"} match]
+           [:span {:class "bg-orange-600 text-tint-1 p-1 px-0.5 -mx-0.5 py-0.5 rounded"} match]
            after])
         text))))
 
@@ -29,13 +29,13 @@
                        "Untitled")
         ;; Check if any result is a title match
         has-title-match? (some #(= (:hit-by %) :title) results)]
-    [:div {:class "mb-4 border border-gray-200 rounded-lg"}
+    [:div {:class "mb-4 border border-tint-4 rounded-lg"}
      ;; Page title - always clickable
-     [:a.flex.gap-4.flex-row.items-center.p-4.text-base.font-medium.hover:bg-gray-50.rounded-t-lg
+     [:a.flex.gap-4.flex-row.items-center.p-4.text-base.font-medium.hover:bg-tint-2.rounded-t-lg
       {:href uri}
       ;; File icon
       [:div.size-4.flex-shrink-0
-       [:svg.size-4.text-gray-400
+       [:svg.size-4.text-tint-6
         {:fill "none"
          :stroke "currentColor"
          :viewBox "0 0 24 24"
@@ -59,7 +59,7 @@
                 :d "M9 5l7 7-7 7"}]]]]
      ;; Match locations - only show if not a title match
      (when-not has-title-match?
-       [:div.border-t.border-gray-100
+       [:div.border-t.border-tint-3
         (for [result results]
           (let [{:keys [hit hit-by]} result
                 {:keys [h1 h2 h3 h4 text]} hit
@@ -67,21 +67,21 @@
                 show-match? (not= hit-by :title)]
             (when show-match?
               (case hit-by
-                :h1 [:a.block.px-4.py-2.hover:bg-blue-50.transition-colors
+                :h1 [:a.block.px-4.py-2.hover:bg-primary-2.transition-colors
                      {:href uri}
                      [:div.text-base.font-semibold (highlight-text h1 query)]]
-                :h2 [:a.block.px-4.py-2.hover:bg-blue-50.transition-colors
+                :h2 [:a.block.px-4.py-2.hover:bg-primary-2.transition-colors
                      {:href (str uri "#" (utils/s->url-slug h2))}
                      [:div.text-base.font-medium (highlight-text h2 query)]]
-                :h3 [:a.block.px-4.py-2.hover:bg-blue-50.transition-colors
+                :h3 [:a.block.px-4.py-2.hover:bg-primary-2.transition-colors
                      {:href (str uri "#" (utils/s->url-slug h3))}
                      [:div.text-sm.font-medium (highlight-text h3 query)]]
-                :h4 [:a.block.px-4.py-2.hover:bg-blue-50.transition-colors
+                :h4 [:a.block.px-4.py-2.hover:bg-primary-2.transition-colors
                      {:href (str uri "#" (utils/s->url-slug h4))}
                      [:div.text-sm (highlight-text h4 query)]]
-                :text [:a.block.px-4.py-2.hover:bg-blue-50.transition-colors
+                :text [:a.block.px-4.py-2.hover:bg-primary-2.transition-colors
                        {:href uri}
-                       [:div.text-sm.text-gray-600
+                       [:div.text-sm.text-tint-10
                         [:p.line-clamp-2 (highlight-text text query)]]]))))])]))
 
 (defn search-results-only [context request]
@@ -106,10 +106,10 @@
 
     (def gg grouped-and-sorted)
     (if (empty? query)
-      [:div.text-center.text-gray-500.py-8
+      [:div.text-center.text-tint-9.py-8
        [:div.text-lg.font-medium.mb-2 "Search Documentation"]]
       (if (empty? results)
-        [:div.text-center.text-gray-500.py-8
+        [:div.text-center.text-tint-9.py-8
          [:div.text-lg.font-medium.mb-2 "No results found"]
          [:div.text-sm "Try different keywords or check spelling"]]
         [:div
@@ -128,7 +128,7 @@
        [:div {:class "w-full max-w-4xl lg:min-w-[56rem] mt-8 flex flex-col items-center px-4 sm:px-6"}
         [:div.relative.mb-8.w-full
          [:input {:id "search-input"
-                  :class "w-full px-4 py-4 text-xl rounded-lg border border-gray-300 shadow-sm focus:outline-none"
+                  :class "w-full px-4 py-4 text-xl rounded-lg border border-tint-5 shadow-sm focus:outline-none"
                   :type "text"
                   :name "q"
                   :placeholder "Search documentation..."

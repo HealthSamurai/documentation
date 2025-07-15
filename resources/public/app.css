@@ -3,32 +3,32 @@
 /* Tailwind v4 Theme Configuration */
 @theme {
   /* Color System - Primary */
-  --color-primary-1: rgb(255 255 255);
-  --color-primary-2: rgb(255 248 246);
-  --color-primary-3: rgb(255 244 240);
-  --color-primary-4: rgb(255 237 232);
-  --color-primary-5: rgb(255 230 223);
-  --color-primary-6: rgb(255 220 212);
-  --color-primary-7: rgb(249 205 196);
-  --color-primary-8: rgb(241 191 181);
-  --color-primary-9: rgb(217 86 64);
-  --color-primary-10: rgb(202 72 51);
-  --color-primary-11: rgb(145 95 86);
-  --color-primary-12: rgb(36 26 24);
+  --color-primary-1: rgb(255, 255, 255);
+  --color-primary-2: rgb(255, 248, 246);
+  --color-primary-3: rgb(255, 244, 240);
+  --color-primary-4: rgb(255, 237, 232);
+  --color-primary-5: rgb(255, 230, 223);
+  --color-primary-6: rgb(255, 220, 212);
+  --color-primary-7: rgb(249, 205, 196);
+  --color-primary-8: rgb(241, 191, 181);
+  --color-primary-9: rgb(217, 86, 64);
+  --color-primary-10: rgb(202, 72, 51);
+  --color-primary-11: rgb(145, 95, 86);
+  --color-primary-12: rgb(36, 26, 24);
 
   /* Color System - Tint */
-  --color-tint-1: rgb(255 255 255);
-  --color-tint-2: rgb(251 249 249);
-  --color-tint-3: rgb(250 247 246);
-  --color-tint-4: rgb(246 241 240);
-  --color-tint-5: rgb(242 236 234);
-  --color-tint-6: rgb(235 228 226);
-  --color-tint-7: rgb(224 215 213);
-  --color-tint-8: rgb(229 231 235);
-  --color-tint-9: rgb(152 126 120);
-  --color-tint-10: rgb(140 114 109);
-  --color-tint-11: rgb(118 108 105);
-  --color-tint-12: rgb(31 28 28);
+  --color-tint-1: rgb(255, 255, 255);
+  --color-tint-2: rgb(251, 249, 249);
+  --color-tint-3: rgb(250, 247, 246);
+  --color-tint-4: rgb(246, 241, 240);
+  --color-tint-5: rgb(242, 236, 234);
+  --color-tint-6: rgb(235, 228, 226);
+  --color-tint-7: rgb(224, 215, 213);
+  --color-tint-8: rgb(229, 231, 235);
+  --color-tint-9: rgb(152, 126, 120);
+  --color-tint-10: rgb(140, 114, 109);
+  --color-tint-11: rgb(118, 108, 105);
+  --color-tint-12: rgb(31, 28, 28);
   --color-tint-base: rgb(255 255 255);
   --color-tint-subtle: rgb(251 249 249);
   --color-tint-hover: rgb(243 245 249);
@@ -50,10 +50,29 @@
   --color-neutral-12: rgb(29 29 29);
 
   /* Color System - Semantic Colors */
-  --color-info-9: rgb(120 120 120);
-  --color-warning-9: rgb(254 154 0);
-  --color-danger-9: rgb(251 44 54);
-  --color-success-9: rgb(0 201 80);
+  /* Info (blue-based) */
+  --color-info-2: rgb(239, 246, 255);
+  --color-info-3: rgb(219, 234, 254);
+  --color-info-9: rgb(59, 130, 246);
+  --color-info-12: rgb(30, 58, 138);
+  
+  /* Success (emerald-based) */
+  --color-success-2: rgb(209, 250, 229);
+  --color-success-3: rgb(167, 243, 208);
+  --color-success-9: rgb(16, 185, 129);
+  --color-success-12: rgb(4, 120, 87);
+  
+  /* Warning (amber-based) */
+  --color-warning-2: rgb(254, 243, 199);
+  --color-warning-3: rgb(253, 230, 138);
+  --color-warning-9: rgb(245, 158, 11);
+  --color-warning-12: rgb(146, 64, 14);
+  
+  /* Danger (red-based) */
+  --color-danger-2: rgb(254, 226, 226);
+  --color-danger-3: rgb(252, 165, 165);
+  --color-danger-9: rgb(239, 68, 68);
+  --color-danger-12: rgb(153, 27, 27);
 
   /* Header colors */
   --color-header-bg: rgba(255, 255, 255, 0.88);
@@ -170,16 +189,19 @@ article mark[style*="background-color:blue"] {
 
 /* Tables */
 article table {
-  @apply min-w-full border border-tint-8 rounded-lg
-  bg-tint-base shadow-aidbox my-6;
+  @apply min-w-full bg-tint-base my-6;
 }
 
 article thead {
-  @apply border-b border-tint-subtle;
+  @apply border-b border-tint-8 bg-tint-3;
+}
+
+article th {
+  @apply px-4 py-2 text-sm text-tint-12 font-medium text-left;
 }
 
 article tbody {
-  @apply divide-y divide-tint-subtle;
+  @apply divide-y divide-tint-8;
 }
 
 article tr {
@@ -187,12 +209,9 @@ article tr {
 }
 
 article td {
-  @apply px-4 py-3 text-base leading-relaxed border-r border-tint-subtle/50 last:border-r-0 text-tint-12/80 text-left;
+  @apply px-4 py-1.5 text-sm leading-relaxed border-r border-tint-8 last:border-r-0 text-tint-12/80 text-left;
 }
 
-article th {
-  @apply px-4 py-4 text-sm border-r border-tint-subtle/50 last:border-r-0 text-tint-12 font-semibold text-left;
-}
 
 /* Figure and Images */
 article figure {
@@ -229,6 +248,7 @@ article pre code {
   width: 100%;
   box-sizing: border-box;
 }
+
 
 /* Details and Summary */
 article details {

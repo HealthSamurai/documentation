@@ -47,7 +47,7 @@
                 [:summary {:class cell-res-c}
                  [:b (:status res)]
                  [:span {:class "mx-4"} (:content-type (:headers res))]]
-                [:pre {:class "-mt-px text-xs bg-gray-50 p-4 border border-gray-300"} (:body res)]])]
+                [:pre {:class "-mt-px text-xs bg-tint-2 p-4 border border-tint-5"} (:body res)]])]
 
             (= "sql" (:type cell))
             [:div {:class "my-6"}
@@ -55,7 +55,7 @@
              (when-let [res (:result cell)]
                [:details
                 [:summary {:class cell-res-c} "Result " [:b (:duration res) "ms"]]
-                [:pre {:class "-mt-px text-xs bg-gray-50 p-4 border border-gray-300"}
+                [:pre {:class "-mt-px text-xs bg-tint-2 p-4 border border-tint-5"}
                  (for [res (:result res)]
                    [:div
                     (if-not (sequential? (:data res))
@@ -74,8 +74,8 @@
             :else
             [:div {:class "my-6"}
              [:b (:type cell)]
-             [:pre {:class "text-xs mt-4 bg-gray-100 p-4 rounded-md"} (:value cell)]
-             [:pre {:class "text-xs mt-4 bg-gray-100 p-4 rounded-md"} (:result cell)]]))])))
+             [:pre {:class "text-xs mt-4 bg-tint-3 p-4 rounded-md"} (:value cell)]
+             [:pre {:class "text-xs mt-4 bg-tint-3 p-4 rounded-md"} (:result cell)]]))])))
 
 
 #_(defn notebooks [context request]
@@ -89,10 +89,10 @@
         (for [n notebooks]
           [:div {:class "flex space-x-4 items-top py-2"}
            [:div {:class "flex-1"}
-            [:a   {:class "text-sky-600" :href (str "/notebooks/" (:id n))} (:name n)]
-            [:div {:class "text-sm text-gray-500"} (:description n)]]
+            [:a   {:class "text-primary-9" :href (str "/notebooks/" (:id n))} (:name n)]
+            [:div {:class "text-sm text-tint-9"} (:description n)]]
            [:div {:class "flex space-x-2 items-top"}
             (for [tg  (:value (:tags n))]
-              [:span {:class "py-1 px-2 text-xs border border-gray-200 bg-gray-50 rounded-md"} tg])]])])))
+              [:span {:class "py-1 px-2 text-xs border border-tint-4 bg-tint-2 rounded-md"} tg])]])])))
 
 

@@ -48,7 +48,7 @@
           :hx-target "#content"
           :hx-push-url "/search"
           :hx-swap "innerHTML"
-          :class "search-button flex items-center gap-3 p-2.5 sm:px-4 sm:py-2.5 bg-white border
+          :class "search-button flex items-center gap-3 p-2.5 sm:px-4 sm:py-2.5 bg-tint-1 border
           border-tint-6 rounded-aidbox-lg text-tint-11 text-sm transition-all duration-200
           hover:bg-tint-1 hover:border-tint-7 sm:w-56"}
       [:svg {:class "size-4 text-tint-9" :fill "none" :stroke "currentColor" :viewBox "0 0 24 24"}

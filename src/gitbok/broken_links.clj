@@ -26,7 +26,7 @@
 ;;     (for [x (collect-broken-links context)]
 ;;       (when-not (empty? (:broken-links x))
 ;;         [:details {:class "w-full py-1"}
-;;          [:summary {:class "w-full border-b border-gray-200 py-1 flex items-center space-x-4 cursor-pointer"}
+;;          [:summary {:class "w-full border-b border-tint-4 py-1 flex items-center space-x-4 cursor-pointer"}
 ;;           [:b {:class "flex-1"} (uui/raw (:title x))]
 ;;           [:a {:class "" :href (str/replace (:path x) #"^docs" "")} "link"]
 ;;           [:b {:class "text-red-500"} "(" (count (:broken-links x)) ")"]]

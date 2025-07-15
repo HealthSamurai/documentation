@@ -14,7 +14,7 @@
         [:nav {:aria-label "Breadcrumb"}
          [:ol {:class "flex flex-wrap items-center"}
           (interpose
-           (ico/chevron-right "chevron size-3 text-gray-400 group-hover:text-primary-9 mx-2")
+           (ico/chevron-right "chevron size-3 text-tint-6 group-hover:text-primary-9 mx-2")
            (map-indexed
             (fn [idx part]
               (let [path (->> (subvec parts 0 (inc idx)) (str/join "/"))

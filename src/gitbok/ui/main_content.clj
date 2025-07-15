@@ -50,7 +50,7 @@
   "group text-sm
   flex gap-4 flex-1 items-center
   p-2.5
-  border border-gray-300 rounded
+  border border-tint-5 rounded
   hover:border-orange-500
   text-pretty
   md:text-base
@@ -69,9 +69,9 @@
              :hx-swap "outerHTML"
              :class (str nav-button-classes " flex-row-reverse")}
          [:span {:class "flex flex-col flex-1 text-right justify-center"}
-          [:span {:class "text-xs text-gray-500"} "Previous"]
-          [:span {:class "text-gray-700 group-hover:text-orange-600 line-clamp-2"} prev-page-title]]
-         [:svg {:class "size-4 text-gray-700 group-hover:text-orange-600 flex-shrink-0"
+          [:span {:class "text-xs text-tint-9"} "Previous"]
+          [:span {:class "text-tint-11 group-hover:text-orange-600 line-clamp-2"} prev-page-title]]
+         [:svg {:class "size-4 text-tint-11 group-hover:text-orange-600 flex-shrink-0"
                 :fill "none"
                 :stroke "currentColor"
                 :viewBox "0 0 24 24"
@@ -88,9 +88,9 @@
              :hx-swap "outerHTML"
              :class nav-button-classes}
          [:span {:class "flex flex-col flex-1 justify-center"}
-          [:span {:class "text-xs text-gray-500"} "Next"]
-          [:span {:class "text-gray-700 group-hover:text-orange-600 line-clamp-2"} next-page-title]]
-         [:svg {:class "size-4 text-gray-700 group-hover:text-orange-600 flex-shrink-0"
+          [:span {:class "text-xs text-tint-9"} "Next"]
+          [:span {:class "text-tint-11 group-hover:text-orange-600 line-clamp-2"} next-page-title]]
+         [:svg {:class "size-4 text-tint-11 group-hover:text-orange-600 flex-shrink-0"
                 :fill "none"
                 :stroke "currentColor"
                 :viewBox "0 0 24 24"

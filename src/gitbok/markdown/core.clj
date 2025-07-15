@@ -133,12 +133,12 @@
 
          :paragraph
          (fn [ctx node]
-           (into [:p {:class "text-base text-gray-900 leading-relaxed"}]
+           (into [:p {:class "text-base text-tint-12 leading-relaxed"}]
                  (mapv #(transform/->hiccup ctx %) (:content node))))
 
          :bullet-list
          (fn [ctx node]
-           (into [:ul {:class "ml-8 list-disc text-gray-900 text-base space-y-2"}]
+           (into [:ul {:class "ml-8 list-disc text-tint-12 text-base space-y-2"}]
                  (mapv #(transform/->hiccup ctx %)
                        (:content node))))
 
@@ -157,39 +157,40 @@
 
          :monospace
          (fn [_ctx node]
-           [:code {:class "px-1 border border-gray-200 rounded max-w-full overflow-x-auto"
-                   :style "background-color: #fbf9f9;"}
+           [:code {:class "py-[1px] px-1.5 min-w-[1.625rem] justify-center items-center ring-1 ring-inset ring-tint-4 bg-tint-2 rounded text-[.875em] inline-flex"
+                   :style "font-family: var(--font-code); line-height: calc(max(1.20em, 1.25rem));"}
             (-> node :content first :text)])
 
          :table
          (fn [ctx node]
-           (into [:table {:class "min-w-full border border-tint-subtle rounded-lg bg-white shadow-sm my-6 text-base"}]
+           (into [:table]
                  (mapv #(transform/->hiccup ctx %) (:content node))))
 
          :table-head
          (fn [ctx node]
-           (into [:thead {:class "border-b border-tint-subtle text-base"}]
-                 (mapv #(transform/->hiccup ctx %) (:content node))))
-
-         :table-body
-         (fn [ctx node]
-           (into [:tbody {:class "divide-y divide-tint-subtle text-base"}]
-                 (mapv #(transform/->hiccup ctx %) (:content node))))
-
-         :table-row
-         (fn [ctx node]
-           (into [:tr {:class "hover:bg-tint-hover transition-colors duration-200 text-base"}]
-                 (mapv #(transform/->hiccup ctx %) (:content node))))
-
-         :table-data
-         (fn [ctx node]
-           (into [:td {:class "px-4 py-3 border-r border-tint-subtle/50 last:border-r-0 text-tint-strong/80 text-left text-base"}]
+           (into [:thead]
                  (mapv #(transform/->hiccup ctx %) (:content node))))
 
          :table-header
          (fn [ctx node]
-           (into [:th {:class "px-4 py-4 text-base border-r border-tint-subtle/50 last:border-r-0 text-tint-strong font-semibold text-left"}]
+           (into [:th]
                  (mapv #(transform/->hiccup ctx %) (:content node))))
+
+         :table-body
+         (fn [ctx node]
+           (into [:tbody]
+                 (mapv #(transform/->hiccup ctx %) (:content node))))
+
+         :table-row
+         (fn [ctx node]
+           (into [:tr]
+                 (mapv #(transform/->hiccup ctx %) (:content node))))
+
+         :table-data
+         (fn [ctx node]
+           (into [:td]
+                 (mapv #(transform/->hiccup ctx %) (:content node))))
+
 
          :html-inline
          (fn [_ctx node]
