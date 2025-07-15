@@ -479,94 +479,27 @@ The archive system uses task-based operations to upload resources to AWS or GCP 
 Aidbox's implementation provides flexible archiving policies with support for selective restoration, complete data deletion from cloud storage, and comprehensive audit trails. The restore process is designed to be fast and reliable, with safeguards to prevent data duplication when restoring archived resources back to the database.
 
 ```mermaid
-flowchart TB
-    subgraph "Healthcare Organization"
-        HO[Healthcare Organization]
-        DATA[Patient Data & Resources]
+flowchart LR
+    CLIENT[Client Request<br/>POST /execution/aidbox.archive/create-archive]
+    
+    subgraph "Aidbox"
+        JOB[Archive Job<br/>Created]
+        PROCESS[Prune Archived Data]
+        STREAM[Stream NDJSON<br/>Files]
+        
+        JOB --> PROCESS
+        PROCESS --> STREAM
     end
     
-    subgraph "Aidbox System"
-        API[Archive/Restore API]
-        DB[(Database)]
-        SCHEDULER[Automated Scheduler]
-        AUDIT[Audit Trail System]
-    end
+    STORAGE[External Storage<br/>S3 / GCP]
     
-    subgraph "Cloud Storage"
-        AWS[AWS Storage]
-        GCP[GCP Storage]
-    end
+    CLIENT --> JOB
+    STREAM -->|NDJSON| STORAGE
     
-    subgraph "Archive Process"
-        MANUAL[Manual Archive]
-        AUTO[Automated Archive]
-        POLICY[Retention Policies]
-        TASK[Task-based Operations]
-    end
-    
-    subgraph "Restore Process"
-        SELECTIVE[Selective Restoration]
-        COMPLETE[Complete Restoration]
-        SAFEGUARDS[Duplication Safeguards]
-    end
-    
-    %% Data Flow
-    HO --> DATA
-    DATA --> DB
-    
-    %% Archive Workflow
-    DB --> API
-    API --> MANUAL
-    API --> AUTO
-    SCHEDULER --> AUTO
-    POLICY --> AUTO
-    POLICY --> MANUAL
-    
-    MANUAL --> TASK
-    AUTO --> TASK
-    TASK --> |Compressed NDJSON| AWS
-    TASK --> |Compressed NDJSON| GCP
-    
-    %% Optional Pruning
-    TASK -.-> |Optional Pruning| DB
-    
-    %% Restore Workflow
-    AWS --> SELECTIVE
-    GCP --> SELECTIVE
-    AWS --> COMPLETE
-    GCP --> COMPLETE
-    
-    SELECTIVE --> SAFEGUARDS
-    COMPLETE --> SAFEGUARDS
-    SAFEGUARDS --> DB
-    
-    %% Audit and Compliance
-    TASK --> AUDIT
-    SELECTIVE --> AUDIT
-    COMPLETE --> AUDIT
-    
-    %% Compliance Requirements
-    COMPLIANCE[Regulatory Requirements]
-    COMPLIANCE --> POLICY
-    COMPLIANCE --> AUDIT
-    
-    %% Cost Optimization
-    COST[Cost Optimization]
-    COST --> AWS
-    COST --> GCP
-    
-    %% Styling
-    classDef storage fill:#e1f5fe
-    classDef process fill:#f3e5f5
-    classDef system fill:#e8f5e8
-    classDef compliance fill:#fff3e0
-    
-    class AWS,GCP storage
-    class MANUAL,AUTO,SELECTIVE,COMPLETE,TASK process
-    class API,DB,SCHEDULER,AUDIT system
-    class COMPLIANCE,POLICY,COST compliance
+    style JOB fill:#87CEEB
+    style PROCESS fill:#FFE4B5
+    style STORAGE fill:#90EE90
 ```
-
 
 See also:
 
