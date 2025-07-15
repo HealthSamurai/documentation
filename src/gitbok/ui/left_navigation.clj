@@ -31,7 +31,7 @@
         (ico/chevron-right "chevron size-3 text-small font-normal
                             group-hover:text-primary-9 transition-all
                             duration-200 transform rotate-0 group-open:rotate-90 mr-4")]
-       [:div {:class "ml-4 border-l-2 border-tint-8"}
+       [:div {:class "ml-6 border-l-2 border-tint-8"}
         (for [c (:children item)]
           (render-left-navigation url c))]]
       (add-active-class item open?))))
