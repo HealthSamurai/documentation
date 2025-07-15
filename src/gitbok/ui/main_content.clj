@@ -46,6 +46,16 @@
          (find-children-files context filepath)]
      (big-links/big-link-view (str "/" uri) title))])
 
+(def nav-button-classes
+  "group text-sm
+  flex gap-4 flex-1 items-center
+  p-2.5
+  border border-gray-300 rounded
+  hover:border-orange-500
+  text-pretty
+  md:text-base
+  md:h-[80px]")
+
 (defn navigation-buttons [context uri]
   (let [[[prev-page-url prev-page-title] [next-page-url next-page-title]]
         (summary/get-prev-next-pages context uri)]
@@ -57,16 +67,7 @@
              ;; :hx-push-url prev-page-url
              ;; :hx-get (str prev-page-url "?partial=true")
              ;; :hx-swap "outerHTML"
-             :class "group text-sm
-             flex gap-4 flex-1 flex-row-reverse items-center
-             p-0
-             md:p-2.5 md:pl-4
-             border border-gray-300 rounded
-             hover:border-orange-500
-             text-pretty
-             md:p-4
-             md:text-base
-             md:h-[80px]"}
+             :class (str nav-button-classes " flex-row-reverse")}
          [:span {:class "flex flex-col flex-1 text-right justify-center"}
           [:span {:class "text-xs text-gray-500"} "Previous"]
           [:span {:class "text-gray-700 group-hover:text-orange-600 line-clamp-2"} prev-page-title]]
@@ -85,7 +86,7 @@
              ;; :hx-push-url next-page-url
              ;; :hx-get (str next-page-url "?partial=true")
              ;; :hx-swap "outerHTML"
-             :class "group text-sm p-2.5 flex gap-4 flex-1 items-center pr-4 border border-gray-300 rounded hover:border-orange-500 text-pretty md:p-4 md:text-base h-[80px]"}
+             :class nav-button-classes}
          [:span {:class "flex flex-col flex-1 justify-center"}
           [:span {:class "text-xs text-gray-500"} "Next"]
           [:span {:class "text-gray-700 group-hover:text-orange-600 line-clamp-2"} next-page-title]]
