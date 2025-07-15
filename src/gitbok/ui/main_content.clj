@@ -63,10 +63,10 @@
      (when prev-page-url
        [:div {:class "flex-1 w-full sm:w-auto"}
         [:a {:href prev-page-url
-             ;; :hx-target "#content"
-             ;; :hx-push-url prev-page-url
-             ;; :hx-get (str prev-page-url "?partial=true")
-             ;; :hx-swap "outerHTML"
+             :hx-target "#content"
+             :hx-push-url prev-page-url
+             :hx-get (str prev-page-url "?partial=true")
+             :hx-swap "outerHTML"
              :class (str nav-button-classes " flex-row-reverse")}
          [:span {:class "flex flex-col flex-1 text-right justify-center"}
           [:span {:class "text-xs text-gray-500"} "Previous"]
@@ -82,10 +82,10 @@
      (when next-page-url
        [:div {:class "flex-1 w-full sm:w-auto"}
         [:a {:href next-page-url
-             ;; :hx-target "#content"
-             ;; :hx-push-url next-page-url
-             ;; :hx-get (str next-page-url "?partial=true")
-             ;; :hx-swap "outerHTML"
+             :hx-target "#content"
+             :hx-push-url next-page-url
+             :hx-get (str next-page-url "?partial=true")
+             :hx-swap "outerHTML"
              :class nav-button-classes}
          [:span {:class "flex flex-col flex-1 justify-center"}
           [:span {:class "text-xs text-gray-500"} "Next"]
@@ -125,7 +125,7 @@
       [:article {:class "article__content py-8 min-w-0 flex-1
                  sm:px-0 md:px-4 max-w-5xl overflow-hidden transform-3d"}
        (when htmx?
-         [:script "window.scrollTo(0, 0); updateLastUpdated();"])
+         [:script "window.scrollTo(0, 0); updateLastUpdated(); updateActiveNavItem(window.location.pathname);"])
        [:div {:class "mx-auto max-w-full md:px-4"} body]
        (navigation-buttons context uri)
        (let [lastupdated

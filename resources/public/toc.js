@@ -1,7 +1,7 @@
 // Navigation click handler
 document.addEventListener('click', function (e) {
   if (!document.body) return;
-  
+
   const link = e.target.closest('.clickable-summary a, #navigation a');
 
   if (!link) return;
@@ -64,12 +64,32 @@ window.addEventListener("popstate", () => {
 function updateActiveNavItem(pathname) {
   if (!document.body) return;
 
+
   const allLinks = document.querySelectorAll('#navigation a');
+
   allLinks.forEach(a => {
     a.classList.remove('active');
   });
 
-  const matchingLink = document.querySelector(`#navigation a[href="${pathname}"]`);
+  // Try exact match first
+  let matchingLink = document.querySelector(`#navigation a[href="${pathname}"]`);
+
+  // If no exact match, try normalized paths (remove trailing slash and query params)
+  if (!matchingLink) {
+    const normalizedPathname = pathname.replace(/\/$/, '').split('?')[0];
+
+    // Check all links for normalized match
+    const navLinks = document.querySelectorAll('#navigation a');
+    for (const link of navLinks) {
+      const linkHref = link.getAttribute('href');
+      const normalizedHref = linkHref.replace(/\/$/, '').split('?')[0];
+
+      if (normalizedPathname === normalizedHref) {
+        matchingLink = link;
+        break;
+      }
+    }
+  }
 
   if (matchingLink) {
     matchingLink.classList.add('active');
@@ -79,10 +99,12 @@ function updateActiveNavItem(pathname) {
     if (details && !details.open) {
       details.open = true;
     }
-  } else {
-    console.log('No matching link found for pathname:', pathname);
   }
 }
+
+// Make function globally available
+window.updateActiveNavItem = updateActiveNavItem;
+
 
 document.addEventListener('keydown', function (e) {
   if ((e.ctrlKey || e.metaKey) && e.key === 'k') {
@@ -107,9 +129,9 @@ document.addEventListener('keydown', function (e) {
 
 
 // Disable HTMX boost for all navigation links
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function () {
   if (!document.body) return;
-  
+
   const navLinks = document.querySelectorAll('#navigation a');
   navLinks.forEach(link => {
     link.setAttribute('data-hx-boost', 'false');
@@ -120,7 +142,7 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 
 // Re-disable HTMX boost after HTMX content swaps
-document.addEventListener('htmx:afterSwap', function() {
+document.addEventListener('htmx:afterSwap', function () {
   if (!document.body) return;
   const navLinks = document.querySelectorAll('#navigation a');
   navLinks.forEach(link => {
@@ -129,15 +151,15 @@ document.addEventListener('htmx:afterSwap', function() {
 });
 
 // Update active nav item after HTMX settles
-document.addEventListener('htmx:afterSettle', function() {
+document.addEventListener('htmx:afterSettle', function () {
   if (!document.body) return;
   updateActiveNavItem(window.location.pathname);
 });
 
 // Handle modifier key clicks for navigation links
-document.addEventListener('click', function(e) {
+document.addEventListener('click', function (e) {
   if (!document.body) return;
-  
+
   const link = e.target.closest('a');
   if (link && (e.ctrlKey || e.metaKey || e.shiftKey || e.altKey || e.button !== 0)) {
 
