@@ -30,6 +30,7 @@
       (subs s start end))))
 
 (defn slurp-resource [path]
+  (println "reading " path)
   (if-let [r
            (io/resource path)]
     (slurp r)

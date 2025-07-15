@@ -2,19 +2,29 @@
   (:require
    [clojure.string :as str]
    [uui.heroicons :as ico]
-   [gitbok.http]))
+   [gitbok.http]
+   [gitbok.indexing.core :as indexing]))
 
-(defn breadcrumb [context uri]
-  (when uri
-    (let [parts (->> (str/split uri #"/")
+(defn breadcrumb [context filepath]
+  (when filepath
+    (let [parts (->> (str/split filepath #"/")
                      (remove str/blank?)
-                     vec)]
+                     vec)
+          parent? (indexing/parent? context filepath)
+          parts-to-show
+          (cond-> (drop-last parts)
+
+            (and parent? (>= 3 (count parts)))
+            (drop-last)
+
+            :always (vec))]
+
       (when-not (and (= (count parts) 2)
                      (= (first parts) "readme"))
         [:nav {:aria-label "Breadcrumb"}
          [:ol {:class "flex flex-wrap items-center"}
           (interpose
-           (ico/chevron-right "chevron size-3 text-tint-6 group-hover:text-primary-9 mx-2")
+           (ico/chevron-right "chevron size-3 text-tint-10 group-hover:text-primary-9 mx-2")
            (map-indexed
             (fn [idx part]
               (let [path (->> (subvec parts 0 (inc idx)) (str/join "/"))
@@ -29,4 +39,4 @@
                       :hx-swap "outerHTML"
                       :class "text-xs font-semibold uppercase items-center gap-1.5 hover:text-tint-strong text-primary-9"}
                   part]]))
-            (vec (drop-last parts))))]]))))
+            parts-to-show))]]))))
