@@ -293,7 +293,7 @@ article .hint p:last-child {
 }
 
 article .hint p {
-  @apply my-2;
+  @apply my-2 text-sm;
 }
 
 /* ================================================

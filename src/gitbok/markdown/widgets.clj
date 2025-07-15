@@ -48,16 +48,22 @@ Ordered list:
 
 ## Hints
 
+### Danger
+
+{% hint style=\"danger\" %}
+Work In Progress
+{% endhint %}
+
 ### Warning
 
 {% hint style=\"warning\" %}
-warning
+Aidbox notebooks is a beta. Please join the discussion or contact us if you want to contribute.
 {% endhint %}
 
 ### info
 
 {% hint style=\"info\" %}
-info
+Please start a discussion or contact us if you have questions, feedback, or suggestions.
 {% endhint %}
 
 ### tip
