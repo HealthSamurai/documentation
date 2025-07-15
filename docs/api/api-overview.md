@@ -419,9 +419,35 @@ See also:
 
 Healthcare analytics, research, and regulatory reporting often require complete datasets that span millions of records across multiple resource types. Traditional REST APIs struggle with such volumes, leading to timeouts, memory issues, and unreliable data extraction. Aidbox's bulk export APIs provide efficient, reliable mechanisms for extracting large datasets while maintaining data integrity and supporting incremental exports.
 
+```mermaid
+flowchart LR
+    CLIENT[Client Request<br/>POST /$export]
+    
+    subgraph "Aidbox"
+        JOB[Export Job<br/>Created]
+        PROCESS[Data Processing<br/>Filter & Extract]
+        STREAM[Stream NDJSON<br/>Files]
+        
+        JOB --> PROCESS
+        PROCESS --> STREAM
+    end
+    
+    STORAGE[External Storage<br/>S3 / GCP]
+    
+    CLIENT --> JOB
+    STREAM -->|NDJSON| STORAGE
+    
+    style JOB fill:#87CEEB
+    style PROCESS fill:#FFE4B5
+    style STORAGE fill:#90EE90
+```
+
 The bulk export system supports NDJSON format for streaming processing, with optional gzip compression for efficient storage and transfer. Export jobs can be configured to filter data by resource types, date ranges, and custom criteria, allowing you to extract only the data you need. The system provides real-time progress tracking, detailed error reporting, and automatic retry logic for failed exports.
 
-Aidbox implements the [FHIR Bulk Data Export specification](https://hl7.org/fhir/uv/bulkdata/export.html), which defines standardized endpoints for bulk export operations. The implementation includes support for group-based exports, patient-specific exports, and system-wide exports, with proper authentication and authorization controls to ensure data security and privacy compliance.
+Aidbox implements the [FHIR Bulk Data Export specification](https://hl7.org/fhir/uv/bulkdata/export.html), which defines standardized endpoints for bulk export operations. The implementation includes support for:
+- group-based exports, 
+- patient-specific exports, 
+- and system-wide exports, with proper authentication and authorization controls to ensure data security and privacy compliance.
 
 See also:
 
@@ -451,6 +477,96 @@ Healthcare organizations face increasing pressure to manage data retention, comp
 The archive system uses task-based operations to upload resources to AWS or GCP cloud storage in compressed NDJSON format. You can archive resources based on time periods or retention policies, with options to automatically prune archived data from the database. The system supports both manual archiving and automated scheduling for compliance workflows.
 
 Aidbox's implementation provides flexible archiving policies with support for selective restoration, complete data deletion from cloud storage, and comprehensive audit trails. The restore process is designed to be fast and reliable, with safeguards to prevent data duplication when restoring archived resources back to the database.
+
+```mermaid
+flowchart TB
+    subgraph "Healthcare Organization"
+        HO[Healthcare Organization]
+        DATA[Patient Data & Resources]
+    end
+    
+    subgraph "Aidbox System"
+        API[Archive/Restore API]
+        DB[(Database)]
+        SCHEDULER[Automated Scheduler]
+        AUDIT[Audit Trail System]
+    end
+    
+    subgraph "Cloud Storage"
+        AWS[AWS Storage]
+        GCP[GCP Storage]
+    end
+    
+    subgraph "Archive Process"
+        MANUAL[Manual Archive]
+        AUTO[Automated Archive]
+        POLICY[Retention Policies]
+        TASK[Task-based Operations]
+    end
+    
+    subgraph "Restore Process"
+        SELECTIVE[Selective Restoration]
+        COMPLETE[Complete Restoration]
+        SAFEGUARDS[Duplication Safeguards]
+    end
+    
+    %% Data Flow
+    HO --> DATA
+    DATA --> DB
+    
+    %% Archive Workflow
+    DB --> API
+    API --> MANUAL
+    API --> AUTO
+    SCHEDULER --> AUTO
+    POLICY --> AUTO
+    POLICY --> MANUAL
+    
+    MANUAL --> TASK
+    AUTO --> TASK
+    TASK --> |Compressed NDJSON| AWS
+    TASK --> |Compressed NDJSON| GCP
+    
+    %% Optional Pruning
+    TASK -.-> |Optional Pruning| DB
+    
+    %% Restore Workflow
+    AWS --> SELECTIVE
+    GCP --> SELECTIVE
+    AWS --> COMPLETE
+    GCP --> COMPLETE
+    
+    SELECTIVE --> SAFEGUARDS
+    COMPLETE --> SAFEGUARDS
+    SAFEGUARDS --> DB
+    
+    %% Audit and Compliance
+    TASK --> AUDIT
+    SELECTIVE --> AUDIT
+    COMPLETE --> AUDIT
+    
+    %% Compliance Requirements
+    COMPLIANCE[Regulatory Requirements]
+    COMPLIANCE --> POLICY
+    COMPLIANCE --> AUDIT
+    
+    %% Cost Optimization
+    COST[Cost Optimization]
+    COST --> AWS
+    COST --> GCP
+    
+    %% Styling
+    classDef storage fill:#e1f5fe
+    classDef process fill:#f3e5f5
+    classDef system fill:#e8f5e8
+    classDef compliance fill:#fff3e0
+    
+    class AWS,GCP storage
+    class MANUAL,AUTO,SELECTIVE,COMPLETE,TASK process
+    class API,DB,SCHEDULER,AUDIT system
+    class COMPLIANCE,POLICY,COST compliance
+```
+
 
 See also:
 
