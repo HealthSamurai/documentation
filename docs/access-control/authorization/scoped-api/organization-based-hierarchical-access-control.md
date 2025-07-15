@@ -187,7 +187,7 @@ GET <AIDBOX_BASE_URL>/Organization/<org-id>/fhir/<resource-type>
 The search API does not support search parameters:
 
 * `_assoc`
-* `_with`&#x20;
+* `_with`
 {% endhint %}
 
 Since 2505, [\_has search parameter](../../../api/rest-api/fhir-search/chaining.md) is supported.
@@ -331,7 +331,7 @@ See also: [graphql-api.md](../../../api/graphql-api.md)
 
 ## Shared resource mode
 
-By default, nested API has no access to a resource that belongs to the upper organizations. Sometimes it is necessary to have resources that can be accessed by the nested APIs. To achieve it the resource should be marked as `share`.
+By default, nested API has no access to a resource that belongs to the upper organizations. Sometimes it is necessary to have resources that can be accessed by the nested APIs. To achieve it the resource should be marked as `shared`.
 
 {% hint style="warning" %}
 Update and delete operations are not allowed from nested organizations' APIs. To update or delete `shared`resource use its root organization API.
