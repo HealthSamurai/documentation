@@ -381,6 +381,32 @@ Healthcare systems need to provide real-time data feeds for clinical decision su
 
 Real-time clinical decision support and care coordination require immediate notification when patient data changes - a new lab result arrives, a medication is prescribed, or a care plan is updated. Aidbox implements topic-based subscriptions modeled after the [FHIR R6 SubscriptionTopic](https://build.fhir.org/subscriptiontopic.html), providing dynamic subscriptions to changes in FHIR resources through multiple channels including webhooks, Kafka, and GCP Pub/Sub, etc.
 
+```mermaid
+flowchart LR
+    CHANGES[Resource Created/<br/>Updated/Deleted]
+    QUEUE[AidboxSubscriptionTopic]
+    
+    subgraph "Delivery Channels"
+        WEBHOOK[Webhook<br/>HTTP POST]
+        KAFKA[Kafka<br/>Message]
+        PUBSUB[GCP Pub/Sub<br/>Message]
+        OTHER[Other Channels]
+    end
+    
+    CHANGES --> QUEUE
+    
+    QUEUE --> WEBHOOK
+    QUEUE --> KAFKA
+    QUEUE --> PUBSUB
+    QUEUE --> OTHER
+    
+    style QUEUE fill:#87CEEB
+    style WEBHOOK fill:#90EE90
+    style KAFKA fill:#90EE90
+    style PUBSUB fill:#90EE90
+    style OTHER fill:#90EE90
+```
+
 The subscription system uses `AidboxSubscriptionTopic` resources to define event triggers with FHIRPath criteria, allowing precise filtering of notifications. For example, a clinical decision support system can subscribe to completed QuestionnaireResponse resources, receiving immediate notifications when lab results are finalized or when medication orders are created for patients with specific conditions.
 
 Aidbox supports multiple delivery channels with guaranteed delivery options, automatic retry logic for failed notifications. The implementation provides flexible payload options from full resources to minimal notifications, optimizing for different use cases and network constraints.
