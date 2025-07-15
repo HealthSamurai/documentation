@@ -103,8 +103,6 @@
                                                             groups)]
                               ;; Sort by max score descending
                                (sort-by #(nth % 2) > groups-with-scores)))]
-
-    (def gg grouped-and-sorted)
     (if (empty? query)
       [:div.text-center.text-tint-9.py-8
        [:div.text-lg.font-medium.mb-2 "Search Documentation"]]
@@ -124,11 +122,14 @@
         page-title (or title h1 "Untitled")
         is-selected (= selected-index index)
         ;; Determine the specific URL based on the hit type
+        ;; Ensure URI starts with / to make it absolute
+        absolute-uri (if (str/starts-with? uri "/") uri (str "/" uri))
+        ;; Determine the specific URL based on the hit type
         url (case hit-by
-              :h2 (str uri "#" (utils/s->url-slug h2))
-              :h3 (str uri "#" (utils/s->url-slug h3))
-              :h4 (str uri "#" (utils/s->url-slug h4))
-              uri)
+              :h2 (str absolute-uri "#" (utils/s->url-slug h2))
+              :h3 (str absolute-uri "#" (utils/s->url-slug h3))
+              :h4 (str absolute-uri "#" (utils/s->url-slug h4))
+              absolute-uri)
         ;; Determine what text to show based on what was matched
         match-text (case hit-by
                      :title title
@@ -178,7 +179,7 @@
 
 (defn search-dropdown-results [context request]
   (let [query (get-in request [:query-params :query] "")
-        selected-index (get-in request [:query-params :selected] "0")
+        selected-index (get-in request [:query-params :selected] "-1")
         selected-index (try (Integer/parseInt selected-index) (catch Exception _ 0))
         results (when (and query (pos? (count query)))
                   (let [search-results (take 10 (gitbok.search/search context query))]

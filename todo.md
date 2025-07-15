@@ -6,7 +6,7 @@
 
 # bugs/techdebt
 
-- [ ] http://localhost:8081/api/rest-api table bug
+- [ ] long http://localhost:8081/api/rest-api/aidbox-search
 - [ ] rm huge image history from repo
 - [ ] cookies banner
 - [ ] http://localhost:8081/deprecated/deprecated/zen-related/aidbox-zen-lang-project/set-up-and-use-configuration-projects
