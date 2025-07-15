@@ -125,7 +125,7 @@
       [:article {:class "article__content py-8 min-w-0 flex-1
                  sm:px-0 md:px-4 max-w-5xl overflow-hidden transform-3d"}
        (when htmx?
-         [:script "window.scrollTo(0, 0); updateLastUpdated(); updateActiveNavItem(window.location.pathname);"])
+         [:script "window.scrollTo(0, 0); updateLastUpdated(); updateActiveNavItem(window.location.pathname); updatePageTitle();"])
        [:div {:class "mx-auto max-w-full md:px-4"} body]
        (navigation-buttons context uri)
        (let [lastupdated

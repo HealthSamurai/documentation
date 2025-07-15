@@ -1,56 +1,5 @@
-// Navigation click handler
-document.addEventListener('click', function (e) {
-  if (!document.body) return;
-
-  const link = e.target.closest('.clickable-summary a, #navigation a');
-
-  if (!link) return;
-
-  // Allow default behavior for modifier key clicks (Ctrl+click, Cmd+click, etc.)
-  if (e.ctrlKey || e.metaKey || e.shiftKey || e.altKey || e.button !== 0) {
-    return;
-  }
-
-  // Allow default behavior for external links
-  const href = link.getAttribute('href');
-  if (href && (href.startsWith('http://') || href.startsWith('https://'))) {
-    return;
-  }
-
-  // Only handle internal navigation links
-  if (!link.hasAttribute('data-hx-nav')) {
-    return;
-  }
-
-  e.preventDefault();
-
-  const details = link.closest('details');
-
-  // Remove active class from all navigation links
-  const allLinks = document.querySelectorAll('#navigation a');
-  allLinks.forEach(a => {
-    a.classList.remove('active');
-  });
-
-  // Add active class to clicked link
-  link.classList.add('active');
-
-  if (details && !details.open) {
-    details.open = true;
-  }
-
-  // Use HTMX to load content (TOC will be included with main content)
-  if (document.body) {
-    htmx.ajax('GET', href, {
-      target: '#content',
-      swap: 'outerHTML',
-      pushUrl: href
-    });
-  } else {
-    // Fallback to regular navigation if HTMX target is not available
-    window.location.href = href;
-  }
-});
+// Navigation click handler - removed custom htmx.ajax() to avoid conflicts
+// Now relies on standard HTMX boost and attributes
 
 window.addEventListener("popstate", () => {
   // Add delay to ensure DOM is updated
@@ -105,6 +54,43 @@ function updateActiveNavItem(pathname) {
 // Make function globally available
 window.updateActiveNavItem = updateActiveNavItem;
 
+// Function to extract and update page title from content
+function updatePageTitle() {
+  try {
+    // Try to extract title from the main content
+    const h1 = document.querySelector('#content h1');
+    if (h1) {
+      const pageTitle = h1.textContent.trim();
+      document.title = `${pageTitle} | Aidbox User Docs`;
+      return;
+    }
+    
+    // Fallback: try to extract from breadcrumbs or page content
+    const breadcrumb = document.querySelector('.breadcrumb');
+    if (breadcrumb) {
+      const lastCrumb = breadcrumb.querySelector('a:last-child, span:last-child');
+      if (lastCrumb) {
+        const pageTitle = lastCrumb.textContent.trim();
+        document.title = `${pageTitle} | Aidbox User Docs`;
+        return;
+      }
+    }
+    
+    // Final fallback: use pathname
+    const pathname = window.location.pathname;
+    const segments = pathname.split('/').filter(s => s);
+    if (segments.length > 0) {
+      const pageTitle = segments[segments.length - 1].replace(/-/g, ' ').replace(/\b\w/g, l => l.toUpperCase());
+      document.title = `${pageTitle} | Aidbox User Docs`;
+    }
+  } catch (e) {
+    console.warn('Could not update page title:', e);
+  }
+}
+
+// Make function globally available
+window.updatePageTitle = updatePageTitle;
+
 
 document.addEventListener('keydown', function (e) {
   if ((e.ctrlKey || e.metaKey) && e.key === 'k') {
@@ -132,6 +118,7 @@ document.addEventListener('keydown', function (e) {
 document.addEventListener('DOMContentLoaded', function () {
   if (!document.body) return;
   updateActiveNavItem(window.location.pathname);
+  updatePageTitle(); // Also update title on initial load
 });
 
 // Clear any existing HTMX cache to prevent quota issues

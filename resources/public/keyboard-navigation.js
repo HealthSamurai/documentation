@@ -12,23 +12,77 @@ document.addEventListener('keydown', function (event) {
 
   // Left arrow key (Previous page)
   if (event.key === 'ArrowLeft') {
-    const buttons = Array.from(document.querySelectorAll('a[href*="/"]'));
-    const prevButton = buttons.find(btn => btn.textContent.trim().includes('Previous'));
+    // Find prev button - look for buttons with HTMX attributes first
+    let prevButton = null;
+    
+    // Try to find HTMX-enabled prev button
+    const htmxButtons = document.querySelectorAll('a[hx-get][href]');
+    for (const btn of htmxButtons) {
+      if (btn.textContent.includes('Previous')) {
+        prevButton = btn;
+        break;
+      }
+    }
+    
+    // Fallback to any prev button
+    if (!prevButton) {
+      const allButtons = document.querySelectorAll('a[href*="/"]');
+      for (const btn of allButtons) {
+        if (btn.textContent.includes('Previous')) {
+          prevButton = btn;
+          break;
+        }
+      }
+    }
+    
     if (prevButton) {
       event.preventDefault();
-      // Use direct navigation instead of HTMX for keyboard
-      window.location.href = prevButton.href;
+      
+      // Use HTMX if available and button has HTMX attributes
+      if (typeof htmx !== 'undefined' && prevButton.hasAttribute('hx-get')) {
+        prevButton.click(); // Trigger HTMX request
+      } else {
+        // Fallback to direct navigation
+        window.location.href = prevButton.href;
+      }
     }
   }
 
   // Right arrow key (Next page)
   if (event.key === 'ArrowRight') {
-    const buttons = Array.from(document.querySelectorAll('a[href*="/"]'));
-    const nextButton = buttons.find(btn => btn.textContent.trim().includes('Next'));
+    // Find next button - look for buttons with HTMX attributes first
+    let nextButton = null;
+    
+    // Try to find HTMX-enabled next button
+    const htmxButtons = document.querySelectorAll('a[hx-get][href]');
+    for (const btn of htmxButtons) {
+      if (btn.textContent.includes('Next')) {
+        nextButton = btn;
+        break;
+      }
+    }
+    
+    // Fallback to any next button
+    if (!nextButton) {
+      const allButtons = document.querySelectorAll('a[href*="/"]');
+      for (const btn of allButtons) {
+        if (btn.textContent.includes('Next')) {
+          nextButton = btn;
+          break;
+        }
+      }
+    }
+    
     if (nextButton) {
       event.preventDefault();
-      // Use direct navigation instead of HTMX for keyboard
-      window.location.href = nextButton.href;
+      
+      // Use HTMX if available and button has HTMX attributes
+      if (typeof htmx !== 'undefined' && nextButton.hasAttribute('hx-get')) {
+        nextButton.click(); // Trigger HTMX request
+      } else {
+        // Fallback to direct navigation
+        window.location.href = nextButton.href;
+      }
     }
   }
 });

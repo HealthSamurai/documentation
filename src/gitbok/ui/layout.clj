@@ -59,7 +59,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     [:meta {:name "robots" :content "index, follow"}]
 
     [:meta {:name "htmx-config",
-            :content "{\"scrollIntoViewOnBoost\":false,\"scrollBehavior\":\"smooth\",\"allowEval\":false,\"historyCacheSize\":0,\"historyEnabled\":false,\"refreshOnHistoryMiss\":false}"}]
+            :content "{\"scrollIntoViewOnBoost\":false,\"scrollBehavior\":\"smooth\",\"allowEval\":false,\"historyCacheSize\":0,\"historyEnabled\":true,\"refreshOnHistoryMiss\":false}"}]
     (when section
       [:meta {:name "scroll-to-id" :content section}])
     [:link {:rel "icon" :type "image/x-icon" :href favicon-url}]
