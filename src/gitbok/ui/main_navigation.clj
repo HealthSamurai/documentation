@@ -43,15 +43,27 @@
            :class "text-small text-tint-10 hover:text-primary-9 transition-colors duration-200 no-underline font-normal"}
        "Ask community"]]
 
-     [:a {:href "/search"
-          :hx-get "/search"
-          :hx-target "#content"
-          :hx-push-url "/search"
-          :hx-swap "innerHTML"
-          :class "search-button flex items-center gap-3 p-2.5 sm:px-4 sm:py-2.5 bg-tint-1 border
-          border-tint-6 rounded-aidbox-lg text-tint-11 text-sm transition-all duration-200
-          hover:bg-tint-1 hover:border-tint-7 sm:w-56"}
-      [:svg {:class "size-4 text-tint-9" :fill "none" :stroke "currentColor" :viewBox "0 0 24 24"}
-       [:path {:stroke-linecap "round" :stroke-linejoin "round" :stroke-width "2" :d "m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607Z"}]]
-      [:span {:class "hidden sm:block flex-1 text-left font-normal"} "Ask or search..."]
-      [:span {:class "hidden sm:block text-xs text-tint-9 font-normal"} "⌘K"]]]]])
+     [:div {:class "relative"}
+      [:div {:class "flex items-center gap-3 px-4 py-2.5 bg-tint-1 border
+             border-tint-6 rounded-aidbox-lg text-tint-11 text-sm transition-all duration-200
+             hover:bg-tint-1 hover:border-tint-7 sm:w-[35rem] focus-within:border-primary-7"}
+       [:svg {:class "size-4 text-tint-9" :fill "none" :stroke "currentColor" :viewBox "0 0 24 24"}
+        [:path {:stroke-linecap "round" :stroke-linejoin "round" :stroke-width "2" :d "m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607Z"}]]
+       [:input {:type "text"
+                :id "search-input"
+                :name "query"
+                :placeholder "Ask or search..."
+                :class "flex-1 bg-transparent outline-none placeholder-tint-9 text-tint-strong font-normal"
+                :autocomplete "off"
+                :hx-get "/search/dropdown"
+                :hx-trigger "keyup changed delay:300ms, focus"
+                :hx-target "#search-dropdown"
+                :hx-swap "innerHTML"
+                :hx-indicator "#search-indicator"}]
+       [:span {:id "search-shortcut" :class "hidden sm:block text-xs text-tint-9 font-normal transition-opacity duration-200"} "⌘K"]
+       [:div {:id "search-indicator" :class "htmx-indicator"}
+        [:svg {:class "animate-spin size-4 text-tint-9" :fill "none" :viewBox "0 0 24 24"}
+         [:circle {:class "opacity-25" :cx "12" :cy "12" :r "10" :stroke "currentColor" :stroke-width "4"}]
+         [:path {:class "opacity-75" :fill "currentColor" :d "M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"}]]]]
+      [:div {:id "search-dropdown"
+             :class "absolute top-full mt-2 left-0 right-0 z-50"}]]]]])

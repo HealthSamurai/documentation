@@ -118,6 +118,108 @@
                                 :filepath filepath
                                 :uri (:uri (first page-results))} query))]))))
 
+(defn dropdown-result-item [context result query selected-index index]
+  (let [{:keys [hit hit-by uri]} result
+        {:keys [filepath title h1 h2 h3 h4 text]} hit
+        page-title (or title h1 "Untitled")
+        is-selected (= selected-index index)
+        ;; Determine the specific URL based on the hit type
+        url (case hit-by
+              :h2 (str uri "#" (utils/s->url-slug h2))
+              :h3 (str uri "#" (utils/s->url-slug h3))
+              :h4 (str uri "#" (utils/s->url-slug h4))
+              uri)
+        ;; Determine what text to show based on what was matched
+        match-text (case hit-by
+                     :title title
+                     :h1 h1
+                     :h2 h2
+                     :h3 h3
+                     :h4 h4
+                     :text text
+                     page-title)]
+    [:a {:href url
+         :class (str "flex items-center gap-3 group px-4 py-3 transition-all duration-200 rounded-md "
+                     (if is-selected
+                       "bg-warning-2 text-tint-strong hover:bg-warning-2"
+                       "text-tint hover:bg-tint-2 hover:text-tint-strong"))
+         :data-search-result-index index}
+     ;; File icon
+     [:div {:class (str "size-5 shrink-0 "
+                        (if is-selected "text-warning-9" "text-tint-9 group-hover:text-tint-strong"))}
+      [:svg {:class "size-5"
+             :fill "none"
+             :stroke "currentColor"
+             :viewBox "0 0 24 24"
+             :stroke-width "2"}
+       [:path {:stroke-linecap "round"
+               :stroke-linejoin "round"
+               :d "M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"}]]]
+     ;; Content
+     [:div {:class "grow min-w-0"}
+      ;; Page title with section breadcrumb
+      [:div {:class "text-xs font-medium uppercase leading-none tracking-wider mb-1.5 opacity-70"}
+       [:span {:class "line-clamp-1"} page-title]]
+      ;; Matched content
+      [:p {:class "line-clamp-2 font-semibold text-base leading-snug"}
+       [:span {:class "whitespace-break-spaces"}
+        (highlight-text match-text query)]]]
+     ;; Enter arrow icon
+     [:div {:class (str "size-8 shrink-0 flex items-center justify-center transition-all duration-200 "
+                        (if is-selected "text-orange-600 opacity-100" "text-tint-9 opacity-60 group-hover:opacity-100"))}
+      [:svg {:class "size-4"
+             :fill "none"
+             :stroke "currentColor"
+             :viewBox "0 0 24 24"
+             :stroke-width "2"}
+       [:path {:stroke-linecap "round"
+               :stroke-linejoin "round"
+               :d "M9 5l7 7-7 7"}]]]]))
+
+(defn search-dropdown-results [context request]
+  (let [query (get-in request [:query-params :query] "")
+        selected-index (get-in request [:query-params :selected] "0")
+        selected-index (try (Integer/parseInt selected-index) (catch Exception _ 0))
+        results (when (and query (pos? (count query)))
+                  (let [search-results (take 10 (gitbok.search/search context query))]
+                    (mapv
+                     (fn [res]
+                       (assoc res :uri
+                              (indexing/filepath->uri context (-> res :hit :filepath))))
+                     search-results)))]
+    (if (empty? query)
+      [:div] ;; Empty div when no query
+      (if (empty? results)
+        [:div {:class "z-50 overflow-y-auto overflow-x-hidden rounded-md text-sm text-tint
+                       shadow-lg outline-none ring-1 ring-tint-subtle transition-all bg-tint-base
+                       w-full p-2 max-h-[24rem] max-w-[35rem]"}
+         [:div {:class "text-center text-tint-9 py-8"}
+          [:div {:class "text-sm"} "No results found"]]]
+        [:div {:class "z-50 animate-scaleIn overflow-y-auto overflow-x-hidden rounded-md text-sm text-tint
+                       shadow-lg outline-none ring-1 ring-tint-subtle transition-all bg-tint-base
+                       w-full p-2 max-h-[24rem]
+                       max-w-[35rem] scroll-py-2"
+               :data-search-dropdown "true"}
+         [:div {:class "flex flex-col gap-y-1"}
+
+          ;; Search results
+          (map-indexed (fn [idx result]
+                         (dropdown-result-item context result query selected-index idx))
+                       results)
+          ;; View all results link
+          (when (= (count results) 10)
+            [:a {:href (str "/search?q=" query)
+                 :class "flex items-center gap-3 px-4 py-3 text-sm text-tint-subtle hover:text-tint-strong transition-colors"}
+             [:span "View all results"]
+             [:svg {:class "size-3 ml-1"
+                    :fill "none"
+                    :stroke "currentColor"
+                    :viewBox "0 0 24 24"
+                    :stroke-width "2"}
+              [:path {:stroke-linecap "round"
+                      :stroke-linejoin "round"
+                      :d "M9 5l7 7-7 7"}]]])]]))))
+
 (defn search-view
   [context request]
   (let [query (get-in request [:query-params :q] "")]
