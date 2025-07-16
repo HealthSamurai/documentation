@@ -229,10 +229,8 @@ article figure figcaption {
 
 /* Code Blocks */
 article pre {
-  @apply border border-tint-subtle text-tint-12 rounded-lg overflow-x-auto max-w-full shadow-aidbox relative;
+  @apply border border-tint-subtle text-tint-12 rounded-lg overflow-x-auto max-w-full min-w-0 shadow-aidbox relative;
   white-space: pre !important;
-  width: 100% !important;
-  max-width: 100% !important;
   box-sizing: border-box !important;
 }
 
@@ -241,12 +239,8 @@ article pre + pre {
 }
 
 article pre code {
-  @apply text-base leading-relaxed block p-4 w-full;
+  @apply text-base leading-relaxed block p-4 w-full max-w-full min-w-0 break-all;
   white-space: pre !important;
-  max-width: 100% !important;
-  min-width: 0;
-  display: block;
-  width: 100%;
   box-sizing: border-box;
 }
 

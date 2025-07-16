@@ -241,25 +241,6 @@
 
   (http/register-endpoint
    context
-   {:path (utils/concat-urls prefix "/search")
-    :method :get
-    :middleware [gzip-middleware]
-    :fn #'gitbok.ui.search/search-view})
-
-  (http/register-endpoint
-   context
-   {:path (utils/concat-urls prefix "/search/results-only")
-    :method :get
-    :middleware [gzip-middleware]
-    :fn (fn [context request]
-          (let [result (gitbok.ui.search/search-results-only context request)]
-            {:status 200
-             :headers {"content-type" "text/html; charset=utf-8"
-                       "Cache-Control" "no-cache, no-store, must-revalidate"}
-             :body (gitbok.utils/->html result)}))})
-
-  (http/register-endpoint
-   context
    {:path (utils/concat-urls prefix "/search/dropdown")
     :method :get
     :middleware [gzip-middleware]

@@ -51,12 +51,12 @@
         [:path {:stroke-linecap "round" :stroke-linejoin "round" :stroke-width "2" :d "m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607Z"}]]
        [:input {:type "text"
                 :id "search-input"
-                :name "query"
+                :name "q"
                 :placeholder "Ask or search..."
                 :class "flex-1 bg-transparent outline-none placeholder-tint-9 text-tint-strong font-normal"
                 :autocomplete "off"
                 :hx-get "/search/dropdown"
-                :hx-trigger "keyup changed delay:300ms, focus"
+                :hx-trigger "keyup[!event.key.startsWith('Arrow') && event.key !== 'Enter' && event.key !== 'Escape'] changed delay:300ms, focus"
                 :hx-target "#search-dropdown"
                 :hx-swap "innerHTML"
                 :hx-indicator "#search-indicator"}]
