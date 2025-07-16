@@ -150,14 +150,14 @@
               [:script
                (uui/raw "mermaid.initialize({ startOnLoad: true });")]]
 
-             [:pre {:class "max-w-full overflow-x-auto"}
+             [:pre {:class "min-w-0 max-w-full overflow-x-auto"}
               [:code.nohljsln
                ;; protect from xss, do not use raw
                (-> node :content first :text)]]))
 
          :monospace
          (fn [_ctx node]
-           [:code {:class "py-[1px] px-1.5 min-w-[1.625rem] justify-center items-center ring-1 ring-inset ring-tint-4 bg-tint-2 rounded text-[.875em] inline-flex"
+           [:code {:class "py-[1px] px-1.5 min-w-[1.625rem] ring-1 ring-inset ring-tint-4 bg-tint-2 rounded text-[.875em] inline break-words"
                    :style "font-family: var(--font-code); line-height: calc(max(1.20em, 1.25rem));"}
             (-> node :content first :text)])
 

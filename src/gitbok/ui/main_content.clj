@@ -100,7 +100,7 @@
                   :d "M9 5l7 7-7 7"}]]]])]))
 
 (defn render-file* [context filepath parsed title _raw-content]
-  {:content [:div {:class "flex-1 min-w-0 max-w-full overflow-x-hidden"}
+  {:content [:div {:class "flex-1 min-w-0 max-w-full"}
              (if (= 1 (count (:content parsed)))
                (render-empty-page context filepath title)
                (markdown/render-md context filepath parsed))]
@@ -123,7 +123,7 @@
     [:main#content {:class "flex-1 items-start pl-3"}
      [:div {:class "flex items-start"}
       [:article {:class "article__content py-8 min-w-0 flex-1
-                 sm:px-0 md:px-4 max-w-5xl overflow-hidden transform-3d"}
+                 sm:px-0 md:px-4 max-w-5xl transform-3d"}
        (when htmx?
          [:script "window.scrollTo(0, 0); updateLastUpdated(); updateActiveNavItem(window.location.pathname); updatePageTitle();"])
        [:div {:class "mx-auto max-w-full md:px-4"} body]

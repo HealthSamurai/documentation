@@ -46,6 +46,7 @@ document.addEventListener('keydown', function (event) {
           event.preventDefault();
           if (currentIndex >= 0 && currentIndex < results.length) {
             results[currentIndex].click();
+            event.target.blur(); // Remove focus from search input after navigation
           }
           return;
         }

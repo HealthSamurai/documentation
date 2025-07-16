@@ -232,6 +232,8 @@ article pre {
   @apply border border-tint-subtle text-tint-12 rounded-lg overflow-x-auto max-w-full min-w-0 shadow-aidbox relative;
   white-space: pre !important;
   box-sizing: border-box !important;
+  contain: layout inline-size !important;
+  max-width: calc(100vw - 320px) !important;
 }
 
 article pre + pre {
@@ -239,9 +241,16 @@ article pre + pre {
 }
 
 article pre code {
-  @apply text-base leading-relaxed block p-4 w-full max-w-full min-w-0 break-all;
+  @apply text-base leading-relaxed block p-4 w-full max-w-full min-w-0;
   white-space: pre !important;
   box-sizing: border-box;
+}
+
+/* Inline code (not in pre blocks) */
+article code:not(pre code) {
+  word-break: break-all !important;
+  overflow-wrap: anywhere !important;
+  white-space: normal !important;
 }
 
 
