@@ -10,3 +10,5 @@ node_modules
 .cpcache
 target
 resources/.gitbook.yaml
+.clojure-mcp/
+.serena/
