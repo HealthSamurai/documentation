@@ -229,7 +229,7 @@ article figure figcaption {
 
 /* Code Blocks */
 article pre {
-  @apply border border-tint-subtle text-tint-12 rounded-lg overflow-x-auto max-w-full min-w-0 shadow-aidbox relative;
+  @apply border border-tint-subtle bg-tint-subtle text-tint-12 rounded-lg overflow-x-auto max-w-full min-w-0 shadow-aidbox relative;
   white-space: pre !important;
   box-sizing: border-box !important;
   contain: layout inline-size !important;
@@ -251,6 +251,11 @@ article code:not(pre code) {
   word-break: break-all !important;
   overflow-wrap: anywhere !important;
   white-space: normal !important;
+}
+
+/* Override highlight.js background to match our subtle tint */
+article pre code.hljs {
+  background: var(--color-tint-subtle) !important; /* matches bg-tint-subtle */
 }
 
 
