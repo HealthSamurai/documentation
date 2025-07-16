@@ -226,6 +226,18 @@ document.addEventListener('DOMContentLoaded', function() {
                 window.location.href = '/search';
             }
         }
+        
+        // ESC key to clear search results on main search page
+        if (e.key === 'Escape' && window.location.pathname === '/search') {
+            const searchInput = document.getElementById('search-input');
+            const searchResults = document.getElementById('search-results');
+            if (searchInput && searchResults) {
+                e.preventDefault();
+                searchInput.value = '';
+                searchResults.innerHTML = '<div class="text-center text-tint-9 py-8"><div class="text-lg font-medium mb-2">Search Documentation</div></div>';
+                searchInput.focus();
+            }
+        }
     });
 
     // Handle Ctrl+click to open links in new tab

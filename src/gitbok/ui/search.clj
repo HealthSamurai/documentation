@@ -28,7 +28,7 @@
                        (-> first-result :hit :h1)
                        "Untitled")
         ;; Check if any result is a title match
-        has-title-match? (some #(= (:hit-by %) :title) results)]
+        has-title-match? (some #(#{:title :h1} (:hit-by %)) results)]
     [:div {:class "mb-4 border border-tint-4 rounded-lg"}
      ;; Page title - always clickable
      [:a.flex.gap-4.flex-row.items-center.p-4.text-base.font-medium.hover:bg-tint-2.rounded-t-lg
@@ -64,18 +64,21 @@
           (let [{:keys [hit hit-by]} result
                 {:keys [h1 h2 h3 h4 text]} hit
                 ;; Don't show title matches as they're already in the header
-                show-match? (not= hit-by :title)]
+                show-match? (not (#{:title :h1} hit-by))]
             (when show-match?
               (case hit-by
-                :h1 [:a.block.px-4.py-2.hover:bg-primary-2.transition-colors
-                     {:href uri}
-                     [:div.text-base.font-semibold (highlight-text h1 query)]]
                 :h2 [:a.block.px-4.py-2.hover:bg-primary-2.transition-colors
                      {:href (str uri "#" (utils/s->url-slug h2))}
-                     [:div.text-base.font-medium (highlight-text h2 query)]]
+                     [:div.flex.items-center.gap-2
+                      [:span {:class "inline-flex items-center justify-center px-1.5 py-0.5 text-[10px] font-semibold rounded bg-primary-2 text-primary-11"}
+                       "H2"]
+                      [:span.text-base.font-medium (highlight-text h2 query)]]]
                 :h3 [:a.block.px-4.py-2.hover:bg-primary-2.transition-colors
                      {:href (str uri "#" (utils/s->url-slug h3))}
-                     [:div.text-sm.font-medium (highlight-text h3 query)]]
+                     [:div.flex.items-center.gap-2
+                      [:span {:class "inline-flex items-center justify-center px-1.5 py-0.5 text-[10px] font-semibold rounded bg-tint-2 text-tint-11"}
+                       "H3"]
+                      [:span.text-sm.font-medium (highlight-text h3 query)]]]
                 :h4 [:a.block.px-4.py-2.hover:bg-primary-2.transition-colors
                      {:href (str uri "#" (utils/s->url-slug h4))}
                      [:div.text-sm (highlight-text h4 query)]]
@@ -138,7 +141,9 @@
                      :h3 h3
                      :h4 h4
                      :text text
-                     page-title)]
+                     page-title)
+        ;; Check if this is a title/h1 match
+        is-title-match? (#{:title :h1} hit-by)]
     [:a {:href url
          :class (str "flex items-center gap-3 group px-4 py-3 transition-all duration-200 rounded-md "
                      (if is-selected
@@ -158,9 +163,22 @@
                :d "M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"}]]]
      ;; Content
      [:div {:class "grow min-w-0"}
-      ;; Page title with section breadcrumb
-      [:div {:class "text-xs font-medium uppercase leading-none tracking-wider mb-1.5 opacity-70"}
-       [:span {:class "line-clamp-1"} page-title]]
+      ;; Page title with section breadcrumb - only show if not a title/h1 match
+      (when-not is-title-match?
+        [:div {:class "text-xs font-medium uppercase leading-none tracking-wider mb-1.5 opacity-70"}
+         [:span {:class "line-clamp-1"}
+          page-title
+          (when (#{:h2 :h3} hit-by)
+            [:span " › "
+             [:span {:class (str "inline-flex items-center justify-center px-1.5 py-0.5 text-[10px] font-semibold rounded "
+                                 (case hit-by
+                                   :h2 "bg-primary-2 text-primary-11"
+                                   :h3 "bg-tint-2 text-tint-11"
+                                   ""))}
+              (case hit-by
+                :h2 "H2"
+                :h3 "H3"
+                "")]])]])
       ;; Matched content
       [:p {:class "line-clamp-2 font-semibold text-base leading-snug"}
        [:span {:class "whitespace-break-spaces"}

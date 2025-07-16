@@ -60,7 +60,7 @@
                 :hx-target "#search-dropdown"
                 :hx-swap "innerHTML"
                 :hx-indicator "#search-indicator"}]
-       [:span {:id "search-shortcut" :class "hidden sm:block text-xs text-tint-9 font-normal transition-opacity duration-200"} "⌘K"]
+       [:span {:id "search-shortcut" :class "hidden sm:block text-xs text-tint-9 font-normal transition-opacity duration-200"} "Ctrl + K"]
        [:div {:id "search-indicator" :class "htmx-indicator"}
         [:svg {:class "animate-spin size-4 text-tint-9" :fill "none" :viewBox "0 0 24 24"}
          [:circle {:class "opacity-25" :cx "12" :cy "12" :r "10" :stroke "currentColor" :stroke-width "4"}]
