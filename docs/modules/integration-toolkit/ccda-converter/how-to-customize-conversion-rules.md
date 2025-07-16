@@ -213,7 +213,11 @@ Code here says that you:
 * find the rule in `aidbox.ccda.rules.encounters/narrative` that is equal to the rule declared in `selector`
 * substitue the rule that was found to the rule that was declared in `override`
 
-You can see the example of this config [here](https://github.com/Aidbox/aidbox-project-template/tree/aidbox-ccda-custom-rules) .
+You can see the example of this config [here](https://github.com/Aidbox/aidbox-project-template/tree/aidbox-ccda-custom-rules). Three important details for custom rules to be applied:
+
+* They should be saved as `.yaml` file;
+* This file should be accessible to Aidbox (for `docker-compose`, it should be mapped in `volumes`);
+* And the path to this file should be provided in `CCDA_CUSTOM_RULES` environment variable.
 
 {% hint style="warning" %}
 The work with Override DSL is in progress.
