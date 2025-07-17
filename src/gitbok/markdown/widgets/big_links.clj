@@ -31,15 +31,16 @@
 (defn big-link-view [href title & [image]]
   [:div {:class "my-6 p-4 border
          border-tint-8
-         rounded-lg bg-tint-base hover:border-primary-9
+         rounded-lg bg-tint-base hover:border-primary-7
          transition-all duration-200 flex
-         items-center cursor-pointer"}
+         items-center cursor-pointer group"}
    (when image
      [:div {:class "w-10 h-10 rounded-full flex items-center justify-center mr-3 flex-shrink-0"}
       [:img {:src image :alt title :class "w-6 h-6 object-contain"}]])
    [:div {:class "flex-1"}
     [:a {:href href
-         :class "hover:text-primary-9 text-base transition-colors duration-200 no-underline block w-full h-full"}
+         :class "group-hover:text-primary-9 text-base transition-colors duration-200
+         no-underline block w-full h-full"}
      title]]
    (ico/chevron-right "chevron size-5 text-tint-strong/40")])
 
