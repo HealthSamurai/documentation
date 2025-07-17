@@ -317,6 +317,12 @@ Redirect URI that will be used on form save/close button click
 
 <table data-header-hidden="true"><thead><tr><th width="200"></th><th></th></tr></thead><tbody><tr><td>ID</td><td><code>module.sdc.form.redirect-on-save</code></td></tr><tr><td>Type</td><td>String</td></tr><tr><td>Default value</td><td>(no default)</td></tr><tr><td>Environment variable</td><td><code>BOX_MODULE_SDC_FORM_REDIRECT_ON_SAVE</code></td></tr><tr><td>Deprecated environment variables</td><td><code>BOX_SDC_FORM_REDIRECT_ON_SAVE</code></td></tr><tr><td>Sensitive</td><td><code>false</code> — value will be visible in plaintext in Admin UI</td></tr><tr><td>Set via</td><td>Admin UI → Settings<br />Environment variables</td></tr><tr><td>Hot reload</td><td><code>true</code> — setting can be changed at runtime</td></tr></tbody></table>
 
+## Enable strict access control for sdc operations<a href="#module.sdc.strict-access-control" id="module.sdc.strict-access-control"></a>
+
+Enable strict access control for operations(like populate/submit/reference-lookup) that can request different FHIR resources
+
+<table data-header-hidden="true"><thead><tr><th width="200"></th><th></th></tr></thead><tbody><tr><td>ID</td><td><code>module.sdc.strict-access-control</code></td></tr><tr><td>Type</td><td>Bool</td></tr><tr><td>Default value</td><td><code>false</code></td></tr><tr><td>Environment variable</td><td><code>BOX_MODULE_SDC_STRICT_ACCESS_CONTROL</code></td></tr><tr><td>Deprecated environment variables</td><td><code>BOX_SDC_SDC_STRICT_ACCESS_CONTROL</code></td></tr><tr><td>Sensitive</td><td><code>false</code> — value will be visible in plaintext in Admin UI</td></tr><tr><td>Set via</td><td>Admin UI → Settings<br />Environment variables</td></tr><tr><td>Hot reload</td><td><code>true</code> — setting can be changed at runtime</td></tr></tbody></table>
+
 # GraphQL
 
 GraphQL settings
