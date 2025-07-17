@@ -172,15 +172,10 @@
     (if (empty? query)
       [:div] ;; Empty div when no query
       (if (empty? results)
-        [:div {:class "z-50 overflow-y-auto overflow-x-hidden rounded-md text-sm text-tint
-                       shadow-lg outline-none ring-1 ring-tint-subtle transition-all bg-tint-base
-                       w-full p-2 max-h-[24rem] max-w-[35rem]"}
+        [:div {:class "z-50 animate-scaleIn overflow-y-auto overflow-x-hidden circular-corners:rounded-3xl rounded-corners:rounded-md text-sm text-tint shadow-lg outline-none ring-1 ring-tint-subtle transition-all empty:hidden bg-tint-base has-[.empty]:hidden scroll-py-2 w-full md:w-[32rem] p-2 max-h-[32rem] md:max-h-[min(32rem,var(--radix-popover-content-available-height))] md:max-w-[min(var(--radix-popover-content-available-width),32rem)]"}
          [:div {:class "text-center text-tint-9 py-8"}
           [:div {:class "text-sm"} "No results found"]]]
-        [:div {:class "z-50 animate-scaleIn overflow-y-auto overflow-x-hidden rounded-md text-sm text-tint
-                       shadow-lg outline-none ring-1 ring-tint-subtle transition-all bg-tint-base
-                       w-full p-2 max-h-[24rem]
-                       max-w-[35rem] scroll-py-2"
+        [:div {:class "z-50 animate-scaleIn overflow-y-auto overflow-x-hidden circular-corners:rounded-3xl rounded-corners:rounded-md text-sm text-tint shadow-lg outline-none ring-1 ring-tint-subtle transition-all empty:hidden bg-tint-base has-[.empty]:hidden scroll-py-2 w-full md:w-[32rem] p-2 max-h-[32rem] md:max-h-[min(32rem,var(--radix-popover-content-available-height))] md:max-w-[min(var(--radix-popover-content-available-width),32rem)]"
                :data-search-dropdown "true"}
          [:div {:class "flex flex-col gap-y-1"}
 

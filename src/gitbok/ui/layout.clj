@@ -83,6 +83,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     [:script {:src "/static/tabs.js"}]
     [:script {:src "/static/toc.js"}]
     [:script {:src "/static/mobile-menu.js"}]
+    [:script {:src "/static/mobile-search.js"}]
     [:link {:rel "stylesheet" :href "/static/github.min.css"}]
     [:script {:src "/static/highlight.min.js"}]
     [:script {:src "/static/json.min.js"}]
