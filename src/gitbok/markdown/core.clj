@@ -150,8 +150,8 @@
               [:script
                (uui/raw "mermaid.initialize({ startOnLoad: true });")]]
 
-             [:pre {:class "min-w-0 max-w-full overflow-x-auto"}
-              [:code.nohljsln
+             [:pre
+              [:code
                ;; protect from xss, do not use raw
                (-> node :content first :text)]]))
 
@@ -190,7 +190,6 @@
          (fn [ctx node]
            (into [:td]
                  (mapv #(transform/->hiccup ctx %) (:content node))))
-
 
          :html-inline
          (fn [_ctx node]
