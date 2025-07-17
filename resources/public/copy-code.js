@@ -53,7 +53,7 @@ function initializeCopyButtons() {
     // Create copy button
     const copyButton = document.createElement('button');
     copyButton.setAttribute('data-copy-code', 'true');
-    copyButton.style.cssText = 'position: absolute; top: 8px; right: 8px; padding: 4px 8px; font-size: 12px; background: white; color: #374151; border: 1px solid #d1d5db; border-radius: 4px; cursor: pointer; opacity: 0; transition: opacity 0.2s; z-index: 10; box-shadow: 0 2px 4px rgba(0,0,0,0.1); font-weight: 500; display: none;';
+    copyButton.style.cssText = 'position: absolute; top: 8px; right: 8px; padding: 4px 8px; font-size: 12px; background: rgba(255, 255, 255, 0.1); backdrop-filter: blur(8px); color: #374151; border: 1px solid #d1d5db; border-radius: 4px; cursor: pointer; opacity: 0; transition: opacity 0.2s; z-index: 10; box-shadow: 0 2px 4px rgba(0,0,0,0.1); font-weight: 500; display: none;';
     copyButton.innerHTML = 'Copy';
     copyButton.title = 'Copy code';
 
@@ -100,6 +100,7 @@ function initializeCopyButtons() {
     copyButton.addEventListener('mouseenter', function() {
       if (window.innerWidth > 768) {
         copyButton.style.opacity = '1';
+        copyButton.style.background = 'rgba(255, 255, 255, 0.8)';
       }
     });
 
@@ -109,8 +110,8 @@ function initializeCopyButtons() {
         // Reset to original text and style if it was changed
         if (this.innerHTML === 'Copied!') {
           this.innerHTML = 'Copy';
-          this.style.background = 'white';
         }
+        this.style.background = 'rgba(255, 255, 255, 0.1)';
       }
     });
 
