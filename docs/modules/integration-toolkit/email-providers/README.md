@@ -61,6 +61,14 @@ PUT /NotificationTemplate/notification-template-1
 template: <b>Hello world! {{foo.bar}}</b>
 ```
 
+## Sending the email
+
+Use `$send` endpoint:
+
+```
+POST /Notification/notification-1/$send
+```
+
 ## See also
 
 {% content-ref url="../../../reference/email-providers-reference/" %}
