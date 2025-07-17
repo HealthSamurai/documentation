@@ -162,11 +162,25 @@ html {
 
 /* Typography - Basic elements */
 article ul {
-  @apply ml-8 list-disc text-tint-12;
+  @apply ml-8 text-tint-12;
+  list-style: none;
 }
 
 article ul > li {
   @apply mt-2;
+  position: relative;
+}
+
+/* Custom bullet styling to match the example */
+article ul > li::before {
+  content: "•";
+  color: var(--color-tint-9);
+  font-family: Arial;
+  font-size: min(1.5em, 24px);
+  line-height: 1;
+  position: absolute;
+  left: -1.5rem;
+  top: 0;
 }
 
 /* Add margin-bottom to p tags that are not inside li */

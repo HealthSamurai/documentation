@@ -138,7 +138,7 @@
 
          :bullet-list
          (fn [ctx node]
-           (into [:ul {:class "ml-8 list-disc text-tint-12 text-base space-y-2"}]
+           (into [:ul {:class "ml-8 text-tint-12 text-base space-y-2"}]
                  (mapv #(transform/->hiccup ctx %)
                        (:content node))))
 

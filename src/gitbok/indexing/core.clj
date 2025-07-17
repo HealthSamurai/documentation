@@ -153,8 +153,10 @@
 
 (defn parent? [context filepath]
   (let [uri (filepath->uri context filepath)]
-    (->> context
-         uri-to-file/get-idx
-         (filter (fn [[k _]]
-                 (str/starts-with? (name k) uri)))
-         (not= 1))))
+    (when uri
+      (->> context
+           uri-to-file/get-idx
+           (filter (fn [[k _]]
+                     (str/starts-with? (name k) uri)))
+           count
+           (not= 1)))))

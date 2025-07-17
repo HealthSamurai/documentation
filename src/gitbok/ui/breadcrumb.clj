@@ -6,6 +6,7 @@
    [gitbok.indexing.core :as indexing]))
 
 (defn breadcrumb [context filepath]
+  (def f filepath)
   (when filepath
     (let [parts (->> (str/split filepath #"/")
                      (remove str/blank?)
