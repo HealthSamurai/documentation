@@ -85,7 +85,7 @@
                      nil))
                  href (or title-href title-filepath pic-href1 pic-href2)]]
        [:div {:href href
-              :class "card group block hover:shadow-lg transition-all duration-200 cursor-pointer
+              :class "card group block hover:shadow-md transition-all duration-200 cursor-pointer
                flex flex-col bg-tint-1 border border-tint-4
                hover:border-tint-5
                rounded-sm overflow-hidden h-full
