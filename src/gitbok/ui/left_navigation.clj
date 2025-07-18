@@ -41,8 +41,7 @@
    {:class "w-80 flex-shrink-0 sticky top-16 h-[calc(100vh-4rem)]
     overflow-y-auto py-6 bg-tint-base border-r border-tint-subtle
     font-content lg:mr-20 space-y-4
-    lg:-ms-4
-    "
+    lg:-ms-4"
     :aria-label "Documentation menu"}
    (for [item summary]
      [:div {:class "break-words"}

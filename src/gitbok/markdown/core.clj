@@ -150,7 +150,7 @@
               [:script
                (uui/raw "mermaid.initialize({ startOnLoad: true });")]]
 
-             [:pre
+             [:pre {:class "text-base"}
               [:code
                ;; protect from xss, do not use raw
                (-> node :content first :text)]]))
