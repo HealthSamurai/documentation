@@ -276,6 +276,11 @@ article code:not(pre code) {
   line-height: 1.8! important;
 }
 
+/* Table code elements - higher specificity to override Tailwind classes */
+article table td code {
+  line-height: 1.8 !important;
+}
+
 article pre:not(.gitbook-code-title pre) {
   @apply my-4!;
 }
@@ -430,7 +435,7 @@ article .hint p {
     white-space: normal !important;
     word-break: break-word !important;
     word-wrap: break-word !important;
-    display: inline-block !important;
+    display: inline !important;
     max-width: 100% !important;
     overflow-wrap: break-word !important;
     line-height: 1.8 !important;
