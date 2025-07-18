@@ -315,7 +315,7 @@ article details>*:not(summary):last-child {
 
 /* Hint/Admonition styles */
 article .hint img {
-  max-width: 300px !important;
+  max-width: min(300px, 100%) !important;
   height: auto !important;
 }
 
@@ -440,6 +440,13 @@ article .hint p {
   /* Remove min-width constraint from tables on mobile */
   article table {
     min-width: auto !important;
+  }
+
+  /* Ensure hint images are fully visible on mobile */
+  article .hint img {
+    max-width: 100% !important;
+    width: auto !important;
+    height: auto !important;
   }
 }
 
