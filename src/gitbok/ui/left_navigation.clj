@@ -51,6 +51,4 @@
          [:span {:class "text-mini font-semibold text-tint-strong uppercase tracking-wider"}
           (:title item)]])
       (for [ch (:children item)]
-        (render-left-navigation url ch))])
-   [:div {:class "mt-8 px-4 py-2 text-micro text-tint-10 border-t border-tint-subtle"}
-    "version " (utils/slurp-resource "version")]])
+        (render-left-navigation url ch))])])

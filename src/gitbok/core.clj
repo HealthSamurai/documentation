@@ -173,6 +173,10 @@
   [_ _]
   {:status 200 :body {:status "ok"}})
 
+(defn version-endpoint
+  [context _]
+  {:status 200 :body {:version (gitbok.http/get-version context)}})
+
 (system/defmanifest
   {:description "gitbok"
    :deps ["http"]
@@ -204,6 +208,7 @@
   (gitbok.http/set-port context port)
   (gitbok.http/set-prefix context prefix)
   (gitbok.http/set-base-url context base-url)
+  (gitbok.http/set-version context (str/trim (utils/slurp-resource "version")))
 
   ;; order is important
   ; 1. read summary. create toc htmx.
@@ -302,6 +307,12 @@
    {:path "/healthcheck"
     :method :get
     :fn #'healthcheck})
+
+  (http/register-endpoint
+   context
+   {:path "/version"
+    :method :get
+    :fn #'version-endpoint})
   {})
 
 (defn -main [& _args]

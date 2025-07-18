@@ -70,3 +70,11 @@
      (str/starts-with? uri prefix)
       (subs uri (count prefix))
       uri)))
+
+(defn set-version [context version]
+  (system/set-system-state
+   context [const/VERSION]
+   version))
+
+(defn get-version [context]
+  (system/get-system-state context [const/VERSION]))

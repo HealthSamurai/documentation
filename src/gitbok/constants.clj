@@ -19,3 +19,5 @@
 (def ^:const PORT ::port)
 (def ^:const PREFIX ::prefix)
 (def ^:const BASE_URL ::base-url)
+
+(def ^:const VERSION ::version)
