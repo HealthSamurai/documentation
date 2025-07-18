@@ -1105,3 +1105,71 @@ roles:
   - value: sdc-response-manager
   - value: sdc-form-filler
 ```
+
+
+## Strict access control 
+
+In the Structured Data Capture (SDC) module, certain operations act as proxy calls to the FHIR REST API. These operations often fetch or persist data on behalf of the user. For example, the $populate operation may internally perform a GET /Patient/[id] request to prefill a form with patient data.
+
+By default, SDC assumes a permissive access model: if a user has permission to invoke an SDC operation such as $populate, they are implicitly allowed to access any referenced resources defined in the associated Questionnaire. However, this behavior can lead to potential data leakage in production environments. If a user has permission to both edit a Questionnaire and invoke $populate, they could manipulate the form structure to fetch unauthorized data.
+Enabling Strict Mode
+
+To mitigate this risk, the SDC module supports a strict access control mode. This mode enforces explicit authorization for all backend resource accesses initiated by SDC proxy operations.
+
+Strict mode can be enabled via the following environment variable:
+
+```
+BOX_MODULE_SDC_STRICT_ACCESS_CONTROL=true
+```
+
+Once enabled, the system will require dedicated AccessPolicy definitions that govern which resource types and operations can be accessed by each SDC proxy operation.
+
+
+Affected Proxy Operations
+
+The following SDC operations are affected by strict access control:
+
+- `POST /Questionnaire/$populate` and `POST /Questionnaire/$populatelink`: Prefill a form using data retrieved from FHIR resources.
+
+- `POST /QuestionnaireResponse/$submit` : Extract data from a completed response and persist it as FHIR resources.
+
+-  `POST /Questionnaire/$reference-lookup` : Perform lookups for resource references (e.g., used in reference widgets).
+
+Configuring Access Policies
+
+To enable FHIR resource access for these operations under strict mode, you must define corresponding AccessPolicy rules.
+These rules must include the correct context identifier in the extra-data.sdc.context field, indicating the SDC operation the access is intended for.
+
+Below are example AccessPolicy matcho blocks for each operation:
+
+1. For $populate and $populatelink
+
+```yaml
+engine: matcho
+matcho:
+  extra-data:
+    sdc:
+      context: populate
+```
+
+2. For $reference-lookup
+
+```yaml
+engine: matcho
+matcho:
+  extra-data:
+    sdc:
+      context: reference-lookup
+```
+
+3. For $submit
+
+```yaml
+engine: matcho
+matcho:
+  extra-data:
+    sdc:
+      context: extract
+```
+
+Each access policy should also specify the allowed resource types, operations (e.g., read, search, create), and any additional filters or constraints as appropriate for your security model.
