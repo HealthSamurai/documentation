@@ -80,7 +80,9 @@
   (let [title (get (:attributes code-data) :title)
         ;; line-numbers (get (:attributes code-data) :lineNumbers)
         content (:content code-data)
-        parsed-content (:parsed (parse-markdown-content-fn context [filepath content]))
+        parsed-content (:parsed (parse-markdown-content-fn
+                                  context
+                                  [filepath content]))
         raw-html (render-md-fn context filepath parsed-content)]
     [:div {:class
            (str

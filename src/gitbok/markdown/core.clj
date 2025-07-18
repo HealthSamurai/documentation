@@ -226,23 +226,28 @@
   (transform/->hiccup (renderers context filepath) parsed))
 
 (defn hack-md [context filepath md-file]
-  (->> md-file
-       big-links/hack-content-ref
-       github-hint/hack-info
-       image/hack-youtube
-       image/hack-other-websites
-       (tabs/hack-tabs context
-                       filepath
-                       parse-markdown-content
-                       render-md)
-       (gitbook-code/hack-gitbook-code context
-                                       filepath
-                                       parse-markdown-content
-                                       render-md)
-       (description/hack-h1-and-description context
-                                            filepath
-                                            md/parse
-                                            render-md)))
+  (let [context-hack
+        (assoc context :parsing-in-hack-phase true)]
+    (->> md-file
+         big-links/hack-content-ref
+         github-hint/hack-info
+         image/hack-youtube
+         image/hack-other-websites
+         (tabs/hack-tabs
+          context-hack
+          filepath
+          parse-markdown-content
+          render-md)
+         (gitbook-code/hack-gitbook-code
+          context-hack
+          filepath
+          parse-markdown-content
+          render-md)
+         (description/hack-h1-and-description
+          context
+          filepath
+          md/parse
+          render-md))))
 
 (defn set-parsed-markdown-index [context md-files-idx]
   (system/set-system-state

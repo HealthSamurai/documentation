@@ -42,33 +42,35 @@
                                parse-markdown-content
                                render-md
                                content]
-  (let [description (parse-description content)
-        new-desc (when description [:p {:class "text-lg text-tint-11"} description])
-        title (parse-title content)
-        lines (str/split-lines content)
-        start-idx (.indexOf ^java.util.List lines "---")
-        end-idx (when (>= start-idx 0)
-                  (+ start-idx 1 (.indexOf ^java.util.List (subvec (vec lines) (inc start-idx)) "---")))
-        after-frontmatter (if (and end-idx (> end-idx start-idx))
-                            (subvec (vec lines) (inc end-idx))
-                            lines)
-        h1-idx (some #(when
-                       (and (>= % 0)
-                            (str/starts-with? (nth after-frontmatter %) "# "))
-                        %)
-                     (range (count after-frontmatter)))]
-    (if (and title h1-idx)
-      (let [h1-line (nth after-frontmatter h1-idx)
-            parsed-h1 (parse-markdown-content h1-line)
-            rendered-h1 (render-md context filepath parsed-h1)
-            after-h1 (subvec after-frontmatter (inc h1-idx))
-            header-content (if new-desc [rendered-h1 new-desc] [rendered-h1])
-            header-html (str
-                         (hiccup/html
-                          (into [:header {:class "mb-6"}
-                                 (breadcrumb/breadcrumb context filepath)] header-content)))]
-        (str
-         header-html
-         "\n"
-         (str/join "\n" after-h1)))
-      content)))
+  (if (:parsing-in-hack-phase context)
+    content
+    (let [description (parse-description content)
+          new-desc (when description [:p {:class "text-lg text-tint-11"} description])
+          title (parse-title content)
+          lines (str/split-lines content)
+          start-idx (.indexOf ^java.util.List lines "---")
+          end-idx (when (>= start-idx 0)
+                    (+ start-idx 1 (.indexOf ^java.util.List (subvec (vec lines) (inc start-idx)) "---")))
+          after-frontmatter (if (and end-idx (> end-idx start-idx))
+                              (subvec (vec lines) (inc end-idx))
+                              lines)
+          h1-idx (some #(when
+                         (and (>= % 0)
+                              (str/starts-with? (nth after-frontmatter %) "# "))
+                          %)
+                       (range (count after-frontmatter)))]
+      (if (and title h1-idx)
+        (let [h1-line (nth after-frontmatter h1-idx)
+              parsed-h1 (parse-markdown-content h1-line)
+              rendered-h1 (render-md context filepath parsed-h1)
+              after-h1 (subvec after-frontmatter (inc h1-idx))
+              header-content (if new-desc [rendered-h1 new-desc] [rendered-h1])
+              header-html (str
+                           (hiccup/html
+                            (into [:header {:class "mb-6"}
+                                   (breadcrumb/breadcrumb context filepath)] header-content)))]
+          (str
+           header-html
+           "\n"
+           (str/join "\n" after-h1)))
+        content))))
