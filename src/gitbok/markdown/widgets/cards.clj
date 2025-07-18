@@ -88,7 +88,6 @@
               :class "card group block hover:shadow-lg transition-all duration-200 cursor-pointer
                flex flex-col bg-tint-1 border border-tint-4
                hover:border-tint-5
-               shadow
                rounded-sm overflow-hidden h-full
                min-h-[150px] md:max-h-[300px]
                transition-colors duration-200"
