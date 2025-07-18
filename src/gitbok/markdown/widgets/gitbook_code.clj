@@ -78,20 +78,25 @@
                            parse-markdown-content-fn
                            render-md-fn]
   (let [title (get (:attributes code-data) :title)
-        ;; line-numbers (get (:attributes code-data) :lineNumbers)
         content (:content code-data)
         parsed-content (:parsed (parse-markdown-content-fn
-                                  context
-                                  [filepath content]))
+                                 context
+                                 [filepath content]))
         raw-html (render-md-fn context filepath parsed-content)]
-    [:div {:class
-           (str
-             "bg-tint-1 border border-tint-4 rounded-lg overflow-hidden mb-4"
-             (when title " gitbook-code-title")) }
+    [:div {:class "code-gitbook group/codeblock grid grid-flow-col mx-auto w-full
+           decoration-primary/6 page-full-width:ml-0
+           max-w-3xl page-api-block:ml-0"}
      (when title
-       [:div {:class "bg-tint-2 px-4 py-3 border-b border-tint-4"}
-        [:h3 {:class "text-sm font-medium text-tint-12"} title]])
-     raw-html]))
+       [:div {:class "flex items-center justify-start gap-2 text-sm [grid-area:1/1]"}
+        [:div {:class "relative top-px z-20 inline-flex items-center justify-center rounded-t
+               straight-corners:rounded-t-s border border-tint-6 border-b-0 bg-tint-subtle
+               theme-muted:bg-tint-base px-3 py-2 text-tint-11 text-xs leading-none tracking-wide
+               contrast-more:border-tint contrast-more:bg-tint-base [html.theme-bold.sidebar-filled_&]:bg-tint-base"}
+         title]])
+     [:div {:class "relative overflow-auto border border-tint-6 bg-tint-subtle theme-muted:bg-tint-base
+            [grid-area:2/1] contrast-more:border-tint contrast-more:bg-tint-base [html.theme-bold.sidebar-filled_&]:bg-tint-base
+            rounded-md straight-corners:rounded-sm rounded-ss-none"}
+      raw-html]]))
 
 (defn hack-gitbook-code
   [context filepath

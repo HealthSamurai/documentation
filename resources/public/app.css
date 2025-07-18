@@ -281,15 +281,24 @@ article table td code {
   line-height: 1.8 !important;
 }
 
-article pre:not(.gitbook-code-title pre) {
+article pre {
   @apply my-4!;
 }
+
 
 article pre code.hljs {
   @apply text-sm! leading-relaxed! block! px-4! py-2! border! border-tint-6! bg-tint-subtle! text-tint-12! rounded-lg! overflow-x-auto! max-w-full! min-w-0! relative!;
   white-space: pre !important;
   box-sizing: border-box !important;
   contain: layout inline-size !important;
+}
+
+article .code-gitbook pre {
+  @apply my-0! border-t-0!;
+}
+
+article .code-gitbook pre code {
+  @apply border! border-0! border-indigo-500!;
 }
 
 /* Details and Summary */
