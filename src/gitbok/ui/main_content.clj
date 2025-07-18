@@ -120,10 +120,10 @@
                     toc-result)
                   (catch Exception _
                     nil))))]
-    [:main#content {:class "flex-1 items-start pl-3"}
+    [:main#content {:class "flex-1 items-start"}
      [:div {:class "flex items-start"}
       [:article {:class "article__content py-8 min-w-0 flex-1
-                 sm:px-0 md:px-4 max-w-5xl transform-3d"}
+                 max-w-5xl transform-3d"}
        (when htmx?
          [:script "window.scrollTo(0, 0); updateLastUpdated(); updateActiveNavItem(window.location.pathname); updatePageTitle();"])
        [:div {:class "mx-auto max-w-full md:px-4"} body]
