@@ -114,16 +114,16 @@
                  :hx-target "#mobile-search-dropdown"
                  :hx-swap "innerHTML"
                  :hx-indicator "#mobile-search-indicator"}]
+        [:div {:id "mobile-search-indicator" :class "htmx-indicator"}
+         [:svg {:class "animate-spin size-4 text-tint-9" :fill "none" :viewBox "0 0 24 24"}
+          [:circle {:class "opacity-25" :cx "12" :cy "12" :r "10" :stroke "currentColor" :stroke-width "4"}]
+          [:path {:class "opacity-75" :fill "currentColor" :d "M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 714 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"}]]]
         [:button {:class "p-1 text-tint-9 hover:text-tint-strong transition-colors"
                   :id "mobile-search-close"
                   :type "button"
                   :aria-label "Close search"}
          [:svg {:class "size-5" :fill "none" :stroke "currentColor" :viewBox "0 0 24 24"}
-          [:path {:stroke-linecap "round" :stroke-linejoin "round" :stroke-width "2" :d "M6 18L18 6M6 6l12 12"}]]]
-        [:div {:id "mobile-search-indicator" :class "htmx-indicator"}
-         [:svg {:class "animate-spin size-4 text-tint-9" :fill "none" :viewBox "0 0 24 24"}
-          [:circle {:class "opacity-25" :cx "12" :cy "12" :r "10" :stroke "currentColor" :stroke-width "4"}]
-          [:path {:class "opacity-75" :fill "currentColor" :d "M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"}]]]]
+          [:path {:stroke-linecap "round" :stroke-linejoin "round" :stroke-width "2" :d "M6 18L18 6M6 6l12 12"}]]]]
        [:div {:id "mobile-search-dropdown"
               :class "mt-2 z-50"}]]
 
