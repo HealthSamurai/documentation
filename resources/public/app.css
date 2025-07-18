@@ -276,7 +276,7 @@ article code:not(pre code) {
   line-height: 1.8! important;
 }
 
-article pre {
+article pre:not(.gitbook-code-title pre) {
   @apply my-4!;
 }
 
@@ -433,7 +433,7 @@ article .hint p {
     display: inline-block !important;
     max-width: 100% !important;
     overflow-wrap: break-word !important;
-    line-height: 1.5 !important;
+    line-height: 1.8 !important;
     hyphens: manual !important;
   }
 

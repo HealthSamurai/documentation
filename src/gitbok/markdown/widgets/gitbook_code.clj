@@ -82,10 +82,13 @@
         content (:content code-data)
         parsed-content (:parsed (parse-markdown-content-fn context [filepath content]))
         raw-html (render-md-fn context filepath parsed-content)]
-    [:div {:class "bg-tint-1 border border-tint-4 rounded-lg overflow-hidden mb-4"}
+    [:div {:class
+           (str
+             "bg-tint-1 border border-tint-4 rounded-lg overflow-hidden mb-4"
+             (when title " gitbook-code-title")) }
      (when title
        [:div {:class "bg-tint-2 px-4 py-3 border-b border-tint-4"}
-        [:h3 {:class "text-lg font-medium text-tint-12"} title]])
+        [:h3 {:class "text-sm font-medium text-tint-12"} title]])
      raw-html]))
 
 (defn hack-gitbook-code
