@@ -53,6 +53,8 @@
 (defn strip-markdown [text]
   (-> text
       (str/replace #"<table[\s\S]*?</table>" "")
+      (str/replace #"\{%.*?%\}" "")
+      (str/replace #"^---[\s\S]*?---\n?" "")
       (str/replace #"<.*?>" "")
       (str/replace #"\[([^\]]+)\]\([^)]+\)" "$1")
       (str/replace #"\!\[.*?\]\(.*?\)" "")
