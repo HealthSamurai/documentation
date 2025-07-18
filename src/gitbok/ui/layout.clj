@@ -21,9 +21,10 @@
     (left-navigation/left-navigation
      (summary/get-summary context)
      uri)
-    (main-content/content-div context uri body filepath)]])
+    (main-content/content-div context uri body filepath)]
+])
 
-(defn document [body {:keys [title description canonical-url og-preview lastmod favicon-url section]}]
+(defn document [context body {:keys [title description canonical-url og-preview lastmod favicon-url section]}]
   [:html {:lang "en"}
    [:head
     (uui/raw "<!-- Google Tag Manager -->")
@@ -98,6 +99,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     [:script {:src "/static/mermaid.min.js"}]
     [:script "hljs.highlightAll();"]
     [:script {:src "/static/copy-code.js"}]
+    [:script {:src "https://cdn.jsdelivr.net/npm/sortablejs@1.15.0/Sortable.min.js"}]
     [:script {:defer true
               :src "/static/keyboard-navigation.js"}]
     [:script {:defer true
@@ -109,7 +111,10 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     [:script {:defer true
               :src "/static/scroll-to-id.js"}]
     [:script {:defer true
-              :src "/static/search-toc-hide.js"}]]
+              :src "/static/search-toc-hide.js"}]
+    ;; Add dev mode flag for JavaScript
+    (when (gitbok.http/get-dev-mode context)
+      [:script (str "window.DEV_MODE = true;")])]
    [:body {:hx-boost "true"
            :hx-on "htmx:afterSwap: window.scrollTo(0, 0); updateLastUpdated();"}
     (uui/raw "<!-- Google Tag Manager (noscript) -->")
@@ -140,6 +145,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 
           :else
           (document
+           context
            (layout-view context content uri filepath)
            {:title title
             :description description

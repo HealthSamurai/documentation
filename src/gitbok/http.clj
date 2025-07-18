@@ -78,3 +78,11 @@
 
 (defn get-version [context]
   (system/get-system-state context [const/VERSION]))
+
+(defn set-dev-mode [context dev-mode]
+  (system/set-system-state
+   context [const/DEV_MODE]
+   dev-mode))
+
+(defn get-dev-mode [context]
+  (system/get-system-state context [const/DEV_MODE]))

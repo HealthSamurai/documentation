@@ -21,3 +21,5 @@
 (def ^:const BASE_URL ::base-url)
 
 (def ^:const VERSION ::version)
+
+(def ^:const DEV_MODE ::dev-mode)

@@ -15,6 +15,7 @@
    [gitbok.ui.layout :as layout]
    [gitbok.ui.not-found :as not-found]
    [gitbok.ui.search]
+   [gitbok.dev.page-relocator :as page-relocator]
    [ring.middleware.gzip :refer [wrap-gzip]]
    [gitbok.http]
    [http]
@@ -209,6 +210,7 @@
   (gitbok.http/set-prefix context prefix)
   (gitbok.http/set-base-url context base-url)
   (gitbok.http/set-version context (str/trim (utils/slurp-resource "version")))
+  (gitbok.http/set-dev-mode context dev?)
 
   ;; order is important
   ; 1. read summary. create toc htmx.
@@ -313,6 +315,78 @@
    {:path "/version"
     :method :get
     :fn #'version-endpoint})
+
+  ;; Dev endpoints (only available when DEV=true)
+  (when dev?
+    (http/register-endpoint
+     context
+     {:path "/dev/page-info"
+      :method :get
+      :fn (fn [context request]
+            (println "DEBUG: Full request object:" request)
+            (println "DEBUG: Query params:" (:query-params request))
+            (println "DEBUG: Params:" (:params request))
+            (println "DEBUG: Query string:" (:query-string request))
+            (let [uri (or (get-in request [:query-params :uri]) 
+                          (get-in request [:params :uri])
+                          (:uri request))]
+              (println "DEBUG: /dev/page-info endpoint called with URI:" uri)
+              (let [result (page-relocator/get-current-page-info context uri)]
+                (println "DEBUG: get-current-page-info result:" result)
+                {:status 200
+                 :headers {"content-type" "application/json"}
+                 :body (utils/->json result)})))})
+
+    (http/register-endpoint
+     context
+     {:path "/dev/preview-url"
+      :method :post
+      :fn (fn [context request]
+            (println "DEBUG: /dev/preview-url request body:" (:body request))
+            (try
+              (let [body-str (if (instance? java.io.InputStream (:body request))
+                               (slurp (:body request))
+                               (:body request))
+                    _ (println "DEBUG: body string:" body-str)
+                    body (utils/json->clj body-str)
+                    _ (println "DEBUG: parsed body:" body)
+                    new-file-path (:new-file-path body)
+                    _ (println "DEBUG: new-file-path:" new-file-path)]
+                {:status 200
+                 :headers {"content-type" "application/json"}
+                 :body (utils/->json {:new-url (page-relocator/preview-new-url context new-file-path)})})
+              (catch Exception e
+                (println "DEBUG: Error in /dev/preview-url:" (.getMessage e))
+                {:status 500
+                 :headers {"content-type" "application/json"}
+                 :body (utils/->json {:error (.getMessage e)})})))})
+
+    (http/register-endpoint
+     context
+     {:path "/dev/relocate-page"
+      :method :post
+      :fn (fn [context request]
+            (println "DEBUG: /dev/relocate-page request body:" (:body request))
+            (try
+              (let [body-str (if (instance? java.io.InputStream (:body request))
+                               (slurp (:body request))
+                               (:body request))
+                    _ (println "DEBUG: body string:" body-str)
+                    body (utils/json->clj body-str)
+                    _ (println "DEBUG: parsed body:" body)
+                    current-filepath (:current-filepath body)
+                    new-filepath (:new-filepath body)
+                    _ (println "DEBUG: current-filepath:" current-filepath "new-filepath:" new-filepath)
+                    result (page-relocator/relocate-page context current-filepath new-filepath)]
+                {:status (if (:success result) 200 400)
+                 :headers {"content-type" "application/json"}
+                 :body (utils/->json result)})
+              (catch Exception e
+                (println "DEBUG: Error in /dev/relocate-page:" (.getMessage e))
+                {:status 500
+                 :headers {"content-type" "application/json"}
+                 :body (utils/->json {:error (.getMessage e)})})))}))
+
   {})
 
 (defn -main [& _args]

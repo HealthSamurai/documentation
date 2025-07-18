@@ -3,7 +3,8 @@
    [clojure.string :as str]
    [hiccup2.core]
    [system]
-   [clojure.java.io :as io])
+   [clojure.java.io :as io]
+   [cheshire.core :as json])
   (:import [java.time Instant ZoneId ZonedDateTime]
            [java.time.format DateTimeFormatter]
            [java.util Locale]))
@@ -85,3 +86,9 @@
 (defn absolute-url
   [base-url prefix relative-url]
   (concat-urls base-url (or prefix "/") relative-url))
+
+(defn ->json [data]
+  (json/generate-string data {:key-fn name}))
+
+(defn json->clj [json-str]
+  (json/parse-string json-str true))
