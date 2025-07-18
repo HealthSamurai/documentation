@@ -144,7 +144,7 @@
 (defn search-dropdown-results [context request]
   (let [query (get-in request [:query-params :q] "")
         results (when (and query (pos? (count query)))
-                  (let [search-results (take 10 (gitbok.search/search context query))]
+                  (let [search-results (take 20 (gitbok.search/search context query))]
                     (mapv
                      (fn [res]
                        (assoc res :uri
@@ -172,27 +172,14 @@
     (if (empty? query)
       [:div] ;; Empty div when no query
       (if (empty? results)
-        [:div {:class "z-50 animate-scaleIn overflow-y-auto overflow-x-hidden circular-corners:rounded-3xl rounded-corners:rounded-md text-sm text-tint shadow-lg outline-none ring-1 ring-tint-subtle transition-all empty:hidden bg-tint-base has-[.empty]:hidden scroll-py-2 w-full md:w-[32rem] p-2 max-h-[32rem] md:max-h-[min(32rem,var(--radix-popover-content-available-height))] md:max-w-[min(var(--radix-popover-content-available-width),32rem)]"}
+        [:div {:class "z-50 animate-scaleIn overflow-y-auto overflow-x-hidden circular-corners:rounded-3xl rounded-corners:rounded-md text-sm text-tint shadow-lg outline-none ring-1 ring-tint-subtle transition-all empty:hidden bg-tint-base has-[.empty]:hidden scroll-py-2 w-full md:w-[32rem] p-2 max-h-[48rem] md:max-h-[48rem] md:max-w-[min(var(--radix-popover-content-available-width),32rem)]"}
          [:div {:class "text-center text-tint-9 py-8"}
           [:div {:class "text-sm"} "No results found"]]]
-        [:div {:class "z-50 animate-scaleIn overflow-y-auto overflow-x-hidden circular-corners:rounded-3xl rounded-corners:rounded-md text-sm text-tint shadow-lg outline-none ring-1 ring-tint-subtle transition-all empty:hidden bg-tint-base has-[.empty]:hidden scroll-py-2 w-full md:w-[32rem] p-2 max-h-[32rem] md:max-h-[min(32rem,var(--radix-popover-content-available-height))] md:max-w-[min(var(--radix-popover-content-available-width),32rem)]"
+        [:div {:class "z-50 animate-scaleIn overflow-y-auto overflow-x-hidden circular-corners:rounded-3xl rounded-corners:rounded-md text-sm text-tint shadow-lg outline-none ring-1 ring-tint-subtle transition-all empty:hidden bg-tint-base has-[.empty]:hidden scroll-py-2 w-full md:w-[32rem] p-2 max-h-[48rem] md:max-h-[48rem] md:max-w-[min(var(--radix-popover-content-available-width),32rem)]"
                :data-search-dropdown "true"}
-         [:div {:class "flex flex-col gap-y-1"}
+         [:div {:class "flex flex-col gap-y-1 pb-4"}
 
           ;; Search results
           (map-indexed (fn [idx result]
                          (dropdown-result-item context result query idx))
-                       grouped-results)
-          ;; View all results link
-          (when (= (count results) 10)
-            [:a {:href (str "/search?q=" query)
-                 :class "flex items-center gap-3 px-4 py-3 text-sm text-tint-subtle hover:text-tint-strong transition-colors"}
-             [:span "View all results"]
-             [:svg {:class "size-3 ml-1"
-                    :fill "none"
-                    :stroke "currentColor"
-                    :viewBox "0 0 24 24"
-                    :stroke-width "2"}
-              [:path {:stroke-linecap "round"
-                      :stroke-linejoin "round"
-                      :d "M9 5l7 7-7 7"}]]])]]))))
+                       grouped-results)]]))))

@@ -28,7 +28,7 @@ document.addEventListener('DOMContentLoaded', () => {
          [:div.mt-8
           [:h3.text-lg.font-medium.text-tint-12 "You might be looking for:"]
           [:ul.mt-4.space-y-2.text-left
-           (for [search-res (take 5 (utils/distinct-by #(-> % :hit :title) search-results))]
+           (for [search-res (take 8 (utils/distinct-by #(-> % :hit :title) search-results))]
              [:li
               [:a.text-primary-9.hover:text-primary-10.text-lg.flex.items-start
                {:href (file-to-uri/filepath->uri context (:filepath (:hit search-res)))}
