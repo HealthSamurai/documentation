@@ -255,7 +255,7 @@ article figure {
 }
 
 article figure img {
-  @apply max-w-full h-auto mx-auto rounded-lg shadow-aidbox-lg;
+  @apply max-w-full h-auto mx-auto rounded-lg;
 }
 
 article figure figcaption {
