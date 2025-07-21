@@ -371,7 +371,7 @@ article .hint p {
 /* Add left border for nested summary elements (summary inside details) */
 #navigation details details summary a.active,
 #navigation details * details summary a.active {
-  @apply border-l-1 border-primary-9 !important;
+  @apply border-l-1 border-primary-9;
 }
 
 /* TOC container - consistent with left navigation */
