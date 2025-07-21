@@ -23,7 +23,7 @@
         (str/replace #"^/" ""))))
 
 (def summary-classes
-  "block py-1.5 transition-colors duration-200 ease-in-out rounded-aidbox
+  "block py-1.5 transition-colors duration-200 ease-in-out
    mr-2 my-0.5 clickable-summary text-small text-tint-11
    hover:text-primary-9")
 

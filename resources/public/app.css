@@ -351,6 +351,7 @@ article .hint p {
 
 #navigation a.active {
   @apply text-primary-9 font-bold;
+  border-left: 1px solid var(--color-primary-9);
 }
 
 /* TOC container - consistent with left navigation */
