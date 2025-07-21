@@ -130,7 +130,7 @@ sequenceDiagram
     Aidbox ->> Smart App: Return token
     deactivate Aidbox 
     activate Smart App
-    Smart App ->> Aidbox: Request /Observation and /Patient/<pt-id> with token
+    Smart App ->> Aidbox: Request /Observation and /Patient/{pt-id} with token
     deactivate Smart App
     activate Aidbox
     Aidbox ->> Aidbox: Validate scopes from token
