@@ -60,7 +60,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     [:meta {:name "robots" :content "index, follow"}]
 
     [:meta {:name "htmx-config",
-            :content "{\"scrollIntoViewOnBoost\":false,\"scrollBehavior\":\"smooth\",\"allowEval\":false,\"historyCacheSize\":0,\"historyEnabled\":true,\"refreshOnHistoryMiss\":false}"}]
+            :content "{\"scrollIntoViewOnBoost\":false,\"scrollBehavior\":\"smooth\",\"allowEval\":true,\"historyCacheSize\":0,\"historyEnabled\":true,\"refreshOnHistoryMiss\":false}"}]
     (when section
       [:meta {:name "scroll-to-id" :content section}])
     [:link {:rel "icon" :type "image/x-icon" :href favicon-url}]
@@ -100,8 +100,13 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     [:script "hljs.highlightAll();"]
     [:script {:src "/static/copy-code.js"}]
     [:script {:src "https://cdn.jsdelivr.net/npm/sortablejs@1.15.0/Sortable.min.js"}]
+    [:script {:src "https://unpkg.com/smooth-scrollbar@8.8.4/dist/smooth-scrollbar.js"}]
     [:script {:defer true
               :src "/static/keyboard-navigation.js"}]
+    ;; Add F2 navigation functionality only in development mode
+    (when (gitbok.http/get-dev-mode context)
+      [:script {:defer true
+                :src "/static/f2-navigation.js"}])
     [:script {:defer true
               :src "/static/toc-scroll.js"}]
     [:script {:defer true
@@ -111,10 +116,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     [:script {:defer true
               :src "/static/scroll-to-id.js"}]
     [:script {:defer true
-              :src "/static/search-toc-hide.js"}]
-    ;; Add dev mode flag for JavaScript
-    (when (gitbok.http/get-dev-mode context)
-      [:script (str "window.DEV_MODE = true;")])]
+              :src "/static/search-toc-hide.js"}]]
    [:body {:hx-boost "true"
            :hx-on "htmx:afterSwap: window.scrollTo(0, 0); updateLastUpdated();"}
     (uui/raw "<!-- Google Tag Manager (noscript) -->")

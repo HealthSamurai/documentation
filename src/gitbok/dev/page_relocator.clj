@@ -61,16 +61,16 @@
     (cond
       (str/blank? normalized)
       {:valid false :error "File path cannot be empty"}
-      
+
       (not (str/ends-with? normalized ".md"))
       {:valid false :error "File path must end with .md"}
-      
+
       (str/includes? normalized "..")
       {:valid false :error "File path cannot contain .. (parent directory references)"}
-      
+
       (not (re-matches #"^[a-zA-Z0-9/_\-\.]+$" normalized))
       {:valid false :error "File path contains invalid characters"}
-      
+
       :else
       {:valid true})))
 
@@ -80,21 +80,21 @@
   (let [old-file (io/file (str "docs/" old-filepath))
         new-file (io/file (str "docs/" new-filepath))
         new-dir (.getParentFile new-file)]
-    
+
     (when-not (.exists old-file)
       (throw (ex-info "Source file does not exist" {:old-filepath old-filepath})))
-    
+
     (when (.exists new-file)
       (throw (ex-info "Target file already exists" {:new-filepath new-filepath})))
-    
+
     ; Create parent directories if they don't exist
     (when new-dir
       (.mkdirs new-dir))
-    
+
     ; Move the file
     (when-not (.renameTo old-file new-file)
       (throw (ex-info "Failed to move file" {:old-filepath old-filepath :new-filepath new-filepath})))
-    
+
     true))
 
 (defn update-gitbook-yaml
@@ -107,12 +107,12 @@
         ; Find redirects section and add new entry
         updated-content (if (str/includes? content "redirects:")
                           ; Add to existing redirects section
-                          (str/replace content 
+                          (str/replace content
                                        #"(redirects:\s*\n)"
                                        (str "$1" redirect-entry "\n"))
                           ; Add redirects section if it doesn't exist
                           (str content "\n\nredirects:\n" redirect-entry "\n"))]
-    
+
     (spit yaml-file updated-content)))
 
 (defn update-summary-md
@@ -122,10 +122,10 @@
         content (slurp summary-file)
         ; Replace old filepath with new filepath
         updated-content (str/replace content old-filepath new-filepath)]
-    
+
     (when (= content updated-content)
       (throw (ex-info "File path not found in SUMMARY.md" {:old-filepath old-filepath})))
-    
+
     (spit summary-file updated-content)))
 
 (defn regenerate-system-indices
@@ -152,32 +152,114 @@
    (markdown/get-parsed-markdown-index context))
   (println "System indices regenerated successfully"))
 
+(defn find-reference-files
+  "Find all markdown files that reference the old filepath"
+  [old-filepath]
+  (let [docs-dir (io/file "docs")]
+    (when (.exists docs-dir)
+      (filter
+       #(and (.isFile %)
+             (.endsWith (.getName %) ".md")
+             (not= (.getName %) "SUMMARY.md"))
+       (file-seq docs-dir)))))
+
+(defn scan-and-update-references
+  "Scan and update internal references to moved page"
+  [old-filepath new-filepath]
+  (let [reference-files (find-reference-files old-filepath)
+        old-relative-path old-filepath
+        new-relative-path new-filepath
+        updates-made (atom [])]
+
+    (println (str "Scanning " (count reference-files) " files for references to " old-filepath))
+
+    (doseq [file reference-files]
+      (let [content (slurp file)
+            ; Look for various reference patterns
+            patterns [; Markdown links: [text](old-path)
+                      (re-pattern (str "\\]\\(" (java.util.regex.Pattern/quote old-relative-path) "\\)"))
+                     ; Markdown links without .md: [text](old-path-without-md)
+                      (re-pattern (str "\\]\\(" (java.util.regex.Pattern/quote (str/replace old-relative-path #"\.md$" "")) "\\)"))
+                     ; Raw filepath references
+                      (re-pattern (java.util.regex.Pattern/quote old-relative-path))]
+            replacements [(str "](" new-relative-path ")")
+                          (str "](" (str/replace new-relative-path #"\.md$" "") ")")
+                          new-relative-path]
+
+            updated-content (reduce-kv
+                             (fn [content idx pattern]
+                               (let [replacement (nth replacements idx)]
+                                 (str/replace content pattern replacement)))
+                             content
+                             (vec patterns))]
+
+        (when-not (= content updated-content)
+          (spit file updated-content)
+          (swap! updates-made conj (.getPath file))
+          (println (str "Updated references in: " (.getPath file))))))
+
+    @updates-made))
+
 (defn relocate-page
-  "Execute complete page relocation"
+  "Execute complete page relocation with reference scanning"
   [context current-filepath new-filepath]
+  (println "🚀 === PAGE RELOCATION STARTED ===")
+  (println "📂 From:" current-filepath)
+  (println "📂 To:" new-filepath)
+
   (let [validation (validate-file-path new-filepath)]
+    (println "✅ Path validation:" validation)
+
     (if-not (:valid validation)
       {:success false :error (:error validation)}
-      
+
       (try
         (let [normalized-old (normalize-file-path current-filepath)
               normalized-new (normalize-file-path new-filepath)
               old-url (indexing/filepath->uri context normalized-old)
               new-url (preview-new-url context normalized-new)]
-          
+
+          (println "📋 Normalized paths:")
+          (println "  Old:" normalized-old)
+          (println "  New:" normalized-new)
+          (println "📋 URLs:")
+          (println "  Old URL:" old-url)
+          (println "  New URL:" new-url)
+
           ; Perform all operations
+          (println "📁 Step 1: Moving file...")
           (move-file normalized-old normalized-new)
+          (println "✅ File moved successfully")
+
+          (println "🔗 Step 2: Updating .gitbook.yaml redirects...")
           (update-gitbook-yaml old-url new-url)
+          (println "✅ Redirects updated")
+
+          (println "📋 Step 3: Updating SUMMARY.md...")
           (update-summary-md normalized-old normalized-new)
-          
-          ; Regenerate system indices
-          (regenerate-system-indices context)
-          
-          {:success true 
-           :old-filepath normalized-old
-           :new-filepath normalized-new
-           :old-url old-url
-           :new-url new-url})
-        
+          (println "✅ SUMMARY.md updated")
+
+          ; Scan and update internal references
+          (println "🔍 Step 4: Scanning and updating references...")
+          (let [updated-files (scan-and-update-references normalized-old normalized-new)]
+            (println (str "✅ Updated references in " (count updated-files) " files"))
+
+            ; Regenerate system indices
+            (println "🔄 Step 5: Regenerating system indices...")
+            (regenerate-system-indices context)
+            (println "✅ System indices regenerated")
+
+            (println "🎉 === PAGE RELOCATION COMPLETED SUCCESSFULLY ===")
+            {:success true
+             :old-filepath normalized-old
+             :new-filepath normalized-new
+             :old-url old-url
+             :new-url new-url
+             :updated-reference-files (count updated-files)
+             :reference-files updated-files}))
+
         (catch Exception e
-          {:success false :error (.getMessage e)})))))
+          (println "❌ === PAGE RELOCATION FAILED ===")
+          (println "❌ Error:" (.getMessage e))
+          (println "📋 Error type:" (.getClass e))
+          {:success false :error (.getMessage e) :error-type (.getName (.getClass e))})))))

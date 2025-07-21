@@ -17,6 +17,8 @@
    [gitbok.ui.search]
    [gitbok.dev.page-relocator :as page-relocator]
    [ring.middleware.gzip :refer [wrap-gzip]]
+   [ring.middleware.params :refer [wrap-params]]
+   [ring.middleware.keyword-params :refer [wrap-keyword-params]]
    [gitbok.http]
    [http]
    [ring.util.response :as resp]
@@ -203,6 +205,15 @@
           gzip-handler (wrap-gzip ring-handler)]
       (gzip-handler req))))
 
+(defn form-parsing-middleware [f]
+  "Middleware to parse form-urlencoded data into params and form-params"
+  (fn [ctx req]
+    (let [ring-handler (fn [req] (f ctx req))
+          form-handler (-> ring-handler
+                           wrap-keyword-params
+                           wrap-params)]
+      (form-handler req))))
+
 #_{:clj-kondo/ignore [:unresolved-symbol]}
 (system/defstart
   [context config]
@@ -327,7 +338,7 @@
             (println "DEBUG: Query params:" (:query-params request))
             (println "DEBUG: Params:" (:params request))
             (println "DEBUG: Query string:" (:query-string request))
-            (let [uri (or (get-in request [:query-params :uri]) 
+            (let [uri (or (get-in request [:query-params :uri])
                           (get-in request [:params :uri])
                           (:uri request))]
               (println "DEBUG: /dev/page-info endpoint called with URI:" uri)
@@ -383,6 +394,146 @@
                  :body (utils/->json result)})
               (catch Exception e
                 (println "DEBUG: Error in /dev/relocate-page:" (.getMessage e))
+                {:status 500
+                 :headers {"content-type" "application/json"}
+                 :body (utils/->json {:error (.getMessage e)})})))})
+
+    ;; Enhanced API endpoints for F2 documentation reorganization
+    (http/register-endpoint
+     context
+     {:path "/api/reorganize-docs"
+      :method :post
+      :middleware [form-parsing-middleware]
+      :fn (fn [context request]
+            (println "🎯 === API /api/reorganize-docs called ===")
+            (println "🔍 === COMPREHENSIVE REQUEST DEBUG ===")
+            (println "📋 Request keys:" (keys request))
+            (println "📋 Method:" (:method request))
+            (println "📋 URI:" (:uri request))
+            (println "📋 Headers:" (:headers request))
+            (println "📋 Content-Type:" (get-in request [:headers "content-type"]))
+            (println "📋 Body type:" (type (:body request)))
+            (println "📋 Body:" (:body request))
+
+            ;; Try to read the body if it's an InputStream
+            (let [body-content (when (:body request)
+                                 (try
+                                   (if (instance? java.io.InputStream (:body request))
+                                     (slurp (:body request))
+                                     (:body request))
+                                   (catch Exception e
+                                     (str "Error reading body: " (.getMessage e)))))]
+              (println "📋 Body content:" body-content))
+
+            (println "📋 Params:" (:params request))
+            (println "📋 Form-params:" (:form-params request))
+            (println "📋 Query-params:" (:query-params request))
+            (println "📋 Route-params:" (:route-params request))
+            (println "🔍 === END REQUEST DEBUG ===")
+
+            (try
+              (let [params (:params request)
+                    form-params (:form-params request)
+                    query-params (:query-params request)
+                    action (or (:action params) (:action form-params) (:action query-params))
+                    changes-str (or (:changes params) (:changes form-params) (:changes query-params))
+                    timestamp (or (:timestamp params) (:timestamp form-params) (:timestamp query-params))
+                    changes (when changes-str
+                              (try
+                                (utils/json->clj changes-str)
+                                (catch Exception e
+                                  (println "❌ Error parsing JSON changes:" (.getMessage e))
+                                  nil)))]
+
+                (println "DEBUG: reorganize action:" action)
+                (println "DEBUG: changes:" changes)
+                (println "DEBUG: timestamp:" timestamp)
+
+                (cond
+                  (nil? action)
+                  {:status 400
+                   :headers {"content-type" "application/json"}
+                   :body (utils/->json {:error "Missing action parameter"
+                                        :debug {:params params :form-params form-params}})}
+
+                  (= action "move_document")
+                  (if-let [move-info (:moveFile changes)]
+                    (do
+                      (println "🚀 Attempting to relocate page from" (:from move-info) "to" (:to move-info))
+                      (let [result (page-relocator/relocate-page
+                                    context
+                                    (:from move-info)
+                                    (:to move-info))]
+                        (println "📋 Relocation result:" result)
+                        {:status (if (:success result) 200 400)
+                         :headers {"content-type" "application/json"}
+                         :body (utils/->json (assoc result :timestamp timestamp))}))
+                    {:status 400
+                     :headers {"content-type" "application/json"}
+                     :body (utils/->json {:error "No file move information provided"
+                                          :debug {:changes changes}})})
+
+                  :else
+                  {:status 400
+                   :headers {"content-type" "application/json"}
+                   :body (utils/->json {:error (str "Unknown action: " action)})}))
+
+              (catch Exception e
+                (println "❌ Error in /api/reorganize-docs:" (.getMessage e))
+                (println "📋 Error stack trace:" (clojure.string/join "\n" (.getStackTrace e)))
+                {:status 500
+                 :headers {"content-type" "application/json"}
+                 :body (utils/->json {:error (.getMessage e)
+                                      :type "internal_server_error"})})))})
+
+    (http/register-endpoint
+     context
+     {:path "/api/validate-move"
+      :method :post
+      :fn (fn [context request]
+            (try
+              (let [params (:params request)
+                    form-params (:form-params request)
+                    from-path (or (:from params) (:from form-params))
+                    to-path (or (:to params) (:to form-params))]
+
+                (println "DEBUG: validate-move from:" from-path "to:" to-path)
+
+                (let [validation (page-relocator/validate-file-path to-path)]
+                  {:status 200
+                   :headers {"content-type" "application/json"}
+                   :body (utils/->json validation)}))
+
+              (catch Exception e
+                (println "DEBUG: Error in /api/validate-move:" (.getMessage e))
+                {:status 500
+                 :headers {"content-type" "application/json"}
+                 :body (utils/->json {:error (.getMessage e)})})))})
+
+    (http/register-endpoint
+     context
+     {:path "/api/preview-structure"
+      :method :post
+      :fn (fn [context request]
+            (try
+              (let [params (:params request)
+                    form-params (:form-params request)
+                    changes-str (or (:changes params) (:changes form-params))
+                    changes (when changes-str (utils/json->clj changes-str))]
+
+                (println "DEBUG: preview-structure changes:" changes)
+
+                ;; For now, just return a preview of what would happen
+                (let [preview {:success true
+                               :changes changes
+                               :preview true
+                               :message "This shows what would happen (actual implementation pending)"}]
+                  {:status 200
+                   :headers {"content-type" "application/json"}
+                   :body (utils/->json preview)}))
+
+              (catch Exception e
+                (println "DEBUG: Error in /api/preview-structure:" (.getMessage e))
                 {:status 500
                  :headers {"content-type" "application/json"}
                  :body (utils/->json {:error (.getMessage e)})})))}))
