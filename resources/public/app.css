@@ -351,7 +351,27 @@ article .hint p {
 
 #navigation a.active {
   @apply text-primary-9 font-bold;
-  border-left: 1px solid var(--color-primary-9);
+}
+
+/* Apply left border only to nested pages (not first level) */
+#navigation details a.active:not(summary) {
+  @apply border-l-1 border-primary-9;
+}
+
+/* Remove left border for summary elements (section headers) */
+#navigation summary a.active {
+  border-left: none !important;
+}
+
+/* Remove left border for first-level details summary elements */
+#navigation > details > summary a.active {
+  border-left: none !important;
+}
+
+/* Add left border for nested summary elements (summary inside details) */
+#navigation details details summary a.active,
+#navigation details * details summary a.active {
+  @apply border-l-1 border-primary-9 !important;
 }
 
 /* TOC container - consistent with left navigation */
