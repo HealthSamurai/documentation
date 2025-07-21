@@ -65,6 +65,8 @@ A global Configuration resource can be instantiated to serve as the system-wide 
   * `non-sticky-footer`: A boolean value that specifies whether the form footer should be sticky.
   * `hide-language-selector`: A boolean value that specifies whether the language selector should be hidden.
   * `hide-print-button`: A boolean value that specifies whether the print button should be hidden.
+  * `hide-download-attachment-button` A boolean value that specifies whether the Download button on attachment widget should be shown.
+  * `hide-title`  A boolean value that specifies whether the title of the Form should be shown.
   * `enable-amend-button`: A boolean value that specifies whether the Amend button should be shown.
   * `enable-save-button`: A boolean value that specifies whether the Save button should be shown.
 
