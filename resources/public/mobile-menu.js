@@ -66,7 +66,7 @@ document.addEventListener('keydown', function(event) {
 
 // Close menu on window resize if switching to desktop
 window.addEventListener('resize', function() {
-  if (window.innerWidth >= 768) {
+  if (window.innerWidth >= 1024) {
     closeMobileMenu();
   }
 });
@@ -97,4 +97,79 @@ function initializeMobileMenu() {
       toggleMobileMenu();
     });
   }
+
+  // Initialize ellipsis menu
+  initializeEllipsisMenu();
 }
+
+// Ellipsis menu functionality
+function initializeEllipsisMenu() {
+  const ellipsisButton = document.querySelector('#ellipsis-menu-toggle');
+  const ellipsisDropdown = document.querySelector('#ellipsis-dropdown');
+  
+  if (ellipsisButton && ellipsisDropdown) {
+    // Remove existing event listeners to prevent duplicates
+    const newButton = ellipsisButton.cloneNode(true);
+    ellipsisButton.parentNode.replaceChild(newButton, ellipsisButton);
+    
+    newButton.addEventListener('click', function(e) {
+      e.preventDefault();
+      e.stopPropagation();
+      toggleEllipsisMenu();
+    });
+  }
+}
+
+function toggleEllipsisMenu() {
+  const ellipsisButton = document.querySelector('#ellipsis-menu-toggle');
+  const ellipsisDropdown = document.querySelector('#ellipsis-dropdown');
+  
+  if (ellipsisButton && ellipsisDropdown) {
+    const isOpen = !ellipsisDropdown.classList.contains('hidden');
+    
+    if (isOpen) {
+      closeEllipsisMenu();
+    } else {
+      openEllipsisMenu();
+    }
+  }
+}
+
+function openEllipsisMenu() {
+  const ellipsisButton = document.querySelector('#ellipsis-menu-toggle');
+  const ellipsisDropdown = document.querySelector('#ellipsis-dropdown');
+  
+  if (ellipsisButton && ellipsisDropdown) {
+    ellipsisDropdown.classList.remove('hidden');
+    ellipsisButton.setAttribute('aria-expanded', 'true');
+  }
+}
+
+function closeEllipsisMenu() {
+  const ellipsisButton = document.querySelector('#ellipsis-menu-toggle');
+  const ellipsisDropdown = document.querySelector('#ellipsis-dropdown');
+  
+  if (ellipsisButton && ellipsisDropdown) {
+    ellipsisDropdown.classList.add('hidden');
+    ellipsisButton.setAttribute('aria-expanded', 'false');
+  }
+}
+
+// Close ellipsis menu when clicking outside
+document.addEventListener('click', function(event) {
+  const ellipsisButton = document.querySelector('#ellipsis-menu-toggle');
+  const ellipsisDropdown = document.querySelector('#ellipsis-dropdown');
+  
+  if (ellipsisButton && ellipsisDropdown) {
+    if (!ellipsisButton.contains(event.target) && !ellipsisDropdown.contains(event.target)) {
+      closeEllipsisMenu();
+    }
+  }
+});
+
+// Close ellipsis menu on escape key
+document.addEventListener('keydown', function(event) {
+  if (event.key === 'Escape') {
+    closeEllipsisMenu();
+  }
+});

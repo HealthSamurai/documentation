@@ -6,7 +6,7 @@
          :aria-label "Main site menu"}
    [:div {:class "flex items-center justify-between py-3 min-h-16 px-4 sm:px-6 md:px-8 max-w-screen-2xl mx-auto"}
     [:div {:class "flex max-w-full lg:basis-72 min-w-0 shrink items-center justify-start gap-2 lg:gap-4"}
-     [:button {:class "p-2 text-tint-strong hover:text-primary-9 transition-colors duration-200 md:hidden"
+     [:button {:class "p-2 text-tint-strong hover:text-primary-9 transition-colors duration-200 lg:hidden"
                :id "mobile-menu-toggle"
                :type "button"
                :aria-label "Toggle mobile menu"}
@@ -27,7 +27,7 @@
        "Aidbox User Docs"]]]
 
     [:div {:class "flex items-center gap-4"}
-     [:div {:class "hidden md:flex items-center gap-4"}
+     [:div {:class "hidden lg:flex items-center gap-4"}
       [:a {:href "/getting-started/run-aidbox-locally"
            :class "text-small text-tint-10 hover:text-primary-9 transition-colors duration-200 no-underline font-normal"}
        "Run Aidbox locally"]
@@ -42,6 +42,42 @@
            :target "_blank"
            :class "text-small text-tint-10 hover:text-primary-9 transition-colors duration-200 no-underline font-normal"}
        "Ask community"]]
+     
+     ;; Ellipsis menu for tablet/mobile
+     [:div {:class "relative lg:hidden"}
+      [:button {:class "p-2 text-tint-strong hover:text-primary-9 transition-colors duration-200"
+                :id "ellipsis-menu-toggle"
+                :type "button"
+                :aria-label "More options"
+                :aria-expanded "false"
+                :aria-haspopup "true"}
+       [:svg {:class "size-5" :fill "currentColor" :viewBox "0 0 24 24"}
+        [:circle {:cx "5" :cy "12" :r "2"}]
+        [:circle {:cx "12" :cy "12" :r "2"}]
+        [:circle {:cx "19" :cy "12" :r "2"}]]]
+      
+      ;; Dropdown menu
+      [:div {:id "ellipsis-dropdown"
+             :class "hidden absolute right-0 mt-2 w-64 rounded-md shadow-lg outline-none ring-1 ring-tint-subtle bg-tint-base z-50"}
+       [:div {:class "py-1" :role "menu" :aria-orientation "vertical"}
+        [:a {:href "/getting-started/run-aidbox-locally"
+             :class "block px-4 py-2 text-sm text-tint-11 hover:bg-tint-hover hover:text-primary-9 no-underline"
+             :role "menuitem"}
+         "Run Aidbox locally"]
+        [:a {:href "/getting-started/run-aidbox-in-sandbox"
+             :class "block px-4 py-2 text-sm text-tint-11 hover:bg-tint-hover hover:text-primary-9 no-underline"
+             :role "menuitem"}
+         "Run Aidbox in Sandbox"]
+        [:a {:href "https://bit.ly/3R7eLke"
+             :target "_blank"
+             :class "block px-4 py-2 text-sm text-tint-11 hover:bg-tint-hover hover:text-primary-9 no-underline"
+             :role "menuitem"}
+         "Talk to us"]
+        [:a {:href "https://connect.health-samurai.io/"
+             :target "_blank"
+             :class "block px-4 py-2 text-sm text-tint-11 hover:bg-tint-hover hover:text-primary-9 no-underline"
+             :role "menuitem"}
+         "Ask community"]]]]
 
      [:div {:class "relative"}
       ;; Mobile search button
