@@ -87,11 +87,11 @@
            decoration-primary/6 page-full-width:ml-0
            max-w-3xl page-api-block:ml-0"}
      (when title
-       [:div {:class "flex items-center justify-start gap-2 text-sm [grid-area:1/1]"}
+       [:div {:class "flex items-center justify-start gap-2 text-sm [grid-area:1/1] -mb-px"}
         [:div {:class "relative top-px z-20 inline-flex items-center justify-center rounded-t
                straight-corners:rounded-t-s border border-tint-6 border-b-0 bg-tint-subtle
                theme-muted:bg-tint-base px-3 py-2 text-tint-11 text-xs leading-none tracking-wide
-               contrast-more:border-tint contrast-more:bg-tint-base [html.theme-bold.sidebar-filled_&]:bg-tint-base"}
+               [html.theme-bold.sidebar-filled_&]:bg-tint-base"}
          title]])
      [:div {:class "relative overflow-auto border border-tint-6 bg-tint-subtle theme-muted:bg-tint-base
             [grid-area:2/1] contrast-more:border-tint contrast-more:bg-tint-base [html.theme-bold.sidebar-filled_&]:bg-tint-base
