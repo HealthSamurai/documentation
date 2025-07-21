@@ -1,7 +1,7 @@
 Used technologies:
 - Clojure
 - HTMX
-- Tailwind
+- Tailwind 4 (no .js config, just resources/public/app.css)
 
 Development rules:
 0. Always use `clojure-mcp` and `sequentialthinking` mcps.
