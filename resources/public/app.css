@@ -171,7 +171,7 @@ html {
   width: 100%;
   height: 100%;
   background: rgba(0, 0, 0, 0.5);
-  z-index: 30;
+  z-index: 30; /* Below header (z-50) but above navigation (z-40) */
 }
 
 .mobile-menu-overlay.active {
@@ -363,6 +363,11 @@ article .hint p {
    ================================================ */
 @media (max-width: 767px) {
 
+  /* Header - make fully opaque on mobile to prevent gray overlay showing through */
+  nav[aria-label="Main site menu"] {
+    background: rgb(255, 255, 255) !important; /* Fully opaque white */
+  }
+
   /* Navigation */
   #navigation {
     display: none!important;
@@ -379,6 +384,7 @@ article .hint p {
     z-index: 40 !important;
     overflow-y: auto !important;
     padding: 1rem !important;
+    padding-bottom: 4rem !important; /* Extra padding to ensure last item is visible */
     box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1) !important;
     border-radius: 0 !important;
     border: none !important;
