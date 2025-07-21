@@ -82,6 +82,10 @@ Ensure that the resource metadata contains the kind-specific `AidboxTopicDestina
 [kafka-aidboxtopicdestination.md](kafka-aidboxtopicdestination.md)
 {% endcontent-ref %}
 
+{% content-ref url="clickhouse-aidboxtopicdestination.md" %}
+[clickhouse-aidboxtopicdestination.md](clickhouse-aidboxtopicdestination.md)
+{% endcontent-ref %}
+
 {% content-ref url="../../../tutorials/subscriptions-tutorials/aidboxtopicsubscription-nats-tutorial.md" %}
 [aidboxtopicsubscription-nats-tutorial.md](../../../tutorials/subscriptions-tutorials/aidboxtopicsubscription-nats-tutorial.md)
 {% endcontent-ref %}

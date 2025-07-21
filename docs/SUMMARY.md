@@ -84,6 +84,7 @@
     * [Mailgun integration tutorial](tutorials/integration-toolkit-tutorials/mailgun-integration-tutorial.md)
   * [Subscriptions Tutorials](tutorials/subscriptions-tutorials/README.md)
     * [Kafka AidboxTopicDestination](modules/topic-based-subscriptions/wip-dynamic-subscriptiontopic-with-destinations/kafka-aidboxtopicdestination.md)
+    * [ClickHouse AidboxTopicDestination](modules/topic-based-subscriptions/wip-dynamic-subscriptiontopic-with-destinations/clickhouse-aidboxtopicdestination.md)
     * [Tutorial: produce QuestionnaireResponse to Kafka topic](modules/topic-based-subscriptions/wip-dynamic-subscriptiontopic-with-destinations/tutorial-produce-questionnaireresponse-to-kafka-topic.md)
     * [GCP Pub/Sub AidboxTopicDestination](modules/topic-based-subscriptions/wip-dynamic-subscriptiontopic-with-destinations/gcp-pub-sub-aidboxtopicdestination.md)
     * [Webhook AidboxTopicDestination](modules/topic-based-subscriptions/wip-dynamic-subscriptiontopic-with-destinations/webhook-aidboxtopicdestination.md)
