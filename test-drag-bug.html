@@ -1,0 +1,544 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>F2 Drag and Drop Bug Test</title>
+    <script src="https://unpkg.com/sortablejs@1.15.0/Sortable.min.js"></script>
+    <script src="https://unpkg.com/htmx.org@1.9.2"></script>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background: #f5f5f5;
+        }
+        
+        #test-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 12px;
+            padding: 30px;
+            box-shadow: 0 2px 20px rgba(0,0,0,0.1);
+        }
+        
+        .test-section {
+            margin-bottom: 30px;
+            padding: 20px;
+            border: 2px solid #e1e5e9;
+            border-radius: 8px;
+            background: #fafbfc;
+        }
+        
+        .test-section h2 {
+            margin-top: 0;
+            color: #24292e;
+            border-bottom: 2px solid #e1e5e9;
+            padding-bottom: 10px;
+        }
+        
+        /* Navigation styles similar to F2 mode */
+        #navigation {
+            max-width: 800px;
+            margin: 20px auto;
+            background: white;
+            border: 2px solid #ddd;
+            border-radius: 12px;
+            padding: 20px;
+        }
+        
+        details {
+            margin: 8px 0;
+            border: 1px solid #eee;
+            border-radius: 6px;
+            overflow: hidden;
+        }
+        
+        summary {
+            background: #f8f9fa;
+            padding: 12px 16px;
+            cursor: pointer;
+            font-weight: 600;
+            color: #495057;
+            border-bottom: 1px solid #eee;
+        }
+        
+        summary:hover {
+            background: #e9ecef;
+        }
+        
+        .ml-6 {
+            margin-left: 24px;
+            padding: 10px 16px;
+            min-height: 40px;
+            background: #fff;
+        }
+        
+        a {
+            display: block;
+            padding: 8px 12px;
+            margin: 4px 0;
+            color: #0366d6;
+            text-decoration: none;
+            border-radius: 4px;
+            transition: all 0.2s;
+            border: 1px solid transparent;
+        }
+        
+        a:hover {
+            background: #f1f8ff;
+            border-color: #c8e1ff;
+        }
+        
+        .sortable-chosen {
+            background: #fff3cd !important;
+            border-color: #ffeaa7 !important;
+        }
+        
+        .sortable-ghost {
+            opacity: 0.5 !important;
+        }
+        
+        /* Test status indicators */
+        .test-status {
+            display: inline-block;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-weight: 600;
+            text-transform: uppercase;
+            font-size: 11px;
+            letter-spacing: 0.5px;
+        }
+        
+        .test-pass {
+            background: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+        }
+        
+        .test-fail {
+            background: #f8d7da;
+            color: #721c24;
+            border: 1px solid #f5c6cb;
+        }
+        
+        .test-pending {
+            background: #d1ecf1;
+            color: #0c5460;
+            border: 1px solid #bee5eb;
+        }
+        
+        button {
+            background: #007bff;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: 600;
+            margin: 5px;
+            transition: all 0.2s;
+        }
+        
+        button:hover {
+            background: #0056b3;
+            transform: translateY(-1px);
+        }
+        
+        button:disabled {
+            background: #6c757d;
+            cursor: not-allowed;
+            transform: none;
+        }
+        
+        .bug-indicator {
+            background: #ff4757;
+            color: white;
+            padding: 15px;
+            border-radius: 8px;
+            margin: 10px 0;
+            display: none;
+        }
+        
+        .expected-behavior {
+            background: #2ed573;
+            color: white;
+            padding: 15px;
+            border-radius: 8px;
+            margin: 10px 0;
+            display: none;
+        }
+        
+        pre {
+            background: #f8f9fa;
+            padding: 15px;
+            border-radius: 6px;
+            border-left: 4px solid #007bff;
+            overflow-x: auto;
+            font-size: 13px;
+        }
+        
+        .console-log {
+            max-height: 200px;
+            overflow-y: auto;
+            background: #1e1e1e;
+            color: #f8f8f2;
+            padding: 15px;
+            border-radius: 6px;
+            font-family: 'Courier New', monospace;
+            font-size: 12px;
+            line-height: 1.4;
+        }
+    </style>
+</head>
+<body>
+    <div id="test-container">
+        <h1>🐛 F2 Drag and Drop Bug Test</h1>
+        <p>This test demonstrates the bug where sections are deleted during drag-and-drop operations due to the <code>recursiveCleanupEmptyParents</code> function.</p>
+        
+        <div class="test-section">
+            <h2>🎯 Test: Section Should NOT Disappear After Drag</h2>
+            <p><strong>Expected:</strong> After dragging an element from "Section A" to "Section B", Section A should remain visible as an empty expandable section.</p>
+            <p><strong>Current Bug:</strong> Section A gets deleted/converted back to a leaf node.</p>
+            
+            <div id="navigation">
+                <details open>
+                    <summary>Section A (has 1 item)</summary>
+                    <div class="ml-6" id="section-a-container">
+                        <a href="/test-item-1" id="test-item-1">Test Item 1</a>
+                    </div>
+                </details>
+                
+                <details open>
+                    <summary>Section B (empty)</summary>
+                    <div class="ml-6" id="section-b-container">
+                        <!-- Empty section ready to receive items -->
+                    </div>
+                </details>
+                
+                <details open>
+                    <summary>Section C (for additional testing)</summary>
+                    <div class="ml-6" id="section-c-container">
+                        <a href="/test-item-2">Test Item 2</a>
+                        <a href="/test-item-3">Test Item 3</a>
+                    </div>
+                </details>
+            </div>
+            
+            <div id="test-controls">
+                <button onclick="runDragTest()">🧪 Run Drag Test</button>
+                <button onclick="checkSectionExists()">🔍 Check Section A Status</button>
+                <button onclick="resetTest()">🔄 Reset Test</button>
+                <button onclick="toggleF2Mode()">⌨️ Toggle F2 Mode</button>
+            </div>
+            
+            <div id="test-results">
+                <h3>Test Results:</h3>
+                <div id="results-container">
+                    <span class="test-status test-pending">Ready to Test</span>
+                </div>
+            </div>
+            
+            <div class="bug-indicator" id="bug-detected">
+                🐛 <strong>BUG DETECTED!</strong> Section A has been deleted/converted after drag operation. This should not happen - empty sections should remain as expandable containers.
+            </div>
+            
+            <div class="expected-behavior" id="expected-behavior">
+                ✅ <strong>Expected Behavior:</strong> Section A should remain as an expandable details element even when empty.
+            </div>
+        </div>
+        
+        <div class="test-section">
+            <h2>📋 Console Output</h2>
+            <div id="console-output" class="console-log">
+                <div>Console output will appear here...</div>
+            </div>
+        </div>
+        
+        <div class="test-section">
+            <h2>🔧 Technical Details</h2>
+            <p>The bug occurs in the <code>handleEnhancedSortableDrop</code> function around line 960:</p>
+            <pre>// Remove empty parents with recursive cleanup
+try {
+  recursiveCleanupEmptyParents(from);
+} catch (error) {
+  console.error('❌ Error cleaning up empty parents:', error);
+  // This is non-critical, so we continue
+}</pre>
+            <p>The <code>recursiveCleanupEmptyParents</code> function aggressively removes sections that appear empty, even if they should remain as valid drop targets.</p>
+        </div>
+    </div>
+
+    <!-- Load F2 Navigation Script -->
+    <script src="/resources/public/f2-navigation.js"></script>
+    
+    <script>
+        // Console capture for display
+        let consoleOutput = [];
+        const originalLog = console.log;
+        const originalError = console.error;
+        const originalWarn = console.warn;
+        
+        console.log = function(...args) {
+            consoleOutput.push({ type: 'log', message: args.join(' '), time: new Date().toLocaleTimeString() });
+            updateConsoleDisplay();
+            originalLog.apply(console, args);
+        };
+        
+        console.error = function(...args) {
+            consoleOutput.push({ type: 'error', message: args.join(' '), time: new Date().toLocaleTimeString() });
+            updateConsoleDisplay();
+            originalError.apply(console, args);
+        };
+        
+        console.warn = function(...args) {
+            consoleOutput.push({ type: 'warn', message: args.join(' '), time: new Date().toLocaleTimeString() });
+            updateConsoleDisplay();
+            originalWarn.apply(console, args);
+        };
+        
+        function updateConsoleDisplay() {
+            const output = document.getElementById('console-output');
+            output.innerHTML = consoleOutput.slice(-20).map(entry => {
+                const color = entry.type === 'error' ? '#ff6b6b' : entry.type === 'warn' ? '#ffa500' : '#f8f8f2';
+                return `<div style="color: ${color}">[${entry.time}] ${entry.message}</div>`;
+            }).join('');
+            output.scrollTop = output.scrollHeight;
+        }
+        
+        // Test state
+        let testState = {
+            sectionAOriginalElement: null,
+            testRunning: false,
+            f2ModeActive: false
+        };
+        
+        // Initialize test
+        document.addEventListener('DOMContentLoaded', function() {
+            console.log('🧪 Drag and Drop Bug Test initialized');
+            testState.sectionAOriginalElement = document.querySelector('details:first-child');
+            
+            // Set up sortable (similar to F2 mode)
+            initializeDragAndDrop();
+        });
+        
+        function initializeDragAndDrop() {
+            console.log('🔧 Initializing drag and drop...');
+            
+            // Initialize sortable on containers (similar to F2 mode)
+            const containers = document.querySelectorAll('.ml-6');
+            containers.forEach(container => {
+                if (!container.dataset.sortableInitialized) {
+                    Sortable.create(container, {
+                        group: 'f2-navigation',
+                        animation: 150,
+                        ghostClass: 'sortable-ghost',
+                        chosenClass: 'sortable-chosen',
+                        dragClass: 'sortable-drag',
+                        onStart: function(evt) {
+                            console.log('🎯 Drag started from:', evt.from.id || evt.from.className);
+                        },
+                        onEnd: function(evt) {
+                            console.log('🎯 Drag ended. From:', evt.from.id || evt.from.className, 'To:', evt.to.id || evt.to.className);
+                            
+                            // This is where the bug happens - call the same function as F2 mode
+                            if (typeof handleEnhancedSortableDrop === 'function') {
+                                setTimeout(() => {
+                                    handleEnhancedSortableDrop(evt);
+                                    checkTestResults();
+                                }, 100);
+                            } else {
+                                console.warn('⚠️ handleEnhancedSortableDrop function not available');
+                            }
+                        }
+                    });
+                    container.dataset.sortableInitialized = 'true';
+                }
+            });
+            
+            console.log('✅ Drag and drop initialized');
+        }
+        
+        function runDragTest() {
+            console.log('🧪 === STARTING DRAG TEST ===');
+            testState.testRunning = true;
+            
+            updateTestStatus('Running drag test...', 'pending');
+            
+            const testItem = document.getElementById('test-item-1');
+            const sectionBContainer = document.getElementById('section-b-container');
+            
+            if (!testItem || !sectionBContainer) {
+                console.error('❌ Test elements not found!');
+                updateTestStatus('Test elements not found', 'fail');
+                return;
+            }
+            
+            // Store original state
+            testState.sectionAOriginalElement = testItem.closest('details');
+            const originalSectionA = testState.sectionAOriginalElement;
+            
+            console.log('📋 Before drag:');
+            console.log('  - Section A element:', originalSectionA.tagName, originalSectionA.querySelector('summary').textContent);
+            console.log('  - Section A has items:', originalSectionA.querySelector('.ml-6').children.length);
+            
+            // Simulate drag operation
+            console.log('🎯 Simulating drag from Section A to Section B...');
+            
+            // Create mock drag event (similar to Playwright tests)
+            const mockEvent = {
+                item: testItem,
+                from: testItem.parentElement,
+                to: sectionBContainer,
+                oldIndex: 0,
+                newIndex: 0
+            };
+            
+            // Perform the move
+            sectionBContainer.appendChild(testItem);
+            
+            // Wait a bit then trigger the bug-causing function
+            setTimeout(() => {
+                console.log('🔥 Calling handleEnhancedSortableDrop (this should trigger the bug)...');
+                if (typeof handleEnhancedSortableDrop === 'function') {
+                    try {
+                        handleEnhancedSortableDrop(mockEvent);
+                        checkTestResults();
+                    } catch (error) {
+                        console.error('❌ Error in handleEnhancedSortableDrop:', error);
+                        updateTestStatus('Error during drag handling', 'fail');
+                    }
+                } else {
+                    console.warn('⚠️ handleEnhancedSortableDrop not available, checking anyway...');
+                    checkTestResults();
+                }
+            }, 200);
+        }
+        
+        function checkTestResults() {
+            console.log('🔍 === CHECKING TEST RESULTS ===');
+            
+            const sectionA = document.querySelector('details:first-child');
+            const sectionAContainer = document.getElementById('section-a-container');
+            const testItem = document.getElementById('test-item-1');
+            
+            console.log('📋 After drag operation:');
+            console.log('  - Section A exists:', !!sectionA);
+            console.log('  - Section A is details element:', sectionA?.tagName === 'DETAILS');
+            console.log('  - Section A container exists:', !!sectionAContainer);
+            console.log('  - Test item moved to Section B:', testItem?.parentElement?.id === 'section-b-container');
+            
+            // Check if Section A still exists as a details element
+            if (!sectionA || sectionA.tagName !== 'DETAILS') {
+                console.error('🐛 BUG DETECTED: Section A has been deleted or converted!');
+                updateTestStatus('BUG DETECTED: Section A was deleted', 'fail');
+                document.getElementById('bug-detected').style.display = 'block';
+                document.getElementById('expected-behavior').style.display = 'none';
+                return;
+            }
+            
+            // Check if Section A container still exists
+            if (!sectionAContainer) {
+                console.error('🐛 BUG DETECTED: Section A container was removed!');
+                updateTestStatus('BUG DETECTED: Section A container removed', 'fail');
+                document.getElementById('bug-detected').style.display = 'block';
+                document.getElementById('expected-behavior').style.display = 'none';
+                return;
+            }
+            
+            // If we get here, the test passed (no bug occurred)
+            console.log('✅ TEST PASSED: Section A remained intact');
+            updateTestStatus('Test passed - no bug detected', 'pass');
+            document.getElementById('bug-detected').style.display = 'none';
+            document.getElementById('expected-behavior').style.display = 'block';
+        }
+        
+        function checkSectionExists() {
+            const sectionA = document.querySelector('details:first-child');
+            const summary = sectionA?.querySelector('summary');
+            
+            if (sectionA && sectionA.tagName === 'DETAILS') {
+                console.log('✅ Section A exists as details element:', summary?.textContent);
+                alert(`✅ Section A exists: "${summary?.textContent}"`);
+            } else {
+                console.error('❌ Section A is missing or not a details element!');
+                alert('❌ Section A is missing or has been converted!');
+            }
+        }
+        
+        function resetTest() {
+            console.log('🔄 Resetting test...');
+            
+            // Reset DOM structure
+            const originalHTML = `
+                <details open>
+                    <summary>Section A (has 1 item)</summary>
+                    <div class="ml-6" id="section-a-container">
+                        <a href="/test-item-1" id="test-item-1">Test Item 1</a>
+                    </div>
+                </details>
+                
+                <details open>
+                    <summary>Section B (empty)</summary>
+                    <div class="ml-6" id="section-b-container">
+                        <!-- Empty section ready to receive items -->
+                    </div>
+                </details>
+                
+                <details open>
+                    <summary>Section C (for additional testing)</summary>
+                    <div class="ml-6" id="section-c-container">
+                        <a href="/test-item-2">Test Item 2</a>
+                        <a href="/test-item-3">Test Item 3</a>
+                    </div>
+                </details>
+            `;
+            
+            document.getElementById('navigation').innerHTML = originalHTML;
+            
+            // Reinitialize drag and drop
+            initializeDragAndDrop();
+            
+            // Reset UI
+            updateTestStatus('Test reset - ready to test', 'pending');
+            document.getElementById('bug-detected').style.display = 'none';
+            document.getElementById('expected-behavior').style.display = 'none';
+            
+            console.log('✅ Test reset complete');
+        }
+        
+        function toggleF2Mode() {
+            testState.f2ModeActive = !testState.f2ModeActive;
+            
+            if (testState.f2ModeActive) {
+                console.log('⌨️ Simulating F2 mode activation...');
+                document.body.style.background = '#1e1e1e';
+                document.getElementById('test-container').style.background = '#2d2d2d';
+                document.getElementById('test-container').style.color = '#f8f8f2';
+            } else {
+                console.log('⌨️ Exiting F2 mode simulation...');
+                document.body.style.background = '#f5f5f5';
+                document.getElementById('test-container').style.background = 'white';
+                document.getElementById('test-container').style.color = 'inherit';
+            }
+        }
+        
+        function updateTestStatus(message, status) {
+            const container = document.getElementById('results-container');
+            container.innerHTML = `<span class="test-status test-${status}">${message}</span>`;
+        }
+        
+        // Expose functions for manual testing
+        window.testFunctions = {
+            runDragTest,
+            checkSectionExists, 
+            resetTest,
+            toggleF2Mode,
+            checkTestResults
+        };
+        
+        console.log('🎯 Test functions available: window.testFunctions');
+    </script>
+</body>
+</html>

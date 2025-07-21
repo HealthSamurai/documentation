@@ -473,6 +473,23 @@
                      :body (utils/->json {:error "No file move information provided"
                                           :debug {:changes changes}})})
 
+                  (= action "rename_document")
+                  (if-let [rename-info (:renameFile changes)]
+                    (do
+                      (println "🚀 Attempting to rename page from" (:from rename-info) "to" (:to rename-info))
+                      (let [result (page-relocator/relocate-page
+                                    context
+                                    (:from rename-info)
+                                    (:to rename-info))]
+                        (println "📋 Rename result:" result)
+                        {:status (if (:success result) 200 400)
+                         :headers {"content-type" "application/json"}
+                         :body (utils/->json (assoc result :timestamp timestamp))}))
+                    {:status 400
+                     :headers {"content-type" "application/json"}
+                     :body (utils/->json {:error "No file rename information provided"
+                                          :debug {:changes changes}})})
+
                   :else
                   {:status 400
                    :headers {"content-type" "application/json"}
