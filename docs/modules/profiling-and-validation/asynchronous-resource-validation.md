@@ -176,10 +176,8 @@ result:
 ```
 
 {% hint style="info" %}
-```
-aidbox.validation/batch-validation-result method requires `resourceType` param, which has a default value `BatchValidationRun`. 
+`aidbox.validation/batch-validation-result` method requires `resourceType` param, which has a default value `BatchValidationRun`. 
 So, if you want to get the result from aidbox.validation/resources-batch-validation-task you need pass "AidboxWorkflow" to `resourceType` param. 
-```
 {% endhint %}
 
 #### aidbox.validation/clear-batch-validation
