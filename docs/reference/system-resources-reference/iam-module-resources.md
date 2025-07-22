@@ -523,7 +523,7 @@ User role
 <tr><td width="290">entitlements.<strong>primary</strong></td><td width="70">0..1</td><td width="150">boolean</td><td>Indicates if this is the primary entitlement. Only one may be 'true'.</td></tr>
 <tr><td width="290">fhirUser</td><td width="70">0..1</td><td width="150">Reference</td><td>A reference to a related FHIR resource 
 
-<strong>Allowed references</strong>: Patient, Practitioner, Person</td></tr>
+<strong>Allowed references</strong>: Patient, Practitioner, PractitionerRole, Person, RelatedPerson</td></tr>
 <tr><td width="290">gender</td><td width="70">0..1</td><td width="150">string</td><td>The user's gender.</td></tr>
 <tr><td width="290">identifier</td><td width="70">0..*</td><td width="150">Identifier</td><td>A list of identifiers for the user.</td></tr>
 <tr><td width="290">ims</td><td width="70">0..*</td><td width="150">BackboneElement</td><td>Instant messaging addresses for the User.</td></tr>
