@@ -337,7 +337,7 @@ GET /fhir/Patient?_profile=http://hl7.org/fhir/us/core/StructureDefinition/us-co
 
 ### \_text and \_content
 
-[Full-text-search](https://en.wikipedia.org/wiki/Full-text_search) by resources can be achieved:&#x20;
+[Full-text-search](https://en.wikipedia.org/wiki/Full-text_search) by resources can be achieved:
 
 * to search by narrative using \_**text**
 * to search by retaining the resource content using \_**content**
@@ -551,6 +551,9 @@ GET /fhir/Patient?_filter=(organization:Organization.name eq 'myorg')
 # dot expressions
 GET /fhir/Patient?_filter=.name.0.family eq 'Doe'
 GET /fhir/Patient?_filter=.name isnull true
+
+# check if name is null
+GET /fhir/Patient?_filter=name pr false
 ```
 
 ### \_has
@@ -587,7 +590,7 @@ GET /fhir/Observation?_security=http://terminology.hl7.org/CodeSystem/v3-Confide
 
 ### \_sort
 
-Supports all search parameter types.&#x20;
+Supports all search parameter types.
 
 ```
 GET /fhir/Organization?_sort=name
@@ -657,7 +660,7 @@ The purpose of the summary form is to allow a client **to quickly retrieve a lar
 #### _Limitations_
 
 * You can't expect only a summary response as requested. There is a limited number of summary forms defined for resources to allow servers to store the summarized form(s) in advance.
-* &#x20;`_include` and `_revinclude` cannot be mixed with `_summary=text`.
+* `_include` and `_revinclude` cannot be mixed with `_summary=text`.
 
 ### Location.near
 
@@ -724,6 +727,7 @@ GET /fhir/Patient?tag=emergency
 ## Custom Search Parameter
 
 See tutorials:
+
 * [Custom SearchParameter](../../../tutorials/crud-search-tutorials/search-tutorials/custom-searchparameter-tutorial.md)
 * [Create Custom Aidbox Search resource](../../../tutorials/crud-search-tutorials/search-tutorials/create-custom-aidbox-search-resource.md)
 
