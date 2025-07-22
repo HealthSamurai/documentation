@@ -8,12 +8,12 @@ First of all, we have to create AzureAccount resource with **id** = account name
 
 {% tabs %}
 {% tab title="Request" %}
-#### Parameters
+**Parameters**
 
 * `id` _(required)_: Azure storage Account name
 * `key` _(required)_: Azure storage Account key
 
-#### Example
+**Example**
 
 ```yaml
 POST /AzureAccount
@@ -30,14 +30,14 @@ Go to Azure console and create a container, for example, "avatars". Now we can c
 
 {% tabs %}
 {% tab title="Request" %}
-#### Parameters
+**Parameters**
 
 * `id` _(optional)_: id to reference this container in Aidbox requests
 * `account` _(required)_: reference to `AzureAccount` resource
-* `storage` _(required)_: Azure resource group name
+* `storage` _(required)_: Azure storage account name
 * `container` _(required)_: Azure container name
 
-#### Example
+**Example**
 
 ```yaml
 POST /AzureContainer
@@ -56,12 +56,12 @@ When the configuration is complete, you can request a temporary URL to upload bl
 
 {% tabs %}
 {% tab title="Request" %}
-#### Body parameters
+**Body parameters**
 
 * `blob` _(required)_: file name
 * `timeout` _(optional, default: 30)_: timeout in minutes
 
-#### Example
+**Example**
 
 ```yaml
 POST /azure/storage/avatars
@@ -71,11 +71,11 @@ blob: pt-1.png
 {% endtab %}
 
 {% tab title="Response" %}
-#### Body
+**Body**
 
 * `url`: signed url to upload file
 
-#### Example
+**Example**
 
 ```yaml
 url:  https://aidbox.blob.core.windows.net/avatars/pt-1.png?sr=signature
@@ -85,7 +85,7 @@ url:  https://aidbox.blob.core.windows.net/avatars/pt-1.png?sr=signature
 
 Configure CORS in Azure if you want to send data from the browser:
 
-![](../../../../.gitbook/assets/76a678e6-f71d-4d04-84e6-bca208400324.png)
+![](../../.gitbook/assets/76a678e6-f71d-4d04-84e6-bca208400324.png)
 
 Now you can upload file from your UI using signed URL provided by Aidbox:
 
