@@ -112,9 +112,10 @@
         uri-without-prefix (if (str/starts-with? uri prefix)
                              (subs uri (count prefix))
                              uri)]
+    (def u uri-without-prefix)
     (cond
 
-      (or (= uri-without-prefix "/robots.txt")
+      (or (= uri-without-prefix "robots.txt")
           (= uri "/robots.txt"))
       (resp/resource-response "public/robots.txt")
 
@@ -122,7 +123,7 @@
           (picture-url? uri))
       (render-pictures context request)
 
-      (str/starts-with? uri-without-prefix "/public/og-preview")
+      (str/starts-with? uri-without-prefix "public/og-preview")
       (resp/resource-response uri-without-prefix)
 
       :else
@@ -327,7 +328,7 @@
             (println "DEBUG: Query params:" (:query-params request))
             (println "DEBUG: Params:" (:params request))
             (println "DEBUG: Query string:" (:query-string request))
-            (let [uri (or (get-in request [:query-params :uri]) 
+            (let [uri (or (get-in request [:query-params :uri])
                           (get-in request [:params :uri])
                           (:uri request))]
               (println "DEBUG: /dev/page-info endpoint called with URI:" uri)
