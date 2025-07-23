@@ -530,8 +530,6 @@
 
 ## Reference
 
-* [Matcho DSL reference](reference/matcho-dsl-reference.md)
-* [FHIR Schema reference](https://fhir-schema.github.io/fhir-schema/)
 * [Settings reference](reference/settings/README.md)
   * [General](reference/settings/general.md)
   * [FHIR](reference/settings/fhir.md)
@@ -541,10 +539,6 @@
   * [Web Server](reference/settings/web-server.md)
   * [Observability](reference/settings/observability.md)
   * [Zen Project](reference/settings/zen-project.md)
-* [Environment variables](reference/environment-variables/README.md)
-  * [Aidbox required environment variables](reference/environment-variables/aidbox-required-environment-variables.md)
-  * [Optional environment variables](reference/environment-variables/optional-environment-variables.md)
-  * [AidboxDB environment variables](reference/environment-variables/aidboxdb-environment-variables.md)
 * [System resources reference](reference/system-resources-reference/README.md)
   * [IAM Module Resources](reference/system-resources-reference/iam-module-resources.md)
   * [SDC Module Resources](reference/system-resources-reference/sdc-module-resources.md)
@@ -554,6 +548,11 @@
   * [Cloud Module Resources](reference/system-resources-reference/cloud-module-resources.md)
   * [HL7v2 Module Resources](reference/system-resources-reference/hl7v2-module-resources.md)
   * [SQL on FHIR Module Resources](reference/system-resources-reference/sql-on-fhir-module-resources.md)
+* [Environment variables](reference/environment-variables/README.md)
+  * [Aidbox required environment variables](reference/environment-variables/aidbox-required-environment-variables.md)
+  * [Optional environment variables](reference/environment-variables/optional-environment-variables.md)
+  * [AidboxDB environment variables](reference/environment-variables/aidboxdb-environment-variables.md)
+* [FHIR Schema reference](https://fhir-schema.github.io/fhir-schema/)
 * [Email Providers reference](reference/email-providers-reference/README.md)
   * [Notification resource reference](reference/email-providers-reference/notification-resource-reference.md)
   * [Mailgun environment variables](reference/email-providers-reference/mailgun-environment-variables.md)
@@ -563,6 +562,7 @@
   * [Aidbox SDC API](reference/aidbox-forms-reference/aidbox-sdc-api.md)
   * [Generating Questionnaire from PDF API](reference/aidbox-forms-reference/generating-questionnaire-from-pdf-api.md)
 * [Aidbox SQL functions](reference/aidbox-sql-functions.md)
+* [Matcho DSL reference](reference/matcho-dsl-reference.md)
 
 ## Deprecated
 
