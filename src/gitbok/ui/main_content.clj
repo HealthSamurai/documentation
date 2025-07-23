@@ -121,6 +121,7 @@
                   (catch Exception _
                     nil))))]
     [:main#content {:class "flex-1 items-start"}
+     [:script "hljs.highlightAll();"]
      [:div {:class "flex items-start"}
       [:article {:class "article__content py-8 min-w-0 flex-1
                  max-w-5xl transform-3d"}
