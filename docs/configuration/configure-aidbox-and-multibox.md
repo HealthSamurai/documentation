@@ -28,6 +28,7 @@ BOX_WEB_PORT: 8080
 BOX_ROOT_CLIENT_SECRET: <secret>
 BOX_ADMIN_PASSWORD: <password>
 
+AIDBOX_LICENSE: <license jwt>
 BOX_BOOTSTRAP_FHIR_PACKAGES: "hl7.fhir.r4.core#4.0.1"
 BOX_FHIR_TERMINOLOGY_SERVICE_BASE_URL: https://tx.health-samurai.io/fhir
 BOX_FHIR_SCHEMA_VALIDATION: true
@@ -67,11 +68,11 @@ JAVA_OPTS="-Xms4096m -Xmx4096m"
 Refer to the following pages for the specific image description and the list of available configuration options.
 
 {% content-ref url="../database/aidboxdb-image/" %}
-[aidboxdb-image](../database/aidboxdb-image/README.md)
+[aidboxdb-image](../database/aidboxdb-image/)
 {% endcontent-ref %}
 
 {% content-ref url="../reference/environment-variables/" %}
-[environment-variables](../reference/environment-variables/README.md)
+[environment-variables](../reference/environment-variables/)
 {% endcontent-ref %}
 
 You can also see the environment variables in the **Settings page** in **AidboxUI**.
@@ -85,6 +86,5 @@ If you are looking for the latest versions of the docker images or general relea
 See also deployment documentation:
 
 {% content-ref url="../deployment-and-maintenance/deploy-aidbox/" %}
-[deploy-aidbox](../deployment-and-maintenance/deploy-aidbox/README.md)
+[deploy-aidbox](../deployment-and-maintenance/deploy-aidbox/)
 {% endcontent-ref %}
-
