@@ -95,7 +95,7 @@
             (map-indexed vector tabs)]
         [:button
          {:class
-          (str "px-4 py-2 text-sm font-medium border-b-2 transition-colors "
+          (str "px-4 py-2 text-sm font-medium border-b-2 transition-colors cursor-pointer "
                (if (= idx 0)
                  "border-primary-9 text-primary-9"
                  "border-transparent text-tint-9 hover:text-tint-11"))
