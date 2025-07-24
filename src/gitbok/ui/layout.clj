@@ -106,7 +106,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     ;; Add F2 navigation functionality only in development mode
     (when (gitbok.http/get-dev-mode context)
       [:script {:defer true
-                :src "/static/f2-navigation.js"}])
+                :src "/static/f2-navigation-react.js"}])
     [:script {:defer true
               :src "/static/toc-scroll.js"}]
     [:script {:defer true

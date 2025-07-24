@@ -1,0 +1,3145 @@
+// F2 Fullscreen Navigation Functionality - VERSION 2025.01.21.16.45
+console.log('🚀 F2 Navigation JavaScript loaded - Version 2025.01.21.16.45');
+document.addEventListener('keydown', function (event) {
+  // F2 key (Toggle fullscreen navigation)
+  if (event.key === 'F2') {
+    event.preventDefault();
+    console.log('F2 pressed');
+    toggleFullscreenNavigation();
+    return;
+  }
+});
+
+
+
+document.addEventListener('DOMContentLoaded', function () {
+  // Initialize F2 fullscreen navigation functionality
+  console.log('🚀 Initializing F2 fullscreen navigation functionality');
+  initializeFullscreenNavigation();
+});
+
+// F2 Fullscreen Navigation Functionality
+let isFullscreenMode = false;
+let originalContent = null;
+let fullscreenElements = null;
+let horizontalScrollbar = null;
+let documentTreeStructure = null;
+
+// Global pending changes storage
+let pendingChanges = {
+  moves: [],      // Array of move operations
+  renames: [],    // Array of rename operations
+  reorders: []    // Array of reorder operations
+};
+
+// Flag to indicate when a rename icon click is in progress
+let renameIconClickInProgress = false;
+
+// Track the last drop target to keep it open
+let lastDropTarget = null;
+
+// Function to prevent navigation in F2 mode
+function preventNavigationInF2Mode(event) {
+  console.log('🚨 TESTING: This is the NEW version of f2-navigation-v2.js!');
+  if (isFullscreenMode) {
+    console.log('🔍 V2025.01.21 Navigation prevention check:', {
+      target: event.target.tagName,
+      className: event.target.className,
+      currentTarget: event.currentTarget.tagName
+    });
+    
+    // Check the entire event path for rename icons, not just event.target
+    let isRenameIconClick = false;
+    
+    // Method 1: Check if target itself is rename icon
+    if (event.target && event.target.classList && event.target.classList.contains('rename-icon')) {
+      isRenameIconClick = true;
+      console.log('✅ Method 1: Direct rename icon click detected');
+    }
+    
+    // Method 2: Check if any parent element in the event path is a rename icon
+    if (!isRenameIconClick && event.composedPath) {
+      for (const element of event.composedPath()) {
+        if (element.classList && element.classList.contains('rename-icon')) {
+          isRenameIconClick = true;
+          console.log('✅ Method 2: Rename icon found in event path');
+          break;
+        }
+      }
+    }
+    
+    // Method 3: Check if rename operation is already in progress
+    if (!isRenameIconClick && renameIconClickInProgress) {
+      isRenameIconClick = true;
+      console.log('✅ Method 3: Rename operation in progress flag detected');
+    }
+    
+    // If any method detected a rename click, allow it to proceed
+    if (isRenameIconClick) {
+      console.log('✅ ALLOWING: Rename icon click detected - skipping navigation prevention');
+      return; // Don't prevent, let it proceed normally
+    }
+    
+    // Prevent navigation on links only if it's not a rename action
+    if (event.target.tagName === 'A') {
+      event.preventDefault();
+      event.stopPropagation();
+      event.stopImmediatePropagation();
+      console.log('❌ V2025.01.21 BLOCKING: Link click prevented in F2 mode');
+      return false;
+    }
+  }
+}
+
+function initializeFullscreenNavigation() {
+  console.log('🔧 F2 fullscreen navigation initialized');
+  console.log('📋 Checking required libraries...');
+  
+  // Check if required libraries are loaded
+  if (typeof Sortable === 'undefined') {
+    console.error('❌ SortableJS not loaded!');
+    return false;
+  } else {
+    console.log('✅ SortableJS loaded:', Sortable.version || 'version unknown');
+  }
+  
+  if (typeof Scrollbar === 'undefined') {
+    console.warn('⚠️ Smooth-scrollbar not loaded, will use fallback');
+  } else {
+    console.log('✅ Smooth-scrollbar loaded');
+  }
+  
+
+  
+  return true;
+}
+
+
+
+function toggleFullscreenNavigation() {
+  console.log('toggleFullscreenNavigation called, current mode:', isFullscreenMode);
+
+  if (isFullscreenMode) {
+    exitFullscreenMode();
+  } else {
+    enterFullscreenMode();
+  }
+}
+
+function enterFullscreenMode() {
+  console.log('🔥 V2025.01.21.16.45 Entering fullscreen navigation mode');
+
+  // Save original content
+  originalContent = document.body.innerHTML;
+
+  // Get left navigation content
+  const leftNav = document.querySelector('#navigation');
+  if (!leftNav) {
+    console.error('Left navigation not found');
+    return;
+  }
+
+  // Create fullscreen navigation with DOM elements
+  fullscreenElements = createFullscreenNavigation(leftNav);
+
+  // Clear body and append elements
+  document.body.innerHTML = '';
+  document.body.appendChild(fullscreenElements.container);
+  document.body.appendChild(fullscreenElements.exitInfo);
+
+  // Add fullscreen styles
+  document.body.style.cssText = `
+    margin: 0;
+    padding: 20px;
+    background: white;
+    overflow-x: auto;
+    height: 100vh;
+    box-sizing: border-box;
+  `;
+
+  // Create and append changes panel AFTER body is set up
+  const changesPanel = createChangesPanel();
+  document.body.appendChild(changesPanel);
+
+  // Prevent navigation on link clicks in F2 mode (bubble phase)
+  document.addEventListener('click', preventNavigationInF2Mode, false);
+
+  isFullscreenMode = true;
+  console.log('Fullscreen mode activated');
+}
+
+function exitFullscreenMode() {
+  console.log('Exiting fullscreen navigation mode');
+
+  // Clean up scrollbar
+  if (horizontalScrollbar) {
+    try {
+      horizontalScrollbar.destroy();
+      horizontalScrollbar = null;
+      console.log('✅ Smooth scrollbar destroyed');
+    } catch (e) {
+      console.warn('⚠️ Error destroying scrollbar:', e);
+    }
+  }
+
+  // Remove navigation prevention handler
+  document.removeEventListener('click', preventNavigationInF2Mode, false);
+
+  if (originalContent) {
+    document.body.innerHTML = originalContent;
+    document.body.style.cssText = '';
+    originalContent = null;
+    fullscreenElements = null;
+    documentTreeStructure = null;
+  }
+
+  isFullscreenMode = false;
+  console.log('Normal mode restored');
+}
+
+function createFullscreenNavigation(leftNav) {
+  // Clone the navigation
+  const navClone = leftNav.cloneNode(true);
+
+  // Build tree structure for better management
+  documentTreeStructure = buildTreeStructure(navClone);
+
+  // Close all <details> elements to show compact structure
+  const allDetails = navClone.querySelectorAll('details');
+  allDetails.forEach(detail => {
+    detail.removeAttribute('open');
+  });
+
+  // Initialize SortableJS for all navigation elements
+  initializeSortableJS(navClone);
+
+  // Create fullscreen container with enhanced multi-column layout
+  const container = document.createElement('div');
+  container.id = 'fullscreen-nav-container';
+  
+  // Calculate optimal column configuration based on screen size
+  const screenWidth = window.innerWidth;
+  let columnWidth, columnGap, maxColumns;
+  
+  if (screenWidth >= 1600) {
+    columnWidth = 300; 
+    columnGap = 28; 
+    maxColumns = Math.floor((screenWidth - 120) / (columnWidth + columnGap));
+  } else if (screenWidth >= 1200) {
+    columnWidth = 280; 
+    columnGap = 24; 
+    maxColumns = Math.floor((screenWidth - 100) / (columnWidth + columnGap));
+  } else if (screenWidth >= 800) {
+    columnWidth = 260; 
+    columnGap = 20; 
+    maxColumns = Math.floor((screenWidth - 80) / (columnWidth + columnGap));
+  } else {
+    columnWidth = 240; 
+    columnGap = 16; 
+    maxColumns = 1; // Single column on small screens
+  }
+  
+  console.log(`📊 Multi-column layout: ${maxColumns} columns, ${columnWidth}px width, ${columnGap}px gap`);
+  
+  container.style.cssText = `
+    height: calc(100vh - 120px);
+    padding: 20px;
+    font-size: 14px;
+    background: linear-gradient(135deg, #fafafa, #f5f5f5);
+    border-radius: 12px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+    position: relative;
+    overflow: visible;
+  `;
+
+  // Create scrollable wrapper WITH multi-column layout
+  const scrollableWrapper = document.createElement('div');
+  scrollableWrapper.id = 'scrollable-wrapper';
+  scrollableWrapper.style.cssText = `
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    columns: ${maxColumns};
+    column-width: ${columnWidth}px;
+    column-gap: ${columnGap}px;
+    column-fill: balance;
+    column-rule: 1px solid rgba(224, 224, 224, 0.5);
+    column-break-inside: avoid;
+    orphans: 2;
+    widows: 2;
+  `;
+
+  // Style the cloned navigation for better readability
+  navClone.style.cssText = `
+    width: auto;
+    max-width: none;
+    height: auto;
+    max-height: none;
+    position: static;
+    overflow: visible;
+    background: transparent;
+    border: none;
+    margin: 0;
+    padding: 10px 0;
+  `;
+
+  // Reduce spacing between navigation elements
+  const allNavElements = navClone.querySelectorAll('*');
+  allNavElements.forEach(element => {
+    // Reduce margins and padding for compactness
+    if (element.tagName === 'DIV' && element.classList.contains('space-y-4')) {
+      element.style.cssText = 'margin-bottom: 10px;';
+    }
+    if (element.tagName === 'DIV' && element.classList.contains('mt-4')) {
+      element.style.cssText = 'margin-top: 8px; margin-bottom: 4px;';
+    }
+    if (element.tagName === 'DETAILS') {
+      element.style.cssText = 'margin-bottom: 8px; break-inside: avoid;';
+    }
+    if (element.tagName === 'SUMMARY') {
+      element.style.cssText = 'margin-bottom: 4px;';
+    }
+  });
+
+  // Add navigation content to scrollable wrapper
+  scrollableWrapper.appendChild(navClone);
+  container.appendChild(scrollableWrapper);
+
+  // Initialize smooth scrollbar for horizontal scrolling
+  if (typeof Scrollbar !== 'undefined') {
+    try {
+      horizontalScrollbar = Scrollbar.init(scrollableWrapper, {
+        damping: 0.1,
+        renderByPixels: true,
+        alwaysShowTracks: true,
+        continuousScrolling: false
+      });
+      console.log('✅ Smooth scrollbar initialized');
+    } catch (e) {
+      console.warn('⚠️ Could not initialize smooth scrollbar:', e);
+    }
+  }
+
+  // Add exit instruction with drag & drop help (moved to right)
+  const exitInfo = document.createElement('div');
+  exitInfo.style.cssText = `
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    background: linear-gradient(135deg, #e3f2fd, #f3e5f5);
+    padding: 15px 20px;
+    border-radius: 8px;
+    font-size: 14px;
+    color: #333;
+    z-index: 1000;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+    border: 1px solid #2196f3;
+    max-width: 350px;
+    line-height: 1.4;
+  `;
+  exitInfo.innerHTML = `
+    <div style="font-weight: bold; margin-bottom: 8px;">🎯 Drag & Drop Mode</div>
+    <div style="font-size: 13px; margin-bottom: 6px;">• Hover over items to see drag handles (⋮⋮)</div>
+    <div style="font-size: 13px; margin-bottom: 6px;">• Drag documents between sections</div>
+    <div style="font-size: 13px; margin-bottom: 6px;">• Hover over pages to see rename icon</div>
+    <div style="font-size: 13px; margin-bottom: 8px;">• Drop on documents to create folders</div>
+    <div style="display: flex; gap: 8px; margin-bottom: 8px;">
+      <button id="open-all-btn-top" style="padding: 6px 12px; background: #007bff; color: white; border: none; border-radius: 4px; cursor: pointer; font-size: 12px;">📂 Open All</button>
+      <button id="close-all-btn-top" style="padding: 6px 12px; background: #6c757d; color: white; border: none; border-radius: 4px; cursor: pointer; font-size: 12px;">📁 Close All</button>
+    </div>
+    <div style="font-size: 12px; color: #666; border-top: 1px solid #ddd; padding-top: 8px;">Press F2 to exit</div>
+  `;
+
+  // Add event listeners for the top buttons
+  const openAllBtnTop = exitInfo.querySelector('#open-all-btn-top');
+  const closeAllBtnTop = exitInfo.querySelector('#close-all-btn-top');
+
+  openAllBtnTop.addEventListener('click', openAllSections);
+  closeAllBtnTop.addEventListener('click', closeAllSections);
+
+  // Find and focus on current page
+  focusCurrentPage(navClone);
+
+  // Return DOM elements instead of HTML string
+  return {
+    container: container,
+    exitInfo: exitInfo
+  };
+}
+
+// Enhanced SortableJS Implementation
+function initializeSortableJS(navElement) {
+  console.log('🔧 Initializing enhanced SortableJS for navigation tree');
+  console.log('📝 Nav element:', navElement);
+  
+  if (!navElement) {
+    console.error('❌ Navigation element is null/undefined!');
+    return;
+  }
+
+  // Find all sortable containers - handle both section headers and collapsible sections
+  console.log('🔍 Searching for containers in navigation structure...');
+  
+  // Type 1: Collapsible sections (details > div.ml-6) - like "Getting Started"
+  const collapsibleContainers = navElement.querySelectorAll('details div.ml-6');
+  
+  // Type 1B: Collapsed details elements themselves (as drop targets)
+  const collapsedDetails = navElement.querySelectorAll('details:not([open])');
+  
+  // Type 2: Section header containers (div.break-words with direct children) - like "Overview" 
+  const sectionHeaderContainers = navElement.querySelectorAll('#navigation > div.break-words');
+  
+  // Type 3: Generic containers with links
+  const genericContainers = navElement.querySelectorAll('div[class*="border-l"], .ml-6');
+  
+  // Type 4: All details elements (for making them draggable by summary)
+  const allDetailsElements = navElement.querySelectorAll('details');
+  
+  // Combine all container types
+  const allContainers = [...collapsibleContainers, ...collapsedDetails, ...sectionHeaderContainers, ...genericContainers, ...allDetailsElements];
+  
+  // Filter to only include containers that have direct <a> children OR are details elements
+  const sortableContainers = Array.from(new Set(allContainers)).filter(container => {
+    const directLinks = Array.from(container.children).filter(child => child.tagName === 'A');
+    const hasDirectLinks = directLinks.length > 0;
+    const isDetailsElement = container.tagName === 'DETAILS';
+    
+    console.log(`🔍 Container check: ${container.tagName}.${container.className} - Direct links: ${directLinks.length}, Is details: ${isDetailsElement}`);
+    
+    return hasDirectLinks || isDetailsElement;
+  });
+  
+  console.log('📋 Container types found:');
+  console.log(`  - Collapsible containers: ${collapsibleContainers.length}`);
+  console.log(`  - Collapsed details: ${collapsedDetails.length}`);
+  console.log(`  - Section header containers: ${sectionHeaderContainers.length}`);
+  console.log(`  - Generic containers: ${genericContainers.length}`);
+  console.log(`  - Total unique containers: ${allContainers.length}`);
+  console.log(`  - Valid sortable containers: ${sortableContainers.length}`);
+  
+  sortableContainers.forEach((container, i) => {
+    const hasLinks = container.querySelectorAll('a').length;
+    console.log(`📋 Container ${i + 1}: ${container.tagName}#${container.id || 'no-id'} (${hasLinks} links)`);
+  });
+
+  sortableContainers.forEach((container, index) => {
+    console.log(`🔄 Processing container ${index + 1}/${sortableContainers.length}:`, container);
+    
+    // Skip if already initialized
+    if (container.hasAttribute('data-sortable-initialized')) {
+      console.log('⏭️ Skipping already initialized container');
+      return;
+    }
+
+    console.log('✨ Creating SortableJS instance for:', container.tagName, container.id || container.className);
+    
+    try {
+      // Create enhanced sortable instance
+      const sortable = new Sortable(container, {
+        group: {
+          name: 'tree-docs',
+          pull: true, // Allow moving between groups
+          put: function(to, from, dragEl, evt) {
+            // Enhanced logic for allowing drops
+            return canDropInContainer(to, from, dragEl);
+          }
+        },
+        // Allow both individual pages and sections to be dragged
+        draggable: function(el) {
+          // Allow dragging links
+          if (el.tagName === 'A') {
+            console.log('✅ Draggable: Link element', el.textContent?.trim());
+            return true;
+          }
+          
+          // Allow dragging summary elements (even if not direct children)
+          if (el.tagName === 'SUMMARY') {
+            console.log('✅ Draggable: Summary element', el.textContent?.trim());
+            return true;
+          }
+          
+          return false;
+        }
+        
+        animation: 200,
+        easing: "cubic-bezier(1, 0, 0, 1)",
+        fallbackOnBody: true,
+        swapThreshold: 0.5,
+        invertSwap: false,
+        direction: 'vertical',
+        
+        // Visual feedback classes
+        ghostClass: 'sortable-ghost',
+        chosenClass: 'sortable-chosen',
+        dragClass: 'sortable-drag',
+        
+        // Enhanced drag and drop event handlers
+        onStart: function(evt) {
+          console.log('🎯 === DRAG STARTED ===');
+          console.log('📦 Dragged item:', evt.item);
+          console.log('📦 Item text:', evt.item.textContent?.trim());
+          console.log('📦 From container:', evt.from);
+          console.log('📦 From container classes:', evt.from.className);
+          console.log('📦 Old index:', evt.oldIndex);
+          
+          // Special handling for summary elements - drag the whole details
+          if (evt.item.tagName === 'SUMMARY') {
+            const parentDetails = evt.item.parentElement;
+            if (parentDetails && parentDetails.tagName === 'DETAILS') {
+              console.log('🔄 Converting summary drag to details drag');
+              // Store reference to the actual details element
+              evt.item.setAttribute('data-drag-details', 'true');
+              evt.item.setAttribute('data-details-id', parentDetails.id || '');
+              // Note: We can't change evt.item here, but we'll handle it in drop
+            }
+          }
+          
+          console.log('🎯 === DRAG START DEBUG END ===');
+          
+          evt.item.classList.add('dragging');
+          evt.item.setAttribute('data-original-parent', evt.from.id || 'root');
+          evt.item.setAttribute('data-original-index', evt.oldIndex);
+          
+          // Add visual feedback to valid drop zones
+          highlightValidDropZones(evt.item);
+        },
+        
+        onMove: function(evt) {
+          const related = evt.related;
+          const dragged = evt.dragged;
+          
+          // Enhanced prevention logic
+          if (isInvalidMove(dragged, related)) {
+            return false;
+          }
+          
+          // Visual feedback for drop zones
+          // Check if we're hovering over a details element or its content
+          let targetContainer = evt.to;
+          
+          // If hovering over a summary, use the parent details element
+          if (evt.related && evt.related.tagName === 'SUMMARY') {
+            targetContainer = evt.related.parentElement;
+          } else if (evt.to && evt.to.closest('details')) {
+            // If inside a details structure, use the details element
+            const closestDetails = evt.to.closest('details');
+            if (closestDetails) {
+              targetContainer = closestDetails;
+            }
+          }
+          
+          updateDropZoneHighlight(targetContainer);
+          
+          return true;
+        },
+        
+        onEnd: function(evt) {
+          console.log('🎯 === DRAG ENDED ===');
+          console.log('📦 Dragged item:', evt.item);
+          console.log('📦 Item text:', evt.item.textContent?.trim());
+          console.log('📦 From container:', evt.from);
+          console.log('📦 To container:', evt.to);
+          console.log('📦 Old index:', evt.oldIndex);
+          console.log('📦 New index:', evt.newIndex);
+          console.log('📦 Different containers?', evt.from !== evt.to);
+          console.log('📦 Different indices?', evt.oldIndex !== evt.newIndex);
+          console.log('🎯 === DRAG END DEBUG - CALLING handleEnhancedSortableDrop ===');
+          
+          // Store original file path before processing if not already stored
+          if (!evt.item.hasAttribute('data-original-path')) {
+            const docInfo = extractDocumentInfo(evt.item);
+            if (docInfo.filePath) {
+              evt.item.setAttribute('data-original-path', docInfo.filePath);
+              console.log('📋 Stored original path:', docInfo.filePath);
+            }
+          }
+          
+          evt.item.classList.remove('dragging');
+          evt.item.removeAttribute('data-original-parent');
+          evt.item.removeAttribute('data-original-index');
+          
+          // Save the drop target before clearing highlights
+          lastDropTarget = evt.to;
+          
+          // If dropped into a details element, remember it
+          const dropTargetDetails = evt.to.closest('details');
+          if (dropTargetDetails && dropTargetDetails.hasAttribute('data-auto-opened')) {
+            console.log('📌 Keeping auto-opened drop target:', dropTargetDetails);
+            lastDropTarget = dropTargetDetails;
+          }
+          
+          // Remove all visual feedback
+          clearDropZoneHighlights();
+          
+          // Handle the enhanced drop logic
+          handleEnhancedSortableDrop(evt);
+        },
+        
+        onClone: function(evt) {
+          console.log('📋 Item cloned for cross-container move');
+        }
+      });
+
+      // Mark as initialized with enhanced features
+      container.setAttribute('data-sortable-initialized', 'true');
+      container.setAttribute('data-sortable-enhanced', 'true');
+      console.log('✅ Enhanced SortableJS initialized successfully for:', container);
+      
+    } catch (error) {
+      console.error('❌ Failed to initialize SortableJS for container:', container, error);
+    }
+  });
+
+  console.log('🎉 SortableJS initialization completed!');
+  console.log(`📊 Total containers processed: ${sortableContainers.length}`);
+
+  // Add enhanced CSS for visual feedback
+  addEnhancedSortableCSS();
+  
+  // Add context menu for rename functionality
+  addContextMenuHandlers(navElement);
+  
+  // Add rename icon click handlers
+  addRenameIconHandlers(navElement);
+  
+}
+
+// Add rename icon click handlers for all navigation links
+function addRenameIconHandlers(navElement) {
+  console.log('🎯 Adding rename icon elements and handlers...');
+  
+  // Find all links in sortable containers
+  const sortableLinks = navElement.querySelectorAll('[data-sortable-initialized] a');
+  
+  sortableLinks.forEach((link, index) => {
+    console.log(`📝 Adding rename icon to link ${index + 1}:`, link.textContent?.trim());
+    
+    // Create rename icon element
+    const renameIcon = document.createElement('span');
+    renameIcon.className = 'rename-icon';
+    renameIcon.textContent = '✏️';
+    renameIcon.setAttribute('title', 'Click to rename this page');
+    renameIcon.setAttribute('data-debug', 'rename-icon-' + index);
+    console.log('🏗️ Created rename icon for:', link.textContent?.trim(), 'with class:', renameIcon.className);
+    
+    // Add icon to the link
+    link.appendChild(renameIcon);
+    
+    // Add click handler directly to the icon
+    renameIcon.addEventListener('click', function(e) {
+      console.log('🎯 V2025.01.21 RENAME ICON CLICKED!', {
+        target: e.target.className,
+        link: link.textContent?.trim(),
+        eventType: e.type,
+        bubbles: e.bubbles,
+        timeStamp: e.timeStamp
+      });
+      
+      // Set flag IMMEDIATELY to indicate rename operation in progress
+      renameIconClickInProgress = true;
+      console.log('🚩 Flag set: renameIconClickInProgress = true');
+      
+      // Prevent event bubbling IMMEDIATELY
+      e.preventDefault();
+      e.stopPropagation();
+      e.stopImmediatePropagation();
+      console.log('🛑 Event propagation stopped');
+      
+      console.log('📞 About to call showRenamePanel...');
+      // Show rename panel for this specific link
+      showRenamePanel(link);
+      console.log('📞 showRenamePanel call completed');
+      
+      // Clear flag after a longer delay to ensure prevention handler sees it
+      setTimeout(() => {
+        renameIconClickInProgress = false;
+        console.log('🚩 Flag cleared: renameIconClickInProgress = false');
+      }, 500);
+      
+      return false;
+    }, true); // Use capture phase for rename icon handler
+    
+    console.log('✅ Click handler attached to rename icon for:', link.textContent?.trim());
+    
+    // Enhance link hover behavior 
+    link.addEventListener('mouseenter', function(e) {
+      // Update tooltip to mention rename functionality
+      const originalTitle = link.getAttribute('title') || '';
+      if (!originalTitle.includes('Click pencil icon')) {
+        link.setAttribute('title', 'Drag to move, click pencil icon to rename ✏️');
+      }
+    });
+    
+    // Debug: Add visual feedback when icon becomes visible
+    const observer = new MutationObserver((mutations) => {
+      mutations.forEach((mutation) => {
+        if (mutation.type === 'attributes' && mutation.attributeName === 'style') {
+          const computedStyle = window.getComputedStyle(renameIcon);
+          if (parseFloat(computedStyle.opacity) > 0.5) {
+            console.log('📝 Rename icon became visible for:', link.textContent?.trim());
+          }
+        }
+      });
+    });
+    
+    observer.observe(renameIcon, { attributes: true, attributeFilter: ['style'] });
+  });
+  
+  console.log(`✅ Rename icons and handlers added to ${sortableLinks.length} links`);
+}
+
+// Enhanced logic for determining if a drop is allowed
+function canDropInContainer(to, from, dragEl) {
+  // Don't allow dropping parent into its own children
+  if (dragEl && dragEl.nodeType === Node.ELEMENT_NODE && dragEl.contains && typeof dragEl.contains === 'function' && to && to.nodeType === Node.ELEMENT_NODE) {
+    if (dragEl.contains(to)) {
+      return false;
+    }
+  }
+  
+  // Check for circular references
+  let currentParent = to;
+  while (currentParent && currentParent.nodeType === Node.ELEMENT_NODE) {
+    if (currentParent === dragEl) {
+      return false;
+    }
+    currentParent = currentParent.parentElement;
+  }
+  
+  // Special handling for collapsed details elements
+  if (to && to.tagName === 'DETAILS' && !to.hasAttribute('open')) {
+    console.log('✅ Allowing drop on collapsed details element');
+    return true;
+  }
+  
+  // Allow drop on details elements even if they're not direct sortable containers
+  if (to && to.closest && to.closest('details')) {
+    console.log('✅ Allowing drop in details structure');
+    return true;
+  }
+  
+  return true;
+}
+
+// Add context menu handlers for rename functionality
+function addContextMenuHandlers(navElement) {
+  console.log('🔧 Adding visual feedback for links');
+  
+  // Add visual feedback to all links and fix draggable attributes
+  const allLinks = navElement.querySelectorAll('a');
+  allLinks.forEach(link => {
+    // Fix draggable attribute conflicts - SortableJS handles this internally
+    link.removeAttribute('draggable');
+    
+    // Add visual feedback on hover
+    link.addEventListener('mouseenter', function() {
+      if (!link.classList.contains('dragging')) {
+        link.style.cursor = 'grab';
+        link.title = 'Drag to move, click pencil icon to rename ✏️';
+        // Add subtle visual indicator with smooth transition
+        link.style.borderBottom = '2px solid #007bff';
+        link.style.transition = 'border-bottom 0.2s ease, transform 0.2s ease';
+        link.style.transform = 'translateX(2px)';
+      }
+    });
+    
+    link.addEventListener('mouseleave', function() {
+      if (!link.classList.contains('sortable-chosen') && !link.classList.contains('dragging')) {
+        link.style.borderBottom = '';
+        link.style.transform = '';
+      }
+    });
+    
+    // Clean up styles when drag starts to avoid conflicts
+    link.addEventListener('dragstart', function() {
+      link.style.borderBottom = '';
+      link.style.transform = '';
+    });
+  });
+  
+  console.log(`✅ Added visual feedback to ${allLinks.length} links`);
+}
+
+// Check if a move is invalid
+function isInvalidMove(dragged, related) {
+  // Prevent dropping parent inside its own children
+  if (dragged.contains && dragged.contains(related)) {
+    return true;
+  }
+  
+  // Prevent circular references
+  let currentElement = related;
+  while (currentElement) {
+    if (currentElement === dragged) {
+      return true;
+    }
+    currentElement = currentElement.parentElement?.closest('[data-sortable-initialized]');
+    if (!currentElement) break;
+  }
+  
+  return false;
+}
+
+// Highlight valid drop zones
+function highlightValidDropZones(draggedItem) {
+  const allContainers = document.querySelectorAll('[data-sortable-initialized]');
+  allContainers.forEach((container, index) => {
+    // Add base container active class
+    container.classList.add('sortable-container-active');
+    
+    if (canDropInContainer(container, null, draggedItem)) {
+      container.classList.add('valid-drop-zone');
+      // Add pulse animation with slight delay for visual wave effect
+      setTimeout(() => {
+        container.classList.add('drop-zone-active');
+      }, index * 50);
+    } else {
+      container.classList.add('invalid-drop-zone');
+    }
+  });
+  
+  console.log(`✨ Highlighted ${allContainers.length} drop zones with enhanced visuals`);
+}
+
+// Update drop zone highlight during move
+function updateDropZoneHighlight(targetContainer) {
+  // Remove previous hover highlights
+  document.querySelectorAll('.drop-zone-hover').forEach(el => {
+    el.classList.remove('drop-zone-hover');
+  });
+  
+  // Add enhanced hover highlight to target
+  if (targetContainer) {
+    targetContainer.classList.add('drop-zone-hover');
+    
+    // Auto-open collapsed details on hover during drag
+    if (targetContainer.tagName === 'DETAILS' && !targetContainer.hasAttribute('open')) {
+      console.log('🔓 Auto-opening collapsed details on hover');
+      targetContainer.setAttribute('open', '');
+      targetContainer.setAttribute('data-auto-opened', 'true');
+      
+      // Re-initialize sortable for newly revealed content
+      setTimeout(() => {
+        const childContainer = targetContainer.querySelector('div.ml-6, [data-sortable-initialized]');
+        if (childContainer && !childContainer.hasAttribute('data-sortable-initialized')) {
+          console.log('🔄 Re-initializing sortable for auto-opened details content');
+          initializeSortableJS(childContainer);
+        }
+      }, 100);
+    }
+    
+    // Add subtle vibration effect for better feedback
+    targetContainer.style.animation = 'none';
+    setTimeout(() => {
+      targetContainer.style.animation = 'drop-zone-pulse 0.6s ease-in-out';
+    }, 10);
+  }
+}
+
+// Clear all drop zone highlights with smooth fade out
+function clearDropZoneHighlights() {
+  const highlights = document.querySelectorAll('.valid-drop-zone, .invalid-drop-zone, .drop-zone-hover, .sortable-container-active, .drop-zone-active');
+  highlights.forEach(el => {
+    // Remove all highlight classes
+    el.classList.remove('valid-drop-zone', 'invalid-drop-zone', 'drop-zone-hover', 'sortable-container-active', 'drop-zone-active');
+    // Clear any inline animations
+    el.style.animation = '';
+  });
+  
+  // Close auto-opened details elements, except the drop target
+  const autoOpenedDetails = document.querySelectorAll('details[data-auto-opened]');
+  autoOpenedDetails.forEach(details => {
+    // Keep the drop target open
+    if (lastDropTarget && (details === lastDropTarget || details.contains(lastDropTarget))) {
+      console.log('📂 Keeping drop target open:', details);
+      details.removeAttribute('data-auto-opened'); // Remove marker but keep open
+    } else {
+      console.log('🔒 Closing auto-opened details:', details);
+      details.removeAttribute('open');
+      details.removeAttribute('data-auto-opened');
+    }
+  });
+  
+  // Reset last drop target
+  lastDropTarget = null;
+  
+  console.log(`🧹 Cleared highlights from ${highlights.length} containers, processed ${autoOpenedDetails.length} auto-opened details`);
+}
+
+function addEnhancedSortableCSS() {
+  // Check if CSS is already added
+  if (document.getElementById('enhanced-sortable-css')) {
+    return;
+  }
+
+  const style = document.createElement('style');
+  style.id = 'enhanced-sortable-css';
+  style.textContent = `
+    /* Enhanced drag and drop styling with improved visuals */
+    .sortable-ghost {
+      opacity: 0.75 !important; /* Improved visibility during drag */
+      background: linear-gradient(135deg, #e3f2fd, #f3e5f5) !important;
+      border: 2px dashed #2196f3 !important;
+      border-radius: 8px !important;
+      transform: scale(0.98) !important; /* Slight shrink instead of grow */
+      transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1) !important;
+      box-shadow: 0 4px 12px rgba(33, 150, 243, 0.2) !important;
+      z-index: 999 !important;
+    }
+    
+    .sortable-chosen {
+      background: linear-gradient(135deg, #fff8e1, #fffde7) !important;
+      border: 2px solid #ff9800 !important;
+      border-radius: 8px !important;
+      box-shadow: 0 4px 16px rgba(255, 152, 0, 0.3) !important;
+      transform: scale(1.02) translateZ(0) !important; /* Add translateZ for hardware acceleration */
+      transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1) !important;
+      z-index: 1001 !important;
+      position: relative !important;
+    }
+    
+    .sortable-drag {
+      opacity: 0.9 !important; /* Keep more opacity for better visibility */
+      transform: rotate(2deg) scale(1.05) translateZ(0) !important; /* Reduced rotation for smoother look */
+      box-shadow: 0 8px 32px rgba(0,0,0,0.25) !important;
+      z-index: 1000 !important;
+      transition: all 0.15s cubic-bezier(0.4, 0, 0.2, 1) !important; /* Faster transition for responsiveness */
+    }
+    
+    .dragging {
+      cursor: grabbing !important;
+      user-select: none !important;
+      pointer-events: none !important;
+    }
+    
+    /* Enhanced drop zone highlighting with smoother animations */
+    .valid-drop-zone {
+      background: rgba(76, 175, 80, 0.1) !important;
+      border: 2px solid #4caf50 !important;
+      border-radius: 8px !important;
+      transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1) !important;
+    }
+    
+    .invalid-drop-zone {
+      background: rgba(244, 67, 54, 0.1) !important;
+      border: 2px dashed #f44336 !important;
+      border-radius: 8px !important;
+      opacity: 0.8 !important;
+      transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1) !important;
+      box-shadow: 0 2px 8px rgba(244, 67, 54, 0.2) !important;
+    }
+    
+    .drop-zone-hover {
+      background: rgba(33, 150, 243, 0.15) !important;
+      border: 2px solid #2196f3 !important;
+      border-radius: 8px !important;
+      transform: scale(1.01) translateZ(0) !important;
+      transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1) !important;
+      box-shadow: 0 4px 16px rgba(33, 150, 243, 0.2) !important;
+    }
+    
+    /* Improved container highlighting during drag */
+    .sortable-container-active {
+      background: rgba(76, 175, 80, 0.05) !important;
+      border-radius: 8px !important;
+      transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1) !important;
+    }
+    
+    /* Pulse animation for active drop zones */
+    @keyframes drop-zone-pulse {
+      0%, 100% { box-shadow: 0 0 0 0 rgba(76, 175, 80, 0.4); }
+      50% { box-shadow: 0 0 0 8px rgba(76, 175, 80, 0); }
+    }
+    
+    .valid-drop-zone.drop-zone-active {
+      animation: drop-zone-pulse 1.5s infinite !important;
+    }
+    
+    /* Enhanced nested containers - optimized for multi-column layout */
+    details[data-sortable-initialized] {
+      min-height: 24px;
+      border-radius: 6px;
+      transition: all 0.2s ease;
+      position: relative;
+      break-inside: avoid;
+      page-break-inside: avoid;
+      margin-bottom: 8px;
+    }
+    
+    details[data-sortable-initialized] > summary {
+      cursor: grab;
+      position: relative;
+      padding-left: 8px;
+    }
+    
+    details[data-sortable-initialized] > summary::before {
+      content: "⋮⋮";
+      position: absolute;
+      left: -8px;
+      top: 50%;
+      transform: translateY(-50%);
+      color: #ccc;
+      font-size: 10px;
+      opacity: 0;
+      transition: opacity 0.2s ease;
+      line-height: 1;
+    }
+    
+    details[data-sortable-initialized] > summary:hover::before {
+      opacity: 0.7;
+    }
+    
+    details[data-sortable-initialized]:hover {
+      background: rgba(33, 150, 243, 0.05);
+      border-radius: 6px;
+    }
+    
+    details[data-sortable-initialized]:empty {
+      background: linear-gradient(135deg, #f5f5f5, #fafafa);
+      border: 2px dashed #ddd;
+      border-radius: 8px;
+      padding: 12px;
+      margin: 4px 0;
+      transition: all 0.3s ease;
+    }
+    
+    details[data-sortable-initialized]:empty:hover {
+      border-color: #2196f3;
+      background: linear-gradient(135deg, #e3f2fd, #f3e5f5);
+    }
+    
+    details[data-sortable-initialized]:empty::before {
+      content: "📄 Drop documentation pages here";
+      color: #666;
+      font-style: italic;
+      display: block;
+      text-align: center;
+    }
+    
+    /* Special styling for collapsed details as drop targets */
+    details:not([open])[data-sortable-initialized] {
+      border: 1px dashed transparent;
+      transition: all 0.2s ease;
+      position: relative;
+    }
+    
+    details:not([open])[data-sortable-initialized].valid-drop-zone {
+      border-color: #4caf50 !important;
+      background: rgba(76, 175, 80, 0.1) !important;
+      border-radius: 8px !important;
+    }
+    
+    details:not([open])[data-sortable-initialized].drop-zone-hover {
+      border-color: #2196f3 !important;
+      background: rgba(33, 150, 243, 0.15) !important;
+      transform: scale(1.02) !important;
+    }
+    
+    /* Visual indicator for collapsed details during drag */
+    details:not([open])[data-sortable-initialized].valid-drop-zone::after {
+      content: "📂 Drop here to expand section";
+      position: absolute;
+      top: 50%;
+      right: 8px;
+      transform: translateY(-50%);
+      font-size: 11px;
+      color: #4caf50;
+      opacity: 0.8;
+      font-weight: bold;
+      background: rgba(255, 255, 255, 0.9);
+      padding: 2px 6px;
+      border-radius: 4px;
+      border: 1px solid #4caf50;
+    }
+    
+    /* Visual feedback for page items */
+    [data-sortable-initialized] a {
+      border-radius: 4px;
+      transition: all 0.2s ease;
+      padding: 2px 4px;
+      cursor: grab;
+      position: relative;
+    }
+    
+    [data-sortable-initialized] a::before {
+      content: "⋮⋮";
+      position: absolute;
+      left: -12px;
+      top: 50%;
+      transform: translateY(-50%);
+      color: #ccc;
+      font-size: 10px;
+      opacity: 0;
+      transition: opacity 0.2s ease;
+      line-height: 1;
+    }
+    
+    [data-sortable-initialized] a:hover {
+      background: rgba(33, 150, 243, 0.1);
+      transform: translateX(2px);
+    }
+    
+    [data-sortable-initialized] a:hover::before {
+      opacity: 0.7;
+    }
+    
+    /* Rename icon container */
+    [data-sortable-initialized] a {
+      position: relative;
+      padding-right: 35px !important; /* Make space for rename icon */
+    }
+    
+    /* Rename icon styling */
+    .rename-icon {
+      position: absolute;
+      right: 8px;
+      top: 50%;
+      transform: translateY(-50%);
+      font-size: 14px;
+      opacity: 0;
+      transition: all 0.2s ease;
+      cursor: pointer;
+      background: rgba(255, 255, 255, 0.95);
+      padding: 3px 5px;
+      border-radius: 4px;
+      border: 1px solid #ddd;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      z-index: 100;
+      pointer-events: auto; /* Always allow clicks */
+      user-select: none;
+    }
+    
+    [data-sortable-initialized] a:hover .rename-icon {
+      opacity: 1;
+      transform: translateY(-50%) scale(1.05);
+    }
+    
+    .rename-icon:hover {
+      background: rgba(255, 255, 255, 1);
+      border-color: #007bff;
+      box-shadow: 0 2px 6px rgba(0, 123, 255, 0.2);
+    }
+    
+    /* Leaf to parent conversion indicator */
+    .converting-to-parent {
+      background: linear-gradient(135deg, #fff3e0, #f3e5f5);
+      border: 2px dashed #ff9800;
+      border-radius: 8px;
+      animation: pulse 1s infinite;
+    }
+    
+    @keyframes pulse {
+      0% { opacity: 0.7; }
+      50% { opacity: 1; }
+      100% { opacity: 0.7; }
+    }
+    
+    /* Enhanced fullscreen container styling with multi-column optimizations */
+    #fullscreen-nav-container {
+      background: linear-gradient(135deg, #fafafa, #f5f5f5);
+    }
+    
+    /* Optimize main navigation sections for column layout */
+    #fullscreen-nav-container .break-words {
+      break-inside: avoid;
+      page-break-inside: avoid;
+      margin-bottom: 12px;
+    }
+    
+    /* Ensure section headers stay with their content */
+    #fullscreen-nav-container .mt-4 {
+      break-after: avoid;
+      page-break-after: avoid;
+    }
+    
+    /* Prevent awkward breaks in navigation links */
+    #fullscreen-nav-container a {
+      break-inside: avoid;
+      page-break-inside: avoid;
+    }
+    
+    /* Column layout responsive adjustments */
+    @media (max-width: 1200px) {
+      #fullscreen-nav-container {
+        column-count: auto !important;
+        column-width: 280px !important;
+      }
+    }
+    
+    @media (max-width: 800px) {
+      #fullscreen-nav-container {
+        column-count: 1 !important;
+        column-width: auto !important;
+      }
+    }
+    
+    #scrollable-wrapper::-webkit-scrollbar {
+      width: 8px;
+      height: 8px;
+    }
+    
+    #scrollable-wrapper::-webkit-scrollbar-track {
+      background: #f1f1f1;
+      border-radius: 4px;
+    }
+    
+    #scrollable-wrapper::-webkit-scrollbar-thumb {
+      background: linear-gradient(135deg, #2196f3, #1976d2);
+      border-radius: 4px;
+    }
+    
+    #scrollable-wrapper::-webkit-scrollbar-thumb:hover {
+      background: linear-gradient(135deg, #1976d2, #1565c0);
+    }
+    
+    /* Fix width for pages with nested elements */
+    #fullscreen-nav-container {
+      max-width: 100%;
+      overflow-x: auto;
+    }
+    
+    #fullscreen-nav-container .break-words {
+      min-width: 200px;
+      max-width: 300px;
+    }
+    
+    #fullscreen-nav-container .ml-6 {
+      min-width: 180px;
+      max-width: 280px;
+    }
+    
+    /* Styles for elements with pending changes */
+    .pending-save {
+      position: relative;
+      background: linear-gradient(90deg, rgba(255, 193, 7, 0.1), rgba(255, 193, 7, 0.05));
+      border-left: 3px solid #ffc107;
+      transition: all 0.3s ease;
+    }
+    
+    .pending-save::after {
+      content: "●";
+      color: #ff9800;
+      font-weight: bold;
+      margin-left: 5px;
+      font-size: 12px;
+      animation: pulse 2s infinite;
+    }
+    
+    @keyframes pulse {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.5; }
+    }
+    
+    .pending-save:hover {
+      background: linear-gradient(90deg, rgba(255, 193, 7, 0.15), rgba(255, 193, 7, 0.08));
+    }
+  `;
+  
+  document.head.appendChild(style);
+  console.log('✅ Enhanced sortable CSS added');
+}
+
+// Keep backward compatibility
+function addSortableCSS() {
+  addEnhancedSortableCSS();
+}
+
+// Enhanced drop handling with comprehensive error handling
+function handleEnhancedSortableDrop(evt) {
+  console.log('🎯 === DROP EVENT STARTED ===');
+  console.log('🔄 Handling enhanced sortable drop:', evt);
+  console.log('📋 Event details:', {
+    type: 'drop',
+    item: evt.item,
+    from: evt.from,
+    to: evt.to,
+    oldIndex: evt.oldIndex,
+    newIndex: evt.newIndex
+  });
+  
+  try {
+    const item = evt.item;
+    const from = evt.from;
+    const to = evt.to;
+    const oldIndex = evt.oldIndex;
+    const newIndex = evt.newIndex;
+    
+    // Validate drop operation
+    const validation = validateDropOperation(evt);
+    if (!validation.valid) {
+      console.error('❌ Invalid drop operation:', validation.error);
+      showErrorNotification('Drop operation failed: ' + validation.error);
+      revertDropOperation(evt);
+      return;
+    }
+    
+    console.log('📊 Enhanced drop details:', {
+      item: item.tagName,
+      itemText: item.textContent?.trim().substring(0, 50),
+      from: from.tagName,
+      to: to.tagName,
+      oldIndex,
+      newIndex,
+      fromId: from.id,
+      toId: to.id
+    });
+    
+    // Extract document information
+    const docInfo = extractDocumentInfo(item);
+    console.log('📄 Document info:', docInfo);
+    
+    // Validate document info
+    if (!docInfo.text || !docInfo.href) {
+      console.error('❌ Invalid document info:', docInfo);
+      showErrorNotification('Cannot process document: missing required information');
+      revertDropOperation(evt);
+      return;
+    }
+    
+    // Check if we need to convert leaf to parent
+    if (shouldConvertToParent(item, to)) {
+      console.log('🌱 Converting leaf to parent');
+      try {
+        convertLeafToParent(item, to);
+      } catch (error) {
+        console.error('❌ Error converting leaf to parent:', error);
+        showErrorNotification('Failed to convert structure: ' + error.message);
+        revertDropOperation(evt);
+        return;
+      }
+    }
+    
+    // Remove empty parents with recursive cleanup - but only if they should actually be removed
+    try {
+      // Add a delay to avoid race conditions and only cleanup if the section was not intentionally emptied
+      setTimeout(() => {
+        safeRecursiveCleanupEmptyParents(from);
+      }, 500); // Wait 500ms to ensure drag operation is fully complete
+    } catch (error) {
+      console.error('❌ Error cleaning up empty parents:', error);
+      // This is non-critical, so we continue
+    }
+    
+    // Plan file system changes
+    try {
+      const changesPlan = planFileSystemChanges(docInfo, from, to, newIndex);
+      console.log('📋 File system changes plan:', changesPlan);
+      
+      // Validate the planned changes
+      if (!validateChangesPlan(changesPlan)) {
+        showErrorNotification('Invalid file operation planned');
+        revertDropOperation(evt);
+        return;
+      }
+      
+      // Log the new structure for backend sync
+      logEnhancedTreeStructure(item, to, newIndex, changesPlan);
+      
+      // Add to pending changes
+      if (changesPlan && changesPlan.moveFile) {
+        const moveInfo = changesPlan.moveFile;
+        addPendingMove(moveInfo.from, moveInfo.to, evt.item, from, to, newIndex);
+        console.log('📋 Added move to pending changes:', moveInfo.from, '→', moveInfo.to);
+      }
+    } catch (error) {
+      console.error('❌ Error planning file system changes:', error);
+      showErrorNotification('Failed to plan file changes: ' + error.message);
+      revertDropOperation(evt);
+      return;
+    }
+    
+    console.log('✅ === DROP EVENT COMPLETED SUCCESSFULLY ===');
+    
+  } catch (error) {
+    console.error('❌ === DROP EVENT FAILED ===');
+    console.error('❌ Unexpected error in handleEnhancedSortableDrop:', error);
+    console.error('📋 Error stack:', error.stack);
+    showErrorNotification('An unexpected error occurred during the drop operation: ' + error.message);
+    revertDropOperation(evt);
+  }
+}
+
+// Validate drop operation
+function validateDropOperation(evt) {
+  const item = evt.item;
+  const from = evt.from;
+  const to = evt.to;
+  
+  // Check if all required elements exist
+  if (!item || !from || !to) {
+    return { valid: false, error: 'Missing required drop elements' };
+  }
+  
+  // Check if dropping into same container at same position
+  if (from === to && evt.oldIndex === evt.newIndex) {
+    return { valid: false, error: 'No actual move occurred' };
+  }
+  
+  // Allow moving within the same container (reordering) or between containers
+  if ((from === to && evt.oldIndex !== evt.newIndex) || from !== to) {
+    return { valid: true };
+  }
+  
+  // Check if item contains destination (preventing circular drops)
+  if (item.contains && item.contains(to)) {
+    return { valid: false, error: 'Cannot drop parent into its own child' };
+  }
+  
+  // Check if item has required content
+  const link = item.querySelector('a') || (item.tagName === 'A' ? item : null);
+  if (!link || !link.href || !link.textContent.trim()) {
+    return { valid: false, error: 'Item does not contain valid documentation link' };
+  }
+  
+  return { valid: true };
+}
+
+// Validate changes plan
+function validateChangesPlan(changesPlan) {
+  if (!changesPlan) {
+    return false;
+  }
+  
+  // If there's a file move planned, validate it
+  if (changesPlan.moveFile) {
+    const { from, to } = changesPlan.moveFile;
+    
+    if (!from || !to) {
+      console.error('❌ Invalid file move plan: missing from/to paths');
+      return false;
+    }
+    
+    if (from === to) {
+      console.error('❌ Invalid file move plan: source and destination are the same');
+      return false;
+    }
+    
+    // Basic path validation
+    if (!from.endsWith('.md') || !to.endsWith('.md')) {
+      console.error('❌ Invalid file move plan: paths must be markdown files');
+      return false;
+    }
+    
+    // Check for dangerous paths
+    if (from.includes('..') || to.includes('..')) {
+      console.error('❌ Invalid file move plan: paths cannot contain parent directory references');
+      return false;
+    }
+  }
+  
+  return true;
+}
+
+// Revert drop operation
+function revertDropOperation(evt) {
+  console.log('🔄 Reverting drop operation');
+  
+  try {
+    const item = evt.item;
+    const from = evt.from;
+    const oldIndex = evt.oldIndex;
+    
+    // Move item back to original position
+    if (from && item && typeof oldIndex === 'number') {
+      if (oldIndex < from.children.length) {
+        from.insertBefore(item, from.children[oldIndex]);
+      } else {
+        from.appendChild(item);
+      }
+      console.log('✅ Drop operation reverted successfully');
+    } else {
+      console.warn('⚠️ Could not revert drop operation: missing original position info');
+    }
+  } catch (error) {
+    console.error('❌ Error reverting drop operation:', error);
+    showErrorNotification('Could not revert the operation. Please refresh the page.');
+  }
+}
+
+// Show error notification
+function showErrorNotification(message) {
+  console.error('🚨 Error notification:', message);
+  
+  const notification = document.createElement('div');
+  notification.style.cssText = `
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    background: #f44336;
+    color: white;
+    padding: 15px 25px;
+    border-radius: 8px;
+    box-shadow: 0 4px 20px rgba(244, 67, 54, 0.3);
+    z-index: 3000;
+    font-weight: 500;
+    max-width: 400px;
+    border-left: 4px solid #d32f2f;
+    animation: slideInFromRight 0.3s ease;
+  `;
+  
+  notification.innerHTML = `
+    <div style="display: flex; align-items: center; gap: 10px;">
+      <span style="font-size: 20px;">⚠️</span>
+      <span>${message}</span>
+      <button onclick="this.parentElement.parentElement.remove()" style="
+        background: none;
+        border: none;
+        color: white;
+        font-size: 20px;
+        cursor: pointer;
+        margin-left: auto;
+      ">×</button>
+    </div>
+  `;
+  
+  // Add slide-in animation CSS if not already present
+  if (!document.getElementById('notification-css')) {
+    const css = document.createElement('style');
+    css.id = 'notification-css';
+    css.textContent = `
+      @keyframes slideInFromRight {
+        from { transform: translateX(100%); opacity: 0; }
+        to { transform: translateX(0); opacity: 1; }
+      }
+      @keyframes slideOutToRight {
+        from { transform: translateX(0); opacity: 1; }
+        to { transform: translateX(100%); opacity: 0; }
+      }
+    `;
+    document.head.appendChild(css);
+  }
+  
+  document.body.appendChild(notification);
+  
+  // Auto-remove after 8 seconds
+  setTimeout(() => {
+    if (notification.parentElement) {
+      notification.style.animation = 'slideOutToRight 0.3s ease';
+      setTimeout(() => notification.remove(), 300);
+    }
+  }, 8000);
+}
+
+// Keep backward compatibility
+function handleSortableDrop(evt) {
+  handleEnhancedSortableDrop(evt);
+}
+
+// Extract document information from dropped item
+function extractDocumentInfo(item) {
+  console.log('🔍 Extracting document info from item:', item);
+  
+  const link = item.querySelector('a') || item;
+  const href = link.href || '';
+  const text = link.textContent?.trim() || '';
+  
+  console.log('📋 Link details:', { href, text, tagName: link.tagName });
+  
+  // Extract file path from href with improved logic
+  let filePath = '';
+  if (href) {
+    try {
+      const url = new URL(href);
+      let pathname = url.pathname.replace(/^\//, ''); // Remove leading slash
+      
+      // Handle different URL patterns
+      if (pathname === '' || pathname === '/') {
+        filePath = 'README.md';
+      } else {
+        // If already has .md extension, use as-is, otherwise add .md
+        filePath = pathname.endsWith('.md') ? pathname : pathname + '.md';
+        
+        // Handle root pages (convert "/page" to "page.md")
+        if (!filePath.includes('/') && !filePath.startsWith('readme/')) {
+          // Check if this might be a root-level page by examining the current location
+          const segments = pathname.split('/').filter(s => s);
+          if (segments.length === 1) {
+            // This is likely a section root, convert to README.md
+            filePath = segments[0] + '/README.md';
+          }
+        }
+      }
+      
+      console.log('📄 Calculated filePath:', filePath, 'from pathname:', pathname);
+      
+    } catch (error) {
+      console.error('❌ Error parsing URL:', href, error);
+      // Fallback: try to extract from relative href
+      let pathname = href.replace(/^\//, '');
+      filePath = pathname.endsWith('.md') ? pathname : pathname + '.md';
+    }
+  }
+  
+  const result = {
+    text: text,
+    href: href,
+    filePath: filePath,
+    element: item
+  };
+  
+  console.log('✅ Extracted document info:', result);
+  return result;
+}
+
+// Plan file system changes based on the drop operation
+function planFileSystemChanges(docInfo, fromContainer, toContainer, newIndex) {
+  console.log('🎯 === PLANNING FILE SYSTEM CHANGES ===');
+  console.log('📄 Document info:', docInfo);
+  console.log('📂 From container:', fromContainer.tagName, fromContainer.className, fromContainer.id);
+  console.log('📂 To container:', toContainer.tagName, toContainer.className, toContainer.id);
+  console.log('📊 New index:', newIndex);
+  
+  const changes = {
+    moveFile: null,
+    updateSummary: null,
+    addRedirect: null,
+    updateReferences: []
+  };
+  
+  if (!docInfo.filePath) {
+    console.warn('⚠️ No file path available in docInfo, returning empty changes');
+    return changes;
+  }
+  
+  // Calculate old and new file paths
+  const oldPath = docInfo.filePath;
+  console.log('📋 Original file path:', oldPath);
+  
+  const newPath = calculateNewFilePath(docInfo, toContainer, newIndex);
+  console.log('📋 Calculated new path:', newPath);
+  
+  // Critical comparison with detailed logging
+  console.log('🔍 Path comparison:');
+  console.log('  - Old path:', JSON.stringify(oldPath));
+  console.log('  - New path:', JSON.stringify(newPath));
+  console.log('  - Are equal?', oldPath === newPath);
+  console.log('  - Old path length:', oldPath.length);
+  console.log('  - New path length:', newPath.length);
+  
+  if (oldPath !== newPath) {
+    console.log('✅ Paths are different, planning file move operation');
+    
+    changes.moveFile = {
+      from: oldPath,
+      to: newPath
+    };
+    
+    changes.updateSummary = {
+      oldEntry: `[${docInfo.text}](${oldPath})`,
+      newEntry: `[${docInfo.text}](${newPath})`,
+      newIndex: newIndex
+    };
+    
+    changes.addRedirect = {
+      from: oldPath.replace(/\.md$/, ''),
+      to: newPath.replace(/\.md$/, '')
+    };
+    
+    // Plan reference updates (placeholder for now)
+    changes.updateReferences.push({
+      searchPattern: oldPath,
+      replaceWith: newPath
+    });
+    
+    console.log('📋 Planned changes:', changes);
+  } else {
+    console.warn('❌ Paths are identical - this might be a reorder operation within same section');
+    console.warn('    Creating a pending change anyway for UI feedback');
+    
+    // For testing purposes, create a move operation even if paths are the same
+    // This ensures UI feedback works even when path calculation has issues
+    changes.moveFile = {
+      from: oldPath,
+      to: newPath + '_temp_' + Date.now() // Make it slightly different for now
+    };
+  }
+  
+  console.log('🎯 === FILE SYSTEM CHANGES PLANNING COMPLETE ===');
+  return changes;
+}
+
+// Helper function to convert section title to directory segment
+function convertTitleToSegment(sectionTitle) {
+  const lowerTitle = sectionTitle.toLowerCase();
+  
+  // Handle specific known section mappings
+  if (lowerTitle.includes('getting started')) {
+    return 'getting-started';
+  } else if (lowerTitle.includes('overview')) {
+    return 'overview';
+  } else if (lowerTitle.includes('tutorial')) {
+    return 'tutorials';
+  } else if (lowerTitle.includes('configuration')) {
+    return 'configuration';
+  } else if (lowerTitle.includes('api')) {
+    return 'api';
+  } else if (lowerTitle.includes('access control')) {
+    return 'access-control';
+  } else if (lowerTitle.includes('database')) {
+    return 'database';
+  } else if (lowerTitle.includes('deployment')) {
+    return 'deployment-and-maintenance';
+  } else if (lowerTitle.includes('storage')) {
+    return 'storage';
+  } else if (lowerTitle.includes('reference')) {
+    return 'reference';
+  } else if (lowerTitle.includes('module')) {
+    return 'modules';
+  } else {
+    // Generic transformation
+    return sectionTitle
+      .toLowerCase()
+      .replace(/[^a-z0-9]+/g, '-')
+      .replace(/^-|-$/g, '');
+  }
+}
+
+// Calculate new file path based on container hierarchy
+function calculateNewFilePath(docInfo, container, index) {
+  console.log('🔍 Calculating new file path for:', docInfo.text, 'in container:', container);
+  
+  let pathSegments = [];
+  
+  // Find the closest section by walking up the DOM tree
+  let currentElement = container;
+  let foundSections = [];
+  
+  // Walk up the DOM tree to find section headers
+  while (currentElement && currentElement.id !== 'navigation' && currentElement.id !== 'fullscreen-nav-container') {
+    console.log('🔍 Examining element:', currentElement.tagName, currentElement.className, currentElement.id);
+    
+    // Type 1: Check if this is a details element (collapsible section)
+    if (currentElement.tagName === 'DETAILS') {
+      const summary = currentElement.querySelector('summary');
+      if (summary) {
+        const sectionTitle = summary.textContent.trim();
+        console.log('📂 Found collapsible section:', sectionTitle);
+        
+        // Process collapsible section...
+        const segment = convertTitleToSegment(sectionTitle);
+        if (segment) {
+          foundSections.unshift(segment);
+          console.log('✅ Added collapsible section segment:', segment);
+        }
+      }
+    }
+    
+    // Type 2: Check if this is a section header container (div.break-words)
+    else if (currentElement.tagName === 'DIV' && 
+             currentElement.classList.contains('break-words') && 
+             currentElement.parentElement && 
+             currentElement.parentElement.id === 'navigation') {
+      
+      // Look for section title in the span element
+      const sectionSpan = currentElement.querySelector('span.text-mini');
+      if (sectionSpan) {
+        const sectionTitle = sectionSpan.textContent.trim();
+        console.log('📂 Found section header:', sectionTitle);
+        
+        // Process section header...
+        const segment = convertTitleToSegment(sectionTitle);
+        if (segment) {
+          foundSections.unshift(segment);
+          console.log('✅ Added section header segment:', segment);
+        }
+      }
+    }
+    
+    // Move up to parent element
+    currentElement = currentElement.parentElement;
+  }
+  
+  // If we're in a root-level section container, find its section name
+  if (foundSections.length === 0 && container.parentElement) {
+    // Check if the container is a direct child of a section div
+    let sectionDiv = container.closest('div.break-words');
+    if (!sectionDiv && container.parentElement.classList.contains('break-words')) {
+      sectionDiv = container.parentElement;
+    }
+    
+    if (sectionDiv) {
+      const sectionSpan = sectionDiv.querySelector('span.text-mini');
+      if (sectionSpan) {
+        const sectionTitle = sectionSpan.textContent.trim();
+        console.log('📂 Found root section:', sectionTitle);
+        const segment = convertTitleToSegment(sectionTitle);
+        if (segment) {
+          foundSections.push(segment);
+        }
+      }
+    }
+  }
+  
+  pathSegments = foundSections;
+  console.log('📂 Section path segments found:', pathSegments);
+  
+  // Additional debugging for mixed navigation detection
+  console.log('🔍 Navigation structure analysis:');
+  console.log('  - Container type:', container.tagName, container.className);
+  console.log('  - Container parent:', container.parentElement?.tagName, container.parentElement?.className);
+  console.log('  - Is in details?', !!container.closest('details'));
+  console.log('  - Is in section header?', container.parentElement?.classList.contains('break-words'));
+  
+  if (foundSections.length === 0) {
+    console.warn('⚠️ No sections found! This may be why paths are identical.');
+    console.warn('    Check if section detection logic matches actual DOM structure.');
+  }
+  
+  // Generate filename - try to preserve original filename when possible
+  let filename;
+  if (docInfo.filePath && docInfo.filePath.includes('/')) {
+    // Extract the original filename from the existing path
+    const originalFilename = docInfo.filePath.split('/').pop();
+    console.log('📋 Using original filename:', originalFilename);
+    filename = originalFilename;
+  } else {
+    // Generate filename from document title
+    filename = docInfo.text
+      .toLowerCase()
+      .replace(/[^a-z0-9]+/g, '-')
+      .replace(/^-|-$/g, '') + '.md';
+    console.log('📋 Generated filename from title:', filename);
+  }
+  
+  pathSegments.push(filename);
+  
+  const newPath = pathSegments.join('/');
+  console.log('📄 Calculated new path:', newPath);
+  console.log('📋 Original path was:', docInfo.filePath);
+  
+  // Additional validation
+  if (newPath === docInfo.filePath) {
+    console.warn('⚠️ WARNING: New path is identical to original path!');
+    console.warn('   This suggests the document is being moved to the same location');
+    console.warn('   Check if the target container detection is working correctly');
+  }
+  
+  return newPath;
+}
+
+// Enhanced tree structure logging
+function logEnhancedTreeStructure(item, container, index, changesPlan) {
+  const logData = {
+    timestamp: new Date().toISOString(),
+    itemId: item.dataset.id || item.textContent?.trim(),
+    containerId: container.dataset.id || container.id,
+    newIndex: index,
+    changesPlan: changesPlan,
+    treeStructure: documentTreeStructure
+  };
+  
+  console.log('📋 Enhanced tree structure update:', logData);
+  
+  // NOTE: No backend requests here - changes are only stored in pending state
+  // Backend requests will be made only when user clicks "Save" button
+  console.log('✅ Changes stored in pending state - will be sent to backend only on Save');
+}
+
+// Enhanced leaf-to-parent conversion with better detection
+function shouldConvertToParent(draggedItem, dropTarget) {
+  console.log('🔍 Checking if conversion needed:', {
+    draggedItem: draggedItem.tagName,
+    dropTarget: dropTarget.tagName,
+    dropTargetClass: dropTarget.className,
+    dropTargetId: dropTarget.id
+  });
+  
+  // NEVER convert if the target is already a valid drop container
+  if (dropTarget.classList.contains('ml-6') || 
+      dropTarget.hasAttribute('data-sortable-initialized') ||
+      dropTarget.hasAttribute('data-converted-container')) {
+    console.log('❌ Not converting: target is already a valid drop container');
+    return false;
+  }
+  
+  // NEVER convert if dropping in the same container (reordering)
+  if (draggedItem.parentElement === dropTarget) {
+    console.log('❌ Not converting: reordering within same container');
+    return false;
+  }
+  
+  // NEVER convert if the target is part of an existing details structure
+  const parentDetails = dropTarget.closest('details');
+  if (parentDetails && parentDetails.querySelector('.ml-6, [data-sortable-initialized]')) {
+    console.log('❌ Not converting: target is part of existing details structure');
+    return false;
+  }
+  
+  // Only convert if dropping onto a standalone leaf element (like a lone <a> tag)
+  const isStandaloneLeaf = (dropTarget.tagName === 'A' && 
+                           !dropTarget.closest('.ml-6') && 
+                           !dropTarget.parentElement.classList.contains('ml-6'));
+  
+  // Additional safety: don't convert if target has any sortable containers nearby
+  const hasNearbySortables = dropTarget.parentElement?.querySelector('[data-sortable-initialized]') ||
+                            dropTarget.querySelector('[data-sortable-initialized]');
+  
+  if (hasNearbySortables) {
+    console.log('❌ Not converting: nearby sortable containers found');
+    return false;
+  }
+  
+  console.log('🔍 Conversion decision:', {
+    isStandaloneLeaf,
+    shouldConvert: isStandaloneLeaf
+  });
+  
+  return isStandaloneLeaf;
+}
+
+function convertLeafToParent(draggedItem, leafTarget) {
+  console.log('🌱 Converting leaf to parent:', { draggedItem, leafTarget });
+  
+  // Double-check safety before conversion
+  if (leafTarget.classList.contains('ml-6') || 
+      leafTarget.hasAttribute('data-sortable-initialized') ||
+      leafTarget.closest('.ml-6')) {
+    console.log('🛑 SAFETY STOP: Refusing to convert existing container structure');
+    return;
+  }
+  
+  // Check if target is already part of a details structure
+  const existingDetails = leafTarget.closest('details');
+  if (existingDetails && existingDetails.querySelector('.ml-6, [data-sortable-initialized]')) {
+    console.log('🛑 SAFETY STOP: Refusing to convert element that is part of existing details');
+    return;
+  }
+  
+  // Add visual feedback during conversion
+  leafTarget.classList.add('converting-to-parent');
+  
+  // Create new details structure with enhanced styling
+  const details = document.createElement('details');
+  details.setAttribute('open', '');
+  details.className = 'converted-parent';
+  
+  // Create summary from the leaf with enhanced styling
+  const summary = document.createElement('summary');
+  if (leafTarget.tagName === 'A') {
+    // If target is a link, preserve its structure
+    summary.innerHTML = leafTarget.outerHTML;
+  } else {
+    // If target contains a link, extract and use it
+    const link = leafTarget.querySelector('a');
+    if (link) {
+      summary.innerHTML = link.outerHTML;
+    } else {
+      summary.innerHTML = leafTarget.innerHTML;
+    }
+  }
+  summary.className = 'text-tint font-medium cursor-pointer';
+  
+  // Create enhanced container for children
+  const childrenContainer = document.createElement('div');
+  childrenContainer.className = 'ml-6 mt-2 border-l-2 border-tint-8 pl-4';
+  childrenContainer.setAttribute('data-converted-container', 'true');
+  
+  // Add the dragged item to the container
+  childrenContainer.appendChild(draggedItem);
+  
+  // Assemble structure with animation
+  details.appendChild(summary);
+  details.appendChild(childrenContainer);
+  
+  // Replace leaf with parent (with animation)
+  leafTarget.style.transition = 'all 0.3s ease';
+  leafTarget.style.opacity = '0.5';
+  leafTarget.style.transform = 'scale(0.95)';
+  
+  setTimeout(() => {
+    leafTarget.parentNode.replaceChild(details, leafTarget);
+    
+    // Initialize SortableJS for the new container
+    initializeSortableJS(childrenContainer);
+    
+    // Add success animation
+    details.style.opacity = '0';
+    details.style.transform = 'scale(0.95)';
+    details.offsetHeight; // Force reflow
+    details.style.transition = 'all 0.3s ease';
+    details.style.opacity = '1';
+    details.style.transform = 'scale(1)';
+    
+    console.log('✅ Leaf successfully converted to parent');
+    
+    // Remove conversion indicator after animation
+    setTimeout(() => {
+      details.classList.remove('converted-parent');
+    }, 300);
+  }, 150);
+}
+
+function cleanupEmptyParents(container) {
+  if (container.tagName === 'DETAILS') {
+    const childrenContainer = container.querySelector('div[data-converted-container], div.ml-6');
+    if (childrenContainer && childrenContainer.children.length === 0) {
+      console.log('🧹 Cleaning up empty parent:', container);
+      
+      // Convert back to leaf with animation
+      const summary = container.querySelector('summary');
+      if (summary) {
+        // Create leaf element from summary
+        const leafElement = document.createElement('div');
+        const link = summary.querySelector('a');
+        if (link) {
+          leafElement.appendChild(link.cloneNode(true));
+        } else {
+          leafElement.innerHTML = summary.innerHTML;
+        }
+        leafElement.className = 'text-tint hover:text-tint-strong transition-colors';
+        
+        // Animate the conversion
+        container.style.transition = 'all 0.3s ease';
+        container.style.opacity = '0.5';
+        container.style.transform = 'scale(0.95)';
+        
+        setTimeout(() => {
+          container.parentNode.replaceChild(leafElement, container);
+          
+          // Add success animation to new leaf
+          leafElement.style.opacity = '0';
+          leafElement.style.transform = 'scale(0.95)';
+          leafElement.offsetHeight; // Force reflow
+          leafElement.style.transition = 'all 0.3s ease';
+          leafElement.style.opacity = '1';
+          leafElement.style.transform = 'scale(1)';
+          
+          console.log('✅ Empty parent converted back to leaf');
+        }, 150);
+      }
+    }
+  }
+}
+
+// Enhanced parent cleanup with recursive checking
+function recursiveCleanupEmptyParents(startContainer) {
+  let currentContainer = startContainer;
+  
+  while (currentContainer && currentContainer.tagName === 'DETAILS') {
+    const childrenContainer = currentContainer.querySelector('div[data-converted-container], div.ml-6');
+    
+    if (childrenContainer && childrenContainer.children.length === 0) {
+      const parentContainer = currentContainer.parentElement?.closest('details');
+      cleanupEmptyParents(currentContainer);
+      currentContainer = parentContainer;
+    } else {
+      break;
+    }
+  }
+}
+
+// Safer version of recursive cleanup that checks if sections should actually be removed
+function safeRecursiveCleanupEmptyParents(startContainer) {
+  console.log('🔍 Safe cleanup: checking if container should be removed:', startContainer);
+  
+  if (!startContainer || startContainer.tagName !== 'DETAILS') {
+    console.log('⏭️ Safe cleanup: not a details element, skipping');
+    return;
+  }
+  
+  const childrenContainer = startContainer.querySelector('div[data-converted-container], div.ml-6');
+  
+  if (!childrenContainer) {
+    console.log('⏭️ Safe cleanup: no children container found, skipping');
+    return;
+  }
+  
+  // Check if the container is truly empty and not just temporarily empty from drag
+  const childrenCount = childrenContainer.children.length;
+  const hasValidDropZone = childrenContainer.hasAttribute('data-sortable-initialized') || 
+                           childrenContainer.classList.contains('ml-6');
+  
+  console.log('🔍 Safe cleanup analysis:', {
+    childrenCount,
+    hasValidDropZone,
+    containerId: startContainer.id || 'no-id',
+    summaryText: startContainer.querySelector('summary')?.textContent?.trim()
+  });
+  
+  // Only remove if:
+  // 1. It's completely empty (no children)
+  // 2. It's not a valid drop zone that should remain available
+  // 3. It wasn't just emptied by a recent drag operation
+  if (childrenCount === 0 && !hasValidDropZone) {
+    // Additional check: is this a section that was deliberately created and should remain?
+    const summary = startContainer.querySelector('summary');
+    const summaryText = summary?.textContent?.trim() || '';
+    
+    // Don't remove sections that look like they were intentionally created as organizational units
+    const isOrganizationalSection = summaryText.includes('Section') || 
+                                   summaryText.includes('Category') ||
+                                   summaryText.includes('Group') ||
+                                   summary?.querySelector('a') === null; // sections without direct links are organizational
+    
+    if (isOrganizationalSection) {
+      console.log('🔒 Safe cleanup: preserving organizational section:', summaryText);
+      return;
+    }
+    
+    console.log('🧹 Safe cleanup: removing truly empty non-organizational container');
+    cleanupEmptyParents(startContainer);
+    
+    // Continue up the tree, but more carefully
+    const parentContainer = startContainer.parentElement?.closest('details');
+    if (parentContainer) {
+      setTimeout(() => safeRecursiveCleanupEmptyParents(parentContainer), 200);
+    }
+  } else {
+    console.log('✅ Safe cleanup: container should be preserved');
+  }
+}
+
+function logTreeStructure(item, container, index) {
+  console.log('📋 Tree structure update:', {
+    itemId: item.dataset.id || item.textContent.trim(),
+    containerId: container.dataset.id || container.id,
+    newIndex: index,
+    timestamp: new Date().toISOString()
+  });
+  
+  // Send update to backend via HTMX
+  if (typeof htmx !== 'undefined') {
+    htmx.ajax('POST', '/api/reorder-docs', {
+      values: {
+        itemId: item.dataset.id || item.textContent.trim(),
+        parentId: container.dataset.id || container.id,
+        newIndex: index,
+        timestamp: new Date().toISOString()
+      }
+    });
+    console.log('🚀 HTMX request sent to backend');
+  } else {
+    console.warn('⚠️ HTMX not available, skipping backend sync');
+  }
+}
+
+// Control functions for sections
+function openAllSections() {
+  const allDetails = document.querySelectorAll('details');
+  allDetails.forEach(detail => {
+    detail.setAttribute('open', '');
+  });
+}
+
+function closeAllSections() {
+  const allDetails = document.querySelectorAll('details');
+  allDetails.forEach(detail => {
+    detail.removeAttribute('open');
+  });
+}
+
+// Update save button state based on pending changes
+function updateSaveButtonState() {
+  const saveButton = document.querySelector('#save-changes-btn');
+  
+  if (saveButton) {
+    const totalChanges = getTotalPendingChanges();
+    const originalText = '💾 Save Changes';
+    
+    if (totalChanges > 0) {
+      saveButton.textContent = `💾 Save Changes (${totalChanges})`;
+      saveButton.style.background = 'linear-gradient(135deg, #ff9800, #f57c00)';
+      saveButton.style.color = 'white';
+      saveButton.style.fontWeight = 'bold';
+      saveButton.style.animation = 'pulse 2s infinite';
+      saveButton.disabled = false;
+    } else {
+      saveButton.textContent = originalText;
+      saveButton.style.background = '#6c757d';
+      saveButton.style.color = 'white';
+      saveButton.style.fontWeight = 'normal';
+      saveButton.style.animation = 'none';
+      saveButton.disabled = true;
+    }
+    
+    console.log(`📋 Updated save button state: ${totalChanges} pending changes`);
+  }
+}
+
+// Clear all pending save attributes after successful save
+function clearPendingSaveAttributes() {
+  console.log('🧹 Clearing all pending changes');
+  clearPendingChanges();
+  console.log('✅ All pending changes cleared');
+}
+
+function createControlButton(text, onClick) {
+  const button = document.createElement('button');
+  button.textContent = text;
+  button.onclick = onClick;
+  
+  // Add data attributes for identification
+  if (text.includes('Open All')) {
+    button.setAttribute('data-action', 'open-all');
+  } else if (text.includes('Close All')) {
+    button.setAttribute('data-action', 'close-all');
+  } else if (text.includes('Save Changes')) {
+    button.setAttribute('data-action', 'save-changes');
+  } else if (text.includes('Reset')) {
+    button.setAttribute('data-action', 'reset');
+  }
+  
+  button.style.cssText = `
+    background: #f8f9fa;
+    border: 1px solid #dee2e6;
+    border-radius: 4px;
+    padding: 6px 12px;
+    font-size: 12px;
+    cursor: pointer;
+    transition: all 0.2s;
+    font-weight: 500;
+  `;
+
+  // Hover effects
+  button.addEventListener('mouseenter', () => {
+    button.style.background = '#e9ecef';
+    button.style.borderColor = '#adb5bd';
+  });
+
+  button.addEventListener('mouseleave', () => {
+    button.style.background = '#f8f9fa';
+    button.style.borderColor = '#dee2e6';
+  });
+
+  return button;
+}
+
+function createControlPanel() {
+  const controlPanel = document.createElement('div');
+  controlPanel.style.cssText = `
+    position: fixed;
+    top: 20px;
+    left: 20px;
+    z-index: 1001;
+    display: flex;
+    gap: 10px;
+    background: white;
+    padding: 10px;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    border: 1px solid #ddd;
+  `;
+
+  const openAllBtn = createControlButton('Open all', openAllSections);
+  const closeAllBtn = createControlButton('Close all', closeAllSections);
+
+  controlPanel.appendChild(openAllBtn);
+  controlPanel.appendChild(closeAllBtn);
+
+  return controlPanel;
+}
+
+function focusCurrentPage(navClone) {
+  // Find the currently active page (with 'active' class)
+  const activePage = navClone.querySelector('.active, [class*="active"]');
+  if (activePage) {
+    // Add a small delay to ensure the DOM is ready
+    setTimeout(() => {
+      activePage.scrollIntoView({ 
+        behavior: 'smooth', 
+        block: 'center',
+        inline: 'center'
+      });
+      // Add temporary highlighting
+      activePage.style.boxShadow = '0 0 10px rgba(255, 0, 0, 0.5)';
+      activePage.style.borderRadius = '4px';
+      setTimeout(() => {
+        activePage.style.boxShadow = '';
+        activePage.style.borderRadius = '';
+      }, 2000);
+    }, 100);
+  }
+}
+
+// Build tree structure for better document management
+function buildTreeStructure(navElement) {
+  const structure = [];
+  const processElement = (element, parent = null) => {
+    if (element.tagName === 'A' && element.href) {
+      const item = {
+        id: element.href,
+        text: element.textContent.trim(),
+        href: element.href,
+        element: element,
+        parent: parent,
+        children: [],
+        type: 'leaf'
+      };
+      if (parent) parent.children.push(item);
+      else structure.push(item);
+      return item;
+    } else if (element.tagName === 'DETAILS') {
+      const summary = element.querySelector('summary');
+      const item = {
+        id: summary ? summary.textContent.trim() : 'unknown',
+        text: summary ? summary.textContent.trim() : 'Unknown Section',
+        element: element,
+        parent: parent,
+        children: [],
+        type: 'parent'
+      };
+      if (parent) parent.children.push(item);
+      else structure.push(item);
+      
+      // Process children
+      const childElements = element.children;
+      for (let child of childElements) {
+        if (child !== summary) {
+          const grandChildren = child.querySelectorAll('a, details');
+          for (let grandChild of grandChildren) {
+            processElement(grandChild, item);
+          }
+        }
+      }
+      return item;
+    }
+  };
+
+  // Process all top-level elements
+  const topLevelElements = navElement.querySelectorAll('a, details');
+  for (let element of topLevelElements) {
+    processElement(element);
+  }
+
+  console.log('📊 Document tree structure built:', structure);
+  return structure;
+}
+
+// Enhanced control panel with additional functionality
+function createEnhancedControlPanel() {
+  const controlPanel = document.createElement('div');
+  controlPanel.style.cssText = `
+    position: fixed;
+    top: 20px;
+    left: 20px;
+    z-index: 1001;
+    display: flex;
+    gap: 10px;
+    background: white;
+    padding: 15px;
+    border-radius: 12px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+    border: 1px solid #e0e0e0;
+    backdrop-filter: blur(10px);
+  `;
+
+  const openAllBtn = createControlButton('📂 Open All', openAllSections);
+  const closeAllBtn = createControlButton('📁 Close All', closeAllSections);
+  const saveChangesBtn = createControlButton('💾 Save Changes', saveDocumentChanges);
+  const resetBtn = createControlButton('🔄 Reset', resetDocumentStructure);
+
+  controlPanel.appendChild(openAllBtn);
+  controlPanel.appendChild(closeAllBtn);
+  controlPanel.appendChild(saveChangesBtn);
+  controlPanel.appendChild(resetBtn);
+
+  return controlPanel;
+}
+
+function createRenamePanel() {
+  const renamePanel = document.createElement('div');
+  renamePanel.id = 'rename-panel';
+  renamePanel.style.cssText = `
+    position: fixed;
+    top: 80px;
+    right: 20px;
+    width: 350px;
+    background: white;
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+    border: 1px solid #e0e0e0;
+    backdrop-filter: blur(10px);
+    z-index: 3001;
+  `;
+
+  renamePanel.innerHTML = `
+    <h3 style="margin: 0 0 15px 0; color: #333; font-size: 16px;">📝 Rename File</h3>
+    <div style="margin-bottom: 15px;">
+      <label style="display: block; margin-bottom: 5px; font-weight: 500; color: #555;">Current URL:</label>
+      <div id="current-url" style="background: #f8f9fa; padding: 8px; border-radius: 4px; font-family: monospace; font-size: 12px; color: #666; border: 1px solid #dee2e6;">No file selected</div>
+    </div>
+    <div style="margin-bottom: 15px;">
+      <label style="display: block; margin-bottom: 5px; font-weight: 500; color: #555;">New filename:</label>
+      <input type="text" id="new-filename" placeholder="Enter new filename (without .md)" style="width: 100%; padding: 8px; border: 1px solid #dee2e6; border-radius: 4px; font-size: 14px;">
+    </div>
+    <div style="margin-bottom: 15px;">
+      <label style="display: block; margin-bottom: 5px; font-weight: 500; color: #555;">New URL:</label>
+      <div id="new-url" style="background: #f8f9fa; padding: 8px; border-radius: 4px; font-family: monospace; font-size: 12px; color: #666; border: 1px solid #dee2e6;">-</div>
+    </div>
+    <div style="display: flex; gap: 10px;">
+      <button id="rename-btn" style="flex: 1; padding: 8px 12px; background: #007bff; color: white; border: none; border-radius: 4px; cursor: pointer; font-size: 14px;">Rename</button>
+      <button id="cancel-rename-btn" style="flex: 1; padding: 8px 12px; background: #6c757d; color: white; border: none; border-radius: 4px; cursor: pointer; font-size: 14px;">Cancel</button>
+    </div>
+  `;
+
+  // Add event listeners
+  const newFilenameInput = renamePanel.querySelector('#new-filename');
+  const newUrlDiv = renamePanel.querySelector('#new-url');
+  const renameBtn = renamePanel.querySelector('#rename-btn');
+  const cancelBtn = renamePanel.querySelector('#cancel-rename-btn');
+
+  // Update new URL as user types
+  newFilenameInput.addEventListener('input', () => {
+    const currentUrl = document.getElementById('current-url').textContent;
+    if (currentUrl !== 'No file selected') {
+      const currentPath = currentUrl.replace('http://localhost:8081/', '');
+      const pathParts = currentPath.split('/');
+      const filename = pathParts.pop();
+      const extension = filename.includes('.') ? filename.split('.').pop() : 'md';
+      const newFilename = newFilenameInput.value.trim();
+      
+      if (newFilename) {
+        const newPath = [...pathParts, `${newFilename}.${extension}`].join('/');
+        newUrlDiv.textContent = newPath;
+        newUrlDiv.style.color = '#28a745';
+      } else {
+        newUrlDiv.textContent = '-';
+        newUrlDiv.style.color = '#666';
+      }
+    }
+  });
+
+  // Handle rename button click
+  renameBtn.addEventListener('click', () => {
+    const currentUrl = document.getElementById('current-url').textContent;
+    const newFilename = newFilenameInput.value.trim();
+    
+    if (currentUrl === 'No file selected') {
+      alert('Please select a file to rename');
+      return;
+    }
+    
+    if (!newFilename) {
+      alert('Please enter a new filename');
+      return;
+    }
+    
+    // Get the selected element
+    const selectedElement = document.querySelector('[data-selected-for-rename="true"]');
+    if (!selectedElement) {
+      alert('No file selected for rename');
+      return;
+    }
+    
+    // Calculate new path
+    const currentPath = currentUrl;
+    const pathParts = currentPath.split('/');
+    const filename = pathParts.pop();
+    const extension = filename.includes('.') ? filename.split('.').pop() : 'md';
+    const newPath = [...pathParts, `${newFilename}.${extension}`].join('/');
+    
+    // Add to pending changes
+    addPendingRename(currentPath, newPath, selectedElement);
+    
+    // Update element text
+    selectedElement.textContent = newFilename;
+    
+    // Hide rename panel
+    hideRenamePanel();
+    
+    console.log('✅ Rename added to pending changes:', currentPath, '→', newPath);
+  });
+
+  // Handle cancel button click
+  cancelBtn.addEventListener('click', () => {
+    hideRenamePanel();
+  });
+
+  return renamePanel;
+}
+
+function showRenamePanel(selectedElement) {
+  console.log('🔧 showRenamePanel called with:', selectedElement);
+  
+  // Clear previous selection
+  document.querySelectorAll('[data-selected-for-rename="true"]').forEach(el => {
+    el.removeAttribute('data-selected-for-rename');
+  });
+  
+  // Mark current element as selected
+  if (selectedElement) {
+    selectedElement.setAttribute('data-selected-for-rename', 'true');
+    console.log('📌 Selected element marked:', selectedElement.href);
+  }
+  
+  const renamePanel = document.getElementById('rename-panel');
+  if (!renamePanel) {
+    console.log('🏗️ Creating new rename panel...');
+    const panel = createRenamePanel();
+    document.body.appendChild(panel);
+    console.log('✅ Rename panel created and added to body');
+  } else {
+    console.log('♻️ Using existing rename panel');
+  }
+  
+  const currentUrlDiv = document.getElementById('current-url');
+  const newFilenameInput = document.getElementById('new-filename');
+  const newUrlDiv = document.getElementById('new-url');
+  
+  if (selectedElement && selectedElement.href) {
+    const currentPath = selectedElement.href.replace('http://localhost:8081/', '');
+    const filename = currentPath.split('/').pop();
+    const nameWithoutExt = filename.replace(/\.md$/, '');
+    
+    currentUrlDiv.textContent = currentPath;
+    newFilenameInput.value = nameWithoutExt;
+    newFilenameInput.focus();
+    
+    // Trigger input event to update new URL
+    newFilenameInput.dispatchEvent(new Event('input'));
+  }
+}
+
+function hideRenamePanel() {
+  const renamePanel = document.getElementById('rename-panel');
+  if (renamePanel) {
+    renamePanel.remove();
+  }
+  
+  // Clear selection
+  document.querySelectorAll('[data-selected-for-rename="true"]').forEach(el => {
+    el.removeAttribute('data-selected-for-rename');
+  });
+}
+
+// Pending changes management functions
+function addPendingRename(oldPath, newPath, element) {
+  const renameOp = {
+    type: 'rename',
+    oldPath: oldPath,
+    newPath: newPath,
+    element: element,
+    timestamp: new Date().toISOString()
+  };
+  
+  // Remove any existing rename for this element
+  pendingChanges.renames = pendingChanges.renames.filter(r => r.element !== element);
+  
+  // Add new rename operation
+  pendingChanges.renames.push(renameOp);
+  
+  // Mark element as pending
+  element.setAttribute('data-pending-rename', 'true');
+  element.setAttribute('data-old-path', oldPath);
+  element.setAttribute('data-new-path', newPath);
+  
+  // Add visual indicator
+  element.style.borderLeft = '3px solid #ff9800';
+  element.style.paddingLeft = '8px';
+  
+  console.log('📝 Added pending rename:', renameOp);
+  updateChangesPanel();
+  updateSaveButtonState();
+}
+
+function addPendingMove(fromPath, toPath, element, fromContainer, toContainer, newIndex) {
+  const moveOp = {
+    type: 'move',
+    fromPath: fromPath,
+    toPath: toPath,
+    element: element,
+    fromContainer: fromContainer,
+    toContainer: toContainer,
+    newIndex: newIndex,
+    timestamp: new Date().toISOString()
+  };
+  
+  // Remove any existing move for this element
+  pendingChanges.moves = pendingChanges.moves.filter(m => m.element !== element);
+  
+  // Add new move operation
+  pendingChanges.moves.push(moveOp);
+  
+  // Mark element as pending
+  element.setAttribute('data-pending-move', 'true');
+  element.setAttribute('data-from-path', fromPath);
+  element.setAttribute('data-to-path', toPath);
+  
+  // Add visual indicator
+  element.style.borderLeft = '3px solid #ff9800';
+  element.style.paddingLeft = '8px';
+  
+  console.log('📦 Added pending move:', moveOp);
+  updateChangesPanel();
+  updateSaveButtonState();
+}
+
+function clearPendingChanges() {
+  // Clear all pending attributes
+  document.querySelectorAll('[data-pending-rename], [data-pending-move]').forEach(element => {
+    element.removeAttribute('data-pending-rename');
+    element.removeAttribute('data-pending-move');
+    element.removeAttribute('data-old-path');
+    element.removeAttribute('data-new-path');
+    element.removeAttribute('data-from-path');
+    element.removeAttribute('data-to-path');
+    element.style.borderLeft = '';
+    element.style.paddingLeft = '';
+  });
+  
+  // Clear pending changes storage
+  pendingChanges = {
+    moves: [],
+    renames: [],
+    reorders: []
+  };
+  
+  console.log('🧹 Cleared all pending changes');
+  updateChangesPanel();
+  updateSaveButtonState();
+}
+
+function getTotalPendingChanges() {
+  return pendingChanges.moves.length + pendingChanges.renames.length + pendingChanges.reorders.length;
+}
+
+function createChangesPanel() {
+  const changesPanel = document.createElement('div');
+  changesPanel.id = 'changes-panel';
+  changesPanel.style.cssText = `
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    width: 400px;
+    max-height: 300px;
+    background: white;
+    padding: 15px;
+    border-radius: 12px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+    border: 1px solid #e0e0e0;
+    backdrop-filter: blur(10px);
+    z-index: 1003;
+    overflow-y: auto;
+  `;
+
+  changesPanel.innerHTML = `
+    <h3 style="margin: 0 0 15px 0; color: #333; font-size: 16px; display: flex; align-items: center; gap: 8px;">
+      📋 Pending Changes
+      <span id="changes-count" style="background: #ff9800; color: white; padding: 2px 8px; border-radius: 10px; font-size: 12px;">0</span>
+    </h3>
+    <div id="changes-list" style="font-size: 13px; margin-bottom: 15px;">
+      <div style="color: #666; font-style: italic;">No pending changes</div>
+    </div>
+    <div style="display: flex; gap: 8px; flex-wrap: wrap;">
+      <button id="save-changes-btn" style="padding: 6px 12px; background: #6c757d; color: white; border: none; border-radius: 4px; cursor: pointer; font-size: 12px;" disabled>💾 Save Changes</button>
+      <button id="reset-btn" style="padding: 6px 12px; background: #dc3545; color: white; border: none; border-radius: 4px; cursor: pointer; font-size: 12px;">🔄 Reset</button>
+    </div>
+  `;
+
+  // Add event listeners for the buttons
+  const saveChangesBtn = changesPanel.querySelector('#save-changes-btn');
+  const resetBtn = changesPanel.querySelector('#reset-btn');
+
+  saveChangesBtn.addEventListener('click', saveDocumentChanges);
+  resetBtn.addEventListener('click', resetDocumentStructure);
+
+  return changesPanel;
+}
+
+function updateChangesPanel() {
+  let changesPanel = document.getElementById('changes-panel');
+  if (!changesPanel) {
+    changesPanel = createChangesPanel();
+    document.body.appendChild(changesPanel);
+  }
+
+  const changesCount = document.getElementById('changes-count');
+  const changesList = document.getElementById('changes-list');
+  
+  const totalChanges = getTotalPendingChanges();
+  
+  if (changesCount) {
+    changesCount.textContent = totalChanges;
+    changesCount.style.background = totalChanges > 0 ? '#ff9800' : '#ccc';
+  }
+  
+  if (changesList) {
+    if (totalChanges === 0) {
+      changesList.innerHTML = '<div style="color: #666; font-style: italic;">No pending changes</div>';
+    } else {
+      let changesHtml = '';
+      
+      // Add renames
+      pendingChanges.renames.forEach((rename, index) => {
+        changesHtml += `
+          <div style="margin-bottom: 8px; padding: 8px; background: #fff3e0; border-left: 3px solid #ff9800; border-radius: 4px;">
+            <div style="font-weight: 500; color: #333;">📝 Rename</div>
+            <div style="color: #666; font-size: 11px; margin-top: 2px;">
+              ${rename.oldPath} → ${rename.newPath}
+            </div>
+          </div>
+        `;
+      });
+      
+      // Add moves
+      pendingChanges.moves.forEach((move, index) => {
+        changesHtml += `
+          <div style="margin-bottom: 8px; padding: 8px; background: #e3f2fd; border-left: 3px solid #2196f3; border-radius: 4px;">
+            <div style="font-weight: 500; color: #333;">📦 Move</div>
+            <div style="color: #666; font-size: 11px; margin-top: 2px;">
+              ${move.fromPath} → ${move.toPath}
+            </div>
+          </div>
+        `;
+      });
+      
+      changesList.innerHTML = changesHtml;
+    }
+  }
+}
+
+// Save document structure changes
+function saveDocumentChanges() {
+  console.log('💾 Saving document structure changes...');
+  
+  const saveButton = document.querySelector('#save-changes-btn');
+  if (saveButton) {
+    saveButton.disabled = true;
+    saveButton.textContent = '💾 Saving...';
+  }
+  
+  // Show loading state
+  const loadingDiv = document.createElement('div');
+  loadingDiv.id = 'save-loading';
+  loadingDiv.style.cssText = `
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: white;
+    padding: 20px 30px;
+    border-radius: 12px;
+    box-shadow: 0 8px 32px rgba(0,0,0,0.3);
+    border: 1px solid #e0e0e0;
+    z-index: 2000;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    font-size: 16px;
+  `;
+  loadingDiv.innerHTML = `
+    <div style="
+      width: 24px; 
+      height: 24px; 
+      border: 3px solid #f3f3f3; 
+      border-top: 3px solid #2196f3; 
+      border-radius: 50%; 
+      animation: spin 1s linear infinite;
+    "></div>
+    <span>Saving documentation structure changes...</span>
+  `;
+  
+  // Add spinning animation CSS if not already present
+  if (!document.getElementById('spinner-css')) {
+    const spinnerCSS = document.createElement('style');
+    spinnerCSS.id = 'spinner-css';
+    spinnerCSS.textContent = `
+      @keyframes spin {
+        0% { transform: rotate(0deg); }
+        100% { transform: rotate(360deg); }
+      }
+    `;
+    document.head.appendChild(spinnerCSS);
+  }
+  
+  document.body.appendChild(loadingDiv);
+  
+  // Collect all pending changes
+  const allChanges = collectAllPendingChanges();
+  console.log('📋 Collected changes for save:', allChanges);
+  
+  if (allChanges.length === 0) {
+    showSaveResult('No changes to save', false);
+    return;
+  }
+  
+  // Process changes sequentially
+  processSaveChangesSequentially(allChanges, 0);
+}
+
+// Collect all pending changes
+function collectAllPendingChanges() {
+  console.log('🔍 Collecting all pending changes...');
+  
+  const changes = [];
+  
+  // Add renames
+  pendingChanges.renames.forEach(rename => {
+    changes.push({
+      type: 'rename',
+      from: rename.oldPath,
+      to: rename.newPath,
+      element: rename.element,
+      operation: rename
+    });
+  });
+  
+  // Add moves
+  pendingChanges.moves.forEach(move => {
+    changes.push({
+      type: 'move',
+      from: move.fromPath,
+      to: move.toPath,
+      element: move.element,
+      operation: move
+    });
+  });
+  
+  // Add reorders (if any)
+  pendingChanges.reorders.forEach(reorder => {
+    changes.push({
+      type: 'reorder',
+      from: reorder.oldIndex,
+      to: reorder.newIndex,
+      element: reorder.element,
+      operation: reorder
+    });
+  });
+  
+  console.log(`📋 Found ${changes.length} changes to process`);
+  return changes;
+}
+
+// Process save changes sequentially
+function processSaveChangesSequentially(changes, index) {
+  if (index >= changes.length) {
+    // Clear all pending save attributes after successful save
+    clearPendingSaveAttributes();
+    
+    // Create detailed results from actual backend responses
+    let detailedResults = [];
+    let totalAffectedFiles = 0;
+    
+    // Process each change's backend result
+    changes.forEach((change, changeIndex) => {
+      if (change.backendResult) {
+        const result = change.backendResult;
+        
+        // Add the primary operation result
+        detailedResults.push({
+          type: change.type,
+          operation: change.type === 'move' ? 'Moved File' : change.type === 'rename' ? 'Renamed File' : 'Updated File',
+          file: change.to || change.from,
+          success: result.success || false,
+          reason: result.success ? 
+            (change.type === 'move' ? 'File moved to new section' : change.type === 'rename' ? 'File renamed successfully' : 'File updated') :
+            (result.error || 'Unknown error')
+        });
+        
+        // Add affected reference files if provided by backend
+        if (result['reference-files'] && result['reference-files'].length > 0) {
+          result['reference-files'].forEach(affectedFile => {
+            detailedResults.push({
+              type: 'content_update',
+              operation: 'Updated References',
+              file: affectedFile,
+              success: true,
+              reason: 'Internal links updated to reflect new file locations'
+            });
+          });
+          totalAffectedFiles += result['reference-files'].length;
+        }
+      } else {
+        // Fallback for changes without backend response
+        detailedResults.push({
+          type: change.type,
+          operation: change.type === 'move' ? 'Moved File' : change.type === 'rename' ? 'Renamed File' : 'Updated File',
+          file: change.to || change.from,
+          success: true,
+          reason: 'Change processed locally'
+        });
+      }
+    });
+    
+    // Add summary entry if we have backend data
+    if (totalAffectedFiles > 0) {
+      detailedResults.unshift({
+        type: 'summary',
+        operation: 'Summary',
+        file: 'SUMMARY.md',
+        success: true,
+        reason: `Navigation structure updated, ${totalAffectedFiles} reference files modified`
+      });
+    } else if (changes.length > 0) {
+      // Fallback summary for when no backend data is available
+      detailedResults.unshift({
+        type: 'summary',
+        operation: 'Summary', 
+        file: 'Navigation Structure',
+        success: true,
+        reason: 'File organization changes applied'
+      });
+    }
+    
+    showSaveResult(`Successfully saved ${changes.length} changes!`, true, detailedResults);
+    return;
+  }
+  
+  const change = changes[index];
+  console.log(`💾 Processing change ${index + 1}/${changes.length}:`, change);
+  
+  // Send to backend based on change type
+  if (typeof htmx !== 'undefined') {
+    let action, changesData;
+    
+    if (change.type === 'rename') {
+      action = 'rename_document';
+      changesData = {
+        renameFile: { from: change.from, to: change.to }
+      };
+    } else if (change.type === 'move') {
+      action = 'move_document';
+      changesData = {
+        moveFile: { from: change.from, to: change.to }
+      };
+    } else {
+      action = 'reorder_document';
+      changesData = {
+        reorderFile: { from: change.from, to: change.to }
+      };
+    }
+    
+    htmx.ajax('POST', '/api/reorganize-docs', {
+      values: {
+        action: action,
+        changes: JSON.stringify(changesData),
+        timestamp: new Date().toISOString()
+      },
+      swap: 'none'
+    }).then((response) => {
+      console.log(`✅ Successfully processed ${change.type} change ${index + 1}`);
+      
+      // Try to parse response for detailed information
+      try {
+        let responseData = null;
+        if (response && response.responseText) {
+          responseData = JSON.parse(response.responseText);
+        }
+        
+        // Store backend response data for final results
+        if (responseData && responseData.success) {
+          change.backendResult = responseData;
+          change.affectedFiles = responseData['reference-files'] || [];
+          change.updatedFilesCount = responseData['updated-reference-files'] || 0;
+        }
+      } catch (e) {
+        console.log('Could not parse response data, using defaults');
+      }
+      
+      processSaveChangesSequentially(changes, index + 1);
+    }).catch((error) => {
+      console.error(`❌ Error processing ${change.type} change ${index + 1}:`, error);
+      showSaveResult(`Error saving ${change.type} change ${index + 1}: ${error.message}`, false);
+    });
+  } else {
+    console.warn('⚠️ HTMX not available, simulating save');
+    setTimeout(() => processSaveChangesSequentially(changes, index + 1), 500);
+  }
+}
+
+// Show enhanced save result with detailed file information
+function showSaveResult(message, success, detailedResults = null) {
+  // Remove loading indicator
+  const loadingDiv = document.getElementById('save-loading');
+  if (loadingDiv) {
+    loadingDiv.remove();
+  }
+  
+  // Restore save button
+  const saveButton = document.querySelector('#save-changes-btn');
+  if (saveButton) {
+    saveButton.disabled = false;
+    saveButton.textContent = '💾 Save Changes';
+  }
+  
+  // Create enhanced results modal
+  const modalBackdrop = document.createElement('div');
+  modalBackdrop.id = 'save-results-modal';
+  modalBackdrop.style.cssText = `
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 2000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    backdrop-filter: blur(4px);
+  `;
+  
+  const modal = document.createElement('div');
+  modal.style.cssText = `
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 10px 40px rgba(0,0,0,0.25);
+    max-width: 600px;
+    max-height: 80vh;
+    overflow-y: auto;
+    margin: 20px;
+    animation: modalSlideIn 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  `;
+  
+  // Add slide-in animation
+  const style = document.createElement('style');
+  style.textContent = `
+    @keyframes modalSlideIn {
+      from {
+        opacity: 0;
+        transform: scale(0.9) translateY(-20px);
+      }
+      to {
+        opacity: 1;
+        transform: scale(1) translateY(0);
+      }
+    }
+  `;
+  document.head.appendChild(style);
+  
+  const header = document.createElement('div');
+  header.style.cssText = `
+    padding: 20px;
+    border-bottom: 1px solid #eee;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: ${success ? 'linear-gradient(135deg, #4caf50, #45a049)' : 'linear-gradient(135deg, #f44336, #d32f2f)'};
+    color: white;
+    border-radius: 12px 12px 0 0;
+  `;
+  
+  const headerTitle = document.createElement('div');
+  headerTitle.style.cssText = `
+    font-size: 18px;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  `;
+  headerTitle.innerHTML = `
+    ${success ? '✅' : '❌'} ${success ? 'Save Successful' : 'Save Failed'}
+  `;
+  
+  const closeBtn = document.createElement('button');
+  closeBtn.innerHTML = '✕';
+  closeBtn.style.cssText = `
+    background: none;
+    border: none;
+    color: white;
+    font-size: 20px;
+    cursor: pointer;
+    padding: 5px 10px;
+    border-radius: 4px;
+    transition: background 0.2s ease;
+  `;
+  closeBtn.onmouseover = () => closeBtn.style.background = 'rgba(255,255,255,0.2)';
+  closeBtn.onmouseout = () => closeBtn.style.background = 'none';
+  closeBtn.onclick = () => modalBackdrop.remove();
+  
+  header.appendChild(headerTitle);
+  header.appendChild(closeBtn);
+  
+  const content = document.createElement('div');
+  content.style.cssText = 'padding: 20px;';
+  
+  // Add summary message
+  const summaryDiv = document.createElement('div');
+  summaryDiv.style.cssText = `
+    margin-bottom: 20px;
+    padding: 15px;
+    background: ${success ? '#f8f9fa' : '#fff5f5'};
+    border-radius: 8px;
+    border-left: 4px solid ${success ? '#4caf50' : '#f44336'};
+  `;
+  summaryDiv.textContent = message;
+  content.appendChild(summaryDiv);
+  
+  // Add detailed results if provided
+  if (detailedResults && detailedResults.length > 0) {
+    const detailsHeader = document.createElement('h3');
+    detailsHeader.textContent = 'Modified Files:';
+    detailsHeader.style.cssText = 'margin-bottom: 15px; color: #333; font-size: 16px;';
+    content.appendChild(detailsHeader);
+    
+    const filesList = document.createElement('div');
+    filesList.style.cssText = 'max-height: 300px; overflow-y: auto;';
+    
+    detailedResults.forEach((result, index) => {
+      const fileItem = document.createElement('div');
+      fileItem.style.cssText = `
+        display: flex;
+        align-items: center;
+        padding: 12px;
+        margin-bottom: 8px;
+        background: #f8f9fa;
+        border-radius: 8px;
+        border: 1px solid #e9ecef;
+        transition: all 0.2s ease;
+      `;
+      
+      const icon = getFileIcon(result.type);
+      const statusIcon = result.success ? '✅' : '❌';
+      
+      fileItem.innerHTML = `
+        <div style="margin-right: 12px; font-size: 20px;">${icon}</div>
+        <div style="flex: 1;">
+          <div style="font-weight: 600; margin-bottom: 4px; display: flex; align-items: center; gap: 8px;">
+            ${statusIcon} ${result.operation || 'Modified'}
+          </div>
+          <div style="font-size: 12px; color: #666; font-family: monospace;">
+            ${result.from || result.file}
+          </div>
+          ${result.to ? `<div style="font-size: 12px; color: #28a745; font-family: monospace;">→ ${result.to}</div>` : ''}
+          ${result.reason ? `<div style="font-size: 11px; color: #6c757d; margin-top: 4px;">${result.reason}</div>` : ''}
+        </div>
+      `;
+      
+      filesList.appendChild(fileItem);
+    });
+    
+    content.appendChild(filesList);
+  }
+  
+  modal.appendChild(header);
+  modal.appendChild(content);
+  modalBackdrop.appendChild(modal);
+  document.body.appendChild(modalBackdrop);
+  
+  // Auto-close after 10 seconds for success, keep open for errors
+  if (success) {
+    setTimeout(() => {
+      if (modalBackdrop.parentElement) {
+        modalBackdrop.style.transition = 'all 0.3s ease';
+        modalBackdrop.style.opacity = '0';
+        setTimeout(() => modalBackdrop.remove(), 300);
+      }
+    }, 10000);
+  }
+}
+
+// Helper function to get appropriate file icon
+function getFileIcon(type) {
+  switch(type) {
+    case 'move': return '📁';
+    case 'rename': return '✏️';
+    case 'link_update': return '🔗';
+    case 'content_update': return '📝';
+    default: return '📄';
+  }
+}
+
+// Reset document structure to original state
+function resetDocumentStructure() {
+  console.log('🔄 Resetting document structure...');
+  if (confirm('Are you sure you want to reset all changes?')) {
+    clearPendingChanges();
+    exitFullscreenMode();
+    setTimeout(() => enterFullscreenMode(), 100);
+  }
+}
+
+function initializeFullscreenNavigation() {
+  console.log('Fullscreen navigation initialized');
+}
