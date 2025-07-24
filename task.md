@@ -1,30 +1,10 @@
 # F2 Documentation Reorganization Feature
 
 ## Goal
-Provide a fullscreen documentation reorganization interface accessible via the F2 key in development mode, offering a GitBook-style editing experience for restructuring documentation through drag-and-drop operations.
-
-## Requirements
-
-### User Interface
-- **Activation**: F2 key (only in development mode)
-- **Toggle behavior**: F2 again returns to normal view
-- **Fullscreen mode**: Navigation spans entire screen
-- **Multi-column layout**: Content flows to next column when needed
-- **Visual feedback**: Orange left border + pulsing dot for pending changes
-- **Control buttons**: "Open All" / "Close All" for bulk operations
-- **Rename form**: Small form on the right showing old/new URLs and filename input
-- **Change preview**: Real-time display of pending changes (MOVE, RENAME operations)
-- **Drop zones**: Visual highlighting showing where items can be dropped
-- **Save button**: Only applies changes when pressed (no auto-save)
-
-### Drag-and-Drop Functionality
-- **Reorder siblings**: Move documents within same parent directory
-- **Cross-directory moves**: Move documents between different directories
-- **Create new parent**: Drop document onto another document to make it a subdirectory
-- **Nested restructuring**: Support for complex hierarchical changes
-- **File renaming**: Rename files with user input (only on Save)
-- **Visual feedback**: Show drop zones and preview changes before saving
-- **Change preview**: Display pending changes in UI before applying
+Provide a fullscreen documentation reorganization interface accessible via the F2 key in development mode:
+- change filepath and url,
+- rename
+- changing order of pages
 
 ### Examples
 
@@ -147,12 +127,3 @@ Provide a fullscreen documentation reorganization interface accessible via the F
 - **File separation**: F2 functionality in separate file from core navigation
 - **Backend API**: Endpoints for file operations and validation
 - **Error handling**: Graceful handling of file system and validation errors
-
-## Success Criteria
-- ✅ F2 toggle functionality works
-- ✅ Drag-and-drop operations function correctly
-- ✅ File system changes are applied properly
-- ✅ SUMMARY.md and redirects are updated
-- ✅ Visual feedback system works
-- ✅ Conditional loading in development mode only
-- ✅ Clean separation of concerns

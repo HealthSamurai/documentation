@@ -1,0 +1,370 @@
+# Page snapshot
+
+```yaml
+- navigation "Main site menu":
+  - link "Aidbox Logo Aidbox User Docs":
+    - /url: http://localhost:8081
+    - img "Aidbox Logo"
+    - text: Aidbox User Docs
+  - link "Run Aidbox locally":
+    - /url: /getting-started/run-aidbox-locally
+  - link "Run Aidbox in Sandbox":
+    - /url: /getting-started/run-aidbox-in-sandbox
+  - link "Talk to us":
+    - /url: https://bit.ly/3R7eLke
+  - link "Ask community":
+    - /url: https://connect.health-samurai.io/
+  - img
+  - textbox "Ask or search..."
+  - text: Ctrl K
+  - img
+- navigation "Documentation menu":
+  - group:
+    - link "Aidbox FHIR platform documentation":
+      - /url: /readme
+  - group:
+    - link "Getting Started":
+      - /url: /getting-started
+  - group:
+    - link "Tutorials":
+      - /url: /tutorials
+  - text: Overview
+  - link "Licensing and Support":
+    - /url: /overview/licensing-and-support
+  - group:
+    - link "Aidbox user portal":
+      - /url: /overview/aidbox-user-portal
+  - group:
+    - link "Aidbox UI":
+      - /url: /overview/aidbox-ui
+  - link "Versioning":
+    - /url: /overview/versioning
+  - link "Release Notes":
+    - /url: /overview/release-notes
+  - link "FAQ":
+    - /url: /overview/faq
+  - link "Contact us":
+    - /url: /overview/contact-us
+  - text: Configuration
+  - link "Settings":
+    - /url: /configuration/settings
+  - link "Configure Aidbox and Multibox":
+    - /url: /configuration/configure-aidbox-and-multibox
+  - link "Init Bundle":
+    - /url: /configuration/init-bundle
+  - text: API
+  - link "API Overview":
+    - /url: /api/api-overview
+  - group:
+    - link "REST API":
+      - /url: /api/rest-api
+  - group:
+    - link "Bulk API":
+      - /url: /api/bulk-api
+  - link "Batch/Transaction":
+    - /url: /api/batch-transaction
+  - link "GraphQL API":
+    - /url: /api/graphql-api
+  - group:
+    - link "Other APIs":
+      - /url: /api/other
+  - text: Access Control
+  - link "Overview":
+    - /url: /access-control/access-control
+  - group:
+    - link "Identity Management":
+      - /url: /access-control/identity-management
+  - group:
+    - link "Authentication":
+      - /url: /access-control/authentication
+  - group:
+    - link "Authorization":
+      - /url: /access-control/authorization
+  - link "Audit & Logging":
+    - /url: /access-control/audit-and-logging
+  - text: Modules
+  - group:
+    - link "Profiling and validation":
+      - /url: /modules/profiling-and-validation
+  - group:
+    - link "Security & Access Control":
+      - /url: /modules/security-and-access-control
+  - group:
+    - link "Observability":
+      - /url: /modules/observability
+  - group:
+    - link "Subscriptions":
+      - /url: /modules/topic-based-subscriptions
+  - group:
+    - link "Aidbox Forms":
+      - /url: /modules/aidbox-forms
+  - group:
+    - link "Define extensions":
+      - /url: /modules/define-extensions
+  - group:
+    - link "Custom Resources":
+      - /url: /modules/custom-resources
+  - group:
+    - link "Aidbox terminology module":
+      - /url: /modules/terminology
+  - group:
+    - link "SQL on FHIR":
+      - /url: /modules/sql-on-fhir
+  - group:
+    - link "Integration toolkit":
+      - /url: /modules/integration-toolkit
+  - group:
+    - link "SMARTbox | FHIR API for EHRs":
+      - /url: /modules/smartbox
+  - group:
+    - link "ePrescription":
+      - /url: /modules/eprescription
+  - group:
+    - link "Other modules":
+      - /url: /modules/other-modules
+  - text: Database
+  - link "Database Overview":
+    - /url: /database/overview
+  - link "PostgreSQL Requirements":
+    - /url: /database/postgresql-requirements
+  - link "Database schema":
+    - /url: /database/database-schema
+  - link "PostgreSQL Extensions":
+    - /url: /database/postgresql-extensions
+  - group:
+    - link "AidboxDB":
+      - /url: /database/aidboxdb-image
+  - group:
+    - link "Tutorials":
+      - /url: /database/other
+  - text: File storage
+  - link "AWS S3":
+    - /url: /storage/aws-s3
+  - link "GCP Cloud Storage":
+    - /url: /storage/gcp-cloud-storage
+  - link "Azure Blob Storage":
+    - /url: /storage/azure-blob-storage
+  - link "Oracle Cloud Storage":
+    - /url: /storage/oracle-cloud-storage
+  - text: Deployment and maintenance
+  - group:
+    - link "Deploy Aidbox":
+      - /url: /deployment-and-maintenance/deploy-aidbox
+  - group:
+    - link "Backup and Restore":
+      - /url: /deployment-and-maintenance/backup-and-restore
+  - group:
+    - link "Indexes":
+      - /url: /deployment-and-maintenance/indexes
+  - text: App development
+  - link "Use Aidbox with React":
+    - /url: /app-development/use-aidbox-with-react
+  - group:
+    - link "Aidbox SDK":
+      - /url: /app-development/aidbox-sdk
+  - link "Examples":
+    - /url: https://github.com/Aidbox/examples
+  - text: Reference
+  - link "Matcho DSL reference":
+    - /url: /reference/matcho-dsl-reference
+  - link "FHIR Schema reference":
+    - /url: https://fhir-schema.github.io/fhir-schema/
+  - group:
+    - link "Settings reference":
+      - /url: /reference/settings
+  - group:
+    - link "Environment variables":
+      - /url: /reference/environment-variables
+  - group:
+    - link "System resources reference":
+      - /url: /reference/system-resources-reference
+  - group:
+    - link "Email Providers reference":
+      - /url: /reference/email-providers-reference
+  - group:
+    - link "Aidbox Forms reference":
+      - /url: /reference/aidbox-forms-reference
+  - link "Aidbox SQL functions":
+    - /url: /reference/aidbox-sql-functions
+  - text: Deprecated
+  - group:
+    - link "Deprecated":
+      - /url: /deprecated/deprecated
+- main:
+  - article:
+    - heading "Aidbox FHIR platform documentation" [level=1]
+    - heading "Quickstarts" [level=2]
+    - paragraph: Discover how to start with Aidbox in just a few minutes.
+    - img "card"
+    - strong: Run Aidbox locally
+    - paragraph: Download and run Aidbox locally. Explore it through interactive tutorials.
+    - link "Learn more":
+      - /url: /getting-started/run-aidbox-locally
+    - img "card"
+    - strong: Run in sandbox
+    - paragraph: Run SaaS Aidbox for free and explore it through built-in tutorials.
+    - link "Learn more":
+      - /url: /getting-started/run-aidbox-in-sandbox
+    - img "card"
+    - strong: Use Aidbox with React
+    - paragraph: Develop your first app on top of Aidbox with the sample React App.
+    - link "Learn more":
+      - /url: /app-development/use-aidbox-with-react
+    - heading "Overview" [level=2]
+    - paragraph: Aidbox is a mature and reliable FHIR platform that enables rapid development of digital health solutions, reducing development time and cost by up to 70% from the start.
+    - list:
+      - listitem:
+        - text: •
+        - link "Features":
+          - /url: /readme/features
+      - listitem:
+        - text: •
+        - link "Architecture":
+          - /url: /readme/architecture
+      - listitem:
+        - text: •
+        - link "Licensing and support":
+          - /url: /overview/licensing-and-support
+      - listitem:
+        - text: •
+        - link "Release notes":
+          - /url: /overview/release-notes
+      - listitem:
+        - text: •
+        - link "Run Aidbox on Kubernetes":
+          - /url: /deployment-and-maintenance/deploy-aidbox/run-aidbox-in-kubernetes
+    - heading "Platform" [level=2]
+    - img "card"
+    - strong: FHIR Database
+    - paragraph: Store data in FHIR format and query it with SQL
+    - img "card"
+    - strong: FHIR API and Others
+    - paragraph: Work with data via FHIR API, GraphQL, Subscriptions
+    - img "card"
+    - strong: Access Control
+    - img "card"
+    - strong: File Storage
+    - paragraph: Place unstructured data, archives, backups in S3
+    - img "card"
+    - strong: Bulk APIs
+    - paragraph: Import and export data effectively with Bulk API
+    - img "card"
+    - strong: HIPAA features
+    - paragraph: Become compliant with built-in technical safeguards
+    - heading "Modules" [level=3]
+    - strong: Form Builder
+    - paragraph: Design and publish complex forms to collect data in the FHIR format
+    - strong: Terminology Service
+    - paragraph: Manage internal and external code systems in one place
+    - strong: SQL on FHIR Engine
+    - paragraph: Use standardized ViewDefinitions to flatten FHIR data for analytics
+    - strong: C-CDA/FHIR Converter
+    - paragraph: Plug the bidirectional converter in your integration flow
+    - mark: beta
+    - strong: MDM Module
+    - paragraph: Identify and reduce data duplication with ML-based Master Patient Index
+    - heading "Support" [level=2]
+    - img "card"
+    - strong: Aidbox Community
+    - paragraph: Join the public Zulip workspace, ask questions and share experience.
+    - strong: Issue Tracker
+    - paragraph: Report bugs and requests in the public Issue Tracker.
+    - strong: Contact Us
+    - paragraph: Connect with Samurai to get support and guidance directly.
+    - link "Next Features":
+      - /url: /readme/features
+      - text: Next Features
+      - img
+    - paragraph: Last updated 4 days ago
+  - navigation "On-page navigation":
+    - list:
+      - listitem:
+        - link "Quickstarts":
+          - /url: "#quickstarts"
+      - listitem:
+        - link "Overview":
+          - /url: "#overview"
+      - listitem:
+        - link "Platform":
+          - /url: "#platform"
+      - listitem:
+        - link "Modules":
+          - /url: "#modules"
+      - listitem:
+        - link "Support":
+          - /url: "#support"
+- text: F2 Navigation Mode Press F2 to exit • Drag & Drop Mode
+- button "Open All"
+- button "Close All"
+- button "Rename" [disabled]
+- button "Exit F2 Mode (or press F2 again)"
+- button "Aidbox FHIR platform documentation 2 items"
+- button "Getting Started 4 items"
+- button "Tutorials 8 items"
+- button "Licensing and Support"
+- button "Aidbox user portal 3 items"
+- button "Aidbox UI 6 items"
+- button "Versioning"
+- button "Release Notes"
+- button "FAQ"
+- button "Contact us"
+- button "Settings"
+- button "Configure Aidbox and Multibox"
+- button "Init Bundle"
+- button "API Overview"
+- button "REST API 7 items"
+- button "Bulk API 9 items"
+- button "Batch/Transaction"
+- button "GraphQL API"
+- button "Other APIs 9 items"
+- button "Overview"
+- button "Identity Management 2 items"
+- button "Authentication 4 items"
+- button "Authorization 4 items"
+- button "Audit & Logging"
+- button "Profiling and validation 3 items"
+- button "Security & Access Control 1 items"
+- button "Observability 4 items"
+- button "Subscriptions 2 items"
+- button "Aidbox Forms 8 items"
+- button "Define extensions 2 items"
+- button "Custom Resources 3 items"
+- button "Aidbox terminology module 5 items"
+- button "SQL on FHIR 4 items"
+- button "Integration toolkit 6 items"
+- button "SMARTbox | FHIR API for EHRs 5 items"
+- button "ePrescription 8 items"
+- button "Other modules 4 items"
+- button "Database Overview"
+- button "PostgreSQL Requirements"
+- button "Database schema"
+- button "PostgreSQL Extensions"
+- button "AidboxDB 1 items"
+- button "Tutorials 2 items"
+- button "AWS S3"
+- button "GCP Cloud Storage"
+- button "Azure Blob Storage"
+- button "Oracle Cloud Storage"
+- button "Deploy Aidbox 3 items"
+- button "Backup and Restore 4 items"
+- button "Indexes 2 items"
+- button "Use Aidbox with React"
+- button "Aidbox SDK 4 items"
+- button "Examples"
+- button "Matcho DSL reference"
+- button "FHIR Schema reference"
+- button "Settings reference 8 items"
+- button "Environment variables 3 items"
+- button "System resources reference 8 items"
+- button "Email Providers reference 3 items"
+- button "Aidbox Forms reference 3 items"
+- button "Aidbox SQL functions"
+- button "Deprecated 4 items"
+- status
+- text: "Pending Changes: 0[Debug: false] No pending changes - drag items to reorganize"
+- button "Reset" [disabled]
+- button "Save Changes" [disabled]
+- button "Open Intercom Messenger":
+  - img
+  - img
+```

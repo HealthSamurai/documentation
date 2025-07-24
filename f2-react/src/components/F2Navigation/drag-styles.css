@@ -1,0 +1,431 @@
+/* Специальные стили для SortableJS drag-and-drop, которые нельзя сделать через Tailwind */
+
+/* Drag handle показывается только при hover */
+.navigation-item:hover .drag-handle {
+  opacity: 1 !important;
+}
+
+.drag-handle:hover {
+  background: rgba(156, 163, 175, 0.1) !important;
+  border-radius: 2px;
+}
+
+.drag-handle:active {
+  cursor: grabbing !important;
+  color: #374151 !important;
+}
+
+/* Глобальное состояние при перетаскивании */
+body.dragging-active {
+  cursor: grabbing !important;
+  user-select: none !important;
+}
+
+body.dragging-active * {
+  cursor: grabbing !important;
+}
+
+/* Классы SortableJS для визуальной обратной связи */
+.sortable-ghost {
+  opacity: 0.4 !important;
+  background: rgba(59, 130, 246, 0.1) !important;
+  border: 2px dashed #3b82f6 !important;
+  transform: rotate(2deg);
+  transition: all 0.2s ease;
+  border-radius: 4px !important;
+}
+
+/* Drop preview indicators */
+.drop-preview-line {
+  height: 2px;
+  background: #3b82f6;
+  margin: 2px 0;
+  position: relative;
+  border-radius: 1px;
+  opacity: 0;
+  transform: scaleX(0);
+  transform-origin: left center;
+  transition: all 0.2s ease;
+}
+
+.drop-preview-line.active {
+  opacity: 1;
+  transform: scaleX(1);
+}
+
+.drop-preview-line::before {
+  content: '';
+  position: absolute;
+  width: 8px;
+  height: 8px;
+  background: #3b82f6;
+  border-radius: 50%;
+  left: -4px;
+  top: -3px;
+  box-shadow: 0 0 4px rgba(59, 130, 246, 0.4);
+}
+
+/* Document to folder conversion preview */
+.will-become-folder {
+  border: 2px dashed #10b981 !important;
+  background: rgba(16, 185, 129, 0.05) !important;
+  border-radius: 4px !important;
+}
+
+.will-become-folder::after {
+  content: '📁';
+  position: absolute;
+  right: 8px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 16px;
+  animation: pulse-folder 1s infinite;
+}
+
+@keyframes pulse-folder {
+  0%, 100% { opacity: 0.5; transform: translateY(-50%) scale(1); }
+  50% { opacity: 1; transform: translateY(-50%) scale(1.1); }
+}
+
+.sortable-chosen {
+  background: rgba(59, 130, 246, 0.05) !important;
+  border-left: 4px solid #3b82f6 !important;
+  box-shadow: 0 4px 12px rgba(59, 130, 246, 0.15);
+  transform: scale(1.02);
+  z-index: 1000;
+}
+
+.sortable-drag {
+  opacity: 0.8 !important;
+  background: white !important;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15) !important;
+  border-radius: 6px !important;
+  transform: rotate(-1deg);
+  border: 1px solid #e5e7eb !important;
+}
+
+/* Стили для перетаскиваемого элемента */
+.navigation-item.dragging {
+  opacity: 0.5 !important;
+  transform: scale(0.98);
+  background: rgba(156, 163, 175, 0.05) !important;
+}
+
+/* Индикатор зоны сброса */
+.navigation-item::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: transparent;
+  transition: background-color 0.2s ease;
+  z-index: 10;
+}
+
+.navigation-item.sortable-over::before {
+  background: #3b82f6;
+  box-shadow: 0 0 4px rgba(59, 130, 246, 0.4);
+}
+
+/* Отступы по уровням при перетаскивании */
+.sortable-ghost[data-level="0"] { margin-left: 0px; }
+.sortable-ghost[data-level="1"] { margin-left: 24px; }
+.sortable-ghost[data-level="2"] { margin-left: 48px; }
+.sortable-ghost[data-level="3"] { margin-left: 72px; }
+
+/* Предотвращение выделения текста при перетаскивании */
+.navigation-items * {
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+/* Восстановление выделения текста когда не перетаскиваем */
+body:not(.dragging-active) .navigation-items * {
+  -webkit-user-select: text;
+  -moz-user-select: text;
+  -ms-user-select: text;
+  user-select: text;
+}
+
+/* Скрыть fallback элемент SortableJS */
+.sortable-fallback {
+  display: none !important;
+}
+
+/* Плавные переходы для элементов навигации */
+.navigation-item:not(.sortable-chosen):not(.sortable-ghost) {
+  transition: transform 0.2s ease, background-color 0.2s ease;
+}
+
+/* ========== NEW TASK 004 VISUAL FEEDBACK STYLES ========== */
+
+/* Drop Zones */
+.drop-zone-active {
+  background: rgba(33, 150, 243, 0.1) !important;
+  border: 2px solid #2196f3 !important;
+  border-radius: 4px !important;
+  transition: all 0.2s ease;
+}
+
+.drop-line {
+  height: 2px;
+  background: #2196f3;
+  margin: 4px 0;
+  position: relative;
+  border-radius: 1px;
+}
+
+.drop-line::before {
+  content: '';
+  position: absolute;
+  width: 8px;
+  height: 8px;
+  background: #2196f3;
+  border-radius: 50%;
+  left: -4px;
+  top: -3px;
+  box-shadow: 0 0 4px rgba(33, 150, 243, 0.4);
+}
+
+/* Invalid Drop */
+.drop-invalid {
+  cursor: not-allowed !important;
+  opacity: 0.5 !important;
+  filter: grayscale(50%);
+}
+
+.drop-invalid * {
+  pointer-events: none !important;
+  cursor: not-allowed !important;
+}
+
+/* Container Hover Effects */
+.navigation-container.drop-target {
+  background: rgba(33, 150, 243, 0.05) !important;
+  border: 1px solid #2196f3 !important;
+  transition: all 0.2s ease;
+  border-radius: 4px;
+}
+
+/* Nesting Indicator */
+.nesting-indicator {
+  position: fixed;
+  top: 50%;
+  left: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  opacity: 0;
+  transition: opacity 0.2s ease;
+  z-index: 1000;
+  pointer-events: none;
+  will-change: opacity;
+}
+
+body.dragging-active .nesting-indicator {
+  opacity: 1;
+}
+
+.nesting-dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: #ddd;
+  transition: all 0.2s ease;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  will-change: transform, background-color;
+}
+
+.nesting-dot.active {
+  background: #2196f3;
+  transform: scale(1.5);
+  box-shadow: 0 0 8px rgba(33, 150, 243, 0.4);
+}
+
+.nesting-dot.invalid {
+  background: #f44336;
+  transform: scale(1.3);
+  box-shadow: 0 0 8px rgba(244, 67, 54, 0.4);
+}
+
+.nesting-dot.passed {
+  background: #4caf50;
+  transform: scale(1.1);
+}
+
+/* Pending Changes Indicator */
+.pending-changes-indicator {
+  position: fixed;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 999;
+  pointer-events: none;
+}
+
+.orange-bar {
+  width: 4px;
+  height: 100px;
+  background: #ff9800;
+  border-radius: 0 2px 2px 0;
+  box-shadow: 2px 0 4px rgba(255, 152, 0, 0.3);
+}
+
+.pulse-dot {
+  position: absolute;
+  top: 50%;
+  left: 10px;
+  transform: translateY(-50%);
+  width: 24px;
+  height: 24px;
+  background: #ff9800;
+  color: white;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 11px;
+  font-weight: bold;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  animation: pulse-orange 2s infinite;
+  box-shadow: 0 2px 8px rgba(255, 152, 0, 0.3);
+  will-change: box-shadow;
+}
+
+@keyframes pulse-orange {
+  0% { box-shadow: 0 0 0 0 rgba(255, 152, 0, 0.7); }
+  70% { box-shadow: 0 0 0 10px rgba(255, 152, 0, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(255, 152, 0, 0); }
+}
+
+/* Rename Icon */
+.rename-icon {
+  opacity: 0;
+  transition: opacity 0.2s ease, transform 0.2s ease;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 4px;
+  font-size: 14px;
+  border-radius: 2px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  will-change: transform, opacity;
+}
+
+.navigation-item:hover .rename-icon {
+  opacity: 0.7;
+}
+
+.rename-icon:hover {
+  opacity: 1 !important;
+  transform: scale(1.1);
+  background: rgba(156, 163, 175, 0.1);
+}
+
+.rename-icon:active {
+  transform: scale(0.95);
+}
+
+/* Performance Optimizations */
+.sortable-ghost,
+.sortable-chosen,
+.sortable-drag,
+.navigation-item {
+  will-change: transform, opacity, background-color;
+}
+
+/* Enhanced hover states with GPU acceleration */
+.navigation-item:hover {
+  will-change: transform;
+  transform: translateZ(0); /* Force GPU acceleration */
+}
+
+/* Smooth drop zone transitions */
+.navigation-items {
+  will-change: contents;
+}
+
+/* Accessibility improvements */
+@media (prefers-reduced-motion: reduce) {
+  .nesting-dot,
+  .rename-icon,
+  .pulse-dot,
+  .drop-line,
+  .navigation-item {
+    transition: none !important;
+    animation: none !important;
+  }
+  
+  .pulse-dot {
+    animation: none;
+  }
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+  .drop-zone-active {
+    border-width: 3px !important;
+  }
+  
+  .will-become-folder {
+    border-width: 3px !important;
+  }
+  
+  .nesting-dot {
+    border: 2px solid currentColor;
+  }
+  
+  .pulse-dot {
+    border: 2px solid white;
+  }
+}
+
+/* Focus management for accessibility */
+.drag-handle:focus,
+.rename-icon:focus {
+  outline: 2px solid #2196f3;
+  outline-offset: 2px;
+  opacity: 1 !important;
+}
+
+/* Screen reader support */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* Additional performance optimizations */
+.navigation-items {
+  contain: layout style paint;
+  transform: translateZ(0); /* Create compositing layer */
+}
+
+.sortable-ghost,
+.sortable-chosen,
+.sortable-drag {
+  backface-visibility: hidden;
+  perspective: 1000px;
+}
+
+/* Prevent layout thrashing during drag */
+.navigation-item {
+  contain: layout;
+}
+
+/* Optimize drop zone rendering */
+.drop-zone-active {
+  contain: layout style;
+}
