@@ -112,7 +112,6 @@
         uri-without-prefix (if (str/starts-with? uri prefix)
                              (subs uri (count prefix))
                              uri)]
-    (def u uri-without-prefix)
     (cond
 
       (or (= uri-without-prefix "robots.txt")
