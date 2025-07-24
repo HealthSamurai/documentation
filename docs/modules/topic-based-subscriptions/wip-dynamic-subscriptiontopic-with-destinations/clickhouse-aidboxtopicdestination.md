@@ -10,6 +10,92 @@ The ClickHouse Topic Destination module provides integration between Aidbox's to
 
 This module is designed for analytical workloads where you need to export FHIR data in a structured, queryable format suitable for business intelligence, reporting, and data analysis.
 
+## Installation
+
+To use the ClickHouse TopicDestination module, you need to install and configure it in your Aidbox instance:
+
+### 1. Configure Deployment
+
+#### Docker Compose
+
+For Docker Compose deployments, first download the module JAR file locally:
+
+```sh
+curl -O https://storage.googleapis.com/aidbox-modules/topic-destination-clickhouse/topic-destination-clickhouse-2507.jar
+```
+
+Then update your **docker-compose.yaml** to include the ClickHouse module:
+
+```yaml
+  aidbox:
+    extra_hosts:
+    # connect Aidbox container and ClickHouse from localhost
+    - "host.docker.internal:host-gateway"
+    volumes:
+    # module jar to turn on ClickHouse support
+    - ./topic-destination-clickhouse-2507.jar:/topic-destination-clickhouse-2507.jar
+    # ... other volumes ...
+    environment:
+      BOX_MODULE_LOAD: io.healthsamurai.topic-destination.clickhouse.core
+      BOX_MODULE_JAR: "/topic-destination-clickhouse-2507.jar"
+      # Enable FHIR Schema validation (required for ClickHouse module)
+      BOX_FHIR_SCHEMA_VALIDATION: true
+      # ... other environment variables ...
+```
+
+#### Kubernetes
+
+For Kubernetes deployments, the module is downloaded automatically using an init container. Update your Aidbox deployment manifest:
+
+```yaml
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: aidbox
+spec:
+  template:
+    spec:
+      initContainers:
+      - name: download-clickhouse-module
+        image: curlimages/curl:latest
+        command:
+        - sh
+        - -c
+        - |
+          curl -L -o /modules/topic-destination-clickhouse-2507.jar \
+            https://storage.googleapis.com/aidbox-modules/topic-destination-clickhouse/topic-destination-clickhouse-2507.jar
+          chmod 644 /modules/topic-destination-clickhouse-2507.jar
+        volumeMounts:
+        - name: modules-volume
+          mountPath: /modules
+      containers:
+      - name: aidbox
+        image: healthsamurai/aidboxone:edge
+        env:
+        - name: BOX_MODULE_LOAD
+          value: "io.healthsamurai.topic-destination.clickhouse.core"
+        - name: BOX_MODULE_JAR
+          value: "/modules/topic-destination-clickhouse-2507.jar"
+        - name: BOX_FHIR_SCHEMA_VALIDATION
+          value: "true"
+        # ... other environment variables ...
+        volumeMounts:
+        - name: modules-volume
+          mountPath: /modules
+        # ... other volume mounts ...
+      volumes:
+      - name: modules-volume
+        emptyDir: {}
+      # ... other volumes ...
+```
+
+### 2. Verify Installation
+
+In AidboxUI, go to **FHIR Packages -> io.healthsamurai.topic** and verify that ClickHouse profiles are present:
+
+- `http://aidbox.app/StructureDefinition/aidboxtopicdestination-clickhouse-best-effort`
+- `http://aidbox.app/StructureDefinition/aidboxtopicdestination-clickhouse-at-least-once`
+
 ## Key Features
 
 - **Real-time data export**: Automatically exports FHIR resources to ClickHouse as they are created, updated, or deleted

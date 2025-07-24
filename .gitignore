@@ -12,3 +12,4 @@ target
 resources/.gitbook.yaml
 .clojure-mcp/
 .serena/
+.DS_Store
