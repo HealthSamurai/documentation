@@ -6,13 +6,13 @@ description: >-
 
 # How to enable hierarchical access control
 
-&#x20;Since Aidbox version 2412, to enable OrgBAC in [FHIRSchema mode](../../modules/profiling-and-validation/fhir-schema-validator/README.md), use:
+Since Aidbox version 2412, to enable OrgBAC in [FHIRSchema mode](../../modules/profiling-and-validation/fhir-schema-validator/), use:
 
 ```
 BOX_FEATURES_ORGBAC_ENABLE=true
 ```
 
-If your Aidbox version is lower or you do not use FHIRSchema mode, use [the Aidbox Configuration project](../../deprecated/deprecated/zen-related/aidbox-zen-lang-project/README.md) and import `aidbox.multitenancy.v1.fhir-r4`or `aidbox.multitenancy.v1.fhir-r5`namespace.
+If your Aidbox version is lower or you do not use FHIRSchema mode, use [the Aidbox Configuration project](../../deprecated/deprecated/zen-related/aidbox-zen-lang-project/) and import `aidbox.multitenancy.v1.fhir-r4`or `aidbox.multitenancy.v1.fhir-r5`namespace.
 
 {% tabs %}
 {% tab title="FHIR R4" %}
@@ -130,7 +130,7 @@ GET /Organization/org-b/fhir/Patient/pt-1
 ```
 {% endcode %}
 
-#### Patient is not visible from the nested Organization (org-c)&#x20;
+#### Patient is not visible from the nested Organization (org-c)
 
 {% code title="status: 403" %}
 ```yaml
@@ -140,10 +140,12 @@ GET /Organization/org-c/fhir/Patient/pt-1
 
 ## Configuring AccessPolicies
 
-To allow some user/client to interact with a organization-based resources, AccessPolicy should be configured to check organization id from the `https://aidbox.app/tenant-organization-id` extension of User/Client resource.
+To allow some user/client to interact with a organization-based resources, AccessPolicy should be configured to check the organization id from the `https://aidbox.app/tenant-organization-id` extension of the User/Client resource.
 
-This example allows org-based user (created by `PUT /Organization/<org-id>/fhir/User`) to see patients that are also created by OrgBAC.
+This example allows an org-based user (created by `PUT /Organization/<org-id>/fhir/User`) to see patients that are also created in the same organization.
 
+{% tabs %}
+{% tab title="Recommended way" %}
 ```
 PUT /AccessPolicy/as-user-allow-org-patients
 
@@ -162,3 +164,27 @@ matcho:
             Reference:
               id: .params.organization/id
 ```
+{% endtab %}
+
+{% tab title="Correct Aidbox format is false" %}
+**We do not recommend setting** [**Correct Aidbox format**](../../reference/settings/fhir.md#fhir.validation.correct-aidbox-format) **to false.**
+
+<pre><code><strong>PUT /AccessPolicy/as-user-allow-org-patients
+</strong>
+description: A user should be able to get every patient in their organization.
+engine: matcho
+matcho:
+  params:
+    resource/type: Patient
+  request-method: get
+  user:
+    meta:
+      extension:
+        $contains:
+          url: https://aidbox.app/tenant-organization-id
+          valueReference:
+            $reference:
+              id: .params.organization/id
+</code></pre>
+{% endtab %}
+{% endtabs %}
