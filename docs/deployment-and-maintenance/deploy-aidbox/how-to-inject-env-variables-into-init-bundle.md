@@ -32,6 +32,10 @@ Let's say we have Aidbox [TokenIntrospector](../../tutorials/security-access-con
 
 Please note that we use `${AUTH_SERVER_URL}` placeholder for the `jwt.iss` and `jwks_uri` parameters. This placeholder will be replaced with the actual value on CI.
 
+## Dynamically template init bundle in Docker Compose
+
+[See this example](https://github.com/Aidbox/examples/tree/main/init-bundle-env-template). This example demonstrates how to dynamically template Aidbox init bundles using environment variables in Docker Compose by overriding the container entrypoint.
+
 ## Using envsubst
 
 `envsubst` is a tiny GNU gettext utility that scans a text file for shell-style variables like `${VAR}` and replaces them with the values currently set in the process environment.
