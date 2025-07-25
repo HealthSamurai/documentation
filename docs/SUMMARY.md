@@ -355,6 +355,7 @@
     * [Ready-to-use terminologies](modules/terminology/terminology-api/ready-to-use-terminologies.md)
   * [$translate on ConceptMap](modules/terminology/translate-on-conceptmap.md)
 * [SQL on FHIR](modules/sql-on-fhir/README.md)
+  * [$run operation](modules/sql-on-fhir/operation-run.md)
   * [Defining flat views with View Definitions](modules/sql-on-fhir/defining-flat-views-with-view-definitions.md)
   * [Migrate to the spec-compliant ViewDefinition format](modules/sql-on-fhir/migrate-to-the-spec-compliant-viewdefinition-format.md)
   * [Query data from flat views](modules/sql-on-fhir/query-data-from-flat-views.md)
