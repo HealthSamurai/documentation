@@ -31,7 +31,7 @@ Accept: preferred format
   This parameter is exclusive with the `viewResource` parameter.
   
   Example:
-  ```
+  ```json
   {
     "name": "viewReference",
     "valueReference": "ViewDefinition/patient-view"
@@ -43,7 +43,7 @@ Accept: preferred format
   This parameter is exclusive with the `viewReference` parameter.
 
   Example:
-  ```
+  ```json
   {
     "name": "viewResource",
     "resource": {
@@ -73,7 +73,7 @@ Accept: preferred format
   on stored resources.
 
   Example:
-  ```
+  ```json
   {
     "name": "resource",
     "resource": {
@@ -91,7 +91,7 @@ Accept: preferred format
   which are the members of the specified group.
 
   Example:
-  ```
+  ```json
   {
     "name": "group",
     "valueReference": {
@@ -106,7 +106,7 @@ Accept: preferred format
   which are members of the patient compartment for the specified patient.
 
   Example:
-  ```
+  ```json
   {
     "name": "patient",
     "valueReference": {
@@ -121,7 +121,7 @@ Accept: preferred format
   which were modified (meta.lastModified) since the specified date
 
   Example:
-  ```
+  ```json
   {
     "name": "_since",
     "valueInstant": "2020-02-25T17:59:02.812Z"
@@ -134,7 +134,7 @@ Accept: preferred format
   Allowed values: `json`, `ndjson`, `csv`.
   
   Example:
-  ```
+  ```json
   {
     "name": "_format",
     "valueCode": "json"
@@ -148,7 +148,7 @@ Accept: preferred format
   not the number of input resources.
 
   Example:
-  ```
+  ```json
   {
     "name": "_limit",
     "valueInteger": 1
@@ -172,7 +172,7 @@ will return the processed data (without wrapping inside Binary resource).
 ## Examples
 
 Provided resources and ViewDefinition:
-```
+```json
 {
   "resourceType": "Parameters",
   "parameter": [
@@ -218,7 +218,7 @@ Provided resources and ViewDefinition:
 ```
 
 Provided resources, stored ViewDefinition:
-```
+```json
 {
   "resourceType": "Parameters",
   "parameter": [
@@ -251,7 +251,7 @@ Provided resources, stored ViewDefinition:
 ```
 
 Stored resources, stored ViewDefinition:
-```
+```json
 {
   "resourceType": "Parameters",
   "parameter": [
@@ -272,8 +272,7 @@ Stored resources, stored ViewDefinition:
 ## Output examples
 With `Accept: application/json` and `_format`: JSON
 
-```
-
+```json
 [
   {
     "patient_id": "source-1"
@@ -286,7 +285,7 @@ With `Accept: application/json` and `_format`: JSON
 ```
 
 With `Accept: application/fhir+json` and `_format`: JSON
-```
+```json
 {
   "resourceType": "Binary",
   "contentType": "application/json",
