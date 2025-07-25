@@ -7,6 +7,8 @@ Add 1-3 paragraphs fo each section to make it feel readable, like a book.
 
 Feel free to rewrite names of headers, but only them. Do not add/remove any headers.
 
+Please add a mermaid diagram to explain the concept of artifact registry if it is needed.
+
 ## Sources
 You have: 
 * documentation in `<repo-root>/docs/`

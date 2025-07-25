@@ -217,6 +217,23 @@
   * [Label-based Access Control](access-control/authorization/label-based-access-control.md)
 * [Audit & Logging](access-control/audit-and-logging.md)
 
+## Artifact Registry
+
+* [Artifact Registry Overview](artifact-registry/artifact-registry-overview.md)
+
+
+## Database
+
+* [Database Overview](database/overview.md)
+* [PostgreSQL Requirements](database/postgresql-requirements.md)
+* [Database schema](database/database-schema.md)
+* [PostgreSQL Extensions](database/postgresql-extensions.md)
+* [AidboxDB](database/aidboxdb-image/README.md)
+  * [HA AidboxDB](database/aidboxdb-image/ha-aidboxdb.md)
+* [Tutorials](database/other/README.md)
+  * [Migrate to AidboxDB 16](database/other/migrate-to-aidboxdb-16.md)
+  * [Working with pgAgent](database/other/working-with-pgagent.md)
+  
 ## Modules
 
 * [Profiling and validation](modules/profiling-and-validation/README.md)
@@ -479,18 +496,6 @@
     * [Default mappings](modules/other-modules/hl7v2/default-mappings.md)
     * [Module limitations](modules/other-modules/hl7v2/module-limitations.md)
     * [Message lifecycle](modules/other-modules/hl7v2/message-lifecycle.md)
-
-## Database
-
-* [Database Overview](database/overview.md)
-* [PostgreSQL Requirements](database/postgresql-requirements.md)
-* [Database schema](database/database-schema.md)
-* [PostgreSQL Extensions](database/postgresql-extensions.md)
-* [AidboxDB](database/aidboxdb-image/README.md)
-  * [HA AidboxDB](database/aidboxdb-image/ha-aidboxdb.md)
-* [Tutorials](database/other/README.md)
-  * [Migrate to AidboxDB 16](database/other/migrate-to-aidboxdb-16.md)
-  * [Working with pgAgent](database/other/working-with-pgagent.md)
 
 ## File storage
 
