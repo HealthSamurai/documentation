@@ -1,20 +1,20 @@
 # Custom Resources using Entity
 
 {% hint style="warning" %}
-Entity & Attributes and Zen Schema are planned to be retired and will be replaced by FHIR Schema. Here’s a [migration guide](../../../modules/custom-resources/migrate-to-fhirschema/README.md) to help you transition your custom resources defined via Entity & Attributes / Zen Schema.
+Entity & Attributes and Zen Schema are planned to be retired and will be replaced by FHIR Schema. Here’s a [migration guide](../../../artifact-registry/custom-resources/migrate-to-fhirschema/) to help you transition your custom resources defined via Entity & Attributes / Zen Schema.
 {% endhint %}
 
 ## Defining a Custom Resource
 
-Sometimes your data does not fit any existing FHIR resources. It is not always obvious that your data _cannot_ be translated to FHIR because of some FHIR  generalizations. The right first step is to go to [FHIR com](https://t.me/aidbox)[unity chat](https://t.me/aidbox) and ask your specific question about mapping to FHIR, or contact Health Samurai modeling team about your concern. If you are still sure that there is no appropriate resource in FHIR or it takes too much time to wait for it, you can define your own **Custom Resources** in [Aidbox](https://www.health-samurai.io/aidbox)**.**
+Sometimes your data does not fit any existing FHIR resources. It is not always obvious that your data _cannot_ be translated to FHIR because of some FHIR generalizations. The right first step is to go to [FHIR com](https://t.me/aidbox)[unity chat](https://t.me/aidbox) and ask your specific question about mapping to FHIR, or contact Health Samurai modeling team about your concern. If you are still sure that there is no appropriate resource in FHIR or it takes too much time to wait for it, you can define your own **Custom Resources** in [Aidbox](https://www.health-samurai.io/aidbox)**.**
 
 **Custom Resources** are defined exactly the same way as core FHIR resources. They can refer to existing resources, have uniform REST API for CRUD and Search, and participate in transactions.
 
-Let's imagine that in our application we want to store user preferences such as UI configuration or personalized Patient List filters. It is expected that you have already created a box in [Aidbox.Cloud](broken-reference). First of all, we have to define a new resource type by creating an **Entity** resource.
+Let's imagine that in our application we want to store user preferences such as UI configuration or personalized Patient List filters. It is expected that you have already created a box in [Aidbox.Cloud](broken-reference/). First of all, we have to define a new resource type by creating an **Entity** resource.
 
 ### Create Definition​
 
-Access the REST console and paste the following request. You should see the response:&#x20;
+Access the REST console and paste the following request. You should see the response:
 
 {% tabs %}
 {% tab title="Request" %}
@@ -378,7 +378,7 @@ schema:
 {% endtab %}
 {% endtabs %}
 
-As we see on the line 17 in the response above, the `theme` property has now type `string` and is restricted by the enumeration `[dark, white]`.&#x20;
+As we see on the line 17 in the response above, the `theme` property has now type `string` and is restricted by the enumeration `[dark, white]`.
 
 Let's try to create an invalid resource now:
 

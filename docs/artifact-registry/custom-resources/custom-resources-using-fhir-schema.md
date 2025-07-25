@@ -10,8 +10,8 @@ FHIR Schema is a community project that aims to simplify the implementation and 
 
 To begin using custom FHIR resources, enable the FHIRSchema validator engine in Aidbox.
 
-{% content-ref url="../profiling-and-validation/fhir-schema-validator/setup-aidbox-with-fhir-schema-validation-engine.md" %}
-[setup-aidbox-with-fhir-schema-validation-engine.md](../profiling-and-validation/fhir-schema-validator/setup-aidbox-with-fhir-schema-validation-engine.md)
+{% content-ref url="../../modules/profiling-and-validation/fhir-schema-validator/setup-aidbox-with-fhir-schema-validation-engine.md" %}
+[setup-aidbox-with-fhir-schema-validation-engine.md](../../modules/profiling-and-validation/fhir-schema-validator/setup-aidbox-with-fhir-schema-validation-engine.md)
 {% endcontent-ref %}
 
 ## FHIR Schema endpoint

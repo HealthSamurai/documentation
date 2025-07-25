@@ -4,8 +4,8 @@
 
 The materials in this section describe what to do next with the resulting FHIR Schema resource or set of resources. They explain how to load them into Aidbox, either one by one or via IG. Additionally, they outline the requirements for FHIR Schema to define a Custom Resource and provide a detailed FHIR Schema specification.
 
-{% content-ref url="../../profiling-and-validation/fhir-schema-validator/" %}
-[fhir-schema-validator](../../profiling-and-validation/fhir-schema-validator/)
+{% content-ref url="../../../modules/profiling-and-validation/fhir-schema-validator/" %}
+[fhir-schema-validator](../../../modules/profiling-and-validation/fhir-schema-validator/)
 {% endcontent-ref %}
 
 {% content-ref url="../../../tutorials/other-tutorials/how-to-create-fhir-npm-package.md" %}
@@ -555,7 +555,7 @@ For more information about this instruction, refer to the relevant [section](htt
 
 To deliver the FHIR Schema(s) and related Entities you authored to Aidbox, follow these steps.\
 Ensure that your Aidbox is configured to run with the FHIRSchema validation engine.\
-Here's [a guide describing how to achieve that](../../profiling-and-validation/fhir-schema-validator/).
+Here's [a guide describing how to achieve that](../../../modules/profiling-and-validation/fhir-schema-validator/).
 
 **Single FHIRSchema Delivery**
 

@@ -68,14 +68,8 @@ To enable zen FHIR IGs you provided you need to import them inside of your [entr
 
 Using the example from [the getting started page](broken-reference/) the updated entrypoint file will look like this for both of the examples above:
 
-| r4 core                                                                           | us-core and plan-net |
-| --------------------------------------------------------------------------------- | -------------------- |
-| <pre class="language-clojure"><code class="lang-clojure">{ns system
-</code></pre> |                      |
-|                                                                                   |                      |
-|                                                                                   |                      |
-|                                                                                   |                      |
-| import #{aidbox hl7-fhir-r4-core}                                                 |                      |
+<table><thead><tr><th>r4 core</th><th>us-core and plan-net</th></tr></thead><tbody><tr><td><pre class="language-clojure"><code class="lang-clojure">{ns system
+</code></pre></td><td></td></tr><tr><td></td><td></td></tr><tr><td></td><td></td></tr><tr><td></td><td></td></tr><tr><td>import #{aidbox hl7-fhir-r4-core}</td><td></td></tr></tbody></table>
 
 box\
 {:zen/tags #{aidbox/system\}}}\

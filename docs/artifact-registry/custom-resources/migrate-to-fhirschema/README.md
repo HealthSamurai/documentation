@@ -156,7 +156,7 @@ services:
       - "./zen-packages:/aidbox-project/zen-packages"
 ```
 
-For detailed FHIR Schema engine configuration instructions, refer to the [FHIR Schema setup documentation](../../profiling-and-validation/fhir-schema-validator/).
+For detailed FHIR Schema engine configuration instructions, refer to the [FHIR Schema setup documentation](../../../modules/profiling-and-validation/fhir-schema-validator/).
 
 ### Step 3: Migrate FHIR Packages to FHIR Schema
 
@@ -190,7 +190,7 @@ If you have custom Aidbox SearchParameters defined via Zen or Entities, use this
 
 ### Step 6: Validate Resources and Resolve Issues
 
-Since the FHIR Schema validation engine is more reliable and validates all the FHIR container cases, we need to validate existing data with FHIR Schema using [Aidbox Asynchronous Validation API](../../profiling-and-validation/asynchronous-resource-validation.md).
+Since the FHIR Schema validation engine is more reliable and validates all the FHIR container cases, we need to validate existing data with FHIR Schema using [Aidbox Asynchronous Validation API](../../../modules/profiling-and-validation/asynchronous-resource-validation.md).
 
 ### Check Deprecated Capabilities
 

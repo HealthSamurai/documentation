@@ -1,9 +1,9 @@
 # Aidbox Search Parameters
 
 {% hint style="warning" %}
-Aidbox Search Parameters will be ignored if Aidbox operates with the [FHIR Schema validator engine](../../../modules/profiling-and-validation/fhir-schema-validator/README.md). Please contact [us](../../../overview/contact-us.md) if you need assistance migrating to FHIR Search Parameters.
+Aidbox Search Parameters will be ignored if Aidbox operates with the [FHIR Schema validator engine](../../../modules/profiling-and-validation/fhir-schema-validator/). Please contact [us](../../../overview/contact-us.md) if you need assistance migrating to FHIR Search Parameters.
 
-If you want to migrate from Aidbox SearchParameter to FHIR SearchParameter see [this guide.](../../../modules/custom-resources/migrate-to-fhirschema/migrate-custom-resources-defined-with-entity-and-attributes-to-fhir-schema.md)
+If you want to migrate from Aidbox SearchParameter to FHIR SearchParameter see [this guide.](../../../artifact-registry/custom-resources/migrate-to-fhirschema/migrate-custom-resources-defined-with-entity-and-attributes-to-fhir-schema.md)
 {% endhint %}
 
 You can define custom search params by just creating SearchParameter resource. Let's say you want to search patient by city:
@@ -36,7 +36,7 @@ query-sql:
 #### Aidbox format example
 
 {% hint style="warning" %}
-Be aware of the [Aidbox format](../../../api/rest-api/other/aidbox-and-fhir-formats.md) in "expression".&#x20;
+Be aware of the [Aidbox format](../../../api/rest-api/other/aidbox-and-fhir-formats.md) in "expression".
 {% endhint %}
 
 In this example, the `["value", "string"]` expression is used to look into FHIR `valueString` field:
@@ -65,7 +65,7 @@ accept: application/json
 
 #### Define custom SearchParameter with extension
 
-If you have defined [first-class extension](broken-reference), you have to use Aidbox format for the SearchParameter expression. If you use FHIR format, you don't need to create Attribute and the `expression` path should be in FHIR format.
+If you have defined [first-class extension](broken-reference/), you have to use Aidbox format for the SearchParameter expression. If you use FHIR format, you don't need to create Attribute and the `expression` path should be in FHIR format.
 
 {% tabs %}
 {% tab title="First-class extension" %}

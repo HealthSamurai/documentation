@@ -38,11 +38,8 @@ This is a directory with all your configuration files. They specify how a box sh
 * `box/` — directory with configs for services such as ACL or FHIR IG.\
   Each service config comes with its own set of options.
 
-| zrc/system.edn                                                                        | zrc/box/acl.edn |
-| ------------------------------------------------------------------------------------- | --------------- |
-| <pre class="language-clojure"><code class="lang-clojure">{ns     system
-</code></pre> |                 |
-| import #{aidbox}                                                                      |                 |
+<table><thead><tr><th>zrc/system.edn</th><th>zrc/box/acl.edn</th></tr></thead><tbody><tr><td><pre class="language-clojure"><code class="lang-clojure">{ns     system
+</code></pre></td><td></td></tr><tr><td>import #{aidbox}</td><td></td></tr></tbody></table>
 
 server {...}
 

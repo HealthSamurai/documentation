@@ -5,12 +5,12 @@ description: Create custom resources with zen
 # Custom resources using Aidbox Project
 
 {% hint style="warning" %}
-Entity & Attributes and Zen Schema are planned to be retired and will be replaced by FHIR Schema. Here’s a [migration guide](../../../../modules/custom-resources/migrate-to-fhirschema/README.md) to help you transition your custom resources defined via Entity & Attributes / Zen Schema.
+Entity & Attributes and Zen Schema are planned to be retired and will be replaced by FHIR Schema. Here’s a [migration guide](../../../../artifact-registry/custom-resources/migrate-to-fhirschema/) to help you transition your custom resources defined via Entity & Attributes / Zen Schema.
 {% endhint %}
 
-If you're not familiar with Aidbox Project, read [this](broken-reference) section first.
+If you're not familiar with Aidbox Project, read [this](broken-reference/) section first.
 
-Since 2303, Aidbox can be configured to create custom resources by Aidbox Projects.&#x20;
+Since 2303, Aidbox can be configured to create custom resources by Aidbox Projects.
 
 ## Create custom resource
 
@@ -38,9 +38,9 @@ To create a custom resource in Aidbox Project you need to:
 
 ### Make a repository
 
-In this example new custom resource have name OurType and will be available by e.g. `GET /OurType`.&#x20;
+In this example new custom resource have name OurType and will be available by e.g. `GET /OurType`.
 
-The `:base-profile` key is optional. If you don't want to validate resource on creating, you may not use it.  If not specified, custom resource won't be validated and search won't support this custom type.
+The `:base-profile` key is optional. If you don't want to validate resource on creating, you may not use it. If not specified, custom resource won't be validated and search won't support this custom type.
 
 {% code title="main.edn" %}
 ```clojure
@@ -55,7 +55,7 @@ The `:base-profile` key is optional. If you don't want to validate resource on c
 
 ### Create base profile
 
-The base profile configures validation of the resource. It should be tagged with `zen.fhir/base-schema`.&#x20;
+The base profile configures validation of the resource. It should be tagged with `zen.fhir/base-schema`.
 
 {% code title="main.edn" %}
 ```clojure
@@ -74,7 +74,7 @@ The base profile configures validation of the resource. It should be tagged with
 ```
 {% endcode %}
 
-In this example, the OurType schema will be used to validate OurType resource, requiring `name` field. We also define a structure of a name: it must be vector, every element can contain `given` or `family` fields. &#x20;
+In this example, the OurType schema will be used to validate OurType resource, requiring `name` field. We also define a structure of a name: it must be vector, every element can contain `given` or `family` fields.
 
 ### Full example configuration
 
@@ -309,6 +309,3 @@ In this example, the OurType schema will be used to validate OurType resource, r
 ```
 
 </details>
-
-
-

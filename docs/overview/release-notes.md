@@ -96,7 +96,7 @@
 * Aidbox FHIR server
   * Supported [FHIRPath patch](../api/rest-api/crud/patch.md#fhirpath-patch)
   * Supported [Apple](../tutorials/security-access-control-tutorials/apple.md) as an [external identity provider](../tutorials/security-access-control-tutorials/set-up-external-identity-provider.md)
-  * Released `deprecated/capabilities`endpoint to detect deprectated zen and Entity/Atributes entities and updated the [migration guide](../modules/custom-resources/migrate-to-fhirschema/).
+  * Released `deprecated/capabilities`endpoint to detect deprectated zen and Entity/Atributes entities and updated the [migration guide](../artifact-registry/custom-resources/migrate-to-fhirschema/).
   * Implemented a 24-hour grace period for all Aidbox instances that cannot connect to the Aidbox portal for license verification. Also available in versions 2502, 2501, 2412, 2411, 2410, 2402, 2306, and 2302.
   * Supported [OTEL collector](../modules/observability/) configuration as an [Aidbox setting](../reference/settings/observability.md#otel). Updated [Aidbox example](https://github.com/Aidbox/examples/tree/main/OpenTelemetry) that shows how to launch and explore the Aidbox observability features (logs, traces, and metrics) locally.
   * Added new [AuditEvents](../access-control/audit-and-logging.md) for password changes and unsuccessful login attempts.
@@ -280,7 +280,7 @@ Minor updates:
 ## July 2024 _`2407`_
 
 * Aidbox
-  * Introduced support for [custom resources using FHIR StructureDefinitions](../modules/custom-resources/custom-resources-using-structuredefinition.md) and [custom resources using FHIR schemas](../modules/custom-resources/custom-resources-using-fhir-schema.md)
+  * Introduced support for [custom resources using FHIR StructureDefinitions](../artifact-registry/custom-resources/custom-resources-using-structuredefinition.md) and [custom resources using FHIR schemas](../artifact-registry/custom-resources/custom-resources-using-fhir-schema.md)
   * Published [JavaScript app example](https://github.com/Aidbox/app-examples/blob/main/aidbox-notify-via-custom-resources/README.md) demonstrating custom resources with a typical notification flow: requesting a notification, locking it for sending, and sending it (placeholder)
   * Supported [enabling Audit Log using an environment variable](../reference/settings/security-and-access-control.md)
 * [Aidbox Forms](../modules/aidbox-forms/)

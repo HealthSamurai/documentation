@@ -220,7 +220,15 @@
 ## Artifact Registry
 
 * [Artifact Registry Overview](artifact-registry/artifact-registry-overview.md)
-
+* [Define extensions](artifact-registry/define-extensions/README.md)
+  * [Extensions using StructureDefinition](artifact-registry/define-extensions/extensions-using-structuredefinition.md)
+  * [Extensions using FHIRSchema](artifact-registry/define-extensions/extensions-using-fhirschema.md)
+* [Custom Resources](artifact-registry/custom-resources/README.md)
+  * [Custom resources using FHIR Schema](artifact-registry/custom-resources/custom-resources-using-fhir-schema.md)
+  * [Custom resources using StructureDefinition](artifact-registry/custom-resources/custom-resources-using-structuredefinition.md)
+  * [Migrate to FHIR Schema](artifact-registry/custom-resources/migrate-to-fhirschema/README.md)
+    * [Migrate custom resources defined with Entity & Attributes to FHIR Schema](artifact-registry/custom-resources/migrate-to-fhirschema/migrate-custom-resources-defined-with-entity-and-attributes-to-fhir-schema.md)
+    * [Migrate custom resources defined with Zen to FHIR Schema](artifact-registry/custom-resources/migrate-to-fhirschema/migrate-custom-resources-defined-with-zen-to-fhir-schema.md)
 
 ## Database
 
@@ -233,7 +241,7 @@
 * [Tutorials](database/other/README.md)
   * [Migrate to AidboxDB 16](database/other/migrate-to-aidboxdb-16.md)
   * [Working with pgAgent](database/other/working-with-pgagent.md)
-  
+
 ## Modules
 
 * [Profiling and validation](modules/profiling-and-validation/README.md)
@@ -328,15 +336,6 @@
   * [Access Control in Forms](modules/aidbox-forms/access-control-in-forms.md)
   * [Audit Logging in Forms](modules/aidbox-forms/audit-logging-in-forms.md)
   * [Aidbox Form Gallery](modules/aidbox-forms/aidbox-form-gallery.md)
-* [Define extensions](modules/define-extensions/README.md)
-  * [Extensions using StructureDefinition](modules/define-extensions/extensions-using-structuredefinition.md)
-  * [Extensions using FHIRSchema](modules/define-extensions/extensions-using-fhirschema.md)
-* [Custom Resources](modules/custom-resources/README.md)
-  * [Custom resources using FHIR Schema](modules/custom-resources/custom-resources-using-fhir-schema.md)
-  * [Custom resources using StructureDefinition](modules/custom-resources/custom-resources-using-structuredefinition.md)
-  * [Migrate to FHIR Schema](modules/custom-resources/migrate-to-fhirschema/README.md)
-    * [Migrate custom resources defined with Entity & Attributes to FHIR Schema](modules/custom-resources/migrate-to-fhirschema/migrate-custom-resources-defined-with-entity-and-attributes-to-fhir-schema.md)
-    * [Migrate custom resources defined with Zen to FHIR Schema](modules/custom-resources/migrate-to-fhirschema/migrate-custom-resources-defined-with-zen-to-fhir-schema.md)
 * [Aidbox terminology module](modules/terminology/README.md)
   * [Concept](modules/terminology/concept/README.md)
     * [$translate-concepts](modules/terminology/concept/translate-concepts.md)
