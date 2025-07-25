@@ -1,6 +1,5 @@
 ---
-description: Comprehensive overview of Aidbox Artifact Registry
-for storing and managing FHIR canonical resources and packages
+description: Comprehensive overview of Aidbox Artifact Registry for storing and managing FHIR canonical resources and packages
 ---
 
 # Artifact Registry Overview
@@ -19,7 +18,7 @@ graph LR
         A[public schema<br/>Regular FHIR Resources]
         B[far schema<br/>Canonical Resources<br/>• CodeSystem<br/>• ValueSet<br/>• StructureDefinition<br/>• SearchParameter]
     end
-    
+
     style A fill:#f0f0f0
     style B fill:#e1f5fe
 ```
@@ -49,20 +48,20 @@ The current implementation of the Artifact Registry focuses on four core types o
 
 [FHIR packages](https://build.fhir.org/packages.html) are collections of canonical resources bundled together with their dependencies, following a standardized format for distribution and versioning. In the context of the Artifact Registry, packages serve as the primary mechanism for importing and organizing canonical resources. Each package includes metadata about its contents, dependencies on other packages, and version information following semantic versioning principles.
 
-The registry automatically loads all package dependencies when you import a package. 
+The registry automatically loads all package dependencies when you import a package.
 
 ```mermaid
 flowchart RL
     A[Import US Core 6.0.0]
-    
+  
     B[us.nlm.vsac 0.9.0] --->|depends on| A
     C[hl7.fhir.uv.sdc 3.0.0]  --->|depends on| A
     D[us.cdc.phinvads 0.12.0]  --->|depends on| A
     E[hl7.fhir.r4.core 4.0.1]  --->|depends on| A
     F[hl7.terminology.r4 5.4.0]  --->|depends on| A
-    
+  
     H[Aidbox Artifact Registry]
-    
+
     A --> H
 
     
