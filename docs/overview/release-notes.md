@@ -5,6 +5,11 @@
 * Aidbox FHIR server
   * Support for delegating read-only workload to the[ database read-only replica.](../database/overview.md#postgresql-with-read-only-replica)
 * Aidbox Forms
+  * Implemented AI assistance in the Form Builder for creating and editing forms from text descriptions, with support for EnableWhen, calculation, and population logics.
+  * Supported [item answer media](../modules/aidbox-forms/aidbox-ui-builder-alpha/form-creation/widgets.md#radio-button) for media accompaniments for specific answer options (used in radio button and checkbox list).
+  * Supported [strict access control mode](../modules/aidbox-forms/access-control-in-forms.md#strict-access-control) to enforce explicit authorization for all backend resource accesses initiated by SDC proxy operations.
+  * Embedded LHC and Smart form renderers in the [Aidbox public form builder](https://form-builder.aidbox.app/) to test how forms behave in different SDC renderers.
+  * Added the ability to [hide the download button](../modules/aidbox-forms/aidbox-ui-builder-alpha/configuration.md) using the SDCConfig resource.
 
 ## June 2025 _`latest, 2506`_
 
