@@ -5,6 +5,7 @@ structure:
 
 redirects:
     # See Site insights -> Broken URLs in gitbook ui
+    api-1/fhir-api/search-1/custom-search-parameter/custom-search-parameters: tutorials/crud-search-tutorials/search-tutorials.md
     access-control/authentication/access-to-aidboxui: access-control/authentication/README.md
     access-control/how-to-guides/smart-app: deprecated/deprecated/other/how-to-guides/smart-on-fhir/get-a-smart-app-launched.md
     access-control/how-to-guides/smart-on-fhir/smart-on-fhir-app-launch: deprecated/deprecated/other/how-to-guides/smart-on-fhir/get-a-smart-app-launched.md
