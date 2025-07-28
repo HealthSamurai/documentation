@@ -1,4 +1,4 @@
-# Operation `$run`
+# `$run` operation
 
 {% hint style="info" %}
 This functionality is available in Aidbox versions 2507 and later.
