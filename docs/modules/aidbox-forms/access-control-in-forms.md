@@ -34,47 +34,11 @@ Policies:
 
 | policy                                   | policy description                                                                      |
 | ---------------------------------------- | --------------------------------------------------------------------------------------- |
-| as-sdc-admin-forms-grid-rpc              | Forms Grid with forms and responses                                                     |
 | as-sdc-admin-manage-sdc-resources        | Create/Update/Delete resources used in SDC Module                                       |
 | as-sdc-admin-manage-production-resources | Create/Update/Delete SDC related resources (Patient/Encounter/Observation/Practitioner) |
 | as-sdc-admin-use-sdc-operations          | Use all SDC operations                                                                  |
 | as-sdc-admin-use-terminology-operations  | Use terminology operations (Search concepts, Valuesets) )                               |
 
-**as-sdc-admin-forms-grid-rpc policy**
-
-Access to:
-
-* Questionnaires grid
-* Responses grid
-
-```yaml
-PUT /AccessPolicy/as-sdc-admin-forms-grid-rpc
-content-type: text/yaml
-accept: text/yaml
-
-resourceType: AccessPolicy
-id: as-sdc-admin-forms-grid-rpc
-type: rpc
-engine: matcho-rpc
-rpc:
- aidbox.sdc.grid/get-definition:
-   user:
-     roles:
-       $contains:
-         value: sdc-admin 
-
- aidbox.sdc.patient/forms-grid:
-   user:
-     roles:
-       $contains:
-         value: sdc-admin
-
- aidbox.sdc.patient/documents-workflows-grid:
-   user:
-     roles:
-       $contains:
-         value: sdc-admin
-```
 
 **as-sdc-admin-manage-sdc-resources policy**
 
@@ -111,7 +75,7 @@ matcho:
       - '#/SDCPrintTemplate$'
       - '#/SDCConfig/.*$'
       - '#/SDCConfig$'
-  request-method: 
+  request-method:
      $one-of:
        - get
        - post
@@ -157,7 +121,7 @@ matcho:
       - '#/Organization$'
       - '#/Practitioner/.*$'
       - '#/Practitioner$'
-  request-method: 
+  request-method:
      $one-of:
        - get
        - post
@@ -229,7 +193,7 @@ matcho:
     roles:
       $contains:
         value: sdc-admin
-  uri: 
+  uri:
     $one-of:
       - '#/ValueSet$'
       - '#/ValueSet/\$expand$'
@@ -282,7 +246,7 @@ rpc:
    user:
      roles:
        $contains:
-         value: sdc-form-designer 
+         value: sdc-form-designer
 
  aidbox.sdc.patient/forms-grid:
    user:
@@ -329,14 +293,14 @@ matcho:
     roles:
       $contains:
         value: sdc-form-designer
-  uri: 
+  uri:
     $one-of:
     - '#/Questionnaire$'
     - '#/Questionnaire/.*$'
     - '#/Questionnaire/\$save'
     - '#/Questionnaire/.*/\$usage'
     - '#/Questionnaire/.*/\$duplicate'
-  request-method: 
+  request-method:
     $one-of:
       - get
       - post
@@ -384,7 +348,7 @@ matcho:
     roles:
       $contains:
         value: sdc-form-designer
-  uri: 
+  uri:
     $one-of:
       - '#/Questionnaire/\$validate'
       - '#/QuestionnaireResponse/\$validate'
@@ -408,12 +372,12 @@ matcho:
     roles:
       $contains:
         value: sdc-form-designer
-  uri: 
-    $one-of: 
+  uri:
+    $one-of:
       - '#/QuestionnaireTheme$'
       - '#/QuestionnaireTheme/.*'
-  request-method: 
-    $one-of: 
+  request-method:
+    $one-of:
       - get
       - post
       - put
@@ -439,8 +403,8 @@ matcho:
     roles:
       $contains:
         value: sdc-form-designer
-  uri: 
-    $one-of: 
+  uri:
+    $one-of:
       - '#/Encounter$'
       - '#/Patient$'
   request-method: get
@@ -529,7 +493,7 @@ matcho:
       $contains:
         value: sdc-form-designer
   uri: '#/ValueSet/\$expand$'
-  request-method: 
+  request-method:
     $one-of:
       - get
       - post
@@ -552,7 +516,7 @@ matcho:
       $contains:
         value: sdc-form-designer
   uri: '#\$reference-lookup$'
-  request-method: 
+  request-method:
     $one-of:
       - get
       - post
@@ -575,7 +539,7 @@ matcho:
     roles:
       $contains:
         value: sdc-form-designer
-  uri: 
+  uri:
     $one-of:
     - '/$ai-generate-questionnaire'
     - '/$openai-chat-completions'
@@ -599,7 +563,7 @@ matcho:
     roles:
       $contains:
         value: sdc-form-designer
-  uri: 
+  uri:
     $one-of:
     - '#\$sdc-resource-types'
     - '#\$sdc-resource-schema'
@@ -745,7 +709,7 @@ matcho:
       $contains:
         value: sdc-form-filler
   uri: '#/ValueSet/\$expand'
-  request-method: 
+  request-method:
     $one-of:
        - post
        - get
@@ -771,7 +735,7 @@ matcho:
       $contains:
         value: sdc-form-designer
   uri: '#\$reference-lookup$'
-  request-method: 
+  request-method:
     $one-of:
       - get
 ```
@@ -819,8 +783,8 @@ rpc:
    user:
      roles:
        $contains:
-         value: sdc-response-manager 
-         
+         value: sdc-response-manager
+
  aidbox.sdc.patient/forms-grid:
    user:
      roles:
@@ -897,8 +861,8 @@ matcho:
     roles:
       $contains:
         value: sdc-response-manager
-  uri: 
-    $one-of: 
+  uri:
+    $one-of:
       - '#/QuestionnaireTheme$'
       - '#/QuestionnaireTheme/.*'
   request-method: get
@@ -921,9 +885,9 @@ matcho:
     roles:
       $contains:
         value: sdc-response-manager
-  uri: 
+  uri:
     $one-of:
-    - '#/Questionnaire$' 
+    - '#/Questionnaire$'
     - '#/Questionnaire/.*$'
   request-method: get
 ```
@@ -945,9 +909,9 @@ matcho:
     roles:
       $contains:
         value: sdc-response-manager
-  uri: 
+  uri:
     $one-of:
-    - '#/QuestionnaireResponse' 
+    - '#/QuestionnaireResponse'
     - '#/QuestionnaireResponse/.*$'
   request-method: get
 ```
@@ -974,9 +938,9 @@ matcho:
     roles:
       $contains:
         value: sdc-response-manager
-  uri: 
+  uri:
     $one-of:
-    - '#/Encounter$' 
+    - '#/Encounter$'
     - '#/Patient$'
   request-method: get
 ```
@@ -1045,7 +1009,7 @@ accept: text/yaml
 resourceType: User
 id: sdc-admin-user
 password: password
-roles: 
+roles:
   - value: sdc-admin
 ```
 
@@ -1059,7 +1023,7 @@ accept: text/yaml
 resourceType: User
 id: form-designer-user
 password: password
-roles: 
+roles:
   - value: sdc-form-designer
 ```
 
@@ -1073,7 +1037,7 @@ accept: text/yaml
 resourceType: User
 id: form-filler-user
 password: password
-roles: 
+roles:
   - value: sdc-form-filler
 ```
 
@@ -1087,7 +1051,7 @@ accept: text/yaml
 resourceType: User
 id: response-manager-user
 password: password
-roles: 
+roles:
   - value: sdc-response-manager
 ```
 
@@ -1101,13 +1065,13 @@ accept: text/yaml
 resourceType: User
 id: form-user
 password: password
-roles: 
+roles:
   - value: sdc-response-manager
   - value: sdc-form-filler
 ```
 
 
-## Strict access control 
+## Strict access control
 
 In the Structured Data Capture (SDC) module, certain operations act as proxy calls to the FHIR REST API. These operations often fetch or persist data on behalf of the user. For example, the $populate operation may internally perform a GET /Patient/[id] request to prefill a form with patient data.
 
