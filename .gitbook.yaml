@@ -5,7 +5,7 @@ structure:
 
 redirects:
     # See Site insights -> Broken URLs in gitbook ui
-    api-1/fhir-api/search-1/custom-search-parameter/custom-search-parameters: tutorials/crud-search-tutorials/search-tutorials.md
+    api-1/fhir-api/search-1/custom-search-parameter/custom-search-parameters: tutorials/crud-search-tutorials/search-tutorials/custom-searchparameter-tutorial.md
     access-control/authentication/access-to-aidboxui: access-control/authentication/README.md
     access-control/how-to-guides/smart-app: deprecated/deprecated/other/how-to-guides/smart-on-fhir/get-a-smart-app-launched.md
     access-control/how-to-guides/smart-on-fhir/smart-on-fhir-app-launch: deprecated/deprecated/other/how-to-guides/smart-on-fhir/get-a-smart-app-launched.md
@@ -265,12 +265,12 @@ redirects:
     modules-1/aidbox-forms/any-familiar-form-editor-docs-deprecated: modules/aidbox-forms/any-familiar-form-editor-docs-deprecated.md
     modules-1/aidbox-forms/audit-logging-in-forms: modules/aidbox-forms/audit-logging-in-forms.md
     modules-1/aidbox-forms/getting-started: modules/aidbox-forms/getting-started.md
-    modules-1/custom-resources/custom-resources-using-fhir-schema: modules/custom-resources/custom-resources-using-fhir-schema.md
-    modules-1/custom-resources/custom-resources-using-structuredefinition: modules/custom-resources/custom-resources-using-structuredefinition.md
-    modules-1/custom-resources/migrate-to-fhirschema/migrate-custom-resources-defined-with-entity-and-attributes-to-fhir-schema: modules/custom-resources/migrate-to-fhirschema/migrate-custom-resources-defined-with-entity-and-attributes-to-fhir-schema.md
-    modules-1/custom-resources/migrate-to-fhirschema/migrate-custom-resources-defined-with-zen-to-fhir-schema: modules/custom-resources/migrate-to-fhirschema/migrate-custom-resources-defined-with-zen-to-fhir-schema.md
-    modules-1/define-extensions/extensions-using-fhirschema: modules/define-extensions/extensions-using-fhirschema.md
-    modules-1/define-extensions/extensions-using-structuredefinition: modules/define-extensions/extensions-using-structuredefinition.md
+    modules-1/custom-resources/custom-resources-using-fhir-schema: artifact-registry/custom-resources/custom-resources-using-fhir-schema.md
+    modules-1/custom-resources/custom-resources-using-structuredefinition: artifact-registry/custom-resources/custom-resources-using-structuredefinition.md
+    modules-1/custom-resources/migrate-to-fhirschema/migrate-custom-resources-defined-with-entity-and-attributes-to-fhir-schema: artifact-registry/custom-resources/migrate-to-fhirschema/migrate-custom-resources-defined-with-entity-and-attributes-to-fhir-schema.md
+    modules-1/custom-resources/migrate-to-fhirschema/migrate-custom-resources-defined-with-zen-to-fhir-schema: artifact-registry/custom-resources/migrate-to-fhirschema/migrate-custom-resources-defined-with-zen-to-fhir-schema.md
+    modules-1/define-extensions/extensions-using-fhirschema: artifact-registry/define-extensions/extensions-using-fhirschema.md
+    modules-1/define-extensions/extensions-using-structuredefinition: artifact-registry/define-extensions/extensions-using-structuredefinition.md
     modules-1/eprescription/directory/addproviderlocation-message: modules/eprescription/directory/addproviderlocation-message.md
     modules-1/eprescription/directory/directorydownload-message: modules/eprescription/directory/directorydownload-message.md
     modules-1/eprescription/directory/disableproviderlocation-message: modules/eprescription/directory/disableproviderlocation-message.md
