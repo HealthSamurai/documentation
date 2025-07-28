@@ -10,6 +10,7 @@
   * Supported [strict access control mode](../modules/aidbox-forms/access-control-in-forms.md#strict-access-control) to enforce explicit authorization for all backend resource accesses initiated by SDC proxy operations.
   * Embedded LHC and Smart form renderers in the [Aidbox public form builder](https://form-builder.aidbox.app/) to test how forms behave in different SDC renderers.
   * Added the ability to [hide the download button](../modules/aidbox-forms/aidbox-ui-builder-alpha/configuration.md) using the SDCConfig resource.
+  * Supported quote, text indents in label's markdown
 
 ## June 2025 _`latest, 2506`_
 
