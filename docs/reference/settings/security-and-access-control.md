@@ -10,7 +10,7 @@ URL of consent screen. A consent screen is an interface presented to a user duri
 
 ## Enable FHIR Audit Log<a href="#security.audit-log.enabled" id="security.audit-log.enabled"></a>
 
-Generates structured audit logs in FHIR AuditEvent format.
+Generates structured audit logs in FHIR R4 AuditEvent format (with other FHIR versions will not be generated).
 
 <table data-header-hidden="true"><thead><tr><th width="200"></th><th></th></tr></thead><tbody><tr><td>ID</td><td><code>security.audit-log.enabled</code></td></tr><tr><td>Type</td><td>Bool</td></tr><tr><td>Default value</td><td><code>false</code></td></tr><tr><td>Environment variable</td><td><code>BOX_SECURITY_AUDIT_LOG_ENABLED</code></td></tr><tr><td>Deprecated environment variables</td><td><code>AIDBOX_SECURITY_AUDIT__LOG_ENABLED</code></td></tr><tr><td>Sensitive</td><td><code>false</code> — value will be visible in plaintext in Admin UI</td></tr><tr><td>Set via</td><td>Admin UI → Settings<br />Environment variables</td></tr><tr><td>Hot reload</td><td><code>false</code> — setting requires system restart</td></tr></tbody></table>
 
