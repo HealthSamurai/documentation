@@ -88,7 +88,35 @@ accept: application/json
 }
 ```
 
-This resource describes the data source for the subscription but doesn't execute any activities from Aidbox.
+##### Using `%current` and `%previous` in `fhirPathCriteria`
+
+When working with resource updates, you can use special variables in your `fhirPathCriteria` to compare the current and previous state of a resource:
+
+- `%current` - refers to the current state of the resource after an update
+- `%previous` - refers to the previous state of the resource before an update
+
+This allows for creating more specific triggers based on changes in resource values. For example:
+
+```json
+POST /fhir/AidboxSubscriptionTopic
+content-type: application/json
+accept: application/json
+
+{
+  "resourceType": "AidboxSubscriptionTopic",
+  "url": "http://example.org/FHIR/R5/SubscriptionTopic/QuestionnaireResponse-status-change",
+  "status": "active",
+  "trigger": [
+    {
+      "resource": "QuestionnaireResponse",
+      "supportedInteraction": ["update"],
+      "fhirPathCriteria": "%previous.status = 'in-progress' and %current.status = 'completed'"
+    }
+  ]
+}
+```
+
+On the create interaction `%previous` return `{}`. On the delete interaction `%current` return `{}`.
 
 #### Create AidboxTopicDestination Resource
 
