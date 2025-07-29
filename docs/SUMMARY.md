@@ -40,7 +40,7 @@
     * [How to enable patient data access API](tutorials/security-access-control-tutorials/how-to-enable-patient-data-access-api.md)
     * [How to enable SMART on FHIR on Patient Access API](tutorials/security-access-control-tutorials/how-to-enable-smart-on-fhir-on-patient-access-api.md)
     * [How to enable hierarchical access control](tutorials/security-access-control-tutorials/how-to-enable-hierarchical-access-control.md)
-    * [How to configure Audit Log](tutorials/security-access-control-tutorials/how-to-configure-audit-log.md)
+    * [How to Configure FHIR Audit Log](tutorials/security-access-control-tutorials/how-to-configure-audit-log.md)
     * [How is an HTTP request processed in Aidbox](tutorials/security-access-control-tutorials/overview.md)
     * [How to configure SSO with another Aidbox instance to access Aidbox UI](tutorials/security-access-control-tutorials/aidbox.md)
     * [How to configure SSO with Okta to access Aidbox UI](tutorials/security-access-control-tutorials/okta.md)

@@ -20,7 +20,7 @@ Limitation: currently works with only FHIR R4 version. If you need to support R5
 
 ### Enable FHIR Audit Log
 
-To enable audit logging in Aidbox, use the following setting: [security.audit-log.enabled](../../reference/settings/security-and-access-control.md#security.audit-log.enabled). When enabled, Aidbox will generate structured audit logs in FHIR R4 AuditEvent format.
+To enable audit logging in Aidbox, use the following setting: [security.audit-log.enabled](/reference/settings/security-and-access-control.md#security.audit-log.enabled). When enabled, Aidbox will generate structured audit logs in FHIR R4 AuditEvent format.
 
 ### Install the BALP Package
 
@@ -28,15 +28,15 @@ The Basic Audit Log Patterns (BALP) Implementation Guide is a Content Profile th
 
 Navigate to the **FHIR Packages** screen in Aidbox Console UI.
 
-<figure><img src="../../../.gitbook/assets/df034719-9732-4901-b0d9-454a517cc130.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="/.gitbook/assets/df034719-9732-4901-b0d9-454a517cc130.png" alt=""><figcaption></figcaption></figure>
 
 Click the **Import FHIR Package** button.
 
-<figure><img src="../../../.gitbook/assets/8cb5550f-5ef0-4834-bfc9-c86fdd0e687e.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="/.gitbook/assets/8cb5550f-5ef0-4834-bfc9-c86fdd0e687e.png" alt=""><figcaption></figcaption></figure>
 
 Find the BALP package and hit the Import button.
 
-<figure><img src="../../../.gitbook/assets/5596c50e-f2a4-4259-a77f-67d411142281.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="/.gitbook/assets/5596c50e-f2a4-4259-a77f-67d411142281.png" alt=""><figcaption></figcaption></figure>
 
 ### Run some auditable operations
 
@@ -66,7 +66,7 @@ To see audit logs with the Audit event viewer app, navigate to the **Audit Log**
 
 And find the audit event, produced by the patient create operation.
 
-<figure><img src="../../../.gitbook/assets/01d17537-0703-43a2-a5c5-8c1c7baa0536.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="/.gitbook/assets/01d17537-0703-43a2-a5c5-8c1c7baa0536.png" alt=""><figcaption></figcaption></figure>
 
 ## External Audit Repository Configuration
 
@@ -79,10 +79,10 @@ Aidbox supports forwarding audit data to an external repository. It batches indi
 To configure an external Audit log repository, use the following settings:
 
 - URL of the external destination where Aidbox streams all audit events
-* [security.audit-log.flush-interval](../../reference/settings/security-and-access-control.md#security.audit-log.flush-interval) - Interval time in ms to flush audit events to Audit Log Repository
-* [security.audit-log.max-flush-interval](../../reference/settings/security-and-access-control.md#security.audit-log.max-flush-interval) - Maximum interval for retries if sending audit events fails
-* [security.audit-log.batch-count](../../reference/settings/security-and-access-control.md#security.audit-log.batch-count) - Maximum count of Audit Events in a batch
-* [security.audit-log.request-headers](../../reference/settings/security-and-access-control.md#security.audit-log.request-headers) - Custom headers to add to repository requests
+* [security.audit-log.flush-interval](/reference/settings/security-and-access-control.md#security.audit-log.flush-interval) - Interval time in ms to flush audit events to Audit Log Repository
+* [security.audit-log.max-flush-interval](/reference/settings/security-and-access-control.md#security.audit-log.max-flush-interval) - Maximum interval for retries if sending audit events fails
+* [security.audit-log.batch-count](/reference/settings/security-and-access-control.md#security.audit-log.batch-count) - Maximum count of Audit Events in a batch
+* [security.audit-log.request-headers](/reference/settings/security-and-access-control.md#security.audit-log.request-headers) - Custom headers to add to repository requests
 
 Audit log Bundle example:
 
@@ -536,7 +536,7 @@ curl -X POST "http://localhost:8080/fhir/AuditEvent" \
 
 Navigate to the **Audit Log** tab in Aidbox Console UI and find the Audit event:
 
-<figure><img src="../../.gitbook/assets/ba8f6029-d61c-4dc2-9ac2-aabf0e052b22.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="/.gitbook/assets/ba8f6029-d61c-4dc2-9ac2-aabf0e052b22.png" alt=""><figcaption></figcaption></figure>
 
 ## Reliability of Audit Event Storing
 
