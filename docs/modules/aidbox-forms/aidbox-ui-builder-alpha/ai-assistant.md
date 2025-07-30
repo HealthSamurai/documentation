@@ -1,13 +1,11 @@
 ---
-description: The AI Assistant in the Aidbox UI Builder provides a powerful tool for creating and managing forms with AI-driven assistance. It offers features like form creation, testing, multilingual support, and more.
+description: AI-powered tool for building and editing FHIR SDC Questionnaires through natural language interaction.
 ---
 
 
 # AI Assistant in Aidbox UI Builder
 
 The AI Assistant in the Aidbox UI Builder is a powerful tool designed to help you quickly build and manage **FHIR SDC Questionnaires** through natural language interaction. It provides seamless integration with the builder's tools and controls, significantly accelerating form creation and editing.
-
----
 
 ## Getting Started
 
@@ -21,8 +19,6 @@ To access the AI Assistant:
 
 <figure><img src="../../../.gitbook/assets/opening_ai_tools_menu.png" alt="Opening AI Tools menu"></figure>
 
----
-
 ### API Key Requirement
 
 Before using the assistant, you need to provide an API key for AI completion. If a key hasn’t been configured, you’ll see a prompt directing you to set it up.
@@ -30,8 +26,6 @@ Before using the assistant, you need to provide an API key for AI completion. If
 <figure><img src="../../../.gitbook/assets/api_key_required_prompt.png" alt="API Key required prompt"></figure>
 
 Click **Go to Settings** to enter your key.
-
----
 
 ### Configuring the API Key
 
@@ -41,11 +35,11 @@ In the **Settings** modal:
 * Enter your **OpenAI** or **Google Gemini** API key.
 * Click **Save**.
 
-You can get a free Gemini API key from [Google AI Studio](https://aistudio.google.com/).
-
 <figure><img src="../../../.gitbook/assets/settings_modal_with_api_key_input.png" alt="Settings modal with API key input"></figure>
 
----
+{% hint style="info" %}
+You can get a free Gemini API key from [Google AI Studio](https://aistudio.google.com/).
+{% endhint %}
 
 ## Chat Interface
 
@@ -62,8 +56,6 @@ Once your API key is set, you'll see a traditional chat interface:
 Chat history is saved per saved questionnaire using browser local memory. For unsaved questionnaires, history will not persist across sessions.
 {% endhint %}
 
-
----
 
 ## Capabilities
 
@@ -89,48 +81,52 @@ In this example, the assistant:
 * Added a calculated BMI field
 * Updated the form preview accordingly
 
----
-
 ## Use Case Scenarios
 
-### 1. Quick Questionnaire Generation
+### 1. Building a Depression Screening Form (Iterative Approach)
 
-**Request:**
-"Create a depression screening form using PHQ-9."
+**Step 1:** "Search for PHQ-9 LOINC codes for depression screening."
+- Assistant finds relevant LOINC codes and displays them
 
-**Outcome:**
+**Step 2:** "Create the first PHQ-9 question about feeling down or depressed."
+- Assistant creates a choice item with 0-3 scale options
 
-* Searches LOINC for PHQ-9 codes
-* Generates items with scoring
-* Applies validation and layout styling
+**Step 3:** "Add the remaining 8 PHQ-9 questions using the same answer options."
+- Assistant creates consistent choice items for all questions
 
----
+**Step 4:** "Add a calculated total score field for the PHQ-9."
+- Assistant creates a calculation that sums all responses
 
-### 2. Dynamic Pre-population
+**Step 5:** "Make all questions required and adjust the layout to be more compact."
+- Assistant applies validation and styling improvements
 
-**Request:**
-"Pre-fill the patient's weight using recent observations."
+### 2. Setting Up Patient Data Pre-population
 
-**Outcome:**
+**Step 1:** "Create a decimal field for patient weight in kilograms."
+- Assistant creates a basic weight input field
 
-* Configures rules to pull data from past observations
-* Applies clinical code mapping (e.g., `29463-7` for weight)
-* Ensures fallback and visibility logic are set
+**Step 2:** "Configure this weight field to pre-populate from recent observations."
+- Assistant sets up population rules using LOINC code `29463-7`
 
----
+**Step 3:** "Set the lookback period to 6 months for weight observations."
+- Assistant configures the time period for observation search
 
-### 3. Interactive Editing
+**Step 4:** "Add validation to ensure weight is between 1-500 kg."
+- Assistant adds appropriate min/max constraints
 
-**Request:**
-"Make the BMI field read-only and move it after the weight input."
+### 3. Refining Form Structure
 
-**Outcome:**
+**Step 1:** "Show me the current questionnaire structure."
+- Assistant displays the form outline
 
-* Updates the field to be non-editable
-* Moves the element within the hierarchy
-* Adjusts any calculations or dependencies as needed
+**Step 2:** "Make the BMI field read-only since it's calculated."
+- Assistant updates the field's `readOnly` property
 
----
+**Step 3:** "Move the BMI field to appear right after the weight field."
+- Assistant repositions the item in the hierarchy
+
+**Step 4:** "Verify that the BMI calculation still works correctly."
+- Assistant confirms calculation expressions are functioning
 
 ## Best Practices
 
@@ -146,11 +142,9 @@ To get the most out of the AI Assistant, follow these recommendations:
 * **Test iteratively** - Make changes gradually and test functionality as you go
 * **Keep chat history manageable** - Clear chat history when conversations become too long, you want a fresh approach, the assistant seems confused, or you're switching task types.
 
----
-
 ## Questions & Answers
 
-### What API providers are supported?
+### 1. What API providers are supported?
 
 Currently, the AI Assistant supports:
 
@@ -159,36 +153,36 @@ Currently, the AI Assistant supports:
 
 You can enter your API key in the **Settings** panel under *AI Tools*.
 
-### Is my data sent to external servers?
+### 2. Is my data sent to external servers?
 
 Only the messages you type into the AI Assistant and necessary context (like form structure) are sent to the AI provider (OpenAI or Gemini), depending on the key you've configured. No patient-identifiable information is sent unless you explicitly include it.
 
-### How is my data and chat history stored?
+### 3. How is my data and chat history stored?
 
 Chat history is stored in your **browser's local memory** and persists per saved questionnaire. For unsaved questionnaires, chat history will reset if cleared manually.
 
 Questionnaire changes made by the assistant are temporary until you manually click the **"Save"** button to persist them on Aidbox. Unsaved changes remain in your browser session but are not permanently stored.
 
-### Does the assistant affect other questionnaires?
+### 4. Does the assistant affect other questionnaires?
 
 No. The assistant only affects the current questionnaire being edited and does not make changes to other forms or saved questionnaires.
 
-### Can I use the assistant to edit existing forms?
+### 5. Can I use the assistant to edit existing forms?
 
 Yes. The assistant can edit any aspect of existing FHIR SDC Questionnaires. See the **Capabilities** section above for a complete list of supported features.
 
-### What happens if I lose internet connection?
+### 6. What happens if I lose internet connection?
 
 If you lose connection, the assistant will be **unable to communicate with the AI provider**. Once you're reconnected, you can type **"Retry"** or **"Continue"** to resume the session.
 
-### Can I undo the assistant's changes?
+### 7. Can I undo the assistant's changes?
 
 Yes. You can use the **undo/redo** buttons in the builder interface to revert changes made by the assistant.
 
-### Does it support multilingual use?
+### 8. Does it support multilingual use?
 
-Yes. If supported by the underlying AI provider, the assistant will respond in the same language you use in your prompts. You can also select a preferred language in **AI Tools > Settings**.
+Yes. If supported by the underlying AI provider, the assistant will respond in the same language you use in your prompts.
 
-### Can I export the chat conversation?
+### 9. Can I export the chat conversation?
 
 Not directly at the moment. You can manually copy the conversation or extract it using developer tools. Export options may be available in future versions.
