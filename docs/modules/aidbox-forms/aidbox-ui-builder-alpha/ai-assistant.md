@@ -9,43 +9,28 @@ The AI Assistant in the Aidbox UI Builder is a powerful tool designed to help yo
 
 ## Getting Started
 
-### Opening the AI Assistant
-
-To access the AI Assistant:
-
-1. Navigate to the top-right corner of the Aidbox UI Builder.
-2. Click the context menu.
-3. Select **AI Tools** from the dropdown.
-
-<figure><img src="../../../.gitbook/assets/opening_ai_tools_menu.png" alt="Opening AI Tools menu"></figure>
-
-### API Key Requirement
-
-Before using the assistant, you need to provide an API key for AI completion. If a key hasn’t been configured, you’ll see a prompt directing you to set it up.
-
-<figure><img src="../../../.gitbook/assets/api_key_required_prompt.png" alt="API Key required prompt"></figure>
-
-Click **Go to Settings** to enter your key.
-
-### Configuring the API Key
-
-In the **Settings** modal:
-
-* Choose your preferred language.
-* Enter your **OpenAI** or **Google Gemini** API key.
-* Click **Save**.
-
-<figure><img src="../../../.gitbook/assets/settings_modal_with_api_key_input.png" alt="Settings modal with API key input"></figure>
+{% stepper %}
+{% step %}
+### Open the AI Assistant
+Navigate to the top-right corner of the Aidbox UI Builder, click the context menu, and select **AI Tools** from the dropdown.
+{% endstep %}
+{% step %}
+### Set up API key
+If no API key is configured, you'll see a prompt. Click **Go to Settings** to enter your key.
+{% endstep %}
+{% step %}
+### Configure settings
+In the **Settings** modal, choose your preferred language, enter your **OpenAI** or **Google Gemini** API key, and click **Save**.
 
 {% hint style="info" %}
 You can get a free Gemini API key from [Google AI Studio](https://aistudio.google.com/).
 {% endhint %}
+{% endstep %}
+{% endstepper %}
 
 ## Chat Interface
 
 Once your API key is set, you'll see a traditional chat interface:
-
-<figure><img src="../../../.gitbook/assets/chat_interface_with_a_message_exchange.png" alt="Chat interface with a message exchange"></figure>
 
 * Type your request and hit **Send** button or press **Shift+Enter** keys.
 * The assistant will respond and execute actions on your behalf.
@@ -71,11 +56,7 @@ The AI Assistant can comprehensively manage FHIR SDC Questionnaires including:
 * **Presentation** - Modify layout, styling, media content, and user interface elements
 * **Metadata** - Managing questionnaire-level properties such as title, version, and tags
 
-Below is an example where the assistant was asked to create a BMI form:
-
-<figure><img src="../../../.gitbook/assets/ai_assistant_creating_a_bmi_form.png" alt="AI assistant creating a BMI form"></figure>
-
-In this example, the assistant:
+For example, when asked to create a BMI form, the assistant:
 
 * Created height and weight fields
 * Added a calculated BMI field
