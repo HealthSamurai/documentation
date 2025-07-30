@@ -58,6 +58,7 @@ Object with the following structure:
   * `access-key-id` <mark style="color:red;">\*</mark> AWS key ID
   * `secret-access-key` <mark style="color:red;">\*</mark> AWS secret key
   * `region` <mark style="color:red;">\*</mark> AWS Bucket region
+  * `host` use you need to override the default `amazonaws.com`, for example, `us-gov-east-1.amazonaws.com`
 * `disable-idx?` the **default** is `false`. Allows to drop all indexes for resources, which data are going to be loaded. Indexes will be restored at the end of successful import. All information about dropped indexes is stored at `DisabledIndex` resources.
 * `drop-primary-key?` the **default** is `false`. The same as the previous parameter, but drops primary key constraint for resources tables. This parameter disables all checks for duplicates for imported resources.
 * `upsert?` the **default** is `false`. If `upsert?` is `false`, import for files with `id` uniqueness constraint violation will fail with an error, if `true` - records in the database will be overridden with records from import. Even when `upsert?` is `true`, it's still not allowed to have more than one record with the same id in one import file. Setting this option to true will cause a decrease in performance.
