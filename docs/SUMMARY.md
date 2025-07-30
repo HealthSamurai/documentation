@@ -65,6 +65,7 @@
   * [Terminology Tutorials](tutorials/terminology-tutorials/README.md)
     * [Load ICD-10 terminology into Aidbox](tutorials/terminology-tutorials/load-icd-10-terminology-into-aidbox.md)
     * [Uploading IG terminology content to external FHIR terminology server](tutorials/terminology-tutorials/uploading-ig-terminology-content-to-external-fhir-terminology-server.md)
+    * [Local Terminlogy](tutorials/terminology-tutorials/local-terminlogy.md)
   * [Validation Tutorials](tutorials/validation-tutorials/README.md)
     * [Upload FHIR Implementation Guide](tutorials/validation-tutorials/upload-fhir-implementation-guide/README.md)
       * [Environment Variable](tutorials/validation-tutorials/upload-fhir-implementation-guide/environment-variable.md)

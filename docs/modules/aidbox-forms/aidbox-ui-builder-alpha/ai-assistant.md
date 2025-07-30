@@ -1,9 +1,10 @@
 ---
-description: AI-powered tool for building and editing FHIR SDC Questionnaires through natural language interaction.
+description: >-
+  AI-powered tool for building and editing FHIR SDC Questionnaires through
+  natural language interaction.
 ---
 
-
-# AI Assistant in Aidbox UI Builder
+# AI Assistant
 
 The AI Assistant in the Aidbox UI Builder is a powerful tool designed to help you quickly build and manage **FHIR SDC Questionnaires** through natural language interaction. It provides seamless integration with the builder's tools and controls, significantly accelerating form creation and editing.
 
@@ -11,15 +12,20 @@ The AI Assistant in the Aidbox UI Builder is a powerful tool designed to help yo
 
 {% stepper %}
 {% step %}
-### Open the AI Assistant
+#### Open the AI Assistant
+
 Navigate to the top-right corner of the Aidbox UI Builder, click the context menu, and select **AI Tools** from the dropdown.
 {% endstep %}
+
 {% step %}
-### Set up API key
+#### Set up API key
+
 If no API key is configured, you'll see a prompt. Click **Go to Settings** to enter your key.
 {% endstep %}
+
 {% step %}
-### Configure settings
+#### Configure settings
+
 In the **Settings** modal, choose your preferred language, enter your **OpenAI** or **Google Gemini** API key, and click **Save**.
 
 {% hint style="info" %}
@@ -40,7 +46,6 @@ Once your API key is set, you'll see a traditional chat interface:
 {% hint style="info" %}
 Chat history is saved per saved questionnaire using browser local memory. For unsaved questionnaires, history will not persist across sessions.
 {% endhint %}
-
 
 ## Capabilities
 
@@ -68,28 +73,37 @@ For example, when asked to create a BMI form, the assistant:
 
 {% stepper %}
 {% step %}
-### Search for LOINC codes
-**User:** "Search for PHQ-9 LOINC codes for depression screening."  
+#### Search for LOINC codes
+
+**User:** "Search for PHQ-9 LOINC codes for depression screening."\
 **Assistant:** Finds relevant LOINC codes and displays them.
 {% endstep %}
+
 {% step %}
-### Create first question
-**User:** "Create the first PHQ-9 question about feeling down or depressed."  
+#### Create first question
+
+**User:** "Create the first PHQ-9 question about feeling down or depressed."\
 **Assistant:** Creates a choice item with 0-3 scale options.
 {% endstep %}
+
 {% step %}
-### Add remaining questions
-**User:** "Add the remaining 8 PHQ-9 questions using the same answer options."  
+#### Add remaining questions
+
+**User:** "Add the remaining 8 PHQ-9 questions using the same answer options."\
 **Assistant:** Creates consistent choice items for all questions.
 {% endstep %}
+
 {% step %}
-### Add scoring calculation
-**User:** "Add a calculated total score field for the PHQ-9."  
+#### Add scoring calculation
+
+**User:** "Add a calculated total score field for the PHQ-9."\
 **Assistant:** Creates a calculation that sums all responses.
 {% endstep %}
+
 {% step %}
-### Apply validation and styling
-**User:** "Make all questions required and adjust the layout to be more compact."  
+#### Apply validation and styling
+
+**User:** "Make all questions required and adjust the layout to be more compact."\
 **Assistant:** Applies validation and styling improvements.
 {% endstep %}
 {% endstepper %}
@@ -98,23 +112,30 @@ For example, when asked to create a BMI form, the assistant:
 
 {% stepper %}
 {% step %}
-### Create weight field
-**User:** "Create a decimal field for patient weight in kilograms."  
+#### Create weight field
+
+**User:** "Create a decimal field for patient weight in kilograms."\
 **Assistant:** Creates a basic weight input field.
 {% endstep %}
+
 {% step %}
-### Configure pre-population
-**User:** "Configure this weight field to pre-populate from recent observations."  
+#### Configure pre-population
+
+**User:** "Configure this weight field to pre-populate from recent observations."\
 **Assistant:** Sets up population rules using LOINC code `29463-7`.
 {% endstep %}
+
 {% step %}
-### Set lookback period
-**User:** "Set the lookback period to 6 months for weight observations."  
+#### Set lookback period
+
+**User:** "Set the lookback period to 6 months for weight observations."\
 **Assistant:** Configures the time period for observation search.
 {% endstep %}
+
 {% step %}
-### Add validation constraints
-**User:** "Add validation to ensure weight is between 1-500 kg."  
+#### Add validation constraints
+
+**User:** "Add validation to ensure weight is between 1-500 kg."\
 **Assistant:** Adds appropriate min/max constraints.
 {% endstep %}
 {% endstepper %}
@@ -123,23 +144,30 @@ For example, when asked to create a BMI form, the assistant:
 
 {% stepper %}
 {% step %}
-### Review current structure
-**User:** "Show me the current questionnaire structure."  
+#### Review current structure
+
+**User:** "Show me the current questionnaire structure."\
 **Assistant:** Displays the form outline.
 {% endstep %}
+
 {% step %}
-### Update field properties
-**User:** "Make the BMI field read-only since it's calculated."  
+#### Update field properties
+
+**User:** "Make the BMI field read-only since it's calculated."\
 **Assistant:** Updates the field's `readOnly` property.
 {% endstep %}
+
 {% step %}
-### Reposition items
-**User:** "Move the BMI field to appear right after the weight field."  
+#### Reposition items
+
+**User:** "Move the BMI field to appear right after the weight field."\
 **Assistant:** Repositions the item in the hierarchy.
 {% endstep %}
+
 {% step %}
-### Verify functionality
-**User:** "Verify that the BMI calculation still works correctly."  
+#### Verify functionality
+
+**User:** "Verify that the BMI calculation still works correctly."\
 **Assistant:** Confirms calculation expressions are functioning.
 {% endstep %}
 {% endstepper %}
@@ -169,7 +197,7 @@ Currently, the AI Assistant supports:
 * **OpenAI** (GPT-4o via OpenAI API) - **Recommended**
 * **Google Gemini** (Gemini 2.5 Pro)
 
-You can enter your API key in the **Settings** panel under *AI Tools*.
+You can enter your API key in the **Settings** panel under _AI Tools_.
 
 </details>
 

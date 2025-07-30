@@ -120,3 +120,9 @@ See also:
 ## Versioning Strategy
 
 When canonical resources reference other canonical resources, they can include specific version information in the canonical URL using the pipe syntax (e.g., `http://example.com/StructureDefinition/Patient|1.0.0`). If a canonical reference includes a specific version, the registry respects that exact version. However, when no version is specified in the reference, the registry uses a "latest version" resolution strategy, automatically selecting the most recent version of the referenced canonical resource available in the system.
+
+See also
+
+{% content-ref url="../tutorials/terminology-tutorials/local-terminlogy.md" %}
+[local-terminlogy.md](../tutorials/terminology-tutorials/local-terminlogy.md)
+{% endcontent-ref %}
