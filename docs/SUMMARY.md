@@ -292,6 +292,7 @@
   * [Aidbox Forms Interface](modules/aidbox-forms/aidbox-forms-interface.md)
   * [Aidbox UI Builder](modules/aidbox-forms/aidbox-ui-builder-alpha/README.md)
     * [UI Builder Interface](modules/aidbox-forms/aidbox-ui-builder-alpha/ui-builder-interface.md)
+    * [AI Assistant](modules/aidbox-forms/aidbox-ui-builder-alpha/ai-assistant.md)
     * [Form creation](modules/aidbox-forms/aidbox-ui-builder-alpha/form-creation/README.md)
       * [Form Settings](modules/aidbox-forms/aidbox-ui-builder-alpha/form-creation/form-settings.md)
       * [Widgets](modules/aidbox-forms/aidbox-ui-builder-alpha/form-creation/widgets.md)
