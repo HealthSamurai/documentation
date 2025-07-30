@@ -17,7 +17,7 @@
         environment:
           ....
           FHIR_TERMINOLOGY_ENGINE: hybrid
-          FHIR_TERMINOLOGY_ENGINE_HYBRID_EXTERNAL_TX_SERVER: https://tx.fhir.org/r4
+          FHIR_TERMINOLOGY_ENGINE_HYBRID_EXTERNAL_TX_SERVER: https://tx.health-samurai.io/fhir
     ```
 
 
