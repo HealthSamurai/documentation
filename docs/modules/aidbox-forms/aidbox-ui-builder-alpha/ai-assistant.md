@@ -85,48 +85,83 @@ In this example, the assistant:
 
 ### 1. Building a Depression Screening Form (Iterative Approach)
 
-**Step 1:** "Search for PHQ-9 LOINC codes for depression screening."
-- Assistant finds relevant LOINC codes and displays them
-
-**Step 2:** "Create the first PHQ-9 question about feeling down or depressed."
-- Assistant creates a choice item with 0-3 scale options
-
-**Step 3:** "Add the remaining 8 PHQ-9 questions using the same answer options."
-- Assistant creates consistent choice items for all questions
-
-**Step 4:** "Add a calculated total score field for the PHQ-9."
-- Assistant creates a calculation that sums all responses
-
-**Step 5:** "Make all questions required and adjust the layout to be more compact."
-- Assistant applies validation and styling improvements
+{% stepper %}
+{% step %}
+### Search for LOINC codes
+**User:** "Search for PHQ-9 LOINC codes for depression screening."  
+**Assistant:** Finds relevant LOINC codes and displays them.
+{% endstep %}
+{% step %}
+### Create first question
+**User:** "Create the first PHQ-9 question about feeling down or depressed."  
+**Assistant:** Creates a choice item with 0-3 scale options.
+{% endstep %}
+{% step %}
+### Add remaining questions
+**User:** "Add the remaining 8 PHQ-9 questions using the same answer options."  
+**Assistant:** Creates consistent choice items for all questions.
+{% endstep %}
+{% step %}
+### Add scoring calculation
+**User:** "Add a calculated total score field for the PHQ-9."  
+**Assistant:** Creates a calculation that sums all responses.
+{% endstep %}
+{% step %}
+### Apply validation and styling
+**User:** "Make all questions required and adjust the layout to be more compact."  
+**Assistant:** Applies validation and styling improvements.
+{% endstep %}
+{% endstepper %}
 
 ### 2. Setting Up Patient Data Pre-population
 
-**Step 1:** "Create a decimal field for patient weight in kilograms."
-- Assistant creates a basic weight input field
-
-**Step 2:** "Configure this weight field to pre-populate from recent observations."
-- Assistant sets up population rules using LOINC code `29463-7`
-
-**Step 3:** "Set the lookback period to 6 months for weight observations."
-- Assistant configures the time period for observation search
-
-**Step 4:** "Add validation to ensure weight is between 1-500 kg."
-- Assistant adds appropriate min/max constraints
+{% stepper %}
+{% step %}
+### Create weight field
+**User:** "Create a decimal field for patient weight in kilograms."  
+**Assistant:** Creates a basic weight input field.
+{% endstep %}
+{% step %}
+### Configure pre-population
+**User:** "Configure this weight field to pre-populate from recent observations."  
+**Assistant:** Sets up population rules using LOINC code `29463-7`.
+{% endstep %}
+{% step %}
+### Set lookback period
+**User:** "Set the lookback period to 6 months for weight observations."  
+**Assistant:** Configures the time period for observation search.
+{% endstep %}
+{% step %}
+### Add validation constraints
+**User:** "Add validation to ensure weight is between 1-500 kg."  
+**Assistant:** Adds appropriate min/max constraints.
+{% endstep %}
+{% endstepper %}
 
 ### 3. Refining Form Structure
 
-**Step 1:** "Show me the current questionnaire structure."
-- Assistant displays the form outline
-
-**Step 2:** "Make the BMI field read-only since it's calculated."
-- Assistant updates the field's `readOnly` property
-
-**Step 3:** "Move the BMI field to appear right after the weight field."
-- Assistant repositions the item in the hierarchy
-
-**Step 4:** "Verify that the BMI calculation still works correctly."
-- Assistant confirms calculation expressions are functioning
+{% stepper %}
+{% step %}
+### Review current structure
+**User:** "Show me the current questionnaire structure."  
+**Assistant:** Displays the form outline.
+{% endstep %}
+{% step %}
+### Update field properties
+**User:** "Make the BMI field read-only since it's calculated."  
+**Assistant:** Updates the field's `readOnly` property.
+{% endstep %}
+{% step %}
+### Reposition items
+**User:** "Move the BMI field to appear right after the weight field."  
+**Assistant:** Repositions the item in the hierarchy.
+{% endstep %}
+{% step %}
+### Verify functionality
+**User:** "Verify that the BMI calculation still works correctly."  
+**Assistant:** Confirms calculation expressions are functioning.
+{% endstep %}
+{% endstepper %}
 
 ## Best Practices
 
@@ -144,7 +179,9 @@ To get the most out of the AI Assistant, follow these recommendations:
 
 ## Questions & Answers
 
-### 1. What API providers are supported?
+<details>
+
+<summary>What API providers are supported?</summary>
 
 Currently, the AI Assistant supports:
 
@@ -153,36 +190,70 @@ Currently, the AI Assistant supports:
 
 You can enter your API key in the **Settings** panel under *AI Tools*.
 
-### 2. Is my data sent to external servers?
+</details>
+
+<details>
+
+<summary>Is my data sent to external servers?</summary>
 
 Only the messages you type into the AI Assistant and necessary context (like form structure) are sent to the AI provider (OpenAI or Gemini), depending on the key you've configured. No patient-identifiable information is sent unless you explicitly include it.
 
-### 3. How is my data and chat history stored?
+</details>
+
+<details>
+
+<summary>How is my data and chat history stored?</summary>
 
 Chat history is stored in your **browser's local memory** and persists per saved questionnaire. For unsaved questionnaires, chat history will reset if cleared manually.
 
 Questionnaire changes made by the assistant are temporary until you manually click the **"Save"** button to persist them on Aidbox. Unsaved changes remain in your browser session but are not permanently stored.
 
-### 4. Does the assistant affect other questionnaires?
+</details>
+
+<details>
+
+<summary>Does the assistant affect other questionnaires?</summary>
 
 No. The assistant only affects the current questionnaire being edited and does not make changes to other forms or saved questionnaires.
 
-### 5. Can I use the assistant to edit existing forms?
+</details>
+
+<details>
+
+<summary>Can I use the assistant to edit existing forms?</summary>
 
 Yes. The assistant can edit any aspect of existing FHIR SDC Questionnaires. See the **Capabilities** section above for a complete list of supported features.
 
-### 6. What happens if I lose internet connection?
+</details>
+
+<details>
+
+<summary>What happens if I lose internet connection?</summary>
 
 If you lose connection, the assistant will be **unable to communicate with the AI provider**. Once you're reconnected, you can type **"Retry"** or **"Continue"** to resume the session.
 
-### 7. Can I undo the assistant's changes?
+</details>
+
+<details>
+
+<summary>Can I undo the assistant's changes?</summary>
 
 Yes. You can use the **undo/redo** buttons in the builder interface to revert changes made by the assistant.
 
-### 8. Does it support multilingual use?
+</details>
+
+<details>
+
+<summary>Does it support multilingual use?</summary>
 
 Yes. If supported by the underlying AI provider, the assistant will respond in the same language you use in your prompts.
 
-### 9. Can I export the chat conversation?
+</details>
+
+<details>
+
+<summary>Can I export the chat conversation?</summary>
 
 Not directly at the moment. You can manually copy the conversation or extract it using developer tools. Export options may be available in future versions.
+
+</details>
