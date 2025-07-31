@@ -4,8 +4,6 @@
    [system]
    [clojure.string :as str]
    [gitbok.indexing.impl.uri-to-file :as uri-to-file]
-   [gitbok.indexing.impl.file-to-uri :as file-to-uri]
-   [gitbok.indexing.impl.summary :as summary]
    [gitbok.core :as gitbok]
    [clj-reload.core :as reload]
    [gitbok.markdown.core :as markdown]))

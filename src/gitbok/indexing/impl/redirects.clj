@@ -1,13 +1,9 @@
 (ns gitbok.indexing.impl.redirects
   (:require
-   [gitbok.utils :as utils]
-   [clj-yaml.core :as yaml]))
+   [gitbok.products]))
 
-(def ^:const ^:private
-  file
-  ".gitbook.yaml")
-
-(defn redirects-from-file []
-  (let [content (utils/slurp-resource file)]
-    (when content
-      (:redirects (yaml/parse-string content)))))
+(defn redirects [context]
+  (let [redirects (:redirects
+                    (gitbok.products/get-current-product context))]
+    (println "got " (count redirects) " redirects")
+    redirects))

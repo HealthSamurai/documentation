@@ -3,17 +3,18 @@
          "libs"
          "resources"
          "docs"
+         "docs-new"
          ".gitbook.yaml"
          ".gitbook"
          "version"]
- :deps {org.clojure/clojure    {:mvn/version "1.12.0"}
-        context/system         {:local/root "./libs/system"}
-        context/http           {:local/root "./libs/http"}
-        hiccup/hiccup          {:mvn/version "2.0.0-RC4"}
-        ring/ring-core         {:mvn/version "1.14.1"}
+ :deps {org.clojure/clojure {:mvn/version "1.12.0"}
+        context/system {:local/root "./libs/system"}
+        context/http {:local/root "./libs/http"}
+        hiccup/hiccup {:mvn/version "2.0.0-RC4"}
+        ring/ring-core {:mvn/version "1.14.1"}
 
         ;; search
-        org.msync/lucene-clj   {:mvn/version "0.2.0-SNAPSHOT"}
+        org.msync/lucene-clj {:mvn/version "0.2.0-SNAPSHOT"}
 
         ;; 29.05.25 some useful fixes were not released
         io.github.nextjournal/markdown
@@ -42,8 +43,8 @@
  :aliases
  {:dev
   {:extra-paths ["dev" "test" "resources"]
-   :extra-deps  {io.github.tonsky/clj-reload {:mvn/version "0.9.8"}
-                 io.github.tonsky/clojure-plus {:mvn/version "1.6.1"}}
+   :extra-deps {io.github.tonsky/clj-reload {:mvn/version "0.9.8"}
+                io.github.tonsky/clojure-plus {:mvn/version "1.6.1"}}
    :jvm-opts []}
 
   :nrepl {:extra-paths ["test"]
@@ -63,8 +64,8 @@
    :extra-paths ["test"]}
 
   :kaocha
-  {:main-opts  ["-m" "kaocha.runner"]
-   :jvm-opts   ["-XX:-OmitStackTraceInFastThrow"]}
+  {:main-opts ["-m" "kaocha.runner"]
+   :jvm-opts ["-XX:-OmitStackTraceInFastThrow"]}
 
   :build
   {:extra-paths ["build"]

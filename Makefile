@@ -2,6 +2,7 @@
 
 init-test:
 	cp .gitbook.yaml resources
+	if [ -n "$$WORKDIR" ]; then cp $$WORKDIR/products.yaml resources; else cp products.yaml resources 2>/dev/null || true; fi
 	echo 'dev' > resources/version
 	mkdir -p .git/hooks
 
@@ -11,6 +12,9 @@ init:
 	chmod +x .git/hooks/pre-push
 
 repl: init-test
+	DEV=true BASE_URL=http://localhost:8081 DOCS_PREFIX=/ WORKDIR=docs-new clj -M:dev:nrepl:test:build
+
+repl-legacy: init-test
 	DEV=true BASE_URL=http://localhost:8081 DOCS_PREFIX=/ clj -M:dev:nrepl:test:build
 
 mcp:
@@ -23,6 +27,9 @@ build-tailwind-min:
 	npx @tailwindcss/cli -i ./resources/public/app.css -o ./resources/public/app.min.css --minify
 
 uberjar:
+	WORKDIR=docs-new clojure -M:build -m build
+
+uberjar-legacy:
 	clojure -M:build -m build
 
 docker-clean:

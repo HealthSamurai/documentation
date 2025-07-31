@@ -5,6 +5,7 @@
    [gitbok.indexing.impl.summary]
    [gitbok.indexing.impl.redirects :as redirects]
    [gitbok.utils :as utils]
+   [gitbok.products :as products]
    [clojure.data]
    [system]))
 
@@ -21,12 +22,12 @@
         filepath))))
 
 (defn uri->file-idx
-  [_]
-  (let [summary-text (gitbok.indexing.impl.summary/read-summary)
+  [context]
+  (let [summary-text (gitbok.indexing.impl.summary/read-summary context)
         lines (str/split-lines summary-text)
         readme-count (count "readme.md")
         md-count (count ".md")
-        redirects (->> (redirects/redirects-from-file)
+        redirects (->> (redirects/redirects context)
                        (mapv (fn [[k v]] [(subs (str k) 1) v]))
                        (into {}))
         index
@@ -83,7 +84,9 @@
                 (recur (rest lines) section stack acc)))))
         diff
         (nth (clojure.data/diff (set (keys redirects))
-                                (set (keys index))) 2)]
+                                (set (keys index))) 2)
+
+        result (merge index redirects)]
 
     (when diff
       (println "diff between redirects and summary urls")
@@ -92,14 +95,16 @@
         (printf "record in summary: {%s %s}\n" p (get index p))
         (printf "file in redirect: {%s %s}\n" p (get redirects p))
         (println "-------")))
-    (merge index redirects)))
+    (println "uri->file idx is ready with " (count result) " entries")
+    result))
 
 (defn get-idx [context]
-  (system/get-system-state context [const/URI->FILE_IDX]))
+  (products/get-product-state context [const/URI->FILE_IDX]))
 
 (defn set-idx [context]
-  (system/set-system-state context [const/URI->FILE_IDX]
-                           (uri->file-idx context)))
+  (products/set-product-state
+   context [const/URI->FILE_IDX]
+   (uri->file-idx context)))
 
 (defn all-urls [context]
   (keys (get-idx context)))

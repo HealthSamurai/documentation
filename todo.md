@@ -1,7 +1,8 @@
 # Todo
 
 ## Most important
-
+- [ ] /aidbox /forms
+- [ ] works in other domain /docs 
 - [ ] new UI to move pages (handles references and creates redirect)
 
 # bugs/techdebt

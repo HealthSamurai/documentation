@@ -11,13 +11,12 @@
    [gitbok.indexing.impl.summary :as summary]
    [gitbok.indexing.impl.uri-to-file :as uri-to-file]
    [gitbok.ui.main-content :as main-content]
-   [gitbok.ui.right-toc :as right-toc]
    [gitbok.ui.layout :as layout]
    [gitbok.ui.not-found :as not-found]
    [gitbok.ui.search]
-   [gitbok.dev.page-relocator :as page-relocator]
    [ring.middleware.gzip :refer [wrap-gzip]]
    [gitbok.http]
+   [gitbok.products :as products]
    [http]
    [ring.util.response :as resp]
    [system]
@@ -34,6 +33,7 @@
 
 (defn read-markdown-file [context filepath]
   (let [[filepath section] (str/split filepath #"#")
+        filepath (products/filepath context filepath)
         content* (utils/slurp-resource filepath)
         {:keys [parsed description title]}
         (markdown/parse-markdown-content
@@ -74,7 +74,7 @@
              [:pre (pr-str e)]]))]
     {:content
      (if (map? result)
-       (:content result) ; This preserves the {:content ... :parsed ...} structure from render-file*
+       (:content result)
        [:div result])
      :section (:section result)
      :description (:description result)}))
@@ -109,24 +109,28 @@
 (defn render-file-view
   [context request]
   (let [uri (:uri request)
-        uri-without-prefix (if (str/starts-with? uri prefix)
-                             (subs uri (count prefix))
-                             uri)]
+        uri-relative
+        (utils/uri-to-relative
+         uri
+         prefix
+         (products/path context))]
+    (def u uri-relative )
     (cond
 
-      (or (= uri-without-prefix "robots.txt")
+      (or (= uri-relative "robots.txt")
           (= uri "/robots.txt"))
       (resp/resource-response "public/robots.txt")
 
-      (or (picture-url? uri-without-prefix)
+      (or (picture-url? uri-relative)
           (picture-url? uri))
       (render-pictures context request)
 
-      (str/starts-with? uri-without-prefix "public/og-preview")
-      (resp/resource-response uri-without-prefix)
+      (str/starts-with? uri-relative "public/og-preview")
+      (resp/resource-response uri-relative)
 
       :else
-      (let [filepath (indexing/uri->filepath context uri-without-prefix)]
+      (let [filepath
+            (indexing/uri->filepath context uri-relative)]
         (if filepath
           (let [lastmod (indexing/get-lastmod context filepath)
                 etag (utils/etag lastmod)]
@@ -151,7 +155,7 @@
 
           (layout/layout
            context request
-           {:content (not-found/not-found-view context uri-without-prefix)
+           {:content (not-found/not-found-view context uri-relative)
             :status 404
             :title "Not found"
             :description "Page not found"}))))))
@@ -164,9 +168,12 @@
 
 (defn redirect-to-readme
   [context request]
-  (let [request
+  (let [uri (products/uri
+             context prefix
+             (or (products/readme-url context) "readme"))
+        request
         (assoc request
-               :uri (utils/concat-urls prefix "readme")
+               :uri uri
                :/ true)]
     (render-file-view context request)))
 
@@ -197,79 +204,88 @@
   {:services ["http" "uui" "gitbok.core"]
    :http {:port port}})
 
+(defn product-middleware
+  "Middleware to determine product from request URI"
+  [handler]
+  (fn [context request]
+    (let [uri (:uri request)
+          products-config (products/get-products-config context)
+          product (products/determine-product-by-uri products-config uri)
+          context (products/set-current-product-id context (:id product))]
+      (handler context request))))
+
 (defn gzip-middleware [f]
   (fn [ctx req]
     (let [ring-handler (fn [req] (f ctx req))
           gzip-handler (wrap-gzip ring-handler)]
       (gzip-handler req))))
 
+(defn init-product-indices
+  "Initializes indexes for a specific product"
+  [context product]
+  (let [;; Temporarily set current product for initialization
+        ctx (products/set-current-product-id context (:id product))]
+    ;; order is important
+    (println "1. read summary. create toc htmx.")
+    (summary/set-summary ctx)
+    (println "2. get uris from summary (using slugging), merge with redirects")
+    (uri-to-file/set-idx ctx)
+    (println "3. reverse file to uri idx")
+    (file-to-uri/set-idx ctx)
+    (println "4. using files from summary (step 3), read all files into memory")
+    (indexing/set-md-files-idx ctx (file-to-uri/get-idx ctx))
+    (println "5. parse all files into memory, some things are already rendered as plain html")
+    (markdown/set-parsed-markdown-index ctx (indexing/get-md-files-idx ctx))
+    (println "6. using parsed markdown, set search index")
+    (indexing/set-search-idx ctx (markdown/get-parsed-markdown-index ctx))
+    (println "7. render it on start")
+    (when-not dev?
+      (println "Not DEV, render all pages into memory")
+      (markdown/render-all! ctx
+                            (markdown/get-parsed-markdown-index ctx)
+                            read-markdown-file)
+      (println "Render all pages done."))
+    (println "8. generate sitemap.xml for product")
+    (when-not dev?
+      (println (str "generating sitemap.xml for " (:name product)))
+      (sitemap/set-sitemap
+       ctx
+       (edamame/parse-string (utils/slurp-resource "lastmod.edn"))))
+    (println "9. set lastmod.edn in context for Last Modified metadata")
+    ;; todo
+    (indexing/set-lastmod ctx)))
+
+(defn init-products
+  "Initializes all products from configuration"
+  [context workdir]
+  (let [products-config (products/load-products-config workdir)]
+    (products/set-products-config context products-config)
+    products-config))
+
 #_{:clj-kondo/ignore [:unresolved-symbol]}
 (system/defstart
   [context config]
+  ;; Read WORKDIR at startup and store in system state
+
   (gitbok.http/set-port context port)
+
   (gitbok.http/set-prefix context prefix)
+
   (gitbok.http/set-base-url context base-url)
-  (gitbok.http/set-version context (str/trim (utils/slurp-resource "version")))
+
+  (gitbok.http/set-version
+   context
+   (str/trim (utils/slurp-resource "version")))
+
   (gitbok.http/set-dev-mode context dev?)
 
-  ;; order is important
-  ; 1. read summary. create toc htmx.
-  (summary/set-summary context)
-  ; 2. get uris from summary (using slugging), merge with redirects
-  (uri-to-file/set-idx context)
-  ; 3. reverse file to uri idx
-  (file-to-uri/set-idx context)
-  ; 4. using files from summary (step 3), read all files into memory
-  (indexing/set-md-files-idx
-   context
-   (file-to-uri/get-idx context))
-  ; 5. parse all files into memory, some things are already rendered as plain html
-  (markdown/set-parsed-markdown-index
-   context
-   (indexing/get-md-files-idx context))
-  ; 6. using parsed markdown, set search index
-  (indexing/set-search-idx
-   context
-   (markdown/get-parsed-markdown-index context))
-  ;; 7. render it on start
-  (when-not dev?
-    (markdown/render-all!
-     context
-     (markdown/get-parsed-markdown-index context) read-markdown-file))
-  ;; 8. generate sitemap.xml
-  (when-not
-   dev?
-    (println "generating sitemap.xml")
-    (sitemap/set-sitemap
-     context
-     (edamame/parse-string (utils/slurp-resource "lastmod.edn"))))
-  ;; 9. set lastmod.edn in context for Last Modified metadata
-  (indexing/set-lastmod context)
-
   (http/register-endpoint
    context
-   {:path (utils/concat-urls prefix "/search/dropdown")
+   {:path (utils/concat-urls prefix "/static/:path*")
     :method :get
-    :middleware [gzip-middleware]
-    :fn (fn [context request]
-          (let [result (gitbok.ui.search/search-dropdown-results context request)]
-            {:status 200
-             :headers {"content-type" "text/html; charset=utf-8"
-                       "Cache-Control" "no-cache, no-store, must-revalidate"}
-             :body (gitbok.utils/->html result)}))})
-
-  (http/register-endpoint
-   context
-   {:path (utils/concat-urls prefix "/sitemap.xml")
-    :method :get
-    :fn #'sitemap-xml})
-
-  (http/register-endpoint
-   context
-   {:path (utils/concat-urls prefix "/:path*")
-    :method :get
-    :middleware [gzip-middleware]
-    :fn #'render-file-view})
+    :fn (fn [_ request]
+          (resp/resource-response
+           (str "public/" (get-in request [:params :path]))))})
 
   (http/register-endpoint
    context
@@ -278,37 +294,61 @@
     :middleware [gzip-middleware]
     :fn #'render-pictures})
 
-  (http/register-endpoint
-   context
-   {:path (utils/concat-urls prefix "favicon.ico")
-    :method :get
-    :middleware [gzip-middleware]
-    :fn #'render-favicon})
+  (let [workdir (System/getenv "WORKDIR")]
+    (when workdir
+      (println "WORKDIR set to:" workdir)
+      (system/set-system-state context [::workdir] workdir)))
 
-  (http/register-endpoint
-   context
-   {:path prefix
-    :method :get
-    :middleware [gzip-middleware]
-    :fn #'redirect-to-readme})
+  ;; Initialize all products
+  (let [products-config
+        (init-products
+         context
+         (system/get-system-state context [::workdir]))]
+    ;; Register endpoints for each product
+    (doseq [product products-config]
+      (let [product-path (utils/concat-urls prefix (:path product))]
+        (println "base path! " product-path)
 
-  (http/register-endpoint
-   context
-   {:path (utils/concat-urls prefix "/widgets")
-    :method :get
-    :middleware [gzip-middleware]
-    :fn #'gitbok.markdown.widgets/widgets})
+        ;; Product main page
+        (http/register-endpoint
+         context
+         {:path product-path
+          :method :get
+          :middleware [product-middleware gzip-middleware]
+          :fn #'redirect-to-readme})
 
-  (println "setup done!")
-  (println "PORT env " (System/getenv "PORT"))
-  (println "port " port)
-  (println "version " (utils/slurp-resource "version"))
+        ;; Product search
+        (http/register-endpoint
+         context
+         {:path (str product-path "/search/dropdown")
+          :method :get
+          :middleware [product-middleware gzip-middleware]
+          :fn
+          gitbok.ui.search/search-endpoint})
 
-  (http/register-endpoint
-   context
-   {:path "/healthcheck"
-    :method :get
-    :fn #'healthcheck})
+        ;; Product sitemap
+        (http/register-endpoint
+         context
+         {:path (str product-path "/sitemap.xml")
+          :method :get
+          :middleware [product-middleware]
+          :fn #'sitemap-xml})
+
+        ;; Product favicon
+        (http/register-endpoint
+         context
+         {:path (str product-path "/favicon.ico")
+          :method :get
+          :middleware [product-middleware gzip-middleware]
+          :fn #'render-favicon})
+
+        ;; All product pages
+        (http/register-endpoint
+         context
+         {:path (str product-path "/:path*")
+          :method :get
+          :middleware [product-middleware gzip-middleware]
+          :fn #'render-file-view}))))
 
   (http/register-endpoint
    context
@@ -316,76 +356,30 @@
     :method :get
     :fn #'version-endpoint})
 
-  ;; Dev endpoints (only available when DEV=true)
-  (when dev?
-    (http/register-endpoint
-     context
-     {:path "/dev/page-info"
-      :method :get
-      :fn (fn [context request]
-            (println "DEBUG: Full request object:" request)
-            (println "DEBUG: Query params:" (:query-params request))
-            (println "DEBUG: Params:" (:params request))
-            (println "DEBUG: Query string:" (:query-string request))
-            (let [uri (or (get-in request [:query-params :uri])
-                          (get-in request [:params :uri])
-                          (:uri request))]
-              (println "DEBUG: /dev/page-info endpoint called with URI:" uri)
-              (let [result (page-relocator/get-current-page-info context uri)]
-                (println "DEBUG: get-current-page-info result:" result)
-                {:status 200
-                 :headers {"content-type" "application/json"}
-                 :body (utils/->json result)})))})
+  (let [products-config (products/get-products-config context)]
+    (doseq [product products-config]
+      (println)
+      (println)
+      (println (str "Initializing product indices: "
+                    (:name product)))
+      (init-product-indices context product))
 
-    (http/register-endpoint
-     context
-     {:path "/dev/preview-url"
-      :method :post
-      :fn (fn [context request]
-            (println "DEBUG: /dev/preview-url request body:" (:body request))
-            (try
-              (let [body-str (if (instance? java.io.InputStream (:body request))
-                               (slurp (:body request))
-                               (:body request))
-                    _ (println "DEBUG: body string:" body-str)
-                    body (utils/json->clj body-str)
-                    _ (println "DEBUG: parsed body:" body)
-                    new-file-path (:new-file-path body)
-                    _ (println "DEBUG: new-file-path:" new-file-path)]
-                {:status 200
-                 :headers {"content-type" "application/json"}
-                 :body (utils/->json {:new-url (page-relocator/preview-new-url context new-file-path)})})
-              (catch Exception e
-                (println "DEBUG: Error in /dev/preview-url:" (.getMessage e))
-                {:status 500
-                 :headers {"content-type" "application/json"}
-                 :body (utils/->json {:error (.getMessage e)})})))})
+    (println "setup done!")
+    (println "version " (utils/slurp-resource "version"))
+    (println "PORT env " (System/getenv "PORT"))
+    (println "port " port)
+    (println "BASE_URL " base-url)
+    (println "PREFIX " prefix)
+    (println "Products:\n"
+             (str/join "\n" (mapv #(str (:name %) " - " (:path %))
+                                  products-config))
+             "\n"))
 
-    (http/register-endpoint
-     context
-     {:path "/dev/relocate-page"
-      :method :post
-      :fn (fn [context request]
-            (println "DEBUG: /dev/relocate-page request body:" (:body request))
-            (try
-              (let [body-str (if (instance? java.io.InputStream (:body request))
-                               (slurp (:body request))
-                               (:body request))
-                    _ (println "DEBUG: body string:" body-str)
-                    body (utils/json->clj body-str)
-                    _ (println "DEBUG: parsed body:" body)
-                    current-filepath (:current-filepath body)
-                    new-filepath (:new-filepath body)
-                    _ (println "DEBUG: current-filepath:" current-filepath "new-filepath:" new-filepath)
-                    result (page-relocator/relocate-page context current-filepath new-filepath)]
-                {:status (if (:success result) 200 400)
-                 :headers {"content-type" "application/json"}
-                 :body (utils/->json result)})
-              (catch Exception e
-                (println "DEBUG: Error in /dev/relocate-page:" (.getMessage e))
-                {:status 500
-                 :headers {"content-type" "application/json"}
-                 :body (utils/->json {:error (.getMessage e)})})))}))
+  (http/register-endpoint
+   context
+   {:path "/healthcheck"
+    :method :get
+    :fn #'healthcheck})
 
   {})
 

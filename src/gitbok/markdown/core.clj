@@ -16,6 +16,7 @@
    [hickory.core]
    [system]
    [gitbok.constants :as const]
+   [gitbok.products :as products]
    [hiccup2.core]
    [nextjournal.markdown.utils :as u]
    [uui]))
@@ -250,22 +251,25 @@
           render-md))))
 
 (defn set-parsed-markdown-index [context md-files-idx]
-  (system/set-system-state
-   context
-   [const/PARSED_MARKDOWN_IDX]
-   (mapv #(parse-markdown-content context %) md-files-idx)))
+  (let [parsed-files
+        (mapv #(parse-markdown-content context %) md-files-idx)]
+    (println "Parsed " (count parsed-files) " files")
+    (products/set-product-state
+      context
+      [const/PARSED_MARKDOWN_IDX]
+      parsed-files)))
 
 (defn get-parsed-markdown-index [context]
-  (system/get-system-state
+  (products/get-product-state
    context
    [const/PARSED_MARKDOWN_IDX]))
 
 (defn get-rendered [context filepath]
-  (get (system/get-system-state context [const/RENDERED])
+  (get (products/get-product-state context [const/RENDERED])
        filepath))
 
 (defn render-all! [context parsed-md-index read-markdown-file]
-  (system/set-system-state
+  (products/set-product-state
    context
    [const/RENDERED]
    (->> parsed-md-index

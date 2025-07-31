@@ -183,3 +183,11 @@
           (map-indexed (fn [idx result]
                          (dropdown-result-item context result query idx))
                        grouped-results)]]))))
+
+(defn search-endpoint [context request]
+  (let [result
+        (search-dropdown-results context request)]
+    {:status 200
+     :headers {"content-type" "text/html; charset=utf-8"
+               "Cache-Control" "no-cache, no-store, must-revalidate"}
+     :body (gitbok.utils/->html result)}))

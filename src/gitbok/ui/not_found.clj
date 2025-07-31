@@ -8,7 +8,8 @@
 
 (defn not-found-view [context uri]
   (let [search-term (last (str/split uri #"/"))
-        search-results (gitbok.search/search context search-term)]
+        search-results (when search-term
+                        (gitbok.search/search context search-term))]
     [:div.min-h-screen.flex.items-center.justify-center
      [:script
       (uui/raw "

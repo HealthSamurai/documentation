@@ -1,0 +1,14 @@
+products:
+  - id: aidbox
+    name: "Aidbox Documentation"
+    # url <BASE_URL><DOCS_PREFIX>/aidbox
+    path: /aidbox
+    config: ./aidbox/.gitbook.yaml
+    logo: .gitbook/assets/aidbox_logo.jpg
+
+  - id: forms
+    name: "Forms Documentation"
+    # url <BASE_URL><DOCS_PREFIX>/forms
+    path: /forms
+    config: ./forms/.gitbook.yaml
+    logo: .gitbook/assets/forms_logo.jpg

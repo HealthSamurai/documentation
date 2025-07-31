@@ -6,6 +6,7 @@
    [gitbok.indexing.impl.search-index :as search-index]
    [gitbok.indexing.impl.file-to-uri :as file-to-uri]
    [gitbok.constants :as const]
+   [gitbok.products :as products]
    [edamame.core :as edamame]
    [system]
    [clojure.string :as str]
@@ -35,7 +36,9 @@
   (gitbok.indexing.impl.file-to-uri/filepath->uri context filepath))
 
 (defn uri->filepath [context ^String uri]
-  (gitbok.indexing.impl.uri-to-file/uri->filepath (uri-to-file/get-idx context) uri))
+  (def hhh (uri-to-file/get-idx context) )
+  (gitbok.indexing.impl.uri-to-file/uri->filepath
+    (uri-to-file/get-idx context) uri))
 
 (defn page-link->uri [context
                       ^String current-page-filepath
@@ -83,50 +86,53 @@
                "user.dir")))
 
             path (if (str/starts-with? path "/") (utils/safe-subs path 1) path)
-            path (gitbok.http/get-prefixed-url context (str "/" (:uri (get file->uri-idx path))))]
+            path (gitbok.http/get-product-prefixed-url context (str "/" (:uri (get file->uri-idx path))))]
 
         (if section
           (str path "#" section)
           path)))))
 
 (defn create-search-index
-  "POC."
   [parsed-md-index]
-  (search-index/parsed-md-idx->index parsed-md-index))
+  (let [si (search-index/parsed-md-idx->index parsed-md-index)]
+    (println "created search index with " (count si) " entries")
+    si))
 
 (defn read-content [filepath]
   (utils/slurp-resource filepath))
 
-(defn slurp-md-files! [filepaths-from-summary]
-  ;; "docs" is in resources classpath in deps.edn
-  (reduce (fn [acc filename]
-            (if (str/starts-with? filename "http")
-              acc
-              (assoc acc filename
-                     (read-content filename)))) {}
-          filepaths-from-summary))
+(defn slurp-md-files! [context filepaths-from-summary]
+  (let [files (reduce (fn [acc filename]
+                        (if (str/starts-with? filename "http")
+                          acc
+                          (assoc acc filename
+                                 (read-content filename)))) {}
+                      (mapv #(products/filepath context %)
+                            filepaths-from-summary))]
+    (println (format "Slurped %s files" (count files)))
+    files))
 
 (defn set-md-files-idx [context file-to-uri-idx]
-  (system/set-system-state
+  (products/set-product-state
    context
    [const/MD_FILES_IDX]
-   (slurp-md-files! (keys file-to-uri-idx))))
+   (slurp-md-files! context (keys file-to-uri-idx))))
 
 (defn get-md-files-idx [context]
-  (system/get-system-state
+  (products/get-product-state
    context
    [const/MD_FILES_IDX]))
 
 (defn set-search-idx
   [context parsed-md-index]
-  (system/set-system-state
+  (products/set-product-state
    context
    [const/SEARCH_IDX]
    (create-search-index parsed-md-index)))
 
 (defn get-search-idx [context]
-  (system/get-system-state context
-                           [const/SEARCH_IDX]))
+  (products/get-product-state context
+                              [const/SEARCH_IDX]))
 
 (defn search [context q]
   (search-index/search (get-search-idx context) q))
@@ -142,11 +148,11 @@
 (defn get-lastmod [context filepath]
   (when filepath
     (get
-     (system/get-system-state context [const/LASTMOD])
+     (products/get-product-state context [const/LASTMOD])
      filepath)))
 
 (defn set-lastmod [context]
-  (system/set-system-state
+  (products/set-product-state
    context
    [const/LASTMOD]
    (edamame/parse-string (utils/slurp-resource "lastmod.edn"))))
