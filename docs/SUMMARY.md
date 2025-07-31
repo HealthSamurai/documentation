@@ -231,6 +231,9 @@
     * [Migrate custom resources defined with Entity & Attributes to FHIR Schema](artifact-registry/custom-resources/migrate-to-fhirschema/migrate-custom-resources-defined-with-entity-and-attributes-to-fhir-schema.md)
     * [Migrate custom resources defined with Zen to FHIR Schema](artifact-registry/custom-resources/migrate-to-fhirschema/migrate-custom-resources-defined-with-zen-to-fhir-schema.md)
 
+## Terminology Module
+* [Terminology Module Overview](terminology/terminology-overview.md)
+
 ## Database
 
 * [Database Overview](database/overview.md)
