@@ -36,9 +36,9 @@
   (gitbok.indexing.impl.file-to-uri/filepath->uri context filepath))
 
 (defn uri->filepath [context ^String uri]
-  (def hhh (uri-to-file/get-idx context) )
+  (def hhh (uri-to-file/get-idx context))
   (gitbok.indexing.impl.uri-to-file/uri->filepath
-    (uri-to-file/get-idx context) uri))
+   (uri-to-file/get-idx context) uri))
 
 (defn page-link->uri [context
                       ^String current-page-filepath
@@ -105,10 +105,11 @@
   (let [files (reduce (fn [acc filename]
                         (if (str/starts-with? filename "http")
                           acc
-                          (assoc acc filename
-                                 (read-content filename)))) {}
-                      (mapv #(products/filepath context %)
-                            filepaths-from-summary))]
+                          (let [full-path (products/filepath context filename)]
+                            (assoc acc full-path
+                                   (read-content full-path))))) {}
+                      (filter #(not (str/starts-with? % "http"))
+                              filepaths-from-summary))]
     (println (format "Slurped %s files" (count files)))
     files))
 
@@ -152,10 +153,30 @@
      filepath)))
 
 (defn set-lastmod [context]
-  (products/set-product-state
-   context
-   [const/LASTMOD]
-   (edamame/parse-string (utils/slurp-resource "lastmod.edn"))))
+  (let [product-id (products/get-current-product-id context)
+        ;; Try product-specific lastmod first
+        product-lastmod-path (str "lastmod/lastmod-" product-id ".edn")
+        ;; Fallback paths for backward compatibility
+        default-lastmod-path "lastmod.edn"
+        lastmod-data (try
+                       ;; Try to load product-specific lastmod
+                       (edamame/parse-string
+                        (utils/slurp-resource product-lastmod-path))
+                       (catch Exception _
+                         (try
+                           ;; Fallback to default lastmod
+                           (edamame/parse-string
+                            (utils/slurp-resource default-lastmod-path))
+                           (catch Exception _
+                             ;; If no lastmod files exist, return empty map
+                             (do
+                               (println (str "Warning: No lastmod file found for product "
+                                             product-id))
+                               {})))))]
+    (products/set-product-state
+     context
+     [const/LASTMOD]
+     lastmod-data)))
 
 (defn parent? [context filepath]
   (let [uri (filepath->uri context filepath)]

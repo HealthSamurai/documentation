@@ -14,7 +14,8 @@
 
         result
         (into {}
-              (for [[_ page-name filepath] (re-seq link-pattern summary-text)]
+              (for [[_ page-name filepath] (re-seq link-pattern summary-text)
+                    :when (not (str/starts-with? filepath "http"))]
                 [filepath
                  {:title page-name
                   :uri
