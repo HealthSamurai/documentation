@@ -1,6 +1,6 @@
 products:
   - id: aidbox
-    name: "Aidbox Documentation"
+    name: "Aidbox Uses Docs"
     # url <BASE_URL><DOCS_PREFIX>/aidbox
     path: /aidbox
     config: ./aidbox/.gitbook.yaml
