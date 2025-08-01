@@ -17,6 +17,7 @@
    [ring.middleware.gzip :refer [wrap-gzip]]
    [gitbok.http]
    [gitbok.products :as products]
+   [gitbok.constants :as const]
    [http]
    [ring.util.response :as resp]
    [system]
@@ -267,15 +268,14 @@
                             (markdown/get-parsed-markdown-index ctx)
                             read-markdown-file)
       (println "Render all pages done."))
-    (println "8. generate sitemap.xml for product")
+    (println "8. set lastmod data in context for Last Modified metadata")
+    (indexing/set-lastmod ctx)
+    (println "9. generate sitemap.xml for product")
     (when-not dev?
       (println (str "generating sitemap.xml for " (:name product)))
-      (sitemap/set-sitemap
-       ctx
-       (edamame/parse-string (utils/slurp-resource "lastmod.edn"))))
-    (println "9. set lastmod.edn in context for Last Modified metadata")
-    ;; todo
-    (indexing/set-lastmod ctx)))
+      ;; Now sitemap can use the lastmod data from context
+      (let [lastmod-data (products/get-product-state ctx [const/LASTMOD])]
+        (sitemap/set-sitemap ctx lastmod-data)))))
 
 (defn init-products
   "Initializes all products from configuration"
