@@ -8,7 +8,7 @@
 ## Before you begin
 
 * Set up your local Aidbox instance by following the Getting Started [guide](../../getting-started/run-aidbox-locally.md). It will make sure that the Aidbox version is  `2507`  or higher.
-*   Update your  `docker-compose.yaml` file by adding the following environment variables under the `aidbox.environment` section:\
+*   The following settings in the  `docker-compose.yaml` enable the hybrid terminology engine.\
 
 
     ```yaml
@@ -16,8 +16,8 @@
         ...
         environment:
           ....
-          FHIR_TERMINOLOGY_ENGINE: hybrid
-          FHIR_TERMINOLOGY_ENGINE_HYBRID_EXTERNAL_TX_SERVER: https://tx.health-samurai.io/fhir
+          BOX_FHIR_TERMINOLOGY_ENGINE: hybrid
+          BOX_FHIR_TERMINOLOGY_ENGINE_HYBRID_EXTERNAL_TX_SERVER: https://tx.health-samurai.io/fhir
     ```
 
 
