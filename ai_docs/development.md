@@ -5,12 +5,7 @@ Used technologies:
 
 Development rules:
 0. Always use `clojure-mcp` and `sequentialthinking` mcps.
-1. When you change .clj files, to test changes restart the server using `clojure-mcp` in the `user` namespace, eval this: 
-```clojure
-(do (reload/reload)
-      (system/stop-system context)
-      (def context (system/start-system gitbok/default-config)))`.
-```
+1. When you change .clj files, ask to re-evaluate repl and check.
 2. First think through the problem, read the codebase for relevant files, and write a plan
 3. The plan should have a list of todo items that you can check off as you complete them
 4. Before you begin working, check in with me and I will verify the plan.
