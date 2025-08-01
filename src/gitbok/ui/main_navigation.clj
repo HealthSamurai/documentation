@@ -1,5 +1,6 @@
 (ns gitbok.ui.main-navigation
-  (:require [gitbok.http]))
+  (:require [gitbok.http]
+            [gitbok.products :as products]))
 
 (defn nav [context]
   [:nav {:class "w-full bg-header-bg backdrop-blur-header border-b border-header-border flex-shrink-0 sticky top-0 z-50"
@@ -13,36 +14,34 @@
       [:svg {:class "size-6" :fill "none" :stroke "currentColor" :viewBox "0 0 24 24"}
        [:path {:stroke-linecap "round" :stroke-linejoin "round" :stroke-width "2" :d "M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5"}]]]
 
-     [:a {:href
-          (gitbok.http/get-url context)
-          :class "group/headerlogo min-w-0 shrink flex items-center"}
-      [:img {:alt "Aidbox Logo"
-             :class "block object-contain size-8"
-             :fetchpriority "high"
-             :src
-             (gitbok.http/get-absolute-url
-              context
-              "/.gitbook/assets/aidbox_logo.jpg")}]
-      [:div {:class "text-pretty line-clamp-2 tracking-tight max-w-[18ch] lg:max-w-[24ch] font-semibold ms-3 text-lg/tight lg:text-xl/tight text-tint-strong"}
-       "Aidbox User Docs"]]]
+     (let [product (products/get-current-product context)]
+       [:a {:href
+            (gitbok.http/get-product-prefixed-url context "/")
+            :class "group/headerlogo min-w-0 shrink flex items-center"}
+        [:img {:alt (str (:name product) " Logo")
+               :class "block object-contain size-8"
+               :fetchpriority "high"
+               :src
+               (gitbok.http/get-absolute-url
+                context
+                (or (:logo product) "/.gitbook/assets/aidbox_logo.jpg"))}]
+        [:div {:class "text-pretty line-clamp-2 tracking-tight max-w-[18ch] lg:max-w-[24ch] font-semibold ms-3 text-lg/tight lg:text-xl/tight text-tint-strong"}
+         (:name product)]])]
 
     [:div {:class "flex items-center gap-4"}
      [:div {:class "hidden lg:flex items-center gap-4"}
-      [:a {:href "/getting-started/run-aidbox-locally"
-           :class "text-small text-tint-10 hover:text-primary-9 transition-colors duration-200 no-underline font-normal"}
-       "Run Aidbox locally"]
-      [:a {:href "/getting-started/run-aidbox-in-sandbox"
-           :class "text-small text-tint-10 hover:text-primary-9 transition-colors duration-200 no-underline font-normal"}
-       "Run Aidbox in Sandbox"]
-      [:a {:href "https://bit.ly/3R7eLke"
-           :target "_blank"
-           :class "text-small text-tint-10 hover:text-primary-9 transition-colors duration-200 no-underline font-normal"}
-       "Talk to us"]
-      [:a {:href "https://connect.health-samurai.io/"
-           :target "_blank"
-           :class "text-small text-tint-10 hover:text-primary-9 transition-colors duration-200 no-underline font-normal"}
-       "Ask community"]]
-     
+      (let [product (products/get-current-product context)
+            links (or (:links product) [])]
+        (for [link links]
+          [:a (merge
+               {:href (if (clojure.string/starts-with? (:href link) "http")
+                        (:href link)
+                        (gitbok.http/get-product-prefixed-url context (:href link)))
+                :class "text-small text-tint-10 hover:text-primary-9 transition-colors duration-200 no-underline font-normal"}
+               (when (:target link)
+                 {:target (:target link)}))
+           (:text link)]))]
+
      ;; Ellipsis menu for tablet/mobile
      [:div {:class "relative lg:hidden"}
       [:button {:class "p-2 text-tint-strong hover:text-primary-9 transition-colors duration-200"
@@ -55,29 +54,23 @@
         [:circle {:cx "5" :cy "12" :r "2"}]
         [:circle {:cx "12" :cy "12" :r "2"}]
         [:circle {:cx "19" :cy "12" :r "2"}]]]
-      
+
       ;; Dropdown menu
       [:div {:id "ellipsis-dropdown"
              :class "hidden absolute right-0 mt-2 w-64 rounded-md shadow-lg outline-none ring-1 ring-tint-subtle bg-tint-base z-50"}
        [:div {:class "py-1" :role "menu" :aria-orientation "vertical"}
-        [:a {:href "/getting-started/run-aidbox-locally"
-             :class "block px-4 py-2 text-sm text-tint-11 hover:bg-tint-hover hover:text-primary-9 no-underline"
-             :role "menuitem"}
-         "Run Aidbox locally"]
-        [:a {:href "/getting-started/run-aidbox-in-sandbox"
-             :class "block px-4 py-2 text-sm text-tint-11 hover:bg-tint-hover hover:text-primary-9 no-underline"
-             :role "menuitem"}
-         "Run Aidbox in Sandbox"]
-        [:a {:href "https://bit.ly/3R7eLke"
-             :target "_blank"
-             :class "block px-4 py-2 text-sm text-tint-11 hover:bg-tint-hover hover:text-primary-9 no-underline"
-             :role "menuitem"}
-         "Talk to us"]
-        [:a {:href "https://connect.health-samurai.io/"
-             :target "_blank"
-             :class "block px-4 py-2 text-sm text-tint-11 hover:bg-tint-hover hover:text-primary-9 no-underline"
-             :role "menuitem"}
-         "Ask community"]]]]
+        (let [product (products/get-current-product context)
+              links (or (:links product) [])]
+          (for [link links]
+            [:a (merge
+                 {:href (if (clojure.string/starts-with? (:href link) "http")
+                          (:href link)
+                          (gitbok.http/get-product-prefixed-url context (:href link)))
+                  :class "block px-4 py-2 text-sm text-tint-11 hover:bg-tint-hover hover:text-primary-9 no-underline"
+                  :role "menuitem"}
+                 (when (:target link)
+                   {:target (:target link)}))
+             (:text link)]))]]]
 
      [:div {:class "relative"}
       ;; Mobile search button
