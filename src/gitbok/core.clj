@@ -103,8 +103,15 @@
       (str/replace #"%20" " ")
       (str/replace-first #".*.gitbook/" "")))))
 
-(defn render-favicon [_ _]
-  (resp/resource-response "public/favicon.ico"))
+(defn render-favicon [context _]
+  (let [product (products/get-current-product context)
+        favicon-path (or (:favicon product) "public/favicon.ico")]
+    (if (str/starts-with? favicon-path ".gitbook/")
+      ;; Handle .gitbook/assets paths like render-pictures does
+      (resp/resource-response
+       (str/replace-first favicon-path #".*.gitbook/" ""))
+      ;; Regular resource path
+      (resp/resource-response favicon-path))))
 
 (defn render-file-view
   [context request]
