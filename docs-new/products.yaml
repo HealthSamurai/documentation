@@ -11,4 +11,4 @@ products:
     # url <BASE_URL><DOCS_PREFIX>/forms
     path: /forms
     config: ./forms/.gitbook.yaml
-    logo: .gitbook/assets/forms_logo.jpg
+    logo: .gitbook/assets/aidbox_logo.jpg

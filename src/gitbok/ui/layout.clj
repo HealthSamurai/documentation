@@ -6,6 +6,7 @@
    [gitbok.ui.left-navigation :as left-navigation]
    [gitbok.indexing.core :as indexing]
    [gitbok.http]
+   [gitbok.products :as products]
    [cheshire.core :as json]
    [uui]
    [system]
@@ -39,7 +40,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     [:meta {:name "viewport" :content "width=device-width, initial-scale=1.0"}]
     [:meta {:name "description" :content description}]
     [:meta {:property "og:title" :content title}]
-    [:meta {:property "og:site_name" :content "Aidbox User Docs"}]
+    [:meta {:property "og:site_name" :content (:name (products/get-current-product context))}]
     [:meta {:property "article:author" :content "Health Samurai"}]
     [:meta {:property "article:modified_time" :content lastmod}]
     [:meta {:property "article:published_time" :content ""}]
@@ -76,7 +77,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
         "headline" title
         "description" description
         "author" {"@type" "Organization", "name" "HealthSamurai"}}))]
-    [:title (str title " | Aidbox User Docs")]
+    [:title (str title " | " (:name (products/get-current-product context)))]
 
     [:link {:rel "stylesheet", :href (gitbok.http/get-prefixed-url context "/static/app.min.css")}]
     [:script {:src (gitbok.http/get-prefixed-url context "/static/htmx.min.js")}]
