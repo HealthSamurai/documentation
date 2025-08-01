@@ -38,10 +38,12 @@ SQL on FHIR engine supports a subset of FHIRPath funcitons:
 * Boolean operators: **and**, **or**, **not**.
 * Math operators: **addition (+)**, **subtraction (-)**, **multiplication (\*)**, **division (/)**.
 * Comparison operators: **equals (=)**, **not equals (!=)**, **greater than (>)**, **less or equal (<=)**.
+* **getResourceKey:** resource id from the id column
+* **getReferenceKey**: get id of the reference. The desired type can be specified if the reference may contain different types (for example, Observation.subject).
 
-### Detailed explanation
+## Detailed explanation
 
-#### exists(\[criteria: expression]) : Boolean
+### exists(\[criteria: expression]) : Boolean
 
 Returns `true` if the collection has any elements, and `false` otherwise. Also, this function takes one optional criteria which will be applied to the collection prior to the determination of the exists. If _any_ element meets the criteria then `true` will be returned.
 
@@ -80,15 +82,15 @@ The result of expression will be:
 | false |
 | true  |
 
-#### empty() : Boolean
+### empty() : Boolean
 
 Returns `true` if the input colleciton is empty and false otherwise.
 
-#### extension(url: string) : collection
+### extension(url: string) : collection
 
 Will filter the input collection for items named "extension" with the given url. This is a syntactical shortcut for `.extension.where(url = string)`, but is simpler to write. Will return an empty collection if the input collection is empty or the url is empty.
 
-#### getId(\[resourceType])
+### getId(\[resourceType])
 
 Returns the field `id` of input element. One optional string argument may be provided to get IDs of resources whose type is equal to the argument&#x20;
 
@@ -131,7 +133,7 @@ The result of expression will be:
 | pt1    |
 | `NULL` |
 
-#### **join(\[separator: String]) : String**
+### **join(\[separator: String]) : String**
 
 The join function takes a collection of strings and _joins_ them into a single string, optionally using the given separator.
 
@@ -172,15 +174,15 @@ The result will be:
 | Lael             |
 | Anastasia;Nastya |
 
-#### ofType(type: type specifier) : collection
+### ofType(type: type specifier) : collection
 
 Returns a collection that contains all items in the input collection that are of the given type or a subclass thereof. If the input collection is empty, the result is empty. The `type` argument is an identifier that must resolve to the name of a type in a model.
 
-#### first() : collection
+### first() : collection
 
 Returns a collection containing only the first item in the input collection. This function is equivalent to `item[0]`, so it will return an empty collection if the input collection has no items.
 
-#### where(criteria: expression) : collection
+### where(criteria: expression) : collection
 
 Returns a collection containing only those elements in the input collection for which the stated `criteria` expression evaluates to `true`. Elements for which the expression evaluates to `false` or empty are not included in the result.
 
@@ -220,3 +222,38 @@ The result will be:
 | ------ |
 | `NULL` |
 | Smith  |
+
+### getResourceKey() : KeyType
+
+Query `id` column of the resource.&#x20;
+
+### getReferenceKey(\[resource: type specifier]) : KeyType
+
+This is invoked on Reference elements and returns an opaque value that represents the database key of the row being referenced. The value returned must be equal to the getResourceKey value returned on the resource itself.
+
+Users may pass an optional resource type (e.g., `Patient` or `Observation` ) to indicate the expected type that the reference should point to. The getReferenceKey function will return an empty collection (effectively null since FHIRPath always returns collections) if the reference is not of the expected type. For example, `Observation.subject.getReferenceKey(Patient)` would return a row key if the subject is a Patient, or the empty collection ( i.e., `{}`) if it is not.
+
+## Aidbox-specific functions
+
+Aidbox stores some data in separate columns and gives access to it by Aidbox-specific functions.
+
+For example, it is impossible to get [created date time](../../reference/settings/fhir.md#fhir.validation.createdat-url) value using a `meta` field in fhirpath, because it is stored in `cts` column and appended to the response at runtime.&#x20;
+
+See also [Aidbox database schema](../../database/database-schema.md).
+
+### getAidboxTs(): dateTime
+
+Query `ts` column of the resource.&#x20;
+
+### getAidboxCts(): dateTime
+
+Query `cts` column of the resource.&#x20;
+
+### getAidboxStatus(): string
+
+Query `status` column of the resource.&#x20;
+
+### getAidboxTxid(): integer
+
+Query `txid` column of the resource.&#x20;
+
