@@ -21,8 +21,7 @@
     (left-navigation/left-navigation
      (summary/get-summary context)
      uri)
-    (main-content/content-div context uri body filepath)]
-])
+    (main-content/content-div context uri body filepath)]])
 
 (defn document [context body {:keys [title description canonical-url og-preview lastmod favicon-url section]}]
   [:html {:lang "en"}
@@ -111,10 +110,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     [:script {:defer true
               :src (gitbok.http/get-prefixed-url context "/static/scroll-to-id.js")}]
     [:script {:defer true
-              :src (gitbok.http/get-prefixed-url context "/static/search-toc-hide.js")}]
-    ;; Add dev mode flag for JavaScript
-    (when (gitbok.http/get-dev-mode context)
-      [:script (str "window.DEV_MODE = true;")])]
+              :src (gitbok.http/get-prefixed-url context "/static/search-toc-hide.js")}]]
    [:body {:hx-boost "true"
            :hx-on "htmx:afterSwap: window.scrollTo(0, 0); updateLastUpdated();"}
     (uui/raw "<!-- Google Tag Manager (noscript) -->")
@@ -161,7 +157,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
              (str "public/og-preview/"
                   (when filepath (str/replace filepath #"\.md" ".png"))))
             :lastmod lastmod
-            :favicon-url (gitbok.http/get-prefixed-url context "/favicon.ico")}))
+            :favicon-url (gitbok.http/get-product-prefixed-url context "/favicon.ico")}))
 
         lastmod (if is-search-page
                   nil
