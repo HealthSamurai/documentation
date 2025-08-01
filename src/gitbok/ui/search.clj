@@ -4,6 +4,7 @@
    [gitbok.ui.breadcrumb :as breadcrumb]
    [gitbok.search]
    [gitbok.utils :as utils]
+   [gitbok.products :as products]
    [clojure.string :as str]))
 
 (defn highlight-text [text query]
@@ -44,14 +45,27 @@
         page-title (or title h1 "Untitled")
         breadcrumb (get-page-breadcrumb context uri)
         ;; Determine the specific URL based on the hit type
-        ;; Ensure URI starts with / to make it absolute
-        absolute-uri (if (and uri (str/starts-with? uri "/")) uri (str "/" (or uri "")))
+        ;; Check if URI already contains the product path to avoid duplication
+        product-path (products/path context)
+        _ (when uri
+            (println "DEBUG dropdown-result-item: uri=" uri ", product-path=" product-path))
+        ;; If URI already starts with product path, use it as is
+        ;; Otherwise, prepend the product path
+        base-url (cond
+                   ;; No URI - just return product path
+                   (nil? uri) product-path
+                   ;; URI already contains product path - use as is
+                   (str/starts-with? uri product-path) uri
+                   ;; URI is absolute but missing product path - prepend it
+                   (str/starts-with? uri "/") (str product-path uri)
+                   ;; URI is relative - make absolute with product path
+                   :else (str product-path "/" uri))
         ;; Determine the specific URL based on the hit type
         url (case hit-by
-              :h2 (str absolute-uri "#" (utils/s->url-slug h2))
-              :h3 (str absolute-uri "#" (utils/s->url-slug h3))
-              :h4 (str absolute-uri "#" (utils/s->url-slug h4))
-              absolute-uri)
+              :h2 (str base-url "#" (utils/s->url-slug h2))
+              :h3 (str base-url "#" (utils/s->url-slug h3))
+              :h4 (str base-url "#" (utils/s->url-slug h4))
+              base-url)
         ;; Determine what text to show based on what was matched
         match-text (case hit-by
                      :title title
@@ -148,10 +162,27 @@
                     (mapv
                      (fn [res]
                        (let [filepath (-> res :hit :filepath)
-                             uri (indexing/filepath->uri context filepath)]
+                             uri (indexing/filepath->uri context filepath)
+                             ;; If no URI found in index, generate one from filepath
+                             ;; Remove common prefixes that shouldn't be in the URL
+                             generated-uri (when (and (nil? uri) filepath)
+                                             (-> filepath
+                                                 (str/replace #"^\./" "")        ; Remove leading ./
+                                                 (str/replace #"^forms/" "")     ; Remove forms/ prefix if present
+                                                 (str/replace #"^aidbox/" "")    ; Remove aidbox/ prefix if present  
+                                                 (str/replace #"^\./docs/" "")   ; Remove ./docs/ prefix
+                                                 (str/replace #"^docs/" "")      ; Remove docs/ prefix
+                                                 (str/replace #"\.md$" "")       ; Remove .md extension
+                                                 (str/replace #"/README$" "/")   ; Convert README to /
+                                                 (str/replace #"^/" "")))]       ; Remove leading /
                          (when (nil? uri)
-                           (println "WARNING: No URI found for filepath:" filepath))
-                         (assoc res :uri uri)))
+                           (println "WARNING: No URI found for filepath:" filepath
+                                    "\nCurrent product:" (products/get-current-product-id context)
+                                    "\nGenerated URI:" generated-uri))
+                         ;; Add debug for all URIs
+                         (when generated-uri
+                           (println "DEBUG: filepath=" filepath " -> generated-uri=" generated-uri))
+                         (assoc res :uri (or uri generated-uri))))
                      search-results)))
         ;; Preserve original search order while grouping by filepath
         grouped-results (when results
