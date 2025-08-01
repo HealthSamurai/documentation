@@ -14,3 +14,4 @@ Development rules:
 7. Make every task and code change you do as simple as possible. We want to avoid making any massive or complex changes. Every change should impact as little code as possible. Everything is about simplicity.
 8. When use styles, always prefer using tailwind classes and tailwind theme, do not use app.css if not necessary
 9. Make sure you understand what tailwind v4 is and all its differences between v3. Read the doc https://tailwindcss.com/docs.
+10. Use kaocha to run tests.
