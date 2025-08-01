@@ -1,6 +1,7 @@
 (ns gitbok.core
   (:require
    [gitbok.indexing.impl.sitemap :as sitemap]
+   [gitbok.indexing.impl.sitemap-index :as sitemap-index]
    [edamame.core :as edamame]
    [clojure.string :as str]
    [hiccup2.core]
@@ -114,6 +115,27 @@
       ;; Regular resource path
       (resp/resource-response favicon-path))))
 
+(defn render-robots-txt [context _]
+  (let [product (products/get-current-product context)
+        robots-path (:robots product)]
+    (if robots-path
+      ;; Use custom robots.txt if specified
+      (if (str/starts-with? robots-path ".gitbook/")
+        ;; Handle .gitbook/assets paths like render-pictures does
+        (resp/resource-response
+         (str/replace-first robots-path #".*.gitbook/" ""))
+        ;; Regular resource path
+        (resp/resource-response robots-path))
+      ;; Generate default robots.txt dynamically
+      (let [sitemap-url (gitbok.http/get-product-absolute-url
+                         context
+                         "/sitemap.xml")]
+        {:status 200
+         :headers {"content-type" "text/plain"}
+         :body (str "User-agent: *\n"
+                    "Allow: /\n"
+                    "Sitemap: " sitemap-url "\n")}))))
+
 (defn render-file-view
   [context request]
   (let [uri (:uri request)
@@ -123,10 +145,6 @@
          prefix
          (products/path context))]
     (cond
-
-      (or (= uri-relative "robots.txt")
-          (= uri "/robots.txt"))
-      (resp/resource-response "public/robots.txt")
 
       (or (picture-url? uri-relative)
           (picture-url? uri))
@@ -172,6 +190,13 @@
   {:status 200
    :headers {"content-type" "application/xml"}
    :body (sitemap/get-sitemap context)})
+
+(defn sitemap-index-xml
+  "Generates sitemap index that references all product sitemaps"
+  [context _]
+  {:status 200
+   :headers {"content-type" "application/xml"}
+   :body (gitbok.indexing.impl.sitemap-index/generate-sitemap-index context)})
 
 (defn redirect-to-readme
   [context request]
@@ -271,7 +296,7 @@
     (println "8. set lastmod data in context for Last Modified metadata")
     (indexing/set-lastmod ctx)
     (println "9. generate sitemap.xml for product")
-    (when-not dev?
+    (when-not false
       (println (str "generating sitemap.xml for " (:name product)))
       ;; Now sitemap can use the lastmod data from context
       (let [lastmod-data (products/get-product-state ctx [const/LASTMOD])]
@@ -366,6 +391,14 @@
           :middleware [product-middleware gzip-middleware]
           :fn #'render-favicon})
 
+        ;; Product robots.txt
+        (http/register-endpoint
+         context
+         {:path (str product-path "/robots.txt")
+          :method :get
+          :middleware [product-middleware]
+          :fn #'render-robots-txt})
+
         ;; All product pages
         (http/register-endpoint
          context
@@ -381,6 +414,27 @@
     :method :get
     :middleware [gzip-middleware]
     :fn #'root-redirect-handler})
+
+  ;; Sitemap index at root
+  (http/register-endpoint
+   context
+   {:path (utils/concat-urls prefix "/sitemap.xml")
+    :method :get
+    :fn #'sitemap-index-xml})
+
+  ;; Root robots.txt
+  (http/register-endpoint
+   context
+   {:path (utils/concat-urls prefix "/robots.txt")
+    :method :get
+    :fn (fn [ctx _]
+          (let [sitemap-url (str base-url 
+                                 (utils/concat-urls prefix "/sitemap.xml"))]
+            {:status 200
+             :headers {"content-type" "text/plain"}
+             :body (str "User-agent: *\n"
+                        "Allow: /\n"
+                        "Sitemap: " sitemap-url "\n")}))})
 
   (http/register-endpoint
    context
