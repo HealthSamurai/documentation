@@ -8,9 +8,9 @@ Healthcare data exchange relies heavily on coded values to ensure consistent mea
 
 The FHIR terminology module defines how to represent, validate, and exchange coded data through a set of interconnected resources and data types. This system enables healthcare applications to share meaningful data while maintaining semantic precision and supporting various terminology standards like SNOMED CT, LOINC, and ICD-10.
 
-See also: [FHIR Terminology Module Specification](https://build.fhir.org/terminology-module.html)
+![](../../../.gitbook/assets/terminology-module-relationships.png)
 
-Insert image here: "../../.gitbook/assets/fhir-terminology-relationships.png"
+See also: [FHIR Terminology Module Specification](https://build.fhir.org/terminology-module.html)
 
 ## Canonicals
 
