@@ -114,7 +114,6 @@
          uri
          prefix
          (products/path context))]
-    (def u uri-relative )
     (cond
 
       (or (= uri-relative "robots.txt")
@@ -143,7 +142,7 @@
                          "ETag" etag}}
               (let [title (:title (get (indexing/file->uri-idx context) filepath))
                     {:keys [description content section]}
-                    (render-file context filepath)]
+                    (render-file (assoc context :current-uri uri-relative) filepath)]
                 (layout/layout
                  context request
                  {:content content
@@ -176,6 +175,22 @@
                :uri uri
                :/ true)]
     (render-file-view context request)))
+
+(defn root-redirect-handler
+  "Handles root path redirect based on configuration"
+  [context request]
+  (let [full-config (products/get-full-config context)
+        root-redirect (:root-redirect full-config)]
+    (if root-redirect
+      (let [redirect-uri (utils/concat-urls prefix root-redirect)]
+        (resp/redirect redirect-uri))
+      ;; If no root-redirect configured, show 404 or default page
+      (layout/layout
+       context request
+       {:content (not-found/not-found-view context "/")
+        :status 404
+        :title "Not found"
+        :description "Page not found"}))))
 
 (defn healthcheck
   [_ _]
@@ -258,8 +273,10 @@
 (defn init-products
   "Initializes all products from configuration"
   [context workdir]
-  (let [products-config (products/load-products-config workdir)]
+  (let [full-config (products/load-products-config workdir)
+        products-config (:products full-config)]
     (products/set-products-config context products-config)
+    (products/set-full-config context full-config)
     products-config))
 
 #_{:clj-kondo/ignore [:unresolved-symbol]}
@@ -349,6 +366,14 @@
           :method :get
           :middleware [product-middleware gzip-middleware]
           :fn #'render-file-view}))))
+
+  ;; Root path handler
+  (http/register-endpoint
+   context
+   {:path prefix
+    :method :get
+    :middleware [gzip-middleware]
+    :fn #'root-redirect-handler})
 
   (http/register-endpoint
    context

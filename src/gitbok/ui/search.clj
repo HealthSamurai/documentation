@@ -45,7 +45,7 @@
         breadcrumb (get-page-breadcrumb context uri)
         ;; Determine the specific URL based on the hit type
         ;; Ensure URI starts with / to make it absolute
-        absolute-uri (if (str/starts-with? uri "/") uri (str "/" uri))
+        absolute-uri (if (and uri (str/starts-with? uri "/")) uri (str "/" (or uri "")))
         ;; Determine the specific URL based on the hit type
         url (case hit-by
               :h2 (str absolute-uri "#" (utils/s->url-slug h2))
@@ -147,8 +147,11 @@
                   (let [search-results (take 20 (gitbok.search/search context query))]
                     (mapv
                      (fn [res]
-                       (assoc res :uri
-                              (indexing/filepath->uri context (-> res :hit :filepath))))
+                       (let [filepath (-> res :hit :filepath)
+                             uri (indexing/filepath->uri context filepath)]
+                         (when (nil? uri)
+                           (println "WARNING: No URI found for filepath:" filepath))
+                         (assoc res :uri uri)))
                      search-results)))
         ;; Preserve original search order while grouping by filepath
         grouped-results (when results

@@ -21,14 +21,17 @@
     (try
        ;; When workdir is in classpath, products.yaml is at root level
       (let [config-str (utils/slurp-resource "products.yaml")
-            config (yaml/parse-string config-str)]
-        (mapv
-         #(merge
-           %
-           (read-product-config-file (:config %)))
-         (:products config)))
-      (catch Exception _ default-aidbox))
-    default-aidbox))
+            config (yaml/parse-string config-str)
+            products (mapv
+                      #(merge
+                        %
+                        (read-product-config-file (:config %)))
+                      (:products config))]
+        {:products products
+         :root-redirect (:root-redirect config)})
+      (catch Exception _
+        {:products default-aidbox}))
+    {:products default-aidbox}))
 
 (defn get-current-product-id
   "Gets current product ID from request context"
@@ -68,20 +71,30 @@
 (defn determine-product-by-uri
   "Determines product from request URI"
   [products uri]
-    (or (first (filter #(str/starts-with? uri (:path %))
-                       (sort-by #(- (count (:path %))) products)))
-        (first (filter #(= (:id %) "default") products))
-        (first products)))
+  (or (first (filter #(str/starts-with? uri (:path %))
+                     (sort-by #(- (count (:path %))) products)))
+      (first (filter #(= (:id %) "default") products))
+      (first products)))
 
 (defn get-products-config
   "Gets all products configuration from context"
   [context]
   (system/get-system-state context [::products-config] []))
 
+(defn get-full-config
+  "Gets full configuration including products and root-redirect"
+  [context]
+  (system/get-system-state context [::full-config] {}))
+
 (defn set-products-config
   "Saves products configuration to context"
   [context products]
   (system/set-system-state context [::products-config] products))
+
+(defn set-full-config
+  "Saves full configuration to context"
+  [context config]
+  (system/set-system-state context [::full-config] config))
 
 (defn get-product-by-id
   "Gets product configuration by its ID"

@@ -108,7 +108,7 @@
                   text-tint-strong
                   font-normal"
                   :autocomplete "off"
-                  :hx-get "/search/dropdown"
+                  :hx-get (gitbok.http/get-product-prefixed-url context "/search/dropdown")
                   :hx-trigger "keyup[!event.key.startsWith('Arrow') && event.key !== 'Enter' && event.key !== 'Escape'] changed delay:300ms, focus"
                   :hx-target "#search-dropdown"
                   :hx-swap "innerHTML"
@@ -138,7 +138,7 @@
                  :placeholder "Ask or search..."
                  :class "flex-1 bg-transparent outline-none placeholder-tint-9 text-tint-strong font-normal"
                  :autocomplete "off"
-                 :hx-get "/search/dropdown"
+                 :hx-get (gitbok.http/get-product-prefixed-url context "/search/dropdown")
                  :hx-trigger "keyup[!event.key.startsWith('Arrow') && event.key !== 'Enter' && event.key !== 'Escape'] changed delay:300ms, focus"
                  :hx-target "#mobile-search-dropdown"
                  :hx-swap "innerHTML"
