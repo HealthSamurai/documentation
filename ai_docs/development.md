@@ -15,3 +15,32 @@ Development rules:
 8. When use styles, always prefer using tailwind classes and tailwind theme, do not use app.css if not necessary
 9. Make sure you understand what tailwind v4 is and all its differences between v3. Read the doc https://tailwindcss.com/docs.
 10. Use kaocha to run tests.
+
+## Running Tests
+
+The project uses Kaocha test runner. To run tests:
+
+### Run all tests
+```bash
+clojure -M:test:kaocha
+```
+
+### Run specific test namespace
+```bash
+clojure -M:test:kaocha --focus namespace-name
+# Example: clojure -M:test:kaocha --focus gitbok.ui.breadcrumb-test
+```
+
+### Run with additional options
+```bash
+# Watch mode (re-run tests on file changes)
+clojure -M:test:kaocha --watch
+
+# Fail fast (stop on first failure)
+clojure -M:test:kaocha --fail-fast
+
+# Print test names as they run
+clojure -M:test:kaocha --reporter documentation
+```
+
+The test configuration is defined in `deps.edn` under the `:test` and `:kaocha` aliases.
