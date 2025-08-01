@@ -398,6 +398,14 @@
           :method :get
           :middleware [product-middleware]
           :fn #'render-robots-txt})
+        
+        ;; Product OG preview images
+        (http/register-endpoint
+         context
+         {:path (str product-path "/public/og-preview/:product-id/:path*")
+          :method :get
+          :middleware [product-middleware gzip-middleware]
+          :fn #'render-pictures})
 
         ;; All product pages
         (http/register-endpoint

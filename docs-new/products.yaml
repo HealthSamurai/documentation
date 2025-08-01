@@ -8,6 +8,7 @@ products:
     config: ./aidbox/.gitbook.yaml
     logo: .gitbook/assets/aidbox_logo.jpg
     favicon: .gitbook/assets/favicon.ico
+    og-preview-text: "Aidbox User Docs"  # Optional: custom text for OG preview images
     links:
       - text: "Run Aidbox locally"
         href: "/getting-started/run-aidbox-locally"
@@ -27,6 +28,7 @@ products:
     config: ./forms/.gitbook.yaml
     logo: .gitbook/assets/aidbox_logo.jpg
     favicon: .gitbook/assets/favicon.ico
+    og-preview-text: "Forms Documentation"  # Optional: custom text for OG preview images
     links:
       - text: "Getting Started"
         href: "/getting-started"

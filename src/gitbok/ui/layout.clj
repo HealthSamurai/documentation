@@ -153,10 +153,11 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
               (gitbok.http/get-url context)
               (gitbok.http/get-absolute-url context uri))
             :og-preview
-            (gitbok.http/get-absolute-url
-             context
-             (str "public/og-preview/"
-                  (when filepath (str/replace filepath #"\.md" ".png"))))
+            (let [product-id (:id (products/get-current-product context))]
+              (gitbok.http/get-absolute-url
+               context
+               (str "public/og-preview/" product-id "/"
+                    (when filepath (str/replace filepath #"\.md" ".png")))))
             :lastmod lastmod
             :favicon-url (gitbok.http/get-product-prefixed-url context "/favicon.ico")}))
 
