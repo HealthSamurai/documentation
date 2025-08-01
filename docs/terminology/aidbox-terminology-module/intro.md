@@ -8,91 +8,25 @@ The Aidbox Terminology Module is a fully conformant [FHIR Terminology Service](h
 
 Aidbox's terminology implementation centers on the [FHIR Artifact Registry (FAR)](../../artifact-registry/artifact-registry-overview.md), which serves as the primary storage for canonical resources including CodeSystems and ValueSets. This architecture supports FHIR Implementation Guide delivery mechanisms and knowledge artifact lifecycle.
 
-## Modes
+## Operational Modes
 
-The terminology module operates in three distinct modes to accommodate different deployment scenarios.
+The terminology module operates in three distinct modes to accommodate different deployment scenarios:
 
-### Local Mode
+- **[Local Mode](./hybrid.md#local-mode)**: Uses only resources stored in Aidbox's FAR. Provides complete control but requires all CodeSystems to be explicitly loaded.
 
-**Local mode** uses only the resources stored within Aidbox's FAR. This mode provides complete control over terminology content but requires all necessary CodeSystems to be explicitly loaded into the system. If the system encounters a request for content not available locally, it returns an error rather than attempting external lookups.
+- **[Hybrid Mode](./hybrid.md#hybrid-mode)**: Combines local storage with external server fallback. Balances performance with comprehensive coverage through intelligent request partitioning.
 
-The example below shows expanding the [`us-core-clinical-result-observation-category`](http://hl7.org/fhir/us/core/ValueSet/us-core-clinical-result-observation-category) ValueSet (success) versus the [`us-core-condition-code`](http://hl7.org/fhir/us/core/ValueSet/us-core-condition-code) ValueSet (failure).
+- **[Remote Mode](./hybrid.md#remote-legacy-mode)**: Routes all requests to external terminology servers, bypassing local storage entirely.
 
-```mermaid
-sequenceDiagram
-    participant User
-    participant Aidbox
-    participant FAR
-    
-    Note over User,FAR: Loading Implementation Guide
-    User->>+Aidbox: Load US Core IG
-    Aidbox->>+FAR: Store ValueSets/CodeSystems
-    FAR-->>-Aidbox: Resources stored
-    Aidbox-->>-User: IG loaded successfully
-    
-    Note over User,FAR: Expanding local ValueSet (success)
-    User->>+Aidbox: $expand observation-category
-    Aidbox->>+FAR: Query local resources
-    FAR-->>-Aidbox: ValueSet found
-    Aidbox-->>-User: ✅ Expansion successful
-    
-    Note over User,FAR: Expanding remote ValueSet (failure)
-    User->>+Aidbox: $expand condition-code
-    Aidbox->>+FAR: Query local resources
-    FAR->>-Aidbox: ValueSet not found
-    Aidbox->>-User: ❌ Error: Resource not available locally
-```
+See [Operational Modes](./hybrid.md) for detailed explanations with examples and sequence diagrams.
 
-### Hybrid Mode
+## Key Features
 
-**Hybrid mode** combines local storage with external terminology server capabilities. CodeSystems stored in FAR take precedence, but when content is not available locally, the system connects to an external terminology server to retrieve the required information. This approach balances performance and completeness, allowing organizations to maintain local control over critical terminology while accessing comprehensive external resources when needed.
-
-The hybrid engine intelligently handles mixed ValueSets that reference both local and remote CodeSystems. For example, when processing a ValueSet with multiple `include` elements—one filtering a locally available CodeSystem and another filtering a remote CodeSystem—the engine efficiently partitions the request: it processes local includes directly from FAR while converting remote includes into optimized requests to the external terminology server. The final response consolidates both local and remote results into a single, complete result.
-
-The example below shows the same scenario as Local Mode, but now the [`us-core-condition-code`](http://hl7.org/fhir/us/core/ValueSet/us-core-condition-code) ValueSet expansion succeeds by falling back to the remote terminology server.
-
-```mermaid
-sequenceDiagram
-    participant User
-    participant Aidbox
-    participant FAR
-    participant Remote as Remote TX Server
-    
-    Note over User,Remote: Loading Implementation Guide
-    User->>+Aidbox: Load US Core IG
-    Aidbox->>+FAR: Store ValueSets/CodeSystems
-    FAR-->>-Aidbox: Resources stored
-    Aidbox-->>-User: IG loaded successfully
-    
-    Note over User,Remote: Expanding local ValueSet (success)
-    User->>+Aidbox: $expand observation-category
-    Aidbox->>+FAR: Query local resources
-    FAR-->>-Aidbox: ValueSet found
-    Aidbox-->>-User: ✅ Expansion successful
-    
-    Note over User,Remote: Expanding remote ValueSet (fallback success)
-    User->>+Aidbox: $expand condition-code
-    Aidbox->>+FAR: Query local resources
-    FAR->>-Aidbox: ValueSet not found
-    Aidbox->>+Remote: $expand condition-code
-    Remote-->>-Aidbox: Expansion result
-    Aidbox-->>-User: ✅ Expansion successful
-```
-
-### Remote (Legacy) Mode
-
-In **Remote mode**, Aidbox routes all terminology requests to an external terminology server, bypassing local storage entirely. This mode is useful for organizations that prefer to rely on established external terminology services or are in the process of migrating their terminology infrastructure.
-
-```mermaid
-graph LR
-    A[Terminology Request] --> B[Aidbox]
-    B --> C[External Server]
-    C --> D[External Response]
-```
-
-The terminology module supports all standard FHIR terminology operations. Healthcare applications can validate codes against CodeSystems or ValueSets, expand ValueSet definitions to retrieve all contained codes, and look up detailed information about specific concepts. These operations work seamlessly across both local and external content, depending on the configured mode.
-
-Real-world usage typically involves well-established CodeSystems such as SNOMED CT for clinical terminology, LOINC for laboratory data, and various local CodeSystems developed by healthcare organizations for their specific needs. The flexible architecture allows organizations to implement terminology strategies that align with their operational requirements and compliance obligations.
+- **FHIR R4 Compliance**: Full conformance with FHIR Terminology Service specification
+- **Intelligent Request Routing**: Hybrid engine that optimally partitions mixed ValueSet operations
+- **Implementation Guide Integration**: Native support for IG loading and lifecycle management
+- **Performance Optimization**: Local caching with external fallback for comprehensive coverage
+- **Standard Operations**: Complete support for `$lookup`, `$validate-code`, `$expand`, `$translate`, and subsumption testing
 
 See also:
 - [Setup](./setup.md)

@@ -241,7 +241,7 @@
   * [Profiles, Binding, and Validation](terminology/fhir-terminology/profiles-binding-validation.md)
 * [Aidbox Terminology Module](terminology/aidbox-terminology-module/intro.md)
   * [Setup](terminology/aidbox-terminology-module/setup.md)
-  * [Hybrid](terminology/aidbox-terminology-module/hybrid.md)
+  * [Hybrid Mode](terminology/aidbox-terminology-module/hybrid.md)
   * [Capabilities](terminology/aidbox-terminology-module/capabilities.md)
 
 ## Database
