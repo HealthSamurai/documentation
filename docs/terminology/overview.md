@@ -34,5 +34,5 @@ Aidbox implements a flexible terminology server that adapts to different organiz
 
 The module supports all standard FHIR terminology operations - `$validate-code`, `$expand`, and `$lookup` - working seamlessly across local and external content depending on your configuration.
 
-See also: [Aidbox Terminology Module](./aidbox-terminology-module.md)
+See also: [Aidbox Terminology Module](./aidbox-terminology-module/intro.md)
 

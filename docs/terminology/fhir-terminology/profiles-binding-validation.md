@@ -10,10 +10,6 @@ Terminology bindings are a key component of profiles, connecting data elements t
 
 FHIR validation engines use these profiles to verify that incoming data meets the specified constraints. The terminology server plays a crucial role by validating that coded values conform to the bound ValueSets, ensuring data quality and interoperability across systems.
 
-TODO: add
-
---- brought from previous:
-
 ## Binding Concept
 
 To specify what codes can be assigned to specific elements, FHIR uses the concept of **binding** - linking element definitions to ValueSets. A binding defines which ValueSet constrains the possible values for a coded element.
@@ -28,3 +24,4 @@ For example, the `Observation.code` element is bound to a ValueSet that includes
 
 #TODO: add a screenshot of FHIR Specification with binding for Observation.code
 
+See also: [Validation Tutorials](../../tutorials/validation-tutorials/)

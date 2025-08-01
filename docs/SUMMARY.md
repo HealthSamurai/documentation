@@ -239,7 +239,10 @@
   * [ValueSet](terminology/fhir-terminology/valueset.md)
   * [ConceptMap](terminology/fhir-terminology/conceptmap.md)
   * [Profiles, Binding, and Validation](terminology/fhir-terminology/profiles-binding-validation.md)
-* [Aidbox Terminology Module](terminology/aidbox-terminology-module.md)
+* [Aidbox Terminology Module](terminology/aidbox-terminology-module/intro.md)
+  * [Setup](terminology/aidbox-terminology-module/setup.md)
+  * [Hybrid](terminology/aidbox-terminology-module/hybrid.md)
+  * [Capabilities](terminology/aidbox-terminology-module/capabilities.md)
 
 ## Database
 
