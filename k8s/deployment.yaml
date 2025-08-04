@@ -38,9 +38,9 @@ spec:
           - name: PORT
             value: "8080"
           - name: BASE_URL
-            value: "https://healthdevhub.com/docs"
+            value: "https://healthdevhub.com"
           - name: DOCS_PREFIX
-            value: "/aidbox"
+            value: "/docs"
         args:
           - "-Xms1g"
           - "-Xmx1g"
