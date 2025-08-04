@@ -23,7 +23,7 @@
   We read SUMMARY.md and use page names to create urls.
   This is used to match uri from the request to actual file to render."
   [context]
-  (gitbok.indexing.impl.uri-to-file/uri->file-idx context))
+  (uri-to-file/get-idx context))
 
 (defn file->uri-idx
   "Creates index to get uri by filepath.
@@ -36,7 +36,6 @@
   (gitbok.indexing.impl.file-to-uri/filepath->uri context filepath))
 
 (defn uri->filepath [context ^String uri]
-  (def hhh (uri-to-file/get-idx context))
   (gitbok.indexing.impl.uri-to-file/uri->filepath
    (uri-to-file/get-idx context) uri))
 

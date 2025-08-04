@@ -255,9 +255,9 @@
         (mapv #(parse-markdown-content context %) md-files-idx)]
     (println "Parsed " (count parsed-files) " files")
     (products/set-product-state
-      context
-      [const/PARSED_MARKDOWN_IDX]
-      parsed-files)))
+     context
+     [const/PARSED_MARKDOWN_IDX]
+     parsed-files)))
 
 (defn get-parsed-markdown-index [context]
   (products/get-product-state

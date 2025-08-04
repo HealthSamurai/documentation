@@ -20,7 +20,7 @@
         (mapv
          (fn [related-url]
            (let [filepath (uri-to-file/uri->filepath
-                           (uri-to-file/uri->file-idx context)
+                           (uri-to-file/get-idx context)
                            related-url)
                  priority
                  (if
