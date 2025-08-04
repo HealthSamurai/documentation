@@ -121,12 +121,12 @@
                   (catch Exception _
                     nil))))]
     [:main#content {:class "flex-1 items-start"}
-     [:script "hljs.highlightAll();"]
+     [:script (uui/raw "hljs.highlightAll(); if (typeof initializeMermaid !== 'undefined') { initializeMermaid(); }")]
      [:div {:class "flex items-start"}
       [:article {:class "article__content py-8 min-w-0 flex-1
                  max-w-5xl transform-3d"}
        (when htmx?
-         [:script "window.scrollTo(0, 0); updateLastUpdated(); updateActiveNavItem(window.location.pathname); updatePageTitle();"])
+         [:script (uui/raw "window.scrollTo(0, 0); updateLastUpdated(); updateActiveNavItem(window.location.pathname); updatePageTitle();")])
        [:div {:class "mx-auto max-w-full md:px-4"} body]
        (navigation-buttons context uri)
        (let [lastupdated
