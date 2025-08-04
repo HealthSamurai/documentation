@@ -23,6 +23,12 @@
   * Embedded LHC and Smart form renderers in the [Aidbox public form builder](https://form-builder.aidbox.app/) to test how forms behave in different SDC renderers.
   * Added the ability to [hide the download button](../modules/aidbox-forms/aidbox-ui-builder-alpha/configuration.md) using the SDCConfig resource.
   * Supported quote, text indents in label's markdown
+* Minor updates
+  * `2506.1` - Fixed vulnerabilities
+  * `2505.3` - Fixed vulnerabilities
+  * `2410.8` - LTS support - fixed vulnerabilities
+  * `2402-lts` - LTS support - fixed vulnerabilities
+  * `2306-lts` - LTS support - fixed vulnerabilities
 
 ## June 2025 _`stable, 2506`_
 
