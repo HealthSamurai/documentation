@@ -96,20 +96,33 @@
               ;; :hx-push-url "true"
               :hx-push-url (gitbok.http/get-absolute-url context href)
               :hx-swap "outerHTML"}
-         (when img-href [:img {:src img-href :alt "card"}])
-         [:div
-          {:class
-           (str "flex flex-col gap-0 p-4 flex-1 " (when-not img-href "justify-start"))}
-          (when badge
-            (into [:div {:class "mb-2"}]
-                  (if (seq? badge) badge [badge])))
-          (when one
-            (into [:div {:class "text-sm text-tint-11"}]
-                  (if (seq? one) one [one])))
+        (when img-href
+          (let [processed-img-href
+                (cond
+                              ;; External URLs - keep as is
+                  (str/starts-with? img-href "http") img-href
+
+                              ;; .gitbook/assets paths - normalize and add prefix
+                  (str/includes? img-href ".gitbook/assets")
+                  (let [normalized (str ".gitbook/assets" (last (str/split img-href #"\.gitbook/assets")))]
+                    (str (gitbok.http/get-prefix context) "/" normalized))
+
+                              ;; Other paths - keep as is for now
+                  :else img-href)]
+            [:img {:src processed-img-href :alt "card"}]))
+        [:div
+         {:class
+          (str "flex flex-col gap-0 p-4 flex-1 " (when-not img-href "justify-start"))}
+         (when badge
+           (into [:div {:class "mb-2"}]
+                 (if (seq? badge) badge [badge])))
+         (when one
+           (into [:div {:class "text-sm text-tint-11"}]
+                 (if (seq? one) one [one])))
           ;; Description
-          (when two
-            (into [:p {:class "text-tint-11
+         (when two
+           (into [:p {:class "text-tint-11
                        text-sm group-hover:text-tint-12"}]
-                  (if (seq? two) two [two])))
-          (when processed-footer
-            [:div {:class "text-sm mt-2"} processed-footer])]])]))
+                 (if (seq? two) two [two])))
+         (when processed-footer
+           [:div {:class "text-sm mt-2"} processed-footer])]])]))

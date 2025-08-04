@@ -1,24 +1,61 @@
 (ns gitbok.markdown.widgets.image
   (:require
    [clojure.string :as str]
+   [gitbok.indexing.core :as indexing]
+   [gitbok.http]
    [nextjournal.markdown.utils :as u]))
 
-(defn image-renderer [_ctx node]
+(defn image-renderer [context filepath _ctx node]
   (let [src (some-> node :attrs :src)
+        _ (when src (println "Original image src:" src))
+        ;; Normalize .gitbook/assets paths - remove ../ prefixes
+        normalized-src (when src
+                         (if (str/includes? src ".gitbook/assets")
+                           (let [result (str ".gitbook/assets" (last (str/split src #"\.gitbook/assets")))]
+                             (println "Normalized src:" result)
+                             result)
+                           src))
+        ;; Handle different types of image paths
+        processed-src (cond
+                        ;; Empty or nil src
+                        (str/blank? normalized-src) ""
+
+                        ;; External URLs - keep as is
+                        (str/starts-with? normalized-src "http") normalized-src
+
+                        ;; .gitbook/assets paths - already normalized, just return
+                        (str/starts-with? normalized-src ".gitbook/assets") normalized-src
+
+                        ;; Other relative paths - use the standard link resolution
+                        :else (indexing/filepath->href context filepath normalized-src))
+        _ (when processed-src (println "Processed src:" processed-src))
+
         alt (or (:alt node)
                 (:title (:attrs node))
-                (:text (first (:content node)))  "")
-        webp-src (when src (str (subs src 0 (clojure.string/last-index-of src ".")) ".webp"))
+                (:text (first (:content node))) "")
+
+        webp-src (when (and normalized-src (not (str/blank? normalized-src)))
+                   (let [base-src (str (subs normalized-src 0 (clojure.string/last-index-of normalized-src ".")) ".webp")]
+                     (cond
+                       ;; External URLs - keep as is
+                       (str/starts-with? base-src "http") base-src
+
+                       ;; .gitbook/assets paths - already normalized
+                       (str/starts-with? base-src ".gitbook/assets") base-src
+
+                       ;; Other relative paths - use the standard link resolution
+                       :else (indexing/filepath->href context filepath base-src))))
+
         fallback-type
         (cond
-          (clojure.string/ends-with? src ".png") "image/png"
-          (or (clojure.string/ends-with? src ".jpg")
-              (clojure.string/ends-with? src ".jpeg")) "image/jpeg"
+          (and normalized-src (clojure.string/ends-with? normalized-src ".png")) "image/png"
+          (and normalized-src (or (clojure.string/ends-with? normalized-src ".jpg")
+                                  (clojure.string/ends-with? normalized-src ".jpeg"))) "image/jpeg"
           :else "image/jpeg")]
     [:picture
      [:source {:srcset webp-src :type "image/webp"}]
-     [:source {:srcset src :type fallback-type}]
-     [:img {:src src
+     [:source {:srcset processed-src :type fallback-type}]
+     [:img {:src processed-src
             :alt alt
             :loading "lazy"
             :class "max-w-full h-auto mx-auto rounded-lg my-6"}]]))
