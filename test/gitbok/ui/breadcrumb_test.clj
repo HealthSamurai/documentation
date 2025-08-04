@@ -1,27 +1,23 @@
 (ns gitbok.ui.breadcrumb-test
   (:require [clojure.test :refer [deftest testing is]]
+            [clojure.string :as string]
             [gitbok.ui.breadcrumb :as breadcrumb]
             [gitbok.http :as http]))
 
 (defn mock-context []
   {:current-product-id "forms"
-   :system-state (atom {:products-config [{:id "forms" :path "/forms"}]
-                        :full-config {:products [{:id "forms" :path "/forms"}]}})})
+   :system (atom {:products-config [{:id "forms" :path "/forms"}]
+                  :full-config {:products [{:id "forms" :path "/forms"}]}})})
 
 (defn extract-breadcrumb-items [hiccup]
   (when hiccup
     (->> hiccup
-         (filter vector?)
-         (filter #(= :ol (first %)))
-         first
-         (filter vector?)
-         (filter #(= :li (first %)))
-         (map (fn [li]
-                (->> li
-                     (filter vector?)
-                     (filter #(= :a (first %)))
-                     first
-                     last))))))
+         (tree-seq coll? seq)
+         (filter #(and (vector? %)
+                       (>= (count %) 3)
+                       (map? (second %))
+                       (= :a (first %))))
+         (map last))))
 
 (deftest breadcrumb-test
   (testing "root pages have no breadcrumb"

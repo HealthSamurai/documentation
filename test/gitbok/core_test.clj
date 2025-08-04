@@ -9,7 +9,7 @@
 
 (deftest test-root-redirect-handler
   (testing "root-redirect-handler with configured redirect"
-    (let [context {:system-state (atom {})}]
+    (let [context {:system (atom {})}]
       ;; Set up full config with root-redirect
       (products/set-full-config context {:root-redirect "/aidbox"
                                          :products []})
@@ -19,7 +19,7 @@
           (is (= "/aidbox" (get-in response [:headers "Location"])))))))
 
   (testing "root-redirect-handler with prefix and redirect"
-    (let [context {:system-state (atom {})}]
+    (let [context {:system (atom {})}]
       ;; Set up full config with root-redirect
       (products/set-full-config context {:root-redirect "/aidbox"
                                          :products []})
@@ -29,7 +29,7 @@
           (is (= "/docs/aidbox" (get-in response [:headers "Location"])))))))
 
   (testing "root-redirect-handler without configured redirect shows 404"
-    (let [context {:system-state (atom {})}]
+    (let [context {:system (atom {})}]
       ;; Set up full config without root-redirect
       (products/set-full-config context {:products []})
       (with-redefs [gitbok.ui.layout/layout
@@ -42,7 +42,7 @@
 
 (deftest test-redirect-to-readme
   (testing "redirect-to-readme renders readme view"
-    (let [context {:system-state (atom {})}
+    (let [context {:system (atom {})}
           request {:uri "/test"}]
       ;; Mock current product
       (with-redefs [products/get-current-product
@@ -62,7 +62,7 @@
 
   (deftest test-init-products
     (testing "init-products stores full config"
-      (let [context {:system-state (atom {})}]
+      (let [context {:system (atom {})}]
         (with-redefs [products/load-products-config
                       (fn []
                         {:root-redirect "/aidbox"
