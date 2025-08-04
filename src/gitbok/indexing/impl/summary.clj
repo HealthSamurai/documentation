@@ -4,6 +4,7 @@
    [gitbok.constants :as const]
    [gitbok.utils :as utils]
    [gitbok.http]
+   [gitbok.products :as products]
    [system]
    [uui]
    [uui.heroicons :as ico]))
@@ -65,7 +66,7 @@
     (if (nil? l)
       [acc nil]
       (if (> i x)
-        (recur ls  (conj acc l))
+        (recur ls (conj acc l))
         [acc pls]))))
 
 (defn treefy [lines]
@@ -77,8 +78,11 @@
             l (if (seq chld) (assoc l :children (treefy chld)) l)]
         (recur ls (conj acc l))))))
 
-(defn read-summary []
-  (utils/slurp-resource const/SUMMARY_PATH))
+(defn read-summary [context]
+  (let [config (products/get-current-product context)
+        summary-path (products/summary-path config)]
+    (println "read summary! " summary-path)
+    (utils/slurp-resource summary-path)))
 
 (defn title [s]
   (let [t (str/trim (str/replace (str/replace s #"\<.*\>" "") #"#" ""))]
@@ -87,7 +91,7 @@
 (defn parse-summary
   "Read SUMMARY.md and parse and render."
   [context]
-  (let [sum (read-summary)
+  (let [sum (read-summary context)
         summary
         (->>
          (loop [acc []
@@ -123,7 +127,7 @@
                                               href
                                               (if (str/starts-with? href "http")
                                                 href
-                                                (let [h (gitbok.http/get-prefixed-url context href)]
+                                                (let [h (gitbok.http/get-product-prefixed-url context href)]
                                                   (if (str/starts-with? h "/") h
                                                       (str "/" h))))]
 
@@ -133,16 +137,17 @@
                                            :href href
                                            :title (render-markdown-link-in-toc (:title parsed) href)})))
                                 (treefy)))))))]
+    (println "summary parsed with " (count summary) "entries")
     summary))
 
 (defn set-summary [context]
-  (system/set-system-state
+  (products/set-product-state
    context
    [const/SUMMARY_STATE]
    (parse-summary context)))
 
 (defn get-summary [context]
-  (system/get-system-state context [const/SUMMARY_STATE]))
+  (products/get-product-state context [const/SUMMARY_STATE]))
 
 (defn flatten-navigation [items]
   (reduce (fn [acc item]

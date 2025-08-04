@@ -197,7 +197,7 @@ article ul>li {
 article ul>li::before {
   content: "•";
   color: var(--color-tint-9);
-  font-family: Arial;
+  font-family: Arial, sans-serif;
   font-size: min(1.5em, 24px);
   line-height: 1;
   position: absolute;

@@ -51,6 +51,55 @@
              (str/join "/"))]
     (if (= "" url) "/" url)))
 
+(defn uri-to-relative
+  "Removes prefix and product-path from URI to get relative path.
+   Example: (uri-to-relative \"/docs/aidbox/readme\" \"/docs\" \"/aidbox\") => \"readme\"
+            (uri-to-relative \"/docs/forms/api/endpoints\" \"/docs\" \"/forms\") => \"api/endpoints\""
+  [uri prefix product-path]
+  (when uri
+    (let [;; First normalize multiple slashes
+          normalized-uri (str/replace uri #"/+" "/")
+          ;; Remove prefix first
+          without-prefix (if (and prefix
+                                  (not (str/blank? prefix))
+                                  (str/starts-with? normalized-uri prefix))
+                           (subs normalized-uri (count prefix))
+                           normalized-uri)
+          ;; Ensure we have a leading slash for proper comparison
+          with-leading-slash (if (str/starts-with? without-prefix "/")
+                               without-prefix
+                               (str "/" without-prefix))
+          ;; Then remove product path only if it matches
+          without-product (if (and product-path
+                                   (not (str/blank? product-path))
+                                   (str/starts-with? with-leading-slash product-path))
+                            (subs with-leading-slash (count product-path))
+                            without-prefix) ;; Use original without-prefix if no match
+          ;; Clean up leading slashes
+          cleaned (str/replace without-product #"^/+" "")]
+      (if (str/blank? cleaned) "/" cleaned))))
+
+(defn concat-filenames [& parts]
+  (when (seq parts)
+    (let [result
+          (reduce (fn [acc part]
+                    (if (instance? java.io.File acc)
+                      (java.io.File. ^java.io.File acc ^String part)
+                      (java.io.File. ^String acc ^String part)))
+                  (first parts)
+                  (rest parts))]
+      (let [^java.io.File file-result (if (instance? java.io.File result)
+                                        result
+                                        (java.io.File. ^String result))
+            path (.getPath file-result)
+            ;; Remove leading slash if present
+            path (cond-> path
+                   (str/starts-with? path "/")
+                   (subs 1))
+            ;; Replace "/./" with "/"
+            path (str/replace path "/./" "/")]
+        path))))
+
 (defn strip-markdown [text]
   (-> text
       (str/replace #"<table[\s\S]*?</table>" "")
@@ -92,3 +141,6 @@
 
 (defn json->clj [json-str]
   (json/parse-string json-str true))
+
+(defn parent [path]
+  (.getParent (java.io.File. ^String path)))

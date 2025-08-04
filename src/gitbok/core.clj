@@ -1,6 +1,7 @@
 (ns gitbok.core
   (:require
    [gitbok.indexing.impl.sitemap :as sitemap]
+   [gitbok.indexing.impl.sitemap-index :as sitemap-index]
    [edamame.core :as edamame]
    [clojure.string :as str]
    [hiccup2.core]
@@ -11,13 +12,14 @@
    [gitbok.indexing.impl.summary :as summary]
    [gitbok.indexing.impl.uri-to-file :as uri-to-file]
    [gitbok.ui.main-content :as main-content]
-   [gitbok.ui.right-toc :as right-toc]
    [gitbok.ui.layout :as layout]
    [gitbok.ui.not-found :as not-found]
    [gitbok.ui.search]
-   [gitbok.dev.page-relocator :as page-relocator]
    [ring.middleware.gzip :refer [wrap-gzip]]
+   [ring.middleware.content-type :refer [content-type-response]]
    [gitbok.http]
+   [gitbok.products :as products]
+   [gitbok.constants :as const]
    [http]
    [ring.util.response :as resp]
    [system]
@@ -34,6 +36,7 @@
 
 (defn read-markdown-file [context filepath]
   (let [[filepath section] (str/split filepath #"#")
+        filepath (products/filepath context filepath)
         content* (utils/slurp-resource filepath)
         {:keys [parsed description title]}
         (markdown/parse-markdown-content
@@ -74,7 +77,7 @@
              [:pre (pr-str e)]]))]
     {:content
      (if (map? result)
-       (:content result) ; This preserves the {:content ... :parsed ...} structure from render-file*
+       (:content result)
        [:div result])
      :section (:section result)
      :description (:description result)}))
@@ -103,30 +106,57 @@
       (str/replace #"%20" " ")
       (str/replace-first #".*.gitbook/" "")))))
 
-(defn render-favicon [_ _]
-  (resp/resource-response "public/favicon.ico"))
+(defn render-favicon [context _]
+  (let [product (products/get-current-product context)
+        favicon-path (or (:favicon product) "public/favicon.ico")]
+    (if (str/starts-with? favicon-path ".gitbook/")
+      ;; Handle .gitbook/assets paths like render-pictures does
+      (resp/resource-response
+       (str/replace-first favicon-path #".*.gitbook/" ""))
+      ;; Regular resource path
+      (resp/resource-response favicon-path))))
+
+(defn render-robots-txt [context _]
+  (let [product (products/get-current-product context)
+        robots-path (:robots product)]
+    (if robots-path
+      ;; Use custom robots.txt if specified
+      (if (str/starts-with? robots-path ".gitbook/")
+        ;; Handle .gitbook/assets paths like render-pictures does
+        (resp/resource-response
+         (str/replace-first robots-path #".*.gitbook/" ""))
+        ;; Regular resource path
+        (resp/resource-response robots-path))
+      ;; Generate default robots.txt dynamically
+      (let [sitemap-url (gitbok.http/get-product-absolute-url
+                         context
+                         "/sitemap.xml")]
+        {:status 200
+         :headers {"content-type" "text/plain"}
+         :body (str "User-agent: *\n"
+                    "Allow: /\n"
+                    "Sitemap: " sitemap-url "\n")}))))
 
 (defn render-file-view
   [context request]
   (let [uri (:uri request)
-        uri-without-prefix (if (str/starts-with? uri prefix)
-                             (subs uri (count prefix))
-                             uri)]
+        uri-relative
+        (utils/uri-to-relative
+         uri
+         prefix
+         (products/path context))]
     (cond
 
-      (or (= uri-without-prefix "robots.txt")
-          (= uri "/robots.txt"))
-      (resp/resource-response "public/robots.txt")
-
-      (or (picture-url? uri-without-prefix)
+      (or (picture-url? uri-relative)
           (picture-url? uri))
       (render-pictures context request)
 
-      (str/starts-with? uri-without-prefix "public/og-preview")
-      (resp/resource-response uri-without-prefix)
+      (str/starts-with? uri-relative "public/og-preview")
+      (resp/resource-response uri-relative)
 
       :else
-      (let [filepath (indexing/uri->filepath context uri-without-prefix)]
+      (let [filepath
+            (indexing/uri->filepath context uri-relative)]
         (if filepath
           (let [lastmod (indexing/get-lastmod context filepath)
                 etag (utils/etag lastmod)]
@@ -139,7 +169,7 @@
                          "ETag" etag}}
               (let [title (:title (get (indexing/file->uri-idx context) filepath))
                     {:keys [description content section]}
-                    (render-file context filepath)]
+                    (render-file (assoc context :current-uri uri-relative) filepath)]
                 (layout/layout
                  context request
                  {:content content
@@ -151,7 +181,7 @@
 
           (layout/layout
            context request
-           {:content (not-found/not-found-view context uri-without-prefix)
+           {:content (not-found/not-found-view context uri-relative)
             :status 404
             :title "Not found"
             :description "Page not found"}))))))
@@ -162,13 +192,39 @@
    :headers {"content-type" "application/xml"}
    :body (sitemap/get-sitemap context)})
 
+(defn sitemap-index-xml
+  "Generates sitemap index that references all product sitemaps"
+  [context _]
+  {:status 200
+   :headers {"content-type" "application/xml"}
+   :body (gitbok.indexing.impl.sitemap-index/generate-sitemap-index context)})
+
 (defn redirect-to-readme
   [context request]
-  (let [request
+  (let [uri (products/uri
+             context prefix
+             (or (products/readme-url context) "readme"))
+        request
         (assoc request
-               :uri (utils/concat-urls prefix "readme")
+               :uri uri
                :/ true)]
     (render-file-view context request)))
+
+(defn root-redirect-handler
+  "Handles root path redirect based on configuration"
+  [context request]
+  (let [full-config (products/get-full-config context)
+        root-redirect (:root-redirect full-config)]
+    (if root-redirect
+      (let [redirect-uri (utils/concat-urls prefix root-redirect)]
+        (resp/redirect redirect-uri))
+      ;; If no root-redirect configured, show 404 or default page
+      (layout/layout
+       context request
+       {:content (not-found/not-found-view context "/")
+        :status 404
+        :title "Not found"
+        :description "Page not found"}))))
 
 (defn healthcheck
   [_ _]
@@ -177,6 +233,15 @@
 (defn version-endpoint
   [context _]
   {:status 200 :body {:version (gitbok.http/get-version context)}})
+
+(defn serve-static-file
+  "Serves static files with proper content type headers"
+  [context request]
+  (let [uri (gitbok.http/url-without-prefix context (:uri request))
+        path (str/replace uri #"^/static/" "")
+        response (resp/resource-response (utils/concat-urls "public" path))]
+    (when response
+      (content-type-response response request))))
 
 (system/defmanifest
   {:description "gitbok"
@@ -197,118 +262,189 @@
   {:services ["http" "uui" "gitbok.core"]
    :http {:port port}})
 
+(defn product-middleware
+  "Middleware to determine product from request URI"
+  [handler]
+  (fn [context request]
+    (let [uri (:uri request)
+          uri-without-prefix (if (str/starts-with? uri prefix)
+                               (subs uri (count prefix))
+                               uri)
+          products-config (products/get-products-config context)
+          product (products/determine-product-by-uri products-config uri-without-prefix)
+          context (products/set-current-product-id context (:id product))]
+      (handler context request))))
+
 (defn gzip-middleware [f]
   (fn [ctx req]
     (let [ring-handler (fn [req] (f ctx req))
           gzip-handler (wrap-gzip ring-handler)]
       (gzip-handler req))))
 
+(defn init-product-indices
+  "Initializes indexes for a specific product"
+  [context product]
+  (let [;; Temporarily set current product for initialization
+        ctx (products/set-current-product-id context (:id product))]
+    ;; order is important
+    (println "1. read summary. create toc htmx.")
+    (summary/set-summary ctx)
+    (println "2. get uris from summary (using slugging), merge with redirects")
+    (uri-to-file/set-idx ctx)
+    (println "3. reverse file to uri idx")
+    (file-to-uri/set-idx ctx)
+    (println "4. using files from summary (step 3), read all files into memory")
+    (indexing/set-md-files-idx ctx (file-to-uri/get-idx ctx))
+    (println "5. parse all files into memory, some things are already rendered as plain html")
+    (markdown/set-parsed-markdown-index ctx (indexing/get-md-files-idx ctx))
+    (println "6. using parsed markdown, set search index")
+    (indexing/set-search-idx ctx (markdown/get-parsed-markdown-index ctx))
+    (println "7. render it on start")
+    (when-not dev?
+      (println "Not DEV, render all pages into memory")
+      (markdown/render-all! ctx
+                            (markdown/get-parsed-markdown-index ctx)
+                            read-markdown-file)
+      (println "Render all pages done."))
+    (println "8. set lastmod data in context for Last Modified metadata")
+    (indexing/set-lastmod ctx)
+    (println "9. generate sitemap.xml for product")
+    (when-not false
+      (println (str "generating sitemap.xml for " (:name product)))
+      ;; Now sitemap can use the lastmod data from context
+      (let [lastmod-data (products/get-product-state ctx [const/LASTMOD])]
+        (sitemap/set-sitemap ctx lastmod-data)))))
+
+(defn init-products
+  "Initializes all products from configuration"
+  [context]
+  (let [full-config (products/load-products-config)
+        products-config (:products full-config)]
+    (products/set-products-config context products-config)
+    (products/set-full-config context full-config)
+    products-config))
+
 #_{:clj-kondo/ignore [:unresolved-symbol]}
 (system/defstart
   [context config]
   (gitbok.http/set-port context port)
+
   (gitbok.http/set-prefix context prefix)
+
   (gitbok.http/set-base-url context base-url)
-  (gitbok.http/set-version context (str/trim (utils/slurp-resource "version")))
+
+  (gitbok.http/set-version
+   context
+   (str/trim (utils/slurp-resource "version")))
+
   (gitbok.http/set-dev-mode context dev?)
 
-  ;; order is important
-  ; 1. read summary. create toc htmx.
-  (summary/set-summary context)
-  ; 2. get uris from summary (using slugging), merge with redirects
-  (uri-to-file/set-idx context)
-  ; 3. reverse file to uri idx
-  (file-to-uri/set-idx context)
-  ; 4. using files from summary (step 3), read all files into memory
-  (indexing/set-md-files-idx
-   context
-   (file-to-uri/get-idx context))
-  ; 5. parse all files into memory, some things are already rendered as plain html
-  (markdown/set-parsed-markdown-index
-   context
-   (indexing/get-md-files-idx context))
-  ; 6. using parsed markdown, set search index
-  (indexing/set-search-idx
-   context
-   (markdown/get-parsed-markdown-index context))
-  ;; 7. render it on start
-  (when-not dev?
-    (markdown/render-all!
-     context
-     (markdown/get-parsed-markdown-index context) read-markdown-file))
-  ;; 8. generate sitemap.xml
-  (when-not
-   dev?
-    (println "generating sitemap.xml")
-    (sitemap/set-sitemap
-     context
-     (edamame/parse-string (utils/slurp-resource "lastmod.edn"))))
-  ;; 9. set lastmod.edn in context for Last Modified metadata
-  (indexing/set-lastmod context)
-
   (http/register-endpoint
    context
-   {:path (utils/concat-urls prefix "/search/dropdown")
+   {:path (utils/concat-urls prefix "/static/:path*")
     :method :get
-    :middleware [gzip-middleware]
-    :fn (fn [context request]
-          (let [result (gitbok.ui.search/search-dropdown-results context request)]
-            {:status 200
-             :headers {"content-type" "text/html; charset=utf-8"
-                       "Cache-Control" "no-cache, no-store, must-revalidate"}
-             :body (gitbok.utils/->html result)}))})
+    :fn #'serve-static-file})
 
   (http/register-endpoint
    context
-   {:path (utils/concat-urls prefix "/sitemap.xml")
-    :method :get
-    :fn #'sitemap-xml})
-
-  (http/register-endpoint
-   context
-   {:path (utils/concat-urls prefix "/:path*")
-    :method :get
-    :middleware [gzip-middleware]
-    :fn #'render-file-view})
-
-  (http/register-endpoint
-   context
-   {:path "/.gitbook/assets/:path*"
+   {:path (utils/concat-urls prefix "/.gitbook/assets/:path*")
     :method :get
     :middleware [gzip-middleware]
     :fn #'render-pictures})
 
-  (http/register-endpoint
-   context
-   {:path (utils/concat-urls prefix "favicon.ico")
-    :method :get
-    :middleware [gzip-middleware]
-    :fn #'render-favicon})
+  ;; Initialize all products
+  (let [products-config
+        (init-products context)]
+    ;; Register endpoints for each product
+    (doseq [product products-config]
+      (let [product-path (utils/concat-urls prefix (:path product))]
+        (println "base path! " product-path)
 
+        ;; Product main page
+        (http/register-endpoint
+         context
+         {:path product-path
+          :method :get
+          :middleware [product-middleware gzip-middleware]
+          :fn #'redirect-to-readme})
+
+        ;; Product search
+        (http/register-endpoint
+         context
+         {:path (str product-path "/search/dropdown")
+          :method :get
+          :middleware [product-middleware gzip-middleware]
+          :fn
+          gitbok.ui.search/search-endpoint})
+
+        ;; Product sitemap
+        (http/register-endpoint
+         context
+         {:path (str product-path "/sitemap.xml")
+          :method :get
+          :middleware [product-middleware]
+          :fn #'sitemap-xml})
+
+        ;; Product favicon
+        (http/register-endpoint
+         context
+         {:path (str product-path "/favicon.ico")
+          :method :get
+          :middleware [product-middleware gzip-middleware]
+          :fn #'render-favicon})
+
+        ;; Product robots.txt
+        (http/register-endpoint
+         context
+         {:path (str product-path "/robots.txt")
+          :method :get
+          :middleware [product-middleware]
+          :fn #'render-robots-txt})
+
+        ;; Product OG preview images
+        (http/register-endpoint
+         context
+         {:path (str product-path "/public/og-preview/:product-id/:path*")
+          :method :get
+          :middleware [product-middleware gzip-middleware]
+          :fn #'render-pictures})
+
+        ;; All product pages
+        (http/register-endpoint
+         context
+         {:path (str product-path "/:path*")
+          :method :get
+          :middleware [product-middleware gzip-middleware]
+          :fn #'render-file-view}))))
+
+  ;; Root path handler
   (http/register-endpoint
    context
    {:path prefix
     :method :get
     :middleware [gzip-middleware]
-    :fn #'redirect-to-readme})
+    :fn #'root-redirect-handler})
 
+  ;; Sitemap index at root
   (http/register-endpoint
    context
-   {:path (utils/concat-urls prefix "/widgets")
+   {:path (utils/concat-urls prefix "/sitemap.xml")
     :method :get
-    :middleware [gzip-middleware]
-    :fn #'gitbok.markdown.widgets/widgets})
+    :fn #'sitemap-index-xml})
 
-  (println "setup done!")
-  (println "PORT env " (System/getenv "PORT"))
-  (println "port " port)
-  (println "version " (utils/slurp-resource "version"))
-
+  ;; Root robots.txt
   (http/register-endpoint
    context
-   {:path "/healthcheck"
+   {:path (utils/concat-urls prefix "/robots.txt")
     :method :get
-    :fn #'healthcheck})
+    :fn (fn [ctx _]
+          (let [sitemap-url (str base-url
+                                 (utils/concat-urls prefix "/sitemap.xml"))]
+            {:status 200
+             :headers {"content-type" "text/plain"}
+             :body (str "User-agent: *\n"
+                        "Allow: /\n"
+                        "Sitemap: " sitemap-url "\n")}))})
 
   (http/register-endpoint
    context
@@ -316,76 +452,30 @@
     :method :get
     :fn #'version-endpoint})
 
-  ;; Dev endpoints (only available when DEV=true)
-  (when dev?
-    (http/register-endpoint
-     context
-     {:path "/dev/page-info"
-      :method :get
-      :fn (fn [context request]
-            (println "DEBUG: Full request object:" request)
-            (println "DEBUG: Query params:" (:query-params request))
-            (println "DEBUG: Params:" (:params request))
-            (println "DEBUG: Query string:" (:query-string request))
-            (let [uri (or (get-in request [:query-params :uri])
-                          (get-in request [:params :uri])
-                          (:uri request))]
-              (println "DEBUG: /dev/page-info endpoint called with URI:" uri)
-              (let [result (page-relocator/get-current-page-info context uri)]
-                (println "DEBUG: get-current-page-info result:" result)
-                {:status 200
-                 :headers {"content-type" "application/json"}
-                 :body (utils/->json result)})))})
+  (let [products-config (products/get-products-config context)]
+    (doseq [product products-config]
+      (println)
+      (println)
+      (println (str "Initializing product indices: "
+                    (:name product)))
+      (init-product-indices context product))
 
-    (http/register-endpoint
-     context
-     {:path "/dev/preview-url"
-      :method :post
-      :fn (fn [context request]
-            (println "DEBUG: /dev/preview-url request body:" (:body request))
-            (try
-              (let [body-str (if (instance? java.io.InputStream (:body request))
-                               (slurp (:body request))
-                               (:body request))
-                    _ (println "DEBUG: body string:" body-str)
-                    body (utils/json->clj body-str)
-                    _ (println "DEBUG: parsed body:" body)
-                    new-file-path (:new-file-path body)
-                    _ (println "DEBUG: new-file-path:" new-file-path)]
-                {:status 200
-                 :headers {"content-type" "application/json"}
-                 :body (utils/->json {:new-url (page-relocator/preview-new-url context new-file-path)})})
-              (catch Exception e
-                (println "DEBUG: Error in /dev/preview-url:" (.getMessage e))
-                {:status 500
-                 :headers {"content-type" "application/json"}
-                 :body (utils/->json {:error (.getMessage e)})})))})
+    (println "setup done!")
+    (println "version " (utils/slurp-resource "version"))
+    (println "PORT env " (System/getenv "PORT"))
+    (println "port " port)
+    (println "BASE_URL " base-url)
+    (println "PREFIX " prefix)
+    (println "Products:\n"
+             (str/join "\n" (mapv #(str (:name %) " - " (:path %))
+                                  products-config))
+             "\n"))
 
-    (http/register-endpoint
-     context
-     {:path "/dev/relocate-page"
-      :method :post
-      :fn (fn [context request]
-            (println "DEBUG: /dev/relocate-page request body:" (:body request))
-            (try
-              (let [body-str (if (instance? java.io.InputStream (:body request))
-                               (slurp (:body request))
-                               (:body request))
-                    _ (println "DEBUG: body string:" body-str)
-                    body (utils/json->clj body-str)
-                    _ (println "DEBUG: parsed body:" body)
-                    current-filepath (:current-filepath body)
-                    new-filepath (:new-filepath body)
-                    _ (println "DEBUG: current-filepath:" current-filepath "new-filepath:" new-filepath)
-                    result (page-relocator/relocate-page context current-filepath new-filepath)]
-                {:status (if (:success result) 200 400)
-                 :headers {"content-type" "application/json"}
-                 :body (utils/->json result)})
-              (catch Exception e
-                (println "DEBUG: Error in /dev/relocate-page:" (.getMessage e))
-                {:status 500
-                 :headers {"content-type" "application/json"}
-                 :body (utils/->json {:error (.getMessage e)})})))}))
+  (http/register-endpoint
+   context
+   {:path "/healthcheck"
+    :method :get
+    :fn #'healthcheck})
 
   {})
 

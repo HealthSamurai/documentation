@@ -5,6 +5,8 @@
    [gitbok.indexing.core :as indexing]
    [gitbok.indexing.impl.file-to-uri :as file-to-uri]
    [nextjournal.markdown.utils :as u]
+   [gitbok.utils :as utils]
+   [gitbok.products :as products]
    [uui.heroicons :as ico]))
 
 (def big-link-tokenizer
@@ -49,7 +51,12 @@
    (render-big-link context filepath nil {:text url}))
   ([context filepath _ctx node]
    (let [uri (href context (:text node) filepath)
-         uri (gitbok.http/url-without-prefix context uri)
+         uri
+         (utils/uri-to-relative
+           uri
+           (gitbok.http/get-prefix context)
+           (products/path context))
+
          uri (if (and uri (str/starts-with? uri "/"))
                (subs uri 1)
                uri)

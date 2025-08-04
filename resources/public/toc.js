@@ -57,11 +57,14 @@ window.updateActiveNavItem = updateActiveNavItem;
 // Function to extract and update page title from content
 function updatePageTitle() {
   try {
+    // Get product name from og:site_name meta tag
+    const productName = document.querySelector('meta[property="og:site_name"]')?.content || 'Aidbox User Docs';
+    
     // Try to extract title from the main content
     const h1 = document.querySelector('#content h1');
     if (h1) {
       const pageTitle = h1.textContent.trim();
-      document.title = `${pageTitle} | Aidbox User Docs`;
+      document.title = `${pageTitle} | ${productName}`;
       return;
     }
     
@@ -71,7 +74,7 @@ function updatePageTitle() {
       const lastCrumb = breadcrumb.querySelector('a:last-child, span:last-child');
       if (lastCrumb) {
         const pageTitle = lastCrumb.textContent.trim();
-        document.title = `${pageTitle} | Aidbox User Docs`;
+        document.title = `${pageTitle} | ${productName}`;
         return;
       }
     }
@@ -81,7 +84,7 @@ function updatePageTitle() {
     const segments = pathname.split('/').filter(s => s);
     if (segments.length > 0) {
       const pageTitle = segments[segments.length - 1].replace(/-/g, ' ').replace(/\b\w/g, l => l.toUpperCase());
-      document.title = `${pageTitle} | Aidbox User Docs`;
+      document.title = `${pageTitle} | ${productName}`;
     }
   } catch (e) {
     console.warn('Could not update page title:', e);

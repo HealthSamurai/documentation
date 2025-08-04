@@ -3,7 +3,8 @@
    [system]
    [clojure.string :as str]
    [gitbok.constants :as const]
-   [gitbok.utils :as utils]))
+   [gitbok.utils :as utils]
+   [gitbok.products :as products]))
 
 (defn response1
   ([body status lastmod section]
@@ -86,3 +87,21 @@
 
 (defn get-dev-mode [context]
   (system/get-system-state context [const/DEV_MODE]))
+
+(defn get-product-prefix
+  [context]
+  (let [product (products/get-current-product context)
+        docs-prefix (get-prefix context)]
+    (utils/concat-urls docs-prefix (:path product))))
+
+(defn get-product-prefixed-url
+  [context relative-url]
+  (utils/concat-urls (get-product-prefix context) relative-url))
+
+(defn get-product-absolute-url
+  [context relative-url]
+  (utils/absolute-url (get-base-url context)
+                      (get-product-prefix context)
+                      relative-url))
+
+

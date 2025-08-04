@@ -16,6 +16,7 @@
    [hickory.core]
    [system]
    [gitbok.constants :as const]
+   [gitbok.products :as products]
    [hiccup2.core]
    [nextjournal.markdown.utils :as u]
    [uui]))
@@ -76,7 +77,7 @@
   (assoc transform/default-hiccup-renderers
          :big-link (partial big-links/render-big-link context filepath)
          :big-link1 (partial big-links/render-big-link context filepath)
-         :image image/image-renderer
+         :image (partial image/image-renderer context filepath)
          :link (partial link/link-renderer context filepath)
          :internal-link link/link-renderer
 
@@ -145,11 +146,7 @@
          :code
          (fn [_ctx node]
            (if (and (:info node) (str/starts-with? (:info node) "mermaid"))
-             [:div
-              [:pre.mermaid (uui/raw (-> node :content first :text))]
-              [:script
-               (uui/raw "mermaid.initialize({ startOnLoad: true });")]]
-
+             [:pre.mermaid (uui/raw (-> node :content first :text))]
              [:pre {:class "text-base"}
               [:code
                ;; protect from xss, do not use raw
@@ -250,22 +247,25 @@
           render-md))))
 
 (defn set-parsed-markdown-index [context md-files-idx]
-  (system/set-system-state
-   context
-   [const/PARSED_MARKDOWN_IDX]
-   (mapv #(parse-markdown-content context %) md-files-idx)))
+  (let [parsed-files
+        (mapv #(parse-markdown-content context %) md-files-idx)]
+    (println "Parsed " (count parsed-files) " files")
+    (products/set-product-state
+     context
+     [const/PARSED_MARKDOWN_IDX]
+     parsed-files)))
 
 (defn get-parsed-markdown-index [context]
-  (system/get-system-state
+  (products/get-product-state
    context
    [const/PARSED_MARKDOWN_IDX]))
 
 (defn get-rendered [context filepath]
-  (get (system/get-system-state context [const/RENDERED])
+  (get (products/get-product-state context [const/RENDERED])
        filepath))
 
 (defn render-all! [context parsed-md-index read-markdown-file]
-  (system/set-system-state
+  (products/set-product-state
    context
    [const/RENDERED]
    (->> parsed-md-index
