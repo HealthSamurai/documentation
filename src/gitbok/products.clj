@@ -15,23 +15,20 @@
   (yaml/parse-string (utils/slurp-resource config-file)))
 
 (defn load-products-config
-  "Loads products configuration from products.yaml based on workdir"
-  [workdir]
-  (if workdir
-    (try
-       ;; When workdir is in classpath, products.yaml is at root level
-      (let [config-str (utils/slurp-resource "products.yaml")
-            config (yaml/parse-string config-str)
-            products (mapv
-                      #(merge
-                        %
-                        (read-product-config-file (:config %)))
-                      (:products config))]
-        {:products products
-         :root-redirect (:root-redirect config)})
-      (catch Exception _
-        {:products default-aidbox}))
-    {:products default-aidbox}))
+  "Loads products configuration from products.yaml in classpath"
+  []
+  (try
+    (let [config-str (utils/slurp-resource "products.yaml")
+          config (yaml/parse-string config-str)
+          products (mapv
+                    #(merge
+                      %
+                      (read-product-config-file (:config %)))
+                    (:products config))]
+      {:products products
+       :root-redirect (:root-redirect config)})
+    (catch Exception _
+      {:products default-aidbox})))
 
 (defn get-current-product-id
   "Gets current product ID from request context"

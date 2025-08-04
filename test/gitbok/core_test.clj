@@ -17,7 +17,7 @@
         (let [response (core/root-redirect-handler context {})]
           (is (= 302 (:status response)))
           (is (= "/aidbox" (get-in response [:headers "Location"])))))))
-  
+
   (testing "root-redirect-handler with prefix and redirect"
     (let [context {:system-state (atom {})}]
       ;; Set up full config with root-redirect
@@ -27,7 +27,7 @@
         (let [response (core/root-redirect-handler context {})]
           (is (= 302 (:status response)))
           (is (= "/docs/aidbox" (get-in response [:headers "Location"])))))))
-  
+
   (testing "root-redirect-handler without configured redirect shows 404"
     (let [context {:system-state (atom {})}]
       ;; Set up full config without root-redirect
@@ -60,21 +60,21 @@
           (is (= 200 (:status response)))
           (is (= "Rendered: /readme" (:body response)))))))
 
-(deftest test-init-products
-  (testing "init-products stores full config"
-    (let [context {:system-state (atom {})}]
-      (with-redefs [products/load-products-config
-                    (fn [workdir]
-                      {:root-redirect "/aidbox"
-                       :products [{:id "test" :path "/test"}]})]
-        (let [result (core/init-products context "test-workdir")]
+  (deftest test-init-products
+    (testing "init-products stores full config"
+      (let [context {:system-state (atom {})}]
+        (with-redefs [products/load-products-config
+                      (fn []
+                        {:root-redirect "/aidbox"
+                         :products [{:id "test" :path "/test"}]})]
+          (let [result (core/init-products context)]
           ;; Check that products were returned
-          (is (= 1 (count result)))
-          (is (= "test" (-> result first :id)))
+            (is (= 1 (count result)))
+            (is (= "test" (-> result first :id)))
           ;; Check that configs were stored
-          (is (= [{:id "test" :path "/test"}] 
-                 (products/get-products-config context)))
-          (is (= {:root-redirect "/aidbox"
-                  :products [{:id "test" :path "/test"}]}
-                 (products/get-full-config context)))))))))
+            (is (= [{:id "test" :path "/test"}]
+                   (products/get-products-config context)))
+            (is (= {:root-redirect "/aidbox"
+                    :products [{:id "test" :path "/test"}]}
+                   (products/get-full-config context)))))))))
 

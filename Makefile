@@ -1,8 +1,6 @@
 .PHONY: clean build uberjar test
 
 init-test:
-	cp .gitbook.yaml resources
-	if [ -n "$$WORKDIR" ]; then cp $$WORKDIR/products.yaml resources; else cp products.yaml resources 2>/dev/null || true; fi
 	echo 'dev' > resources/version
 	mkdir -p .git/hooks
 
@@ -12,7 +10,7 @@ init:
 	chmod +x .git/hooks/pre-push
 
 repl: init-test
-	DEV=true BASE_URL=http://localhost:8081 DOCS_PREFIX=/docs WORKDIR=docs-new clj -M:dev:nrepl:test:build
+	DEV=true BASE_URL=http://localhost:8081 DOCS_PREFIX=/docs clj -M:dev:nrepl:test:build
 
 repl-legacy: init-test
 	DEV=true BASE_URL=http://localhost:8081 DOCS_PREFIX=/ clj -M:dev:nrepl:test:build

@@ -317,8 +317,8 @@
 
 (defn init-products
   "Initializes all products from configuration"
-  [context workdir]
-  (let [full-config (products/load-products-config workdir)
+  [context]
+  (let [full-config (products/load-products-config)
         products-config (:products full-config)]
     (products/set-products-config context products-config)
     (products/set-full-config context full-config)
@@ -327,8 +327,6 @@
 #_{:clj-kondo/ignore [:unresolved-symbol]}
 (system/defstart
   [context config]
-  ;; Read WORKDIR at startup and store in system state
-
   (gitbok.http/set-port context port)
 
   (gitbok.http/set-prefix context prefix)
@@ -354,16 +352,9 @@
     :middleware [gzip-middleware]
     :fn #'render-pictures})
 
-  (let [workdir (System/getenv "WORKDIR")]
-    (when workdir
-      (println "WORKDIR set to:" workdir)
-      (system/set-system-state context [::workdir] workdir)))
-
   ;; Initialize all products
   (let [products-config
-        (init-products
-         context
-         (system/get-system-state context [::workdir]))]
+        (init-products context)]
     ;; Register endpoints for each product
     (doseq [product products-config]
       (let [product-path (utils/concat-urls prefix (:path product))]
