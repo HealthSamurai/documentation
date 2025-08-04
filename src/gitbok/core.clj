@@ -45,6 +45,7 @@
     (try
       {:content
        (main-content/render-file* context filepath parsed title content*)
+       :title title
        :description
        (or
         description
@@ -80,7 +81,8 @@
        (:content result)
        [:div result])
      :section (:section result)
-     :description (:description result)}))
+     :description (:description result)
+     :title (:title result)}))
 
 (defn check-cache-lastmod [request last-mod]
   (let [if-modified-since
@@ -167,8 +169,7 @@
                :headers {"Cache-Control" "public, max-age=86400"
                          "Last-Modified" lastmod
                          "ETag" etag}}
-              (let [title (:title (get (indexing/file->uri-idx context) filepath))
-                    {:keys [description content section]}
+              (let [{:keys [title description content section]}
                     (render-file (assoc context :current-uri uri-relative) filepath)]
                 (layout/layout
                  context request

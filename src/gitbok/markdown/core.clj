@@ -35,7 +35,7 @@
   {:filepath filepath
    :description
    (description/parse-description content)
-   :title (description/parse-title content)
+   :title (description/parse-title content filepath)
    :parsed
    (md/parse*
     custom-doc

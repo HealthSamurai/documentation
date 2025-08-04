@@ -4,22 +4,54 @@
             [gitbok.ui.breadcrumb :as breadcrumb]
             [clojure.string :as str]))
 
-(defn parse-title [content]
-  (let [lines (str/split-lines content)
-        h1-idx (some #(when (and (>= % 0)
-                                 (str/starts-with? (str/trim (nth lines %)) "# "))
-                        %)
-                     (range (count lines)))
-        h1-line (when h1-idx (nth lines h1-idx))
-        title (when h1-line (str/trim (subs h1-line 2)))
-        h2-idx (when-not title
-                 (some #(when (and (>= % 0)
-                                   (str/starts-with? (str/trim (nth lines %)) "## "))
-                          %)
-                       (range (count lines))))
-        h2-line (when h2-idx (nth lines h2-idx))
-        h2-title (when h2-line (str/trim (subs h2-line 3)))]
-    (or title h2-title)))
+(defn parse-title 
+  ([content] (parse-title content nil))
+  ([content filepath]
+   (let [lines (str/split-lines content)
+         ;; First, try to get title from YAML frontmatter
+         first-line (str/trim (first lines))
+         start-idx (when (= "---" first-line) 0)
+         end-idx (when start-idx
+                   (some #(when (and (> % start-idx)
+                                     (= "---" (str/trim (nth lines %))))
+                            %)
+                         (range (inc start-idx) (count lines))))
+         yaml-lines (when (and start-idx end-idx)
+                      (subvec (vec lines)
+                              (inc start-idx) end-idx))
+         frontmatter (when yaml-lines 
+                       (try
+                         (yaml/parse-string (str/join "\n" yaml-lines))
+                         (catch Exception _ nil)))
+         yaml-title (:title frontmatter)
+         
+         ;; Then try H1
+         h1-idx (some #(when (and (>= % 0)
+                                  (str/starts-with? (str/trim (nth lines %)) "# "))
+                         %)
+                      (range (count lines)))
+         h1-line (when h1-idx (nth lines h1-idx))
+         h1-title (when h1-line (str/trim (subs h1-line 2)))
+         
+         ;; Then try H2
+         h2-idx (when-not h1-title
+                  (some #(when (and (>= % 0)
+                                    (str/starts-with? (str/trim (nth lines %)) "## "))
+                           %)
+                        (range (count lines))))
+         h2-line (when h2-idx (nth lines h2-idx))
+         h2-title (when h2-line (str/trim (subs h2-line 3)))
+         
+         ;; Finally, use filename as fallback
+         filename-title (when filepath
+                          (-> filepath
+                              (str/split #"/")
+                              last
+                              (str/replace #"\.md$" "")
+                              (str/replace #"-" " ")
+                              (str/replace #"_" " ")
+                              str/capitalize))]
+     (or yaml-title h1-title h2-title filename-title "Untitled"))))
 
 (defn parse-description [content]
   (let [lines (str/split-lines content)
