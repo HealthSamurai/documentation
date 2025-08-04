@@ -444,14 +444,6 @@
     :middleware [gzip-middleware]
     :fn #'root-redirect-handler})
 
-  ;; Root path with trailing slash handler
-  (http/register-endpoint
-   context
-   {:path (str prefix "/")
-    :method :get
-    :middleware [gzip-middleware]
-    :fn #'root-redirect-handler})
-
   ;; Sitemap index at root
   (http/register-endpoint
    context
