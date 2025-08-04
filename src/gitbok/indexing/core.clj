@@ -119,7 +119,8 @@
                         (if (str/starts-with? filename "http")
                           acc
                           (let [full-path (products/filepath context filename)]
-                            (assoc acc full-path
+                            ;; Use original filename as key, not the full path
+                            (assoc acc filename
                                    (read-content full-path))))) {}
                       (filter #(not (str/starts-with? % "http"))
                               filepaths-from-summary))]
