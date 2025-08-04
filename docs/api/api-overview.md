@@ -6,9 +6,17 @@ Healthcare systems must handle complex data workflows while maintaining integrit
 
 ### CRUD
 
-At the heart of any healthcare system lies the ability to create, read, update, and delete clinical resources - the fundamental CRUD operations that power everything from patient registration to medication orders. Aidbox implements these operations following the FHIR RESTful API specification, where each resource type gets its own endpoint and standard HTTP methods provide predictable behavior across all resource types. When a nurse creates a new patient record, updates vital signs, or a physician reviews medical history, they're using these CRUD APIs behind the scenes, with Aidbox ensuring each operation maintains data consistency through PostgreSQL's ACID transactions.
+At the heart of any healthcare system lies the ability to create, read, update, and delete clinical resources — the fundamental CRUD operations that power everything from patient registration to medication orders. 
 
-The RESTful design means developers work with familiar HTTP patterns: POST to create resources, GET to retrieve them, PUT to update, and DELETE to remove. Each operation returns appropriate HTTP status codes and follows FHIR's versioning strategy through ETags and the `\_history` endpoint. For instance, creating a Patient resource returns a 201 status with the Location header pointing to the newly created resource.
+These actions happen every time someone in healthcare works with a digital system. For example:
+- A nurse adds a new patient → that’s **Create**
+- A doctor looks at lab results → that’s **Read**
+- Vital signs get updated → that’s **Update**
+- An outdated record is removed → that’s **Delete**
+
+Aidbox implements these operations following the FHIR RESTful API specification, where each resource type gets its own endpoint and standard HTTP methods provide predictable behavior across all resource types. When a nurse creates a new patient record, updates vital signs, or a physician reviews medical history, they're using these CRUD APIs behind the scenes, with Aidbox ensuring each operation maintains data consistency through PostgreSQL's [ACID](https://en.wikipedia.org/wiki/ACID) transactions.
+
+The RESTful design means developers work with familiar HTTP patterns: POST to create resources, GET to retrieve them, PUT to update, and DELETE to remove. Each operation returns appropriate HTTP status codes and follows FHIR's versioning strategy through ETags and the `\_history` endpoint. For instance, creating a Patient resource returns [a 201 status](./rest-api/crud/create.md) with the Location header pointing to the newly created resource.
 
 See also:
 
@@ -17,7 +25,10 @@ See also:
 
 ### Validation
 
-Healthcare data validation ensures that clinical information conforms to predefined constraints and business rules. Aidbox uses [FHIR Schema](../modules/profiling-and-validation/fhir-schema-validator/) validation engine -  an engine that uses FHIR Schema format internally. FHIR Schema is a developer-friendly format that simplifies FHIR StructureDefinitions into intuitive, JSON Schema-like representations. FHIR Schema validation engine provides enhanced performance, supports [advanced features](../modules/profiling-and-validation/fhir-schema-validator#validator-features) like FHIRPath invariants and slicing.
+Healthcare data validation ensures that clinical information conforms to predefined constraints and business rules. 
+Aidbox uses [FHIR Schema](../modules/profiling-and-validation/fhir-schema-validator/) — a validation engine that uses FHIR Schema format internally. 
+FHIR Schema is a developer-friendly format that simplifies FHIR StructureDefinitions into intuitive, JSON Schema-like representations. 
+FHIR Schema validation engine provides enhanced performance, supports [advanced features](../modules/profiling-and-validation/fhir-schema-validator#validator-features) like FHIRPath invariants and slicing.
 
 Aidbox provides two types of validation:
 
@@ -96,7 +107,7 @@ graph LR
     HIST -.-> V4
 ```
 
-The history mechanism works at two levels: instance history tracks changes to individual resources, and type history shows all changes across a resource type. Each history entry includes the complete resource state at that point in time, the HTTP method used (POST, PUT, DELETE), version identifiers, and timestamps. For example, `GET /fhir/Patient/123/_history` retrieves all versions of a specific patient, while `GET /fhir/Patient/_history?_since=2024-01-01` shows all patient changes since a specific date.
+The history mechanism works at two levels: instance history tracks changes to individual resources (e.g., tracking changes to a single Patient record), and type history shows all changes across a resource type (e.g., listing all updates across all Patient records). Each history entry includes the complete resource state at that point in time, the HTTP method used (POST, PUT, DELETE), version identifiers, and timestamps. For example, `GET /fhir/Patient/123/_history` retrieves all versions of a specific patient, while `GET /fhir/Patient/_history?_since=2024-01-01` shows all patient changes since a specific date.
 
 See also:
 
@@ -105,7 +116,8 @@ See also:
 
 ### Bundle
 
-Real-world healthcare operations rarely involve single, isolated data changes. Admitting a patient might require creating a Patient resource, an Encounter, multiple Observations, and updating various other records - all of which must succeed or fail together. FHIR Bundles resource solve this by packaging multiple operations into a single atomic transaction. Aidbox's Bundle API processes these multi-operation requests within a single PostgreSQL transaction, ensuring data consistency even in complex workflows.
+Real-world healthcare operations rarely involve single, isolated data changes. 
+Admitting a patient might require creating a Patient resource, an Encounter, multiple Observations, and updating various other records - all of which must succeed or fail together. FHIR Bundles resource solve this by packaging multiple operations into a single atomic transaction. Aidbox's Bundle API processes these multi-operation requests within a single PostgreSQL transaction, ensuring data consistency even in complex workflows.
 
 ```http
 POST /fhir
@@ -137,7 +149,11 @@ content-type: application/json
 }
 ```
 
-Bundles support different processing modes for different use cases. Transaction bundles ensure all-or-nothing processing where every operation must succeed or the entire bundle rolls back - critical for maintaining referential integrity. Batch bundles process operations independently, continuing even if individual operations fail - useful for bulk updates where partial success is acceptable. Message bundles carry event notifications with guaranteed delivery semantics, while document bundles package complete clinical documents like discharge summaries with all their referenced resources.
+Bundles support different processing modes for different use cases. 
+- **Transaction bundles** ensure all-or-nothing processing, where every operation must succeed or the entire bundle rolls 
+back — critical for maintaining referential integrity. 
+- **Batch bundles** process operations independently, continuing even if individual operations fail — useful for bulk updates 
+where partial success is acceptable. 
 
 Aidbox implements bundle processing exactly as specified in the [FHIR Bundle specification](https://www.hl7.org/fhir/bundle.html), including automatic reference resolution for temporary identifiers, conditional operations, and detailed operation outcomes. The implementation follows FHIR's processing rules precisely, ensuring full compatibility with other FHIR-compliant systems while leveraging PostgreSQL's transaction capabilities for optimal performance.
 
@@ -198,7 +214,9 @@ flowchart LR
     style DB fill:#E6E6FA
 ```
 
-The choice between `$load` and `$import` depends on your specific use case. The `$load` operation processes data synchronously, making it ideal for smaller datasets (up to hundreds of thousands of records) where you need immediate feedback about success or failure. It streams NDJSON data directly into PostgreSQL using [COPY](https://www.postgresql.org/docs/current/sql-copy.html) commands, providing real-time progress and error reporting. The `$import` operation handles truly massive datasets asynchronously, accepting data via URLs or direct upload, queuing the import job, and processing millions of records in the background while your application continues other work.
+The choice between `$load` and `$import` depends on your specific use case:
+- **The `$load` operation** processes data synchronously, making it ideal for smaller datasets (up to hundreds of thousands of records) where you need immediate feedback about success or failure. It streams NDJSON data directly into PostgreSQL using [COPY](https://www.postgresql.org/docs/current/sql-copy.html) commands, providing real-time progress and error reporting. 
+- **The `$import` operation** handles truly massive datasets asynchronously, accepting data via URLs or direct upload, queuing the import job, and processing millions of records in the background while your application continues other work.
 
 See also:
 
@@ -207,7 +225,10 @@ See also:
 
 ### Other APIs
 
-Beyond the core data management operations, Aidbox provides specialized APIs that address specific healthcare challenges. The Encryption API enables field-level encryption for sensitive data like Social Security numbers or psychiatric notes, ensuring data remains protected even if database backups are compromised. The Sequence API generates guaranteed-unique identifiers crucial for medical record numbers and order IDs, using PostgreSQL sequences to ensure uniqueness even under high concurrency. Batch Upsert combines insert and update operations, perfect for synchronizing data from external systems where you don't know if records already exist.
+Beyond the core data management operations, Aidbox provides specialized APIs that address specific healthcare challenges. 
+- **The Encryption API** enables field-level encryption for sensitive data like Social Security numbers or psychiatric notes, ensuring data remains protected even if database backups are compromised. 
+- **The Sequence API** generates guaranteed-unique identifiers crucial for medical record numbers and order IDs, using PostgreSQL sequences to ensure uniqueness even under high concurrency. 
+- **Batch Upsert** combines insert and update operations, perfect for synchronizing data from external systems where you don't know if records already exist.
 
 See also:
 
@@ -236,7 +257,7 @@ While FHIR Search provides comprehensive querying capabilities, healthcare appli
 
 [**Search Resources**](rest-api/aidbox-search.md#search-resource) allow you to define custom search parameters or override existing FHIR SearchParameters with SQL-based implementations for performance optimization and complex custom searches.
 
-[**AidboxQuery**](rest-api/aidbox-search.md#aidboxquery) provides a general SQL-based search approach with a DSL to build complex queries through a dedicated endpoint, perfect for generating reports and implementing specialized search logic.
+[**AidboxQuery**](rest-api/aidbox-search.md#aidboxquery) provides a general SQL-based search approach with a DSL to build **complex** queries through a dedicated endpoint, perfect for generating reports and implementing specialized search logic.
 
 [**Dot expressions**](rest-api/aidbox-search.md#dot-expressions) enable search without defining SearchParameters by providing direct access to JSON paths in FHIR resources with optional PostgreSQL type coercion and operators.
 
@@ -290,7 +311,9 @@ See also:
 
 ### GraphQL
 
-Modern healthcare applications often need to retrieve complex, nested data structures - a patient's complete medical history including encounters, observations, medications, and procedures, all in a single request. GraphQL provides a flexible query language that allows clients to specify exactly what data they need, reducing over-fetching and under-fetching while providing a single endpoint for all data access.
+Modern healthcare applications often need to retrieve complex, nested data structures - a patient's complete medical history including encounters, observations, medications, and procedures. 
+
+Unlike traditional APIs that require multiple requests to different endpoints, GraphQL allows clients to request exactly the data they need — and nothing more — all in a single call. This powerful, flexible query language eliminates over-fetching and under-fetching, streamlines data access through a single unified endpoint, and enables deep, fine-grained queries that would otherwise require complex coordination.
 
 For example, this GraphQL query retrieves a patient with their name and managing organization in a single request:
 
@@ -314,9 +337,9 @@ query {
 }
 ```
 
-Aidbox's GraphQL API is based on the [FHIR GraphQL specification](https://build.fhir.org/graphql.html) and maps FHIR resources to GraphQL types, allowing you to query FHIR data using GraphQL syntax. For example, a single GraphQL query can retrieve a patient with all their encounters, observations, and medications, with the exact fields and relationships you specify. This approach is particularly valuable for mobile applications and single-page applications that need to minimize network requests.
+Aidbox's GraphQL API is based on the [FHIR GraphQL specification](https://build.fhir.org/graphql.html) and maps FHIR resources to GraphQL types, allowing you to query FHIR data using GraphQL syntax and allowing precise, structured access to healthcare data. This approach is particularly valuable for mobile applications and single-page applications that need to minimize network requests.
 
-The GraphQL implementation includes features like field-level authorization, query complexity analysis to prevent expensive queries, and integration with Aidbox's caching layer for improved performance. Beyond the standard FHIR GraphQL specification, Aidbox adds additional features such as `_include` and `_revinclude` parameters for efficient resource traversal, enabling you to fetch related resources in a single query. The API maintains FHIR semantics while providing the flexibility and efficiency benefits of GraphQL, with additional Aidbox-specific extensions for enhanced functionality.
+Beyond the standard FHIR GraphQL specification, Aidbox adds additional features such as [`_include` and `_revinclude`](./graphql-api.md#revincludes) parameters for efficient resource traversal, enabling you to fetch related resources in a single query. The API maintains FHIR semantics while providing the flexibility and efficiency benefits of GraphQL, with additional Aidbox-specific extensions for enhanced functionality.
 
 See also:
 
@@ -366,7 +389,9 @@ See also:
 
 ### Other APIs
 
-Beyond the core querying capabilities, Aidbox provides specialized APIs for specific healthcare use cases. The `$document` operation generates FHIR Documents - structured clinical summaries that package complete patient information for care coordination and legal requirements. The `$lastn` operation retrieves the most recent N observations for a patient, useful for trending analysis and clinical decision support.
+Beyond the core querying capabilities, Aidbox provides specialized APIs for specific healthcare use cases:
+- **The `$document` operation** generates FHIR Documents — structured clinical summaries that package complete patient information for care coordination and legal requirements. 
+- **The `$lastn` operation** retrieves the most recent N observations for a patient, useful for trending analysis and clinical decision support.
 
 See also:
 
