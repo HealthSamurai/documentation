@@ -12,7 +12,7 @@ init:
 	chmod +x .git/hooks/pre-push
 
 repl: init-test
-	DEV=true BASE_URL=http://localhost:8081 DOCS_PREFIX=/ WORKDIR=docs-new clj -M:dev:nrepl:test:build
+	DEV=true BASE_URL=http://localhost:8081 DOCS_PREFIX=/docs WORKDIR=docs-new clj -M:dev:nrepl:test:build
 
 repl-legacy: init-test
 	DEV=true BASE_URL=http://localhost:8081 DOCS_PREFIX=/ clj -M:dev:nrepl:test:build

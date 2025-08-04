@@ -332,13 +332,16 @@
    context
    {:path (utils/concat-urls prefix "/static/:path*")
     :method :get
-    :fn (fn [_ request]
-          (resp/resource-response
-           (str "public/" (get-in request [:params :path]))))})
+    :fn (fn [context request]
+          (-> "public"
+              (utils/concat-urls
+               (str/replace (gitbok.http/url-without-prefix context (:uri request))
+                            #"^/static/" ""))
+              resp/resource-response))})
 
   (http/register-endpoint
    context
-   {:path "/.gitbook/assets/:path*"
+   {:path (utils/concat-urls prefix "/.gitbook/assets/:path*")
     :method :get
     :middleware [gzip-middleware]
     :fn #'render-pictures})
@@ -398,7 +401,7 @@
           :method :get
           :middleware [product-middleware]
           :fn #'render-robots-txt})
-        
+
         ;; Product OG preview images
         (http/register-endpoint
          context
@@ -436,7 +439,7 @@
    {:path (utils/concat-urls prefix "/robots.txt")
     :method :get
     :fn (fn [ctx _]
-          (let [sitemap-url (str base-url 
+          (let [sitemap-url (str base-url
                                  (utils/concat-urls prefix "/sitemap.xml"))]
             {:status 200
              :headers {"content-type" "text/plain"}
