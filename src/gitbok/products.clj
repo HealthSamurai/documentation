@@ -117,17 +117,27 @@
 
 (defn summary-path
   [product-config]
-  (utils/concat-filenames
-   (utils/parent (:config product-config ".gitbook.yaml"))
-   (:root product-config "./docs")
-   (or (-> product-config :structure :summary) "SUMMARY.md")))
+  (let [root (:root product-config "./docs")
+        ;; Remove leading "./" from root if present
+        root (if (str/starts-with? root "./")
+               (subs root 2)
+               root)]
+    (utils/concat-filenames
+     (utils/parent (:config product-config ".gitbook.yaml"))
+     root
+     (or (-> product-config :structure :summary) "SUMMARY.md"))))
 
 (defn filepath [context filepath]
   (let [config
-        (get-current-product context)]
+        (get-current-product context)
+        root (:root config "./docs")
+        ;; Remove leading "./" from root if present
+        root (if (str/starts-with? root "./")
+               (subs root 2)
+               root)]
     (utils/concat-filenames
      (utils/parent (:config config ".gitbook.yaml"))
-     (:root config "./docs")
+     root
      filepath)))
 
 (defn uri [context docs-prefix uri]

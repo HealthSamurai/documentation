@@ -39,6 +39,20 @@
   (gitbok.indexing.impl.uri-to-file/uri->filepath
    (uri-to-file/get-idx context) uri))
 
+(defn absolute-filepath->relative
+  "Converts an absolute filepath to a relative filepath by removing the product root prefix.
+  This ensures the filepath matches the keys used in the file->uri index."
+  [context absolute-filepath]
+  (let [config (products/get-current-product context)
+        product-root (products/filepath context "")
+        ;; Remove trailing slash from product root if present
+        product-root (if (str/ends-with? product-root "/")
+                       (subs product-root 0 (dec (count product-root)))
+                       product-root)]
+    (if (str/starts-with? absolute-filepath product-root)
+      (utils/safe-subs absolute-filepath (inc (count product-root)))
+      absolute-filepath)))
+
 (defn page-link->uri [context
                       ^String current-page-filepath
                       ^String relative-page-link]
@@ -65,16 +79,10 @@
       (str "#" section)
       (let [file->uri-idx (file-to-uri/get-idx context)
             _ (when-not file->uri-idx (throw (Exception. "no idx")))
-            current-page-filepath
-            (cond
-              (str/starts-with? current-page-filepath "/docs")
-              (utils/safe-subs current-page-filepath 6)
-
-              (str/starts-with? current-page-filepath "./docs")
-              (subs current-page-filepath 7)
-
-              :else
-              current-page-filepath)
+            _ (def file->uri-idx file->uri-idx)
+            _ (def current-page-filepath current-page-filepath)
+            ;; Convert absolute filepath to relative filepath that matches the index
+            current-page-filepath (absolute-filepath->relative context current-page-filepath)
             path
             (utils/safe-subs
              (common/get-filepath
@@ -84,8 +92,14 @@
               (System/getProperty
                "user.dir")))
 
-            path (if (str/starts-with? path "/") (utils/safe-subs path 1) path)
-            path (gitbok.http/get-product-prefixed-url context (str "/" (:uri (get file->uri-idx path))))]
+            path (if (str/starts-with? path "/")
+                   (utils/safe-subs path 1)
+                   path)
+            _ (def path1 path)
+            path (gitbok.http/get-product-prefixed-url
+                  context
+                  (str "/" (:uri (get file->uri-idx path))))]
+        (def path path)
 
         (if section
           (str path "#" section)

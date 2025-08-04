@@ -49,7 +49,7 @@
     (is (= "foo/bar/baz" (utils/concat-filenames "/foo" "bar" "baz"))))
 
   (testing "Paths with dots"
-    (is (= "foo/./bar" (utils/concat-filenames "foo" "." "bar")))
+    (is (= "foo/bar" (utils/concat-filenames "foo" "." "bar")))
     (is (= "foo/../bar" (utils/concat-filenames "foo" ".." "bar")))
     (is (= "./foo/bar" (utils/concat-filenames "." "foo" "bar")))
     (is (= "../foo/bar" (utils/concat-filenames ".." "foo" "bar")))
@@ -63,8 +63,8 @@
     (is (= "./foo" (utils/concat-filenames "." "foo"))))
 
   (testing "Complex paths with dots"
-    (is (= "foo/./bar/../baz" (utils/concat-filenames "foo" "." "bar" ".." "baz")))
-    (is (= "../foo/./bar" (utils/concat-filenames ".." "foo" "." "bar")))
+    (is (= "foo/bar/../baz" (utils/concat-filenames "foo" "." "bar" ".." "baz")))
+    (is (= "../foo/bar" (utils/concat-filenames ".." "foo" "." "bar")))
     (is (= "./foo/../bar/." (utils/concat-filenames "." "foo" ".." "bar" ".")))))
 
 (deftest uri-to-relative-test

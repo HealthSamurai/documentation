@@ -90,10 +90,15 @@
                   (rest parts))]
       (let [^java.io.File file-result (if (instance? java.io.File result)
                                         result
-                                        (java.io.File. ^String result))]
-        (cond-> (.getPath file-result)
-          (str/starts-with? (.getPath file-result) "/")
-          (subs 1))))))
+                                        (java.io.File. ^String result))
+            path (.getPath file-result)
+            ;; Remove leading slash if present
+            path (cond-> path
+                   (str/starts-with? path "/")
+                   (subs 1))
+            ;; Replace "/./" with "/"
+            path (str/replace path "/./" "/")]
+        path))))
 
 (defn strip-markdown [text]
   (-> text
