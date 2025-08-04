@@ -1,5 +1,7 @@
 ---
-description: Setting up and configuring Aidbox terminology module with different operational modes
+description: >-
+  Setting up and configuring Aidbox terminology module with different
+  operational modes
 ---
 
 # Setup
@@ -14,37 +16,37 @@ Set the terminology engine mode using the `FHIR_TERMINOLOGY_ENGINE` environment 
 
 ```yaml
 # Choose your operational mode
-FHIR_TERMINOLOGY_ENGINE: hybrid  # Options: local, hybrid, legacy
+BOX_FHIR_TERMINOLOGY_ENGINE: hybrid  # Options: local, hybrid, legacy
 ```
 
 **Available modes:**
-- `local` - Uses only resources stored in Aidbox's FAR
-- `hybrid` - Combines local storage with external server fallback (recommended)
-- `legacy` - Routes all requests to external terminology servers
+
+* `local` - Uses only resources stored in Aidbox's FAR
+* `hybrid` - Combines local storage with external server fallback (recommended)
+* `legacy` - Routes all requests to external terminology servers
 
 ### External Terminology Server (Hybrid Mode)
 
 For Hybrid Mode, configure the external terminology server URL:
 
-```yaml
-FHIR_TERMINOLOGY_ENGINE: hybrid
-FHIR_TERMINOLOGY_ENGINE_HYBRID_EXTERNAL_TX_SERVER: https://tx.health-samurai.io/fhir
-```
+<pre class="language-yaml"><code class="lang-yaml"><strong>BOX_FHIR_TERMINOLOGY_ENGINE: hybrid
+</strong>BOX_FHIR_TERMINOLOGY_ENGINE_HYBRID_EXTERNAL_TX_SERVER: https://tx.health-samurai.io/fhir
+</code></pre>
 
 ## Implementation Guide Loading
 
 To populate the local terminology content, configure FHIR packages to load at startup:
 
-```yaml
-BOX_BOOTSTRAP_FHIR_PACKAGES: hl7.fhir.r4.core#4.0.1:hl7.terminology.r4#6.4.0
-```
+<pre class="language-yaml"><code class="lang-yaml"><strong>BOX_BOOTSTRAP_FHIR_PACKAGES: hl7.fhir.r4.core#4.0.1:hl7.terminology.r4#6.4.0
+</strong></code></pre>
 
 **Format:** `<package-name>#<version>:<package-name>#<version>...`
 
 **Common packages:**
-- `hl7.fhir.r4.core#4.0.1` - Core FHIR R4 resources
-- `hl7.terminology.r4#6.4.0` - Core FHIR terminology resources
-- `hl7.fhir.us.core#6.0.0` - US Core Implementation Guide
+
+* `hl7.fhir.r4.core#4.0.1` - Core FHIR R4 resources
+* `hl7.terminology.r4#6.4.0` - Core FHIR terminology resources
+* `hl7.fhir.us.core#6.0.0` - US Core Implementation Guide
 
 For more information about FHIR package loading and management, see the [FHIR Artifact Registry documentation](../../artifact-registry/artifact-registry-overview.md).
 
@@ -54,8 +56,8 @@ For more information about FHIR package loading and management, see the [FHIR Ar
 
 ```yaml
 # Terminology Module Configuration
-FHIR_TERMINOLOGY_ENGINE: hybrid
-FHIR_TERMINOLOGY_ENGINE_HYBRID_EXTERNAL_TX_SERVER: https://tx.health-samurai.io/fhir
+BOX_FHIR_TERMINOLOGY_ENGINE: hybrid
+BOX_FHIR_TERMINOLOGY_ENGINE_HYBRID_EXTERNAL_TX_SERVER: https://tx.health-samurai.io/fhir
 
 # Load core terminology packages
 BOX_BOOTSTRAP_FHIR_PACKAGES: hl7.fhir.r4.core#4.0.1:hl7.terminology.r4#6.4.0:hl7.fhir.us.core#6.0.0
@@ -65,7 +67,7 @@ BOX_BOOTSTRAP_FHIR_PACKAGES: hl7.fhir.r4.core#4.0.1:hl7.terminology.r4#6.4.0:hl7
 
 ```yaml
 # Terminology Module Configuration  
-FHIR_TERMINOLOGY_ENGINE: local
+BOX_FHIR_TERMINOLOGY_ENGINE: local
 
 # Must load all required terminology packages
 BOX_BOOTSTRAP_FHIR_PACKAGES: hl7.fhir.r4.core#4.0.1:hl7.terminology.r4#6.4.0:your.custom.package#1.0.0
@@ -75,7 +77,7 @@ BOX_BOOTSTRAP_FHIR_PACKAGES: hl7.fhir.r4.core#4.0.1:hl7.terminology.r4#6.4.0:you
 
 ```yaml
 # Legacy terminology configuration (deprecated approach)
-FHIR_TERMINOLOGY_ENGINE: legacy
+BOX_FHIR_TERMINOLOGY_ENGINE: legacy
 BOX_FHIR_TERMINOLOGY_SERVICE_BASE_URL: https://tx.health-samurai.io/fhir
 ```
 
@@ -90,5 +92,6 @@ After configuration, verify your terminology setup by testing basic operations:
 ## Configuration Reference
 
 For complete details on all terminology-related environment variables, see:
-- [FHIR Settings Reference](../../reference/settings/fhir.md#terminology)
-- [General Settings Reference](../../reference/settings/general.md#bootstrap-fhir-packages)
+
+* [FHIR Settings Reference](../../reference/settings/fhir.md#terminology)
+* [General Settings Reference](../../reference/settings/general.md#bootstrap-fhir-packages)
