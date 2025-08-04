@@ -9,11 +9,13 @@
   * Added an [AidboxTopicDestination](../modules/topic-based-subscriptions/wip-dynamic-subscriptiontopic-with-destinations/clickhouse-aidboxtopicdestination.md) to export a ViewDefinition to ClickHouse, enabling real-time analytics.
   * Implemented SQL-on-FHIR [$run](../modules/sql-on-fhir/operation-run.md) operation allowing direct querying of data through ViewDefinition resources.
   * Integrated a [new Terminology engine](../terminology/overview.md) that supports local terminology operations while delegating interactions with external code systems to an external Terminology Server.
+  * Introduced `%previous` and `%current` functions for use in [AidboxSubscriptionTopic](../modules/topic-based-subscriptions/wip-dynamic-subscriptiontopic-with-destinations/#aidboxsubscriptiontopic) resources, allowing more precise tracking of changes between resource versions.
   * Aidbox UI improvements:
     * Added a Resource Versions page that allows users to view the full change history of a resource, including the ability to see differences between versions.
     * Improved global navigation for better usability.
     * Enhanced the Resource Summary page with the ability to view linked resources.
     * When editing a resource, users can now view its full structure.
+    * Added the ability to reload the FHIR package
 * Aidbox Forms
   * Implemented AI assistance in the Form Builder for creating and editing forms from text descriptions, with support for EnableWhen, calculation, and population logics.
   * Supported [item answer media](../modules/aidbox-forms/aidbox-ui-builder-alpha/form-creation/widgets.md#radio-button) for media accompaniments for specific answer options (used in radio button and checkbox list).
