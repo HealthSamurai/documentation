@@ -16,6 +16,7 @@
    [gitbok.ui.not-found :as not-found]
    [gitbok.ui.search]
    [ring.middleware.gzip :refer [wrap-gzip]]
+   [ring.middleware.content-type :refer [content-type-response]]
    [gitbok.http]
    [gitbok.products :as products]
    [gitbok.constants :as const]
@@ -233,6 +234,15 @@
   [context _]
   {:status 200 :body {:version (gitbok.http/get-version context)}})
 
+(defn serve-static-file
+  "Serves static files with proper content type headers"
+  [context request]
+  (let [uri (gitbok.http/url-without-prefix context (:uri request))
+        path (str/replace uri #"^/static/" "")
+        response (resp/resource-response (utils/concat-urls "public" path))]
+    (when response
+      (content-type-response response request))))
+
 (system/defmanifest
   {:description "gitbok"
    :deps ["http"]
@@ -332,12 +342,7 @@
    context
    {:path (utils/concat-urls prefix "/static/:path*")
     :method :get
-    :fn (fn [context request]
-          (-> "public"
-              (utils/concat-urls
-               (str/replace (gitbok.http/url-without-prefix context (:uri request))
-                            #"^/static/" ""))
-              resp/resource-response))})
+    :fn #'serve-static-file})
 
   (http/register-endpoint
    context
