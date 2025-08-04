@@ -10,28 +10,29 @@ Basic Aidbox installation consists of two components: the backend and the databa
 
 ## Recommended environment variables
 
-```yaml
-# Environment variables for Postgres
+<pre class="language-yaml"><code class="lang-yaml"># Environment variables for Postgres
 POSTGRES_PORT: '5432'
 POSTGRES_DB: aidbox
 POSTGRES_USER: aidbox
-POSTGRES_PASSWORD: <pgpassword>
+POSTGRES_PASSWORD: &#x3C;pgpassword>
 
 # Environment variables for Aidbox
 BOX_DB_HOST: aidbox_db
 BOX_DB_PORT: '5432'
 BOX_DB_USER: aidbox
-BOX_DB_PASSWORD: <pgpassword>
+BOX_DB_PASSWORD: &#x3C;pgpassword>
 BOX_DB_DATABASE: aidbox
 
 BOX_WEB_PORT: 8080
-BOX_ROOT_CLIENT_SECRET: <secret>
-BOX_ADMIN_PASSWORD: <password>
+BOX_ROOT_CLIENT_SECRET: &#x3C;secret>
+BOX_ADMIN_PASSWORD: &#x3C;password>
 
-AIDBOX_LICENSE: <license jwt>
+AIDBOX_LICENSE: &#x3C;license jwt>
 BOX_BOOTSTRAP_FHIR_PACKAGES: "hl7.fhir.r4.core#4.0.1"
-BOX_FHIR_TERMINOLOGY_SERVICE_BASE_URL: https://tx.health-samurai.io/fhir
-BOX_FHIR_SCHEMA_VALIDATION: true
+BOX_FHIR_TERMINOLOGY_ENGINE: hybrid
+BOX_FHIR_TERMINOLOGY_ENGINE_HYBRID_EXTERNAL_TX_SERVER: https://tx.health-samurai.io/fhir
+<strong>BOX_FHIR_TERMINOLOGY_SERVICE_BASE_URL: https://tx.health-samurai.io/fhir
+</strong>BOX_FHIR_SCHEMA_VALIDATION: true
 BOX_FHIR_CREATEDAT_URL: https://aidbox.app/ex/createdAt
 BOX_FHIR_CORRECT_AIDBOX_FORMAT: true
 BOX_SETTINGS_MODE: read-write
@@ -42,7 +43,7 @@ BOX_FHIR_SEARCH_INCLUDE_CONFORMANT: true
 BOX_FHIR_SEARCH_AUTHORIZE_INLINE_REQUESTS: true
 BOX_WEB_BASE_URL: http://localhost:8080
 BOX_SECURITY_AUDIT_LOG_ENABLED: true
-```
+</code></pre>
 
 ## Configure performance
 
