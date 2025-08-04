@@ -27,7 +27,9 @@
                     (:products config))]
       {:products products
        :root-redirect (:root-redirect config)})
-    (catch Exception _
+    (catch Exception e
+      (println "ERROR loading products.yaml:" (.getMessage e))
+      (println "Falling back to default-aidbox")
       {:products default-aidbox})))
 
 (defn get-current-product-id

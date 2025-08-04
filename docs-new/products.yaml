@@ -5,7 +5,7 @@ products:
     name: "Aidbox Uses Docs"
     # url <BASE_URL><DOCS_PREFIX>/aidbox
     path: /aidbox
-    config: ./aidbox/.gitbook.yaml
+    config: aidbox/.gitbook.yaml
     logo: .gitbook/assets/aidbox_logo.jpg
     favicon: .gitbook/assets/favicon.ico
     og-preview-text: "Aidbox User Docs"  # Optional: custom text for OG preview images
@@ -25,7 +25,7 @@ products:
     name: "Forms Documentation"
     # url <BASE_URL><DOCS_PREFIX>/forms
     path: /forms
-    config: ./forms/.gitbook.yaml
+    config: forms/.gitbook.yaml
     logo: .gitbook/assets/aidbox_logo.jpg
     favicon: .gitbook/assets/favicon.ico
     og-preview-text: "Forms Documentation"  # Optional: custom text for OG preview images

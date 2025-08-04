@@ -11,7 +11,10 @@
    [gitbok.markdown.widgets.big-links :as big-links]
    [gitbok.markdown.widgets.headers :as headers]
    [gitbok.ui.right-toc :as right-toc]
-   [gitbok.utils :as utils]))
+   [gitbok.ui.breadcrumb :as breadcrumb]
+   [gitbok.utils :as utils]
+   [gitbok.products :as products]
+   [hiccup2.core]))
 
 (defn find-children-files [context filepath]
   (when
@@ -109,6 +112,19 @@
 (defn content-div [context uri content filepath & [htmx?]]
   (let [parsed (when (map? content) (:parsed content))
         body (if (map? content) (:content content) content)
+        ;; Extract relative URI for breadcrumb
+        uri-relative (utils/uri-to-relative 
+                      uri 
+                      (System/getenv "DOCS_PREFIX")
+                      (:path (gitbok.products/get-current-product context)))
+        ;; Generate breadcrumb
+        breadcrumb-elem (breadcrumb/breadcrumb context uri-relative)
+        ;; Inject breadcrumb into body if it has a page-header
+        body-with-breadcrumb (if (and breadcrumb-elem (string? body) (str/includes? body "id=\"page-header\""))
+                               (str/replace body 
+                                            #"<header[^>]*id=\"page-header\"[^>]*>"
+                                            (str "$0" (hiccup2.core/html breadcrumb-elem)))
+                               body)
         toc (when filepath
               (if parsed
                 (let [toc-result (right-toc/render-right-toc parsed)]
@@ -127,7 +143,7 @@
                  max-w-5xl transform-3d"}
        (when htmx?
          [:script (uui/raw "window.scrollTo(0, 0); updateLastUpdated(); updateActiveNavItem(window.location.pathname); updatePageTitle();")])
-       [:div {:class "mx-auto max-w-full md:px-4"} body]
+       [:div {:class "mx-auto max-w-full md:px-4"} body-with-breadcrumb]
        (navigation-buttons context uri)
        (let [lastupdated
              (indexing/get-lastmod context filepath)]

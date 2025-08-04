@@ -40,7 +40,23 @@
                      :target-dir (str class-dir "/docs")})
         ;; Copy workdir for products.yaml and other configs
         (b/copy-dir {:src-dirs [workdir]
-                     :target-dir class-dir}))
+                     :target-dir class-dir})
+        ;; Handle aidbox specially - it uses symlinks to the main docs
+        (let [aidbox-dir (clojure.java.io/file workdir "aidbox")]
+          (when (.exists aidbox-dir)
+            (println "Copying docs to aidbox/docs")
+            (.mkdirs (clojure.java.io/file class-dir "aidbox/docs"))
+            (b/copy-dir {:src-dirs ["docs"]
+                         :target-dir (str class-dir "/aidbox/docs")})))
+        ;; Copy nested docs directories from other products
+        (doseq [product-dir (.listFiles (clojure.java.io/file workdir))
+                :when (and (.isDirectory product-dir)
+                           (not= (.getName product-dir) "aidbox"))]
+          (let [docs-dir (clojure.java.io/file product-dir "docs")]
+            (when (.exists docs-dir)
+              (println (str "Copying " (.getName product-dir) "/docs"))
+              (b/copy-dir {:src-dirs [(.getPath docs-dir)]
+                           :target-dir (str class-dir "/" (.getName product-dir) "/docs")})))))
       ;; Legacy mode - create docs directory and copy contents
       (do
         (.mkdirs (clojure.java.io/file class-dir "docs"))

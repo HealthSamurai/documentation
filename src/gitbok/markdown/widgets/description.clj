@@ -65,12 +65,10 @@
               rendered-h1 (render-md context filepath parsed-h1)
               after-h1 (subvec after-frontmatter (inc h1-idx))
               header-content (if new-desc [rendered-h1 new-desc] [rendered-h1])
-              ;; Use uri from context
-              uri (:current-uri context)
+              ;; Add a placeholder for breadcrumb
               header-html (str
                            (hiccup/html
-                            (into [:header {:class "mb-6"}
-                                   (breadcrumb/breadcrumb context uri)] header-content)))]
+                            (into [:header {:class "mb-6" :id "page-header"}] header-content)))]
           (str
            header-html
            "\n"

@@ -234,6 +234,24 @@
   [context _]
   {:status 200 :body {:version (gitbok.http/get-version context)}})
 
+(defn debug-endpoint
+  [context request]
+  (let [products (products/get-products-config context)
+        full-config (products/get-full-config context)
+        current-product (products/get-current-product context)]
+    {:status 200
+     :headers {"content-type" "application/json"}
+     :body {:products products
+            :full-config full-config
+            :current-product current-product
+            :environment {:prefix prefix
+                          :base-url base-url
+                          :port (gitbok.http/get-port context)}
+            :request-info {:uri (:uri request)
+                          :headers (select-keys (:headers request) 
+                                              ["host" "x-forwarded-for" "x-real-ip" 
+                                               "x-forwarded-proto" "x-forwarded-host"])}}}))
+
 (defn serve-static-file
   "Serves static files with proper content type headers"
   [context request]
@@ -451,6 +469,12 @@
    {:path "/version"
     :method :get
     :fn #'version-endpoint})
+
+  (http/register-endpoint
+   context
+   {:path (utils/concat-urls prefix "/debug")
+    :method :get
+    :fn #'debug-endpoint})
 
   (let [products-config (products/get-products-config context)]
     (doseq [product products-config]
