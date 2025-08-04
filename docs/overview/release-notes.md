@@ -1,9 +1,21 @@
 # Release Notes
 
-## Jule 2025 _`edge`_
+## August 2025 _`edge`_
+
+## July 2025 _`latest, 2507, LTS`_
 
 * Aidbox FHIR server
   * Support for delegating read-only workload to the[ database read-only replica.](../database/overview.md#postgresql-with-read-only-replica)
+  * Added an [AidboxTopicDestination](../modules/topic-based-subscriptions/wip-dynamic-subscriptiontopic-with-destinations/clickhouse-aidboxtopicdestination.md) to export a ViewDefinition to ClickHouse, enabling real-time analytics.
+  * Implemented SQL-on-FHIR [$run](../modules/sql-on-fhir/operation-run.md) operation allowing direct querying of data through ViewDefinition resources.
+  * Integrated a [new Terminology engine](../terminology/overview.md) that supports local terminology operations while delegating interactions with external code systems to an external Terminology Server.
+  * Introduced `%previous` and `%current` functions for use in [AidboxSubscriptionTopic](../modules/topic-based-subscriptions/wip-dynamic-subscriptiontopic-with-destinations/#aidboxsubscriptiontopic) resources, allowing more precise tracking of changes between resource versions.
+  * Aidbox UI improvements:
+    * Added a Resource Versions page that allows users to view the full change history of a resource, including the ability to see differences between versions.
+    * Improved global navigation for better usability.
+    * Enhanced the Resource Summary page with the ability to view linked resources.
+    * When editing a resource, users can now view its full structure.
+    * Added the ability to reload the FHIR package
 * Aidbox Forms
   * Implemented AI assistance in the Form Builder for creating and editing forms from text descriptions, with support for EnableWhen, calculation, and population logics.
   * Supported [item answer media](../modules/aidbox-forms/aidbox-ui-builder-alpha/form-creation/widgets.md#radio-button) for media accompaniments for specific answer options (used in radio button and checkbox list).
@@ -11,8 +23,14 @@
   * Embedded LHC and Smart form renderers in the [Aidbox public form builder](https://form-builder.aidbox.app/) to test how forms behave in different SDC renderers.
   * Added the ability to [hide the download button](../modules/aidbox-forms/aidbox-ui-builder-alpha/configuration.md) using the SDCConfig resource.
   * Supported quote, text indents in label's markdown
+* Minor updates
+  * `2506.1` - Fixed vulnerabilities
+  * `2505.3` - Fixed vulnerabilities
+  * `2410.8` - LTS support - fixed vulnerabilities
+  * `2402-lts` - LTS support - fixed vulnerabilities
+  * `2306-lts` - LTS support - fixed vulnerabilities
 
-## June 2025 _`latest, 2506`_
+## June 2025 _`stable, 2506`_
 
 * Aidbox FHIR server
   * Support for sending AuditEvents to the [external FHIR AuditRecord Repository](../access-control/audit-and-logging.md#external-audit-record-repository-support).
@@ -50,7 +68,7 @@
   * `2407.2` - Fixed vulnerabilities
   * `2405` - Fixed vulnerabilities
 
-## May 2025 _`stable, 2505`_
+## May 2025 _`2505`_
 
 * Aidbox FHIR server
   * Introduced [Aidbox MCP Server](../modules/other-modules/mcp.md) (early-access)

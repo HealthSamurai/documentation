@@ -231,6 +231,19 @@
     * [Migrate custom resources defined with Entity & Attributes to FHIR Schema](artifact-registry/custom-resources/migrate-to-fhirschema/migrate-custom-resources-defined-with-entity-and-attributes-to-fhir-schema.md)
     * [Migrate custom resources defined with Zen to FHIR Schema](artifact-registry/custom-resources/migrate-to-fhirschema/migrate-custom-resources-defined-with-zen-to-fhir-schema.md)
 
+## Terminology Module
+* [Terminology Overview](terminology/overview.md)
+* [FHIR Terminology](terminology/fhir-terminology/intro.md)
+  * [Coded Values](terminology/fhir-terminology/coded-values.md)
+  * [CodeSystem](terminology/fhir-terminology/codesystem.md)
+  * [ValueSet](terminology/fhir-terminology/valueset.md)
+  * [ConceptMap](terminology/fhir-terminology/conceptmap.md)
+  * [Profiles, Binding, and Validation](terminology/fhir-terminology/profiles-binding-validation.md)
+* [Aidbox Terminology Module](terminology/aidbox-terminology-module/intro.md)
+  * [Setup](terminology/aidbox-terminology-module/setup.md)
+  * [Hybrid Mode](terminology/aidbox-terminology-module/hybrid.md)
+  * [Capabilities](terminology/aidbox-terminology-module/capabilities.md)
+
 ## Database
 
 * [Database Overview](database/overview.md)

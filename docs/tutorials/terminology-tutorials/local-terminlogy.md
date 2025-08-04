@@ -3,12 +3,12 @@
 ## Objectives
 
 * Create a local CodeSystem and ValueSet for use in the resource validation.&#x20;
-* Explore how canonical resources with different versions exist in the same FHIR Server
+* Explore how multiple versions of canonical resources can coexist on the same FHIR server.
 
 ## Before you begin
 
-* Set up the local Aidbox instance using the Getting Started [guide](../../getting-started/run-aidbox-locally.md). It will make sure that the Aidbox version is greater than or equal to `2507`
-*   Add the following environment variables to the `docker-compose.yaml` file for the `aidbox.environment` section:\
+* Set up your local Aidbox instance by following the Getting Started [guide](../../getting-started/run-aidbox-locally.md). It will make sure that the Aidbox version is  `2507`  or higher.
+*   The following settings in the  `docker-compose.yaml` enable the hybrid terminology engine.\
 
 
     ```yaml
@@ -16,27 +16,27 @@
         ...
         environment:
           ....
-          FHIR_TERMINOLOGY_ENGINE: hybrid
-          FHIR_TERMINOLOGY_ENGINE_HYBRID_EXTERNAL_TX_SERVER: https://tx.health-samurai.io/fhir
+          BOX_FHIR_TERMINOLOGY_ENGINE: hybrid
+          BOX_FHIR_TERMINOLOGY_ENGINE_HYBRID_EXTERNAL_TX_SERVER: https://tx.health-samurai.io/fhir
     ```
 
 
 
-You can read about those settings [here](../../reference/settings/fhir.md#terminology).
+You can learn more about these configuration options [here](../../reference/settings/fhir.md#terminology).
 
 ## Creating and Uploading a FHIR package
 
-Let's create the FHIR Package that contains:
+We will create a FHIR Package that includes the following components:
 
-* **CodeSystem** with three codes
-* **ValueSet** that includes all the content from the **CodeSystem**
-* Profile for the **ServideRequest** resource that binds the _ServiceRequest.code_ element to the **ValueSet** and makes this binding required.\
+* A **CodeSystem** containing three custom codes
+* A **ValueSet** that includes all conceps from the **CodeSystem**
+* A **profile** for the **ServiceRequest** resource that binds the _ServiceRequest.code_ element to the **ValueSet** and enforces this binding as **required**.\
 
 
-1. Create a folder structure for the FHIR package with the following command\
+1. Create the folder structure for your FHIR package using the following command:\
    `mkdir -p mypackage/input/resources`
-2.  Create  the JSON file with the **CodeSystem** FHIR resource: `mypackage/input/resources/CodeSystem-tutorial-service-codes.json`\
-    with the following content:\
+2.  Create  the JSON file with the **CodeSystem** FHIR resource at the path: `mypackage/input/resources/CodeSystem-tutorial-service-codes.json`\
+    Add the following content to the file:\
 
 
     ```json
@@ -74,9 +74,9 @@ Let's create the FHIR Package that contains:
       ]
     }
     ```
-3.  Create the JSON file with the **ValueSet** FHIR resource: \
+3.  Create the JSON file with the **ValueSet** FHIR resource at the path: \
     `mypackage/input/resources/ValueSet-tutorial-service-codes.json`\
-    with the following content:\
+    Add the following content to the file:\
 
 
     ```json
@@ -101,9 +101,9 @@ Let's create the FHIR Package that contains:
       }
     }
     ```
-4.  Create the JSON file with the FHIR profile:\
+4.  Create the JSON file with the FHIR profile at the path:\
     `mypackage/input/resources/StructureDefinition-tutorial-service-request.json`\
-    with the following content:\
+    Add the following content to the file:\
 
 
     ```json
@@ -167,7 +167,7 @@ Let's create the FHIR Package that contains:
       "license": "MIT"
     }
     ```
-6.  The `mypackage` folder structure at this point should look like this:\
+6.  At this point, the `mypackage` directory structure should look like this:\
 
 
     ```
@@ -179,13 +179,13 @@ Let's create the FHIR Package that contains:
     │       └── ValueSet-tutorial-service-codes.json
     └── package.json
     ```
-7.  Create `tar.gz` file for FHIR package with the following command:\
+7.  Create `tar.gz` file for FHIR package using the following command:\
 
 
     ```bash
     cd mypackage && tar -czf ../tutorial-fhir-package-1.0.0.tgz .
     ```
-8. Open [Aidbox UI](http://localhost:8080/) and navigate to the "FAR" tab. Click the "**Import package**" button. Select the `tutorial-fhir-package-1.0.0.tgz` file and click **Import**\
+8. Open [Aidbox UI](http://localhost:8080/) and go to the _**FAR**_ tab. Click the "**Import package**" button, select the `tutorial-fhir-package-1.0.0.tgz` file, and then click **Import.**\
 
 
 <figure><img src="../../.gitbook/assets/image (4).png" alt=""><figcaption></figcaption></figure>
@@ -197,7 +197,7 @@ At this point, you should be able to see the loaded package in the packages list
 
 ## Testing the local terminology
 
-1.  Navigate to **Aidbox UI -> REST Console** and  create a patient with id `pt-1`\
+1.  Navigate to **Aidbox UI -> REST Console** and create a patient with id `pt-1`\
 
 
     ```json
@@ -210,7 +210,7 @@ At this point, you should be able to see the loaded package in the packages list
       "id": "pt-1"
     }
     ```
-2.  Create a **ServiceRequest** that is valid against the profile we imported with the package.\
+2.  Create a **ServiceRequest** that conforms to the profile included in the imported package.\
 
 
     ```json
@@ -250,9 +250,33 @@ At this point, you should be able to see the loaded package in the packages list
     ```
 
     \
-    The `meta.profile` property contains the profile we imported and the `code.coding` contains a valid code from the code system we imported.
-3.  Create the invalid Service Request\
-    Execute the following request:\
+    **Note:**   `meta.profile` property references the imported profile:\
+
+
+    ```json
+    "meta": {
+        "profile": [
+          "http://example.com/fhir/StructureDefinition/tutorial-service-request"
+        ]
+      }
+    ```
+
+    This informs the FHIR server to validate the resource against the specified profile when it is created.\
+    \
+    **Note:** `code.coding` contains a valid code from the imported code system:\
+
+
+    ```json
+    "code": {
+        "coding": [
+          {
+            "code": "consultation",
+            "system": "http://example.com/fhir/CodeSystem/tutorial-service-codes"
+          }
+        ]
+      }
+    ```
+3.  Create an invalid Service Request by executing the following request:\
 
 
     ```json
@@ -291,18 +315,18 @@ At this point, you should be able to see the loaded package in the packages list
     }
     ```
 
-You will see the error:
+You will see the following error:
 
 ```
 The provided code 'http://example.com/fhir/CodeSystem/tutorial-service-codes#follow-up' was not found in the value set 'http://example.com/fhir/ValueSet/tutorial-service-codes|1.0.0
 ```
 
-It's expected because the CodeSystem `http://example.com/fhir/CodeSystem/tutorial-service-codes` doesn't contain the code `follow-up`
+This is expected, as the CodeSystem `http://example.com/fhir/CodeSystem/tutorial-service-codes` does not include the code `follow-up`.
 
 ## Adding new code to the CodeSystem
 
-Let's say we want to add a new code to the CodeSystem we imported in a package. We can do it without creating a new version of the FHIR package and reloading package to the FHIR Server. \
-ValueSet references the CodeSystem without mentioning the exact code system version:
+Suppose we want to add a new code to the CodeSystem that was previously imported as part of a FHIR package. We can do this without creating a new version of the package or reloading it into the FHIR server.\
+The ValueSet references the CodeSystem without specifying an exact version:
 
 ```json
 "compose": {
@@ -314,100 +338,101 @@ ValueSet references the CodeSystem without mentioning the exact code system vers
   }
 ```
 
-That means the Aidbox will look to the latest version of the CodeSystem available in the system when validating the actual code. You can read more about versioning for canonical resources [here](../../artifact-registry/artifact-registry-overview.md#versioning-strategy).\
+This means Aidbox will use the latest available version of the CodeSystem in the system when validating codes. You can read more about versioning of canonical resources [here](../../artifact-registry/artifact-registry-overview.md#versioning-strategy).\
 
 
-1.  Create the new version of the **CodeSystem** by executing the request below\
-    Note that we increased the version to `1.0.1` and added a `follow-up` code.\
+1. Create a new version of the **CodeSystem** by executing the request below.\
+   **Note:** The version has been incremented to `1.0.1` and a new code `follow-up` has been added.\
 
 
-    ```json
-    PUT /fhir/CodeSystem/tutorial-service-codes
-    content-type: application/json
-    accept: application/json
+```json
+PUT /fhir/CodeSystem/tutorial-service-codes
+content-type: application/json
+accept: application/json
 
+{
+  "resourceType": "CodeSystem",
+  "id": "tutorial-service-codes",
+  "url": "http://example.com/fhir/CodeSystem/tutorial-service-codes",
+  "version": "1.0.1",
+  "name": "TutorialServiceCodes",
+  "title": "Tutorial Service Codes",
+  "status": "active",
+  "experimental": false,
+  "date": "2024-01-01",
+  "publisher": "Tutorial Example",
+  "description": "A sample code system for tutorial purposes containing service request codes",
+  "caseSensitive": true,
+  "content": "complete",
+  "count": 4,
+  "concept": [
     {
-      "resourceType": "CodeSystem",
-      "id": "tutorial-service-codes",
-      "url": "http://example.com/fhir/CodeSystem/tutorial-service-codes",
-      "version": "1.0.1",
-      "name": "TutorialServiceCodes",
-      "title": "Tutorial Service Codes",
-      "status": "active",
-      "experimental": false,
-      "date": "2024-01-01",
-      "publisher": "Tutorial Example",
-      "description": "A sample code system for tutorial purposes containing service request codes",
-      "caseSensitive": true,
-      "content": "complete",
-      "count": 4,
-      "concept": [
-        {
-          "code": "consultation",
-          "display": "Medical Consultation",
-          "definition": "A general medical consultation service"
-        },
-        {
-          "code": "lab-test",
-          "display": "Laboratory Test",
-          "definition": "Laboratory testing service"
-        },
-        {
-          "code": "imaging",
-          "display": "Medical Imaging",
-          "definition": "Medical imaging service including X-ray, MRI, CT scan"
-        },
-        {
-          "code": "follow-up",
-          "display": "Follow-up Appointment",
-          "definition": "A follow-up appointment service for ongoing care"
-        }
-      ]
-    }
-    ```
-
-    \
-    Note that it's not possible to update the content of the package loaded in Aidbox - the new version of the CodeSystem was created in the default - `app.aidbox.main` package.
-2.  Verify that the request for creating a follow-up ServiceRequest can now be executed successfully:\
-
-
-    ```json
-    POST /fhir/ServiceRequest
-    content-type: application/json
-    accept: application/json
-
+      "code": "consultation",
+      "display": "Medical Consultation",
+      "definition": "A general medical consultation service"
+    },
     {
-      "meta": {
-        "profile": [
-          "http://example.com/fhir/StructureDefinition/tutorial-service-request"
-        ]
-      },
-      "status": "active",
-      "intent": "order",
-      "code": {
-        "coding": [
-          {
-            "code": "follow-up",
-            "system": "http://example.com/fhir/CodeSystem/tutorial-service-codes"
-          }
-        ]
-      },
-      "requester": {
-        "reference": "Patient/pt-1"
-      },
-      "subject": {
-        "reference": "Patient/pt-1"
-      },
-      "identifier": [
-        {
-          "value": "123"
-        }
-      ],
-      "authoredOn": "2024-01-01"
+      "code": "lab-test",
+      "display": "Laboratory Test",
+      "definition": "Laboratory testing service"
+    },
+    {
+      "code": "imaging",
+      "display": "Medical Imaging",
+      "definition": "Medical imaging service including X-ray, MRI, CT scan"
+    },
+    {
+      "code": "follow-up",
+      "display": "Follow-up Appointment",
+      "definition": "A follow-up appointment service for ongoing care"
     }
-    ```
+  ]
+}
+```
 
-    \
+\
+**Note:**  it's not possible to update the content of an already loaded package in Aidbox. The new version of the CodeSystem was created in the default `app.aidbox.main` package.
+
+2. Verify that the request to create  a follow-up ServiceRequest can now be executed successfully:\
+
+
+```json
+POST /fhir/ServiceRequest
+content-type: application/json
+accept: application/json
+
+{
+  "meta": {
+    "profile": [
+      "http://example.com/fhir/StructureDefinition/tutorial-service-request"
+    ]
+  },
+  "status": "active",
+  "intent": "order",
+  "code": {
+    "coding": [
+      {
+        "code": "follow-up",
+        "system": "http://example.com/fhir/CodeSystem/tutorial-service-codes"
+      }
+    ]
+  },
+  "requester": {
+    "reference": "Patient/pt-1"
+  },
+  "subject": {
+    "reference": "Patient/pt-1"
+  },
+  "identifier": [
+    {
+      "value": "123"
+    }
+  ],
+  "authoredOn": "2024-01-01"
+}
+```
+
+\
 
 
 &#x20;
