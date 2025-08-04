@@ -21,25 +21,40 @@
    (and filepath
         (str/ends-with? (str/lower-case filepath) "readme.md"))
     (let [index (file-to-uri/get-idx context)
+          ;; Remove trailing slash if present
           filepath (if (str/ends-with? filepath "/")
                      (subs filepath 0 (dec (count filepath)))
                      filepath)
-          filepath
-          (if (str/starts-with? filepath "./docs/")
+          ;; Process filepath to match index format
+          filepath-normalized
+          (cond
+            ;; Remove aidbox/docs/ prefix if present
+            (str/starts-with? filepath "aidbox/docs/")
+            (subs filepath 12)
+            ;; Remove ./docs/ prefix if present
+            (str/starts-with? filepath "./docs/")
             (subs filepath 7)
-            filepath)
-          dir (.getParent (io/file filepath))]
-      (filterv
-       (fn [[file _info]]
-         (and
-          (str/starts-with? file dir)
-          (not= file filepath)
-          (or
-           (= dir (.getParent (io/file file)))
-           (and
-            (= dir (.getParent (io/file (.getParent (io/file file)))))
-            (str/ends-with? (str/lower-case file) "readme.md")))))
-       index))))
+            ;; Remove docs/ prefix if present
+            (str/starts-with? filepath "docs/")
+            (subs filepath 5)
+            ;; Otherwise use as is
+            :else filepath)
+          dir (.getParent (io/file filepath-normalized))
+          result (filterv
+                  (fn [[file _info]]
+                    (let [starts-with-dir (and dir (str/starts-with? file dir))
+                          not-same-file (not= file filepath-normalized)
+                          same-parent (= dir (.getParent (io/file file)))
+                          readme-in-subdir (and
+                                            dir
+                                            (= dir (.getParent (io/file (.getParent (io/file file)))))
+                                            (str/ends-with? (str/lower-case file) "readme.md"))
+                          matches (and starts-with-dir
+                                       not-same-file
+                                       (or same-parent readme-in-subdir))]
+                      matches))
+                  index)]
+      result)))
 
 (defn render-empty-page [context filepath title]
   [:div
@@ -103,25 +118,26 @@
                   :d "M9 5l7 7-7 7"}]]]])]))
 
 (defn render-file* [context filepath parsed title _raw-content]
-  {:content [:div {:class "flex-1 min-w-0 max-w-full"}
-             (if (= 1 (count (:content parsed)))
-               (render-empty-page context filepath title)
-               (markdown/render-md context filepath parsed))]
-   :parsed parsed})
+  (let [content-count (count (:content parsed))]
+    {:content [:div {:class "flex-1 min-w-0 max-w-full"}
+               (if (= 1 content-count)
+                 (render-empty-page context filepath title)
+                 (markdown/render-md context filepath parsed))]
+     :parsed parsed}))
 
 (defn content-div [context uri content filepath & [htmx?]]
   (let [parsed (when (map? content) (:parsed content))
         body (if (map? content) (:content content) content)
         ;; Extract relative URI for breadcrumb
-        uri-relative (utils/uri-to-relative 
-                      uri 
+        uri-relative (utils/uri-to-relative
+                      uri
                       (System/getenv "DOCS_PREFIX")
                       (:path (gitbok.products/get-current-product context)))
         ;; Generate breadcrumb
         breadcrumb-elem (breadcrumb/breadcrumb context uri-relative)
         ;; Inject breadcrumb into body if it has a page-header
         body-with-breadcrumb (if (and breadcrumb-elem (string? body) (str/includes? body "id=\"page-header\""))
-                               (str/replace body 
+                               (str/replace body
                                             #"<header[^>]*id=\"page-header\"[^>]*>"
                                             (str "$0" (hiccup2.core/html breadcrumb-elem)))
                                body)
