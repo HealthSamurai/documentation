@@ -267,8 +267,11 @@
   [handler]
   (fn [context request]
     (let [uri (:uri request)
+          uri-without-prefix (if (str/starts-with? uri prefix)
+                               (subs uri (count prefix))
+                               uri)
           products-config (products/get-products-config context)
-          product (products/determine-product-by-uri products-config uri)
+          product (products/determine-product-by-uri products-config uri-without-prefix)
           context (products/set-current-product-id context (:id product))]
       (handler context request))))
 
