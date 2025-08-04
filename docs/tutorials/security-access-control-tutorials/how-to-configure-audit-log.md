@@ -20,7 +20,7 @@ Limitation: currently works with only FHIR R4 version. If you need to support R5
 
 ### Enable FHIR Audit Log
 
-To enable audit logging in Aidbox, use the following setting: [security.audit-log.enabled](../../../reference/settings/security-and-access-control.md#security.audit-log.enabled). When enabled, Aidbox will generate structured audit logs in FHIR R4 AuditEvent format.
+To enable audit logging in Aidbox, use the following setting: [security.audit-log.enabled](../../reference/settings/security-and-access-control.md#security.audit-log.enabled). When enabled, Aidbox will generate structured audit logs in FHIR R4 AuditEvent format.
 
 ### Install the BALP Package
 
