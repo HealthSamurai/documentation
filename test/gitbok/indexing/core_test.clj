@@ -19,9 +19,14 @@
         (let [result (indexing/slurp-md-files! (mock-context) test-files)]
           ;; Should only process internal files
           (is (= 3 (count result)))
-          (is (contains? result "./docs/README.md"))
-          (is (contains? result "./docs/getting-started.md"))
-          (is (contains? result "./docs/api/reference.md"))
+          ;; Keys should be original paths without prefix
+          (is (contains? result "README.md"))
+          (is (contains? result "getting-started.md"))
+          (is (contains? result "api/reference.md"))
+          ;; Values should contain content read from full paths
+          (is (= "Content of ./docs/README.md" (get result "README.md")))
+          (is (= "Content of ./docs/getting-started.md" (get result "getting-started.md")))
+          (is (= "Content of ./docs/api/reference.md" (get result "api/reference.md")))
           ;; Should not process external URLs
           (is (not (some #(re-find #"https?://" %) (keys result))))))))
   
@@ -47,10 +52,11 @@
                                            (str "Mock content for " path))]
         (let [result (indexing/slurp-md-files! (mock-context) test-files)]
           (is (= 2 (count result)))
+          ;; Keys should be original paths
           (is (= "Mock content for ./test/file1.md" 
-                 (get result "./test/file1.md")))
+                 (get result "file1.md")))
           (is (= "Mock content for ./test/dir/file2.md" 
-                 (get result "./test/dir/file2.md")))))))
+                 (get result "dir/file2.md")))))))
   
   (testing "Should handle mixed HTTP and HTTPS URLs"
     (let [test-files ["internal.md"
