@@ -15,7 +15,9 @@ POSTGRES_PORT: '5432'
 POSTGRES_DB: aidbox
 POSTGRES_USER: aidbox
 POSTGRES_PASSWORD: &#x3C;pgpassword>
+</code></pre>
 
+<pre class="language-yaml"><code class="lang-yaml"># Environment variables for Postgres
 # Environment variables for Aidbox
 BOX_DB_HOST: aidbox_db
 BOX_DB_PORT: '5432'
