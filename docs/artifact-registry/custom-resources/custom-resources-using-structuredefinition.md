@@ -14,9 +14,9 @@ To begin using custom FHIR resources, enable the FHIR Schema validation engine i
 [setup-aidbox-with-fhir-schema-validation-engine.md](../../modules/profiling-and-validation/fhir-schema-validator/setup-aidbox-with-fhir-schema-validation-engine.md)
 {% endcontent-ref %}
 
-## Create StructureDefinition for custom resource
+## Create StructureDefinition for a custom resource
 
-To create a custom resource in Aidbox using StructureDefinition you have to create StructureDefinition resource via REST API.
+To create a custom resource in Aidbox using StructureDefinition, you have to create a StructureDefinition resource via REST API.
 
 It is a usual FHIR [StructureDefinition resource](https://www.hl7.org/fhir/structuredefinition.html), but with several limitations:
 
@@ -363,32 +363,44 @@ accept: application/json
 {% endtab %}
 {% endtabs %}
 
-## Define search parameters
-
 {% tabs %}
 {% tab title="Request" %}
 ```json
-POST /fhir/TutorNotification
+POST /fhir/TutorNotificationTemplate
 content-type: application/json
 accept: application/json
 
 {
-  "resourceType": "TutorNotification",
-  "type": "sms",
-  "status": "requested",
-  "template": {
-    "reference": "TutorNotificationTemplate/welcome"
-  },
-  "sendAfter": "2024-07-12T12:00:00.000Z",
-  "subject": {
-    "reference": "Patient/pt-1"
-  }
+  "id": "welcome",
+  "resourceType": "TutorNotificationTemplate",
+  "template": "Hello user name: {{patient.name.given}}\n"
+}
+```
+{% endtab %}
+
+{% tab title="Response" %}
+```json
+Status: 201
+{
+ "template": "Hello user name: {{patient.name.given}}\n",
+ "id": "welcome",
+ "resourceType": "TutorNotificationTemplate",
+ "meta": {
+  "lastUpdated": "2024-07-24T11:40:16.461445Z",
+  "versionId": "275",
+  "extension": [
+   {
+    "url": "http://example.com/createdat",
+    "valueInstant": "2024-07-24T11:40:16.461445Z"
+   }
+  ]
+ }
 }
 ```
 {% endtab %}
 {% endtabs %}
 
-So request that creates a welcome sms notification for James Morgan at 12:00 should look like this:
+Then we probably want to create some patient:
 
 {% tabs %}
 {% tab title="Request" %}
@@ -441,50 +453,92 @@ Status: 201
 {% endtab %}
 {% endtabs %}
 
-Then we probably want to create some patient:
+So request that creates a welcome sms notification for James Morgan at 12:00 should look like this:
 
 {% tabs %}
 {% tab title="Request" %}
 ```json
-POST /fhir/TutorNotificationTemplate
+POST /fhir/TutorNotification
 content-type: application/json
 accept: application/json
 
 {
-  "id": "welcome",
-  "resourceType": "TutorNotificationTemplate",
-  "template": "Hello user name: {{patient.name.given}}\n"
-}
-```
-{% endtab %}
-
-{% tab title="Response" %}
-```json
-Status: 201
-{
- "template": "Hello user name: {{patient.name.given}}\n",
- "id": "welcome",
- "resourceType": "TutorNotificationTemplate",
- "meta": {
-  "lastUpdated": "2024-07-24T11:40:16.461445Z",
-  "versionId": "275",
-  "extension": [
-   {
-    "url": "http://example.com/createdat",
-    "valueInstant": "2024-07-24T11:40:16.461445Z"
-   }
-  ]
- }
+  "resourceType": "TutorNotification",
+  "type": "sms",
+  "status": "requested",
+  "template": {
+    "reference": "TutorNotificationTemplate/welcome"
+  },
+  "sendAfter": "2024-07-12T12:00:00.000Z",
+  "subject": {
+    "reference": "Patient/pt-1"
+  }
 }
 ```
 {% endtab %}
 {% endtabs %}
 
-Let's create an instance of `TutorNotificationTemplate` resource with a welcome message based on the related patient's given name.
 
-Now you can interact with cuctom resources just like with any other FHIR resources.
+
+Now you can interact with custom resources just like with any other FHIR resources.
 
 ## Interact with a resource
+
+## Define search parameters
+
+```json
+POST /fhir/SearchParameter
+content-type: application/json
+accept: application/json
+
+{
+  "resourceType": "SearchParameter",
+  "id": "TutorNotification-subject",
+  "url": "http://example.com/aidbox-sms-tutor/TutorNotification-subject",
+  "version": "0.0.1",
+  "status": "draft",
+  "name": "subject",
+  "code": "subject",
+  "base": [
+    "TutorNotification"
+  ],
+  "type": "reference",
+  "description": "Search TutorNotification by subject",
+  "expression": "TutorNotification.subject"
+}
+```
+
+It allows you to make the following requests:
+
+{% tabs %}
+{% tab title="Request" %}
+```
+GET /fhir/TutorNotification?subject=Patient/pt-1
+```
+{% endtab %}
+
+{% tab title="Response" %}
+```json
+{
+ "description": "Search TutorNotification by subject",
+ "expression": "TutorNotification.subject",
+ "name": "subject",
+ "type": "reference",
+ "resourceType": "SearchParameter",
+ "status": "draft",
+ "id": "TutorNotification-subject",
+ "url": "http://example.com/aidbox-sms-tutor/TutorNotification-subject",
+ "code": "subject",
+ "base": [
+  "TutorNotification"
+ ],
+ "version": "0.0.1"
+}
+```
+{% endtab %}
+{% endtabs %}
+
+The other one is used to include related Patient resources in the search bundle.
 
 {% tabs %}
 {% tab title="Request" %}
@@ -589,8 +643,6 @@ Status: 200
 {% endtab %}
 {% endtabs %}
 
-It allows you to make the following requests:
-
 {% tabs %}
 {% tab title="Request" %}
 ```json
@@ -600,34 +652,35 @@ accept: application/json
 
 {
   "resourceType": "SearchParameter",
-  "id": "TutorNotification-subject",
-  "url": "http://example.com/aidbox-sms-tutor/TutorNotification-subject",
+  "id": "TutorNotification-status",
+  "url": "http://example.com/aidbox-sms-tutor/TutorNotification-status",
   "version": "0.0.1",
   "status": "draft",
-  "name": "subject",
-  "code": "subject",
+  "name": "status",
+  "code": "status",
   "base": [
     "TutorNotification"
   ],
-  "type": "reference",
-  "description": "Search TutorNotification by subject",
-  "expression": "TutorNotification.subject"
+  "type": "token",
+  "description": "Search TutorNotification by status",
+  "expression": "TutorNotification.status"
 }
 ```
 {% endtab %}
 
 {% tab title="Response" %}
 ```json
+Status: 200
 {
- "description": "Search TutorNotification by subject",
- "expression": "TutorNotification.subject",
- "name": "subject",
- "type": "reference",
+ "description": "Search TutorNotification by status",
+ "expression": "TutorNotification.status",
+ "name": "status",
+ "type": "token",
  "resourceType": "SearchParameter",
  "status": "draft",
- "id": "TutorNotification-subject",
- "url": "http://example.com/aidbox-sms-tutor/TutorNotification-subject",
- "code": "subject",
+ "id": "TutorNotification-status",
+ "url": "http://example.com/aidbox-sms-tutor/TutorNotification-status",
+ "code": "status",
  "base": [
   "TutorNotification"
  ],
@@ -637,7 +690,7 @@ accept: application/json
 {% endtab %}
 {% endtabs %}
 
-The other one is used to include related Patient resources in the search bundle.
+This one defines the `expression` to achieve resource status, which allows you to search for `TutorNotification` resources by status, like this:
 
 {% tabs %}
 {% tab title="Request" %}
@@ -707,58 +760,7 @@ GET /fhir/TutorNotification?status=requested
 {% endtab %}
 {% endtabs %}
 
-This one defines the `expression` to achieve resource status, which allows you to search for TutorNotification resources by status like this:
 
-{% tabs %}
-{% tab title="Request" %}
-```json
-POST /fhir/SearchParameter
-content-type: application/json
-accept: application/json
-
-{
-  "resourceType": "SearchParameter",
-  "id": "TutorNotification-status",
-  "url": "http://example.com/aidbox-sms-tutor/TutorNotification-status",
-  "version": "0.0.1",
-  "status": "draft",
-  "name": "status",
-  "code": "status",
-  "base": [
-    "TutorNotification"
-  ],
-  "type": "token",
-  "description": "Search TutorNotification by status",
-  "expression": "TutorNotification.status"
-}
-```
-{% endtab %}
-
-{% tab title="Response" %}
-```json
-Status: 200
-{
- "description": "Search TutorNotification by status",
- "expression": "TutorNotification.status",
- "name": "status",
- "type": "token",
- "resourceType": "SearchParameter",
- "status": "draft",
- "id": "TutorNotification-status",
- "url": "http://example.com/aidbox-sms-tutor/TutorNotification-status",
- "code": "status",
- "base": [
-  "TutorNotification"
- ],
- "version": "0.0.1"
-}
-```
-{% endtab %}
-{% endtabs %}
-
-Let's create the search parameters mentioned above.
-
-With defined resources, most of the work is done, but there is one missing aspect of any FHIR resource. You definitely want to check your requested notifications or include related subjects to the search bundle. Aidbox allows you to define SearchParameter resources in addition to custom resources.
 
 ## Convenience
 
