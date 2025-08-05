@@ -51,12 +51,12 @@ Chat history is saved per saved questionnaire using browser local memory. For un
 
 The AI Assistant can comprehensively manage FHIR SDC Questionnaires including:
 
-* **Item structure** - Add, remove, move, and nest questionnaire items
+* **Item structure** - Add, remove and move questionnaire items
 * **Population** - Pre-fill items from patient data, observations, or static values
 * **Answer options** - Configure choice options, value sets, and dynamic expressions
 * **Enablement** - Set up conditional display logic based on other responses
 * **Calculation** - Create calculated fields and computed values
-* **Extraction** - Map form responses back to FHIR observations and resources
+* **Extraction** - Map form responses back to FHIR observations
 * **Validation** - Add constraints, required fields, and data type validation
 * **Presentation** - Modify layout, styling, media content, and user interface elements
 * **Metadata** - Managing questionnaire-level properties such as title, version, and tags
