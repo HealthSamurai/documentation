@@ -2,20 +2,21 @@
   (:require
    [clojure.string :as str]
    [uui.heroicons :as ico]
-   [gitbok.http]))
+   [gitbok.http]
+   [gitbok.products]))
 
 (defn breadcrumb [context uri]
   (when (and uri (not (str/blank? uri)))
     (let [parts (->> (str/split uri #"/")
                      (remove str/blank?)
                      vec)]
-      
+
       ;; Special handling based on specific requirements
       (cond
         ;; Don't show breadcrumb for readme pages
         (= (first parts) "readme")
         nil
-        
+
         ;; For single-level pages like "getting-started", show "overview" link
         (= 1 (count parts))
         [:nav {:aria-label "Breadcrumb"}
@@ -28,7 +29,7 @@
                 :hx-swap "outerHTML"
                 :class "text-xs font-semibold uppercase items-center gap-1.5 hover:text-tint-strong text-primary-9"}
             "overview"]]]]
-        
+
         ;; For pages under overview like "overview/what-is-form"
         (and (>= (count parts) 2) (= (first parts) "overview"))
         [:nav {:aria-label "Breadcrumb"}
@@ -53,7 +54,7 @@
                 :hx-swap "outerHTML"
                 :class "text-xs font-semibold uppercase items-center gap-1.5 hover:text-tint-strong text-primary-9"}
             "overview"]]]]
-        
+
         ;; For other nested pages, show normal breadcrumb
         :else
         (let [parts-to-show (vec (drop-last parts))]

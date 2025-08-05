@@ -135,12 +135,27 @@
                       (:path (gitbok.products/get-current-product context)))
         ;; Generate breadcrumb
         breadcrumb-elem (breadcrumb/breadcrumb context uri-relative)
-        ;; Inject breadcrumb into body if it has a page-header
-        body-with-breadcrumb (if (and breadcrumb-elem (string? body) (str/includes? body "id=\"page-header\""))
-                               (str/replace body
-                                            #"<header[^>]*id=\"page-header\"[^>]*>"
-                                            (str "$0" (hiccup2.core/html breadcrumb-elem)))
-                               body)
+        ;; Handle breadcrumb insertion based on body type
+        body-with-breadcrumb (cond
+                               ;; No breadcrumb to add
+                               (nil? breadcrumb-elem) body
+
+                               ;; Body is a string (HTML)
+                               (string? body)
+                               (if (str/includes? body "id=\"page-header\"")
+                                 (str/replace body
+                                              #"<header[^>]*id=\"page-header\"[^>]*>"
+                                              (str "$0" (hiccup2.core/html breadcrumb-elem)))
+                                 (str (hiccup2.core/html breadcrumb-elem) body))
+
+                               ;; Body is Hiccup (vector)
+                               (vector? body)
+                               [:div
+                                breadcrumb-elem
+                                body]
+
+                               ;; Fallback
+                               :else body)
         toc (when filepath
               (if parsed
                 (let [toc-result (right-toc/render-right-toc parsed)]
