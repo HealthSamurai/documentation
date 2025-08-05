@@ -40,9 +40,13 @@ def should_be_capitalized(word, position, total_words):
 
 def check_word_case(word, position, total_words):
     """Check if a word follows proper case conventions."""
-    # Handle punctuation at the end
+    # Handle punctuation at the end (but not closing parenthesis if word starts with open parenthesis)
     trailing_punct = ''
-    if word and word[-1] in ',.;:!?)':
+    if word and word[-1] in ',.;:!?':
+        trailing_punct = word[-1]
+        word = word[:-1]
+    elif word and word[-1] == ')' and not word.startswith('('):
+        # Only treat ) as punctuation if the word doesn't start with (
         trailing_punct = word[-1]
         word = word[:-1]
     
@@ -50,14 +54,28 @@ def check_word_case(word, position, total_words):
     if (word.startswith('"') and word.endswith('"')) or (word.startswith("'") and word.endswith("'")):
         return True, word + trailing_punct
     
-    # Handle words that start with (/
-    if word.startswith('(/'):
-        inner_word = word[2:]  # Remove (/
-        if inner_word and inner_word[0].islower():
-            expected = '(/' + inner_word.capitalize() + trailing_punct
-            return False, expected
+    # Handle words that start with parenthesis
+    if word.startswith('('):
+        # Check if it's (/
+        if word.startswith('(/'):
+            inner_word = word[2:]  # Remove (/
+            if inner_word and inner_word[0].islower():
+                expected = '(/' + inner_word.capitalize() + trailing_punct
+                return False, expected
+            else:
+                return True, word + trailing_punct
         else:
-            return True, word + trailing_punct
+            # Just regular parenthesis
+            inner_word = word[1:]  # Remove (
+            if inner_word:
+                # Process the inner word recursively
+                is_correct, expected_inner = check_word_case(inner_word, position, total_words)
+                if not is_correct:
+                    return False, '(' + expected_inner
+                else:
+                    return True, word + trailing_punct
+            else:
+                return True, word + trailing_punct
     
     # Check for words with special characters (like $, /, etc.)
     if any(char in word for char in ['$', '/', '\\', '@', '#', '%', '&']):

@@ -2,7 +2,7 @@
 hidden: true
 ---
 
-# Addendum API (docs Deprecated)
+# Addendum API (Docs Deprecated)
 
 * [create-addendum](addendum-api-docs-deprecated.md#create-addendum-wip)
 * [add-note](addendum-api-docs-deprecated.md#add-note)

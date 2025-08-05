@@ -2,7 +2,7 @@
 hidden: true
 ---
 
-# Lisp (deprecated)
+# Lisp (Deprecated)
 
 Aidbox Forms support a subset of the Lisp language for document definition, data retrieval and initialization, calculation of dynamic (derived) attributes, and data extraction.
 

@@ -2,7 +2,7 @@
 hidden: true
 ---
 
-# Launch DSL (docs Deprecated)
+# Launch DSL (Docs Deprecated)
 
 **Form Launch** binds to [`Document`](document-dsl-docs-deprecated.md) and `Form`. And optionally can specify fields populate logic via `populate-engine`
 

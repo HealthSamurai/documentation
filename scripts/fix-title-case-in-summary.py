@@ -38,9 +38,13 @@ def should_be_capitalized(word, position, total_words):
 
 def fix_word_case(word, position, total_words):
     """Fix the case of a word according to title case rules."""
-    # Handle punctuation at the end
+    # Handle punctuation at the end (but not closing parenthesis if word starts with open parenthesis)
     trailing_punct = ''
-    if word and word[-1] in ',.;:!?)':
+    if word and word[-1] in ',.;:!?':
+        trailing_punct = word[-1]
+        word = word[:-1]
+    elif word and word[-1] == ')' and not word.startswith('('):
+        # Only treat ) as punctuation if the word doesn't start with (
         trailing_punct = word[-1]
         word = word[:-1]
     
@@ -50,13 +54,24 @@ def fix_word_case(word, position, total_words):
         (word.startswith('`') and word.endswith('`'))):
         return word + trailing_punct
     
-    # Handle words that start with (/
-    if word.startswith('(/'):
-        inner_word = word[2:]  # Remove (/
-        if inner_word and inner_word[0].islower():
-            return '(/' + inner_word.capitalize() + trailing_punct
+    # Handle words that start with parenthesis
+    if word.startswith('('):
+        # Check if it's (/
+        if word.startswith('(/'):
+            inner_word = word[2:]  # Remove (/
+            if inner_word and inner_word[0].islower():
+                return '(/' + inner_word.capitalize() + trailing_punct
+            else:
+                return word + trailing_punct
         else:
-            return word + trailing_punct
+            # Just regular parenthesis
+            inner_word = word[1:]  # Remove (
+            if inner_word:
+                # Process the inner word recursively
+                fixed_inner = fix_word_case(inner_word, position, total_words)
+                return '(' + fixed_inner
+            else:
+                return word + trailing_punct
     
     # Check for words with special characters (like $, /, etc.)
     if any(char in word for char in ['$', '/', '\\', '@', '#', '%', '&']):

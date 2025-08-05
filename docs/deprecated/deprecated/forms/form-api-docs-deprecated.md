@@ -2,7 +2,7 @@
 hidden: true
 ---
 
-# Form API (docs Deprecated)
+# Form API (Docs Deprecated)
 
 ## Form API
 

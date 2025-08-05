@@ -2,7 +2,7 @@
 hidden: true
 ---
 
-# FinalizeConstraints DSL (deprecated)
+# FinalizeConstraints DSL (Deprecated)
 
 FinalizeConstraints is just like a document schema, but presumably more strict one. Internally, on Sign operation both (document and FinalizeConstraints) schemas will be used simultaneously to validate the data.
 
