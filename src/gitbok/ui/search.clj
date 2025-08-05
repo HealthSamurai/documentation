@@ -5,6 +5,7 @@
    [gitbok.search]
    [gitbok.utils :as utils]
    [gitbok.products :as products]
+   [gitbok.http :as http]
    [clojure.string :as str]))
 
 (defn highlight-text [text query]
@@ -21,6 +22,26 @@
            [:span {:class "bg-warning-2 text-tint-12 p-1 px-0.5 -mx-0.5 py-0.5 rounded"} match]
            after])
         text))))
+
+(defn build-search-result-url
+  "Builds the correct URL for a search result, ensuring the /docs prefix is included"
+  [context uri]
+  (let [product-prefix (http/get-product-prefix context)
+        product-path (products/path context)
+        docs-prefix (http/get-prefix context)]
+    (cond
+      ;; No URI - just return product prefix
+      (nil? uri) product-prefix
+      ;; URI already contains full product prefix (with /docs) - use as is
+      (str/starts-with? uri product-prefix) uri
+      ;; URI starts with product path but missing /docs prefix
+      (and (str/starts-with? uri product-path)
+           (not (str/starts-with? uri product-prefix)))
+      (str docs-prefix uri)
+      ;; URI is absolute but missing product prefix - prepend it
+      (str/starts-with? uri "/") (str product-prefix uri)
+      ;; URI is relative - make absolute with product prefix
+      :else (str product-prefix "/" uri))))
 
 (defn get-page-breadcrumb [context uri]
   (when-let [filepath (indexing/uri->filepath context uri)]
@@ -44,22 +65,8 @@
         {:keys [filepath title h1 h2 h3 h4 text]} hit
         page-title (or title h1 "Untitled")
         breadcrumb (get-page-breadcrumb context uri)
-        ;; Determine the specific URL based on the hit type
-        ;; Check if URI already contains the product path to avoid duplication
-        product-path (products/path context)
-        _ (when uri
-            (println "DEBUG dropdown-result-item: uri=" uri ", product-path=" product-path))
-        ;; If URI already starts with product path, use it as is
-        ;; Otherwise, prepend the product path
-        base-url (cond
-                   ;; No URI - just return product path
-                   (nil? uri) product-path
-                   ;; URI already contains product path - use as is
-                   (str/starts-with? uri product-path) uri
-                   ;; URI is absolute but missing product path - prepend it
-                   (str/starts-with? uri "/") (str product-path uri)
-                   ;; URI is relative - make absolute with product path
-                   :else (str product-path "/" uri))
+        ;; Build the base URL with proper /docs prefix
+        base-url (build-search-result-url context uri)
         ;; Determine the specific URL based on the hit type
         url (case hit-by
               :h2 (str base-url "#" (utils/s->url-slug h2))
