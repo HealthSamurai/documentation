@@ -44,6 +44,7 @@ accept: application/json
 {
     "derivation": "specialization",
     "name": "TutorNotificationTemplate",
+    "resourceType": "StructureDefinition",
     "abstract": false,
     "type": "TutorNotificationTemplate",
     "status": "active",
@@ -135,6 +136,7 @@ accept: application/json
 {
   "url": "http://example.com/aidbox-sms-tutor/TutorNotification",
   "name": "TutorNotification",
+  "resourceType": "StructureDefinition",
   "status": "active",
   "kind": "resource",
   "abstract": false,
