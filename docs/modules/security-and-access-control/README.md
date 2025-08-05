@@ -2,5 +2,5 @@
 hidden: true
 ---
 
-# Security & Access Control
+# Security and Access Control
 

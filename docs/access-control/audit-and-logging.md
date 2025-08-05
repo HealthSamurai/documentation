@@ -1,4 +1,4 @@
-# Audit & Logging
+# Audit and Logging
 
 Audit logging is essential in healthcare systems because it:
 

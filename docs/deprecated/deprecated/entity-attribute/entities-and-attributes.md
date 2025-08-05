@@ -2,7 +2,7 @@
 description: Aidbox Core Engine Overview
 ---
 
-# Entities & Attributes
+# Entities and Attributes
 
 {% hint style="warning" %}
 Since the 2405 release, using Aidbox in FHIRSchema mode is recommended, which is incompatible with zen or Entity/Attribute options.

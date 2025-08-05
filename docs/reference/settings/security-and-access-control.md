@@ -1,4 +1,4 @@
-# Security & Access Control
+# Security and Access Control
 
 Security & Access Control settings
 

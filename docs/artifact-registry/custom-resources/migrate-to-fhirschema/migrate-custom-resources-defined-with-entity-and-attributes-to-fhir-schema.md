@@ -1,4 +1,4 @@
-# Migrate Custom Resources Defined with Entity & Attributes to FHIR Schema
+# Migrate Custom Resources Defined with Entity and Attributes to FHIR Schema
 
 ## Prerequisites
 
