@@ -56,5 +56,5 @@ This page provides a comprehensive overview of all FHIR terminology operations a
 | `tx-resource` parameter | ✅ | Inline resource definitions |
 | Ad-hoc ValueSets | ✅ | ValueSet as a `Parameter` |
 | R4/R5/R6 format conversion | ✅ | E.g.: `expansion.contains.concept.property` or extensions |
-
+| Batch validation | ❌ | |
 
