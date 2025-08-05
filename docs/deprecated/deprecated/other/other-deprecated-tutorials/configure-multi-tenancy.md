@@ -2,7 +2,7 @@
 description: This guide shows how to build multi-tenancy with AccessPolicy
 ---
 
-# Configure multi-tenancy
+# Configure Multi-Tenancy
 
 {% hint style="warning" %}
 This is outdated approach. Please, use [Organization-Based Access Control](../../../../access-control/authorization/scoped-api/organization-based-hierarchical-access-control.md) instead.

@@ -2,7 +2,7 @@
 description: This guide explains how to get Growth Chart SMART App launched
 ---
 
-# Get a SMART App launched
+# Get a SMART App Launched
 
 [Growth Chart](https://github.com/smart-on-fhir/growth-chart-app) is a sample SMART App which displays children growth data as plot.
 

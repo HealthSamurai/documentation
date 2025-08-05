@@ -1,4 +1,4 @@
-# Optional environment variables
+# Optional Environment Variables
 
 ### JAVA\_OPTS
 

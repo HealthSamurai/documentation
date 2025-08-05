@@ -1,4 +1,4 @@
-# Find documentation endpoint
+# Find Documentation Endpoint
 
 ## To see Smartbox documentation
 

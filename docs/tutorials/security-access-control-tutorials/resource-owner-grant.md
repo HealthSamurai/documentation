@@ -1,4 +1,4 @@
-# How to configure Resource Owner Grant flow
+# How to Configure Resource Owner Grant Flow
 
 The Password grant type is used by first-party clients to exchange a user's credentials for an access token. Since this involves the client asking the user for their password, it should not be used by third party clients. In this flow, the user's username and password are exchanged directly for an access token. The application acts on behalf of the user. Refer to [OAuth 2.0 spec](https://tools.ietf.org/html/rfc6749#section-4.3) for more details.
 

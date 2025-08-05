@@ -5,7 +5,7 @@ description: >-
   find examples below.
 ---
 
-# Receive logs from your app
+# Receive Logs from Your App
 
 ### Input params
 

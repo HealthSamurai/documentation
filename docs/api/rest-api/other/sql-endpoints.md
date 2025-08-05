@@ -1,4 +1,4 @@
-# SQL endpoints
+# SQL Endpoints
 
 ## $sql
 Execute SQL in Aidbox.

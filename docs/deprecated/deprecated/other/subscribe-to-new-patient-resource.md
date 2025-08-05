@@ -4,7 +4,7 @@ description: >-
   a new Patient resource is created using Subscription module.
 ---
 
-# Subscribe to new Patient resource
+# Subscribe to New Patient Resource
 
 Aidbox [subscriptions module](broken-reference) is a way to subscribe and get notifications about updating resources on server. It introduces two new resourceTypes into Aidbox:
 

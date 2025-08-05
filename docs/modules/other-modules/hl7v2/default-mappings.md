@@ -1,4 +1,4 @@
-# Default mappings
+# Default Mappings
 
 In cases where the default mappings or search are not sufficient for your needs, you can use the `HL7v2ModuleMapping` resource.
 

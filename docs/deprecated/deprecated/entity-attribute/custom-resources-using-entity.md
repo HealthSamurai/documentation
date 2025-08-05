@@ -1,4 +1,4 @@
-# Custom Resources using Entity
+# Custom Resources Using Entity
 
 {% hint style="warning" %}
 Entity & Attributes and Zen Schema are planned to be retired and will be replaced by FHIR Schema. Here’s a [migration guide](../../../artifact-registry/custom-resources/migrate-to-fhirschema/) to help you transition your custom resources defined via Entity & Attributes / Zen Schema.

@@ -1,4 +1,4 @@
-# Email Providers integration
+# Email Providers Integration
 
 Aidbox supports sending emails through using `Notification`, `NotificationTemplate`, and, optionally, `AidboxConfig` resources.
 

@@ -2,7 +2,7 @@
 description: This page describes how to enable signatures for forms
 ---
 
-# Form signature
+# Form Signature
 
 To use signature feature, your questionnaire must include extension [signatureRequired](http://hl7.org/fhir/StructureDefinition/questionnaire-signatureRequired)
 

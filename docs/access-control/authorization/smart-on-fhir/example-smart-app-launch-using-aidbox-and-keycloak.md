@@ -1,4 +1,4 @@
-# Example: SMART App Launch using Aidbox and Keycloak
+# Example: SMART App Launch Using Aidbox and Keycloak
 
 This example showcases the Smart App EHR and Patient [launch flows](https://hl7.org/fhir/smart-app-launch/app-launch.html).
 

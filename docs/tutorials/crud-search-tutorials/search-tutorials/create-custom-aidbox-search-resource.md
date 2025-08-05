@@ -1,4 +1,4 @@
-# Create custom Aidbox Search resource
+# Create Custom Aidbox Search Resource
 
 ## Objectives <a href="#objectives" id="objectives"></a>
 

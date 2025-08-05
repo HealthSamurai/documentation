@@ -1,4 +1,4 @@
-# Write a custom zen profile
+# Write a Custom Zen Profile
 
 {% hint style="warning" %}
 Since the 2405 release, using Aidbox in FHIRSchema mode is recommended, which is incompatible with zen or Entity/Attribute options.

@@ -4,7 +4,7 @@ description: >-
   upload them to Grafana
 ---
 
-# Set-up Grafana integration
+# Set-up Grafana Integration
 
 Before setting up Grafana integration, ensure you have set up the Aidbox Metrics Server. Check the guide below on how to do it.
 

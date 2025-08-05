@@ -1,4 +1,4 @@
-# Get suggested indexes
+# Get Suggested Indexes
 
 Since version 2211, Aidbox can suggest indexes for Search API.&#x20;
 

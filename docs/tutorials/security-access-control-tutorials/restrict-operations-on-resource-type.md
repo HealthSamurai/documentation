@@ -4,7 +4,7 @@ description: >-
   operations on Patient resource
 ---
 
-# Restrict operations on resource type
+# Restrict Operations on Resource Type
 
 ### Create a patient
 

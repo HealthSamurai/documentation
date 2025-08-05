@@ -1,2 +1,2 @@
-# Email Providers reference
+# Email Providers Reference
 

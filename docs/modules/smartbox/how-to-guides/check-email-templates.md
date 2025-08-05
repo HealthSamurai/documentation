@@ -2,7 +2,7 @@
 description: This guide explains how you can check all your email templates
 ---
 
-# Check email templates
+# Check Email Templates
 
 ### Send all populated templates to your email
 

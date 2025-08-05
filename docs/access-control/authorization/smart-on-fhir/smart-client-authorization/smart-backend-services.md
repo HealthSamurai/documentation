@@ -1,4 +1,4 @@
-# SMART Backend services
+# SMART Backend Services
 
 This specification is designed to work with FHIR Bulk Data Access, but is not restricted to use for retrieving bulk data; it may be used to connect to any FHIR API endpoint.
 

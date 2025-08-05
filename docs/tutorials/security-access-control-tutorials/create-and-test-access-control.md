@@ -2,7 +2,7 @@
 description: This guide shows how to create and test access policies in Aidbox
 ---
 
-# Create and test access control
+# Create and Test Access Control
 
 ## Simple Access Policy
 

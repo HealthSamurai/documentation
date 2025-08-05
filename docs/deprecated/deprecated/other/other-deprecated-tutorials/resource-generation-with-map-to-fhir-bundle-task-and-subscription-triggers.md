@@ -1,4 +1,4 @@
-# Resource generation with map-to-fhir-bundle-task and subscription triggers
+# Resource Generation with Map-to-Fhir-Bundle-Task and Subscription Triggers
 
 {% hint style="warning" %}
 Since the 2405 release, using Aidbox in FHIR schema validation engine is recommended, which is incompatible with zen or Entity/Attribute options.

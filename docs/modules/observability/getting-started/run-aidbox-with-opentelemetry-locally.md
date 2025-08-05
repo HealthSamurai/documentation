@@ -2,7 +2,7 @@
 description: Get up-to-speed with Aidbox observability features via interactive tutorials.
 ---
 
-# Run Aidbox with OpenTelemetry locally
+# Run Aidbox with OpenTelemetry Locally
 
 ## Intro
 

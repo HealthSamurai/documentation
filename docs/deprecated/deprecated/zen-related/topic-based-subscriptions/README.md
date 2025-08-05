@@ -1,4 +1,4 @@
-# FHIR topic-based subscriptions
+# FHIR Topic-Based Subscriptions
 
 ## Overview
 

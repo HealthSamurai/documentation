@@ -4,7 +4,7 @@ description: >-
   License server to the new version which you can get on the Aidbox User Portal.
 ---
 
-# Migrate from legacy licence portal to Aidbox portal
+# Migrate from Legacy Licence Portal to Aidbox Portal
 
 #### Register on the Aidbox User Portal
 

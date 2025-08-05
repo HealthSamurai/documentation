@@ -1,4 +1,4 @@
-# How to configure Token Exchange
+# How to Configure Token Exchange
 
 Since version **2412** Aidbox supports [the OAuth Token Exchange extension](https://oauth.net/2/token-exchange/).
 

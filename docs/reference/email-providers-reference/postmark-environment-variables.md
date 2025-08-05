@@ -1,4 +1,4 @@
-# Postmark environment variables
+# Postmark Environment Variables
 
 ### BOX\_PROVIDER\_POSTMARK\_\_PROVIDER\_FROM
 

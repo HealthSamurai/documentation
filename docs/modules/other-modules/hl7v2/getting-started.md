@@ -1,4 +1,4 @@
-# Getting started
+# Getting Started
 
 The HL7v2 module is available as a Docker image with several versioning options:
 

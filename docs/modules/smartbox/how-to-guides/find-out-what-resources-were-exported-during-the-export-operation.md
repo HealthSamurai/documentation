@@ -4,7 +4,7 @@ description: >-
   access to
 ---
 
-# Find out what resources were exported during the $export operation
+# Find Out What Resources Were Exported During the $export Operation
 
 [$export](../../../api/bulk-api/export.md) operation is used to export huge amounts of patient data directly to S3 buckets. Sometimes it is important to clarify what resources certain Bulk client had access to.
 

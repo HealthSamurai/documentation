@@ -2,7 +2,7 @@
 description: This guide explains how to export Aidbox telemetry in OpenTelemetry format
 ---
 
-# How to export telemetry to the OTEL collector
+# How to Export Telemetry to the OTEL Collector
 
 Aidbox produces three types of signals: logs, metrics and traces in OTEL specification.&#x20;
 

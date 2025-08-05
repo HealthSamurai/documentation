@@ -1,4 +1,4 @@
-# Getting started
+# Getting Started
 
 The ePrescription module is available as a Docker image with several versioning options:
 

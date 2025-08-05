@@ -2,7 +2,7 @@
 description: The article explains, how email templating works
 ---
 
-# Email templating
+# Email Templating
 
 Emails are sent using Notification and NotificationTemplate resources. See more:
 

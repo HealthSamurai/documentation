@@ -1,4 +1,4 @@
-# Settings reference
+# Settings Reference
 
 This section contains documentation about Aidbox configuration settings. These settings control various aspects of Aidbox behavior and can be configured using environment variables or Aidbox settings.
 

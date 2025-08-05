@@ -4,7 +4,7 @@ description: >-
   identity provider
 ---
 
-# How to configure Microsoft AD FS for access to the Aidbox UI
+# How to Configure Microsoft AD FS for Access to the Aidbox UI
 
 {% hint style="info" %}
 The AD FS 2016 should be set up and configured. But it should work with AD FS 2012 R2

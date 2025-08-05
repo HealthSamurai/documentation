@@ -2,7 +2,7 @@
 hidden: true
 ---
 
-# Finalize DSL (docs deprecated)
+# Finalize DSL (docs Deprecated)
 
 Finalize definition describes document validation and postprocessing logic that invoked on sign:
 

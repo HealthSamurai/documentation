@@ -1,4 +1,4 @@
-# CodeSystem Subsumption testing
+# CodeSystem Subsumption Testing
 
 ## Overview
 

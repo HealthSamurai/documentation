@@ -1,4 +1,4 @@
-# Patient Encounter notification Application
+# Patient Encounter Notification Application
 
 {% hint style="warning" %}
 This is outdated tutorial. We do not support Clojure SDK anymore.

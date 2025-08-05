@@ -2,7 +2,7 @@
 description: First-class extension as Zen profile
 ---
 
-# First-Class Extensions using Zen
+# First-Class Extensions Using Zen
 
 {% hint style="warning" %}
 Since the 2405 release, using Aidbox in FHIRSchema mode is recommended, which is incompatible with zen or Entity/Attribute options.

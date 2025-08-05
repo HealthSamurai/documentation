@@ -4,7 +4,7 @@ description: >-
   S3-Compatible storages
 ---
 
-# Store attachments in S3-like storages
+# Store Attachments in S3-like Storages
 
 Aidbox Forms provides an ability to store files from attachment items in cloud storages like S3.
 

@@ -1,4 +1,4 @@
-# Integration toolkit
+# Integration Toolkit
 
 The Aidbox Integration Toolkit is designed for seamless data transformation and ingestion.
 

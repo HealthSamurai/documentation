@@ -4,7 +4,7 @@ description: >-
   set up an Aidbox instance
 ---
 
-# Aidbox configuration project
+# Aidbox Configuration Project
 
 {% hint style="warning" %}
 Aidbox is transitioning to the FHIR Schema engine. Existing zen and Entity/Attribute (EA) engines are deprecated and will be obsolete starting August 2025. July 2025 version will become LTS supporting zen and Entity/Attributes for 2 years.

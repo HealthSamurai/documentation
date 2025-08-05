@@ -2,7 +2,7 @@
 description: Difference between Aidbox and FHIR formats
 ---
 
-# Aidbox & FHIR formats
+# Aidbox & FHIR Formats
 
 Aidbox stores FHIR resources almost as is with 3 types of isomorphic transformations:
 

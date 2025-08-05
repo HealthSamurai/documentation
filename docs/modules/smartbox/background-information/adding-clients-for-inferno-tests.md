@@ -2,7 +2,7 @@
 description: This article explains how Clients for Inferno can be created
 ---
 
-# Adding Clients for Inferno tests
+# Adding Clients for Inferno Tests
 
 A `Client` can be added with predefined secret and without. Sometimes it's important to add a `Client` resource without predefined `id` and `secret`.
 

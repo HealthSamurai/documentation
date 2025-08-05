@@ -1,4 +1,4 @@
-# Aidbox version
+# Aidbox Version
 
 Aidbox version is available to obtain with the following `REST` method:&#x20;
 

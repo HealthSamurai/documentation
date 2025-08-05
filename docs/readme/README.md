@@ -1,4 +1,4 @@
-# Aidbox FHIR platform documentation
+# Aidbox FHIR Platform Documentation
 
 ## Quickstarts
 

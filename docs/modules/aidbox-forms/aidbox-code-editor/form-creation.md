@@ -1,4 +1,4 @@
-# Form creation
+# Form Creation
 
 To create new form you need to define Form-assembly and at least 1 layer (schemas from `aidbox.sdc`) :
 

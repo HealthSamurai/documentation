@@ -5,7 +5,7 @@ description: >-
 hidden: true
 ---
 
-# Migrate to the spec-compliant ViewDefinition format
+# Migrate to the Spec-Compliant ViewDefinition Format
 
 Aidbox's January 2024 release introduces an updated, SQL on FHIR spec-compliant `ViewDefinition` resource structure, including some minor breaking changes. These changes don't affect existing flat views, but alterations via `ViewDefinition` require adapting to the new format.
 

@@ -2,7 +2,7 @@
 description: The article describes how to translate or create a multilingual form.
 ---
 
-# Multilingual forms
+# Multilingual Forms
 
 In some applications, there is a need to support multiple languages within the same questionnaire. Aidbox Forms allows you to create multilingual forms that can cater to users speaking different languages.
 

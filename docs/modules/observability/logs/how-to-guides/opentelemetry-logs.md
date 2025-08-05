@@ -2,7 +2,7 @@
 description: This guide explains how to export Aidbox logs in OpenTelemetry format
 ---
 
-# OpenTelemetry logs
+# OpenTelemetry Logs
 
 {% hint style="info" %}
 Aidbox supports exporting logs using the Protobuf protocol in line with the OTEL specification. This guide configures Aidbox to export logs to the OpenTelemetry collector, but the setup can also be modified to export to other logs consumers that adhere to this specification.

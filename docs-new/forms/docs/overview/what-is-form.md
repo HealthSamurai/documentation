@@ -1,4 +1,4 @@
-# What is Form
+# What Is Form
 
 Forms in Aidbox are powerful tools for collecting structured healthcare data. They are based on the FHIR Questionnaire specification and provide extensive customization options.
 

@@ -2,7 +2,7 @@
 description: This guide explains how SMART App launch (1.0.0 & 2.0.0) can be enabled
 ---
 
-# How to enable SMART on FHIR on Patient Access API
+# How to Enable SMART on FHIR on Patient Access API
 
 ## Prerequisites
 

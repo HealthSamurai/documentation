@@ -1,4 +1,4 @@
-# Automatically archive AuditEvent resources in GCP storage guide
+# Automatically Archive AuditEvent Resources in GCP Storage Guide
 
 {% hint style="warning" %}
 Since the 2405 release, using Aidbox in FHIR schema validation engine is recommended, which is incompatible with zen or Entity/Attribute options.

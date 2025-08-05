@@ -1,4 +1,4 @@
-# Aidbox required environment variables
+# Aidbox Required Environment Variables
 
 ### BOX\_WEB\_PORT
 

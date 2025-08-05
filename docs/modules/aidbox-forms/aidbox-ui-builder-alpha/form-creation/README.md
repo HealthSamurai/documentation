@@ -2,7 +2,7 @@
 description: The article outlines options for how a user can create a form.
 ---
 
-# Form creation
+# Form Creation
 
 There are three options to create form:
 

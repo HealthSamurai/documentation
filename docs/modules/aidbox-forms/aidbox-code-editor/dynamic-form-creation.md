@@ -1,4 +1,4 @@
-# How to create a dynamic form
+# How to Create a Dynamic Form
 
 In this tutorial, we will learn how to create a form with conditional logic. This means, that based on the patient's answers the result will be calculated differently and some form fields will be displayed conditionally.
 

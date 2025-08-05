@@ -1,4 +1,4 @@
-# restore-archive
+# Restore-Archive
 
 To restore archived data you should start restoration process with `/execution/aidbox.archive/restore-archive` task.
 

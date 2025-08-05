@@ -4,7 +4,7 @@ description: >-
   extraction and Template-based extraction
 ---
 
-# How to extract data from forms
+# How to Extract Data from Forms
 
 ## Observation-based extraction
 

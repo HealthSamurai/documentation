@@ -1,4 +1,4 @@
-# List of metrics
+# List of Metrics
 
 Module collects some useful metrics in Prometheus format
 

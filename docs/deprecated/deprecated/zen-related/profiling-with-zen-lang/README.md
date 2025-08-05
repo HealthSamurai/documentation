@@ -2,7 +2,7 @@
 description: Validate your resources with zen-lang schemas
 ---
 
-# zen-lang validator
+# Zen-Lang Validator
 
 {% hint style="danger" %}
 The zen-lang validator is deprecated in release 2508. Please consider using [FHIR Schema validator](../../../../modules/profiling-and-validation/fhir-schema-validator/README.md).

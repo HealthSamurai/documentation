@@ -1,4 +1,4 @@
-# US Core IG support reference
+# US Core IG Support Reference
 
 {% hint style="warning" %}
 This page explains US Core support for zen-lang validation mode.

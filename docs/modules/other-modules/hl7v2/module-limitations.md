@@ -1,4 +1,4 @@
-# Module limitations
+# Module Limitations
 
 This module is implemented to map only one type of message (MDM v2.3.1) with default mappings, but it is designed to be flexible for custom mappings and easy to support another types generation. Regarding above there is some limitations:
 

@@ -2,7 +2,7 @@
 description: FHIR versions support
 ---
 
-# FHIR versions
+# FHIR Versions
 
 Aidbox Forms module supports FHIR versions 4.0.0 to 5.0.0. FHIR version used is taken from the Aidbox. (Data can be stored only on that version)
 

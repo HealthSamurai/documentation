@@ -1,4 +1,4 @@
-# Extensions using StructureDefinition
+# Extensions Using StructureDefinition
 
 Aidbox supports defining extensions using [StructureDefinition](https://build.fhir.org/structuredefinition.html) FHIR resource. This is possible when Aidbox is configured with [FHIRSchema mode](../../modules/profiling-and-validation/fhir-schema-validator/README.md).&#x20;
 

@@ -1,4 +1,4 @@
-# Mathematical details
+# Mathematical Details
 
 See [fastlink](https://imai.fas.harvard.edu/research/files/linkage.pdf) paper for more details.
 

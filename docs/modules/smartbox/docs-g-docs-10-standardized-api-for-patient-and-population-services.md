@@ -1,4 +1,4 @@
-# (/g)(/10) Standardized API for patient and population services
+# (/G)(/10) Standardized API for Patient and Population Services
 
 Smartbox| FHIR API for EHRs comprehensively supports the §170.315(g)(10) Standardized API for patient and population services certification criterion. Here's an overview of how Aidbox covers the key requirements:
 

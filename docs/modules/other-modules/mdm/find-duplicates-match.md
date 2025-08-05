@@ -1,4 +1,4 @@
-# Find duplicates: $match
+# Find Duplicates: $match
 
 FHIR match operation is defined on Patient resource. Aidbox extends it to all resource types for which MDM is configured.
 

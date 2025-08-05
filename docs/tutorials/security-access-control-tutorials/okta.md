@@ -2,7 +2,7 @@
 description: This guide shows how to set-up Okta identity provider with Aidbox
 ---
 
-# How to configure SSO with Okta to access Aidbox UI
+# How to Configure SSO with Okta to Access Aidbox UI
 
 
 

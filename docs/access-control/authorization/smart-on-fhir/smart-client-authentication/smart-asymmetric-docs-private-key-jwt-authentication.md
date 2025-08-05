@@ -1,4 +1,4 @@
-# SMART: Asymmetric (/"private key JWT") authentication
+# SMART: Asymmetric (/"private Key JWT") Authentication
 
 Aidbox supports **SMART Asymmetric Private Key JWT Authentication** to securely manage client authentication.&#x20;
 

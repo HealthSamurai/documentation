@@ -1,4 +1,4 @@
-# Defining flat views with View Definitions
+# Defining Flat Views with View Definitions
 
 SQL on FHIR utilizes ViewDefinition resources to describe the structure of flat views. A simple ViewDefinition may look like this:
 

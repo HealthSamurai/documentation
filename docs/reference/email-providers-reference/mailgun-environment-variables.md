@@ -1,4 +1,4 @@
-# Mailgun environment variables
+# Mailgun Environment Variables
 
 ### BOX\_PROVIDER\_MAILGUN\_\_PROVIDER\_URL
 

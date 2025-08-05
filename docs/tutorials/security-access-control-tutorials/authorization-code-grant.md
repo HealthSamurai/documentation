@@ -4,7 +4,7 @@ description: >-
   application
 ---
 
-# How to configure Authorization Code Grant
+# How to Configure Authorization Code Grant
 
 The Authorization Code Grant is an OAuth 2.0 flow that regular web apps use in order to access an API, typically as web applications with backend and frontend (browser-based SPA, for example).
 

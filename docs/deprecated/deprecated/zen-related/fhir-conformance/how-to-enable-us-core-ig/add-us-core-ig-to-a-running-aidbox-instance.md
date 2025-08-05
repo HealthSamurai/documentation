@@ -1,4 +1,4 @@
-# Add US Core IG to a running Aidbox instance
+# Add US Core IG to a Running Aidbox Instance
 
 {% hint style="warning" %}
 This tutorial is deprecated. Since the 2405 release, using Aidbox in FHIRSchema mode is recommended, which is incompatible with zen or Entity/Attribute options.

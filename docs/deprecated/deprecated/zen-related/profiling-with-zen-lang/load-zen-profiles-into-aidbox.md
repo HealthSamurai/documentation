@@ -4,7 +4,7 @@ description: >-
   data against it
 ---
 
-# Load zen profiles into Aidbox
+# Load Zen Profiles into Aidbox
 
 {% hint style="warning" %}
 Since the 2405 release, using Aidbox in FHIRSchema mode is recommended, which is incompatible with zen or Entity/Attribute options.

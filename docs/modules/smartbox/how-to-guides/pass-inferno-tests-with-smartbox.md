@@ -4,7 +4,7 @@ description: >-
   Standardized API on Inferno framework.
 ---
 
-# Pass Inferno tests with Smartbox
+# Pass Inferno Tests with Smartbox
 
 {% hint style="info" %}
 The article has be reviewed for next Inferno framework v0.3.12 and test suite

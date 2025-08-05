@@ -4,7 +4,7 @@ description: >-
   the $render operation.
 ---
 
-# Template-based PDF generation
+# Template-based PDF Generation
 
 ## Overview
 

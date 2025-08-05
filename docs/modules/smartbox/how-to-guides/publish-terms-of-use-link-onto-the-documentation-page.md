@@ -1,4 +1,4 @@
-# Publish Terms of Use link onto the documentation page
+# Publish Terms of Use Link Onto the Documentation Page
 
 ## How to add Terms of Use link with API
 

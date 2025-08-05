@@ -2,5 +2,5 @@
 hidden: true
 ---
 
-# SMART (/deprecated)
+# SMART (/Deprecated)
 

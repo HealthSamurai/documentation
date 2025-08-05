@@ -4,7 +4,7 @@ description: >-
   authorization server as a primary one.
 ---
 
-# Register users
+# Register Users
 
 Smartbox deals with three user roles: admin, patient and provider. Once you deploy Smartbox
 

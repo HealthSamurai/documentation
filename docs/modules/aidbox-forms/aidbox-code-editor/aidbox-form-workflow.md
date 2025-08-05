@@ -2,7 +2,7 @@
 description: Overview of workflow
 ---
 
-# Aidbox Form workflow
+# Aidbox Form Workflow
 
 Forms can be embedded into a workflow.
 

@@ -4,7 +4,7 @@ description: >-
   Aidbox
 ---
 
-# SSO with external OAuth identity provider
+# SSO with External OAuth Identity Provider
 
 {% hint style="info" %}
 This guide provides instructions on how to configure Aidbox to work with any IAM service that supports the OAuth 2.0 specification.

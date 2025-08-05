@@ -1,4 +1,4 @@
-# How to calculate form filling percentage
+# How to Calculate Form Filling Percentage
 
 ## What is form filling percentage
 

@@ -2,7 +2,7 @@
 description: Achieve logical multi-tenancy with Aidbox
 ---
 
-# Organization-based hierarchical access control
+# Organization-based Hierarchical Access Control
 
 Hierarchical organization-based access control in Aidbox allows for the restriction of access to data based on the organization to which it belongs. When this feature is enabled, the FHIR Organization resource in Aidbox gains new semantics and functionality.
 

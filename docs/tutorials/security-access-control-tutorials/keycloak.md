@@ -2,7 +2,7 @@
 description: This guide shows how to set-up Keycloak identity provider with Aidbox
 ---
 
-# How to configure Keycloak for access for AidboxUI
+# How to Configure Keycloak for Access for AidboxUI
 
 ## Create a realm
 

@@ -1,4 +1,4 @@
-# Run Aidbox locally using Aidbox Configuraiton project
+# Run Aidbox Locally Using Aidbox Configuraiton Project
 
 {% hint style="warning" %}
 Since the 2405 release, using Aidbox in FHIR schema validation engine is recommended, which is incompatible with zen or Entity/Attribute options.

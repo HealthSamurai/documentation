@@ -2,7 +2,7 @@
 hidden: true
 ---
 
-# Document DSL (docs deprecated)
+# Document DSL (docs Deprecated)
 
 * Document is schema for Questionnaire with questions and answers and types of values.
 * Document is used as source of meta-information by [FormLayout](layout-dsl-docs-deprecated.md)

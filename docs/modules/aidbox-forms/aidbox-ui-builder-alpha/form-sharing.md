@@ -2,7 +2,7 @@
 description: Learn how to share or embed the form with users.
 ---
 
-# Form sharing
+# Form Sharing
 
 Aidbox Forms supports two main scenarios for sharing forms with users:
 

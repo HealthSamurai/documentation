@@ -2,7 +2,7 @@
 description: A single place to manage your Aidbox licenses
 ---
 
-# Aidbox user portal
+# Aidbox User Portal
 
 [Aidbox user portal](https://aidbox.app/ui/portal#/signup) allows you to get an [Aidbox license](./licenses.md) and share it with other users
 

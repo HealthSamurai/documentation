@@ -1,4 +1,4 @@
-# Pharmacies synchronization
+# Pharmacies Synchronization
 
 Pharmacies synchronization is a process that ensures the local list of pharmacies (local directory) is up-to-date with the latest data from Surescripts. This process involves fetching, processing, and storing pharmacy information, including their identifiers, contacts, and other information.
 

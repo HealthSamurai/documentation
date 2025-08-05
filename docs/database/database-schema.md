@@ -1,4 +1,4 @@
-# Database schema
+# Database Schema
 
 The database schema consists of multiple tables and schemas that can be categorized into several groups:
 

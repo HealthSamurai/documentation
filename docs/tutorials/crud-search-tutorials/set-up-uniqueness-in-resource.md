@@ -1,4 +1,4 @@
-# Set up uniqueness in Resource
+# Set up Uniqueness in Resource
 
 Suppose we want to store the Patient resource only if a patient with such an email does not already exist in the database. Hence, we need to make `Patient.telecom.value` unique where `Patient.telecom.system = 'email'`.
 

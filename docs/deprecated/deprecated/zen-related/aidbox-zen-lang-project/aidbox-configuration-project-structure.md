@@ -1,4 +1,4 @@
-# Aidbox configuration project structure
+# Aidbox Configuration Project Structure
 
 {% hint style="warning" %}
 Since the 2405 release, using Aidbox in FHIR schema validation engine is recommended, which is incompatible with zen or Entity/Attribute options.

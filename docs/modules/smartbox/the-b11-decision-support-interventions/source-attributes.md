@@ -1,4 +1,4 @@
-# Source attributes
+# Source Attributes
 
 Developers of SMART Apps can specify if their application qualifies as a Decision Support Intervention (DSI) when creating a new app in the Developer Sandbox. After doing this developers define key source attributes.
 

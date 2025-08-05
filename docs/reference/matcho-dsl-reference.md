@@ -1,4 +1,4 @@
-# Matcho DSL reference
+# Matcho DSL Reference
 
 * Strings, numbers, and booleans are compared by value.
 * If the pattern is a dictionary, search for its inclusion into a test subject. This check is nested and recursive.

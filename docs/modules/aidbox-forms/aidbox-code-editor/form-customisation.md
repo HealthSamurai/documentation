@@ -1,4 +1,4 @@
-# Form customisation
+# Form Customisation
 
 Aidbox Forms gives you ability to customize form looking. To do this you can create a new theme, and specify it in sdc-service.
 

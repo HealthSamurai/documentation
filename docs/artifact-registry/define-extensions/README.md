@@ -1,2 +1,2 @@
-# Define extensions
+# Define Extensions
 

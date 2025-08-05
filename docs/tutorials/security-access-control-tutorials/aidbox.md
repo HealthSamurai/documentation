@@ -1,4 +1,4 @@
-# How to configure SSO with another Aidbox instance to access Aidbox UI
+# How to Configure SSO with Another Aidbox Instance to Access Aidbox UI
 
 To set up one Aidbox instance to authenticate users in another Aidbox instance follow these steps:
 

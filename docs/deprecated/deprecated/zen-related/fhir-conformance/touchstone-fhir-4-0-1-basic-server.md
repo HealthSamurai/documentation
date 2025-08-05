@@ -2,7 +2,7 @@
 description: Pass Touchstone FHIR4-0-1-Basic-Server the test suite
 ---
 
-# Touchstone FHIR 4.0.1 basic server
+# Touchstone FHIR 4.0.1 Basic Server
 
 {% hint style="warning" %}
 Since the 2405 release, using Aidbox in FHIR schema validation engine is recommended, which is incompatible with zen or Entity/Attribute options.

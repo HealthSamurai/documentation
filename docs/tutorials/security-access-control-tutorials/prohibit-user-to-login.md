@@ -2,7 +2,7 @@
 description: This guide explains how to prohibit user login
 ---
 
-# Prohibit user to login
+# Prohibit User to Login
 
 {% hint style="info" %}
 `User` resource has `inactive` property. When it equals to `true` the user cannot login

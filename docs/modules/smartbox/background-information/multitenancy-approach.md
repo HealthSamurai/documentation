@@ -2,7 +2,7 @@
 description: The article explains Smartbox approach for multitenancy
 ---
 
-# Multitenancy approach
+# Multitenancy Approach
 
 Smartbox is distributed as an aidbox configuration project on top of Aidbox. It follows Aidbox multitenancy approach on API constructor.
 

@@ -1,4 +1,4 @@
-# Configure MDM module
+# Configure MDM Module
 
 The current MDM implementation only supports the Patient resource. If you need support for additional resources, please [contact us](../../../overview/contact-us.md).
 

@@ -1,4 +1,4 @@
-# Delete data
+# Delete Data
 
 ## FHIR delete
 

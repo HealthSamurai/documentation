@@ -1,4 +1,4 @@
-# Setup SMTP provider
+# Setup SMTP Provider
 
 Aidbox allows you to configure SMTP email provider to manage your email communications.
 

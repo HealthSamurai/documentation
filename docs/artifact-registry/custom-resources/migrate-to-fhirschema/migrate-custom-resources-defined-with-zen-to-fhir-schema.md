@@ -1,4 +1,4 @@
-# Migrate custom resources defined with Zen to FHIR Schema
+# Migrate Custom Resources Defined with Zen to FHIR Schema
 
 ## Prerequisites
 

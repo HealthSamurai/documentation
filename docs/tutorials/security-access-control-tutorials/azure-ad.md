@@ -2,7 +2,7 @@
 description: This guide shows how to set-up Azure AD identity provider with Aidbox
 ---
 
-# How to configure Azure AD SSO for access to the Aidbox UI
+# How to Configure Azure AD SSO for Access to the Aidbox UI
 
 
 

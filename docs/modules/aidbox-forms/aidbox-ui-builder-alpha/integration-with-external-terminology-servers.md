@@ -1,2 +1,2 @@
-# Integration with external terminology servers
+# Integration with External Terminology Servers
 

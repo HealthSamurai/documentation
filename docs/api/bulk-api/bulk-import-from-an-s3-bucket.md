@@ -4,7 +4,7 @@ description: >-
   with maximum performance.
 ---
 
-# Bulk import from an S3 bucket
+# Bulk Import from an S3 Bucket
 
 {% hint style="info" %}
 If you want to import S3 objects with a presigned url, refer to [aidbox.bulk data import](aidbox-bulk-data-import.md).

@@ -1,4 +1,4 @@
-# How to fix broken dates
+# How to Fix Broken Dates
 
 In some cases, you can have invalid data in your database- after importing data, or an error in SQL migrations.
 

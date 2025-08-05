@@ -2,7 +2,7 @@
 description: Standard endpoint for health checks
 ---
 
-# Health check
+# Health Check
 
 Aidbox serves REST health check endpoint `GET /health` to configure liveness, readiness and startup probes. The response format is described by [RFC](https://inadarei.github.io/rfc-healthcheck/) (Health Check Response Format for HTTP APIs):
 

@@ -4,7 +4,7 @@ description: >-
   practitioners to read their own data
 ---
 
-# Flexible RBAC built-in to Aidbox
+# Flexible RBAC Built-in to Aidbox
 
 Aidbox provides role-based access control mechanism based on access policies and custom `Role` resource.
 

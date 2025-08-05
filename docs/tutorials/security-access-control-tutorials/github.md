@@ -2,7 +2,7 @@
 description: This guide shows how to set-up GitHub identity provider with Aidbox
 ---
 
-# How to configure GitHub SSO for access to Aidbox UI
+# How to Configure GitHub SSO for Access to Aidbox UI
 
 ## Register an OAuth application on GitHub
 

@@ -1,2 +1,2 @@
-# RPC reference
+# RPC Reference
 

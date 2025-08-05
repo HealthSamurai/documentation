@@ -2,7 +2,7 @@
 description: This guide explains how to revoke access from SMART App
 ---
 
-# Revoke granted access
+# Revoke Granted Access
 
 ## As patient
 

@@ -2,7 +2,7 @@
 description: Use a pre-packaged terminology to import concepts into Aidbox
 ---
 
-# Import external terminologies
+# Import External Terminologies
 
 Aidbox allows you to import value sets content in several ways:
 

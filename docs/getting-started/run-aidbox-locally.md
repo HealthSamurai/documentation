@@ -2,7 +2,7 @@
 description: Follow these steps to launch Aidbox locally using Docker
 ---
 
-# Run Aidbox locally
+# Run Aidbox Locally
 
 ## Prerequisites
 

@@ -1,4 +1,4 @@
-# Crunchy Operator (/pgBackRest)
+# Crunchy Operator (/Pgbackrest)
 
 PGO Crunchy Operator uses pgBackRest for managing backups.&#x20;
 

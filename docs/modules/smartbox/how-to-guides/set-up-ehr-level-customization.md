@@ -2,7 +2,7 @@
 description: This guide explains how to set up EHR-level customization
 ---
 
-# Set up EHR-level customization
+# Set up EHR-level Customization
 
 ## How to set up EHR logo
 

@@ -2,7 +2,7 @@
 description: Access control lists with API constructor
 ---
 
-# Access control lists (/ACL)
+# Access Control Lists (/ACL)
 
 {% hint style="warning" %}
 Deprecated feature

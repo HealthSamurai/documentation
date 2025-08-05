@@ -1,4 +1,4 @@
-# Change sort order by locale collation
+# Change Sort Order by Locale Collation
 
 Consider this example:
 

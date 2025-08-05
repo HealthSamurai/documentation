@@ -1,4 +1,4 @@
-# How to migrate to Apline Linux
+# How to Migrate to Apline Linux
 
 Since version `2301`, [healthsamurai/aidboxone](https://hub.docker.com/r/healthsamurai/aidboxone) and [healthsamurai/multibox](https://hub.docker.com/r/healthsamurai/multibox) images are based on Alpine Linux and run from a non-root user. User name **aidbox,** uid=1000
 

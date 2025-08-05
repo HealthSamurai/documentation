@@ -1,4 +1,4 @@
-# Uploading IG terminology content to external FHIR terminology server
+# Uploading IG Terminology Content to External FHIR Terminology Server
 
 In this tutorial, we will guide you through the steps to populate an external FHIR terminology server with IG terminology content, including ValueSets, CodeSystems, and more.
 

@@ -1,2 +1,2 @@
-# System resources reference
+# System Resources Reference
 

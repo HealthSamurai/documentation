@@ -1,4 +1,4 @@
-# Train model
+# Train Model
 
 {% hint style="info" %}
 Zen model for MDM module is scheduled for deprecation in several upcoming releases. Please consider using new [guide](./configure-mdm-module.md).

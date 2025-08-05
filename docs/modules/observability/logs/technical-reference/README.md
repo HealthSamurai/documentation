@@ -1,2 +1,2 @@
-# Technical reference
+# Technical Reference
 

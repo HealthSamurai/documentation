@@ -2,7 +2,7 @@
 description: How to enable new validator engine and specify IGs
 ---
 
-# Setup Aidbox with FHIR Schema validation engine
+# Setup Aidbox with FHIR Schema Validation Engine
 
 ### Configure Aidbox to Use FHIR Schema Validation Engine
 

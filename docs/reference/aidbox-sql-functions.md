@@ -1,4 +1,4 @@
-# Aidbox SQL functions
+# Aidbox SQL Functions
 
 {% hint style="info" %}
 This page is in progress. Please [contact us](../overview/contact-us.md) if you need more SQL functions to be documented.

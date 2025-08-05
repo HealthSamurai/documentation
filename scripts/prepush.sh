@@ -23,5 +23,10 @@ if grep -rn "\[.*\](broken-reference" docs/ --include="*.md" --exclude-dir="depr
 fi
 
 python3 ./scripts/redirects.py || exit 1
+
+# Check title case (warning only, doesn't block)
+echo "Checking title case in SUMMARY.md files..."
+python3 ./scripts/check-title-case-in-summary.py || true
+
 # maybe later...
 # python ./scripts/pictures/image_analyzer.py || exit 1

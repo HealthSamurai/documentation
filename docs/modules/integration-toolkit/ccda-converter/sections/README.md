@@ -4,7 +4,7 @@ description: >-
   templates.
 ---
 
-# List of supported templates
+# List of Supported Templates
 
 The C-CDA to FHIR Converter comes with pre-built scripts for converting C-CDA documents to FHIR Bundles.
 

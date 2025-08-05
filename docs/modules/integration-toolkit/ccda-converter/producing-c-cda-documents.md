@@ -4,7 +4,7 @@ description: >-
   Aidbox FHIR Server.
 ---
 
-# Producing C-CDA documents
+# Producing C-CDA Documents
 
 {% hint style="info" %}
 C-CDA / FHIR Converter provides bidirectional mapping for all data elements from the [USCDI v1](https://www.healthit.gov/isa/sites/isa/files/2020-10/USCDI-Version-1-July-2020-Errata-Final_0.pdf) list. [Detailed list of supported C-CDA sections](./sections/README.md) is also available.

@@ -1,4 +1,4 @@
-# AidboxDB environment variables
+# AidboxDB Environment Variables
 
 ### Required environment variables
 

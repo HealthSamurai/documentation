@@ -1,4 +1,4 @@
-# Create indexes manually
+# Create Indexes Manually
 
 {% hint style="info" %}
 The following indexes cover regular searches, e.g. Patient?name=Smith. Please [contact us ](../../overview/contact-us.md)if you need more examples.&#x20;

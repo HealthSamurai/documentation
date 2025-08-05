@@ -4,7 +4,7 @@ description: >-
   guidelines
 ---
 
-# Form customisation in Theme Editor
+# Form Customisation in Theme Editor
 
 ## Theme Editor
 
