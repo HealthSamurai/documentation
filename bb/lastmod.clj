@@ -5,8 +5,9 @@
    [clojure.java.shell :as shell]))
 
 (defn lastmod-for-file [file]
-  (let [{:keys [out exit]}
-        (shell/sh "git" "log" "-1" "--format=%ct" (.getPath ^java.io.File file))]
+  (let [canonical-file (.getCanonicalFile file)
+        {:keys [out exit]}
+        (shell/sh "git" "log" "-1" "--format=%ct" (.getPath canonical-file))]
     (when (and exit (zero? exit) (not (str/blank? out)))
       (try
         (let [timestamp (Long/parseLong (str/trim out))
