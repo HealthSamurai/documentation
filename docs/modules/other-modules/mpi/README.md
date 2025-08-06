@@ -10,7 +10,7 @@ description: >-
 
 **MPI enables:**
 
-* accurate [**matching**](find-duplicates-match-1.md) of patient records across different systems and facilities,
+* accurate [**matching**](find-duplicates-match.md) of patient records across different systems and facilities,
 * [**merging**](merging-and-unmerging-records-usdmerge-and-usdunmerge.md#merge-operation) of duplicate records into a single record,
 * [**unmerging**](merging-and-unmerging-records-usdmerge-and-usdunmerge.md#unmerge-operation) of incorrectly linked records,
 * maintaining the **integrity** of clinical data and treatment history.
@@ -64,8 +64,8 @@ Configure Aidbox MPI module to use your matching model
 
 Use `$match` operation to find duplicates
 
-{% content-ref url="find-duplicates-match.md" %}
-[find-duplicates-match.md](find-duplicates-match.md)
+{% content-ref url="find-duplicates-match-old.md" %}
+[find-duplicates-match-old.md](find-duplicates-match-old.md)
 {% endcontent-ref %}
 
 ## Merge and Unmerge Records
