@@ -4,16 +4,16 @@
 
 The materials in this section describe what to do next with the resulting FHIR Schema resource or set of resources. They explain how to load them into Aidbox, either one by one or via IG. Additionally, they outline the requirements for FHIR Schema to define a Custom Resource and provide a detailed FHIR Schema specification.
 
-{% content-ref url="../../../modules/profiling-and-validation/fhir-schema-validator/" %}
-[fhir-schema-validator](../../../modules/profiling-and-validation/fhir-schema-validator/)
+{% content-ref url="../../../../modules/profiling-and-validation/fhir-schema-validator/" %}
+[fhir-schema-validator](../../../../modules/profiling-and-validation/fhir-schema-validator/)
 {% endcontent-ref %}
 
-{% content-ref url="../../../tutorials/other-tutorials/how-to-create-fhir-npm-package.md" %}
-[how-to-create-fhir-npm-package.md](../../../tutorials/other-tutorials/how-to-create-fhir-npm-package.md)
+{% content-ref url="../../../other-tutorials/how-to-create-fhir-npm-package.md" %}
+[how-to-create-fhir-npm-package.md](../../../other-tutorials/how-to-create-fhir-npm-package.md)
 {% endcontent-ref %}
 
-{% content-ref url="../../../tutorials/validation-tutorials/upload-fhir-implementation-guide/" %}
-[upload-fhir-implementation-guide](../../../tutorials/validation-tutorials/upload-fhir-implementation-guide/)
+{% content-ref url="../../../validation-tutorials/upload-fhir-implementation-guide/" %}
+[upload-fhir-implementation-guide](../../../validation-tutorials/upload-fhir-implementation-guide/)
 {% endcontent-ref %}
 
 ## Obtain FHIRSchema
@@ -28,7 +28,7 @@ You can use a special REST API endpoint to migrate specific Entities and their c
 GET /Entity/<entity-id>/$dump-as-fhir-schema
 ```
 
-If the compilation succeeds, the endpoint returns the resulting FHIR Schema. If it fails, it provides a list of errors detailing what went wrong. Most errors occur because you've used keys on your Attributes/Entities that are not recognized by our compiler. In this case, you can [contact us](../../../overview/contact-us.md) to potentially extend the compiler. Alternatively, you can manually rewrite your custom resource using FHIR Schema.
+If the compilation succeeds, the endpoint returns the resulting FHIR Schema. If it fails, it provides a list of errors detailing what went wrong. Most errors occur because you've used keys on your Attributes/Entities that are not recognized by our compiler. In this case, you can [contact us](../../../../overview/contact-us.md) to potentially extend the compiler. Alternatively, you can manually rewrite your custom resource using FHIR Schema.
 
 {% hint style="danger" %}
 The compiler inlines types from Entity/Attributes as they are. At Aidbox runtime, the validator tries to interpret them as FHIR types.
@@ -42,7 +42,7 @@ Please double-check the compilation results, as they may contain transformation 
 
 #### Example: Concept entity
 
-Here's an example of migrating a custom Aidbox resource, [Concept](../../../modules/terminology/concept/). This resource mirrors FHIR's CodeSystem `concept` property and extends it in various ways.
+Here's an example of migrating a custom Aidbox resource, [Concept](../../../../modules/terminology/concept/). This resource mirrors FHIR's CodeSystem `concept` property and extends it in various ways.
 
 {% tabs %}
 {% tab title="Request" %}
@@ -165,7 +165,7 @@ accept: application/json
 
 If the compiler doesn't support certain instructions for your Entity/Attributes, if you want full control during the migration process, or if you want to extend your custom resources using unique FHIR Schema features, you can manually rewrite your custom resource definitions from scratch using the FHIR Schema.
 
-In the following steps, we will use the example resource, `UserSetting`. Although it is just an example, it covers most aspects of resource definition with the Entity/Attribute model. If this guide misses any features of Entity/Attribute resource definition, please [contact us.](../../../overview/contact-us.md)
+In the following steps, we will use the example resource, `UserSetting`. Although it is just an example, it covers most aspects of resource definition with the Entity/Attribute model. If this guide misses any features of Entity/Attribute resource definition, please [contact us.](../../../../overview/contact-us.md)
 
 #### Get Attributes related to one Entity
 
@@ -460,7 +460,7 @@ For more information about this instruction, refer to the relevant [section](htt
 To deliver the FHIR Schema(s) and related Entities you authored\
 to Aidbox, follow these steps.\
 Ensure that your Aidbox is configured to run with the\
-FHIRSchema validation engine. Here's[a guide describing how to achieve that](../../../modules/profiling-and-validation/fhir-schema-validator/).
+FHIRSchema validation engine. Here's[a guide describing how to achieve that](../../../../modules/profiling-and-validation/fhir-schema-validator/).
 
 **Single FHIRSchema Delivery**
 
@@ -470,14 +470,14 @@ If you have only one FHIRSchema that replaces your custom-defined Entity/Attribu
 
 If you have multiple schemas replacing a set of resources and want to work with this set of entities as a package (ImplementationGuide), refer to this guide on how to create your own FHIR NPM package with ImplementationGuide entities.
 
-{% content-ref url="../../../tutorials/other-tutorials/how-to-create-fhir-npm-package.md" %}
-[how-to-create-fhir-npm-package.md](../../../tutorials/other-tutorials/how-to-create-fhir-npm-package.md)
+{% content-ref url="../../../other-tutorials/how-to-create-fhir-npm-package.md" %}
+[how-to-create-fhir-npm-package.md](../../../other-tutorials/how-to-create-fhir-npm-package.md)
 {% endcontent-ref %}
 
 **Loading the FHIR NPM Package**
 
-{% content-ref url="../../../tutorials/validation-tutorials/upload-fhir-implementation-guide/" %}
-[upload-fhir-implementation-guide](../../../tutorials/validation-tutorials/upload-fhir-implementation-guide/)
+{% content-ref url="../../../validation-tutorials/upload-fhir-implementation-guide/" %}
+[upload-fhir-implementation-guide](../../../validation-tutorials/upload-fhir-implementation-guide/)
 {% endcontent-ref %}
 
 #### **Important Notes:**
@@ -487,5 +487,5 @@ If you have multiple schemas replacing a set of resources and want to work with 
 {% endhint %}
 
 {% hint style="danger" %}
-**SearchParameters:** SearchParameters described for custom resources won't work in FHIRSchema validation mode. You need to redefine them as regular FHIR SearchParameters, not Aidbox Search Parameters. See the [migration guide](../../../tutorials/crud-search-tutorials/search-tutorials/migrate-from-aidbox-searchparameter-to-fhir-searchparameter.md).
+**SearchParameters:** SearchParameters described for custom resources won't work in FHIRSchema validation mode. You need to redefine them as regular FHIR SearchParameters, not Aidbox Search Parameters. See the [migration guide](../../../crud-search-tutorials/search-tutorials/migrate-from-aidbox-searchparameter-to-fhir-searchparameter.md).
 {% endhint %}

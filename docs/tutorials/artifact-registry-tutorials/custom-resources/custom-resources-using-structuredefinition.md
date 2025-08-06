@@ -10,8 +10,8 @@ FHIR uses StructureDefinition resources to model data structures. Aidbox allows 
 
 To begin using custom FHIR resources, enable the FHIR Schema validation engine in Aidbox.
 
-{% content-ref url="../../modules/profiling-and-validation/fhir-schema-validator/setup-aidbox-with-fhir-schema-validation-engine.md" %}
-[setup-aidbox-with-fhir-schema-validation-engine.md](../../modules/profiling-and-validation/fhir-schema-validator/setup-aidbox-with-fhir-schema-validation-engine.md)
+{% content-ref url="../../../modules/profiling-and-validation/fhir-schema-validator/setup-aidbox-with-fhir-schema-validation-engine.md" %}
+[setup-aidbox-with-fhir-schema-validation-engine.md](../../../modules/profiling-and-validation/fhir-schema-validator/setup-aidbox-with-fhir-schema-validation-engine.md)
 {% endcontent-ref %}
 
 ## Create StructureDefinition for a custom resource
@@ -478,8 +478,6 @@ accept: application/json
 {% endtab %}
 {% endtabs %}
 
-
-
 Now you can interact with custom resources just like with any other FHIR resources.
 
 ## Interact with a resource
@@ -760,14 +758,12 @@ GET /fhir/TutorNotification?status=requested
 {% endtab %}
 {% endtabs %}
 
-
-
 ## Convenience
 
 Manually writing StructureDefinitions can be overwhelming. Fortunately, there is an alternative: FSH/SUSHI allows you to generate a FHIR NPM package with your custom resources, which you can load into Aidbox and use.
 
-{% content-ref url="../../tutorials/validation-tutorials/upload-fhir-implementation-guide/" %}
-[upload-fhir-implementation-guide](../../tutorials/validation-tutorials/upload-fhir-implementation-guide/)
+{% content-ref url="../../validation-tutorials/upload-fhir-implementation-guide/" %}
+[upload-fhir-implementation-guide](../../validation-tutorials/upload-fhir-implementation-guide/)
 {% endcontent-ref %}
 
 ## How Aidbox Deals with FHIR Limitations for Custom Resources

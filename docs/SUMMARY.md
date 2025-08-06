@@ -99,6 +99,16 @@
     * [Set up Aidbox with Postman](tutorials/other-tutorials/set-up-aidbox-with-postman.md)
     * [How to Run Aidbox in GCP Cloud Run](tutorials/other-tutorials/how-to-run-aidbox-in-gcp-cloud-run.md)
     * [How to Run Aidbox Using a Different Java Version](tutorials/other-tutorials/how-to-run-aidbox-using-different-java.md)
+  * [Artifact Registry Tutorials](tutorials/artifact-registry-tutorials/README.md)
+    * [Define Extensions](tutorials/artifact-registry-tutorials/define-extensions/README.md)
+      * [Extensions Using StructureDefinition](tutorials/artifact-registry-tutorials/define-extensions/extensions-using-structuredefinition.md)
+      * [Extensions Using FHIRSchema](tutorials/artifact-registry-tutorials/define-extensions/extensions-using-fhirschema.md)
+    * [Custom Resources](tutorials/artifact-registry-tutorials/custom-resources/README.md)
+      * [Custom Resources Using FHIR Schema](tutorials/artifact-registry-tutorials/custom-resources/custom-resources-using-fhir-schema.md)
+      * [Custom Resources Using StructureDefinition](tutorials/artifact-registry-tutorials/custom-resources/custom-resources-using-structuredefinition.md)
+      * [Migrate to FHIR Schema](tutorials/artifact-registry-tutorials/custom-resources/migrate-to-fhirschema/README.md)
+        * [Migrate Custom Resources Defined with Entity and Attributes to FHIR Schema](tutorials/artifact-registry-tutorials/custom-resources/migrate-to-fhirschema/migrate-custom-resources-defined-with-entity-and-attributes-to-fhir-schema.md)
+        * [Migrate Custom Resources Defined with Zen to FHIR Schema](tutorials/artifact-registry-tutorials/custom-resources/migrate-to-fhirschema/migrate-custom-resources-defined-with-zen-to-fhir-schema.md)
 
 ## Overview
 
@@ -223,15 +233,8 @@
 * [Artifact Registry Overview](artifact-registry/artifact-registry-overview.md)
 * [StructureDefinition](artifact-registry/structuredefinition.md)
 * [SearchParameter](api/rest-api/fhir-search/searchparameter.md)
-* [Define Extensions](artifact-registry/define-extensions/README.md)
-  * [Extensions Using StructureDefinition](artifact-registry/define-extensions/extensions-using-structuredefinition.md)
-  * [Extensions Using FHIRSchema](artifact-registry/define-extensions/extensions-using-fhirschema.md)
-* [Custom Resources](artifact-registry/custom-resources/README.md)
-  * [Custom Resources Using FHIR Schema](artifact-registry/custom-resources/custom-resources-using-fhir-schema.md)
-  * [Custom Resources Using StructureDefinition](artifact-registry/custom-resources/custom-resources-using-structuredefinition.md)
-  * [Migrate to FHIR Schema](artifact-registry/custom-resources/migrate-to-fhirschema/README.md)
-    * [Migrate Custom Resources Defined with Entity and Attributes to FHIR Schema](artifact-registry/custom-resources/migrate-to-fhirschema/migrate-custom-resources-defined-with-entity-and-attributes-to-fhir-schema.md)
-    * [Migrate Custom Resources Defined with Zen to FHIR Schema](artifact-registry/custom-resources/migrate-to-fhirschema/migrate-custom-resources-defined-with-zen-to-fhir-schema.md)
+* [CodeSystem](terminology/fhir-terminology/codesystem.md)
+* [ValueSet](terminology/fhir-terminology/valueset.md)
 
 ## Terminology Module
 

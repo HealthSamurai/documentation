@@ -11,10 +11,11 @@ FHIR Artifact Registry (FAR) is Aidbox's centralized system for storing, managin
 ## What is the Artifact Registry
 
 The Artifact Registry is a specialized repository within Aidbox that manages [FHIR canonical resources](https://build.fhir.org/canonicalresource.html) — resources that define the structure, constraints, and terminology used in FHIR implementations.
-- **CodeSystems** for defining terminologies,
-- **ValueSets** for grouping codes,  
-- **StructureDefinitions** for profiling resources,
-- **SearchParameters** for custom search capabilities. 
+
+* **CodeSystems** for defining terminologies,
+* **ValueSets** for grouping codes,
+* **StructureDefinitions** for profiling resources,
+* **SearchParameters** for custom search capabilities.
 
 The registry acts as the authoritative source for these definitions, ensuring consistent [validation](../modules/profiling-and-validation/) and data exchange across your FHIR ecosystem.
 
@@ -60,12 +61,12 @@ See also:
 [upload-fhir-implementation-guide](../tutorials/validation-tutorials/upload-fhir-implementation-guide/)
 {% endcontent-ref %}
 
-{% content-ref url="define-extensions/" %}
-[define-extensions](define-extensions/)
+{% content-ref url="../tutorials/artifact-registry-tutorials/define-extensions/" %}
+[define-extensions](../tutorials/artifact-registry-tutorials/define-extensions/)
 {% endcontent-ref %}
 
-{% content-ref url="custom-resources/" %}
-[custom-resources](custom-resources/)
+{% content-ref url="../tutorials/artifact-registry-tutorials/custom-resources/" %}
+[custom-resources](../tutorials/artifact-registry-tutorials/custom-resources/)
 {% endcontent-ref %}
 
 ## Package Management
@@ -125,8 +126,7 @@ See also:
 
 ## Versioning Strategy
 
-Canonical resources can reference each other using versioned URLs (e.g., `http://example.com/StructureDefinition/Patient|1.0.0`). 
-If a version is specified, the registry uses it exactly. If not, it automatically picks the latest version.
+Canonical resources can reference each other using versioned URLs (e.g., `http://example.com/StructureDefinition/Patient|1.0.0`). If a version is specified, the registry uses it exactly. If not, it automatically picks the latest version.
 
 See also:
 

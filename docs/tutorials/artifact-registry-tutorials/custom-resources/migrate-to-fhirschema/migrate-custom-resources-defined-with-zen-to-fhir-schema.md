@@ -4,16 +4,16 @@
 
 The materials in this section describe what to do next with the resulting FHIR Schema resource or set of resources. They explain how to load them into Aidbox, either one by one or via IG. Additionally, they outline the requirements for FHIR Schema to define a Custom Resource and provide a detailed FHIR Schema specification.
 
-{% content-ref url="../../../modules/profiling-and-validation/fhir-schema-validator/" %}
-[fhir-schema-validator](../../../modules/profiling-and-validation/fhir-schema-validator/)
+{% content-ref url="../../../../modules/profiling-and-validation/fhir-schema-validator/" %}
+[fhir-schema-validator](../../../../modules/profiling-and-validation/fhir-schema-validator/)
 {% endcontent-ref %}
 
-{% content-ref url="../../../tutorials/other-tutorials/how-to-create-fhir-npm-package.md" %}
-[how-to-create-fhir-npm-package.md](../../../tutorials/other-tutorials/how-to-create-fhir-npm-package.md)
+{% content-ref url="../../../other-tutorials/how-to-create-fhir-npm-package.md" %}
+[how-to-create-fhir-npm-package.md](../../../other-tutorials/how-to-create-fhir-npm-package.md)
 {% endcontent-ref %}
 
-{% content-ref url="../../../tutorials/validation-tutorials/upload-fhir-implementation-guide/" %}
-[upload-fhir-implementation-guide](../../../tutorials/validation-tutorials/upload-fhir-implementation-guide/)
+{% content-ref url="../../../validation-tutorials/upload-fhir-implementation-guide/" %}
+[upload-fhir-implementation-guide](../../../validation-tutorials/upload-fhir-implementation-guide/)
 {% endcontent-ref %}
 
 ## Obtain FHIRSchema
@@ -28,7 +28,7 @@ You can use a special REST API endpoint to migrate specific Zen definitions to t
 GET /ZenSchema/<zen-namespace>/<zen-definition-symbol>/$dump-as-fhir-schema
 ```
 
-If the compilation succeeds, the endpoint returns the resulting FHIR Schema. If it fails, it provides a list of errors detailing what went wrong. Most errors occur because you've used keys on your Zen definition that are not recognized by our compiler. In this case, you can [contact us](../../../overview/contact-us.md) to potentially extend the compiler. Alternatively, you can manually rewrite your custom resource using FHIR Schema.
+If the compilation succeeds, the endpoint returns the resulting FHIR Schema. If it fails, it provides a list of errors detailing what went wrong. Most errors occur because you've used keys on your Zen definition that are not recognized by our compiler. In this case, you can [contact us](../../../../overview/contact-us.md) to potentially extend the compiler. Alternatively, you can manually rewrite your custom resource using FHIR Schema.
 
 {% hint style="danger" %}
 Please double-check the compilation results, as they may contain transformation errors. This tool is intended to reduce manual effort during the migration process and is not meant for fully automated resource migration.
@@ -36,7 +36,7 @@ Please double-check the compilation results, as they may contain transformation 
 
 #### Example: EmailSchedule custom resource
 
-Here's an example of migrating a custom resource `EmailSchedule`that describes the schedule for email notifications about appointments. Let's imagine it is described in `main` namespace of our [Aidbox configuration project](../../../deprecated/deprecated/zen-related/aidbox-zen-lang-project/custom-resources-using-aidbox-project.md).
+Here's an example of migrating a custom resource `EmailSchedule`that describes the schedule for email notifications about appointments. Let's imagine it is described in `main` namespace of our [Aidbox configuration project](../../../../deprecated/deprecated/zen-related/aidbox-zen-lang-project/custom-resources-using-aidbox-project.md).
 
 ```javascript
 {ns main
@@ -225,11 +225,11 @@ accept: application/json
 
 If the compiler doesn't support certain instructions for your Zen definitions, if you want full control during the migration process, or if you want to extend your custom resources using unique FHIR Schema features, you can manually rewrite your custom resource definitions from scratch using the FHIR Schema.
 
-In the following steps, we will use the same custom resource example, `EmailSchedule`. Although it is just an example, it covers most aspects of resource definition with Zen. If this guide misses any features of Zen resource definition, please [contact us.](../../../overview/contact-us.md)
+In the following steps, we will use the same custom resource example, `EmailSchedule`. Although it is just an example, it covers most aspects of resource definition with Zen. If this guide misses any features of Zen resource definition, please [contact us.](../../../../overview/contact-us.md)
 
 **Get Zen definition**
 
-Open your [Aidbox configuration project](../../../deprecated/deprecated/zen-related/aidbox-zen-lang-project/) and find custom resource definitions. It should look similar to `EmailSchedule` definition example.
+Open your [Aidbox configuration project](../../../../deprecated/deprecated/zen-related/aidbox-zen-lang-project/) and find custom resource definitions. It should look similar to `EmailSchedule` definition example.
 
 ### Translate zen definition `:keys` to FHIRSchema element entry
 
@@ -555,7 +555,7 @@ For more information about this instruction, refer to the relevant [section](htt
 
 To deliver the FHIR Schema(s) and related Entities you authored to Aidbox, follow these steps.\
 Ensure that your Aidbox is configured to run with the FHIRSchema validation engine.\
-Here's [a guide describing how to achieve that](../../../modules/profiling-and-validation/fhir-schema-validator/).
+Here's [a guide describing how to achieve that](../../../../modules/profiling-and-validation/fhir-schema-validator/).
 
 **Single FHIRSchema Delivery**
 
@@ -566,14 +566,14 @@ follow [this guide](../custom-resources-using-fhir-schema.md) to deliver a singl
 
 If you have multiple schemas replacing a set of resources and want to work with this set of entities as a package (ImplementationGuide), refer to this guide on how to create your own FHIR NPM package with ImplementationGuide entities.
 
-{% content-ref url="../../../tutorials/other-tutorials/how-to-create-fhir-npm-package.md" %}
-[how-to-create-fhir-npm-package.md](../../../tutorials/other-tutorials/how-to-create-fhir-npm-package.md)
+{% content-ref url="../../../other-tutorials/how-to-create-fhir-npm-package.md" %}
+[how-to-create-fhir-npm-package.md](../../../other-tutorials/how-to-create-fhir-npm-package.md)
 {% endcontent-ref %}
 
 **Loading the FHIR NPM Package**
 
-{% content-ref url="../../../tutorials/validation-tutorials/upload-fhir-implementation-guide/" %}
-[upload-fhir-implementation-guide](../../../tutorials/validation-tutorials/upload-fhir-implementation-guide/)
+{% content-ref url="../../../validation-tutorials/upload-fhir-implementation-guide/" %}
+[upload-fhir-implementation-guide](../../../validation-tutorials/upload-fhir-implementation-guide/)
 {% endcontent-ref %}
 
 **Important Notes:**
@@ -583,5 +583,5 @@ If you have multiple schemas replacing a set of resources and want to work with 
 {% endhint %}
 
 {% hint style="danger" %}
-**SearchParameters:** SearchParameters described for custom resources won't work in FHIRSchema validation mode. You need to redefine them as regular FHIR SearchParameters, not Aidbox Search Parameters. See the [migration guide](../../../tutorials/crud-search-tutorials/search-tutorials/migrate-from-aidbox-searchparameter-to-fhir-searchparameter.md).
+**SearchParameters:** SearchParameters described for custom resources won't work in FHIRSchema validation mode. You need to redefine them as regular FHIR SearchParameters, not Aidbox Search Parameters. See the [migration guide](../../../crud-search-tutorials/search-tutorials/migrate-from-aidbox-searchparameter-to-fhir-searchparameter.md).
 {% endhint %}

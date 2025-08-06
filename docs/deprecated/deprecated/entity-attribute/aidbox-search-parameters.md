@@ -3,7 +3,7 @@
 {% hint style="warning" %}
 Aidbox Search Parameters will be ignored if Aidbox operates with the [FHIR Schema validator engine](../../../modules/profiling-and-validation/fhir-schema-validator/). Please contact [us](../../../overview/contact-us.md) if you need assistance migrating to FHIR Search Parameters.
 
-If you want to migrate from Aidbox SearchParameter to FHIR SearchParameter see [this guide.](../../../artifact-registry/custom-resources/migrate-to-fhirschema/migrate-custom-resources-defined-with-entity-and-attributes-to-fhir-schema.md)
+If you want to migrate from Aidbox SearchParameter to FHIR SearchParameter see [this guide.](../../../tutorials/artifact-registry-tutorials/custom-resources/migrate-to-fhirschema/migrate-custom-resources-defined-with-entity-and-attributes-to-fhir-schema.md)
 {% endhint %}
 
 You can define custom search params by just creating SearchParameter resource. Let's say you want to search patient by city:

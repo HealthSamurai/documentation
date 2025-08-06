@@ -1,8 +1,8 @@
 # Extensions Using FHIRSchema
 
-When Aidbox is configured with [FHIRSchema mode](../../modules/profiling-and-validation/fhir-schema-validator/README.md), it is possible to define Extension in [FHIRSchema format](https://fhir-schema.github.io/fhir-schema/).&#x20;
+When Aidbox is configured with [FHIRSchema mode](../../../modules/profiling-and-validation/fhir-schema-validator/), it is possible to define Extension in [FHIRSchema format](https://fhir-schema.github.io/fhir-schema/).
 
-See also [Extensions using StructureDefinition](./extensions-using-structuredefinition.md).
+See also [Extensions using StructureDefinition](extensions-using-structuredefinition.md).
 
 ## Example
 
@@ -35,7 +35,7 @@ derivation: constraint
 
 When the extension is created, you can inspect it in "FHIR Packages" Aidbox UI page.
 
-<figure><img src="../../../.gitbook/assets/d05df5a8-b47c-474b-bccc-287520d47f1f.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../../.gitbook/assets/d05df5a8-b47c-474b-bccc-287520d47f1f.png" alt=""><figcaption></figcaption></figure>
 
 Usage of the extension:
 
