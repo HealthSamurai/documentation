@@ -3,6 +3,7 @@ kind: Ingress
 metadata:
   annotations:
     nginx.ingress.kubernetes.io/proxy-body-size: 1024m
+    nginx.ingress.kubernetes.io/from-to-www-redirect: "true"
   name: gitbok
   namespace: gitbok
 spec:
@@ -18,27 +19,7 @@ spec:
               number: 80
         path: /docs
         pathType: ImplementationSpecific
-  - host: healthdevhub.com
-    http:
-      paths:
-      - backend:
-          service:
-            name: gitbok
-            port:
-              number: 80
-        path: /docs
-        pathType: ImplementationSpecific
   - host: www.health-samurai.io
-    http:
-      paths:
-      - backend:
-          service:
-            name: gitbok
-            port:
-              number: 80
-        path: /docs
-        pathType: ImplementationSpecific
-  - host: health-samurai.io
     http:
       paths:
       - backend:
