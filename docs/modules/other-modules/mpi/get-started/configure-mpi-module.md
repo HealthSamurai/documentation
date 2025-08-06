@@ -1,20 +1,23 @@
-# Configure MDM Module
+---
+description: >-
+  This page explains how to configure the Aidbox MPI module by adding a matching
+  model. It includes an example model for testing, and notes on performance and
+  model tuning.
+---
 
-The current MDM implementation only supports the Patient resource. If you need support for additional resources, please [contact us](../../../overview/contact-us.md).
+# Configure MPI module
+
+{% hint style="info" %}
+The current implementation only supports the Patient resource. If you need support for additional resources, please [contact us](../../../../overview/contact-us.md).
+{% endhint %}
+
+The example in the next section provides a **basic model** that allows you to **start the MPI module** and **test** its functionality. For a detailed explanation of all model elements and matching logic, see [Matching Model Explanation](../matching-model-explanation.md).
 
 ## Add model to Aidbox
 
-To add a matching model, you need to create a custom resource named `AidboxLinkageModel`. This resource contains a DSL that describes:
+To add a matching model, you need to create a custom resource named `AidboxLinkageModel`.&#x20;
 
-* **resource**: The type of resource being matched
-* **thresholds**: Contains thresholds for automatic and manual matching
-* **vars**: Defines variables that can be used in expressions
-* **features**: Defines the matching features with expressions and their corresponding Bayes Factors
-* **blocks**: Defines blocking conditions to limit the number of comparisons
-
-The features section contains multiple matching criteria, each with an `expr` (expression) and a `bf` (Bayes Factor). The bf values are used to calculate the overall match score based on the specified expressions.
-
-Here's an example of creating an AidboxLinkageModel:
+Example of creating an **AidboxLinkageModel**:
 
 ```yaml
 POST /fhir/AidboxLinkageModel
@@ -22,7 +25,7 @@ content-type: application/json
 accept: application/json
 
 {
-  "id" : "test-model",
+  "id" : "model",
   "resourceType" : "AidboxLinkageModel",
   "resource" : "Patient",
   "thresholds" : {
@@ -110,3 +113,24 @@ accept: application/json
   }
 }
 ```
+
+### Matching Model Tuning
+
+The example model is intended for **testing and demonstration purposes** and may not deliver optimal results out of the box.
+
+For production use and reliable, accurate matching on your data, you should:
+
+* **Adapt the model** to reflect your data specifics and your definition of a correct match.
+* **Calibrate feature weights** using your real-world data. This step typically involves **machine learning** and **manual expert tuning**.
+
+{% hint style="success" %}
+We offer a **professional service** for model training and expert tuning.\
+If you need assistance, please [contact us](../../../../overview/contact-us.md).
+{% endhint %}
+
+### Performance considerations
+
+For fast and accurate matching, consider the following:
+
+* **Database indexes:** If you are working with large volumes of patient records, ensure proper database indexes are created to keep matching fast and scalable.
+* **Data normalization:** Matching quality depends heavily on well‑normalized input data. Avoid using placeholders like `"UNKNOWN"` or `"not provided"` for names, addresses, or birthdates, as they negatively impact results.

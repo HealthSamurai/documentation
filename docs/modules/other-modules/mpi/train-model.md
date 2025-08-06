@@ -1,7 +1,11 @@
+---
+hidden: true
+---
+
 # Train Model
 
 {% hint style="info" %}
-Zen model for MDM module is scheduled for deprecation in several upcoming releases. Please consider using new [guide](./configure-mdm-module.md).
+Zen model for MDM module is scheduled for deprecation in several upcoming releases. Please consider using new [guide](get-started/configure-mpi-module.md).
 {% endhint %}
 
 Train MDM model on your data.
