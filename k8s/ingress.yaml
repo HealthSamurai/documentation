@@ -2,14 +2,13 @@ apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
   annotations:
-    cert-manager.io/cluster-issuer: letsencrypt
     nginx.ingress.kubernetes.io/proxy-body-size: 1024m
   name: gitbok
   namespace: gitbok
 spec:
   ingressClassName: nginx
   rules:
-  - host: gitbok.cs.aidbox.dev
+  - host: www.healthdevhub.com
     http:
       paths:
       - backend:
@@ -17,9 +16,35 @@ spec:
             name: gitbok
             port:
               number: 80
-        path: /
+        path: /docs
         pathType: ImplementationSpecific
-  tls:
-  - hosts:
-    - gitbok.cs.aidbox.dev
-    secretName: ingress-gitbok-tls
+  - host: healthdevhub.com
+    http:
+      paths:
+      - backend:
+          service:
+            name: gitbok
+            port:
+              number: 80
+        path: /docs
+        pathType: ImplementationSpecific
+  - host: www.health-samurai.io
+    http:
+      paths:
+      - backend:
+          service:
+            name: gitbok
+            port:
+              number: 80
+        path: /docs
+        pathType: ImplementationSpecific
+  - host: health-samurai.io
+    http:
+      paths:
+      - backend:
+          service:
+            name: gitbok
+            port:
+              number: 80
+        path: /docs
+        pathType: ImplementationSpecific
