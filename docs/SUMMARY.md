@@ -221,6 +221,8 @@
 ## Artifact Registry
 
 * [Artifact Registry Overview](artifact-registry/artifact-registry-overview.md)
+* [StructureDefinition](artifact-registry/structuredefinition.md)
+* [SearchParameter](api/rest-api/fhir-search/searchparameter.md)
 * [Define Extensions](artifact-registry/define-extensions/README.md)
   * [Extensions Using StructureDefinition](artifact-registry/define-extensions/extensions-using-structuredefinition.md)
   * [Extensions Using FHIRSchema](artifact-registry/define-extensions/extensions-using-fhirschema.md)
@@ -232,6 +234,7 @@
     * [Migrate Custom Resources Defined with Zen to FHIR Schema](artifact-registry/custom-resources/migrate-to-fhirschema/migrate-custom-resources-defined-with-zen-to-fhir-schema.md)
 
 ## Terminology Module
+
 * [Terminology Overview](terminology/overview.md)
 * [FHIR Terminology](terminology/fhir-terminology/intro.md)
   * [Coded Values](terminology/fhir-terminology/coded-values.md)
