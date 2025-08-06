@@ -57,17 +57,20 @@ spec:
     spec:
       initContainers:
       - name: download-clickhouse-module
-        image: curlimages/curl:latest
+        image: debian:bookworm-slim
+        imagePullPolicy: Always
         command:
         - sh
         - -c
         - |
-          curl -L -o /modules/topic-destination-clickhouse-2507.jar \
-            https://storage.googleapis.com/aidbox-modules/topic-destination-clickhouse/topic-destination-clickhouse-2507.jar
-          chmod 644 /modules/topic-destination-clickhouse-2507.jar
+          apt-get -y update
+          apt-get -y install curl
+          curl -L -o /modules/topic-destination-clickhouse-2507.1.jar \
+            https://storage.googleapis.com/aidbox-modules/topic-destination-clickhouse/topic-destination-clickhouse-2507.1.jar
+          chmod 644 /modules/topic-destination-clickhouse-2507.1.jar
         volumeMounts:
-        - name: modules-volume
-          mountPath: /modules
+        - mountPath: /modules
+          name: modules-volume
       containers:
       - name: aidbox
         image: healthsamurai/aidboxone:edge
@@ -75,7 +78,7 @@ spec:
         - name: BOX_MODULE_LOAD
           value: "io.healthsamurai.topic-destination.clickhouse.core"
         - name: BOX_MODULE_JAR
-          value: "/modules/topic-destination-clickhouse-2507.jar"
+          value: "/modules/topic-destination-clickhouse-2507.1.jar"
         - name: BOX_FHIR_SCHEMA_VALIDATION
           value: "true"
         # ... other environment variables ...
@@ -93,7 +96,7 @@ spec:
 
 In AidboxUI, go to **FHIR Packages -> io.healthsamurai.topic** and verify that ClickHouse profiles are present:
 
-- `http://aidbox.app/StructureDefinition/aidboxtopicdestination-clickhouse-best-effort`
+- `http://aidbox.app/StructureDefinition/aidboxtopicdestination-clickhouse`
 - `http://aidbox.app/StructureDefinition/aidboxtopicdestination-clickhouse-at-least-once`
 
 ## Key Features
