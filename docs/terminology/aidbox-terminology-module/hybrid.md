@@ -122,7 +122,3 @@ The Aidbox Hybrid Mode has been tested and verified to work with the following e
 - **[Termbox](https://tx.health-samurai.io/fhir)** - Health Samurai's cloud-based terminology service
 - **[Ontoserver](https://ontoserver.csiro.au/)** - CSIRO's FHIR terminology server  
 - **[tx.fhir.org](https://tx.fhir.org)** - HL7's reference terminology server
-
-## Examples
-
-TODO: add examples of hybrid ops

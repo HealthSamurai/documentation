@@ -22,6 +22,4 @@ Bindings can have different strengths:
 
 For example, the `Observation.code` element is bound to a ValueSet that includes LOINC codes, ensuring that laboratory observations use standardized terminology for test identification.
 
-#TODO: add a screenshot of FHIR Specification with binding for Observation.code
-
 See also: [Validation Tutorials](../../tutorials/validation-tutorials/)

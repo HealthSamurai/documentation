@@ -178,11 +178,10 @@ FHIR terminology is built around core concepts that work together to provide a c
 
 [**ValueSet**](./valueset.md) - Collections of codes from one or more CodeSystems that are appropriate for specific contexts. ValueSets curate relevant subsets of codes for particular use cases or implementation requirements.
 
-[**ConceptMap**](./conceptmap.md) - Resources that define relationships and translations between codes from different CodeSystems, enabling structured mapping and transformation between different terminology systems.
+**ConceptMap** - Resources that define relationships and translations between codes from different CodeSystems, enabling structured mapping and transformation between different terminology systems.
 
 See also:
 - [Coded Values](./coded-values.md)
 - [CodeSystem](./codesystem.md) 
 - [ValueSet](./valueset.md)
-- [ConceptMap](./conceptmap.md)
 - [Profiles, Binding, and Validation](./profiles-binding-validation.md)

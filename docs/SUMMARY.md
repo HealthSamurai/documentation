@@ -237,7 +237,6 @@
   * [Coded Values](terminology/fhir-terminology/coded-values.md)
   * [CodeSystem](terminology/fhir-terminology/codesystem.md)
   * [ValueSet](terminology/fhir-terminology/valueset.md)
-  * [ConceptMap](terminology/fhir-terminology/conceptmap.md)
   * [Profiles, Binding, and Validation](terminology/fhir-terminology/profiles-binding-validation.md)
 * [Aidbox Terminology Module](terminology/aidbox-terminology-module/intro.md)
   * [Setup](terminology/aidbox-terminology-module/setup.md)
