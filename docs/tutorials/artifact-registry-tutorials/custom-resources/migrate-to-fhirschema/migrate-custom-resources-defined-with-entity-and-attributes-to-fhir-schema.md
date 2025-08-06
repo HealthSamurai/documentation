@@ -8,8 +8,8 @@ The materials in this section describe what to do next with the resulting FHIR S
 [fhir-schema-validator](../../../../modules/profiling-and-validation/fhir-schema-validator/)
 {% endcontent-ref %}
 
-{% content-ref url="../../../other-tutorials/how-to-create-fhir-npm-package.md" %}
-[how-to-create-fhir-npm-package.md](../../../other-tutorials/how-to-create-fhir-npm-package.md)
+{% content-ref url="../../how-to-create-fhir-npm-package.md" %}
+[how-to-create-fhir-npm-package.md](../../how-to-create-fhir-npm-package.md)
 {% endcontent-ref %}
 
 {% content-ref url="../../../validation-tutorials/upload-fhir-implementation-guide/" %}
@@ -470,8 +470,8 @@ If you have only one FHIRSchema that replaces your custom-defined Entity/Attribu
 
 If you have multiple schemas replacing a set of resources and want to work with this set of entities as a package (ImplementationGuide), refer to this guide on how to create your own FHIR NPM package with ImplementationGuide entities.
 
-{% content-ref url="../../../other-tutorials/how-to-create-fhir-npm-package.md" %}
-[how-to-create-fhir-npm-package.md](../../../other-tutorials/how-to-create-fhir-npm-package.md)
+{% content-ref url="../../how-to-create-fhir-npm-package.md" %}
+[how-to-create-fhir-npm-package.md](../../how-to-create-fhir-npm-package.md)
 {% endcontent-ref %}
 
 **Loading the FHIR NPM Package**

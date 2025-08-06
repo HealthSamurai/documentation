@@ -124,6 +124,10 @@ See also:
 [public-url-to-ig-package.md](../tutorials/validation-tutorials/upload-fhir-implementation-guide/aidbox-ui/public-url-to-ig-package.md)
 {% endcontent-ref %}
 
+{% content-ref url="../tutorials/artifact-registry-tutorials/how-to-create-fhir-npm-package.md" %}
+[how-to-create-fhir-npm-package.md](../tutorials/artifact-registry-tutorials/how-to-create-fhir-npm-package.md)
+{% endcontent-ref %}
+
 ## Versioning Strategy
 
 Canonical resources can reference each other using versioned URLs (e.g., `http://example.com/StructureDefinition/Patient|1.0.0`). If a version is specified, the registry uses it exactly. If not, it automatically picks the latest version.
