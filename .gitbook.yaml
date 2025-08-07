@@ -5,7 +5,6 @@ structure:
 
 redirects:
     # See Site insights -> Broken URLs in gitbook ui
-    api-1/fhir-api/search-1/custom-search-parameter/custom-search-parameters: tutorials/crud-search-tutorials/search-tutorials/custom-searchparameter-tutorial.md
     access-control/authentication/access-to-aidboxui: access-control/authentication/README.md
     access-control/how-to-guides/smart-app: deprecated/deprecated/other/how-to-guides/smart-on-fhir/get-a-smart-app-launched.md
     access-control/how-to-guides/smart-on-fhir/smart-on-fhir-app-launch: deprecated/deprecated/other/how-to-guides/smart-on-fhir/get-a-smart-app-launched.md
@@ -15,7 +14,6 @@ redirects:
     access-control/technical-reference/overview: reference/system-resources-reference/iam-module-resources.md
     api-1/api/crud-1/fhir-and-aidbox-crud: api/rest-api/crud/README.md
     api-1/api/other/usdpsql: api/rest-api/other/sql-endpoints.md
-    api-1/api/search-1: api/rest-api/fhir-search/README.md
     api-1/api/search-1/chained-parameters: api/rest-api/fhir-search/chaining.md
     api-1/api/search-1/configure-search-api: reference/settings/fhir.md
     api-1/api/search-1/custom-search-parameter/custom-search-parameters: tutorials/crud-search-tutorials/search-tutorials/custom-searchparameter-tutorial.md
@@ -23,7 +21,6 @@ redirects:
     api-1/api/search-1/custom-search-parameter: tutorials/crud-search-tutorials/search-tutorials/custom-searchparameter-tutorial.md
     api-1/api/search-1/other/custom-search: tutorials/crud-search-tutorials/search-tutorials/custom-searchparameter-tutorial.md
     api-1/api/search-1/other/search-with-related-resources: api/rest-api/fhir-search/include-and-revinclude.md
-    api-1/api/search-1/searchparameter: api/rest-api/fhir-search/searchparameter.md
     api-1/api/search-1/search-parameters-list/_count-and-_page: api/rest-api/fhir-search/searchparameter.md
     api-1/api/search-1/search-parameters-list/_elements: api/rest-api/fhir-search/searchparameter.md
     api-1/api/search-1/search-parameters-list/_explain: api/rest-api/aidbox-search.md#aidbox-special-search-parameters
@@ -39,13 +36,15 @@ redirects:
     api-1/api/search-1/search-parameters-list/_total-or-_countmethod: api/rest-api/fhir-search/searchparameter.md
     api-1/api/search-1/searchparameter-types/date-search: api/rest-api/fhir-search/searchparameter.md
     api-1/api/search-1/searchparameter-types/token-search: api/rest-api/fhir-search/searchparameter.md
+    api-1/api/search-1/searchparameter: api/rest-api/fhir-search/searchparameter.md
+    api-1/api/search-1: api/rest-api/fhir-search/README.md
     api-1/batch-transaction: api/batch-transaction.md
     api-1/bulk-api-1/aidbox-bulk-data-import: api/bulk-api/aidbox-bulk-data-import.md
     api-1/bulk-api-1/bulk-import-from-an-s3-bucket: api/bulk-api/bulk-import-from-an-s3-bucket.md
     api-1/bulk-api-1/configure-access-policies-for-bulk-api: api/bulk-api/configure-access-policies-for-bulk-api.md
-    api-1/bulk-api-1/dump: api/bulk-api/dump.md
     api-1/bulk-api-1/dump-csv: api/bulk-api/dump-csv.md
     api-1/bulk-api-1/dump-sql: api/bulk-api/dump-sql.md
+    api-1/bulk-api-1/dump: api/bulk-api/dump.md
     api-1/bulk-api-1/export: api/bulk-api/export.md
     api-1/bulk-api-1/import-and-fhir-import: api/bulk-api/import-and-fhir-import.md
     api-1/bulk-api-1/import-from-a-bucket: api/bulk-api/bulk-import-from-an-s3-bucket.md
@@ -55,18 +54,19 @@ redirects:
     api-1/bulk-api/aidbox-bulk-data-import: api/bulk-api/aidbox-bulk-data-import.md
     api-1/bulk-api/bulk-import-from-an-s3-bucket: api/bulk-api/bulk-import-from-an-s3-bucket.md
     api-1/bulk-api/configure-access-policies-for-bulk-api: api/bulk-api/configure-access-policies-for-bulk-api.md
-    api-1/bulk-api/dump: api/bulk-api/dump.md
     api-1/bulk-api/dump-csv: api/bulk-api/dump-csv.md
     api-1/bulk-api/dump-sql: api/bulk-api/dump-sql.md
+    api-1/bulk-api/dump: api/bulk-api/dump.md
     api-1/bulk-api/export: api/bulk-api/export.md
     api-1/bulk-api/import-and-fhir-import: api/bulk-api/import-and-fhir-import.md
     api-1/bulk-api/load-and-fhir-load: api/bulk-api/load-and-fhir-load.md
-    api-1/fhir-api: api/rest-api/README.md
+    api-1/fhir-api/search-1/custom-search-parameter/custom-search-parameters: tutorials/crud-search-tutorials/search-tutorials/custom-searchparameter-tutorial.md
     api-1/fhir-api/search-1/custom-search: tutorials/crud-search-tutorials/search-tutorials/custom-searchparameter-tutorial.md
     api-1/fhir-api/search-1/reference-search: api/rest-api/fhir-search/searchparameter.md
     api-1/fhir-api/search-1/search-parameters-list/_include-and-_revinclude: api/rest-api/fhir-search/include-and-revinclude.md
     api-1/fhir-api/search-1/search-parameters-list/_lastupdated: api/rest-api/fhir-search/searchparameter.md
     api-1/fhir-api/search-1/search-parameters-list/_timeout: api/rest-api/aidbox-search.md
+    api-1/fhir-api: api/rest-api/README.md
     api-1/graphql-api: api/graphql-api.md
     api-1/other/archive-restore-api/create-archive: api/other/archive-restore-api/create-archive.md
     api-1/other/archive-restore-api/delete-archive: api/other/archive-restore-api/delete-archive.md
@@ -79,13 +79,13 @@ redirects:
     api-1/other/encryption-api: api/other/encryption-api.md
     api-1/other/etag-support: api/other/etag-support.md
     api-1/other/plan-api-1/plan-api-overview: api/other/plan-api/plan-api-overview.md
-    api-1/other/plan-api-1/provider-directory-api/organizationaffiliation: api/other/plan-api/provider-directory-api/organizationaffiliation.md
     api-1/other/plan-api-1/provider-directory-api/organization: api/other/plan-api/provider-directory-api/organization.md
+    api-1/other/plan-api-1/provider-directory-api/organizationaffiliation: api/other/plan-api/provider-directory-api/organizationaffiliation.md
     api-1/other/plan-api-1/provider-directory-api/practitioner: api/other/plan-api/provider-directory-api/practitioner.md
     api-1/other/plan-api-1/provider-directory-api/practitionerrole: api/other/plan-api/provider-directory-api/practitionerrole.md
     api-1/other/plan-api/plan-api-overview: api/other/plan-api/plan-api-overview.md
-    api-1/other/plan-api/provider-directory-api/organizationaffiliation: api/other/plan-api/provider-directory-api/organizationaffiliation.md
     api-1/other/plan-api/provider-directory-api/organization: api/other/plan-api/provider-directory-api/organization.md
+    api-1/other/plan-api/provider-directory-api/organizationaffiliation: api/other/plan-api/provider-directory-api/organizationaffiliation.md
     api-1/other/plan-api/provider-directory-api/practitioner: api/other/plan-api/provider-directory-api/practitioner.md
     api-1/other/plan-api/provider-directory-api/practitionerrole: api/other/plan-api/provider-directory-api/practitionerrole.md
     api-1/other/rpc-api: api/other/rpc-api.md
@@ -148,16 +148,16 @@ redirects:
     api/bulk-api-1/aidbox-bulk-data-import: api/bulk-api/aidbox-bulk-data-import.md
     api/bulk-api-1/bulk-import-from-an-s3-bucket: api/bulk-api/bulk-import-from-an-s3-bucket.md
     api/bulk-api-1/configure-access-policies-for-bulk-api: api/bulk-api/configure-access-policies-for-bulk-api.md
-    api/bulk-api-1/dump: api/bulk-api/dump.md
     api/bulk-api-1/dump-csv: api/bulk-api/dump-csv.md
     api/bulk-api-1/dump-sql: api/bulk-api/dump-sql.md
+    api/bulk-api-1/dump: api/bulk-api/dump.md
     api/bulk-api-1/export: api/bulk-api/export.md
     api/bulk-api-1/import-and-fhir-import: api/bulk-api/import-and-fhir-import.md
     api/bulk-api-1/load-and-fhir-load: api/bulk-api/load-and-fhir-load.md
     api/crud: api/rest-api/crud/README.md
     api/other/plan-api-1/plan-api-overview: api/other/plan-api/plan-api-overview.md
-    api/other/plan-api-1/provider-directory-api/organizationaffiliation: api/other/plan-api/provider-directory-api/organizationaffiliation.md
     api/other/plan-api-1/provider-directory-api/organization: api/other/plan-api/provider-directory-api/organization.md
+    api/other/plan-api-1/provider-directory-api/organizationaffiliation: api/other/plan-api/provider-directory-api/organizationaffiliation.md
     api/other/plan-api-1/provider-directory-api/practitioner: api/other/plan-api/provider-directory-api/practitioner.md
     api/other/plan-api-1/provider-directory-api/practitionerrole: api/other/plan-api/provider-directory-api/practitionerrole.md
     api/rest-api-1/aidbox-search: api/rest-api/aidbox-search.md
@@ -198,8 +198,8 @@ redirects:
     api/rest-api/other/usdmatcho.md: api/rest-api/other/matcho.md
     api/rest-api/other/usdto-format.md: api/rest-api/other/to-format.md
     api/rest-api/other/usdvalidate.md: api/rest-api/other/validate.md
-    app-development/aidbox-sdk/aidbox-apps: app-development/aidbox-sdk/apps.md
     app-development-guides/tutorials/patient-encounter-notification-application: deprecated/deprecated/other/app-development-deprecated-tutorials/patient-encounter-notification-application.md
+    app-development/aidbox-sdk/aidbox-apps: app-development/aidbox-sdk/apps.md
     apple-app-site-association: tutorials/security-access-control-tutorials/apple.md
     getting-started/editions-and-pricing: overview/licensing-and-support.md
     getting-started/lisensing-and-support: overview/licensing-and-support.md
@@ -238,8 +238,8 @@ redirects:
     modules-1/aidbox-forms/aidbox-forms-interface: modules/aidbox-forms/aidbox-forms-interface.md
     modules-1/aidbox-forms/aidbox-ui-builder-alpha/building-reports-using-sql-on-fhir: modules/aidbox-forms/aidbox-ui-builder-alpha/building-reports-using-sql-on-fhir.md
     modules-1/aidbox-forms/aidbox-ui-builder-alpha/configuration: modules/aidbox-forms/aidbox-ui-builder-alpha/configuration.md
-    modules-1/aidbox-forms/aidbox-ui-builder-alpha/embedding: modules/aidbox-forms/aidbox-ui-builder-alpha/embedding.md
     modules-1/aidbox-forms/aidbox-ui-builder-alpha/embedding-renderer: modules/aidbox-forms/aidbox-ui-builder-alpha/embedding.md
+    modules-1/aidbox-forms/aidbox-ui-builder-alpha/embedding: modules/aidbox-forms/aidbox-ui-builder-alpha/embedding.md
     modules-1/aidbox-forms/aidbox-ui-builder-alpha/external-fhir-servers-as-a-data-backend: modules/aidbox-forms/aidbox-ui-builder-alpha/external-fhir-servers-as-a-data-backend.md
     modules-1/aidbox-forms/aidbox-ui-builder-alpha/fhir-versions: modules/aidbox-forms/aidbox-ui-builder-alpha/fhir-versions.md
     modules-1/aidbox-forms/aidbox-ui-builder-alpha/form-creation/components: modules/aidbox-forms/aidbox-ui-builder-alpha/form-creation/components.md
@@ -396,14 +396,14 @@ redirects:
     modules-1/security-and-access-control/auth/token-exchange: tutorials/security-access-control-tutorials/token-exchange.md
     modules-1/security-and-access-control/auth/two-factor-authentication: tutorials/security-access-control-tutorials/two-factor-authentication.md
     modules-1/security-and-access-control/security/access-control-lists-docs-acl: deprecated/deprecated/zen-related/access-control-lists-docs-acl.md
-    modules-1/security-and-access-control/security/accesspolicy: access-control/authorization/access-policies.md
-    modules-1/security-and-access-control/security/accesspolicy-best-practices: tutorials/security-access-control-tutorials/accesspolicy-best-practices.md
     modules-1/security-and-access-control/security/access-policy-dev-tool: tutorials/security-access-control-tutorials/access-policy-dev-tool.md
+    modules-1/security-and-access-control/security/accesspolicy-best-practices: tutorials/security-access-control-tutorials/accesspolicy-best-practices.md
+    modules-1/security-and-access-control/security/accesspolicy: access-control/authorization/access-policies.md
     modules-1/security-and-access-control/security/evaluation-engines: access-control/authorization/access-policies.md
     modules-1/security-and-access-control/set-up-external-identity-provider/aidbox: tutorials/security-access-control-tutorials/aidbox.md
     modules-1/security-and-access-control/set-up-external-identity-provider/apple: tutorials/security-access-control-tutorials/apple.md
-    modules-1/security-and-access-control/set-up-external-identity-provider/azure-ad: tutorials/security-access-control-tutorials/azure-ad.md
     modules-1/security-and-access-control/set-up-external-identity-provider/azure-ad-with-certificate-authentication: tutorials/security-access-control-tutorials/azure-ad-with-certificate-authentication.md
+    modules-1/security-and-access-control/set-up-external-identity-provider/azure-ad: tutorials/security-access-control-tutorials/azure-ad.md
     modules-1/security-and-access-control/set-up-external-identity-provider/github: tutorials/security-access-control-tutorials/github.md
     modules-1/security-and-access-control/set-up-external-identity-provider/keycloak: tutorials/security-access-control-tutorials/keycloak.md
     modules-1/security-and-access-control/set-up-external-identity-provider/microsoft-ad-fs: tutorials/security-access-control-tutorials/microsoft-ad-fs.md
@@ -427,8 +427,8 @@ redirects:
     modules-1/smartbox/how-to-guides/register-users: modules/smartbox/how-to-guides/register-users.md
     modules-1/smartbox/how-to-guides/revoke-granted-access: modules/smartbox/how-to-guides/revoke-granted-access.md
     modules-1/smartbox/how-to-guides/set-up-ehr-level-customization: modules/smartbox/how-to-guides/set-up-ehr-level-customization.md
-    modules-1/smartbox/how-to-guides/setup-email-provider: modules/smartbox/how-to-guides/setup-email-provider.md
     modules-1/smartbox/how-to-guides/set-up-sso-with-auth0: modules/smartbox/how-to-guides/set-up-sso-with-auth0.md
+    modules-1/smartbox/how-to-guides/setup-email-provider: modules/smartbox/how-to-guides/setup-email-provider.md
     modules-1/smartbox/the-b11-decision-support-interventions/feedback-sections: modules/smartbox/the-b11-decision-support-interventions/feedback-sections.md
     modules-1/smartbox/the-b11-decision-support-interventions/source-attributes: modules/smartbox/the-b11-decision-support-interventions/source-attributes.md
     modules-1/sql-on-fhir/defining-flat-views-with-view-definitions: modules/sql-on-fhir/defining-flat-views-with-view-definitions.md
@@ -458,9 +458,9 @@ redirects:
     modules/aidbox-forms/aidbox-ui-builder-alpha/endpoints: modules/aidbox-forms/aidbox-ui-builder-alpha/request-interception.md
     modules/aidbox-forms/aidbox-ui-builder-alpha/form-creation/how-to-guides/how-to: modules/aidbox-forms/aidbox-ui-builder-alpha/form-creation/how-to-guides/README.md
     modules/eprescription/tutorials/environment-variables: modules/eprescription/environment-variables.md
-    modules/observability/logging-and-audit: access-control/audit-and-logging.md
     modules/observability/logging-and-audit/readme-1/datadog-guide: modules/observability/logs/tutorials/export-logs-to-datadog-tutorial.md
     modules/observability/logging-and-audit/readme-1/how-to-explore-and-visualize-aidbox-logs-with-kibana-and-grafana: modules/observability/logs/tutorials/log-analysis-and-visualization-tutorial.md
+    modules/observability/logging-and-audit: access-control/audit-and-logging.md
     modules/other-modules/mdm/find-duplicates-usdmatch.md: modules/other-modules/mdm/find-duplicates-match.md
     modules/smartbox/how-to-guides/find-out-what-resources-were-exported-during-the-usdexport-operation.md: modules/smartbox/how-to-guides/find-out-what-resources-were-exported-during-the-export-operation.md
     modules/terminology/concept/usdtranslate-concepts.md: modules/terminology/concept/translate-concepts.md
@@ -468,15 +468,15 @@ redirects:
     modules/terminology/usdtranslate-on-conceptmap: modules/terminology/translate-on-conceptmap.md
     modules/topic-based-subscriptions/subscriptions-1: modules/topic-based-subscriptions/README.md
     overview/aidbox-ui/rest-console-1: overview/aidbox-ui/rest-console.md
-    plan-api: api/other/plan-api/README.md
     plan-api/patient-access-api: access-control/authorization/scoped-api/patient-data-access-api.md
     plan-api/plan-api-overview: api/other/plan-api/plan-api-overview.md
+    plan-api: api/other/plan-api/README.md
+    readme-1/README: readme/README.md
     readme-1/architecture: readme/architecture.md
     readme-1/features: readme/features.md
     readme-1/readme-1-1/access-policy: access-control/authorization/access-policies.md
     readme-1/readme-1-1/basic-auth-tutorial: tutorials/security-access-control-tutorials/basic-auth.md
     readme-1/readme-1-1/relationship-based-access-control-in-aidbox: tutorials/security-access-control-tutorials/rbac/README.md
-    readme-1/README: readme/README.md
     readme-1/subscriptions: modules/topic-based-subscriptions/README.md
     readme-1/validation-tutorials/upload-fhir-implementation-guide/uploading-fhir-ig-using-uploadfig-library: tutorials/validation-tutorials/upload-fhir-implementation-guide/uploadfig-tool.md
     reference/configuration/environment-variables/optional-environment-variables: reference/environment-variables/optional-environment-variables.md
@@ -486,4 +486,12 @@ redirects:
     security-and-access-control-1/security/accesspolicy-best-practices: tutorials/security-access-control-tutorials/accesspolicy-best-practices.md
     storage-1/database: database/overview.md
     storage-1/other/s3-compatible-storages: storage/aws-s3.md
+    terminology-module/intro-1/capabilities: terminology/aidbox-terminology-module/capabilities.md
+    terminology-module/intro-1/hybrid: terminology/aidbox-terminology-module/hybrid.md
+    terminology-module/intro-1/setup: terminology/aidbox-terminology-module/setup.md
+    terminology-module/intro-1: terminology/aidbox-terminology-module/intro.md
+    terminology-module/intro/coded-values: terminology/fhir-terminology/coded-values.md
+    terminology-module/intro/profiles-binding-validation: terminology/fhir-terminology/profiles-binding-validation.md
+    terminology-module/intro: terminology/fhir-terminology/intro.md
+    terminology-module/overview: terminology/overview.md
     tutorials/security-and-access-control/basic-auth-tutorial: tutorials/security-access-control-tutorials/basic-auth.md
