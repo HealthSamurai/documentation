@@ -16,13 +16,16 @@ There are several ways to track the newly created **MedicationRequest**s:
 #### Detected Issues
 
 In case some related resources (**Patient**, **Organisation**, **PractitionerRole**, **Practitioner**, or **Location**) were not found or didn't match the provided ones, ePrescription module additionally creates a **DetectedIssue** resource in Aidbox.
+TODO: ARE THERE OTHER EXCEPTIONAL SITUATIONS? I DIDN'T FIND ANY?
 
 ### Renewal statuses
 
 There might be several statuses stored in the created **MedicationRequest**. The initial status is `active`. For the rest, consult [NewRx status table](./newrx-message.md)
+TODO: ARE THESE ALWAYS MATCHING THE NEWRX ONES?
 
 ### Responding to RxRenewalRequest
 
 Response to RxRenewalRequest consists of two parts:
-- Changing the status of the **MedicationRequest** in Aidbox. Note that the actual status resides in `extension`, and not in the `status` field.
+- Changing the status of the **MedicationRequest** in Aidbox. Note that the actual status resides in `extension`, and not in the `status` field. 
+  - TODO: HOW DOES ONE DO THAT?
 - And calling the `/eprescription/rx/respond-to-renewal` endpoint with the ID of the initial RxRenevalRequest.
