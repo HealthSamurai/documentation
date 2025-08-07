@@ -89,6 +89,90 @@ After configuration, verify your terminology setup by testing basic operations:
 2. **Test expansion** with a simple ValueSet: `GET /fhir/ValueSet/$expand?url=http://hl7.org/fhir/ValueSet/administrative-gender`
 3. **Test validation** with a coded value: `POST /fhir/ValueSet/$validate-code`
 
+### Upgrading to Aidbox 2507+
+
+If you're upgrading from a previous version of Aidbox to version 2507 or later, you may encounter validation errors when creating FHIR resources after configuring the new terminology module. This is due to changes in how terminology resources are processed in the new implementation.
+
+**Example of the issue:**
+
+When attempting to create a simple Patient resource:
+
+```http
+POST /fhir/Patient
+
+gender: male
+```
+
+You may receive a `422` status code with an error response:
+
+```json
+{
+  "resourceType": "OperationOutcome",
+  "text": {
+    "status": "generated",
+    "div": "Invalid resource"
+  },
+  "issue": [
+    {
+      "severity": "fatal",
+      "code": "invalid",
+      "expression": ["Patient."],
+      "details": {
+        "coding": [
+          {
+            "system": "http://aidbox.app/CodeSystem/operation-outcome-type",
+            "code": "internal-validator-error"
+          }
+        ]
+      },
+      "diagnostics": "Internal validator error occurred: External terminology server error.\nServer responded with status 404.\nResponse body: Unknown body type: class clojure.lang.PersistentArrayMap"
+    }
+  ]
+}
+```
+
+**Solution:**
+
+Reinstall FHIR packages that contain terminology resources through the FHIR Artifact Registry (FAR):
+
+1. Navigate to the FAR in your Aidbox UI at `/ui/console#/ig`
+2. First, try reinstalling terminology-related packages such as:
+   - `hl7.fhir.r4.core` 
+   - `hl7.terminology.r4` (if installed)
+3. For each package, click the **"Reinstall"** button at the bottom of the package page
+4. Wait for the reinstallation to complete
+5. If issues persist, you may need to reinstall additional packages in your configuration
+
+**Verification:**
+
+After reinstalling the packages, test that the issue is resolved by creating the same Patient resource:
+
+```http
+POST /fhir/Patient
+
+gender: male
+```
+
+You should now receive a successful `201` status code response:
+
+```json
+{
+  "gender": "male",
+  "id": "372535cd-d17b-4e0c-889f-cb0172fe7c23",
+  "resourceType": "Patient",
+  "meta": {
+    "lastUpdated": "2025-08-07T10:07:11.637917Z",
+    "versionId": "17",
+    "extension": [
+      {
+        "url": "https://aidbox.app/ex/createdAt",
+        "valueInstant": "2025-08-07T10:07:11.637917Z"
+      }
+    ]
+  }
+}
+```
+
 ## Configuration Reference
 
 For complete details on all terminology-related environment variables, see:
