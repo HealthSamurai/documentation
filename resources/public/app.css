@@ -297,6 +297,11 @@ article .code-gitbook pre code {
   @apply border! border-0! border-indigo-500!;
 }
 
+/* Heading anchor offset for fixed navigation */
+h2[id], h3[id] {
+  scroll-margin-top: 80px;
+}
+
 /* Details and Summary */
 article details {
   @apply my-6 border border-tint-subtle rounded-lg bg-tint-base shadow-aidbox overflow-hidden;
