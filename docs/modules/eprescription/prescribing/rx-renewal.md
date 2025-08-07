@@ -26,6 +26,19 @@ TODO: ARE THESE ALWAYS MATCHING THE NEWRX ONES?
 ### Responding to RxRenewalRequest
 
 Response to RxRenewalRequest consists of two parts:
-- Changing the status of the **MedicationRequest** in Aidbox. Note that the actual status resides in `extension`, and not in the `status` field. 
-  - TODO: HOW DOES ONE DO THAT?
-- And calling the `/eprescription/rx/respond-to-renewal` endpoint with the ID of the initial RxRenevalRequest.
+- Changing the status of the **MedicationRequest** in Aidbox. Note that the actual status resides in `extension`, and not in the `status` field.
+```yaml
+PATCH /fhir/MedicationRequest/mr1?_method=fhir-patch
+
+resourceType: Parameters
+parameter:
+  - name: operation
+    part:
+      - name: type
+        valueCode: replace
+      - name: path
+        valueString: MedicationRequest.extension('http://aidbox.app/ePrescription/FHIRSchema/medication-request-renewal-decision').value
+      - name: value
+        valueString: approved
+```
+- And calling the `/eprescription/rx/respond-to-renewal` endpoint with the ID of the MedicationRequest created by the initial RxRenewalRequest.
