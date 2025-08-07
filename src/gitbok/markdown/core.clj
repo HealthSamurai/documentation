@@ -154,9 +154,7 @@
 
          :monospace
          (fn [_ctx node]
-           [:code {:class "py-[1px] px-1.5 min-w-[1.625rem] ring-1 ring-inset ring-tint-4 bg-tint-2 rounded text-[.875em] inline break-words"
-                   :style "font-family: var(--font-code); line-height: calc(max(1.20em, 1.25rem));"}
-            (-> node :content first :text)])
+           [:code (-> node :content first :text)])
 
          :table
          (fn [ctx node]

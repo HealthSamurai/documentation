@@ -246,7 +246,7 @@ article tr {
 }
 
 article td {
-  @apply px-4 py-1.5 text-sm leading-relaxed border-r border-tint-8 last:border-r-0 text-tint-12/80 text-left;
+  @apply px-4 py-1.5 text-sm leading-relaxed border-r border-tint-8 last:border-r-0 text-tint-12 text-left;
 }
 
 /* Figure and Images */
@@ -268,18 +268,14 @@ article pre+pre {
 
 /* Inline code (not in pre blocks) */
 article code:not(pre code) {
-  @apply py-[1px]! px-1.5!;
+  @apply py-[1px]! px-1.5! min-w-[1.625rem] ring-1 ring-inset ring-tint-4 bg-tint-2 rounded text-[.875em] inline break-words;
+  font-family: var(--font-code);
+  line-height: calc(max(1.20em, 1.25rem));
   overflow-wrap: break-word !important;
   white-space: normal !important;
   box-decoration-break: clone;
-  -webkit-box-decoration-break: clone;
-  line-height: 1.8! important;
 }
 
-/* Table code elements - higher specificity to override Tailwind classes */
-article table td code {
-  line-height: 1.8 !important;
-}
 
 article pre {
   @apply my-4!;
