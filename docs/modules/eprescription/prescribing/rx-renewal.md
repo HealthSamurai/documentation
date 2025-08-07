@@ -3,6 +3,7 @@
 ### Overview
 
 RxRenewal is a type of message sent by pharmacy to subscriber when the medication should be renewed.
+It is required that RxRenewal is preceded by NewRx.
 
 ### Receiving RxRenewalRequest
 
@@ -20,13 +21,13 @@ TODO: ARE THERE OTHER EXCEPTIONAL SITUATIONS? I DIDN'T FIND ANY?
 
 ### Renewal statuses
 
-There might be several statuses stored in the created **MedicationRequest**. The initial status is `active`. For the rest, consult [NewRx status table](./newrx-message.md)
+The statuse of the request is stored in the created **MedicationRequest**'s `extension` field under `http://aidbox.app/ePrescription/FHIRSchema/medication-request-rx-renewal-status` key. The initial status is `active`. For the rest, consult [NewRx status table](./newrx-message.md)
 TODO: ARE THESE ALWAYS MATCHING THE NEWRX ONES?
 
 ### Responding to RxRenewalRequest
 
 Response to RxRenewalRequest consists of two parts:
-- Changing the status of the **MedicationRequest** in Aidbox. Note that the actual status resides in `extension`, and not in the `status` field.
+1. Changing the status of the **MedicationRequest** in Aidbox. Note that the actual status resides in `extension`, and not in the `status` field.
 ```yaml
 PATCH /fhir/MedicationRequest/mr1?_method=fhir-patch
 
@@ -41,4 +42,4 @@ parameter:
       - name: value
         valueString: approved
 ```
-- And calling the `/eprescription/rx/respond-to-renewal` endpoint with the ID of the MedicationRequest created by the initial RxRenewalRequest.
+2. And calling the `/eprescription/rx/respond-to-renewal` endpoint with the ID of the MedicationRequest created by the initial RxRenewalRequest.
