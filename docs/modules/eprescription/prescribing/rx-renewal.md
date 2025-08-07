@@ -1,0 +1,28 @@
+# RxRenewal Message
+
+### Overview
+
+RxRenewal is a type of message sent by pharmacy to subscriber when the medication should be renewed.
+
+### Receiving RxRenewalRequest
+
+Once the pharmacy sends an RxRenewal, ePrescription module receives Surescripts message at `/eprescriptions/rx` endpoint and saves it to Aidbox.
+The message is converted to a **MedicationRequest** and the creation is registered as a **Provenance** resource.
+There are several ways to track the newly created **MedicationRequest**s:
+- [Either of Aidbox Subscriptions mechanisms](../../topic-based-subscriptions/README.md).
+- Manual/automated tracking based on **MedicationRequest** modification date and/or status.
+- **Provenance** tracking.
+
+#### Detected Issues
+
+In case some related resources (**Patient**, **Organisation**, **PractitionerRole**, **Practitioner**, or **Location**) were not found or didn't match the provided ones, ePrescription module additionally creates a **DetectedIssue** resource in Aidbox.
+
+### Renewal statuses
+
+There might be several statuses stored in the created **MedicationRequest**. The initial status is `active`. For the rest, consult [NewRx status table](./newrx-message.md)
+
+### Responding to RxRenewalRequest
+
+Response to RxRenewalRequest consists of two parts:
+- Changing the status of the **MedicationRequest** in Aidbox. Note that the actual status resides in `extension`, and not in the `status` field.
+- And calling the `/eprescription/rx/respond-to-renewal` endpoint with the ID of the initial RxRenevalRequest.
