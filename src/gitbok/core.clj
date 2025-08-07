@@ -96,15 +96,14 @@
   (let [if-none-match (get-in request [:headers "if-none-match"])]
     (and if-none-match (= if-none-match etag))))
 
-(defn render-pictures [_ request]
+(defn render-pictures [context request]
   (let [uri (:uri request)
-        uri-without-prefix
-        (if (str/starts-with? uri prefix)
-          (subs uri (count prefix))
-          uri)]
+        uri-relative
+        (utils/uri-to-relative uri prefix
+                               (products/path context))]
     (resp/resource-response
      (->
-      uri-without-prefix
+       uri-relative
       (str/replace #"%20" " ")
       (str/replace-first #".*.gitbook/" "")))))
 
@@ -249,8 +248,8 @@
                           :base-url base-url
                           :port (gitbok.http/get-port context)}
             :request-info {:uri (:uri request)
-                          :headers (select-keys (:headers request) 
-                                              ["host" "x-forwarded-for" "x-real-ip" 
+                          :headers (select-keys (:headers request)
+                                              ["host" "x-forwarded-for" "x-real-ip"
                                                "x-forwarded-proto" "x-forwarded-host"])}}}))
 
 (defn serve-static-file
