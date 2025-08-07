@@ -74,6 +74,9 @@ make tailwind
 ```
 ## REPL
 ```
+git submodule update --init --recursive
+```
+```
 make repl
 ```
 
