@@ -2,7 +2,7 @@ root-redirect: "/aidbox"
 
 products:
   - id: aidbox
-    name: "Aidbox Uses Docs"
+    name: "Aidbox User Docs"
     # url <BASE_URL><DOCS_PREFIX>/aidbox
     path: /aidbox
     config: aidbox/.gitbook.yaml
