@@ -14,6 +14,7 @@
    [gitbok.ui.breadcrumb :as breadcrumb]
    [gitbok.utils :as utils]
    [gitbok.products :as products]
+   [gitbok.http]
    [hiccup2.core]))
 
 (defn find-children-files [context filepath]
@@ -62,7 +63,10 @@
     (markdown/renderers context filepath) title)
    (for [[_path {:keys [title uri]}]
          (find-children-files context filepath)]
-     (big-links/big-link-view (str "/" uri) title))])
+     (let [prefix (gitbok.http/get-prefix context)
+           product-path (products/path context)
+           full-href (str prefix product-path "/" uri)]
+       (big-links/big-link-view full-href title)))])
 
 (def nav-button-classes
   "group text-sm

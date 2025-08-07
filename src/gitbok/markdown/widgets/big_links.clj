@@ -51,23 +51,28 @@
    (render-big-link context filepath nil {:text url}))
   ([context filepath _ctx node]
    (let [uri (href context (:text node) filepath)
-         uri
+         ;; Get the relative URI for file lookup
+         relative-uri
          (utils/uri-to-relative
            uri
            (gitbok.http/get-prefix context)
            (products/path context))
-
-         uri (if (and uri (str/starts-with? uri "/"))
-               (subs uri 1)
-               uri)
-         file (indexing/uri->filepath context uri)
+         
+         relative-uri (if (and relative-uri (str/starts-with? relative-uri "/"))
+                        (subs relative-uri 1)
+                        relative-uri)
+         file (indexing/uri->filepath context relative-uri)
          file (if (and file (str/starts-with? file "/docs"))
                 (subs file 6)
                 file)
          title
          (or (:title (get (file-to-uri/get-idx context) file))
-             (:text node))]
-     (big-link-view (str "/" uri) title))))
+             (:text node))
+         ;; Build the final href with prefix and product path
+         prefix (gitbok.http/get-prefix context)
+         product-path (products/path context)
+         final-href (str prefix product-path "/" relative-uri)]
+     (big-link-view final-href title))))
 
 (defn hack-content-ref [md-file]
   (str/replace md-file
