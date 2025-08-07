@@ -584,3 +584,8 @@ details[data-sortable-initialized]:empty::before {
   color: #999;
   font-style: italic;
 }
+
+/* Hide thead when data-header-hidden is true */
+[data-header-hidden="true"] thead {
+  display: none;
+}
