@@ -35,6 +35,7 @@
     (println "Saved:" save-path)))
 
 (defn -main [& args]
+  (println "start lastmod script")
   (cond
     ;; If no args, generate for default docs directory (backward compatibility)
     (empty? args)

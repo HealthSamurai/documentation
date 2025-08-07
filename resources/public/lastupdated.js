@@ -40,6 +40,13 @@ function updateLastUpdated() {
   }
 }
 
-document.addEventListener('DOMContentLoaded', function () {
+// Обработка обычной загрузки страницы
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', updateLastUpdated);
+} else {
+  // DOM уже загружен, вызываем сразу
   updateLastUpdated();
-})
+}
+
+// Обработка HTMX навигации
+document.addEventListener('htmx:afterSwap', updateLastUpdated);
