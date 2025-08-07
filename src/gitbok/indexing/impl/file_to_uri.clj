@@ -16,13 +16,25 @@
         (into {}
               (for [[_ page-name filepath] (re-seq link-pattern summary-text)
                     :when (not (str/starts-with? filepath "http"))]
-                [filepath
-                 {:title page-name
-                  :uri
-                  (str (str/replace filepath #"/[^/]*$" "") "/"
-                       (if (str/ends-with? (str/lower-case filepath) "readme.md")
-                         ""
-                         (utils/s->url-slug page-name)))}]))]
+                (let [parts (str/split filepath #"/")
+                      dir-path (if (> (count parts) 1)
+                                 (str/join "/" (butlast parts))
+                                 "")
+                      is-readme? (str/ends-with? (str/lower-case filepath) "readme.md")
+                      filename (-> (last parts)
+                                   (str/replace #"\.md$" ""))]
+                  [filepath
+                   {:title page-name
+                    :uri
+                    (if is-readme?
+                      ;; For README files, use the directory path
+                      (if (empty? dir-path)
+                        "/" ;; Root README.md
+                        (str dir-path "/"))
+                      ;; For regular files, use dir/filename
+                      (if (empty? dir-path)
+                        filename
+                        (str dir-path "/" filename)))}])))]
   (println "file->uri idx is ready with " (count result) " entries" )
   result))
 

@@ -36,8 +36,8 @@
       (let [result (file-to-uri/file->uri-idx (mock-context))]
         (is (= 2 (count result)))
         ;; Check README.md handling - for root README.md
-        (is (= {:title "Home" :uri "README.md/"} (get result "README.md")))
-        ;; Check regular file
+        (is (= {:title "Home" :uri "/"} (get result "README.md")))
+        ;; Check regular file - now uses filename without extension
         (is (= {:title "Features" :uri "readme/features"} 
                (get result "readme/features.md"))))))
   
@@ -53,7 +53,20 @@
         (is (contains? result "docs/internal.md"))
         (is (contains? result "guide.md"))
         (is (not (contains? result "http://example.com")))
-        (is (not (contains? result "https://example.com")))))))
+        (is (not (contains? result "https://example.com"))))))
+  
+  (testing "Terminology Overview case - filename vs title"
+    (with-redefs [summary/read-summary 
+                  (fn [_] 
+                    "* [Terminology Overview](terminology/overview.md)
+* [API Reference](api/reference.md)")]
+      (let [result (file-to-uri/file->uri-idx (mock-context))]
+        (is (= 2 (count result)))
+        ;; Should use filename "overview" not title-based "terminology-overview"
+        (is (= {:title "Terminology Overview" :uri "terminology/overview"} 
+               (get result "terminology/overview.md")))
+        (is (= {:title "API Reference" :uri "api/reference"} 
+               (get result "api/reference.md")))))))
 
 (deftest filepath->uri-test
   (testing "Should return URI for existing filepath"
