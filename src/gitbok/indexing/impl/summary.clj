@@ -128,17 +128,19 @@
                                               parsed (parse-md-link md-link)
                                               href (:href parsed)
                                               href
-                                              (if (str/starts-with? href "http")
+                                              (when href (if (str/starts-with? href "http")
                                                 href
                                                 (let [h (gitbok.http/get-product-prefixed-url context href)]
                                                   (if (str/starts-with? h "/") h
-                                                      (str "/" h))))]
+                                                    (str "/" h)))))]
 
-                                          {:i (count-whitespace md-link)
-                                           :j (:j x)
-                                           :parsed parsed
-                                           :href href
-                                           :title (render-markdown-link-in-toc (:title parsed) href)})))
+                                          (when href
+                                            {:i (count-whitespace md-link)
+                                             :j (:j x)
+                                             :parsed parsed
+                                             :href href
+                                             :title (when href (render-markdown-link-in-toc (:title parsed) href))}))))
+                                (remove nil?)
                                 (treefy)))))))]
     (println "summary parsed with " (count summary) "entries")
     summary))
