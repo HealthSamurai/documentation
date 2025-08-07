@@ -1,4 +1,4 @@
-# Allergies and Intolerances Section (/Entries Required) (/V3)
+# Allergies and intolerances section (/entries required) (/V3)
 
 OID: 2.16.840.1.113883.10.20.22.2.6.1
 

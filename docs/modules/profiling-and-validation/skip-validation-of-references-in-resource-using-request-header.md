@@ -1,4 +1,4 @@
-# Skip Validation of References in Resource Using Request Header
+# Skip validation of references in resource using request header
 
 ### Skip validation of references in resource using request header
 

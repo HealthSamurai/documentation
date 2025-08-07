@@ -2,5 +2,5 @@
 description: Basic Aidbox metrics
 ---
 
-# How-to Guides
+# How-to guides
 

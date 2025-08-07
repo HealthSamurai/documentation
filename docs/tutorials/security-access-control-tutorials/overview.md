@@ -2,7 +2,7 @@
 description: This article explains how access control performs in Aidbox
 ---
 
-# How Is an HTTP Request Processed in Aidbox
+# How is an HTTP request processed in Aidbox
 
 When an HTTP request reaches Aidbox, it goes through several steps. The request can be rejected at any step due to checks being performed on the current step.
 

@@ -2,7 +2,7 @@
 description: This page describes how to customize the conversion results.
 ---
 
-# How to Customize Conversion Rules
+# How to customize conversion rules
 
 The converter is a rule-based service so it allows users to define conversion rules using a special Domain-Specific Language (DSL), enabling customization and mapping of data elements between C-CDA and FHIR standards.
 

@@ -5,7 +5,7 @@ description: >-
 hidden: true
 ---
 
-# Any Familiar Form Editor (Docs Deprecated)
+# Any familiar form editor (docs deprecated)
 
 {% hint style="warning" %}
 We strongly recommend using our UI Form Builder based on FHIR SDC (Structured Data Capture), which we are continuously developing. The current solution will remain supported but will not receive further development at this time.

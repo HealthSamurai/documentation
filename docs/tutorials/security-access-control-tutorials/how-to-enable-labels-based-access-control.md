@@ -2,7 +2,7 @@
 description: This guide explains how security label access control can be enabled
 ---
 
-# How to Enable Labels-Based Access Control
+# How to enable labels-based access control
 
 ## Prerequisites
 

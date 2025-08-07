@@ -4,7 +4,7 @@ description: >-
   developer SMART application process
 ---
 
-# Set up Smartbox Locally
+# Set up Smartbox locally
 
 ## Get licenses
 

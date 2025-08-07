@@ -4,7 +4,7 @@ description: >-
   within the system
 ---
 
-# How to Configure FHIR Audit Log
+# How to configure FHIR Audit Log
 
 Objectives
 

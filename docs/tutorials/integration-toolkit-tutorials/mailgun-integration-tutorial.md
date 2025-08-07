@@ -2,7 +2,7 @@
 description: How to configure sending email using Mailgun
 ---
 
-# Mailgun Integration Tutorial
+# Mailgun integration tutorial
 
 Mailgun is an email delivery service for sending, receiving, and tracking emails. Aidbox offers integrations with Mailgun to simplify sending notifications via email.
 

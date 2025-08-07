@@ -2,7 +2,7 @@
 description: This article outlines how to audit Aidbox Forms usage
 ---
 
-# Audit Logging in Forms
+# Audit logging in forms
 
 ## Overview
 

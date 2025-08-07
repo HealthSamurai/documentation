@@ -1,4 +1,4 @@
-# Medications Section (/Entries Optional) (/V2)
+# Medications section (/entries optional) (/V2)
 
 OID: 2.16.840.1.113883.10.20.22.2.1
 

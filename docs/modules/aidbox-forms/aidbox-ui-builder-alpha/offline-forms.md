@@ -2,7 +2,7 @@
 description: Offline functionality for filling out forms
 ---
 
-# Offline Forms
+# Offline forms
 
 ## Overview
 

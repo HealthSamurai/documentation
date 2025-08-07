@@ -1,4 +1,4 @@
-# Handling Hierarchies Using Ancestors
+# Handling hierarchies using ancestors
 
 {% hint style="info" %}
 Please start [a discussion](https://github.com/Aidbox/Issues/discussions) or contact us if you have questions, feedback, or suggestions.

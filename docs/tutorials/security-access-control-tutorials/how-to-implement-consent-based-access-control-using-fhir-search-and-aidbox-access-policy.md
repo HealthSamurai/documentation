@@ -1,4 +1,4 @@
-# How to Implement Consent-based Access Control Using FHIR Search and Aidbox Access Policy
+# How to implement consent-based access control using FHIR Search and Aidbox Access Policy
 
 ## Objectives
 

@@ -1,4 +1,4 @@
-# Ready-to-use Terminologies
+# Ready-to-use terminologies
 
 We prepackaged some of the most commonly used terminologies as samples. You can load them using an Aidbox project.
 

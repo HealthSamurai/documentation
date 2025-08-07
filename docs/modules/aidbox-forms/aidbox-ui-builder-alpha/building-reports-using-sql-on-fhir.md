@@ -4,7 +4,7 @@ description: >-
   Forms and SQL on FHIR.
 ---
 
-# Building Reports Using SQL on FHIR
+# Building reports using SQL on FHIR
 
 ## Overview
 

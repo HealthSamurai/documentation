@@ -2,7 +2,7 @@
 description: Safe API for Patient and their resources
 ---
 
-# Patient Data Access API
+# Patient data access API
 
 Patient level access control in Aidbox allows for the restriction of access to data based on the patient to which it belongs. This means that when users interact with the Patient FHIR API, they are only able to access the resources that belong to a certain patient only.
 

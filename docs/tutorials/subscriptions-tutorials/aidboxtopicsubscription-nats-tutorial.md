@@ -1,4 +1,4 @@
-# AidboxTopicSubscription NATS Tutorial
+# AidboxTopicSubscription NATS tutorial
 
 ## Objectives
 

@@ -1,4 +1,4 @@
-# Contact Us
+# Contact us
 
 ## Where can I ask questions or get help?
 

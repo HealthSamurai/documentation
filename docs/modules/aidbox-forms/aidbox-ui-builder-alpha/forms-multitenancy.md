@@ -4,7 +4,7 @@ description: >-
   Forms
 ---
 
-# Forms Multitenancy
+# Forms multitenancy
 
 ## Overview
 

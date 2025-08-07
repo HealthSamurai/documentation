@@ -1,4 +1,4 @@
-# How to Configure Sign-in with Apple for Access to the Aidbox UI
+# How to configure sign-in with Apple for access to the Aidbox UI
 
 ## Objectives
 

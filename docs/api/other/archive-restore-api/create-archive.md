@@ -1,4 +1,4 @@
-# Create-Archive
+# Create-archive
 
 `/execution/aidbox.archive/create-archive` is designed to create and start archiving task. It returns reference to the created archive task.
 

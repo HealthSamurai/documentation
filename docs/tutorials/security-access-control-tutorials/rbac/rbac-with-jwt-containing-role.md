@@ -4,7 +4,7 @@ description: >-
   containing a role claim
 ---
 
-# RBAC with JWT Containing Role
+# RBAC with JWT containing role
 
 {% hint style="info" %}
 This guide is based on the [TokenInstrospector tutorial](../set-up-token-introspection.md). But we won't' create `User` resource

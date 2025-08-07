@@ -1,4 +1,4 @@
-# How to Inject Env Variables into Init Bundle
+# How to inject env variables into Init Bundle
 
 Aidbox provides [Init Bundle](../../configuration/init-bundle.md) functionality to create configuration resources on its start. However, Aidbox load Init Bundle content as is, so it is not possible to inject secrets or other environment variables in it.
 

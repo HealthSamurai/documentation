@@ -1,4 +1,4 @@
-# How to Run Aidbox in GCP Cloud Run
+# How to run Aidbox in GCP Cloud Run
 
 ## Objectives <a href="#objectives" id="objectives"></a>
 

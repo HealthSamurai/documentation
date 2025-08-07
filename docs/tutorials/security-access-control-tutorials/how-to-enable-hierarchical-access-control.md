@@ -4,7 +4,7 @@ description: >-
   enabled
 ---
 
-# How to Enable Hierarchical Access Control
+# How to enable hierarchical access control
 
 Since Aidbox version 2412, to enable OrgBAC in [FHIRSchema mode](../../modules/profiling-and-validation/fhir-schema-validator/), use:
 

@@ -4,7 +4,7 @@ description: >-
   HL7 v2 messages.
 ---
 
-# HL7 v2 Integration
+# HL7 v2 integration
 
 {% embed url="https://www.youtube.com/watch?v=iSDX4UZpYO4" %}
 Video version of this tutorial

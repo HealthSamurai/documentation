@@ -2,7 +2,7 @@
 description: aidbox.bulk/* RPC operations
 ---
 
-# Aidbox.bulk Data Import
+# Aidbox.bulk data import
 
 ## Overview
 

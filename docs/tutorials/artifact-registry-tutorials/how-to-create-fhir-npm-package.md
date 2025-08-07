@@ -4,7 +4,7 @@ description: >-
   it into Aidbox.
 ---
 
-# How to Create FHIR NPM Package
+# How to create FHIR npm package
 
 A FHIR package groups a coherent collection of conformance resources, like StructureDefinitions, SearchParameters, etc., into an easily distributed NPM package.
 

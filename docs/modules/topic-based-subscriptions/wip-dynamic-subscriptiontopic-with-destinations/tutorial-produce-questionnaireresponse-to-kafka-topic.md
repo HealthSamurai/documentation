@@ -1,4 +1,4 @@
-# Tutorial: Produce QuestionnaireResponse to Kafka Topic
+# Tutorial: Produce QuestionnaireResponse to Kafka topic
 
 ## Topic-based Subscriptions to Kafka
 

@@ -3,7 +3,7 @@ description: This guide explains how logging can be activated with the Aidbox pr
 hidden: true
 ---
 
-# Set up Logs with Aidbox Project
+# Set up logs with Aidbox project
 
 We expect your Aidbox project is set up and running.
 

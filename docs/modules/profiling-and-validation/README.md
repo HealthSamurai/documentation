@@ -1,4 +1,4 @@
-# Profiling and Validation
+# Profiling and validation
 
 ## What is _Profiling_?
 

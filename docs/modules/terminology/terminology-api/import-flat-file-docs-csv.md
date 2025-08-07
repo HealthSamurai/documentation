@@ -2,7 +2,7 @@
 description: Import flat file via REST
 ---
 
-# Import Flat File (/CSV)
+# Import flat file (/CSV)
 
 If you have a terminology distributed as a flat file, for example CSV, you can use this API to import it as a set of [Concept](../concept/README.md) resources and later use them with Terminology API.
 

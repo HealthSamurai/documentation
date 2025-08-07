@@ -2,7 +2,7 @@
 description: Form's access control
 ---
 
-# Access Control in Forms
+# Access control in forms
 
 Form's module access control can be set via aidbox [ACL engine](../../deprecated/deprecated/zen-related/access-control-lists-docs-acl.md)
 

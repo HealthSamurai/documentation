@@ -2,7 +2,7 @@
 description: This section describes how to integrate your Aidbox with Datadog.
 ---
 
-# Datadog Log Management Integration
+# Datadog log management integration
 
 [Datadog](https://www.datadoghq.com/) offers cloud-based monitoring and analytics platform which integrates and automates infrastructure monitoring, application performance monitoring, and log management for real-time observability of customers.
 

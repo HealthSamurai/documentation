@@ -2,7 +2,7 @@
 description: Overview of addendum scenario
 ---
 
-# Changing Data After Form Signing
+# Changing data after form signing
 
 There are two scenarios when you can do amendmets after signing the form.
 

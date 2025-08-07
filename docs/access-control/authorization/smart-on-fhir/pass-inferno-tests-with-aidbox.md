@@ -1,4 +1,4 @@
-# Pass Inferno Tests with Aidbox
+# Pass Inferno tests with Aidbox
 
 {% hint style="info" %}
 This functionality is available starting from version 2411.\

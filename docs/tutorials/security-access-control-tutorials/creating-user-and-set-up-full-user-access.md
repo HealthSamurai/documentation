@@ -1,4 +1,4 @@
-# Creating User and Set up Full User Access
+# Creating user and set up full user access
 
 ### Creating user resource
 

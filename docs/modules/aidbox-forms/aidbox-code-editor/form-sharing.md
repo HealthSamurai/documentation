@@ -2,7 +2,7 @@
 description: how to share a created form
 ---
 
-# Form Sharing
+# Form sharing
 
 After you create a form you can:
 

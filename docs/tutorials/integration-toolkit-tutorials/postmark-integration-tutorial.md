@@ -2,7 +2,7 @@
 description: How to configure sending email using Postmark
 ---
 
-# Postmark Integration Tutorial
+# Postmark integration tutorial
 
 Postmark is an email delivery service for sending, receiving, and tracking emails. Aidbox offers integrations with Postmark to simplify sending notifications via email.
 

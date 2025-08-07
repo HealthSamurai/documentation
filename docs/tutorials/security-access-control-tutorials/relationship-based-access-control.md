@@ -2,7 +2,7 @@
 description: Learn how to enable ReBAC in Aidbox with AccessPolicy
 ---
 
-# Relationship-based Access Control
+# Relationship-based access control
 
 > This tutorial is using zen and it is outdated.
 

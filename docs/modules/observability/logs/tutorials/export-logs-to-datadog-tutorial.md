@@ -4,7 +4,7 @@ description: >-
   Datadog.
 ---
 
-# Export Logs to Datadog Tutorial
+# Export logs to Datadog tutorial
 
 ## Set up Datadog API Key
 

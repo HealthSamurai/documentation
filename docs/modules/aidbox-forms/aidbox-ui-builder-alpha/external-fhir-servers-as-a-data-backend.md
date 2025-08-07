@@ -2,7 +2,7 @@
 description: This article outlines how to use Aidbox Forms with external FHIR servers.
 ---
 
-# External FHIR Servers as a Data Backend
+# External FHIR servers as a data backend
 
 ## Overview
 

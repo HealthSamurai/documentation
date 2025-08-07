@@ -4,7 +4,7 @@ description: >-
   asymmetric authentication
 ---
 
-# How to Configure Azure AD SSO with Certificate Authentication for Access to the Aidbox UI
+# How to configure Azure AD SSO with certificate authentication for access to the Aidbox UI
 
 {% hint style="info" %}
 This guide explains how to set-up Azure AD identity provider in Aidbox with an asymmetric authentication mechanism. If you are looking for symmetric (secret-based one), please, follow [Azure AD guide](azure-ad.md).

@@ -2,7 +2,7 @@
 description: Use RPC to run a validation operation to check a resource conformance
 ---
 
-# Asynchronous Resource Validation
+# Asynchronous resource validation
 
 ### Asynchronous Batch Validation `draft`
 

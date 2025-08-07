@@ -1,4 +1,4 @@
-# Run Aidbox on Managed PostgreSQL
+# Run Aidbox on managed PostgreSQL
 
 This quickstart guide explains how to run Aidbox on managed PostgreSQL instance.
 

@@ -2,7 +2,7 @@
 hidden: true
 ---
 
-# Workflow API (Docs Deprecated)
+# Workflow API (docs deprecased)
 
 {% hint style="warning" %}
 Workflow API wraps Form API and when you use WF you don't need to use Form API directly

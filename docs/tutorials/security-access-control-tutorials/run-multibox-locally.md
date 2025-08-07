@@ -1,4 +1,4 @@
-# Run Multibox Locally
+# Run Multibox locally
 
 This quickstart guide explains how to run Multibox locally using `docker compose`. You will learn how to obtain a free short-term license and set up Multibox.
 

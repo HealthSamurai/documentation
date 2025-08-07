@@ -4,7 +4,7 @@ description: >-
   their own data
 ---
 
-# Allow Patients to See Their Own Data
+# Allow patients to see their own data
 
 ## About this tutorial
 

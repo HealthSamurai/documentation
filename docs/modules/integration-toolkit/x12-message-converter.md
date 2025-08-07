@@ -1,4 +1,4 @@
-# X12 Message Converter
+# X12 message converter
 
 {% hint style="warning" %}
 X12 message converter is in beta. API may change!

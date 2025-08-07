@@ -4,7 +4,7 @@ description: >-
   enabled
 ---
 
-# How to Enable Patient Data Access API
+# How to enable patient data access API
 
 ## Prerequisites
 

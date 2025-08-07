@@ -1,4 +1,4 @@
-# Custom SearchParameter Tutorial
+# Custom SearchParameter tutorial
 
 {% hint style="info" %}
 To create a SearchParameter, [FHIRSchema](../../../modules/profiling-and-validation/fhir-schema-validator/README.md) must be enabled (enabled by default)

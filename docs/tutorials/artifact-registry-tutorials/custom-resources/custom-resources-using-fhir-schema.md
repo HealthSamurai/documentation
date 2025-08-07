@@ -1,4 +1,4 @@
-# Custom Resources Using FHIR Schema
+# Custom resources using FHIR Schema
 
 {% hint style="warning" %}
 Custom resources are defined by individual organizations or projects to meet specific needs not covered by the FHIR standard. While these resources can be useful within a particular ecosystem, they may not be interoperable with other systems that do not recognize or support those custom resources.

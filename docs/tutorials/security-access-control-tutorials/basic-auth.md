@@ -2,7 +2,7 @@
 description: Access Aidbox API from your Service
 ---
 
-# How to Configure Basic Auth Flow
+# How to configure Basic Auth flow
 
 The simplest way to programmatically interact with Aidbox API is to use [Basic Access Authentication](https://tools.ietf.org/html/rfc7617). In this scheme you provide client credentials with every HTTP request in the special header - `Authorization: Basic <credentials>`, where `<credentials>` is the base64 encoding of Client.id and Client.secret joined by a colon:
 

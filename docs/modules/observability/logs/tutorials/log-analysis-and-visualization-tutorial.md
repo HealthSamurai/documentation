@@ -4,7 +4,7 @@ description: >-
   Grafana
 ---
 
-# Log Analysis and Visualization Tutorial
+# Log analysis and visualization tutorial
 
 ## Update Docker Image
 

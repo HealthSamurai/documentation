@@ -1,4 +1,4 @@
-# Multilingual Search Tutorial
+# Multilingual search tutorial
 
 {% hint style="warning" %}
 Multilingual search is **experimental**! API may change!

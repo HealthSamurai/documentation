@@ -2,7 +2,7 @@
 description: This page explains what log message transformations are available in Aidbox
 ---
 
-# Log Transformations
+# Log transformations
 
 ## What is log transformation? <a href="#what-is-log-transformation" id="what-is-log-transformation"></a>
 

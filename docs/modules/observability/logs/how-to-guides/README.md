@@ -1,2 +1,2 @@
-# How-to Guides
+# How-to guides
 

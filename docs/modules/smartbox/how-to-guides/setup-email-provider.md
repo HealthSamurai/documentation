@@ -2,7 +2,7 @@
 description: This guide explains how you can set up email provider
 ---
 
-# Setup Email Provider
+# Setup email provider
 
 Aidbox supports different email API services and SMTP protocol.
 

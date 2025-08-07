@@ -1,4 +1,4 @@
-# How to: Populate Forms with Data
+# How to: Populate forms with data
 
 ## Warn
 

@@ -5,7 +5,7 @@ description: >-
 hidden: true
 ---
 
-# Deprecated Access Policy Dev Tool
+# Deprecated Access policy dev tool
 
 Access policy dev tool simplifies development & debugging AccessPolicy resources. It was introduced in March v2303 release of Aidbox.
 

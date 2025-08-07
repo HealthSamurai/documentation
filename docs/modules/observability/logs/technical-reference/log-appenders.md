@@ -2,7 +2,7 @@
 description: This page explains what log appenders are and their parameters
 ---
 
-# Log Appenders
+# Log appenders
 
 ## What log appenders are
 

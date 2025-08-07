@@ -2,7 +2,7 @@
 hidden: true
 ---
 
-# Layout DSL (Docs Deprecated)
+# Layout DSL (docs deprecased)
 
 {% hint style="danger" %}
 Layout DSL is still under development and unstable

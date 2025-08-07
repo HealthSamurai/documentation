@@ -2,7 +2,7 @@
 description: Aidbox forms supports fetching answers into question with conditions and logic
 ---
 
-# How to Create a Form with Dynamical Answers into Questions
+# How to create a form with dynamical answers into questions
 
 ## What is answer expression
 

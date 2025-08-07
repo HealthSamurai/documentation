@@ -1,4 +1,4 @@
-# Query Data from Flat Views
+# Query data from flat views
 
 ## Using flat views
 

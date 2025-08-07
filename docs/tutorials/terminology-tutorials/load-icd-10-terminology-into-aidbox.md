@@ -2,7 +2,7 @@
 description: In this post, you will learn how to load ICD-10 terminology into aidbox.
 ---
 
-# Load ICD-10 Terminology into Aidbox
+# Load ICD-10 terminology into Aidbox
 
 {% embed url="https://youtu.be/zXzy-is20e8" %}
 

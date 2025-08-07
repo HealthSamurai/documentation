@@ -2,7 +2,7 @@
 hidden: true
 ---
 
-# Form DSL (Docs Deprecated)
+# Form DSL (docs deprecased)
 
 Form DSL used just to bind all DSLs to one item.
 

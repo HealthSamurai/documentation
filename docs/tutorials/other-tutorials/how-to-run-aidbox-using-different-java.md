@@ -1,4 +1,4 @@
-# How to Run Aidbox Using a Different Java Version
+# How to run Aidbox using different Java
 
 Starting from version 2506 Aidbox uses the following approach for building `aidboxone` image:
 

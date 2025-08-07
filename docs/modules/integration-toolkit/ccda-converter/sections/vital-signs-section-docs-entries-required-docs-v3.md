@@ -1,4 +1,4 @@
-# Vital Signs Section (/Entries Required) (/V3)
+# Vital signs section (/entries required) (/V3)
 
 OID: 2.16.840.1.113883.10.20.22.2.4.1
 

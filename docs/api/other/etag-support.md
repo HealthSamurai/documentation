@@ -1,4 +1,4 @@
-# ETAG Support
+# ETAG support
 
 The `ETag` HTTP response header is a unique identifier assigned to a specific version of a resource on a server. When a resource, like a web page or an API endpoint, changes, its `ETag` also changes. This mechanism allows client-side caching and efficient revalidation. \
 \

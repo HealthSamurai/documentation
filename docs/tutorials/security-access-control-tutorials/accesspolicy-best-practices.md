@@ -2,7 +2,7 @@
 description: Access policies creating and maintaning recommendations
 ---
 
-# AccessPolicy Best Practices
+# AccessPolicy best practices
 
 ## Link AccessPolicy to `User` , `Client` or `Operation`&#x20;
 

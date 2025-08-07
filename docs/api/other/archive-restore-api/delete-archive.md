@@ -1,4 +1,4 @@
-# Delete-Archive
+# Delete-archive
 
 To delete archived data **from cloud** you should start deleting process with `/execution/aidbox.archive/delete-archive` task.
 
