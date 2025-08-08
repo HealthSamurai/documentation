@@ -16,7 +16,7 @@ There are several ways to track the newly created **MedicationRequest**s:
 
 #### Detected Issues
 
-In case some related resources (**Patient**, **Organisation**, **PractitionerRole**, **Practitioner**, or **Location**) were not found or didn't match the provided ones, ePrescription module additionally creates a **DetectedIssue** resource in Aidbox.
+In case some related resources (**Patient**, **Organisation**, **PractitionerRole**, **Practitioner**, **Medication**, or **Location**) were not found or didn't match the provided ones, ePrescription module additionally creates a **DetectedIssue** resource in Aidbox.
 TODO: ARE THERE OTHER EXCEPTIONAL SITUATIONS? I DIDN'T FIND ANY?
 
 ### Renewal statuses
