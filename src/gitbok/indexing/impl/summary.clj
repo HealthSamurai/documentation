@@ -34,7 +34,7 @@
    active:hover:bg-primary-2
    active:hover:text-primary-9"))
 
-(defn render-markdown-link-in-toc [title href]
+(defn render-markdown-link-in-toc [title href & {:keys [is-cross-section] :or {is-cross-section false}}]
   (let [is-external (str/starts-with? href "http")
         link-attrs
         {:class leaf-classes
@@ -43,7 +43,11 @@
           is-external
           (assoc :target "_blank"
                  :rel "noopener noreferrer")
-          (not is-external)
+          ;; Mark cross-section links with a data attribute
+          is-cross-section
+          (assoc :data-cross-section "true")
+          ;; Only add HTMX attributes if not external and not cross-section
+          (and (not is-external) (not is-cross-section))
           (assoc :data-hx-nav true
                  :hx-get (str href "?partial=true")
                  :hx-target "#content"
@@ -53,7 +57,7 @@
                  :data-hx-boost "false"))
      [:span {:class "flex items-center gap-2 ml-4"}
       title
-      (when is-external
+      (when (or is-external is-cross-section)
         (ico/arrow-top-right-on-square "size-4"))]]))
 
 (defn parse-md-link [line]
@@ -91,31 +95,74 @@
   (let [t (str/trim (str/replace (str/replace s #"\<.*\>" "") #"#" ""))]
     (if (= "Table of contents" t) "" t)))
 
+(defn get-section-from-path [path]
+  "Extract the top-level section from a file path.
+   e.g. 'api/rest-api/fhir-search/searchparameter.md' -> 'api'"
+  (when path
+    (let [clean-path (str/replace path #"^/" "")
+          parts (str/split clean-path #"/")]
+      (first parts))))
+
 (defn parse-summary
   "Read SUMMARY.md and parse and render."
   [context]
   (let [sum (read-summary context)
+        ;; First pass: collect all file occurrences and their sections
+        file-sections
+        (loop [current-section nil
+               file-map {}
+               [l & ls] (str/split sum #"\n")]
+          (if (nil? l)
+            file-map
+            (cond
+              ;; New section header
+              (str/starts-with? (str/trim l) "#")
+              (recur (title l) file-map ls)
+              
+              ;; Link line
+              (and (not (str/blank? l)) current-section)
+              (if-let [parsed (parse-md-link l)]
+                (let [filepath (:href parsed)]
+                  (if (and filepath 
+                           (not (str/starts-with? filepath "http")))
+                    (recur current-section
+                           (update file-map filepath 
+                                   (fn [sections] 
+                                     (conj (or sections #{}) current-section)))
+                           ls)
+                    (recur current-section file-map ls)))
+                (recur current-section file-map ls))
+              
+              ;; Empty line or other
+              :else
+              (recur current-section file-map ls))))
+        
         summary
         (->>
          (loop [acc []
                 cur nil
+                current-section nil
                 [l & ls] (str/split sum #"\n")
                 j 0]
            (if (nil? l)
              (if cur (conj acc cur) acc)
              (if (str/starts-with? (str/trim l) "#")
-               (recur
-                (if cur (conj acc cur) acc)
-                {:title (title l)
-                 :j j
-                 :children []}
-                ls
-                (inc j))
+               (let [section-title (title l)]
+                 (recur
+                  (if cur (conj acc cur) acc)
+                  {:title section-title
+                   :j j
+                   :children []}
+                  section-title ;; Track current section
+                  ls
+                  (inc j)))
                (recur acc
                       (if (str/blank? l)
                         cur
                         (update cur :children conj {:md-link l
-                                                    :j j}))
+                                                    :j j
+                                                    :current-section current-section}))
+                      current-section
                       ls
                       (inc j)))))
 
@@ -125,7 +172,25 @@
                            (->> chld
                                 (mapv (fn [x]
                                         (let [md-link (:md-link x)
+                                              current-section (:current-section x)
                                               parsed (parse-md-link md-link)
+                                              filepath (:href parsed)
+                                              
+                                              ;; Check if this is a cross-section reference
+                                              is-cross-section
+                                              (when (and filepath 
+                                                         (not (str/starts-with? filepath "http"))
+                                                         current-section)
+                                                (let [file-sections-set (get file-sections filepath)
+                                                      path-section (get-section-from-path filepath)]
+                                                  (and
+                                                   ;; Condition 1: File appears in multiple sections
+                                                   (> (count file-sections-set) 1)
+                                                   ;; Condition 2: Path goes outside current section
+                                                   (and path-section
+                                                        (not= (str/lower-case path-section)
+                                                              (str/lower-case (first (str/split current-section #" "))))))))
+                                              
                                               href (:href parsed)
                                               href
                                               (when href (if (str/starts-with? href "http")
@@ -139,7 +204,8 @@
                                              :j (:j x)
                                              :parsed parsed
                                              :href href
-                                             :title (when href (render-markdown-link-in-toc (:title parsed) href))}))))
+                                             :title (when href (render-markdown-link-in-toc (:title parsed) href 
+                                                                                            :is-cross-section is-cross-section))}))))
                                 (remove nil?)
                                 (treefy)))))))]
     (println "summary parsed with " (count summary) "entries")

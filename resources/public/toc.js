@@ -13,40 +13,48 @@ window.addEventListener("popstate", () => {
 function updateActiveNavItem(pathname) {
   if (!document.body) return;
 
-
   const allLinks = document.querySelectorAll('#navigation a');
 
   allLinks.forEach(a => {
+    // Remove active class from all links, including cross-section ones
     a.classList.remove('active');
   });
 
-  // Try exact match first
-  let matchingLink = document.querySelector(`#navigation a[href="${pathname}"]`);
-
-  // If no exact match, try normalized paths (remove trailing slash and query params)
-  if (!matchingLink) {
-    const normalizedPathname = pathname.replace(/\/$/, '').split('?')[0];
-
-    // Check all links for normalized match
-    const navLinks = document.querySelectorAll('#navigation a');
-    for (const link of navLinks) {
-      const linkHref = link.getAttribute('href');
-      const normalizedHref = linkHref.replace(/\/$/, '').split('?')[0];
-
-      if (normalizedPathname === normalizedHref) {
-        matchingLink = link;
-        break;
-      }
+  // Normalize the pathname for comparison
+  const normalizedPathname = pathname.replace(/\/$/, '').split('?')[0];
+  
+  // Find all links that match the pathname, excluding cross-section links
+  const matchingLinks = [];
+  allLinks.forEach(link => {
+    // Skip cross-section links (they have data-cross-section="true" attribute)
+    if (link.hasAttribute('data-cross-section')) {
+      return;
     }
-  }
+    
+    const linkHref = link.getAttribute('href');
+    const normalizedHref = linkHref.replace(/\/$/, '').split('?')[0];
+    
+    if (normalizedPathname === normalizedHref) {
+      matchingLinks.push(link);
+    }
+  });
+  
+  // Use the first matching non-cross-section link
+  const matchingLink = matchingLinks[0];
 
   if (matchingLink) {
     matchingLink.classList.add('active');
 
     // Open parent details if needed
-    const details = matchingLink.closest('details');
-    if (details && !details.open) {
-      details.open = true;
+    let currentElement = matchingLink;
+    while (currentElement) {
+      const details = currentElement.closest('details');
+      if (details && !details.open) {
+        details.open = true;
+        currentElement = details.parentElement;
+      } else {
+        break;
+      }
     }
   }
 }
@@ -122,6 +130,15 @@ document.addEventListener('DOMContentLoaded', function () {
   if (!document.body) return;
   updateActiveNavItem(window.location.pathname);
   updatePageTitle(); // Also update title on initial load
+});
+
+// Also update after HTMX swaps content
+document.addEventListener('htmx:afterSwap', function(event) {
+  // Small delay to ensure DOM is fully updated
+  setTimeout(() => {
+    updateActiveNavItem(window.location.pathname);
+    updatePageTitle();
+  }, 10);
 });
 
 // Clear any existing HTMX cache to prevent quota issues
