@@ -434,18 +434,18 @@ redirects:
     modules-1/sql-on-fhir/migrate-to-the-spec-compliant-viewdefinition-format: modules/sql-on-fhir/migrate-to-the-spec-compliant-viewdefinition-format.md
     modules-1/sql-on-fhir/query-data-from-flat-views: modules/sql-on-fhir/query-data-from-flat-views.md
     modules-1/sql-on-fhir/reference: modules/sql-on-fhir/reference.md
-    modules-1/terminology/codesystem-and-concept/codesystem-code-composition: modules/terminology/codesystem-and-concept/codesystem-code-composition.md
-    modules-1/terminology/codesystem-and-concept/codesystem-concept-lookup: modules/terminology/codesystem-and-concept/codesystem-concept-lookup.md
-    modules-1/terminology/codesystem-and-concept/codesystem-subsumption-testing: modules/terminology/codesystem-and-concept/codesystem-subsumption-testing.md
-    modules-1/terminology/concept/handling-hierarchies-using-ancestors: modules/terminology/concept/handling-hierarchies-using-ancestors.md
-    modules-1/terminology/concept/usdtranslate-concepts: modules/terminology/concept/translate-concepts.md
-    modules-1/terminology/terminology-api/import-flat-file-docs-csv: modules/terminology/terminology-api/import-flat-file-docs-csv.md
-    modules-1/terminology/terminology-api/import-operation: modules/terminology/terminology-api/import-operation.md
-    modules-1/terminology/terminology-api/ready-to-use-terminologies: modules/terminology/terminology-api/ready-to-use-terminologies.md
-    modules-1/terminology/usdtranslate-on-conceptmap: modules/terminology/translate-on-conceptmap.md
-    modules-1/terminology/valueset/create-a-valueset: modules/terminology/valueset/create-a-valueset.md
-    modules-1/terminology/valueset/valueset-code-validation: modules/terminology/valueset/valueset-code-validation.md
-    modules-1/terminology/valueset/valueset-expansion: modules/terminology/valueset/valueset-expansion.md
+    modules-1/terminology/codesystem-and-concept/codesystem-code-composition: deprecated/deprecated/other/terminology/codesystem-and-concept/codesystem-code-composition.md
+    modules-1/terminology/codesystem-and-concept/codesystem-concept-lookup: deprecated/deprecated/other/terminology/codesystem-and-concept/codesystem-concept-lookup.md
+    modules-1/terminology/codesystem-and-concept/codesystem-subsumption-testing: deprecated/deprecated/other/terminology/codesystem-and-concept/codesystem-subsumption-testing.md
+    modules-1/terminology/concept/handling-hierarchies-using-ancestors: deprecated/deprecated/other/terminology/concept/handling-hierarchies-using-ancestors.md
+    modules-1/terminology/concept/usdtranslate-concepts: deprecated/deprecated/other/terminology/concept/translate-concepts.md
+    modules-1/terminology/terminology-api/import-flat-file-docs-csv: deprecated/deprecated/other/terminology/terminology-api/import-flat-file-docs-csv.md
+    modules-1/terminology/terminology-api/import-operation: deprecated/deprecated/other/terminology/terminology-api/import-operation.md
+    modules-1/terminology/terminology-api/ready-to-use-terminologies: deprecated/deprecated/other/terminology/terminology-api/ready-to-use-terminologies.md
+    modules-1/terminology/usdtranslate-on-conceptmap: deprecated/deprecated/other/terminology/translate-on-conceptmap.md
+    modules-1/terminology/valueset/create-a-valueset: deprecated/deprecated/other/terminology/valueset/create-a-valueset.md
+    modules-1/terminology/valueset/valueset-code-validation: deprecated/deprecated/other/terminology/valueset/valueset-code-validation.md
+    modules-1/terminology/valueset/valueset-expansion: deprecated/deprecated/other/terminology/valueset/valueset-expansion.md
     modules-1/topic-based-subscriptions/aidbox-subsubscriptions: modules/topic-based-subscriptions/aidbox-subsubscriptions.md
     modules-1/topic-based-subscriptions/wip-dynamic-subscriptiontopic-with-destinations/gcp-pub-sub-aidboxtopicdestination: modules/topic-based-subscriptions/wip-dynamic-subscriptiontopic-with-destinations/gcp-pub-sub-aidboxtopicdestination.md
     modules-1/topic-based-subscriptions/wip-dynamic-subscriptiontopic-with-destinations/kafka-aidboxtopicdestination: modules/topic-based-subscriptions/wip-dynamic-subscriptiontopic-with-destinations/kafka-aidboxtopicdestination.md
@@ -462,9 +462,9 @@ redirects:
     modules/observability/logging-and-audit: access-control/audit-and-logging.md
     modules/other-modules/mdm/find-duplicates-usdmatch.md: modules/other-modules/mpi/find-duplicates-match.md
     modules/smartbox/how-to-guides/find-out-what-resources-were-exported-during-the-usdexport-operation.md: modules/smartbox/how-to-guides/find-out-what-resources-were-exported-during-the-export-operation.md
-    modules/terminology/concept/usdtranslate-concepts.md: modules/terminology/concept/translate-concepts.md
-    modules/terminology/usdtranslate-on-conceptmap.md: modules/terminology/translate-on-conceptmap.md
-    modules/terminology/usdtranslate-on-conceptmap: modules/terminology/translate-on-conceptmap.md
+    modules/terminology/concept/usdtranslate-concepts.md: deprecated/deprecated/other/terminology/translate-on-conceptmap.md
+    modules/terminology/usdtranslate-on-conceptmap.md: deprecated/deprecated/other/terminology/translate-on-conceptmap.md
+    modules/terminology/usdtranslate-on-conceptmap: deprecated/deprecated/other/terminology/translate-on-conceptmap.md
     modules/topic-based-subscriptions/subscriptions-1: modules/topic-based-subscriptions/README.md
     overview/aidbox-ui/rest-console-1: overview/aidbox-ui/rest-console.md
     plan-api/patient-access-api: access-control/authorization/scoped-api/patient-data-access-api.md
@@ -477,7 +477,7 @@ redirects:
     readme-1/readme-1-1/basic-auth-tutorial: tutorials/security-access-control-tutorials/basic-auth.md
     readme-1/readme-1-1/relationship-based-access-control-in-aidbox: tutorials/security-access-control-tutorials/rbac/README.md
     readme-1/subscriptions: modules/topic-based-subscriptions/README.md
-    readme-1/validation-tutorials/upload-fhir-implementation-guide/uploading-fhir-ig-using-uploadfig-library: tutorials/validation-tutorials/upload-fhir-implementation-guide/uploadfig-tool.md
+    readme-1/validation-tutorials/upload-fhir-implementation-guide/uploading-fhir-ig-using-uploadfig-library: tutorials/artifact-registry-tutorials/upload-fhir-implementation-guide/uploadfig-tool.md
     reference/configuration/environment-variables/optional-environment-variables: reference/environment-variables/optional-environment-variables.md
     reference/settings/security-access-control: reference/settings/security-and-access-control.md
     security-and-access-control-1/auth/external-oauth-2.0-providers/configure-okta: tutorials/security-access-control-tutorials/okta.md
