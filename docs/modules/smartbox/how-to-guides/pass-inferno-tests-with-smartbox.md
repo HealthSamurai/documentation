@@ -19,7 +19,7 @@ The article has be reviewed for next Inferno framework v0.3.12 and test suite
 Smartbox must be publicly available from the Internet in order to Inferno could reach Smartbox and run tests.
 {% endhint %}
 
-Once you have your Smartbox instance [up and running](broken-reference) you need to register a FHIR server by creating Tenant resource and upload necessary resources for Inferno.
+Once you have your Smartbox instance up and running you need to register a FHIR server by creating Tenant resource and upload necessary resources for Inferno.
 
 * Patient record with all USCDIv1 data elements in us-core format,
 * User resource, associated with the patient record
