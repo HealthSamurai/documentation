@@ -4,9 +4,9 @@
 Test FHIR Schema Validator on public [demo page](https://fhir-validator.aidbox.app).
 {% endhint %}
 
-This new validation engine is set to replace the existing [Zen Schema Validator](../../../reference/settings/zen-project.md) and JSON Schema validators. \
+This new validation engine is set to replace the existing [Zen Schema Validator](../../../reference/settings/zen-project.md) and JSON Schema validators.\
 \
-The primary objectives for this new validator are _enhanced performance_, _easy configuration_, and _straightforward interaction_. Internally, the new validator utilizes the [FHIR Schema](https://github.com/fhir-schema/fhir-schema) for the validation process. We believe that it has the potential to become a [community](https://chat.fhir.org/#narrow/stream/391879-FHIR-Schema/topic/early.20draft) standard, and we are actively working towards this goal. \
+The primary objectives for this new validator are _enhanced performance_, _easy configuration_, and _straightforward interaction_. Internally, the new validator utilizes the [FHIR Schema](https://github.com/fhir-schema/fhir-schema) for the validation process. We believe that it has the potential to become a [community](https://chat.fhir.org/#narrow/stream/391879-FHIR-Schema/topic/early.20draft) standard, and we are actively working towards this goal.\
 \
 Building on our past experiences, we've simplified the interaction process with the validation module. If you wish to use the StructureDefinition resource as a source of truth, simply POST it.
 
@@ -38,13 +38,13 @@ Comparison of features with previous validation engines
 {% hint style="warning" %}
 Error on `nulls`
 
-Starting from [the 2405 ](../../../overview/release-notes.md#may-2024-stable-2405)release when using a FHIR schema validation engine Aidbox throws errors when posting values that contain`null`s. This behavior is FHIR compliant.  \
+Starting from [the 2405 ](../../../overview/release-notes.md#may-2024-stable-2405)release when using a FHIR schema validation engine Aidbox throws errors when posting values that contain`null`s. This behavior is FHIR compliant.\
 \
 When using Zen schema and JSON schema Aidbox automatically strips `null` values.
 {% endhint %}
 
 ## Useful pages
 
-* [Setup ⚙️](./setup-aidbox-with-fhir-schema-validation-engine.md)
-* [Supported IGs 📦](./aidbox-fhir-igs-registry.md)
-* [Upload FHIR IG to Aidbox ⬆️](../../../tutorials/validation-tutorials/upload-fhir-implementation-guide/README.md)
+* [Setup ⚙️](setup-aidbox-with-fhir-schema-validation-engine.md)
+* [Supported IGs 📦](aidbox-fhir-igs-registry.md)
+* [Upload FHIR IG to Aidbox ⬆️](../../../tutorials/artifact-registry-tutorials/upload-fhir-implementation-guide/)

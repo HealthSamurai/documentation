@@ -762,8 +762,8 @@ GET /fhir/TutorNotification?status=requested
 
 Manually writing StructureDefinitions can be overwhelming. Fortunately, there is an alternative: FSH/SUSHI allows you to generate a FHIR NPM package with your custom resources, which you can load into Aidbox and use.
 
-{% content-ref url="../../validation-tutorials/upload-fhir-implementation-guide/" %}
-[upload-fhir-implementation-guide](../../validation-tutorials/upload-fhir-implementation-guide/)
+{% content-ref url="../upload-fhir-implementation-guide/" %}
+[upload-fhir-implementation-guide](../upload-fhir-implementation-guide/)
 {% endcontent-ref %}
 
 ## How Aidbox Deals with FHIR Limitations for Custom Resources

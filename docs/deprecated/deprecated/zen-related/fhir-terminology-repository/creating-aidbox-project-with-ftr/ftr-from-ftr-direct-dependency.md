@@ -3,7 +3,7 @@
 {% hint style="warning" %}
 Since the 2405 release, using Aidbox in FHIRSchema mode is recommended, which is incompatible with zen or Entity/Attribute options.
 
-[Broken link](broken-reference)
+[Broken link](broken-reference/)
 {% endhint %}
 
 ## Prerequisites
@@ -12,7 +12,7 @@ Since the 2405 release, using Aidbox in FHIRSchema mode is recommended, which is
 
 In this guide, we will create an FTR that represents a SNOMED CT subset that includes codes descending to `"Angina (disorder)" (194828000)`. The FTR on which we depend is stored remotely in a GitHub source-code repository. You can modify the `source-url` field in the FTR manifest to provide a desired URL, which can be a file path or network URL. Main use case for this extraction engine — design new ValueSets.
 
-## Creating [Aidbox Configuration project](../../aidbox-zen-lang-project/README.md)
+## Creating [Aidbox Configuration project](../../aidbox-zen-lang-project/)
 
 Create a directory `project` with following structure:
 
@@ -40,7 +40,7 @@ project/
 ```
 {% endcode %}
 
-This ValueSet definition conforms to the[ zen.fhir ValueSet schema](../../profiling-with-zen-lang/README.md) and includes a `:ftr` property. The `:ftr` property contains an FTR manifest that defines an FTR-dependency source through the `:source-url` property, which allows the creation of an expanded version of the ValueSet to be stored in the resulting FTR. In addition, the `:extractor-options.target-tag` specifies the tag to be selected within the provided FTR dependency. For more information on the FTR manifest, please refer to this [page](../ftr-manifest.md).
+This ValueSet definition conforms to the[ zen.fhir ValueSet schema](../../profiling-with-zen-lang/) and includes a `:ftr` property. The `:ftr` property contains an FTR manifest that defines an FTR-dependency source through the `:source-url` property, which allows the creation of an expanded version of the ValueSet to be stored in the resulting FTR. In addition, the `:extractor-options.target-tag` specifies the tag to be selected within the provided FTR dependency. For more information on the FTR manifest, please refer to this [page](../ftr-manifest.md).
 
 {% code title="zrc/angina.edn" %}
 ```clojure
@@ -91,9 +91,9 @@ Commit FTR directory:
 git add . && git commit -m "Build ftr"
 ```
 
-Now you can run Aidbox with the following configuration project and use [FHIR Terminology API ](../../../../../modules/terminology/valueset/README.md)methods like `$validate-code/$lookup` on generated `angina-vs` ValueSet. Resource validation performed when someone invocates a FHIR REST operations will also validate ValueSet binding via FTR.
+Now you can run Aidbox with the following configuration project and use [FHIR Terminology API ](../../../forms/terminology/valueset/)methods like `$validate-code/$lookup` on generated `angina-vs` ValueSet. Resource validation performed when someone invocates a FHIR REST operations will also validate ValueSet binding via FTR.
 
-For detailed instructions about using Aidbox with Aidbox configuration project, please refer to this [page](broken-reference).
+For detailed instructions about using Aidbox with Aidbox configuration project, please refer to this [page](broken-reference/).
 
 ## Instruct Aidbox to load terminologies into the DB
 
@@ -109,7 +109,7 @@ By default, Aidbox does not load terminologies into the database as that can tak
 
 For guidance on development and production usage, visit the links below:
 
-* [Development tips](broken-reference)
-* [Production tips](broken-reference)
+* [Development tips](broken-reference/)
+* [Production tips](broken-reference/)
 
 For customizing Aidbox startup behavior when using FTR, read about [FTR environment variables](../../ftr.md).

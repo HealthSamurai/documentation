@@ -1,11 +1,11 @@
-# Handling hierarchies using ancestors
+# Handling hierarchies using ancestors (deprecated)
 
 {% hint style="info" %}
 Please start [a discussion](https://github.com/Aidbox/Issues/discussions) or contact us if you have questions, feedback, or suggestions.
 {% endhint %}
 
 {% hint style="info" %}
-If your current terminology (ICD-10, Loinc, RxNorm, etc.) based on `hierarchy` attribute you may [request](../../../overview/contact-us.md) to update this terminology
+If your current terminology (ICD-10, Loinc, RxNorm, etc.) based on `hierarchy` attribute you may [request](../../../../../overview/contact-us.md) to update this terminology
 {% endhint %}
 
 ### Ancestors
@@ -16,7 +16,7 @@ Use of `ancestors` attribute is optional and we still support `hierarchy` attrib
 
 For example, source terminology structure looks as follows:
 
-![](../../../../.gitbook/assets/72f9a38f-9b32-4c1a-a965-56d146ca442d.png)
+![](../../../../../../.gitbook/assets/72f9a38f-9b32-4c1a-a965-56d146ca442d.png)
 
 This is how ancestors hierarchy is supposed to be represented in Aidbox `Concept` resource:
 

@@ -3,14 +3,14 @@
 {% hint style="warning" %}
 Since the 2405 release, using Aidbox in FHIRSchema mode is recommended, which is incompatible with zen or Entity/Attribute options.
 
-[Broken link](broken-reference)
+[Broken link](broken-reference/)
 {% endhint %}
 
 ## Prerequisites
 
 1. Download zen-ftr CLI: [Download link](https://github.com/HealthSamurai/ftr/releases/latest/download/zen.jar)
 
-## Creating [Aidbox Configuration project](../../aidbox-zen-lang-project/README.md)
+## Creating [Aidbox Configuration project](../../aidbox-zen-lang-project/)
 
 Create a directory `project` with following structure:
 
@@ -42,7 +42,7 @@ project/
 ```
 {% endcode %}
 
-This ValueSet definition confirms to [zen.fhir ValueSet schema](../../profiling-with-zen-lang/README.md) and has a `:ftr` property, it contains an FTR manifest that defines an IG source via `:source-url` property to create an expanded version of the ValueSet to be stored in the resulting FTR. For details about FTR manifest, please, refer to this [page](../ftr-manifest.md).
+This ValueSet definition confirms to [zen.fhir ValueSet schema](../../profiling-with-zen-lang/) and has a `:ftr` property, it contains an FTR manifest that defines an IG source via `:source-url` property to create an expanded version of the ValueSet to be stored in the resulting FTR. For details about FTR manifest, please, refer to this [page](../ftr-manifest.md).
 
 ```clojure
 {ns gender
@@ -139,9 +139,9 @@ Commit FTR directory:
 git add . && git commit -m "Build ftr"
 ```
 
-Now you can run Aidbox with the following configuration project and use [FHIR Terminology API ](../../../../../modules/terminology/valueset/README.md)methods like `$validate-code/$lookup` on generated `diagnosis-vs` ValueSet. Resource validation performed when someone invocates a FHIR REST operations will also validate ValueSet binding via FTR.
+Now you can run Aidbox with the following configuration project and use [FHIR Terminology API ](../../../forms/terminology/valueset/)methods like `$validate-code/$lookup` on generated `diagnosis-vs` ValueSet. Resource validation performed when someone invocates a FHIR REST operations will also validate ValueSet binding via FTR.
 
-For detailed instructions about using Aidbox with Aidbox configuration project, please refer to this [page](broken-reference).
+For detailed instructions about using Aidbox with Aidbox configuration project, please refer to this [page](broken-reference/).
 
 ## Instruct Aidbox to load terminologies into the DB
 
@@ -157,7 +157,7 @@ By default, Aidbox does not load terminologies into the database as that can tak
 
 For guidance on development and production usage, visit the links below:
 
-* [Development tips](broken-reference)
-* [Production tips](broken-reference)
+* [Development tips](broken-reference/)
+* [Production tips](broken-reference/)
 
 For customizing Aidbox startup behavior when using FTR, read about [FTR environment variables](../../ftr.md).

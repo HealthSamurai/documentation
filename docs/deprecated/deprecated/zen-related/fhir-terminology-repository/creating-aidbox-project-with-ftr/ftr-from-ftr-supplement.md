@@ -3,7 +3,7 @@
 {% hint style="warning" %}
 Since the 2405 release, using Aidbox in FHIRSchema mode is recommended, which is incompatible with zen or Entity/Attribute options.
 
-[Broken link](broken-reference)
+[Broken link](broken-reference/)
 {% endhint %}
 
 ## Prerequisites
@@ -81,7 +81,7 @@ project/
 ```
 {% endcode %}
 
-The ValueSet definition conforms to the [zen.fhir ValueSet schema](../../profiling-with-zen-lang/README.md) and includes a :ftr property. This property contains an FTR manifest that defines an IG source using the :source-url property, and provides coordinates for supplementary ValueSets using :extractor-options.supplements. The supplementary ValueSets are used to create an expanded version of the ValueSet, which is then stored in the resulting FTR. To learn more about the FTR manifest, please refer to this [page](../ftr-manifest.md).
+The ValueSet definition conforms to the [zen.fhir ValueSet schema](../../profiling-with-zen-lang/) and includes a :ftr property. This property contains an FTR manifest that defines an IG source using the :source-url property, and provides coordinates for supplementary ValueSets using :extractor-options.supplements. The supplementary ValueSets are used to create an expanded version of the ValueSet, which is then stored in the resulting FTR. To learn more about the FTR manifest, please refer to this [page](../ftr-manifest.md).
 
 #### Spec for supplement coordinate
 
@@ -134,9 +134,9 @@ Commit FTR directory:
 git add . && git commit -m "Build ftr"
 ```
 
-Now you can run Aidbox with the following configuration project and use [FHIR Terminology API ](../../../../../modules/terminology/valueset/README.md)methods like `$validate-code/$lookup` on generated `angina-vs` ValueSet. Resource validation performed when someone invocates a FHIR REST operations will also validate ValueSet binding via FTR.
+Now you can run Aidbox with the following configuration project and use [FHIR Terminology API ](../../../forms/terminology/valueset/)methods like `$validate-code/$lookup` on generated `angina-vs` ValueSet. Resource validation performed when someone invocates a FHIR REST operations will also validate ValueSet binding via FTR.
 
-For detailed instructions about using Aidbox with Aidbox configuration project, please refer to this [page](broken-reference).
+For detailed instructions about using Aidbox with Aidbox configuration project, please refer to this [page](broken-reference/).
 
 ## Instruct Aidbox to load terminologies into the DB
 
@@ -152,7 +152,7 @@ By default, Aidbox does not load terminologies into the database as that can tak
 
 For guidance on development and production usage, visit the links below:
 
-* [Development tips](broken-reference)
-* [Production tips](broken-reference)
+* [Development tips](broken-reference/)
+* [Production tips](broken-reference/)
 
 For customizing Aidbox startup behavior when using FTR, read about [FTR environment variables](../../ftr.md).

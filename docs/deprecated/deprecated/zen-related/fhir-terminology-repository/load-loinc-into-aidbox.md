@@ -7,18 +7,18 @@ description: Start working with LOINC terminology in Aidbox
 {% hint style="warning" %}
 Since the 2405 release, using Aidbox in FHIRSchema mode is recommended, which is incompatible with zen or Entity/Attribute options.
 
-[Broken link](broken-reference)
+[Broken link](broken-reference/)
 {% endhint %}
 
 [LOINC](https://loinc.org/), or Logical Observation Identifiers Names and Codes, is an extensive medical terminology system that can be incorporated into FHIR ValueSet resources. It is a universal standard for identifying health measurements, observations, and documents, which helps facilitate the sharing and aggregation of clinical results.
 
-We provide out-of-the box integration with LOINC through [Aidbox Configuration Project](../aidbox-zen-lang-project/README.md).
+We provide out-of-the box integration with LOINC through [Aidbox Configuration Project](../aidbox-zen-lang-project/).
 
 ## How to set up Aidbox with LOINC terminology
 
-To correctly set up Aidbox, we'll utilize the Aidbox configuration projects. \
+To correctly set up Aidbox, we'll utilize the Aidbox configuration projects.\
 \
-There's an [existing guide](broken-reference) for this process. Adhere to this guide, <mark style="background-color:green;">but note a variation</mark> when you reach the `Configure the Aidbox` step: instead of using the recommended configuration projects (R4,R4B,R5,etc.) — clone this specific project:     &#x20;
+There's an [existing guide](broken-reference/) for this process. Adhere to this guide, <mark style="background-color:green;">but note a variation</mark> when you reach the `Configure the Aidbox` step: instead of using the recommended configuration projects (R4,R4B,R5,etc.) — clone this specific project:
 
 ```sh
 git clone \
@@ -123,8 +123,6 @@ Currently, we support various LOINC terminology translations, and we can incorpo
 
 <table><thead><tr><th width="383">Zen Package Link</th><th>Languages (IETF BCP 47 tags)</th></tr></thead><tbody><tr><td>git@github.com:zen-fhir/loinc.git</td><td>en</td></tr><tr><td>git@github.com:zen-fhir/loinc-fr-ca.git</td><td>en, fr-ca</td></tr></tbody></table>
 
-See also [$translate-concepts RPC](../../../../modules/terminology/concept/translate-concepts.md).
-
-
+See also [$translate-concepts RPC](../../forms/terminology/concept/translate-concepts.md).
 
 [^1]: Namespace we've imported

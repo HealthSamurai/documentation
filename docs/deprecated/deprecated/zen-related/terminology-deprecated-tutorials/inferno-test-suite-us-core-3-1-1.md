@@ -32,8 +32,8 @@ The git template project contains US Core version 3.1.1 FHIR IG preconfigured vi
 If you already have a running Aidbox instance, please refer to the following guide:
 {% endhint %}
 
-{% content-ref url="../../../../tutorials/validation-tutorials/upload-fhir-implementation-guide/" %}
-[upload-fhir-implementation-guide](../../../../tutorials/validation-tutorials/upload-fhir-implementation-guide/)
+{% content-ref url="../../../../tutorials/artifact-registry-tutorials/upload-fhir-implementation-guide/" %}
+[upload-fhir-implementation-guide](../../../../tutorials/artifact-registry-tutorials/upload-fhir-implementation-guide/)
 {% endcontent-ref %}
 
 ## Uploading test data samples

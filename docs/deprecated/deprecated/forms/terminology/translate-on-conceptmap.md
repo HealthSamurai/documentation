@@ -5,7 +5,7 @@ description: >-
   server.
 ---
 
-# $translate on ConceptMap
+# $translate on ConceptMap (deprecated)
 
 {% hint style="info" %}
 All the examples can be found at the `"FHIR ConceptMap Resource and translation"`community notebook which is accessible via your Aidbox Notebooks UI Tab
@@ -119,7 +119,7 @@ java -jar [JAR_PATH] cmndj -i PATH/TO/CONCEPT_MAP.json -o PATH/TO/OUTPUT_BUNDLE.
 
 The output bundle consists of ConceptMap meta resource and the set of ConceptMapRule resources.
 
-Use [Bulk API ](../../api/bulk-api/README.md)to upload output bundle.
+Use [Bulk API ](../../../../api/bulk-api/)to upload output bundle.
 
 ### How to get full ConceptMap resource
 

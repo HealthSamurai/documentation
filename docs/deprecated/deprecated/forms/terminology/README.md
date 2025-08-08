@@ -1,4 +1,4 @@
-# Aidbox Terminology Module
+# Aidbox Terminology Module (deprecated page)
 
 FHIR defines [terminology service](https://www.hl7.org/fhir/terminology-service.html#4.6) to simplify usage of terminologies.
 
@@ -20,8 +20,8 @@ In Aidbox, all terminology services are built around non-FHIR **Concept** resour
 
 #### Design/Management phase
 
-{% content-ref url="../../deprecated/deprecated/zen-related/fhir-terminology-repository/ftr-specification.md" %}
-[ftr-specification.md](../../deprecated/deprecated/zen-related/fhir-terminology-repository/ftr-specification.md)
+{% content-ref url="../../zen-related/fhir-terminology-repository/ftr-specification.md" %}
+[ftr-specification.md](../../zen-related/fhir-terminology-repository/ftr-specification.md)
 {% endcontent-ref %}
 
 {% content-ref url="valueset/create-a-valueset.md" %}
@@ -29,7 +29,7 @@ In Aidbox, all terminology services are built around non-FHIR **Concept** resour
 {% endcontent-ref %}
 
 {% content-ref url="terminology-api/" %}
-[terminology-api](./terminology-api/README.md)
+[terminology-api](terminology-api/)
 {% endcontent-ref %}
 
 #### Usage phase
@@ -53,7 +53,7 @@ FHIR spec offers FHIR terminology API for validation and lookups
 
 #### ConceptMap
 
-| FHIR specification                                                          | Status          | Documentation and samples                               |
-| --------------------------------------------------------------------------- | --------------- | ------------------------------------------------------- |
+| FHIR specification                                                          | Status          | Documentation and samples                            |
+| --------------------------------------------------------------------------- | --------------- | ---------------------------------------------------- |
 | [$translate](https://www.hl7.org/fhir/conceptmap-operations.html#translate) | `supported`     | [ConceptMap Translation](translate-on-conceptmap.md) |
-| [$closure](https://www.hl7.org/fhir/conceptmap-operations.html#closure)     | `not supported` |                                                         |
+| [$closure](https://www.hl7.org/fhir/conceptmap-operations.html#closure)     | `not supported` |                                                      |

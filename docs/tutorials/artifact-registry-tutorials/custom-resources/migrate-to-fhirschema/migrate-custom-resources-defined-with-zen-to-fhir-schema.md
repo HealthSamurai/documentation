@@ -12,8 +12,8 @@ The materials in this section describe what to do next with the resulting FHIR S
 [how-to-create-fhir-npm-package.md](../../how-to-create-fhir-npm-package.md)
 {% endcontent-ref %}
 
-{% content-ref url="../../../validation-tutorials/upload-fhir-implementation-guide/" %}
-[upload-fhir-implementation-guide](../../../validation-tutorials/upload-fhir-implementation-guide/)
+{% content-ref url="../../upload-fhir-implementation-guide/" %}
+[upload-fhir-implementation-guide](../../upload-fhir-implementation-guide/)
 {% endcontent-ref %}
 
 ## Obtain FHIRSchema
@@ -572,8 +572,8 @@ If you have multiple schemas replacing a set of resources and want to work with 
 
 **Loading the FHIR NPM Package**
 
-{% content-ref url="../../../validation-tutorials/upload-fhir-implementation-guide/" %}
-[upload-fhir-implementation-guide](../../../validation-tutorials/upload-fhir-implementation-guide/)
+{% content-ref url="../../upload-fhir-implementation-guide/" %}
+[upload-fhir-implementation-guide](../../upload-fhir-implementation-guide/)
 {% endcontent-ref %}
 
 **Important Notes:**

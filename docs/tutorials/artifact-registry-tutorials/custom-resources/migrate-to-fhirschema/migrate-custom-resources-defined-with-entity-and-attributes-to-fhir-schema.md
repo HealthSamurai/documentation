@@ -12,8 +12,8 @@ The materials in this section describe what to do next with the resulting FHIR S
 [how-to-create-fhir-npm-package.md](../../how-to-create-fhir-npm-package.md)
 {% endcontent-ref %}
 
-{% content-ref url="../../../validation-tutorials/upload-fhir-implementation-guide/" %}
-[upload-fhir-implementation-guide](../../../validation-tutorials/upload-fhir-implementation-guide/)
+{% content-ref url="../../upload-fhir-implementation-guide/" %}
+[upload-fhir-implementation-guide](../../upload-fhir-implementation-guide/)
 {% endcontent-ref %}
 
 ## Obtain FHIRSchema
@@ -42,7 +42,7 @@ Please double-check the compilation results, as they may contain transformation 
 
 #### Example: Concept entity
 
-Here's an example of migrating a custom Aidbox resource, [Concept](../../../../modules/terminology/concept/). This resource mirrors FHIR's CodeSystem `concept` property and extends it in various ways.
+Here's an example of migrating a custom Aidbox resource, [Concept](../../../../deprecated/deprecated/forms/terminology/concept/). This resource mirrors FHIR's CodeSystem `concept` property and extends it in various ways.
 
 {% tabs %}
 {% tab title="Request" %}
@@ -476,8 +476,8 @@ If you have multiple schemas replacing a set of resources and want to work with 
 
 **Loading the FHIR NPM Package**
 
-{% content-ref url="../../../validation-tutorials/upload-fhir-implementation-guide/" %}
-[upload-fhir-implementation-guide](../../../validation-tutorials/upload-fhir-implementation-guide/)
+{% content-ref url="../../upload-fhir-implementation-guide/" %}
+[upload-fhir-implementation-guide](../../upload-fhir-implementation-guide/)
 {% endcontent-ref %}
 
 #### **Important Notes:**

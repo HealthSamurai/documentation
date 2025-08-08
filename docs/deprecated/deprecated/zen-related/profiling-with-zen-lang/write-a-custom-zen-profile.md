@@ -3,11 +3,11 @@
 {% hint style="warning" %}
 Since the 2405 release, using Aidbox in FHIRSchema mode is recommended, which is incompatible with zen or Entity/Attribute options.
 
-[Setup Aidbox with FHIR Schema validation engine](broken-reference)
+[Setup Aidbox with FHIR Schema validation engine](broken-reference/)
 {% endhint %}
 
 {% hint style="info" %}
-Note: you **can not** use Attributes and [zen profiles](./README.md) on the same resource at the same time
+Note: you **can not** use Attributes and [zen profiles](./) on the same resource at the same time
 {% endhint %}
 
 {% embed url="https://github.com/zen-fhir/zen.fhir/blob/main/README.org" %}
@@ -16,7 +16,7 @@ Full syntax description and examples
 
 ## Validation modes supported with zen schemas
 
-Zen schemas are used by Aidbox for validating resources e.g. in [FHIR CRUD API](../../../../api/rest-api/crud/README.md). Such zen schemas must be tagged with either `zen.fhir/base-schema` or `zen.fhir/profile-schema`. Additionally, they must have `:zen.fhir/type` and `:zen.fhir/profileUri` keys specified.
+Zen schemas are used by Aidbox for validating resources e.g. in [FHIR CRUD API](../../../../api/rest-api/crud/). Such zen schemas must be tagged with either `zen.fhir/base-schema` or `zen.fhir/profile-schema`. Additionally, they must have `:zen.fhir/type` and `:zen.fhir/profileUri` keys specified.
 
 ### `zen.fhir/base-schema`
 
@@ -107,7 +107,7 @@ Those schemas must be tagged with `zen.fhir/profile-schema`, describe data struc
 
 #### `zen.fhir/value-set`
 
-To enable value-set validation in zen [concept resources](../../../../modules/terminology/concept/README.md) with `valueset` attribute populated must be loaded into Aidbox.
+To enable value-set validation in zen [concept resources](../../forms/terminology/concept/) with `valueset` attribute populated must be loaded into Aidbox.
 
 `:zen.fhir/value-set` key must be a symbol tagged with `zen.fhir/value-set`
 

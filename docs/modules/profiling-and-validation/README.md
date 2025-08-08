@@ -8,7 +8,7 @@ However, FHIR resources are generic and have minimal mandatory requirements. For
 
 The process of creating these constraints is known as _profiling_. These constraints can be expressed in various ways, for which FHIR defines a set of artefacts:
 
-<table><thead><tr><th width="166">Artefact</th><th width="425">Description</th><th>Example</th></tr></thead><tbody><tr><td>Implementation Guide (IG)</td><td>A well-defined and bounded set of adaptations, published together as a single entity. Typically consists of profiles, terminology resources, operation definitions, search parameters, and data examples.</td><td>US Core IG<br><br>mCODE</td></tr><tr><td>Conformance Resource</td><td><p>A single resource in a package that makes rules about how an implementation works, for example:</p><p></p><ul><li>The <code>ValueSet</code> resource defines an inclusion of codes from various <code>CodeSystems</code> or other <code>ValueSets</code>. This resource can be used as a <code>Terminology Binding</code> in a <code>StructureDefinition</code> to constrain the possible set of values for a property (e.g., Patient.gender) or to validate a specific code by checking its presence in the <code>ValueSet</code> via <code>/ValueSet/$validate-code</code>.</li><li>The <code>CodeSystem</code> resource defines a source of codes that can be used for lookups or included in a ValueSet resource.</li><li>The <code>OperationDefinition</code>  defines a FHIR Server operation behaviour and input/output interfaces.</li></ul></td><td>US Core Condition Codes Value Set<br><br>AdministrativeGender CodeSystem<br><br>ValueSet $expand OperationDefinition</td></tr><tr><td>Profile</td><td>A set of constraints on a resource is represented as a <code>StructureDefinition</code> with derivation set to <code>constraint</code>. <br><br><code>StructureDefinition</code> is also used for defining resources, not just specifying constraints; all FHIR Core resources are defined using <code>StructureDefinition</code>. <br><br>While <code>StructureDefinition</code> is indeed a Conformance Resource, we emphasize it here as a <code>Profile</code> because <code>Implementation Guides (IGs)</code> typically consist mostly of these specific resources.</td><td>US Core Medication Request</td></tr></tbody></table>
+<table><thead><tr><th width="166">Artefact</th><th width="425">Description</th><th>Example</th></tr></thead><tbody><tr><td>Implementation Guide (IG)</td><td>A well-defined and bounded set of adaptations, published together as a single entity. Typically consists of profiles, terminology resources, operation definitions, search parameters, and data examples.</td><td>US Core IG<br><br>mCODE</td></tr><tr><td>Conformance Resource</td><td><p>A single resource in a package that makes rules about how an implementation works, for example:</p><ul><li>The <code>ValueSet</code> resource defines an inclusion of codes from various <code>CodeSystems</code> or other <code>ValueSets</code>. This resource can be used as a <code>Terminology Binding</code> in a <code>StructureDefinition</code> to constrain the possible set of values for a property (e.g., Patient.gender) or to validate a specific code by checking its presence in the <code>ValueSet</code> via <code>/ValueSet/$validate-code</code>.</li><li>The <code>CodeSystem</code> resource defines a source of codes that can be used for lookups or included in a ValueSet resource.</li><li>The <code>OperationDefinition</code> defines a FHIR Server operation behaviour and input/output interfaces.</li></ul></td><td>US Core Condition Codes Value Set<br><br>AdministrativeGender CodeSystem<br><br>ValueSet $expand OperationDefinition</td></tr><tr><td>Profile</td><td>A set of constraints on a resource is represented as a <code>StructureDefinition</code> with derivation set to <code>constraint</code>.<br><br><code>StructureDefinition</code> is also used for defining resources, not just specifying constraints; all FHIR Core resources are defined using <code>StructureDefinition</code>.<br><br>While <code>StructureDefinition</code> is indeed a Conformance Resource, we emphasize it here as a <code>Profile</code> because <code>Implementation Guides (IGs)</code> typically consist mostly of these specific resources.</td><td>US Core Medication Request</td></tr></tbody></table>
 
 ## What Aidbox provides for _profiling_?
 
@@ -29,25 +29,25 @@ Specifying constraints and refinements is only half the job; your FHIR server mu
 During validation, various constraints are checked, including data shape, required properties, FHIRPath invariants, slicings, reference checks, and terminology bindings. You can read about the specific constraints supported by the Aidbox validator engine here:
 
 {% content-ref url="fhir-schema-validator/" %}
-[fhir-schema-validator](fhir-schema-validator/README.md)
+[fhir-schema-validator](fhir-schema-validator/)
 {% endcontent-ref %}
 
 ## What Aidbox provides for _validation_?
 
 Aidbox allows you to upload Implementation Guides. Once an IG is loaded, data instances marked with profile canonical URLs from the loaded IGs will be automatically validated against it without any additional setup. For tutorials on loading IGs into Aidbox, please refer to this page:
 
-{% content-ref url="../../tutorials/validation-tutorials/upload-fhir-implementation-guide/" %}
-[upload-fhir-implementation-guide](../../tutorials/validation-tutorials/upload-fhir-implementation-guide/README.md)
+{% content-ref url="../../tutorials/artifact-registry-tutorials/upload-fhir-implementation-guide/" %}
+[upload-fhir-implementation-guide](../../tutorials/artifact-registry-tutorials/upload-fhir-implementation-guide/)
 {% endcontent-ref %}
 
 Additionally, you can easily create a `StructureDefinition` in a running Aidbox instance and validate a resource against it. Simply mark your data instance with the profile's canonical URL that was posted earlier, and then create your data. The validator engine will check it against the previously created profile. For tutorials on creating StructureDefinitions in Aidbox, please refer to this guide:
 
-{% content-ref url="../../tutorials/validation-tutorials/upload-fhir-implementation-guide/aidbox-fhir-api.md" %}
-[aidbox-fhir-api.md](../../tutorials/validation-tutorials/upload-fhir-implementation-guide/aidbox-fhir-api.md)
+{% content-ref url="../../tutorials/artifact-registry-tutorials/upload-fhir-implementation-guide/aidbox-fhir-api.md" %}
+[aidbox-fhir-api.md](../../tutorials/artifact-registry-tutorials/upload-fhir-implementation-guide/aidbox-fhir-api.md)
 {% endcontent-ref %}
 
 ## Aidbox validation engines
 
 {% content-ref url="fhir-schema-validator/" %}
-[fhir-schema-validator](fhir-schema-validator/README.md)
+[fhir-schema-validator](fhir-schema-validator/)
 {% endcontent-ref %}
