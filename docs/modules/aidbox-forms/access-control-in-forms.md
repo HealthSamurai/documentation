@@ -1137,3 +1137,29 @@ matcho:
 ```
 
 Each access policy should also specify the allowed resource types, operations (e.g., read, search, create), and any additional filters or constraints as appropriate for your security model.
+
+For example:
+
+You want to grant the `response-manager` role permission to populate data from the `Patient` resource.
+
+
+```yaml
+
+PUT /AccessPolicy/as-sdc-response-manager-populate-patient-data
+content-type: text/yaml
+accept: text/yaml
+
+id: as-sdc-response-manager-populate-patient-data
+resourceType: AccessPolicy
+engine: matcho
+matcho:
+  user:
+    roles:
+      $contains:
+        value: sdc-response-manager
+  extra-data:
+    sdc:
+      context: extract
+  uri: '#/Patient$'
+  request-method: get
+```
