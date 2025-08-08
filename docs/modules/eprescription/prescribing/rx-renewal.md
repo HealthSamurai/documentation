@@ -21,7 +21,34 @@ TODO: ARE THERE OTHER EXCEPTIONAL SITUATIONS? I DIDN'T FIND ANY?
 
 ### Renewal statuses
 
-The statuse of the request is stored in the created **MedicationRequest**'s `extension` field under `http://aidbox.app/ePrescription/FHIRSchema/medication-request-rx-renewal-status` key. The initial status is `active`. For the rest, consult [NewRx status table](./newrx-message.md)
+The statuse of the request is stored in the created **MedicationRequest**'s `extension` field under `http://aidbox.app/ePrescription/FHIRSchema/medication-request-rx-renewal-status` extension.
+
+```yaml
+GET /fhir/MedicationRequest
+
+resourceType: Bundle
+type: searchset
+meta:
+  versionId: '0'
+total: ...
+link:
+  - relation: first
+    url: http://127.0.0.1:8789/fhir/MedicationRequest?page=1
+  - relation: self
+    url: http://127.0.0.1:8789/fhir/MedicationRequest?page=1
+entry:
+  ...
+  - resource:
+      ...
+      resourceType: MedicationRequest
+      extension:
+        - url: >-
+            http://aidbox.app/ePrescription/FHIRSchema/medication-request-rx-renewal-status
+          valueCode: active
+      ...
+```
+
+The initial status is `active`. For the rest, consult [NewRx status table](./newrx-message.md)
 TODO: ARE THESE ALWAYS MATCHING THE NEWRX ONES?
 
 ### Responding to RxRenewalRequest
