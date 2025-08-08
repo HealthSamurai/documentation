@@ -64,7 +64,6 @@ document.addEventListener('keydown', function (event) {
   // F2 key (Toggle fullscreen navigation - only in dev mode)
   if (event.key === 'F2' && window.DEV_MODE) {
     event.preventDefault();
-    console.log('F2 pressed, DEV_MODE:', window.DEV_MODE);
     toggleFullscreenNavigation();
     return;
   }
@@ -300,12 +299,8 @@ document.addEventListener('DOMContentLoaded', function () {
   });
 
   // Initialize F2 fullscreen navigation functionality if in dev mode
-  console.log('DEV_MODE:', window.DEV_MODE);
   if (window.DEV_MODE) {
-    console.log('Initializing F2 fullscreen navigation functionality');
     initializeFullscreenNavigation();
-  } else {
-    console.log('DEV_MODE is false, F2 functionality not initialized');
   }
 });
 
@@ -315,7 +310,6 @@ let originalContent = null;
 let fullscreenElements = null;
 
 function toggleFullscreenNavigation() {
-  console.log('toggleFullscreenNavigation called, current mode:', isFullscreenMode);
 
   if (isFullscreenMode) {
     exitFullscreenMode();
@@ -325,7 +319,6 @@ function toggleFullscreenNavigation() {
 }
 
 function enterFullscreenMode() {
-  console.log('Entering fullscreen navigation mode');
 
   // Save original content
   originalContent = document.body.innerHTML;
@@ -357,11 +350,9 @@ function enterFullscreenMode() {
   `;
 
   isFullscreenMode = true;
-  console.log('Fullscreen mode activated');
 }
 
 function exitFullscreenMode() {
-  console.log('Exiting fullscreen navigation mode');
 
   if (originalContent) {
     document.body.innerHTML = originalContent;
@@ -371,7 +362,6 @@ function exitFullscreenMode() {
   }
 
   isFullscreenMode = false;
-  console.log('Normal mode restored');
 }
 
 function createFullscreenNavigation(leftNav) {
@@ -468,7 +458,6 @@ function createFullscreenNavigation(leftNav) {
 
 // SortableJS Implementation
 function initializeSortableJS(navElement) {
-  console.log('Initializing SortableJS for navigation tree');
 
   // Find all sortable containers (details elements and navigation root)
   const sortableContainers = navElement.querySelectorAll('details, #navigation');
@@ -500,12 +489,10 @@ function initializeSortableJS(navElement) {
       
       // Handle drag and drop events
       onStart: function(evt) {
-        console.log('📦 Drag started:', evt.item);
         evt.item.classList.add('dragging');
       },
       
       onEnd: function(evt) {
-        console.log('🎯 Drag ended:', evt.item);
         evt.item.classList.remove('dragging');
         
         // Handle the drop logic
@@ -527,7 +514,6 @@ function initializeSortableJS(navElement) {
 
     // Mark as initialized
     container.setAttribute('data-sortable-initialized', 'true');
-    console.log('✅ SortableJS initialized for:', container);
   });
 
   // Add CSS for visual feedback
@@ -590,11 +576,9 @@ function addSortableCSS() {
   `;
   
   document.head.appendChild(style);
-  console.log('✅ Sortable CSS added');
 }
 
 function handleSortableDrop(evt) {
-  console.log('🔄 Handling sortable drop:', evt);
   
   const item = evt.item;
   const from = evt.from;
@@ -602,7 +586,7 @@ function handleSortableDrop(evt) {
   const oldIndex = evt.oldIndex;
   const newIndex = evt.newIndex;
   
-  console.log('📊 Drop details:', {
+  // Drop details: {
     item: item.tagName,
     from: from.tagName,
     to: to.tagName,
@@ -612,7 +596,6 @@ function handleSortableDrop(evt) {
   
   // Check if we need to convert leaf to parent
   if (shouldConvertToParent(item, to)) {
-    console.log('🌱 Converting leaf to parent');
     convertLeafToParent(item, to);
   }
   
@@ -630,7 +613,6 @@ function shouldConvertToParent(draggedItem, dropTarget) {
 }
 
 function convertLeafToParent(draggedItem, leafTarget) {
-  console.log('🔄 Converting leaf to parent:', { draggedItem, leafTarget });
   
   // Create new details structure
   const details = document.createElement('details');
@@ -656,7 +638,6 @@ function convertLeafToParent(draggedItem, leafTarget) {
   // Initialize SortableJS for the new container
   initializeSortableJS(details);
   
-  console.log('✅ Leaf converted to parent');
 }
 
 function cleanupEmptyParents(container) {
@@ -671,14 +652,13 @@ function cleanupEmptyParents(container) {
         leafElement.className = summary.className;
         
         container.parentNode.replaceChild(leafElement, container);
-        console.log('🧹 Empty parent converted back to leaf');
       }
     }
   }
 }
 
 function logTreeStructure(item, container, index) {
-  console.log('📋 Tree structure update:', {
+  // Tree structure update: {
     itemId: item.dataset.id || item.textContent.trim(),
     containerId: container.dataset.id || container.id,
     newIndex: index,
@@ -695,9 +675,7 @@ function logTreeStructure(item, container, index) {
         timestamp: new Date().toISOString()
       }
     });
-    console.log('🚀 HTMX request sent to backend');
   } else {
-    console.warn('⚠️ HTMX not available, skipping backend sync');
   }
 }
 
@@ -793,5 +771,4 @@ function focusCurrentPage(navClone) {
 }
 
 function initializeFullscreenNavigation() {
-  console.log('Fullscreen navigation initialized');
 }
