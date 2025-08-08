@@ -16,7 +16,7 @@ StructureDefinition enables customization patterns that address different implem
 
 Profiles allow you to constrain existing FHIR resources to meet specific implementation requirements. Think of a profile as a specialized version of a base resource with additional rules about which elements are required, forbidden, or constrained to specific values.
 
-For example, a US Core Patient profile might require specific elements like race and ethnicity that aren't mandatory in the base Patient resource:
+For example, a [US Core Patient profile](https://hl7.org/fhir/us/core/STU8/StructureDefinition-us-core-patient.html) might require specific elements like identifier that aren't mandatory in the base Patient resource:
 
 ```json
 {
@@ -30,10 +30,19 @@ For example, a US Core Patient profile might require specific elements like race
   "type": "Patient",
   "baseDefinition": "http://hl7.org/fhir/StructureDefinition/Patient",
   "derivation": "constraint"
+  "differential": {
+  ...
+    "id" : "Patient.identifier",
+    "path" : "Patient.identifier",
+    "short" : "An identifier for this patient",
+    "definition" : "An identifier for this patient.",
+    "requirements" : "Patients are almost always assigned specific numerical identifiers.",
+    "min" : 1,
+  ...
+  }
 }
 ```
 
-This approach ensures that Patient resources in your system consistently include required fields for regulatory compliance or business needs.
 
 ### Extensions
 
@@ -44,27 +53,63 @@ A birth place extension might add location information to a Patient resource:
 ```json
 {
   "resourceType": "StructureDefinition",
+  "id": "patient-birthPlace",
   "url": "http://hl7.org/fhir/StructureDefinition/patient-birthPlace",
+  "version": "4.0.1",
   "name": "PatientBirthPlace",
-  "title": "Patient Birth Place",
   "status": "active",
+  "date": "2016-09-01",
+  "publisher": "HL7 International - Patient Care WG",
+  "description": "An extension to record the place of birth for a patient",
+  "fhirVersion": "4.0.1",
   "kind": "complex-type",
   "abstract": false,
+  "type": "Extension",
+  "baseDefinition": "http://hl7.org/fhir/StructureDefinition/Extension",
+  "derivation": "specialization",
   "context": [
     {
       "type": "element",
       "expression": "Patient"
     }
   ],
-  "type": "Extension"
+  "snapshot": {
+    "element": [
+      {
+        "id": "Extension",
+        "path": "Extension"
+      },
+      {
+        "id": "Extension.url",
+        "path": "Extension.url",
+        "fixedUri": "http://hl7.org/fhir/StructureDefinition/patient-birthPlace"
+      },
+      {
+        "id": "Extension.valueAddress",
+        "path": "Extension.valueAddress",
+        "min": 0,
+        "max": "1",
+        "type": [
+          {
+            "code": "Address"
+          }
+        ],
+        "short": "The place of birth",
+        "definition": "The place where the patient was born."
+      }
+    ]
+  }
 }
 ```
 
 Extensions maintain interoperability because systems that don't understand specific extensions can safely ignore them while preserving the core resource data.
 
+See also:
+- [Extension Definition Tutorial](../tutorials/artifact-registry-tutorials/define-extensions/)
+
 ### Custom Resources
 
-Aidbox supports custom resources as an extension to standard FHIR capabilities. While FHIR provides the standard mechanism for defining resource types through StructureDefinition, Aidbox leverages this same approach to enable you to define entirely new resource types for use cases not covered by standard FHIR resources.
+Aidbox supports custom resources as an extension to standard FHIR capabilities. While FHIR provides the standard [mechanism](https://hl7.org/fhir/R4/structuredefinition-definitions.html#StructureDefinition.derivation) for defining resource types through StructureDefinition, Aidbox leverages this same approach to enable you to define entirely new resource types for use cases not covered by standard FHIR resources.
 
 This Aidbox-specific feature uses the standard FHIR way of defining resource types, ensuring compatibility with FHIR tooling while extending functionality. Custom resources should be used sparingly since they reduce interoperability, but they're valuable for organization-specific workflows or emerging healthcare domains.
 
@@ -82,15 +127,25 @@ A custom TelemedicineSession resource might capture video consultation data:
   "type": "TelemedicineSession",
   "baseDefinition": "http://hl7.org/fhir/StructureDefinition/DomainResource",
   "derivation": "specialization"
+  ...
 }
 ```
 
 Custom resources give you complete control over the data structure but require careful consideration of long-term maintenance and interoperability implications.
 
 See also:
-- [FHIR Profiling and Validation](../modules/profiling-and-validation/)
-- [Artifact Registry Overview](./artifact-registry-overview.md)
 
+{% content-ref url="../tutorials/artifact-registry-tutorials/custom-resources/" %}
+[Custom Resource Tutorials](../tutorials/artifact-registry-tutorials/custom-resources/)
+{% endcontent-ref %}
+
+{% content-ref url="](../modules/profiling-and-validation/" %}
+[FHIR Profiling and Validation](](../modules/profiling-and-validation/)
+{% endcontent-ref %}
+
+{% content-ref url="./artifact-registry-overview" %}
+[Artifact Registry Overview](./artifact-registry-overview.md)
+{% endcontent-ref %}
 
 ## Implementation in Aidbox
 
@@ -104,25 +159,4 @@ Once a StructureDefinition is loaded into the Artifact Registry, Aidbox can auto
 
 Aidbox resolves profile references using the canonical URLs defined in StructureDefinition resources. When a resource declares conformance to a profile using the `meta.profile` element, the validation system automatically applies the corresponding constraints.
 
-### Package Dependencies
 
-Structure definitions often reference other canonical resources like ValueSets for terminology bindings or other StructureDefinitions for element types. The Artifact Registry automatically resolves these dependencies when importing packages, ensuring all required resources are available.
-
-```mermaid
-graph LR
-    A[Patient Profile] --> B[Address Extension]
-    A --> C[Country ValueSet]
-    B --> D[Location StructureDefinition]
-    
-    style A fill:#e3f2fd
-    style B fill:#f3e5f5
-    style C fill:#e8f5e8
-    style D fill:#fff3e0
-```
-
-This dependency resolution ensures that complex profiles with multiple references work correctly in validation scenarios.
-
-See also:
-- [Validation Tutorials](../tutorials/validation-tutorials/)
-- [Custom Resource Tutorial](../tutorials/artifact-registry-tutorials/custom-resources/)
-- [Extension Definition Tutorial](../tutorials/artifact-registry-tutorials/define-extensions/)
