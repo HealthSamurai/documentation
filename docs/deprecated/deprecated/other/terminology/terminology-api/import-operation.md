@@ -2,7 +2,7 @@
 description: Import ndjson bundle via REST
 ---
 
-# $import operation
+# $import operation (deprecated)
 
 ## /terminology/$import
 

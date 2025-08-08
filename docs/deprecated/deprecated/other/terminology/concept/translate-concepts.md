@@ -1,4 +1,4 @@
-# $translate-concepts
+# $translate-concepts (deprecated)
 
 $translate-concepts endpoint can be used to translate concepts for given language.
 

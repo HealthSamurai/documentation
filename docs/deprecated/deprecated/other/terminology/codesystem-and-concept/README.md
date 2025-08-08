@@ -1,4 +1,4 @@
-# CodeSystem
+# CodeSystem (deprecated)
 
 ## Overview
 

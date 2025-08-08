@@ -1,4 +1,4 @@
-# Create a ValueSet
+# Create a ValueSet (deprecated page)
 
 There are two ways to get a ValueSet resource in Aidbox:
 
