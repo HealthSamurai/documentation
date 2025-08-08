@@ -12,13 +12,13 @@
 
 Either `true` or `false`. By default, `false`.
 
-It tells Aidbox whether or not it should load [Concepts](../forms/terminology/concept/), [ValueSets](../forms/terminology/valueset/) and [CodeSystems](../forms/terminology/codesystem-and-concept/) into the database. Note that loading into the database is needed for [concept lookups](broken-reference/) and [value set expansions](broken-reference/) as well as for accessing `GET /Concept`, `GET /ValueSet`, `GET /CodeSystem` endpoints but not for validation.
+It tells Aidbox whether or not it should load [Concepts](../other/terminology/concept/), [ValueSets](../other/terminology/valueset/) and [CodeSystems](../other/terminology/codesystem-and-concept/) into the database. Note that loading into the database is needed for [concept lookups](broken-reference/) and [value set expansions](broken-reference/) as well as for accessing `GET /Concept`, `GET /ValueSet`, `GET /CodeSystem` endpoints but not for validation.
 
 ## `BOX_FEATURES_FTR_PULL_SYNC`
 
 Either `true` or `false`. By default, `false`.
 
-Specifies whether or not Aidbox startup should be blocked by loading [Concepts](../forms/terminology/concept/), [ValueSets](../forms/terminology/valueset/) and [CodeSystems](../forms/terminology/codesystem-and-concept/) into the database.
+Specifies whether or not Aidbox startup should be blocked by loading [Concepts](../other/terminology/concept/), [ValueSets](../other/terminology/valueset/) and [CodeSystems](../other/terminology/codesystem-and-concept/) into the database.
 
 Used when `BOX_FEATURES_FTR_PULL_ENABLE=true`.
 

@@ -632,4 +632,4 @@ The use of standardized codes is useful when data needs to be populated into the
 
 The `expand` operation expand given ValueSet in to set of concepts.
 
-This operation is described in detail [here](../../deprecated/deprecated/forms/terminology/valueset/valueset-expansion.md).
+This operation is described in detail [here](../../deprecated/deprecated/other/terminology/valueset/valueset-expansion.md).

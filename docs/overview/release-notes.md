@@ -562,7 +562,7 @@ Minor updates:
 
 * Data API
   * Added multilingual search with \_search-language parameter
-  * Added an option to translate concepts with [$translate-concepts](../deprecated/deprecated/forms/terminology/concept/translate-concepts.md) endpoint
+  * Added an option to translate concepts with [$translate-concepts](../deprecated/deprecated/other/terminology/concept/translate-concepts.md) endpoint
   * Added \_source search parameter
 * [C-CDA / FHIR converter](../modules/integration-toolkit/ccda-converter/)
   * Supported C-CDA to work as a standalone service
@@ -880,7 +880,7 @@ Minor updates:
 * Added env to automatically create a User resource on auth via TokenIntrospector. This allows to use both TokenIntrospector and IdentityProvider auth for the same User in Aidbox.
 * Added log event :op/timeout for logging custom operations timeout
 * Added FHIR Bundle transaction conditional CRUD with `urn:uuid` support
-* Added [SNOMED CT bundle](../deprecated/deprecated/forms/terminology/terminology-api/)
+* Added [SNOMED CT bundle](../deprecated/deprecated/other/terminology/terminology-api/)
 * Enhanced [zen.fhir profiles](../deprecated/deprecated/zen-related/profiling-with-zen-lang/) with RequiredPattern and FixedValue constraints
 * Added [seed service](../deprecated/deprecated/zen-related/aidbox-zen-lang-project/seed-import.md) errors output.
 * Added [Azure Active Directory (Azure AD)](../tutorials/security-access-control-tutorials/azure-ad.md) and [Keycloak](../tutorials/security-access-control-tutorials/keycloak.md) external identity providers integration guides
@@ -894,7 +894,7 @@ Minor updates:
 * Added RPC method to get the import status when running load-from-bucket import operation.
 * Added an option to start Aidbox with an invalid [Aidbox project](../deprecated/deprecated/zen-related/aidbox-zen-lang-project/) in [dev-mode](../deprecated/deprecated/zen-related/aidbox-zen-lang-project/aidbox-project-environment-variables/) to improve the debugging experience. By default, Aidbox doesn't start with invalid Aidbox projects.
 * Added an option to enable ACL checks for searches in conditional operations.
-* Added `BOX_FEATURES_TERMINOLOGY_IMPORT_SYNC` environment variable to enable sync [terminology bundle file load](../deprecated/deprecated/forms/terminology/terminology-api/).
+* Added `BOX_FEATURES_TERMINOLOGY_IMPORT_SYNC` environment variable to enable sync [terminology bundle file load](../deprecated/deprecated/other/terminology/terminology-api/).
 * Added `plain` option to use [`$import`](../api/bulk-api/import-and-fhir-import.md) with non-gzipped files.
 * Added support of entry.search.mode field when using [\_include or \_revinclude](../api/rest-api/fhir-search/include-and-revinclude.md) search parameters.
 * Added `profile` property to the CapabilityStatement resource.
@@ -905,8 +905,8 @@ Minor updates:
 
 * Added an option to [load Aidbox project from a remote Git repository](../deprecated/deprecated/zen-related/aidbox-zen-lang-project/).
 * Improved Aidbox startup time when loading [Aidbox project](../deprecated/deprecated/zen-related/aidbox-zen-lang-project/) from [a zip archive](../deprecated/deprecated/zen-related/aidbox-zen-lang-project/).
-* Added [Aidbox projects terminology bundle](../deprecated/deprecated/forms/terminology/terminology-api/) load cache. Aidbox doesn't load a terminology bundle into its database if the bundle has no changes.
-* [Aidbox project terminology](../deprecated/deprecated/forms/terminology/terminology-api/) bundle load is now async and doesn't affect Aidbox startup time.
+* Added [Aidbox projects terminology bundle](../deprecated/deprecated/other/terminology/terminology-api/) load cache. Aidbox doesn't load a terminology bundle into its database if the bundle has no changes.
+* [Aidbox project terminology](../deprecated/deprecated/other/terminology/terminology-api/) bundle load is now async and doesn't affect Aidbox startup time.
 * Added nested resources validation when using [zen profiling](../deprecated/deprecated/zen-related/profiling-with-zen-lang/).
 * Added params to load-from-bucket import operation.
 * Improved chained search parameters performance.
@@ -995,7 +995,7 @@ Starting from January 2022 we're switching to a new release cycle. We added`:lat
 
 ## November 2021 - v:2111
 
-* Implemented the [`$translate`](../deprecated/deprecated/forms/terminology/translate-on-conceptmap.md) operation. So now you can translate code from one value set to another, based on the existing value set and concept maps resources, and/or other additional knowledge available to Aidbox.
+* Implemented the [`$translate`](../deprecated/deprecated/other/terminology/translate-on-conceptmap.md) operation. So now you can translate code from one value set to another, based on the existing value set and concept maps resources, and/or other additional knowledge available to Aidbox.
 * Released FHIR bulk data export. Using [$export](../api/bulk-api/export.md) you can export patient-level, group level or system-level data to GCP, AWS storage in ndjson format.
 * Extended Aidbox Access Policies to [GraphQL API](../api/graphql-api.md).
 * Released [metrics server](../modules/observability/metrics/monitoring/) as an Aidbox component that implements the new metrics API for PostgreSQL, HikariCP and JVM metrics.

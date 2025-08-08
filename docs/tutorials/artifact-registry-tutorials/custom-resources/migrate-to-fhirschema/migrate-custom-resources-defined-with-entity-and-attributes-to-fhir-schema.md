@@ -42,7 +42,7 @@ Please double-check the compilation results, as they may contain transformation 
 
 #### Example: Concept entity
 
-Here's an example of migrating a custom Aidbox resource, [Concept](../../../../deprecated/deprecated/forms/terminology/concept/). This resource mirrors FHIR's CodeSystem `concept` property and extends it in various ways.
+Here's an example of migrating a custom Aidbox resource, [Concept](../../../../deprecated/deprecated/other/terminology/concept/). This resource mirrors FHIR's CodeSystem `concept` property and extends it in various ways.
 
 {% tabs %}
 {% tab title="Request" %}
