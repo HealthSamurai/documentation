@@ -140,11 +140,7 @@ See also:
 {% endcontent-ref %}
 
 {% content-ref url="](../modules/profiling-and-validation/" %}
-[FHIR Profiling and Validation](](../modules/profiling-and-validation/)
-{% endcontent-ref %}
-
-{% content-ref url="./artifact-registry-overview" %}
-[Artifact Registry Overview](./artifact-registry-overview.md)
+[FHIR Profiling and Validation](../modules/profiling-and-validation/)
 {% endcontent-ref %}
 
 ## Implementation in Aidbox
