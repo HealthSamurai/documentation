@@ -21,7 +21,7 @@ TODO: ARE THERE OTHER EXCEPTIONAL SITUATIONS? I DIDN'T FIND ANY?
 
 ### Renewal statuses
 
-The statuse of the request is stored in the created **MedicationRequest**'s `extension` field under `http://aidbox.app/ePrescription/FHIRSchema/medication-request-rx-renewal-status` extension.
+The status of the request is stored in the created **MedicationRequest**'s `extension` field under `http://aidbox.app/ePrescription/FHIRSchema/medication-request-rx-renewal-status` extension.
 
 ```yaml
 GET /fhir/MedicationRequest
