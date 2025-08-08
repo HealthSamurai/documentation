@@ -7,7 +7,9 @@
 # - Summary files are in sync with actual files
 # - Titles in SUMMARY.md match h1 headers in files
 # - No titles in SUMMARY.md contain " & " (should use " and " instead)
+# - Each markdown file has at most one H1 header
 
+python3 ./scripts/check_h1_headers.py || exit 1
 python3 ./scripts/markdown-links/find_absolute_aidbox_links.py || exit 1
 python3 ./scripts/markdown-links/extract-nonexistent-links.py || exit 1
 python3 ./scripts/summary/check-summary-vs-files.py || exit 1
