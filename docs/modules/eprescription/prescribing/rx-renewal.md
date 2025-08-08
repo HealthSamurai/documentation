@@ -70,3 +70,10 @@ parameter:
         valueString: approved
 ```
 2. And calling the `/eprescription/rx/respond-to-renewal` endpoint with the ID of the MedicationRequest created by the initial RxRenewalRequest.
+```json
+/eprescription/rx/respond-to-renewal
+
+{
+  "medicationRequestId": "mr1"
+}
+```
