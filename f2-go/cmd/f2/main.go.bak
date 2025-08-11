@@ -1,0 +1,75 @@
+package main
+
+import (
+	"fmt"
+	"log"
+	"os"
+	"path/filepath"
+
+	tea "github.com/charmbracelet/bubbletea"
+	"github.com/f2-go/internal/core"
+	"github.com/f2-go/internal/parser"
+	"github.com/f2-go/internal/ui"
+	"github.com/f2-go/internal/utils"
+)
+
+func main() {
+	// Get docs path
+	docsPath := "docs"
+	if len(os.Args) > 1 {
+		docsPath = os.Args[1]
+	}
+
+	// Initialize filesystem
+	fs := utils.NewOsFileSystem()
+
+	// Check if docs directory exists
+	if !fs.Exists(docsPath) {
+		fmt.Fprintf(os.Stderr, "Error: directory '%s' does not exist\n", docsPath)
+		os.Exit(1)
+	}
+
+	// Load SUMMARY.md
+	summaryPath := filepath.Join(docsPath, "SUMMARY.md")
+	if !fs.Exists(summaryPath) {
+		fmt.Fprintf(os.Stderr, "Error: SUMMARY.md not found in '%s'\n", docsPath)
+		os.Exit(1)
+	}
+
+	summaryContent, err := fs.ReadFile(summaryPath)
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error reading SUMMARY.md: %v\n", err)
+		os.Exit(1)
+	}
+
+	// Parse SUMMARY.md
+	summaryParser := core.NewSummaryParser()
+	summary, err := summaryParser.Parse(summaryContent)
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error parsing SUMMARY.md: %v\n", err)
+		os.Exit(1)
+	}
+
+	// Initialize managers
+	summaryManager := core.NewSummaryManager(summary)
+	redirectManager := core.NewRedirectManager()
+	linkUpdater := parser.NewLinkParser()
+
+	// Load redirects if .gitbook.yaml exists
+	gitbookPath := ".gitbook.yaml"
+	if fs.Exists(gitbookPath) {
+		redirectContent, err := fs.ReadFile(gitbookPath)
+		if err == nil {
+			_, _ = redirectManager.LoadRedirects(redirectContent)
+		}
+	}
+
+	// Create UI model
+	model := ui.New(summaryManager, redirectManager, linkUpdater, fs, docsPath)
+
+	// Start the TUI
+	p := tea.NewProgram(model, tea.WithAltScreen())
+	if _, err := p.Run(); err != nil {
+		log.Fatal(err)
+	}
+}

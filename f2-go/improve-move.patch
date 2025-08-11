@@ -1,0 +1,60 @@
+--- a/cmd/f2/cli.go
++++ b/cmd/f2/cli.go
+@@ -244,11 +244,34 @@ func (c *CLI) runMove(srcPath, dstPath string) error {
+ 		return fmt.Errorf("File '%s' not found in SUMMARY.md", srcPath)
+ 	}
+ 
+-	// Show possible insertion points
+-	fmt.Fprintln(c.stdout, "Select position for insertion:")
++	// Get all entries
+ 	entries := summaryManager.GetEntries()
+-	for i, entry := range entries {
+-		indent := strings.Repeat("  ", entry.Level)
++	
++	// Filter entries based on destination path
++	filteredEntries, offset, sectionEnd := FilterEntriesForSection(entries, dstPath)
++	
++	// Check if we should show filtered or all entries
++	showFiltered := len(filteredEntries) < len(entries) && len(filteredEntries) > 0
++	
++	if showFiltered {
++		// Extract section name for display
++		targetSection := ""
++		if idx := strings.Index(dstPath, "/"); idx > 0 {
++			targetSection = dstPath[:idx]
++		}
++		
++		ShowFilteredEntries(filteredEntries, offset, targetSection)
++		fmt.Fprintf(c.stdout, "%d. At the end of section\n", sectionEnd+1)
++		fmt.Fprintf(c.stdout, "%d. At the end of document\n", len(entries)+1)
++	} else {
++		// Show all entries (original behavior)
++		fmt.Fprintln(c.stdout, "Select position for insertion:")
++		for i, entry := range entries {
++			indent := strings.Repeat("  ", entry.Level)
++			fmt.Fprintf(c.stdout, "%d. %s%s\n", i+1, indent, entry.Title)
++		}
++		fmt.Fprintf(c.stdout, "%d. At the end\n", len(entries)+1)
++	}
++	
+ 		fmt.Fprintf(c.stdout, "%d. %s%s\n", i+1, indent, entry.Title)
+ 	}
+ 	fmt.Fprintf(c.stdout, "%d. At the end\n", len(entries)+1)
+@@ -258,7 +281,16 @@ func (c *CLI) runMove(srcPath, dstPath string) error {
+ 	fmt.Fprint(c.stdout, "Enter position number: ")
+ 	scanner := bufio.NewScanner(c.stdin)
+ 	if scanner.Scan() {
+-		position, err = strconv.Atoi(scanner.Text())
++		input := scanner.Text()
++		
++		// Check if user wants to see all entries
++		if input == "0" && showFiltered {
++			// Recursive call to show all entries
++			return c.runMove(srcPath, dstPath)
++		}
++		
++		position, err = strconv.Atoi(input)
++		
+ 		if err != nil || position < 1 || position > len(entries)+1 {
+ 			return fmt.Errorf("Invalid position")
+ 		}
