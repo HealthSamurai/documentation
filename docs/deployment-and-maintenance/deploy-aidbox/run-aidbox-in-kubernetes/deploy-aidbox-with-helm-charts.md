@@ -65,8 +65,8 @@ host: <your-aidbox-host>
 protocol: https
 
 config:
-  PGHOST: aidboxdb.ips.svc.cluster.local
-  PGDATABASE: postgres
+  BOX_DB_HOST: aidboxdb.ips.svc.cluster.local
+  BOX_DB_DATABASE: postgres
   PGUSER: postgres
   PGPASSWORD: <your-postgres-password>
   AIDBOX_CLIENT_ID: <your-aidbox-client-id>
