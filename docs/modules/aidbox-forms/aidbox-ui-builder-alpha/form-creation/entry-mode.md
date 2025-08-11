@@ -10,16 +10,16 @@ or when viewing later questions might influence earlier responses.
 
 > This setting guides form rendering applications on how to display and manage user access to questions.
 
-**Usage**
-
-EntryMode setting can be configured via form builder `>` form settings panel `>` entry mode dropdown
-
 **Key Benefits**
 - Optimized for mobile devices and small screens
 - Reduces cognitive load by limiting visible content (sequential and prior-edit modes)
 - Increases accuracy by focusing user attention
 - Controls user navigation through the form
 - Helps enforce clinical or business processes
+
+**Usage**
+
+EntryMode setting can be configured via form builder `>` form settings panel `>` entry mode dropdown
 
 **Available Modes:**
 
