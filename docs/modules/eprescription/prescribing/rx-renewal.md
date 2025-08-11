@@ -17,11 +17,13 @@ There are several ways to track the newly created **MedicationRequest**s:
 #### Detected Issues
 
 In case some related resources (**Patient**, **Organisation**, **PractitionerRole**, **Practitioner**, **Medication**, or **Location**) were not found or didn't match the provided ones, ePrescription module additionally creates a **DetectedIssue** resource in Aidbox.
+There's only one **DetectedIssue** per RxRenewal, containing all the problematic resources.
 TODO: ARE THERE OTHER EXCEPTIONAL SITUATIONS? I DIDN'T FIND ANY?
 
 ### Renewal statuses
 
 The status of the request is stored in the created **MedicationRequest**'s `extension` field under `http://aidbox.app/ePrescription/FHIRSchema/medication-request-rx-renewal-status` extension.
+There's also `http://aidbox.app/ePrescription/FHIRSchema/medication-request-rx-renewal-status-reason` with a human-readable description of a status.
 
 ```yaml
 GET /fhir/MedicationRequest
@@ -71,7 +73,7 @@ parameter:
 ```
 2. And calling the `/eprescription/rx/respond-to-renewal` endpoint with the ID of the MedicationRequest created by the initial RxRenewalRequest.
 ```json
-/eprescription/rx/respond-to-renewal
+POST /eprescription/rx/respond-to-renewal
 
 {
   "medicationRequestId": "mr1"
