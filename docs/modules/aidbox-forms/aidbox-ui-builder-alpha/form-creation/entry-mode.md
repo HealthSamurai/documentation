@@ -3,10 +3,12 @@
 **Entry Mode in FHIR SDC Forms**
 
 
-Entry Mode defines how questions are presented and navigated in your form. 
+[Entry Mode](https://build.fhir.org/ig/HL7/sdc/StructureDefinition-sdc-questionnaire-entryMode.html) defines how questions are presented and navigated in your form. 
 It controls whether users see one question at a time or all at once, and whether they can modify previous answers.
 This feature is particularly important when certain questions must be answered definitively before proceeding,
 or when viewing later questions might influence earlier responses.
+
+
 
 > This setting guides form rendering applications on how to display and manage user access to questions.
 
