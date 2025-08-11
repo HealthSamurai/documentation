@@ -37,6 +37,7 @@ type RedirectManager interface {
 	LoadRedirects(content []byte) (*RedirectConfig, error)
 	AddRedirect(from, to string) error
 	RemoveRedirectsTo(path string) error
+	UpdateRedirectsTo(oldPath, newPath string)
 	HasCircularRedirect(from, to string) bool
 	Serialize() []byte
 	GetRedirects() map[string]string

@@ -714,6 +714,10 @@ func (c *CLI) runMove(srcPath, dstPath string) error {
 	newURL := pathToURL(dstPath)
 
 	if oldURL != newURL {
+		// Update existing redirects that point to the old file
+		redirectManager.UpdateRedirectsTo(srcPath, dstPath)
+		
+		// Add new redirect from old URL to new location
 		err = redirectManager.AddRedirect(oldURL, dstPath)
 		if err != nil {
 			return fmt.Errorf("Error adding redirect: %v", err)

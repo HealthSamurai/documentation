@@ -236,6 +236,87 @@ func TestRemoveRedirectsTo(t *testing.T) {
 	}
 }
 
+func TestUpdateRedirectsTo(t *testing.T) {
+	tests := []struct {
+		name    string
+		initial map[string]string
+		oldPath string
+		newPath string
+		want    map[string]string
+	}{
+		{
+			name: "update single redirect",
+			initial: map[string]string{
+				"old-url": "getting-started/run-aidbox-locally.md",
+				"other":   "different.md",
+			},
+			oldPath: "getting-started/run-aidbox-locally.md",
+			newPath: "readme/getting-started.md",
+			want: map[string]string{
+				"old-url": "readme/getting-started.md",
+				"other":   "different.md",
+			},
+		},
+		{
+			name: "update multiple redirects pointing to same file",
+			initial: map[string]string{
+				"old-url-1": "getting-started/run-aidbox-locally.md",
+				"old-url-2": "getting-started/run-aidbox-locally.md",
+				"other":     "different.md",
+			},
+			oldPath: "getting-started/run-aidbox-locally.md",
+			newPath: "readme/getting-started.md",
+			want: map[string]string{
+				"old-url-1": "readme/getting-started.md",
+				"old-url-2": "readme/getting-started.md",
+				"other":     "different.md",
+			},
+		},
+		{
+			name: "no matching redirects",
+			initial: map[string]string{
+				"old-url": "target.md",
+				"other":   "different.md",
+			},
+			oldPath: "nonexistent.md",
+			newPath: "new-location.md",
+			want: map[string]string{
+				"old-url": "target.md",
+				"other":   "different.md",
+			},
+		},
+		{
+			name:    "empty redirects",
+			initial: map[string]string{},
+			oldPath: "old.md",
+			newPath: "new.md",
+			want:    map[string]string{},
+		},
+		{
+			name: "with path normalization",
+			initial: map[string]string{
+				"old-url": "getting-started/run-aidbox-locally.md",
+			},
+			oldPath: "./getting-started/run-aidbox-locally.md",
+			newPath: "/readme/getting-started.md",
+			want: map[string]string{
+				"old-url": "readme/getting-started.md",
+			},
+		},
+	}
+
+	for _, tt := range tests {
+		t.Run(tt.name, func(t *testing.T) {
+			manager := NewRedirectManager()
+			config := &RedirectConfig{Redirects: tt.initial}
+			manager.(*redirectManager).config = config
+
+			manager.(*redirectManager).UpdateRedirectsTo(tt.oldPath, tt.newPath)
+			assert.Equal(t, tt.want, config.Redirects)
+		})
+	}
+}
+
 func TestHasCircularRedirect(t *testing.T) {
 	tests := []struct {
 		name     string
