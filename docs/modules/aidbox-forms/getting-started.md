@@ -33,7 +33,6 @@ You can try the Aidbox Forms module, edit test forms, create new ones, see how t
 
 * docker
 * docker-compose
-* text editor with color highlighting (recommended VSCode editor with `zen-lsp` plugin)
 * any modern web-browser
 * git
 * make

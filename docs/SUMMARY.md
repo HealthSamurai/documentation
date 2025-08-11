@@ -314,6 +314,7 @@
       * [Form Settings](modules/aidbox-forms/aidbox-ui-builder-alpha/form-creation/form-settings.md)
       * [Widgets](modules/aidbox-forms/aidbox-ui-builder-alpha/form-creation/widgets.md)
       * [Components](modules/aidbox-forms/aidbox-ui-builder-alpha/form-creation/components.md)
+      * [Entry Mode](modules/aidbox-forms/aidbox-ui-builder-alpha/form-creation/entry-mode.md)
       * [Versioning](modules/aidbox-forms/aidbox-ui-builder-alpha/form-creation/versioning.md)
       * [Form customisation in theme editor](modules/aidbox-forms/aidbox-ui-builder-alpha/form-creation/form-customisation-in-theme-editor.md)
       * [Form signature](modules/aidbox-forms/aidbox-ui-builder-alpha/form-creation/form-signature.md)
