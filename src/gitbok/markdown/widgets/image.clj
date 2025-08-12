@@ -41,7 +41,8 @@
                        (str/starts-with? base-src "http") base-src
 
                        ;; .gitbook/assets paths - already normalized
-                       (str/starts-with? base-src ".gitbook/assets") base-src
+                       (str/starts-with? base-src ".gitbook/assets")
+                       (gitbok.http/get-prefixed-url context base-src)
 
                        ;; Other relative paths - use the standard link resolution
                        :else (indexing/filepath->href context filepath base-src))))
