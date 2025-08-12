@@ -309,7 +309,7 @@ GET /ccda/prepare-doc?docdef-id=continuity-of-care&pid=42&start-date=2023-01-01&
 Endpoint returns a FHIR Document or OperationOutcome resource in case of error.
 
 ```json
-// GET /ccda/prepare-doc?docdef-id=continuity-of-care?pid=xxx
+// GET /ccda/prepare-doc?docdef-id=continuity-of-care&pid=xxx
 // HTTP/1.1 200 OK
 
 {
@@ -319,8 +319,10 @@ Endpoint returns a FHIR Document or OperationOutcome resource in case of error.
 }
 ```
 
+One of the errors that can show up when calling `prepare-doc` is this:
+
 ```json
-// GET /ccda/prepare-doc?docdef-id=continuity-of-care?pid=xxx
+// GET /ccda/prepare-doc?docdef-id=continuity-of-care&pid=xxx
 // HTTP/1.1 404 Not found
 
 {
@@ -334,7 +336,9 @@ Endpoint returns a FHIR Document or OperationOutcome resource in case of error.
   ....
 ```
 
-You may set the mode of resolving references in`mode` query-string parameter, if you pass `resolve-all`all unresolved references will be resolved independently of FHIR Search query un Document Definition.
+It means that you need to refer to existing resources or create new ones when missing.
+
+You may set the mode of resolving references in `mode` query-string parameter, if you pass `resolve-all` all unresolved references will be resolved independently of FHIR Search query un Document Definition.
 
 ```http
 GET /ccda/prepare-doc?mode=resolve-all&docdef-id=continuity-of-care&pid=42&start-date=2023-01-01&end-date=2023-02-01
@@ -413,6 +417,8 @@ Content-Type: application/cda+xml
   
 ...
 ```
+
+In case there are missing resources, `make-doc` returns the same error as `prepare-doc`:
 
 ```json
 // GET /ccda/make-doc?docdef-id=continuity-of-care?pid=xxx
