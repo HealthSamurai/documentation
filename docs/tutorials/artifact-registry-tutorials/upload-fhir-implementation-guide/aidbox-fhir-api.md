@@ -22,6 +22,7 @@ PUT /fhir/StructureDefinition/patient-profile
 content-type: text/yaml
 accept: text/yaml
 
+id: patient-profile
 resourceType: StructureDefinition
 url: http://example.org/fhir/StructureDefinition/patient-profile
 name: patient-profile
@@ -30,6 +31,7 @@ type: Patient
 status: active
 kind: resource
 abstract: false
+baseDefinition: http://hl7.org/fhir/StructureDefinition/Patient
 differential:
   element:
     - id: Patient.gender
