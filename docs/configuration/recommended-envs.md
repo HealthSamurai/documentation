@@ -1,6 +1,7 @@
 # Recommended environment variables
 
 {% tabs %}
+
 {% tab title="Aidbox" %}
 ```yaml
 BOX_ADMIN_PASSWORD: <admin-password>
@@ -29,7 +30,9 @@ BOX_SECURITY_DEV_MODE: true
 BOX_SETTINGS_MODE: read-write
 BOX_WEB_BASE_URL: <base-url>
 BOX_WEB_PORT: 8888
+```
 {% endtab %}
+
 {% tab title="Aidbox with MCP" %}
 ```yaml
 BOX_ADMIN_PASSWORD: <admin-password>
@@ -60,7 +63,9 @@ BOX_SECURITY_DEV_MODE: true
 BOX_SETTINGS_MODE: read-write
 BOX_WEB_BASE_URL: <base-url>
 BOX_WEB_PORT: 8888
+```
 {% endtab %}
+
 {% tab title="Aidbox R6" %}
 ```yaml
 BOX_ADMIN_PASSWORD: <admin-password>
@@ -89,5 +94,6 @@ BOX_SECURITY_DEV_MODE: true
 BOX_SETTINGS_MODE: read-write
 BOX_WEB_BASE_URL: <base-url>
 BOX_WEB_PORT: 8888
+```
 {% endtab %}
 {% endtabs %}
