@@ -1,4 +1,5 @@
 # Recommended environment variables
+
 {% tabs %}
 {% tab title="Aidbox" %}
 ```yaml
