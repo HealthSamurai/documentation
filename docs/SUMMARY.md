@@ -130,7 +130,7 @@
 * [Contact us](overview/contact-us.md)
 
 ## Configuration
-
+* [Recommended environment variables](configuration/recommended-envs.md)
 * [Settings](configuration/settings.md)
 * [Configure Aidbox and Multibox](configuration/configure-aidbox-and-multibox.md)
 * [Init Bundle](configuration/init-bundle.md)
