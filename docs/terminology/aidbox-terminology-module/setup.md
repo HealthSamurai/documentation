@@ -60,7 +60,7 @@ BOX_FHIR_TERMINOLOGY_ENGINE: hybrid
 BOX_FHIR_TERMINOLOGY_ENGINE_HYBRID_EXTERNAL_TX_SERVER: https://tx.health-samurai.io/fhir
 
 # Load core terminology packages
-BOX_BOOTSTRAP_FHIR_PACKAGES: hl7.fhir.r4.core#4.0.1:hl7.terminology.r4#6.4.0:hl7.fhir.us.core#6.0.0
+BOX_BOOTSTRAP_FHIR_PACKAGES: hl7.fhir.r4.core#4.0.1
 ```
 
 ### Example 2: Local Mode
@@ -70,7 +70,7 @@ BOX_BOOTSTRAP_FHIR_PACKAGES: hl7.fhir.r4.core#4.0.1:hl7.terminology.r4#6.4.0:hl7
 BOX_FHIR_TERMINOLOGY_ENGINE: local
 
 # Must load all required terminology packages
-BOX_BOOTSTRAP_FHIR_PACKAGES: hl7.fhir.r4.core#4.0.1:hl7.terminology.r4#6.4.0:your.custom.package#1.0.0
+BOX_BOOTSTRAP_FHIR_PACKAGES: hl7.fhir.r4.core#4.0.1
 ```
 
 ### Example 3: Legacy Mode
@@ -137,8 +137,8 @@ Reinstall FHIR packages that contain terminology resources through the FHIR Arti
 
 1. Navigate to the FAR in your Aidbox UI at `/ui/console#/ig`
 2. First, try reinstalling terminology-related packages such as:
-   - `hl7.fhir.r4.core` 
-   - `hl7.terminology.r4` (if installed)
+   * `hl7.fhir.r4.core`
+   * `hl7.terminology.r4` (if installed)
 3. For each package, click the **"Reinstall"** button at the bottom of the package page
 4. Wait for the reinstallation to complete
 5. If issues persist, you may need to reinstall additional packages in your configuration
