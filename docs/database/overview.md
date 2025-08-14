@@ -110,11 +110,11 @@ The beauty is that these aren't special Aidbox queries - they're standard Postgr
 
 See also:
 
-{% content-ref url="database-schema" %}
+{% content-ref url="database-schema.md" %}
 [Database Schema](database-schema.md)
 {% endcontent-ref %}
 
-{% content-ref url="postgresql-requirements" %}
+{% content-ref url="postgresql-requirements.md" %}
 [PostgreSQL Requirements](postgresql-requirements.md)
 {% endcontent-ref %}
 
@@ -323,7 +323,7 @@ The temporary reference `urn:uuid:patient-temp` gets resolved to the actual Pati
 
 See also: 
 
-{% content-ref url="../api/batch-transaction" %}
+{% content-ref url="../api/batch-transaction.md" %}
 [Batch Transaction](../api/batch-transaction.md)
 {% endcontent-ref %}
 
@@ -537,7 +537,7 @@ Aidbox provides additional SQL functions for working with FHIR resources.
 
 See also:
 
-{% content-ref url="../reference/aidbox-sql-functions" %}
+{% content-ref url="../reference/aidbox-sql-functions.md" %}
 [Aidbox SQL functions](../reference/aidbox-sql-functions.md)
 {% endcontent-ref %}
 
