@@ -265,11 +265,11 @@ redirects:
   modules-1/aidbox-forms/any-familiar-form-editor-docs-deprecated: modules/aidbox-forms/any-familiar-form-editor-docs-deprecated.md
   modules-1/aidbox-forms/audit-logging-in-forms: modules/aidbox-forms/audit-logging-in-forms.md
   modules-1/aidbox-forms/getting-started: modules/aidbox-forms/getting-started.md
-  modules-1/custom-resources/custom-resources-using-structuredefinition: artifact-registry/custom-resources/custom-resources-using-structuredefinition.md
-  modules-1/custom-resources/migrate-to-fhirschema/migrate-custom-resources-defined-with-entity-and-attributes-to-fhir-schema: artifact-registry/custom-resources/migrate-to-fhirschema/migrate-custom-resources-defined-with-entity-and-attributes-to-fhir-schema.md
+  modules-1/custom-resources/custom-resources-using-structuredefinition: tutorials/artifact-registry-tutorials/custom-resources/custom-resources-using-structuredefinition.md
+  modules-1/custom-resources/migrate-to-fhirschema/migrate-custom-resources-defined-with-entity-and-attributes-to-fhir-schema: tutorials/artifact-registry-tutorials/custom-resources/migrate-to-fhirschema/migrate-custom-resources-defined-with-entity-and-attributes-to-fhir-schema.md
   modules-1/custom-resources/migrate-to-fhirschema/migrate-custom-resources-defined-with-zen-to-fhir-schema: tutorials/artifact-registry-tutorials/custom-resources/migrate-to-fhirschema/migrate-custom-resources-defined-with-zen-to-fhir-schema.md
-  modules-1/define-extensions/extensions-using-fhirschema: artifact-registry/define-extensions/extensions-using-fhirschema.md
-  modules-1/define-extensions/extensions-using-structuredefinition: artifact-registry/define-extensions/extensions-using-structuredefinition.md
+  modules-1/define-extensions/extensions-using-fhirschema: tutorials/artifact-registry-tutorials/define-extensions/extensions-using-fhirschema.md
+  modules-1/define-extensions/extensions-using-structuredefinition: tutorials/artifact-registry-tutorials/define-extensions/extensions-using-structuredefinition.md
   modules-1/eprescription/directory/addproviderlocation-message: modules/eprescription/directory/addproviderlocation-message.md
   modules-1/eprescription/directory/directorydownload-message: modules/eprescription/directory/directorydownload-message.md
   modules-1/eprescription/directory/disableproviderlocation-message: modules/eprescription/directory/disableproviderlocation-message.md
@@ -377,10 +377,10 @@ redirects:
   modules-1/observability/traces/how-to-use-tracing: modules/observability/traces/how-to-use-tracing.md
   modules-1/observability/traces/otel-traces-exporter-parameters: modules/observability/traces/otel-traces-exporter-parameters.md
   modules-1/other-modules/mcp: modules/other-modules/mcp.md
-  modules-1/other-modules/mdm/configure-mdm-module: modules/other-modules/mpi/configure-mdm-module.md
+  modules-1/other-modules/mdm/configure-mdm-module: modules/other-modules/mpi/get-started/configure-mpi-module.md
   modules-1/other-modules/mdm/find-duplicates-usdmatch: modules/other-modules/mpi/find-duplicates-match.md
   modules-1/other-modules/mdm/mathematical-details: modules/other-modules/mpi/mathematical-details.md
-  modules-1/other-modules/mdm/train-model: modules/other-modules/mpi/train-model.md
+  modules-1/other-modules/mdm/train-model: modules/other-modules/mpi/train-model-old.md
   modules-1/profiling-and-validation/asynchronous-resource-validation: modules/profiling-and-validation/asynchronous-resource-validation.md
   modules-1/profiling-and-validation/fhir-schema-validator/aidbox-fhir-igs-registry: modules/profiling-and-validation/fhir-schema-validator/aidbox-fhir-igs-registry.md
   modules-1/profiling-and-validation/fhir-schema-validator/setup-aidbox-with-fhir-schema-validation-engine: modules/profiling-and-validation/fhir-schema-validator/setup-aidbox-with-fhir-schema-validation-engine.md
@@ -389,7 +389,7 @@ redirects:
   modules-1/security-and-access-control/auth/authorization-code-grant: tutorials/security-access-control-tutorials/authorization-code-grant.md
   modules-1/security-and-access-control/auth/basic-auth: access-control/authentication/basic-http-authentication.md
   modules-1/security-and-access-control/auth/client-credentials-grant: tutorials/security-access-control-tutorials/client-credentials-grant.md
-  modules-1/security-and-access-control/auth/external-oauth-2-0-providers: modules/security-and-access-control/auth/external-oauth-2-0-providers.md
+  modules-1/security-and-access-control/auth/external-oauth-2-0-providers: access-control/access-control.md
   modules-1/security-and-access-control/auth/implicit-grant: tutorials/security-access-control-tutorials/implicit-grant.md
   modules-1/security-and-access-control/auth/resource-owner-grant: tutorials/security-access-control-tutorials/resource-owner-grant.md
   modules-1/security-and-access-control/auth/token-exchange: tutorials/security-access-control-tutorials/token-exchange.md
@@ -450,11 +450,11 @@ redirects:
   modules/observability/logging-and-audit/readme-1/datadog-guide: modules/observability/logs/tutorials/export-logs-to-datadog-tutorial.md
   modules/observability/logging-and-audit/readme-1/how-to-explore-and-visualize-aidbox-logs-with-kibana-and-grafana: modules/observability/logs/tutorials/log-analysis-and-visualization-tutorial.md
   modules/observability/logging-and-audit: access-control/audit-and-logging.md
-  modules/other-modules/mdm/find-duplicates-usdmatch.md: modules/other-modules/mdm/find-duplicates-match.md
+  modules/other-modules/mdm/find-duplicates-usdmatch.md: modules/other-modules/mpi/find-duplicates-match.md
   modules/smartbox/how-to-guides/find-out-what-resources-were-exported-during-the-usdexport-operation.md: modules/smartbox/how-to-guides/find-out-what-resources-were-exported-during-the-export-operation.md
-  modules/terminology/concept/usdtranslate-concepts.md: modules/terminology/concept/translate-concepts.md
-  modules/terminology/usdtranslate-on-conceptmap.md: modules/terminology/translate-on-conceptmap.md
-  modules/terminology/usdtranslate-on-conceptmap: modules/terminology/translate-on-conceptmap.md
+  modules/terminology/concept/usdtranslate-concepts.md: deprecated/deprecated/other/terminology/concept/translate-concepts.md
+  modules/terminology/usdtranslate-on-conceptmap.md: deprecated/deprecated/other/terminology/concept/translate-concepts.md
+  modules/terminology/usdtranslate-on-conceptmap: deprecated/deprecated/other/terminology/concept/translate-concepts.md
   modules/topic-based-subscriptions/subscriptions-1: modules/topic-based-subscriptions/README.md
   overview/aidbox-ui/rest-console-1: overview/aidbox-ui/rest-console.md
   plan-api/patient-access-api: access-control/authorization/scoped-api/patient-data-access-api.md
@@ -467,7 +467,7 @@ redirects:
   readme-1/readme-1-1/basic-auth-tutorial: tutorials/security-access-control-tutorials/basic-auth.md
   readme-1/readme-1-1/relationship-based-access-control-in-aidbox: tutorials/security-access-control-tutorials/rbac/README.md
   readme-1/subscriptions: modules/topic-based-subscriptions/README.md
-  readme-1/validation-tutorials/upload-fhir-implementation-guide/uploading-fhir-ig-using-uploadfig-library: tutorials/validation-tutorials/upload-fhir-implementation-guide/uploadfig-tool.md
+  readme-1/validation-tutorials/upload-fhir-implementation-guide/uploading-fhir-ig-using-uploadfig-library: tutorials/artifact-registry-tutorials/upload-fhir-implementation-guide/uploadfig-tool.md
   reference/configuration/environment-variables/optional-environment-variables: reference/environment-variables/optional-environment-variables.md
   reference/settings/security-access-control: reference/settings/security-and-access-control.md
   security-and-access-control-1/auth/external-oauth-2.0-providers/configure-okta: tutorials/security-access-control-tutorials/okta.md
