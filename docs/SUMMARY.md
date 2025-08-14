@@ -230,7 +230,7 @@
 
 ## Artifact Registry
 
-* [Artifact Registry Overview](artifact-registry/artifact-registry-overview.md)
+* [Artifact Registry overview](artifact-registry/artifact-registry-overview.md)
 * [StructureDefinition](artifact-registry/structuredefinition.md)
 * [SearchParameter](api/rest-api/fhir-search/searchparameter.md)
 * [CodeSystem](terminology/fhir-terminology/codesystem.md)
@@ -532,7 +532,7 @@
   * [Create Indexes Manually](deployment-and-maintenance/indexes/create-indexes-manually.md)
 
 ## Developer Experience
-* [Developer Experience Overview](developer-experience/developer-experience-overview.md)
+* [Developer experience overview](developer-experience/developer-experience-overview.md)
 * [Use Aidbox with React](developer-experience/use-aidbox-with-react.md)
 * [Aidbox SDK](developer-experience/aidbox-sdk/README.md)
   * [Aidbox JavaScript SDK](developer-experience/aidbox-sdk/aidbox-javascript-sdk.md)
