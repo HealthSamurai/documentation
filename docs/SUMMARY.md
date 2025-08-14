@@ -532,7 +532,7 @@
   * [Create Indexes Manually](deployment-and-maintenance/indexes/create-indexes-manually.md)
 
 ## Developer Experience
-
+* [Developer Experience Overview](developer-experience/developer-experience-overview.md)
 * [Use Aidbox with React](developer-experience/use-aidbox-with-react.md)
 * [Aidbox SDK](developer-experience/aidbox-sdk/README.md)
   * [Aidbox JavaScript SDK](developer-experience/aidbox-sdk/aidbox-javascript-sdk.md)
