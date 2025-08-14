@@ -1,2 +1,0 @@
-# FHIR Conformance Deprecated Guides
-
