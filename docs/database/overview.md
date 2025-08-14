@@ -140,7 +140,7 @@ Each resource in Aidbox has a lifecycle tracked through the `status` column:
 
 See also:
 
-{% content-ref url="database-schema" %}
+{% content-ref url="database-schema.md" %}
 [Database Schema](database-schema.md)
 {% endcontent-ref %}
 
