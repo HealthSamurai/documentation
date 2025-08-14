@@ -15,7 +15,7 @@ This article explains how Aidbox stores and manages healthcare data using Postgr
 
 Whether you're implementing clinical workflows, building analytics dashboards, or optimizing database performance, this guide provides the technical foundation you need to work effectively with Aidbox's database layer.
 
-## How data are stored in Aidbox?
+## How does Aidbox store data?
 
 Storing FHIR resources in traditional relational databases requires complex schemas with dozens of tables and joins. The deeply nested, polymorphic nature of FHIR data makes this approach difficult to maintain and query efficiently.
 
@@ -23,7 +23,9 @@ Aidbox takes a different approach by leveraging PostgreSQL's JSONB columns to st
 
 ### The PostgreSQL + JSONB Approach
 
-Aidbox exclusively uses PostgreSQL as its database. Instead of spreading your Patient resource across multiple columns, or even multiple tables with complex joins, it stores the entire resource in a single JSONB column.
+Aidbox uses PostgreSQL as its database. 
+Instead of spreading your Patient resource across many columns, or even many tables with complex joins, 
+it stores the entire resource in a single JSONB column.
 
 [JSONB](https://www.postgresql.org/docs/current/datatype-json.html) is PostgreSQL's binary JSON storage format. The binary representation enables efficient indexing, querying, and storage optimization. This provides the flexibility of document storage with the full power of PostgreSQL's relational features.
 
@@ -82,7 +84,7 @@ Notice what's _not_ in the JSONB? The `id`, `resourceType`, `meta.lastUpdated`, 
 
 **One source of truth.** Unlike some systems that maintain separate search tables or denormalized views, Aidbox queries directly against the JSONB data. What you store is what you search.
 
-**PostgreSQL superpowers at your fingertips.** Want to run a complex analytical query mixing FHIR searches with custom SQL? Need ACID transactions across multiple resources? Want to use PostGIS for geographical queries? It's all there because it's just PostgreSQL.
+**PostgreSQL superpowers at your fingertips.** Want to run a complex analytical query mixing FHIR searches with custom SQL? Need ACID transactions across multiple resources? Want to use PostGIS for geographic queries? It's all there because it's just PostgreSQL.
 
 ### Direct SQL Access
 
@@ -108,8 +110,13 @@ The beauty is that these aren't special Aidbox queries - they're standard Postgr
 
 See also:
 
-* [Database Schema](database-schema.md) - Detailed table structures and column definitions
-* [PostgreSQL Requirements](postgresql-requirements.md) - Supported versions and extensions
+{% content-ref url="database-schema" %}
+[Database Schema](database-schema.md)
+{% endcontent-ref %}
+
+{% content-ref url="postgresql-requirements" %}
+[PostgreSQL Requirements](postgresql-requirements.md)
+{% endcontent-ref %}
 
 ## How data inserted, updated and deleted?
 
@@ -121,7 +128,7 @@ This section covers how Aidbox performs CRUD (Create, Read, Update, Delete) oper
 
 Every modification in Aidbox creates an history record following FHIR versioning principles. When you update a Patient resource, the previous version moves to the history table while the main table gets the new version. This happens atomically within a single [PostgreSQL transaction](https://www.postgresql.org/docs/current/tutorial-transactions.html).
 
-Examples shown in this section are simplified for clarity.
+We simplify examples shown in this section for clarity.
 
 #### Resource Lifecycle
 
@@ -131,7 +138,11 @@ Each resource in Aidbox has a lifecycle tracked through the `status` column:
 * `updated` - Resource has been modified
 * `deleted` - Resource has been soft-deleted (only appears in history)
 
-See also: [Database Schema](database-schema.md)
+See also:
+
+{% content-ref url="database-schema" %}
+[Database Schema](database-schema.md)
+{% endcontent-ref %}
 
 #### Creating Resources
 
@@ -310,7 +321,12 @@ FHIR [transaction bundles](https://www.hl7.org/fhir/http.html#transaction) allow
 
 The temporary reference `urn:uuid:patient-temp` gets resolved to the actual Patient ID during processing, allowing you to create related resources in a single transaction.
 
-See also: [Batch Transaction](../api/batch-transaction.md)
+See also: 
+
+{% content-ref url="../api/batch-transaction" %}
+[Batch Transaction](../api/batch-transaction.md)
+{% endcontent-ref %}
+
 
 #### Conditional Operations
 
@@ -399,7 +415,11 @@ DELETE FROM patient
 WHERE id IN (SELECT id FROM to_delete);
 ```
 
-See also: [Bulk API](../api/bulk-api/)
+See also: 
+
+{% content-ref url="../api/bulk-api/" %}
+[Bulk API](../api/bulk-api/)
+{% endcontent-ref %}
 
 ## How to query data?
 
@@ -459,7 +479,11 @@ WHERE jsonb_path_query_array(
 )::text ILIKE '%Smith%';
 ```
 
-See also: [FHIR Search](../api/rest-api/fhir-search/)
+See also: 
+
+{% content-ref url="../api/rest-api/fhir-search/" %}
+[FHIR Search](../api/rest-api/fhir-search/)
+{% endcontent-ref %}
 
 ### Direct SQL Access
 
@@ -513,12 +537,19 @@ Aidbox provides additional SQL functions for working with FHIR resources.
 
 See also:
 
-* [Aidbox SQL Functions](../reference/aidbox-sql-functions.md)
-* [SQL Endpoints](../api/rest-api/other/sql-endpoints.md)
+{% content-ref url="../reference/aidbox-sql-functions" %}
+[Aidbox SQL functions](../reference/aidbox-sql-functions.md)
+{% endcontent-ref %}
+
+{% content-ref url="../api/rest-api/other/sql-endpoints.md" %}
+[SQL endpoints](../api/rest-api/other/sql-endpoints.md)
+{% endcontent-ref %}
 
 ### SQL on FHIR
 
-[SQL on FHIR](https://build.fhir.org/ig/FHIR/sql-on-fhir-v2/) transforms nested FHIR resources into flat, tabular views optimized for analytics. Aidbox implements this specification using ViewDefinition resources that create PostgreSQL views.
+[SQL on FHIR](https://build.fhir.org/ig/FHIR/sql-on-fhir-v2/) is a FHIR specification that defines how to 
+transform nested FHIR resources into flat, tabular views optimized for analytics. 
+Aidbox implements this specification using ViewDefinition resources that create PostgreSQL views.
 
 #### ViewDefinition Basics
 
@@ -609,9 +640,14 @@ GROUP BY month, loc.name
 ORDER BY month, encounter_count DESC;
 ```
 
-See also: [SQL on FHIR](../modules/sql-on-fhir/)
+See also: 
 
-### PostgreSQL with Read-only Replica
+{% content-ref url="../modules/sql-on-fhir/" %}
+[SQL on FHIR](../modules/sql-on-fhir/)
+{% endcontent-ref %}
+
+
+### PostgreSQL with Read-only replica
 
 Aidbox supports delegating read-only queries to a PostgreSQL read-only replica. This feature addresses several critical challenges in high-load FHIR server deployments:
 
@@ -632,11 +668,8 @@ graph LR
     replica -->|Reads| aidbox
 ```
 
+Refer to our sample to learn more:
 {% embed url="https://github.com/Aidbox/examples/tree/main/aidbox-with-ro-replica" %}
-
-{% content-ref url="../reference/settings/database.md" %}
-[database.md](../reference/settings/database.md)
-{% endcontent-ref %}
 
 ## Which PostgreSQL can be used with Aidbox?
 
@@ -646,4 +679,8 @@ Aidbox actively supports the three most recent PostgreSQL versions (currently 17
 
 Aidbox automatically handles database initialization, schema migrations, and provides optional [AidboxDB](aidboxdb-image/) - a PostgreSQL distribution with Aidbox-specific extensions.
 
-See also: [Requirements](postgresql-requirements.md)
+See also: 
+
+{% content-ref url="postgresql-requirements.md" %}
+[Requirements](postgresql-requirements.md)
+{% endcontent-ref %}
