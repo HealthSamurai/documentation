@@ -1,0 +1,91 @@
+GET http://localhost:7700/indexes
+
+###
+
+GET http://localhost:7700/indexes/docs
+
+
+###
+
+POST http://localhost:7700/indexes/docs/documents/fetch
+Content-Type: application/json
+
+{}
+
+
+###
+
+PATCH http://localhost:7700/indexes/docs/settings
+Content-Type: application/json
+Authorization: Bearer 60DBZGy6zoDL6Q--s1-dHBWptiVKvK-XRsaacdvkOSM
+
+{
+  "rankingRules": ["exactness", "words", "typo", "proximity", "attribute", "sort"]
+}
+
+###
+GET http://localhost:7700/tasks
+Authorization: Bearer 60DBZGy6zoDL6Q--s1-dHBWptiVKvK-XRsaacdvkOSM
+
+###
+
+GET http://localhost:7700/indexes/docs/search?q=BOX_BULK__STORAGE_BACKEND
+
+###
+
+GET http://localhost:7700/indexes/docs/search?q=fhir search
+Authorization: Bearer 60DBZGy6zoDL6Q--s1-dHBWptiVKvK-XRsaacdvkOSM
+
+###
+
+POST http://localhost:7700/indexes/docs/search?q=fhir search
+Authorization: Bearer 60DBZGy6zoDL6Q--s1-dHBWptiVKvK-XRsaacdvkOSM
+
+{
+ "filter": "hierarchy_lvl1 = 'FHIR Search'"
+}
+
+###
+
+
+PATCH http://localhost:7700/indexes/docs/settings
+Content-Type: application/json
+Authorization: Bearer 60DBZGy6zoDL6Q--s1-dHBWptiVKvK-XRsaacdvkOSM
+
+{
+  "filterableAttributes": [
+    "url",
+    "hierarchy_lvl1"
+  ],
+  "displayedAttributes": [
+    "hierarchy_lvl1",
+    "hierarchy_lvl2",
+    "hierarchy_lvl3",
+    "hierarchy_lvl4",
+    "hierarchy_lvl5",
+    "hierarchy_lvl6",
+    "content",
+    "anchor",
+    "objectID",
+    "url",
+    "hierarchy_lvl0"
+  ],
+  "searchableAttributes": [
+    "hierarchy_lvl1",
+    "hierarchy_lvl2",
+    "hierarchy_lvl3",
+    "hierarchy_lvl4",
+    "hierarchy_lvl5",
+    "hierarchy_lvl6",
+    "content",
+    "hierarchy_lvl0"
+  ],
+  "rankingRules": [
+    "attribute",
+    "words",
+    "typo",
+    "proximity",
+    "sort",
+    "exactness"
+  ]
+}

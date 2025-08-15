@@ -123,7 +123,7 @@
 
 (defn render-file* [context filepath parsed title _raw-content]
   (let [content-count (count (:content parsed))]
-    {:content [:div {:class "flex-1 min-w-0 max-w-full"}
+    {:content [:div {:class "real-content flex-1 min-w-0 max-w-full"}
                (if (= 1 content-count)
                  (render-empty-page context filepath title)
                  (markdown/render-md context filepath parsed))]
