@@ -14,7 +14,6 @@ redirects:
   api-1/api/crud-1/fhir-and-aidbox-crud: api/rest-api/crud/README.md
   api-1/api/other/usdpsql: api/rest-api/other/sql-endpoints.md
   api-1/api/search-1/chained-parameters: api/rest-api/fhir-search/chaining.md
-  api-1/api/search-1/configure-search-api: reference/settings/fhir.md
   api-1/api/search-1/custom-search-parameter/custom-search-parameters: tutorials/crud-search-tutorials/search-tutorials/custom-searchparameter-tutorial.md
   api-1/api/search-1/custom-search-parameter/search-resource: api/rest-api/aidbox-search.md
   api-1/api/search-1/custom-search-parameter: tutorials/crud-search-tutorials/search-tutorials/custom-searchparameter-tutorial.md
