@@ -46,13 +46,13 @@
     (xml/emit-str urlset)))
 
 (defn set-sitemap [context lastmod]
-  (products/set-product-state
+ (products/set-product-state
+  context
+  [const/SITEMAP]
+  (generate-sitemap
    context
-   [const/SITEMAP]
-   (generate-sitemap
-    context
-    (uri-to-file/all-urls context)
-    lastmod)))
+   (uri-to-file/all-urls context)
+   lastmod)))
 
 (defn get-sitemap [context]
   (products/get-product-state context [const/SITEMAP]))

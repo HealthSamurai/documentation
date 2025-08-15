@@ -107,4 +107,7 @@
    (uri->file-idx context)))
 
 (defn all-urls [context]
-  (keys (get-idx context)))
+  ;; redirect are bad urls.
+  (let [idx (get-idx context)
+        redirect-keys (set (keys (redirects/redirects context)))]
+    (filter #(not (contains? redirect-keys (keyword %))) (keys idx))))
