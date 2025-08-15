@@ -1,9 +1,16 @@
 {
   "devDependencies": {
     "tailwindcss": "^4.1.11",
-    "terser": "^5.43.1"
+    "terser": "^5.43.1",
+    "markdownlint-cli": "^0.37.0",
+    "@ocular-d/vale-bin": "^2.29.6"
   },
   "dependencies": {
     "@tailwindcss/cli": "^4.1.11"
+  },
+  "scripts": {
+    "marklint": "markdownlint 'docs/**/*.md' --config .markdownlint.jsonc",
+    "marklint:fix": "markdownlint 'docs/**/*.md' --config .markdownlint.jsonc --fix",
+    "proselint": "vale --glob='!.github/*' ."
   }
 }
