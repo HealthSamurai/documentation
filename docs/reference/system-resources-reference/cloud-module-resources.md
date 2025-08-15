@@ -46,7 +46,11 @@ Cloud module includes the following resource types:
 </thead>
 <tbody>
 <tr><td width="290">_source</td><td width="70">0..1</td><td width="150">string</td><td>System Property. DO NOT USE IT.</td></tr>
-<tr><td width="290">key</td><td width="70">0..1</td><td width="150">string</td><td>Azure storage account key for authentication.</td></tr></tbody>
+<tr><td width="290">clientId</td><td width="70">0..1</td><td width="150">string</td><td>Azure AD application/client ID (required for User Delegation SAS). Available since 2508.</td></tr>
+<tr><td width="290">clientSecret</td><td width="70">0..1</td><td width="150">string</td><td>Azure AD client secret (required for User Delegation SAS). Available since 2508.</td></tr>
+<tr><td width="290">key</td><td width="70">0..1</td><td width="150">string</td><td>Azure storage account key for authentication (required for Account SAS).</td></tr>
+<tr><td width="290">sasType</td><td width="70">0..1</td><td width="150">string</td><td>SAS type: 'account' (default) or 'user-delegation'. Available since 2508.</td></tr>
+<tr><td width="290">tenantId</td><td width="70">0..1</td><td width="150">string</td><td>Azure AD tenant ID (required for User Delegation SAS).</td></tr></tbody>
 </table>
 
 
