@@ -8,7 +8,7 @@
    [gitbok.http :as gitbok.http]))
 
 (def meilisearch-host (or (System/getenv "MEILISEARCH_URL") "http://localhost:7700"))
-(def meilisearch-api-key (or (System/getenv "MEILISEARCH_API_KEY") "60DBZGy6zoDL6Q--s1-dHBWptiVKvK-XRsaacdvkOSM"))
+(def meilisearch-api-key (System/getenv "MEILISEARCH_API_KEY"))
 (def index-name "docs")
 
 (defn highlight-text [text query]
@@ -28,9 +28,12 @@
 
 (defn search-meilisearch [query]
   (try
-    (let [response @(http-client/post (str meilisearch-host "/indexes/" index-name "/search")
-                                      {:headers {"Authorization" (str "Bearer " meilisearch-api-key)
-                                                 "Content-Type" "application/json"}
+    (let [headers (if meilisearch-api-key
+                    {"Authorization" (str "Bearer " meilisearch-api-key)
+                     "Content-Type" "application/json"}
+                    {"Content-Type" "application/json"})
+          response @(http-client/post (str meilisearch-host "/indexes/" index-name "/search")
+                                      {:headers headers
                                        :body (json/generate-string
                                               {:q query
                                                :limit 20

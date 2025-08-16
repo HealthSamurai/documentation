@@ -4,6 +4,7 @@ kind: Kustomization
 namespace: gitbok
 
 resources:
+  - serviceaccount.yaml
   - configmap.yaml
   - service.yaml
   - statefulset.yaml

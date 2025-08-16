@@ -1,5 +1,6 @@
 (ns gitbok.ui.main-navigation
   (:require [gitbok.http]
+            [clojure.string :as str]
             [gitbok.products :as products]))
 
 (defn nav [context]
@@ -34,7 +35,7 @@
             links (or (:links product) [])]
         (for [link links]
           [:a (merge
-               {:href (if (clojure.string/starts-with? (:href link) "http")
+               {:href (if (str/starts-with? (:href link) "http")
                         (:href link)
                         (gitbok.http/get-product-prefixed-url context (:href link)))
                 :class "text-small text-tint-10 hover:text-primary-9 transition-colors duration-200 no-underline font-normal"}
@@ -140,7 +141,7 @@
                     :d "M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 714 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"}]]]]]
         [:div {:id "meilisearch-dropdown"
                :class "absolute top-full mt-2 right-0 left-0 md:left-auto md:min-w-[32rem] z-50"}]]]
-      
+
       ;; Desktop search input (existing HTMX search) - hidden when Meilisearch is active
       [:div {:class "hidden relative h-9 w-60 max-w-64"
              :id "desktop-search-container"}
