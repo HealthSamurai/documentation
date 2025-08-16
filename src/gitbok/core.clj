@@ -484,7 +484,7 @@
 
   (http/register-endpoint
    context
-   {:path "/version"
+   {:path (utils/concat-urls prefix "/version")
     :method :get
     :fn #'version-endpoint})
 
