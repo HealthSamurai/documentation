@@ -1,0 +1,72 @@
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: meilisearch
+  namespace: gitbok
+spec:
+  serviceName: meilisearch
+  replicas: 1
+  selector:
+    matchLabels:
+      app: meilisearch
+  template:
+    metadata:
+      labels:
+        app: meilisearch
+    spec:
+      containers:
+      - name: meilisearch
+        image: getmeili/meilisearch:v1.17.1
+        imagePullPolicy: IfNotPresent
+        ports:
+        - containerPort: 7700
+          name: http
+          protocol: TCP
+        env:
+        - name: MEILI_ENV
+          valueFrom:
+            configMapKeyRef:
+              name: meilisearch-config
+              key: MEILI_ENV
+        - name: MEILI_MASTER_KEY
+          valueFrom:
+            secretKeyRef:
+              name: meilisearch-secret
+              key: master-key
+        - name: MEILI_NO_ANALYTICS
+          value: "true"
+        - name: MEILI_DB_PATH
+          value: "/meili_data"
+        - name: MEILI_HTTP_ADDR
+          value: "0.0.0.0:7700"
+        volumeMounts:
+        - name: data
+          mountPath: /meili_data
+        resources:
+          requests:
+            memory: "256Mi"
+            cpu: "100m"
+          limits:
+            memory: "1Gi"
+            cpu: "500m"
+        livenessProbe:
+          httpGet:
+            path: /health
+            port: http
+          initialDelaySeconds: 30
+          periodSeconds: 10
+        readinessProbe:
+          httpGet:
+            path: /health
+            port: http
+          initialDelaySeconds: 5
+          periodSeconds: 5
+  volumeClaimTemplates:
+  - metadata:
+      name: data
+    spec:
+      accessModes:
+      - ReadWriteOnce
+      resources:
+        requests:
+          storage: 10Gi

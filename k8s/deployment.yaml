@@ -41,6 +41,13 @@ spec:
             value: "https://www.health-samurai.io"
           - name: DOCS_PREFIX
             value: "/docs"
+          - name: MEILISEARCH_URL
+            value: "http://meilisearch.gitbok.svc.cluster.local:7700"
+          - name: MEILISEARCH_API_KEY
+            valueFrom:
+              secretKeyRef:
+                name: meilisearch-secret
+                key: master-key
         args:
           - "-Xms1g"
           - "-Xmx1g"

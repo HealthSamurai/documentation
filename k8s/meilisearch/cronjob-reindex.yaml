@@ -1,0 +1,35 @@
+apiVersion: batch/v1
+kind: CronJob
+metadata:
+  name: meilisearch-reindex
+  namespace: gitbok
+spec:
+  schedule: "0 * * * *"
+  successfulJobsHistoryLimit: 1
+  failedJobsHistoryLimit: 2
+  jobTemplate:
+    spec:
+      template:
+        spec:
+          restartPolicy: OnFailure
+          containers:
+          - name: docs-scraper
+            image: getmeili/docs-scraper:latest
+            env:
+            - name: MEILISEARCH_HOST_URL
+              value: "http://meilisearch.gitbok.svc.cluster.local:7700"
+            - name: MEILISEARCH_API_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: meilisearch-secret
+                  key: master-key
+            volumeMounts:
+            - name: config
+              mountPath: /docs-scraper/config.json
+              subPath: config.json
+            command: ["pipenv", "run", "./docs_scraper", "config.json"]
+          volumes:
+          - name: config
+            configMap:
+              name: meilisearch-scraper-config
+

@@ -10,7 +10,7 @@ init:
 	chmod +x .git/hooks/pre-push
 
 repl: init-test
-	DEV=true BASE_URL=http://localhost:8081 DOCS_PREFIX=/docs MEILISEARCH_API_KEY=60DBZGy6zoDL6Q--s1-dHBWptiVKvK-XRsaacdvkOSM clj -M:dev:nrepl:test:build
+	DEV=true BASE_URL=http://localhost:8081 DOCS_PREFIX=/docs MEILISEARCH_URL=http://localhost:7700 MEILISEARCH_API_KEY=60DBZGy6zoDL6Q--s1-dHBWptiVKvK-XRsaacdvkOSM clj -M:dev:nrepl:test:build
 
 repl-legacy: init-test
 	DEV=true BASE_URL=http://localhost:8081 DOCS_PREFIX=/ clj -M:dev:nrepl:test:build

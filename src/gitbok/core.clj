@@ -15,6 +15,7 @@
    [gitbok.ui.layout :as layout]
    [gitbok.ui.not-found :as not-found]
    [gitbok.ui.search]
+   [gitbok.ui.meilisearch]
    [ring.middleware.gzip :refer [wrap-gzip]]
    [ring.middleware.content-type :refer [content-type-response]]
    [gitbok.http]
@@ -394,6 +395,15 @@
           :middleware [product-middleware gzip-middleware]
           :fn
           gitbok.ui.search/search-endpoint})
+
+        ;; Meilisearch HTMX endpoint
+        (http/register-endpoint
+         context
+         {:path (str product-path "/meilisearch/dropdown")
+          :method :get
+          :middleware [product-middleware gzip-middleware]
+          :fn
+          gitbok.ui.meilisearch/meilisearch-endpoint})
 
         ;; Product sitemap
         (http/register-endpoint

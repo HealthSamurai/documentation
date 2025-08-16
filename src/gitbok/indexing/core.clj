@@ -4,6 +4,7 @@
    [gitbok.indexing.impl.uri-to-file :as uri-to-file]
    [gitbok.indexing.impl.common :as common]
    [gitbok.indexing.impl.search-index :as search-index]
+   [gitbok.indexing.impl.meilisearch :as meilisearch]
    [gitbok.indexing.impl.file-to-uri :as file-to-uri]
    [gitbok.constants :as const]
    [gitbok.products :as products]
@@ -150,7 +151,11 @@
                               [const/SEARCH_IDX]))
 
 (defn search [context q]
-  (search-index/search (get-search-idx context) q))
+  (try
+      (meilisearch/search q)
+      (catch Exception e
+        (println (str "Meilisearch search failed, falling back to Lucene: " (.getMessage e)))
+        (search-index/search (get-search-idx context) q))))
 
 (defn filepath->href [context filepath href]
   (if (str/starts-with? href "http")
