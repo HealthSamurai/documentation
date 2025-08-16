@@ -20,9 +20,19 @@ spec:
         runAsGroup: 1000
         fsGroup: 1000
         runAsNonRoot: true
+      initContainers:
+      - name: clean-volume
+        image: busybox:1.34.1
+        volumeMounts:
+        - name: data
+          mountPath: /meili_data
+        command:
+        - "sh"
+        - "-c"
+        - "rm -rf /meili_data/lost+found && echo 'Volume cleaned'"
       containers:
       - name: meilisearch
-        image: getmeili/meilisearch:v1.16.0
+        image: getmeili/meilisearch:v1.17.1
         imagePullPolicy: IfNotPresent
         ports:
         - containerPort: 7700
