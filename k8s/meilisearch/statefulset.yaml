@@ -13,6 +13,8 @@ spec:
     metadata:
       labels:
         app: meilisearch
+        app.kubernetes.io/name: meilisearch
+        app.kubernetes.io/part-of: documentation-search
     spec:
       serviceAccountName: meilisearch
       securityContext:
