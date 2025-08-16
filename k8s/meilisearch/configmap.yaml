@@ -5,5 +5,3 @@ metadata:
   namespace: gitbok
 data:
   MEILI_ENV: "production"
-  # For development, you can change to:
-  # MEILI_ENV: "development"

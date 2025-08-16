@@ -18,6 +18,11 @@ spec:
             env:
             - name: MEILISEARCH_HOST_URL
               value: "http://meilisearch.gitbok.svc.cluster.local:7700"
+            - name: MEILISEARCH_API_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: meilisearch-secret
+                  key: master-key
             volumeMounts:
             - name: config
               mountPath: /docs-scraper/config.json
