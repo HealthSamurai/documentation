@@ -25,6 +25,14 @@ document.addEventListener('DOMContentLoaded', function() {
           const headerHeight = 64; // 4rem = 64px
           const targetPosition = targetElement.offsetTop - headerHeight - 20; // Extra 20px for breathing room
           
+          // Update URL with the hash
+          if (history.pushState) {
+            history.pushState(null, null, href);
+          } else {
+            // Fallback for older browsers
+            window.location.hash = targetId;
+          }
+          
           window.scrollTo({
             top: targetPosition,
             behavior: 'smooth'
@@ -106,6 +114,14 @@ document.addEventListener('htmx:afterSwap', function(event) {
             if (targetElement) {
               const headerHeight = 64; // 4rem = 64px
               const targetPosition = targetElement.offsetTop - headerHeight - 20; // Extra 20px for breathing room
+              
+              // Update URL with the hash
+              if (history.pushState) {
+                history.pushState(null, null, href);
+              } else {
+                // Fallback for older browsers
+                window.location.hash = targetId;
+              }
               
               window.scrollTo({
                 top: targetPosition,
