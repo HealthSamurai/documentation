@@ -1,8 +1,7 @@
 # SMART on FHIR
 
 {% hint style="info" %}
-This functionality is available starting from version 2411.\
-The [FHIR Schema Validator Engine](../../../modules/profiling-and-validation/fhir-schema-validator/) should be enabled.
+This functionality is available starting from version 2411.
 {% endhint %}
 
 [SMART on FHIR](https://build.fhir.org/ig/HL7/smart-app-launch/) is a framework that describes a set of foundational patterns based on OAuth 2.0 for client applications to authorize, authenticate, and integrate with FHIR-based data systems.
