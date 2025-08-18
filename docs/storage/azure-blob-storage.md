@@ -11,7 +11,7 @@ The main differences between them are that the account SAS requires the account 
 
 ## Set up
 
-### User delegation SAS
+### User delegation SAS (since 2508)
 
 1. Get **tenantId**, **clientId,** and **clientSecret** from the Microsoft Azure Portal using the [Register an application in Microsoft Entra ID guide](https://learn.microsoft.com/en-us/entra/identity-platform/quickstart-register-app).&#x20;
 2. Create the [AzureAccount resource](../reference/system-resources-reference/cloud-module-resources.md#azureaccount) with `userDelegation` sasType:
@@ -73,6 +73,7 @@ POST /AzureAccount
 id: aidbox
 key: long-base64-encoded-string
 ```
+
 {% endtab %}
 {% endtabs %}
 
@@ -99,6 +100,7 @@ account: {id: aidbox, resourceType: AzureAccount}
 storage: aidbox
 container: avatars
 ```
+
 {% endtab %}
 {% endtabs %}
 
@@ -120,6 +122,7 @@ POST /azure/storage/avatars
 
 blob: pt-1.png
 ```
+
 {% endtab %}
 
 {% tab title="Response" %}
@@ -132,26 +135,31 @@ blob: pt-1.png
 ```yaml
 url:  https://aidbox.blob.core.windows.net/avatars/pt-1.png?sr=signature
 ```
+
 {% endtab %}
 {% endtabs %}
 
 Configure CORS in Azure if you want to send data from the browser:
 
-![](../../.gitbook/assets/76a678e6-f71d-4d04-84e6-bca208400324.png)
+![cors](../../.gitbook/assets/76a678e6-f71d-4d04-84e6-bca208400324.png)
 
 Now you can upload file from your UI using signed URL provided by Aidbox:
 
 {% tabs %}
 {% tab title="curl" %}
+
 ```
 curl -X PUT "<signed-url>"
 -H "x-ms-blob-type: BlockBlob"
 -H "Content-Type: text/plain"
 --data-binary $'This is test content.'
+
 ```
+
 {% endtab %}
 
 {% tab title="JavaScript" %}
+
 ```javascript
 //onChange input[type=file]
 var file = inputEvent.file.originFileObj;
@@ -161,6 +169,7 @@ fetch("<signed-url>", {
    headers: {'x-ms-blob-type': 'BlockBlob'}
  }).then(...)
 ```
+
 {% endtab %}
 {% endtabs %}
 
