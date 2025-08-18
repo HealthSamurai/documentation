@@ -7,7 +7,7 @@ Aidbox offers integration with Blob Storage to simplify the upload and retrieval
 * [account SAS](https://learn.microsoft.com/en-us/rest/api/storageservices/create-account-sas)
 * [user delegation SAS](https://learn.microsoft.com/en-us/rest/api/storageservices/create-user-delegation-sas) (since 2508)
 
-The main differences between them are that the account SAS requires the account key, whereas the user delegation SAS requires the client and client secrets from the Azure Application. We recommend using a user delegation SAS
+The main differences between them are that the account SAS requires the account key, whereas the user delegation SAS requires the client and client secrets from the Azure Application. We recommend using a user delegation SAS.
 
 ## Set up
 
