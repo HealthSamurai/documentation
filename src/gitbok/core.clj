@@ -47,13 +47,7 @@
       {:content
        (main-content/render-file* context filepath parsed title content*)
        :title title
-       :description
-       (or
-        description
-        (let [stripped (utils/strip-markdown content*)]
-          (if (>= (count stripped) 150)
-            (subs stripped 0 150)
-            stripped)))
+       :description description
        :section section}
       (catch Exception e
         (println "cannot render file " filepath)
