@@ -54,16 +54,14 @@ MethodOutcome outcome = client.create().resource(patient).execute();
 var settings = new FhirClientSettings
 {
     PreferredFormat = ResourceFormat.Json,
-    PreferredReturn = Prefer.ReturnRepresentation
+    UseAsync = true,
+    VerifyFhirVersion = true
 };
 
 var client = new FhirClient("https://your-aidbox.io/fhir", settings);
 
-// Optional: Add authentication
-client.OnBeforeRequest += (sender, e) =>
-{
-    e.RawRequest.Headers.Add("Authorization", "Bearer your-access-token");
-};
+// Optional: Add Basic Ayth
+client.RequestHeaders.Add("Authorization", "Basic <Base64-encoded client:secret>");
 
 // Create a patient
 var patient = new Patient
@@ -76,6 +74,7 @@ var result = await client.CreateAsync(patient);
 See also:
 
 * [Using HAPI Client with Aidbox](https://github.com/Aidbox/examples/tree/main/aidbox-hapi-client)
+* [Using Firely Client with Aidbox](https://github.com/Aidbox/examples/tree/main/aidbox-firely-dotnet-client)
 
 
 
