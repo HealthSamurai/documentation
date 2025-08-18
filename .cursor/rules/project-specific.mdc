@@ -13,6 +13,7 @@ alwaysApply: false
 - Use book-like style similar to PostgreSQL documentation
 - Focus on state of Aidbox, not selling features
 - Add frontmatter descriptions for SEO
+- Use sentence case for headers
 
 ## File Management
 - Create section files before merging into overview
@@ -49,3 +50,7 @@ The main documentation structure is organized in the [docs/](mdc:docs/) director
 For detailed writing guidelines, refer to the original style guide at [vibe/styleguide.md](mdc:vibe/styleguide.md).
 
 Remember: The goal is to make complex technical decisions feel approachable and actionable. Write documentation that developers actually want to read.
+
+## After update
+
+After any text update you should run `scripts/prepush.sh` to lint the documentations.
