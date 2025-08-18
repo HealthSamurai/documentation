@@ -2,11 +2,9 @@
   (:require
    [gitbok.indexing.impl.sitemap :as sitemap]
    [gitbok.indexing.impl.sitemap-index :as sitemap-index]
-   [edamame.core :as edamame]
    [clojure.string :as str]
    [hiccup2.core]
    [gitbok.markdown.core :as markdown]
-   [gitbok.markdown.widgets]
    [gitbok.indexing.core :as indexing]
    [gitbok.indexing.impl.file-to-uri :as file-to-uri]
    [gitbok.indexing.impl.summary :as summary]

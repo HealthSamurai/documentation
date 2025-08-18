@@ -106,6 +106,8 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     [:script {:src (gitbok.http/get-prefixed-url context "/static/heading-links.js")}]
     [:script {:src "https://cdn.jsdelivr.net/npm/sortablejs@1.15.0/Sortable.min.js"}]
     [:script {:defer true
+              :src (gitbok.http/get-prefixed-url context "/static/navigation-click-fix.js")}]
+    [:script {:defer true
               :src (gitbok.http/get-prefixed-url context "/static/keyboard-navigation.js")}]
     [:script {:defer true
               :src (gitbok.http/get-prefixed-url context "/static/toc-scroll.js")}]
