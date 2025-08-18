@@ -4,14 +4,14 @@ description: Comprehensive overview of Aidbox's developer experience, SDK genera
 
 # Developer experience overview
 
-Aidbox delivers an exceptional developer experience built around four core principles:
+Aidbox delivers a powerful developer experience built around four core principles:
 
-* **Language-specific SDKs** - Generated SDKs for your favorite programming language
-* **Flexible customization** - Easy extension beyond core FHIR with custom resources, profiles, and operations
-* **Comprehensive examples** - Extensive documentation and practical examples to accelerate development
-* **Integrated debugging tools** - Intuitive UI with built-in development and testing capabilities
+* [**Language-specific SDKs**](#language-and-project-specific-sdks) - Generated SDKs for your favorite programming language
+* [**Flexible customization**](#use-aidbox-sdks-for-custom-experience) - Easy extension beyond core FHIR with custom resources, profiles, and operations
+* [**Comprehensive examples**](#aidbox-examples) - Extensive documentation and practical examples to accelerate development
+* [**Integrated debugging tools**](#development-tools-and-debugging) - Intuitive UI with built-in development and testing capabilities
 
-Aidbox is built on standard FHIR, so you can use any external FHIR tooling, SDKs, or libraries you prefer. However, Aidbox's native tools provide superior developer experience with better type safety, debugging capabilities, and seamless integration. 
+Aidbox is built on standard FHIR, so you can use any external FHIR tooling, SDKs, or libraries you prefer. However, Aidbox's native tools provide superior developer experience with better type safety, debugging capabilities, and seamless integration.
 
 
 ## Language and project-specific SDKs
@@ -21,22 +21,22 @@ Aidbox is built on standard FHIR, so you can use any external FHIR tooling, SDKs
 SDKs eliminate the complexity of working with FHIR by providing:
 
 - **Pre-built operations** - Ready-to-use CRUD, search, and custom operations
-- **Type-safe resources** - Native language representations of FHIR resources  
+- **Type-safe resources** - Native language representations of FHIR resources
 - **Automatic validation** - Built-in validation against FHIR specifications
 - **IDE support** - Autocomplete, intellisense, and error detection
-- **Best practices** - Proven patterns for FHIR integration
+- **Best practices** - Proven approaches for common FHIR integration scenarios (data representation, server interaction, etc.)
 
-### Use FHIR SDKs for regular experience
+### Use generic FHIR SDKs
 
-Aidbox maintains full FHIR R4/R5/R6 compliance, allowing you to use any standard FHIR client library. This approach works well for teams familiar with existing FHIR tooling or working with standard FHIR resources without customization.
+Aidbox maintains compliance with different FHIR versions, allowing you to use standard FHIR client libraries.
 
-**HAPI FHIR (Java):**
+**[HAPI FHIR](https://hapifhir.io/) (Java):**
 ```java
 FhirContext ctx = FhirContext.forR4();
 IGenericClient client = ctx.newRestfulGenericClient("https://your-aidbox.io/fhir");
 
 // Optional: Add authentication
-BearerTokenAuthInterceptor authInterceptor = 
+BearerTokenAuthInterceptor authInterceptor =
     new BearerTokenAuthInterceptor("your-access-token");
 client.registerInterceptor(authInterceptor);
 
@@ -46,7 +46,7 @@ patient.addName().setFamily("Doe").addGiven("John");
 MethodOutcome outcome = client.create().resource(patient).execute();
 ```
 
-**FHIRLY C# SDK:**
+**[FHIR.NET API](https://github.com/FirelyTeam/firely-net-sdk) (C#):**
 ```csharp
 var settings = new FhirClientSettings
 {
@@ -70,48 +70,75 @@ var patient = new Patient
 var result = await client.CreateAsync(patient);
 ```
 
-### Use Aidbox SDKs for custom experience
+### Use Aidbox SDKs for customized experience
 
-Universal FHIR SDKs struggle with several critical limitations:
+Generic FHIR SDKs often struggle with several critical limitations:
 
-- **Profile complexity** - Combining multiple Implementation Guides (IGs) with unique structural and validation requirements. For example, trying to use both US Core and IPS (International Patient Summary) profiles in the same project often leads to conflicting field requirements where US Core mandates certain extensions while IPS requires different ones for the same resource type.
+- **Profile complexity** - Combining multiple Implementation Guides (IGs) with unique structural and validation requirements. For example, trying to use both [US Core](http://hl7.org/fhir/us/core/) and [IPS](http://hl7.org/fhir/uv/ips/) (International Patient Summary) profiles in the same project often leads to conflicting field requirements where US Core mandates certain extensions while IPS requires different ones for the same resource type.
 
-- **Custom resources** - Real-world projects often need custom resources and operations not covered by standard FHIR. Healthcare organizations frequently need resources like `User` for application-specific authentication or `AccessPolicy` for fine-grained permission control that extend beyond standard FHIR capabilities.
+- **Custom resources** - Real-world projects often need custom resources and operations not covered by standard FHIR. Healthcare organizations frequently need resources like `User` for application-specific authentication or custom entities for workflow management that extend beyond standard FHIR capabilities.
 
-- **Technology conflicts** - Adding large frameworks can create conflicts with existing project stacks. HAPI FHIR brings extensive dependencies that can clash with Spring Boot versions - for example, HAPI FHIR 7.4+ requires Jackson 2.14+ while many Spring Boot 2.x projects use Jackson 2.13, leading to serialization errors like `NoSuchFieldError: ALLOW_LEADING_PLUS_SIGN_FOR_NUMBERS`. Similarly, HAPI FHIR's migration to Hibernate 6 conflicts with Spring Boot applications still using Hibernate 5.
+- **Technology conflicts** - Adding large frameworks can create conflicts with existing project stacks. For example, HAPI FHIR has dependencies that may conflict with Spring Boot 2.x or 3.x projects, causing integration challenges and requiring additional configuration.
 
 - **Over-complexity** - Including all FHIR features makes SDKs too complex for most real projects. A typical patient management application only uses 5-10% of FHIR resources, yet universal SDKs include all 150+ resource types, choice types, and complex validation rules, resulting in bloated applications and confused developers.
 
-Aidbox solves these challenges by generating project-specific SDKs tailored to your exact requirements. Instead of universal libraries that include everything, Aidbox generates lightweight SDKs containing only the resources, profiles, and operations your project actually uses, eliminating dependency conflicts and reducing complexity.
+Aidbox solves these problems with a different approach: creating SDKs specifically for your project. Instead of using bulky generic libraries, Aidbox builds lightweight SDKs with only what you need - just the resources, profiles, and operations your project will actually use. This removes dependency conflicts and simplifies your code. Since configuration happens when the code is generated (not when it runs), developers work with clean, simple code without the complex layers found in typical FHIR SDKs. The result is a more natural development experience (see examples in [Type Schema: Python SDK for FHIR](https://www.health-samurai.io/articles/type-schema-python-sdk-for-fhir)).
 
-**Type schema approach**: Aidbox uses a JSON-based Type Schema specification that flattens complex FHIR structures into simplified, code-generation-friendly formats. This methodology enriches type information with metadata needed for SDK generation while automatically handling FHIR's challenging features like Choice Types, Extensions, and ValueSets. The result is clean, idiomatic code in your target language that feels natural to work with.
+**Type schema approach**: At the core of Aidbox's SDK generation is its JSON-based Type Schema. This method converts complex FHIR structures into simpler formats that work well for code generation, adding the type information needed to create SDKs. The Type Schema handles FHIR's trickiest features - like Choice Types, Extensions, and ValueSets - creating clean code in your preferred programming language that developers can easily understand and use.
 
 ```mermaid
 flowchart LR
-    A[FHIR Core] --> C[Type Schema]
-    C --> D((Code Generator))
-    D --> E[Python SDK]
-    D --> F[TypeScript SDK]
-    D --> G[C# SDK]
-    H[Custom<br/>Resources & Profiles] --> C
-    I[IGs] --> C
-    
+    A[FHIR Core Package]:::import --> C[Type Schema]:::schema
+    C --> D((CodeGen)):::processor
+    D --> E[Python SDK]:::result
+    D --> F[TypeScript SDK]:::result
+    D --> G[C# SDK]:::result
+    H[Custom<br/>Resources & Profiles]:::import --> C
+    I[IGs]:::import --> C
 
+    classDef import fill:#90cdf4,stroke:#2b6cb0,stroke-width:2px,color:#1a365d;
+    classDef schema fill:#fefcbf,stroke:#b7791f,stroke-width:2px,color:#744210;
+    classDef processor fill:#bbf7d0,stroke:#38a169,stroke-width:2.5px,color:#22543d;
+    classDef result fill:#81e6d9,stroke:#319795,stroke-width:2px,color:#234e52;
+
+    class A,H,I import;
+    class C schema;
+    class D processor;
+    class E,F,G result;
 ```
 
 See also:
 - [Type Schema for FHIR SDKs](https://www.health-samurai.io/articles/type-schema-a-pragmatic-approach-to-build-fhir-sdk)
 - [Python SDK implementation](https://www.health-samurai.io/articles/type-schema-python-sdk-for-fhir)
+- [FHIR Type Schema GitHub Repository](https://github.com/fhir-clj/type-schema)
+- [FHIR Schema CodeGen GitHub Repository](https://github.com/fhir-schema/fhir-schema-codegen)
+    - TypeScript SDK Example: [GitHub](https://github.com/fhir-schema/fhir-schema-codegen/tree/main/example/typescript)
+    - Python SDK Example: [GitHub](https://github.com/fhir-schema/fhir-schema-codegen/tree/main/example/python)
+    - C# SDK Example: [GitHub](https://github.com/fhir-schema/fhir-schema-codegen/tree/main/example/csharp)
 
-## App development framework
+## App framework for custom operations
 
-Aidbox supports custom application development through its App framework, which allows developers to extend the platform with business-specific functionality.
+Aidbox supports custom application development through its App framework, which allows developers to extend the platform with business-specific functionality by combining custom resources and endpoints to implement complete business logic operations.
 
-**App capabilities:**
-- **Custom resources** - Define domain-specific data models
-- **Custom endpoints** - Implement business logic operations  
-- **Event subscriptions** - React to resource changes and system events
-- **Workflow integration** - Connect with external systems and services
+```mermaid
+flowchart LR
+    A["Client"]:::external
+    B["Aidbox"]:::core
+    C["Custom App<br>/Ext. Services"]:::external
+    D[(Database)]:::database
+
+    A --> B
+    B <--> C
+    B --> D
+
+    classDef external fill:#3182ce,stroke:#1A365D,color:#fff,stroke-width:2px,font-weight:bold;
+    classDef core fill:#243c5a,stroke:#0a2540,color:#fff,stroke-width:2.5px,font-weight:bold;
+    classDef database fill:#fbb6ce,stroke:#be185d,color:#581845,stroke-width:2px;
+    classDef external_service fill:#14b8a6,stroke:#134e4a,color:#fff,stroke-width:2px;
+    class A,C external;
+    class B core;
+    class D database;
+```
 
 Apps are standalone services that register with Aidbox, which acts as an API gateway proxying calls to your application endpoints. This architecture enables microservice patterns while maintaining centralized healthcare data management.
 
@@ -120,47 +147,34 @@ See also:
 
 ## Aidbox examples
 
-Aidbox provides comprehensive examples that serve as starting points for common healthcare integration patterns and development scenarios. These practical examples demonstrate real-world implementations and help accelerate your development process by providing tested, working code you can adapt for your specific needs.
+Aidbox provides real-world examples to accelerate your development with tested, working code for common healthcare integration patterns.
 
 The [Aidbox Examples repository](https://github.com/Aidbox/examples) contains implementations covering:
 
-**FHIR implementation guides:**
-- **International Patient Summary (IPS)** - Complete IPS implementation with Chile-specific $summary operation
-- **FHIR SDC (Structured Data Capture)** - Form-based data collection using FHIR standards
-- **Clinical Quality Language (CQL)** - Integration with Java-based CQL engines for clinical decision support
+- **FHIR implementation guides**: International Patient Summary (IPS) for standardized patient data exchange across borders, FHIR SDC (Structured Data Capture) for implementing dynamic questionnaires and forms
+- **Forms and user interface**: Aidbox Forms Builder for creating custom healthcare forms, Forms Renderer for displaying and capturing structured data, SMART App Launch for secure third-party application integration
+- **Integration patterns**: AWS S3 Integration for secure storage of clinical documents, Kafka Topic-Based Subscriptions for real-time event processing, OpenTelemetry for comprehensive system monitoring, Custom Resource Notifications for event-driven architectures
+- **Access control**: Organization-Based Access Control (OrgBAC) for implementing complex healthcare access policies, Agentic FHIR IG Development for automating implementation guide creation and maintenance
 
-**Forms and user interface:**
-- **Aidbox Forms Builder** - Interactive form creation with Flutter web and Angular.js implementations
-- **Forms Renderer** - Multi-framework form rendering (Angular.js, React.js) with standard and controlled modes
-- **SMART App Launch** - Healthcare app authorization patterns with Aidbox and Keycloak integration
-
-**Integration patterns:**
-- **AWS S3 Integration** - Cloud storage connectivity for healthcare data
-- **Kafka Topic-Based Subscriptions** - Real-time data streaming and event processing
-- **OpenTelemetry** - Observability and monitoring implementation
-- **Custom Resource Notifications** - Event-driven architecture examples
-
-**Access control:**
-- **Organization-Based Access Control (OrgBAC)** - Multi-tenant healthcare applications with practitioner-specific access
-- **Agentic FHIR IG Development** - AI-assisted Implementation Guide creation workflows
-
-
-## Development tools and debugging
+## Aidbox UI and development tools
 
 Aidbox provides comprehensive development and debugging tools through the [Aidbox UI](../overview/aidbox-ui/), including:
 
 - **REST Console** - Interactive API testing and debugging
-- **Database Console** - Direct database query interface  
+- **Database Console** - Direct database query interface
 - **Access Policy Testing** - IAM feature testing and validation
 - **Resource Browser** - Visual resource exploration and editing
 
 These built-in tools accelerate development cycles by providing immediate feedback and debugging capabilities without requiring external tools.
 
-**Advanced features:**
-- Comprehensive logging and monitoring capabilities
-- Bundle request support for transactions and batches
-- Extensible logging systems for application monitoring
+**Key capabilities:**
+- Built-in request history and logging
+- SQL query interface for database exploration
+- Visual resource browser and editor
+- REST API console for direct API testing
+
+![Aidbox UI REST Console](../../.gitbook/assets/rest-console.png)
 
 See also:
-- [Debugging Access Control](../tutorials/security-access-control-tutorials/debug-access-control.md)
 
+- [Debugging Access Control](../tutorials/security-access-control-tutorials/debug-access-control.md)
