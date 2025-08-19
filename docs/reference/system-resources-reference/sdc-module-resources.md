@@ -123,6 +123,11 @@ Addednum Resource. Contains additional information abount SDCDocument/SDCWorkflo
 <tr><td width="290">builder.<strong>disable-use-blank-form</strong></td><td width="70">0..1</td><td width="150">boolean</td><td>Disable initializing the builder with a sample form when no form is provided</td></tr>
 <tr><td width="290">builder.<strong>enable-share</strong></td><td width="70">0..1</td><td width="150">boolean</td><td>Make share button visible in the builder and enable accepting a serialized questionnaire from query param</td></tr>
 <tr><td width="290">builder.<strong>hide-population</strong></td><td width="70">0..1</td><td width="150">boolean</td><td>Hide population tab in debug instruments</td></tr>
+<tr><td width="290">builder.<strong>custom-renderers</strong></td><td width="70">0..*</td><td width="150">Map</td><td>Custom renderers that can be used to preview form in Form Builder</td></tr>
+<tr><td width="290">builder.<strong>custom-renderers</strong>.<strong>name</strong></td><td width="70">0..1</td><td width="150">string</td><td>Webcomponent tag name</td></tr>
+<tr><td width="290">builder.<strong>custom-renderers</strong>.<strong>source</strong></td><td width="70">0..1</td><td width="150">url</td><td>Webcomponent source url</td></tr>
+<tr><td width="290">builder.<strong>custom-renderers</strong>.<strong>title</strong></td><td width="70">0..1</td><td width="150">string</td><td>Title in Builder</td></tr>
+<tr><td width="290">builder.<strong>custom-renderers</strong>.<strong>default</strong></td><td width="70">0..1</td><td width="150">boolean</td><td>If this default renderer for form preview</td></tr>
 <tr><td width="290">builder.<strong>hide-save-theme</strong></td><td width="70">0..1</td><td width="150">boolean</td><td>Hide save theme</td></tr>
 <tr><td width="290">builder.<strong>disable-save</strong></td><td width="70">0..1</td><td width="150">boolean</td><td>Disable save</td></tr>
 <tr><td width="290">builder.<strong>disable-publish</strong></td><td width="70">0..1</td><td width="150">boolean</td><td>Disable publish button</td></tr>
