@@ -33,9 +33,9 @@ Accept: preferred format
 ## Parameters
 
 - **viewReference**: reference to the ViewDefinition resource.
-  
+
   This parameter is exclusive with the `viewResource` parameter.
-  
+
   Example:
   ```json
   {
@@ -45,7 +45,7 @@ Accept: preferred format
   ```
 
 - **viewResource**: provided viewDefinition resource.
-  
+
   This parameter is exclusive with the `viewReference` parameter.
 
   Example:
@@ -74,7 +74,7 @@ Accept: preferred format
 - **resource**: provided resources to run ViewDefinition on.
 
   If this parameter is specified, the server runs ViewDefinition
-  only on this resource, and not on a stored resources.
+  only on this resource, and not on stored resources.
   Conversely, if this parameter is omitted, the server runs ViewDefinition
   on stored resources.
 
@@ -93,8 +93,8 @@ Accept: preferred format
 
 - **group**: use only resources which are members of the specified group
 
-  Filters all input resources, and run ViewDefinition only on those resources,
-  which are the members of the specified group.
+  Filters all input resources, and runs ViewDefinition only on those resources
+  which are members of the specified group.
 
   Example:
   ```json
@@ -108,7 +108,7 @@ Accept: preferred format
 
 - **patient**: use only resources which are related to the specified patient.
 
-  Filter all input resources and run ViewDefinition only on those resources,
+  Filters all input resources and runs ViewDefinition only on those resources
   which are members of the patient compartment for the specified patient.
 
   Example:
@@ -123,8 +123,8 @@ Accept: preferred format
 
 - **_since**: use only resources updated later than the specified date
 
-  Filter all input resources and run ViewDefinition only on those resources,
-  which were modified (meta.lastModified) since the specified date
+  Filters all input resources and runs ViewDefinition only on those resources
+  which were modified (meta.lastModified) since the specified date.
 
   Example:
   ```json
@@ -136,9 +136,9 @@ Accept: preferred format
 
 - **_format**: output format (json/ndjson/csv)
 
-  Return response in the given format.
+  Returns response in the given format.
   Allowed values: `json`, `ndjson`, `csv`.
-  
+
   Example:
   ```json
   {
@@ -149,7 +149,7 @@ Accept: preferred format
 
 - **_limit**: Maximum number of returned rows
 
-  Limit the number of the returned rows to the given value.
+  Limits the number of the returned rows to the given value.
   Note that it limits the number of the returned rows,
   not the number of input resources.
 
@@ -162,10 +162,10 @@ Accept: preferred format
   ```
 
 ## Output format (content negotiation)
-Depending on combination of the `Accept` header and `_format` parameter,
-the returned type is different
+Depending on the combination of the `Accept` header and `_format` parameter,
+the returned type is different.
 
-By default the response is wrapped in the Binary resource. But if Accept
+By default, the response is wrapped in the Binary resource. But if Accept
 specifies the media type specified by format, the server doesn't wrap
 response in Binary.
 
@@ -191,8 +191,8 @@ Provided resources and ViewDefinition:
       "resource": {
         "id": "view-1",
         "resourceType": "ViewDefinition",
-        "status   ": "draft",
-        "resource ": "Patient",
+        "status": "draft",
+        "resource": "Patient",
         "select": [
           {
             "column": [

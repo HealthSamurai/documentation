@@ -47,7 +47,7 @@ Accept: application/json
 
   - `"table"` - materialization of ViewDefinition as a table;
   - `"view"` - materialization of ViewDefinition as a view;
-  - `"materialized view"` - materialization of ViewDefinition as a materialized view.
+  - `"materialized-view"` - materialization of ViewDefinition as a materialized view.
 
 ## Schema configuration
 
