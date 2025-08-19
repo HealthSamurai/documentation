@@ -1,16 +1,21 @@
+---
+description: Materializing SQL-on-FHIR ViewDefinitions as database tables, views, or materialized views
+---
 # `$materialize` operation
 
 {% hint style="info" %}
 This functionality is available in Aidbox versions 2508 and later.
 {% endhint %}
 
-SQL on FHIR provides the `$materialize` operation to materialize a given ViewDefinition that can either create a table, view, or materialized view.
+SQL on FHIR provides the `$materialize` operation to transform a ViewDefinition into a concrete database object. This operation can create a table, view, or materialized view in the database based on the ViewDefinition structure.
 
 {% hint style="warning" %}
-If Aidbox doesn't run in FHIRSchema mode, the input parameters are not validated.
+When running Aidbox not in FHIRSchema mode, please be aware that input parameters for the `$materialize` operation are not validated against FHIR specifications.
 {% endhint %}
 
 ## General syntax
+
+To call the `$materialize` operation, use the following request format:
 
 ```
 POST /fhir/ViewDefinition/<resource-id>/$materialize
@@ -51,11 +56,11 @@ Accept: application/json
 
 ## Schema configuration
 
-By default, Aidbox creates all views using the `sof` schema.
-The schema can be changed in Aidbox settings, using the [`db.view-definition-schema`](../../reference/settings/database.md#db.view-definition-schema) setting.
+By default, Aidbox creates all materialized ViewDefinitions in the `sof` schema.
+This schema can be configured in Aidbox settings through the [`db.view-definition-schema`](../../reference/settings/database.md#db.view-definition-schema) setting.
 
-Changing this setting does not affect already materialized views; it applies only to new ones.
-It is recommended to use a dedicated schema for ViewDefinition to avoid potential collisions.
+Please note that changing this setting only affects new materializations and does not retroactively change already materialized database objects.
+We recommend using a dedicated schema for ViewDefinition materializations to prevent naming conflicts with other database objects.
 
 ## Examples
 
@@ -143,7 +148,7 @@ Accept: application/json
 
 ### Using a Bundle
 
-ViewDefinition creation and materialization can be performed with a Bundle:
+ViewDefinition creation and materialization can be performed with a Bundle, making it ideal for inclusion in an InitBundle for automated setup during Aidbox initialization:
 
 ```
 POST /fhir/
@@ -240,15 +245,16 @@ Unsuccessful materialization due to incorrect materialization type:
 }
 ```
 
-## Checking view in DB Console
+## Checking Materialized ViewDefinition in the DB Console
 
-The view created with either of the above examples can be checked in the DB Console with the following query:
+After materializing a ViewDefinition using any of the methods described above, you can verify its creation and query its data using the DB Console with the following SQL query:
 
 ```sql
 SELECT * FROM sof.patient_view;
 ```
 
+This query retrieves all records from the materialized view, table, or database view that was created in the 'sof' schema (or your configured schema).
+
 ## Managing created views
 
-Aidbox only creates or updates existing materialized ViewDefinition - refreshing and deletion should be handled manually via PostgreSQL.
-Editing and deleting the original ViewDefinition doesn't affect any created views.
+Aidbox only creates or updates existing materialized ViewDefinition objects in the database. The refreshing of materialized views and deletion of any created database objects (tables, views, or materialized views) must be handled manually using PostgreSQL commands. Note that editing or deleting the original ViewDefinition resource in Aidbox does not automatically affect any database objects that were previously created from that definition.
