@@ -4,8 +4,7 @@
    [org.httpkit.client :as http-client]
    [cheshire.core :as json]
    [uui]
-   [gitbok.utils :as utils]
-   [gitbok.http :as gitbok.http]))
+   [gitbok.utils :as utils]))
 
 (def meilisearch-host (or (System/getenv "MEILISEARCH_URL") "http://localhost:7700"))
 (def meilisearch-api-key (System/getenv "MEILISEARCH_API_KEY"))
@@ -32,15 +31,26 @@
                     {"Authorization" (str "Bearer " meilisearch-api-key)
                      "Content-Type" "application/json"}
                     {"Content-Type" "application/json"})
-          response @(http-client/post (str meilisearch-host "/indexes/" index-name "/search")
-                                      {:headers headers
-                                       :body (json/generate-string
-                                              {:q query
-                                               :limit 20
-                                               :attributesToHighlight ["content" "hierarchy_lvl0" "hierarchy_lvl1" 
-                                                                       "hierarchy_lvl2" "hierarchy_lvl3"]
-                                               :highlightPreTag "<mark class=\"bg-warning-2 text-tint-12 p-1 px-0.5 -mx-0.5 py-0.5 rounded\">"
-                                               :highlightPostTag "</mark>"})})]
+          response @(http-client/post
+                     (str meilisearch-host "/multi-search")
+                     {:headers headers
+                      :body
+                      (json/generate-string
+                       {:federation {:limit 20} ; Set limit at federation level
+                        :queries [{:indexUid index-name
+                                   :q query
+                                   :filter (str "hierarchy_lvl6 = \"" query "\"")
+                                   :federationOptions {:weight 1.2}
+                                   :attributesToHighlight ["content" "hierarchy_lvl0" "hierarchy_lvl1"
+                                                           "hierarchy_lvl2" "hierarchy_lvl3" "hierarchy_lvl6"]
+                                   :highlightPreTag "<mark class=\"bg-warning-2 text-tint-12 p-1 px-0.5 -mx-0.5 py-0.5 rounded\">"
+                                   :highlightPostTag "</mark>"}
+                                  {:indexUid index-name
+                                   :q query
+                                   :attributesToHighlight ["content" "hierarchy_lvl0" "hierarchy_lvl1"
+                                                           "hierarchy_lvl2" "hierarchy_lvl3" "hierarchy_lvl6"]
+                                   :highlightPreTag "<mark class=\"bg-warning-2 text-tint-12 p-1 px-0.5 -mx-0.5 py-0.5 rounded\">"
+                                   :highlightPostTag "</mark>"}]})})]
       (if (= 200 (:status response))
         (-> response :body json/parse-string (get "hits"))
         []))
@@ -49,62 +59,70 @@
       [])))
 
 (defn group-results-by-page [results]
-  (let [groups (group-by #(get % "hierarchy_lvl1") results)
-        ordered-groups (map (fn [[page-title items]]
-                             {:page-title page-title
-                              :items (vec items)})
-                           groups)]
-    ordered-groups))
+  ;; Group only consecutive items with the same hierarchy_lvl1
+  ;; This preserves the order from federated search
+  (let [groups (partition-by #(get % "hierarchy_lvl1") results)]
+    (map (fn [items]
+           {:page-title (get (first items) "hierarchy_lvl1")
+            :items (vec items)})
+         groups)))
 
 (defn render-result-item [item query index is-grouped?]
   (let [lvl0 (get item "hierarchy_lvl0")
         lvl1 (get item "hierarchy_lvl1")
         lvl2 (get item "hierarchy_lvl2")
         lvl3 (get item "hierarchy_lvl3")
+        lvl6 (get item "hierarchy_lvl6") ; Get hierarchy_lvl6
         content (get item "content")
         url (get item "url")
         anchor (get item "anchor")
         formatted (get item "_formatted")
-        
+
         ;; Determine title and subtitle
         title (if (and is-grouped? (or lvl2 lvl3))
                 (or lvl2 lvl3 "Untitled")
                 (or lvl1 lvl0 "Untitled"))
         subtitle (when (not is-grouped?)
-                  (or lvl2 lvl3))
-        
+                   (or lvl2 lvl3))
+
         ;; Use formatted versions if available
         highlighted-title (if formatted
-                           (or (when (and is-grouped? (or lvl2 lvl3))
-                                 (or (get formatted "hierarchy_lvl2")
-                                     (get formatted "hierarchy_lvl3")))
-                               (get formatted "hierarchy_lvl1")
-                               (get formatted "hierarchy_lvl0")
-                               (highlight-text title query))
-                           (highlight-text title query))
-        
+                            (or (when (and is-grouped? (or lvl2 lvl3))
+                                  (or (get formatted "hierarchy_lvl2")
+                                      (get formatted "hierarchy_lvl3")))
+                                (get formatted "hierarchy_lvl1")
+                                (get formatted "hierarchy_lvl0")
+                                (highlight-text title query))
+                            (highlight-text title query))
+
         highlighted-subtitle (when subtitle
-                              (if formatted
-                                (or (get formatted "hierarchy_lvl2")
-                                    (get formatted "hierarchy_lvl3")
-                                    (highlight-text subtitle query))
-                                (highlight-text subtitle query)))
-        
+                               (if formatted
+                                 (or (get formatted "hierarchy_lvl2")
+                                     (get formatted "hierarchy_lvl3")
+                                     (highlight-text subtitle query))
+                                 (highlight-text subtitle query)))
+
+        ;; Use formatted version of lvl6 if available
+        highlighted-lvl6 (when lvl6
+                           (if formatted
+                             (get formatted "hierarchy_lvl6" lvl6)
+                             lvl6))
+
         ;; Build final URL with anchor
         final-url (cond
                    ;; If anchor exists and URL doesn't already have one, add it
-                   (and anchor (not (str/includes? url "#"))) (str url "#" anchor)
+                    (and anchor (not (str/includes? url "#"))) (str url "#" anchor)
                    ;; Otherwise use URL as is
-                   :else url)
-        
+                    :else url)
+
         ;; Icon type
         has-anchor? (or subtitle anchor (and is-grouped? (or lvl2 lvl3)))
         padding-class (if (and is-grouped? (or lvl2 lvl3)) "pl-10" "px-3")]
-    
+
     [:a {:href final-url
          :class (str "flex items-center gap-3 " padding-class " pr-3 py-2.5 rounded-md "
-                    "text-tint-strong transition-colors block "
-                    "hover:bg-tint-hover")
+                     "text-tint-strong transition-colors block "
+                     "hover:bg-tint-hover")
          :data-result-index index}
      [:div {:class "size-5 shrink-0 text-tint-9 opacity-60"}
       (if has-anchor?
@@ -118,7 +136,7 @@
                  :d "M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"}]])]
      [:div {:class "flex-1 min-w-0"}
       [:div {:class (str "text-sm " (if (and is-grouped? (or lvl2 lvl3)) "font-normal" "font-semibold")
-                        " leading-tight text-tint-strong")}
+                         " leading-tight text-tint-strong")}
        (if (string? highlighted-title)
          (uui/raw highlighted-title)
          highlighted-title)]
@@ -127,7 +145,13 @@
          (if (string? highlighted-subtitle)
            (uui/raw highlighted-subtitle)
            highlighted-subtitle)])
-      (when (and content (not subtitle) (not is-grouped?))
+      ;; Display hierarchy_lvl6 if present with highlighting
+      (when highlighted-lvl6
+        [:div {:class "text-xs font-mono bg-tint-3 text-tint-11 px-1.5 py-0.5 rounded inline-block mt-1"}
+         (if (string? highlighted-lvl6)
+           (uui/raw highlighted-lvl6)
+           highlighted-lvl6)])
+      (when (and content (not subtitle) (not is-grouped?) (not lvl6)) ; Don't show content if lvl6 is shown
         [:div {:class "text-xs text-tint-9 mt-1 line-clamp-1 opacity-80"}
          (let [highlighted-content (highlight-text (subs content 0 (min 100 (count content))) query)]
            (if (string? highlighted-content)
@@ -139,69 +163,96 @@
        [:path {:stroke-linecap "round" :stroke-linejoin "round" :stroke-width "2.5"
                :d "M9 5l7 7-7 7"}]]]]))
 
-(defn meilisearch-dropdown [context request]
+(defn meilisearch-dropdown [_context request]
   (let [query (get-in request [:query-params :q] "")
         is-mobile (= "true" (get-in request [:query-params :mobile]))
         results (when (and query (pos? (count query)))
-                 (search-meilisearch query))]
-    
+                  (search-meilisearch query))]
+
     (if (empty? query)
       [:div] ;; Empty div when no query
-      
+
       (if (empty? results)
         ;; No results found
         [:div {:class (str "bg-white " (if is-mobile "border border-tint-6" "shadow-lg ring-1 ring-tint-subtle")
-                          " rounded-md p-4 text-sm text-tint-9 "
-                          (when-not is-mobile "md:w-[32rem]"))}
+                           " rounded-md p-4 text-sm text-tint-9 "
+                           (when-not is-mobile "md:w-[32rem]"))}
          (str "No results found for \"" query "\"")]
-        
+
         ;; Results found - group and render
         (let [groups (group-results-by-page results)
-              result-index (atom 0)]
+              ;; Pre-calculate indices for each result item
+              indexed-groups (loop [remaining-groups groups
+                                    current-index 0
+                                    acc []]
+                               (if (empty? remaining-groups)
+                                 acc
+                                 (let [group (first remaining-groups)
+                                       items (:items group)
+                                       page-title (:page-title group)
+                                       has-sections? (some #(or (get % "hierarchy_lvl2")
+                                                                (get % "hierarchy_lvl3")
+                                                                (get % "hierarchy_lvl6")) items)
+                                      ;; Calculate how many items will be rendered
+                                       item-count (cond
+                                                    (= 1 (count items)) 1
+                                                    (and page-title (> (count items) 1) has-sections?)
+                                                    (inc (count (filter #(or (get % "hierarchy_lvl2")
+                                                                             (get % "hierarchy_lvl3")
+                                                                             (get % "hierarchy_lvl6"))
+                                                                        items)))
+                                                    :else (count items))]
+                                   (recur (rest remaining-groups)
+                                          (+ current-index item-count)
+                                          (conj acc (assoc group :start-index current-index))))))]
           [:div {:class (str "bg-white " (if is-mobile "border border-tint-6" "shadow-lg ring-1 ring-tint-subtle")
-                            " rounded-md overflow-hidden max-h-[48rem] overflow-y-auto "
-                            (when-not is-mobile "md:w-[32rem]"))}
+                             " rounded-md overflow-hidden max-h-[48rem] overflow-y-auto "
+                             (when-not is-mobile "md:w-[32rem]"))}
            [:div {:class "p-2 space-y-1"}
-            
+
             ;; Render grouped results
-            (for [group groups]
+            (for [group indexed-groups]
               (let [page-title (:page-title group)
                     items (:items group)
-                    has-sections? (some #(or (get % "hierarchy_lvl2") (get % "hierarchy_lvl3")) items)]
-                
-                (if (and page-title (> (count items) 1) has-sections?)
-                  ;; Grouped results with visual grouping
+                    start-index (:start-index group)
+                    has-sections? (some #(or (get % "hierarchy_lvl2")
+                                             (get % "hierarchy_lvl3")
+                                             (get % "hierarchy_lvl6")) items)]
+
+                (cond
+                  ;; Single result - show as one block
+                  (= 1 (count items))
+                  (render-result-item (first items) query start-index false)
+
+                  ;; Multiple results with sections - show h1 header separately
+                  (and page-title (> (count items) 1) has-sections?)
                   [:div {:class "rounded-md p-1 space-y-0.5 bg-tint-2"}
-                   ;; Main page result - if no main item exists, create one from first section item
-                   (let [main-item (first (filter #(and (not (get % "hierarchy_lvl2")) 
-                                                        (not (get % "hierarchy_lvl3"))) items))
-                         ;; If no main page item exists, create one from the first item
-                         main-or-synthesized (or main-item
-                                                (let [first-item (first items)]
-                                                  (when first-item
-                                                    ;; Create a synthesized main page item - remove anchor to link to page itself
-                                                    (let [clean-url (when-let [url (get first-item "url")]
-                                                                     (first (str/split url #"#")))]
-                                                      (-> first-item
-                                                          (assoc "hierarchy_lvl2" nil
-                                                                 "hierarchy_lvl3" nil
-                                                                 "anchor" nil
-                                                                 "url" clean-url))))))]
-                     (when main-or-synthesized
-                       (let [idx @result-index]
-                         (swap! result-index inc)
-                         (render-result-item main-or-synthesized query idx false))))
-                   ;; Section results
-                   (for [item (filter #(or (get % "hierarchy_lvl2") (get % "hierarchy_lvl3")) items)]
-                     (let [idx @result-index]
-                       (swap! result-index inc)
-                       (render-result-item item query idx true)))]
-                  
-                  ;; Ungrouped results
-                  (for [item items]
-                    (let [idx @result-index]
-                      (swap! result-index inc)
-                      (render-result-item item query idx false))))))]])))))
+                   ;; Main page result - always create a clean h1 link
+                   (let [first-item (first items)
+                         clean-url (when-let [url (get first-item "url")]
+                                     (first (str/split url #"#")))
+                         main-page-item (-> first-item
+                                            (assoc "hierarchy_lvl2" nil
+                                                   "hierarchy_lvl3" nil
+                                                   "hierarchy_lvl6" nil
+                                                   "anchor" nil
+                                                   "url" clean-url))]
+                     (render-result-item main-page-item query start-index false))
+                   ;; Section results - all items with lvl2, lvl3, or lvl6
+                   (map-indexed
+                    (fn [idx item]
+                      (render-result-item item query (+ start-index 1 idx) true))
+                    (filter #(or (get % "hierarchy_lvl2")
+                                 (get % "hierarchy_lvl3")
+                                 (get % "hierarchy_lvl6"))
+                            items))]
+
+                  ;; Multiple results without sections - show ungrouped
+                  :else
+                  (map-indexed
+                   (fn [idx item]
+                     (render-result-item item query (+ start-index idx) false))
+                   items))))]])))))
 
 (defn meilisearch-endpoint [context request]
   (let [result (meilisearch-dropdown context request)]

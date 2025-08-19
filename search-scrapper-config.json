@@ -28,7 +28,12 @@
   "custom_settings": {
     "filterableAttributes": [
       "url",
-      "hierarchy_lvl1"
+      "hierarchy_lvl1",
+      "hierarchy_lvl2",
+      "hierarchy_lvl3",
+      "hierarchy_lvl4",
+      "hierarchy_lvl5",
+      "hierarchy_lvl6"
     ],
     "displayedAttributes": [
       "hierarchy_lvl1",

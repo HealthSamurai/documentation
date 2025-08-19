@@ -1,8 +1,12 @@
+@auth=60DBZGy6zoDL6Q--s1-dHBWptiVKvK-XRsaacdvkOSM
+
 GET http://localhost:7700/indexes
+Authorization: Bearer {{auth}}
 
 ###
 
 GET http://localhost:7700/indexes/docs
+Authorization: Bearer {{auth}}
 
 
 ###
@@ -14,10 +18,14 @@ Content-Type: application/json
 
 
 ###
+GET http://localhost:7700/indexes/docs/settings
+Authorization: Bearer {{auth}}
+
+###
 
 PATCH http://localhost:7700/indexes/docs/settings
 Content-Type: application/json
-Authorization: Bearer 60DBZGy6zoDL6Q--s1-dHBWptiVKvK-XRsaacdvkOSM
+Authorization: Bearer {{auth}}
 
 {
   "rankingRules": ["exactness", "words", "typo", "proximity", "attribute", "sort"]
@@ -50,12 +58,17 @@ Authorization: Bearer 60DBZGy6zoDL6Q--s1-dHBWptiVKvK-XRsaacdvkOSM
 
 PATCH http://localhost:7700/indexes/docs/settings
 Content-Type: application/json
-Authorization: Bearer 60DBZGy6zoDL6Q--s1-dHBWptiVKvK-XRsaacdvkOSM
+Authorization: Bearer {{auth}}
 
 {
   "filterableAttributes": [
     "url",
-    "hierarchy_lvl1"
+    "hierarchy_lvl1",
+    "hierarchy_lvl2",
+    "hierarchy_lvl3",
+    "hierarchy_lvl4",
+    "hierarchy_lvl5",
+    "hierarchy_lvl6"
   ],
   "displayedAttributes": [
     "hierarchy_lvl1",
@@ -87,5 +100,55 @@ Authorization: Bearer 60DBZGy6zoDL6Q--s1-dHBWptiVKvK-XRsaacdvkOSM
     "proximity",
     "sort",
     "exactness"
+  ]
+}
+
+###
+POST http://localhost:7700/multi-search
+Authorization: Bearer {{auth}}
+Content-Type: application/json
+
+{
+  "federation": {},
+  "queries": [
+  {
+    "indexUid": "docs",
+    "q": "AIDBOX_BOX_ID",
+    "highlightPreTag": "<mark class=\"bg-warning-2 text-tint-12 p-1 px-0.5 -mx-0.5 py-0.5 rounded\">",
+    "highlightPostTag": "</mark>",
+    "filter": "hierarchy_lvl6 = \"fhir search\"",
+    "federationOptions": {
+      "weight": 1.2
+    }
+  },
+  {
+    "indexUid": "docs",
+    "q": "fhir search"
+  }
+  ]
+}
+
+###
+POST http://localhost:7700/multi-search
+Authorization: Bearer {{auth}}
+Content-Type: application/json
+
+{
+  "federation": {},
+  "queries": [
+  {
+    "indexUid": "docs",
+    "q": "AIDBOX_BOX_ID",
+    "highlightPreTag": "<mark class=\"bg-warning-2 text-tint-12 p-1 px-0.5 -mx-0.5 py-0.5 rounded\">",
+    "highlightPostTag": "</mark>",
+    "filter": "hierarchy_lvl6 = \"AIDBOX_BOX_ID\"",
+    "federationOptions": {
+      "weight": 1.2
+    }
+  },
+    {
+      "indexUid": "docs",
+      "q": "AIDBOX_BOX_ID"
+    }
   ]
 }
