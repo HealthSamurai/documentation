@@ -1,10 +1,12 @@
 ---
-description: Overview of FHIR terminology concepts and Aidbox's terminology server implementation
+description: >-
+  Overview of FHIR terminology concepts and Aidbox's terminology server
+  implementation
 ---
 
 # Terminology Overview
 
-Healthcare systems need to share data reliably across different organizations, vendors, and countries. The challenge? Every system uses different codes for the same concepts. One hospital might code "blood pressure" as "BP", another as "SYSTOLIC_DIASTOLIC", and a third might use a completely different internal system. Poor terminology management leads to data silos, integration nightmares, and ultimately, compromised patient care.
+Healthcare systems need to share data reliably across different organizations, vendors, and countries. The challenge? Every system uses different codes for the same concepts. One hospital might code "blood pressure" as "BP", another as "SYSTOLIC\_DIASTOLIC", and a third might use a completely different internal system. Poor terminology management leads to data silos, integration nightmares, and ultimately, compromised patient care.
 
 FHIR terminology solves this problem by providing standardized ways to represent and validate coded healthcare data. Aidbox implements a comprehensive FHIR terminology server natively integrated into the platform, delivering compliant and performant terminology operations.
 
@@ -20,7 +22,7 @@ FHIR builds terminology around core resource types and data structures that work
 
 **ConceptMaps** define relationships and translations between codes from different CodeSystems. When you need to map your internal "HTN" code to SNOMED CT's "38341003 | Hypertensive disorder", ConceptMaps provide the structured translation rules.
 
-See also: [FHIR Terminology Concepts](./fhir-terminology/intro.md)
+See also: [FHIR Terminology Concepts](../terminology-module/fhir-terminology/)
 
 ## Aidbox Terminology Module
 
@@ -34,5 +36,4 @@ Aidbox implements a flexible terminology server that adapts to different organiz
 
 The module supports all standard FHIR terminology operations - `$validate-code`, `$expand`, and `$lookup` - working seamlessly across local and external content depending on your configuration.
 
-See also: [Aidbox Terminology Module](./aidbox-terminology-module/intro.md)
-
+See also: [Aidbox Terminology Module](../terminology-module/aidbox-terminology-module/)

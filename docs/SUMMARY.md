@@ -130,6 +130,7 @@
 * [Contact us](overview/contact-us.md)
 
 ## Configuration
+
 * [Recommended environment variables](configuration/recommended-envs.md)
 * [Settings](configuration/settings.md)
 * [Configure Aidbox and Multibox](configuration/configure-aidbox-and-multibox.md)
@@ -239,13 +240,13 @@
 ## Terminology Module
 
 * [Terminology Overview](terminology/overview.md)
-* [FHIR Terminology](terminology/fhir-terminology/intro.md)
-  * [Coded Values](terminology/fhir-terminology/coded-values.md)
-  * [Profiles, Binding, and Validation](terminology/fhir-terminology/profiles-binding-validation.md)
-* [Aidbox Terminology Module](terminology/aidbox-terminology-module/intro.md)
-  * [Setup](terminology/aidbox-terminology-module/setup.md)
-  * [Hybrid Mode](terminology/aidbox-terminology-module/hybrid.md)
-  * [Capabilities](terminology/aidbox-terminology-module/capabilities.md)
+* [FHIR Terminology](terminology-module/fhir-terminology/README.md)
+  * [Coded Values](terminology-module/fhir-terminology/coded-values.md)
+  * [Profiles, Binding, and Validation](terminology-module/fhir-terminology/profiles-binding-validation.md)
+* [Aidbox Terminology Module](terminology-module/aidbox-terminology-module/README.md)
+  * [Setup](terminology-module/aidbox-terminology-module/setup.md)
+  * [Hybrid Mode](terminology-module/aidbox-terminology-module/hybrid.md)
+  * [Capabilities](terminology-module/aidbox-terminology-module/capabilities.md)
 
 ## Database
 
@@ -353,8 +354,8 @@
   * [Audit logging in forms](modules/aidbox-forms/audit-logging-in-forms.md)
   * [Aidbox Form Gallery](modules/aidbox-forms/aidbox-form-gallery.md)
 * [SQL on FHIR](modules/sql-on-fhir/README.md)
-  * [`$run` operation](modules/sql-on-fhir/operation-run.md)
-  * [`$materialize` operation](modules/sql-on-fhir/operation-materialize.md)
+  * [$run operation](modules/sql-on-fhir/operation-run.md)
+  * [$materialize operation](modules/sql-on-fhir/operation-materialize.md)
   * [Defining flat views with view definitions](modules/sql-on-fhir/defining-flat-views-with-view-definitions.md)
   * [Migrate to the spec-compliant ViewDefinition format](modules/sql-on-fhir/migrate-to-the-spec-compliant-viewdefinition-format.md)
   * [Query data from flat views](modules/sql-on-fhir/query-data-from-flat-views.md)
@@ -530,6 +531,7 @@
   * [Create Indexes Manually](deployment-and-maintenance/indexes/create-indexes-manually.md)
 
 ## Developer experience
+
 * [Developer experience overview](developer-experience/developer-experience-overview.md)
 * [Apps](developer-experience/aidbox-sdk/apps.md)
 * [Use Aidbox with React](developer-experience/use-aidbox-with-react.md)

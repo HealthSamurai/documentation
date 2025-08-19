@@ -1,5 +1,7 @@
 ---
-description: Introduction to FHIR terminology framework, canonicals concept, and overview of core terminology resources
+description: >-
+  Introduction to FHIR terminology framework, canonicals concept, and overview
+  of core terminology resources
 ---
 
 # FHIR Terminology
@@ -8,10 +10,7 @@ Healthcare data exchange relies heavily on coded values to ensure consistent mea
 
 The FHIR terminology module defines how to represent, validate, and exchange coded data through a set of interconnected resources and data types. This system enables healthcare applications to share meaningful data while maintaining semantic precision and supporting various terminology standards like SNOMED CT, LOINC, and ICD-10.
 
-<figure>
-  <img src="../../../.gitbook/assets/terminology-module-relationships.png" alt="Terminology Module Relationships">
-  <figcaption>Figure from http://hl7.org/fhir</figcaption>
-</figure>
+<figure><img src="../../../.gitbook/assets/terminology-module-relationships.png" alt="Terminology Module Relationships"><figcaption><p>Figure from http://hl7.org/fhir</p></figcaption></figure>
 
 See also: [FHIR Terminology Module Specification](https://build.fhir.org/terminology-module.html)
 
@@ -22,13 +21,15 @@ In FHIR terminology, resources are identified using **canonical URLs** rather th
 For example, the canonical URL `http://hl7.org/fhir/ValueSet/observation-status` identifies the observation status value set globally, whether it's stored in your local FHIR server, an external terminology service, or referenced in a profile binding.
 
 This approach provides several key benefits:
-- **Version independence**: Canonical URLs can include version information (`|4.0.1`) when specific versions are required
-- **Location independence**: The same logical resource can be stored in multiple servers 
-- **Stable references**: Resource IDs may change during migrations, but canonical URLs remain constant
+
+* **Version independence**: Canonical URLs can include version information (`|4.0.1`) when specific versions are required
+* **Location independence**: The same logical resource can be stored in multiple servers
+* **Stable references**: Resource IDs may change during migrations, but canonical URLs remain constant
 
 Here's how canonicals are used in practice:
 
 **Profile binding example:**
+
 ```json
 {
   "id": "Observation.status",
@@ -172,16 +173,17 @@ GET /fhir/ValueSet/$expand?url=http://hl7.org/fhir/ValueSet/condition-clinical
 
 FHIR terminology is built around core concepts that work together to provide a complete solution for coded healthcare data.
 
-[**Coded Values**](./coded-values.md) - FHIR provides three specialized data types for representing coded values: `code` for simple fixed vocabularies, `Coding` for precise system-code pairs, and `CodeableConcept` for complex multi-system representations.
+[**Coded Values**](coded-values.md) - FHIR provides three specialized data types for representing coded values: `code` for simple fixed vocabularies, `Coding` for precise system-code pairs, and `CodeableConcept` for complex multi-system representations.
 
-[**CodeSystem**](./codesystem.md) - Resources that define sets of codes and their meanings within specific terminology domains. CodeSystems establish what codes exist and what they mean, from simple administrative codes to complex clinical terminologies.
+[**CodeSystem**](../../terminology/fhir-terminology/codesystem.md) - Resources that define sets of codes and their meanings within specific terminology domains. CodeSystems establish what codes exist and what they mean, from simple administrative codes to complex clinical terminologies.
 
-[**ValueSet**](./valueset.md) - Collections of codes from one or more CodeSystems that are appropriate for specific contexts. ValueSets curate relevant subsets of codes for particular use cases or implementation requirements.
+[**ValueSet**](../../terminology/fhir-terminology/valueset.md) - Collections of codes from one or more CodeSystems that are appropriate for specific contexts. ValueSets curate relevant subsets of codes for particular use cases or implementation requirements.
 
 **ConceptMap** - Resources that define relationships and translations between codes from different CodeSystems, enabling structured mapping and transformation between different terminology systems.
 
 See also:
-- [Coded Values](./coded-values.md)
-- [CodeSystem](./codesystem.md) 
-- [ValueSet](./valueset.md)
-- [Profiles, Binding, and Validation](./profiles-binding-validation.md)
+
+* [Coded Values](coded-values.md)
+* [CodeSystem](../../terminology/fhir-terminology/codesystem.md)
+* [ValueSet](../../terminology/fhir-terminology/valueset.md)
+* [Profiles, Binding, and Validation](profiles-binding-validation.md)
