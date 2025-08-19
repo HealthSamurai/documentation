@@ -14,7 +14,7 @@ Please, follow an instructions provided by Surescripts. And once you will have a
 
 ### Client Certificate
 
-This is what referenced as `surescripts-cert` in [compose file example](../getting-started.md#deploy-the-docker-application)
+This is what referenced as `surescripts-cert` in [compose file example](getting-started.md#deploy-the-docker-application)
 
 1. Use Surescripts provided cert (`*.p7b` file).
 2. Create a `pem` certificate from it
@@ -24,7 +24,7 @@ This is what referenced as `surescripts-cert` in [compose file example](../getti
 
 ### Private Key
 
-This is what referenced as `surescripts-private` in [compose file example](../getting-started.md#deploy-the-docker-application)
+This is what referenced as `surescripts-private` in [compose file example](getting-started.md#deploy-the-docker-application)
 
 1. You have to use a same private key that was used to obtain client cert `p7b`.
 
@@ -45,7 +45,7 @@ openssl pkcs8 -topk8 -inform PEM -outform PEM \
 
 ### Certificate Authority
 
-This is what referenced as `surescripts-authority` in [compose file example](../getting-started.md#deploy-the-docker-application)
+This is what referenced as `surescripts-authority` in [compose file example](getting-started.md#deploy-the-docker-application)
 
 Here is two options:
 

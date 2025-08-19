@@ -6,7 +6,7 @@
 
 * Aidbox FHIR server
   * Support for delegating read-only workload to the[ database read-only replica.](../database/overview.md#postgresql-with-read-only-replica)
-  * Added an [AidboxTopicDestination](../modules/topic-based-subscriptions/wip-dynamic-subscriptiontopic-with-destinations/clickhouse-aidboxtopicdestination.md) to export a ViewDefinition to ClickHouse, enabling real-time analytics.
+  * Added an [AidboxTopicDestination](../tutorials/subscriptions-tutorials/clickhouse-aidboxtopicdestination.md) to export a ViewDefinition to ClickHouse, enabling real-time analytics.
   * Implemented SQL-on-FHIR [$run](../modules/sql-on-fhir/operation-run.md) operation allowing direct querying of data through ViewDefinition resources.
   * Integrated a [new Terminology engine](../terminology/overview.md) that supports local terminology operations while delegating interactions with external code systems to an external Terminology Server.
   * Introduced `%previous` and `%current` functions for use in [AidboxSubscriptionTopic](../modules/topic-based-subscriptions/wip-dynamic-subscriptiontopic-with-destinations/#aidboxsubscriptiontopic) resources, allowing more precise tracking of changes between resource versions.
@@ -214,7 +214,7 @@ Minor updates:
 
 * Aidbox
   * Introduced [Init Bundle](../configuration/init-bundle.md) as a simple and effective way of configuring Aidbox. The Init Bundle will replace Aidbox (zen) configuration projects.
-  * Added [GCP Pub/Sub support](../modules/topic-based-subscriptions/wip-dynamic-subscriptiontopic-with-destinations/gcp-pub-sub-aidboxtopicdestination.md) for [Aidbox topic-based subscriptions](../modules/topic-based-subscriptions/wip-dynamic-subscriptiontopic-with-destinations/)
+  * Added [GCP Pub/Sub support](../tutorials/subscriptions-tutorials/gcp-pub-sub-aidboxtopicdestination.md) for [Aidbox topic-based subscriptions](../modules/topic-based-subscriptions/wip-dynamic-subscriptiontopic-with-destinations/)
   * Added an option to disable terminology bindings validation when using [FHIR schema validator](../modules/profiling-and-validation/fhir-schema-validator/)
 * Aidbox Forms
   * Added named expressions for calculated/enableWhen/populate expressions and a Named Expression tab in the Debug Console.
@@ -281,7 +281,7 @@ Minor updates:
 ## August 2024 _`2408`_
 
 * Aidbox
-  * Introduced dynamic [Topic-based subscriptions](../modules/topic-based-subscriptions/wip-dynamic-subscriptiontopic-with-destinations/) and supported [Kafka (OSS and AWS)](../modules/topic-based-subscriptions/wip-dynamic-subscriptiontopic-with-destinations/kafka-aidboxtopicdestination.md) as delivery channels
+  * Introduced dynamic [Topic-based subscriptions](../modules/topic-based-subscriptions/wip-dynamic-subscriptiontopic-with-destinations/) and supported [Kafka (OSS and AWS)](../tutorials/subscriptions-tutorials/kafka-aidboxtopicdestination.md) as delivery channels
   * Released a [demo of publishing a completed QuestionnaireResponse to Kafka topic](https://github.com/Aidbox/app-examples/tree/main/aidbox-subscriptions-to-kafka)
   * Added an option to connect a self-hosted Aidbox instance to the [ViewDefinition builder](https://sqlonfhir.aidbox.app/?utm_source=aidbox-docs\&utm_medium=release-notes)
   * Enhanced [SQL on FHIR spec coverage](https://fhir.github.io/sql-on-fhir-v2)

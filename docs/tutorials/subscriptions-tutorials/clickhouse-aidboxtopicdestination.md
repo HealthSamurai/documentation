@@ -1,12 +1,12 @@
 # ClickHouse AidboxTopicDestination
 
 {% hint style="info" %}
-This functionality is available starting from version 2507 and requires [FHIR Schema](../../profiling-and-validation/fhir-schema-validator/) validation engine to be [enabled](../../profiling-and-validation/fhir-schema-validator/).
+This functionality is available starting from version 2507 and requires [FHIR Schema](../../modules/profiling-and-validation/fhir-schema-validator/) validation engine to be [enabled](../../modules/profiling-and-validation/fhir-schema-validator/).
 {% endhint %}
 
 ## Overview
 
-The ClickHouse Topic Destination module provides integration between Aidbox's topic-based subscriptions and ClickHouse analytical database. It enables real-time export of FHIR resources from Aidbox to ClickHouse in a flattened format using [ViewDefinitions](../../sql-on-fhir/defining-flat-views-with-view-definitions.md) and SQL-on-FHIR technology.
+The ClickHouse Topic Destination module provides integration between Aidbox's topic-based subscriptions and ClickHouse analytical database. It enables real-time export of FHIR resources from Aidbox to ClickHouse in a flattened format using [ViewDefinitions](../../modules/sql-on-fhir/defining-flat-views-with-view-definitions.md) and SQL-on-FHIR technology.
 
 This module is designed for analytical workloads where you need to export FHIR data in a structured, queryable format suitable for business intelligence, reporting, and data analysis.
 
@@ -199,7 +199,7 @@ parameter:
 
 ## ViewDefinition Integration
 
-The module uses [ViewDefinitions](../../sql-on-fhir/defining-flat-views-with-view-definitions.md) to transform FHIR resources into flat, analytical structures.
+The module uses [ViewDefinitions](../../modules/sql-on-fhir/defining-flat-views-with-view-definitions.md) to transform FHIR resources into flat, analytical structures.
 
 ### Example ViewDefinition
 
@@ -328,5 +328,5 @@ When a new destination is created, the module automatically:
 
 ## Related Documentation
 
-- [ViewDefinitions](../../sql-on-fhir/defining-flat-views-with-view-definitions.md)
-- [Topic-based Subscriptions](../../topic-based-subscriptions/README.md)
+- [ViewDefinitions](../../modules/sql-on-fhir/defining-flat-views-with-view-definitions.md)
+- [Topic-based Subscriptions](../../modules/topic-based-subscriptions/README.md)

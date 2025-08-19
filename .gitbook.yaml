@@ -274,15 +274,15 @@ redirects:
   modules-1/eprescription/directory/disableproviderlocation-message: modules/eprescription/directory/disableproviderlocation-message.md
   modules-1/eprescription/directory/getproviderlocation-message: modules/eprescription/directory/getproviderlocation-message.md
   modules-1/eprescription/directory/updateproviderlocation-message: modules/eprescription/directory/updateproviderlocation-message.md
-  modules-1/eprescription/environment-variables: modules/eprescription/environment-variables.md
+  modules-1/eprescription/environment-variables: modules/eprescription/reference/environment-variables.md
   modules-1/eprescription/frequently-asked-questions: modules/eprescription/frequently-asked-questions.md
   modules-1/eprescription/getting-started: modules/eprescription/getting-started.md
   modules-1/eprescription/medications/fdb: modules/eprescription/medications/fdb.md
   modules-1/eprescription/pharmacies-synchronization: modules/eprescription/pharmacies-synchronization.md
   modules-1/eprescription/prescribing/cancelrx-message: modules/eprescription/prescribing/cancelrx-message.md
   modules-1/eprescription/prescribing/newrx-message: modules/eprescription/prescribing/newrx-message.md
-  modules-1/eprescription/tutorials/authentication-with-mtls: modules/eprescription/tutorials/authentication-with-mtls.md
-  modules-1/eprescription/tutorials/how-to-test-callback: modules/eprescription/tutorials/how-to-test-callback.md
+  modules-1/eprescription/tutorials/authentication-with-mtls: modules/eprescription/authentication-with-mtls.md
+  modules-1/eprescription/tutorials/how-to-test-callback: modules/eprescription/prescribing/how-to-test-callback.md
   modules-1/integration-toolkit/analytics/power-bi: modules/integration-toolkit/analytics/power-bi.md
   modules-1/integration-toolkit/ccda-converter/how-to-customize-conversion-rules: modules/integration-toolkit/ccda-converter/how-to-customize-conversion-rules.md
   modules-1/integration-toolkit/ccda-converter/how-to-deploy-the-service: modules/integration-toolkit/ccda-converter/how-to-deploy-the-service.md
@@ -436,16 +436,16 @@ redirects:
   modules-1/terminology/codesystem-and-concept/codesystem-subsumption-testing: deprecated/deprecated/other/terminology/codesystem-and-concept/codesystem-subsumption-testing.md
   modules-1/terminology/terminology-api/import-flat-file-docs-csv: deprecated/deprecated/other/terminology/terminology-api/import-flat-file-docs-csv.md
   modules-1/topic-based-subscriptions/aidbox-subsubscriptions: modules/topic-based-subscriptions/aidbox-subsubscriptions.md
-  modules-1/topic-based-subscriptions/wip-dynamic-subscriptiontopic-with-destinations/gcp-pub-sub-aidboxtopicdestination: modules/topic-based-subscriptions/wip-dynamic-subscriptiontopic-with-destinations/gcp-pub-sub-aidboxtopicdestination.md
-  modules-1/topic-based-subscriptions/wip-dynamic-subscriptiontopic-with-destinations/kafka-aidboxtopicdestination: modules/topic-based-subscriptions/wip-dynamic-subscriptiontopic-with-destinations/kafka-aidboxtopicdestination.md
-  modules-1/topic-based-subscriptions/wip-dynamic-subscriptiontopic-with-destinations/tutorial-produce-questionnaireresponse-to-kafka-topic: modules/topic-based-subscriptions/wip-dynamic-subscriptiontopic-with-destinations/tutorial-produce-questionnaireresponse-to-kafka-topic.md
-  modules-1/topic-based-subscriptions/wip-dynamic-subscriptiontopic-with-destinations/webhook-aidboxtopicdestination: modules/topic-based-subscriptions/wip-dynamic-subscriptiontopic-with-destinations/webhook-aidboxtopicdestination.md
+  modules-1/topic-based-subscriptions/wip-dynamic-subscriptiontopic-with-destinations/gcp-pub-sub-aidboxtopicdestination: tutorials/subscriptions-tutorials/gcp-pub-sub-aidboxtopicdestination.md
+  modules-1/topic-based-subscriptions/wip-dynamic-subscriptiontopic-with-destinations/kafka-aidboxtopicdestination: tutorials/subscriptions-tutorials/kafka-aidboxtopicdestination.md
+  modules-1/topic-based-subscriptions/wip-dynamic-subscriptiontopic-with-destinations/tutorial-produce-questionnaireresponse-to-kafka-topic: tutorials/subscriptions-tutorials/tutorial-produce-questionnaireresponse-to-kafka-topic.md
+  modules-1/topic-based-subscriptions/wip-dynamic-subscriptiontopic-with-destinations/webhook-aidboxtopicdestination: tutorials/subscriptions-tutorials/webhook-aidboxtopicdestination.md
   modules/aidbox-forms/aidbox-ui-builder-alpha/embedding-builder: modules/aidbox-forms/aidbox-ui-builder-alpha/embedding.md
   modules/aidbox-forms/aidbox-ui-builder-alpha/embedding-renderer: modules/aidbox-forms/aidbox-ui-builder-alpha/embedding.md
   modules/aidbox-forms/aidbox-ui-builder-alpha/embedding/request-interception: modules/aidbox-forms/aidbox-ui-builder-alpha/request-interception.md
   modules/aidbox-forms/aidbox-ui-builder-alpha/endpoints: modules/aidbox-forms/aidbox-ui-builder-alpha/request-interception.md
   modules/aidbox-forms/aidbox-ui-builder-alpha/form-creation/how-to-guides/how-to: modules/aidbox-forms/aidbox-ui-builder-alpha/form-creation/how-to-guides/README.md
-  modules/eprescription/tutorials/environment-variables: modules/eprescription/environment-variables.md
+  modules/eprescription/tutorials/environment-variables: modules/eprescription/reference/environment-variables.md
   modules/observability/logging-and-audit/readme-1/datadog-guide: modules/observability/logs/tutorials/export-logs-to-datadog-tutorial.md
   modules/observability/logging-and-audit/readme-1/how-to-explore-and-visualize-aidbox-logs-with-kibana-and-grafana: modules/observability/logs/tutorials/log-analysis-and-visualization-tutorial.md
   modules/observability/logging-and-audit: access-control/audit-and-logging.md
@@ -473,5 +473,5 @@ redirects:
   security-and-access-control-1/security/access-control: access-control/authorization/access-policies.md
   security-and-access-control-1/security/accesspolicy-best-practices: tutorials/security-access-control-tutorials/accesspolicy-best-practices.md
   storage-1/database: database/overview.md
-  storage-1/other/s3-compatible-storages: storage/aws-s3.md
+  storage-1/other/s3-compatible-storages: file-storage/aws-s3.md
   tutorials/security-and-access-control/basic-auth-tutorial: tutorials/security-access-control-tutorials/basic-auth.md

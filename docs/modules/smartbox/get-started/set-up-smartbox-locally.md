@@ -22,7 +22,7 @@ Follow the [official Docker guide](https://docs.docker.com/compose/install/#inst
 
 ## Configure cloud storage
 
-Aidbox bulk API supports [GCP](../../../storage/gcp-cloud-storage.md), [AWS](../../../storage/aws-s3.md) and [Azure](../../../storage/azure-blob-storage.md) cloud storages. To pass the Inferno tests cloud storage should be [properly set up](https://github.com/Aidbox/documentation/blob/master/storage/udsexport.md).
+Aidbox bulk API supports [GCP](../../../file-storage/gcp-cloud-storage.md), [AWS](../../../file-storage/aws-s3.md) and [Azure](../../../file-storage/azure-blob-storage.md) cloud storages. To pass the Inferno tests cloud storage should be [properly set up](https://github.com/Aidbox/documentation/blob/master/storage/udsexport.md).
 
 ## **Set up email provider**
 

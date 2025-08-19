@@ -71,19 +71,19 @@ Ensure that the resource metadata contains the kind-specific `AidboxTopicDestina
 ## Currently supported channels
 
 {% content-ref url="webhook-aidboxtopicdestination.md" %}
-[webhook-aidboxtopicdestination.md](webhook-aidboxtopicdestination.md)
+[webhook-aidboxtopicdestination.md](../../../tutorials/subscriptions-tutorials/webhook-aidboxtopicdestination.md)
 {% endcontent-ref %}
 
 {% content-ref url="gcp-pub-sub-aidboxtopicdestination.md" %}
-[gcp-pub-sub-aidboxtopicdestination.md](gcp-pub-sub-aidboxtopicdestination.md)
+[gcp-pub-sub-aidboxtopicdestination.md](../../../tutorials/subscriptions-tutorials/gcp-pub-sub-aidboxtopicdestination.md)
 {% endcontent-ref %}
 
 {% content-ref url="kafka-aidboxtopicdestination.md" %}
-[kafka-aidboxtopicdestination.md](kafka-aidboxtopicdestination.md)
+[kafka-aidboxtopicdestination.md](../../../tutorials/subscriptions-tutorials/kafka-aidboxtopicdestination.md)
 {% endcontent-ref %}
 
 {% content-ref url="clickhouse-aidboxtopicdestination.md" %}
-[clickhouse-aidboxtopicdestination.md](clickhouse-aidboxtopicdestination.md)
+[clickhouse-aidboxtopicdestination.md](../../../tutorials/subscriptions-tutorials/clickhouse-aidboxtopicdestination.md)
 {% endcontent-ref %}
 
 {% content-ref url="../../../tutorials/subscriptions-tutorials/aidboxtopicsubscription-nats-tutorial.md" %}

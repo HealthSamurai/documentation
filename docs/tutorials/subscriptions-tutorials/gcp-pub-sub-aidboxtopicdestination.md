@@ -1,7 +1,7 @@
 # GCP Pub/Sub AidboxTopicDestination
 
 {% hint style="info" %}
-This functionality is available starting from version 2411 and requires [FHIR Schema](../../profiling-and-validation/fhir-schema-validator/) validation engine to be [enabled](../../profiling-and-validation/fhir-schema-validator/).
+This functionality is available starting from version 2411 and requires [FHIR Schema](../../modules/profiling-and-validation/fhir-schema-validator/) validation engine to be [enabled](../../modules//profiling-and-validation/fhir-schema-validator/).
 {% endhint %}
 
 The GCP Pub/Sub AidboxTopicDestination works in the following way:
