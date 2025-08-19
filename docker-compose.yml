@@ -33,7 +33,7 @@ services:
       # For development, use the generated key from logs or set your own
       - MEILISEARCH_API_KEY=${MEILISEARCH_API_KEY:-60DBZGy6zoDL6Q--s1-dHBWptiVKvK-XRsaacdvkOSM}
     volumes:
-      - ./search-scrapper-config.json:/docs-scraper/config.json:ro
+      - ./k8s/meilisearch/config.json:/docs-scraper/config.json:ro
     networks:
       - meilisearch-network
     extra_hosts:

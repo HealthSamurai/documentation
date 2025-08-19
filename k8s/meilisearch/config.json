@@ -1,0 +1,70 @@
+{
+  "index_uid": "docs",
+  "start_urls": [
+    "https://www.health-samurai.io/docs/aidbox/"
+  ],
+  "sitemap_urls": [
+    "https://www.health-samurai.io/docs/aidbox/sitemap.xml"
+  ],
+  "stop_urls": [],
+  "selectors": {
+    "lvl0": {
+      "selector": "article nav li:last-child",
+      "global": true,
+      "default_value": "Documentation"
+    },
+    "lvl1": {
+      "selector": "article h1",
+      "global": true,
+      "default_value": "Chapter"
+    },
+    "lvl2": "article h2",
+    "lvl3": "article h3",
+    "lvl4": "article h4",
+    "lvl5": "article h5",
+    "lvl6": "article h2 ~ table tr:nth-child(4) td, article h2 ~ table tr:nth-child(5) td, article h3 ~ table tr:nth-child(4) td, article h3 ~ table tr:nth-child(5) td",
+    "text": "article .real-content p, article .real-content li, article .real-content td, article .real-content blockquote"
+  },
+  "custom_settings": {
+    "filterableAttributes": [
+      "url",
+      "hierarchy_lvl1",
+      "hierarchy_lvl2",
+      "hierarchy_lvl3",
+      "hierarchy_lvl4",
+      "hierarchy_lvl5",
+      "hierarchy_lvl6"
+    ],
+    "displayedAttributes": [
+      "hierarchy_lvl1",
+      "hierarchy_lvl2",
+      "hierarchy_lvl3",
+      "hierarchy_lvl4",
+      "hierarchy_lvl5",
+      "hierarchy_lvl6",
+      "content",
+      "anchor",
+      "objectID",
+      "url",
+      "hierarchy_lvl0"
+    ],
+    "searchableAttributes": [
+      "hierarchy_lvl1",
+      "hierarchy_lvl2",
+      "hierarchy_lvl3",
+      "hierarchy_lvl4",
+      "hierarchy_lvl5",
+      "hierarchy_lvl6",
+      "content",
+      "hierarchy_lvl0"
+    ],
+    "rankingRules": [
+      "attribute",
+      "words",
+      "typo",
+      "proximity",
+      "sort",
+      "exactness"
+    ]
+  }
+}

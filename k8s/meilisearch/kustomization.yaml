@@ -9,8 +9,15 @@ resources:
   - service.yaml
   - statefulset.yaml
   - cronjob-reindex.yaml
-  - scraper-config.yaml
 
 commonLabels:
   app.kubernetes.io/name: meilisearch
   app.kubernetes.io/part-of: documentation-search
+
+configMapGenerator:
+  - name: meilisearch-scraper-config
+    files:
+      - config.json=./config.json
+
+generatorOptions:
+  disableNameSuffixHash: false
