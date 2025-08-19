@@ -7,11 +7,11 @@ description: Materializing SQL-on-FHIR ViewDefinitions as database tables, views
 This functionality is available in Aidbox versions 2508 and later.
 {% endhint %}
 
-SQL on FHIR provides the `$materialize` operation to transform a ViewDefinition into a concrete database object. This operation can create a table, view, or materialized view in the database based on the ViewDefinition structure.
-
 {% hint style="warning" %}
 When running Aidbox not in FHIRSchema mode, please be aware that input parameters for the `$materialize` operation are not validated against FHIR specifications.
 {% endhint %}
+
+SQL on FHIR provides the `$materialize` operation to transform a ViewDefinition into a concrete database object. This operation can create a table, view, or materialized view in the database based on the ViewDefinition structure.
 
 ## General syntax
 
