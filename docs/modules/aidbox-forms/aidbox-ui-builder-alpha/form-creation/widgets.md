@@ -110,14 +110,18 @@ Each widget in Aidbox Forms has its own set of customisable attributes that defi
 #### EnableWhen rule
 
 EnableWhen option controls whether an item should be 'enabled' or not, but can handle more sophisticated circumstances. For example, it is possible to calculate a score based on the answer to several questions and then enable other questions based on the score. It's also possible to enable or disable questions based on data passed in as context or retrieved from queries.
-
 Options for Setting EnableWhen Rules:
 
-* `conditions` - define conditions using the "enableWhen" constructor.
-* `expression` - use [FHIRPath](https://hl7.org/fhirpath/) expressions or [the FHIRPath Editor](fhirpath-editor.md) to describe the desired behavior.
+condition builder - use the visual condition builder interface to create logical conditions with AND/OR operators. The condition builder automatically converts to FHIRPath when the Questionnaire.enableWhen DSL is not sufficient for complex scenarios.
+expression - use FHIRPath expressions or the FHIRPath Editor to describe the desired behavior with full FHIRPath capabilities.
+
+When to Use Each Option:
+
+Use condition builder for creating logical conditions through a user-friendly visual interface with AND/OR operator support
+Use expression when you need direct FHIRPath control or have highly specialized requirements
 
 {% hint style="info" %}
-Be careful when using existence logic for EnableWhen rules. For example, the checkbox widget has `exists = false` when untouched and `exists = true` if the checkbox has been checked or unchecked. Use equality conditions instead.
+Be careful when using existence logic for EnableWhen rules. For example, the checkbox widget has exists = false when untouched and exists = true if the checkbox has been checked or unchecked. Use equality conditions instead.
 {% endhint %}
 
 #### Calculation rule
