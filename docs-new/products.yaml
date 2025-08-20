@@ -25,7 +25,7 @@ products:
     name: "fhirbase"
     # url <BASE_URL><DOCS_PREFIX>/fhirbase
     path: /fhirbase
-    config: aidbox/.gitbook.yaml
+    config: fhirbase/.gitbook.yaml
     logo: .gitbook/assets/fhirbase.jpg
     favicon: .gitbook/assets/fhirbase.ico
     og-preview-text: "fhirbase"  # Optional: custom text for OG preview images
