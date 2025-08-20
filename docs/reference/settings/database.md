@@ -48,6 +48,12 @@ Schema for PostgreSQL extensions. Default is current schema.
 
 <table data-header-hidden="true"><thead><tr><th width="200"></th><th></th></tr></thead><tbody><tr><td>ID</td><td><code>db.extension-schema</code></td></tr><tr><td>Type</td><td>String</td></tr><tr><td>Default value</td><td>(no default)</td></tr><tr><td>Environment variable</td><td><code>BOX_DB_EXTENSION_SCHEMA</code></td></tr><tr><td>Deprecated environment variables</td><td><code>AIDBOX_EXTENSION_SCHEMA</code> , <br /><code>AIDBOX_DB_PARAM_CURRENT_SCHEMA</code></td></tr><tr><td>Sensitive</td><td><code>false</code> — value will be visible in plaintext in Admin UI</td></tr><tr><td>Set via</td><td>Admin UI → Settings<br />Environment variables</td></tr><tr><td>Hot reload</td><td><code>false</code> — setting requires system restart</td></tr></tbody></table>
 
+### ViewDefinition materialization schema<a href="#db.view-definition-schema" id="db.view-definition-schema"></a>
+
+Schema for storing `ViewDefinition` materialization. Changing this setting does not affect already materialized views; it applies only to new ones. It is recommended to use a dedicated schema for `ViewDefinition` to avoid potential collisions.
+
+<table data-header-hidden="true"><thead><tr><th width="200"></th><th></th></tr></thead><tbody><tr><td>ID</td><td><code>db.view-definition-schema</code></td></tr><tr><td>Type</td><td>String</td></tr><tr><td>Default value</td><td><code>sof</code></td></tr><tr><td>Environment variable</td><td><code>BOX_VIEW_DEFINITION_SCHEMA</code></td></tr><tr><td>Available from</td><td><code>2508</code></td></tr><tr><td>Sensitive</td><td><code>false</code> — value will be visible in plaintext in Admin UI</td></tr><tr><td>Set via</td><td>Admin UI → Settings<br />Environment variables</td></tr><tr><td>Hot reload</td><td><code>true</code> — setting can be changed at runtime</td></tr></tbody></table>
+
 ### Pool connection timeout<a href="#db.pool.connection-timeout" id="db.pool.connection-timeout"></a>
 
 Maximum wait time (in milliseconds) for a database connection from the pool before timing out.
