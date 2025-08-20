@@ -94,7 +94,7 @@
               :hx-get (str href "?partial=true")
               :hx-target "#content"
               ;; :hx-push-url "true"
-              :hx-push-url (gitbok.http/get-absolute-url context href)
+              :hx-push-url href
               :hx-swap "outerHTML"}
         (when img-href
           (let [processed-img-href
