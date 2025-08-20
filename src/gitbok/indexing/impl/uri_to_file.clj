@@ -10,9 +10,15 @@
    [system]))
 
 (defn uri->filepath [uri->file-idx ^String uri]
-  (when (and uri (> (count uri) 1))
-    (let [uri (if (= "/" (subs uri 0 1)) (subs uri 1) uri)
-          fixed-url (if (= "/" (subs uri (dec (count uri))))
+  (when uri
+    (let [;; Handle root path "/" specially - map it to empty string
+          uri (cond
+                (= uri "/") ""
+                (and (> (count uri) 0) (= "/" (subs uri 0 1))) (subs uri 1)
+                :else uri)
+          ;; Remove trailing slash if present
+          fixed-url (if (and (> (count uri) 0) 
+                            (= "/" (subs uri (dec (count uri)))))
                       (subs uri 0 (dec (count uri)))
                       uri)
           ;; Handle anchors in redirects
