@@ -25,63 +25,50 @@
   [context]
   (let [summary-text (gitbok.indexing.impl.summary/read-summary context)
         lines (str/split-lines summary-text)
-        readme-count (count "readme.md")
-        md-count (count ".md")
         redirects (->> (redirects/redirects context)
                        (mapv (fn [[k v]] [(subs (str k) 1) v]))
                        (into {}))
         index
         (loop [lines lines
-               section nil
-               stack []
                acc {}]
           (if (empty? lines)
             acc
             (let [line (first lines)
                   trimmed (str/trim line)]
               (cond
-                (str/starts-with? trimmed "# ")
-                (recur (rest lines) section stack acc)
+                ;; Skip headers
+                (or (str/starts-with? trimmed "# ")
+                    (str/starts-with? trimmed "## "))
+                (recur (rest lines) acc)
 
-                (str/starts-with? trimmed "## ")
-                (let [section-title (str/trim (subs trimmed 3))]
-                  (recur (rest lines)
-                         (utils/s->url-slug section-title)
-                         [] acc))
-
+                ;; Process list items with links
                 (re-matches #"\s*\*\s+\[([^\]]+)\]\(([^)]+)\)" line)
-                (let [indent (->> line (re-find #"^(\s*)\*") second count)
-                      level (quot indent 2)
-                      [_ title path]
-                      (re-matches #"\s*\*\s+\[([^\]]+)\]\(([^)]+)\)" line)
-                      readme? (str/ends-with? (str/lower-case path) "readme.md")
-                      new-stack (-> stack
-                                    (subvec 0 level)
-                                    (conj title))
-                      prefix (if section (str section "/") "")
-                      full-path
-                      (str
-                       prefix
-                       (str/join "/"
-                                 (mapv
-                                  utils/s->url-slug
-                                  new-stack)))
-                      url2 (subs path 0
-                                 (- (count path)
-                                    (if readme?
-                                      readme-count
-                                      md-count)))
-                      url2 (if (str/ends-with? url2 "/")
-                             (subs url2 0 (dec (count url2)))
-                             url2)]
-                  (recur (rest lines) section new-stack
-                         (assoc acc
-                                full-path path
-                            ;; todo migrate all urls to [title]s
-                                url2 path)))
+                (let [[_ title path]
+                      (re-matches #"\s*\*\s+\[([^\]]+)\]\(([^)]+)\)" line)]
+                  ;; Skip external links
+                  (if (str/starts-with? path "http")
+                    (recur (rest lines) acc)
+                    (let [;; Clean up the path - remove .md extension
+                          clean-path (str/replace path #"\.md$" "")
+                          ;; Create URL from file path
+                          url (cond
+                                ;; Root README
+                                (= clean-path "README")
+                                ""
+                                
+                                ;; Directory README files
+                                (str/ends-with? clean-path "/README")
+                                (subs clean-path 0 (- (count clean-path) 7))
+                                
+                                ;; Regular files
+                                :else
+                                clean-path)]
+                      (recur (rest lines)
+                             (assoc acc url path)))))
 
                 :else
-                (recur (rest lines) section stack acc)))))
+                (recur (rest lines) acc)))))
+        
         diff
         (nth (clojure.data/diff (set (keys redirects))
                                 (set (keys index))) 2)

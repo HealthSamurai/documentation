@@ -8,7 +8,6 @@
    [gitbok.utils :as utils]))
 
 (defn file->uri-idx [context]
-  ;; todo do not read summary again
   (let [summary-text (gitbok.indexing.impl.summary/read-summary context)
         link-pattern #"\[([^\]]+)\]\(([^)]+)\)"
 
@@ -16,27 +15,26 @@
         (into {}
               (for [[_ page-name filepath] (re-seq link-pattern summary-text)
                     :when (not (str/starts-with? filepath "http"))]
-                (let [parts (str/split filepath #"/")
-                      dir-path (if (> (count parts) 1)
-                                 (str/join "/" (butlast parts))
-                                 "")
-                      is-readme? (str/ends-with? (str/lower-case filepath) "readme.md")
-                      filename (-> (last parts)
-                                   (str/replace #"\.md$" ""))]
+                (let [;; Remove .md extension
+                      clean-path (str/replace filepath #"\.md$" "")
+                      ;; Generate URL from file path
+                      uri (cond
+                            ;; Root README
+                            (= clean-path "README")
+                            "/"
+                            
+                            ;; Directory README files  
+                            (str/ends-with? clean-path "/README")
+                            (str (subs clean-path 0 (- (count clean-path) 7)) "/")
+                            
+                            ;; Regular files
+                            :else
+                            clean-path)]
                   [filepath
                    {:title page-name
-                    :uri
-                    (if is-readme?
-                      ;; For README files, use the directory path
-                      (if (empty? dir-path)
-                        "/" ;; Root README.md
-                        (str dir-path "/"))
-                      ;; For regular files, use dir/filename
-                      (if (empty? dir-path)
-                        filename
-                        (str dir-path "/" filename)))}])))]
-  (println "file->uri idx is ready with " (count result) " entries" )
-  result))
+                    :uri uri}])))]
+    (println "file->uri idx is ready with " (count result) " entries")
+    result))
 
 (defn set-idx [context]
   (products/set-product-state context [const/FILE->URI_IDX]
