@@ -234,12 +234,12 @@
 * [Artifact Registry overview](artifact-registry/artifact-registry-overview.md)
 * [StructureDefinition](artifact-registry/structuredefinition.md)
 * [SearchParameter](api/rest-api/fhir-search/searchparameter.md)
-* [CodeSystem](terminology/fhir-terminology/codesystem.md)
-* [ValueSet](terminology/fhir-terminology/valueset.md)
+* [CodeSystem](terminology-module/fhir-terminology/codesystem.md)
+* [ValueSet](terminology-module/fhir-terminology/valueset.md)
 
 ## Terminology Module
 
-* [Terminology Overview](terminology/overview.md)
+* [Terminology Overview](terminology-module/overview.md)
 * [FHIR Terminology](terminology-module/fhir-terminology/README.md)
   * [Coded Values](terminology-module/fhir-terminology/coded-values.md)
   * [Profiles, Binding, and Validation](terminology-module/fhir-terminology/profiles-binding-validation.md)
@@ -677,7 +677,7 @@
         * [X-Audit Header](deprecated/deprecated/other/app-development-deprecated-tutorials/receive-logs-from-your-app/x-audit-header.md)
       * [Patient Encounter Notification Application](deprecated/deprecated/other/app-development-deprecated-tutorials/patient-encounter-notification-application.md)
     * [Other Deprecated Tutorials](deprecated/deprecated/other/other-deprecated-tutorials/README.md)
-      * [Resource Generation with Map-to-Fhir-Bundle-Task and Subscription Triggers](deprecated/deprecated/other/other-deprecated-tutorials/resource-generation-with-map-to-fhir-bundle-task-and-subscription-triggers.md)
+      * [Resource Generation with Map-to-FHIR-Bundle-Task and Subscription Triggers](deprecated/deprecated/other/other-deprecated-tutorials/resource-generation-with-map-to-fhir-bundle-task-and-subscription-triggers.md)
       * [APM Aidbox](deprecated/deprecated/other/other-deprecated-tutorials/apm-aidbox.md)
       * [Automatically Archive AuditEvent Resources in GCP Storage Guide](deprecated/deprecated/other/other-deprecated-tutorials/automatically-archive-auditevent-resources-in-gcp-storage-guide.md)
       * [HL7 v2 Pipeline with Patient Mapping](deprecated/deprecated/other/other-deprecated-tutorials/hl7-v2-pipeline-with-patient-mapping.md)

@@ -175,15 +175,15 @@ FHIR terminology is built around core concepts that work together to provide a c
 
 [**Coded Values**](coded-values.md) - FHIR provides three specialized data types for representing coded values: `code` for simple fixed vocabularies, `Coding` for precise system-code pairs, and `CodeableConcept` for complex multi-system representations.
 
-[**CodeSystem**](../../terminology/fhir-terminology/codesystem.md) - Resources that define sets of codes and their meanings within specific terminology domains. CodeSystems establish what codes exist and what they mean, from simple administrative codes to complex clinical terminologies.
+[**CodeSystem**](../../terminology-module/fhir-terminology/codesystem.md) - Resources that define sets of codes and their meanings within specific terminology domains. CodeSystems establish what codes exist and what they mean, from simple administrative codes to complex clinical terminologies.
 
-[**ValueSet**](../../terminology/fhir-terminology/valueset.md) - Collections of codes from one or more CodeSystems that are appropriate for specific contexts. ValueSets curate relevant subsets of codes for particular use cases or implementation requirements.
+[**ValueSet**](../../terminology-module/fhir-terminology/valueset.md) - Collections of codes from one or more CodeSystems that are appropriate for specific contexts. ValueSets curate relevant subsets of codes for particular use cases or implementation requirements.
 
 **ConceptMap** - Resources that define relationships and translations between codes from different CodeSystems, enabling structured mapping and transformation between different terminology systems.
 
 See also:
 
 * [Coded Values](coded-values.md)
-* [CodeSystem](../../terminology/fhir-terminology/codesystem.md)
-* [ValueSet](../../terminology/fhir-terminology/valueset.md)
+* [CodeSystem](../../terminology-module/fhir-terminology/codesystem.md)
+* [ValueSet](../../terminology-module/fhir-terminology/valueset.md)
 * [Profiles, Binding, and Validation](profiles-binding-validation.md)

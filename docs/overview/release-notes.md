@@ -8,7 +8,7 @@
   * Support for delegating read-only workload to the[ database read-only replica.](../database/overview.md#postgresql-with-read-only-replica)
   * Added an [AidboxTopicDestination](../tutorials/subscriptions-tutorials/clickhouse-aidboxtopicdestination.md) to export a ViewDefinition to ClickHouse, enabling real-time analytics.
   * Implemented SQL-on-FHIR [$run](../modules/sql-on-fhir/operation-run.md) operation allowing direct querying of data through ViewDefinition resources.
-  * Integrated a [new Terminology engine](../terminology/overview.md) that supports local terminology operations while delegating interactions with external code systems to an external Terminology Server.
+  * Integrated a [new Terminology engine](../terminology-module/overview.md) that supports local terminology operations while delegating interactions with external code systems to an external Terminology Server.
   * Introduced `%previous` and `%current` functions for use in [AidboxSubscriptionTopic](../modules/topic-based-subscriptions/wip-dynamic-subscriptiontopic-with-destinations/#aidboxsubscriptiontopic) resources, allowing more precise tracking of changes between resource versions.
   * Aidbox UI improvements:
     * Added a Resource Versions page that allows users to view the full change history of a resource, including the ability to see differences between versions.

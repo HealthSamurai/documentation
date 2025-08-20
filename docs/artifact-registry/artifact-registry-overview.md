@@ -18,8 +18,8 @@ The Artifact Registry is a specialized repository within Aidbox that manages
 [FHIR canonical resources](https://build.fhir.org/canonicalresource.html)—resources that define the structure, constraints, and terminology used 
 in FHIR implementations.
 
-* [**CodeSystems**](../terminology/fhir-terminology/codesystem.md) for defining terminologies,
-* [**ValueSets**](../terminology/fhir-terminology/valueset.md) for grouping codes,
+* [**CodeSystems**](../terminology-module/fhir-terminology/codesystem.md) for defining terminologies,
+* [**ValueSets**](../terminology-module/fhir-terminology/valueset.md) for grouping codes,
 * [**StructureDefinitions**](structuredefinition.md) for profiling resources,
 * [**SearchParameters**](../api/rest-api/fhir-search/searchparameter.md) for custom search capabilities.
 
