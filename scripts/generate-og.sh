@@ -37,15 +37,15 @@ generate_for_product() {
     if command -v magick >/dev/null 2>&1; then
       magick -size 1200x630 xc:white \
         \( "$logo" -resize 150x150 \) -gravity northeast -geometry +30+30 -composite \
-        -gravity center -pointsize 40 -font fonts/Roboto-Regular.ttf -fill "#555555" -annotate +0+100 "$product_name" \
-        -gravity center -pointsize 80 -font fonts/Roboto-Regular.ttf -fill "#222222" -size 1000x200 -background none caption:"$title" \
+        -gravity center -pointsize 40 -font scripts/fonts/Roboto-Regular.ttf -fill "#555555" -annotate +0+100 "$product_name" \
+        -gravity center -pointsize 80 -font scripts/fonts/Roboto-Regular.ttf -fill "#222222" -size 1000x200 -background none caption:"$title" \
         -gravity center -geometry +0-40 -composite \
         "$pngpath"
     else
       convert -size 1200x630 xc:white \
         \( "$logo" -resize 150x150 \) -gravity northeast -geometry +30+30 -composite \
-        -gravity center -pointsize 40 -font fonts/Roboto-Regular.ttf -fill "#555555" -annotate +0+100 "$product_name" \
-        -gravity center -pointsize 80 -font fonts/Roboto-Regular.ttf -fill "#222222" -size 1000x200 -background none caption:"$title" \
+        -gravity center -pointsize 40 -font scripts/fonts/Roboto-Regular.ttf -fill "#555555" -annotate +0+100 "$product_name" \
+        -gravity center -pointsize 80 -font scripts/fonts/Roboto-Regular.ttf -fill "#222222" -size 1000x200 -background none caption:"$title" \
         -gravity center -geometry +0-40 -composite \
         "$pngpath"
     fi

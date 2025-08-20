@@ -26,7 +26,7 @@ jobs:
     - name: Generate lastmod files for all products
       run: |
         echo "Generating lastmod files for all products..."
-        bb bb/lastmod.clj all
+        bb scripts/bb/lastmod.clj all
         
     - name: Check for changes
       id: check_changes
