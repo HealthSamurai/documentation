@@ -53,14 +53,25 @@
     // Handle close on click outside
     document.addEventListener('click', function(e) {
       const desktopWrapper = document.getElementById('meilisearch-wrapper');
+      const desktopDropdown = document.getElementById('meilisearch-dropdown');
       const mobileContainer = document.getElementById('mobile-search-container');
+      const mobileDropdown = document.getElementById('mobile-meilisearch-dropdown');
       
-      if (desktopWrapper && !desktopWrapper.contains(e.target)) {
-        if (desktopDropdown) desktopDropdown.innerHTML = '';
+      // Check if click is outside desktop search area
+      if (desktopWrapper && desktopDropdown) {
+        // Check if the click is outside both the input wrapper and the dropdown
+        if (!desktopWrapper.contains(e.target) && !desktopDropdown.contains(e.target)) {
+          desktopDropdown.innerHTML = '';
+          currentSelectedIndex = -1;
+        }
       }
       
-      if (mobileContainer && !mobileContainer.contains(e.target)) {
-        if (mobileDropdown) mobileDropdown.innerHTML = '';
+      // Check if click is outside mobile search area
+      if (mobileContainer && mobileDropdown) {
+        if (!mobileContainer.contains(e.target) && !mobileDropdown.contains(e.target)) {
+          mobileDropdown.innerHTML = '';
+          currentSelectedIndex = -1;
+        }
       }
     });
     
@@ -89,16 +100,6 @@
   }
   
   function setupInputHandlers(input, dropdown) {
-    // Handle Escape key
-    input.addEventListener('keydown', function(e) {
-      if (e.key === 'Escape') {
-        e.preventDefault();
-        input.blur();
-        dropdown.innerHTML = '';
-        currentSelectedIndex = -1;
-      }
-    });
-    
     // Handle arrow keys and Enter
     input.addEventListener('keydown', function(e) {
       const results = dropdown.querySelectorAll('[data-result-index]');
@@ -107,10 +108,12 @@
       switch(e.key) {
         case 'ArrowDown':
           e.preventDefault();
+          e.stopPropagation();
           navigateResults(1, results);
           break;
         case 'ArrowUp':
           e.preventDefault();
+          e.stopPropagation();
           navigateResults(-1, results);
           break;
         case 'Enter':
