@@ -22,33 +22,56 @@
    (and filepath
         (str/ends-with? (str/lower-case filepath) "readme.md"))
     (let [index (file-to-uri/get-idx context)
+          ;; Get DOCS_PREFIX and product path dynamically
+          docs-prefix (gitbok.http/get-prefix context)
+          product-path (gitbok.products/path context)
           ;; Remove trailing slash if present
           filepath (if (str/ends-with? filepath "/")
                      (subs filepath 0 (dec (count filepath)))
                      filepath)
+          ;; Construct the full prefix pattern: <product-path-without-slash>/<docs-prefix-without-slash>/
+          ;; For example: "aidbox/docs/" when product-path="/aidbox" and docs-prefix="/docs"
+          product-path-clean (str/replace product-path #"^/" "")
+          docs-prefix-clean (str/replace docs-prefix #"^/" "")
+          ;; Build possible prefix patterns
+          full-prefix (if (and (not (str/blank? product-path-clean))
+                               (not (str/blank? docs-prefix-clean)))
+                        (str product-path-clean "/" docs-prefix-clean "/")
+                        nil)
+          dot-prefix (if (not (str/blank? docs-prefix-clean))
+                       (str "./" docs-prefix-clean "/")
+                       nil)
+          plain-prefix (if (not (str/blank? docs-prefix-clean))
+                         (str docs-prefix-clean "/")
+                         nil)
           ;; Process filepath to match index format
           filepath-normalized
           (cond
-            ;; Remove aidbox/docs/ prefix if present
-            (str/starts-with? filepath "aidbox/docs/")
-            (subs filepath 12)
-            ;; Remove ./docs/ prefix if present
-            (str/starts-with? filepath "./docs/")
-            (subs filepath 7)
-            ;; Remove docs/ prefix if present
-            (str/starts-with? filepath "docs/")
-            (subs filepath 5)
+            ;; Remove <product>/<docs-prefix>/ prefix if present
+            (and full-prefix (str/starts-with? filepath full-prefix))
+            (subs filepath (count full-prefix))
+            ;; Remove ./<docs-prefix>/ prefix if present
+            (and dot-prefix (str/starts-with? filepath dot-prefix))
+            (subs filepath (count dot-prefix))
+            ;; Remove <docs-prefix>/ prefix if present
+            (and plain-prefix (str/starts-with? filepath plain-prefix))
+            (subs filepath (count plain-prefix))
             ;; Otherwise use as is
             :else filepath)
           dir (.getParent (io/file filepath-normalized))
           result (filterv
                   (fn [[file _info]]
-                    (let [starts-with-dir (and dir (str/starts-with? file dir))
+                    (let [file-obj (io/file file)
+                          file-parent (.getParent file-obj)
+                          file-parent-obj (when file-parent (io/file file-parent))
+                          file-grandparent (when file-parent-obj (.getParent file-parent-obj))
+                          starts-with-dir (and dir (str/starts-with? file dir))
                           not-same-file (not= file filepath-normalized)
-                          same-parent (= dir (.getParent (io/file file)))
+                          same-parent (= dir file-parent)
                           readme-in-subdir (and
                                             dir
-                                            (= dir (.getParent (io/file (.getParent (io/file file)))))
+                                            file-grandparent
+                                            (= dir file-grandparent)
                                             (str/ends-with? (str/lower-case file) "readme.md"))
                           matches (and starts-with-dir
                                        not-same-file
