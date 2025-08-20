@@ -80,7 +80,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     [:title (str title " | " (:name (products/get-current-product context)))]
 
     [:link {:rel "stylesheet", :href (gitbok.http/get-prefixed-url context "/static/app.min.css")}]
-    
+
     [:script {:src (gitbok.http/get-prefixed-url context "/static/htmx.min.js")}]
     [:script {:src (gitbok.http/get-prefixed-url context "/static/tabs.js")}]
     [:script {:src (gitbok.http/get-prefixed-url context "/static/toc.js")}]
