@@ -1,0 +1,8 @@
+root: ./docs/
+structure:
+  readme: README.md
+  summary: SUMMARY.md
+
+redirects:
+  integrations/.net: interations/net.md
+  fhirpath.pg: fhirpath-pg.md

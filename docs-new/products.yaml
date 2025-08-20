@@ -21,6 +21,23 @@ products:
         href: "https://connect.health-samurai.io/"
         target: "_blank"
 
+  - id: fhirbase
+    name: "fhirbase"
+    # url <BASE_URL><DOCS_PREFIX>/fhirbase
+    path: /fhirbase
+    config: aidbox/.gitbook.yaml
+    logo: .gitbook/assets/fhirbase.jpg
+    favicon: .gitbook/assets/fhirbase.ico
+    og-preview-text: "fhirbase"  # Optional: custom text for OG preview images
+    links:
+      - text: "Fhirbase"
+        href: "https://www.health-samurai.io/fhirbase"
+      - text: "Download"
+        href: "https://www.health-samurai.io/fhirbase-downloads"
+      - text: "Github"
+        href: "https://github.com/fhirbase/fhirbase"
+
+
   # - id: forms
   #   name: "Forms Documentation"
   #   # url <BASE_URL><DOCS_PREFIX>/forms
