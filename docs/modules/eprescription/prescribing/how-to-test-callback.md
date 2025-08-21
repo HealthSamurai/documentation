@@ -1,4 +1,4 @@
-# How to Test Callback
+# How to test Callback
 
 Visit the Message Tester section within Surescripts workbench. From there, you can manage templates and compose messages.&#x20;
 
