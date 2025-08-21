@@ -198,7 +198,7 @@ redirects:
   api/rest-api/other/usdto-format.md: api/rest-api/other/to-format.md
   api/rest-api/other/usdvalidate.md: api/rest-api/other/validate.md
   app-development-guides/tutorials/patient-encounter-notification-application: deprecated/deprecated/other/app-development-deprecated-tutorials/patient-encounter-notification-application.md
-  app-development/aidbox-sdk/aidbox-apps: developer-experience/aidbox-sdk/apps.md
+  app-development/aidbox-sdk/aidbox-apps: developer-experience/apps.md
   apple-app-site-association: tutorials/security-access-control-tutorials/apple.md
   getting-started/editions-and-pricing: overview/licensing-and-support.md
   getting-started/lisensing-and-support: overview/licensing-and-support.md
