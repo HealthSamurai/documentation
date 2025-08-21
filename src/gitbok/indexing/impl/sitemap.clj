@@ -7,6 +7,7 @@
    [gitbok.http]
    [gitbok.products :as products]
    [gitbok.indexing.impl.uri-to-file :as uri-to-file]
+   [gitbok.indexing.impl.summary]
    [clojure.data.xml :as xml]))
 
 (defn make-url-entry-with-lastmod [loc lastmod priority]
@@ -46,13 +47,22 @@
     (xml/emit-str urlset)))
 
 (defn set-sitemap [context lastmod]
- (products/set-product-state
-  context
-  [const/SITEMAP]
-  (generate-sitemap
+  (products/set-product-state
    context
-   (uri-to-file/all-urls context)
-   lastmod)))
+   [const/SITEMAP]
+   (let [;; Get primary navigation links (excluding cross-section references)
+         primary-links (gitbok.indexing.impl.summary/get-primary-navigation-links context)
+         ;; Extract just the hrefs, removing leading slashes
+         primary-urls (mapv (fn [link]
+                              (let [href (:href link)]
+                                (if (str/starts-with? href "/")
+                                  (subs href 1)
+                                  href)))
+                            primary-links)]
+     (generate-sitemap
+      context
+      primary-urls
+      lastmod))))
 
 (defn get-sitemap [context]
   (products/get-product-state context [const/SITEMAP]))

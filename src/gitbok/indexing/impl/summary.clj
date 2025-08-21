@@ -118,25 +118,25 @@
               ;; New section header
               (str/starts-with? (str/trim l) "#")
               (recur (title l) file-map ls)
-              
+
               ;; Link line
               (and (not (str/blank? l)) current-section)
               (if-let [parsed (parse-md-link l)]
                 (let [filepath (:href parsed)]
-                  (if (and filepath 
+                  (if (and filepath
                            (not (str/starts-with? filepath "http")))
                     (recur current-section
-                           (update file-map filepath 
-                                   (fn [sections] 
+                           (update file-map filepath
+                                   (fn [sections]
                                      (conj (or sections #{}) current-section)))
                            ls)
                     (recur current-section file-map ls)))
                 (recur current-section file-map ls))
-              
+
               ;; Empty line or other
               :else
               (recur current-section file-map ls))))
-        
+
         summary
         (->>
          (loop [acc []
@@ -175,10 +175,10 @@
                                               current-section (:current-section x)
                                               parsed (parse-md-link md-link)
                                               filepath (:href parsed)
-                                              
+
                                               ;; Check if this is a cross-section reference
                                               is-cross-section
-                                              (when (and filepath 
+                                              (when (and filepath
                                                          (not (str/starts-with? filepath "http"))
                                                          current-section)
                                                 (let [file-sections-set (get file-sections filepath)
@@ -190,21 +190,22 @@
                                                    (and path-section
                                                         (not= (str/lower-case path-section)
                                                               (str/lower-case (first (str/split current-section #" "))))))))
-                                              
+
                                               href (:href parsed)
                                               href
                                               (when href (if (str/starts-with? href "http")
-                                                href
-                                                (let [h (gitbok.http/get-product-prefixed-url context href)]
-                                                  (if (str/starts-with? h "/") h
-                                                    (str "/" h)))))]
+                                                           href
+                                                           (let [h (gitbok.http/get-product-prefixed-url context href)]
+                                                             (if (str/starts-with? h "/") h
+                                                                 (str "/" h)))))]
 
                                           (when href
                                             {:i (count-whitespace md-link)
                                              :j (:j x)
                                              :parsed parsed
                                              :href href
-                                             :title (when href (render-markdown-link-in-toc (:title parsed) href 
+                                             :is-cross-section is-cross-section ;; Store the flag in the data structure
+                                             :title (when href (render-markdown-link-in-toc (:title parsed) href
                                                                                             :is-cross-section is-cross-section))}))))
                                 (remove nil?)
                                 (treefy)))))))]
@@ -239,6 +240,20 @@
                     (:href item)
                     (not= (:href item) "")
                     (not (str/starts-with? (:href item) "http"))))
+             flattened)))
+
+(defn get-primary-navigation-links
+  "Returns only primary navigation links, excluding cross-section references."
+  [context]
+  (let [summary (gitbok.indexing.impl.summary/get-summary context)
+        flattened (gitbok.indexing.impl.summary/flatten-navigation summary)]
+    (filterv (fn [item]
+               (and (:parsed item)
+                    (:href item)
+                    (not= (:href item) "")
+                    (not (str/starts-with? (:href item) "http"))
+                    ;; Exclude cross-section references
+                    (not (:is-cross-section item))))
              flattened)))
 
 (defn first-matching-index [pred coll]
