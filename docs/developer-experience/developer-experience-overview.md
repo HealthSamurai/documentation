@@ -150,7 +150,7 @@ Apps are standalone services that register with Aidbox, which acts as an API gat
 
 See also:
 
-* [App Development Guide](aidbox-sdk/apps.md)
+* [App Development Guide](apps.md)
 
 ## Aidbox examples
 

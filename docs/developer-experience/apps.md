@@ -86,7 +86,7 @@ In this example, the AccessPolicy resource will be created as well as the App re
 ### entities
 
 {% hint style="warning" %}
-It is a deprecated option to create custom resources via [Entity/Attribute](../../deprecated/deprecated/entity-attribute/entities-and-attributes.md) approach.
+It is a deprecated option to create custom resources via [Entity/Attribute](../deprecated/deprecated/entity-attribute/entities-and-attributes.md) approach.
 {% endhint %}
 
 In the `entities` section of the App manifest, you can extend existing resources, define custom profiles, or hook into the lifecycle:
