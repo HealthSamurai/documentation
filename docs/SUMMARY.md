@@ -534,7 +534,7 @@
 ## Developer experience
 
 * [Developer experience overview](developer-experience/developer-experience-overview.md)
-* [Apps](developer-experience/aidbox-sdk/apps.md)
+* [Apps](developer-experience/apps.md)
 * [Use Aidbox with React](developer-experience/use-aidbox-with-react.md)
 * [Aidbox SDK](developer-experience/aidbox-sdk/README.md)
   * [Aidbox JavaScript SDK](developer-experience/aidbox-sdk/aidbox-javascript-sdk.md)
