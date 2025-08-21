@@ -9,6 +9,7 @@ resources:
   - service.yaml
   - statefulset.yaml
   - cronjob-reindex.yaml
+  - job-fhirbase-index.yaml
 
 commonLabels:
   app.kubernetes.io/name: meilisearch
@@ -18,6 +19,9 @@ configMapGenerator:
   - name: meilisearch-scraper-config
     files:
       - config.json=./config.json
+  - name: meilisearch-scraper-config-fhirbase
+    files:
+      - config.json=./config-fhirbase.json
 
 generatorOptions:
   disableNameSuffixHash: false

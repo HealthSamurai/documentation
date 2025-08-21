@@ -4,7 +4,8 @@
    [org.httpkit.client :as http-client]
    [cheshire.core :as json]
    [uui]
-   [gitbok.utils :as utils]))
+   [gitbok.utils :as utils]
+   [gitbok.products :as products]))
 
 (def meilisearch-host (or (System/getenv "MEILISEARCH_URL") "http://localhost:7700"))
 (def meilisearch-api-key (System/getenv "MEILISEARCH_API_KEY"))
@@ -25,7 +26,7 @@
            after])
         text))))
 
-(defn search-meilisearch [query]
+(defn search-meilisearch [query index-name]
   (try
     (let [headers (if meilisearch-api-key
                     {"Authorization" (str "Bearer " meilisearch-api-key)
@@ -163,11 +164,13 @@
        [:path {:stroke-linecap "round" :stroke-linejoin "round" :stroke-width "2.5"
                :d "M9 5l7 7-7 7"}]]]]))
 
-(defn meilisearch-dropdown [_context request]
+(defn meilisearch-dropdown [context request]
   (let [query (get-in request [:query-params :q] "")
         is-mobile (= "true" (get-in request [:query-params :mobile]))
+        current-product (products/get-current-product context)
+        product-index (get current-product :meilisearch-index index-name)
         results (when (and query (pos? (count query)))
-                  (search-meilisearch query))]
+                  (search-meilisearch query product-index))]
 
     (if (empty? query)
       [:div] ;; Empty div when no query

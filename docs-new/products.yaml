@@ -9,6 +9,7 @@ products:
     logo: .gitbook/assets/aidbox_logo.jpg
     favicon: .gitbook/assets/favicon.ico
     og-preview-text: "Aidbox User Docs"  # Optional: custom text for OG preview images
+    meilisearch-index: "docs"
     links:
       - text: "Run Aidbox locally"
         href: "/getting-started/run-aidbox-locally"
@@ -29,6 +30,7 @@ products:
     logo: .gitbook/assets/fhirbase.jpg
     favicon: .gitbook/assets/fhirbase.ico
     og-preview-text: "fhirbase"  # Optional: custom text for OG preview images
+    meilisearch-index: "fhirbase"
     links:
       - text: "Fhirbase"
         href: "https://www.health-samurai.io/fhirbase"
