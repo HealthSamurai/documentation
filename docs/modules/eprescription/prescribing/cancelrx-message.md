@@ -30,4 +30,4 @@ It's expected to get a response from pharmacy within 48 hours. If no response is
 
 #### Status flow
 
-<figure><img src="../../../.gitbook/assets/image (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (1) (1).png" alt=""><figcaption></figcaption></figure>

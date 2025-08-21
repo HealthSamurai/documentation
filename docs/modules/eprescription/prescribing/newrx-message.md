@@ -24,7 +24,7 @@ The following FHIR resources are needed to create a NewRx message:
    * Must be in "draft" status initially
    * Must include requester medication details and dispense details
    * Must have `dosageInstruction.text` non-empty
-   * Must include **Medication**&#x20;
+   * Must include **Medication**
      * as a reference to resource <sub>_(since 2.0)_</sub>
      * as a reference to `contained` resource
      * as a codeable concept <sub>_(since 2.0)_</sub>
@@ -62,7 +62,7 @@ Once accepted, system will update the MedicationRequest status to `active` with 
 
 #### Status flow
 
-<figure><img src="../../../.gitbook/assets/image (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 #### Status structure
 
@@ -119,7 +119,7 @@ First `statusReason.coding` is always main code while the rest are description o
 
 #### Timeout
 
-Sometimes pharmacies can respond immediately, but more often it will take some time. It's expected to get a response from pharmacy within 24 hours.&#x20;
+Sometimes pharmacies can respond immediately, but more often it will take some time. It's expected to get a response from pharmacy within 24 hours.
 
 If no response is received within this time frame, status will be updated to `unknown` <sub>_(since 2.0)_</sub>
 
@@ -496,11 +496,12 @@ Note that you have to put real NCPDP, SPI and NPI values.
 ### Created resources
 
 After the NewRx message is sent, it creates two main resources:
-- **MedicationRequest** with all the references and data about the prescription.
-  - Contains references to **Practitioner**, **Patient**, **Organization** (pharmacy) and others from above.
-- **Provenance** tracking the time and other metadata of the NewRx creation
-  - Other **Provenance** events are created for CancelRx and other (future) Rx events.
-  - You can use this **Provenance** to get the created **.entity** and IDs of e.g. the created **Provider**.
-  - Inside this **.entity**, there are two main sub-entities:
-    - **role: derivation** is ePrescription-sent request.
-    - **role: source** is a Surescript response.
+
+* **MedicationRequest** with all the references and data about the prescription.
+  * Contains references to **Practitioner**, **Patient**, **Organization** (pharmacy) and others from above.
+* **Provenance** tracking the time and other metadata of the NewRx creation
+  * Other **Provenance** events are created for CancelRx and other (future) Rx events.
+  * You can use this **Provenance** to get the created **.entity** and IDs of e.g. the created **Provider**.
+  * Inside this **.entity**, there are two main sub-entities:
+    * **role: derivation** is ePrescription-sent request.
+    * **role: source** is a Surescript response.

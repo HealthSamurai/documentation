@@ -34,18 +34,12 @@ Open in browser [http://localhost:8080/](http://localhost:8080)
 
 ### 4. Activate your Aidbox instance
 
-<figure><img src="../../.gitbook/assets/8901c36f-3acc-4ef2-aefb-e6e14f285f98.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/image.png" alt=""><figcaption></figcaption></figure>
 
-* Using AidboxID\
-  AidboxID is a unique identifier within the Aidbox ecosystem used for product activation
-* Using Aidbox license\
-  Aidbox license can be issued on the [Aidbox user portal](https://aidbox.app/). More about Aidbox licenses [here](../overview/aidbox-user-portal/licenses.md).
+Click "Continue with Aidbox account" and create a free Aidbox account in  [Aidbox user portal](https://aidbox.app/)\
 
-{% hint style="info" %}
-If you’re using an Aidbox license, you’ll be prompted for a username (or email) and password. Use the **admin** username and retrieve the password from the **BOX\_ADMIN\_PASSWORD** environment variable in the `docker-compose.yaml` file.\
-\
-For security, Aidbox generates a unique password for each instance.
-{% endhint %}
+
+More about Aidbox licenses [here](../overview/aidbox-user-portal/licenses.md)
 
 ### 5. **Discover Aidbox features using Notebooks**
 
@@ -62,5 +56,5 @@ Notebooks are interactive tutorials within the Aidbox UI with built-in REST, RPC
 ## Next Steps
 
 * Learn more about [Aidbox Configuration](../configuration/configure-aidbox-and-multibox.md)
-* Unlock additional capabilities of [Aidbox UI](../overview/aidbox-ui/README.md)
+* Unlock additional capabilities of [Aidbox UI](../overview/aidbox-ui/)
 * Dive into the built-in [Aidbox Notebooks](../overview/aidbox-ui/aidbox-notebooks.md)

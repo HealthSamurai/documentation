@@ -3,12 +3,12 @@
 {% hint style="warning" %}
 Since the 2405 release, using Aidbox in FHIR schema validation engine is recommended, which is incompatible with zen or Entity/Attribute options.
 
-[Setup Aidbox with FHIR Schema validation engine](broken-reference)
+[Setup Aidbox with FHIR Schema validation engine](broken-reference/)
 {% endhint %}
 
 Follow step-by-step guide to configure scheduled archive operation:
 
-1. Create [GCPServiceAccount](../../../../storage/gcp-cloud-storage.md#create-gcpserviceaccount) resource.
+1. Create [GCPServiceAccount](../../../../file-storage/gcp-cloud-storage.md#create-gcpserviceaccount) resource.
 2.  Define your scheduler rule with create-archive task as `:task-request` parameter. Check [Scheduler service](https://github.com/Aidbox/documentation/blob/master/tutorials/tutorials/broken-reference/README.md) and [create-archive](../../../../api/other/archive-restore-api/create-archive.md) documentation for more information.\
     This rule means that Scheduler API will archive all AuditEvent resources that are older than 30 days every day at 2 am into GCP Cloud Storage.
 

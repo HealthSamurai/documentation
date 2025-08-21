@@ -4,9 +4,9 @@ description: Access policies creating and maintaning recommendations
 
 # AccessPolicy best practices
 
-## Link AccessPolicy to `User` , `Client` or `Operation`&#x20;
+## Link AccessPolicy to `User` , `Client` or `Operation`
 
-An `AccessPolicy` instance can be linked to `User`, `Client` or `Operation` resources using the`AccessPolicy.link` field.&#x20;
+An `AccessPolicy` instance can be linked to `User`, `Client` or `Operation` resources using the`AccessPolicy.link` field.
 
 When authorizing a request, Aidbox evaluates all relevant `AccessPolicy` rules — those linked to the associated `User`, `Client`, and `Operation`, as well as any global policies.
 
@@ -16,9 +16,9 @@ If no links are specified, the policy is treated as a **global policy**. It mean
 
 We can find `id` of Operation in **APIs -> Operations** page.
 
-<figure><img src="../../.gitbook/assets/image (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
-The following policy will be evaluated on every request from  `myclient` Client. It allows  `myclient` Client  reading every resource by ID.&#x20;
+The following policy will be evaluated on every request from `myclient` Client. It allows `myclient` Client reading every resource by ID.
 
 ```json
 {
@@ -226,4 +226,3 @@ Additionally, it's helpful to include information about the resource being acces
 * `as-practitioner-get-user-notifications`
 * `as-anonymous-verify-one-time-password`
 * `as-smart-app-read-patient-details`
-
