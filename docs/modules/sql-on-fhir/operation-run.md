@@ -1,15 +1,15 @@
-# `$run` operation
+# $run operation
 
 {% hint style="info" %}
 This functionality is available in Aidbox versions 2507 and later.
 {% endhint %}
 
-SQL on FHIR provides the `$run` operation to run a given ViewDefinition.
-It can evaluate the provided or stored ViewDefinition on provided or stored resources.
+SQL on FHIR provides the `$run` operation to run a given ViewDefinition. It can evaluate the provided or stored ViewDefinition on provided or stored resources.
 
 SQL on FHIR specification [defines $run operation](https://sql-on-fhir.org/ig/latest/operations-run.html).
 
 ## General syntax
+
 ```
 POST /fhir/ViewDefinition/$run
 Content-Type: application/json
@@ -32,153 +32,146 @@ Accept: preferred format
 
 ## Parameters
 
-- **viewReference**: reference to the ViewDefinition resource.
+*   **viewReference**: reference to the ViewDefinition resource.
 
-  This parameter is exclusive with the `viewResource` parameter.
+    This parameter is exclusive with the `viewResource` parameter.
 
-  Example:
-  ```json
-  {
-    "name": "viewReference",
-    "valueReference": "ViewDefinition/patient-view"
-  }
-  ```
+    Example:
 
-- **viewResource**: provided viewDefinition resource.
-
-  This parameter is exclusive with the `viewReference` parameter.
-
-  Example:
-  ```json
-  {
-    "name": "viewResource",
-    "resource": {
-      "id": "vd-1",
-      "resourceType": "ViewDefinition",
-      "status": "draft",
-      "resource": "Patient",
-      "select": [
-        {
-          "column": [
-            {
-              "name": "patient_id",
-              "path": "getResourceKey()"
-            }
-          ]
-        }
-      ]
+    ```json
+    {
+      "name": "viewReference",
+      "valueReference": "ViewDefinition/patient-view"
     }
-  }
-  ```
+    ```
+*   **viewResource**: provided viewDefinition resource.
 
-- **resource**: provided resources to run ViewDefinition on.
+    This parameter is exclusive with the `viewReference` parameter.
 
-  If this parameter is specified, the server runs ViewDefinition
-  only on this resource, and not on stored resources.
-  Conversely, if this parameter is omitted, the server runs ViewDefinition
-  on stored resources.
+    Example:
 
-  Example:
-  ```json
-  {
-    "name": "resource",
-    "resource": {
-      "resourceType": "Patient",
-      "active": true
+    ```json
+    {
+      "name": "viewResource",
+      "resource": {
+        "id": "vd-1",
+        "resourceType": "ViewDefinition",
+        "status": "draft",
+        "resource": "Patient",
+        "select": [
+          {
+            "column": [
+              {
+                "name": "patient_id",
+                "path": "getResourceKey()"
+              }
+            ]
+          }
+        ]
+      }
     }
-  }
-  ```
+    ```
+*   **resource**: provided resources to run ViewDefinition on.
 
-  To provide multiple resources, provide this parameter multiple times.
+    If this parameter is specified, the server runs ViewDefinition only on this resource, and not on stored resources. Conversely, if this parameter is omitted, the server runs ViewDefinition on stored resources.
 
-- **group**: use only resources which are members of the specified group
+    Example:
 
-  Filters all input resources, and runs ViewDefinition only on those resources
-  which are members of the specified group.
-
-  Example:
-  ```json
-  {
-    "name": "group",
-    "valueReference": {
-      "reference": "Group/my-group"
+    ```json
+    {
+      "name": "resource",
+      "resource": {
+        "resourceType": "Patient",
+        "active": true
+      }
     }
-  }
-  ```
+    ```
 
-- **patient**: use only resources which are related to the specified patient.
+    To provide multiple resources, provide this parameter multiple times.
+*   **group**: use only resources which are members of the specified group
 
-  Filters all input resources and runs ViewDefinition only on those resources
-  which are members of the patient compartment for the specified patient.
+    Filters all input resources, and runs ViewDefinition only on those resources which are members of the specified group.
 
-  Example:
-  ```json
-  {
-    "name": "patient",
-    "valueReference": {
-      "reference": "Patient/patient-1"
+    Example:
+
+    ```json
+    {
+      "name": "group",
+      "valueReference": {
+        "reference": "Group/my-group"
+      }
     }
-  }
-  ```
+    ```
+*   **patient**: use only resources which are related to the specified patient.
 
-- **_since**: use only resources updated later than the specified date
+    Filters all input resources and runs ViewDefinition only on those resources which are members of the patient compartment for the specified patient.
 
-  Filters all input resources and runs ViewDefinition only on those resources
-  which were modified (meta.lastModified) since the specified date.
+    Example:
 
-  Example:
-  ```json
-  {
-    "name": "_since",
-    "valueInstant": "2020-02-25T17:59:02.812Z"
-  }
-  ```
+    ```json
+    {
+      "name": "patient",
+      "valueReference": {
+        "reference": "Patient/patient-1"
+      }
+    }
+    ```
+*   **\_since**: use only resources updated later than the specified date
 
-- **_format**: output format (json/ndjson/csv)
+    Filters all input resources and runs ViewDefinition only on those resources which were modified (meta.lastModified) since the specified date.
 
-  Returns response in the given format.
-  Allowed values: `json`, `ndjson`, `csv`.
+    Example:
 
-  Example:
-  ```json
-  {
-    "name": "_format",
-    "valueCode": "json"
-  }
-  ```
+    ```json
+    {
+      "name": "_since",
+      "valueInstant": "2020-02-25T17:59:02.812Z"
+    }
+    ```
+*   **\_format**: output format (json/ndjson/csv)
 
-- **_limit**: Maximum number of returned rows
+    Returns response in the given format. Allowed values: `json`, `ndjson`, `csv`.
 
-  Limits the number of the returned rows to the given value.
-  Note that it limits the number of the returned rows,
-  not the number of input resources.
+    Example:
 
-  Example:
-  ```json
-  {
-    "name": "_limit",
-    "valueInteger": 1
-  }
-  ```
+    ```json
+    {
+      "name": "_format",
+      "valueCode": "json"
+    }
+    ```
+*   **\_limit**: Maximum number of returned rows
+
+    Limits the number of the returned rows to the given value. Note that it limits the number of the returned rows, not the number of input resources.
+
+    Example:
+
+    ```json
+    {
+      "name": "_limit",
+      "valueInteger": 1
+    }
+    ```
 
 ## Output format (content negotiation)
-Depending on the combination of the `Accept` header and `_format` parameter,
-the returned type is different.
 
-By default, the response is wrapped in the Binary resource. But if Accept
-specifies the media type specified by format, the server doesn't wrap
-response in Binary.
+Depending on the combination of the `Accept` header and `_format` parameter, the returned type is different.
 
-For example, if you specify `Accept: application/fhir+json` and `_format`: JSON,
-the server will return Binary resource containing the returned payload.
+By default, the response is wrapped in the Binary resource. But if Accept specifies the media type specified by format, the server doesn't wrap response in Binary.
 
-If you specify `Accept: application/json` and `_format`: JSON, the server
-will return the processed data (without wrapping inside Binary resource).
+For example, if you specify `Accept: application/fhir+json` and `_format`: JSON, the server will return Binary resource containing the returned payload.
+
+If you specify `Accept: application/json` and `_format`: JSON, the server will return the processed data (without wrapping inside Binary resource).
 
 ## Examples
 
 Provided resources and ViewDefinition:
+
 ```json
+POST /fhir/ViewDefinition/$run
+content-type: application/json
+accept: application/json
+
 {
   "resourceType": "Parameters",
   "parameter": [
@@ -224,7 +217,12 @@ Provided resources and ViewDefinition:
 ```
 
 Provided resources, stored ViewDefinition:
+
 ```json
+POST /fhir/ViewDefinition/$run
+content-type: application/json
+accept: application/json
+
 {
   "resourceType": "Parameters",
   "parameter": [
@@ -234,7 +232,7 @@ Provided resources, stored ViewDefinition:
     },
     {
       "name": "viewReference",
-      "viewReference": {
+      "valueReference": {
         "reference": "ViewDefinition/patient"
       }
     },
@@ -257,7 +255,12 @@ Provided resources, stored ViewDefinition:
 ```
 
 Stored resources, stored ViewDefinition:
+
 ```json
+POST /fhir/ViewDefinition/$run
+content-type: application/json
+accept: application/json
+
 {
   "resourceType": "Parameters",
   "parameter": [
@@ -267,7 +270,7 @@ Stored resources, stored ViewDefinition:
     },
     {
       "name": "viewReference",
-      "viewReference": {
+      "valueReference": {
         "reference": "ViewDefinition/patient"
       }
     }
@@ -276,6 +279,7 @@ Stored resources, stored ViewDefinition:
 ```
 
 ## Output examples
+
 With `Accept: application/json` and `_format`: JSON
 
 ```json
@@ -291,6 +295,7 @@ With `Accept: application/json` and `_format`: JSON
 ```
 
 With `Accept: application/fhir+json` and `_format`: JSON
+
 ```json
 {
   "resourceType": "Binary",
