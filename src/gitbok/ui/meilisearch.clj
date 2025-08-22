@@ -129,24 +129,7 @@
     ;; Ungrouped - return as-is
     item))
 
-(defn get-visual-properties
-  "Determines visual properties for an item based on its hierarchy level."
-  [item is-grouped?]
-  (let [lvl2 (get item "hierarchy_lvl2")
-        lvl3 (get item "hierarchy_lvl3")
-        lvl4 (get item "hierarchy_lvl4")
-        lvl5 (get item "hierarchy_lvl5")]
-    {:show-file-icon? (and (not is-grouped?)
-                           (not lvl2) (not lvl3) (not lvl4) (not lvl5))
-     :show-hash-icon? (and is-grouped? lvl2
-                           (not lvl3) (not lvl4) (not lvl5))
-     :show-left-border? (and is-grouped? (boolean (or lvl3 lvl4 lvl5)))
-     :padding-class (cond
-                      (and is-grouped? (or lvl4 lvl5)) "pl-12"
-                      (and is-grouped? lvl3) "pl-12"
-                      (and is-grouped? lvl2) "pl-10"
-                      :else "px-3")
-     :border-class nil}))
+;; get-visual-properties removed - no longer needed
 
 (defn group-results-by-hierarchy [results]
   ;; Generalized grouping algorithm for all hierarchy levels
@@ -230,92 +213,28 @@
               :items (vec items)}))
          groups)))
 
-(defn extract-title
-  "Extracts the appropriate title from an item based on grouping status."
-  [item is-grouped?]
-  (let [lvl0 (get item "hierarchy_lvl0")
-        lvl1 (get item "hierarchy_lvl1")
-        lvl2 (get item "hierarchy_lvl2")
-        lvl3 (get item "hierarchy_lvl3")
-        lvl4 (get item "hierarchy_lvl4")
-        lvl5 (get item "hierarchy_lvl5")]
-    (if is-grouped?
-      (or lvl5 lvl4 lvl3 lvl2 "Untitled")
-      (or lvl1 lvl0 "Untitled"))))
+;; extract-title removed - no longer needed 
 
 (defn build-subtitle
-  "For grouped items, returns nothing. For ungrouped, returns breadcrumb."
+  "Returns the content field for subtitle display."
   [item is-grouped?]
-  (let [lvl2 (get item "hierarchy_lvl2")
-        lvl3 (get item "hierarchy_lvl3")
-        lvl4 (get item "hierarchy_lvl4")
-        lvl5 (get item "hierarchy_lvl5")]
-    (cond
-      ;; For grouped items: no subtitle (content will be shown separately)
-      is-grouped?
-      nil
+  (let [content (get item "content")]
+    ;; Return content if available, truncated to reasonable length for subtitle
+    (when content
+      (if (> (count content) 150)
+        (str (subs content 0 150) "...")
+        content))))
 
-      ;; For non-grouped items, show hierarchy path
-      (or lvl2 lvl3 lvl4 lvl5)
-      (str/join " › " (filter some? [lvl2 lvl3 lvl4 lvl5]))
-
-      :else nil)))
-
-(defn get-highlighted-title
-  "Gets the highlighted version of the title if available."
-  [item title is-grouped?]
-  (let [formatted (get item "_formatted")
-        lvl2 (get item "hierarchy_lvl2")
-        lvl3 (get item "hierarchy_lvl3")
-        lvl4 (get item "hierarchy_lvl4")
-        lvl5 (get item "hierarchy_lvl5")]
-    (if formatted
-      (or
-       ;; Get the formatted version matching the title level
-       (when is-grouped?
-         (or (when lvl5 (get formatted "hierarchy_lvl5"))
-             (when lvl4 (get formatted "hierarchy_lvl4"))
-             (when lvl3 (get formatted "hierarchy_lvl3"))
-             (when lvl2 (get formatted "hierarchy_lvl2"))))
-       (get formatted "hierarchy_lvl1")
-       (get formatted "hierarchy_lvl0")
-       title)
-      title)))
+;; get-highlighted-title removed - no longer needed
 
 (defn get-highlighted-subtitle
-  "Gets the highlighted version of the subtitle if available."
+  "Gets the highlighted version of the subtitle (content) if available."
   [item subtitle is-grouped?]
   (when subtitle
-    (let [formatted (get item "_formatted")
-          lvl2 (get item "hierarchy_lvl2")
-          lvl3 (get item "hierarchy_lvl3")
-          lvl4 (get item "hierarchy_lvl4")
-          lvl5 (get item "hierarchy_lvl5")]
+    (let [formatted (get item "_formatted")]
       (if formatted
-        ;; Build formatted subtitle from components
-        (let [fmt-lvl2 (get formatted "hierarchy_lvl2")
-              fmt-lvl3 (get formatted "hierarchy_lvl3")
-              fmt-lvl4 (get formatted "hierarchy_lvl4")
-              fmt-lvl5 (get formatted "hierarchy_lvl5")]
-          (cond
-            ;; Build path based on what's in subtitle
-            (and is-grouped? lvl5)
-            (str/join " › " (filter some? [(or fmt-lvl2 lvl2)
-                                           (or fmt-lvl3 lvl3)
-                                           (or fmt-lvl4 lvl4)]))
-
-            (and is-grouped? lvl4)
-            (str/join " › " (filter some? [(or fmt-lvl2 lvl2)
-                                           (or fmt-lvl3 lvl3)]))
-
-            (and is-grouped? lvl3)
-            (or fmt-lvl2 lvl2)
-
-            :else
-            (str/join " › " (filter some? [(or fmt-lvl2 lvl2)
-                                           (or fmt-lvl3 lvl3)
-                                           (or fmt-lvl4 lvl4)
-                                           (or fmt-lvl5 lvl5)]))))
+        ;; Use formatted content if available
+        (or (get formatted "content") subtitle)
         subtitle))))
 
 (defn build-final-url
@@ -327,117 +246,139 @@
     ;; Otherwise use URL as is
     :else url))
 
-(defn render-icon
-  "Renders the appropriate icon based on item properties."
-  [show-file-icon? show-hash-icon?]
-  (when (or show-file-icon? show-hash-icon?)
-    [:div {:class "size-5 shrink-0 text-tint-9 opacity-60"}
-     (if show-hash-icon?
-       ;; Hash icon for lvl2
-       [:svg {:fill "none" :stroke "currentColor" :viewBox "0 0 24 24"}
-        [:path {:stroke-linecap "round" :stroke-linejoin "round" :stroke-width "2"
-                :d "M7 20l4-16m2 16l4-16M6 9h14M4 15h14"}]]
-       ;; File icon for main pages
-       [:svg {:fill "none" :stroke "currentColor" :viewBox "0 0 24 24"}
-        [:path {:stroke-linecap "round" :stroke-linejoin "round" :stroke-width "2"
-                :d "M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"}]])]))
+;; render-icon removed - no longer showing icons
 
 (defn render-content-snippet
   "Renders the content snippet if available."
   [content lvl6 formatted]
-  (when (and content (not lvl6))
-    [:div {:class "text-xs text-tint-9 mt-1 line-clamp-2 opacity-80"}
-     (let [truncated-content (if (> (count content) 100)
-                               (str (subs content 0 100) "...")
-                               content)
-           ;; Use formatted content if available
-           highlighted-content (or (and formatted (get formatted "content"))
-                                   truncated-content)]
-       (if (string? highlighted-content)
-         (uui/raw highlighted-content)
-         highlighted-content))]))
+  ;; Don't render content snippet since it's now shown as subtitle
+  ;; Only show lvl6 if present
+  nil)
 
 (defn render-result-item [item query index is-grouped?]
   (let [lvl0 (get item "hierarchy_lvl0")
+        lvl1 (get item "hierarchy_lvl1")
+        lvl2 (get item "hierarchy_lvl2")
+        lvl3 (get item "hierarchy_lvl3")
+        lvl4 (get item "hierarchy_lvl4")
+        lvl5 (get item "hierarchy_lvl5")
         lvl6 (get item "hierarchy_lvl6")
         content (get item "content")
         url (get item "url")
         anchor (get item "anchor")
         formatted (get item "_formatted")
 
-        ;; Extract title and subtitle
-        title (extract-title item is-grouped?)
-        subtitle (build-subtitle item is-grouped?)
-
-        ;; Get highlighted versions
-        highlighted-title (get-highlighted-title item title is-grouped?)
-        highlighted-subtitle (get-highlighted-subtitle item subtitle is-grouped?)
-
-        ;; Use formatted version of lvl6 if available
-        highlighted-lvl6 (when lvl6
-                           (or (and formatted (get formatted "hierarchy_lvl6"))
-                               lvl6))
-
         ;; Build final URL with anchor
         final-url (build-final-url url anchor)
 
-        ;; Get visual properties
-        visual-props (get-visual-properties item is-grouped?)
-        {:keys [show-file-icon? show-hash-icon? show-left-border?
-                padding-class border-class]} visual-props]
+        ;; Get highlighted versions if available
+        get-highlighted (fn [level-key level-value]
+                          (if formatted
+                            (or (get formatted level-key) level-value)
+                            level-value))]
 
     [:a {:href final-url
          :class "flex items-center gap-3 px-3 py-2.5 rounded-md text-tint-strong transition-colors block hover:bg-tint-hover"
          :data-result-index index}
 
-     ;; Icon or spacer
-     (if show-left-border?
-       [:div {:class "size-5 shrink-0"}] ;; Empty spacer for alignment
-       (render-icon show-file-icon? show-hash-icon?))
+     ;; Main content container
+     [:div {:class "flex-1 min-w-0"}
 
-     ;; Main content - wrapped with border if needed
-     [:div {:class (str "flex-1 min-w-0 "
-                        (when show-left-border? "border-l-2 border-tint-8 pl-4 -my-1 py-1"))}
-      ;; Show lvl0 in uppercase gray if present and different from current context
-      (when (and lvl0 (not is-grouped?))
-        [:div {:class "text-xs uppercase text-tint-9 mb-0.5 tracking-wider"}
-         lvl0])
+      (if is-grouped?
+        ;; Grouped item - simpler display
+        [:div
+         ;; For grouped items, show the deepest level as title
+         (let [title (or lvl5 lvl4 lvl3 lvl2 lvl1)]
+           (when title
+             [:div {:class "text-sm font-normal leading-tight text-tint-strong pl-4"}
+              (if-let [highlighted (get-highlighted
+                                    (cond
+                                      lvl5 "hierarchy_lvl5"
+                                      lvl4 "hierarchy_lvl4"
+                                      lvl3 "hierarchy_lvl3"
+                                      lvl2 "hierarchy_lvl2"
+                                      :else "hierarchy_lvl1")
+                                    title)]
+                (uui/raw highlighted)
+                title)]))
 
-      ;; Title
-      [:div {:class (str "text-sm "
-                         (if (and is-grouped?
-                                  (or (get item "hierarchy_lvl2")
-                                      (get item "hierarchy_lvl3")))
-                           "font-normal"
-                           "font-semibold")
-                         " leading-tight text-tint-strong")}
-       (if (string? highlighted-title)
-         (uui/raw highlighted-title)
-         highlighted-title)]
+         ;; Show content for grouped items
+         (when content
+           [:div {:class "text-xs text-tint-10 mt-1 pl-4 line-clamp-2"}
+            (let [highlighted-content (get-highlighted "content" content)]
+              (if (string? highlighted-content)
+                (uui/raw highlighted-content)
+                highlighted-content))])]
 
-      ;; Subtitle
-      (when subtitle
-        [:div {:class "text-xs text-tint-10 mt-0.5 opacity-90"}
-         (if (string? highlighted-subtitle)
-           (uui/raw highlighted-subtitle)
-           highlighted-subtitle)])
+        ;; Ungrouped item - show all levels
+        [:div
+         ;; lvl0 - uppercase gray
+         (when lvl0
+           [:div {:class "text-xs uppercase text-tint-9 tracking-wider mb-0.5"}
+            (let [highlighted (get-highlighted "hierarchy_lvl0" lvl0)]
+              (if (string? highlighted)
+                (uui/raw highlighted)
+                highlighted))])
 
-      ;; Display hierarchy_lvl6 if present (code snippets)
-      (when highlighted-lvl6
-        [:div {:class "text-xs font-mono bg-tint-3 text-tint-11 px-1.5 py-0.5 rounded inline-block mt-1"}
-         (if (string? highlighted-lvl6)
-           (uui/raw highlighted-lvl6)
-           highlighted-lvl6)])
+         ;; lvl1 - bold, main title
+         (when lvl1
+           [:div {:class "text-base font-bold leading-tight text-tint-strong"}
+            (let [highlighted (get-highlighted "hierarchy_lvl1" lvl1)]
+              (if (string? highlighted)
+                (uui/raw highlighted)
+                highlighted))])
 
-      ;; Content snippet - show for grouped items
-      (when (or is-grouped?
-                  ;; Also show content for h1-only items (no subsections)
-                (and (not is-grouped?)
-                     (not (get item "hierarchy_lvl2"))
-                     (not (get item "hierarchy_lvl3"))
-                     (not (get item "hierarchy_lvl4"))
-                     (not (get item "hierarchy_lvl5"))))
-        (render-content-snippet content lvl6 formatted))]
+         ;; lvl2 - semibold
+         (when lvl2
+           [:div {:class "text-sm font-semibold leading-tight text-tint-strong mt-0.5"}
+            (let [highlighted (get-highlighted "hierarchy_lvl2" lvl2)]
+              (if (string? highlighted)
+                (uui/raw highlighted)
+                highlighted))])
+
+         ;; lvl3 - medium weight
+         (when lvl3
+           [:div {:class "text-sm font-medium leading-tight text-tint-strong mt-0.5"}
+            (let [highlighted (get-highlighted "hierarchy_lvl3" lvl3)]
+              (if (string? highlighted)
+                (uui/raw highlighted)
+                highlighted))])
+
+         ;; lvl4 - normal weight
+         (when lvl4
+           [:div {:class "text-sm font-normal leading-tight text-tint-strong mt-0.5"}
+            (let [highlighted (get-highlighted "hierarchy_lvl4" lvl4)]
+              (if (string? highlighted)
+                (uui/raw highlighted)
+                highlighted))])
+
+         ;; lvl5 - normal weight, slightly muted
+         (when lvl5
+           [:div {:class "text-sm font-normal leading-tight text-tint-11 mt-0.5"}
+            (let [highlighted (get-highlighted "hierarchy_lvl5" lvl5)]
+              (if (string? highlighted)
+                (uui/raw highlighted)
+                highlighted))])
+
+         ;; lvl6 - monospace with background
+         (when lvl6
+           [:div {:class "mt-1"}
+            [:span {:class "text-xs font-mono bg-tint-3 text-tint-11 px-1.5 py-0.5 rounded inline-block"}
+             (let [highlighted (get-highlighted "hierarchy_lvl6" lvl6)]
+               (if (string? highlighted)
+                 (uui/raw highlighted)
+                 highlighted))]])
+
+         ;; content - description text
+         (when content
+           [:div {:class "text-xs text-tint-10 mt-1 line-clamp-2"}
+            (let [highlighted-content (get-highlighted "content" content)
+                  truncated (if (> (count content) 150)
+                              (str (subs content 0 150) "...")
+                              content)]
+              (if (string? highlighted-content)
+                (uui/raw highlighted-content)
+                truncated))])])]
 
      ;; Arrow icon
      [:div {:class "size-6 shrink-0 flex items-center justify-center text-tint-9 opacity-40"}
@@ -448,7 +389,7 @@
 (defn render-no-results
   "Renders the no results message."
   [query is-mobile]
-  [:div {:class (str "bg-white " (if is-mobile "border border-tint-6" "shadow-lg ring-1 ring-tint-subtle")
+  [:div {:class (str (if is-mobile "border border-tint-6" "shadow-lg ring-1 ring-tint-subtle")
                      "  p-4 text-sm text-tint-9 "
                      (when-not is-mobile "md:w-[32rem]"))}
    (str "No results found for \"" query "\"")])
@@ -530,7 +471,7 @@
                 children-to-render (if first-is-h1-only?
                                      (rest items)
                                      items)]
-            [:div {:class "p-1 space-y-0.5 bg-tint-2"}
+            [:div {:class "p-1 space-y-0.5"}
              ;; Group header
              (render-group-header first-item group-info query start-index)
              ;; Child items - render with grouping, skipping h1-only if it's the header

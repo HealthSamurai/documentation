@@ -94,7 +94,8 @@
                        hover:border-tint-hover
                        hover:shadow-md
                        has-[input:focus-visible]:ring-2
-                       has-[input:focus-visible]:ring-primary-7"}
+                       has-[input:focus-visible]:ring-primary-7
+                       focus-within:[&_#meilisearch-shortcut]:hidden"}
          [:div {:class "flex min-w-0 flex-1 items-center gap-2"}
           [:div {:class "flex items-center justify-center pl-3"}
            [:svg {:class "size-4 text-tint-9 shrink-0"
@@ -119,7 +120,9 @@
                    :hx-trigger "keyup[!event.key.startsWith('Arrow') && event.key !== 'Enter' && event.key !== 'Escape'] changed delay:300ms, focus"
                    :hx-target "#meilisearch-dropdown"
                    :hx-swap "innerHTML"
-                   :hx-indicator "#meilisearch-indicator"}]]
+                   :hx-indicator "#meilisearch-indicator"
+                   :onfocus "document.getElementById('meilisearch-shortcut').style.display='none'"
+                   :onblur "document.getElementById('meilisearch-shortcut').style.display='flex'"}]]
          [:div {:class "flex shrink-0 items-center pr-3"}
           [:div {:id "meilisearch-shortcut"
                  :class "hidden sm:flex justify-end gap-0.5 whitespace-nowrap text-xs text-tint-9 font-normal transition-opacity duration-200"}
@@ -151,7 +154,8 @@
               hover:border-tint-hover
               hover:shadow-md
               has-[input:focus-visible]:ring-2
-              has-[input:focus-visible]:ring-primary-7"}
+              has-[input:focus-visible]:ring-primary-7
+              focus-within:[&_#search-shortcut]:hidden"}
         [:div {:class "flex min-w-0 flex-1 items-center gap-2"}
          [:div {:class "flex items-center justify-center pl-3"}
           [:svg {:class "size-4 text-tint-9 shrink-0" :fill "none" :stroke "currentColor" :viewBox "0 0 24 24"}
@@ -171,7 +175,9 @@
                   :hx-trigger "keyup[!event.key.startsWith('Arrow') && event.key !== 'Enter' && event.key !== 'Escape'] changed delay:300ms, focus"
                   :hx-target "#search-dropdown"
                   :hx-swap "innerHTML"
-                  :hx-indicator "#search-indicator"}]]
+                  :hx-indicator "#search-indicator"
+                  :onfocus "document.getElementById('search-shortcut').style.display='none'"
+                  :onblur "document.getElementById('search-shortcut').style.display='flex'"}]]
         [:div {:class "flex shrink-0 items-center pr-3"}
          [:div {:id "search-shortcut"
                 :class "hidden sm:flex justify-end gap-0.5 whitespace-nowrap text-xs text-tint-9 font-normal transition-opacity duration-200"}

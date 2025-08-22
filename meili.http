@@ -1,4 +1,4 @@
-@auth=60DBZGy6zoDL6Q--s1-dHBWptiVKvK-XRsaacdvkOSM
+@auth=m7PG9bhdzNBNyRwhPDdeFmT8q18Z6es3oKVCjkWhdTY=
 
 GET http://localhost:7700/indexes
 Authorization: Bearer {{auth}}
@@ -152,3 +152,21 @@ Content-Type: application/json
     }
   ]
 }
+
+###
+GET http://localhost:7700/indexes/docs/documents/
+Authorization: Bearer {{auth}}
+Content-Type: application/json
+
+###
+
+GET http://localhost:7700/indexes/docs/search?q=settings reference
+Authorization: Bearer {{auth}}
+Content-Type: application/json
+
+
+###
+
+GET http://localhost:7700/indexes/docs/search?q=BOX_OBSERVABILITY_ELASTIC_SEARCH_URL
+Authorization: Bearer {{auth}}
+Content-Type: application/json

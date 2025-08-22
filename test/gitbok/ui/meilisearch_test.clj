@@ -270,9 +270,7 @@
           rendered (m/render-result-item item "search" 0 false)
           html-str (h/html rendered)]
       ;; Should contain the content snippet
-      (is (re-find #"SearchParameter is a FHIR resource" html-str))
-      ;; Should have the file icon since it's h1-only
-      (is (re-find #"M9 12h6m-6 4h6m2 5H7" html-str))))
+      (is (re-find #"SearchParameter is a FHIR resource" html-str))))
 
   (testing "H1-only items should NOT be grouped when multiple exist"
     (let [results [{"hierarchy_lvl0" "API Reference"
