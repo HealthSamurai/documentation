@@ -13,7 +13,7 @@ Let's say we have Aidbox [TokenIntrospector](../../tutorials/security-access-con
     {
       "request": {
         "method": "PUT",
-        "url": "/IdentityProvider/keycloak"
+        "url": "/TokenIntrospector/keycloak"
       },
       "resource": 
       {
@@ -63,7 +63,7 @@ envsubst < init-bundle.json.template > init-bundle.json
     {
       "request": {
         "method": "PUT",
-        "url": "/IdentityProvider/keycloak"
+        "url": "/TokenIntrospector/keycloak"
       },
       "resource": {
         "resourceType": "TokenIntrospector",
@@ -115,7 +115,7 @@ sed -e "s|\${AUTH_SERVER_URL}|$AUTH_SERVER_URL|g" \
     {
       "request": {
         "method": "PUT",
-        "url": "/IdentityProvider/keycloak"
+        "url": "/TokenIntrospector/keycloak"
       },
       "resource": {
         "resourceType": "TokenIntrospector",
