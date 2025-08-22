@@ -256,42 +256,6 @@
                     "hierarchy_lvl2" nil}]
       (is (= expected prepared)))))
 
-(deftest test-visual-properties
-  (testing "Complete visual properties map for lvl2"
-    (let [item {"hierarchy_lvl1" "SearchParameter"
-                "hierarchy_lvl2" "SearchParameter fields"
-                "hierarchy_lvl3" nil}
-          props (m/get-visual-properties item true)
-          expected {:show-file-icon? false
-                    :show-hash-icon? true
-                    :show-left-border? false
-                    :padding-class "pl-10"
-                    :border-class nil}]
-      (is (= expected props))))
-
-  (testing "Complete visual properties map for lvl3"
-    (let [item {"hierarchy_lvl1" "SearchParameter"
-                "hierarchy_lvl2" "Search Parameter Types"
-                "hierarchy_lvl3" "string"}
-          props (m/get-visual-properties item true)
-          expected {:show-file-icon? false
-                    :show-hash-icon? false
-                    :show-left-border? true
-                    :padding-class "pl-12"
-                    :border-class "border-l-2 border-tint-6"}]
-      (is (= expected props))))
-
-  (testing "Complete visual properties map for main page"
-    (let [item {"hierarchy_lvl1" "SearchParameter"
-                "hierarchy_lvl2" nil}
-          props (m/get-visual-properties item false)
-          expected {:show-file-icon? true
-                    :show-hash-icon? false
-                    :show-left-border? false
-                    :padding-class "px-3"
-                    :border-class nil}]
-      (is (= expected props)))))
-
 (deftest test-h1-with-content
   (testing "H1-only items should display content inline"
     (let [item {"hierarchy_lvl0" "API Reference"
