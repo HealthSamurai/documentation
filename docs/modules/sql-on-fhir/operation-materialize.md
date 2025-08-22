@@ -3,12 +3,16 @@ description: Materializing SQL-on-FHIR ViewDefinitions as database tables, views
 ---
 # `$materialize` operation
 
-{% hint style="info" %}
-This functionality is available in Aidbox versions 2508 and later.
+{% hint style="warning" %}
+`$materialize` is not part of the official FHIR or SQL on FHIR specifications. This is a custom operation implemented by Aidbox, and its API may be subject to changes in future versions.
 {% endhint %}
 
 {% hint style="warning" %}
 When running Aidbox not in FHIRSchema mode, please be aware that input parameters for the `$materialize` operation are not validated against FHIR specifications.
+{% endhint %}
+
+{% hint style="info" %}
+This functionality is available in Aidbox versions 2508 and later.
 {% endhint %}
 
 SQL on FHIR provides the `$materialize` operation to transform a ViewDefinition into a concrete database object. This operation can create a table, view, or materialized view in the database based on the ViewDefinition structure.
@@ -18,7 +22,7 @@ SQL on FHIR provides the `$materialize` operation to transform a ViewDefinition 
 To call the `$materialize` operation, use the following request format:
 
 ```
-POST /fhir/ViewDefinition/<resource-id>/$materialize
+POST /fhir/ViewDefinition/[<resource-id>/]$materialize
 Content-Type: application/json
 Accept: application/json
 
@@ -28,12 +32,59 @@ Accept: application/json
     {
       "name": parameter name,
       "resource": resource value
-    }
+    },
+    ...
   ]
 }
 ```
 
+The `ViewDefinition` resource should be specified by:
+
+- URL (overrid parameter),
+- `viewResource` or `viewReference` parameter (mutually exclusive).
+
 ## Parameters
+
+* **viewReference**: reference to the ViewDefinition resource.
+
+    This parameter is exclusive with the `viewResource` parameter.
+
+    Example:
+
+    ```json
+    {
+      "name": "viewReference",
+      "valueReference": "ViewDefinition/patient-view"
+    }
+    ```
+
+* **viewResource**: provided viewDefinition resource.
+
+    This parameter is exclusive with the `viewReference` parameter.
+
+    Example:
+
+    ```json
+    {
+      "name": "viewResource",
+      "resource": {
+        "id": "vd-1",
+        "resourceType": "ViewDefinition",
+        "status": "draft",
+        "resource": "Patient",
+        "select": [
+          {
+            "column": [
+              {
+                "name": "patient_id",
+                "path": "getResourceKey()"
+              }
+            ]
+          }
+        ]
+      }
+    }
+    ```
 
 - **type**: materialization type.
 
@@ -50,9 +101,9 @@ Accept: application/json
 
   Supported materialization types:
 
-  - `"table"` - materialization of ViewDefinition as a table;
-  - `"view"` - materialization of ViewDefinition as a view;
-  - `"materialized-view"` - materialization of ViewDefinition as a materialized view.
+  - `"view"` - materialization of ViewDefinition as a view
+  - `"materialized-view"` - materialization of ViewDefinition as a materialized view
+  - `"table"` - materialization of ViewDefinition as a table.
 
 ## Schema configuration
 
@@ -71,9 +122,7 @@ For example, with the given saved ViewDefinition:
   "resourceType": "ViewDefinition",
   "id": "0448a9a8-6114-4a19-aa8e-fc5f60c4d714",
   "name": "patient_view",
-  "status": "draft",
   "resource": "Patient",
-  "description": "Patient flat view",
   "select": [{
     "column": [{
       "name": "id",
@@ -83,10 +132,6 @@ For example, with the given saved ViewDefinition:
       "name": "bod",
       "path": "birthDate",
       "type": "date"
-    }, {
-      "name": "gender",
-      "path": "gender",
-      "type": "code"
     }]
   }]
 }
@@ -113,13 +158,19 @@ Accept: application/json
 Alternatively, it can be materialized as a view:
 
 ```
-POST /fhir/ViewDefinition/0448a9a8-6114-4a19-aa8e-fc5f60c4d714/$materialize
+POST /fhir/ViewDefinition/$materialize
 Content-Type: application/json
 Accept: application/json
 
 {
   "resourceType": "Parameters",
   "parameter": [
+    {
+      "name": "viewReference",
+      "valueReference": {
+        "reference": "ViewDefinition/0448a9a8-6114-4a19-aa8e-fc5f60c4d714"
+      }
+    },
     {
       "name": "type",
       "valueCode": "view"
@@ -131,13 +182,33 @@ Accept: application/json
 Or a materialized view:
 
 ```
-POST /fhir/ViewDefinition/0448a9a8-6114-4a19-aa8e-fc5f60c4d714/$materialize
+POST /fhir/ViewDefinition/$materialize
 Content-Type: application/json
 Accept: application/json
 
 {
   "resourceType": "Parameters",
   "parameter": [
+    {
+      "name": "viewResource",
+      "resource": {
+        "resourceType": "ViewDefinition",
+        "id": "0448a9a8-6114-4a19-aa8e-fc5f60c4d714",
+        "name": "patient_view",
+        "resource": "Patient",
+        "select": [{
+          "column": [{
+            "name": "id",
+            "path": "id",
+            "type": "id"
+          }, {
+            "name": "bod",
+            "path": "birthDate",
+            "type": "date"
+          }]
+        }]
+      }
+    },
     {
       "name": "type",
       "valueCode": "materialized-view"

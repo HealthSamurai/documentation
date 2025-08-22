@@ -1,4 +1,11 @@
+---
+description: Using the $run operation to execute SQL-on-FHIR ViewDefinitions
+---
 # $run operation
+
+{% hint style="warning" %}
+When running Aidbox not in FHIRSchema mode, please be aware that input parameters for the `$run` operation are not validated against FHIR specifications.
+{% endhint %}
 
 {% hint style="info" %}
 This functionality is available in Aidbox versions 2507 and later.
@@ -10,8 +17,10 @@ SQL on FHIR specification [defines $run operation](https://sql-on-fhir.org/ig/la
 
 ## General syntax
 
+To call the `$run` operation, use the following request format:
+
 ```
-POST /fhir/ViewDefinition/$run
+POST /fhir/ViewDefinition/[<resource-id>/]$run
 Content-Type: application/json
 Accept: preferred format
 
@@ -22,17 +31,19 @@ Accept: preferred format
       "name": parameter name,
       "resource": resource value
     },
-    {
-      "name": parameter name,
-      "valueReference": FHIR reference
-    },
     ...
   ]
+}
 ```
+
+The `ViewDefinition` resource should be specified by:
+
+- URL (overrid parameter),
+- `viewResource` or `viewReference` parameter (mutually exclusive).
 
 ## Parameters
 
-*   **viewReference**: reference to the ViewDefinition resource.
+* **viewReference**: reference to the ViewDefinition resource.
 
     This parameter is exclusive with the `viewResource` parameter.
 
@@ -44,7 +55,7 @@ Accept: preferred format
       "valueReference": "ViewDefinition/patient-view"
     }
     ```
-*   **viewResource**: provided viewDefinition resource.
+* **viewResource**: provided viewDefinition resource.
 
     This parameter is exclusive with the `viewReference` parameter.
 
@@ -71,7 +82,7 @@ Accept: preferred format
       }
     }
     ```
-*   **resource**: provided resources to run ViewDefinition on.
+* **resource**: provided resources to run ViewDefinition on.
 
     If this parameter is specified, the server runs ViewDefinition only on this resource, and not on stored resources. Conversely, if this parameter is omitted, the server runs ViewDefinition on stored resources.
 
@@ -165,12 +176,12 @@ If you specify `Accept: application/json` and `_format`: JSON, the server will r
 
 ## Examples
 
-Provided resources and ViewDefinition:
+### Provided resources and ViewDefinition
 
-```json
+```
 POST /fhir/ViewDefinition/$run
-content-type: application/json
-accept: application/json
+Content-Type: application/json
+Accept: application/json
 
 {
   "resourceType": "Parameters",
@@ -216,12 +227,12 @@ accept: application/json
 }
 ```
 
-Provided resources, stored ViewDefinition:
+### Provided resources, stored ViewDefinition
 
-```json
+```
 POST /fhir/ViewDefinition/$run
-content-type: application/json
-accept: application/json
+Content-Type: application/json
+Accept: application/json
 
 {
   "resourceType": "Parameters",
@@ -254,12 +265,12 @@ accept: application/json
 }
 ```
 
-Stored resources, stored ViewDefinition:
+### Stored resources, stored ViewDefinition
 
-```json
+```
 POST /fhir/ViewDefinition/$run
-content-type: application/json
-accept: application/json
+Content-Type: application/json
+Accept: application/json
 
 {
   "resourceType": "Parameters",
@@ -280,7 +291,7 @@ accept: application/json
 
 ## Output examples
 
-With `Accept: application/json` and `_format`: JSON
+### With `Accept: application/json` and `_format`: JSON
 
 ```json
 [
@@ -291,10 +302,9 @@ With `Accept: application/json` and `_format`: JSON
     "patient_id": "source-2"
   }
 ]
-
 ```
 
-With `Accept: application/fhir+json` and `_format`: JSON
+### With `Accept: application/fhir+json` and `_format`: JSON
 
 ```json
 {
