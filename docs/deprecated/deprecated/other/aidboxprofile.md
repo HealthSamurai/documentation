@@ -1,5 +1,19 @@
 ---
 description: Create a profile with AidboxProfile and validate data
+layout:
+  width: default
+  title:
+    visible: true
+  description:
+    visible: true
+  tableOfContents:
+    visible: true
+  outline:
+    visible: false
+  pagination:
+    visible: true
+  metadata:
+    visible: true
 ---
 
 # AidboxProfile
@@ -7,7 +21,7 @@ description: Create a profile with AidboxProfile and validate data
 {% hint style="warning" %}
 Since the 2405 release, using Aidbox in FHIR schema validation engine is recommended, which is incompatible with zen or Entity/Attribute options.
 
-[Setup Aidbox with FHIR Schema validation engine](broken-reference)
+[Setup Aidbox with FHIR Schema validation engine](broken-reference/)
 {% endhint %}
 
 For custom profiling, Aidbox provides additional resource `AidboxProfile`. This resource specifies resource type and [JSON Schema](https://json-schema.org/) which validates the specified resource type.
