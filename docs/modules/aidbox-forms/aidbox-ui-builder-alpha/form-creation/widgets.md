@@ -109,16 +109,17 @@ Each widget in Aidbox Forms has its own set of customisable attributes that defi
 
 #### EnableWhen rule
 
-EnableWhen option controls whether an item should be 'enabled' or not, but can handle more sophisticated circumstances. For example, it is possible to calculate a score based on the answer to several questions and then enable other questions based on the score. It's also possible to enable or disable questions based on data passed in as context or retrieved from queries.
+EnableWhen option controls whether an item should be 'enabled' or not, but can handle more sophisticated circumstances. For example, it is possible to calculate a score based on the answer to several questions and then enable other questions based on the score. It's also possible to enable  questions based on data passed in as context or retrieved from queries.&#x20;
+
 Options for Setting EnableWhen Rules:
 
-condition builder - use the visual condition builder interface to create logical conditions with AND/OR operators. The condition builder automatically converts to FHIRPath when the Questionnaire.enableWhen DSL is not sufficient for complex scenarios.
-expression - use FHIRPath expressions or the FHIRPath Editor to describe the desired behavior with full FHIRPath capabilities.
+`Condition constructor` - use the visual condition builder interface to create logical conditions with AND/OR operators and group conditions.&#x20;
+
+The condition builder automatically converts to FHIRPath when the Questionnaire.enableWhen DSL is not sufficient for complex scenarios.&#x20;
+
+`Expression` - use FHIRPath expressions or the FHIRPath Editor to describe the desired behavior with full FHIRPath capabilities.
 
 When to Use Each Option:
-
-Use condition builder for creating logical conditions through a user-friendly visual interface with AND/OR operator support
-Use expression when you need direct FHIRPath control or have highly specialized requirements
 
 {% hint style="info" %}
 Be careful when using existence logic for EnableWhen rules. For example, the checkbox widget has exists = false when untouched and exists = true if the checkbox has been checked or unchecked. Use equality conditions instead.
@@ -236,7 +237,7 @@ The Choice widget allows users to select one or more options from a predefined l
 
 * **Multiple Selection**: An option to allow the user to select more than one choice. To enable multiple selection, need to set repeats flag.
 
-**Options**:&#x20;
+**Options**:
 
 * **Static:** A list of values that the user can choose from.
   * Each option should have a display text, code and system. The user can fill in values ​​or use the import option. In this case, the user will be given the opportunity to select a terminology server, select a valueset in it and find the needed coded value, then the code, system and display will be automatically filled in.
@@ -250,11 +251,7 @@ The Choice widget allows users to select one or more options from a predefined l
     * **FHIRPath:** Allows create logic with answers depends on other items. You can filter options with your conditions.
     * **FHIRQuery:** Allows dynamically fetch answer options via FHIRQuery from your Aidbox instance resources.
 
-
-
-    {% hint style="info" %}
-    How to use Answer Expression see our [example](how-to-guides/how-to-use-answer-expression-into-forms.md)
-    {% endhint %}
+    \{% hint style="info" %\} How to use Answer Expression see our [example](how-to-guides/how-to-use-answer-expression-into-forms.md) \{% endhint %\}
 
 ### Open Choice
 
@@ -267,7 +264,7 @@ it is displayed on the form as a drop-down list.
 * **Open choice label:** By default the ability to choose your own option is displayed as "specify other..", but the user can redefine the label for this.
 * **Multiple Selection**: Not supported yet, but can be supported on demand.
 
-**Options**:&#x20;
+**Options**:
 
 * **Static:** A list of values that the user can choose from.
   * Each option should have a display text, code and system. The user can fill in values ​​or use the import option. In this case, the user will be given the opportunity to select a terminology server, select a valueset in it and find the needed coded value, then the code, system and display will be automatically filled in.
@@ -281,11 +278,7 @@ it is displayed on the form as a drop-down list.
     * **FHIRPath:** Allows create logic with answers depends on other items. You can filter options with your conditions.
     * **FHIRQuery:** Allows dynamically fetch answer options via FHIRQuery from your Aidbox instance resources.
 
-
-
-    {% hint style="info" %}
-    How to use Answer Expression see our [example](how-to-guides/how-to-use-answer-expression-into-forms.md)
-    {% endhint %}
+    \{% hint style="info" %\} How to use Answer Expression see our [example](how-to-guides/how-to-use-answer-expression-into-forms.md) \{% endhint %\}
 
 ### Checkbox
 
@@ -309,7 +302,7 @@ The Radio Button widget allows users to select one option from a set of predefin
 * **Orientation**: Display orientation of the options (vertical or horizontal).
 * **Column Count**: The number of columns used to display the options.
 
-**Options**:&#x20;
+**Options**:
 
 * **Static:** A list of values that the user can choose from.
   * Each option should have a display text, code and system. The user can fill in values ​​or use the import option. In this case, the user will be given the opportunity to select a terminology server, select a valueset in it and find the needed coded value, then the code, system and display will be automatically filled in.
@@ -324,9 +317,7 @@ The Radio Button widget allows users to select one option from a set of predefin
     * **FHIRPath:** Allows create logic with answers depends on other items. You can filter options with your conditions.
     * **FHIRQuery:** Allows dynamically fetch answer options via FHIRQuery from your Aidbox instance resources.
 
-    {% hint style="info" %}
-    How to use Answer Expression see our [example](how-to-guides/how-to-use-answer-expression-into-forms.md)
-    {% endhint %}
+    \{% hint style="info" %\} How to use Answer Expression see our [example](how-to-guides/how-to-use-answer-expression-into-forms.md) \{% endhint %\}
 
 ### Checkbox List
 
@@ -338,7 +329,7 @@ The Checkbox List widget allows users to select multiple options from a predefin
 * **Column Count**: The number of columns used to display the options.
 * **Multiple Selection**: An option to allow the user to select more than one choice. To enable multiple selection, need to set repeats flag, by default, this flag is set.
 
-**Options**:&#x20;
+**Options**:
 
 * **Static:** A list of values that the user can choose from.
   * Each option should have a display text, code and system. The user can fill in values ​​or use the import option. In this case, the user will be given the opportunity to select a terminology server, select a valueset in it and find the needed coded value, then the code, system and display will be automatically filled in.
@@ -353,9 +344,7 @@ The Checkbox List widget allows users to select multiple options from a predefin
     * **FHIRPath:** Allows create logic with answers depends on other items. You can filter options with your conditions.
     * **FHIRQuery:** Allows dynamically fetch answer options via FHIRQuery from your Aidbox instance resources.
 
-    {% hint style="info" %}
-    How to use Answer Expression see our [example](how-to-guides/how-to-use-answer-expression-into-forms.md)
-    {% endhint %}
+    \{% hint style="info" %\} How to use Answer Expression see our [example](how-to-guides/how-to-use-answer-expression-into-forms.md) \{% endhint %\}
 
 ### Attachment
 
@@ -393,13 +382,13 @@ It can be used in calculation fields where the result of an expression or formul
 
 ### Reference
 
-The Reference widget allows users to select a reference to another resource such as practitioner, organization, etc. as an answer into their form.&#x20;
+The Reference widget allows users to select a reference to another resource such as practitioner, organization, etc. as an answer into their form.
 
 **Settings:**
 
 * **Resource Type:** The user can choose which resource will be represent into answer list
 
-**Options**:&#x20;
+**Options**:
 
 * **Resource Type:** Used to determine the options for this widget.
 *   **Expression:** Use a FHIRPath / FHIRQuery expression with conditions and logic.
@@ -407,6 +396,4 @@ The Reference widget allows users to select a reference to another resource such
     * **FHIRPath:** Allows create logic with answers depends on other items. You can filter options with your conditions.
     * **FHIRQuery:** Allows dynamically fetch answer options via FHIRQuery from your Aidbox instance resources.
 
-    {% hint style="info" %}
-    How to use Answer Expression see our [example](how-to-guides/how-to-use-answer-expression-into-forms.md)
-    {% endhint %}
+    \{% hint style="info" %\} How to use Answer Expression see our [example](how-to-guides/how-to-use-answer-expression-into-forms.md) \{% endhint %\}
