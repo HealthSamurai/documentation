@@ -27,9 +27,8 @@ The **Form Templates** tab is the default view when you navigate to the Forms pa
 **Additional Actions (Accessible via the Three Dots Menu):**
 
 * **Duplicate Form**: Duplicating a form creates a new form with a unique title and URL.
-* **Delete Form**: You can delete a form template from Form Templates list. At the same time it will be deleted in the database too.&#x20;
-  * When attempting to delete a form, the system checks if the form is in use or if there are any responses associated with it. If applicable, you will be prompted to confirm whether you want to proceed with deletion.
-  * This option is available only for a form in  `draft` status.
+* **Delete Form or Component**: You can delete a form template or component (sub-form) from Form Templates list. At the same time it will be deleted in the database too.
+  * When attempting to delete a form or component, the system checks if the form is in use or if there are any responses associated with it. If applicable, you will be prompted to confirm whether you want to proceed with deletion.
 
 ## **Responses**
 
@@ -41,11 +40,11 @@ All responses are stored in the database in the QuestionnaireResponse resources.
 
 The **Form Gallery** allows you to browse through available templates. Once selected, the forms from the gallery will be added to your **Form Templates** tab for use.
 
-There, you will discover over 3000 form templates.&#x20;
+There, you will discover over 3000 form templates.
 
 These templates can be:
 
-* viewed in preview mode&#x20;
-* &#x20;imported into your Aidbox Instance
+* viewed in preview mode
+* imported into your Aidbox Instance
 
 Once you click the import button, the form is saved to the database and opens in the Form Builder.
