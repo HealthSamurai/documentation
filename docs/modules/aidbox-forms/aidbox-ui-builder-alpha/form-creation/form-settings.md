@@ -14,14 +14,6 @@ This action opens a sidebar where users can modify the form's general settings.
 
 These settings include:
 
-### ID
-
-The logical id of the form (Questionnaire resource), as used in the URL for the resource. Once assigned, this value never changes.
-
-{% hint style="info" %}
-When saving the form, Aidbox check the id for uniqueness
-{% endhint %}
-
 ### Form Title
 
 A short, descriptive, user-friendly title for the questionnaire.
@@ -68,6 +60,16 @@ With this setting, you can specify how the form will be used. If you mark the fo
 * `Form` - This form can be used only as an _independent form_
 * `Component` - This form can be used only as an _component_ (included in other forms)
 * `Form or Component` - This form can be used only as an _independent form_ or be included in other forms as _component_
+
+### Entry Mode
+
+Entry Mode defines how questions are presented and navigated in your form. For more detailed information, please see [this page](entry-mode.md).
+
+There are options:
+
+* `Sequential Questions -` will be displayed _one-at-a-time_ with no ability to adjust prior entries
+* `Prior EditQuestions` -  will be displayed _one-at-a-time_ where all questions up to the current question can be looked at and edited
+* `RandomQuestions` -  can be seen and the questions can be filled out in any order desired
 
 ### Code
 
