@@ -300,7 +300,7 @@
     * [How to use tracing](modules/observability/traces/how-to-use-tracing.md)
     * [OTEL traces exporter parameters](modules/observability/traces/otel-traces-exporter-parameters.md)
 * [Subscriptions](modules/topic-based-subscriptions/README.md)
-  * [Aidbox Topic-Based Subscriptions](modules/topic-based-subscriptions/wip-dynamic-subscriptiontopic-with-destinations/README.md)
+  * [Aidbox Topic-Based Subscriptions](modules/topic-based-subscriptions/aidbox-topic-based-subscriptions.md)
   * [Aidbox SubSubscriptions](modules/topic-based-subscriptions/aidbox-subsubscriptions.md)
 * [Aidbox Forms](modules/aidbox-forms/README.md)
   * [Getting started](modules/aidbox-forms/getting-started.md)

@@ -1,7 +1,7 @@
 # Aidbox Topic-Based Subscriptions
 
 {% hint style="info" %}
-This functionality is available in Aidbox versions 2409 and later and requires [FHIR Schema](../../profiling-and-validation/fhir-schema-validator/) validation engine to be [enabled](../../profiling-and-validation/fhir-schema-validator/).
+This functionality is available in Aidbox versions 2409 and later and requires [FHIR Schema](../profiling-and-validation/fhir-schema-validator/) validation engine to be [enabled](../profiling-and-validation/fhir-schema-validator/).
 {% endhint %}
 
 ### Overview
@@ -70,24 +70,24 @@ Ensure that the resource metadata contains the kind-specific `AidboxTopicDestina
 
 ## Currently supported channels
 
-{% content-ref url="webhook-aidboxtopicdestination.md" %}
-[webhook-aidboxtopicdestination.md](../../../tutorials/subscriptions-tutorials/webhook-aidboxtopicdestination.md)
+{% content-ref url="../../tutorials/subscriptions-tutorials/webhook-aidboxtopicdestination.md" %}
+[webhook-aidboxtopicdestination.md](../../tutorials/subscriptions-tutorials/webhook-aidboxtopicdestination.md)
 {% endcontent-ref %}
 
-{% content-ref url="gcp-pub-sub-aidboxtopicdestination.md" %}
-[gcp-pub-sub-aidboxtopicdestination.md](../../../tutorials/subscriptions-tutorials/gcp-pub-sub-aidboxtopicdestination.md)
+{% content-ref url="../../tutorials/subscriptions-tutorials/gcp-pub-sub-aidboxtopicdestination.md" %}
+[gcp-pub-sub-aidboxtopicdestination.md](../../tutorials/subscriptions-tutorials/gcp-pub-sub-aidboxtopicdestination.md)
 {% endcontent-ref %}
 
-{% content-ref url="kafka-aidboxtopicdestination.md" %}
-[kafka-aidboxtopicdestination.md](../../../tutorials/subscriptions-tutorials/kafka-aidboxtopicdestination.md)
+{% content-ref url="../../tutorials/subscriptions-tutorials/kafka-aidboxtopicdestination.md" %}
+[kafka-aidboxtopicdestination.md](../../tutorials/subscriptions-tutorials/kafka-aidboxtopicdestination.md)
 {% endcontent-ref %}
 
-{% content-ref url="clickhouse-aidboxtopicdestination.md" %}
-[clickhouse-aidboxtopicdestination.md](../../../tutorials/subscriptions-tutorials/clickhouse-aidboxtopicdestination.md)
+{% content-ref url="../../tutorials/subscriptions-tutorials/clickhouse-aidboxtopicdestination.md" %}
+[clickhouse-aidboxtopicdestination.md](../../tutorials/subscriptions-tutorials/clickhouse-aidboxtopicdestination.md)
 {% endcontent-ref %}
 
-{% content-ref url="../../../tutorials/subscriptions-tutorials/aidboxtopicsubscription-nats-tutorial.md" %}
-[aidboxtopicsubscription-nats-tutorial.md](../../../tutorials/subscriptions-tutorials/aidboxtopicsubscription-nats-tutorial.md)
+{% content-ref url="../../tutorials/subscriptions-tutorials/aidboxtopicsubscription-nats-tutorial.md" %}
+[aidboxtopicsubscription-nats-tutorial.md](../../tutorials/subscriptions-tutorials/aidboxtopicsubscription-nats-tutorial.md)
 {% endcontent-ref %}
 
 ## Notification Shape
