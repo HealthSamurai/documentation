@@ -18,7 +18,7 @@
   * Added an [AidboxTopicDestination](../tutorials/subscriptions-tutorials/clickhouse-aidboxtopicdestination.md) to export a ViewDefinition to ClickHouse, enabling real-time analytics.
   * Implemented SQL-on-FHIR [$run](../modules/sql-on-fhir/operation-run.md) operation allowing direct querying of data through ViewDefinition resources.
   * Integrated a [new Terminology engine](../terminology-module/overview.md) that supports local terminology operations while delegating interactions with external code systems to an external Terminology Server.
-  * Introduced `%previous` and `%current` functions for use in [AidboxSubscriptionTopic](broken-reference) resources, allowing more precise tracking of changes between resource versions.
+  * Introduced `%previous` and `%current` functions for use in [AidboxSubscriptionTopic](../modules/topic-based-subscriptions/aidbox-topic-based-subscriptions.md#aidboxsubscriptiontopic) resources, allowing more precise tracking of changes between resource versions.
   * Aidbox UI improvements:
     * Added a Resource Versions page that allows users to view the full change history of a resource, including the ability to see differences between versions.
     * Improved global navigation for better usability.
@@ -46,9 +46,9 @@
   * Updated behavior for development licenses that exceed the database size limit: the instance will now log a warning instead of shutting down.
   * Added the ability to use [FHIR Factory API](https://build.fhir.org/fhirpath.html#factory) in the FHIRPath engine.
   * Changes in the building of the `aidboxone` image: the latest LTS version of Java (21) is used for building the application jar, and the latest version of Java (24) is used for running the application. Check the following [tutorial](../tutorials/other-tutorials/how-to-run-aidbox-using-different-java.md) to see how you can leverage this.
-  * Improvements in the [AidboxSubscriptionTopics](broken-reference) resource - removed unnecessary ValueSet bindings.
+  * Improvements in the [AidboxSubscriptionTopics](../modules/topic-based-subscriptions/aidbox-topic-based-subscriptions.md) resource - removed unnecessary ValueSet bindings.
   * Supported multiple key types for the [TokenIntrospector resource](../reference/system-resources-reference/iam-module-resources.md#tokenintrospector).
-  * Increased the maximum length for `base64Binary` type to handle large files stored in the AIdbox database.
+  * Increased the maximum length for `base64Binary` type to handle large files stored in the Aidbox database.
   * Multiple bug fixes and optimizations in the Resource Browser in Aidbox UI.
   * Fixed bug in generating Trace ID within integration with [OTEL collector](../modules/observability/).
   * Support for creating custom resources with logical resource profiles.
@@ -81,7 +81,7 @@
 
 * Aidbox FHIR server
   * Introduced [Aidbox MCP Server](../modules/other-modules/mcp.md) (early-access)
-  * Supported FHIRPath `resolve()` function in [AidboxSubscriptionTopics](broken-reference) `fhirPathCriteria` to specify triggers based on linked resources. For example, get only Encounters for specific patients in subscriptions.
+  * Supported FHIRPath `resolve()` function in [AidboxSubscriptionTopics](../modules/topic-based-subscriptions/aidbox-topic-based-subscriptions.md) `fhirPathCriteria` to specify triggers based on linked resources. For example, get only Encounters for specific patients in subscriptions.
   * Added an option to specify the default IdentityProvider in the Aidbox [Client resource](../reference/system-resources-reference/iam-module-resources.md#client) that will be used instead of the Aidbox login screen.
   * Introduced [AidboxTrigger](../modules/other-modules/aidbox-trigger.md) that enables automatic execution of SQL statements in response to FHIR resource operations.
   * Supported conditional references in [transaction bundles](../api/rest-api/bundle.md)
@@ -223,7 +223,7 @@ Minor updates:
 
 * Aidbox
   * Introduced [Init Bundle](../configuration/init-bundle.md) as a simple and effective way of configuring Aidbox. The Init Bundle will replace Aidbox (zen) configuration projects.
-  * Added [GCP Pub/Sub support](../tutorials/subscriptions-tutorials/gcp-pub-sub-aidboxtopicdestination.md) for [Aidbox topic-based subscriptions](broken-reference)
+  * Added [GCP Pub/Sub support](../tutorials/subscriptions-tutorials/gcp-pub-sub-aidboxtopicdestination.md) for [Aidbox topic-based subscriptions](../modules/topic-based-subscriptions/aidbox-topic-based-subscriptions.md)
   * Added an option to disable terminology bindings validation when using [FHIR schema validator](../modules/profiling-and-validation/fhir-schema-validator/)
 * Aidbox Forms
   * Added named expressions for calculated/enableWhen/populate expressions and a Named Expression tab in the Debug Console.
@@ -267,7 +267,7 @@ Minor updates:
 
 * Aidbox
   * Introduced new [MAJOR.MINOR versioning](versioning.md) for improved clarity
-  * Added webhook support for [Aidbox topic-based subscriptions](broken-reference)
+  * Added webhook support for [Aidbox topic-based subscriptions](../modules/topic-based-subscriptions/aidbox-topic-based-subscriptions.md)
   * Implemented[ fuzzy search for FHIR packages import](../tutorials/artifact-registry-tutorials/upload-fhir-implementation-guide/)
   * Enabled new Aidbox UI by default
   * Fixed critical vulnerabilities and bugs
@@ -290,7 +290,7 @@ Minor updates:
 ## August 2024 _`2408`_
 
 * Aidbox
-  * Introduced dynamic [Topic-based subscriptions](broken-reference) and supported [Kafka (OSS and AWS)](../tutorials/subscriptions-tutorials/kafka-aidboxtopicdestination.md) as delivery channels
+  * Introduced dynamic [Topic-based subscriptions](../modules/topic-based-subscriptions/aidbox-topic-based-subscriptions.md) and supported [Kafka (OSS and AWS)](../tutorials/subscriptions-tutorials/kafka-aidboxtopicdestination.md) as delivery channels
   * Released a [demo of publishing a completed QuestionnaireResponse to Kafka topic](https://github.com/Aidbox/app-examples/tree/main/aidbox-subscriptions-to-kafka)
   * Added an option to connect a self-hosted Aidbox instance to the [ViewDefinition builder](https://sqlonfhir.aidbox.app/?utm_source=aidbox-docs\&utm_medium=release-notes)
   * Enhanced [SQL on FHIR spec coverage](https://fhir.github.io/sql-on-fhir-v2)

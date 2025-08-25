@@ -455,6 +455,7 @@ redirects:
   modules/terminology/usdtranslate-on-conceptmap.md: deprecated/deprecated/other/terminology/concept/translate-concepts.md
   modules/terminology/usdtranslate-on-conceptmap: deprecated/deprecated/other/terminology/concept/translate-concepts.md
   modules/topic-based-subscriptions/subscriptions-1: modules/topic-based-subscriptions/README.md
+  modules/topic-based-subscriptions/wip-dynamic-subscriptiontopic-with-destinations: modules/topic-based-subscriptions/aidbox-topic-based-subscriptions.md
   overview/aidbox-ui/rest-console-1: overview/aidbox-ui/rest-console.md
   plan-api/patient-access-api: access-control/authorization/scoped-api/patient-data-access-api.md
   plan-api/plan-api-overview: api/other/plan-api/plan-api-overview.md
