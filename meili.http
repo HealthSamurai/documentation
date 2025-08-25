@@ -1,4 +1,4 @@
-@auth=m7PG9bhdzNBNyRwhPDdeFmT8q18Z6es3oKVCjkWhdTY=
+@auth=-60DBZGy6zoDL6Q--s1-dHBWptiVKvK-XRsaacdvkOSM
 
 GET http://localhost:7700/indexes
 Authorization: Bearer {{auth}}
