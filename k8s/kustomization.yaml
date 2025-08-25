@@ -6,5 +6,6 @@ resources:
 - deployment.yaml
 - service.yaml
 - ingress.yaml
+- ingress-fhirbase.yaml
 - keel.yaml
 - meilisearch/

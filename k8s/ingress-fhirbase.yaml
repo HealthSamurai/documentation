@@ -1,0 +1,32 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  annotations:
+    cert-manager.io/cluster-issuer: letsencrypt
+    nginx.ingress.kubernetes.io/server-snippet: |
+      return 301 $scheme://www.health-samurai.io/docs/fhirbase$request_uri;
+  name: fhirbase-aidbox
+  namespace: gitbok
+spec:
+  ingressClassName: nginx
+  rules:
+    - host: fhirbase.aidbox.app
+  tls:
+    - hosts:
+        - fhirbase.aidbox.app
+      secretName: fhirbase-aidbox-app-tls
+
+
+# renew certificates, handle 301
+# server {
+#     listen 80;
+#     server_name fhirbase.aidbox.app;
+#
+#     location /.well-known/acme-challenge/ {
+#         root /var/www/certbot;
+#     }
+#
+#     location / {
+#         return 301 https://www.health-samurai.io/docs/fhirbase;
+#     }
+# }
