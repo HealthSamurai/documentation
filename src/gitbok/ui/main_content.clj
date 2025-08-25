@@ -201,7 +201,7 @@
                  max-w-5xl transform-3d"}
        (when htmx?
          [:script (uui/raw "window.scrollTo(0, 0); updateLastUpdated(); updateActiveNavItem(window.location.pathname); updatePageTitle();")])
-       [:div {:class "mx-auto max-w-full md:px-4"} body-with-breadcrumb]
+       [:div {:class "mx-auto max-w-full"} body-with-breadcrumb]
        (navigation-buttons context uri)
        (let [lastupdated
              (indexing/get-lastmod context filepath)]
