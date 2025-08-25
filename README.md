@@ -241,7 +241,9 @@ cp k8s/meilisearch/config.json k8s/meilisearch/config-<your-product>.json
 ```
 Make sure that `index_uid` is the same as `meilisearch-index` from the `products.yaml` file.
 Change `start_urls` and `sitemap_urls`.
+
 2. Add scrapper config to `k8s/meilisearch/kustomization.yaml`. Update `configMapGenerator`.
+
 3. Commit and push, wait until FluxCD applies it.
 
 You can also try it locally:
