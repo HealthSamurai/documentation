@@ -101,7 +101,13 @@
                    uri-relative
                    (str/replace #"%20" " ")
                    (str/replace-first #".*.gitbook/" ""))
-        response (resp/resource-response file-path)]
+        ;; Try to find the image in multiple locations
+        response (or 
+                  ;; First try the standard location (.gitbook/assets/)
+                  (resp/resource-response file-path)
+                  ;; If not found, try without 'assets/' prefix (for docs/.gitbook/assets/)
+                  ;; Since 'docs' is in classpath directly, files are accessible as ".gitbook/assets/..."
+                  (resp/resource-response (str ".gitbook/" file-path)))]
     (when response
       ;; Add proper Content-Type for SVG files
       (if (str/ends-with? file-path ".svg")

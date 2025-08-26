@@ -36,7 +36,7 @@ Open in browser [http://localhost:8080/](http://localhost:8080)
 
 <figure><img src="../.gitbook/assets/image.png" alt=""><figcaption></figcaption></figure>
 
-Click "Continue with Aidbox account" and create a free Aidbox account in  [Aidbox user portal](https://aidbox.app/)\
+Click "Continue with Aidbox account" and create a free Aidbox account in [Aidbox user portal](https://aidbox.app/).
 
 
 More about Aidbox licenses [here](../overview/aidbox-user-portal/licenses.md)
