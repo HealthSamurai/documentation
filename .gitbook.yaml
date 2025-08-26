@@ -470,6 +470,7 @@ redirects:
   readme-1/validation-tutorials/upload-fhir-implementation-guide/uploading-fhir-ig-using-uploadfig-library: tutorials/artifact-registry-tutorials/upload-fhir-implementation-guide/uploadfig-tool.md
   reference/configuration/environment-variables/optional-environment-variables: reference/environment-variables/optional-environment-variables.md
   reference/settings/security-access-control: reference/settings/security-and-access-control.md
+  security-and-access-control-1/overview: access-control/access-control.md
   security-and-access-control-1/auth/external-oauth-2.0-providers/configure-okta: tutorials/security-access-control-tutorials/okta.md
   security-and-access-control-1/security/access-control: access-control/authorization/access-policies.md
   security-and-access-control-1/security/accesspolicy-best-practices: tutorials/security-access-control-tutorials/accesspolicy-best-practices.md
