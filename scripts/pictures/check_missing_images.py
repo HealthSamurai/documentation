@@ -11,7 +11,13 @@ import re
 import urllib.parse
 from pathlib import Path
 import sys
-import yaml
+
+# Try to import yaml, but don't fail if it's not available
+try:
+    import yaml
+    YAML_AVAILABLE = True
+except ImportError:
+    YAML_AVAILABLE = False
 
 # Root directories for the docs
 DOCS_DIR = "docs"
@@ -20,6 +26,10 @@ ASSETS_DIR = ".gitbook/assets"
 
 def load_products_config():
     """Load products configuration from docs-new/products.yaml"""
+    # Return None if yaml module is not available
+    if not YAML_AVAILABLE:
+        return None
+    
     products_yaml_path = os.path.join(DOCS_NEW_DIR, "products.yaml")
     if not os.path.exists(products_yaml_path):
         return None
@@ -160,32 +170,35 @@ def check_files():
                 processed_files += 1
     
     # Check multi-product docs-new directory
-    products_config = load_products_config()
-    if products_config and os.path.exists(DOCS_NEW_DIR):
-        print("\nChecking multi-product documentation...")
-        for product in products_config.get('products', []):
-            product_id = product['id']
-            product_path = os.path.join(DOCS_NEW_DIR, product_id)
-            
-            if not os.path.exists(product_path):
-                print(f"Warning: Product directory not found: {product_path}")
-                continue
-            
-            print(f"  Checking product: {product_id}")
-            product_docs_dir = os.path.join(product_path, 'docs')
-            
-            if os.path.exists(product_docs_dir):
-                for root, _, files in os.walk(product_docs_dir):
-                    for file in files:
-                        if not file.endswith('.md'):
-                            continue
-                        
-                        file_path = os.path.join(root, file)
-                        images_found, images_missing = process_file(
-                            file_path, missing_images, product_path=product_path
-                        )
-                        total_images += images_found
-                        processed_files += 1
+    if not YAML_AVAILABLE:
+        print("\nSkipping multi-product documentation check (PyYAML not installed)")
+    else:
+        products_config = load_products_config()
+        if products_config and os.path.exists(DOCS_NEW_DIR):
+            print("\nChecking multi-product documentation...")
+            for product in products_config.get('products', []):
+                product_id = product['id']
+                product_path = os.path.join(DOCS_NEW_DIR, product_id)
+                
+                if not os.path.exists(product_path):
+                    print(f"Warning: Product directory not found: {product_path}")
+                    continue
+                
+                print(f"  Checking product: {product_id}")
+                product_docs_dir = os.path.join(product_path, 'docs')
+                
+                if os.path.exists(product_docs_dir):
+                    for root, _, files in os.walk(product_docs_dir):
+                        for file in files:
+                            if not file.endswith('.md'):
+                                continue
+                            
+                            file_path = os.path.join(root, file)
+                            images_found, images_missing = process_file(
+                                file_path, missing_images, product_path=product_path
+                            )
+                            total_images += images_found
+                            processed_files += 1
     
     # Print summary
     print("\n=== SUMMARY ===")
