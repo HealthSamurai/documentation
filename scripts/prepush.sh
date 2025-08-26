@@ -26,5 +26,6 @@ fi
 
 python3 ./scripts/redirects.py || exit 1
 
-# maybe later...
-# python ./scripts/pictures/image_analyzer.py || exit 1
+# Check for missing images in documentation
+echo "Checking for missing images in documentation..."
+python3 ./scripts/pictures/check_missing_images.py || exit 1
