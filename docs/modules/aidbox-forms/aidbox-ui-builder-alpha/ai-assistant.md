@@ -8,6 +8,8 @@ description: >-
 
 The AI Assistant in the Aidbox UI Builder is a powerful tool designed to help you quickly build and manage **FHIR SDC Questionnaires** through natural language interaction. It provides seamless integration with the builder's tools and controls, significantly accelerating form creation and editing.
 
+Beyond form building, the assistant can digitize paper forms by importing PDF documents and extracting form structures from selected regions. It also helps you analyze collected data by creating ViewDefinitions and generating interactive visualizations, turning your questionnaire responses into actionable insights.
+
 ## Getting Started
 
 {% stepper %}
@@ -60,6 +62,10 @@ The AI Assistant can comprehensively manage FHIR SDC Questionnaires including:
 * **Validation** - Add constraints, required fields, and data type validation
 * **Presentation** - Modify layout, styling, media content, and user interface elements
 * **Metadata** - Managing questionnaire-level properties such as title, version, and tags
+* **ViewDefinitions** - Create and manage FHIR ViewDefinitions for data analysis
+* **Data Visualization** - Generate interactive charts and graphs from questionnaire responses
+* **PDF Import** - Extract and convert paper forms from PDF documents into digital questionnaires
+* **Mock Data Generation** - Create sample questionnaire responses for testing and visualization
 
 For example, when asked to create a BMI form, the assistant:
 
@@ -172,6 +178,62 @@ For example, when asked to create a BMI form, the assistant:
 {% endstep %}
 {% endstepper %}
 
+### 4. Importing Paper Forms from PDF
+
+{% stepper %}
+{% step %}
+### Select and load PDF
+Click the **"Select PDF for import"** button and choose your PDF file. Wait for the PDF to be parsed - this may take a moment depending on the file size.
+{% endstep %}
+{% step %}
+### Add image attachments
+Once parsed, the **"Add image attachment"** button becomes available. Click it to see a scrollable list of all PDF pages.
+{% endstep %}
+{% step %}
+### Select regions to attach
+Draw a rectangle around the form section you want to digitize, then click **"Attach"**. The selected region is cropped and added as an attachment. Repeat this process to add multiple regions.
+{% endstep %}
+{% step %}
+### Send with instructions
+**User:** [With attached images] "Create questionnaire items from these patient intake sections."  
+**Assistant:** Analyzes all attached images and creates corresponding digital form fields.
+{% endstep %}
+{% step %}
+### Continue adding more sections
+Click **"Add image attachment"** again to select additional regions from the PDF, which remains available throughout your session.
+{% endstep %}
+{% endstepper %}
+
+### 5. Creating Data Analysis Reports
+
+{% stepper %}
+{% step %}
+### Generate test data if needed
+**User:** "Create 50 mock responses for this questionnaire to test my analysis."  
+**Assistant:** Generates realistic sample data across all form fields.
+{% endstep %}
+{% step %}
+### Explore available data
+**User:** "What patient response data do we have available for analysis?"  
+**Assistant:** Lists available questionnaires and response counts, including mock data.
+{% endstep %}
+{% step %}
+### Request specific analysis
+**User:** "I want to see how depression scores vary by patient age."  
+**Assistant:** Creates an analysis grouping PHQ-9 scores by age ranges.
+{% endstep %}
+{% step %}
+### Visualize results
+**User:** "Show me this as a bar chart."  
+**Assistant:** Generates an interactive chart showing average scores per age group.
+{% endstep %}
+{% step %}
+### Save for later use
+**User:** "Save this report so I can run it again next month."  
+**Assistant:** Saves the analysis configuration for future use.
+{% endstep %}
+{% endstepper %}
+
 ## Best Practices
 
 To get the most out of the AI Assistant, follow these recommendations:
@@ -264,5 +326,73 @@ Yes. If supported by the underlying AI provider, the assistant will respond in t
 <summary>Can I export the chat conversation?</summary>
 
 Not directly at the moment. You can manually copy the conversation or extract it using developer tools. Export options may be available in future versions.
+
+</details>
+
+<details>
+
+<summary>How do I attach images from a PDF?</summary>
+
+After selecting a PDF file and waiting for it to parse, click the **"Add image attachment"** button. You'll see all PDF pages in a scrollable view. Draw a rectangle around the section you want, then click **"Attach"**. The cropped region will be added as an attachment to your message. You can repeat this process to add multiple images before sending your prompt.
+
+</details>
+
+<details>
+
+<summary>Can I select multiple regions from the same PDF?</summary>
+
+Yes! After attaching one region, you can click **"Add image attachment"** again to select another area from any page of the PDF. The PDF stays loaded throughout your session, so you can keep adding different sections as needed. All attached images will be sent together when you submit your message.
+
+</details>
+
+<details>
+
+<summary>What types of charts can the assistant create?</summary>
+
+The assistant can generate interactive bar charts, line graphs, pie charts, scatter plots, and more. Just describe what you want to see (e.g., "show me average scores by age group as a bar chart") and the assistant will create the appropriate visualization from your questionnaire response data.
+
+</details>
+
+<details>
+
+<summary>What happens to my uploaded PDF files?</summary>
+
+PDF files are processed entirely in your browser and are not permanently stored. They remain available only during your current session. Once you close or refresh the page, you'll need to re-upload the PDF if you want to continue working with it.
+
+</details>
+
+<details>
+
+<summary>Are ViewDefinitions and visualizations saved permanently?</summary>
+
+ViewDefinitions can be saved to your Aidbox instance for permanent storage and reuse. The visualizations themselves are generated on-demand based on current data. You can regenerate them anytime using the saved ViewDefinition, ensuring you always see the most up-to-date information.
+
+</details>
+
+<details>
+
+<summary>Can I customize mock response generation?</summary>
+
+Yes! You can specify various parameters for mock responses:
+- **Multiple patients**: "Create 30 responses from different patients"
+- **Single patient**: "Generate 10 responses all from the same patient"  
+- **Time distribution**: "Create responses spread over the last 6 months"
+- **Specific patterns**: "Generate responses with progressively improving scores over time"
+
+This flexibility helps you test different scenarios and ensure your analyses work correctly with various data patterns.
+
+</details>
+
+<details>
+
+<summary>Can I export or share the generated charts?</summary>
+
+Yes! Generated visualizations can be:
+- **Exported as images** (SVG or PNG format) for use in presentations, reports, or documentation
+- **Edited further** in the Vega Editor where you can fine-tune colors, labels, and other properties
+- **Shared as specifications** so colleagues can recreate or modify the visualization
+- **Viewed as source code** to understand how the visualization was created or to use as a template
+
+This makes it easy to integrate the charts into your workflow or collaborate with others.
 
 </details>
