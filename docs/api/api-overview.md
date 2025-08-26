@@ -37,13 +37,38 @@ Aidbox provides two types of validation:
 
 ```mermaid
 flowchart TD
+    %% NODE STYLES - RED COLOR VARIATIONS
+    classDef red1 fill:#fef2f2,stroke:#F58685,stroke-width:1px,color:#1D2331
+    classDef red2 fill:#fef2f2,stroke:#F58685,stroke-width:2px,color:#1D2331
+    classDef red3 fill:#fef2f2,stroke:#F58685,stroke-width:3px,color:#1D2331
+    %% NODE STYLES - BLUE COLOR VARIATIONS
+    classDef blue1 fill:#eff6ff,stroke:#7DA1EF,stroke-width:1px,color:#1D2331
+    classDef blue2 fill:#eff6ff,stroke:#7DA1EF,stroke-width:2px,color:#1D2331
+    classDef blue3 fill:#eff6ff,stroke:#7DA1EF,stroke-width:3px,color:#1D2331
+    %% NODE STYLES - VIOLET COLOR VARIATIONS
+    classDef violet1 fill:#faf5ff,stroke:#AB8AE3,stroke-width:1px,color:#1D2331
+    classDef violet2 fill:#faf5ff,stroke:#AB8AE3,stroke-width:2px,color:#1D2331
+    classDef violet3 fill:#faf5ff,stroke:#AB8AE3,stroke-width:3px,color:#1D2331
+    %% NODE STYLES - GREEN COLOR VARIATIONS
+    classDef green1 fill:#f0fdf4,stroke:#78B58E,stroke-width:1px,color:#1D2331
+    classDef green2 fill:#f0fdf4,stroke:#78B58E,stroke-width:2px,color:#1D2331
+    classDef green3 fill:#f0fdf4,stroke:#78B58E,stroke-width:3px,color:#1D2331
+    %% NODE STYLES - YELLOW COLOR VARIATIONS
+    classDef yellow1 fill:#fefce8,stroke:#E4BE6F,stroke-width:1px,color:#1D2331
+    classDef yellow2 fill:#fefce8,stroke:#E4BE6F,stroke-width:2px,color:#1D2331
+    classDef yellow3 fill:#fefce8,stroke:#E4BE6F,stroke-width:3px,color:#1D2331
+    %% NODE STYLES - NEUTRAL COLOR VARIATIONS
+    classDef neutral1 fill:#F5F5F6,stroke:#CCCED3,stroke-width:1px,color:#1D2331
+    classDef neutral2 fill:#F5F5F6,stroke:#CCCED3,stroke-width:2px,color:#1D2331
+    classDef neutral3 fill:#F5F5F6,stroke:#CCCED3,stroke-width:3px,color:#1D2331
+    
     subgraph "Automatic Validation"
-        A1[Client: POST/PUT Resource]
-        A2[FHIR Schema Validation]
+        A1(Client: POST/PUT Resource)
+        A2(FHIR Schema Validation)
         A3{Valid?}
-        A4[Save to Database]
-        A5[Return Success]
-        A6[Return Validation Errors]
+        A4(Save to Database)
+        A5(Return Success)
+        A6(Return Validation Errors)
         
         A1 --> A2 --> A3
         A3 -->|Yes| A4 --> A5
@@ -51,17 +76,18 @@ flowchart TD
     end
     
     subgraph "Explicit Validation"
-        B1[Client: POST /$validate]
-        B2[FHIR Schema Validation]
-        B3[Return Validation Results]
+        B1(Client: POST /$validate)
+        B2(FHIR Schema Validation)
+        B3(Return Validation Results)
         
         B1 --> B2 --> B3
     end
     
-    style A4 fill:#90EE90
-    style A5 fill:#90EE90
-    style A6 fill:#FFB6C1
-    style B3 fill:#87CEEB
+    class A1,B1 neutral2
+    class A2,B2 yellow2
+    class A4,A5 green2
+    class A6 red2
+    class B3 blue2
 ```
 
 For example, validating a Patient resource checks required fields like gender codes, date formats, and identifier systems:
@@ -85,26 +111,55 @@ In healthcare, knowing not just what data looks like now, but how it changed ove
 
 ```mermaid
 graph LR
+    %% NODE STYLES - RED COLOR VARIATIONS
+    classDef red1 fill:#fef2f2,stroke:#F58685,stroke-width:1px,color:#1D2331
+    classDef red2 fill:#fef2f2,stroke:#F58685,stroke-width:2px,color:#1D2331
+    classDef red3 fill:#fef2f2,stroke:#F58685,stroke-width:3px,color:#1D2331
+    %% NODE STYLES - BLUE COLOR VARIATIONS
+    classDef blue1 fill:#eff6ff,stroke:#7DA1EF,stroke-width:1px,color:#1D2331
+    classDef blue2 fill:#eff6ff,stroke:#7DA1EF,stroke-width:2px,color:#1D2331
+    classDef blue3 fill:#eff6ff,stroke:#7DA1EF,stroke-width:3px,color:#1D2331
+    %% NODE STYLES - VIOLET COLOR VARIATIONS
+    classDef violet1 fill:#faf5ff,stroke:#AB8AE3,stroke-width:1px,color:#1D2331
+    classDef violet2 fill:#faf5ff,stroke:#AB8AE3,stroke-width:2px,color:#1D2331
+    classDef violet3 fill:#faf5ff,stroke:#AB8AE3,stroke-width:3px,color:#1D2331
+    %% NODE STYLES - GREEN COLOR VARIATIONS
+    classDef green1 fill:#f0fdf4,stroke:#78B58E,stroke-width:1px,color:#1D2331
+    classDef green2 fill:#f0fdf4,stroke:#78B58E,stroke-width:2px,color:#1D2331
+    classDef green3 fill:#f0fdf4,stroke:#78B58E,stroke-width:3px,color:#1D2331
+    %% NODE STYLES - YELLOW COLOR VARIATIONS
+    classDef yellow1 fill:#fefce8,stroke:#E4BE6F,stroke-width:1px,color:#1D2331
+    classDef yellow2 fill:#fefce8,stroke:#E4BE6F,stroke-width:2px,color:#1D2331
+    classDef yellow3 fill:#fefce8,stroke:#E4BE6F,stroke-width:3px,color:#1D2331
+    %% NODE STYLES - NEUTRAL COLOR VARIATIONS
+    classDef neutral1 fill:#F5F5F6,stroke:#CCCED3,stroke-width:1px,color:#1D2331
+    classDef neutral2 fill:#F5F5F6,stroke:#CCCED3,stroke-width:2px,color:#1D2331
+    classDef neutral3 fill:#F5F5F6,stroke:#CCCED3,stroke-width:3px,color:#1D2331
+    
     subgraph "patient_history"
-        V1[V1]
-        V2[V2]
-        V3[V3]
+        V1(V1)
+        V2(V2)
+        V3(V3)
     end
     
     subgraph "patient"
-        V4[current]
+        V4(current)
     end
     
     V1 --> V2 --> V3 --> V4
     
     subgraph "History API"
-        HIST[GET /fhir/Patient/123/_history]
+        HIST(GET /fhir/Patient/123/_history)
     end
     
     HIST -.-> V1
     HIST -.-> V2
     HIST -.-> V3
     HIST -.-> V4
+    
+    class V1,V2,V3 neutral2
+    class V4 green2
+    class HIST blue2
 ```
 
 The history mechanism works at two levels: instance history tracks changes to individual resources (e.g., tracking changes to a single Patient record), and type history shows all changes across a resource type (e.g., listing all updates across all Patient records). Each history entry includes the complete resource state at that point in time, the HTTP method used (POST, PUT, DELETE), version identifiers, and timestamps. For example, `GET /fhir/Patient/123/_history` retrieves all versions of a specific patient, while `GET /fhir/Patient/_history?_since=2024-01-01` shows all patient changes since a specific date.
@@ -177,25 +232,50 @@ Traditional RESTful APIs, while perfect for real-time operations, struggle with 
 
 ```mermaid
 flowchart LR
+    %% NODE STYLES - RED COLOR VARIATIONS
+    classDef red1 fill:#fef2f2,stroke:#F58685,stroke-width:1px,color:#1D2331
+    classDef red2 fill:#fef2f2,stroke:#F58685,stroke-width:2px,color:#1D2331
+    classDef red3 fill:#fef2f2,stroke:#F58685,stroke-width:3px,color:#1D2331
+    %% NODE STYLES - BLUE COLOR VARIATIONS
+    classDef blue1 fill:#eff6ff,stroke:#7DA1EF,stroke-width:1px,color:#1D2331
+    classDef blue2 fill:#eff6ff,stroke:#7DA1EF,stroke-width:2px,color:#1D2331
+    classDef blue3 fill:#eff6ff,stroke:#7DA1EF,stroke-width:3px,color:#1D2331
+    %% NODE STYLES - VIOLET COLOR VARIATIONS
+    classDef violet1 fill:#faf5ff,stroke:#AB8AE3,stroke-width:1px,color:#1D2331
+    classDef violet2 fill:#faf5ff,stroke:#AB8AE3,stroke-width:2px,color:#1D2331
+    classDef violet3 fill:#faf5ff,stroke:#AB8AE3,stroke-width:3px,color:#1D2331
+    %% NODE STYLES - GREEN COLOR VARIATIONS
+    classDef green1 fill:#f0fdf4,stroke:#78B58E,stroke-width:1px,color:#1D2331
+    classDef green2 fill:#f0fdf4,stroke:#78B58E,stroke-width:2px,color:#1D2331
+    classDef green3 fill:#f0fdf4,stroke:#78B58E,stroke-width:3px,color:#1D2331
+    %% NODE STYLES - YELLOW COLOR VARIATIONS
+    classDef yellow1 fill:#fefce8,stroke:#E4BE6F,stroke-width:1px,color:#1D2331
+    classDef yellow2 fill:#fefce8,stroke:#E4BE6F,stroke-width:2px,color:#1D2331
+    classDef yellow3 fill:#fefce8,stroke:#E4BE6F,stroke-width:3px,color:#1D2331
+    %% NODE STYLES - NEUTRAL COLOR VARIATIONS
+    classDef neutral1 fill:#F5F5F6,stroke:#CCCED3,stroke-width:1px,color:#1D2331
+    classDef neutral2 fill:#F5F5F6,stroke:#CCCED3,stroke-width:2px,color:#1D2331
+    classDef neutral3 fill:#F5F5F6,stroke:#CCCED3,stroke-width:3px,color:#1D2331
+    
     subgraph "External Storage"
-        S3[Cloud Storage]
+        S3(Cloud Storage)
     end
     
-    subgraph "$load (Synchronous)"
-        L1[Upload NDJSON]
-        L2[Stream Processing]
-        L3[PostgreSQL COPY]
-        L4[Immediate Response]
+    subgraph "$load - Synchronous"
+        L1(Upload NDJSON)
+        L2(Stream Processing)
+        L3(PostgreSQL COPY)
+        L4(Immediate Response)
         
         L1 --> L2 --> L3 --> L4
     end
     
-    subgraph "$import (Asynchronous)"
-        I1[Submit Import Job]
-        I2[Job Queue]
-        I3[Background Processing]
-        I4[PostgreSQL COPY]
-        I5[Job Status API]
+    subgraph "$import - Asynchronous"
+        I1(Submit Import Job)
+        I2(Job Queue)
+        I3(Background Processing)
+        I4(PostgreSQL COPY)
+        I5(Job Status API)
         
         I1 --> I2 --> I3 --> I4 --> I5
     end
@@ -209,9 +289,12 @@ flowchart LR
     L3 --> DB
     I4 --> DB
     
-    style L4 fill:#90EE90
-    style I5 fill:#87CEEB
-    style DB fill:#E6E6FA
+    class S3 violet2
+    class L1,L2,L3 yellow1
+    class L4 green2
+    class I1,I2,I3,I4 blue1
+    class I5 blue2
+    class DB violet3
 ```
 
 The choice between `$load` and `$import` depends on your specific use case:
@@ -275,19 +358,48 @@ Healthcare analytics and reporting often require complex queries that go beyond 
 
 ```mermaid
 graph LR
+    %% NODE STYLES - RED COLOR VARIATIONS
+    classDef red1 fill:#fef2f2,stroke:#F58685,stroke-width:1px,color:#1D2331
+    classDef red2 fill:#fef2f2,stroke:#F58685,stroke-width:2px,color:#1D2331
+    classDef red3 fill:#fef2f2,stroke:#F58685,stroke-width:3px,color:#1D2331
+    %% NODE STYLES - BLUE COLOR VARIATIONS
+    classDef blue1 fill:#eff6ff,stroke:#7DA1EF,stroke-width:1px,color:#1D2331
+    classDef blue2 fill:#eff6ff,stroke:#7DA1EF,stroke-width:2px,color:#1D2331
+    classDef blue3 fill:#eff6ff,stroke:#7DA1EF,stroke-width:3px,color:#1D2331
+    %% NODE STYLES - VIOLET COLOR VARIATIONS
+    classDef violet1 fill:#faf5ff,stroke:#AB8AE3,stroke-width:1px,color:#1D2331
+    classDef violet2 fill:#faf5ff,stroke:#AB8AE3,stroke-width:2px,color:#1D2331
+    classDef violet3 fill:#faf5ff,stroke:#AB8AE3,stroke-width:3px,color:#1D2331
+    %% NODE STYLES - GREEN COLOR VARIATIONS
+    classDef green1 fill:#f0fdf4,stroke:#78B58E,stroke-width:1px,color:#1D2331
+    classDef green2 fill:#f0fdf4,stroke:#78B58E,stroke-width:2px,color:#1D2331
+    classDef green3 fill:#f0fdf4,stroke:#78B58E,stroke-width:3px,color:#1D2331
+    %% NODE STYLES - YELLOW COLOR VARIATIONS
+    classDef yellow1 fill:#fefce8,stroke:#E4BE6F,stroke-width:1px,color:#1D2331
+    classDef yellow2 fill:#fefce8,stroke:#E4BE6F,stroke-width:2px,color:#1D2331
+    classDef yellow3 fill:#fefce8,stroke:#E4BE6F,stroke-width:3px,color:#1D2331
+    %% NODE STYLES - NEUTRAL COLOR VARIATIONS
+    classDef neutral1 fill:#F5F5F6,stroke:#CCCED3,stroke-width:1px,color:#1D2331
+    classDef neutral2 fill:#F5F5F6,stroke:#CCCED3,stroke-width:2px,color:#1D2331
+    classDef neutral3 fill:#F5F5F6,stroke:#CCCED3,stroke-width:3px,color:#1D2331
+    
     subgraph "FHIR Resource"
-        JSON[Patient JSON<br/>with nested data: <br/>array of names, <br/>array of addresses]
+        JSON(Patient JSON<br/>with nested data: <br/>array of names, <br/>array of addresses)
     end
     
     subgraph "ViewDefinition"
-        VD[Flattens JSON<br/>to columns]
+        VD(Flattens JSON<br/>to columns)
     end
     
     subgraph "SQL View"
-        TABLE["id | family | city<br/>1 | Smith | Boston"]
+        TABLE("id | family | city<br/>1 | Smith | Boston")
     end
     
     JSON --> VD --> TABLE
+    
+    class JSON blue2
+    class VD yellow2
+    class TABLE green2
 ```
 
 The SQL-on-FHIR implementation provides flat views of FHIR resources that can be queried using standard SQL, making it possible to write complex analytical queries using familiar SQL syntax. For example, you can join Patient and Observation resources to analyze lab trends, aggregate medication data across populations, or generate custom reports that combine data from multiple resource types. This approach enables seamless integration with **existing analytical tools** and **BI platforms** that expect SQL interfaces.
@@ -408,14 +520,39 @@ Real-time clinical decision support and care coordination require immediate noti
 
 ```mermaid
 flowchart LR
-    CHANGES[Resource Created/<br/>Updated/Deleted]
-    QUEUE[AidboxSubscriptionTopic]
+    %% NODE STYLES - RED COLOR VARIATIONS
+    classDef red1 fill:#fef2f2,stroke:#F58685,stroke-width:1px,color:#1D2331
+    classDef red2 fill:#fef2f2,stroke:#F58685,stroke-width:2px,color:#1D2331
+    classDef red3 fill:#fef2f2,stroke:#F58685,stroke-width:3px,color:#1D2331
+    %% NODE STYLES - BLUE COLOR VARIATIONS
+    classDef blue1 fill:#eff6ff,stroke:#7DA1EF,stroke-width:1px,color:#1D2331
+    classDef blue2 fill:#eff6ff,stroke:#7DA1EF,stroke-width:2px,color:#1D2331
+    classDef blue3 fill:#eff6ff,stroke:#7DA1EF,stroke-width:3px,color:#1D2331
+    %% NODE STYLES - VIOLET COLOR VARIATIONS
+    classDef violet1 fill:#faf5ff,stroke:#AB8AE3,stroke-width:1px,color:#1D2331
+    classDef violet2 fill:#faf5ff,stroke:#AB8AE3,stroke-width:2px,color:#1D2331
+    classDef violet3 fill:#faf5ff,stroke:#AB8AE3,stroke-width:3px,color:#1D2331
+    %% NODE STYLES - GREEN COLOR VARIATIONS
+    classDef green1 fill:#f0fdf4,stroke:#78B58E,stroke-width:1px,color:#1D2331
+    classDef green2 fill:#f0fdf4,stroke:#78B58E,stroke-width:2px,color:#1D2331
+    classDef green3 fill:#f0fdf4,stroke:#78B58E,stroke-width:3px,color:#1D2331
+    %% NODE STYLES - YELLOW COLOR VARIATIONS
+    classDef yellow1 fill:#fefce8,stroke:#E4BE6F,stroke-width:1px,color:#1D2331
+    classDef yellow2 fill:#fefce8,stroke:#E4BE6F,stroke-width:2px,color:#1D2331
+    classDef yellow3 fill:#fefce8,stroke:#E4BE6F,stroke-width:3px,color:#1D2331
+    %% NODE STYLES - NEUTRAL COLOR VARIATIONS
+    classDef neutral1 fill:#F5F5F6,stroke:#CCCED3,stroke-width:1px,color:#1D2331
+    classDef neutral2 fill:#F5F5F6,stroke:#CCCED3,stroke-width:2px,color:#1D2331
+    classDef neutral3 fill:#F5F5F6,stroke:#CCCED3,stroke-width:3px,color:#1D2331
+    
+    CHANGES(Resource Created/<br/>Updated/Deleted)
+    QUEUE(AidboxSubscriptionTopic)
     
     subgraph "Delivery Channels"
-        WEBHOOK[Webhook<br/>HTTP POST]
-        KAFKA[Kafka<br/>Message]
-        PUBSUB[GCP Pub/Sub<br/>Message]
-        OTHER[Other Channels]
+        WEBHOOK(Webhook<br/>HTTP POST)
+        KAFKA(Kafka<br/>Message)
+        PUBSUB(GCP Pub/Sub<br/>Message)
+        OTHER(Other Channels)
     end
     
     CHANGES --> QUEUE
@@ -425,11 +562,9 @@ flowchart LR
     QUEUE --> PUBSUB
     QUEUE --> OTHER
     
-    style QUEUE fill:#87CEEB
-    style WEBHOOK fill:#90EE90
-    style KAFKA fill:#90EE90
-    style PUBSUB fill:#90EE90
-    style OTHER fill:#90EE90
+    class CHANGES red2
+    class QUEUE blue3
+    class WEBHOOK,KAFKA,PUBSUB,OTHER green2
 ```
 
 The subscription system uses `AidboxSubscriptionTopic` resources to define event triggers with FHIRPath criteria, allowing precise filtering of notifications. For example, a clinical decision support system can subscribe to completed QuestionnaireResponse resources, receiving immediate notifications when lab results are finalized or when medication orders are created for patients with specific conditions.
@@ -446,25 +581,52 @@ Healthcare analytics, research, and regulatory reporting often require complete 
 
 ```mermaid
 flowchart LR
-    CLIENT[Client Request<br/>POST /$export]
+    %% NODE STYLES - RED COLOR VARIATIONS
+    classDef red1 fill:#fef2f2,stroke:#F58685,stroke-width:1px,color:#1D2331
+    classDef red2 fill:#fef2f2,stroke:#F58685,stroke-width:2px,color:#1D2331
+    classDef red3 fill:#fef2f2,stroke:#F58685,stroke-width:3px,color:#1D2331
+    %% NODE STYLES - BLUE COLOR VARIATIONS
+    classDef blue1 fill:#eff6ff,stroke:#7DA1EF,stroke-width:1px,color:#1D2331
+    classDef blue2 fill:#eff6ff,stroke:#7DA1EF,stroke-width:2px,color:#1D2331
+    classDef blue3 fill:#eff6ff,stroke:#7DA1EF,stroke-width:3px,color:#1D2331
+    %% NODE STYLES - VIOLET COLOR VARIATIONS
+    classDef violet1 fill:#faf5ff,stroke:#AB8AE3,stroke-width:1px,color:#1D2331
+    classDef violet2 fill:#faf5ff,stroke:#AB8AE3,stroke-width:2px,color:#1D2331
+    classDef violet3 fill:#faf5ff,stroke:#AB8AE3,stroke-width:3px,color:#1D2331
+    %% NODE STYLES - GREEN COLOR VARIATIONS
+    classDef green1 fill:#f0fdf4,stroke:#78B58E,stroke-width:1px,color:#1D2331
+    classDef green2 fill:#f0fdf4,stroke:#78B58E,stroke-width:2px,color:#1D2331
+    classDef green3 fill:#f0fdf4,stroke:#78B58E,stroke-width:3px,color:#1D2331
+    %% NODE STYLES - YELLOW COLOR VARIATIONS
+    classDef yellow1 fill:#fefce8,stroke:#E4BE6F,stroke-width:1px,color:#1D2331
+    classDef yellow2 fill:#fefce8,stroke:#E4BE6F,stroke-width:2px,color:#1D2331
+    classDef yellow3 fill:#fefce8,stroke:#E4BE6F,stroke-width:3px,color:#1D2331
+    %% NODE STYLES - NEUTRAL COLOR VARIATIONS
+    classDef neutral1 fill:#F5F5F6,stroke:#CCCED3,stroke-width:1px,color:#1D2331
+    classDef neutral2 fill:#F5F5F6,stroke:#CCCED3,stroke-width:2px,color:#1D2331
+    classDef neutral3 fill:#F5F5F6,stroke:#CCCED3,stroke-width:3px,color:#1D2331
+    
+    CLIENT(Client Request<br/>POST /$export)
     
     subgraph "Aidbox"
-        JOB[Export Job<br/>Created]
-        PROCESS[Data Processing<br/>Filter & Extract]
-        STREAM[Stream NDJSON<br/>Files]
+        JOB(Export Job<br/>Created)
+        PROCESS(Data Processing<br/>Filter & Extract)
+        STREAM(Stream NDJSON<br/>Files)
         
         JOB --> PROCESS
         PROCESS --> STREAM
     end
     
-    STORAGE[External Storage<br/>S3 / GCP]
+    STORAGE(External Storage<br/>S3 / GCP)
     
     CLIENT --> JOB
     STREAM -->|NDJSON| STORAGE
     
-    style JOB fill:#87CEEB
-    style PROCESS fill:#FFE4B5
-    style STORAGE fill:#90EE90
+    class CLIENT neutral2
+    class JOB blue2
+    class PROCESS yellow2
+    class STREAM blue1
+    class STORAGE green2
 ```
 
 The bulk export system supports NDJSON format for streaming processing, with optional gzip compression for efficient storage and transfer. Export jobs can be configured to filter data by resource types, date ranges, and custom criteria, allowing you to extract only the data you need. The system provides real-time progress tracking, detailed error reporting, and automatic retry logic for failed exports.
@@ -505,25 +667,52 @@ Aidbox's implementation provides flexible archiving policies with support for se
 
 ```mermaid
 flowchart LR
-    CLIENT[Client Request<br/>POST /execution/aidbox.archive/create-archive]
+    %% NODE STYLES - RED COLOR VARIATIONS
+    classDef red1 fill:#fef2f2,stroke:#F58685,stroke-width:1px,color:#1D2331
+    classDef red2 fill:#fef2f2,stroke:#F58685,stroke-width:2px,color:#1D2331
+    classDef red3 fill:#fef2f2,stroke:#F58685,stroke-width:3px,color:#1D2331
+    %% NODE STYLES - BLUE COLOR VARIATIONS
+    classDef blue1 fill:#eff6ff,stroke:#7DA1EF,stroke-width:1px,color:#1D2331
+    classDef blue2 fill:#eff6ff,stroke:#7DA1EF,stroke-width:2px,color:#1D2331
+    classDef blue3 fill:#eff6ff,stroke:#7DA1EF,stroke-width:3px,color:#1D2331
+    %% NODE STYLES - VIOLET COLOR VARIATIONS
+    classDef violet1 fill:#faf5ff,stroke:#AB8AE3,stroke-width:1px,color:#1D2331
+    classDef violet2 fill:#faf5ff,stroke:#AB8AE3,stroke-width:2px,color:#1D2331
+    classDef violet3 fill:#faf5ff,stroke:#AB8AE3,stroke-width:3px,color:#1D2331
+    %% NODE STYLES - GREEN COLOR VARIATIONS
+    classDef green1 fill:#f0fdf4,stroke:#78B58E,stroke-width:1px,color:#1D2331
+    classDef green2 fill:#f0fdf4,stroke:#78B58E,stroke-width:2px,color:#1D2331
+    classDef green3 fill:#f0fdf4,stroke:#78B58E,stroke-width:3px,color:#1D2331
+    %% NODE STYLES - YELLOW COLOR VARIATIONS
+    classDef yellow1 fill:#fefce8,stroke:#E4BE6F,stroke-width:1px,color:#1D2331
+    classDef yellow2 fill:#fefce8,stroke:#E4BE6F,stroke-width:2px,color:#1D2331
+    classDef yellow3 fill:#fefce8,stroke:#E4BE6F,stroke-width:3px,color:#1D2331
+    %% NODE STYLES - NEUTRAL COLOR VARIATIONS
+    classDef neutral1 fill:#F5F5F6,stroke:#CCCED3,stroke-width:1px,color:#1D2331
+    classDef neutral2 fill:#F5F5F6,stroke:#CCCED3,stroke-width:2px,color:#1D2331
+    classDef neutral3 fill:#F5F5F6,stroke:#CCCED3,stroke-width:3px,color:#1D2331
+    
+    CLIENT(Client Request<br/>POST /execution/aidbox.archive/create-archive)
     
     subgraph "Aidbox"
-        JOB[Archive Job<br/>Created]
-        PROCESS[Prune Archived Data]
-        STREAM[Stream NDJSON<br/>Files]
+        JOB(Archive Job<br/>Created)
+        PROCESS(Prune Archived Data)
+        STREAM(Stream NDJSON<br/>Files)
         
         JOB --> PROCESS
         PROCESS --> STREAM
     end
     
-    STORAGE[External Storage<br/>S3 / GCP]
+    STORAGE(External Storage<br/>S3 / GCP)
     
     CLIENT --> JOB
     STREAM -->|NDJSON| STORAGE
     
-    style JOB fill:#87CEEB
-    style PROCESS fill:#FFE4B5
-    style STORAGE fill:#90EE90
+    class CLIENT neutral2
+    class JOB blue2
+    class PROCESS yellow2
+    class STREAM blue1
+    class STORAGE green2
 ```
 
 See also:

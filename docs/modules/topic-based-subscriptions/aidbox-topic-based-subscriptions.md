@@ -8,7 +8,7 @@ This functionality is available in Aidbox versions 2409 and later and requires [
 
 This feature enables dynamic subscriptions to changes in FHIR resources, allowing users/systems to receive notifications through multiple channels, including Kafka.
 
-<figure><img src="../../../../.gitbook/assets/eb0e6bfe-79a6-4f5e-bb16-1913eb0106d0.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/eb0e6bfe-79a6-4f5e-bb16-1913eb0106d0.png" alt=""><figcaption></figcaption></figure>
 
 For an application example, refer to [Aidbox Subscriptions & Kafka AidboxTopicDestination](https://github.com/Aidbox/app-examples/tree/main/aidbox-subscriptions-to-kafka)
 

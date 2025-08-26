@@ -93,23 +93,38 @@ Aidbox solves these problems with a different approach: creating SDKs specifical
 
 ```mermaid
 flowchart LR
-    A[FHIR Core Package]:::import --> C[Type Schema]:::schema
-    C --> D((CodeGen)):::processor
-    D --> E[Python SDK]:::result
-    D --> F[TypeScript SDK]:::result
-    D --> G[C# SDK]:::result
-    H[Custom<br/>Resources & Profiles]:::import --> C
-    I[IGs]:::import --> C
+    %% NODE STYLES - RED COLOR VARIATIONS
+    classDef red1 fill:#fef2f2,stroke:#F58685,stroke-width:1px,color:#1D2331
+    classDef red2 fill:#fef2f2,stroke:#F58685,stroke-width:2px,color:#1D2331
+    classDef red3 fill:#fef2f2,stroke:#F58685,stroke-width:3px,color:#1D2331
+    %% NODE STYLES - BLUE COLOR VARIATIONS
+    classDef blue1 fill:#eff6ff,stroke:#7DA1EF,stroke-width:1px,color:#1D2331
+    classDef blue2 fill:#eff6ff,stroke:#7DA1EF,stroke-width:2px,color:#1D2331
+    classDef blue3 fill:#eff6ff,stroke:#7DA1EF,stroke-width:3px,color:#1D2331
+    %% NODE STYLES - VIOLET COLOR VARIATIONS
+    classDef violet1 fill:#faf5ff,stroke:#AB8AE3,stroke-width:1px,color:#1D2331
+    classDef violet2 fill:#faf5ff,stroke:#AB8AE3,stroke-width:2px,color:#1D2331
+    classDef violet3 fill:#faf5ff,stroke:#AB8AE3,stroke-width:3px,color:#1D2331
+    %% NODE STYLES - GREEN COLOR VARIATIONS
+    classDef green1 fill:#f0fdf4,stroke:#78B58E,stroke-width:1px,color:#1D2331
+    classDef green2 fill:#f0fdf4,stroke:#78B58E,stroke-width:2px,color:#1D2331
+    classDef green3 fill:#f0fdf4,stroke:#78B58E,stroke-width:3px,color:#1D2331
+    %% NODE STYLES - YELLOW COLOR VARIATIONS
+    classDef yellow1 fill:#fefce8,stroke:#E4BE6F,stroke-width:1px,color:#1D2331
+    classDef yellow2 fill:#fefce8,stroke:#E4BE6F,stroke-width:2px,color:#1D2331
+    classDef yellow3 fill:#fefce8,stroke:#E4BE6F,stroke-width:3px,color:#1D2331
+    %% NODE STYLES - NEUTRAL COLOR VARIATIONS
+    classDef neutral1 fill:#F5F5F6,stroke:#CCCED3,stroke-width:1px,color:#1D2331
+    classDef neutral2 fill:#F5F5F6,stroke:#CCCED3,stroke-width:2px,color:#1D2331
+    classDef neutral3 fill:#F5F5F6,stroke:#CCCED3,stroke-width:3px,color:#1D2331
 
-    classDef import fill:#90cdf4,stroke:#2b6cb0,stroke-width:2px,color:#1a365d;
-    classDef schema fill:#fefcbf,stroke:#b7791f,stroke-width:2px,color:#744210;
-    classDef processor fill:#bbf7d0,stroke:#38a169,stroke-width:2.5px,color:#22543d;
-    classDef result fill:#81e6d9,stroke:#319795,stroke-width:2px,color:#234e52;
-
-    class A,H,I import;
-    class C schema;
-    class D processor;
-    class E,F,G result;
+    A(FHIR Core Package):::blue2 --> C(Type Schema):::yellow3
+    H(Custom<br/>Resources & Profiles):::blue2 --> C
+    I(IGs):::blue2 --> C
+    C --> D((CodeGen)):::green3
+    D --> E(Python SDK):::violet2
+    D --> F(TypeScript SDK):::violet2
+    D --> G(C# SDK):::violet2
 ```
 
 See also:
@@ -128,22 +143,51 @@ Aidbox supports custom application development through its App framework, which 
 
 ```mermaid
 flowchart LR
-    A["Client"]:::external
-    B["Aidbox"]:::core
-    C["Custom App<br>/Ext. Services"]:::external
-    D[(Database)]:::database
-
-    A --> B
-    B <--> C
-    B --> D
-
-    classDef external fill:#3182ce,stroke:#1A365D,color:#fff,stroke-width:2px,font-weight:bold;
-    classDef core fill:#243c5a,stroke:#0a2540,color:#fff,stroke-width:2.5px,font-weight:bold;
-    classDef database fill:#fbb6ce,stroke:#be185d,color:#581845,stroke-width:2px;
-    classDef external_service fill:#14b8a6,stroke:#134e4a,color:#fff,stroke-width:2px;
-    class A,C external;
-    class B core;
-    class D database;
+    %% Main Components
+    Client("Client")
+    Aidbox("Aidbox")
+    App("Custom App/External Services")
+    DB[(Database)]
+    
+    %% Connections
+    Client --> Aidbox
+    Aidbox <--> App
+    Aidbox --> DB
+    
+    %% NODE STYLES - RED COLOR VARIATIONS
+    classDef red1 fill:#fef2f2,stroke:#F58685,stroke-width:1px,color:#1D2331
+    classDef red2 fill:#fef2f2,stroke:#F58685,stroke-width:2px,color:#1D2331
+    classDef red3 fill:#fef2f2,stroke:#F58685,stroke-width:3px,color:#1D2331
+    %% NODE STYLES - BLUE COLOR VARIATIONS
+    classDef blue1 fill:#eff6ff,stroke:#7DA1EF,stroke-width:1px,color:#1D2331
+    classDef blue2 fill:#eff6ff,stroke:#7DA1EF,stroke-width:2px,color:#1D2331
+    classDef blue3 fill:#eff6ff,stroke:#7DA1EF,stroke-width:3px,color:#1D2331
+    %% NODE STYLES - VIOLET COLOR VARIATIONS
+    classDef violet1 fill:#faf5ff,stroke:#AB8AE3,stroke-width:1px,color:#1D2331
+    classDef violet2 fill:#faf5ff,stroke:#AB8AE3,stroke-width:2px,color:#1D2331
+    classDef violet3 fill:#faf5ff,stroke:#AB8AE3,stroke-width:3px,color:#1D2331
+    %% NODE STYLES - GREEN COLOR VARIATIONS
+    classDef green1 fill:#f0fdf4,stroke:#78B58E,stroke-width:1px,color:#1D2331
+    classDef green2 fill:#f0fdf4,stroke:#78B58E,stroke-width:2px,color:#1D2331
+    classDef green3 fill:#f0fdf4,stroke:#78B58E,stroke-width:3px,color:#1D2331
+    %% NODE STYLES - YELLOW COLOR VARIATIONS
+    classDef yellow1 fill:#fefce8,stroke:#E4BE6F,stroke-width:1px,color:#1D2331
+    classDef yellow2 fill:#fefce8,stroke:#E4BE6F,stroke-width:2px,color:#1D2331
+    classDef yellow3 fill:#fefce8,stroke:#E4BE6F,stroke-width:3px,color:#1D2331
+    %% NODE STYLES - NEUTRAL COLOR VARIATIONS
+    classDef neutral1 fill:#F5F5F6,stroke:#CCCED3,stroke-width:1px,color:#1D2331
+    classDef neutral2 fill:#F5F5F6,stroke:#CCCED3,stroke-width:2px,color:#1D2331
+    classDef neutral3 fill:#F5F5F6,stroke:#CCCED3,stroke-width:3px,color:#1D2331
+    %% LINK LABEL STYLES
+    classDef linkLabelNeutral fill:#F5F5F6,stroke:#CCCED3,stroke-width:1px,color:#1D2331
+    classDef linkLabelSuccess fill:#f0fdf4,stroke:#16a34a,stroke-width:1px,color:#1D2331
+    classDef linkLabelError fill:#fef2f2,stroke:#dc2626,stroke-width:1px,color:#1D2331
+    
+    %% APPLY CLASSES TO NODES
+    class Client blue2
+    class Aidbox red2
+    class App blue2
+    class DB neutral2
 ```
 
 Apps are standalone services that register with Aidbox, which acts as an API gateway proxying calls to your application endpoints. This architecture enables microservice patterns while maintaining centralized healthcare data management.
