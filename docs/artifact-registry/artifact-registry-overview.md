@@ -32,12 +32,9 @@ which typically includes core FHIR packages like `hl7.fhir.r4.core#4.0.1` and al
 ```mermaid
 graph LR
     subgraph "Aidbox Database"
-        A[Regular FHIR Resources</br>public schema]
-        B[Artifact Registry<br/>Canonical Resources</br>far schema]
+        A(Regular FHIR Resources</br>public schema):::neutral2
+        B(Artifact Registry<br/>Canonical Resources</br>far schema):::blue2
     end
-
-    style A fill:#f0f0f0
-    style B fill:#e1f5fe
 ```
 
 ## Access Methods to the Artifact Registry
@@ -58,7 +55,7 @@ Canonical resources are accessible through standard FHIR REST endpoints followin
 
 Aidbox provides a web-based interface for package management operations. Through this UI, you can import FHIR packages from external registries, view installed packages and their contents, and delete packages when no longer needed.
 
-<figure><img src="../.gitbook/assets/image (3).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/far.jpg" alt=""><figcaption></figcaption></figure>
 
 ### Registry Scope and Limitations
 
@@ -88,22 +85,17 @@ The registry automatically loads all package dependencies when you import a pack
 
 ```mermaid
 flowchart RL
-    A[Import US Core 6.0.0]
+    A(Import US Core 6.0.0):::blue3
   
-    B[us.nlm.vsac 0.9.0] --->|depends on| A
-    C[hl7.fhir.uv.sdc 3.0.0]  --->|depends on| A
-    D[us.cdc.phinvads 0.12.0]  --->|depends on| A
-    E[hl7.fhir.r4.core 4.0.1]  --->|depends on| A
-    F[hl7.terminology.r4 5.4.0]  --->|depends on| A
+    B(us.nlm.vsac 0.9.0):::violet1 --->|depends on| A
+    C(hl7.fhir.uv.sdc 3.0.0):::violet1  --->|depends on| A
+    D(us.cdc.phinvads 0.12.0):::violet1  --->|depends on| A
+    E(hl7.fhir.r4.core 4.0.1):::violet1  --->|depends on| A
+    F(hl7.terminology.r4 5.4.0):::violet1  --->|depends on| A
   
-    H[Aidbox Artifact Registry]
+    H(Aidbox Artifact Registry):::red2
 
     A --> H
-
-    
-    style A fill:#e3f2fd
-    style H fill:#ffebee
-    style B fill:#f3e5f5
 ```
 
 ### Integration with Package Registries
@@ -114,19 +106,15 @@ The ability to load packages from a URL allows you to import packages from any F
 
 ```mermaid
 flowchart RL
-    A[Health Samurai Registry<br/>fhir-schema-registry]
-    B[External Package Registries, e.g. Simplifier]
-    C[Local Filesystem]
+    A(Health Samurai Registry<br/>fhir-schema-registry):::violet2
+    B(External Package Registries, e.g. Simplifier):::green1
+    C(Local Filesystem):::yellow1
     
-    E[Aidbox Artifact Registry]
+    E(Aidbox Artifact Registry):::red2
     
     A -->|Import| E
     B -->|Import| E
     C -->|Import| E
-
-    
-    style E fill:#ffebee
-    style A fill:#f3e5f5
 ```
 
 See also:

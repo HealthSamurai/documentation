@@ -46,7 +46,6 @@
                                    (concat [::products product-id] path)
                                    default))
         (catch Exception _
-          ;; If system not initialized yet, fall back to regular state
           (try
             (system/get-system-state context path default)
             (catch Exception _
@@ -62,7 +61,6 @@
                                (concat [::products product-id] path)
                                value))
     (catch Exception _
-      ;; If system not initialized yet, fall back to regular state
       (try
         (system/set-system-state context path value)
         (catch Exception _ nil)))))

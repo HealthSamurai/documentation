@@ -98,10 +98,24 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     [:script {:src (gitbok.http/get-prefixed-url context "/static/sql.min.js")}]
     [:script {:src (gitbok.http/get-prefixed-url context "/static/javascript.min.js")}]
     [:script {:src (gitbok.http/get-prefixed-url context "/static/mermaid.min.js")}]
+    [:script {:src (gitbok.http/get-prefixed-url context "/static/mermaid-config.js")}]
     ;; Meilisearch HTMX keyboard navigation
     [:script {:src (gitbok.http/get-prefixed-url context "/static/meilisearch-htmx-nav.js")}]
+    [:script {:src (gitbok.http/get-prefixed-url context "/static/init-content.js")}]
     [:script {:src (gitbok.http/get-prefixed-url context "/static/mermaid-init.js")}]
-    [:script (uui/raw "hljs.highlightAll();")]
+    [:script {:src (gitbok.http/get-prefixed-url context "/static/hljs-init.js")}]
+    [:script (uui/raw "
+document.addEventListener('DOMContentLoaded', function() {
+  // Initialize mermaid library first
+  if (typeof initializeMermaidLibrary === 'function') {
+    initializeMermaidLibrary();
+  }
+  // Then initialize content (hljs + mermaid rendering)
+  if (typeof initializeContent === 'function') {
+    setTimeout(initializeContent, 100);
+  }
+});")]
+
     [:script {:src (gitbok.http/get-prefixed-url context "/static/copy-code.js")}]
     [:script {:src (gitbok.http/get-prefixed-url context "/static/heading-links.js")}]
     [:script {:src "https://cdn.jsdelivr.net/npm/sortablejs@1.15.0/Sortable.min.js"}]

@@ -195,7 +195,14 @@
                   (catch Exception _
                     nil))))]
     [:main#content {:class "flex-1 items-start"}
-     [:script (uui/raw "hljs.highlightAll(); if (typeof initializeMermaid !== 'undefined') { initializeMermaid(); }")]
+     [:script (uui/raw "
+// For HTMX navigation, initialize content immediately
+if (typeof initializeMermaidLibrary === 'function') {
+  initializeMermaidLibrary();
+}
+if (typeof initializeContent === 'function') {
+  setTimeout(initializeContent, 100);
+}")]
      [:div {:class "flex items-start"}
       [:article {:class "article__content py-8 min-w-0 flex-1
                  max-w-5xl transform-3d"}

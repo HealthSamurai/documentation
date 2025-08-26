@@ -37,31 +37,6 @@ Aidbox provides two types of validation:
 
 ```mermaid
 flowchart TD
-    %% NODE STYLES - RED COLOR VARIATIONS
-    classDef red1 fill:#fef2f2,stroke:#F58685,stroke-width:1px,color:#1D2331
-    classDef red2 fill:#fef2f2,stroke:#F58685,stroke-width:2px,color:#1D2331
-    classDef red3 fill:#fef2f2,stroke:#F58685,stroke-width:3px,color:#1D2331
-    %% NODE STYLES - BLUE COLOR VARIATIONS
-    classDef blue1 fill:#eff6ff,stroke:#7DA1EF,stroke-width:1px,color:#1D2331
-    classDef blue2 fill:#eff6ff,stroke:#7DA1EF,stroke-width:2px,color:#1D2331
-    classDef blue3 fill:#eff6ff,stroke:#7DA1EF,stroke-width:3px,color:#1D2331
-    %% NODE STYLES - VIOLET COLOR VARIATIONS
-    classDef violet1 fill:#faf5ff,stroke:#AB8AE3,stroke-width:1px,color:#1D2331
-    classDef violet2 fill:#faf5ff,stroke:#AB8AE3,stroke-width:2px,color:#1D2331
-    classDef violet3 fill:#faf5ff,stroke:#AB8AE3,stroke-width:3px,color:#1D2331
-    %% NODE STYLES - GREEN COLOR VARIATIONS
-    classDef green1 fill:#f0fdf4,stroke:#78B58E,stroke-width:1px,color:#1D2331
-    classDef green2 fill:#f0fdf4,stroke:#78B58E,stroke-width:2px,color:#1D2331
-    classDef green3 fill:#f0fdf4,stroke:#78B58E,stroke-width:3px,color:#1D2331
-    %% NODE STYLES - YELLOW COLOR VARIATIONS
-    classDef yellow1 fill:#fefce8,stroke:#E4BE6F,stroke-width:1px,color:#1D2331
-    classDef yellow2 fill:#fefce8,stroke:#E4BE6F,stroke-width:2px,color:#1D2331
-    classDef yellow3 fill:#fefce8,stroke:#E4BE6F,stroke-width:3px,color:#1D2331
-    %% NODE STYLES - NEUTRAL COLOR VARIATIONS
-    classDef neutral1 fill:#F5F5F6,stroke:#CCCED3,stroke-width:1px,color:#1D2331
-    classDef neutral2 fill:#F5F5F6,stroke:#CCCED3,stroke-width:2px,color:#1D2331
-    classDef neutral3 fill:#F5F5F6,stroke:#CCCED3,stroke-width:3px,color:#1D2331
-    
     subgraph "Automatic Validation"
         A1(Client: POST/PUT Resource)
         A2(FHIR Schema Validation)
@@ -111,31 +86,6 @@ In healthcare, knowing not just what data looks like now, but how it changed ove
 
 ```mermaid
 graph LR
-    %% NODE STYLES - RED COLOR VARIATIONS
-    classDef red1 fill:#fef2f2,stroke:#F58685,stroke-width:1px,color:#1D2331
-    classDef red2 fill:#fef2f2,stroke:#F58685,stroke-width:2px,color:#1D2331
-    classDef red3 fill:#fef2f2,stroke:#F58685,stroke-width:3px,color:#1D2331
-    %% NODE STYLES - BLUE COLOR VARIATIONS
-    classDef blue1 fill:#eff6ff,stroke:#7DA1EF,stroke-width:1px,color:#1D2331
-    classDef blue2 fill:#eff6ff,stroke:#7DA1EF,stroke-width:2px,color:#1D2331
-    classDef blue3 fill:#eff6ff,stroke:#7DA1EF,stroke-width:3px,color:#1D2331
-    %% NODE STYLES - VIOLET COLOR VARIATIONS
-    classDef violet1 fill:#faf5ff,stroke:#AB8AE3,stroke-width:1px,color:#1D2331
-    classDef violet2 fill:#faf5ff,stroke:#AB8AE3,stroke-width:2px,color:#1D2331
-    classDef violet3 fill:#faf5ff,stroke:#AB8AE3,stroke-width:3px,color:#1D2331
-    %% NODE STYLES - GREEN COLOR VARIATIONS
-    classDef green1 fill:#f0fdf4,stroke:#78B58E,stroke-width:1px,color:#1D2331
-    classDef green2 fill:#f0fdf4,stroke:#78B58E,stroke-width:2px,color:#1D2331
-    classDef green3 fill:#f0fdf4,stroke:#78B58E,stroke-width:3px,color:#1D2331
-    %% NODE STYLES - YELLOW COLOR VARIATIONS
-    classDef yellow1 fill:#fefce8,stroke:#E4BE6F,stroke-width:1px,color:#1D2331
-    classDef yellow2 fill:#fefce8,stroke:#E4BE6F,stroke-width:2px,color:#1D2331
-    classDef yellow3 fill:#fefce8,stroke:#E4BE6F,stroke-width:3px,color:#1D2331
-    %% NODE STYLES - NEUTRAL COLOR VARIATIONS
-    classDef neutral1 fill:#F5F5F6,stroke:#CCCED3,stroke-width:1px,color:#1D2331
-    classDef neutral2 fill:#F5F5F6,stroke:#CCCED3,stroke-width:2px,color:#1D2331
-    classDef neutral3 fill:#F5F5F6,stroke:#CCCED3,stroke-width:3px,color:#1D2331
-    
     subgraph "patient_history"
         V1(V1)
         V2(V2)
@@ -232,31 +182,6 @@ Traditional RESTful APIs, while perfect for real-time operations, struggle with 
 
 ```mermaid
 flowchart LR
-    %% NODE STYLES - RED COLOR VARIATIONS
-    classDef red1 fill:#fef2f2,stroke:#F58685,stroke-width:1px,color:#1D2331
-    classDef red2 fill:#fef2f2,stroke:#F58685,stroke-width:2px,color:#1D2331
-    classDef red3 fill:#fef2f2,stroke:#F58685,stroke-width:3px,color:#1D2331
-    %% NODE STYLES - BLUE COLOR VARIATIONS
-    classDef blue1 fill:#eff6ff,stroke:#7DA1EF,stroke-width:1px,color:#1D2331
-    classDef blue2 fill:#eff6ff,stroke:#7DA1EF,stroke-width:2px,color:#1D2331
-    classDef blue3 fill:#eff6ff,stroke:#7DA1EF,stroke-width:3px,color:#1D2331
-    %% NODE STYLES - VIOLET COLOR VARIATIONS
-    classDef violet1 fill:#faf5ff,stroke:#AB8AE3,stroke-width:1px,color:#1D2331
-    classDef violet2 fill:#faf5ff,stroke:#AB8AE3,stroke-width:2px,color:#1D2331
-    classDef violet3 fill:#faf5ff,stroke:#AB8AE3,stroke-width:3px,color:#1D2331
-    %% NODE STYLES - GREEN COLOR VARIATIONS
-    classDef green1 fill:#f0fdf4,stroke:#78B58E,stroke-width:1px,color:#1D2331
-    classDef green2 fill:#f0fdf4,stroke:#78B58E,stroke-width:2px,color:#1D2331
-    classDef green3 fill:#f0fdf4,stroke:#78B58E,stroke-width:3px,color:#1D2331
-    %% NODE STYLES - YELLOW COLOR VARIATIONS
-    classDef yellow1 fill:#fefce8,stroke:#E4BE6F,stroke-width:1px,color:#1D2331
-    classDef yellow2 fill:#fefce8,stroke:#E4BE6F,stroke-width:2px,color:#1D2331
-    classDef yellow3 fill:#fefce8,stroke:#E4BE6F,stroke-width:3px,color:#1D2331
-    %% NODE STYLES - NEUTRAL COLOR VARIATIONS
-    classDef neutral1 fill:#F5F5F6,stroke:#CCCED3,stroke-width:1px,color:#1D2331
-    classDef neutral2 fill:#F5F5F6,stroke:#CCCED3,stroke-width:2px,color:#1D2331
-    classDef neutral3 fill:#F5F5F6,stroke:#CCCED3,stroke-width:3px,color:#1D2331
-    
     subgraph "External Storage"
         S3(Cloud Storage)
     end
@@ -358,31 +283,6 @@ Healthcare analytics and reporting often require complex queries that go beyond 
 
 ```mermaid
 graph LR
-    %% NODE STYLES - RED COLOR VARIATIONS
-    classDef red1 fill:#fef2f2,stroke:#F58685,stroke-width:1px,color:#1D2331
-    classDef red2 fill:#fef2f2,stroke:#F58685,stroke-width:2px,color:#1D2331
-    classDef red3 fill:#fef2f2,stroke:#F58685,stroke-width:3px,color:#1D2331
-    %% NODE STYLES - BLUE COLOR VARIATIONS
-    classDef blue1 fill:#eff6ff,stroke:#7DA1EF,stroke-width:1px,color:#1D2331
-    classDef blue2 fill:#eff6ff,stroke:#7DA1EF,stroke-width:2px,color:#1D2331
-    classDef blue3 fill:#eff6ff,stroke:#7DA1EF,stroke-width:3px,color:#1D2331
-    %% NODE STYLES - VIOLET COLOR VARIATIONS
-    classDef violet1 fill:#faf5ff,stroke:#AB8AE3,stroke-width:1px,color:#1D2331
-    classDef violet2 fill:#faf5ff,stroke:#AB8AE3,stroke-width:2px,color:#1D2331
-    classDef violet3 fill:#faf5ff,stroke:#AB8AE3,stroke-width:3px,color:#1D2331
-    %% NODE STYLES - GREEN COLOR VARIATIONS
-    classDef green1 fill:#f0fdf4,stroke:#78B58E,stroke-width:1px,color:#1D2331
-    classDef green2 fill:#f0fdf4,stroke:#78B58E,stroke-width:2px,color:#1D2331
-    classDef green3 fill:#f0fdf4,stroke:#78B58E,stroke-width:3px,color:#1D2331
-    %% NODE STYLES - YELLOW COLOR VARIATIONS
-    classDef yellow1 fill:#fefce8,stroke:#E4BE6F,stroke-width:1px,color:#1D2331
-    classDef yellow2 fill:#fefce8,stroke:#E4BE6F,stroke-width:2px,color:#1D2331
-    classDef yellow3 fill:#fefce8,stroke:#E4BE6F,stroke-width:3px,color:#1D2331
-    %% NODE STYLES - NEUTRAL COLOR VARIATIONS
-    classDef neutral1 fill:#F5F5F6,stroke:#CCCED3,stroke-width:1px,color:#1D2331
-    classDef neutral2 fill:#F5F5F6,stroke:#CCCED3,stroke-width:2px,color:#1D2331
-    classDef neutral3 fill:#F5F5F6,stroke:#CCCED3,stroke-width:3px,color:#1D2331
-    
     subgraph "FHIR Resource"
         JSON(Patient JSON<br/>with nested data: <br/>array of names, <br/>array of addresses)
     end
@@ -520,31 +420,6 @@ Real-time clinical decision support and care coordination require immediate noti
 
 ```mermaid
 flowchart LR
-    %% NODE STYLES - RED COLOR VARIATIONS
-    classDef red1 fill:#fef2f2,stroke:#F58685,stroke-width:1px,color:#1D2331
-    classDef red2 fill:#fef2f2,stroke:#F58685,stroke-width:2px,color:#1D2331
-    classDef red3 fill:#fef2f2,stroke:#F58685,stroke-width:3px,color:#1D2331
-    %% NODE STYLES - BLUE COLOR VARIATIONS
-    classDef blue1 fill:#eff6ff,stroke:#7DA1EF,stroke-width:1px,color:#1D2331
-    classDef blue2 fill:#eff6ff,stroke:#7DA1EF,stroke-width:2px,color:#1D2331
-    classDef blue3 fill:#eff6ff,stroke:#7DA1EF,stroke-width:3px,color:#1D2331
-    %% NODE STYLES - VIOLET COLOR VARIATIONS
-    classDef violet1 fill:#faf5ff,stroke:#AB8AE3,stroke-width:1px,color:#1D2331
-    classDef violet2 fill:#faf5ff,stroke:#AB8AE3,stroke-width:2px,color:#1D2331
-    classDef violet3 fill:#faf5ff,stroke:#AB8AE3,stroke-width:3px,color:#1D2331
-    %% NODE STYLES - GREEN COLOR VARIATIONS
-    classDef green1 fill:#f0fdf4,stroke:#78B58E,stroke-width:1px,color:#1D2331
-    classDef green2 fill:#f0fdf4,stroke:#78B58E,stroke-width:2px,color:#1D2331
-    classDef green3 fill:#f0fdf4,stroke:#78B58E,stroke-width:3px,color:#1D2331
-    %% NODE STYLES - YELLOW COLOR VARIATIONS
-    classDef yellow1 fill:#fefce8,stroke:#E4BE6F,stroke-width:1px,color:#1D2331
-    classDef yellow2 fill:#fefce8,stroke:#E4BE6F,stroke-width:2px,color:#1D2331
-    classDef yellow3 fill:#fefce8,stroke:#E4BE6F,stroke-width:3px,color:#1D2331
-    %% NODE STYLES - NEUTRAL COLOR VARIATIONS
-    classDef neutral1 fill:#F5F5F6,stroke:#CCCED3,stroke-width:1px,color:#1D2331
-    classDef neutral2 fill:#F5F5F6,stroke:#CCCED3,stroke-width:2px,color:#1D2331
-    classDef neutral3 fill:#F5F5F6,stroke:#CCCED3,stroke-width:3px,color:#1D2331
-    
     CHANGES(Resource Created/<br/>Updated/Deleted)
     QUEUE(AidboxSubscriptionTopic)
     
@@ -581,31 +456,6 @@ Healthcare analytics, research, and regulatory reporting often require complete 
 
 ```mermaid
 flowchart LR
-    %% NODE STYLES - RED COLOR VARIATIONS
-    classDef red1 fill:#fef2f2,stroke:#F58685,stroke-width:1px,color:#1D2331
-    classDef red2 fill:#fef2f2,stroke:#F58685,stroke-width:2px,color:#1D2331
-    classDef red3 fill:#fef2f2,stroke:#F58685,stroke-width:3px,color:#1D2331
-    %% NODE STYLES - BLUE COLOR VARIATIONS
-    classDef blue1 fill:#eff6ff,stroke:#7DA1EF,stroke-width:1px,color:#1D2331
-    classDef blue2 fill:#eff6ff,stroke:#7DA1EF,stroke-width:2px,color:#1D2331
-    classDef blue3 fill:#eff6ff,stroke:#7DA1EF,stroke-width:3px,color:#1D2331
-    %% NODE STYLES - VIOLET COLOR VARIATIONS
-    classDef violet1 fill:#faf5ff,stroke:#AB8AE3,stroke-width:1px,color:#1D2331
-    classDef violet2 fill:#faf5ff,stroke:#AB8AE3,stroke-width:2px,color:#1D2331
-    classDef violet3 fill:#faf5ff,stroke:#AB8AE3,stroke-width:3px,color:#1D2331
-    %% NODE STYLES - GREEN COLOR VARIATIONS
-    classDef green1 fill:#f0fdf4,stroke:#78B58E,stroke-width:1px,color:#1D2331
-    classDef green2 fill:#f0fdf4,stroke:#78B58E,stroke-width:2px,color:#1D2331
-    classDef green3 fill:#f0fdf4,stroke:#78B58E,stroke-width:3px,color:#1D2331
-    %% NODE STYLES - YELLOW COLOR VARIATIONS
-    classDef yellow1 fill:#fefce8,stroke:#E4BE6F,stroke-width:1px,color:#1D2331
-    classDef yellow2 fill:#fefce8,stroke:#E4BE6F,stroke-width:2px,color:#1D2331
-    classDef yellow3 fill:#fefce8,stroke:#E4BE6F,stroke-width:3px,color:#1D2331
-    %% NODE STYLES - NEUTRAL COLOR VARIATIONS
-    classDef neutral1 fill:#F5F5F6,stroke:#CCCED3,stroke-width:1px,color:#1D2331
-    classDef neutral2 fill:#F5F5F6,stroke:#CCCED3,stroke-width:2px,color:#1D2331
-    classDef neutral3 fill:#F5F5F6,stroke:#CCCED3,stroke-width:3px,color:#1D2331
-    
     CLIENT(Client Request<br/>POST /$export)
     
     subgraph "Aidbox"
@@ -667,31 +517,6 @@ Aidbox's implementation provides flexible archiving policies with support for se
 
 ```mermaid
 flowchart LR
-    %% NODE STYLES - RED COLOR VARIATIONS
-    classDef red1 fill:#fef2f2,stroke:#F58685,stroke-width:1px,color:#1D2331
-    classDef red2 fill:#fef2f2,stroke:#F58685,stroke-width:2px,color:#1D2331
-    classDef red3 fill:#fef2f2,stroke:#F58685,stroke-width:3px,color:#1D2331
-    %% NODE STYLES - BLUE COLOR VARIATIONS
-    classDef blue1 fill:#eff6ff,stroke:#7DA1EF,stroke-width:1px,color:#1D2331
-    classDef blue2 fill:#eff6ff,stroke:#7DA1EF,stroke-width:2px,color:#1D2331
-    classDef blue3 fill:#eff6ff,stroke:#7DA1EF,stroke-width:3px,color:#1D2331
-    %% NODE STYLES - VIOLET COLOR VARIATIONS
-    classDef violet1 fill:#faf5ff,stroke:#AB8AE3,stroke-width:1px,color:#1D2331
-    classDef violet2 fill:#faf5ff,stroke:#AB8AE3,stroke-width:2px,color:#1D2331
-    classDef violet3 fill:#faf5ff,stroke:#AB8AE3,stroke-width:3px,color:#1D2331
-    %% NODE STYLES - GREEN COLOR VARIATIONS
-    classDef green1 fill:#f0fdf4,stroke:#78B58E,stroke-width:1px,color:#1D2331
-    classDef green2 fill:#f0fdf4,stroke:#78B58E,stroke-width:2px,color:#1D2331
-    classDef green3 fill:#f0fdf4,stroke:#78B58E,stroke-width:3px,color:#1D2331
-    %% NODE STYLES - YELLOW COLOR VARIATIONS
-    classDef yellow1 fill:#fefce8,stroke:#E4BE6F,stroke-width:1px,color:#1D2331
-    classDef yellow2 fill:#fefce8,stroke:#E4BE6F,stroke-width:2px,color:#1D2331
-    classDef yellow3 fill:#fefce8,stroke:#E4BE6F,stroke-width:3px,color:#1D2331
-    %% NODE STYLES - NEUTRAL COLOR VARIATIONS
-    classDef neutral1 fill:#F5F5F6,stroke:#CCCED3,stroke-width:1px,color:#1D2331
-    classDef neutral2 fill:#F5F5F6,stroke:#CCCED3,stroke-width:2px,color:#1D2331
-    classDef neutral3 fill:#F5F5F6,stroke:#CCCED3,stroke-width:3px,color:#1D2331
-    
     CLIENT(Client Request<br/>POST /execution/aidbox.archive/create-archive)
     
     subgraph "Aidbox"

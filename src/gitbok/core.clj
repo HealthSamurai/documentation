@@ -264,7 +264,7 @@
                      (:uri request))
                     ;; Custom content area without max-w-5xl and breadcrumb
                     [:main#content {:class "flex-1 items-start"}
-                     [:script (uui/raw "hljs.highlightAll(); if (typeof initializeMermaid !== 'undefined') { initializeMermaid(); }")]
+
                      [:div {:class "flex items-start"}
                       [:article {:class "article__content py-8 min-w-0 flex-1 transform-3d"}
                        [:div {:class "mx-auto max-w-full"}
