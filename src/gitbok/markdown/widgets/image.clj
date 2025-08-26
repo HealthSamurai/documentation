@@ -7,13 +7,10 @@
 
 (defn image-renderer [context filepath _ctx node]
   (let [src (some-> node :attrs :src)
-        _ (when src (println "Original image src:" src))
         ;; Normalize .gitbook/assets paths - remove ../ prefixes
         normalized-src (when src
                          (if (str/includes? src ".gitbook/assets")
-                           (let [result (str ".gitbook/assets" (last (str/split src #"\.gitbook/assets")))]
-                             (println "Normalized src:" result)
-                             result)
+                           (str ".gitbook/assets" (last (str/split src #"\.gitbook/assets")))
                            src))
         ;; Handle different types of image paths
         processed-src (cond
@@ -28,13 +25,15 @@
 
                         ;; Other relative paths - use the standard link resolution
                         :else (indexing/filepath->href context filepath normalized-src))
-        _ (when processed-src (println "Processed src:" processed-src))
+        processed-src (when processed-src (gitbok.http/get-prefixed-url context processed-src))
 
         alt (or (:alt node)
                 (:title (:attrs node))
                 (:text (first (:content node))) "")
 
-        webp-src (when (and normalized-src (not (str/blank? normalized-src)))
+        ;; Don't create webp version for SVG files
+        webp-src (when (and normalized-src
+                            (not (str/blank? normalized-src)))
                    (let [base-src (str (subs normalized-src 0 (clojure.string/last-index-of normalized-src ".")) ".webp")]
                      (cond
                        ;; External URLs - keep as is
@@ -52,6 +51,7 @@
           (and normalized-src (clojure.string/ends-with? normalized-src ".png")) "image/png"
           (and normalized-src (or (clojure.string/ends-with? normalized-src ".jpg")
                                   (clojure.string/ends-with? normalized-src ".jpeg"))) "image/jpeg"
+          (and normalized-src (clojure.string/ends-with? normalized-src ".svg")) "image/svg+xml"
           :else "image/jpeg")]
     [:picture
      [:source {:srcset webp-src :type "image/webp"}]

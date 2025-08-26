@@ -58,7 +58,8 @@
 
 (defn picture-url? [url]
   (when url
-    (str/starts-with? url "/.gitbook/assets")))
+    (or (str/starts-with? url "/.gitbook/assets")
+        (str/includes? url "/.gitbook/assets"))))
 
 (defn render-file
   [context filepath]
@@ -95,12 +96,17 @@
   (let [uri (:uri request)
         uri-relative
         (utils/uri-to-relative uri prefix
-                               (products/path context))]
-    (resp/resource-response
-     (->
-      uri-relative
-      (str/replace #"%20" " ")
-      (str/replace-first #".*.gitbook/" "")))))
+                               (products/path context))
+        file-path (->
+                   uri-relative
+                   (str/replace #"%20" " ")
+                   (str/replace-first #".*.gitbook/" ""))
+        response (resp/resource-response file-path)]
+    (when response
+      ;; Add proper Content-Type for SVG files
+      (if (str/ends-with? file-path ".svg")
+        (resp/content-type response "image/svg+xml")
+        response))))
 
 (defn render-favicon [context _]
   (let [product (products/get-current-product context)
