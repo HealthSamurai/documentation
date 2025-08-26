@@ -36,13 +36,9 @@ def find_actual_file(base_path, image_path, product_path=None):
     Find the actual image file, handling various formats:
     - Regular paths
     - URL-encoded paths
-    - Paths with angle brackets
     - Different timestamp formats (dot vs hyphen)
     - Multi-product structure (checks both root and product-specific assets)
     """
-    # Extract path from angle brackets if present
-    if "<" in image_path and ">" in image_path:
-        image_path = re.search(r"<([^>]+)>", image_path).group(1)
     
     # List of possible asset directories to check
     asset_dirs = [ASSETS_DIR]
@@ -254,11 +250,44 @@ def process_file(file_path, missing_images, product_path=None):
                 })
                 total_missing += 1
         
-        # 2. Pattern for standard markdown image format: ![alt text](path)
-        md_pattern = r'!\[.*?\]\(([^)]+)\)'
-        md_matches = re.finditer(md_pattern, content)
+        # 2. Pattern for standard markdown image format: ![alt text](path) or ![alt text](<path>)
+        # Handle two patterns separately for clarity:
         
-        for match in md_matches:
+        # 2a. Pattern with angle brackets: ![alt text](<path with spaces>)
+        angle_md_pattern = r'!\[.*?\]\(<([^>]+)>\)'
+        angle_matches = re.finditer(angle_md_pattern, content)
+        
+        for match in angle_matches:
+            image_path = match.group(1)
+            
+            # Skip external URLs
+            if is_external_url(image_path):
+                continue
+            
+            # Skip if not referencing assets (but still check for common image extensions)
+            if '.gitbook/assets' not in image_path:
+                # Check if it might be an image by extension
+                _, ext = os.path.splitext(image_path.lower())
+                if ext not in ['.png', '.jpg', '.jpeg', '.gif', '.svg', '.webp', '.bmp', '.tiff']:
+                    continue
+            
+            total_found += 1
+            
+            # Find the actual file
+            actual_file = find_actual_file(file_path, image_path, product_path)
+            if not actual_file:
+                missing_images.append({
+                    'file': file_path,
+                    'image': image_path
+                })
+                total_missing += 1
+        
+        # 2b. Pattern without angle brackets: ![alt text](path)
+        # Use negative lookahead to exclude paths that start with <
+        regular_md_pattern = r'!\[.*?\]\((?!<)([^)]+)\)'
+        regular_matches = re.finditer(regular_md_pattern, content)
+        
+        for match in regular_matches:
             image_path = match.group(1)
             
             # Skip external URLs
