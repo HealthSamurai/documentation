@@ -10,23 +10,25 @@ The AI Assistant in the Aidbox UI Builder is a powerful tool designed to help yo
 
 Beyond form building, the assistant can digitize paper forms by importing PDF documents and extracting form structures from selected regions. It also helps you analyze collected data by creating ViewDefinitions and generating interactive visualizations, turning your questionnaire responses into actionable insights.
 
+More details on ViewDefinition and SQL on FHIR see [here.](../../sql-on-fhir/)
+
 ## Getting Started
 
 {% stepper %}
 {% step %}
-#### Open the AI Assistant
+**Open the AI Assistant**
 
 Navigate to the top-right corner of the Aidbox UI Builder, click the context menu, and select **AI Tools** from the dropdown.
 {% endstep %}
 
 {% step %}
-#### Set up API key
+**Set up API key**
 
 If no API key is configured, you'll see a prompt. Click **Go to Settings** to enter your key.
 {% endstep %}
 
 {% step %}
-#### Configure settings
+**Configure settings**
 
 In the **Settings** modal, choose your preferred language, enter your **OpenAI** or **Google Gemini** API key, and click **Save**.
 
@@ -79,35 +81,35 @@ For example, when asked to create a BMI form, the assistant:
 
 {% stepper %}
 {% step %}
-#### Search for LOINC codes
+**Search for LOINC codes**
 
 **User:** "Search for PHQ-9 LOINC codes for depression screening."\
 **Assistant:** Finds relevant LOINC codes and displays them.
 {% endstep %}
 
 {% step %}
-#### Create first question
+**Create first question**
 
 **User:** "Create the first PHQ-9 question about feeling down or depressed."\
 **Assistant:** Creates a choice item with 0-3 scale options.
 {% endstep %}
 
 {% step %}
-#### Add remaining questions
+**Add remaining questions**
 
 **User:** "Add the remaining 8 PHQ-9 questions using the same answer options."\
 **Assistant:** Creates consistent choice items for all questions.
 {% endstep %}
 
 {% step %}
-#### Add scoring calculation
+**Add scoring calculation**
 
 **User:** "Add a calculated total score field for the PHQ-9."\
 **Assistant:** Creates a calculation that sums all responses.
 {% endstep %}
 
 {% step %}
-#### Apply validation and styling
+**Apply validation and styling**
 
 **User:** "Make all questions required and adjust the layout to be more compact."\
 **Assistant:** Applies validation and styling improvements.
@@ -118,28 +120,28 @@ For example, when asked to create a BMI form, the assistant:
 
 {% stepper %}
 {% step %}
-#### Create weight field
+**Create weight field**
 
 **User:** "Create a decimal field for patient weight in kilograms."\
 **Assistant:** Creates a basic weight input field.
 {% endstep %}
 
 {% step %}
-#### Configure pre-population
+**Configure pre-population**
 
 **User:** "Configure this weight field to pre-populate from recent observations."\
 **Assistant:** Sets up population rules using LOINC code `29463-7`.
 {% endstep %}
 
 {% step %}
-#### Set lookback period
+**Set lookback period**
 
 **User:** "Set the lookback period to 6 months for weight observations."\
 **Assistant:** Configures the time period for observation search.
 {% endstep %}
 
 {% step %}
-#### Add validation constraints
+**Add validation constraints**
 
 **User:** "Add validation to ensure weight is between 1-500 kg."\
 **Assistant:** Adds appropriate min/max constraints.
@@ -150,28 +152,28 @@ For example, when asked to create a BMI form, the assistant:
 
 {% stepper %}
 {% step %}
-#### Review current structure
+**Review current structure**
 
 **User:** "Show me the current questionnaire structure."\
 **Assistant:** Displays the form outline.
 {% endstep %}
 
 {% step %}
-#### Update field properties
+**Update field properties**
 
 **User:** "Make the BMI field read-only since it's calculated."\
 **Assistant:** Updates the field's `readOnly` property.
 {% endstep %}
 
 {% step %}
-#### Reposition items
+**Reposition items**
 
 **User:** "Move the BMI field to appear right after the weight field."\
 **Assistant:** Repositions the item in the hierarchy.
 {% endstep %}
 
 {% step %}
-#### Verify functionality
+**Verify functionality**
 
 **User:** "Verify that the BMI calculation still works correctly."\
 **Assistant:** Confirms calculation expressions are functioning.
@@ -182,24 +184,33 @@ For example, when asked to create a BMI form, the assistant:
 
 {% stepper %}
 {% step %}
-### Select and load PDF
+#### Select and load PDF
+
 Click the **"Select PDF for import"** button and choose your PDF file. Wait for the PDF to be parsed - this may take a moment depending on the file size.
 {% endstep %}
+
 {% step %}
-### Add image attachments
+#### Add image attachments
+
 Once parsed, the **"Add image attachment"** button becomes available. Click it to see a scrollable list of all PDF pages.
 {% endstep %}
+
 {% step %}
-### Select regions to attach
+#### Select regions to attach
+
 Draw a rectangle around the form section you want to digitize, then click **"Attach"**. The selected region is cropped and added as an attachment. Repeat this process to add multiple regions.
 {% endstep %}
+
 {% step %}
-### Send with instructions
-**User:** [With attached images] "Create questionnaire items from these patient intake sections."  
+#### Send with instructions
+
+**User:** \[With attached images] "Create questionnaire items from these patient intake sections."\
 **Assistant:** Analyzes all attached images and creates corresponding digital form fields.
 {% endstep %}
+
 {% step %}
-### Continue adding more sections
+#### Continue adding more sections
+
 Click **"Add image attachment"** again to select additional regions from the PDF, which remains available throughout your session.
 {% endstep %}
 {% endstepper %}
@@ -208,28 +219,37 @@ Click **"Add image attachment"** again to select additional regions from the PDF
 
 {% stepper %}
 {% step %}
-### Generate test data if needed
-**User:** "Create 50 mock responses for this questionnaire to test my analysis."  
+#### Generate test data if needed
+
+**User:** "Create 50 mock responses for this questionnaire to test my analysis."\
 **Assistant:** Generates realistic sample data across all form fields.
 {% endstep %}
+
 {% step %}
-### Explore available data
-**User:** "What patient response data do we have available for analysis?"  
+#### Explore available data
+
+**User:** "What patient response data do we have available for analysis?"\
 **Assistant:** Lists available questionnaires and response counts, including mock data.
 {% endstep %}
+
 {% step %}
-### Request specific analysis
-**User:** "I want to see how depression scores vary by patient age."  
+#### Request specific analysis
+
+**User:** "I want to see how depression scores vary by patient age."\
 **Assistant:** Creates an analysis grouping PHQ-9 scores by age ranges.
 {% endstep %}
+
 {% step %}
-### Visualize results
-**User:** "Show me this as a bar chart."  
+#### Visualize results
+
+**User:** "Show me this as a bar chart."\
 **Assistant:** Generates an interactive chart showing average scores per age group.
 {% endstep %}
+
 {% step %}
-### Save for later use
-**User:** "Save this report so I can run it again next month."  
+#### Save for later use
+
+**User:** "Save this report so I can run it again next month."\
 **Assistant:** Saves the analysis configuration for future use.
 {% endstep %}
 {% endstepper %}
@@ -374,10 +394,11 @@ ViewDefinitions can be saved to your Aidbox instance for permanent storage and r
 <summary>Can I customize mock response generation?</summary>
 
 Yes! You can specify various parameters for mock responses:
-- **Multiple patients**: "Create 30 responses from different patients"
-- **Single patient**: "Generate 10 responses all from the same patient"  
-- **Time distribution**: "Create responses spread over the last 6 months"
-- **Specific patterns**: "Generate responses with progressively improving scores over time"
+
+* **Multiple patients**: "Create 30 responses from different patients"
+* **Single patient**: "Generate 10 responses all from the same patient"
+* **Time distribution**: "Create responses spread over the last 6 months"
+* **Specific patterns**: "Generate responses with progressively improving scores over time"
 
 This flexibility helps you test different scenarios and ensure your analyses work correctly with various data patterns.
 
@@ -388,10 +409,11 @@ This flexibility helps you test different scenarios and ensure your analyses wor
 <summary>Can I export or share the generated charts?</summary>
 
 Yes! Generated visualizations can be:
-- **Exported as images** (SVG or PNG format) for use in presentations, reports, or documentation
-- **Edited further** in the Vega Editor where you can fine-tune colors, labels, and other properties
-- **Shared as specifications** so colleagues can recreate or modify the visualization
-- **Viewed as source code** to understand how the visualization was created or to use as a template
+
+* **Exported as images** (SVG or PNG format) for use in presentations, reports, or documentation
+* **Edited further** in the Vega Editor where you can fine-tune colors, labels, and other properties
+* **Shared as specifications** so colleagues can recreate or modify the visualization
+* **Viewed as source code** to understand how the visualization was created or to use as a template
 
 This makes it easy to integrate the charts into your workflow or collaborate with others.
 
