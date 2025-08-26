@@ -85,7 +85,7 @@
                  :d "m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607Z"}]]]]
 
       ;; Meilisearch custom search with HTMX
-      [:div {:class "hidden md:block mr-4"}
+      [:div {:class "hidden md:block"}
        [:div {:class "relative h-9 w-60 max-w-64"
               :id "meilisearch-wrapper"}
         [:div {:class "flex h-9 w-full items-center overflow-hidden
