@@ -107,7 +107,7 @@ See also:
 [searchparameter.md](searchparameter.md)
 {% endcontent-ref %}
 
-## Search Parameter Types
+## SearchParameter types
 
 Each SearchParameter has a defined type, which determines how it behaves and what kind of values it accepts.
 
@@ -166,7 +166,7 @@ For example, to search for patients and include their referenced practitioners:
 GET /fhir/Patient?_include=Patient:practitioner
 ```
 
-### Reverse Include
+### Reverse include
 
 The `_revinclude` parameter does the opposite of `_include`. It returns resources that reference the ones you're querying.
 
