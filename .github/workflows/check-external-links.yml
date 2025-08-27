@@ -5,11 +5,6 @@ on:
     # Run daily at 2:00 AM UTC
     - cron: '0 2 * * *'
   workflow_dispatch:  # Allow manual triggering
-  push:
-    paths:
-      - 'docs/**/*.md'
-      - 'scripts/check-external-links.py'
-      - '.github/workflows/check-external-links.yml'
 
 jobs:
   check-links:
@@ -123,8 +118,8 @@ jobs:
             broken_links.txt
           retention-days: 30
       
-      - name: Fail if broken links found
-        if: steps.check_links.outputs.broken_links_found == 'true' && github.event_name != 'schedule'
+      - name: Fail if broken links found  
+        if: steps.check_links.outputs.broken_links_found == 'true' && github.event_name == 'workflow_dispatch'
         run: |
           echo "❌ Broken external links were found in the documentation."
           echo "Please review the report above and fix the broken links."
