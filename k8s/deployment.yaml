@@ -92,7 +92,7 @@ spec:
           readOnly: true
       # Git-sync sidecar to keep docs updated
       - name: git-sync
-        image: registry.k8s.io/git-sync/git-sync:v3.6.8
+        image: registry.k8s.io/git-sync/git-sync:v3.6.9
         resources:
           requests:
             memory: "256Mi"
