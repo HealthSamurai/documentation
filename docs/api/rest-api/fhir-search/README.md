@@ -21,7 +21,7 @@ FHIR Search API supports various search features to help retrieve exactly the da
 | Search capability         | Example                                                                 | Example Description                                                                                                                                                        |
 | ------------------------- | ----------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | Field Filtering           | `GET /fhir/Patient?name=John`                                           | Search for patients with name starting with "John"                                                                                                                         |
-| Multiple Criteria         | `GET /fhir/Patient?name=John&gender=male`                               | Search for male patients with name starting with "John" and  "male" gender                                                                                                 |
+| Multiple Criteria         | `GET /fhir/Patient?name=John&gender=male`                               | Search for male patients with name starting with "John" and "male" gender                                                                                                 |
 | OR Logic                  | `GET /fhir/Patient?name=John,Jane`                                      | Search for patients with name starting with either "John" OR "Jane"                                                                                                        |
 | Sorting & Paging          | `GET /fhir/Patient?_sort=name&_page=2`                                  | Sort patients by name and get the second page of results                                                                                                                   |
 | Include related resources | `GET /fhir/Patient?_include=Patient:organization`                       | Get patients and include their referenced organization resources                                                                                                           |
@@ -98,7 +98,7 @@ See also:
 A SearchParameter is a FHIR resource that defines how to search for data within other FHIR resources. \
 SearchParameter can be:
 
-* Resource-specific parameters (e.g. `Patient.name`)
+* Resource-specific parameters (for example, `Patient.name`)
 * Common underscored parameters across all resources (`_id`, `_sort`, `_count`, `_page`, `_elements`, etc.)
 
 See also:
