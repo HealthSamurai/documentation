@@ -18,7 +18,8 @@ window.MERMAID_CONFIG = {
     labelTextColor : "#CC88FF",
     labelBoxBorderColor : "#99FFCC",
     labelBoxBkgColor : "#78B58E",
-    noteBkgColor : "#F5F5F6"
+    noteBkgColor : "#F5F5F6",
+    edgeLabelBackground:'#fff'
   },
   themeCSS: `
     /* ==== RED ==== */
