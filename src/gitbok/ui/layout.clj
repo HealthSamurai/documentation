@@ -175,7 +175,7 @@ document.addEventListener('DOMContentLoaded', function() {
             (let [product-id (:id (products/get-current-product context))]
               (gitbok.http/get-absolute-url
                context
-               (str product-id "/public/og-preview/"
+               (str "/public/og-preview/" product-id
                     (when filepath (str/replace filepath #"\.md" ".png")))))
             :lastmod lastmod
             :favicon-url (gitbok.http/get-product-prefixed-url context "/favicon.ico")}))

@@ -4,11 +4,13 @@ on:
   push:
     paths:
       - 'docs/**'
-      - 'scripts/generate-og.sh'
+      - 'docs-new/**'
+      - 'scripts/generate-og.py'
   pull_request:
     paths:
       - 'docs/**'
-      - 'scripts/generate-og.sh'
+      - 'docs-new/**'
+      - 'scripts/generate-og.py'
 
 jobs:
   build-opengraph-previews:
@@ -18,11 +20,16 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
 
+      - name: Setup Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.x'
+
       - name: Install ImageMagick
         run: sudo apt-get update && sudo apt-get install -y imagemagick
 
       - name: Generate OG images
-        run: bash scripts/generate-og.sh
+        run: python3 scripts/generate-og.py all
 
       - name: Upload OG images artifact
         uses: actions/upload-artifact@v4
