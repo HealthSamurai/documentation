@@ -9,7 +9,7 @@
 (defn not-found-view [context uri]
   (let [search-term (last (str/split uri #"/"))
         search-results (when search-term
-                        (gitbok.search/search context search-term))]
+                         (gitbok.search/search context search-term))]
     [:div.min-h-screen.flex.items-center.justify-center
      [:script
       (uui/raw "
@@ -31,7 +31,17 @@ document.addEventListener('DOMContentLoaded', () => {
           [:h3.text-lg.font-medium.text-tint-12 "You might be looking for:"]
           [:ul.mt-4.space-y-2.text-left
            (for [search-res (take 8 (utils/distinct-by #(-> % :hit :title) search-results))]
-             [:li
-              [:a.text-primary-9.hover:text-primary-10.text-lg.flex.items-start
-               {:href (file-to-uri/filepath->uri context (:filepath (:hit search-res)))}
-               (:title (:hit search-res))]])]])]]]))
+             (let [;; Handle both Meilisearch and Lucene result formats
+                   href (or
+                         ;; Try Meilisearch format first (uri field)
+                         (:uri search-res)
+                         ;; Try getting URL from hit
+                         (-> search-res :hit :url)
+                         ;; Fall back to filepath conversion for Lucene
+                         (when-let [filepath (-> search-res :hit :filepath)]
+                           (file-to-uri/filepath->uri context filepath)))]
+               (when (and href (-> search-res :hit :title))
+                 [:li
+                  [:a.text-primary-9.hover:text-primary-10.text-lg.flex.items-start
+                   {:href href}
+                   (:title (:hit search-res))]])))]])]]]))
