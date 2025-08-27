@@ -1,5 +1,6 @@
 (ns gitbok.products
   (:require
+   [clojure.java.io :as io]
    [clojure.string :as str]
    [clj-yaml.core :as yaml]
    [gitbok.utils :as utils]
@@ -14,11 +15,19 @@
 (defn read-product-config-file [config-file]
   (yaml/parse-string (utils/slurp-resource config-file)))
 
+(def volume-path (System/getenv "DOCS_VOLUME_PATH"))
+
 (defn load-products-config
-  "Loads products configuration from products.yaml in classpath"
+  "Loads products configuration from products.yaml in classpath or volume"
   []
   (try
-    (let [config-str (utils/slurp-resource "products.yaml")
+    (let [config-str (if volume-path
+                       ;; Read from volume
+                       (let [file (io/file volume-path "products.yaml")]
+                         (println "Loading products.yaml from volume:" (.getPath file))
+                         (slurp file))
+                       ;; Read from classpath
+                       (utils/slurp-resource "products.yaml"))
           config (yaml/parse-string config-str)
           products (mapv
                     #(merge

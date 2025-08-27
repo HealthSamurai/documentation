@@ -1,4 +1,32 @@
 services:
+  # Gitbok application service
+  gitbok:
+    build: .
+    container_name: gitbok
+    ports:
+      - "8081:8081"
+    environment:
+      - DOCS_VOLUME_PATH=/workspace/docs-new
+      - RELOAD_CHECK_INTERVAL_SEC=60
+      - BASE_URL=http://localhost:8081
+      - DOCS_PREFIX=/docs
+      - DEV=false
+      - MEILISEARCH_URL=http://meilisearch:7700
+      - MEILISEARCH_API_KEY=${MEILISEARCH_API_KEY:-60DBZGy6zoDL6Q--s1-dHBWptiVKvK-XRsaacdvkOSM}
+      - PORT=8081
+    volumes:
+      - ./docs:/workspace/docs:ro
+      - ./docs-new:/workspace/docs-new:ro
+      - ./.gitbook.yaml:/workspace/.gitbook.yaml:ro
+    networks:
+      - meilisearch-network
+    depends_on:
+      meilisearch:
+        condition: service_healthy
+    restart: unless-stopped
+    profiles:
+      - full
+
   meilisearch:
     image: getmeili/meilisearch:v1.17.1
     container_name: meilisearch

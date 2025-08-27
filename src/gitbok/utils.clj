@@ -30,12 +30,26 @@
                (<= end (count s)))
       (subs s start end))))
 
+(def volume-path (System/getenv "DOCS_VOLUME_PATH"))
+
 (defn slurp-resource [path]
-  (println "reading " path)
-  (if-let [r
-           (io/resource path)]
-    (slurp r)
-    (throw (Exception. (str "Cannot find " path)))))
+  (println "Reading" path "from" (if volume-path "volume" "classpath"))
+  (if volume-path
+    (let [file-path (str volume-path "/" path)
+          file (io/file file-path)]
+      (println "  Volume path:" file-path "exists:" (.exists file))
+      (if (.exists file)
+        (slurp file)
+        ;; Fallback to classpath for non-documentation resources
+        (do
+          (println "  Not in volume, trying classpath")
+          (if-let [r (io/resource path)]
+            (slurp r)
+            (throw (Exception. (str "Cannot find " path " in volume or classpath")))))))
+    ;; Original classpath logic for backward compatibility
+    (if-let [r (io/resource path)]
+      (slurp r)
+      (throw (Exception. (str "Cannot find " path))))))
 
 (defn concat-urls [& parts]
   (let [clean (fn [s] (str/replace s #"^/|/$" ""))

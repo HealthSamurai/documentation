@@ -16,6 +16,7 @@
    [gitbok.ui.left-navigation :as left-navigation]
    [gitbok.ui.search]
    [gitbok.ui.meilisearch]
+   [gitbok.reload :as reload]
    [ring.middleware.gzip :refer [wrap-gzip]]
    [ring.middleware.content-type :refer [content-type-response]]
    [gitbok.http]
@@ -102,7 +103,7 @@
                    (str/replace #"%20" " ")
                    (str/replace-first #".*.gitbook/" ""))
         ;; Try to find the image in multiple locations
-        response (or 
+        response (or
                   ;; First try the standard location (.gitbook/assets/)
                   (resp/resource-response file-path)
                   ;; If not found, try without 'assets/' prefix (for docs/.gitbook/assets/)
@@ -689,4 +690,12 @@
                     (Thread. #(println "Got SIGTERM.")))
   (println "Server started")
   (println "port " port)
-  (system/start-system default-config))
+  
+  ;; Start system
+  (let [context (system/start-system default-config)]
+    
+    ;; Start reload watcher if in volume mode
+    (when (System/getenv "DOCS_VOLUME_PATH")
+      (reload/start-reload-watcher context init-product-indices init-products))
+    
+    context))
