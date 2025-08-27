@@ -7,10 +7,10 @@
    [system]))
 
 (def default-aidbox
-  [{:id "default"
+  [{:id "aidbox"
     :name "Aidbox Documentation"
-    :path "/"
-    :config ".gitbook.yaml"}])
+    :path "/aidbox"
+    :config "aidbox/.gitbook.yaml"}])
 
 (defn read-product-config-file [config-file]
   (yaml/parse-string (utils/slurp-resource config-file)))
@@ -22,10 +22,15 @@
   []
   (try
     (let [config-str (if volume-path
-                       ;; Read from volume
+                       ;; Try volume first, then fallback to classpath
                        (let [file (io/file volume-path "products.yaml")]
                          (println "Loading products.yaml from volume:" (.getPath file))
-                         (slurp file))
+                         (if (.exists file)
+                           (slurp file)
+                           ;; Volume path set but file not found - try classpath
+                           (do
+                             (println "  File not found in volume, trying classpath")
+                             (utils/slurp-resource "products.yaml"))))
                        ;; Read from classpath
                        (utils/slurp-resource "products.yaml"))
           config (yaml/parse-string config-str)
