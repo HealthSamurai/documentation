@@ -59,5 +59,9 @@ window.MERMAID_CONFIG = {
 
     .cluster-label span.nodeLabel p { padding-top: 8px; }
     .cluster span { color: #8e8e8e; text-transform: uppercase; font-size: 12px; letter-spacing: .9px; }
+
+    /* ==== LINK LABELS ==== */
+    .nodeLabel p { padding-right: 2px; padding-left: 2px;}
+    .edgeLabel p { padding-right: 3px; }
   `
 };

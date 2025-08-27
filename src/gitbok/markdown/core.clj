@@ -146,7 +146,7 @@
          :code
          (fn [_ctx node]
            (if (and (:info node) (str/starts-with? (:info node) "mermaid"))
-             [:pre.mermaid (uui/raw (-> node :content first :text))]
+             [:pre.mermaid.nohljs (-> node :content first :text)]
              [:pre {:class "text-base"}
               [:code
                ;; protect from xss, do not use raw
