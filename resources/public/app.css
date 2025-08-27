@@ -590,3 +590,7 @@ details[data-sortable-initialized]:empty::before {
 [data-header-hidden="true"] thead {
   display: none;
 }
+
+.mermaid-container {
+  padding: 16px 0;
+}

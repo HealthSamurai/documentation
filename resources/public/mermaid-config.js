@@ -56,5 +56,8 @@ window.MERMAID_CONFIG = {
     .edgeLabel.linkLabelNeutral { fill:#1D2331; background:#F5F5F6; stroke:#CCCED3; stroke-width:1px; }
     .edgeLabel.linkLabelSuccess { fill:#1D2331; background:#f0fdf4; stroke:#16a34a; stroke-width:1px; }
     .edgeLabel.linkLabelError { fill:#1D2331; background:#fef2f2; stroke:#dc2626; stroke-width:1px; }
+
+    .cluster-label span.nodeLabel p { padding-top: 8px; }
+    .cluster span { color: #8e8e8e; text-transform: uppercase; font-size: 12px; letter-spacing: .9px; }
   `
 };
