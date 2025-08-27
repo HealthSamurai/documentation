@@ -104,11 +104,11 @@ spec:
         image: registry.k8s.io/git-sync/git-sync:v3.6.8
         resources:
           requests:
-            memory: "50Mi"
-            cpu: "10m"
+            memory: "256Mi"
+            cpu: "100m"
           limits:
-            memory: "100Mi"
-            cpu: "50m"
+            memory: "512Mi"
+            cpu: "500m"
         securityContext:
           allowPrivilegeEscalation: false
           capabilities:
@@ -129,6 +129,8 @@ spec:
           value: "false"
         - name: GIT_SYNC_DEPTH
           value: "1"
+        - name: GIT_SYNC_TIMEOUT
+          value: "300"
         volumeMounts:
         - name: git-repo
           mountPath: /git-data
