@@ -5,12 +5,20 @@ window.MERMAID_CONFIG = {
   securityLevel: 'loose',
   themeVariables: {
     fontFamily: 'Inter, verdana',
-    primaryColor: '#ffffff',
-    primaryTextColor: '#1D2331',
-    primaryBorderColor: '#7C0000',
     lineColor: '#717684',
     secondaryColor: '#EBECEE',
-    tertiaryColor: '#fff'
+    tertiaryColor: '#fff',
+    primaryColor : "#FEF2F2",
+    primaryTextColor : "#1D2331",
+    primaryBorderColor : "#F58685",
+    sequenceNumberColor : "#78B58E",
+    activationBkgColor : "#CCCED4",
+    activationBorderColor : "#fff",
+    loopTextColor : "#F58685",
+    labelTextColor : "#CC88FF",
+    labelBoxBorderColor : "#99FFCC",
+    labelBoxBkgColor : "#78B58E",
+    noteBkgColor : "#F5F5F6"
   },
   themeCSS: `
     /* ==== RED ==== */
