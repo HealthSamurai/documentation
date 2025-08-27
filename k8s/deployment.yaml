@@ -7,9 +7,9 @@ metadata:
   name: gitbok
   namespace: gitbok
   annotations:
-    keel.sh/policy: force
+    keel.sh/policy: minor
     keel.sh/trigger: poll
-    keel.sh/pollSchedule: "@every 1m"
+    keel.sh/pollSchedule: "@every 5m"
 spec:
   replicas: 2
   strategy:
@@ -27,7 +27,7 @@ spec:
     spec:
       containers:
       - name: main
-        image: ghcr.io/healthsamurai/documentation:latest
+        image: ghcr.io/healthsamurai/documentation:v1.1.1
         imagePullPolicy: Always
         resources:
           requests:
@@ -48,6 +48,10 @@ spec:
               secretKeyRef:
                 name: meilisearch-secret
                 key: master-key
+          - name: DOCS_VOLUME_PATH
+            value: "/workspace/docs-new"
+          - name: RELOAD_CHECK_INTERVAL_SEC
+            value: "180"
         args:
           - "-Xms1g"
           - "-Xmx1g"
@@ -82,6 +86,55 @@ spec:
           capabilities:
             drop:
             - ALL
+        volumeMounts:
+        - name: git-repo
+          mountPath: /workspace/docs
+          subPath: repo/docs
+          readOnly: true
+        - name: git-repo
+          mountPath: /workspace/docs-new
+          subPath: repo/docs-new
+          readOnly: true
+        - name: git-repo
+          mountPath: /workspace/.gitbook.yaml
+          subPath: repo/.gitbook.yaml
+          readOnly: true
+      # Git-sync sidecar to keep docs updated
+      - name: git-sync
+        image: registry.k8s.io/git-sync/git-sync:v4.3.0
+        resources:
+          requests:
+            memory: "50Mi"
+            cpu: "10m"
+          limits:
+            memory: "100Mi"
+            cpu: "50m"
+        securityContext:
+          allowPrivilegeEscalation: false
+          capabilities:
+            drop:
+            - ALL
+        env:
+        - name: GITSYNC_REPO
+          value: https://github.com/HealthSamurai/documentation.git
+        - name: GITSYNC_REF
+          value: master
+        - name: GITSYNC_ROOT
+          value: /git-data
+        - name: GITSYNC_LINK
+          value: repo
+        - name: GITSYNC_PERIOD
+          value: 2m
+        - name: GITSYNC_ONE_TIME
+          value: "false"
+        - name: GITSYNC_DEPTH
+          value: "1"
+        volumeMounts:
+        - name: git-repo
+          mountPath: /git-data
+      volumes:
+      - name: git-repo
+        emptyDir: {}
       restartPolicy: Always
       securityContext:
         runAsNonRoot: true
