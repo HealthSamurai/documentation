@@ -25,9 +25,30 @@ spec:
       labels:
         app.kubernetes.io/name: gitbok
     spec:
+      initContainers:
+      - name: wait-for-git-sync
+        image: busybox:1.36
+        command: ['sh', '-c']
+        args:
+          - |
+            echo "Waiting for git-sync to create repository..."
+            for i in $(seq 1 60); do
+              if [ -f /git-data/repo/docs-new/products.yaml ]; then
+                echo "Repository ready! products.yaml found"
+                exit 0
+              fi
+              echo "Attempt $i/60: Waiting for products.yaml..."
+              sleep 5
+            done
+            echo "Timeout waiting for git-sync"
+            exit 1
+        volumeMounts:
+        - name: git-repo
+          mountPath: /git-data
+          readOnly: true
       containers:
       - name: main
-        image: ghcr.io/healthsamurai/documentation:1.1.1
+        image: ghcr.io/healthsamurai/documentation:1.1.2
         imagePullPolicy: Always
         resources:
           requests:
@@ -79,8 +100,9 @@ spec:
           httpGet:
             path: /healthcheck
             port: 8080
-          failureThreshold: 20
+          failureThreshold: 30
           periodSeconds: 10
+          initialDelaySeconds: 60
         securityContext:
           allowPrivilegeEscalation: false
           capabilities:
