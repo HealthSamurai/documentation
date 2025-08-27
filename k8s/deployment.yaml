@@ -131,6 +131,8 @@ spec:
           value: "1"
         - name: GIT_SYNC_TIMEOUT
           value: "300"
+        - name: GIT_SYNC_SUBMODULES
+          value: "off"
         volumeMounts:
         - name: git-repo
           mountPath: /git-data
