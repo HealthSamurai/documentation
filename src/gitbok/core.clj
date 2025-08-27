@@ -322,7 +322,7 @@
                     (and lastmod
                          (check-cache-lastmod request lastmod)))
               {:status 304
-               :headers {"Cache-Control" "public, max-age=86400"
+               :headers {"Cache-Control" "public, max-age=300"
                          "Last-Modified" lastmod
                          "ETag" etag}}
               (let [{:keys [title description content section]}
@@ -690,12 +690,12 @@
                     (Thread. #(println "Got SIGTERM.")))
   (println "Server started")
   (println "port " port)
-  
+
   ;; Start system
   (let [context (system/start-system default-config)]
-    
+
     ;; Start reload watcher if in volume mode
     (when (System/getenv "DOCS_VOLUME_PATH")
       (reload/start-reload-watcher context init-product-indices init-products))
-    
+
     context))
