@@ -49,7 +49,7 @@ spec:
                 name: meilisearch-secret
                 key: master-key
           - name: DOCS_VOLUME_PATH
-            value: "/workspace/docs-new"
+            value: "/git-data/repo/docs-new"
           - name: RELOAD_CHECK_INTERVAL_SEC
             value: "180"
         args:
@@ -88,16 +88,7 @@ spec:
             - ALL
         volumeMounts:
         - name: git-repo
-          mountPath: /workspace/docs
-          subPath: repo/docs
-          readOnly: true
-        - name: git-repo
-          mountPath: /workspace/docs-new
-          subPath: repo/docs-new
-          readOnly: true
-        - name: git-repo
-          mountPath: /workspace/.gitbook.yaml
-          subPath: repo/.gitbook.yaml
+          mountPath: /git-data
           readOnly: true
       # Git-sync sidecar to keep docs updated
       - name: git-sync
