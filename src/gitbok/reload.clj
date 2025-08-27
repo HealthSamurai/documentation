@@ -12,9 +12,23 @@
               (* 1000))
       60000)) ;; Default: check every 60 seconds
 
+(defn calculate-file-content-hash
+  "Calculate MD5 hash of file content"
+  [^java.io.File file]
+  (let [md (java.security.MessageDigest/getInstance "MD5")]
+    (with-open [is (io/input-stream file)]
+      (let [buffer (byte-array 8192)]
+        (loop []
+          (let [n (.read is buffer)]
+            (when (pos? n)
+              (.update md buffer 0 n)
+              (recur))))))
+    (apply str (map #(format "%02x" %) (.digest md)))))
+
 (defn calculate-docs-checksum
-  "Calculate checksum based on file modification times and sizes.
-   This avoids reading file contents for performance."
+  "Calculate checksum based on actual file contents using MD5.
+   This ensures reload only happens when content actually changes,
+   not just timestamps."
   []
   (println "calculate docs checksum...")
   (when volume-path
@@ -27,14 +41,14 @@
                                 (.endsWith name ".yml")
                                 (.endsWith name ".edn")))
                          (file-seq docs-dir))
-            ;; Create checksum from file stats
-            file-stats (map (fn [f]
-                             (str (.getPath f)
-                                  "-" (.lastModified f)
-                                  "-" (.length f)))
-                           files)]
-        ;; Return hash of all file stats
-        (str (hash (sort file-stats))))
+            ;; Sort files by path for consistent ordering
+            sorted-files (sort-by #(.getPath %) files)
+            ;; Calculate MD5 for each file and combine
+            file-hashes (map (fn [f]
+                              (str (.getPath f) ":" (calculate-file-content-hash f)))
+                            sorted-files)]
+        ;; Return combined hash of all file hashes
+        (str (hash (vec file-hashes))))
       (catch Exception e
         (println "Error calculating checksum:" (.getMessage e))
         nil))))

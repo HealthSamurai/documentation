@@ -31,9 +31,9 @@ spec:
         imagePullPolicy: Always
         resources:
           requests:
-            memory: "1Gi"
+            memory: "2Gi"
           limits:
-            memory: "1.5Gi"
+            memory: "3Gi"
         env:
           - name: PORT
             value: "8080"
@@ -51,10 +51,10 @@ spec:
           - name: DOCS_VOLUME_PATH
             value: "/git-data/repo/docs-new"
           - name: RELOAD_CHECK_INTERVAL_SEC
-            value: "180"
+            value: "300"
         args:
-          - "-Xms1g"
-          - "-Xmx1g"
+          - "-Xms2g"
+          - "-Xmx2g"
         ports:
           - containerPort: 8080
             name: http
@@ -64,22 +64,22 @@ spec:
             path: /healthcheck
             port: 8080
           initialDelaySeconds: 60
-          periodSeconds: 10
-          timeoutSeconds: 5
+          periodSeconds: 30
+          timeoutSeconds: 10
           failureThreshold: 3
         readinessProbe:
           httpGet:
             path: /healthcheck
             port: 8080
           initialDelaySeconds: 60
-          periodSeconds: 5
-          timeoutSeconds: 3
+          periodSeconds: 10
+          timeoutSeconds: 5
           failureThreshold: 3
         startupProbe:
           httpGet:
             path: /healthcheck
             port: 8080
-          failureThreshold: 20
+          failureThreshold: 30
           periodSeconds: 10
         securityContext:
           allowPrivilegeEscalation: false
@@ -115,7 +115,7 @@ spec:
         - name: GIT_SYNC_DEST
           value: repo
         - name: GIT_SYNC_PERIOD
-          value: 120s
+          value: 240s
         - name: GIT_SYNC_ONE_TIME
           value: "false"
         - name: GIT_SYNC_DEPTH
