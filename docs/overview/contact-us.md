@@ -9,4 +9,4 @@
 
 ## How do I report an issue?
 
-You are very welcome to create issues here [https://github.com/Aidbox/Issues](https://github.com/Aidbox/Issues)
+You are welcome to create issues here [https://github.com/Aidbox/Issues](https://github.com/Aidbox/Issues)
