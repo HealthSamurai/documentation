@@ -1,5 +1,6 @@
 (ns gitbok.indexing.core
   (:require
+   [klog.core :as log]
    [gitbok.indexing.impl.summary]
    [gitbok.indexing.impl.uri-to-file :as uri-to-file]
    [gitbok.indexing.impl.common :as common]
@@ -109,7 +110,7 @@
 (defn create-search-index
   [parsed-md-index]
   (let [si (search-index/parsed-md-idx->index parsed-md-index)]
-    (println "created search index with " (count si) " entries")
+    (log/info ::search-index-created {:entries (count si)})
     si))
 
 (defn read-content [filepath]
@@ -125,7 +126,7 @@
                                    (read-content full-path))))) {}
                       (filter #(not (str/starts-with? % "http"))
                               filepaths-from-summary))]
-    (println (format "Slurped %s files" (count files)))
+    (log/info ::files-loaded {:count (count files)})
     files))
 
 (defn set-md-files-idx [context file-to-uri-idx]
@@ -152,10 +153,10 @@
 
 (defn search [context q]
   (try
-      (meilisearch/search q)
-      (catch Exception e
-        (println (str "Meilisearch search failed, falling back to Lucene: " (.getMessage e)))
-        (search-index/search (get-search-idx context) q))))
+    (meilisearch/search q)
+    (catch Exception e
+      (log/warn ::meilisearch-fallback {:error (.getMessage e)})
+      (search-index/search (get-search-idx context) q))))
 
 (defn filepath->href [context filepath href]
   (if (str/starts-with? href "http")
@@ -184,25 +185,13 @@
                        (catch Exception _
                          (try
                            ;; Fallback to default lastmod
-                           (edamame/parse-string
-                            (utils/slurp-resource default-lastmod-path))
+                           (edamame/parse-string (utils/slurp-resource default-lastmod-path))
                            (catch Exception _
                              ;; If no lastmod files exist, return empty map
                              (do
-                               (println (str "Warning: No lastmod file found for product "
-                                             product-id))
+                               (log/warn ::lastmod-not-found {:product-id product-id})
                                {})))))]
     (products/set-product-state
      context
      [const/LASTMOD]
      lastmod-data)))
-
-(defn parent? [context filepath]
-  (let [uri (filepath->uri context filepath)]
-    (when uri
-      (->> context
-           uri-to-file/get-idx
-           (filter (fn [[k _]]
-                     (str/starts-with? (name k) uri)))
-           count
-           (not= 1)))))

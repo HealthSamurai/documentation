@@ -1,5 +1,6 @@
 (ns gitbok.ui.search
   (:require
+   [klog.core :as log]
    [gitbok.indexing.core :as indexing]
    [gitbok.ui.breadcrumb :as breadcrumb]
    [gitbok.search]
@@ -131,11 +132,11 @@
 
       ;; Show section entry with indentation
       [:a {:href url
-           :class (str "flex items-center gap-3 group px-4 py-1.5
+           :class "flex items-center gap-3 group px-4 py-1.5
                        text-tint-10
                        hover:bg-tint-2
                        hover:text-tint-strong
-                       transition-colors rounded-md ")
+                       transition-colors rounded-md "
            :data-search-result-index index}
        ;; Empty space for alignment
        [:div {:class "size-4 shrink-0"}]
@@ -176,19 +177,19 @@
                                              (-> filepath
                                                  (str/replace #"^\./" "")        ; Remove leading ./
                                                  (str/replace #"^forms/" "")     ; Remove forms/ prefix if present
-                                                 (str/replace #"^aidbox/" "")    ; Remove aidbox/ prefix if present  
+                                                 (str/replace #"^aidbox/" "")    ; Remove aidbox/ prefix if present
                                                  (str/replace #"^\./docs/" "")   ; Remove ./docs/ prefix
                                                  (str/replace #"^docs/" "")      ; Remove docs/ prefix
                                                  (str/replace #"\.md$" "")       ; Remove .md extension
                                                  (str/replace #"/README$" "/")   ; Convert README to /
                                                  (str/replace #"^/" "")))]       ; Remove leading /
                          (when (nil? uri)
-                           (println "WARNING: No URI found for filepath:" filepath
-                                    "\nCurrent product:" (products/get-current-product-id context)
-                                    "\nGenerated URI:" generated-uri))
+                           (log/warn ::uri-not-found {:filepath filepath
+                                                      :current-product (products/get-current-product-id context)
+                                                      :generated-uri generated-uri}))
                          ;; Add debug for all URIs
                          (when generated-uri
-                           (println "DEBUG: filepath=" filepath " -> generated-uri=" generated-uri))
+                           (log/debug ::uri-mapping {:filepath filepath :uri generated-uri}))
                          (assoc res :uri (or uri generated-uri))))
                      search-results)))
         ;; Preserve original search order while grouping by filepath

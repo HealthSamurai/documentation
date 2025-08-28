@@ -1,5 +1,6 @@
 (ns gitbok.indexing.impl.summary
   (:require
+   [klog.core :as log]
    [clojure.string :as str]
    [gitbok.constants :as const]
    [gitbok.utils :as utils]
@@ -88,7 +89,7 @@
 (defn read-summary [context]
   (let [config (products/get-current-product context)
         summary-path (products/summary-path config)]
-    (println "read summary! " summary-path)
+    (log/debug ::read-summary {:path summary-path})
     (utils/slurp-resource summary-path)))
 
 (defn title [s]
@@ -209,7 +210,7 @@
                                                                                             :is-cross-section is-cross-section))}))))
                                 (remove nil?)
                                 (treefy)))))))]
-    (println "summary parsed with " (count summary) "entries")
+    (log/info ::summary-parsed {:entries (count summary)})
     summary))
 
 (defn set-summary [context]
@@ -296,6 +297,7 @@
     (when current-page-idx
       [[(:href prev-page) (-> prev-page :parsed :title)]
        [(:href next-page) (-> next-page :parsed :title)]])))
+
 (comment
 
   (treefy

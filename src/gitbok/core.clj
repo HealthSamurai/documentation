@@ -17,6 +17,7 @@
    [gitbok.ui.search]
    [gitbok.ui.meilisearch]
    [gitbok.reload :as reload]
+   [klog.core :as log]
    [ring.middleware.gzip :refer [wrap-gzip]]
    [ring.middleware.content-type :refer [content-type-response]]
    [gitbok.http]
@@ -51,7 +52,7 @@
        :description description
        :section section}
       (catch Exception e
-        (println "cannot render file " filepath)
+        (log/info ::cannot-render-file {:filepath filepath})
         {:content [:div {:role "alert"}
                    (.getMessage e)
                    [:pre (pr-str e)]
@@ -462,33 +463,41 @@
   (let [;; Temporarily set current product for initialization
         ctx (products/set-current-product-id context (:id product))]
     ;; order is important
-    (println "1. read summary. create toc htmx.")
+    (log/info ::init-product {:msg "1. read summary. create toc htmx."
+                              :product (:id product)})
     (summary/set-summary ctx)
-    (println "2. get uris from summary (using slugging), merge with redirects")
+    (log/info ::init-product {:msg "2. get uris from summary (using slugging), merge with redirects"
+                              :product (:id product)})
     (uri-to-file/set-idx ctx)
-    (println "3. reverse file to uri idx")
+    (log/info ::init-product {:msg "3. reverse file to uri idx"
+                              :product (:id product)})
     (file-to-uri/set-idx ctx)
-    (println "4. using files from summary (step 3), read all files into memory")
+    (log/info ::init-product {:msg "4. using files from summary (step 3), read all files into memory"
+                              :product (:id product)})
     (indexing/set-md-files-idx ctx (file-to-uri/get-idx ctx))
-    (println "5. parse all files into memory, some things are already rendered as plain html")
+    (log/info ::init-product {:msg "5. parse all files into memory, some things are already rendered as plain html"
+                              :product (:id product)})
     (markdown/set-parsed-markdown-index ctx (indexing/get-md-files-idx ctx))
-    (println "6. using parsed markdown, set search index")
+    (log/info ::init-product {:msg "6. using parsed markdown, set search index"
+                              :product (:id product)})
     (indexing/set-search-idx ctx (markdown/get-parsed-markdown-index ctx))
-    (println "7. render it on start")
+    (log/info ::init-product {:msg "7. render it on start"
+                              :product (:id product)})
     (when-not dev?
-      (println "Not DEV, render all pages into memory")
+      (log/info ::init-product {:msg "Not DEV, render all pages into memory"
+                                :product (:id product)})
       (markdown/render-all! ctx
                             (markdown/get-parsed-markdown-index ctx)
                             read-markdown-file)
-      (println "Render all pages done."))
-    (println "8. set lastmod data in context for Last Modified metadata")
+      (log/info ::init-product {:msg "render done"
+                                :product (:id product)}))
+    (log/info ::init-product {:msg "8. set lastmod data in context for Last Modified metadata"
+                              :product (:id product)})
     (indexing/set-lastmod ctx)
-    (println "9. generate sitemap.xml for product")
-    (when-not false
-      (println (str "generating sitemap.xml for " (:name product)))
-      ;; Now sitemap can use the lastmod data from context
-      (let [lastmod-data (products/get-product-state ctx [const/LASTMOD])]
-        (sitemap/set-sitemap ctx lastmod-data)))))
+    (log/info ::init-product {:msg "9. generate sitemap.xml for product"
+                              :product (:id product)})
+    (let [lastmod-data (products/get-product-state ctx [const/LASTMOD])]
+      (sitemap/set-sitemap ctx lastmod-data))))
 
 (defn init-products
   "Initializes all products from configuration"
@@ -533,7 +542,7 @@
     ;; Register endpoints for each product
     (doseq [product products-config]
       (let [product-path (utils/concat-urls prefix (:path product))]
-        (println "base path! " product-path)
+        (log/debug ::base-path {:product-path product-path})
 
         ;; Product main page
         (http/register-endpoint
@@ -660,22 +669,18 @@
 
   (let [products-config (products/get-products-config context)]
     (doseq [product products-config]
-      (println)
-      (println)
-      (println (str "Initializing product indices: "
-                    (:name product)))
+      (log/info ::init-product-indices {:product-name (:name product)
+                                        :product-id (:id product)})
       (init-product-indices context product))
 
-    (println "setup done!")
-    (println "version " (utils/slurp-resource "version"))
-    (println "PORT env " (System/getenv "PORT"))
-    (println "port " port)
-    (println "BASE_URL " base-url)
-    (println "PREFIX " prefix)
-    (println "Products:\n"
-             (str/join "\n" (mapv #(str (:name %) " - " (:path %))
-                                  products-config))
-             "\n"))
+    (log/info ::setup-complete {:msg "setup done!"
+                                :version (utils/slurp-resource "version")
+                                :port-env (System/getenv "PORT")
+                                :port port
+                                :base-url base-url
+                                :prefix prefix
+                                :products (mapv #(hash-map :name (:name %) :path (:path %))
+                                                products-config)}))
 
   (http/register-endpoint
    context
@@ -686,10 +691,16 @@
   {})
 
 (defn -main [& _args]
+  ;; Initialize klog
+  (log/enable-log)
+  (if dev?
+    (log/stdout-pretty-appender :debug)  ;; Pretty output for development
+    (log/stdout-appender :info))         ;; JSON output for production
+
   (.addShutdownHook (Runtime/getRuntime)
-                    (Thread. #(println "Got SIGTERM.")))
-  (println "Server started")
-  (println "port " port)
+                    (Thread. #(log/info ::shutdown {:msg "Got SIGTERM."})))
+  (log/info ::server-start {:msg "Server started"})
+  (log/info ::server-port {:port port})
 
   ;; Start system
   (let [context (system/start-system default-config)]

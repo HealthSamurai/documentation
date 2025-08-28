@@ -4,7 +4,9 @@
    [clojure.string :as str]
    [clj-yaml.core :as yaml]
    [gitbok.utils :as utils]
-   [system]))
+   [gitbok.constants :as const]
+   [system]
+   [klog.core :as log]))
 
 (def default-aidbox
   [{:id "aidbox"
@@ -24,12 +26,12 @@
     (let [config-str (if volume-path
                        ;; Try volume first, then fallback to classpath
                        (let [file (io/file volume-path "products.yaml")]
-                         (println "Loading products.yaml from volume:" (.getPath file))
+                         (log/info ::load-config {:source "volume" :path (.getPath file)})
                          (if (.exists file)
                            (slurp file)
                            ;; Volume path set but file not found - try classpath
                            (do
-                             (println "  File not found in volume, trying classpath")
+                             (log/warn ::fallback-classpath {:reason "file-not-in-volume"})
                              (utils/slurp-resource "products.yaml"))))
                        ;; Read from classpath
                        (utils/slurp-resource "products.yaml"))
@@ -42,8 +44,8 @@
       {:products products
        :root-redirect (:root-redirect config)})
     (catch Exception e
-      (println "ERROR loading products.yaml:" (.getMessage e))
-      (println "Falling back to default-aidbox")
+      (log/error ::load-config-error {:error (.getMessage e)
+                                      :fallback "default-aidbox"})
       {:products default-aidbox})))
 
 (defn get-current-product-id

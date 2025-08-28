@@ -24,6 +24,8 @@
         clj-commons/clj-yaml {:mvn/version "1.0.29"}
         borkdude/edamame {:mvn/version "1.4.31"}
         amalloy/ring-gzip-middleware {:mvn/version "0.1.4"}
+        healthsamurai/klog {:git/url "https://github.com/healthsamurai/klog"
+                            :sha "9ea2d40d95c534f0524827f3a8020d337720121c"}
         ;; recompile java automaticallydeps
         ;; virgil/virgil {:mvn/version "0.4.0"}
 

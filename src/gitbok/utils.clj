@@ -1,5 +1,6 @@
 (ns gitbok.utils
   (:require
+   [klog.core :as log]
    [clojure.string :as str]
    [hiccup2.core]
    [system]
@@ -38,23 +39,23 @@
           file (io/file file-path)]
       (if (.exists file)
         (do
-          (println (str "✅ Reading " path " from volume"))
+          (log/debug ::read-volume {:path path})
           (slurp file))
         ;; Fallback to classpath for non-documentation resources
         (if-let [r (io/resource path)]
           (do
-            (println (str "⚠️  Reading " path " from classpath (not in volume)"))
+            (log/debug ::read-classpath {:path path :reason "not-in-volume"})
             (slurp r))
           (do
-            (println (str "❌ Cannot find " path " in volume or classpath"))
+            (log/error ::file-not-found {:path path :locations ["volume" "classpath"]})
             (throw (Exception. (str "Cannot find " path " in volume or classpath")))))))
     ;; Original classpath logic for backward compatibility
     (if-let [r (io/resource path)]
       (do
-        (println (str "📦 Reading " path " from classpath (no volume configured)"))
+        (log/debug ::read-classpath {:path path :reason "no-volume"})
         (slurp r))
       (do
-        (println (str "❌ Cannot find " path " in classpath"))
+        (log/error ::file-not-found {:path path :location "classpath"})
         (throw (Exception. (str "Cannot find " path)))))))
 
 (defn concat-urls [& parts]

@@ -2,10 +2,10 @@
   (:require
    [clojure.java.io :as io]
    [clojure.string :as str]
-   [gitbok.products :as products]
    [gitbok.constants :as const]
    [gitbok.http]
-   [system]))
+   [system]
+   [klog.core :as log]))
 
 (def volume-path (System/getenv "DOCS_VOLUME_PATH"))
 
@@ -34,43 +34,44 @@
    This ensures reload only happens when content actually changes,
    not just timestamps."
   []
-  (println "🔍 Calculating documentation checksum...")
+  (log/info ::checksum-start {:action "🔍 calculating-checksum"})
   (when volume-path
     (try
       (let [docs-dir (io/file volume-path)
             ;; Get all relevant files
             files (filter #(let [name (.getName %)]
-                            (or (.endsWith name ".md")
-                                (.endsWith name ".yaml")
-                                (.endsWith name ".yml")
-                                (.endsWith name ".edn")))
-                         (file-seq docs-dir))
+                             (or (.endsWith name ".md")
+                                 (.endsWith name ".yaml")
+                                 (.endsWith name ".yml")
+                                 (.endsWith name ".edn")))
+                          (file-seq docs-dir))
             file-count (count files)
-            _ (println (str "  📁 Found " file-count " documentation files"))
+            _ (log/info ::files-found {:count file-count})
             ;; Sort files by path for consistent ordering
             sorted-files (sort-by #(.getPath %) files)
             ;; Calculate MD5 for each file and combine
             start-time (System/currentTimeMillis)
             file-hashes (map (fn [f]
-                              (str (.getPath f) ":" (calculate-file-content-hash f)))
-                            sorted-files)
+                               (str (.getPath f) ":" (calculate-file-content-hash f)))
+                             sorted-files)
             calc-time (- (System/currentTimeMillis) start-time)]
         ;; Return combined hash of all file hashes
-        (println (str "  ✅ Checksum calculated in " calc-time "ms for " file-count " files"))
+        (log/info ::✅checksum-complete {:duration-ms calc-time
+                                        :file-count file-count})
         (str (hash (vec file-hashes))))
       (catch Exception e
-        (println (str "  ❌ Error calculating checksum: " (.getMessage e)))
+        (log/error ::❌checksum-error {:error (.getMessage e)})
         nil))))
 
 ;; State management functions using context
 (defn get-reload-state [context]
-  (system/get-system-state context [const/RELOAD_STATE] 
-                          {:checksum nil
-                           :commit-hash nil
-                           :last-update-time nil
-                           :last-reload-time nil
-                           :app-version nil
-                           :in-progress false}))
+  (system/get-system-state context [const/RELOAD_STATE]
+                           {:checksum nil
+                            :commit-hash nil
+                            :last-update-time nil
+                            :last-reload-time nil
+                            :app-version nil
+                            :in-progress false}))
 
 (defn set-reload-state [context state]
   (system/set-system-state context [const/RELOAD_STATE] state))
@@ -103,7 +104,7 @@
               ;; HEAD contains direct commit hash
               (subs (str/trim head-content) 0 8)))))
       (catch Exception e
-        (println (str "  ❌ Error reading git commit: " (.getMessage e)))
+        (log/error ::❌git-commit-error {:error (.getMessage e)})
         nil))))
 
 (defn get-last-update-time
@@ -121,7 +122,7 @@
   []
   (or (get-git-commit-hash)
       (do
-        (println "  ⚠️  Git commit unavailable, using file checksum")
+        (log/warn ::⚠️git-unavailable {:fallback "checksum"})
         (calculate-docs-checksum))))
 
 (defn is-reloading? [context]
@@ -134,16 +135,20 @@
   "Build complete new cache for all products.
    This reuses existing initialization logic."
   [context init-product-indices-fn init-products-fn]
-  (println "  📦 Re-initializing products configuration...")
+  (log/info ::📦rebuild-start {:action "re-initializing-products"})
   ;; Simply re-initialize all products
   ;; This will reload products.yaml and all documentation
   (let [products-config (init-products-fn context)
         product-count (count products-config)]
-    (println (str "  📚 Found " product-count " products to rebuild"))
+    (log/info ::📚products-found {:count product-count})
     ;; Rebuild cache for each product
     (doseq [[idx product] (map-indexed vector products-config)]
-      (let [product-name (:name product)]
-        (println (str "  🔨 [" (inc idx) "/" product-count "] Rebuilding: " product-name))
+      (let [product-name (:name product)
+            product-id (:id product)]
+        (log/info ::rebuilding-product {:product-id product-id
+                                        :product-name product-name
+                                        :index (inc idx)
+                                        :total product-count})
         (let [start-time (System/currentTimeMillis)]
           ;; This will:
           ;; 1. Read SUMMARY.md
@@ -155,8 +160,10 @@
           ;; 7. Generate sitemap
           (init-product-indices-fn context product)
           (let [duration (- (System/currentTimeMillis) start-time)]
-            (println (str "    ✅ " product-name " rebuilt in " duration "ms"))))))
-    (println (str "  🎉 All " product-count " products rebuilt successfully"))
+            (log/info ::product-rebuilt {:product-id product-id
+                                         :product-name product-name
+                                         :duration-ms duration})))))
+    (log/info ::rebuild-complete {:product-count product-count})
     true))
 
 (defn check-and-reload!
@@ -176,100 +183,96 @@
           (if new-commit
             [new-commit current-commit "commit"]
             [(calculate-docs-checksum) (get-current-checksum context) "checksum"])]
-      
+
       ;; Enhanced logging with version and timestamp
-      (println "📊 Documentation check")
-      (println (str "  🏷️  App version: " app-version))
-      (println (str "  🔖 Cached commit: " (or current-commit (:checksum reload-state) "none")))
-      (when-let [cached-time (:last-reload-time reload-state)]
-        (println (str "  📅 Cached at: " cached-time)))
-      (when new-commit
-        (println (str "  🔍 Current commit: " new-commit)))
-      
+      (log/info ::check-status {:🏷️app-version app-version
+                                :🔖cached-commit (or current-commit
+                                                     (:checksum reload-state)
+                                                     "none")
+                                :📅cached-at (:last-reload-time reload-state)
+                                :🔍current-commit new-commit})
+
       (cond
         (not new-identifier)
-        (println "  ⚠️  Cannot determine documentation state, skipping check")
+        (log/warn ::check-skipped {:reason "cannot-determine-state"})
 
         (and new-identifier (not= new-identifier current-identifier))
         (do
-          (println "  🔄 Documentation changed!")
-          (println (str "    Old " identifier-type ": " (or current-identifier "none")))
-          (println (str "    New " identifier-type ": " new-identifier))
+          (log/info ::📚docs-changed {:identifier-type identifier-type
+                                      :old-identifier (or current-identifier "none")
+                                      :new-identifier new-identifier})
 
           (set-reloading context true)
           (try
             (let [start-time (System/currentTimeMillis)]
-              (println "🚀 Starting documentation reload...")
+              (log/info ::🚀reload-start {:action "starting-reload"})
 
               ;; Build new caches
               (rebuild-all-caches context init-product-indices-fn init-products-fn)
 
               ;; Update state only after successful reload
               (update-reload-state context assoc
-                                  (if (= identifier-type "commit")
-                                    :commit-hash
-                                    :checksum) new-identifier
-                                  :last-update-time update-time
-                                  :last-reload-time (java.util.Date.)
-                                  :app-version app-version)
+                                   (if (= identifier-type "commit")
+                                     :commit-hash
+                                     :checksum) new-identifier
+                                   :last-update-time update-time
+                                   :last-reload-time (java.util.Date.)
+                                   :app-version app-version)
 
               (let [duration (- (System/currentTimeMillis) start-time)]
-                (println (str "✨ Documentation reloaded successfully in " duration "ms"))
-                (when new-commit
-                  (println (str "  🔖 New commit: " new-commit)))))
+                (log/info ::reload-success {:duration-ms duration
+                                            :🔖new-commit new-commit})))
             (catch Exception e
-              (println (str "❌ ERROR: Documentation reload failed"))
-              (println (str "  ⚠️  Error: " (.getMessage e)))
-              (.printStackTrace e))
+              (log/error ::reload-failed {:error (.getMessage e)
+                                          :exception e}))
             (finally
               (set-reloading context false))))
 
         :else
-        (println "  ✅ Documentation unchanged")))))
+        (log/debug ::docs-unchanged {})))))
 
 (defn start-reload-watcher
   "Start background thread that checks for documentation changes"
   [context init-product-indices-fn init-products-fn]
   (when volume-path
-    (println "🚀 Starting documentation server")
     (let [app-version (gitbok.http/get-version context)
           initial-commit (get-git-commit-hash)
           initial-update-time (get-last-update-time)]
-      
-      (println (str "  🏷️  Version: " app-version))
-      (println (str "  📂 Volume path: " volume-path))
-      
+
+      (log/info ::watcher-start {:app-version app-version
+                                 :volume-path volume-path})
+
       ;; Set initial state based on what's available
       (if initial-commit
         (do
-          (println (str "  🔖 Initial commit: " initial-commit))
-          (println (str "  📅 Git-sync updated: " (or initial-update-time "unknown")))
+          (log/info ::git-mode {:initial-commit initial-commit
+                                :git-sync-updated initial-update-time})
           (set-reload-state context
-                           {:commit-hash initial-commit
-                            :last-update-time initial-update-time
-                            :last-reload-time (java.util.Date.)
-                            :app-version app-version
-                            :in-progress false}))
+                            {:commit-hash initial-commit
+                             :last-update-time initial-update-time
+                             :last-reload-time (java.util.Date.)
+                             :app-version app-version
+                             :in-progress false}))
         (do
-          (println "  ⚠️  Git repository not found, using file checksum fallback")
+          (log/warn ::checksum-mode {:reason "git-not-found"})
           (let [initial-checksum (calculate-docs-checksum)]
             (set-reload-state context
-                             {:checksum initial-checksum
-                              :last-reload-time (java.util.Date.)
-                              :app-version app-version
-                              :in-progress false})
-            (println (str "  🔢 Initial checksum: " initial-checksum)))))
-      
-      (println (str "  ⏰ Check interval: " (/ reload-check-interval-ms 1000) "s")))
+                              {:checksum initial-checksum
+                               :last-reload-time (java.util.Date.)
+                               :app-version app-version
+                               :in-progress false})
+            (log/info ::initial-checksum {:checksum initial-checksum}))))
+      (log/info ::check-interval {:interval-seconds (/ reload-check-interval-ms 1000)})))
 
-    ;; Start background thread
-    (future
-      (loop []
-        (try
-          (Thread/sleep reload-check-interval-ms)
-          (check-and-reload! context init-product-indices-fn init-products-fn)
-          (catch Exception e
-            (println (str "❌ Error in reload watcher: " (.getMessage e)))))
-        (recur)))
+  ;; Start background thread
+  (future
+    (loop []
+      (try
+        (Thread/sleep reload-check-interval-ms)
+        (check-and-reload! context init-product-indices-fn init-products-fn)
+        (catch Exception e
+          (log/error ::watcher-error {:error (.getMessage e)})))
+      (recur)))
 
-    (println "✅ Reload watcher started successfully")))
+  (log/info ::watcher-started {:status "success"})
+  :started)

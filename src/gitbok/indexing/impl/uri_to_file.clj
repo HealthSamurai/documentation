@@ -1,10 +1,10 @@
 (ns gitbok.indexing.impl.uri-to-file
   (:require
+   [klog.core :as log]
    [clojure.string :as str]
    [gitbok.constants :as const]
    [gitbok.indexing.impl.summary]
    [gitbok.indexing.impl.redirects :as redirects]
-   [gitbok.utils :as utils]
    [gitbok.products :as products]
    [clojure.data]
    [system]))
@@ -17,8 +17,8 @@
                 (and (> (count uri) 0) (= "/" (subs uri 0 1))) (subs uri 1)
                 :else uri)
           ;; Remove trailing slash if present
-          fixed-url (if (and (> (count uri) 0) 
-                            (= "/" (subs uri (dec (count uri)))))
+          fixed-url (if (and (> (count uri) 0)
+                             (= "/" (subs uri (dec (count uri)))))
                       (subs uri 0 (dec (count uri)))
                       uri)
           ;; Handle anchors in redirects
@@ -61,11 +61,11 @@
                                 ;; Root README
                                 (= clean-path "README")
                                 ""
-                                
+
                                 ;; Directory README files
                                 (str/ends-with? clean-path "/README")
                                 (subs clean-path 0 (- (count clean-path) 7))
-                                
+
                                 ;; Regular files
                                 :else
                                 clean-path)]
@@ -74,7 +74,7 @@
 
                 :else
                 (recur (rest lines) acc)))))
-        
+
         diff
         (nth (clojure.data/diff (set (keys redirects))
                                 (set (keys index))) 2)
@@ -82,13 +82,13 @@
         result (merge index redirects)]
 
     (when diff
-      (println "diff between redirects and summary urls")
+      (log/debug ::urls-diff {:action "comparing redirects and summary urls"})
       (doseq [p diff]
-        (println "-------")
-        (printf "record in summary: {%s %s}\n" p (get index p))
-        (printf "file in redirect: {%s %s}\n" p (get redirects p))
-        (println "-------")))
-    (println "uri->file idx is ready with " (count result) " entries")
+        (log/debug ::separator {})
+        (log/debug ::record-in-summary {:url p :file (get index p)})
+        (log/debug ::file-in-redirect {:url p :redirect (get redirects p)})
+        (log/debug ::separator {})))
+    (log/info ::index-ready {:type "uri->file" :entries (count result)})
     result))
 
 (defn get-idx [context]

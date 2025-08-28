@@ -1,5 +1,6 @@
 (ns gitbok.ui.meilisearch
   (:require
+   [klog.core :as log]
    [clojure.string :as str]
    [org.httpkit.client :as http-client]
    [cheshire.core :as json]
@@ -40,7 +41,7 @@
         (-> response :body json/parse-string (get "hits"))
         []))
     (catch Exception e
-      (println "Meilisearch error:" (.getMessage e))
+      (log/error ::meilisearch-error {:error (.getMessage e)})
       [])))
 
 (defn interpret-search-results
@@ -213,30 +214,6 @@
               :items (vec items)}))
          groups)))
 
-;; extract-title removed - no longer needed 
-
-(defn build-subtitle
-  "Returns the content field for subtitle display."
-  [item is-grouped?]
-  (let [content (get item "content")]
-    ;; Return content if available, truncated to reasonable length for subtitle
-    (when content
-      (if (> (count content) 150)
-        (str (subs content 0 150) "...")
-        content))))
-
-;; get-highlighted-title removed - no longer needed
-
-(defn get-highlighted-subtitle
-  "Gets the highlighted version of the subtitle (content) if available."
-  [item subtitle is-grouped?]
-  (when subtitle
-    (let [formatted (get item "_formatted")]
-      (if formatted
-        ;; Use formatted content if available
-        (or (get formatted "content") subtitle)
-        subtitle))))
-
 (defn build-final-url
   "Builds the final URL with anchor if needed."
   [url anchor]
@@ -245,15 +222,6 @@
     (and anchor (not (str/includes? url "#"))) (str url "#" anchor)
     ;; Otherwise use URL as is
     :else url))
-
-;; render-icon removed - no longer showing icons
-
-(defn render-content-snippet
-  "Renders the content snippet if available."
-  [content lvl6 formatted]
-  ;; Don't render content snippet since it's now shown as subtitle
-  ;; Only show lvl6 if present
-  nil)
 
 (defn render-result-item [item query index is-grouped?]
   (let [lvl0 (get item "hierarchy_lvl0")
@@ -493,8 +461,6 @@
         product-index (get current-product :meilisearch-index "docs")
         results (when (and query (pos? (count query)))
                   (search-meilisearch query product-index))]
-
-    (def results results)
 
     (if (empty? query)
       [:div] ;; Empty div when no query

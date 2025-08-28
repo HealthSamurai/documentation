@@ -1,11 +1,11 @@
 (ns gitbok.indexing.impl.file-to-uri
   (:require
+   [klog.core :as log]
    [system]
    [clojure.string :as str]
    [gitbok.constants :as const]
    [gitbok.indexing.impl.summary]
-   [gitbok.products :as products]
-   [gitbok.utils :as utils]))
+   [gitbok.products :as products]))
 
 (defn file->uri-idx [context]
   (let [summary-text (gitbok.indexing.impl.summary/read-summary context)
@@ -22,18 +22,18 @@
                             ;; Root README
                             (= clean-path "README")
                             "/"
-                            
-                            ;; Directory README files  
+
+                            ;; Directory README files
                             (str/ends-with? clean-path "/README")
                             (str (subs clean-path 0 (- (count clean-path) 7)) "/")
-                            
+
                             ;; Regular files
                             :else
                             clean-path)]
                   [filepath
                    {:title page-name
                     :uri uri}])))]
-    (println "file->uri idx is ready with " (count result) " entries")
+    (log/info ::index-ready {:type "file->uri" :entries (count result)})
     result))
 
 (defn set-idx [context]
@@ -44,4 +44,7 @@
   (products/get-product-state context [const/FILE->URI_IDX]))
 
 (defn filepath->uri [context filepath]
-  (:uri (get (get-idx context) filepath)))
+  (-> context
+      get-idx
+      (get filepath)
+      :uri))
