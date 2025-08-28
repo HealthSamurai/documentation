@@ -146,7 +146,7 @@
     * [Update](api/rest-api/crud/update.md)
     * [Patch](api/rest-api/crud/patch.md)
     * [Delete](api/rest-api/crud/delete.md)
-  * [FHIR Search](api/rest-api/fhir-search/README.md)
+  * [FHIR search](api/rest-api/fhir-search/README.md)
     * [SearchParameter](api/rest-api/fhir-search/searchparameter.md)
     * [Include and Revinclude](api/rest-api/fhir-search/include-and-revinclude.md)
     * [Chaining](api/rest-api/fhir-search/chaining.md)

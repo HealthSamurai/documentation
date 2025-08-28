@@ -1,4 +1,4 @@
-# FHIR Search
+# FHIR search
 
 Aidbox supports [FHIR Search API](https://www.hl7.org/fhir/search.html).\
 The FHIR Search API is the primary mechanism for finding FHIR resources by conditions.\
