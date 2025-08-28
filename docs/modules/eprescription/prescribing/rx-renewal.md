@@ -18,7 +18,6 @@ There are several ways to track the newly created **MedicationRequest**s:
 
 In case some related resources (**Patient**, **Organisation**, **PractitionerRole**, **Practitioner**, **Medication**, or **Location**) were not found or didn't match the provided ones, ePrescription module additionally creates a **DetectedIssue** resource in Aidbox.
 There's only one **DetectedIssue** per RxRenewal, containing all the problematic resources.
-TODO: ARE THERE OTHER EXCEPTIONAL SITUATIONS? I DIDN'T FIND ANY?
 
 ### Renewal statuses
 
@@ -51,7 +50,6 @@ entry:
 ```
 
 The initial status is `active`. For the rest, consult [NewRx status table](./newrx-message.md)
-TODO: ARE THESE ALWAYS MATCHING THE NEWRX ONES?
 
 ### Responding to RxRenewalRequest
 
