@@ -9,6 +9,19 @@
 
 (def volume-path (System/getenv "DOCS_VOLUME_PATH"))
 
+(defn get-volume-path
+  "Get current volume path, with fallback to local docs/ directory for development"
+  []
+  (or volume-path
+      (when (.exists (io/file "docs"))
+        (do
+          (log/info ::using-local-docs {:path "docs"})
+          "docs"))
+      (when (.exists (io/file "../docs"))
+        (do
+          (log/info ::using-local-docs {:path "../docs"})
+          "../docs"))))
+
 ;; Configuration from environment
 (def reload-check-interval-ms
   (or (some-> (System/getenv "RELOAD_CHECK_INTERVAL_SEC")
@@ -35,9 +48,9 @@
    not just timestamps."
   []
   (log/info ::checksum-start {:action "🔍 calculating-checksum"})
-  (when volume-path
+  (when-let [docs-path (get-volume-path)]
     (try
-      (let [docs-dir (io/file volume-path)
+      (let [docs-dir (io/file docs-path)
             ;; Get all relevant files
             files (filter #(let [name (.getName %)]
                              (or (.endsWith name ".md")
@@ -46,7 +59,7 @@
                                  (.endsWith name ".edn")))
                           (file-seq docs-dir))
             file-count (count files)
-            _ (log/info ::files-found {:count file-count})
+            _ (log/info ::files-found {:count file-count :path docs-path})
             ;; Sort files by path for consistent ordering
             sorted-files (sort-by #(.getPath %) files)
             ;; Calculate MD5 for each file and combine
@@ -57,7 +70,7 @@
             calc-time (- (System/currentTimeMillis) start-time)]
         ;; Return combined hash of all file hashes
         (log/info ::✅checksum-complete {:duration-ms calc-time
-                                        :file-count file-count})
+                                         :file-count file-count})
         (str (hash (vec file-hashes))))
       (catch Exception e
         (log/error ::❌checksum-error {:error (.getMessage e)})
@@ -67,7 +80,6 @@
 (defn get-reload-state [context]
   (system/get-system-state context [const/RELOAD_STATE]
                            {:checksum nil
-                            :commit-hash nil
                             :last-update-time nil
                             :last-reload-time nil
                             :app-version nil
@@ -87,43 +99,13 @@
 (defn set-current-checksum [context checksum]
   (update-reload-state context assoc :checksum checksum))
 
-(defn get-git-commit-hash
-  "Get current git commit hash from git-sync repository"
-  []
-  (when volume-path
-    (try
-      (let [git-head-file (io/file volume-path ".git/HEAD")]
-        (when (.exists git-head-file)
-          (let [head-content (slurp git-head-file)]
-            (if (str/starts-with? head-content "ref:")
-              ;; HEAD points to a branch reference
-              (let [ref-path (str/trim (str/replace head-content "ref: " ""))
-                    ref-file (io/file volume-path ".git" ref-path)]
-                (when (.exists ref-file)
-                  (subs (str/trim (slurp ref-file)) 0 8))) ;; Use short hash (8 chars)
-              ;; HEAD contains direct commit hash
-              (subs (str/trim head-content) 0 8)))))
-      (catch Exception e
-        (log/error ::❌git-commit-error {:error (.getMessage e)})
-        nil))))
-
 (defn get-last-update-time
-  "Get last modification time of .git directory"
+  "Get last modification time of docs directory"
   []
-  (when volume-path
+  (when-let [docs-path (get-volume-path)]
     (try
-      (let [git-dir (io/file volume-path ".git")]
-        (when (.exists git-dir)
-          (java.util.Date. (.lastModified git-dir))))
+      (java.util.Date. (.lastModified (io/file docs-path)))
       (catch Exception e nil))))
-
-(defn get-docs-identifier
-  "Get identifier for current docs state - prefer git commit, fallback to checksum"
-  []
-  (or (get-git-commit-hash)
-      (do
-        (log/warn ::⚠️git-unavailable {:fallback "checksum"})
-        (calculate-docs-checksum))))
 
 (defn is-reloading? [context]
   (:in-progress (get-reload-state context)))
@@ -168,39 +150,31 @@
 
 (defn check-and-reload!
   "Check if documentation changed and reload if needed.
+   Uses checksum-based comparison to detect changes.
    This ensures only one reload happens at a time."
   [context init-product-indices-fn init-products-fn]
-  (when (and volume-path
+  (when (and (get-volume-path)
              (not (is-reloading? context)))
-    (let [;; Try git commit first, fallback to checksum
-          new-commit (get-git-commit-hash)
+    (let [;; Calculate current docs checksum
+          new-checksum (calculate-docs-checksum)
           reload-state (get-reload-state context)
-          current-commit (:commit-hash reload-state)
+          current-checksum (:checksum reload-state)
           app-version (gitbok.http/get-version context)
-          update-time (get-last-update-time)
-          ;; Use appropriate comparison based on what we have
-          [new-identifier current-identifier identifier-type]
-          (if new-commit
-            [new-commit current-commit "commit"]
-            [(calculate-docs-checksum) (get-current-checksum context) "checksum"])]
+          update-time (get-last-update-time)]
 
-      ;; Enhanced logging with version and timestamp
       (log/info ::check-status {:🏷️app-version app-version
-                                :🔖cached-commit (or current-commit
-                                                     (:checksum reload-state)
-                                                     "none")
+                                :🔖cached-checksum (or current-checksum "none")
                                 :📅cached-at (:last-reload-time reload-state)
-                                :🔍current-commit new-commit})
+                                :🔍current-checksum new-checksum})
 
       (cond
-        (not new-identifier)
-        (log/warn ::check-skipped {:reason "cannot-determine-state"})
+        (not new-checksum)
+        (log/warn ::check-skipped {:reason "cannot-calculate-checksum"})
 
-        (and new-identifier (not= new-identifier current-identifier))
+        (and new-checksum (not= new-checksum current-checksum))
         (do
-          (log/info ::📚docs-changed {:identifier-type identifier-type
-                                      :old-identifier (or current-identifier "none")
-                                      :new-identifier new-identifier})
+          (log/info ::📚docs-changed {:old-checksum (or current-checksum "none")
+                                      :new-checksum new-checksum})
 
           (set-reloading context true)
           (try
@@ -212,16 +186,14 @@
 
               ;; Update state only after successful reload
               (update-reload-state context assoc
-                                   (if (= identifier-type "commit")
-                                     :commit-hash
-                                     :checksum) new-identifier
+                                   :checksum new-checksum
                                    :last-update-time update-time
                                    :last-reload-time (java.util.Date.)
                                    :app-version app-version)
 
               (let [duration (- (System/currentTimeMillis) start-time)]
                 (log/info ::reload-success {:duration-ms duration
-                                            :🔖new-commit new-commit})))
+                                            :new-checksum new-checksum})))
             (catch Exception e
               (log/error ::reload-failed {:error (.getMessage e)
                                           :exception e}))
@@ -229,50 +201,72 @@
               (set-reloading context false))))
 
         :else
-        (log/debug ::docs-unchanged {})))))
+        (log/info ::📚docs-unchanged {})))))
 
 (defn start-reload-watcher
   "Start background thread that checks for documentation changes"
   [context init-product-indices-fn init-products-fn]
-  (when volume-path
+  (when-let [docs-path (get-volume-path)]
     (let [app-version (gitbok.http/get-version context)
-          initial-commit (get-git-commit-hash)
           initial-update-time (get-last-update-time)]
 
       (log/info ::watcher-start {:app-version app-version
-                                 :volume-path volume-path})
+                                 :volume-path docs-path})
 
-      ;; Set initial state based on what's available
-      (if initial-commit
-        (do
-          (log/info ::git-mode {:initial-commit initial-commit
-                                :git-sync-updated initial-update-time})
-          (set-reload-state context
-                            {:commit-hash initial-commit
-                             :last-update-time initial-update-time
-                             :last-reload-time (java.util.Date.)
-                             :app-version app-version
-                             :in-progress false}))
-        (do
-          (log/warn ::checksum-mode {:reason "git-not-found"})
-          (let [initial-checksum (calculate-docs-checksum)]
-            (set-reload-state context
-                              {:checksum initial-checksum
-                               :last-reload-time (java.util.Date.)
-                               :app-version app-version
-                               :in-progress false})
-            (log/info ::initial-checksum {:checksum initial-checksum}))))
-      (log/info ::check-interval {:interval-seconds (/ reload-check-interval-ms 1000)})))
+      ;; Always use checksum mode
+      (let [initial-checksum (calculate-docs-checksum)]
+        (set-reload-state context
+                          {:checksum initial-checksum
+                           :last-reload-time (java.util.Date.)
+                           :app-version app-version
+                           :in-progress false})
+        (log/info ::initial-checksum {:checksum initial-checksum
+                                      :path docs-path}))
 
-  ;; Start background thread
-  (future
-    (loop []
-      (try
-        (Thread/sleep reload-check-interval-ms)
-        (check-and-reload! context init-product-indices-fn init-products-fn)
-        (catch Exception e
-          (log/error ::watcher-error {:error (.getMessage e)})))
-      (recur)))
+      (log/info ::check-interval {:interval-seconds (/ reload-check-interval-ms 1000)}))
 
-  (log/info ::watcher-started {:status "success"})
-  :started)
+    ;; Start background thread
+    (future
+      (loop []
+        (try
+          (Thread/sleep reload-check-interval-ms)
+          (check-and-reload! context init-product-indices-fn init-products-fn)
+          (catch Exception e
+            (log/error ::watcher-error {:error (.getMessage e)})))
+        (recur)))
+
+    (log/info ::watcher-started {:status "success"})
+    :started))
+
+
+;; REPL testing helpers
+(comment
+
+  (defn set-volume-path!
+    "Set the volume path for development/testing.
+    Use this in REPL to point to your local docs directory."
+    [path]
+    (alter-var-root #'volume-path (constantly path))
+    (log/info ::volume-path-set {:path path})
+    path)
+
+  ;; Set volume path for local development
+  (set-volume-path! "docs")
+  (set-volume-path! "../docs")
+
+  ;; Check current checksum
+  (calculate-docs-checksum)
+
+  ;; Manually trigger reload check
+  ;; You'll need context from your running system
+  ;; (check-and-reload! context init-product-indices-fn init-products-fn)
+
+  ;; Test that changes are detected
+  ;; 1. Calculate initial checksum
+  (def initial-checksum (calculate-docs-checksum))
+  ;; 2. Make changes to docs/overview/faq.md or any .md file
+  ;; 3. Check new checksum
+  (def new-checksum (calculate-docs-checksum))
+  ;; 4. Compare
+  (= initial-checksum new-checksum) ;; Should be false after changes
+  )
