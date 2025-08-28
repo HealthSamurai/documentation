@@ -380,7 +380,6 @@ redirects:
   modules-1/other-modules/mdm/configure-mdm-module: modules/other-modules/mpi/get-started/configure-mpi-module.md
   modules-1/other-modules/mdm/find-duplicates-usdmatch: modules/other-modules/mpi/find-duplicates-match.md
   modules-1/other-modules/mdm/mathematical-details: modules/other-modules/mpi/mathematical-details.md
-  modules-1/other-modules/mdm/train-model: modules/other-modules/mpi/train-model-old.md
   modules-1/profiling-and-validation/asynchronous-resource-validation: modules/profiling-and-validation/asynchronous-resource-validation.md
   modules-1/profiling-and-validation/fhir-schema-validator/aidbox-fhir-igs-registry: modules/profiling-and-validation/fhir-schema-validator/aidbox-fhir-igs-registry.md
   modules-1/profiling-and-validation/fhir-schema-validator/setup-aidbox-with-fhir-schema-validation-engine: modules/profiling-and-validation/fhir-schema-validator/setup-aidbox-with-fhir-schema-validation-engine.md
