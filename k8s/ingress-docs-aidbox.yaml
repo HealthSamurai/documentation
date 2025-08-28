@@ -1,0 +1,19 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  annotations:
+    cert-manager.io/cluster-issuer: letsencrypt
+    nginx.ingress.kubernetes.io/server-snippet: |
+      if ($request_uri !~ "^/.well-known/acme-challenge/") {
+        return 301 https://www.health-samurai.io/docs/aidbox$request_uri;
+      }
+  name: docs-aidbox
+  namespace: gitbok
+spec:
+  ingressClassName: nginx
+  rules:
+    - host: docs.aidbox.app
+  tls:
+    - hosts:
+        - docs.aidbox.app
+      secretName: docs-aidbox-app-tls
