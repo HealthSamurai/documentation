@@ -23,3 +23,5 @@
 (def ^:const VERSION ::version)
 
 (def ^:const DEV_MODE ::dev-mode)
+
+(def ^:const RELOAD_STATE ::reload-state)

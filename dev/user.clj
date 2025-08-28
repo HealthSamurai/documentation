@@ -15,9 +15,9 @@
   (do (reload/init {:dirs ["src"]})
       (def context (system/start-system gitbok/default-config))
       ;; Start reload watcher if DOCS_VOLUME_PATH is set
-      (when (System/getenv "DOCS_VOLUME_PATH")
-        (gitbok-reload/start-reload-watcher context 
-                                            gitbok/init-product-indices 
+      (when (and context (System/getenv "DOCS_VOLUME_PATH"))
+        (gitbok-reload/start-reload-watcher context
+                                            gitbok/init-product-indices
                                             gitbok/init-products)))
 
   ;; reload server

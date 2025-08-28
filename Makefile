@@ -76,7 +76,7 @@ docker-build:
 
 # Run full stack with docker-compose (meilisearch + gitbok with volume)
 docker-up:
-	docker-compose --profile full up -d
+	docker-compose --profile full up -d --build
 	@echo "Services started:"
 	@echo "  - Gitbok: http://localhost:8081/docs"
 	@echo "  - Meilisearch: http://localhost:7700"

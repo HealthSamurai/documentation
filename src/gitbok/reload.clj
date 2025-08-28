@@ -1,7 +1,11 @@
 (ns gitbok.reload
   (:require
    [clojure.java.io :as io]
-   [gitbok.products :as products]))
+   [clojure.string :as str]
+   [gitbok.products :as products]
+   [gitbok.constants :as const]
+   [gitbok.http]
+   [system]))
 
 (def volume-path (System/getenv "DOCS_VOLUME_PATH"))
 
@@ -58,21 +62,73 @@
         (println (str "  ❌ Error calculating checksum: " (.getMessage e)))
         nil))))
 
-;; State management using a simple atom
-(defonce reload-state (atom {:checksum nil
-                              :in-progress false}))
+;; State management functions using context
+(defn get-reload-state [context]
+  (system/get-system-state context [const/RELOAD_STATE] 
+                          {:checksum nil
+                           :commit-hash nil
+                           :last-update-time nil
+                           :last-reload-time nil
+                           :app-version nil
+                           :in-progress false}))
 
-(defn get-current-checksum []
-  (:checksum @reload-state))
+(defn set-reload-state [context state]
+  (system/set-system-state context [const/RELOAD_STATE] state))
 
-(defn set-current-checksum [checksum]
-  (swap! reload-state assoc :checksum checksum))
+(defn update-reload-state [context f & args]
+  (system/update-system-state context [const/RELOAD_STATE]
+                              (fn [state]
+                                (apply f (or state {}) args))))
 
-(defn is-reloading? []
-  (:in-progress @reload-state))
+(defn get-current-checksum [context]
+  (:checksum (get-reload-state context)))
 
-(defn set-reloading [value]
-  (swap! reload-state assoc :in-progress value))
+(defn set-current-checksum [context checksum]
+  (update-reload-state context assoc :checksum checksum))
+
+(defn get-git-commit-hash
+  "Get current git commit hash from git-sync repository"
+  []
+  (when volume-path
+    (try
+      (let [git-head-file (io/file volume-path ".git/HEAD")]
+        (when (.exists git-head-file)
+          (let [head-content (slurp git-head-file)]
+            (if (str/starts-with? head-content "ref:")
+              ;; HEAD points to a branch reference
+              (let [ref-path (str/trim (str/replace head-content "ref: " ""))
+                    ref-file (io/file volume-path ".git" ref-path)]
+                (when (.exists ref-file)
+                  (subs (str/trim (slurp ref-file)) 0 8))) ;; Use short hash (8 chars)
+              ;; HEAD contains direct commit hash
+              (subs (str/trim head-content) 0 8)))))
+      (catch Exception e
+        (println (str "  ❌ Error reading git commit: " (.getMessage e)))
+        nil))))
+
+(defn get-last-update-time
+  "Get last modification time of .git directory"
+  []
+  (when volume-path
+    (try
+      (let [git-dir (io/file volume-path ".git")]
+        (when (.exists git-dir)
+          (java.util.Date. (.lastModified git-dir))))
+      (catch Exception e nil))))
+
+(defn get-docs-identifier
+  "Get identifier for current docs state - prefer git commit, fallback to checksum"
+  []
+  (or (get-git-commit-hash)
+      (do
+        (println "  ⚠️  Git commit unavailable, using file checksum")
+        (calculate-docs-checksum))))
+
+(defn is-reloading? [context]
+  (:in-progress (get-reload-state context)))
+
+(defn set-reloading [context value]
+  (update-reload-state context assoc :in-progress value))
 
 (defn rebuild-all-caches
   "Build complete new cache for all products.
@@ -108,20 +164,39 @@
    This ensures only one reload happens at a time."
   [context init-product-indices-fn init-products-fn]
   (when (and volume-path
-             (not (is-reloading?)))
-    (let [new-checksum (calculate-docs-checksum)
-          current-checksum (get-current-checksum)]
+             (not (is-reloading? context)))
+    (let [;; Try git commit first, fallback to checksum
+          new-commit (get-git-commit-hash)
+          reload-state (get-reload-state context)
+          current-commit (:commit-hash reload-state)
+          app-version (gitbok.http/get-version context)
+          update-time (get-last-update-time)
+          ;; Use appropriate comparison based on what we have
+          [new-identifier current-identifier identifier-type]
+          (if new-commit
+            [new-commit current-commit "commit"]
+            [(calculate-docs-checksum) (get-current-checksum context) "checksum"])]
+      
+      ;; Enhanced logging with version and timestamp
+      (println "📊 Documentation check")
+      (println (str "  🏷️  App version: " app-version))
+      (println (str "  🔖 Cached commit: " (or current-commit (:checksum reload-state) "none")))
+      (when-let [cached-time (:last-reload-time reload-state)]
+        (println (str "  📅 Cached at: " cached-time)))
+      (when new-commit
+        (println (str "  🔍 Current commit: " new-commit)))
+      
       (cond
-        (not new-checksum)
-        (println "⚠️  Checksum calculation returned nil, skipping reload")
+        (not new-identifier)
+        (println "  ⚠️  Cannot determine documentation state, skipping check")
 
-        (and new-checksum (not= new-checksum current-checksum))
+        (and new-identifier (not= new-identifier current-identifier))
         (do
-          (println "🔄 Documentation changed!")
-          (println (str "  📊 Old checksum: " current-checksum))
-          (println (str "  📊 New checksum: " new-checksum))
+          (println "  🔄 Documentation changed!")
+          (println (str "    Old " identifier-type ": " (or current-identifier "none")))
+          (println (str "    New " identifier-type ": " new-identifier))
 
-          (set-reloading true)
+          (set-reloading context true)
           (try
             (let [start-time (System/currentTimeMillis)]
               (println "🚀 Starting documentation reload...")
@@ -129,40 +204,69 @@
               ;; Build new caches
               (rebuild-all-caches context init-product-indices-fn init-products-fn)
 
-              ;; Update checksum only after successful reload
-              (set-current-checksum new-checksum)
+              ;; Update state only after successful reload
+              (update-reload-state context assoc
+                                  (if (= identifier-type "commit")
+                                    :commit-hash
+                                    :checksum) new-identifier
+                                  :last-update-time update-time
+                                  :last-reload-time (java.util.Date.)
+                                  :app-version app-version)
 
               (let [duration (- (System/currentTimeMillis) start-time)]
-                (println (str "✨ Documentation reloaded successfully in " duration "ms"))))
+                (println (str "✨ Documentation reloaded successfully in " duration "ms"))
+                (when new-commit
+                  (println (str "  🔖 New commit: " new-commit)))))
             (catch Exception e
               (println (str "❌ ERROR: Documentation reload failed"))
               (println (str "  ⚠️  Error: " (.getMessage e)))
               (.printStackTrace e))
             (finally
-              (set-reloading false))))
+              (set-reloading context false))))
 
         :else
-        (println "✅ Documentation unchanged, skipping reload")))))
+        (println "  ✅ Documentation unchanged")))))
 
 (defn start-reload-watcher
   "Start background thread that checks for documentation changes"
   [context init-product-indices-fn init-products-fn]
   (when volume-path
-    (println "🔧 Starting documentation reload watcher")
-    (println (str "  📂 Volume path: " volume-path))
-    (println (str "  ⏰ Check interval: " reload-check-interval-ms "ms (" (/ reload-check-interval-ms 1000) " seconds)"))
-
-    ;; Set initial checksum
-    (let [initial-checksum (calculate-docs-checksum)]
-      (set-current-checksum initial-checksum)
-      (println (str "  🔢 Initial checksum: " initial-checksum)))
+    (println "🚀 Starting documentation server")
+    (let [app-version (gitbok.http/get-version context)
+          initial-commit (get-git-commit-hash)
+          initial-update-time (get-last-update-time)]
+      
+      (println (str "  🏷️  Version: " app-version))
+      (println (str "  📂 Volume path: " volume-path))
+      
+      ;; Set initial state based on what's available
+      (if initial-commit
+        (do
+          (println (str "  🔖 Initial commit: " initial-commit))
+          (println (str "  📅 Git-sync updated: " (or initial-update-time "unknown")))
+          (set-reload-state context
+                           {:commit-hash initial-commit
+                            :last-update-time initial-update-time
+                            :last-reload-time (java.util.Date.)
+                            :app-version app-version
+                            :in-progress false}))
+        (do
+          (println "  ⚠️  Git repository not found, using file checksum fallback")
+          (let [initial-checksum (calculate-docs-checksum)]
+            (set-reload-state context
+                             {:checksum initial-checksum
+                              :last-reload-time (java.util.Date.)
+                              :app-version app-version
+                              :in-progress false})
+            (println (str "  🔢 Initial checksum: " initial-checksum)))))
+      
+      (println (str "  ⏰ Check interval: " (/ reload-check-interval-ms 1000) "s")))
 
     ;; Start background thread
     (future
       (loop []
         (try
           (Thread/sleep reload-check-interval-ms)
-          (println (str "🔍 Checking for documentation changes... [" (java.util.Date.) "]"))
           (check-and-reload! context init-product-indices-fn init-products-fn)
           (catch Exception e
             (println (str "❌ Error in reload watcher: " (.getMessage e)))))
