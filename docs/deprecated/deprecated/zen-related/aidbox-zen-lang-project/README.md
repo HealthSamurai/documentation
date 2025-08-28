@@ -64,7 +64,7 @@ Setting up a self-hosted project is done by providing access to project files.
 
 ### Production installation
 
-A production installation is the same as a regular installation, except when your production environment has no access to the git repo containing your configuration project. For these cases Aidbox supports [other methods of providing configuration projects](https://github.com/Aidbox/documentation/blob/master/aidbox-configuration/aidbox-zen-lang-project/broken-reference/README.md).
+A production installation is the same as a regular installation, except when your production environment has no access to the git repo containing your configuration project. For these cases Aidbox supports other methods of providing configuration projects.
 
 ### Configuration projects for Sandbox instances on Aidbox user portal
 

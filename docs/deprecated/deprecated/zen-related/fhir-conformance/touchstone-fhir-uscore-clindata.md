@@ -42,7 +42,7 @@ You can pass Touchstone FHIR 4.0.1 USCore ClinData test suite on self-hosted Aid
 
 ### Create Test Setup
 
-1. Go to [https://touchstone.aegis.net/touchstone/testdefinitions?selectedTestGrp=/FHIR4-0-1-Advanced/USCore-ClinData\&activeOnly=false\&contentEntry=TEST\_SCRIPTS](https://touchstone.aegis.net/touchstone/testdefinitions?selectedTestGrp=/FHIR4-0-1-Advanced/USCore-ClinData\&activeOnly=false\&contentEntry=TEST_SCRIPTS)
+1. Go to [https://touchstone.aegis.net/touchstone/testdefinitions?selectedTestGrp=/FHIR4-0-1-Advanced/USCore-ClinData\&activeOnly=false\&contentEntry=TEST\_SCRIPTS](https://touchstone.aegis.net/touchstone/testdefinitions)
 2. Select all tests
 3. Press **Create Test Setup**
 4. Select your `Test System` **Destination**

@@ -34,7 +34,7 @@ Please note that we use `${AUTH_SERVER_URL}` placeholder for the `jwt.iss` and `
 
 ## Dynamically template init bundle in Docker Compose
 
-[See this example](https://github.com/Aidbox/examples/tree/main/init-bundle-env-template). This example demonstrates how to dynamically template Aidbox init bundles using environment variables in Docker Compose by overriding the container entrypoint.
+[See this example](https://github.com/Aidbox/examples/tree/main/aidbox-features/init-bundle-env-template). This example demonstrates how to dynamically template Aidbox init bundles using environment variables in Docker Compose by overriding the container entrypoint.
 
 ## Using envsubst
 

@@ -8,7 +8,7 @@ Mailgun is an email delivery service for sending, receiving, and tracking emails
 
 ### Create Mailgun account
 
-You can do that account by following [Mailgun Documentation](https://documentation.mailgun.com/en/latest/).
+You can do that account by following [Mailgun Documentation](https://documentation.mailgun.com).
 
 ### Add environment variables to the docker-compose.yaml
 

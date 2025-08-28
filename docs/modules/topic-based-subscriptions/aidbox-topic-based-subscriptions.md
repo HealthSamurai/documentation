@@ -10,7 +10,7 @@ This feature enables dynamic subscriptions to changes in FHIR resources, allowin
 
 <figure><img src="../../../.gitbook/assets/eb0e6bfe-79a6-4f5e-bb16-1913eb0106d0.png" alt=""><figcaption></figcaption></figure>
 
-For an application example, refer to [Aidbox Subscriptions & Kafka AidboxTopicDestination](https://github.com/Aidbox/app-examples/tree/main/aidbox-subscriptions-to-kafka)
+For an application example, refer to [Aidbox Subscriptions & Kafka AidboxTopicDestination](https://github.com/Aidbox/examples/tree/main/aidbox-features/aidbox-subscriptions-to-kafka)
 
 ## Key Components
 

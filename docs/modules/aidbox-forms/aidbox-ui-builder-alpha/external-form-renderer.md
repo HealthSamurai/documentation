@@ -84,5 +84,5 @@ Testing custom renderers involves verifying proper component loading, data bindi
 
 ## Example Project
 
-A complete working example of custom renderer implementation is available in the [Aidbox Forms Builder Custom Renderer repository](https://github.com/Aidbox/examples/tree/main/aidbox-forms-builder-custom-renderer). This example demonstrates the full setup process including Docker configuration, renderer implementation, and Forms Builder integration.
+A complete working example of custom renderer implementation is available in the [Aidbox Forms Builder Custom Renderer repository](https://github.com/Aidbox/examples/tree/main/aidbox-forms/aidbox-forms-builder-custom-renderer). This example demonstrates the full setup process including Docker configuration, renderer implementation, and Forms Builder integration.
 

@@ -57,7 +57,7 @@ For additional details see [Kafka Producer Configs Documentation](https://kafka.
 
 ### Standalone Kafka (at least once)
 
-Full example see on [Github](https://github.com/Aidbox/app-examples/tree/main/aidbox-subscriptions-to-kafka)
+Full example see on [Github](https://github.com/Aidbox/examples/tree/main/aidbox-features/aidbox-subscriptions-to-kafka)
 
 <pre><code><strong>POST /fhir/AidboxTopicDestination
 </strong>content-type: application/json

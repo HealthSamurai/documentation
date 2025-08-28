@@ -285,7 +285,7 @@ ORDER BY txid DESC;
 
 ### Transactions and Batch Operations
 
-Aidbox uses PostgreSQL's [ACID transactions](https://www.postgresql.org/docs/current/acid.html) to ensure data consistency across multiple operations. The system uses [SERIALIZABLE isolation level](https://www.postgresql.org/docs/current/transaction-iso.html) by default, which prevents all serialization anomalies but may cause transaction rejection under high concurrency.
+Aidbox uses PostgreSQL's [ACID transactions](https://en.wikipedia.org/wiki/ACID) to ensure data consistency across multiple operations. The system uses [SERIALIZABLE isolation level](https://www.postgresql.org/docs/current/transaction-iso.html) by default, which prevents all serialization anomalies but may cause transaction rejection under high concurrency.
 
 You can adjust the isolation level using the `x-max-isolation-level` header in API requests. Lower isolation levels reduce transaction rejection but may allow serialization anomalies. See [batch-transaction documentation](../api/batch-transaction.md) for details.
 

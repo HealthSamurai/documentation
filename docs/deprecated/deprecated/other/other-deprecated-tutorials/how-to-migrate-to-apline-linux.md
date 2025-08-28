@@ -4,7 +4,7 @@ Since version `2301`, [healthsamurai/aidboxone](https://hub.docker.com/r/healths
 
 If you use `aidboxone` as a base image to build your own containers, you need to make the following changes
 
-* Use [apk](https://wiki.alpinelinux.org/wiki/Alpine\_Package\_Keeper) instead of `yum`
+* Use [apk](https://wiki.alpinelinux.org/wiki/Alpine_Package_Keeper) instead of `yum`
 * Use `/bin/sh` instead of `/bin/bash`
 
 If you use volumes, you will need to change the access rights

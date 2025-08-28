@@ -192,7 +192,7 @@ content-type: application/edn
 
 **CSV file content**
 
-File is also available [here](https://storage.googleapis.com/aidbox-public/documentation/icd10\_example\_no\_header.csv)
+File is also available [here](https://storage.googleapis.com/aidbox-public/documentation/icd10_example_no_header.csv)
 
 ```
 10344;20;XX;External causes of morbidity and mortality;;;1;
@@ -286,7 +286,6 @@ content-type: application/edn
 
 **CSV file content**
 
-File is also available [here](https://storage.googleapis.com/aidbox-public/documentation/icd10\_example\_with\_header.csv)
 
 ```csv
 ID,REC_CODE,ICD_CODE,ICD_NAME,ID_PARENT,ADDL_CODE,ACTIVE,DATE

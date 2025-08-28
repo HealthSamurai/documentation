@@ -4,7 +4,7 @@
 
 * Aidbox FHIR server (in progress)
 * Aidbox Forms
-  * Added the ability [to embed an external form renderer](../modules/aidbox-forms/aidbox-ui-builder-alpha/external-form-renderer.md) in the Aidbox Form Builder, with an [example project](https://github.com/Aidbox/examples/tree/main/aidbox-forms-builder-custom-renderer) demonstrating setup.
+  * Added the ability [to embed an external form renderer](../modules/aidbox-forms/aidbox-ui-builder-alpha/external-form-renderer.md) in the Aidbox Form Builder, with an [example project](https://github.com/Aidbox/examples/tree/main/aidbox-forms/aidbox-forms-builder-custom-renderer) demonstrating setup.
   * Supported the [`entryMode` extension](../modules/aidbox-forms/aidbox-ui-builder-alpha/form-creation/entry-mode.md) to define how questions are presented and navigated in the form.
   * Added [AI assistance for generating ViewDefinition](../modules/aidbox-forms/aidbox-ui-builder-alpha/ai-assistant.md) and visualizing output in the Aidbox Form Builder.
   * Extended the [EnableWhen constructor](../modules/aidbox-forms/aidbox-ui-builder-alpha/form-creation/widgets.md#enablewhen-rule) to cover group conditions.
@@ -131,7 +131,7 @@
   * Supported [Apple](../tutorials/security-access-control-tutorials/apple.md) as an [external identity provider](../tutorials/security-access-control-tutorials/set-up-external-identity-provider.md)
   * Released `deprecated/capabilities`endpoint to detect deprectated zen and Entity/Atributes entities and updated the [migration guide](../tutorials/artifact-registry-tutorials/custom-resources/migrate-to-fhirschema/).
   * Implemented a 24-hour grace period for all Aidbox instances that cannot connect to the Aidbox portal for license verification. Also available in versions 2502, 2501, 2412, 2411, 2410, 2402, 2306, and 2302.
-  * Supported [OTEL collector](../modules/observability/) configuration as an [Aidbox setting](../reference/settings/observability.md#otel). Updated [Aidbox example](https://github.com/Aidbox/examples/tree/main/OpenTelemetry) that shows how to launch and explore the Aidbox observability features (logs, traces, and metrics) locally.
+  * Supported [OTEL collector](../modules/observability/) configuration as an [Aidbox setting](../reference/settings/observability.md#otel). Updated [Aidbox example](https://github.com/Aidbox/examples/tree/main/aidbox-features/OpenTelemetry) that shows how to launch and explore the Aidbox observability features (logs, traces, and metrics) locally.
   * Added new [AuditEvents](../access-control/audit-and-logging.md) for password changes and unsuccessful login attempts.
   * Added a synthetic data import progress bar on the Aidbox UI home page.
 * Aidbox Forms
@@ -191,7 +191,7 @@ Aidbox is transitioning to the FHIR Schema engine. Existing zen and Entity/Attri
   * Improved performance for handling large forms.
   * Added the ability to [set colors for tooltips and hover effects](../modules/aidbox-forms/aidbox-ui-builder-alpha/form-creation/form-customisation-in-theme-editor.md#how-to-create-a-new-theme) using the primary color in the Theme.
   * Enabled [linking a Questionnaire profile](../modules/aidbox-forms/aidbox-ui-builder-alpha/form-creation/form-settings.md#profiles) directly in the UI Builder.
-  * Updated the [Aidbox Forms Smart Launch project](https://github.com/Aidbox/examples/tree/main/aidbox-forms-smart-launch-2) with enhancements and fixes.
+  * Updated the [Aidbox Forms Smart Launch project](https://github.com/Aidbox/examples/tree/main/aidbox-forms/aidbox-forms-smart-launch-2) with enhancements and fixes.
   * Added [video support to the media section](../modules/aidbox-forms/aidbox-ui-builder-alpha/form-creation/widgets.md#media-section) of the item settings .
   * Supported [profiles and slices in definition-based extraction](https://build.fhir.org/ig/HL7/sdc/extraction.html#definition-based-extraction).
 
@@ -203,7 +203,7 @@ Minor updates:
 
 * Aidbox
   * Supported [SMART App Launch scopes v1 and v2](../modules/smartbox/) for Aidbox on FHIR Schema validation engine and reworked [SMART on FHIR](../modules/smartbox/) documentation
-  * Added example of [SMART App Launch using Aidbox and Keycloak](https://github.com/Aidbox/examples/tree/main/smart-app-launch)
+  * Added example of [SMART App Launch using Aidbox and Keycloak](https://github.com/Aidbox/examples/tree/main/aidbox-features/smart-app-launch)
   * Supported enabling [OrgBAC (Organization-based hierarchical access control)](../access-control/authorization/scoped-api/organization-based-hierarchical-access-control.md) using an [environment variable](../tutorials/security-access-control-tutorials/how-to-enable-hierarchical-access-control.md) if an Aidox instance uses FHIR Schema validator
   * Fixed security issues and bugs
 *   Aidbox Forms
@@ -252,7 +252,7 @@ Minor updates:
   * Fixed critical vulnerabilities and bugs
 * Aidbox Forms
   * [Added an ability to connect Aidbox Forms with external FHIR servers for data management](../modules/aidbox-forms/aidbox-ui-builder-alpha/external-fhir-servers-as-a-data-backend.md)
-  * Introduced an [Aidbox Forms SMART app sample project with React.js](https://github.com/Aidbox/examples/tree/main/aidbox-forms-smart-launch)
+  * Introduced an [Aidbox Forms SMART app sample project with React.js](https://github.com/Aidbox/examples/tree/main/aidbox-forms/aidbox-forms-smart-launch-2)
   * Verified compliance with accessibility standards
   * Added an ability to re-populate a form with the latest available data
   * Added validation checks for Questionnaires directly in the UI Builder console.
@@ -291,7 +291,7 @@ Minor updates:
 
 * Aidbox
   * Introduced dynamic [Topic-based subscriptions](../modules/topic-based-subscriptions/aidbox-topic-based-subscriptions.md) and supported [Kafka (OSS and AWS)](../tutorials/subscriptions-tutorials/kafka-aidboxtopicdestination.md) as delivery channels
-  * Released a [demo of publishing a completed QuestionnaireResponse to Kafka topic](https://github.com/Aidbox/app-examples/tree/main/aidbox-subscriptions-to-kafka)
+  * Released a [demo of publishing a completed QuestionnaireResponse to Kafka topic](https://github.com/Aidbox/examples/tree/main/aidbox-features/aidbox-subscriptions-to-kafka)
   * Added an option to connect a self-hosted Aidbox instance to the [ViewDefinition builder](https://sqlonfhir.aidbox.app/?utm_source=aidbox-docs\&utm_medium=release-notes)
   * Enhanced [SQL on FHIR spec coverage](https://fhir.github.io/sql-on-fhir-v2)
   * Supported [Audit logging](../access-control/audit-and-logging.md) using external identity providers
@@ -314,7 +314,7 @@ Minor updates:
 
 * Aidbox
   * Introduced support for [custom resources using FHIR StructureDefinitions](../tutorials/artifact-registry-tutorials/custom-resources/custom-resources-using-structuredefinition.md) and [custom resources using FHIR schemas](../tutorials/artifact-registry-tutorials/custom-resources/custom-resources-using-fhir-schema.md)
-  * Published [JavaScript app example](https://github.com/Aidbox/app-examples/blob/main/aidbox-notify-via-custom-resources/README.md) demonstrating custom resources with a typical notification flow: requesting a notification, locking it for sending, and sending it (placeholder)
+  * Published [JavaScript app example](https://github.com/Aidbox/examples/tree/main/aidbox-features/aidbox-notify-via-custom-resources) demonstrating custom resources with a typical notification flow: requesting a notification, locking it for sending, and sending it (placeholder)
   * Supported [enabling Audit Log using an environment variable](../reference/settings/security-and-access-control.md)
 * [Aidbox Forms](../modules/aidbox-forms/)
   * UI builder updates (FHIR Questionnaire-based):
@@ -429,7 +429,7 @@ Minor updates:
 * Security and access control
   * Added Access policy matcho engine [$one-of operator](../reference/matcho-dsl-reference.md) to fetch the list of the available values from the request context
   * Supported history endpoint within [the Organisation-based access control](../access-control/authorization/scoped-api/organization-based-hierarchical-access-control.md#history)
-  * Documented [GitHub as an external identity provider](https://github.com/HealthSamurai/sansara/issues/4016)
+  * Documented GitHub as an external identity provider
   * Published [guide on how to use self-signed SSL certificates](../deployment-and-maintenance/deploy-aidbox/run-aidbox-in-kubernetes/self-signed-ssl-certificates.md) when deploying Aidbox
   * Fixed the code\_verifier to behave according to the RFC
   * Fixed minor issue in Multibox that led to many “do nothing” messages in the logs
@@ -1060,7 +1060,7 @@ Starting from January 2022 we're switching to a new release cycle. We added`:lat
 ## July 2021 - v:2107
 
 * We've released a major Aidbox UI upgrade
-* Updated REST Console (check out[ the tutorial](https://bit.ly/rest_console_tutorial)):
+* Updated REST Console (check out the tutorial):
   * Explicit request headers `content-type, accept` etc
   * Show raw response
   * Added syntax highlight

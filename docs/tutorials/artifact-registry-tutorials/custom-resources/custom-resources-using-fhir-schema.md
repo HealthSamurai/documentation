@@ -67,7 +67,7 @@ Due to the second limitation, resource definitions based on logical models are n
 
 This guide will walk you through the process of creating custom resources for a notification system, demonstrating the typical workflow of creating, managing, and sending template-based notifications from a healthcare system to patients using custom resources defined through FHIRSchema.
 
-Additionally, there is a [JavaScript application](https://github.com/Aidbox/app-examples/tree/main/aidbox-notify-via-custom-resources#aidbox-notify-via-custom-resources) that showcases the implementation of notification handling. This includes requesting notifications, locking them for processing, and completing the sending process.
+Additionally, there is a [JavaScript application](https://github.com/Aidbox/examples/tree/main/aidbox-features/aidbox-notify-via-custom-resources#aidbox-notify-via-custom-resources) that showcases the implementation of notification handling. This includes requesting notifications, locking them for processing, and completing the sending process.
 
 To implement a notification flow, you may need a notification resource and a template resource to store your notification messages.
 

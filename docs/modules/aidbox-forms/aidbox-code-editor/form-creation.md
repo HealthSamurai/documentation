@@ -48,7 +48,7 @@ Lets define some subset of the Vitals questionaire.
               :type zen/number}}}
 ```
 
-**SDC Rules** is just are [lisp expressions](https://github.com/getheal/zen-sdc/blob/main/docs/lisp.md) that can be used for two things:
+**SDC Rules** is just are lisp expressions that can be used for two things:
 
 * store temporary value
 * calculate document field

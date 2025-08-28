@@ -73,8 +73,8 @@ var result = await client.CreateAsync(patient);
 
 See also:
 
-* [Using HAPI Client with Aidbox](https://github.com/Aidbox/examples/tree/main/aidbox-hapi-client)
-* [Using Firely Client with Aidbox](https://github.com/Aidbox/examples/tree/main/aidbox-firely-dotnet-client)
+* [Using HAPI Client with Aidbox](https://github.com/Aidbox/examples/tree/main/developer-experience/aidbox-hapi-client)
+* [Using Firely Client with Aidbox](https://github.com/Aidbox/examples/tree/main/developer-experience/aidbox-firely-dotnet-client)
 
 
 

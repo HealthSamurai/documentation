@@ -200,7 +200,7 @@ deleteResource("Patient", "c58f29eb-f28d-67c1-0400-9af3aba3d58c")
 
 ### createSubscription
 
-Aidbox subscription is a way to subscribe and get notifications about updating resources on the server. See our [subscription sample](https://github.com/Aidbox/aidbox-sdk-js/tree/main/subscription-sample) for more details.
+Aidbox subscription is a way to subscribe and get notifications about updating resources on the server. See our [subscription sample](https://github.com/Aidbox/aidbox-sdk-js) for more details.
 
 ```javascript
 await client.createSubscription({

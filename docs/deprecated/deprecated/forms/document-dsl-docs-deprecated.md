@@ -219,7 +219,7 @@ For simple cases you can freely use `:enum` keyword with options - but for compl
 * `:aidbox.sdc.options/valueset` use valuset stored in aidbox db
 * `:aidbox.sdc.options/rpc` - use custom rpc
 
-> It's better to use valuesets instead of `:enum`, they are more flexible for a long run. (ex: You will not have validation errors if change display of some value) you can add valuesets by using [FTR](https://github.com/Aidbox/documentation/blob/master/reference/aidbox-forms/terminology/fhir-terminology-repository/ftr-specification.md)
+> It's better to use valuesets instead of `:enum`, they are more flexible for a long run. (ex: You will not have validation errors if change display of some value) you can add valuesets by using [FTR](../zen-related/ftr.md)
 
 If you specify `:sdc/options :aidbox.sdc.options/valueset`, then you also must specify `:valueset` property.
 

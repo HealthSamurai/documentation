@@ -1087,7 +1087,7 @@ result:
 
 ### aidbox.sdc/get-form-access-jwt
 
-Creates [policy token](https://github.com/Aidbox/documentation/blob/master/reference/aidbox-forms/broken-reference/README.md) to get access to SDCDocument/SDCWorkflow
+Creates policy token to get access to SDCDocument/SDCWorkflow
 
 params:
 
@@ -1138,7 +1138,7 @@ policy: <jwt policy token>
 
 Generates link for form access and management without authentication.
 
-> Creates [policy token](https://github.com/Aidbox/documentation/blob/master/reference/aidbox-forms/broken-reference/README.md) to get access to SDCDocument/SDCWorkflow
+> Creates policy token to get access to SDCDocument/SDCWorkflow
 
 Redirect urls can be specified for different actions.
 

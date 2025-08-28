@@ -279,7 +279,7 @@ See also:
 
 ### SQL-on-FHIR
 
-Healthcare analytics and reporting often require complex queries that go beyond what FHIR search can express - aggregating data across multiple resources, performing statistical analysis, or generating custom reports. Aidbox implements the [SQL-on-FHIR specification](https://build.fhir.org/ig/HL7/sql-on-fhir-v2/), which bridges this gap by allowing you to write SQL queries directly against FHIR data, treating resources as relational tables while maintaining FHIR's semantic structure.
+Healthcare analytics and reporting often require complex queries that go beyond what FHIR search can express - aggregating data across multiple resources, performing statistical analysis, or generating custom reports. Aidbox implements the [SQL-on-FHIR specification](https://build.fhir.org/ig/FHIR/sql-on-fhir-v2/), which bridges this gap by allowing you to write SQL queries directly against FHIR data, treating resources as relational tables while maintaining FHIR's semantic structure.
 
 ```mermaid
 graph LR

@@ -2,7 +2,7 @@
 
 ## Topic-based Subscriptions to Kafka
 
-[DEMO](https://github.com/Aidbox/app-examples/blob/main/aidbox-subscriptions-to-kafka/README.md#demo) | [Documentation](./)
+[DEMO](https://github.com/Aidbox/examples/tree/main/aidbox-features/aidbox-subscriptions-to-kafka/README.md#demo) | [Documentation](./)
 
 This example showcases [Aidbox SubscriptionTopic](./) producing data to Kafka.
 
@@ -171,9 +171,9 @@ Open [Kafka UI](http://localhost:8080/) -> `Topics` -> `aidbox-forms` -> `messag
 
 Also you can find example of k8s deployment:
 
-* Configuration: [k8s.yaml](https://github.com/Aidbox/examples/blob/main/aidbox-subscriptions-to-kafka/k8s.yaml)
+* Configuration: [k8s.yaml](https://github.com/Aidbox/examples/tree/main/aidbox-features/aidbox-subscriptions-to-kafka/k8s.yaml)
 * Also, you need to pass secrets for Aidbox and Database. See details: [Deploy Aidbox with Helm Charts](../../deployment-and-maintenance/deploy-aidbox/run-aidbox-in-kubernetes/deploy-aidbox-with-helm-charts.md). We recommend to use helm.
-* Configuration resource examples: [k8s\_resources](https://github.com/Aidbox/examples/blob/main/aidbox-subscriptions-to-kafka/k8s.yaml)
+* Configuration resource examples: [k8s\_resources](https://github.com/Aidbox/examples/tree/main/aidbox-features/aidbox-subscriptions-to-kafka/k8s.yaml)
 
 ### Demo
 
