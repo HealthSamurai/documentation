@@ -27,7 +27,8 @@
    [ring.util.response :as resp]
    [system]
    [gitbok.utils :as utils]
-   [uui])
+   [uui]
+   [clojure.java.io :as io])
   (:gen-class))
 
 (set! *warn-on-reflection* true)
@@ -310,9 +311,6 @@
           (picture-url? uri))
       (render-pictures context request)
 
-      (str/starts-with? uri-relative "public/og-preview")
-      (resp/resource-response uri-relative)
-
       :else
       (let [filepath
             (indexing/uri->filepath context uri-relative)]
@@ -418,6 +416,17 @@
         response (resp/resource-response (utils/concat-urls "public" path))]
     (when response
       (content-type-response response request))))
+
+(defn serve-og-preview
+  "Serves OG preview images from resources"
+  [context request]
+  (let [uri (gitbok.http/url-without-prefix context (:uri request))
+        path (str/replace uri #"^/public/og-preview/" "")
+        resource-path (utils/concat-urls "public/og-preview" path)]
+    (if-let [response (resp/resource-response resource-path)]
+      (resp/content-type response "image/png")
+      {:status 404
+       :body "OG preview not found"})))
 
 (system/defmanifest
   {:description "gitbok"
@@ -529,6 +538,13 @@
     :method :get
     :fn #'serve-static-file})
 
+  ;; OG preview handler - registered early to avoid conflicts with product routes
+  (http/register-endpoint
+   context
+   {:path (str prefix "/public/og-preview/:path*")
+    :method :get
+    :fn #'serve-og-preview})
+
   (http/register-endpoint
    context
    {:path (utils/concat-urls prefix "/.gitbook/assets/:path*")
@@ -601,14 +617,6 @@
           :method :get
           :middleware [product-middleware gzip-middleware]
           :fn #'render-landing})
-
-        ;; Product OG preview images
-        (http/register-endpoint
-         context
-         {:path (str product-path "/public/og-preview/:product-id/:path*")
-          :method :get
-          :middleware [product-middleware gzip-middleware]
-          :fn #'render-pictures})
 
         ;; All product pages
         (http/register-endpoint

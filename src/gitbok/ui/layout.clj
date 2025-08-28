@@ -10,7 +10,8 @@
    [cheshire.core :as json]
    [uui]
    [system]
-   [clojure.string :as str]))
+   [clojure.string :as str]
+   [gitbok.utils :as utils]))
 
 (defn layout-view [context body uri filepath]
   [:div
@@ -172,11 +173,11 @@ document.addEventListener('DOMContentLoaded', function() {
               (gitbok.http/get-url context)
               (gitbok.http/get-absolute-url context uri))
             :og-preview
-            (let [product-id (:id (products/get-current-product context))]
+            (let [product-id (:id (products/get-current-product context))
+                  png-filename (when filepath (str/replace filepath #"\.md" ".png"))]
               (gitbok.http/get-absolute-url
                context
-               (str "/public/og-preview/" product-id
-                    (when filepath (str/replace filepath #"\.md" ".png")))))
+               (utils/concat-urls "/public/og-preview" product-id png-filename)))
             :lastmod lastmod
             :favicon-url (gitbok.http/get-product-prefixed-url context "/favicon.ico")}))
 
