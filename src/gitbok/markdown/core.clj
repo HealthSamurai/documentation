@@ -47,23 +47,30 @@
        (hickory.core/parse-fragment html)))
 
 (defn get-meta-from-url [url]
-  (let [hic (->> (slurp url)
-                 (parse-html)
-                 (filter vector?))]
-    {:image (->>
-             hic
-             (filter
-              (fn [el]
-                (= "icon" (:rel (second el)))))
-             (first)
-             (last) :href)
-     :title (->>
-             hic
-             (filter
-              (fn [el]
-                (= :title (first el))))
-             (first)
-             (last))}))
+  (try
+    (let [hic (->> (slurp url)
+                   (parse-html)
+                   (filter vector?))]
+      {:image (->>
+               hic
+               (filter
+                (fn [el]
+                  (= "icon" (:rel (second el)))))
+               (first)
+               (last) :href)
+       :title (->>
+               hic
+               (filter
+                (fn [el]
+                  (= :title (first el))))
+               (first)
+               (last))})
+    (catch Exception e
+      ;; Log warning but don't crash - return defaults for any fetch error
+      (println (str "Warning: Could not fetch metadata from URL: " url 
+                    " (" (.getMessage e) ")"))
+      {:image nil
+       :title nil})))
 
 (defn remove-selects [form]
   (walk/postwalk
