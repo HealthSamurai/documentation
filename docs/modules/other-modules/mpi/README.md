@@ -64,8 +64,8 @@ Configure Aidbox MPI module to use your matching model
 
 Use `$match` operation to find duplicates
 
-{% content-ref url="find-duplicates-match-old.md" %}
-[find-duplicates-match-old.md](find-duplicates-match-old.md)
+{% content-ref url="broken-reference" %}
+[Broken link](broken-reference)
 {% endcontent-ref %}
 
 ## Merge and Unmerge Records
