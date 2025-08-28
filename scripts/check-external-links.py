@@ -114,18 +114,30 @@ def setup_session() -> requests.Session:
 
 
 def extract_links_from_file(file_path: Path) -> Dict[str, List[int]]:
-    """Extract all external HTTPS links from a markdown file (only markdown-style links)."""
+    """Extract all external HTTPS links from a markdown file (markdown-style links and embedded URLs)."""
     links = {}
     
     try:
         with open(file_path, 'r', encoding='utf-8') as f:
             content = f.read()
             
-        # Find ONLY markdown links [text](url)
+        # Find markdown links [text](url)
         markdown_pattern = r'\[([^\]]+)\]\(([^)]+)\)'
+        # Find embedded URLs {% embed url="..." %}
+        embed_pattern = r'{%\s*embed\s+url="([^"]+)"'
+        
         for line_num, line in enumerate(content.split('\n'), 1):
+            # Check for markdown-style links
             for match in re.finditer(markdown_pattern, line):
                 url = match.group(2)
+                if url.startswith('https://'):
+                    if url not in links:
+                        links[url] = []
+                    links[url].append(line_num)
+            
+            # Check for embedded URLs
+            for match in re.finditer(embed_pattern, line):
+                url = match.group(1)
                 if url.startswith('https://'):
                     if url not in links:
                         links[url] = []
