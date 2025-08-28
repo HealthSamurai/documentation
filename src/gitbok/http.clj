@@ -18,7 +18,7 @@
         lastmod
         (assoc
          "Scroll-To-Id" section
-         "Cache-Control" "public, max-age=86400"
+         "Cache-Control" "public, max-age=300"
          "Last-Modified" (utils/iso-to-http-date lastmod)
          "ETag" (utils/etag lastmod)))
       :body html}))
