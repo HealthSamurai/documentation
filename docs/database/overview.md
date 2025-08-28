@@ -4,7 +4,7 @@ description: >-
   FHIR resource storage, CRUD operations, and querying methods.
 ---
 
-# Database Overview
+# Database overview
 
 This article explains how Aidbox stores and manages healthcare data using PostgreSQL as its database engine. You'll learn about:
 
@@ -669,7 +669,8 @@ graph LR
 ```
 
 Refer to our sample to learn more:
-{% embed url="https://github.com/Aidbox/examples/tree/main/aidbox-with-ro-replica" %}
+
+{% embed url="https://github.com/Aidbox/examples/tree/main/aidbox-features/aidbox-with-ro-replica" %}
 
 ## Which PostgreSQL can be used with Aidbox?
 
