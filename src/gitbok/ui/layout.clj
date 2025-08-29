@@ -87,6 +87,8 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     [:script {:src (gitbok.http/get-prefixed-url context "/static/toc.js")}]
     [:script {:src (gitbok.http/get-prefixed-url context "/static/mobile-menu.js")}]
     [:script {:src (gitbok.http/get-prefixed-url context "/static/mobile-search.js")}]
+    
+    ;; Syntax highlighting
     [:link {:rel "stylesheet" :href (gitbok.http/get-prefixed-url context "/static/github.min.css")}]
     [:script {:src (gitbok.http/get-prefixed-url context "/static/highlight.min.js")}]
     [:script {:src (gitbok.http/get-prefixed-url context "/static/json.min.js")}]
@@ -98,25 +100,21 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     [:script {:src (gitbok.http/get-prefixed-url context "/static/graphql.min.js")}]
     [:script {:src (gitbok.http/get-prefixed-url context "/static/sql.min.js")}]
     [:script {:src (gitbok.http/get-prefixed-url context "/static/javascript.min.js")}]
+    
+    ;; Mermaid diagrams
     [:script {:src (gitbok.http/get-prefixed-url context "/static/mermaid.min.js")}]
     [:script {:src (gitbok.http/get-prefixed-url context "/static/mermaid-config.js")}]
+    
+    ;; KaTeX for LaTeX math rendering
+    [:link {:rel "stylesheet" :href (gitbok.http/get-prefixed-url context "/static/katex.min.css")}]
+    [:script {:src (gitbok.http/get-prefixed-url context "/static/katex.min.js")}]
+    
     ;; Meilisearch HTMX keyboard navigation
     [:script {:src (gitbok.http/get-prefixed-url context "/static/meilisearch-htmx-nav.js")}]
-    [:script {:src (gitbok.http/get-prefixed-url context "/static/init-content.js")}]
-    [:script {:src (gitbok.http/get-prefixed-url context "/static/mermaid-init.js")}]
-    [:script {:src (gitbok.http/get-prefixed-url context "/static/hljs-init.js")}]
-    [:script (uui/raw "
-document.addEventListener('DOMContentLoaded', function() {
-  // Initialize mermaid library first
-  if (typeof initializeMermaidLibrary === 'function') {
-    initializeMermaidLibrary();
-  }
-  // Then initialize content (hljs + mermaid rendering)
-  if (typeof initializeContent === 'function') {
-    setTimeout(initializeContent, 100);
-  }
-});")]
-
+    
+    ;; Unified content renderer (replaces init-content.js, mermaid-init.js, hljs-init.js)
+    [:script {:src (gitbok.http/get-prefixed-url context "/static/unified-content-renderer.js")}]
+    
     [:script {:src (gitbok.http/get-prefixed-url context "/static/copy-code.js")}]
     [:script {:src (gitbok.http/get-prefixed-url context "/static/heading-links.js")}]
     [:script {:src "https://cdn.jsdelivr.net/npm/sortablejs@1.15.0/Sortable.min.js"}]

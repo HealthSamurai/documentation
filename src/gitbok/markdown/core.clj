@@ -152,6 +152,18 @@
                  (mapv #(transform/->hiccup ctx %)
                        (:content node))))
 
+         ;; Handle LaTeX formulas from nextjournal/markdown
+         :formula
+         (fn [_ctx node]
+           (let [tex (:text node)]
+             [:span.katex-inline tex]))
+         
+         ;; Handle block formulas (when formula is on separate lines)
+         :block-formula
+         (fn [_ctx node]
+           (let [tex (:text node)]
+             [:div.katex-display tex]))
+
          :code
          (fn [_ctx node]
            (if (and (:info node) (str/starts-with? (:info node) "mermaid"))
@@ -228,6 +240,7 @@
 
 (defn render-md [context filepath parsed]
   (transform/->hiccup (renderers context filepath) parsed))
+
 
 (defn hack-md [context filepath md-file]
   (let [context-hack

@@ -16,10 +16,9 @@
         ;; search
         org.msync/lucene-clj {:mvn/version "0.2.0-SNAPSHOT"}
 
-        ;; 29.05.25 some useful fixes were not released
         io.github.nextjournal/markdown
         {:git/url "https://github.com/nextjournal/markdown.git"
-         :sha "5829ec101331b1702841094f4dc897ee46f0ddcd"}
+         :sha "16be4ef6b8b5741c5d8f8432dd9ce8b52b1f3f68"}
         org.clojure/data.xml {:mvn/version "0.0.8"}
         clj-commons/clj-yaml {:mvn/version "1.0.29"}
         borkdude/edamame {:mvn/version "1.4.31"}

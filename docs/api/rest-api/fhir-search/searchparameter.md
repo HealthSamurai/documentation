@@ -184,18 +184,18 @@ For example, searching `GET /fhir/Patient?birthdate=2020` means that the search 
 
 Resource range is the range of the target resource value. For example, if the Patient resource contains birthDate `2020-01-01`, the resource range is `2020-01-01T00:00:00Z—2020-01-01T23:59:59Z`.
 
-Let $$(s, S)$$ be the search range; $$(r, R)$$​ be the resource range.
+Let $(s, S)$ be the search range; $(r, R)$ be the resource range.
 
 Description of FHIR prefixes:
 
-* `eq` - equal. Formula: $$(s, S) \supset (r, R)$$​
-* `ne` - not equal. Formula: $$(s, S) \not\supset (r, R)$$​
-* `lt` - less than. Formula: $$r \le s$$​
-* `le` - less than or equal. Formula: $$r \le S$$
-* `gt` - greater than. Formula: $$R > S$$
-* `ge` - greater than or equal. Formula: $$R \ge s$$​
-* `sa` - starts after. Formula: $$r \ge S$$​
-* `eb` - ends before. Formula: $$R \le s$$
+* `eq` - equal. Formula: $(s, S) \supset (r, R)$
+* `ne` - not equal. Formula: $(s, S) \not\supset (r, R)$
+* `lt` - less than. Formula: $r \le s$
+* `le` - less than or equal. Formula: $r \le S$
+* `gt` - greater than. Formula: $R > S$
+* `ge` - greater than or equal. Formula: $R \ge s$
+* `sa` - starts after. Formula: $r \ge S$
+* `eb` - ends before. Formula: $R \le s$
 
 ### number
 
