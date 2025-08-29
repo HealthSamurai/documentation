@@ -131,9 +131,10 @@
   (DateTimeFormatter/ofPattern "EEE, dd MMM yyyy HH:mm:ss 'GMT'" Locale/US))
 
 (defn iso-to-http-date [iso-string]
-  (let [instant (Instant/parse iso-string)
+  (when iso-string
+    (let [instant (Instant/parse iso-string)
         zoned (ZonedDateTime/ofInstant instant (ZoneId/of "GMT"))]
-    (.format ^DateTimeFormatter http-date-formatter zoned)))
+    (.format ^DateTimeFormatter http-date-formatter zoned))))
 
 (defn absolute-url
   [base-url prefix relative-url]
