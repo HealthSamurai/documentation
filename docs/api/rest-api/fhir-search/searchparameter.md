@@ -168,7 +168,7 @@ As mentioned in [FHIR Search specification](https://www.hl7.org/fhir/search.html
 
 All date comparisons in FHIR are range-based. The range consists of a lower bound and an upper bound.
 
-FHIR [dateTime](https://www.hl7.org/fhir/datatypes.html#dateTime) value can be an incomplete datetime. E.g. `2020` is a FHIR dateTime, but it is an incomplete datetime, since it doesn't specify month, day, etc.
+FHIR [dateTime](https://www.hl7.org/fhir/datatypes.html#dateTime) value can be an incomplete datetime. For example, `2020` is a FHIR dateTime, but it is an incomplete datetime, since it doesn't specify month, day, etc.
 
 The lower bound of the FHIR dateTime is the earliest complete datetime, which matches the FHIR dateTime value. For 2020, the lower bound is `2020-01-01T00:00:00Z`.
 
