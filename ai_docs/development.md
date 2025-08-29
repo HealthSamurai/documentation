@@ -15,6 +15,7 @@ Development rules:
 8. When use styles, always prefer using tailwind classes and tailwind theme, do not use app.css if not necessary
 9. Make sure you understand what tailwind v4 is and all its differences between v3. Read the doc https://tailwindcss.com/docs.
 10. Use kaocha to run tests.
+11. If writing comments in code (source and tests), you MUST use english.
 
 ## Running Tests
 

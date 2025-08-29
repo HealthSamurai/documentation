@@ -10,6 +10,7 @@
    [gitbok.markdown.widgets.github-hint :as github-hint]
    [gitbok.markdown.widgets.cards :as cards]
    [gitbok.markdown.widgets.tabs :as tabs]
+   [gitbok.markdown.widgets.stepper :as stepper]
    [gitbok.markdown.widgets.description :as description]
    [gitbok.markdown.widgets.gitbook-code :as gitbook-code]
    [nextjournal.markdown :as md]
@@ -67,7 +68,7 @@
                (last))})
     (catch Exception e
       ;; Log warning but don't crash - return defaults for any fetch error
-      (println (str "Warning: Could not fetch metadata from URL: " url 
+      (println (str "Warning: Could not fetch metadata from URL: " url
                     " (" (.getMessage e) ")"))
       {:image nil
        :title nil})))
@@ -237,6 +238,11 @@
          image/hack-youtube
          image/hack-other-websites
          (tabs/hack-tabs
+          context-hack
+          filepath
+          parse-markdown-content
+          render-md)
+         (stepper/hack-stepper
           context-hack
           filepath
           parse-markdown-content

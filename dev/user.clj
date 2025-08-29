@@ -2,13 +2,10 @@
   (:require
    [system.dev :as dev]
    [system]
-   [clojure.string :as str]
-   [gitbok.indexing.impl.uri-to-file :as uri-to-file]
    [gitbok.core :as gitbok]
    [clj-reload.core :as reload]
    [klog.core :as log]
-   [gitbok.reload :as gitbok-reload]
-   [gitbok.markdown.core :as markdown]))
+   [gitbok.reload :as gitbok-reload]))
 
 (comment
 
@@ -27,6 +24,4 @@
       (system/stop-system context)
       (def context (system/start-system gitbok/default-config)))
 
-  (dev/update-libs)
-
-  )
+  (dev/update-libs))
