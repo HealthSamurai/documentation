@@ -99,6 +99,57 @@ sequenceDiagram
     Aidbox-->>-User: ✅ Expansion successful
 ```
 
+## ConceptMap in Hybrid Mode
+
+ConceptMap operations follow the same hybrid principles as ValueSet and CodeSystem operations, using local ConceptMap resources when available and falling back to external terminology servers when needed. The `$translate` operation implements intelligent request routing that maximizes performance while ensuring comprehensive translation coverage.
+
+### Local ConceptMap Resolution
+
+When a `$translate` request is received, Aidbox first queries ConceptMap resources stored in the local FHIR Artifact Registry. If matching ConceptMaps are found that can handle the translation request, the operation completes using local resources without external server communication.
+
+The example below shows successful translation using a locally stored ConceptMap for administrative gender mapping:
+
+```mermaid
+sequenceDiagram
+    participant User
+    participant AidboxTX
+    participant FAR
+    
+    Note over User,FAR: ConceptMap translation (local)
+    User->>+AidboxTX: $translate gender code
+    AidboxTX->>+FAR: Query ConceptMap resources
+    FAR-->>-AidboxTX: ConceptMap found
+    AidboxTX-->>-User: ✅ Translation successful
+```
+
+### External Fallback for ConceptMaps
+
+When local ConceptMaps cannot handle a translation request—either because no relevant ConceptMap exists locally or because the mapping references external CodeSystems—the hybrid engine forwards the request to the configured external terminology server. This ensures comprehensive translation coverage while maintaining optimal performance for frequently used mappings.
+
+```mermaid
+sequenceDiagram
+    participant User
+    participant AidboxTX
+    participant FAR
+    participant Remote as Remote TX Server
+    
+    Note over User,Remote: ConceptMap translation (fallback)
+    User->>+AidboxTX: $translate complex mapping
+    AidboxTX->>+FAR: Query ConceptMap resources
+    FAR->>-AidboxTX: No suitable ConceptMap found
+    AidboxTX->>+Remote: $translate with parameter conversion
+    Remote-->>-AidboxTX: Translation result
+    AidboxTX-->>-User: ✅ Translation successful
+```
+
+### Parameter Normalization
+
+The hybrid engine automatically handles parameter format differences between FHIR versions when communicating with external servers. R5-style parameters like `sourceCode` and `sourceSystem` are converted to R4-compatible formats (`code` and `system`) to ensure compatibility with external terminology servers that may not support the latest FHIR version.
+
+### Multiple ConceptMap Scenarios
+
+The `$translate` operation can return multiple matches when several ConceptMaps provide valid translations for the same source code, providing comprehensive coverage of available mappings.
+
 ## External Terminology Servers
 
 ### Termbox (Recommended)

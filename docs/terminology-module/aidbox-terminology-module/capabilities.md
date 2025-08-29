@@ -24,7 +24,7 @@ This page provides a comprehensive overview of all FHIR terminology operations a
 |                | `$find-matches` | ❌ |
 | **ValueSet** | `$expand` | ✅ |
 |              | `$validate-code` | ✅ |
-| **ConceptMap** | `$translate` | 🏗 |
+| **ConceptMap** | `$translate` | ✅ |
 |                | `$closure` | ❌ |
 
 ## Features
@@ -50,7 +50,8 @@ This page provides a comprehensive overview of all FHIR terminology operations a
 | Subsumption filters | ✅ | is-a, descendent-of, generalizes, etc |
 | Supplemental CodeSystems | 🏗️ | Additional concept properties |
 | Implicit ValueSets | 🏗️ | System-generated ValueSets |
-| Translate code from value set to another | 🏗️ | Cross-ValueSet translations |
+| ConceptMap translations | ✅ | Code mapping between terminology systems |
+| Multiple ConceptMap matches | ✅ | Returns all applicable mappings for source code |
 | Transitive closure table | ❌ | $closure |
 | Syntax-based code systems | ❌ | UCUM, BCP47, etc |
 | `tx-resource` parameter | ✅ | Inline resource definitions |
