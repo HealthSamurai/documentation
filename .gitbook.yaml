@@ -4,7 +4,6 @@ structure:
   summary: SUMMARY.md
 
 redirects:
-  terminology/aidbox-terminology-module/hybrid: terminology-module/aidbox-terminology-module/hybrid.md
   access-control/authentication/access-to-aidboxui: access-control/authentication/README.md
   access-control/how-to-guides/smart-app: deprecated/deprecated/other/how-to-guides/smart-on-fhir/get-a-smart-app-launched.md
   access-control/how-to-guides/smart-on-fhir/smart-on-fhir-app-launch: deprecated/deprecated/other/how-to-guides/smart-on-fhir/get-a-smart-app-launched.md
@@ -429,6 +428,7 @@ redirects:
   modules-1/smartbox/how-to-guides/setup-email-provider: modules/smartbox/how-to-guides/setup-email-provider.md
   modules-1/smartbox/the-b11-decision-support-interventions/feedback-sections: modules/smartbox/the-b11-decision-support-interventions/feedback-sections.md
   modules-1/smartbox/the-b11-decision-support-interventions/source-attributes: modules/smartbox/the-b11-decision-support-interventions/source-attributes.md
+  modules-1/smartbox: modules/smartbox/README.md
   modules-1/sql-on-fhir/defining-flat-views-with-view-definitions: modules/sql-on-fhir/defining-flat-views-with-view-definitions.md
   modules-1/sql-on-fhir/migrate-to-the-spec-compliant-viewdefinition-format: modules/sql-on-fhir/migrate-to-the-spec-compliant-viewdefinition-format.md
   modules-1/sql-on-fhir/query-data-from-flat-views: modules/sql-on-fhir/query-data-from-flat-views.md
@@ -448,6 +448,7 @@ redirects:
   modules/eprescription/tutorials/environment-variables: modules/eprescription/reference/environment-variables.md
   modules/observability/logging-and-audit/readme-1/datadog-guide: modules/observability/logs/tutorials/export-logs-to-datadog-tutorial.md
   modules/observability/logging-and-audit/readme-1/how-to-explore-and-visualize-aidbox-logs-with-kibana-and-grafana: modules/observability/logs/tutorials/log-analysis-and-visualization-tutorial.md
+  modules/observability/logging-and-audit/technical-reference: modules/observability/logs/technical-reference/README.md
   modules/observability/logging-and-audit: access-control/audit-and-logging.md
   modules/other-modules/mdm/find-duplicates-usdmatch.md: modules/other-modules/mpi/find-duplicates-match.md
   modules/smartbox/how-to-guides/find-out-what-resources-were-exported-during-the-usdexport-operation.md: modules/smartbox/how-to-guides/find-out-what-resources-were-exported-during-the-export-operation.md
@@ -468,12 +469,14 @@ redirects:
   readme-1/readme-1-1/relationship-based-access-control-in-aidbox: tutorials/security-access-control-tutorials/rbac/README.md
   readme-1/subscriptions: modules/topic-based-subscriptions/README.md
   readme-1/validation-tutorials/upload-fhir-implementation-guide/uploading-fhir-ig-using-uploadfig-library: tutorials/artifact-registry-tutorials/upload-fhir-implementation-guide/uploadfig-tool.md
+  reference/configuration/environment-variables/mailgun-environment-variables: reference/email-providers-reference/mailgun-environment-variables.md
   reference/configuration/environment-variables/optional-environment-variables: reference/environment-variables/optional-environment-variables.md
   reference/settings/security-access-control: reference/settings/security-and-access-control.md
-  security-and-access-control-1/overview: access-control/access-control.md
   security-and-access-control-1/auth/external-oauth-2.0-providers/configure-okta: tutorials/security-access-control-tutorials/okta.md
+  security-and-access-control-1/overview: access-control/access-control.md
   security-and-access-control-1/security/access-control: access-control/authorization/access-policies.md
   security-and-access-control-1/security/accesspolicy-best-practices: tutorials/security-access-control-tutorials/accesspolicy-best-practices.md
   storage-1/database: database/overview.md
   storage-1/other/s3-compatible-storages: file-storage/aws-s3.md
+  terminology/aidbox-terminology-module/hybrid: terminology-module/aidbox-terminology-module/hybrid.md
   tutorials/security-and-access-control/basic-auth-tutorial: tutorials/security-access-control-tutorials/basic-auth.md
