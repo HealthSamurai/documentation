@@ -316,13 +316,14 @@
             (indexing/uri->filepath context uri-relative)]
         (if filepath
           (let [lastmod (indexing/get-lastmod context filepath)
-                etag (utils/etag lastmod)]
+                lastmod-iso (utils/iso-to-http-date lastmod)
+                etag (utils/etag lastmod-iso)]
             (if (or (check-cache-etag request etag)
                     (and lastmod
                          (check-cache-lastmod request lastmod)))
               {:status 304
                :headers {"Cache-Control" "public, max-age=300"
-                         "Last-Modified" lastmod
+                         "Last-Modified" lastmod-iso
                          "ETag" etag}}
               (let [{:keys [title description content section]}
                     (render-file (assoc context :current-uri uri-relative) filepath)]

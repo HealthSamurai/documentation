@@ -2,6 +2,7 @@
   (:require
    [clojure.java.io :as io]
    [clojure.string :as str]
+   [clojure.pprint :as pprint]
    [clojure.java.shell :as shell]))
 
 (defn lastmod-for-file [file]
@@ -18,7 +19,7 @@
           nil)))))
 
 (defn generate-lastmod-file! [docs-dir save-path]
-  (println "Generating lastmod.edn...")
+  (println "Generating " save-path)
   (let [md-files (->> (file-seq (io/file docs-dir))
                       (filter #(and (.isFile %)
                                     (.endsWith (.getName %) ".md"))))
@@ -31,50 +32,32 @@
                              [(str rel) date]))))
                   (remove nil?)
                   (into (sorted-map)))]
-    (spit save-path (pr-str data))
+    (with-open [w (io/writer save-path)]
+      (pprint/pprint data w))
     (println "Saved:" save-path)))
 
 (defn -main [& args]
-  (println "start lastmod script")
-  (cond
-    ;; If no args, generate for default docs directory (backward compatibility)
-    (empty? args)
-    (do
-      (generate-lastmod-file! "docs" "resources/lastmod.edn")
-      (System/exit 0))
+  (println "start lastmod generation script ")
 
-    ;; If one arg "all", generate for all products
-    (= (first args) "all")
-    (do
-      ;; Generate for aidbox product
-      (generate-lastmod-file!
-       "docs-new/aidbox/docs"
-       "resources/lastmod/lastmod-aidbox.edn")
+    ;; Generate for aidbox product
+  (generate-lastmod-file!
+   "docs-new/aidbox/docs"
+   "resources/lastmod/lastmod-aidbox.edn")
 
-      ;; Generate for forms product
-      (generate-lastmod-file!
-       "docs-new/forms/docs"
-       "resources/lastmod/lastmod-forms.edn")
+    ;; Generate for fhirbase product
+  (generate-lastmod-file!
+   "docs-new/fhirbase/docs"
+   "resources/lastmod/lastmod-fhirbase.edn")
 
-      ;; Generate for default (backward compatibility)
-      (when (.exists (io/file "docs"))
-        (generate-lastmod-file!
-         "docs"
-         "resources/lastmod/lastmod-default.edn"))
+    ;; Generate for default (backward compatibility)
+  (when (.exists (io/file "docs"))
+    (generate-lastmod-file!
+     "docs"
+     "resources/lastmod/lastmod-default.edn"))
+  (println "end lastmod generation script")
 
-      (System/exit 0))
+  (System/exit 0))
 
-    ;; If two args provided: docs-dir and save-path
-    (= (count args) 2)
-    (do
-      (generate-lastmod-file! (first args) (second args))
-      (System/exit 0))
 
-    ;; Otherwise show usage
-    :else
-    (do
-      (println "Usage:")
-      (println "  bb lastmod.clj                    # Generate for default docs/ directory")
-      (println "  bb lastmod.clj all                # Generate for all products")
-      (println "  bb lastmod.clj <docs-dir> <save-path>  # Generate for specific directory")
-      (System/exit 1))))
+(when (= *file* (System/getProperty "babashka.file"))
+  (apply -main *command-line-args*))
