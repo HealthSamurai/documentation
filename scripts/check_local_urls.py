@@ -4,8 +4,9 @@ import requests
 import re
 import sys
 
-SITEMAP_URL = "https://docs.aidbox.app/sitemap-pages.xml"
-BASE_URL = "http://localhost:8081/docs/aidbox"
+# checks that all aidbox pages from sitemap.xml are present
+SITEMAP_URL = "https://www.health-samurai.io/docs/aidbox/sitemap.xml"
+BASE_URL = "http://localhost:8081"
 
 def main():
     try:
@@ -14,7 +15,7 @@ def main():
         response.raise_for_status()
 
         # Extract URLs using regex
-        url_pattern = r'https://docs\.aidbox\.app[^<\s]+'
+        url_pattern = r'https://www\.health-samurai\.io/docs/aidbox[^<\s]+'
         urls = re.findall(url_pattern, response.text)
 
         # Remove duplicates and sort
@@ -22,9 +23,12 @@ def main():
 
         not_found_count = 0
 
+        print(f"unique urls count: {len(unique_urls)}")
+
         for url in unique_urls:
             try:
-                path = url.split("aidbox.app", 1)[1]
+                path = url.split("https://www.health-samurai.io/docs/aidbox", 1)[1]
+                print("path: " + path)
                 if not path.startswith("/"):
                     path = "/" + path
             except IndexError:
