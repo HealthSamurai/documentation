@@ -92,7 +92,7 @@ The Builder currently enforces the following rules.
 - **Concept:** Matrix forms do not support nested child items; these items are ignored in rendering.
 
 **Example:** Adding a group inside a matrix row will not be shown to users.
-    ```json
+  ```json
     {
       "text": "Choice Matrix",
       "type": "group",
@@ -101,8 +101,7 @@ The Builder currently enforces the following rules.
         {
           "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl",
           "valueCodeableConcept": {
-            "coding": [{"code": "table", "system": "http://hl7.org/fhir/ValueSet/questionnaire-item-control"}
-            ]
+            "coding": [{"code": "table", "system": "http://hl7.org/fhir/ValueSet/questionnaire-item-control"}]
           }
         }
       ],
@@ -111,11 +110,17 @@ The Builder currently enforces the following rules.
           "text": "Choice Input",
           "type": "choice",
           "linkId": "VuvOWnnp",
-          "item": [ { "type": "string", "text": "String Input", "linkId": "WawGb4tR" } ]
+          "item": [
+            {
+              "type": "string",
+              "text": "String Input",
+              "linkId": "WawGb4tR"
+            }
+          ]
         }
       ]
     }
-    ```
+  ```
 - **Warning**: Nested items will not be visible in Choice Matrix
 
 ### WARNING: Matrix forms must only contain choice items
