@@ -23,33 +23,32 @@
   (testing "root pages have no breadcrumb"
     (is (nil? (breadcrumb/breadcrumb (mock-context) "")))
     (is (nil? (breadcrumb/breadcrumb (mock-context) nil))))
-  
+
   (testing "readme pages have no breadcrumb"
     (is (nil? (breadcrumb/breadcrumb (mock-context) "readme")))
     (is (nil? (breadcrumb/breadcrumb (mock-context) "readme/README.md"))))
-  
+
   (testing "single level pages show overview link"
     (let [result (breadcrumb/breadcrumb (mock-context) "getting-started")]
       (is (some? result))
       (let [items (extract-breadcrumb-items result)]
         (is (= 1 (count items)))
         (is (= "overview" (first items))))))
-  
+
   (testing "overview page shows overview link"
     (let [result (breadcrumb/breadcrumb (mock-context) "overview")]
       (is (some? result))
       (let [items (extract-breadcrumb-items result)]
         (is (= 1 (count items)))
         (is (= "overview" (first items))))))
-  
-  (testing "pages under overview show two overview links"
+
+  (testing "pages under overview show single overview link"
     (let [result (breadcrumb/breadcrumb (mock-context) "overview/what-is-form")]
       (is (some? result))
       (let [items (extract-breadcrumb-items result)]
-        (is (= 2 (count items)))
-        (is (= "overview" (first items)))
-        (is (= "overview" (second items))))))
-  
+        (is (= 1 (count items)))
+        (is (= "overview" (first items))))))
+
   (testing "other nested pages show normal breadcrumb path"
     (let [result (breadcrumb/breadcrumb (mock-context) "docs/api/rest")]
       (is (some? result))
@@ -57,7 +56,7 @@
         (is (= 2 (count items)))
         (is (= "docs" (first items)))
         (is (= "api" (second items))))))
-  
+
   (testing "handles pages with hyphens correctly"
     (let [result (breadcrumb/breadcrumb (mock-context) "docs/getting-started/quick-start")]
       (is (some? result))

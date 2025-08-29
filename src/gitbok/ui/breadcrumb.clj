@@ -30,31 +30,6 @@
                 :class "text-xs font-semibold uppercase items-center gap-1.5 hover:text-tint-strong text-primary-9"}
             "overview"]]]]
 
-        ;; For pages under overview like "overview/what-is-form"
-        (and (>= (count parts) 2) (= (first parts) "overview"))
-        [:nav {:aria-label "Breadcrumb"}
-         [:ol {:class "flex flex-wrap items-center"}
-          ;; First link to overview directory
-          [:li {:class "flex items-center gap-1.5"}
-           [:a {:href (gitbok.http/get-product-prefixed-url context "overview")
-                :hx-get (str (gitbok.http/get-product-prefixed-url context "overview") "?partial=true")
-                :hx-target "#content"
-                :hx-push-url (gitbok.http/get-product-prefixed-url context "overview")
-                :hx-swap "outerHTML"
-                :class "text-xs font-semibold uppercase items-center gap-1.5 hover:text-tint-strong text-primary-9"}
-            "overview"]]
-          ;; Separator
-          (ico/chevron-right "chevron size-3 text-tint-10 group-hover:text-primary-9 mx-2")
-          ;; Second link also to overview (the page itself)
-          [:li {:class "flex items-center gap-1.5"}
-           [:a {:href (gitbok.http/get-product-prefixed-url context "overview")
-                :hx-get (str (gitbok.http/get-product-prefixed-url context "overview") "?partial=true")
-                :hx-target "#content"
-                :hx-push-url (gitbok.http/get-product-prefixed-url context "overview")
-                :hx-swap "outerHTML"
-                :class "text-xs font-semibold uppercase items-center gap-1.5 hover:text-tint-strong text-primary-9"}
-            "overview"]]]]
-
         ;; For other nested pages, show normal breadcrumb
         :else
         (let [parts-to-show (vec (drop-last parts))]
