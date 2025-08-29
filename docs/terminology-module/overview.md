@@ -28,12 +28,12 @@ See also: [FHIR Terminology Concepts](../terminology-module/fhir-terminology/)
 
 Aidbox implements a flexible terminology server that adapts to different organizational needs through three operational modes:
 
-**Local mode** uses only CodeSystems and ValueSets stored in Aidbox's FHIR Artifact Registry, providing complete control over terminology content but requiring explicit loading of all needed resources.
+**Local mode** uses only CodeSystems, ValueSets, and ConceptMaps stored in Aidbox's FHIR Artifact Registry, providing complete control over terminology content but requiring explicit loading of all needed resources.
 
 **Hybrid mode** combines local storage with external server fallback, balancing performance with comprehensive coverage by using local resources when available and querying external servers when needed.
 
 **Remote (legacy) mode** routes all terminology requests to external terminology servers, useful for organizations relying on established external services or transitioning their terminology infrastructure.
 
-The module supports all standard FHIR terminology operations - `$validate-code`, `$expand`, and `$lookup` - working seamlessly across local and external content depending on your configuration.
+The module supports all standard FHIR terminology operations - `$validate-code`, `$expand`, `$lookup`, and `$translate` - working seamlessly across local and external content depending on your configuration.
 
 See also: [Aidbox Terminology Module](../terminology-module/aidbox-terminology-module/)
