@@ -24,7 +24,7 @@ spec:
     spec:
       containers:
       - name: main
-        image: ghcr.io/healthsamurai/documentation:1.1.11
+        image: ghcr.io/healthsamurai/documentation:1.1.12
         imagePullPolicy: Always
         resources:
           requests:
