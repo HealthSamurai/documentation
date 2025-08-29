@@ -594,3 +594,7 @@ details[data-sortable-initialized]:empty::before {
 .mermaid-container {
   padding: 16px 0;
 }
+
+article .code-gitbook+.code-gitbook {
+  @apply mt-4;
+}

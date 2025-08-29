@@ -83,7 +83,7 @@
                                  context
                                  [filepath content]))
         raw-html (render-md-fn context filepath parsed-content)]
-    [:div {:class "code-gitbook group/codeblock grid grid-flow-col mx-auto w-full
+    [:div {:class "code-gitbook group/codeblock grid grid-flow-col w-full
            decoration-primary/6 page-full-width:ml-0
            max-w-3xl page-api-block:ml-0"}
      (when title
