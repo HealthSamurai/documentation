@@ -10,7 +10,7 @@ description: This article describes how to manage Aidbox licenses
 
 1. On the main navigation sidebar, click on the _**project name**_
 2. On the menu that opens, click _**Licenses**_
-3. In the upper right corner of the page, click **New \_license**\_
+3. In the upper right corner of the page, click _**New license**_
 4. Choose Aidbox
 5. Enter the Aidbox instance _name_
 6. Specify _Hosting_ as **Self-hosted**
@@ -22,7 +22,7 @@ description: This article describes how to manage Aidbox licenses
 
 1. On the main navigation sidebar, click on the _**project name**_
 2. On the menu that opens, click _**Licenses**_
-3. In the upper right corner of the page, click **New \_license**\_
+3. In the upper right corner of the page, click **New _license**_
 4. Specify _FHIR Platform_
    * Aidbox
 5. Enter the Aidbox instance name
