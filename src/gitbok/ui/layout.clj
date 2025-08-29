@@ -123,8 +123,6 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     [:script {:defer true
               :src (gitbok.http/get-prefixed-url context "/static/keyboard-navigation.js")}]
     [:script {:defer true
-              :src (gitbok.http/get-prefixed-url context "/static/toc-scroll.js")}]
-    [:script {:defer true
               :src (gitbok.http/get-prefixed-url context "/static/lastupdated.js")}]
     [:script {:defer true
               :src (gitbok.http/get-prefixed-url context "/static/posthog.js")}]

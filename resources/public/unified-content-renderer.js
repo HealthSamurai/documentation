@@ -1,4 +1,4 @@
-// Unified Content Renderer for hljs, mermaid, and KaTeX
+// Unified Content Renderer for hljs, mermaid, KaTeX, and TOC scroll spy
 // Handles initialization and rendering for all content types after page load and HTMX navigation
 
 (function () {
@@ -18,8 +18,20 @@
     katex: {
       enabled: typeof katex !== 'undefined',
       initialized: false
+    },
+    tocScrollSpy: {
+      enabled: true,
+      initialized: false,
+      scrollTimeout: null,
+      scrollHandler: null
     }
   };
+
+  // Helper function to escape CSS selector
+  function escapeCssSelector(selector) {
+    if (!selector) return '';
+    return selector.replace(/[!"#$%&'()*+,.\/:;<=>?@[\\\]^`{|}~]/g, '\\$&');
+  }
 
   // Initialize libraries that need one-time setup
   function initializeLibraries() {
@@ -45,6 +57,123 @@
     if (config.katex.enabled) {
       config.katex.initialized = true;
     }
+
+    // TOC scroll spy initialization
+    if (config.tocScrollSpy.enabled) {
+      config.tocScrollSpy.initialized = true;
+    }
+  }
+
+  // TOC Scroll Spy - Update active section
+  function updateActiveTocSection() {
+    const tocLinks = document.querySelectorAll('#toc-container a[href^="#"]');
+    const headings = document.querySelectorAll('h1[id], h2[id], h3[id], h4[id], h5[id], h6[id]');
+    
+    if (tocLinks.length === 0 || headings.length === 0) return;
+    
+    const scrollPosition = window.scrollY + 100; // Small offset for better UX
+    let currentSection = null;
+
+    // Find current section
+    for (let i = headings.length - 1; i >= 0; i--) {
+      const heading = headings[i];
+      const rect = heading.getBoundingClientRect();
+      const offsetTop = rect.top + window.scrollY;
+
+      if (scrollPosition >= offsetTop) {
+        currentSection = heading.id;
+        break;
+      }
+    }
+
+    // Remove active class from all links
+    tocLinks.forEach(link => {
+      link.classList.remove('active');
+    });
+
+    // Add active class to current section
+    if (currentSection) {
+      const escapedId = escapeCssSelector(currentSection);
+      const activeLink = document.querySelector(`#toc-container a[href="#${escapedId}"]`);
+      if (activeLink) {
+        activeLink.classList.add('active');
+      }
+    }
+  }
+
+  // TOC Scroll handler with debounce
+  function handleTocScroll() {
+    if (config.tocScrollSpy.scrollTimeout) {
+      clearTimeout(config.tocScrollSpy.scrollTimeout);
+    }
+    config.tocScrollSpy.scrollTimeout = setTimeout(updateActiveTocSection, 10);
+  }
+
+  // Initialize TOC scroll spy - only scroll tracking, no DOM manipulation
+  function initializeTocScrollSpy() {
+    if (!config.tocScrollSpy.enabled || !config.tocScrollSpy.initialized) return;
+
+    // Check if we have TOC and headings
+    const hasToc = document.querySelector('#toc-container a[href^="#"]');
+    const hasHeadings = document.querySelector('h1[id], h2[id], h3[id], h4[id], h5[id], h6[id]');
+
+    if (!hasToc || !hasHeadings) return;
+
+    // Remove old scroll event listeners if they exist
+    if (config.tocScrollSpy.scrollHandler) {
+      window.removeEventListener('scroll', config.tocScrollSpy.scrollHandler);
+      window.removeEventListener('resize', config.tocScrollSpy.scrollHandler);
+    }
+
+    // Create new scroll handler
+    config.tocScrollSpy.scrollHandler = handleTocScroll;
+
+    // Add scroll event listeners
+    window.addEventListener('scroll', config.tocScrollSpy.scrollHandler);
+    window.addEventListener('resize', config.tocScrollSpy.scrollHandler);
+
+    // Initialize active section highlighting
+    updateActiveTocSection();
+  }
+  
+  // Separate function for TOC link click handlers
+  function initializeTocClickHandlers() {
+    const tocLinks = document.querySelectorAll('#toc-container a[href^="#"]');
+    
+    tocLinks.forEach(link => {
+      // Skip if handler already exists
+      if (link._tocClickHandler) return;
+      
+      // Create click handler
+      link._tocClickHandler = function(e) {
+        const href = this.getAttribute('href');
+        if (href && href.startsWith('#')) {
+          e.preventDefault();
+          const targetId = href.substring(1);
+          const targetElement = document.getElementById(targetId);
+          
+          if (targetElement) {
+            const headerHeight = 64; // 4rem = 64px
+            const targetPosition = targetElement.offsetTop - headerHeight - 20;
+            
+            // Update URL with the hash
+            if (history.pushState) {
+              history.pushState(null, null, href);
+            } else {
+              window.location.hash = targetId;
+            }
+            
+            window.scrollTo({
+              top: targetPosition,
+              behavior: 'smooth'
+            });
+          }
+        }
+      };
+      
+      // Add the click handler
+      link.addEventListener('click', link._tocClickHandler);
+    });
   }
 
   // Render code highlighting
@@ -193,6 +322,12 @@
     } catch (error) {
       console.error('Error in KaTeX rendering:', error);
     }
+
+    try {
+      initializeTocScrollSpy();
+    } catch (error) {
+      console.error('Error in TOC scroll spy initialization:', error);
+    }
   }
 
   // Clean up function for HTMX swaps
@@ -211,6 +346,8 @@
   // Event listeners
   document.addEventListener('DOMContentLoaded', function () {
     renderContent();
+    // Initialize TOC click handlers separately, after content is rendered
+    setTimeout(initializeTocClickHandlers, 50);
     
     // Try using htmx.on() API if available
     if (typeof htmx !== 'undefined' && htmx.on) {
@@ -227,6 +364,8 @@
       
       htmx.on('htmx:afterSettle', function (event) {
         renderContent(event.detail.target);
+        // Re-initialize TOC click handlers after content settles
+        setTimeout(initializeTocClickHandlers, 50);
       });
       
       // Also listen for load event which HTMX triggers after content is loaded
@@ -266,5 +405,11 @@
   document.addEventListener('htmx:afterSettle', function (event) {
     renderContent(event.detail.target);
   });
+
+  // Export functions for global access if needed
+  window.escapeCssSelector = escapeCssSelector;
+  window.updateActiveTocSection = updateActiveTocSection;
+  window.initializeTocScrollSpy = initializeTocScrollSpy;
+  window.initializeTocClickHandlers = initializeTocClickHandlers;
 
 })();
