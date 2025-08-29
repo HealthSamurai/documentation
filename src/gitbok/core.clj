@@ -341,7 +341,8 @@
            {:content (not-found/not-found-view context uri-relative)
             :status 404
             :title "Not found"
-            :description "Page not found"}))))))
+            :description "Page not found"
+            :hide-breadcrumb true}))))))
 
 (defn sitemap-xml
   [context _]
@@ -381,7 +382,8 @@
        {:content (not-found/not-found-view context "/")
         :status 404
         :title "Not found"
-        :description "Page not found"}))))
+        :description "Page not found"
+        :hide-breadcrumb true}))))
 
 (defn healthcheck
   [_ _]

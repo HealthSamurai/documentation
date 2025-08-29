@@ -13,7 +13,7 @@
    [clojure.string :as str]
    [gitbok.utils :as utils]))
 
-(defn layout-view [context body uri filepath]
+(defn layout-view [context body uri filepath hide-breadcrumb]
   [:div
    (main-navigation/nav context)
    [:div.mobile-menu-overlay]
@@ -23,7 +23,7 @@
     (left-navigation/left-navigation
      (summary/get-summary context)
      uri)
-    (main-content/content-div context uri body filepath)]])
+    (main-content/content-div context uri body filepath false hide-breadcrumb)]])
 
 (defn document [context body {:keys [title description canonical-url og-preview lastmod favicon-url section]}]
   [:html {:lang "en"}
@@ -146,7 +146,8 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                       filepath
                       lastmod
                       section
-                      status]}]
+                      status
+                      hide-breadcrumb]}]
   (let [status (or status 200)
         uri (:uri request)
         is-hx-target (uui/hx-target request)
@@ -154,12 +155,12 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
         body
         (cond
           is-hx-target
-          (main-content/content-div context uri content filepath true)
+          (main-content/content-div context uri content filepath true hide-breadcrumb)
 
           :else
           (document
            context
-           (layout-view context content uri filepath)
+           (layout-view context content uri filepath hide-breadcrumb)
            {:title title
             :description description
             :section section

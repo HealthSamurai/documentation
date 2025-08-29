@@ -152,7 +152,7 @@
                  (markdown/render-md context filepath parsed))]
      :parsed parsed}))
 
-(defn content-div [context uri content filepath & [htmx?]]
+(defn content-div [context uri content filepath & [htmx? hide-breadcrumb]]
   (let [parsed (when (map? content) (:parsed content))
         body (if (map? content) (:content content) content)
         ;; Extract relative URI for breadcrumb
@@ -160,8 +160,9 @@
                       uri
                       (System/getenv "DOCS_PREFIX")
                       (:path (gitbok.products/get-current-product context)))
-        ;; Generate breadcrumb
-        breadcrumb-elem (breadcrumb/breadcrumb context uri-relative)
+        ;; Generate breadcrumb (skip if hide-breadcrumb is true)
+        breadcrumb-elem (when-not hide-breadcrumb
+                          (breadcrumb/breadcrumb context uri-relative))
         ;; Handle breadcrumb insertion based on body type
         body-with-breadcrumb (cond
                                ;; No breadcrumb to add
