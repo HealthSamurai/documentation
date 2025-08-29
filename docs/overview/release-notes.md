@@ -1,8 +1,19 @@
 # Release Notes
 
-## August 2025 _`edge`_
+## September 2025 _`edge`_
 
-* Aidbox FHIR server (in progress)
+## August 2025 _`latest, 2508`_
+
+* Aidbox FHIR server
+  * **Breaking change:** ViewDefinitions are no longer materialized automatically. You now need to explicitly call the new [operation](../modules/sql-on-fhir/operation-materialize.md) to create a database table or view.
+  * Added support for the `$translate` operation on `ConceptMap` resources in the Aidbox Terminology [module](../terminology-module/aidbox-terminology-module/capabilities.md).
+  * [Instance name](../reference/settings/general.md#instance-name) and [instance id ](../reference/settings/general.md#box-id)are now included in OTEL traces, logs, and metrics.
+  * Enhanced validation for [FHIRSchema](../modules/profiling-and-validation/fhir-schema-validator/) resources.
+  * Added the ability to restart Cloud Sandbox directly from the Aidbox [portal](https://aidbox.app/).
+  * Improvements in [`_filter`](../api/rest-api/fhir-search/searchparameter.md#filter) parameter processing.
+  * Support Azure [user delegation](../file-storage/azure-blob-storage.md#user-delegation-sas-since-2508) for signed URLs.
+  * Improved reliability in Aidbox App creation and IG loading via the [init bundle](../configuration/init-bundle.md).
+  * Multiple improvements in [Audit Logging](../access-control/audit-and-logging.md).
 * Aidbox Forms
   * Added the ability [to embed an external form renderer](../modules/aidbox-forms/aidbox-ui-builder-alpha/external-form-renderer.md) in the Aidbox Form Builder, with an [example project](https://github.com/Aidbox/examples/tree/main/aidbox-forms/aidbox-forms-builder-custom-renderer) demonstrating setup.
   * Supported the [`entryMode` extension](../modules/aidbox-forms/aidbox-ui-builder-alpha/form-creation/entry-mode.md) to define how questions are presented and navigated in the form.
@@ -10,8 +21,11 @@
   * Extended the [EnableWhen constructor](../modules/aidbox-forms/aidbox-ui-builder-alpha/form-creation/widgets.md#enablewhen-rule) to cover group conditions.
   * Implemented deletion of forms and components with validation in the Template Grid.
   * Added the ability to [display the hierarchy of nested items](../modules/aidbox-forms/aidbox-ui-builder-alpha/configuration.md#theme).
+* Minor updates
+  * `2507.1`  - fix vulnerabilities and critical issues
+  * `2410.9` - fix vulnerabilities
 
-## July 2025 _`latest, 2507, LTS`_
+## July 2025 _`stable, 2507, LTS`_
 
 * Aidbox FHIR server
   * Support for delegating read-only workload to the[ database read-only replica.](../database/overview.md#postgresql-with-read-only-replica)
@@ -39,7 +53,7 @@
   * `2402-lts` - LTS support - fixed vulnerabilities
   * `2306-lts` - LTS support - fixed vulnerabilities
 
-## June 2025 _`stable, 2506`_
+## June 2025 _`2506`_
 
 * Aidbox FHIR server
   * Support for sending AuditEvents to the [external FHIR AuditRecord Repository](../access-control/audit-and-logging.md#external-audit-record-repository-support).
