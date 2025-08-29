@@ -2,12 +2,13 @@
 description: FHIR Questionnaire validation
 ---
 
-## Questionnaire Validatin
+# Validation
+
+Validation ensures that Questionnaire has correct structure and met it's internal constraints. This enables Questionnaire to be correctly interpreted by different systems and working without surprises.
 
 ## FHIR Validation
 
-The **Validate** button (debug console) runs a standard FHIR validation request against the endpoint
-`/fhir/Questionnaire/$validate`.
+Form builder have integrated FHIR validation throught **Validate** button (debug console).
 
 This process checks the Questionnaire against the FHIR specification and any Implementation
 Guides (IGs) installed on the server. It ensures that the Questionnaire is technically valid,
@@ -16,7 +17,7 @@ consistent with external IG requirements, and ready to be exchanged across syste
 Use this when you want to confirm compliance with the official FHIR rules, not only the
 Builder’s internal checks.
 
-## Builder Validation
+## Builder internal validation
 
 The Builder includes its own validation engine in addition to FHIR validation.
 It verifies internal structure, logical consistency, and implementation-specific rules
