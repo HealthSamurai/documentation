@@ -3,7 +3,7 @@ description: FHIR Questionnaire validation
 ---
 
 
-# FHIR Validation
+## FHIR Validation
 
 The **Validate** button (debug console) runs a standard FHIR validation request against the endpoint
 `/fhir/Questionnaire/$validate`.
@@ -15,7 +15,7 @@ consistent with external IG requirements, and ready to be exchanged across syste
 Use this when you want to confirm compliance with the official FHIR rules, not only the
 Builder’s internal checks.
 
-# Builder Validation
+## Builder Validation
 
 The Builder includes its own validation engine in addition to FHIR validation.
 It verifies internal structure, logical consistency, and implementation-specific rules
@@ -25,7 +25,7 @@ Validation results appear in the form structure outline. Each issue is marked wi
 icon, and details can be viewed in a tooltip. There are two levels of severity:
 **warnings** and **errors**.
 
-## Warnings
+### Warnings
 
 Warnings are displayed with an **orange icon**.
 They highlight conditions where the form may still save successfully but will not behave as
@@ -35,7 +35,7 @@ limitations in rendering.
 **Example:** In matrix forms, nested child items are ignored. The form saves, but those items
 are not visible to users.
 
-## Errors
+### Errors
 
 Errors are displayed with a **red icon**.
 They indicate violations that prevent the Questionnaire from being saved. Errors typically
@@ -44,7 +44,7 @@ relate to missing required fields, invalid values, or broken structural rules.
 **Example:** A missing `url` field will block saving because it is required for identifying
 the Questionnaire.
 
-# Validation Rules
+## Validation Rules
 
 The Builder currently enforces the following rules.
 
@@ -71,6 +71,7 @@ The Builder currently enforces the following rules.
     http://example.org/questionnaire|demo
   ```
 - **Error:** The following characters are not allowed: '|', '#', ','
+
 
 ### ERROR: linkId must be unique
 
@@ -122,6 +123,7 @@ The Builder currently enforces the following rules.
     }
   ```
 - **Warning**: Nested items will not be visible in Choice Matrix
+
 
 ### WARNING: Matrix forms must only contain choice items
 
