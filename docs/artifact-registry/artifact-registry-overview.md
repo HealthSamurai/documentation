@@ -8,7 +8,7 @@ description: >-
 
 FHIR Artifact Registry (FAR) is Aidbox's centralized system for storing, managing, and resolving FHIR canonical resources and packages. 
 It serves as the foundation for FHIR validation, profiling, and terminology operations by providing a unified repository for **CodeSystems**, **ValueSets**, 
-**StructureDefinitions**, and **SearchParameters**. 
+**ConceptMaps**, **StructureDefinitions**, and **SearchParameters**. 
 This overview explains how the registry works, its integration with external FHIR package sources, 
 and the versioning strategies used to ensure consistent canonical resource resolution across your FHIR implementation.
 
@@ -20,6 +20,7 @@ in FHIR implementations.
 
 * [**CodeSystems**](../terminology-module/fhir-terminology/codesystem.md) for defining terminologies,
 * [**ValueSets**](../terminology-module/fhir-terminology/valueset.md) for grouping codes,
+* [**ConceptMaps**](../terminology-module/fhir-terminology/conceptmap.md) for mapping between terminologies,
 * [**StructureDefinitions**](structuredefinition.md) for profiling resources,
 * [**SearchParameters**](../api/rest-api/fhir-search/searchparameter.md) for custom search capabilities.
 
@@ -48,6 +49,7 @@ Canonical resources are accessible through standard FHIR REST endpoints followin
 
 * `/fhir/CodeSystem` - Access code system definitions
 * `/fhir/ValueSet` - Retrieve value set definitions
+* `/fhir/ConceptMap` - Manage concept mapping definitions
 * `/fhir/StructureDefinition` - Manage [profiles](https://build.fhir.org/profiling.html) (including custom resources) and extensions
 * `/fhir/SearchParameter` - Manage custom search parameters
 
@@ -59,8 +61,8 @@ Aidbox provides a web-based interface for package management operations. Through
 
 ### Registry Scope and Limitations
 
-The current implementation of the Artifact Registry focuses on four core types of canonical resources: CodeSystem, ValueSet, StructureDefinition, and SearchParameter. These resource types cover the most common use cases for FHIR validation and profiling. 
-Aidbox doesn't currently store other FHIR canonical resource types like ConceptMap, NamingSystem, or ImplementationGuide 
+The current implementation of the Artifact Registry focuses on five core types of canonical resources: CodeSystem, ValueSet, ConceptMap, StructureDefinition, and SearchParameter. These resource types cover the most common use cases for FHIR validation, profiling, and terminology operations. 
+Aidbox doesn't currently store other FHIR canonical resource types like NamingSystem or ImplementationGuide 
 in the registry but may add in future releases based on user requirements.
 
 See also:
