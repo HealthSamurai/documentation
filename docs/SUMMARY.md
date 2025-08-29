@@ -236,6 +236,7 @@
 * [SearchParameter](api/rest-api/fhir-search/searchparameter.md)
 * [CodeSystem](terminology-module/fhir-terminology/codesystem.md)
 * [ValueSet](terminology-module/fhir-terminology/valueset.md)
+* [ConceptMap](terminology-module/fhir-terminology/conceptmap.md)
 
 ## Terminology Module
 
