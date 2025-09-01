@@ -124,7 +124,7 @@ To enable access control for inline requests, set the following environment vari
 BOX_FHIR_SEARCH_AUTHORIZE_INLINE_REQUESTS=true
 ```
 
-### AccessPolicy Examples with Authorize Inline Requests Mode
+### AccessPolicy examples with Authorize Inline Requests Mode
 
 Below are examples of AccessPolicy configurations that allow requests such as:
 
@@ -152,7 +152,7 @@ With this AccessPolicy, the user can use any `_include` parameters that result i
     resourceType: "User"
 ```
 
-### AccessPolicy Examples without Authorize Inline Requests Mode
+### AccessPolicy examples without Authorize Inline Requests Mode
 
 If this mode is not enabled, you must define the specific \_include or \_revinclude parameters allowed in an AccessPolicy, as shown in the example below. However, this method can be inflexible, and we recommend using **Authorize Inline Requests Mode** in most cases.
 
