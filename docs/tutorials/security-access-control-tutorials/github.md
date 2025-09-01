@@ -30,8 +30,10 @@ scopes:
   - openid
   - read:org
   - user
+# not required
 organizations:
-  - <your-github-organization-name>
+  - <your-github-organization-name1>
+  - <your-github-organization-name2>
 client:
   id: <client-id>
   secret: <client-secret>
@@ -39,7 +41,7 @@ client:
 
 ## Login into Aidbox with GitHub
 
-Go to your Aidbox base URL, you will be redirected to the login page - you should see **"Sign in with \<provider.title or .type>"** button. Press this button and log in with GitHub user into aidbox.
+Go to your Aidbox base URL, you will be redirected to the login page - you should see **"Sign in with \<provider.title or .type>"** button. Press this button and log in with GitHub user into Aidbox.
 
 <figure><img src="../../../.gitbook/assets/266c171e-bd2c-4bf9-a946-4646d90dcc00.png" alt=""><figcaption><p>Aidbox login page</p></figcaption></figure>
 
