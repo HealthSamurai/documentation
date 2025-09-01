@@ -49,7 +49,7 @@ This table contains properties required by the FHIR specification and properties
 
 <table><thead><tr><th width="144">Property</th><th width="167">FHIR datatype</th><th>Description</th></tr></thead><tbody><tr><td>url</td><td>uri</td><td>Search parameter unique canonical url</td></tr><tr><td>version</td><td>string</td><td>Search parameter version</td></tr><tr><td>name</td><td>string</td><td>Search parameter name, Aidbox ignores it</td></tr><tr><td>status</td><td>code</td><td>draft | active | retired | unknown</td></tr><tr><td>description</td><td>markdown</td><td>Human readable description of the search parameter</td></tr><tr><td>code</td><td>code</td><td>The code used in the URL to invoke this search parameter</td></tr><tr><td>base</td><td>code[]</td><td>The resource type(s) this search parameter applies to</td></tr><tr><td>type</td><td>code</td><td>number | date | string | token | reference | composite | quantity | uri | special</td></tr><tr><td>expression</td><td>string</td><td><a href="https://hl7.org/fhir/fhirpath.html">FHIRPath</a> expression that extracts the values</td></tr><tr><td>component</td><td>BackboneElement</td><td>For Composite SearchParameters to define the parts</td></tr></tbody></table>
 
-## Search Parameter Types
+## SearchParameter types
 
 SearchParameter type is defined in the `SearchParameter.type` field. It is important to understand the type of SearchParameter because there are differences in how they are processed.
 
@@ -664,7 +664,7 @@ The purpose of the summary form is to allow a client **to quickly retrieve a lar
 
 ### Location.near
 
-[Location search](https://www.hl7.org/fhir/location.html#search) is used to search locations by coordinates using the WGS84 datum. Geopositional search is supported in Aidbox only with Aidboxdb 15.3 and later. Search for locations near the specified geo-coded position. Supported units are _km_ and _\[mi\_us]_.
+[Location search](https://www.hl7.org/fhir/location.html#search) is used to search locations by coordinates using the WGS84 datum. Geopositional search is supported in Aidbox only with AidboxDB 15.3 and later. Search for locations near the specified geo-coded position. Supported units are _km_ and _\[mi\_us]_.
 
 The request:
 
