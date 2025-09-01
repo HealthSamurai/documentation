@@ -53,7 +53,7 @@ Use Getting Started Notebooks to explore basic Aidbox features
 Notebooks are interactive tutorials within the Aidbox UI with built-in REST, RPC, and SQL editors and the ability to execute requests and queries on the fly and see the result. You can use pre-built or create your own Notebooks. [Learn more.](../overview/aidbox-ui/aidbox-notebooks.md)
 {% endhint %}
 
-## Next Steps
+## Next steps
 
 * Learn more about [Aidbox Configuration](../configuration/configure-aidbox-and-multibox.md)
 * Unlock additional capabilities of [Aidbox UI](../overview/aidbox-ui/)
