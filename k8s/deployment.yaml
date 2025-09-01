@@ -24,7 +24,7 @@ spec:
     spec:
       containers:
       - name: main
-        image: ghcr.io/healthsamurai/documentation:1.1.12
+        image: ghcr.io/healthsamurai/documentation:1.1.13
         imagePullPolicy: Always
         resources:
           requests:
@@ -47,8 +47,14 @@ spec:
                 key: master-key
           - name: DOCS_VOLUME_PATH
             value: "/git-data/repo/docs-new"
+          - name: DOCS_REPO_PATH
+            value: "/git-data/repo"
           - name: RELOAD_CHECK_INTERVAL_SEC
             value: "300"
+          - name: ENABLE_LASTMOD_UPDATER
+            value: "true"
+          - name: LASTMOD_UPDATE_INTERVAL_MINUTES
+            value: "10"
         args:
           - "-Xms2g"
           - "-Xmx2g"
@@ -116,7 +122,7 @@ spec:
         - name: GIT_SYNC_ONE_TIME
           value: "false"
         - name: GIT_SYNC_DEPTH
-          value: "1"
+          value: "0"  # Full history needed for lastmod feature
         - name: GIT_SYNC_TIMEOUT
           value: "300"
         - name: GIT_SYNC_SUBMODULES
