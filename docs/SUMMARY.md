@@ -6,6 +6,7 @@
 * [Getting Started](getting-started/README.md)
   * [Run Aidbox in Sandbox](getting-started/run-aidbox-in-sandbox.md)
   * [Run Aidbox locally](getting-started/run-aidbox-locally.md)
+  * [Use Aidbox with TypeScript](getting-started/typescript.md)
   * [Run Aidbox on AWS](getting-started/run-aidbox-on-aws.md)
   * [Upload Sample Data](getting-started/upload-sample-data.md)
 * [Tutorials](tutorials/README.md)
