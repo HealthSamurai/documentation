@@ -155,7 +155,7 @@ entry:
     url: Patient
 ```
 
-## History Parameters
+## History parameters
 
 The parameters to the history interaction may include:
 
