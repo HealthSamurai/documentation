@@ -1,9 +1,10 @@
 (ns gitbok.reload
   (:require
    [clojure.java.io :as io]
-   [clojure.string :as str]
    [gitbok.constants :as const]
    [gitbok.http]
+   [gitbok.products :as products]
+   [gitbok.indexing.core :as indexing]
    [system]
    [klog.core :as log]))
 
@@ -14,13 +15,11 @@
   []
   (or volume-path
       (when (.exists (io/file "docs"))
-        (do
-          (log/info ::using-local-docs {:path "docs"})
-          "docs"))
+        (log/info ::using-local-docs {:path "docs"})
+        "docs")
       (when (.exists (io/file "../docs"))
-        (do
-          (log/info ::using-local-docs {:path "../docs"})
-          "../docs"))))
+        (log/info ::using-local-docs {:path "../docs"})
+        "../docs")))
 
 ;; Configuration from environment
 (def reload-check-interval-ms
@@ -105,7 +104,7 @@
   (when-let [docs-path (get-volume-path)]
     (try
       (java.util.Date. (.lastModified (io/file docs-path)))
-      (catch Exception e nil))))
+      (catch Exception _ nil))))
 
 (defn is-reloading? [context]
   (:in-progress (get-reload-state context)))
@@ -203,12 +202,30 @@
         :else
         (log/info ::📚docs-unchanged {})))))
 
+(defn start-lastmod-updater
+  "Start background process to update lastmod every N minutes"
+  [context interval-minutes]
+  (future
+    (Thread/sleep (* 60 1000)) ;; Wait 1 minute after startup
+    (while true
+      (try
+        (Thread/sleep (* interval-minutes 60 1000))
+        (log/info ::🔄updating-lastmod {})
+        ;; Update lastmod for all products
+        (doseq [product (products/get-products-config context)]
+          (let [ctx (assoc context ::products/current-product product)]
+            (indexing/set-lastmod ctx)))
+        (catch InterruptedException e
+          (log/info ::🚫️lastmod-updater-stopped {})
+          (throw e))
+        (catch Exception e
+          (log/error ::❌lastmod-update-failed {:error (.getMessage e)}))))))
+
 (defn start-reload-watcher
   "Start background thread that checks for documentation changes"
   [context init-product-indices-fn init-products-fn]
   (when-let [docs-path (get-volume-path)]
-    (let [app-version (gitbok.http/get-version context)
-          initial-update-time (get-last-update-time)]
+    (let [app-version (gitbok.http/get-version context)]
 
       (log/info ::watcher-start {:app-version app-version
                                  :volume-path docs-path})
@@ -235,9 +252,16 @@
             (log/error ::watcher-error {:error (.getMessage e)})))
         (recur)))
 
+    ;; Start lastmod updater if enabled
+    (when (System/getenv "ENABLE_LASTMOD_UPDATER")
+      (let [interval (or (some-> (System/getenv "LASTMOD_UPDATE_INTERVAL_MINUTES")
+                                  Integer/parseInt)
+                         30)] ;; Default: 30 minutes
+        (log/info ::🚀starting-lastmod-updater {:interval-minutes interval})
+        (start-lastmod-updater context interval)))
+
     (log/info ::watcher-started {:status "success"})
     :started))
-
 
 ;; REPL testing helpers
 (comment

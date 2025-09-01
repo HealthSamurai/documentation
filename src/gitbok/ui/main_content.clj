@@ -152,6 +152,7 @@
                  (markdown/render-md context filepath parsed))]
      :parsed parsed}))
 
+
 (defn content-div [context uri content filepath & [htmx? hide-breadcrumb]]
   (let [parsed (when (map? content) (:parsed content))
         body (if (map? content) (:content content) content)
@@ -208,14 +209,13 @@ if (typeof initializeContent === 'function') {
       [:article {:class "article__content py-8 min-w-0 flex-1
                  max-w-5xl transform-3d"}
        (when htmx?
-         [:script (uui/raw "window.scrollTo(0, 0); updateLastUpdated(); updateActiveNavItem(window.location.pathname); updatePageTitle();")])
+         [:script (uui/raw "window.scrollTo(0, 0); updateActiveNavItem(window.location.pathname); updatePageTitle();")])
        [:div {:class "mx-auto max-w-full"} body-with-breadcrumb]
        (navigation-buttons context uri)
-       (let [lastupdated
-             (indexing/get-lastmod context filepath)]
+       (let [lastupdated (indexing/get-lastmod context filepath)]
          (when lastupdated
            [:p {:class "mt-4 text-sm text-tint-11"
                 :id "lastupdated"
                 :data-updated-at lastupdated}
-            "Last updated " lastupdated]))]
+            "Last updated " (utils/format-relative-time lastupdated)]))]
       toc]]))

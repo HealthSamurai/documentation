@@ -123,13 +123,11 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     [:script {:defer true
               :src (gitbok.http/get-prefixed-url context "/static/keyboard-navigation.js")}]
     [:script {:defer true
-              :src (gitbok.http/get-prefixed-url context "/static/lastupdated.js")}]
-    [:script {:defer true
               :src (gitbok.http/get-prefixed-url context "/static/posthog.js")}]
     [:script {:defer true
               :src (gitbok.http/get-prefixed-url context "/static/scroll-to-id.js")}]]
    [:body {:hx-boost "true"
-           :hx-on "htmx:afterSwap: window.scrollTo(0, 0); updateLastUpdated();"}
+           :hx-on "htmx:afterSwap: window.scrollTo(0, 0);"}
     (uui/raw "<!-- Google Tag Manager (noscript) -->")
     [:noscript
      [:iframe

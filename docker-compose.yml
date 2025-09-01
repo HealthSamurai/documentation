@@ -6,18 +6,20 @@ services:
     ports:
       - "8081:8081"
     environment:
-      - DOCS_VOLUME_PATH=/workspace/docs-new
+      - DOCS_VOLUME_PATH=/repo/docs-new
+      - DOCS_REPO_PATH=/repo
       - RELOAD_CHECK_INTERVAL_SEC=60
+      - ENABLE_LASTMOD_UPDATER=true
+      - LASTMOD_UPDATE_INTERVAL_MINUTES=1
       - BASE_URL=http://localhost:8081
       - DOCS_PREFIX=/docs
       - DEV=false
       - MEILISEARCH_URL=http://meilisearch:7700
       - MEILISEARCH_API_KEY=${MEILISEARCH_API_KEY:-60DBZGy6zoDL6Q--s1-dHBWptiVKvK-XRsaacdvkOSM}
       - PORT=8081
+    user: "1000:1000"
     volumes:
-      - ./docs:/workspace/docs:ro
-      - ./docs-new:/workspace/docs-new:ro
-      - ./.gitbook.yaml:/workspace/.gitbook.yaml:ro
+      - .:/repo:ro
     networks:
       - meilisearch-network
     depends_on:

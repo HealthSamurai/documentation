@@ -9,9 +9,11 @@
    [gitbok.indexing.impl.file-to-uri :as file-to-uri]
    [gitbok.constants :as const]
    [gitbok.products :as products]
+   [gitbok.lastmod.generator :as lastmod-gen]
    [edamame.core :as edamame]
    [system]
    [clojure.string :as str]
+   [clojure.java.io :as io]
    [gitbok.utils :as utils]
    [gitbok.http]
    [uui]
@@ -174,23 +176,36 @@
 
 (defn set-lastmod [context]
   (let [product-id (products/get-current-product-id context)
-        ;; Try product-specific lastmod first
-        product-lastmod-path (str "lastmod/lastmod-" product-id ".edn")
-        ;; Fallback paths for backward compatibility
-        default-lastmod-path "lastmod.edn"
-        lastmod-data (try
-                       ;; Try to load product-specific lastmod
-                       (edamame/parse-string
-                        (utils/slurp-resource product-lastmod-path))
-                       (catch Exception _
-                         (try
-                           ;; Fallback to default lastmod
-                           (edamame/parse-string (utils/slurp-resource default-lastmod-path))
-                           (catch Exception _
-                             ;; If no lastmod files exist, return empty map
-                             (do
-                               (log/warn ::lastmod-not-found {:product-id product-id})
-                               {})))))]
+        product-config (products/get-current-product context)
+        
+        ;; Get paths from product config and environment
+        volume-path (or (System/getenv "DOCS_VOLUME_PATH") ".")
+        
+        ;; Build docs path from product config
+        config-path (:config product-config)
+        config-dir (utils/parent config-path)
+        root (or (-> product-config :structure :root)
+                 (:root product-config)
+                 "./docs")
+        ;; Remove leading "./" from root if present
+        root (if (str/starts-with? root "./")
+               (subs root 2)
+               root)
+        
+        ;; Construct full docs path
+        docs-path (.getPath (io/file volume-path config-dir root))
+        
+        ;; Generate lastmod data in memory with caching
+        lastmod-data (if (.exists (io/file docs-path))
+                       (lastmod-gen/generate-or-get-cached-lastmod 
+                        context
+                        product-id 
+                        docs-path)
+                       {})]
+    
+    (log/info ::✅lastmod-set {:product product-id 
+                             :docs-path docs-path
+                             :entries (count lastmod-data)})
     (products/set-product-state
      context
      [const/LASTMOD]

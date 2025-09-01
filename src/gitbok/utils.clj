@@ -136,6 +136,39 @@
         zoned (ZonedDateTime/ofInstant instant (ZoneId/of "GMT"))]
     (.format ^DateTimeFormatter http-date-formatter zoned))))
 
+(defn format-relative-time
+  "Format ISO date string to relative time (e.g. '2 hours ago', 'yesterday')"
+  [iso-date-str]
+  (when iso-date-str
+    (try
+      (let [then (Instant/parse iso-date-str)
+            now (Instant/now)
+            diff-ms (.toMillis (java.time.Duration/between then now))
+            seconds (quot diff-ms 1000)
+            minutes (quot seconds 60)
+            hours (quot minutes 60)
+            days (quot hours 24)
+            weeks (quot days 7)
+            months (quot days 30)
+            years (quot days 365)]
+        (cond
+          (>= years 1) (if (= years 1) "a year ago" (str years " years ago"))
+          (>= months 1) (if (= months 1) "a month ago" (str months " months ago"))
+          (>= weeks 1) (if (= weeks 1) "a week ago" (str weeks " weeks ago"))
+          (>= days 1) (if (= days 1) "yesterday" (str days " days ago"))
+          (>= hours 1) (if (= hours 1) "an hour ago" (str hours " hours ago"))
+          (>= minutes 1) (if (= minutes 1) "a minute ago" (str minutes " minutes ago"))
+          :else "just now"))
+      (catch Exception _
+        ;; Fallback to absolute date
+        (try
+          (let [instant (Instant/parse iso-date-str)
+                formatter (DateTimeFormatter/ofPattern "MMMM d, yyyy")
+                zoned-time (.atZone instant (ZoneId/of "UTC"))]
+            (.format formatter zoned-time))
+          (catch Exception _
+            iso-date-str))))))
+
 (defn absolute-url
   [base-url prefix relative-url]
   (concat-urls base-url (or prefix "/") relative-url))

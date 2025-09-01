@@ -12,6 +12,8 @@ init:
 repl: init-test
 	DOCS_VOLUME_PATH=$$(pwd)/docs-new \
 	RELOAD_CHECK_INTERVAL_SEC=10 \
+	ENABLE_LASTMOD_UPDATER=true \
+	LASTMOD_UPDATE_INTERVAL_MINUTES=5 \
 	DEV=true \
 	BASE_URL=http://localhost:8081 \
 	DOCS_PREFIX=/docs \

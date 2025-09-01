@@ -6,6 +6,10 @@ RUN --mount=target=/root/.m2,type=cache,sharing=locked \
     make uberjar
 
 FROM bellsoft/liberica-openjre-alpine-musl:24 AS final
+
+# Install git for lastmod generation
+RUN apk add --no-cache git
+
 COPY --from=builder /srv/target/gitbok.jar /gitbok.jar
 
 # Declare volume mount point for documentation
