@@ -48,7 +48,7 @@ spec:
           - name: DOCS_VOLUME_PATH
             value: "/git-data/repo/docs-new"
           - name: DOCS_REPO_PATH
-            value: "/git-data"
+            value: "/git-data/repo"
           - name: RELOAD_CHECK_INTERVAL_SEC
             value: "300"
           - name: ENABLE_LASTMOD_UPDATER
