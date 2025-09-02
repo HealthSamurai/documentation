@@ -24,7 +24,7 @@ spec:
     spec:
       containers:
       - name: main
-        image: ghcr.io/healthsamurai/documentation:1.1.13
+        image: ghcr.io/healthsamurai/documentation:1.1.14
         imagePullPolicy: Always
         resources:
           requests:
@@ -48,7 +48,7 @@ spec:
           - name: DOCS_VOLUME_PATH
             value: "/git-data/repo/docs-new"
           - name: DOCS_REPO_PATH
-            value: "/git-data/repo"
+            value: "/git-data"
           - name: RELOAD_CHECK_INTERVAL_SEC
             value: "300"
           - name: ENABLE_LASTMOD_UPDATER
