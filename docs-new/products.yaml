@@ -5,7 +5,7 @@ products:
     name: "Aidbox User Docs"
     # url <BASE_URL><DOCS_PREFIX>/aidbox
     path: /aidbox
-    config: aidbox/.gitbook.yaml
+    config: ../.gitbook.yaml
     logo: .gitbook/assets/aidbox_logo.jpg
     favicon: .gitbook/assets/favicon.ico
     og-preview-text: "Aidbox User Docs"  # Optional: custom text for OG preview images

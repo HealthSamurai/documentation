@@ -46,16 +46,16 @@ SELECT resource FROM patient WHERE id = 'patient-123';
 }
 ```
 
-### Two Tables for Every Resource
+### Two tables for every resource
 
 For each FHIR resource type, Aidbox creates exactly two tables:
 
-1. **Main table** (e.g., `patient`) - stores the current version of each resource
-2. **History table** (e.g., `patient_history`) - stores every version ever created
+1. **Main table** (for example, `patient`) - stores the current version of each resource
+2. **History table** (for example, `patient_history`) - stores every version ever created
 
 This dual-table approach means you always have fast access to current data while maintaining a complete audit trail. No complex versioning schemes, no separate audit databases - just two tables per resource type.
 
-### The Anatomy of a Resource Row
+### The anatomy of a resource row
 
 Let's peek inside the `patient` table to see what's actually stored:
 
