@@ -35,10 +35,15 @@ def generate_og_image(
     product_name: str,
     logo_path: Path,
     output_path: Path,
-    magick_cmd: str
+    magick_cmd: str,
+    force_regenerate: bool = False
 ) -> bool:
     """Generate an OG preview image using ImageMagick."""
     output_path.parent.mkdir(parents=True, exist_ok=True)
+    
+    # Skip if image already exists and force_regenerate is False
+    if not force_regenerate and output_path.exists():
+        return True
     
     # Use default logo if the specified one doesn't exist
     if not logo_path.exists():
@@ -62,6 +67,8 @@ def generate_og_image(
         '-fill', '#222222', '-size', '1000x200',
         '-background', 'none', f'caption:{title}',
         '-gravity', 'center', '-geometry', '+0-40', '-composite',
+        '-strip',  # Remove all metadata (timestamps, etc.) for deterministic output
+        '-define', 'png:exclude-chunks=all',  # Exclude all PNG chunks except required ones
         str(output_path)
     ]
     
@@ -80,7 +87,8 @@ def generate_for_product(
     product_name: str,
     docs_root: Path,
     logo_path: Path,
-    magick_cmd: str
+    magick_cmd: str,
+    force_regenerate: bool = False
 ) -> int:
     """Generate OG preview images for all markdown files in a product's docs."""
     print(f"Generating OG preview images for product: {product_id}")
@@ -116,9 +124,15 @@ def generate_for_product(
         rel_path = md_file.relative_to(docs_root)
         png_path = output_dir / rel_path.with_suffix('.png')
         
+        # Skip if file already exists in non-force mode
+        if not force_regenerate and png_path.exists():
+            print(f"Skipping existing preview: {png_path}")
+            processed += 1
+            continue
+        
         print(f"Creating preview: {png_path} ← \"{title}\"")
         
-        if generate_og_image(title, product_name, logo_path, png_path, magick_cmd):
+        if generate_og_image(title, product_name, logo_path, png_path, magick_cmd, force_regenerate):
             print("  ✓ done")
             processed += 1
         else:
@@ -172,7 +186,13 @@ def main():
         return 1
     
     # Parse command line arguments
-    product_id = sys.argv[1] if len(sys.argv) > 1 else 'all'
+    args = sys.argv[1:]
+    force_regenerate = '--force' in args
+    if force_regenerate:
+        args.remove('--force')
+        print("Force regeneration mode enabled")
+    
+    product_id = args[0] if args else 'all'
     
     # Load product configurations from products.yaml
     products_list = load_products_config()
@@ -217,7 +237,8 @@ def main():
                 config['name'],
                 config['docs_root'],
                 config['logo'],
-                magick_cmd
+                magick_cmd,
+                force_regenerate
             )
             if code != 0:
                 exit_code = code
@@ -230,11 +251,13 @@ def main():
             config['name'],
             config['docs_root'],
             config['logo'],
-            magick_cmd
+            magick_cmd,
+            force_regenerate
         )
     else:
         print(f"Unknown product: {product_id}")
-        print(f"Usage: {sys.argv[0]} [all|{'|'.join(products.keys())}]")
+        print(f"Usage: {sys.argv[0]} [--force] [all|{'|'.join(products.keys())}]")
+        print("  --force: Regenerate all images even if they already exist")
         return 1
 
 if __name__ == '__main__':
