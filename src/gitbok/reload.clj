@@ -1,6 +1,8 @@
 (ns gitbok.reload
   (:require
    [clojure.java.io :as io]
+   [clojure.java.shell :as shell]
+   [clojure.string :as str]
    [gitbok.constants :as const]
    [gitbok.http]
    [gitbok.products :as products]
@@ -28,58 +30,12 @@
               (* 1000))
       60000)) ;; Default: check every 60 seconds
 
-(defn calculate-file-content-hash
-  "Calculate MD5 hash of file content"
-  [^java.io.File file]
-  (let [md (java.security.MessageDigest/getInstance "MD5")]
-    (with-open [is (io/input-stream file)]
-      (let [buffer (byte-array 8192)]
-        (loop []
-          (let [n (.read is buffer)]
-            (when (pos? n)
-              (.update md buffer 0 n)
-              (recur))))))
-    (apply str (map #(format "%02x" %) (.digest md)))))
-
-(defn calculate-docs-checksum
-  "Calculate checksum based on actual file contents using MD5.
-   This ensures reload only happens when content actually changes,
-   not just timestamps."
-  []
-  (log/info ::checksum-start {:action "🔍 calculating-checksum"})
-  (when-let [docs-path (get-volume-path)]
-    (try
-      (let [docs-dir (io/file docs-path)
-            ;; Get all relevant files
-            files (filter #(let [name (.getName %)]
-                             (or (.endsWith name ".md")
-                                 (.endsWith name ".yaml")
-                                 (.endsWith name ".yml")
-                                 (.endsWith name ".edn")))
-                          (file-seq docs-dir))
-            file-count (count files)
-            _ (log/info ::files-found {:count file-count :path docs-path})
-            ;; Sort files by path for consistent ordering
-            sorted-files (sort-by #(.getPath %) files)
-            ;; Calculate MD5 for each file and combine
-            start-time (System/currentTimeMillis)
-            file-hashes (map (fn [f]
-                               (str (.getPath f) ":" (calculate-file-content-hash f)))
-                             sorted-files)
-            calc-time (- (System/currentTimeMillis) start-time)]
-        ;; Return combined hash of all file hashes
-        (log/info ::✅checksum-complete {:duration-ms calc-time
-                                         :file-count file-count})
-        (str (hash (vec file-hashes))))
-      (catch Exception e
-        (log/error ::❌checksum-error {:error (.getMessage e)})
-        nil))))
+;; Removed checksum functions - now using git HEAD for change detection
 
 ;; State management functions using context
 (defn get-reload-state [context]
   (system/get-system-state context [const/RELOAD_STATE]
-                           {:checksum nil
-                            :last-update-time nil
+                           {:git-head nil
                             :last-reload-time nil
                             :app-version nil
                             :in-progress false}))
@@ -92,19 +48,7 @@
                               (fn [state]
                                 (apply f (or state {}) args))))
 
-(defn get-current-checksum [context]
-  (:checksum (get-reload-state context)))
-
-(defn set-current-checksum [context checksum]
-  (update-reload-state context assoc :checksum checksum))
-
-(defn get-last-update-time
-  "Get last modification time of docs directory"
-  []
-  (when-let [docs-path (get-volume-path)]
-    (try
-      (java.util.Date. (.lastModified (io/file docs-path)))
-      (catch Exception _ nil))))
+;; Removed checksum getters/setters - using git HEAD instead
 
 (defn is-reloading? [context]
   (:in-progress (get-reload-state context)))
@@ -148,32 +92,39 @@
     true))
 
 (defn check-and-reload!
-  "Check if documentation changed and reload if needed.
-   Uses checksum-based comparison to detect changes.
+  "Check if git HEAD changed and reload if needed.
    This ensures only one reload happens at a time."
   [context init-product-indices-fn init-products-fn]
   (when (and (get-volume-path)
              (not (is-reloading? context)))
-    (let [;; Calculate current docs checksum
-          new-checksum (calculate-docs-checksum)
+    (let [;; Get current git HEAD
+          repo-path (or (System/getenv "DOCS_REPO_PATH") ".")
+          new-head (try
+                     (let [{:keys [out exit]} (shell/sh "git" 
+                                                        "-c" (str "safe.directory=" repo-path)
+                                                        "rev-parse" "HEAD" 
+                                                        :dir repo-path)]
+                       (when (zero? exit)
+                         (str/trim out)))
+                     (catch Exception e
+                       (log/warn ::⚠️get-head-failed {:error (.getMessage e)})
+                       nil))
           reload-state (get-reload-state context)
-          current-checksum (:checksum reload-state)
-          app-version (gitbok.http/get-version context)
-          update-time (get-last-update-time)]
+          current-head (:git-head reload-state)
+          app-version (gitbok.http/get-version context)]
 
       (log/info ::check-status {:🏷️app-version app-version
-                                :🔖cached-checksum (or current-checksum "none")
-                                :📅cached-at (:last-reload-time reload-state)
-                                :🔍current-checksum new-checksum})
+                                :📌current-head (or current-head "none")
+                                :🆕new-head (or new-head "none")})
 
       (cond
-        (not new-checksum)
-        (log/warn ::check-skipped {:reason "cannot-calculate-checksum"})
+        (not new-head)
+        (log/warn ::check-skipped {:reason "cannot-get-git-head"})
 
-        (and new-checksum (not= new-checksum current-checksum))
+        (and new-head (not= new-head current-head))
         (do
-          (log/info ::📚docs-changed {:old-checksum (or current-checksum "none")
-                                      :new-checksum new-checksum})
+          (log/info ::📊repo-changed {:old-head (or current-head "none")
+                                      :new-head new-head})
 
           (set-reloading context true)
           (try
@@ -182,17 +133,22 @@
 
               ;; Build new caches
               (rebuild-all-caches context init-product-indices-fn init-products-fn)
+              
+              ;; Update lastmod for all products
+              (log/info ::🔄updating-lastmod-data {})
+              (doseq [product (products/get-products-config context)]
+                (let [ctx (assoc context ::products/current-product product)]
+                  (indexing/set-lastmod ctx)))
 
               ;; Update state only after successful reload
               (update-reload-state context assoc
-                                   :checksum new-checksum
-                                   :last-update-time update-time
+                                   :git-head new-head
                                    :last-reload-time (java.util.Date.)
                                    :app-version app-version)
 
               (let [duration (- (System/currentTimeMillis) start-time)]
                 (log/info ::reload-success {:duration-ms duration
-                                            :new-checksum new-checksum})))
+                                            :new-head new-head})))
             (catch Exception e
               (log/error ::reload-failed {:error (.getMessage e)
                                           :exception e}))
@@ -201,44 +157,37 @@
 
         :else
         (log/info ::📚docs-unchanged {})))))
-
-(defn start-lastmod-updater
-  "Start background process to update lastmod every N minutes"
-  [context interval-minutes]
-  (future
-    (Thread/sleep (* 60 1000)) ;; Wait 1 minute after startup
-    (while true
-      (try
-        (Thread/sleep (* interval-minutes 60 1000))
-        (log/info ::🔄updating-lastmod {})
-        ;; Update lastmod for all products
-        (doseq [product (products/get-products-config context)]
-          (let [ctx (assoc context ::products/current-product product)]
-            (indexing/set-lastmod ctx)))
-        (catch InterruptedException e
-          (log/info ::🚫️lastmod-updater-stopped {})
-          (throw e))
-        (catch Exception e
-          (log/error ::❌lastmod-update-failed {:error (.getMessage e)}))))))
+;; Removed separate lastmod updater - now integrated into check-and-reload!
 
 (defn start-reload-watcher
-  "Start background thread that checks for documentation changes"
+  "Start background thread that checks for git changes"
   [context init-product-indices-fn init-products-fn]
   (when-let [docs-path (get-volume-path)]
-    (let [app-version (gitbok.http/get-version context)]
+    (let [app-version (gitbok.http/get-version context)
+          repo-path (or (System/getenv "DOCS_REPO_PATH") ".")]
 
       (log/info ::watcher-start {:app-version app-version
-                                 :volume-path docs-path})
+                                 :volume-path docs-path
+                                 :repo-path repo-path})
 
-      ;; Always use checksum mode
-      (let [initial-checksum (calculate-docs-checksum)]
+      ;; Get initial git HEAD
+      (let [initial-head (try
+                           (let [{:keys [out exit]} (shell/sh "git" 
+                                                              "-c" (str "safe.directory=" repo-path)
+                                                              "rev-parse" "HEAD" 
+                                                              :dir repo-path)]
+                             (when (zero? exit)
+                               (str/trim out)))
+                           (catch Exception e
+                             (log/warn ::⚠️get-initial-head-failed {:error (.getMessage e)})
+                             nil))]
         (set-reload-state context
-                          {:checksum initial-checksum
+                          {:git-head initial-head
                            :last-reload-time (java.util.Date.)
                            :app-version app-version
                            :in-progress false})
-        (log/info ::initial-checksum {:checksum initial-checksum
-                                      :path docs-path}))
+        (log/info ::initial-git-head {:head initial-head
+                                      :path repo-path}))
 
       (log/info ::check-interval {:interval-seconds (/ reload-check-interval-ms 1000)}))
 
@@ -251,14 +200,6 @@
           (catch Exception e
             (log/error ::watcher-error {:error (.getMessage e)})))
         (recur)))
-
-    ;; Start lastmod updater if enabled
-    (when (System/getenv "ENABLE_LASTMOD_UPDATER")
-      (let [interval (or (some-> (System/getenv "LASTMOD_UPDATE_INTERVAL_MINUTES")
-                                  Integer/parseInt)
-                         30)] ;; Default: 30 minutes
-        (log/info ::🚀starting-lastmod-updater {:interval-minutes interval})
-        (start-lastmod-updater context interval)))
 
     (log/info ::watcher-started {:status "success"})
     :started))
