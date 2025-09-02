@@ -513,7 +513,7 @@ POST /$sql
 ["SELECT count(*) FROM patient WHERE resource->>'gender' = ?", "female"]
 ```
 
-#### JSONB Query Patterns
+#### JSONB query patterns
 
 PostgreSQL provides rich operators for JSONB queries:
 
@@ -551,7 +551,7 @@ See also:
 transform nested FHIR resources into flat, tabular views optimized for analytics. 
 Aidbox implements this specification using ViewDefinition resources that create PostgreSQL views.
 
-#### ViewDefinition Basics
+#### ViewDefinition basics
 
 ViewDefinitions describe how to flatten FHIR resources using [FHIRPath expressions](https://www.hl7.org/fhir/fhirpath.html):
 
@@ -604,7 +604,7 @@ WHERE gender = 'female'
   AND birth_date > '1990-01-01';
 ```
 
-#### Multi-Resource Analytics
+#### Multi-resource analytics
 
 SQL on FHIR enables complex joins across resource types:
 
@@ -622,7 +622,7 @@ WHERE c.code = '840539006'  -- COVID-19 SNOMED code
 ORDER BY c.onset_date DESC;
 ```
 
-#### Business Intelligence Integration
+#### Business intelligence integration
 
 SQL on FHIR views integrate directly with BI tools:
 
@@ -647,7 +647,7 @@ See also:
 {% endcontent-ref %}
 
 
-### PostgreSQL with Read-only replica
+### PostgreSQL with read-only replica
 
 Aidbox supports delegating read-only queries to a PostgreSQL read-only replica. This feature addresses several critical challenges in high-load FHIR server deployments:
 
