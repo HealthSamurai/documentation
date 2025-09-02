@@ -142,6 +142,9 @@
               _ (log/info ::🗓️git-dates-found {:with-dates (count data) 
                                               :without-dates (- (count md-files) (count data))})]
           (log/info ::📅lastmod-generated {:dir docs-dir :entries (count data)})
+          ;; Log a sample of keys for debugging
+          (when (> (count data) 0)
+            (log/info ::📋sample-lastmod-keys {:first-5-keys (take 5 (keys data))}))
           data)
         (do
           (log/warn ::⚠️directory-not-found {:dir docs-dir})
