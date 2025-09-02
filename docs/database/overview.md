@@ -273,7 +273,7 @@ ORDER BY txid DESC
 LIMIT 1;
 ```
 
-#### Change Detection
+#### Change detection
 
 ```sql
 -- Find all changes in the last hour
@@ -283,13 +283,13 @@ WHERE ts > CURRENT_TIMESTAMP - INTERVAL '1 hour'
 ORDER BY txid DESC;
 ```
 
-### Transactions and Batch Operations
+### Transactions and batch operations
 
 Aidbox uses PostgreSQL's [ACID transactions](https://en.wikipedia.org/wiki/ACID) to ensure data consistency across multiple operations. The system uses [SERIALIZABLE isolation level](https://www.postgresql.org/docs/current/transaction-iso.html) by default, which prevents all serialization anomalies but may cause transaction rejection under high concurrency.
 
 You can adjust the isolation level using the `x-max-isolation-level` header in API requests. Lower isolation levels reduce transaction rejection but may allow serialization anomalies. See [batch-transaction documentation](../api/batch-transaction.md) for details.
 
-#### FHIR Transaction Bundles
+#### FHIR transaction bundles
 
 FHIR [transaction bundles](https://www.hl7.org/fhir/http.html#transaction) allow multiple operations to be submitted as a single atomic unit. Aidbox processes these bundles by:
 
@@ -328,7 +328,7 @@ See also:
 {% endcontent-ref %}
 
 
-#### Conditional Operations
+#### Conditional operations
 
 [Conditional operations](https://www.hl7.org/fhir/http.html#cond) in FHIR allow creating, updating, or deleting resources based on search criteria rather than specific IDs. These operations enable stateless clients to manage resources without needing to track exact resource identifiers.
 
