@@ -245,11 +245,11 @@ After deletion:
 * Two records exist in history: the last version and a deletion marker
 * The resource can still be retrieved for history purposes
 
-### History Management
+### History management
 
 Every resource type has a corresponding `_history` table with identical structure. This design enables:
 
-#### Complete Version History
+#### Complete version history
 
 ```sql
 -- Get full history of a resource
@@ -262,7 +262,7 @@ FROM (
 ORDER BY txid DESC;
 ```
 
-#### Point-in-Time Queries
+#### Point-in-time queries
 
 ```sql
 -- What did the resource look like on January 1st?
