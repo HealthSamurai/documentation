@@ -28,6 +28,9 @@ jobs:
       - name: Install ImageMagick
         run: sudo apt-get update && sudo apt-get install -y imagemagick
 
+      - name: Install Python dependencies
+        run: pip install pyyaml
+
       - name: Generate OG images
         run: python3 scripts/generate-og.py all
 
