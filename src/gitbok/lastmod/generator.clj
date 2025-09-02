@@ -13,14 +13,28 @@
   (let [;; For symlinked files, we need to resolve to get the actual file
         canonical-file (.getCanonicalFile file)
         ;; But for git, we need the path relative to git-dir
-        ;; Since git follows symlinks, we can use the original file path
-        git-dir-path (.toPath (io/file git-dir))
-        file-path (.toPath file)
-        relative-path (try
-                        (.relativize git-dir-path file-path)
-                        (catch Exception _
-                          ;; If can't relativize, use absolute path
-                          file-path))
+        ;; Important: git-dir might be a symlink itself (git-sync case)
+        ;; We need to ensure the relative path is within the git repository
+        git-dir-canonical (.getCanonicalPath (io/file git-dir))
+        ;; If the file is under the canonical git dir, use that path
+        ;; Otherwise, try to find it relative to the original git-dir
+        file-path-str (.getPath file)
+        relative-path (cond
+                        ;; If file path starts with canonical git dir, relativize from there
+                        (str/starts-with? file-path-str git-dir-canonical)
+                        (subs file-path-str (inc (count git-dir-canonical)))
+                        
+                        ;; If file path starts with git-dir, relativize from there
+                        (str/starts-with? file-path-str git-dir)
+                        (subs file-path-str (inc (count git-dir)))
+                        
+                        ;; Try to relativize using Path API
+                        :else
+                        (try
+                          (str (.relativize (.toPath (io/file git-dir)) (.toPath file)))
+                          (catch Exception _
+                            ;; Last resort - use filename only
+                            (.getName file))))
         git-cmd ["git" 
                  "-c" (str "safe.directory=" git-dir)
                  "log" "-1" "--format=%ct"
