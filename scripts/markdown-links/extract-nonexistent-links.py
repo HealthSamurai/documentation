@@ -8,7 +8,7 @@ from typing import List, Tuple, Dict, Optional
 from collections import defaultdict
 import urllib.parse
 
-def extract_links_from_line(line: str) -> str | None:
+def extract_links_from_line(line: str) -> Optional[str]:
     # Markdown link:   [text](<path>) или   [text](path)
     if re.match(r'^  \[.*\]\([^)]+', line):
         start = line.find('](')
