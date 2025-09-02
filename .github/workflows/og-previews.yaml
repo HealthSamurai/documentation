@@ -19,6 +19,8 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Setup Python
         uses: actions/setup-python@v4
@@ -34,8 +36,17 @@ jobs:
       - name: Generate OG images
         run: python3 scripts/generate-og.py all
 
-      - name: Upload OG images artifact
-        uses: actions/upload-artifact@v4
-        with:
-          name: og-previews
-          path: resources/public/og-preview/
+      - name: Configure Git
+        run: |
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action"
+
+      - name: Commit and push changes
+        run: |
+          git add resources/public/og-preview/
+          if git diff --staged --quiet; then
+            echo "No changes to commit"
+          else
+            git commit -m "Update OG preview images [skip ci]"
+            git push
+          fi
