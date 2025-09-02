@@ -69,14 +69,14 @@ DELETE /aws/storage/my-account/aidboxtestbucket/example.txt
 | -------------------------------- | ------- | ------------------------------------------------------------------------------------------------------------------------------- |
 | AwsAccount.**access-key-id**     | string  | The access key ID used for authentication with AWS S3 or an S3-compatible service                                               |
 | AwsAccount.**secret-access-key** | string  | The secret key paired with the access key ID for authentication                                                                 |
-| AwsAccount.**region**            | string  | Specifies the geographical region where the cloud service operates (e.g., `us-east-1` for AWS S3).                              |
+| AwsAccount.**region**            | string  | Specifies the geographic region where the cloud service operates (for example, `us-east-1` for AWS S3).                              |
 | AwsAccount.**host**              | string  | The endpoint or base URL of the storage service, required for non-AWS S3 providers. Default is `s3.amazonaws.com`               |
 | AwsAccount.**use-ssl**           | boolean | Use HTTPS or HTTP. Default is `false`                                                                                           |
 | AwsAccount.**path-style**        | boolean | Use `<protocol>://<host>/<bucket-id>/<filename>` URL instead of `<protocol>://<bucket-name>.<host>/<file>`. Default is `false`. |
 
 ## Expiration query parameter
 
-You can provide an expiration query parameter which sets X-Amz-Expires query param of signed URL. Expiration time is measured in seconds, e.g. for 12 hours expiration you should provide 43200.
+You can provide an expiration query parameter which sets X-Amz-Expires query param of signed URL. Expiration time is measured in seconds, fox example, for 12 hours expiration you should provide 43200.
 
 ```
 GET /aws/storage/my-account/aidboxtestbucket/example.txt?expiration=43200
