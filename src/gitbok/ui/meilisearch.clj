@@ -17,6 +17,9 @@
                     {"Authorization" (str "Bearer " meilisearch-api-key)
                      "Content-Type" "application/json"}
                     {"Content-Type" "application/json"})
+          ;; Filter to exclude deprecated pages using STARTS WITH
+          ;; This operator is available by default (no experimental features needed)
+          deprecated-filter "NOT url STARTS WITH \"https://www.health-samurai.io/docs/aidbox/deprecated\""
           response @(http-client/post
                      (str meilisearch-host "/multi-search")
                      {:headers headers
@@ -25,7 +28,7 @@
                        {:federation {:limit 30} ; Set limit at federation level
                         :queries [{:indexUid index-name
                                    :q query
-                                   :filter (str "hierarchy_lvl6 = \"" query "\"")
+                                   :filter (str deprecated-filter " AND hierarchy_lvl6 = \"" query "\"")
                                    :federationOptions {:weight 1.2}
                                    :attributesToHighlight ["content" "hierarchy_lvl0" "hierarchy_lvl1"
                                                            "hierarchy_lvl2" "hierarchy_lvl3" "hierarchy_lvl6"]
@@ -33,6 +36,7 @@
                                    :highlightPostTag "</mark>"}
                                   {:indexUid index-name
                                    :q query
+                                   :filter deprecated-filter
                                    :attributesToHighlight ["content" "hierarchy_lvl0" "hierarchy_lvl1"
                                                            "hierarchy_lvl2" "hierarchy_lvl3" "hierarchy_lvl6"]
                                    :highlightPreTag "<mark class=\"bg-warning-2 text-tint-12 p-1 px-0.5 -mx-0.5 py-0.5 rounded\">"
