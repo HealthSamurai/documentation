@@ -44,9 +44,18 @@
           repo-path (or (System/getenv "DOCS_REPO_PATH") ".")]
       (log/info ::🔍checking-docs-dir {:dir docs-dir :exists (.exists docs-file) :git-dir repo-path})
       (if (.exists docs-file)
-        (let [md-files (->> (file-seq docs-file)
-                           (filter #(and (.isFile %)
-                                       (.endsWith (.getName %) ".md"))))
+        (let [;; Use Files/walk with FOLLOW_LINKS to handle symlinks
+              md-files (with-open [stream (java.nio.file.Files/walk 
+                                            (.toPath docs-file)
+                                            (into-array java.nio.file.FileVisitOption 
+                                                       [java.nio.file.FileVisitOption/FOLLOW_LINKS]))]
+                         (->> stream
+                              .iterator
+                              iterator-seq
+                              (map #(.toFile %))
+                              (filter #(and (.isFile %)
+                                          (.endsWith (.getName %) ".md")))
+                              doall))
               _ (log/debug ::📁found-md-files {:count (count md-files)})
               data (->> md-files
                        (map (fn [f]
