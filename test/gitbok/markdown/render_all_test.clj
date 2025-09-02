@@ -30,10 +30,11 @@
 
 (deftest test-all-pages-render-without-exceptions
   (testing "All pages must render without throwing exceptions"
-    ;; Skip test if docs directory doesn't exist
+    ;; Skip test if required directory structure doesn't exist
+    ;; The test expects docs-new/aidbox/docs/SUMMARY.md based on products.yaml
     (if (or (not (.exists (clojure.java.io/file "docs-new/products.yaml")))
-            (not (.exists (clojure.java.io/file "docs/SUMMARY.md"))))
-      (is true "Skipping test - docs directory or SUMMARY.md not found")
+            (not (.exists (clojure.java.io/file "docs-new/aidbox/docs/SUMMARY.md"))))
+      (is true "Skipping test - required directory structure not found")
       (with-redefs [core/read-markdown-file read-markdown-file-no-try-catch
                     core/dev? false]
         (let [context {:system (atom {})}
