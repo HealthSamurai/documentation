@@ -217,7 +217,7 @@ SET resource = '{"gender": "female", "birthDate": "1990-01-15"}'::jsonb,
 WHERE id = 'patient-123';
 ```
 
-#### Deleting Resources
+#### Deleting resources
 
 Deletion is a soft operation that preserves data for history purposes:
 
