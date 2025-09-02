@@ -3,8 +3,9 @@ import os
 import sys
 import re
 import subprocess
+import yaml
 from pathlib import Path
-from typing import Optional, Tuple
+from typing import Optional, Tuple, Dict
 
 def find_title_in_markdown(file_path: Path) -> Optional[str]:
     """Extract the first H1 title from a markdown file."""
@@ -127,6 +128,33 @@ def generate_for_product(
     print(f"\nProcessed: {processed} files, Errors: {errors}")
     return 0 if errors == 0 else 1
 
+def load_products_config() -> Dict:
+    """Load product configurations from products.yaml."""
+    products_file = Path('docs-new/products.yaml')
+    if not products_file.exists():
+        print(f"Error: products.yaml not found at {products_file}")
+        return {}
+    
+    try:
+        with open(products_file, 'r') as f:
+            data = yaml.safe_load(f)
+            return data.get('products', [])
+    except Exception as e:
+        print(f"Error parsing products.yaml: {e}")
+        return []
+
+def get_docs_root_from_config(config_path: Path) -> Optional[Path]:
+    """Extract the docs root path from a .gitbook.yaml configuration."""
+    try:
+        with open(config_path, 'r') as f:
+            gitbook_config = yaml.safe_load(f)
+            root = gitbook_config.get('root', './')
+            # Return the absolute path relative to the config file location
+            return (config_path.parent / root).resolve()
+    except Exception as e:
+        print(f"Error reading gitbook config {config_path}: {e}")
+        return None
+
 def main():
     """Main entry point."""
     # Check ImageMagick availability
@@ -146,14 +174,39 @@ def main():
     # Parse command line arguments
     product_id = sys.argv[1] if len(sys.argv) > 1 else 'all'
     
-    # Product configurations
-    products = {
-        'aidbox': {
-            'name': 'Aidbox User Docs',
-            'docs_root': Path('docs-new/aidbox/docs'),
-            'logo': Path('.gitbook/assets/aidbox_logo.jpg')
+    # Load product configurations from products.yaml
+    products_list = load_products_config()
+    if not products_list:
+        print("Error: No products found in products.yaml")
+        return 1
+    
+    # Convert to dictionary format for compatibility
+    products = {}
+    for product in products_list:
+        pid = product.get('id')
+        if not pid:
+            continue
+        
+        # Resolve the config path relative to docs-new
+        config_path = Path('docs-new') / product.get('config', '')
+        if not config_path.exists():
+            print(f"Warning: Config file not found for {pid}: {config_path}")
+            continue
+        
+        # Get the actual docs root from the config file
+        docs_root = get_docs_root_from_config(config_path)
+        if not docs_root:
+            print(f"Warning: Could not determine docs root for {pid}")
+            continue
+        
+        # Get logo path
+        logo_path = Path(product.get('logo', '.gitbook/assets/aidbox_logo.jpg'))
+        
+        products[pid] = {
+            'name': product.get('name', pid),
+            'docs_root': docs_root,
+            'logo': logo_path
         }
-    }
     
     if product_id == 'all':
         # Generate for all products
