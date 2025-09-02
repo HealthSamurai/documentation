@@ -84,6 +84,9 @@ def generate_for_product(
     """Generate OG preview images for all markdown files in a product's docs."""
     print(f"Generating OG preview images for product: {product_id}")
     
+    # Resolve symlinks to get the actual path
+    docs_root = docs_root.resolve()
+    
     if not docs_root.exists():
         print(f"Error: Documentation directory not found: {docs_root}")
         return 1
