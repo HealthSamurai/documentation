@@ -9,10 +9,12 @@
 (defn lastmod-for-file
   "Get git lastmod timestamp for a file"
   [file git-dir]
-  (let [;; For git to work, we need the actual file path (resolve symlinks)
+  (let [;; For symlinked files, we need to resolve to get the actual file
         canonical-file (.getCanonicalFile file)
+        ;; But for git, we need the path relative to git-dir
+        ;; Since git follows symlinks, we can use the original file path
         git-dir-path (.toPath (io/file git-dir))
-        file-path (.toPath canonical-file)
+        file-path (.toPath file)
         relative-path (try
                         (.relativize git-dir-path file-path)
                         (catch Exception _
@@ -21,6 +23,7 @@
         {:keys [out exit err]} (shell/sh "git" 
                                          "-c" (str "safe.directory=" git-dir)
                                          "log" "-1" "--format=%ct"
+                                         "--follow"  ; Important: follow renames/symlinks
                                          (str relative-path)
                                          :dir git-dir)]
     (when (and exit (zero? exit) (not (str/blank? out)))
