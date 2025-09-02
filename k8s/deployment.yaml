@@ -54,7 +54,7 @@ spec:
           - name: ENABLE_LASTMOD_UPDATER
             value: "true"
           - name: LASTMOD_UPDATE_INTERVAL_MINUTES
-            value: "10"
+            value: "5"
         args:
           - "-Xms2g"
           - "-Xmx2g"
