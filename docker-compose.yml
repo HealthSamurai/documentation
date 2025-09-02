@@ -8,7 +8,7 @@ services:
     environment:
       - DOCS_VOLUME_PATH=/repo/docs-new
       - DOCS_REPO_PATH=/repo
-      - RELOAD_CHECK_INTERVAL_SEC=60
+      - RELOAD_CHECK_INTERVAL_SEC=10
       - ENABLE_LASTMOD_UPDATER=true
       - LASTMOD_UPDATE_INTERVAL_MINUTES=1
       - BASE_URL=http://localhost:8081

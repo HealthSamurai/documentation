@@ -124,13 +124,13 @@ Managing healthcare data requires careful tracking of every change. The [FHIR HT
 
 This section covers how Aidbox performs CRUD (Create, Read, Update, Delete) operations, manages resource history, handles bulk operations, and enables advanced transactional processing. Beyond the standard FHIR API, Aidbox provides direct SQL access for advanced queries and bulk operations - see the [Query section](overview.md#how-to-query-data) for details.
 
-### CRUD Operations with Built-in History
+### CRUD Operations with built-in history
 
 Every modification in Aidbox creates an history record following FHIR versioning principles. When you update a Patient resource, the previous version moves to the history table while the main table gets the new version. This happens atomically within a single [PostgreSQL transaction](https://www.postgresql.org/docs/current/tutorial-transactions.html).
 
 We simplify examples shown in this section for clarity.
 
-#### Resource Lifecycle
+#### Resource lifecycle
 
 Each resource in Aidbox has a lifecycle tracked through the `status` column:
 
