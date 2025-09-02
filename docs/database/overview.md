@@ -78,7 +78,7 @@ Notice what's _not_ in the JSONB? The `id`, `resourceType`, `meta.lastUpdated`, 
 * Full FHIR resource in one place
 * No data duplication
 
-### Why This Design Wins
+### Why this design wins
 
 **Schema flexibility without chaos.** Need to add a new extension to all your Patient resources? Just update the JSONB - no ALTER TABLE nightmares. Your database schema stays stable while your data model evolves.
 
@@ -86,7 +86,7 @@ Notice what's _not_ in the JSONB? The `id`, `resourceType`, `meta.lastUpdated`, 
 
 **PostgreSQL superpowers at your fingertips.** Want to run a complex analytical query mixing FHIR searches with custom SQL? Need ACID transactions across multiple resources? Want to use PostGIS for geographic queries? It's all there because it's just PostgreSQL.
 
-### Direct SQL Access
+### Direct SQL access
 
 Since it's just PostgreSQL, you can query your data directly when needed:
 
