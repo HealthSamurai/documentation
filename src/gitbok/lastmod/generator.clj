@@ -19,6 +19,7 @@
                           ;; If can't relativize, use absolute path
                           file-path))
         {:keys [out exit err]} (shell/sh "git" 
+                                         "-c" (str "safe.directory=" git-dir)
                                          "log" "-1" "--format=%ct"
                                          (str relative-path)
                                          :dir git-dir)]
@@ -79,6 +80,7 @@
   (try
     (let [repo-path (or (System/getenv "DOCS_REPO_PATH") ".")
           {:keys [out exit]} (shell/sh "git" 
+                                       "-c" (str "safe.directory=" repo-path)
                                        "rev-parse" "HEAD" 
                                        :dir repo-path)]
       (when (zero? exit)
