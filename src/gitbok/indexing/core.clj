@@ -170,9 +170,22 @@
 
 (defn get-lastmod [context filepath]
   (when filepath
-    (get
-     (products/get-product-state context [const/LASTMOD])
-     filepath)))
+    (let [lastmod-map (products/get-product-state context [const/LASTMOD])
+          ;; Normalize the filepath to match lastmod keys
+          ;; Lastmod keys are relative paths from docs directory
+          ;; filepath might be "../docs/path/to/file.md" or "docs/path/to/file.md"
+          normalized-path (cond
+                           ;; If path contains /docs/, take everything after it
+                           (str/includes? filepath "/docs/")
+                           (second (str/split filepath #"/docs/" 2))
+                           
+                           ;; If path starts with docs/, remove it
+                           (str/starts-with? filepath "docs/")
+                           (subs filepath 5)
+                           
+                           ;; Otherwise use as is
+                           :else filepath)]
+      (get lastmod-map normalized-path))))
 
 (defn set-lastmod [context]
   (let [product-id (products/get-current-product-id context)

@@ -4,6 +4,7 @@
    [gitbok.indexing.core :as indexing]
    [gitbok.indexing.impl.file-to-uri :as file-to-uri]
    [clojure.string :as str]
+   [klog.core :as log]
    [system]
    [uui]
    [gitbok.markdown.core :as markdown]
@@ -212,7 +213,11 @@ if (typeof initializeContent === 'function') {
          [:script (uui/raw "window.scrollTo(0, 0); updateActiveNavItem(window.location.pathname); updatePageTitle();")])
        [:div {:class "mx-auto max-w-full"} body-with-breadcrumb]
        (navigation-buttons context uri)
-       (let [lastupdated (indexing/get-lastmod context filepath)]
+       (let [lastupdated (indexing/get-lastmod context filepath)
+             _ (when (and filepath (str/includes? (or filepath "") "database/overview"))
+               (log/info ::📅lastmod-check {:filepath filepath 
+                                           :lastupdated lastupdated
+                                           :has-lastmod (boolean lastupdated)}))]
          (when lastupdated
            [:p {:class "mt-4 text-sm text-tint-11"
                 :id "lastupdated"
