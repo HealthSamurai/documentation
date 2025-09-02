@@ -166,7 +166,7 @@
 (defn search-dropdown-results [context request]
   (let [query (get-in request [:query-params :q] "")
         results (when (and query (pos? (count query)))
-                  (let [search-results (take 20 (gitbok.search/search context query))]
+                  (let [search-results (take 30 (gitbok.search/search context query))]
                     (mapv
                      (fn [res]
                        (let [filepath (-> res :hit :filepath)
@@ -175,14 +175,14 @@
                              ;; Remove common prefixes that shouldn't be in the URL
                              generated-uri (when (and (nil? uri) filepath)
                                              (-> filepath
-                                                 (str/replace #"^\./" "")        ; Remove leading ./
-                                                 (str/replace #"^forms/" "")     ; Remove forms/ prefix if present
-                                                 (str/replace #"^aidbox/" "")    ; Remove aidbox/ prefix if present
-                                                 (str/replace #"^\./docs/" "")   ; Remove ./docs/ prefix
-                                                 (str/replace #"^docs/" "")      ; Remove docs/ prefix
-                                                 (str/replace #"\.md$" "")       ; Remove .md extension
-                                                 (str/replace #"/README$" "/")   ; Convert README to /
-                                                 (str/replace #"^/" "")))]       ; Remove leading /
+                                                 (str/replace #"^\./" "") ; Remove leading ./
+                                                 (str/replace #"^forms/" "") ; Remove forms/ prefix if present
+                                                 (str/replace #"^aidbox/" "") ; Remove aidbox/ prefix if present
+                                                 (str/replace #"^\./docs/" "") ; Remove ./docs/ prefix
+                                                 (str/replace #"^docs/" "") ; Remove docs/ prefix
+                                                 (str/replace #"\.md$" "") ; Remove .md extension
+                                                 (str/replace #"/README$" "/") ; Convert README to /
+                                                 (str/replace #"^/" "")))] ; Remove leading /
                          (when (nil? uri)
                            (log/warn ::uri-not-found {:filepath filepath
                                                       :current-product (products/get-current-product-id context)

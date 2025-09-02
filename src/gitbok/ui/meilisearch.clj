@@ -22,7 +22,7 @@
                      {:headers headers
                       :body
                       (json/generate-string
-                       {:federation {:limit 20} ; Set limit at federation level
+                       {:federation {:limit 30} ; Set limit at federation level
                         :queries [{:indexUid index-name
                                    :q query
                                    :filter (str "hierarchy_lvl6 = \"" query "\"")
