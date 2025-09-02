@@ -44,28 +44,80 @@
           repo-path (or (System/getenv "DOCS_REPO_PATH") ".")]
       (log/info ::🔍checking-docs-dir {:dir docs-dir :exists (.exists docs-file) :git-dir repo-path})
       (if (.exists docs-file)
-        (let [;; Use Files/walk with FOLLOW_LINKS to handle symlinks
-              md-files (with-open [stream (java.nio.file.Files/walk 
-                                            (.toPath docs-file)
-                                            (into-array java.nio.file.FileVisitOption 
-                                                       [java.nio.file.FileVisitOption/FOLLOW_LINKS]))]
-                         (->> stream
-                              .iterator
-                              iterator-seq
-                              (map #(.toFile %))
-                              (filter #(and (.isFile %)
-                                          (.endsWith (.getName %) ".md")))
-                              doall))
-              _ (log/debug ::📁found-md-files {:count (count md-files)})
+        (let [;; Check if it's a symlink
+              is-symlink (java.nio.file.Files/isSymbolicLink (.toPath docs-file))
+              _ (log/info ::📂directory-type {:path docs-dir :is-symlink is-symlink})
+              
+              ;; Resolve symlinks first - if docs-dir is a symlink, resolve it
+              canonical-docs-file (.getCanonicalFile docs-file)
+              _ (when (not= (.getPath docs-file) (.getPath canonical-docs-file))
+                  (log/info ::📎symlink-resolved {:from (.getPath docs-file) 
+                                                  :to (.getPath canonical-docs-file)}))
+              
+              ;; Log what we're about to walk
+              _ (log/info ::🚶walking-directory {:path (.getPath canonical-docs-file)
+                                                 :exists (.exists canonical-docs-file)
+                                                 :is-directory (.isDirectory canonical-docs-file)})
+              
+              ;; Now walk the resolved directory
+              md-files (try
+                         (let [_ (log/info ::📚starting-files-walk {:path (.getPath canonical-docs-file)})]
+                           (with-open [stream (java.nio.file.Files/walk 
+                                              (.toPath canonical-docs-file)
+                                              (into-array java.nio.file.FileVisitOption 
+                                                         [java.nio.file.FileVisitOption/FOLLOW_LINKS]))]
+                             (let [files (->> stream
+                                            .iterator
+                                            iterator-seq
+                                            (map #(.toFile %))
+                                            doall)
+                                   _ (log/info ::🗂️total-files-found {:count (count files)})
+                                   md-files (filter #(and (.isFile %)
+                                                        (.endsWith (.getName %) ".md")) 
+                                                   files)]
+                               (log/info ::📝md-files-filtered {:count (count md-files)
+                                                               :first-5 (take 5 (map #(.getName %) md-files))})
+                               md-files)))
+                         (catch java.nio.file.FileSystemLoopException e
+                           ;; Handle circular symlinks
+                           (log/warn ::⚠️circular-symlink {:dir docs-dir :error (.getMessage e)})
+                           ;; Fallback to file-seq on canonical path
+                           (let [files (->> (file-seq canonical-docs-file)
+                                          (filter #(and (.isFile %)
+                                                      (.endsWith (.getName %) ".md"))))]
+                             (log/info ::📂using-file-seq-fallback {:count (count files)})
+                             files))
+                         (catch Exception e
+                           (log/error ::❌files-walk-failed {:dir docs-dir 
+                                                           :error (.getMessage e)
+                                                           :error-type (type e)})
+                           ;; Fallback to file-seq
+                           (let [files (->> (file-seq canonical-docs-file)
+                                          (filter #(and (.isFile %)
+                                                      (.endsWith (.getName %) ".md"))))]
+                             (log/info ::📂using-file-seq-error-fallback {:count (count files)})
+                             files)))
+              _ (log/info ::📁found-md-files {:count (count md-files) :dir docs-dir})
+              ;; Important: relativize from original docs-dir, not canonical
               data (->> md-files
                        (map (fn [f]
-                              (let [rel (.relativize (.toPath docs-file)
-                                                    (.toPath f))
+                              (let [;; Try to relativize from original path first
+                                    rel (try
+                                          (.relativize (.toPath docs-file) (.toPath f))
+                                          (catch Exception _
+                                            ;; If that fails, try from canonical path
+                                            (try
+                                              (.relativize (.toPath canonical-docs-file) (.toPath f))
+                                              (catch Exception _
+                                                ;; Last resort - use filename
+                                                (.toPath (.getName f))))))
                                     date (lastmod-for-file f repo-path)]
                                 (when date
                                   [(str rel) date]))))
                        (remove nil?)
-                       (into (sorted-map)))]
+                       (into (sorted-map)))
+              _ (log/info ::🗓️git-dates-found {:with-dates (count data) 
+                                              :without-dates (- (count md-files) (count data))})]
           (log/info ::📅lastmod-generated {:dir docs-dir :entries (count data)})
           data)
         (do
@@ -73,7 +125,8 @@
           {})))
     (catch Exception e
       (log/error ::❌lastmod-generation-failed {:dir docs-dir
-                                              :error (.getMessage e)})
+                                              :error (.getMessage e)
+                                              :stacktrace (take 5 (.getStackTrace e))})
       {})))
 
 ;; Cache management using system state
