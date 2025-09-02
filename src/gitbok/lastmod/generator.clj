@@ -134,9 +134,17 @@
                                               (catch Exception _
                                                 ;; Last resort - use filename
                                                 (.toPath (.getName f))))))
+                                    ;; Clean up the relative path to remove worktree artifacts
+                                    ;; In k8s with git-sync, paths may include worktree hashes
+                                    rel-str (str rel)
+                                    ;; Find the last occurrence of /docs/ and take everything after it
+                                    ;; This handles both regular and worktree paths
+                                    clean-rel (if-let [idx (str/last-index-of rel-str "/docs/")]
+                                               (subs rel-str (+ idx 6)) ; 6 = length of "/docs/"
+                                               rel-str)
                                     date (lastmod-for-file f repo-path)]
                                 (when date
-                                  [(str rel) date]))))
+                                  [clean-rel date]))))
                        (remove nil?)
                        (into (sorted-map)))
               _ (log/info ::🗓️git-dates-found {:with-dates (count data) 
