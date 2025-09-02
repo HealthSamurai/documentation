@@ -2,9 +2,7 @@
   (:require
    [clojure.test :refer [deftest testing is]]
    [clojure.java.io :as io]
-   [gitbok.lastmod.generator :as gen]
-   [gitbok.utils :as utils])
-  (:import [java.time Instant ZoneId ZoneOffset]))
+   [gitbok.lastmod.generator :as gen]))
 
 (deftest test-no-git-available
   (testing "System gracefully handles when git is not available"
@@ -82,18 +80,6 @@
         (let [data3 (gen/generate-or-get-cached-lastmod context product-id test-dir)]
           (is (= {"file1.md" "2024-01-02"} data3)))))))
 
-(deftest test-format-relative-time-timezone-independence
-  (testing "format-relative-time works correctly with UTC timestamps"
-    ;; Test that UTC timestamps are handled correctly
-    (let [;; Create a timestamp that's definitely in the past
-          past-instant (.minus (Instant/now) (java.time.Duration/ofHours 2))
-          test-instant (.toString past-instant)
-          result (utils/format-relative-time test-instant)]
-      ;; Should show "2 hours ago" or similar
-      (is (string? result))
-      (is (or (.contains result "2 hours ago")
-              (.contains result "an hour ago")  ; Could be 1-2 hours depending on timing
-              (.contains result "3 hours ago"))))))
 
 (deftest test-empty-directory
   (testing "Handles empty directory correctly"

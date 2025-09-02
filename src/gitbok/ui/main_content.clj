@@ -217,5 +217,6 @@ if (typeof initializeContent === 'function') {
            [:p {:class "mt-4 text-sm text-tint-11"
                 :id "lastupdated"
                 :data-updated-at lastupdated}
-            "Last updated " (utils/format-relative-time lastupdated)]))]
+            ;; Text will be updated by JavaScript
+            ""]))]
       toc]]))
