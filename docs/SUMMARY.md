@@ -217,7 +217,7 @@
       * [SMART App Launch](access-control/authorization/smart-on-fhir/smart-client-authorization/smart-app-launch.md)
       * [SMART backend services](access-control/authorization/smart-on-fhir/smart-client-authorization/smart-backend-services.md)
     * [SMART Client Authentication](access-control/authorization/smart-on-fhir/smart-client-authentication/README.md)
-      * [SMART: Asymmetric (/"private key JWT") authentication](access-control/authorization/smart-on-fhir/smart-client-authentication/smart-asymmetric-docs-private-key-jwt-authentication.md)
+      * [SMART: Asymmetric ("private key JWT") authentication](access-control/authorization/smart-on-fhir/smart-client-authentication/smart-asymmetric-docs-private-key-jwt-authentication.md)
       * [SMART: Symmetric (/"client secret") authentication](access-control/authorization/smart-on-fhir/smart-client-authentication/smart-symmetric-docs-client-secret-authentication.md)
     * [SMART: Scopes for Limiting Access](access-control/authorization/smart-on-fhir/smart-scopes-for-limiting-access.md)
     * [Pass Inferno tests with Aidbox](access-control/authorization/smart-on-fhir/pass-inferno-tests-with-aidbox.md)
