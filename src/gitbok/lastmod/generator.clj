@@ -9,6 +9,7 @@
 (defn lastmod-for-file
   "Get git lastmod timestamp for a file"
   [file git-dir]
+  (log/info ::🔎checking-file {:file (.getPath file) :git-dir git-dir})
   (let [;; For symlinked files, we need to resolve to get the actual file
         canonical-file (.getCanonicalFile file)
         ;; But for git, we need the path relative to git-dir
@@ -20,12 +21,18 @@
                         (catch Exception _
                           ;; If can't relativize, use absolute path
                           file-path))
-        {:keys [out exit err]} (shell/sh "git" 
-                                         "-c" (str "safe.directory=" git-dir)
-                                         "log" "-1" "--format=%ct"
-                                         "--follow"  ; Important: follow renames/symlinks
-                                         (str relative-path)
-                                         :dir git-dir)]
+        git-cmd ["git" 
+                 "-c" (str "safe.directory=" git-dir)
+                 "log" "-1" "--format=%ct"
+                 "--follow"  ; Important: follow renames/symlinks
+                 (str relative-path)]
+        _ (log/info ::🔍git-command {:cmd git-cmd :dir git-dir :file (.getPath file)})
+        {:keys [out exit err]} (apply shell/sh (concat git-cmd [:dir git-dir]))]
+    (when-not (zero? exit)
+      (log/warn ::⚠️git-command-failed {:file (.getPath file)
+                                        :exit exit
+                                        :error err
+                                        :cmd git-cmd}))
     (when (and exit (zero? exit) (not (str/blank? out)))
       (try
         (let [timestamp (Long/parseLong (str/trim out))
@@ -99,6 +106,8 @@
                              files)))
               _ (log/info ::📁found-md-files {:count (count md-files) :dir docs-dir})
               ;; Important: relativize from original docs-dir, not canonical
+              _ (log/info ::📋processing-files {:count (count md-files) 
+                                                :first-5 (take 5 (map #(.getPath %) md-files))})
               data (->> md-files
                        (map (fn [f]
                               (let [;; Try to relativize from original path first
