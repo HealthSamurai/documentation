@@ -8,6 +8,7 @@ init:
 	rm .git/hooks/pre-push || true
 	cp scripts/prepush.sh .git/hooks/pre-push
 	chmod +x .git/hooks/pre-push
+	git submodule update --init --recursive
 
 repl: init-test
 	DOCS_VOLUME_PATH=$$(pwd)/docs-new \
