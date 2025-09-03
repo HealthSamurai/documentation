@@ -27,8 +27,7 @@
    [ring.util.response :as resp]
    [system]
    [gitbok.utils :as utils]
-   [uui]
-   [clojure.java.io :as io])
+   [uui])
   (:gen-class))
 
 (set! *warn-on-reflection* true)
@@ -40,20 +39,29 @@
 
 (defn read-markdown-file [context filepath]
   (let [[filepath section] (str/split filepath #"#")
-        filepath (products/filepath context filepath)
-        content* (utils/slurp-resource filepath)
+        full-filepath (products/filepath context filepath)
+        ;; In DEV mode, always read fresh content from disk/volume
+        _ (when dev? (log/debug ::reading-file {:filepath filepath :full-path full-filepath}))
+        content* (if dev?
+                   ;; Force re-read from disk in DEV mode
+                   (do
+                     (log/debug ::reading-fresh {:path full-filepath})
+                     (utils/slurp-resource full-filepath))
+                   ;; In production, use cached content from memory
+                   (or (get (indexing/get-md-files-idx context) filepath)
+                       (utils/slurp-resource full-filepath)))
         {:keys [parsed description title]}
         (markdown/parse-markdown-content
          context
-         [filepath content*])]
+         [full-filepath content*])]
     (try
       {:content
-       (main-content/render-file* context filepath parsed title content*)
+       (main-content/render-file* context full-filepath parsed title content*)
        :title title
        :description description
        :section section}
       (catch Exception e
-        (log/info ::cannot-render-file {:filepath filepath})
+        (log/info ::cannot-render-file {:filepath full-filepath})
         {:content [:div {:role "alert"}
                    (.getMessage e)
                    [:pre (pr-str e)]
@@ -305,6 +313,7 @@
          uri
          prefix
          (products/path context))]
+    (println "uri " uri-relative)
     (cond
 
       (or (picture-url? uri-relative)
@@ -705,8 +714,8 @@
   ;; Initialize klog
   (log/enable-log)
   (if dev?
-    (log/stdout-pretty-appender :debug)  ;; Pretty output for development
-    (log/stdout-appender :info))         ;; JSON output for production
+    (log/stdout-pretty-appender :debug) ;; Pretty output for development
+    (log/stdout-appender :info)) ;; JSON output for production
 
   (.addShutdownHook (Runtime/getRuntime)
                     (Thread. #(log/info ::shutdown {:msg "Got SIGTERM."})))

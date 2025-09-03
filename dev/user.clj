@@ -14,7 +14,7 @@
       (log/stdout-pretty-appender :debug)
       (def context (system/start-system gitbok/default-config))
       ;; Start reload watcher if DOCS_VOLUME_PATH is set
-      (when (and context (System/getenv "DOCS_VOLUME_PATH"))
+      #_(when (and context (System/getenv "DOCS_VOLUME_PATH"))
         (gitbok-reload/start-reload-watcher context
                                             gitbok/init-product-indices
                                             gitbok/init-products)))
