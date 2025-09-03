@@ -50,6 +50,9 @@ query-string: name=John
 # Parsed query-string params merged with URL params extracted by the routing engine
 params: {name: John, type: Patient}
 
+# Incoming FHIR resource (for POST, PUT or PATCH)
+resource: null
+
 # Request body (for POST, PUT or PATCH)
 body: null
 
