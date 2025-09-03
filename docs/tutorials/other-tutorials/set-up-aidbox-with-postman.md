@@ -47,7 +47,7 @@ Create an access policy to define what operations your Postman client can perfor
 {% tab title="JSON in IAM/AccessPolicy/New tab" %}
 ```json
 {
- "resourceType": "AccessPolicy" 
+ "resourceType": "AccessPolicy",
  "engine": "allow",
  "id": "postman-access-policy",
  "link": [
@@ -66,7 +66,7 @@ POST /fhir/AccessPolicy
 Content-Type: application/json
 
 {
- "resourceType": "AccessPolicy" 
+ "resourceType": "AccessPolicy", 
  "engine": "allow",
  "id": "postman-access-policy",
  "link": [
