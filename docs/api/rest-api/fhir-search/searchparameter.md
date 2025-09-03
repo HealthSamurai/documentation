@@ -507,7 +507,7 @@ Supported \_filter operators:
 | ew          | +      | n/a    | n/a  | n/a   | n/a       | n/a      |
 | gt/ge/lt/le | -      | +      | +    | n/a   | n/a       | +\*\*\*  |
 | po          | n/a    | n/a    | -    | n/a   | n/a       | n/a      |
-| pr\*\*\*\*  | +      | +      | +    | +     | +         | +        |
+| pr[^pr]     | +      | +      | +    | +     | +         | +        |
 | ss          | n/a    | n/a    | n/a  | -     | n/a       | n/a      |
 | sb          | n/a    | n/a    | n/a  | -     | n/a       | n/a      |
 | in          | n/a    | n/a    | n/a  | -     | n/a       | n/a      |
@@ -519,7 +519,7 @@ Supported \_filter operators:
 
 \*\*\* support only numbers, not system with code
 
-\*\*\*\* available since version 2503
+[^pr]: available since version 2503
 
 Additionally, Aidbox supports:
 
