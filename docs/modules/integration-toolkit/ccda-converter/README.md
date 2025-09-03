@@ -167,7 +167,7 @@ Circular references occur when two or more resources in the bundle reference eac
 
 #### Validation of FHIR Bundle for Conversion Purposes
 
-Incoming FHIR Bundle can be validated for the conversion purposes via using `/ccda/fhir-validate` endpoint. Validator will check if it is possible to create valid C-CCDA document. If something is wrong with dataset - all potential errors will be aggregated and explained:
+Incoming FHIR Bundle can be validated for the conversion purposes via using `/ccda/fhir-validate` endpoint. Validator will check if it is possible to create valid C-CDA document. If something is wrong with dataset - all potential errors will be aggregated and explained:
 
 ```http
 POST /ccda/v2/to-ccda
