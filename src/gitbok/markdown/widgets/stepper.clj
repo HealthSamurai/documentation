@@ -125,8 +125,8 @@
            [:div {:class "absolute top-9 bottom-2 left-3.5 w-px bg-tint-4"}])]
         ;; Right side with content
         ;; Use different negative margin based on title type for proper alignment
-        [:div {:class (str "flex-1 " 
-                           (if is-heading 
+        [:div {:class (str "flex-1 "
+                           (if is-heading
                              "-mt-[0.875rem]" ; For h1-h6 headings (14px)
                              "-mt-[0.4375rem]") ; For bold text (7px)
                            " " (if is-last "pb-0" "pb-6"))}
@@ -156,12 +156,13 @@
                                     parse-markdown-content-fn
                                     render-md-fn)
              html
-             (hiccup2.core/html hiccup)
-             processed-html
-             (str/replace html #"\n\n" "\n\u00A0\n")]
+             (str (hiccup2.core/html hiccup))
+             ;; Replace newlines to prevent markdown parser from splitting the HTML
+             single-line-html
+             (str/replace html #"\n" "%%%STEPPER_NL%%%")]
          (str
           (utils/safe-subs content 0 (:start stepper-data))
-          processed-html
+          single-line-html
           (utils/safe-subs content (:end stepper-data)))))
      content
      sorted-steppers)))

@@ -157,7 +157,7 @@
          (fn [_ctx node]
            (let [tex (:text node)]
              [:span.katex-inline tex]))
-         
+
          ;; Handle block formulas (when formula is on separate lines)
          :block-formula
          (fn [_ctx node]
@@ -217,7 +217,15 @@
 
          :html-block
          (fn [_ctx node]
-           (let [c (first (parse-html (-> node :content first :text)))]
+           (let [html-text (-> node :content first :text)
+                 ;; Replace our markers in the HTML text
+                 fixed-html (-> html-text
+                                (str/replace #"%%%NL%%%" "\n")
+                                (str/replace #"%%%TAB_NL%%%" "\n")
+                                (str/replace #"%%%STEPPER_NL%%%" "\n")
+                                (str/replace #"%%GITBOOK_EMPTY_LINE%%" "\n")
+                                (str/replace #"<!-- GITBOOK_NL -->" ""))
+                 c (first (parse-html fixed-html))]
              (cond
                (and c
                     (= :table (first c))
@@ -227,7 +235,7 @@
                (and c
                     (= :table (first c))
                     (= {:data-header-hidden ""} (second c)))
-               (uui/raw (-> node :content first :text
+               (uui/raw (-> fixed-html
                             (str/replace #"\<thead.*/thead>" "")))
 
                (and c
@@ -236,11 +244,23 @@
                (update c 2 remove-selects)
 
                :else
-               (uui/raw (-> node :content first :text)))))))
+               (uui/raw fixed-html))))))
 
 (defn render-md [context filepath parsed]
-  (transform/->hiccup (renderers context filepath) parsed))
-
+  (let [hiccup (transform/->hiccup (renderers context filepath) parsed)]
+    ;; Clean up any temporary markers from the final output
+    (walk/postwalk
+     (fn [node]
+       (if (string? node)
+         ;; Replace markers with actual newlines
+         (-> node
+             (str/replace #"%%%NL%%%" "\n")
+             (str/replace #"%%%TAB_NL%%%" "\n")
+             (str/replace #"%%%STEPPER_NL%%%" "\n")
+             (str/replace #"%%GITBOOK_EMPTY_LINE%%" "\n")
+             (str/replace #"<!-- GITBOOK_NL -->" ""))
+         node))
+     hiccup)))
 
 (defn hack-md [context filepath md-file]
   (let [context-hack

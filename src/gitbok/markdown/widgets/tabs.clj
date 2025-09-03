@@ -121,15 +121,16 @@
      (fn [content tab-data]
        (let [hiccup
              (render-tabs-hiccup context filepath tab-data
-                                  parse-markdown-content-fn
-                                  render-md-fn)
+                                 parse-markdown-content-fn
+                                 render-md-fn)
              html
-             (hiccup2.core/html hiccup)
-             processed-html
-             (str/replace html #"\n\n" "\n\u00A0\n")]
+             (str (hiccup2.core/html hiccup))
+             ;; Replace newlines to prevent markdown parser from splitting the HTML
+             single-line-html
+             (str/replace html #"\n" "%%%TAB_NL%%%")]
          (str
           (utils/safe-subs content 0 (:start tab-data))
-          processed-html
+          single-line-html
           (utils/safe-subs content (:end tab-data)))))
      content
      sorted-tabs)))

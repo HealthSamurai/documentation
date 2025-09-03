@@ -74,15 +74,16 @@
        :attributes (:attributes parsed)
        :content (:content parsed)})))
 
-(defn- render-code-hiccup [context filepath code-data
-                           parse-markdown-content-fn
-                           render-md-fn]
+(defn- render-code-hiccup [context filepath code-data]
   (let [title (get (:attributes code-data) :title)
         content (:content code-data)
-        parsed-content (:parsed (parse-markdown-content-fn
-                                 context
-                                 [filepath content]))
-        raw-html (render-md-fn context filepath parsed-content)]
+        ;; Extract language from the content if it starts with ```
+        lang-match (re-find #"^```(\w+)?" content)
+        lang (or (second lang-match) "")
+        ;; Remove the opening and closing ``` if present
+        clean-content (-> content
+                          (str/replace #"^```\w*\n?" "")
+                          (str/replace #"\n?```$" ""))]
     [:div {:class "code-gitbook group/codeblock grid grid-flow-col w-full
            decoration-primary/6 page-full-width:ml-0
            max-w-3xl page-api-block:ml-0"}
@@ -96,7 +97,10 @@
      [:div {:class "relative overflow-auto border border-tint-6 bg-tint-subtle theme-muted:bg-tint-base
             [grid-area:2/1] contrast-more:border-tint contrast-more:bg-tint-base [html.theme-bold.sidebar-filled_&]:bg-tint-base
             rounded-md straight-corners:rounded-sm rounded-ss-none"}
-      raw-html]]))
+      ;; Directly render the code block without going through markdown again
+      ;; Hiccup will auto-escape the content
+      [:pre {:class "text-base"}
+       [:code clean-content]]]]))
 
 (defn hack-gitbook-code
   [context filepath
@@ -107,23 +111,41 @@
         sorted-code (sort-by :start > code-data)]
     (reduce
      (fn [content code-block]
-       (let [hiccup
-             (render-code-hiccup context filepath code-block
-                                 parse-markdown-content-fn
-                                 render-md-fn)
-             html
-             (hiccup2.core/html hiccup)
-
-             processed-html
-             (->
-              html
-              (str/replace #"\n\n" "\n\u00A0\n")
-              (str/replace #"\n\<" "<")
-              (str/replace #"\n\s*\<" "<")
-              (str/replace #"\n \<" "<"))]
+       (let [;; Get the original code content
+             block-content (:content code-block)
+             ;; Extract language from the content if it starts with ```
+             lang-match (re-find #"^```(\w+)?" block-content)
+             lang (or (second lang-match) "")
+             ;; Remove the opening and closing ``` if present
+             clean-content (-> block-content
+                               (str/replace #"^```\w*\n?" "")
+                               (str/replace #"\n?```$" ""))
+             ;; Get the title
+             title (get (:attributes code-block) :title)
+             ;; Escape HTML entities for the content
+             escaped-content (-> clean-content
+                                 (str/replace "&" "&amp;")
+                                 (str/replace "<" "&lt;")
+                                 (str/replace ">" "&gt;")
+                                 (str/replace "\"" "&quot;"))
+             ;; Create HTML in a single line to prevent markdown splitting
+             ;; Replace newlines with a placeholder that we'll restore later
+             single-line-content (str/replace escaped-content #"\n" "%%%NL%%%")
+             ;; Create the HTML all in one line
+             html (str "<div class=\"code-gitbook group/codeblock grid grid-flow-col w-full decoration-primary/6 page-full-width:ml-0 max-w-3xl page-api-block:ml-0\">"
+                       (when title
+                         (str "<div class=\"flex items-center justify-start gap-2 text-sm [grid-area:1/1] -mb-px\">"
+                              "<div class=\"relative top-px z-20 inline-flex items-center justify-center rounded-t straight-corners:rounded-t-s border border-tint-6 border-b-0 bg-tint-subtle theme-muted:bg-tint-base px-3 py-2 text-tint-11 text-xs leading-none tracking-wide [html.theme-bold.sidebar-filled_&]:bg-tint-base\">"
+                              title
+                              "</div></div>"))
+                       "<div class=\"relative overflow-auto border border-tint-6 bg-tint-subtle theme-muted:bg-tint-base [grid-area:2/1] contrast-more:border-tint contrast-more:bg-tint-base [html.theme-bold.sidebar-filled_&]:bg-tint-base rounded-md straight-corners:rounded-sm rounded-ss-none\">"
+                       "<pre class=\"text-base\"><code>"
+                       single-line-content
+                       "</code></pre>"
+                       "</div></div>")]
          (str
           (utils/safe-subs content 0 (:start code-block))
-          processed-html
+          html
           (utils/safe-subs content (:end code-block)))))
      content
      sorted-code)))
