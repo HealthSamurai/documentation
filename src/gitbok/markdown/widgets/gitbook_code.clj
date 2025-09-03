@@ -74,38 +74,10 @@
        :attributes (:attributes parsed)
        :content (:content parsed)})))
 
-(defn- render-code-hiccup [context filepath code-data]
-  (let [title (get (:attributes code-data) :title)
-        content (:content code-data)
-        ;; Extract language from the content if it starts with ```
-        lang-match (re-find #"^```(\w+)?" content)
-        lang (or (second lang-match) "")
-        ;; Remove the opening and closing ``` if present
-        clean-content (-> content
-                          (str/replace #"^```\w*\n?" "")
-                          (str/replace #"\n?```$" ""))]
-    [:div {:class "code-gitbook group/codeblock grid grid-flow-col w-full
-           decoration-primary/6 page-full-width:ml-0
-           max-w-3xl page-api-block:ml-0"}
-     (when title
-       [:div {:class "flex items-center justify-start gap-2 text-sm [grid-area:1/1] -mb-px"}
-        [:div {:class "relative top-px z-20 inline-flex items-center justify-center rounded-t
-               straight-corners:rounded-t-s border border-tint-6 border-b-0 bg-tint-subtle
-               theme-muted:bg-tint-base px-3 py-2 text-tint-11 text-xs leading-none tracking-wide
-               [html.theme-bold.sidebar-filled_&]:bg-tint-base"}
-         title]])
-     [:div {:class "relative overflow-auto border border-tint-6 bg-tint-subtle theme-muted:bg-tint-base
-            [grid-area:2/1] contrast-more:border-tint contrast-more:bg-tint-base [html.theme-bold.sidebar-filled_&]:bg-tint-base
-            rounded-md straight-corners:rounded-sm rounded-ss-none"}
-      ;; Directly render the code block without going through markdown again
-      ;; Hiccup will auto-escape the content
-      [:pre {:class "text-base"}
-       [:code clean-content]]]]))
-
 (defn hack-gitbook-code
-  [context filepath
-   parse-markdown-content-fn
-   render-md-fn
+  [_context _filepath
+   _parse-markdown-content-fn
+   _render-md-fn
    content]
   (let [code-data (parse-code-blocks content)
         sorted-code (sort-by :start > code-data)]
@@ -114,8 +86,6 @@
        (let [;; Get the original code content
              block-content (:content code-block)
              ;; Extract language from the content if it starts with ```
-             lang-match (re-find #"^```(\w+)?" block-content)
-             lang (or (second lang-match) "")
              ;; Remove the opening and closing ``` if present
              clean-content (-> block-content
                                (str/replace #"^```\w*\n?" "")
