@@ -13,6 +13,8 @@ jobs:
     steps:
     - name: Checkout code
       uses: actions/checkout@v4
+      with:
+        submodules: 'recursive'
 
     - name: Set up Python
       uses: actions/setup-python@v4
@@ -27,7 +29,15 @@ jobs:
     - name: Start documentation server
       run: |
         docker pull ghcr.io/healthsamurai/documentation:latest
-        docker run -d -p 8081:8081 -e DOCS_PREFIX=/docs --name docs-server ghcr.io/healthsamurai/documentation:latest
+        docker run -d \
+          -p 8081:8081 \
+          -e DOCS_PREFIX=/docs \
+          -e DOCS_VOLUME_PATH=/repo/docs-new \
+          -e DOCS_REPO_PATH=/repo \
+          -e DEV=true \
+          -v $(pwd):/repo:ro \
+          --name docs-server \
+          ghcr.io/healthsamurai/documentation:latest
 
     - name: Wait for server to start
       run: |
