@@ -98,6 +98,7 @@ content-type: text/yaml
 method: aidbox.validation/resources-batch-validation-task
 params:
   include: ['patient', 'observation']
+  error-threshold: 10000
   
   
 # response
