@@ -61,8 +61,6 @@ params:
   # async: true
   ## specify profiles to validate
   # profiles: ['profile-url-1', 'profile-url-2']
-  ## specify zen schemas to validation
-  #schemas: ['myapp/Patient', 'us-core.patient/Patient']
   
   
   
@@ -113,8 +111,6 @@ id: >-
   7addda33-003e-4892-a1d9-0faffbedf86d
 resourceType: AidboxWorkflow
 </code></pre>
-
-You can also [run](../../deprecated/deprecated/zen-related/workflow-engine/task/aidbox-built-in-tasks.md#aidbox.validation-resource-types-bath-validation-workflow) workflow directly to achieve the same result.
 
 {% hint style="info" %}
 If you specify `include` param, only types you passed will be validated.
