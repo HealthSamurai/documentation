@@ -146,10 +146,6 @@
   (markdown/set-parsed-markdown-index
    context
    (indexing/get-md-files-idx context))
-  ; 6. using parsed markdown, set search index
-  (indexing/set-search-idx
-   context
-   (markdown/get-parsed-markdown-index context))
   (println "System indices regenerated successfully"))
 
 (defn relocate-page

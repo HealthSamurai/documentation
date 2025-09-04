@@ -13,9 +13,6 @@
         hiccup/hiccup {:mvn/version "2.0.0-RC4"}
         ring/ring-core {:mvn/version "1.14.1"}
 
-        ;; search
-        org.msync/lucene-clj {:mvn/version "0.2.0-SNAPSHOT"}
-
         io.github.nextjournal/markdown
         {:git/url "https://github.com/nextjournal/markdown.git"
          :sha "16be4ef6b8b5741c5d8f8432dd9ce8b52b1f3f68"}

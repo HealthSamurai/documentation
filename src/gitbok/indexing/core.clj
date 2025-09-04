@@ -4,7 +4,6 @@
    [gitbok.indexing.impl.summary]
    [gitbok.indexing.impl.uri-to-file :as uri-to-file]
    [gitbok.indexing.impl.common :as common]
-   [gitbok.indexing.impl.search-index :as search-index]
    [gitbok.indexing.impl.meilisearch :as meilisearch]
    [gitbok.indexing.impl.file-to-uri :as file-to-uri]
    [gitbok.constants :as const]
@@ -109,11 +108,6 @@
           (str path "#" section)
           path)))))
 
-(defn create-search-index
-  [parsed-md-index]
-  (let [si (search-index/parsed-md-idx->index parsed-md-index)]
-    (log/info ::search-index-created {:entries (count si)})
-    si))
 
 (defn read-content [filepath]
   (utils/slurp-resource filepath))
@@ -142,23 +136,8 @@
    context
    [const/MD_FILES_IDX]))
 
-(defn set-search-idx
-  [context parsed-md-index]
-  (products/set-product-state
-   context
-   [const/SEARCH_IDX]
-   (create-search-index parsed-md-index)))
-
-(defn get-search-idx [context]
-  (products/get-product-state context
-                              [const/SEARCH_IDX]))
-
 (defn search [context q]
-  (try
-    (meilisearch/search q)
-    (catch Exception e
-      (log/warn ::meilisearch-fallback {:error (.getMessage e)})
-      (search-index/search (get-search-idx context) q))))
+  (meilisearch/search q))
 
 (defn filepath->href [context filepath href]
   (if (str/starts-with? href "http")

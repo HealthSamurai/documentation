@@ -1,6 +1,5 @@
 (ns gitbok.ui.not-found
   (:require
-   [gitbok.indexing.impl.file-to-uri :as file-to-uri]
    [gitbok.utils :as utils]
    [clojure.string :as str]
    [uui]
@@ -31,15 +30,12 @@ document.addEventListener('DOMContentLoaded', () => {
           [:h3.text-lg.font-medium.text-tint-12 "You might be looking for:"]
           [:ul.mt-4.space-y-2.text-left
            (for [search-res (take 8 (utils/distinct-by #(-> % :hit :title) search-results))]
-             (let [;; Handle both Meilisearch and Lucene result formats
+             (let [;; Handle Meilisearch result format
                    href (or
-                         ;; Try Meilisearch format first (uri field)
+                         ;; Get uri field
                          (:uri search-res)
-                         ;; Try getting URL from hit
-                         (-> search-res :hit :url)
-                         ;; Fall back to filepath conversion for Lucene
-                         (when-let [filepath (-> search-res :hit :filepath)]
-                           (file-to-uri/filepath->uri context filepath)))]
+                         ;; Or get URL from hit
+                         (-> search-res :hit :url))]
                (when (and href (-> search-res :hit :title))
                  [:li
                   [:a.text-primary-9.hover:text-primary-10.text-lg.flex.items-start

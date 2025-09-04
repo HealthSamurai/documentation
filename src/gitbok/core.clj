@@ -355,10 +355,7 @@
     (log/info ::init-product {:msg "5. parse all files into memory, some things are already rendered as plain html"
                               :product (:id product)})
     (markdown/set-parsed-markdown-index ctx (indexing/get-md-files-idx ctx))
-    (log/info ::init-product {:msg "6. using parsed markdown, set search index"
-                              :product (:id product)})
-    (indexing/set-search-idx ctx (markdown/get-parsed-markdown-index ctx))
-    (log/info ::init-product {:msg "7. render it on start"
+    (log/info ::init-product {:msg "6. render it on start"
                               :product (:id product)})
     (when-not dev?
       (log/info ::init-product {:msg "Not DEV, render all pages into memory"
@@ -368,10 +365,10 @@
                             read-markdown-file)
       (log/info ::init-product {:msg "render done"
                                 :product (:id product)}))
-    (log/info ::init-product {:msg "8. set lastmod data in context for Last Modified metadata"
+    (log/info ::init-product {:msg "7. set lastmod data in context for Last Modified metadata"
                               :product (:id product)})
     (indexing/set-lastmod ctx)
-    (log/info ::init-product {:msg "9. generate sitemap.xml for product"
+    (log/info ::init-product {:msg "8. generate sitemap.xml for product"
                               :product (:id product)})
     (let [lastmod-data (products/get-product-state ctx [const/LASTMOD])]
       (sitemap/set-sitemap ctx lastmod-data))))

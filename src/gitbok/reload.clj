@@ -80,9 +80,8 @@
           ;; 2. Build URI mappings
           ;; 3. Load all markdown files
           ;; 4. Parse markdown
-          ;; 5. Build search index
-          ;; 6. Pre-render pages
-          ;; 7. Generate sitemap
+          ;; 5. Pre-render pages
+          ;; 6. Generate sitemap
           (init-product-indices-fn context product)
           (let [duration (- (System/currentTimeMillis) start-time)]
             (log/info ::product-rebuilt {:product-id product-id
