@@ -118,7 +118,7 @@ It will generate static FHIR Client and the set of types for your FHIR package. 
 5. Run project
 
    ```bash
-      dotnet run
+   dotnet run
    ```
 
    The output: 
