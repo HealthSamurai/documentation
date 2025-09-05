@@ -106,10 +106,10 @@
 
         ;; Without git, all files will have nil dates
         ;; But we can verify that only .md files are processed
-        (with-redefs [gen/lastmod-for-file
-                      (fn [file _]
-                        (when (.endsWith (.getName file) ".md")
-                          "2024-01-01T00:00:00Z"))]
+        (with-redefs [gen/batch-get-all-lastmods
+                      (fn [_ _]
+                        ;; Return timestamps only for .md files
+                        {"test.md" "2024-01-01T00:00:00Z"})]
           (let [data (gen/generate-lastmod-data (.getPath temp-dir))]
             ;; Should only have the .md file
             (is (= 1 (count data)))
