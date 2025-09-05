@@ -18,6 +18,25 @@
    [gitbok.http]
    [hiccup2.core]))
 
+(defn empty-content-after-h1?
+  "Checks if the markdown content only has an H1 header with no meaningful content after it"
+  [raw-content]
+  (when raw-content
+    (let [lines (str/split-lines raw-content)
+          ;; Find first line starting with "# " (one hashtag and at least one space)
+          h1-idx (some #(when (re-matches #"#\s+.*" (nth lines %))
+                          %)
+                       (range (count lines)))]
+      (if h1-idx
+        ;; Get all lines after H1, remove all whitespace and check if empty
+        (let [after-h1 (subvec (vec lines) (inc h1-idx))
+              ;; Join all lines and remove ALL whitespace
+              all-content (str/join "" after-h1)
+              clean-content (str/replace all-content #"\s" "")]
+          (empty? clean-content))
+        ;; No H1 found, not an empty page
+        false))))
+
 (defn find-children-files [context filepath]
   (when
    (and filepath
@@ -46,19 +65,23 @@
                          (str docs-prefix-clean "/")
                          nil)
           ;; Process filepath to match index format
+          ;; First remove ../docs/ prefix if present
+          filepath-clean (if (str/starts-with? filepath "../docs/")
+                           (subs filepath 8)
+                           filepath)
           filepath-normalized
           (cond
             ;; Remove <product>/<docs-prefix>/ prefix if present
-            (and full-prefix (str/starts-with? filepath full-prefix))
-            (subs filepath (count full-prefix))
+            (and full-prefix (str/starts-with? filepath-clean full-prefix))
+            (subs filepath-clean (count full-prefix))
             ;; Remove ./<docs-prefix>/ prefix if present
-            (and dot-prefix (str/starts-with? filepath dot-prefix))
-            (subs filepath (count dot-prefix))
+            (and dot-prefix (str/starts-with? filepath-clean dot-prefix))
+            (subs filepath-clean (count dot-prefix))
             ;; Remove <docs-prefix>/ prefix if present
-            (and plain-prefix (str/starts-with? filepath plain-prefix))
-            (subs filepath (count plain-prefix))
+            (and plain-prefix (str/starts-with? filepath-clean plain-prefix))
+            (subs filepath-clean (count plain-prefix))
             ;; Otherwise use as is
-            :else filepath)
+            :else filepath-clean)
           dir (.getParent (io/file filepath-normalized))
           result (filterv
                   (fn [[file _info]]
@@ -145,14 +168,13 @@
                   :stroke-linejoin "round"
                   :d "M9 5l7 7-7 7"}]]]])]))
 
-(defn render-file* [context filepath parsed title _raw-content]
-  (let [content-count (count (:content parsed))]
+(defn render-file* [context filepath parsed title raw-content]
+  (let [is-empty-page (empty-content-after-h1? raw-content)]
     {:content [:div {:class "real-content flex-1 min-w-0 max-w-full"}
-               (if (= 1 content-count)
+               (if is-empty-page
                  (render-empty-page context filepath title)
                  (markdown/render-md context filepath parsed))]
      :parsed parsed}))
-
 
 (defn content-div [context uri content filepath & [htmx? hide-breadcrumb]]
   (let [parsed (when (map? content) (:parsed content))
@@ -215,9 +237,9 @@ if (typeof initializeContent === 'function') {
        (navigation-buttons context uri)
        (let [lastupdated (indexing/get-lastmod context filepath)
              _ (when (and filepath (str/includes? (or filepath "") "database/overview"))
-               (log/info ::📅lastmod-check {:filepath filepath 
-                                           :lastupdated lastupdated
-                                           :has-lastmod (boolean lastupdated)}))]
+                 (log/info ::📅lastmod-check {:filepath filepath
+                                              :lastupdated lastupdated
+                                              :has-lastmod (boolean lastupdated)}))]
          (when lastupdated
            [:p {:class "mt-4 text-sm text-tint-11"
                 :id "lastupdated"
