@@ -21,7 +21,7 @@ This example showcases the Smart App EHR and Patient [launch flows](https://hl7.
 To clone the repository and navigate to the `smart-app-launch-smartbox` directory, run:
 
 ```sh
-git clone git@github.com:Aidbox/examples.git && cd examples/smart-app-launch-smartbox
+git clone git@github.com:Aidbox/examples.git && cd examples/aidbox-features/smart-app-launch-smartbox
 ```
 
 Edit a `docker-compose.yaml` file and paste there your license keys.
