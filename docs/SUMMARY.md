@@ -6,6 +6,7 @@
 * [Getting Started](getting-started/README.md)
   * [Run Aidbox in Sandbox](getting-started/run-aidbox-in-sandbox.md)
   * [Run Aidbox locally](getting-started/run-aidbox-locally.md)
+  * [Use Aidbox with Java](getting-started/java.md)
   * [Use Aidbox with TypeScript](getting-started/typescript.md)
   * [Use Aidbox with Python](getting-started/python.md)
   * [Use Aidbox with C#](getting-started/csharp.md)
