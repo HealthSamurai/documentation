@@ -4,7 +4,8 @@ description: Follow these steps to create a TypeScript project with Aidbox
 
 # Use Aidbox with TypeScript
 
-To use Aidbox with Typescript, we recommend to use our [SDK generation library](https://github.com/fhir-schema/fhir-schema-codegen). You can read about the idea of it [here](../developer-experience/developer-experience-overview.md#use-aidbox-sdks-for-customized-experience).
+To use Aidbox with Typescript, we recommend to use our [SDK generation library](https://github.com/fhir-schema/fhir-schema-codegen). 
+It will generate static FHIR Client and the set of types for your FHIR package. You can read about the idea of it [here](../developer-experience/developer-experience-overview.md#use-aidbox-sdks-for-customized-experience).
 
 ## Prerequisites
 

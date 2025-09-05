@@ -4,7 +4,8 @@ description: Follow these steps to set up a Python project with Aidbox
 
 # Use Aidbox with Python
 
-To use Aidbox with Python, we recommend to use our [SDK generation library](https://github.com/fhir-schema/fhir-schema-codegen). You can read about the idea of it [here](../developer-experience/developer-experience-overview.md#use-aidbox-sdks-for-customized-experience).
+To use Aidbox with Python, we recommend to use our [SDK generation library](https://github.com/fhir-schema/fhir-schema-codegen). 
+It will generate static FHIR Client and the set of types for your FHIR package. You can read about the idea of it [here](../developer-experience/developer-experience-overview.md#use-aidbox-sdks-for-customized-experience).
 
 ## Prerequisites
 
