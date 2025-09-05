@@ -8,30 +8,31 @@ description: This article describes how to manage Aidbox licenses
 
 ### Create self-hosted license
 
-1. On the main navigation sidebar, click on the _**project name**_
-2. On the menu that opens, click _**Licenses**_
-3. In the upper right corner of the page, click _**New license**_
-4. Choose Aidbox
-5. Enter the Aidbox instance _name_
-6. Specify _Hosting_ as **Self-hosted**
-7. Click _**Create**_
+1. On the main navigation sidebar of the [portal](https://aidbox.app/ui/portal#/profile/settings), click on the _**project name**_
+2. On the menu that opens, click _**Assets**_
+3. In the upper right corner of the page, click _**New Aidbox**_
+4. Select the license type: _**Dev**_ or _**Prod**_
+5. Enter the Aidbox instance _**License name**_
+6. Select Goal: _**Development, Research,**_ or _**Evaluation**_
+7. Specify _Hosting_ as **Self-hosted**
+8. Click _**Create**_
 
 [This quickstart guide](../../getting-started/run-aidbox-locally.md) explains how to run Aidbox locally using docker compose
 
 ### Create a hosted Aidbox instance
 
-1. On the main navigation sidebar, click on the _**project name**_
-2. On the menu that opens, click _**Licenses**_
-3. In the upper right corner of the page, click **New _license**_
-4. Specify _FHIR Platform_
-   * Aidbox
-5. Enter the Aidbox instance name
-6. Specify _Hosting_ as **Google Cloud Platform**
-7. Specify _Aidbox version_
+1. On the main navigation sidebar of the [portal](https://aidbox.app/ui/portal#/profile/settings), click on the _**project name**_
+2. On the menu that opens, click _**Assets**_
+3. In the upper right corner of the page, click _**New Aidbox**_
+4. Select the license type: _**Dev**_ or _**Prod**_
+5. Enter the Aidbox instance _**License name**_
+6. Select Goal: _**Development, Research,**_ or _**Evaluation**_
+7. Specify _Hosting_ as **Sandbox**
+8. Specify _Aidbox version_
    * Latest
    * Edge
-8. Specify _Сonfiguration projects_
-9. Click _**Create**_
+9. Specify **FHIR Version (**_we recommend using **4.0.1** by default_**)**
+10. Click _**Create**_
 
 ### Create AWS license
 
@@ -41,11 +42,11 @@ description: This article describes how to manage Aidbox licenses
 
 ## Delete license
 
-1. On the main navigation sidebar, click on the _project name_
-2. On the menu that opens, click _**Licenses**_
+1. On the main navigation sidebar of the [portal](https://aidbox.app/ui/portal#/profile/settings), click on the _**project name**_
+2. On the menu that opens, click _**Assets**_
 3. Click on a license in the list
-4. Information about the selected license will appear on the right side of the screen. Click _**Delete**_
-5. In the confirmation window, click _**Ok**_
+4. Information about the selected license will appear on the right side of the screen. Click _**Delete this License**_
+5. In the confirmation window, type the license name and click _**Delete this License**_
 
 ## Manage Aidbox licenses via API
 
@@ -157,11 +158,9 @@ params:
 
 This page covers types of Aidbox licenses and describes Aidbox Support tiers.
 
-
 ### Run Aidbox locally
 
 This [quickstart guide](../../getting-started/run-aidbox-locally.md) explains how to run Aidbox locally using docker compose
-
 
 ### Aidbox as a SaaS on AWS
 
