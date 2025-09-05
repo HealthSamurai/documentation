@@ -1,0 +1,28 @@
+---
+apiVersion: image.toolkit.fluxcd.io/v1beta2
+kind: ImageUpdateAutomation
+metadata:
+  name: gitbok
+  namespace: flux-system
+spec:
+  interval: 1m
+  sourceRef:
+    kind: GitRepository
+    name: gitbok
+  git:
+    checkout:
+      ref:
+        branch: master
+    commit:
+      author:
+        email: fluxcdbot@health-samurai.io
+        name: fluxcdbot
+      messageTemplate: |
+        Automated image update
+
+        [ci skip]
+    push:
+      branch: master
+  update:
+    path: "./k8s"
+    strategy: Setters
