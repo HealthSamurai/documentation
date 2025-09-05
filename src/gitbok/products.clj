@@ -37,9 +37,24 @@
                        (utils/slurp-resource "products.yaml"))
           config (yaml/parse-string config-str)
           products (mapv
-                    #(merge
-                      %
-                      (read-product-config-file (:config %)))
+                    (fn [product]
+                      (let [config-data (read-product-config-file (:config product))
+                            merged (merge product config-data)
+                            ;; Calculate docs-relative-path for this product
+                            config-path (:config merged)
+                            config-dir (utils/parent config-path)
+                            root (or (-> merged :structure :root)
+                                     (:root merged)
+                                     "./docs")
+                            ;; Remove leading "./" from root if present
+                            root (if (str/starts-with? root "./")
+                                   (subs root 2)
+                                   root)
+                            ;; Build relative docs path
+                            docs-relative-path (if (str/blank? config-dir)
+                                                  root
+                                                  (.getPath (io/file config-dir root)))]
+                        (assoc merged :docs-relative-path docs-relative-path)))
                     (:products config))]
       {:products products
        :root-redirect (:root-redirect config)})
