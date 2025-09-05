@@ -4,7 +4,7 @@ description: Follow these steps to set up a Java project with Aidbox
 
 # Use Aidbox with Java
 
-In this guide we will use the [HAPI FHIR Java client library](https://github.com/hapifhir/hapi-fhir) to create a patient resource in Aidbox.
+In this guide we will use the [HAPI FHIR Java client library](https://github.com/hapifhir/hapi-fhir) to create a Patient resource in Aidbox.
 
 ## Prerequisites
 
@@ -166,6 +166,14 @@ In this guide we will use the [HAPI FHIR Java client library](https://github.com
    ```bash
    mvn clean compile exec:java
    ```
+
+## What happens?
+
+The application:
+- Connects to Aidbox running on http://localhost:8080
+- Uses [basic authentication](../access-control/authentication/basic-http-authentication) with the basic client credentials
+- Creates a sample patient
+- Retrieves the created patient to verify the operation
 
 ## Next steps
 
