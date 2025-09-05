@@ -480,3 +480,4 @@ redirects:
   storage-1/other/s3-compatible-storages: file-storage/aws-s3.md
   terminology/aidbox-terminology-module/hybrid: terminology-module/aidbox-terminology-module/hybrid.md
   tutorials/security-and-access-control/basic-auth-tutorial: tutorials/security-access-control-tutorials/basic-auth.md
+  security-and-access-control-1/auth/two-factor-authentication: tutorials/security-access-control-tutorials/two-factor-authentication.md
