@@ -12,8 +12,6 @@
    [gitbok.ui.main-content :as main-content]
    [gitbok.ui.layout :as layout]
    [gitbok.ui.not-found :as not-found]
-   [gitbok.ui.main-navigation :as main-navigation]
-   [gitbok.ui.left-navigation :as left-navigation]
    [gitbok.ui.landing-hero :as landing-hero]
    [gitbok.ui.search]
    [gitbok.ui.meilisearch]
@@ -138,27 +136,6 @@
        (str/replace-first favicon-path #".*.gitbook/" ""))
       ;; Regular resource path
       (resp/resource-response favicon-path))))
-
-(defn render-robots-txt [context _]
-  (let [product (products/get-current-product context)
-        robots-path (:robots product)]
-    (if robots-path
-      ;; Use custom robots.txt if specified
-      (if (str/starts-with? robots-path ".gitbook/")
-        ;; Handle .gitbook/assets paths like render-pictures does
-        (resp/resource-response
-         (str/replace-first robots-path #".*.gitbook/" ""))
-        ;; Regular resource path
-        (resp/resource-response robots-path))
-      ;; Generate default robots.txt dynamically
-      (let [sitemap-url (gitbok.http/get-product-absolute-url
-                         context
-                         "/sitemap.xml")]
-        {:status 200
-         :headers {"content-type" "text/plain"}
-         :body (str "User-agent: *\n"
-                    "Allow: /\n"
-                    "Sitemap: " sitemap-url "\n")}))))
 
 (defn render-landing
   [context request]
@@ -472,11 +449,11 @@
 
         ;; Product robots.txt
         #_(http/register-endpoint
-         context
-         {:path (str product-path "/robots.txt")
-          :method :get
-          :middleware [product-middleware]
-          :fn #'render-robots-txt})
+           context
+           {:path (str product-path "/robots.txt")
+            :method :get
+            :middleware [product-middleware]
+            :fn #'render-robots-txt})
 
         ;; Product landing page
         (http/register-endpoint
@@ -519,17 +496,17 @@
 
   ;; Root robots.txt
   #_(http/register-endpoint
-   context
-   {:path (utils/concat-urls prefix "/robots.txt")
-    :method :get
-    :fn (fn [ctx _]
-          (let [sitemap-url (str base-url
-                                 (utils/concat-urls prefix "/sitemap.xml"))]
-            {:status 200
-             :headers {"content-type" "text/plain"}
-             :body (str "User-agent: *\n"
-                        "Allow: /\n"
-                        "Sitemap: " sitemap-url "\n")}))})
+     context
+     {:path (utils/concat-urls prefix "/robots.txt")
+      :method :get
+      :fn (fn [ctx _]
+            (let [sitemap-url (str base-url
+                                   (utils/concat-urls prefix "/sitemap.xml"))]
+              {:status 200
+               :headers {"content-type" "text/plain"}
+               :body (str "User-agent: *\n"
+                          "Allow: /\n"
+                          "Sitemap: " sitemap-url "\n")}))})
 
   (http/register-endpoint
    context
@@ -557,13 +534,13 @@
      {:path (utils/concat-urls prefix "/update-examples")
       :method :post
       :fn (fn [ctx req]
-           (if (examples-updater/manual-update ctx)
-             {:status 200
-              :headers {"content-type" "text/plain"}
-              :body "Examples updated successfully"}
-             {:status 500
-              :headers {"content-type" "text/plain"}
-              :body "Failed to update examples"}))}))
+            (if (examples-updater/manual-update ctx)
+              {:status 200
+               :headers {"content-type" "text/plain"}
+               :body "Examples updated successfully"}
+              {:status 500
+               :headers {"content-type" "text/plain"}
+               :body "Failed to update examples"}))}))
 
   ;; Examples page (hardcoded path for Aidbox)
   (http/register-endpoint
@@ -612,9 +589,9 @@
     ;; Setup shutdown hook with context
     (.addShutdownHook (Runtime/getRuntime)
                       (Thread. (fn []
-                                (log/info ::shutdown {:msg "Got SIGTERM."})
+                                 (log/info ::shutdown {:msg "Got SIGTERM."})
                                 ;; Stop examples updater if running
-                                (examples-updater/stop-scheduler context))))
+                                 (examples-updater/stop-scheduler context))))
 
     ;; Start reload watcher if in volume mode
     (when (System/getenv "DOCS_VOLUME_PATH")

@@ -62,25 +62,56 @@
   "Render filter sidebar"
   [examples features-list languages-list selected-languages selected-features]
   [:div.space-y-6
-   ;; Languages filter
+   ;; Languages filter - sorted by count
    [:div
     [:h4.text-sm.font-semibold.text-tint-12.mb-3 "Languages"]
     [:div.space-y-1
-     (for [lang languages-list]
-       ^{:key lang}
-       (render-filter-checkbox "languages" lang lang
-                               (count-examples-by-filter examples "languages" lang)
-                               (contains? selected-languages lang)))]]
+     (let [langs-with-counts (map (fn [lang]
+                                    [lang (count-examples-by-filter examples "languages" lang)])
+                                  languages-list)
+           sorted-langs (sort-by second > langs-with-counts)]
+       (for [[lang count] sorted-langs]
+         ^{:key lang}
+         (render-filter-checkbox "languages" lang lang
+                                count
+                                (contains? selected-languages lang))))]]
 
-   ;; Features filter
+   ;; Features filter - sorted by count with search
    [:div
     [:h4.text-sm.font-semibold.text-tint-12.mb-3 "Features"]
+    [:input.w-full.px-3.py-1.5.mb-3.text-sm.border.border-tint-3.rounded-md.focus:outline-none.focus:ring-2.focus:ring-primary-5
+     {:type "text"
+      :id "features-search"
+      :placeholder "Search features..."
+      :oninput "filterFeatures(this.value)"}]
     [:div.space-y-1.max-h-96.overflow-y-auto
-     (for [feature features-list]
-       ^{:key feature}
-       (render-filter-checkbox "features" feature feature
-                               (count-examples-by-filter examples "features" feature)
-                               (contains? selected-features feature)))]]])
+     {:id "features-list"}
+     (let [features-with-counts (map (fn [feature]
+                                       [feature (count-examples-by-filter examples "features" feature)])
+                                     features-list)
+           sorted-features (sort-by second > features-with-counts)]
+       (for [[feature count] sorted-features]
+         ^{:key feature}
+         [:div.feature-item
+          {:data-feature-name (str/lower-case feature)}
+          (render-filter-checkbox "features" feature feature
+                                 count
+                                 (contains? selected-features feature))]))]]
+   
+   ;; JavaScript for filtering features
+   [:script
+    "function filterFeatures(searchTerm) {
+       const items = document.querySelectorAll('.feature-item');
+       const term = searchTerm.toLowerCase();
+       items.forEach(item => {
+         const featureName = item.dataset.featureName;
+         if (featureName.includes(term)) {
+           item.style.display = 'block';
+         } else {
+           item.style.display = 'none';
+         }
+       });
+     }"]])
 
 (defn render-search-bar [search-term]
   [:div.w-full
