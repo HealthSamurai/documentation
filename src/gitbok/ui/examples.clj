@@ -246,7 +246,7 @@
          [:div.flex.items-center.justify-between.mb-4
           [:h3.text-lg.font-semibold.text-tint-12 "Filters"]
           (when (or (seq selected-languages) (seq selected-features) search-term)
-            [:button.text-sm.text-primary-9.hover:text-primary-10
+            [:button.text-sm.text-primary-9.hover:text-primary-10.cursor-pointer
              {:type "button"
               :onclick "document.getElementById('examples-search').value=''; 
                        document.querySelectorAll('.filter-checkbox').forEach(cb => cb.checked = false);
