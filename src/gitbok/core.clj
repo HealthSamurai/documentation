@@ -396,6 +396,17 @@
     :method :get
     :fn #'serve-static-file})
 
+  (http/register-endpoint
+   context
+   {:path (utils/concat-urls prefix "service-worker.js")
+    :method :get
+    :fn
+    (fn [_ request]
+      (let [response
+            (resp/resource-response "public/service-worker.js")]
+        (when response
+          (content-type-response response request))))})
+
   ;; OG preview handler - registered early to avoid conflicts with product routes
   (http/register-endpoint
    context
