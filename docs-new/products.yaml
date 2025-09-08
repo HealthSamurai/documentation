@@ -11,6 +11,8 @@ products:
     og-preview-text: "Aidbox User Docs"  # Optional: custom text for OG preview images
     meilisearch-index: "docs"
     links:
+      - text: "Examples"
+        href: "/examples"
       - text: "Run Aidbox locally"
         href: "/getting-started/run-aidbox-locally"
       - text: "Run Aidbox in Sandbox"
