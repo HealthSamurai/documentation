@@ -45,7 +45,7 @@
      :name type
      :value value
      :checked checked?
-     :hx-get "/docs/aidbox/examples"
+     :hx-get "/docs/aidbox/examples?partial=true"
      :hx-target "#examples-results"
      :hx-trigger "change"
      :hx-include "#examples-form"}]
@@ -126,7 +126,7 @@
       :placeholder "Search examples by title, description, or tags..."
       :autocomplete "off"
       :value (or search-term "")
-      :hx-get "/docs/aidbox/examples"
+      :hx-get "/docs/aidbox/examples?partial=true"
       :hx-target "#examples-results"
       :hx-trigger "keyup changed delay:500ms"
       :hx-include "#examples-form"}]]])
@@ -261,7 +261,7 @@
     [:div#examples-content
      ;; Wrap everything in a form for HTMX
      [:form {:id "examples-form"
-             :hx-get "/docs/aidbox/examples"
+             :hx-get "/docs/aidbox/examples?partial=true"
              :hx-target "#examples-results"
              :hx-push-url "false"}
 
@@ -281,7 +281,7 @@
              {:type "button"
               :onclick "document.getElementById('examples-search').value=''; 
                        document.querySelectorAll('.filter-checkbox').forEach(cb => cb.checked = false);
-                       htmx.ajax('GET', '/docs/aidbox/examples', {target: '#examples-results'})"}
+                       htmx.ajax('GET', '/docs/aidbox/examples?partial=true', {target: '#examples-results'})"}
              "Clear all"])]
          (when (and features_list languages_list)
            (render-filters filtered-examples features_list languages_list
