@@ -55,6 +55,13 @@ spec:
             value: "true"
           - name: LASTMOD_UPDATE_INTERVAL_MINUTES
             value: "5"
+          - name: GITHUB_PAT
+            valueFrom:
+              secretKeyRef:
+                name: github-secret
+                key: pat
+          - name: EXAMPLES_UPDATE_INTERVAL
+            value: "60"
         args:
           - "-Xms2g"
           - "-Xmx2g"
