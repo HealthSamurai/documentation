@@ -1,5 +1,8 @@
 .PHONY: clean build uberjar test
 
+include .env
+export $(shell sed 's/=.*//' .env)
+
 init-test:
 	echo 'dev' > resources/version
 	mkdir -p .git/hooks
