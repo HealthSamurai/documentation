@@ -1,0 +1,126 @@
+### Test Examples Webhook
+# This file contains HTTP requests for testing the examples webhook
+# You can use this with VS Code REST Client extension or similar tools
+
+### Variables
+@baseUrl = http://localhost:8081/docs
+@webhookUrl = {{baseUrl}}/webhook/examples
+@examplesPageUrl = {{baseUrl}}/aidbox/examples
+
+### Test 1: Send webhook with example data
+# This simulates what GitHub Actions will send
+POST {{webhookUrl}}
+Content-Type: application/json
+
+{
+  "timestamp": "2024-01-15T14:30:00Z",
+  "examples": [
+    {
+      "id": "aidbox-features-aws-s3-integration",
+      "title": "AWS S3 Integration with Aidbox",
+      "description": "Store and retrieve attachments using AWS S3 with presigned URLs for secure file operations",
+      "features": ["s3", "storage", "attachments", "nextjs", "presigned-urls", "security"],
+      "languages": ["typescript"],
+      "github_url": "https://github.com/Aidbox/examples/tree/main/aidbox-features/aws-s3-aidbox-integration",
+      "readme_url": "https://github.com/Aidbox/examples/blob/main/aidbox-features/aws-s3-aidbox-integration/README.md"
+    },
+    {
+      "id": "fhir-api-patient-crud",
+      "title": "Patient CRUD Operations",
+      "description": "Complete example of FHIR CRUD operations for Patient resources with validation",
+      "features": ["fhir", "crud", "patient", "rest-api", "validation"],
+      "languages": ["python", "typescript"],
+      "github_url": "https://github.com/Aidbox/examples/tree/main/fhir-api/patient-crud",
+      "readme_url": "https://github.com/Aidbox/examples/blob/main/fhir-api/patient-crud/README.md"
+    },
+    {
+      "id": "smart-on-fhir-basic-app",
+      "title": "SMART on FHIR Application",
+      "description": "Example SMART on FHIR application with OAuth2 authorization and EHR launch",
+      "features": ["smart-on-fhir", "oauth2", "authorization", "ehr-launch", "security"],
+      "languages": ["javascript", "python"],
+      "github_url": "https://github.com/Aidbox/examples/tree/main/smart-on-fhir/basic-app",
+      "readme_url": "https://github.com/Aidbox/examples/blob/main/smart-on-fhir/basic-app/README.md"
+    },
+    {
+      "id": "bulk-data-export-ndjson",
+      "title": "Bulk Data Export",
+      "description": "Export large datasets using FHIR Bulk Data Access API with async processing",
+      "features": ["bulk-data", "export", "async-api", "ndjson", "performance"],
+      "languages": ["java", "python"],
+      "github_url": "https://github.com/Aidbox/examples/tree/main/bulk-api/export",
+      "readme_url": "https://github.com/Aidbox/examples/blob/main/bulk-api/export/README.md"
+    },
+    {
+      "id": "cds-hooks-basic-integration",
+      "title": "CDS Hooks Integration",
+      "description": "Clinical Decision Support hooks implementation for medication prescribing",
+      "features": ["cds-hooks", "clinical-decision-support", "ehr-integration", "medications"],
+      "languages": ["go", "typescript"],
+      "github_url": "https://github.com/Aidbox/examples/tree/main/cds-hooks/basic",
+      "readme_url": "https://github.com/Aidbox/examples/blob/main/cds-hooks/basic/README.md"
+    },
+    {
+      "id": "subscriptions-webhook",
+      "title": "FHIR Subscriptions with Webhooks",
+      "description": "Real-time notifications using FHIR Subscriptions and webhooks",
+      "features": ["subscriptions", "webhooks", "real-time", "notifications"],
+      "languages": ["clojure", "typescript"],
+      "github_url": "https://github.com/Aidbox/examples/tree/main/subscriptions/webhook",
+      "readme_url": "https://github.com/Aidbox/examples/blob/main/subscriptions/webhook/README.md"
+    },
+    {
+      "id": "batch-bundle-processing",
+      "title": "Batch Bundle Processing",
+      "description": "Process multiple FHIR operations in a single transaction using Bundle",
+      "features": ["batch", "bundle", "transaction", "performance"],
+      "languages": ["java", "csharp"],
+      "github_url": "https://github.com/Aidbox/examples/tree/main/batch/bundle",
+      "readme_url": "https://github.com/Aidbox/examples/blob/main/batch/bundle/README.md"
+    },
+    {
+      "id": "custom-search-parameters",
+      "title": "Custom Search Parameters",
+      "description": "Define and use custom search parameters for specialized queries",
+      "features": ["search", "custom-search", "indexing", "performance"],
+      "languages": ["python", "go"],
+      "github_url": "https://github.com/Aidbox/examples/tree/main/search/custom-params",
+      "readme_url": "https://github.com/Aidbox/examples/blob/main/search/custom-params/README.md"
+    }
+  ],
+  "features_list": [
+    "async-api", "attachments", "authorization", "batch", "bulk-data",
+    "bundle", "cds-hooks", "clinical-decision-support", "crud", "custom-search",
+    "ehr-integration", "ehr-launch", "export", "fhir", "indexing",
+    "medications", "ndjson", "notifications", "oauth2", "patient",
+    "performance", "presigned-urls", "real-time", "rest-api", "s3",
+    "search", "security", "smart-on-fhir", "storage", "subscriptions",
+    "transaction", "validation", "webhooks"
+  ],
+  "languages_list": ["clojure", "csharp", "go", "java", "javascript", "python", "typescript"]
+}
+
+### Test 2: Get examples page
+GET {{examplesPageUrl}}
+Accept: text/html
+
+### Test 3: Invalid webhook data (missing required fields)
+POST {{webhookUrl}}
+Content-Type: application/json
+
+{
+  "invalid": "data"
+}
+
+### Test 4: Empty webhook
+POST {{webhookUrl}}
+Content-Type: application/json
+
+{}
+
+
+### Test 4: Empty webhook
+POST {{baseUrl}}/update-examples
+Content-Type: application/json
+
+{}

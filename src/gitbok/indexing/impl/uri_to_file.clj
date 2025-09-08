@@ -49,7 +49,7 @@
 
                 ;; Process list items with links
                 (re-matches #"\s*\*\s+\[([^\]]+)\]\(([^)]+)\)" line)
-                (let [[_ title path]
+                (let [[_ _title path]
                       (re-matches #"\s*\*\s+\[([^\]]+)\]\(([^)]+)\)" line)]
                   ;; Skip external links
                   (if (str/starts-with? path "http")
@@ -84,10 +84,8 @@
     (when diff
       (log/debug ::urls-diff {:action "comparing redirects and summary urls"})
       (doseq [p diff]
-        (log/debug ::separator {})
         (log/debug ::record-in-summary {:url p :file (get index p)})
-        (log/debug ::file-in-redirect {:url p :redirect (get redirects p)})
-        (log/debug ::separator {})))
+        (log/debug ::file-in-redirect {:url p :redirect (get redirects p)})))
     (log/info ::index-ready {:type "uri->file" :entries (count result)})
     result))
 
@@ -98,9 +96,3 @@
   (products/set-product-state
    context [const/URI->FILE_IDX]
    (uri->file-idx context)))
-
-(defn all-urls [context]
-  ;; redirect are bad urls.
-  (let [idx (get-idx context)
-        redirect-keys (set (keys (redirects/redirects context)))]
-    (filter #(not (contains? redirect-keys (keyword %))) (keys idx))))

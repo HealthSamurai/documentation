@@ -17,6 +17,9 @@
    [gitbok.ui.landing-hero :as landing-hero]
    [gitbok.ui.search]
    [gitbok.ui.meilisearch]
+   [gitbok.ui.examples]
+   [gitbok.examples.webhook]
+   [gitbok.examples.updater :as examples-updater]
    [gitbok.reload :as reload]
    [klog.core :as log]
    [ring.middleware.gzip :refer [wrap-gzip]]
@@ -540,6 +543,36 @@
     :method :get
     :fn #'debug-endpoint})
 
+  ;; Webhook endpoint for examples updates
+  (http/register-endpoint
+   context
+   {:path (utils/concat-urls prefix "/webhook/examples")
+    :method :post
+    :fn gitbok.examples.webhook/webhook-handler})
+
+  ;; Manual update endpoint (only if GitHub PAT is configured)
+  (when dev?
+    (http/register-endpoint
+     context
+     {:path (utils/concat-urls prefix "/update-examples")
+      :method :post
+      :fn (fn [ctx req]
+           (if (examples-updater/manual-update ctx)
+             {:status 200
+              :headers {"content-type" "text/plain"}
+              :body "Examples updated successfully"}
+             {:status 500
+              :headers {"content-type" "text/plain"}
+              :body "Failed to update examples"}))}))
+
+  ;; Examples page (hardcoded path for Aidbox)
+  (http/register-endpoint
+   context
+   {:path (utils/concat-urls prefix "/aidbox/examples")
+    :method :get
+    :middleware [gzip-middleware]
+    :fn gitbok.ui.examples/examples-handler})
+
   (let [products-config (products/get-products-config context)]
     (doseq [product products-config]
       (log/info ::init-product-indices {:product-name (:name product)
@@ -570,16 +603,26 @@
     (log/stdout-pretty-appender :debug) ;; Pretty output for development
     (log/stdout-appender :info)) ;; JSON output for production
 
-  (.addShutdownHook (Runtime/getRuntime)
-                    (Thread. #(log/info ::shutdown {:msg "Got SIGTERM."})))
   (log/info ::server-start {:msg "Server started"})
   (log/info ::server-port {:port port})
 
   ;; Start system
   (let [context (system/start-system default-config)]
 
+    ;; Setup shutdown hook with context
+    (.addShutdownHook (Runtime/getRuntime)
+                      (Thread. (fn []
+                                (log/info ::shutdown {:msg "Got SIGTERM."})
+                                ;; Stop examples updater if running
+                                (examples-updater/stop-scheduler context))))
+
     ;; Start reload watcher if in volume mode
     (when (System/getenv "DOCS_VOLUME_PATH")
       (reload/start-reload-watcher context init-product-indices init-products))
+
+    ;; Start examples updater if GitHub PAT is configured
+    (when (System/getenv "GITHUB_PAT")
+      (log/info ::starting-examples-updater {})
+      (examples-updater/start-scheduler context))
 
     context))

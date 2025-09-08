@@ -4,6 +4,7 @@
    [system]
    [gitbok.core :as gitbok]
    [clj-reload.core :as reload]
+   [gitbok.examples.updater :as examples-updater]
    [klog.core :as log]
    [gitbok.reload :as gitbok-reload]))
 
@@ -15,11 +16,12 @@
       (def context (system/start-system gitbok/default-config))
       ;; Start reload watcher if DOCS_VOLUME_PATH is set
       #_(when (and context (System/getenv "DOCS_VOLUME_PATH"))
-        (gitbok-reload/start-reload-watcher context
-                                            gitbok/init-product-indices
-                                            gitbok/init-products)))
+          (gitbok-reload/start-reload-watcher context
+                                              gitbok/init-product-indices
+                                              gitbok/init-products))
+      (examples-updater/start-scheduler context))
 
-  ;; reload server
+;; reload server
   (do (reload/reload)
       (system/stop-system context)
       (def context (system/start-system gitbok/default-config)))

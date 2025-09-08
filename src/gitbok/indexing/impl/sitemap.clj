@@ -2,7 +2,6 @@
   (:require
    [clojure.string :as str]
    [gitbok.constants :as const]
-   [gitbok.utils :as utils]
    [system]
    [gitbok.http]
    [gitbok.products :as products]
