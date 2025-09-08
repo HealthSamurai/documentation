@@ -1,7 +1,9 @@
 .PHONY: clean build uberjar test
 
-include .env
+-include .env
+ifneq (,$(wildcard .env))
 export $(shell sed 's/=.*//' .env)
+endif
 
 init-test:
 	echo 'dev' > resources/version
