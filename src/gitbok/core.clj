@@ -622,7 +622,7 @@
       (reload/start-reload-watcher context init-product-indices init-products))
 
     ;; Start examples updater if GitHub PAT is configured
-    (when (System/getenv "GITHUB_PAT")
+    (when (System/getenv "GITHUB_TOKEN")
       (log/info ::starting-examples-updater {})
       (examples-updater/start-scheduler context))
 

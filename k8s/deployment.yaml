@@ -55,7 +55,7 @@ spec:
             value: "true"
           - name: LASTMOD_UPDATE_INTERVAL_MINUTES
             value: "5"
-          - name: GITHUB_PAT
+          - name: GITHUB_TOKEN
             valueFrom:
               secretKeyRef:
                 name: github-secret

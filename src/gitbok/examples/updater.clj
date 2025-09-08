@@ -11,7 +11,7 @@
 (defn get-github-token
   "Get GitHub PAT from environment"
   []
-  (System/getenv "GITHUB_PAT"))
+  (System/getenv "GITHUB_TOKEN"))
 
 (defn get-update-interval
   "Get update interval in minutes from environment, default 60"
