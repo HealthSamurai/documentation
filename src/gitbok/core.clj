@@ -468,7 +468,7 @@
           :fn #'render-favicon})
 
         ;; Product robots.txt
-        (http/register-endpoint
+        #_(http/register-endpoint
          context
          {:path (str product-path "/robots.txt")
           :method :get
@@ -515,7 +515,7 @@
     :fn #'sitemap-index-xml})
 
   ;; Root robots.txt
-  (http/register-endpoint
+  #_(http/register-endpoint
    context
    {:path (utils/concat-urls prefix "/robots.txt")
     :method :get
