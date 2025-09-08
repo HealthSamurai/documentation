@@ -21,9 +21,10 @@
                                               gitbok/init-products))
       (examples-updater/start-scheduler context))
 
-;; reload server
-  (do (reload/reload)
-      (system/stop-system context)
-      (def context (system/start-system gitbok/default-config)))
+  ;; reload server
+  (do
+    (system/stop-system context)
+    (reload/reload)
+    (def context (system/start-system gitbok/default-config)))
 
   (dev/update-libs))

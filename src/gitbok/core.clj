@@ -573,6 +573,14 @@
     :method :get
     :middleware [gzip-middleware]
     :fn gitbok.ui.examples/examples-handler})
+  
+  ;; Examples results endpoint (for HTMX partial updates)
+  (http/register-endpoint
+   context
+   {:path (utils/concat-urls prefix "/aidbox/examples-results")
+    :method :get
+    :middleware [gzip-middleware]
+    :fn gitbok.ui.examples/examples-results-handler})
 
   (let [products-config (products/get-products-config context)]
     (doseq [product products-config]

@@ -1,19 +1,18 @@
 (ns gitbok.ui.examples
-  (:require [gitbok.http :as http]
-            [gitbok.ui.layout :as layout]
-            [gitbok.ui.main-navigation :as main-navigation]
-            [gitbok.products :as products]
-            [gitbok.examples.indexer :as indexer]
-            [gitbok.utils :as utils]
-            [system]
-            [clojure.string :as str]
-            [clojure.data.json :as json]
-            [hiccup.core]
-            [klog.core :as log]))
+  (:require
+   [gitbok.ui.layout :as layout]
+   [gitbok.products :as products]
+   [gitbok.examples.indexer :as indexer]
+   [gitbok.ui.main-navigation :as main-navigation]
+   [system]
+   [gitbok.http]
+   [clojure.string :as str]
+   [hiccup2.core]
+   [klog.core :as log]))
 
 (defn render-example-card
   "Render a single example card"
-  [{:keys [id title description features languages github_url readme_url]}]
+  [{:keys [id title description features languages github_url]}]
   [:div.border.border-tint-2.rounded-lg.p-6.hover:shadow-lg.transition-shadow.duration-200.bg-white
    {:data-example-id id
     :class "example-card"}
@@ -23,18 +22,20 @@
    [:p.text-sm.text-tint-10.mb-4.line-clamp-3 description]
 
    ;; Languages tags - green color with lighter border
-   [:div.flex.flex-wrap.gap-2.mb-2
-    (for [lang languages]
-      [:span.inline-flex.items-center.px-2.py-0.5.rounded.text-xs.font-medium.bg-success-2.text-success-11.border.border-success-3
-       {:key lang}
-       lang])]
+   (when (seq languages)
+     [:div.flex.flex-wrap.gap-2.mb-2
+      (for [lang languages]
+        [:span.inline-flex.items-center.px-2.py-0.5.rounded.text-xs.font-medium.bg-success-2.text-success-11.border.border-success-3
+         {:key lang}
+         lang])])
 
    ;; Features tags - blue color, same style as languages
-   [:div.flex.flex-wrap.gap-2
-    (for [feature features]
-      [:span.inline-flex.items-center.px-2.py-0.5.rounded.text-xs.font-medium.bg-primary-2.text-primary-11.border.border-primary-4
-       {:key feature}
-       feature])]])
+   (when (seq features)
+     [:div.flex.flex-wrap.gap-2
+      (for [feature features]
+        [:span.inline-flex.items-center.px-2.py-0.5.rounded.text-xs.font-medium.bg-primary-2.text-primary-11.border.border-primary-4
+         {:key feature}
+         feature])])])
 
 (defn render-filter-checkbox
   "Render a single filter checkbox"
@@ -45,7 +46,8 @@
      :name type
      :value value
      :checked checked?
-     :hx-get "/docs/aidbox/examples?partial=true"
+     ;; todo fix hardcode
+     :hx-get "/docs/aidbox/examples-results"
      :hx-target "#examples-results"
      :hx-trigger "change"
      :hx-include "#examples-form"}]
@@ -56,7 +58,7 @@
 (defn count-examples-by-filter
   "Count examples that have a specific filter value"
   [examples filter-type filter-value]
-  (count (filter #(some #{filter-value} (get % (keyword filter-type))) examples)))
+  (count (filter #(some #{filter-value} (or (get % (keyword filter-type)) [])) examples)))
 
 (defn render-filters
   "Render filter sidebar"
@@ -73,8 +75,8 @@
        (for [[lang count] sorted-langs]
          ^{:key lang}
          (render-filter-checkbox "languages" lang lang
-                                count
-                                (contains? selected-languages lang))))]]
+                                 count
+                                 (contains? selected-languages lang))))]]
 
    ;; Features filter - sorted by count with search
    [:div
@@ -95,9 +97,9 @@
          [:div.feature-item
           {:data-feature-name (str/lower-case feature)}
           (render-filter-checkbox "features" feature feature
-                                 count
-                                 (contains? selected-features feature))]))]]
-   
+                                  count
+                                  (contains? selected-features feature))]))]]
+
    ;; JavaScript for filtering features
    [:script
     "function filterFeatures(searchTerm) {
@@ -126,7 +128,8 @@
       :placeholder "Search examples by title, description, or tags..."
       :autocomplete "off"
       :value (or search-term "")
-      :hx-get "/docs/aidbox/examples?partial=true"
+      ;; todo fix hardcode
+      :hx-get "/docs/aidbox/examples-results"
       :hx-target "#examples-results"
       :hx-trigger "keyup changed delay:500ms"
       :hx-include "#examples-form"}]]])
@@ -149,7 +152,7 @@
             formatter (java.time.format.DateTimeFormatter/ofPattern "MMMM d, yyyy 'at' h:mm a")
             zoned-time (.atZone instant (java.time.ZoneId/of "America/New_York"))]
         (.format formatter zoned-time))
-      (catch Exception e
+      (catch Exception _
         timestamp))))
 
 (defn filter-examples
@@ -161,18 +164,22 @@
               (and
                ;; Search filter
                (or (nil? search-lower)
-                   (let [searchable (str/lower-case
-                                    (str (:title example) " "
-                                         (:description example) " "
-                                         (str/join " " (:features example)) " "
-                                         (str/join " " (:languages example))))]
+                   (let [example-features (or (:features example) [])
+                         example-languages (or (:languages example) [])
+                         searchable (str/lower-case
+                                     (str (:title example) " "
+                                          (:description example) " "
+                                          (str/join " " example-features) " "
+                                          (str/join " " example-languages)))]
                      (str/includes? searchable search-lower)))
                ;; Language filter
                (or (empty? languages)
-                   (some #(contains? languages %) (:languages example)))
+                   (let [example-languages (or (:languages example) [])]
+                     (some #(contains? languages %) example-languages)))
                ;; Feature filter
                (or (empty? features)
-                   (some #(contains? features %) (:features example)))))
+                   (let [example-features (or (:features example) [])]
+                     (some #(contains? features %) example-features)))))
             examples)))
 
 (defn render-examples-results
@@ -180,13 +187,14 @@
   [context request]
   (let [ctx-with-product (products/set-current-product-id context "aidbox")
         examples-data (indexer/get-examples ctx-with-product)
-        {:keys [examples features_list languages_list timestamp]} examples-data
+        {:keys [examples _features_list _languages_list timestamp]} examples-data
 
         ;; Get query parameters
         params (:query-params request)
-        _ (log/info ::request-params {:params params 
-                                      :query-string (:query-string request)
-                                      :headers (:headers request)})
+        _ (log/info ::request-params
+                    {:params params
+                     :query-string (:query-string request)
+                     :headers (:headers request)})
         search-term (get params :search "")
         ;; For multiple checkbox values, they come as a vector
         selected-languages (into #{} (let [langs (get params :languages)]
@@ -220,7 +228,7 @@
       (when timestamp
         [:p.text-sm.text-tint-10.italic
          (str "Last updated: " (format-timestamp timestamp))])]
-     
+
      (render-examples-grid filtered-examples)]))
 
 (defn render-examples-content
@@ -228,11 +236,11 @@
   [context request]
   (let [ctx-with-product (products/set-current-product-id context "aidbox")
         examples-data (indexer/get-examples ctx-with-product)
-        {:keys [examples features_list languages_list timestamp]} examples-data
+        {:keys [examples features_list languages_list]} examples-data
 
         ;; Get query parameters
         params (:query-params request)
-        _ (log/info ::request-params {:params params 
+        _ (log/info ::request-params {:params params
                                       :query-string (:query-string request)
                                       :headers (:headers request)})
         search-term (get params :search "")
@@ -261,7 +269,8 @@
     [:div#examples-content
      ;; Wrap everything in a form for HTMX
      [:form {:id "examples-form"
-             :hx-get "/docs/aidbox/examples?partial=true"
+             ;; todo fix
+             :hx-get "/docs/aidbox/examples-results"
              :hx-target "#examples-results"
              :hx-push-url "false"}
 
@@ -279,73 +288,66 @@
           (when (or (seq selected-languages) (seq selected-features) search-term)
             [:button.text-sm.text-primary-9.hover:text-primary-10.cursor-pointer
              {:type "button"
-              :onclick "document.getElementById('examples-search').value=''; 
+              :onclick "document.getElementById('examples-search').value='';
                        document.querySelectorAll('.filter-checkbox').forEach(cb => cb.checked = false);
-                       htmx.ajax('GET', '/docs/aidbox/examples?partial=true', {target: '#examples-results'})"}
+                       htmx.ajax('GET', '/docs/aidbox/examples-results', {target: '#examples-results'})"}
              "Clear all"])]
          (when (and features_list languages_list)
            (render-filters filtered-examples features_list languages_list
-                         selected-languages selected-features))]]
+                           selected-languages selected-features))]]
 
-      ;; Examples results section
-      [:div.flex-1
-       (render-examples-results context request)]]]]))
+       [:div.flex-1
+        (render-examples-results context request)]]]]))
 
 (defn render-examples-page
   "Main examples page component - full page"
   [context request]
-  (let [ctx-with-product (products/set-current-product-id context "aidbox")
-        examples-data (indexer/get-examples ctx-with-product)]
-    [:div.w-full.bg-tint-1.min-h-screen.py-8
-     [:div.container.mx-auto.px-4.max-w-7xl
-      ;; Header
-      [:div.mb-8
-       [:h1.text-3xl.font-bold.text-tint-12.mb-3 "Examples"]
-       [:p.text-lg.text-tint-10
-        "Browse Aidbox integration examples and sample applications"]]
+  [:div
+   ;; Header
+   [:div.mb-8
+    [:h1.text-3xl.font-bold.text-tint-12.mb-3 "Aidbox Examples"]
+    [:p.text-lg.text-tint-10
+     "Browse Aidbox integration examples and sample applications"]]
 
-      ;; Content
-      (render-examples-content context request)]]))
+   ;; Content
+   (render-examples-content context request)])
+
+(defn examples-results-handler
+  "HTTP handler for examples results (HTMX partial updates)"
+  [context request]
+  (let [content (render-examples-results context request)]
+    (gitbok.http/response1 content)))
 
 (defn examples-handler
   "HTTP handler for examples page"
   [context request]
-  (let [uri (:uri request)
-        ;; Check if this is an HTMX request
-        htmx-request? (get-in request [:headers "hx-request"])
+  (let [content (render-examples-page context request)
+        ;; todo this and landing should use same function.
+        full-page
+        [:div
+         (main-navigation/nav context)
+         [:div.mobile-menu-overlay]
+         [:div
+          {:class "flex max-w-screen-2xl mx-auto site-full-width:max-w-full
+           items-start overflow-visible md:px-8 py-8"}
+          [:main#content {:class "flex-1 items-start"}
 
-        content (if htmx-request?
-                  ;; For HTMX requests, return just the results
-                  (render-examples-results context request)
-                  ;; For regular requests, return the full page
-                  (render-examples-page context request))]
-
-    (if htmx-request?
-      ;; Return partial HTML for HTMX
-      {:status 200
-       :headers {"content-type" "text/html"}
-       :body (hiccup.core/html content)}
-      ;; Return full page
-      (let [full-page [:div
-                       ;; Main navigation header
-                       (main-navigation/nav context)
-                       [:div.mobile-menu-overlay]
-                       ;; Content without left sidebar - full width
-                       [:div.flex.max-w-screen-2xl.mx-auto.site-full-width:max-w-full.items-start.overflow-visible.md:px-8
-                        ;; Main content takes full width - no left navigation
-                        [:main#content.flex-1.w-full
-                         [:div.flex.items-start
-                          [:article.article__content.min-w-0.flex-1.transform-3d
-                           [:div.mx-auto.max-w-full
-                            content]]]]]]]
-        (http/response1
-         (layout/document
-          context
-          full-page
-          {:title "Examples"
-           :description "Browse Aidbox integration examples and sample applications"
-           :canonical-url (http/get-absolute-url context uri)
-           :og-preview (http/get-absolute-url
-                        context
-                        "/public/og-preview/aidbox/examples.png")
-           :favicon-url (http/get-product-prefixed-url context "/favicon.ico")}))))))
+           [:div {:class "flex items-start"}
+            [:article {:class "article__content min-w-0 flex-1 transform-3d"}
+             [:div {:class "mx-auto max-w-full"}
+              content]]]]]]]
+    ;; Always return full page through layout
+    (gitbok.http/response1
+     (layout/document
+      context
+      full-page
+      {:title "Aidbox examples"
+       :description "Browse Aidbox integration examples and sample applications"
+       :canonical-url
+       (gitbok.http/get-absolute-url
+        context
+        (:uri request))
+       :og-preview nil
+       :lastmod nil
+       :favicon-url
+       (gitbok.http/get-product-prefixed-url context "/favicon.ico")}))))
