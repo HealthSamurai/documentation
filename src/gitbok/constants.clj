@@ -7,6 +7,7 @@
 
 (def ^:const FILE->URI_IDX ::file-to-uri-idx)
 (def ^:const URI->FILE_IDX ::uri-to-file-idx)
+(def ^:const URI->REDIRECTS_IDX ::uri-to-redirects-idx)
 
 (def ^:const SUMMARY_PATH "SUMMARY.md")
 (def ^:const RENDERED ::rendered)

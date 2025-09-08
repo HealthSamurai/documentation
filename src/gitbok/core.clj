@@ -157,37 +157,50 @@
       (render-pictures context request)
 
       :else
-      (let [filepath
-            (indexing/uri->filepath context uri-relative)]
-        (if filepath
-          (let [lastmod (indexing/get-lastmod context filepath)
-                lastmod-iso (utils/iso-to-http-date lastmod)
-                etag (utils/etag lastmod-iso)]
-            (if (or (check-cache-etag request etag)
-                    (and lastmod
-                         (check-cache-lastmod request lastmod)))
-              {:status 304
-               :headers {"Cache-Control" "public, max-age=300"
-                         "Last-Modified" lastmod-iso
-                         "ETag" etag}}
-              (let [{:keys [title description content section]}
-                    (render-file (assoc context :current-uri uri-relative) filepath)]
-                (layout/layout
-                 context request
-                 {:content content
-                  :lastmod lastmod
-                  :title title
-                  :description description
-                  :section section
-                  :filepath filepath}))))
+      ;; Check for redirects first
+      (if-let [redirect-target (indexing/get-redirect context uri-relative)]
+        ;; Return HTTP 301 redirect
+        (let [target-url (gitbok.http/get-product-prefixed-url context redirect-target)]
+          ;; Log the redirect for monitoring
+          (log/info ::redirect-301 {:from uri-relative
+                                     :to redirect-target
+                                     :target-url target-url
+                                     :user-agent (get-in request [:headers "user-agent"])
+                                     :referer (get-in request [:headers "referer"])})
+          {:status 301
+           :headers {"Location" target-url}})
+        ;; Otherwise proceed with normal file handling
+        (let [filepath
+              (indexing/uri->filepath context uri-relative)]
+          (if filepath
+            (let [lastmod (indexing/get-lastmod context filepath)
+                  lastmod-iso (utils/iso-to-http-date lastmod)
+                  etag (utils/etag lastmod-iso)]
+              (if (or (check-cache-etag request etag)
+                      (and lastmod
+                           (check-cache-lastmod request lastmod)))
+                {:status 304
+                 :headers {"Cache-Control" "public, max-age=300"
+                           "Last-Modified" lastmod-iso
+                           "ETag" etag}}
+                (let [{:keys [title description content section]}
+                      (render-file (assoc context :current-uri uri-relative) filepath)]
+                  (layout/layout
+                   context request
+                   {:content content
+                    :lastmod lastmod
+                    :title title
+                    :description description
+                    :section section
+                    :filepath filepath}))))
 
-          (layout/layout
-           context request
-           {:content (not-found/not-found-view context uri-relative)
-            :status 404
-            :title "Not found"
-            :description "Page not found"
-            :hide-breadcrumb true}))))))
+            (layout/layout
+             context request
+             {:content (not-found/not-found-view context uri-relative)
+              :status 404
+              :title "Not found"
+              :description "Page not found"
+              :hide-breadcrumb true})))))))
 
 (defn sitemap-xml
   [context _]

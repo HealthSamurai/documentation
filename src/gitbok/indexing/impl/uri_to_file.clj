@@ -31,8 +31,26 @@
   [context]
   (let [summary-text (gitbok.indexing.impl.summary/read-summary context)
         lines (str/split-lines summary-text)
-        redirects (->> (redirects/redirects context)
-                       (mapv (fn [[k v]] [(subs (str k) 1) v]))
+        redirects-raw (redirects/redirects context)
+        ;; Process redirects: remove leading slash and clean up README.md paths
+        redirects (->> redirects-raw
+                       (mapv (fn [[k v]] 
+                               (let [from-url (subs (str k) 1)
+                                     ;; Clean up the target path similar to how files are processed
+                                     to-path-clean (str/replace v #"\.md$" "")
+                                     to-url (cond
+                                              ;; Root README
+                                              (= to-path-clean "README")
+                                              ""
+                                              
+                                              ;; Directory README files
+                                              (str/ends-with? to-path-clean "/README")
+                                              (subs to-path-clean 0 (- (count to-path-clean) 7))
+                                              
+                                              ;; Regular files
+                                              :else
+                                              to-path-clean)]
+                                 [from-url to-url])))
                        (into {}))
         index
         (loop [lines lines
@@ -73,26 +91,34 @@
                              (assoc acc url path)))))
 
                 :else
-                (recur (rest lines) acc)))))
-
-        diff
-        (nth (clojure.data/diff (set (keys redirects))
-                                (set (keys index))) 2)
-
-        result (merge index redirects)]
-
-    (when diff
-      (log/debug ::urls-diff {:action "comparing redirects and summary urls"})
-      (doseq [p diff]
-        (log/debug ::record-in-summary {:url p :file (get index p)})
-        (log/debug ::file-in-redirect {:url p :redirect (get redirects p)})))
-    (log/info ::index-ready {:type "uri->file" :entries (count result)})
-    result))
+                (recur (rest lines) acc)))))]
+    
+    (log/info ::index-ready {:type "uri->file" 
+                             :files (count index)
+                             :redirects (count redirects)})
+    ;; Return separate indexes for files and redirects
+    {:files index
+     :redirects redirects}))
 
 (defn get-idx [context]
   (products/get-product-state context [const/URI->FILE_IDX]))
 
 (defn set-idx [context]
-  (products/set-product-state
-   context [const/URI->FILE_IDX]
-   (uri->file-idx context)))
+  (let [indexes (uri->file-idx context)]
+    ;; Store files index
+    (products/set-product-state
+     context [const/URI->FILE_IDX]
+     (:files indexes))
+    ;; Store redirects index
+    (products/set-product-state
+     context [const/URI->REDIRECTS_IDX]
+     (:redirects indexes))))
+
+(defn get-redirects-idx [context]
+  (products/get-product-state context [const/URI->REDIRECTS_IDX]))
+
+(defn set-redirects-idx [context]
+  (let [indexes (uri->file-idx context)]
+    (products/set-product-state
+     context [const/URI->REDIRECTS_IDX]
+     (:redirects indexes))))

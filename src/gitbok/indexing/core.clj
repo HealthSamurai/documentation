@@ -26,6 +26,9 @@
   (gitbok.indexing.impl.uri-to-file/uri->filepath
    (uri-to-file/get-idx context) uri))
 
+(defn get-redirect [context ^String uri]
+  (get (uri-to-file/get-redirects-idx context) uri))
+
 (defn absolute-filepath->relative
   "Converts an absolute filepath to a relative filepath by removing the product root prefix.
   This ensures the filepath matches the keys used in the file->uri index."
