@@ -142,6 +142,14 @@ Any request to the `SubsSubscription` resource will return `OperationOutcome` wi
 
 If `SubsSubscription` resource is created using regular API (not Organization API), Aidbox Subscriptions will send notifications irrespectively of Organization hierarchy.
 
+### Topic-Based Subscriptions with Organization Hierarchy
+
+{% hint style="warning" %}
+Organization-based hierarchical filtering is available starting from version 2509.
+{% endhint %}
+
+`AidboxSubscriptionTopic` and `AidboxTopicDestination` support organization-based hierarchical filtering. For more details, see [Aidbox Topic-Based Subscriptions](../../../modules/topic-based-subscriptions/aidbox-topic-based-subscriptions.md).
+
 ## FHIR API over Organization resources
 
 ### Create

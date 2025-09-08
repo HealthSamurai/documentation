@@ -68,6 +68,28 @@ Ensure that the resource metadata contains the kind-specific `AidboxTopicDestina
 
 \* required.
 
+## Organization-based hierarchical filtering
+
+{% hint style="warning" %}
+Organization-based hierarchical filtering is available starting from version 2509.
+{% endhint %}
+
+## Organization-based hierarchical filtering
+
+Both `AidboxSubscriptionTopic` and `AidboxTopicDestination` support sophisticated organization-based hierarchical filtering. This feature operates through a sequential process:
+
+1. **Filter Application Sequence**: Topic filters are applied first, followed by destination filters.
+
+2. **Behavior With Organization Extension** (`https://aidbox.app/tenant-organization-id`):
+   - Requests lacking organization extensions are automatically excluded
+   - Requests with organization extensions undergo hierarchical evaluation:
+     - Requests from organizations equal to or beneath the topic/destination organization in the hierarchy are processed
+     - All other requests are filtered out
+
+3. **Organization-Independent Topics and Organization-Dependent Destinations**: This allows you to define a single AidboxSubscriptionTopic and restrict data by specifying the destination organization
+
+This hierarchical filtering mechanism provides granular control over notification triggers based on organizational structure, enabling precise targeting of subscription notifications.
+
 ## Currently supported channels
 
 {% content-ref url="../../tutorials/subscriptions-tutorials/webhook-aidboxtopicdestination.md" %}
