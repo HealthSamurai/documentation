@@ -37,14 +37,14 @@ entry:
     url: Organization/org-b
   resource:
     name: Organization B
-    partOf: 
+    partOf:
       reference: Organization/org-a
 - request:
     method: PUT
     url: Organization/org-c
   resource:
     name: Organization C
-    partOf: 
+    partOf:
       reference: Organization/org-a
 - request:
     method: PUT
@@ -56,7 +56,7 @@ entry:
     url: Organization/org-E
   resource:
     name: Organization E
-    partOf: 
+    partOf:
       reference: Organization/org-d
 ```
 
@@ -128,7 +128,7 @@ GET /Organization/org-a/fhir/Patient/pt-1
 But this resource is not accessible through Org C, Org D and Org E API:
 
 ```
-GET /Organization/org-c/fhir/Patient/pt-1 
+GET /Organization/org-c/fhir/Patient/pt-1
 # 403 Forbidden
 ```
 
