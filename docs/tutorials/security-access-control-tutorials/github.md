@@ -37,6 +37,7 @@ organizations:
 client:
   id: <client-id>
   secret: <client-secret>
+  redirect_uri: <base-url>/auth/callback/github
 ```
 
 ## Login into Aidbox with GitHub
