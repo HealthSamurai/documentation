@@ -156,13 +156,18 @@
          :formula
          (fn [_ctx node]
            (let [tex (:text node)]
-             [:span.katex-inline tex]))
-
-         ;; Handle block formulas (when formula is on separate lines)
-         :block-formula
-         (fn [_ctx node]
-           (let [tex (:text node)]
-             [:div.katex-display tex]))
+             (if (or (str/includes? tex "\\supset")
+                     (str/includes? tex "\\le")
+                     (str/includes? tex "\\ge"))
+               [:span.katex-inline tex]
+               tex)))
+         ;;
+         ;; ;; Handle block formulas (when formula is on separate lines)
+         ;; :block-formula
+         ;; (fn [_ctx node]
+         ;;   (def nn node)
+         ;;   (let [tex (:text node)]
+         ;;     [:div.katex-display tex]))
 
          :code
          (fn [_ctx node]
