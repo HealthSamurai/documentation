@@ -619,14 +619,17 @@ function showCopySuccess(button) {
           relativeTime = `${diffMinutes} minute${diffMinutes === 1 ? '' : 's'} ago`;
         } else if (diffHours < 24) {
           relativeTime = `${diffHours} hour${diffHours === 1 ? '' : 's'} ago`;
-        } else if (diffDays < 30) {
+        } else if (diffDays < 7) {
           relativeTime = `${diffDays} day${diffDays === 1 ? '' : 's'} ago`;
+        } else if (diffDays < 30) {
+          const weeks = Math.floor(diffDays / 7);
+          relativeTime = `${weeks} week${weeks === 1 ? '' : 's'} ago`;
+        } else if (diffDays < 365) {
+          const months = Math.floor(diffDays / 30);
+          relativeTime = `${months} month${months === 1 ? '' : 's'} ago`;
         } else {
-          relativeTime = date.toLocaleDateString('en-US', {
-            year: 'numeric',
-            month: 'short',
-            day: 'numeric'
-          });
+          const years = Math.floor(diffDays / 365);
+          relativeTime = `${years} year${years === 1 ? '' : 's'} ago`;
         }
 
         element.textContent = `Last updated: ${relativeTime}`;
