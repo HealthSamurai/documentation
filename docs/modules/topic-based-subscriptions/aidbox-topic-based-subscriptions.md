@@ -76,7 +76,9 @@ Organization-based hierarchical filtering is available starting from version 250
 
 Both `AidboxSubscriptionTopic` and `AidboxTopicDestination` support [organization-based hierarchical access control](../../access-control/authorization/scoped-api/organization-based-hierarchical-access-control.md). 
 
-**When these resources are created using organization-specific APIs**, they automatically filter events based on the organization hierarchy.
+**When these resources are created using organization-specific APIs (`/Organization/<org-id>/fhir/AidboxSubscriptionTopic` and `/Organization/<org-id>/fhir/AidboxTopicDestination`)**, they automatically filter events based on the organization hierarchy.
+
+For instance you should use /Organization/<org-id>/fhir/AidboxSubscriptionTopic and /Organization/<org-id>/fhir/AidboxTopicDestination to create these resources.
 
 ### How it works
 
