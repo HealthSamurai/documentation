@@ -74,8 +74,6 @@ Ensure that the resource metadata contains the kind-specific `AidboxTopicDestina
 Organization-based hierarchical filtering is available starting from version 2509.
 {% endhint %}
 
-## Organization-based hierarchical filtering
-
 Both `AidboxSubscriptionTopic` and `AidboxTopicDestination` support sophisticated organization-based hierarchical filtering. This feature operates through a sequential process:
 
 1. **Filter Application Sequence**: Topic filters are applied first, followed by destination filters.
