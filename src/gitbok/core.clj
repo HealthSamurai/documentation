@@ -163,10 +163,10 @@
         (let [target-url (gitbok.http/get-product-prefixed-url context redirect-target)]
           ;; Log the redirect for monitoring
           (log/info ::redirect-301 {:from uri-relative
-                                     :to redirect-target
-                                     :target-url target-url
-                                     :user-agent (get-in request [:headers "user-agent"])
-                                     :referer (get-in request [:headers "referer"])})
+                                    :to redirect-target
+                                    :target-url target-url
+                                    :user-agent (get-in request [:headers "user-agent"])
+                                    :referer (get-in request [:headers "referer"])})
           {:status 301
            :headers {"Location" target-url}})
         ;; Otherwise proceed with normal file handling
@@ -274,13 +274,29 @@
                                                   "x-forwarded-proto" "x-forwarded-host"])}}}))
 
 (defn serve-static-file
-  "Serves static files with proper content type headers"
+  "Serves static files with proper content type and cache headers"
   [context request]
   (let [uri (gitbok.http/url-without-prefix context (:uri request))
         path (str/replace uri #"^/static/" "")
         response (resp/resource-response (utils/concat-urls "public" path))]
     (when response
-      (content-type-response response request))))
+      (let [dev-mode? (gitbok.http/get-dev-mode context)
+            ;; In dev mode: no cache
+            ;; In production: cache for 1 year (files are versioned)
+            cache-control (if dev-mode?
+                            "no-cache, no-store, must-revalidate"
+                            "public, max-age=31536000, immutable")
+            ;; First add content-type
+            response-with-type (content-type-response response request)
+            ;; Then add cache-control to the headers map
+            headers (assoc (or (:headers response-with-type) {}) 
+                          "Cache-Control" cache-control)]
+        (log/debug ::serving-static-file {:path path 
+                                          :dev-mode? dev-mode?
+                                          :cache-control cache-control
+                                          :headers headers})
+        ;; Return response with updated headers
+        (assoc response-with-type :headers headers)))))
 
 (defn serve-og-preview
   "Serves OG preview images from resources"
@@ -474,14 +490,6 @@
           :method :get
           :middleware [product-middleware gzip-middleware]
           :fn #'render-favicon})
-
-        ;; Product robots.txt
-        #_(http/register-endpoint
-           context
-           {:path (str product-path "/robots.txt")
-            :method :get
-            :middleware [product-middleware]
-            :fn #'render-robots-txt})
 
         ;; Product landing page
         (http/register-endpoint
