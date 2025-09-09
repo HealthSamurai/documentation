@@ -41,23 +41,3 @@ products:
       - text: "Github"
         href: "https://github.com/fhirbase/fhirbase"
 
-
-  # - id: forms
-  #   name: "Forms Documentation"
-  #   # url <BASE_URL><DOCS_PREFIX>/forms
-  #   path: /forms
-  #   config: forms/.gitbook.yaml
-  #   logo: .gitbook/assets/aidbox_logo.jpg
-  #   favicon: .gitbook/assets/favicon.ico
-  #   og-preview-text: "Forms Documentation"  # Optional: custom text for OG preview images
-  #   links:
-  #     - text: "Getting Started"
-  #       href: "/getting-started"
-  #     - text: "Forms Gallery"
-  #       href: "/gallery"
-  #     - text: "Contact Support"
-  #       href: "https://example.com/support"
-  #       target: "_blank"
-  #     - text: "Forms Community"
-  #       href: "https://example.com/community"
-  #       target: "_blank"

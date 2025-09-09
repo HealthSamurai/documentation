@@ -2,7 +2,6 @@
   (:require
    [uui.heroicons :as ico]
    [gitbok.http]
-   [gitbok.utils :as utils]
    [clojure.string :as str]
    [gitbok.indexing.impl.summary :as summary]))
 

@@ -49,13 +49,10 @@
           (assoc :data-cross-section "true")
           ;; Only add HTMX attributes if not external and not cross-section
           (and (not is-external) (not is-cross-section))
-          (assoc :data-hx-nav true
-                 :hx-get (str href "?partial=true")
+          (assoc :hx-get (str href "?partial=true")
                  :hx-target "#content"
                  :hx-push-url href
-                 :hx-swap "outerHTML"
-                 :hx-boost "false"
-                 :data-hx-boost "false"))
+                 :hx-swap "outerHTML"))
      [:span {:class "flex items-center gap-2 ml-4"}
       title
       (when (or is-external is-cross-section)

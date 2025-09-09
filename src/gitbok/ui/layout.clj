@@ -138,8 +138,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 
       ]
 
-     [:body {:hx-boost "true"
-             :hx-on "htmx:afterSwap: window.scrollTo(0, 0);"}
+     [:body {:hx-on "htmx:afterSwap: window.scrollTo(0, 0);"}
       (uui/raw "<!-- Google Tag Manager (noscript) -->")
       [:noscript
        [:iframe

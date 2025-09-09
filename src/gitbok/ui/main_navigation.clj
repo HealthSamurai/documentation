@@ -34,13 +34,15 @@
       (let [product (products/get-current-product context)
             links (or (:links product) [])]
         (for [link links]
-          [:a (merge
-               {:href (if (str/starts-with? (:href link) "http")
-                        (:href link)
-                        (gitbok.http/get-product-prefixed-url context (:href link)))
-                :class "text-small text-tint-10 hover:text-primary-9 transition-colors duration-200 no-underline font-normal"}
-               (when (:target link)
-                 {:target (:target link)}))
+          [:a (let [external? (str/starts-with? (:href link) "http")
+                    href (if external?
+                           (:href link)
+                           (gitbok.http/get-product-prefixed-url context (:href link)))]
+                (cond-> {:href href
+                         :class "text-small text-tint-10 hover:text-primary-9 transition-colors duration-200 no-underline font-normal"}
+
+                  (:target link)
+                  (assoc :target (:target link))))
            (:text link)]))]
 
      ;; Ellipsis menu for tablet/mobile
