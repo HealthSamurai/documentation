@@ -1,30 +1,12 @@
-// Unified Content Renderer for hljs, mermaid, KaTeX, and TOC scroll spy
-// Handles initialization and rendering for all content types after page load and HTMX navigation
-
+// Unified Content Renderer with HTMX Best Practices
+// Uses htmx.onLoad() for initialization and proper cleanup handlers
 (function () {
   'use strict';
   
-
-  // Configuration and state
-  const config = {
-    hljs: {
-      enabled: typeof hljs !== 'undefined',
-      initialized: false
-    },
-    mermaid: {
-      enabled: typeof mermaid !== 'undefined',
-      initialized: false
-    },
-    katex: {
-      enabled: typeof katex !== 'undefined',
-      initialized: false
-    },
-    tocScrollSpy: {
-      enabled: true,
-      initialized: false,
-      scrollTimeout: null,
-      scrollHandler: null
-    }
+  // Library loading state
+  const libraries = {
+    mermaid: { loaded: false, loading: false },
+    katex: { loaded: false, loading: false }
   };
 
   // Helper function to escape CSS selector
@@ -32,66 +14,252 @@
     if (!selector) return '';
     return selector.replace(/[!"#$%&'()*+,.\/:;<=>?@[\\\]^`{|}~]/g, '\\$&');
   }
-
-  // Initialize libraries that need one-time setup
-  function initializeLibraries() {
-    // Initialize Mermaid
-    try {
-      if (config.mermaid.enabled && !config.mermaid.initialized) {
-        if (typeof window.MERMAID_CONFIG !== 'undefined') {
-          mermaid.initialize(window.MERMAID_CONFIG);
-          config.mermaid.initialized = true;
-        }
+  
+  // Global function for filtering features (used in examples page)
+  window.filterFeatures = function(searchTerm) {
+    const items = document.querySelectorAll('.feature-item');
+    const term = searchTerm.toLowerCase();
+    items.forEach(item => {
+      const featureName = item.dataset.featureName;
+      if (featureName && featureName.includes(term)) {
+        item.style.display = 'block';
+      } else {
+        item.style.display = 'none';
       }
-    } catch (error) {
-      console.error('Error initializing Mermaid:', error);
-      config.mermaid.enabled = false; // Disable to prevent repeated errors
+    });
+  };
+  
+  // Load Mermaid library dynamically
+  function loadMermaid(callback) {
+    if (libraries.mermaid.loaded || libraries.mermaid.loading) {
+      if (callback && libraries.mermaid.loaded) callback();
+      return;
     }
-
-    // hljs doesn't need initialization
-    if (config.hljs.enabled) {
-      config.hljs.initialized = true;
+    
+    console.log('[Content Renderer] Loading Mermaid.js...');
+    libraries.mermaid.loading = true;
+    
+    const script = document.createElement('script');
+    script.src = '/docs/static/mermaid.min.js';
+    
+    script.onload = function() {
+      libraries.mermaid.loaded = true;
+      libraries.mermaid.loading = false;
+      
+      // Initialize mermaid with config
+      if (typeof mermaid !== 'undefined' && window.MERMAID_CONFIG) {
+        mermaid.initialize(window.MERMAID_CONFIG);
+      }
+      
+      console.log('[Content Renderer] Mermaid.js loaded successfully');
+      if (callback) callback();
+    };
+    
+    script.onerror = function() {
+      libraries.mermaid.loading = false;
+      console.error('[Content Renderer] Failed to load Mermaid.js');
+    };
+    
+    document.head.appendChild(script);
+  }
+  
+  // Load KaTeX library dynamically
+  function loadKatex(callback) {
+    if (libraries.katex.loaded || libraries.katex.loading) {
+      if (callback && libraries.katex.loaded) callback();
+      return;
     }
+    
+    console.log('[Content Renderer] Loading KaTeX...');
+    libraries.katex.loading = true;
+    
+    // Load CSS first
+    const link = document.createElement('link');
+    link.rel = 'stylesheet';
+    link.href = '/docs/static/katex.min.css';
+    document.head.appendChild(link);
+    
+    // Load JS
+    const script = document.createElement('script');
+    script.src = '/docs/static/katex.min.js';
+    
+    script.onload = function() {
+      libraries.katex.loaded = true;
+      libraries.katex.loading = false;
+      console.log('[Content Renderer] KaTeX loaded successfully');
+      if (callback) callback();
+    };
+    
+    script.onerror = function() {
+      libraries.katex.loading = false;
+      console.error('[Content Renderer] Failed to load KaTeX');
+    };
+    
+    document.head.appendChild(script);
+  }
 
-    // KaTeX doesn't need initialization
-    if (config.katex.enabled) {
-      config.katex.initialized = true;
-    }
+  // Render code highlighting
+  function renderHighlightJS(container) {
+    if (typeof hljs === 'undefined') return;
 
-    // TOC scroll spy initialization
-    if (config.tocScrollSpy.enabled) {
-      config.tocScrollSpy.initialized = true;
+    // Find unprocessed code blocks
+    const codeBlocks = container.querySelectorAll('pre code:not([data-hljs-processed])');
+    codeBlocks.forEach(block => {
+      if (!block.classList.contains('hljs')) {
+        hljs.highlightElement(block);
+      }
+      block.setAttribute('data-hljs-processed', 'true');
+    });
+    
+    // Trigger copy button initialization if available
+    if (typeof initializeCopyButtons === 'function') {
+      setTimeout(initializeCopyButtons, 50);
     }
   }
 
-  // TOC Scroll Spy - Update active section
+  // Render Mermaid diagrams
+  function renderMermaid(container) {
+    if (typeof mermaid === 'undefined') return;
+    
+    // Find unprocessed mermaid blocks
+    const mermaidBlocks = container.querySelectorAll('pre.mermaid:not([data-mermaid-processed])');
+    
+    mermaidBlocks.forEach((element, index) => {
+      // Mark as processed immediately to prevent double processing
+      element.setAttribute('data-mermaid-processed', 'true');
+      
+      // Generate unique ID
+      const id = `mermaid-${Date.now()}-${index}-${Math.random().toString(36).substring(2, 11)}`;
+      
+      // Get the diagram text
+      const graphDefinition = element.textContent || element.innerText;
+      
+      // Create a container div
+      const containerDiv = document.createElement('div');
+      containerDiv.className = 'mermaid-container';
+      containerDiv.setAttribute('data-mermaid-id', id);
+      
+      // Insert container after the pre element
+      element.parentNode.insertBefore(containerDiv, element.nextSibling);
+      
+      // Hide the original pre element
+      element.style.display = 'none';
+      
+      // Render the diagram
+      try {
+        mermaid.render(id, graphDefinition).then((result) => {
+          containerDiv.innerHTML = result.svg;
+        }).catch((error) => {
+          console.error('Error rendering Mermaid diagram:', error);
+          // Show original on error
+          element.style.display = 'block';
+          element.removeAttribute('data-mermaid-processed');
+          containerDiv.remove();
+        });
+      } catch (error) {
+        console.error('Error initializing Mermaid diagram:', error);
+        // Show original on error
+        element.style.display = 'block';
+        element.removeAttribute('data-mermaid-processed');
+        containerDiv.remove();
+      }
+    });
+  }
+
+  // Render LaTeX math with KaTeX
+  function renderKaTeX(container) {
+    if (typeof katex === 'undefined') return;
+    
+    // Render display math blocks
+    const displayMathElements = container.querySelectorAll('.katex-display:not([data-katex-processed])');
+    displayMathElements.forEach(element => {
+      element.setAttribute('data-katex-processed', 'true');
+      const tex = element.textContent || element.innerText;
+      try {
+        katex.render(tex, element, {
+          displayMode: true,
+          throwOnError: false,
+          errorColor: '#cc0000'
+        });
+      } catch (error) {
+        console.error('Error rendering display math:', error);
+        element.style.color = '#cc0000';
+      }
+    });
+    
+    // Render inline math blocks
+    const inlineMathElements = container.querySelectorAll('.katex-inline:not([data-katex-processed])');
+    inlineMathElements.forEach(element => {
+      element.setAttribute('data-katex-processed', 'true');
+      const tex = element.textContent || element.innerText;
+      try {
+        katex.render(tex, element, {
+          displayMode: false,
+          throwOnError: false,
+          errorColor: '#cc0000'
+        });
+      } catch (error) {
+        console.error('Error rendering inline math:', error);
+        element.style.color = '#cc0000';
+      }
+    });
+  }
+
+  // Initialize TOC scroll spy
+  function initializeTocScrollSpy() {
+    const tocLinks = document.querySelectorAll('#toc-container a[href^="#"]');
+    const headings = document.querySelectorAll('h1[id], h2[id], h3[id], h4[id], h5[id], h6[id]');
+    
+    if (tocLinks.length === 0 || headings.length === 0) return;
+    
+    // Remove old scroll handler if exists
+    if (window._tocScrollHandler) {
+      window.removeEventListener('scroll', window._tocScrollHandler);
+      window.removeEventListener('resize', window._tocScrollHandler);
+    }
+    
+    // Create new scroll handler with debounce
+    let scrollTimeout;
+    window._tocScrollHandler = function() {
+      if (scrollTimeout) clearTimeout(scrollTimeout);
+      scrollTimeout = setTimeout(updateActiveTocSection, 10);
+    };
+    
+    // Add event listeners
+    window.addEventListener('scroll', window._tocScrollHandler);
+    window.addEventListener('resize', window._tocScrollHandler);
+    
+    // Initialize active section
+    updateActiveTocSection();
+  }
+  
+  // Update active TOC section
   function updateActiveTocSection() {
     const tocLinks = document.querySelectorAll('#toc-container a[href^="#"]');
     const headings = document.querySelectorAll('h1[id], h2[id], h3[id], h4[id], h5[id], h6[id]');
     
     if (tocLinks.length === 0 || headings.length === 0) return;
     
-    const scrollPosition = window.scrollY + 100; // Small offset for better UX
+    const scrollPosition = window.scrollY + 100;
     let currentSection = null;
-
+    
     // Find current section
     for (let i = headings.length - 1; i >= 0; i--) {
       const heading = headings[i];
       const rect = heading.getBoundingClientRect();
       const offsetTop = rect.top + window.scrollY;
-
+      
       if (scrollPosition >= offsetTop) {
         currentSection = heading.id;
         break;
       }
     }
-
-    // Remove active class from all links
+    
+    // Update active classes
     tocLinks.forEach(link => {
       link.classList.remove('active');
     });
-
-    // Add active class to current section
+    
     if (currentSection) {
       const escapedId = escapeCssSelector(currentSection);
       const activeLink = document.querySelector(`#toc-container a[href="#${escapedId}"]`);
@@ -100,52 +268,15 @@
       }
     }
   }
-
-  // TOC Scroll handler with debounce
-  function handleTocScroll() {
-    if (config.tocScrollSpy.scrollTimeout) {
-      clearTimeout(config.tocScrollSpy.scrollTimeout);
-    }
-    config.tocScrollSpy.scrollTimeout = setTimeout(updateActiveTocSection, 10);
-  }
-
-  // Initialize TOC scroll spy - only scroll tracking, no DOM manipulation
-  function initializeTocScrollSpy() {
-    if (!config.tocScrollSpy.enabled || !config.tocScrollSpy.initialized) return;
-
-    // Check if we have TOC and headings
-    const hasToc = document.querySelector('#toc-container a[href^="#"]');
-    const hasHeadings = document.querySelector('h1[id], h2[id], h3[id], h4[id], h5[id], h6[id]');
-
-    if (!hasToc || !hasHeadings) return;
-
-    // Remove old scroll event listeners if they exist
-    if (config.tocScrollSpy.scrollHandler) {
-      window.removeEventListener('scroll', config.tocScrollSpy.scrollHandler);
-      window.removeEventListener('resize', config.tocScrollSpy.scrollHandler);
-    }
-
-    // Create new scroll handler
-    config.tocScrollSpy.scrollHandler = handleTocScroll;
-
-    // Add scroll event listeners
-    window.addEventListener('scroll', config.tocScrollSpy.scrollHandler);
-    window.addEventListener('resize', config.tocScrollSpy.scrollHandler);
-
-    // Initialize active section highlighting
-    updateActiveTocSection();
-  }
   
-  // Separate function for TOC link click handlers
+  // Initialize TOC click handlers
   function initializeTocClickHandlers() {
-    const tocLinks = document.querySelectorAll('#toc-container a[href^="#"]');
+    const tocLinks = document.querySelectorAll('#toc-container a[href^="#"]:not([data-toc-handler])');
     
     tocLinks.forEach(link => {
-      // Skip if handler already exists
-      if (link._tocClickHandler) return;
+      link.setAttribute('data-toc-handler', 'true');
       
-      // Create click handler
-      link._tocClickHandler = function(e) {
+      link.addEventListener('click', function(e) {
         const href = this.getAttribute('href');
         if (href && href.startsWith('#')) {
           e.preventDefault();
@@ -169,247 +300,101 @@
             });
           }
         }
-      };
-      
-      // Add the click handler
-      link.addEventListener('click', link._tocClickHandler);
+      });
     });
   }
 
-  // Render code highlighting
-  function renderHighlightJS(container) {
-    if (!config.hljs.enabled || !config.hljs.initialized) return;
-
-    try {
-      if (container) {
-        // Only highlight unprocessed code blocks in the container
-        const codeBlocks = container.querySelectorAll('pre code:not(.hljs)');
-        codeBlocks.forEach(block => {
-          hljs.highlightElement(block);
-        });
-        
-        // Also trigger copy button initialization for new content
-        if (typeof initializeCopyButtons === 'function') {
-          setTimeout(initializeCopyButtons, 50);
-        }
-      } else {
-        // Highlight all unprocessed code blocks
-        hljs.highlightAll();
-      }
-    } catch (error) {
-      console.error('Error rendering code highlighting:', error);
+  // Process content (check for libraries and render)
+  function processContent(target) {
+    // Check if we need to load Mermaid
+    const hasMermaid = target.querySelectorAll('.language-mermaid, .mermaid, pre code.language-mermaid, pre.mermaid').length > 0;
+    if (hasMermaid && !libraries.mermaid.loaded && !libraries.mermaid.loading) {
+      loadMermaid(() => {
+        renderMermaid(target);
+      });
+    } else if (libraries.mermaid.loaded) {
+      renderMermaid(target);
+    }
+    
+    // Check if we need to load KaTeX
+    const hasKatex = target.querySelectorAll('.katex, .math, .latex, .katex-display, .katex-inline').length > 0;
+    if (hasKatex && !libraries.katex.loaded && !libraries.katex.loading) {
+      loadKatex(() => {
+        renderKaTeX(target);
+      });
+    } else if (libraries.katex.loaded) {
+      renderKaTeX(target);
+    }
+    
+    // Always render highlight.js if available
+    renderHighlightJS(target);
+    
+    // Initialize TOC if on full page
+    if (target === document.body || target === document) {
+      initializeTocScrollSpy();
+      initializeTocClickHandlers();
     }
   }
 
-  // Render Mermaid diagrams
-  function renderMermaid(container) {
-    if (!config.mermaid.enabled || !config.mermaid.initialized) return;
-
-    const selector = container ? container.querySelectorAll('pre.mermaid') : document.querySelectorAll('pre.mermaid');
-
-    if (selector.length === 0) return;
-
-    selector.forEach((element, index) => {
-      // Skip if already processed
-      if (element.getAttribute('data-processed') === 'true') return;
-
-      // Generate unique ID
-      const id = `mermaid-${Date.now()}-${index}-${Math.random().toString(36).substring(2, 11)}`;
-
-      // Get the diagram text
-      const graphDefinition = element.textContent || element.innerText;
-
-      // Create a container div
-      const containerDiv = document.createElement('div');
-      containerDiv.className = 'mermaid-container';
-
-      // Insert container after the pre element
-      element.parentNode.insertBefore(containerDiv, element.nextSibling);
-
-      // Hide the original pre element
-      element.style.display = 'none';
-      element.setAttribute('data-processed', 'true');
-
-      // Render the diagram
-      try {
-        mermaid.render(id, graphDefinition).then((result) => {
-          containerDiv.innerHTML = result.svg;
-        }).catch((error) => {
-          console.error('Error rendering Mermaid diagram:', error);
-          // Show original on error
-          element.style.display = 'block';
-          element.removeAttribute('data-processed');
-          containerDiv.remove();
-        });
-      } catch (error) {
-        console.error('Error initializing Mermaid diagram:', error);
-        // Show original on error
-        element.style.display = 'block';
-        element.removeAttribute('data-processed');
-        containerDiv.remove();
-      }
-    });
-  }
-
-  // Render LaTeX math with KaTeX
-  function renderKaTeX(container) {
-    if (!config.katex.enabled || !config.katex.initialized) {
+  // Cleanup function for element removal
+  function cleanupElement(element) {
+    // Check if element is a valid DOM element with querySelectorAll method
+    if (!element || typeof element.querySelectorAll !== 'function') {
       return;
     }
-
-    try {
-      const targetContainer = container || document.body;
-
-      // Render display math blocks ($$...$$)
-      const displayMathElements = targetContainer.querySelectorAll('.katex-display:not([data-katex-rendered])');
-      displayMathElements.forEach(element => {
-        const tex = element.textContent || element.innerText;
-        try {
-          katex.render(tex, element, {
-            displayMode: true,
-            throwOnError: false,
-            errorColor: '#cc0000'
-          });
-          element.setAttribute('data-katex-rendered', 'true');
-        } catch (error) {
-          console.error('Error rendering display math:', error);
-          element.style.color = '#cc0000';
-        }
-      });
-
-      // Render inline math blocks ($...$)
-      const inlineMathElements = targetContainer.querySelectorAll('.katex-inline:not([data-katex-rendered])');
-      inlineMathElements.forEach(element => {
-        const tex = element.textContent || element.innerText;
-        try {
-          katex.render(tex, element, {
-            displayMode: false,
-            throwOnError: false,
-            errorColor: '#cc0000'
-          });
-          element.setAttribute('data-katex-rendered', 'true');
-        } catch (error) {
-          console.error('Error rendering inline math:', error);
-          element.style.color = '#cc0000';
-        }
-      });
-
-    } catch (error) {
-      console.error('Error in KaTeX rendering:', error);
-    }
-  }
-
-  // Main rendering function
-  function renderContent(container) {
-    // Initialize libraries if needed
-    initializeLibraries();
-
-    // Render all content types - each in its own try-catch to ensure all run
-    try {
-      renderHighlightJS(container);
-    } catch (error) {
-      console.error('Error in highlight.js rendering:', error);
-    }
-
-    try {
-      renderMermaid(container);
-    } catch (error) {
-      console.error('Error in Mermaid rendering:', error);
-    }
-
-    try {
-      renderKaTeX(container);
-    } catch (error) {
-      console.error('Error in KaTeX rendering:', error);
-    }
-
-    try {
-      initializeTocScrollSpy();
-    } catch (error) {
-      console.error('Error in TOC scroll spy initialization:', error);
-    }
-  }
-
-  // Clean up function for HTMX swaps
-  function cleanupContent(container) {
-    if (container) {
-      // Clean up Mermaid containers and reset state
-      container.querySelectorAll('.mermaid-container').forEach(el => el.remove());
-      container.querySelectorAll('pre.mermaid[data-processed="true"]').forEach(el => {
-        el.removeAttribute('data-processed');
-        el.style.display = 'block';
-      });
-    }
-  }
-
-
-  // Event listeners
-  document.addEventListener('DOMContentLoaded', function () {
-    renderContent();
-    // Initialize TOC click handlers separately, after content is rendered
-    setTimeout(initializeTocClickHandlers, 50);
     
-    // Try using htmx.on() API if available
-    if (typeof htmx !== 'undefined' && htmx.on) {
-      
-      htmx.on('htmx:beforeSwap', function (event) {
-        cleanupContent(event.detail.target);
-      });
-      
-      htmx.on('htmx:afterSwap', function (event) {
-        const target = event.detail.target;
-        // Render immediately without delay
-        renderContent(target);
-      });
-      
-      htmx.on('htmx:afterSettle', function (event) {
-        renderContent(event.detail.target);
-        // Re-initialize TOC click handlers after content settles
-        setTimeout(initializeTocClickHandlers, 50);
-      });
-      
-      // Also listen for load event which HTMX triggers after content is loaded
-      htmx.on('htmx:load', function (event) {
-        renderContent(event.detail.elt);
-      });
-    } else {
-      // Fallback to regular event listeners
-      
-      document.body.addEventListener('htmx:beforeSwap', function (event) {
-        cleanupContent(event.detail.target);
-      });
+    // Clean up Mermaid containers
+    element.querySelectorAll('.mermaid-container').forEach(el => el.remove());
+    
+    // Reset mermaid blocks
+    element.querySelectorAll('pre.mermaid[data-mermaid-processed]').forEach(el => {
+      el.removeAttribute('data-mermaid-processed');
+      el.style.display = 'block';
+    });
+    
+    // Clean up any other resources if needed
+    // This is where you'd clean up event listeners, timers, etc.
+  }
 
-      document.body.addEventListener('htmx:afterSwap', function (event) {
-        const target = event.detail.target;
-        setTimeout(() => {
-          renderContent(target);
-        }, 10);
-      });
+  // Main initialization using htmx.onLoad (HTMX best practice)
+  if (typeof htmx !== 'undefined') {
+    // This runs on initial page load and after every HTMX swap
+    htmx.onLoad(function(target) {
+      // Process the newly loaded content
+      processContent(target);
+    });
+    
+    // Clean up before element removal
+    htmx.on('htmx:beforeCleanupElement', function(evt) {
+      cleanupElement(evt.detail.elt);
+    });
+    
+    // Additional handler for afterSettle to catch any missed content
+    htmx.on('htmx:afterSettle', function(evt) {
+      // Re-initialize TOC handlers after settle
+      setTimeout(() => {
+        initializeTocClickHandlers();
+      }, 50);
+    });
+  }
+  
+  // Fallback for non-HTMX page loads
+  document.addEventListener('DOMContentLoaded', function() {
+    if (typeof htmx === 'undefined') {
+      processContent(document.body);
     }
   });
-
-  document.addEventListener('htmx:historyRestore', function () {
-    setTimeout(() => {
-      renderContent();
-    }, 10);
-  });
-
+  
   // Handle browser back/forward navigation
-  window.addEventListener('popstate', function () {
+  window.addEventListener('popstate', function() {
     setTimeout(() => {
-      renderContent();
+      processContent(document.body);
     }, 10);
   });
   
-  // Also handle afterSettle event which fires after afterSwap
-  document.addEventListener('htmx:afterSettle', function (event) {
-    renderContent(event.detail.target);
-  });
-
   // Export functions for global access if needed
-  window.escapeCssSelector = escapeCssSelector;
+  window.renderContent = processContent;
   window.updateActiveTocSection = updateActiveTocSection;
   window.initializeTocScrollSpy = initializeTocScrollSpy;
   window.initializeTocClickHandlers = initializeTocClickHandlers;
-
 })();

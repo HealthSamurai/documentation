@@ -100,20 +100,8 @@
                                   count
                                   (contains? selected-features feature))]))]]
 
-   ;; JavaScript for filtering features
-   [:script
-    "function filterFeatures(searchTerm) {
-       const items = document.querySelectorAll('.feature-item');
-       const term = searchTerm.toLowerCase();
-       items.forEach(item => {
-         const featureName = item.dataset.featureName;
-         if (featureName.includes(term)) {
-           item.style.display = 'block';
-         } else {
-           item.style.display = 'none';
-         }
-       });
-     }"]])
+   ;; Note: filterFeatures function is now defined globally in unified-content-renderer.js
+   ])
 
 (defn render-search-bar [search-term]
   [:div.w-full

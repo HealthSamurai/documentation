@@ -1,30 +1,29 @@
-(function() {
+(function () {
   'use strict';
 
   // This file provides keyboard navigation for HTMX-rendered Meilisearch results
-  
+
   let currentSelectedIndex = -1;
   let isHtmxMode = false;
-  
+
   // Initialize when DOM is ready
   if (document.readyState === 'loading') {
     document.addEventListener('DOMContentLoaded', initialize);
   } else {
     initialize();
   }
-  
+
   function initialize() {
     // Check if we're using HTMX mode (presence of hx-get attribute)
     const desktopInput = document.getElementById('meilisearch-input');
-    const mobileInput = document.getElementById('mobile-meilisearch-input');
-    
+
     if (desktopInput && desktopInput.hasAttribute('hx-get')) {
       isHtmxMode = true;
       setupHtmxHandlers();
     }
-    
+
     // Handle Ctrl+K shortcut globally
-    document.addEventListener('keydown', function(e) {
+    document.addEventListener('keydown', function (e) {
       if ((e.ctrlKey || e.metaKey) && e.key === 'k') {
         e.preventDefault();
         const input = document.getElementById('meilisearch-input');
@@ -34,7 +33,7 @@
       }
     });
   }
-  
+
   function setupHtmxHandlers() {
     // Setup for desktop
     const desktopInput = document.getElementById('meilisearch-input');
@@ -42,21 +41,21 @@
     if (desktopInput && desktopDropdown) {
       setupInputHandlers(desktopInput, desktopDropdown);
     }
-    
+
     // Setup for mobile
     const mobileInput = document.getElementById('mobile-meilisearch-input');
     const mobileDropdown = document.getElementById('mobile-meilisearch-dropdown');
     if (mobileInput && mobileDropdown) {
       setupInputHandlers(mobileInput, mobileDropdown);
     }
-    
+
     // Handle close on click outside
-    document.addEventListener('click', function(e) {
+    document.addEventListener('click', function (e) {
       const desktopWrapper = document.getElementById('meilisearch-wrapper');
       const desktopDropdown = document.getElementById('meilisearch-dropdown');
       const mobileContainer = document.getElementById('mobile-search-container');
       const mobileDropdown = document.getElementById('mobile-meilisearch-dropdown');
-      
+
       // Check if click is outside desktop search area
       if (desktopWrapper && desktopDropdown) {
         // Check if the click is outside both the input wrapper and the dropdown
@@ -65,7 +64,7 @@
           currentSelectedIndex = -1;
         }
       }
-      
+
       // Check if click is outside mobile search area
       if (mobileContainer && mobileDropdown) {
         if (!mobileContainer.contains(e.target) && !mobileDropdown.contains(e.target)) {
@@ -74,38 +73,38 @@
         }
       }
     });
-    
+
     // Reset selection when HTMX loads new content
-    document.body.addEventListener('htmx:afterSwap', function(evt) {
-      if (evt.detail.target.id === 'meilisearch-dropdown' || 
-          evt.detail.target.id === 'mobile-meilisearch-dropdown') {
+    document.body.addEventListener('htmx:afterSwap', function (evt) {
+      if (evt.detail.target.id === 'meilisearch-dropdown' ||
+        evt.detail.target.id === 'mobile-meilisearch-dropdown') {
         currentSelectedIndex = -1;
       }
     });
-    
+
     // Hide shortcut and show spinner during HTMX request
-    document.body.addEventListener('htmx:beforeRequest', function(evt) {
+    document.body.addEventListener('htmx:beforeRequest', function (evt) {
       if (evt.detail.elt.id === 'meilisearch-input') {
         const shortcut = document.getElementById('meilisearch-shortcut');
         if (shortcut) shortcut.classList.add('hidden');
       }
     });
-    
-    document.body.addEventListener('htmx:afterRequest', function(evt) {
+
+    document.body.addEventListener('htmx:afterRequest', function (evt) {
       if (evt.detail.elt.id === 'meilisearch-input') {
         const shortcut = document.getElementById('meilisearch-shortcut');
         if (shortcut) shortcut.classList.remove('hidden');
       }
     });
   }
-  
+
   function setupInputHandlers(input, dropdown) {
     // Handle arrow keys and Enter
-    input.addEventListener('keydown', function(e) {
+    input.addEventListener('keydown', function (e) {
       const results = dropdown.querySelectorAll('[data-result-index]');
       if (results.length === 0) return;
-      
-      switch(e.key) {
+
+      switch (e.key) {
         case 'ArrowDown':
           e.preventDefault();
           e.stopPropagation();
@@ -127,16 +126,16 @@
           break;
       }
     });
-    
+
     // Reset selection on input
-    input.addEventListener('input', function() {
+    input.addEventListener('input', function () {
       currentSelectedIndex = -1;
     });
-    
+
     // Handle mobile search close button
     const closeButton = document.getElementById('mobile-search-close');
     if (closeButton) {
-      closeButton.addEventListener('click', function(e) {
+      closeButton.addEventListener('click', function (e) {
         e.preventDefault();
         const container = document.getElementById('mobile-search-container');
         const mobileDropdown = document.getElementById('mobile-meilisearch-dropdown');
@@ -149,11 +148,11 @@
         currentSelectedIndex = -1;
       });
     }
-    
+
     // Handle mobile search toggle
     const mobileToggle = document.getElementById('mobile-search-toggle');
     if (mobileToggle) {
-      mobileToggle.addEventListener('click', function(e) {
+      mobileToggle.addEventListener('click', function (e) {
         e.preventDefault();
         const container = document.getElementById('mobile-search-container');
         const mobileInput = document.getElementById('mobile-meilisearch-input');
@@ -166,24 +165,24 @@
       });
     }
   }
-  
+
   function navigateResults(direction, results) {
     if (results.length === 0) return;
-    
+
     // Update selected index
     currentSelectedIndex += direction;
-    
+
     // Wrap around
     if (currentSelectedIndex < 0) {
       currentSelectedIndex = results.length - 1;
     } else if (currentSelectedIndex >= results.length) {
       currentSelectedIndex = 0;
     }
-    
+
     // Update visual selection
     updateSelectedResult(results);
   }
-  
+
   function updateSelectedResult(results) {
     results.forEach((el, idx) => {
       if (idx === currentSelectedIndex) {

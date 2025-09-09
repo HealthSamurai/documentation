@@ -87,45 +87,32 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 
       [:link {:rel "stylesheet", :href (str (gitbok.http/get-prefixed-url context "/static/app.min.css") version-param)}]
 
-      ;; not mine
+      ;; Critical scripts - load first
       [:script {:src (gitbok.http/get-prefixed-url context "/static/htmx.min.js")}]
-      ;; Syntax highlighting
+
+      ;; Syntax highlighting - all deferred
       [:link {:rel "stylesheet" :href (gitbok.http/get-prefixed-url context "/static/github.min.css")}]
       [:link {:rel "stylesheet" :href (gitbok.http/get-prefixed-url context "/static/github-dark.min.css")
               :disabled true}]
-      [:script {:src (gitbok.http/get-prefixed-url context "/static/highlight.min.js")}]
-      [:script {:src (gitbok.http/get-prefixed-url context "/static/json.min.js")}]
-      [:script {:src (gitbok.http/get-prefixed-url context "/static/bash.min.js")}]
-      [:script {:src (gitbok.http/get-prefixed-url context "/static/yaml.min.js")}]
-      [:script {:src (gitbok.http/get-prefixed-url context "/static/json.min.js")}]
-      [:script {:src (gitbok.http/get-prefixed-url context "/static/xml.min.js")}]
-      [:script {:src (gitbok.http/get-prefixed-url context "/static/http.min.js")}]
-      [:script {:src (gitbok.http/get-prefixed-url context "/static/graphql.min.js")}]
-      [:script {:src (gitbok.http/get-prefixed-url context "/static/sql.min.js")}]
-      [:script {:src (gitbok.http/get-prefixed-url context "/static/javascript.min.js")}]
-      [:script {:src (gitbok.http/get-prefixed-url context "/static/mermaid.min.js")}]
-      [:link {:rel "stylesheet"
-              :href (gitbok.http/get-prefixed-url context "/static/katex.min.css")
-              :defer true}]
-      [:script {:src (gitbok.http/get-prefixed-url context "/static/katex.min.js")
-                :defer true}]
+      [:script {:src (gitbok.http/get-prefixed-url context "/static/highlight.min.js") :defer true}]
+      [:script {:src (gitbok.http/get-prefixed-url context "/static/json.min.js") :defer true}]
+      [:script {:src (gitbok.http/get-prefixed-url context "/static/bash.min.js") :defer true}]
+      [:script {:src (gitbok.http/get-prefixed-url context "/static/yaml.min.js") :defer true}]
+      [:script {:src (gitbok.http/get-prefixed-url context "/static/xml.min.js") :defer true}]
+      [:script {:src (gitbok.http/get-prefixed-url context "/static/http.min.js") :defer true}]
+      [:script {:src (gitbok.http/get-prefixed-url context "/static/graphql.min.js") :defer true}]
+      [:script {:src (gitbok.http/get-prefixed-url context "/static/sql.min.js") :defer true}]
+      [:script {:src (gitbok.http/get-prefixed-url context "/static/javascript.min.js") :defer true}]
 
+      ;; Mermaid config (needed when Mermaid loads)
+      [:script {:src (str (gitbok.http/get-prefixed-url context "/static/mermaid-config.js") version-param) :defer true}]
 
-      [:script {:src (str (gitbok.http/get-prefixed-url context "/static/mermaid-config.js") version-param)}]
-      [:script {:src (str (gitbok.http/get-prefixed-url context "/static/scroll-to-id.js") version-param)}]
-      [:script {:src (str (gitbok.http/get-prefixed-url context "/static/tabs.js") version-param)}]
-      [:script {:src (str (gitbok.http/get-prefixed-url context "/static/toc.js") version-param)}]
-      [:script {:src (str (gitbok.http/get-prefixed-url context "/static/mobile-menu.js") version-param)}]
-      [:script {:src (str (gitbok.http/get-prefixed-url context "/static/mobile-search.js") version-param)}]
-      [:script {:src (str (gitbok.http/get-prefixed-url context "/static/meilisearch-htmx-nav.js") version-param)}]
-      [:script {:src (str (gitbok.http/get-prefixed-url context "/static/unified-content-renderer.js") version-param)}]
-      [:script {:src (str (gitbok.http/get-prefixed-url context "/static/heading-links.js") version-param)}]
-      [:script {:src (str (gitbok.http/get-prefixed-url context "/static/lastupdated.js") version-param) :defer true}]
+      ;; Combined UI bundle (includes tabs, toc, scroll-to-id, heading-links, mobile-menu, mobile-search, lastupdated, copy-code)
+      [:script {:src (str (gitbok.http/get-prefixed-url context "/static/ui-bundle.js") version-param) :defer true}]
 
-      [:script {:src (str (gitbok.http/get-prefixed-url context "/static/copy-code.js") version-param)
-                :defer true}]
-      [:script {:defer true
-                :src (str (gitbok.http/get-prefixed-url context "/static/navigation-click-fix.js") version-param)}]
+      ;; Other UI scripts
+      [:script {:src (str (gitbok.http/get-prefixed-url context "/static/meilisearch-htmx-nav.js") version-param) :defer true}]
+      [:script {:src (str (gitbok.http/get-prefixed-url context "/static/unified-content-renderer.js") version-param) :defer true}]
       [:script {:defer true
                 :src (str (gitbok.http/get-prefixed-url context "/static/keyboard-navigation.js") version-param)}]
       [:script {:defer true

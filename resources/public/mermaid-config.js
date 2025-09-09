@@ -65,3 +65,15 @@ window.MERMAID_CONFIG = {
     .edgeLabel p { padding-right: 3px; }
   `
 };
+
+// Function to initialize Mermaid when it's loaded
+window.initializeMermaid = function() {
+  if (typeof mermaid !== 'undefined') {
+    mermaid.initialize(window.MERMAID_CONFIG);
+    // Render any existing mermaid diagrams
+    const mermaidElements = document.querySelectorAll('.language-mermaid, .mermaid');
+    if (mermaidElements.length > 0) {
+      mermaid.run();
+    }
+  }
+};
