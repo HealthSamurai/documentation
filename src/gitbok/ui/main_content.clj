@@ -224,7 +224,18 @@
       [:article {:class "article__content py-8 min-w-0 flex-1
                  max-w-5xl transform-3d"}
        (when htmx?
-         [:script (uui/raw "window.scrollTo(0, 0); updateActiveNavItem(window.location.pathname); updatePageTitle();")])
+         [:script (uui/raw "
+           window.scrollTo(0, 0); 
+           // Defer execution to ensure scripts are loaded
+           setTimeout(function() {
+             if (typeof updateActiveNavItem === 'function') {
+               updateActiveNavItem(window.location.pathname);
+             }
+             if (typeof updatePageTitle === 'function') {
+               updatePageTitle();
+             }
+           }, 10);
+         ")])
        [:div {:class "mx-auto max-w-full"} body-with-breadcrumb]
        (navigation-buttons context uri)
        (let [lastupdated (indexing/get-lastmod context filepath)

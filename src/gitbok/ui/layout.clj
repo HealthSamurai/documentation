@@ -108,7 +108,8 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
       [:script {:src (str (gitbok.http/get-prefixed-url context "/static/mermaid-config.js") version-param) :defer true}]
 
       ;; Combined UI bundle (includes tabs, toc, scroll-to-id, heading-links, mobile-menu, mobile-search, lastupdated, copy-code)
-      [:script {:src (str (gitbok.http/get-prefixed-url context "/static/ui-bundle.js") version-param) :defer true}]
+      ;; Load without defer to ensure it's available for HTMX events
+      [:script {:src (str (gitbok.http/get-prefixed-url context "/static/ui-bundle.js") version-param)}]
 
       ;; Other UI scripts
       [:script {:src (str (gitbok.http/get-prefixed-url context "/static/meilisearch-htmx-nav.js") version-param) :defer true}]
