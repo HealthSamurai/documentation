@@ -97,7 +97,7 @@ The filtering mechanism operates in two stages:
 
 #### Example 1: Organization hierarchy with event filtering
 
-Consider an organization structure where `org-b` is part of `org-a`. The diagram below shows how events flow through the subscription system with hierarchical filtering:
+Consider an organization structure where `Organization B` is part of `Organization A`. The diagram below shows how events flow through the subscription system with hierarchical filtering:
 
 ```mermaid
 graph TD
@@ -156,7 +156,7 @@ graph TD
 
 #### Example 2: Filtering at the destination level only
 
-Consider an organization structure which two organizations `org-a` and `org-b`. The diagram below shows how events flow through the subscription system when filtering is applied at the destination level only:
+Consider an organization structure which two organizations `Organization A` and `Organization B`. The diagram below shows how events flow through the subscription system when filtering is applied at the destination level only:
 
 ```mermaid
 graph TD
