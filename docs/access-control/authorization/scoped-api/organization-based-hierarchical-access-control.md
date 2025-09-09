@@ -148,7 +148,7 @@ If `SubsSubscription` resource is created using regular API (not Organization AP
 Organization-based hierarchical filtering is available starting from version 2509.
 {% endhint %}
 
-`AidboxSubscriptionTopic` and `AidboxTopicDestination` support organization-based hierarchical filtering. For more details, see [Aidbox Topic-Based Subscriptions](../../../modules/topic-based-subscriptions/aidbox-topic-based-subscriptions#organization-based-hierarchical-filtering).
+`AidboxSubscriptionTopic` and `AidboxTopicDestination` support organization-based hierarchical filtering. For more details, see [Aidbox Topic-Based Subscriptions](../../../modules/topic-based-subscriptions/aidbox-topic-based-subscriptions.md#organization-based-hierarchical-filtering).
 
 ## FHIR API over Organization resources
 

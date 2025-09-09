@@ -74,19 +74,142 @@ Ensure that the resource metadata contains the kind-specific `AidboxTopicDestina
 Organization-based hierarchical filtering is available starting from version 2509.
 {% endhint %}
 
-Both `AidboxSubscriptionTopic` and `AidboxTopicDestination` support sophisticated organization-based hierarchical filtering. This feature operates through a sequential process:
+Both `AidboxSubscriptionTopic` and `AidboxTopicDestination` support [organization-based hierarchical access control](../../access-control/authorization/scoped-api/organization-based-hierarchical-access-control.md). 
 
-1. **Filter Application Sequence**: Topic filters are applied first, followed by destination filters.
+**When these resources are created using organization-specific APIs**, they automatically filter events based on the organization hierarchy.
 
-2. **Behavior With Organization Extension** (`https://aidbox.app/tenant-organization-id`):
-   - Requests lacking organization extensions are automatically excluded
-   - Requests with organization extensions undergo hierarchical evaluation:
-     - Requests from organizations equal to or beneath the topic/destination organization in the hierarchy are processed
-     - All other requests are filtered out
+### How it works
 
-3. **Organization-Independent Topics and Organization-Dependent Destinations**: This allows you to define a single AidboxSubscriptionTopic and restrict data by specifying the destination organization
+The filtering mechanism operates in two stages:
 
-This hierarchical filtering mechanism provides granular control over notification triggers based on organizational structure, enabling precise targeting of subscription notifications.
+1. **Topic-level filtering**: `AidboxSubscriptionTopic` filters events based on the organization hierarchy
+2. **Destination-level filtering**: `AidboxTopicDestination` applies additional filtering based on its organization context
+
+### Filtering behavior
+
+- **Non-organizational events**: Events that don't originate from organizations are automatically excluded
+- **Organizational events**: Events from organizations are processed according to the hierarchy:
+  - ✅ **Included**: Events from organizations that are equal to or beneath the topic/destination organization in the hierarchy
+  - ❌ **Excluded**: Events from organizations that are above or unrelated to the topic/destination organization
+
+
+### Examples
+
+#### Example 1: Organization hierarchy with event filtering
+
+Consider an organization structure where `org-b` is part of `org-a`. The diagram below shows how events flow through the subscription system with hierarchical filtering:
+
+```mermaid
+graph TD
+
+    %% Org hierarchy
+    subgraph OrgHierarchy ["Organization Hierarchy"]
+        OrgA["Organization A<br/>(Parent)"]
+        OrgB["Organization B<br/>(Child of Org A)"]
+        OrgA --> OrgB
+    end
+
+    %% Event from Org A
+    subgraph FlowA ["Event from Org A Flow"]
+        direction LR
+        EventA["📋 Event from Org A"]
+        TopicAA["AidboxSubscriptionTopic<br/>(related to Org A)"]
+        DestBA["AidboxTopicDestination<br/>(related to Org B)"]
+
+        EventA -->|✅ Pass| TopicAA
+        TopicAA -->|❌ Filtered out| DestBA
+    end
+
+    %% Event from Org B
+    subgraph FlowB ["Event from Org B Flow"]
+        direction LR
+        EventB["📋 Event from Org B"]
+        TopicAB["AidboxSubscriptionTopic<br/>(related to Org A)"]
+        DestBB["AidboxTopicDestination<br/>(related to Org B)"]
+
+        EventB -->|✅ Pass| TopicAB
+        TopicAB -->|✅ Forward| DestBB
+    end
+
+    %% invisible ordering links
+    OrgHierarchy -.-> FlowA
+    FlowA -.-> FlowB
+
+    %% make the links invisible
+    linkStyle 5,6 opacity:0;
+
+    %% Styles
+    style OrgA fill:#e1f5fe
+    style OrgB fill:#f3e5f5
+    style EventA fill:#e1f5fe
+    style EventB fill:#f3e5f5
+    style TopicAA fill:#e8f5e8
+    style DestBA fill:#fff3e0
+    style TopicAB fill:#e8f5e8
+    style DestBB fill:#fff3e0
+```
+
+**Filtering behavior:**
+- ✅ **Event from Org A**: Processed by the topic (same organization) but filtered out at the destination level
+- ✅ **Event from Org B**: Processed by the topic (child organization) and forwarded to destination
+- ❌ **Event from unrelated organization**: Would be filtered out at the topic level
+
+#### Example 2: Filtering at the destination level only
+
+Consider an organization structure which two organizations `org-a` and `org-b`. The diagram below shows how events flow through the subscription system when filtering is applied at the destination level only:
+
+```mermaid
+graph TD
+
+    %% Org hierarchy
+    subgraph OrgHierarchy ["Organization Hierarchy"]
+        OrgA["Organization A"]
+        OrgB["Organization B"]
+    end
+
+    %% Event from Org A
+    subgraph FlowA ["Event from Org A Flow"]
+        direction LR
+        EventA["📋 Event from Org A"]
+        TopicAA["AidboxSubscriptionTopic"]
+        DestBA["AidboxTopicDestination<br/>(related to Org A)"]
+
+        EventA -->|✅ Pass| TopicAA
+        TopicAA -->|✅ Pass| DestBA
+    end
+
+    %% Event from Org B
+    subgraph FlowB ["Event from Org B Flow"]
+        direction LR
+        EventB["📋 Event from Org B"]
+        TopicAB["AidboxSubscriptionTopic"]
+        DestBB["AidboxTopicDestination<br/>(related to Org A)"]
+
+        EventB -->|✅ Pass| TopicAB
+        TopicAB -->|❌ Filtered out| DestBB
+    end
+
+    %% invisible ordering links
+    OrgHierarchy -.-> FlowA
+    FlowA -.-> FlowB
+
+    %% make the links invisible
+    linkStyle 4,5 opacity:0;
+
+    %% Styles
+    style OrgA fill:#e1f5fe
+    style OrgB fill:#f3e5f5
+    style EventA fill:#e1f5fe
+    style EventB fill:#f3e5f5
+    style TopicAA fill:#e8f5e8
+    style DestBA fill:#fff3e0
+    style TopicAB fill:#e8f5e8
+    style DestBB fill:#fff3e0
+```
+**Filtering behavior:**
+- ✅ **Event from Org A**: Processed by the topic (no filtering) and forwarded to destination
+- ✅ **Event from Org B**: Processed by the topic (no filtering) but filtered out at the destination level
+- ❌ **Event from unrelated organization**: Would be filtered out at the destination level
 
 ## Currently supported channels
 
