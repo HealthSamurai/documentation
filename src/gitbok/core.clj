@@ -249,7 +249,11 @@
 
 (defn version-endpoint
   [context _]
-  {:status 200 :body {:version (gitbok.http/get-version context)}})
+  {:status 200
+   :body
+   {:build-engine-version (gitbok.http/get-version context)
+    :docs-update
+    (reload/get-reload-state context)}})
 
 (defn debug-endpoint
   [context request]
@@ -573,7 +577,7 @@
     :method :get
     :middleware [gzip-middleware]
     :fn gitbok.ui.examples/examples-handler})
-  
+
   ;; Examples results endpoint (for HTMX partial updates)
   (http/register-endpoint
    context
