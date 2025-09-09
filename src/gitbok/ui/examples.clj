@@ -143,17 +143,6 @@
      [:div.col-span-full.text-center.py-12
       [:p.text-tint-8 "No examples match your filters"]])])
 
-(defn format-timestamp
-  "Format ISO timestamp to USA format"
-  [timestamp]
-  (when timestamp
-    (try
-      (let [instant (java.time.Instant/parse timestamp)
-            formatter (java.time.format.DateTimeFormatter/ofPattern "MMMM d, yyyy 'at' h:mm a")
-            zoned-time (.atZone instant (java.time.ZoneId/of "America/New_York"))]
-        (.format formatter zoned-time))
-      (catch Exception _
-        timestamp))))
 
 (defn filter-examples
   "Filter examples based on search and filter criteria"
@@ -183,51 +172,17 @@
             examples)))
 
 (defn render-examples-results
-  "Render just the results (for HTMX updates)"
-  [context request]
-  (let [ctx-with-product (products/set-current-product-id context "aidbox")
-        examples-data (indexer/get-examples ctx-with-product)
-        {:keys [examples _features_list _languages_list timestamp]} examples-data
-
-        ;; Get query parameters
-        params (:query-params request)
-        _ (log/info ::request-params
-                    {:params params
-                     :query-string (:query-string request)
-                     :headers (:headers request)})
-        search-term (get params :search "")
-        ;; For multiple checkbox values, they come as a vector
-        selected-languages (into #{} (let [langs (get params :languages)]
-                                       (cond
-                                         (nil? langs) []
-                                         (string? langs) [langs]
-                                         (sequential? langs) langs
-                                         :else [])))
-        selected-features (into #{} (let [feats (get params :features)]
-                                      (cond
-                                        (nil? feats) []
-                                        (string? feats) [feats]
-                                        (sequential? feats) feats
-                                        :else [])))
-
-        ;; Filter examples
-        filtered-examples (filter-examples examples search-term selected-languages selected-features)
-        _ (log/info ::filtering-results {:total-examples (count examples)
-                                         :filtered-count (count filtered-examples)
-                                         :search-term search-term
-                                         :selected-languages selected-languages
-                                         :selected-features selected-features})]
+  "Render filtered examples results"
+  [examples search-term selected-languages selected-features]
+  (let [filtered-examples (filter-examples examples search-term selected-languages selected-features)]
 
     [:div#examples-results
-     [:div.mb-4.flex.items-center.justify-between
+     [:div.mb-4
       [:p.text-sm.text-tint-10
        (str "Showing " (count filtered-examples)
             (when (or search-term (seq selected-languages) (seq selected-features))
               (str " of " (count examples)))
-            " examples")]
-      (when timestamp
-        [:p.text-sm.text-tint-10.italic
-         (str "Last updated: " (format-timestamp timestamp))])]
+            " examples")]]
 
      (render-examples-grid filtered-examples)]))
 
@@ -297,7 +252,7 @@
                            selected-languages selected-features))]]
 
        [:div.flex-1
-        (render-examples-results context request)]]]]))
+        (render-examples-results examples search-term selected-languages selected-features)]]]]))
 
 (defn render-examples-page
   "Main examples page component - full page"
@@ -315,7 +270,28 @@
 (defn examples-results-handler
   "HTTP handler for examples results (HTMX partial updates)"
   [context request]
-  (let [content (render-examples-results context request)]
+  (let [ctx-with-product (products/set-current-product-id context "aidbox")
+        examples-data (indexer/get-examples ctx-with-product)
+        {:keys [examples]} examples-data
+        
+        ;; Get query parameters
+        params (:query-params request)
+        search-term (get params :search "")
+        ;; For multiple checkbox values, they come as a vector
+        selected-languages (into #{} (let [langs (get params :languages)]
+                                       (cond
+                                         (nil? langs) []
+                                         (string? langs) [langs]
+                                         (sequential? langs) langs
+                                         :else [])))
+        selected-features (into #{} (let [feats (get params :features)]
+                                      (cond
+                                        (nil? feats) []
+                                        (string? feats) [feats]
+                                        (sequential? feats) feats
+                                        :else [])))
+        
+        content (render-examples-results examples search-term selected-languages selected-features)]
     (gitbok.http/response1 content)))
 
 (defn examples-handler
