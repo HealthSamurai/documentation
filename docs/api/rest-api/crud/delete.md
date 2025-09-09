@@ -87,8 +87,6 @@ DELETE /Patient/tom-id
 {% tab title="Response" %}
 **Status:** `204`
 
-```
-```
 {% endtab %}
 {% endtabs %}
 
