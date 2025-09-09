@@ -113,7 +113,6 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 
       ;; Other UI scripts
       [:script {:src (str (gitbok.http/get-prefixed-url context "/static/meilisearch-htmx-nav.js") version-param) :defer true}]
-      [:script {:src (str (gitbok.http/get-prefixed-url context "/static/unified-content-renderer.js") version-param) :defer true}]
       [:script {:defer true
                 :src (str (gitbok.http/get-prefixed-url context "/static/keyboard-navigation.js") version-param)}]
       [:script {:defer true

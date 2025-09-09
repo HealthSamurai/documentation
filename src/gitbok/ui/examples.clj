@@ -100,7 +100,7 @@
                                   count
                                   (contains? selected-features feature))]))]]
 
-   ;; Note: filterFeatures function is now defined globally in unified-content-renderer.js
+   ;; Note: filterFeatures function is now defined globally in ui-bundle.js
    ])
 
 (defn render-search-bar [search-term]

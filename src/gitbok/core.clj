@@ -289,9 +289,9 @@
             ;; First add content-type
             response-with-type (content-type-response response request)
             ;; Then add cache-control to the headers map
-            headers (assoc (or (:headers response-with-type) {}) 
+            headers (assoc (or (:headers response-with-type) {})
                           "Cache-Control" cache-control)]
-        (log/debug ::serving-static-file {:path path 
+        (log/debug ::serving-static-file {:path path
                                           :dev-mode? dev-mode?
                                           :cache-control cache-control
                                           :headers headers})
@@ -414,6 +414,7 @@
    context
    {:path (utils/concat-urls prefix "/static/:path*")
     :method :get
+    :middleware [gzip-middleware]
     :fn #'serve-static-file})
 
   (http/register-endpoint
