@@ -272,7 +272,8 @@ article code:not(pre code) {
   font-family: var(--font-code);
   line-height: calc(max(1.20em, 1.25rem));
   overflow-wrap: break-word !important;
-  white-space: normal !important;
+  word-break: break-word !important;
+  white-space: pre-wrap !important;
   box-decoration-break: clone;
 }
 
