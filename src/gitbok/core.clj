@@ -122,10 +122,21 @@
                   ;; Since 'docs' is in classpath directly, files are accessible as ".gitbook/assets/..."
                   (resp/resource-response (str ".gitbook/" file-path)))]
     (when response
-      ;; Add proper Content-Type for SVG files
-      (if (str/ends-with? file-path ".svg")
-        (resp/content-type response "image/svg+xml")
-        response))))
+      (let [dev-mode? (gitbok.http/get-dev-mode context)
+            ;; In dev mode: no cache
+            ;; In production: cache for 1 year (images are typically versioned)
+            cache-control (if dev-mode?
+                            "no-cache, no-store, must-revalidate"
+                            "public, max-age=31536000, immutable")
+            ;; Add proper Content-Type for SVG files
+            response-with-type (if (str/ends-with? file-path ".svg")
+                                 (resp/content-type response "image/svg+xml")
+                                 response)
+            ;; Add cache-control to the headers map
+            headers (assoc (or (:headers response-with-type) {})
+                          "Cache-Control" cache-control)]
+        ;; Return response with updated headers
+        (assoc response-with-type :headers headers)))))
 
 (defn render-favicon [context _]
   (let [product (products/get-current-product context)
