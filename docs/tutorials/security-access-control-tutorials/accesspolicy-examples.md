@@ -187,8 +187,7 @@ matcho:
         - awf.task/status
         - awf.workflow/status
 ```
-**See also:**
-* [Managing Admin Access to the Aidbox UI Using Okta Groups](../../tutorials/security-access-control-tutorials/managing-admin-access-to-the-aidbox-ui-using-okta-groups.md)
+
 
 ## 6. Policy that allows graphql search requests to the Patient resource
 
