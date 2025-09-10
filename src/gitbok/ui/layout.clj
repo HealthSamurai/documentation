@@ -16,8 +16,10 @@
 (defn site-footer
   "Site-wide footer component"
   [context]
-  (let [git-head (:git-head (reload/get-reload-state context))
-        version-text (when git-head (str " (" (subs git-head 0 (min 7 (count git-head))) ")"))]
+  (let [reload-state (reload/get-reload-state context)
+        git-head (:git-head reload-state)
+        version-text (when (and git-head (not= git-head ""))
+                      (str " (" (subs git-head 0 (min 7 (count git-head))) ")"))]
     [:footer.mt-auto.border-t.border-tint-6.bg-tint-1
      [:div.max-w-screen-2xl.mx-auto.px-5.md:px-8.py-6
       ;; Mobile: stack vertically, Desktop: single row
