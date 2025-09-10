@@ -7,7 +7,7 @@
    [gitbok.http]
    [clojure.string :as str]
    [hiccup2.core]
-   [klog.core :as log]))
+   [clojure.tools.logging :as log]))
 
 (defn render-example-card
   "Render a single example card"
@@ -182,7 +182,7 @@
 
         ;; Get query parameters
         params (:query-params request)
-        _ (log/info ::request-params {:params params
+        _ (log/info "request params" {:params params
                                       :query-string (:query-string request)
                                       :headers (:headers request)})
         search-term (get params :search "")
@@ -202,7 +202,7 @@
 
         ;; Filter examples
         filtered-examples (filter-examples examples search-term selected-languages selected-features)
-        _ (log/info ::filtering-results {:total-examples (count examples)
+        _ (log/info "filtering results" {:total-examples (count examples)
                                          :filtered-count (count filtered-examples)
                                          :search-term search-term
                                          :selected-languages selected-languages

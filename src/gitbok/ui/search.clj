@@ -1,6 +1,6 @@
 (ns gitbok.ui.search
   (:require
-   [klog.core :as log]
+   [clojure.tools.logging :as log]
    [gitbok.indexing.core :as indexing]
    [gitbok.ui.breadcrumb :as breadcrumb]
    [gitbok.search]
@@ -184,12 +184,12 @@
                                                  (str/replace #"/README$" "/") ; Convert README to /
                                                  (str/replace #"^/" "")))] ; Remove leading /
                          (when (nil? uri)
-                           (log/warn ::uri-not-found {:filepath filepath
+                           (log/warn "uri not found" {:filepath filepath
                                                       :current-product (products/get-current-product-id context)
                                                       :generated-uri generated-uri}))
                          ;; Add debug for all URIs
                          (when generated-uri
-                           (log/debug ::uri-mapping {:filepath filepath :uri generated-uri}))
+                           (log/debug "uri mapping" {:filepath filepath :uri generated-uri}))
                          (assoc res :uri (or uri generated-uri))))
                      search-results)))
         ;; Preserve original search order while grouping by filepath

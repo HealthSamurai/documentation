@@ -1,6 +1,6 @@
 (ns gitbok.indexing.impl.file-to-uri
   (:require
-   [klog.core :as log]
+   [clojure.tools.logging :as log]
    [system]
    [clojure.string :as str]
    [gitbok.constants :as const]
@@ -33,7 +33,7 @@
                   [filepath
                    {:title page-name
                     :uri uri}])))]
-    (log/info ::index-ready {:type "file->uri" :entries (count result)})
+    (log/info "index ready" {:type "file->uri" :entries (count result)})
     result))
 
 (defn set-idx [context]

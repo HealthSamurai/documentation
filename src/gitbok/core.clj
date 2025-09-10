@@ -1,34 +1,35 @@
 (ns gitbok.core
   (:require
-   [gitbok.indexing.impl.sitemap :as sitemap]
-   [gitbok.indexing.impl.sitemap-index :as sitemap-index]
+   [clojure.stacktrace]
    [clojure.string :as str]
-   [hiccup2.core]
-   [gitbok.markdown.core :as markdown]
+   [clojure.tools.logging :as log]
+   [gitbok.constants :as const]
+   [gitbok.examples.updater :as examples-updater]
+   [gitbok.examples.webhook]
+   [gitbok.http]
    [gitbok.indexing.core :as indexing]
    [gitbok.indexing.impl.file-to-uri :as file-to-uri]
+   [gitbok.indexing.impl.sitemap :as sitemap]
+   [gitbok.indexing.impl.sitemap-index :as sitemap-index]
    [gitbok.indexing.impl.summary :as summary]
    [gitbok.indexing.impl.uri-to-file :as uri-to-file]
-   [gitbok.ui.main-content :as main-content]
-   [gitbok.ui.layout :as layout]
-   [gitbok.ui.not-found :as not-found]
-   [gitbok.ui.landing-hero :as landing-hero]
-   [gitbok.ui.search]
-   [gitbok.ui.meilisearch]
-   [gitbok.ui.examples]
-   [gitbok.examples.webhook]
-   [gitbok.examples.updater :as examples-updater]
-   [gitbok.reload :as reload]
-   [klog.core :as log]
-   [ring.middleware.gzip :refer [wrap-gzip]]
-   [ring.middleware.content-type :refer [content-type-response]]
-   [gitbok.http]
+   [gitbok.markdown.core :as markdown]
    [gitbok.products :as products]
-   [gitbok.constants :as const]
+   [gitbok.reload :as reload]
+   [gitbok.ui.examples]
+   [gitbok.ui.landing-hero :as landing-hero]
+   [gitbok.ui.layout :as layout]
+   [gitbok.ui.main-content :as main-content]
+   [gitbok.ui.meilisearch]
+   [gitbok.ui.not-found :as not-found]
+   [gitbok.ui.search]
+   [gitbok.utils :as utils]
+   [hiccup2.core]
    [http]
+   [ring.middleware.content-type :refer [content-type-response]]
+   [ring.middleware.gzip :refer [wrap-gzip]]
    [ring.util.response :as resp]
    [system]
-   [gitbok.utils :as utils]
    [uui])
   (:gen-class))
 
@@ -43,11 +44,11 @@
   (let [[filepath section] (str/split filepath #"#")
         full-filepath (products/filepath context filepath)
         ;; In DEV mode, always read fresh content from disk/volume
-        _ (when dev? (log/debug ::reading-file {:filepath filepath :full-path full-filepath}))
+        _ (when dev? (log/debug "reading file" {:filepath filepath :full-path full-filepath}))
         content* (if dev?
                    ;; Force re-read from disk in DEV mode
                    (do
-                     (log/debug ::reading-fresh {:path full-filepath})
+                     (log/debug "reading fresh" {:path full-filepath})
                      (utils/slurp-resource full-filepath))
                    ;; In production, use cached content from memory
                    (or (get (indexing/get-md-files-idx context) filepath)
@@ -63,7 +64,7 @@
        :description description
        :section section}
       (catch Exception e
-        (log/info ::cannot-render-file {:filepath full-filepath})
+        (log/info "cannot render file" {:filepath full-filepath})
         {:content [:div {:role "alert"}
                    (.getMessage e)
                    [:pre (pr-str e)]
@@ -134,7 +135,7 @@
                                  response)
             ;; Add cache-control to the headers map
             headers (assoc (or (:headers response-with-type) {})
-                          "Cache-Control" cache-control)]
+                           "Cache-Control" cache-control)]
         ;; Return response with updated headers
         (assoc response-with-type :headers headers)))))
 
@@ -155,17 +156,26 @@
 (defn render-file-view
   [context request]
   (let [uri (:uri request)
+        product-path (products/path context)
+        _ (log/info "render file view start"
+                    {:uri uri
+                     :prefix prefix
+                     :product-path product-path
+                     :current-product-id (:current-product-id context)
+                     :headers (select-keys (:headers request) ["user-agent" "referer"])})
         uri-relative
         (utils/uri-to-relative
          uri
          prefix
-         (products/path context))]
-    (println "uri " uri-relative)
+         product-path)]
+    (log/info "uri relative calculated" {:uri uri :uri-relative uri-relative})
     (cond
 
       (or (picture-url? uri-relative)
           (picture-url? uri))
-      (render-pictures context request)
+      (do
+        (log/info "serving picture" {:uri-relative uri-relative})
+        (render-pictures context request))
 
       :else
       ;; Check for redirects first
@@ -173,7 +183,7 @@
         ;; Return HTTP 301 redirect
         (let [target-url (gitbok.http/get-product-prefixed-url context redirect-target)]
           ;; Log the redirect for monitoring
-          (log/info ::redirect-301 {:from uri-relative
+          (log/info "redirect 301" {:from uri-relative
                                     :to redirect-target
                                     :target-url target-url
                                     :user-agent (get-in request [:headers "user-agent"])
@@ -181,21 +191,32 @@
           {:status 301
            :headers {"Location" target-url}})
         ;; Otherwise proceed with normal file handling
-        (let [filepath
-              (indexing/uri->filepath context uri-relative)]
+        (let [_ (log/info "looking up filepath" {:uri-relative uri-relative})
+              filepath (indexing/uri->filepath context uri-relative)
+              _ (log/info "filepath resolved" {:uri-relative uri-relative :filepath filepath})]
           (if filepath
             (let [lastmod (indexing/get-lastmod context filepath)
                   lastmod-iso (utils/iso-to-http-date lastmod)
-                  etag (utils/etag lastmod-iso)]
+                  etag (utils/etag lastmod-iso)
+                  _ (log/info "file metadata" {:filepath filepath
+                                               :lastmod lastmod
+                                               :etag etag})]
               (if (or (check-cache-etag request etag)
                       (and lastmod
                            (check-cache-lastmod request lastmod)))
-                {:status 304
-                 :headers {"Cache-Control" "public, max-age=300"
-                           "Last-Modified" lastmod-iso
-                           "ETag" etag}}
-                (let [{:keys [title description content section]}
-                      (render-file (assoc context :current-uri uri-relative) filepath)]
+                (do
+                  (log/info "returning 304 not modified" {:filepath filepath})
+                  {:status 304
+                   :headers {"Cache-Control" "public, max-age=300"
+                             "Last-Modified" lastmod-iso
+                             "ETag" etag}})
+                (let [_ (log/info "rendering file" {:filepath filepath})
+                      {:keys [title description content section]}
+                      (render-file (assoc context :current-uri uri-relative) filepath)
+                      _ (log/info "file rendered" {:filepath filepath
+                                                   :title title
+                                                   :has-content (boolean content)
+                                                   :section section})]
                   (layout/layout
                    context request
                    {:content content
@@ -205,13 +226,17 @@
                     :section section
                     :filepath filepath}))))
 
-            (layout/layout
-             context request
-             {:content (not-found/not-found-view context uri-relative)
-              :status 404
-              :title "Not found"
-              :description "Page not found"
-              :hide-breadcrumb true})))))))
+            (do
+              (log/warn "file not found" {:uri-relative uri-relative
+                                          :uri uri
+                                          :product-id (:current-product-id context)})
+              (layout/layout
+               context request
+               {:content (not-found/not-found-view context uri-relative)
+                :status 404
+                :title "Not found"
+                :description "Page not found"
+                :hide-breadcrumb true}))))))))
 
 (defn sitemap-xml
   [context _]
@@ -301,8 +326,8 @@
             response-with-type (content-type-response response request)
             ;; Then add cache-control to the headers map
             headers (assoc (or (:headers response-with-type) {})
-                          "Cache-Control" cache-control)]
-        (log/debug ::serving-static-file {:path path
+                           "Cache-Control" cache-control)]
+        (log/debug "serving static file" {:path path
                                           :dev-mode? dev-mode?
                                           :cache-control cache-control
                                           :headers headers})
@@ -343,14 +368,34 @@
   "Middleware to determine product from request URI"
   [handler]
   (fn [context request]
-    (let [uri (:uri request)
-          uri-without-prefix (if (str/starts-with? uri prefix)
-                               (subs uri (count prefix))
-                               uri)
-          products-config (products/get-products-config context)
-          product (products/determine-product-by-uri products-config uri-without-prefix)
-          context (products/set-current-product-id context (:id product))]
-      (handler context request))))
+    (try
+      (let [uri (:uri request)
+            uri-without-prefix (if (str/starts-with? uri prefix)
+                                 (subs uri (count prefix))
+                                 uri)
+            products-config (products/get-products-config context)
+            _ (log/info "product middleware" {:uri uri
+                                              :uri-without-prefix uri-without-prefix
+                                              :products-count (count products-config)
+                                              :has-products (boolean (seq products-config))})
+            product (products/determine-product-by-uri products-config uri-without-prefix)
+            _ (when-not product
+                (log/error "no product found" {:uri uri
+                                               :uri-without-prefix uri-without-prefix
+                                               :products-config products-config}))
+            product-id (if product
+                         (:id product)
+                         (do
+                           (log/warn "using fallback product id" {:uri uri})
+                           "default"))
+            context (products/set-current-product-id context product-id)]
+        (handler context request))
+      (catch Exception e
+        (log/error "product middleware error" {:uri (:uri request)
+                                               :error (.getMessage e)
+                                               :stacktrace (with-out-str (clojure.stacktrace/print-stack-trace e))})
+        ;; Try to continue with default product
+        (handler (products/set-current-product-id context "default") request)))))
 
 (defn gzip-middleware [f]
   (fn [ctx req]
@@ -364,35 +409,35 @@
   (let [;; Temporarily set current product for initialization
         ctx (products/set-current-product-id context (:id product))]
     ;; order is important
-    (log/info ::init-product {:msg "1. read summary. create toc htmx."
+    (log/info "init product" {:msg "1. read summary. create toc htmx."
                               :product (:id product)})
     (summary/set-summary ctx)
-    (log/info ::init-product {:msg "2. get uris from summary (using slugging), merge with redirects"
+    (log/info "init product" {:msg "2. get uris from summary (using slugging), merge with redirects"
                               :product (:id product)})
     (uri-to-file/set-idx ctx)
-    (log/info ::init-product {:msg "3. reverse file to uri idx"
+    (log/info "init product" {:msg "3. reverse file to uri idx"
                               :product (:id product)})
     (file-to-uri/set-idx ctx)
-    (log/info ::init-product {:msg "4. using files from summary (step 3), read all files into memory"
+    (log/info "init product" {:msg "4. using files from summary (step 3), read all files into memory"
                               :product (:id product)})
     (indexing/set-md-files-idx ctx (file-to-uri/get-idx ctx))
-    (log/info ::init-product {:msg "5. parse all files into memory, some things are already rendered as plain html"
+    (log/info "init product" {:msg "5. parse all files into memory, some things are already rendered as plain html"
                               :product (:id product)})
     (markdown/set-parsed-markdown-index ctx (indexing/get-md-files-idx ctx))
-    (log/info ::init-product {:msg "6. render it on start"
+    (log/info "init product" {:msg "6. render it on start"
                               :product (:id product)})
     (when-not dev?
-      (log/info ::init-product {:msg "Not DEV, render all pages into memory"
+      (log/info "init product" {:msg "Not DEV, render all pages into memory"
                                 :product (:id product)})
       (markdown/render-all! ctx
                             (markdown/get-parsed-markdown-index ctx)
                             read-markdown-file)
-      (log/info ::init-product {:msg "render done"
+      (log/info "init product" {:msg "render done"
                                 :product (:id product)}))
-    (log/info ::init-product {:msg "7. set lastmod data in context for Last Modified metadata"
+    (log/info "init product" {:msg "7. set lastmod data in context for Last Modified metadata"
                               :product (:id product)})
     (indexing/set-lastmod ctx)
-    (log/info ::init-product {:msg "8. generate sitemap.xml for product"
+    (log/info "init product" {:msg "8. generate sitemap.xml for product"
                               :product (:id product)})
     (let [lastmod-data (products/get-product-state ctx [const/LASTMOD])]
       (sitemap/set-sitemap ctx lastmod-data))))
@@ -459,7 +504,7 @@
     ;; Register endpoints for each product
     (doseq [product products-config]
       (let [product-path (utils/concat-urls prefix (:path product))]
-        (log/debug ::base-path {:product-path product-path})
+        (log/debug "base path" {:product-path product-path})
 
         ;; Product main page
         (http/register-endpoint
@@ -608,11 +653,11 @@
 
   (let [products-config (products/get-products-config context)]
     (doseq [product products-config]
-      (log/info ::init-product-indices {:product-name (:name product)
+      (log/info "init product indices" {:product-name (:name product)
                                         :product-id (:id product)})
       (init-product-indices context product))
 
-    (log/info ::setup-complete {:msg "setup done!"
+    (log/info "setup complete" {:msg "setup done!"
                                 :version (utils/slurp-resource "version")
                                 :port-env (System/getenv "PORT")
                                 :port port
@@ -630,14 +675,8 @@
   {})
 
 (defn -main [& _args]
-  ;; Initialize klog
-  (log/enable-log)
-  (if dev?
-    (log/stdout-pretty-appender :debug) ;; Pretty output for development
-    (log/stdout-appender :info)) ;; JSON output for production
-
-  (log/info ::server-start {:msg "Server started"})
-  (log/info ::server-port {:port port})
+  (log/info "server start" {:msg "Server started"})
+  (log/info "server port" {:port port})
 
   ;; Start system
   (let [context (system/start-system default-config)]
@@ -645,7 +684,7 @@
     ;; Setup shutdown hook with context
     (.addShutdownHook (Runtime/getRuntime)
                       (Thread. (fn []
-                                 (log/info ::shutdown {:msg "Got SIGTERM."})
+                                 (log/info "shutdown" {:msg "Got SIGTERM."})
                                 ;; Stop examples updater if running
                                  (examples-updater/stop-scheduler context))))
 
@@ -655,7 +694,7 @@
 
     ;; Start examples updater if GitHub PAT is configured
     (when (System/getenv "GITHUB_TOKEN")
-      (log/info ::starting-examples-updater {})
+      (log/info "starting examples updater" {})
       (examples-updater/start-scheduler context))
 
     context))
