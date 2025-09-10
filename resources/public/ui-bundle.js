@@ -190,9 +190,10 @@ function initializeHeadingLinks() {
   const headings = document.querySelectorAll('h1[id], h2[id], h3[id], h4[id], h5[id], h6[id]');
 
   headings.forEach(heading => {
-    // Skip if button already exists
-    if (heading.querySelector('.heading-link-button')) {
-      return;
+    // Remove existing button if present to ensure fresh event listeners
+    const existingButton = heading.querySelector('.heading-link-button');
+    if (existingButton) {
+      existingButton.remove();
     }
 
     const id = heading.getAttribute('id');
@@ -855,7 +856,8 @@ function showCopySuccess(button) {
 
     if (tocLinks.length === 0 || headings.length === 0) return;
 
-    const scrollPosition = window.scrollY + 100;
+    const headerHeight = 64; // 4rem = 64px
+    const scrollPosition = window.scrollY + headerHeight + 20; // Add offset for header + padding
     let currentSection = null;
 
     // Find current section
@@ -913,6 +915,11 @@ function showCopySuccess(button) {
               top: targetPosition,
               behavior: 'smooth'
             });
+
+            // Force update active section after scrolling completes
+            setTimeout(() => {
+              updateActiveTocSection();
+            }, 300);
           }
         }
       });
@@ -989,6 +996,8 @@ function showCopySuccess(button) {
       processContent(target);
       // Update last updated timestamp after content load
       updateLastUpdated();
+      // Initialize heading links for new content
+      initializeHeadingLinks();
     });
 
     // Clean up before element removal
