@@ -32,12 +32,13 @@ id: as-system1-app-update-patients
 resourceType: AccessPolicy
 engine: matcho
 link:
-  - reference: Operation/FhirUpdate
+  - reference: Operation/FhirConditionalUpdate
   - reference: Client/system1-client
 description: Policy that allows a system1 to update their patients
 matcho:
   params:
     resource/type: Patient
+    identifier: "#http://system1"
   resource:
     identifier:
       $contains:
