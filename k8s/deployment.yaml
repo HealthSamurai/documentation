@@ -24,7 +24,7 @@ spec:
     spec:
       containers:
       - name: main
-        image: ghcr.io/healthsamurai/documentation:1.2.5 # {"$imagepolicy": "flux-system:gitbok"}
+        image: ghcr.io/healthsamurai/documentation:1.2.6 # {"$imagepolicy": "flux-system:gitbok"}
         imagePullPolicy: Always
         resources:
           requests:
