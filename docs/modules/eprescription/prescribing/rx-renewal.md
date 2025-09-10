@@ -61,7 +61,7 @@ PATCH /fhir/MedicationRequest/mr1
 
 - op: add
   path: '/extension/-'
-  value: {"url": "http://aidbox.app/ePrescription/FHIRSchema/medication-request-renewal-decision", "valueCode": "approved"}
+  value: {"url": "http://aidbox.app/ePrescription/FHIRSchema/medication-request-rx-renewal-decision", "valueCode": "approved"}
 ```
 
 2. And calling the `/eprescription/rx/respond-to-renewal` endpoint with the ID of the MedicationRequest created by the initial RxRenewalRequest.
