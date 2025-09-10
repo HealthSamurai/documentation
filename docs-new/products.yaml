@@ -2,7 +2,7 @@ root-redirect: "/aidbox"
 
 products:
   - id: aidbox
-    name: "Aidbox User Docs"
+    name: "Aidbox Docs"
     # url <BASE_URL><DOCS_PREFIX>/aidbox
     path: /aidbox
     config: ../.gitbook.yaml
@@ -10,19 +10,30 @@ products:
     favicon: .gitbook/assets/favicon.ico
     og-preview-text: "Aidbox User Docs"  # Optional: custom text for OG preview images
     meilisearch-index: "docs"
+    nav-links-right: true  # Move navigation links to the right side
     links:
-      - text: "Examples"
-        href: "/examples"
+      - title: Product
+        entries:
+        - text: "Homepage"
+          href: "https://www.health-samurai.io/fhir-server"
+          target: "_blank"
+        - text: "Release notes"
+          href: "/overview/release-notes"
+        - text: "Talk to us"
+          href: "https://www.health-samurai.io/contacts"
+          target: "_blank"
+        - text: "Ask community"
+          href: "https://connect.health-samurai.io/"
+          target: "_blank"
+        - text: "Blog"
+          href: "https://www.health-samurai.io/blog"
+          target: "_blank"
       - text: "Run Aidbox locally"
         href: "/getting-started/run-aidbox-locally"
       - text: "Run Aidbox in Sandbox"
         href: "/getting-started/run-aidbox-in-sandbox"
-      - text: "Talk to us"
-        href: "https://www.health-samurai.io/contacts"
-        target: "_blank"
-      - text: "Ask community"
-        href: "https://connect.health-samurai.io/"
-        target: "_blank"
+      - text: "Examples"
+        href: "/examples"
 
   - id: fhirbase
     name: "fhirbase"
@@ -33,6 +44,7 @@ products:
     favicon: .gitbook/assets/fhirbase.ico
     og-preview-text: "fhirbase"  # Optional: custom text for OG preview images
     meilisearch-index: "fhirbase"
+    nav-links-right: true  # Move navigation links to the right side
     links:
       - text: "Fhirbase"
         href: "https://www.health-samurai.io/fhirbase"
