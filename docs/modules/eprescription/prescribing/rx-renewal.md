@@ -54,7 +54,8 @@ The initial status is `active`. For the rest, consult [NewRx status table](./new
 ### Responding to RxRenewalRequest
 
 Response to RxRenewalRequest consists of two parts:
-1. Changing the status of the **MedicationRequest** in Aidbox. Note that the actual status resides in `extension`, and not in the `status` field.
+
+-  Changing the status of the **MedicationRequest** in Aidbox. Note that the actual status resides in `extension`, and not in the `status` field.
 
 ```yaml
 PATCH /fhir/MedicationRequest/mr1
@@ -64,7 +65,7 @@ PATCH /fhir/MedicationRequest/mr1
   value: {"url": "http://aidbox.app/ePrescription/FHIRSchema/medication-request-rx-renewal-decision", "valueCode": "approved"}
 ```
 
-2. And calling the `/eprescription/rx/respond-to-renewal` endpoint with the ID of the MedicationRequest created by the initial RxRenewalRequest.
+- And calling the `/eprescription/rx/respond-to-renewal` endpoint with the ID of the MedicationRequest created by the initial RxRenewalRequest.
 ```json
 POST /eprescription/rx/respond-to-renewal
 
