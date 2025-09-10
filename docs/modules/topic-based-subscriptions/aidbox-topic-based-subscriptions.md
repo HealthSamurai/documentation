@@ -74,25 +74,25 @@ Ensure that the resource metadata contains the kind-specific `AidboxTopicDestina
 Organization-based hierarchical filtering is available starting from version 2509.
 {% endhint %}
 
-Both `AidboxSubscriptionTopic` and `AidboxTopicDestination` support [organization-based hierarchical access control](../../access-control/authorization/scoped-api/organization-based-hierarchical-access-control.md). 
-
-**When these resources are created using organization-specific APIs (`/Organization/<org-id>/fhir/AidboxSubscriptionTopic` and `/Organization/<org-id>/fhir/AidboxTopicDestination`)**, they automatically filter events based on the organization hierarchy.
-
-For instance you should use /Organization/<org-id>/fhir/AidboxSubscriptionTopic and /Organization/<org-id>/fhir/AidboxTopicDestination to create these resources.
+Both `AidboxSubscriptionTopic` and `AidboxTopicDestination` support [organization-based hierarchical access control](../../access-control/authorization/scoped-api/organization-based-hierarchical-access-control.md).
 
 ### How it works
 
-The filtering mechanism operates in two stages:
+The filtering mechanism uses organization extensions and works as consecutive filters:
 
-1. **Topic-level filtering**: `AidboxSubscriptionTopic` filters events based on the organization hierarchy
-2. **Destination-level filtering**: `AidboxTopicDestination` applies additional filtering based on its organization context
+1. **Use organization extension**: 
+   
+   In organizational-based access control, both events (resources) and subscription resources (`AidboxSubscriptionTopic` and `AidboxTopicDestination`) are automatically marked with [organization extensions](../../access-control/authorization/scoped-api/organization-based-hierarchical-access-control.md#try-org-bac) when created through organization-specific APIs (`/Organization/<org-id>/fhir/...`). 
 
-### Filtering behavior
+2. **Consecutive filtering**: The filters work in sequence - first the topic filter is applied, then the destination filter.
 
-- **Non-organizational events**: Events that don't originate from organizations are automatically excluded
-- **Organizational events**: Events from organizations are processed according to the hierarchy:
-  - ✅ **Included**: Events from organizations that are equal to or beneath the topic/destination organization in the hierarchy
-  - ❌ **Excluded**: Events from organizations that are above or unrelated to the topic/destination organization
+3. **Resources without organization extension**: If topic/destination resources are created without organization extension, they completely ignore organization information and work as before. All events will be caught by the topic if triggered (regardless of whether the event has organization extension or not).
+
+4. **Resources with organization extension**:
+   - **Events without organization extension**: Will always be skipped
+   - **Events with organization extension**:
+     - ✅ **Caught**: If the event organization is under or equal to the topic/destination organization in the hierarchy
+     - ❌ **Skipped**: If the event organization is above or unrelated to the topic/destination organization
 
 
 ### Examples
@@ -106,31 +106,35 @@ graph TD
 
     %% Org hierarchy
     subgraph OrgHierarchy ["Organization Hierarchy"]
-        OrgA["Organization A<br/>(Parent)"]
-        OrgB["Organization B<br/>(Child of Org A)"]
+        OrgA("Organization A<br/>(Parent)"):::violet1
+        OrgB("Organization B<br/>(Child of Org A)"):::blue1
         OrgA --> OrgB
     end
 
     %% Event from Org A
     subgraph FlowA ["Event from Org A Flow"]
         direction LR
-        EventA["📋 Event from Org A"]
-        TopicAA["AidboxSubscriptionTopic<br/>(related to Org A)"]
-        DestBA["AidboxTopicDestination<br/>(related to Org B)"]
+        EventA("📋 Event from Org A"):::violet1
+        TopicAA("AidboxSubscriptionTopic<br/>(related to Org A)"):::red1
+        DestBA("AidboxTopicDestination<br/>(related to Org B)"):::red1
+        ExternalDestBA("Kafka"):::green1
 
-        EventA -->|✅ Pass| TopicAA
-        TopicAA -->|❌ Filtered out| DestBA
+        EventA --> TopicAA
+        TopicAA -->|✅ Forward| DestBA
+        DestBA -->|❌ Filtered out| ExternalDestBA
     end
 
     %% Event from Org B
     subgraph FlowB ["Event from Org B Flow"]
         direction LR
-        EventB["📋 Event from Org B"]
-        TopicAB["AidboxSubscriptionTopic<br/>(related to Org A)"]
-        DestBB["AidboxTopicDestination<br/>(related to Org B)"]
+        EventB("📋 Event from Org B")::::::blue1
+        TopicAB("AidboxSubscriptionTopic<br/>(related to Org A)"):::red1
+        DestBB("AidboxTopicDestination<br/>(related to Org B)"):::red1
+        ExternalDestBB("Kafka"):::green1
 
-        EventB -->|✅ Pass| TopicAB
+        EventB --> TopicAB
         TopicAB -->|✅ Forward| DestBB
+        DestBB -->|✅ Forward| ExternalDestBB
     end
 
     %% invisible ordering links
@@ -138,23 +142,14 @@ graph TD
     FlowA -.-> FlowB
 
     %% make the links invisible
-    linkStyle 5,6 opacity:0;
+    linkStyle 7,8 opacity:0;
 
-    %% Styles
-    style OrgA fill:#e1f5fe
-    style OrgB fill:#f3e5f5
-    style EventA fill:#e1f5fe
-    style EventB fill:#f3e5f5
-    style TopicAA fill:#e8f5e8
-    style DestBA fill:#fff3e0
-    style TopicAB fill:#e8f5e8
-    style DestBB fill:#fff3e0
 ```
 
 **Filtering behavior:**
-- ✅ **Event from Org A**: Processed by the topic (same organization) but filtered out at the destination level
-- ✅ **Event from Org B**: Processed by the topic (child organization) and forwarded to destination
-- ❌ **Event from unrelated organization**: Would be filtered out at the topic level
+- ✅ **Event from Org A**: Processed by the topic (same organization) but filtered out at the aidbox topic destination level
+- ✅ **Event from Org B**: Processed by the topic (child organization) and forwarded to destination at the aidbox topic destination level
+- ❌ **Event from unrelated organization**: Would be filtered out at the subscription topic level
 
 #### Example 2: Filtering at the destination level only
 
@@ -165,30 +160,35 @@ graph TD
 
     %% Org hierarchy
     subgraph OrgHierarchy ["Organization Hierarchy"]
-        OrgA["Organization A"]
-        OrgB["Organization B"]
+        OrgA("Organization A"):::violet1
+        OrgB("Organization B"):::blue1
     end
 
     %% Event from Org A
     subgraph FlowA ["Event from Org A Flow"]
         direction LR
-        EventA["📋 Event from Org A"]
-        TopicAA["AidboxSubscriptionTopic"]
-        DestBA["AidboxTopicDestination<br/>(related to Org A)"]
+        EventA("📋 Event from Org A"):::violet1
+        TopicAA("AidboxSubscriptionTopic"):::red1
+        DestBA("AidboxTopicDestination<br/>(related to Org A)"):::red1
+        ExternalDestBA("Kafka"):::green1
 
-        EventA -->|✅ Pass| TopicAA
-        TopicAA -->|✅ Pass| DestBA
+        EventA --> TopicAA
+        TopicAA -->|✅ Forward| DestBA
+        DestBA -->|✅ Forward| ExternalDestBA
     end
 
     %% Event from Org B
     subgraph FlowB ["Event from Org B Flow"]
         direction LR
-        EventB["📋 Event from Org B"]
-        TopicAB["AidboxSubscriptionTopic"]
-        DestBB["AidboxTopicDestination<br/>(related to Org A)"]
+        EventB("📋 Event from Org B"):::blue1
+        TopicAB("AidboxSubscriptionTopic"):::red1
+        DestBB("AidboxTopicDestination<br/>(related to Org A)"):::red1
+        ExternalDestBB("Kafka"):::green1
 
-        EventB -->|✅ Pass| TopicAB
-        TopicAB -->|❌ Filtered out| DestBB
+        EventB --> TopicAB
+        TopicAB -->|✅ Forward| DestBB
+        DestBB -->|❌ Filtered out| ExternalDestBB
+
     end
 
     %% invisible ordering links
@@ -196,22 +196,13 @@ graph TD
     FlowA -.-> FlowB
 
     %% make the links invisible
-    linkStyle 4,5 opacity:0;
+    linkStyle 6,7 opacity:0;
 
-    %% Styles
-    style OrgA fill:#e1f5fe
-    style OrgB fill:#f3e5f5
-    style EventA fill:#e1f5fe
-    style EventB fill:#f3e5f5
-    style TopicAA fill:#e8f5e8
-    style DestBA fill:#fff3e0
-    style TopicAB fill:#e8f5e8
-    style DestBB fill:#fff3e0
 ```
 **Filtering behavior:**
-- ✅ **Event from Org A**: Processed by the topic (no filtering) and forwarded to destination
-- ✅ **Event from Org B**: Processed by the topic (no filtering) but filtered out at the destination level
-- ❌ **Event from unrelated organization**: Would be filtered out at the destination level
+- ✅ **Event from Org A**: Processed by the topic (no filtering) and forwarded to aidbox topic destination
+- ✅ **Event from Org B**: Processed by the topic (no filtering) but filtered out at the aidbox topic destination level
+- ❌ **Event from unrelated organization**: Would be filtered out at the aidbox topic destination level
 
 ## Currently supported channels
 
