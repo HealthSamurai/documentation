@@ -253,26 +253,19 @@ function initializeHeadingLinks() {
     button.addEventListener('click', function (e) {
       e.preventDefault();
       e.stopPropagation();
+      
+      // Scroll to the heading with offset for header
+      const headerHeight = 64; // 4rem = 64px
+      const rect = heading.getBoundingClientRect();
+      const targetPosition = rect.top + window.scrollY - headerHeight;
+      
+      window.scrollTo({
+        top: targetPosition,
+        behavior: 'smooth'
+      });
+      
+      // Update URL with the hash
       window.history.replaceState(null, '', '#' + heading.id);
-      navigator.clipboard.writeText(window.location.href);
-
-      // Show success checkmark
-      button.innerHTML = `
-        <svg class="heading-link-icon" width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
-        </svg>
-      `;
-
-      // Revert back to link icon after 2 seconds
-      setTimeout(() => {
-        button.innerHTML = `
-          <svg class="heading-link-icon" width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                  d="M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101m-.758-4.899a4 4 0 005.656 0l4-4a4 4 0 00-5.656-5.656l-1.1 1.1">
-            </path>
-          </svg>
-        `;
-      }, 2000);
     });
 
     heading.appendChild(button);
@@ -857,19 +850,42 @@ function showCopySuccess(button) {
     if (tocLinks.length === 0 || headings.length === 0) return;
 
     const headerHeight = 64; // 4rem = 64px
-    const scrollPosition = window.scrollY + headerHeight + 20; // Add offset for header + padding
+    const scrollTop = window.scrollY;
+    
     let currentSection = null;
-
-    // Find current section
-    for (let i = headings.length - 1; i >= 0; i--) {
+    
+    // Special case: if we're at the exact position from a click
+    // Check which heading is at the top of the viewport (below header)
+    for (let i = 0; i < headings.length; i++) {
       const heading = headings[i];
       const rect = heading.getBoundingClientRect();
-      const offsetTop = rect.top + window.scrollY;
-
-      if (scrollPosition >= offsetTop) {
+      
+      // If heading is at or just below the header, it's our active section
+      if (rect.top >= headerHeight - 5 && rect.top <= headerHeight + 15) {
         currentSection = heading.id;
         break;
       }
+    }
+    
+    // If no exact match, find the last heading that's above the viewport
+    if (!currentSection) {
+      const viewportTop = scrollTop + headerHeight + 5;
+      
+      for (let i = headings.length - 1; i >= 0; i--) {
+        const heading = headings[i];
+        const rect = heading.getBoundingClientRect();
+        const headingTop = rect.top + scrollTop;
+        
+        if (headingTop <= viewportTop) {
+          currentSection = heading.id;
+          break;
+        }
+      }
+    }
+
+    // If we're at the very top of the page, select the first heading
+    if (!currentSection && scrollTop < 10 && headings.length > 0) {
+      currentSection = headings[0].id;
     }
 
     // Update active classes
@@ -902,7 +918,9 @@ function showCopySuccess(button) {
 
           if (targetElement) {
             const headerHeight = 64; // 4rem = 64px
-            const targetPosition = targetElement.offsetTop - headerHeight - 20;
+            // Position the heading exactly at the header line
+            const rect = targetElement.getBoundingClientRect();
+            const targetPosition = rect.top + window.scrollY - headerHeight;
 
             // Update URL with the hash
             if (history.pushState) {
@@ -911,15 +929,16 @@ function showCopySuccess(button) {
               window.location.hash = targetId;
             }
 
+            // Instant scroll without animation
             window.scrollTo({
               top: targetPosition,
-              behavior: 'smooth'
+              behavior: 'instant'
             });
 
-            // Force update active section after scrolling completes
-            setTimeout(() => {
+            // Force immediate update of active section
+            requestAnimationFrame(() => {
               updateActiveTocSection();
-            }, 300);
+            });
           }
         }
       });
