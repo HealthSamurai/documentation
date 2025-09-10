@@ -127,7 +127,7 @@ graph TD
     %% Event from Org B
     subgraph FlowB ["Event from Org B Flow"]
         direction LR
-        EventB("📋 Event from Org B")::::::blue1
+        EventB("📋 Event from Org B"):::blue1
         TopicAB("AidboxSubscriptionTopic<br/>(related to Org A)"):::red1
         DestBB("AidboxTopicDestination<br/>(related to Org B)"):::red1
         ExternalDestBB("Kafka"):::green1
