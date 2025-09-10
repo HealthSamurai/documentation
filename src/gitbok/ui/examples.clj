@@ -3,7 +3,6 @@
    [gitbok.ui.layout :as layout]
    [gitbok.products :as products]
    [gitbok.examples.indexer :as indexer]
-   [gitbok.ui.main-navigation :as main-navigation]
    [system]
    [gitbok.http]
    [clojure.string :as str]
@@ -286,20 +285,8 @@
   "HTTP handler for examples page"
   [context request]
   (let [content (render-examples-page context request)
-        ;; todo this and landing should use same function.
-        full-page
-        [:div
-         (main-navigation/nav context)
-         [:div.mobile-menu-overlay]
-         [:div
-          {:class "flex max-w-screen-2xl mx-auto site-full-width:max-w-full
-           items-start overflow-visible md:px-8 py-8"}
-          [:main#content {:class "flex-1 items-start"}
-
-           [:div {:class "flex items-start"}
-            [:article {:class "article__content min-w-0 flex-1 transform-3d"}
-             [:div {:class "mx-auto max-w-full"}
-              content]]]]]]]
+        ;; Use shared page-wrapper for consistent layout
+        full-page (layout/page-wrapper context content)]
     ;; Always return full page through layout
     (gitbok.http/response1
      (layout/document
