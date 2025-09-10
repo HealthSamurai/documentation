@@ -17,7 +17,7 @@ See also:
 * [Access Policies](../../access-control/authorization/access-policies.md)
 * [Access Policy Dev Tool](access-policy-dev-tool.md)
 * [Access Policies Best Practices](accesspolicy-best-practices.md)
-* [Match DSL Reference](../../reference/matcho-dsl-reference.md)
+* [Matcho DSL Reference](../../reference/matcho-dsl-reference.md)
 
 
 ## 1. Policy that allows a system to update their patients
