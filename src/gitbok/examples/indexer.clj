@@ -1,13 +1,13 @@
 (ns gitbok.examples.indexer
   (:require [gitbok.products :as products]
-            [klog.core :as log]))
+            [clojure.tools.logging :as log]))
 
 (def EXAMPLES-KEY ::examples)
 
 (defn set-examples
   "Store examples data in context for the current product"
   [context examples-data]
-  (log/info ::set-examples {:count (count (:examples examples-data))})
+  (log/info "set examples" {:count (count (:examples examples-data))})
   (products/set-product-state
    context
    [EXAMPLES-KEY]
@@ -22,6 +22,6 @@
   "Update examples data in context (called from webhook)"
   [context examples-data]
   (set-examples context examples-data)
-  (log/info ::examples-updated
+  (log/info "examples updated"
            {:timestamp (:timestamp examples-data)
             :count (count (:examples examples-data))}))

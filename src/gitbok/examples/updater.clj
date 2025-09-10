@@ -1,6 +1,6 @@
 (ns gitbok.examples.updater
   (:require [clojure.data.json :as json]
-            [klog.core :as log]
+            [clojure.tools.logging :as log]
             [gitbok.examples.indexer :as indexer]
             [gitbok.products :as products]
             [org.httpkit.client :as http-client]
@@ -33,14 +33,14 @@
         {:keys [status body error]} @(http-client/get url {:headers headers
                                                            :timeout 10000})]
     (cond
-      error (do (log/error ::fetch-artifacts-failed {:error error})
+      error (do (log/error "fetch artifacts failed" {:error error})
                 nil)
-      (not= status 200) (do (log/error ::fetch-artifacts-failed {:status status :body body})
+      (not= status 200) (do (log/error "fetch artifacts failed" {:status status :body body})
                             nil)
       :else (try
               (json/read-str body :key-fn keyword)
               (catch Exception e
-                (log/error ::parse-artifacts-failed {:error (.getMessage e)})
+                (log/error "parse artifacts failed" {:error (.getMessage e)})
                 nil)))))
 
 (defn find-latest-artifact
@@ -69,28 +69,28 @@
                                                                    :timeout 30000})]
         (cond
           error
-          (do (log/error ::download-artifact-failed {:error error})
+          (do (log/error "download artifact failed" {:error error})
               nil)
 
           ;; GitHub returns 302 redirect to Azure blob storage
           (= status 302)
           (let [redirect-url (get headers :location)]
-            (log/info ::following-redirect {:url redirect-url})
+            (log/info "following redirect" {:url redirect-url})
             ;; Follow redirect without Authorization header
             (let [{:keys [status body error]} @(http-client/get redirect-url
                                                                {:as :byte-array
                                                                 :timeout 30000})]
               (cond
-                error (do (log/error ::redirect-download-failed {:error error})
+                error (do (log/error "redirect download failed" {:error error})
                           nil)
-                (not= status 200) (do (log/error ::redirect-download-failed
+                (not= status 200) (do (log/error "redirect download failed"
                                                  {:status status
                                                   :artifact-id artifact-id})
                                       nil)
                 :else body)))
 
           (not= status 200)
-          (do (log/error ::download-artifact-failed
+          (do (log/error "download artifact failed"
                         {:status status
                          :artifact-id artifact-id})
               nil)
@@ -109,35 +109,35 @@
               (json/read-str content :key-fn keyword))
             (recur)))))
     (catch Exception e
-      (log/error ::extract-json-failed {:error (.getMessage e)})
+      (log/error "extract json failed" {:error (.getMessage e)})
       nil)))
 
 (defn update-examples-from-artifact
   "Fetch and update examples from the latest GitHub artifact"
   [context]
-  (log/info ::update-examples-start {})
+  (log/info "update examples start" {})
   (try
     (when-let [artifacts (fetch-artifacts-list)]
       (when-let [latest-artifact (find-latest-artifact artifacts)]
         (let [artifact-id (:id latest-artifact)
               created-at (:created_at latest-artifact)]
-          (log/info ::found-latest-artifact {:id artifact-id :created created-at})
+          (log/info "found latest artifact" {:id artifact-id :created created-at})
 
           (when-let [zip-bytes (download-artifact artifact-id)]
-            (log/info ::artifact-downloaded {:size (count zip-bytes)})
+            (log/info "artifact downloaded" {:size (count zip-bytes)})
 
             (when-let [examples-data (extract-json-from-zip zip-bytes)]
-              (log/info ::extracted-examples {:count (count (:examples examples-data))})
+              (log/info "extracted examples" {:count (count (:examples examples-data))})
 
               ;; Update in context for aidbox product
               (let [ctx-with-product (products/set-current-product-id context "aidbox")]
                 (indexer/update-examples! ctx-with-product examples-data)
-                (log/info ::examples-updated
+                (log/info "examples updated"
                           {:count (count (:examples examples-data))
                            :timestamp (:timestamp examples-data)})
                 true))))))
     (catch Exception e
-      (log/error ::update-examples-failed {:error (.getMessage e)})
+      (log/error "update examples failed" {:error (.getMessage e)})
       false)))
 
 (defn update-loop
@@ -152,7 +152,7 @@
                   (try
                     (update-examples-from-artifact context)
                     (catch Exception e
-                      (log/error ::scheduled-update-failed {:error (.getMessage e)})))
+                      (log/error "scheduled update failed" {:error (.getMessage e)})))
                   ;; Sleep for interval, checking for interruption
                   (let [sleep-chunks (quot interval-ms 5000)]
                     (loop [remaining sleep-chunks]
@@ -161,7 +161,7 @@
                         (recur (dec remaining)))))
                   (when-not (Thread/interrupted)
                     (recur))))
-              (log/info ::update-loop-stopped {}))]
+              (log/info "update loop stopped" {}))]
     ;; Return control map with future
     {:stop (fn [] (future-cancel fut))
      :future fut}))
@@ -172,13 +172,13 @@
   (let [interval-minutes (get-update-interval)
         interval-ms (* interval-minutes 60 1000)]
 
-    (log/info ::scheduler-starting {:interval-minutes interval-minutes})
+    (log/info "scheduler starting" {:interval-minutes interval-minutes})
 
     ;; Do initial update immediately
     (try
       (update-examples-from-artifact context)
       (catch Exception e
-        (log/error ::initial-update-failed {:error (.getMessage e)})))
+        (log/error "initial update failed" {:error (.getMessage e)})))
 
     ;; Start update loop and store control in context
     (let [loop-control (update-loop context interval-ms)]
@@ -189,7 +189,7 @@
   "Stop the periodic updates loop"
   [context]
   (when-let [loop-control (system/get-system-state context [::update-loop])]
-    (log/info ::scheduler-stopping {})
+    (log/info "scheduler stopping" {})
     ((:stop loop-control))
     (system/set-system-state context [::update-loop] nil)))
 

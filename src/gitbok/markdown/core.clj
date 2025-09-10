@@ -1,7 +1,7 @@
 (ns gitbok.markdown.core
   (:require
    [clojure.string :as str]
-   [klog.core :as log]
+   [clojure.tools.logging :as log]
    [clojure.walk :as walk]
    [gitbok.markdown.widgets.big-links :as big-links]
    [gitbok.markdown.widgets.link :as link]
@@ -299,7 +299,7 @@
 (defn set-parsed-markdown-index [context md-files-idx]
   (let [parsed-files
         (mapv #(parse-markdown-content context %) md-files-idx)]
-    (log/info ::files-parsed {:count (count parsed-files)})
+    (log/info "files parsed" {:count (count parsed-files)})
     (products/set-product-state
      context
      [const/PARSED_MARKDOWN_IDX]
@@ -321,6 +321,6 @@
    (->> parsed-md-index
         (mapv
          (fn [{:keys [filepath _parsed]}]
-           (log/debug ::render-file {:filepath filepath})
+           (log/debug "render file" {:filepath filepath})
            [filepath (read-markdown-file context filepath)]))
         (into {}))))

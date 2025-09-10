@@ -1,6 +1,6 @@
 (ns gitbok.indexing.impl.uri-to-file
   (:require
-   [klog.core :as log]
+   [clojure.tools.logging :as log]
    [clojure.string :as str]
    [gitbok.constants :as const]
    [gitbok.indexing.impl.summary]
@@ -93,7 +93,7 @@
                 :else
                 (recur (rest lines) acc)))))]
     
-    (log/info ::index-ready {:type "uri->file" 
+    (log/info "index ready" {:type "uri->file" 
                              :files (count index)
                              :redirects (count redirects)})
     ;; Return separate indexes for files and redirects

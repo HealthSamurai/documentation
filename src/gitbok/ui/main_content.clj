@@ -4,7 +4,6 @@
    [gitbok.indexing.core :as indexing]
    [gitbok.indexing.impl.file-to-uri :as file-to-uri]
    [clojure.string :as str]
-   [klog.core :as log]
    [system]
    [uui]
    [gitbok.markdown.core :as markdown]
@@ -44,7 +43,7 @@
     (let [index (file-to-uri/get-idx context)
           ;; Get DOCS_PREFIX and product path dynamically
           docs-prefix (gitbok.http/get-prefix context)
-          product-path (gitbok.products/path context)
+          product-path (or (gitbok.products/path context) "")
           ;; Remove trailing slash if present
           filepath (if (str/ends-with? filepath "/")
                      (subs filepath 0 (dec (count filepath)))
@@ -111,7 +110,7 @@
    (for [[_path {:keys [title uri]}]
          (find-children-files context filepath)]
      (let [prefix (gitbok.http/get-prefix context)
-           product-path (products/path context)
+           product-path (or (products/path context) "")
            full-href (str prefix product-path "/" uri)]
        (big-links/big-link-view full-href title)))])
 
@@ -225,7 +224,7 @@
                  max-w-5xl transform-3d"}
        (when htmx?
          [:script (uui/raw "
-           window.scrollTo(0, 0); 
+           window.scrollTo(0, 0);
            // Defer execution to ensure scripts are loaded
            setTimeout(function() {
              if (typeof updateActiveNavItem === 'function') {
@@ -238,11 +237,7 @@
          ")])
        [:div {:class "mx-auto max-w-full"} body-with-breadcrumb]
        (navigation-buttons context uri)
-       (let [lastupdated (indexing/get-lastmod context filepath)
-             _ (when (and filepath (str/includes? (or filepath "") "database/overview"))
-                 (log/info ::📅lastmod-check {:filepath filepath
-                                              :lastupdated lastupdated
-                                              :has-lastmod (boolean lastupdated)}))]
+       (let [lastupdated (indexing/get-lastmod context filepath)]
          (when lastupdated
            [:p {:class "mt-4 text-sm text-tint-11"
                 :id "lastupdated"

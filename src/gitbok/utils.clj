@@ -1,6 +1,6 @@
 (ns gitbok.utils
   (:require
-   [klog.core :as log]
+   [clojure.tools.logging :as log]
    [clojure.string :as str]
    [hiccup2.core]
    [system]
@@ -39,23 +39,23 @@
           file (io/file file-path)]
       (if (.exists file)
         (do
-          (log/debug ::read-volume {:path path})
+          (log/debug "read volume" {:path path})
           (slurp file))
         ;; Fallback to classpath for non-documentation resources
         (if-let [r (io/resource path)]
           (do
-            (log/debug ::read-classpath {:path path :reason "not-in-volume"})
+            (log/debug "read classpath" {:path path :reason "not-in-volume"})
             (slurp r))
           (do
-            (log/error ::file-not-found {:path path :locations ["volume" "classpath"]})
+            (log/error "file not found" {:path path :locations ["volume" "classpath"]})
             (throw (Exception. (str "Cannot find " path " in volume or classpath")))))))
     ;; Original classpath logic for backward compatibility
     (if-let [r (io/resource path)]
       (do
-        (log/debug ::read-classpath {:path path :reason "no-volume"})
+        (log/debug "read classpath" {:path path :reason "no-volume"})
         (slurp r))
       (do
-        (log/error ::file-not-found {:path path :location "classpath"})
+        (log/error "file not found" {:path path :location "classpath"})
         (throw (Exception. (str "Cannot find " path)))))))
 
 (defn concat-urls [& parts]
@@ -77,6 +77,9 @@
    Example: (uri-to-relative \"/docs/aidbox/readme\" \"/docs\" \"/aidbox\") => \"readme\"
             (uri-to-relative \"/docs/forms/api/endpoints\" \"/docs\" \"/forms\") => \"api/endpoints\""
   [uri prefix product-path]
+  (log/info "uri to relative start" {:uri uri
+                                      :prefix prefix
+                                      :product-path product-path})
   (when uri
     (let [;; First normalize multiple slashes
           normalized-uri (str/replace uri #"/+" "/")
@@ -97,8 +100,16 @@
                             (subs with-leading-slash (count product-path))
                             without-prefix) ;; Use original without-prefix if no match
           ;; Clean up leading slashes
-          cleaned (str/replace without-product #"^/+" "")]
-      (if (str/blank? cleaned) "/" cleaned))))
+          cleaned (str/replace without-product #"^/+" "")
+          result (if (str/blank? cleaned) "/" cleaned)]
+      (log/info "uri to relative result" {:uri uri
+                                           :normalized-uri normalized-uri
+                                           :without-prefix without-prefix
+                                           :with-leading-slash with-leading-slash
+                                           :without-product without-product
+                                           :cleaned cleaned
+                                           :result result})
+      result)))
 
 (defn concat-filenames [& parts]
   (when (seq parts)

@@ -1,7 +1,7 @@
 (ns gitbok.examples.webhook
   (:require [clojure.string :as str]
             [clojure.data.json :as json]
-            [klog.core :as log]
+            [clojure.tools.logging :as log]
             [gitbok.examples.indexer :as indexer]
             [gitbok.products :as products]))
 
@@ -58,7 +58,7 @@
           [start end] (cidr-to-range cidr)]
       (and (>= ip-long start) (<= ip-long end)))
     (catch Exception e
-      (log/error ::ip-check-failed {:ip ip :cidr cidr :error (.getMessage e)})
+      (log/error "ip check failed" {:ip ip :cidr cidr :error (.getMessage e)})
       false)))
 
 (defn validate-github-ip
@@ -83,13 +83,13 @@
   (let [client-ip (get-client-ip request)
         dev-mode? (= "true" (System/getenv "DEV"))]
 
-    (log/info ::webhook-received {:client-ip client-ip :dev-mode dev-mode?})
+    (log/info "webhook received" {:client-ip client-ip :dev-mode dev-mode?})
 
     ;; Check IP whitelist (skip in dev mode)
     (if (and (not dev-mode?)
              (not (validate-github-ip client-ip)))
       (do
-        (log/warn ::invalid-webhook-ip {:client-ip client-ip})
+        (log/warn "invalid webhook ip" {:client-ip client-ip})
         {:status 403
          :headers {"content-type" "text/plain"}
          :body "Forbidden: Invalid source IP"})
@@ -110,7 +110,7 @@
           (let [ctx-with-product (products/set-current-product-id context "aidbox")]
             (indexer/update-examples! ctx-with-product examples-data))
 
-          (log/info ::examples-updated
+          (log/info "examples updated"
                     {:count (count (:examples examples-data))
                      :features-count (count (:features_list examples-data))
                      :languages-count (count (:languages_list examples-data))
@@ -121,7 +121,7 @@
            :body "OK"})
 
         (catch Exception e
-          (log/error ::webhook-processing-failed
+          (log/error "webhook processing failed"
                      {:error (.getMessage e)
                       :type (type e)})
           {:status 500
