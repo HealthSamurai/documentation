@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+    <!-- Console appender with color support -->
+    <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+            <pattern>%d{HH:mm:ss.SSS} %highlight(%-5level) [%thread] %cyan(%logger{36}) - %msg%n</pattern>
+        </encoder>
+    </appender>
+
+    <!-- Logger configurations for different namespaces -->
+    <logger name="gitbok" level="INFO"/>
+    <logger name="gitbok.core" level="INFO"/>
+    <logger name="gitbok.products" level="INFO"/>
+    <logger name="gitbok.indexing" level="INFO"/>
+    <logger name="gitbok.utils" level="INFO"/>
+    <logger name="gitbok.ui" level="INFO"/>
+    
+    <!-- Debug level for development -->
+    <logger name="gitbok.development" level="DEBUG"/>
+
+    <!-- Root logger configuration - only stdout -->
+    <root level="INFO">
+        <appender-ref ref="STDOUT"/>
+    </root>
+</configuration>

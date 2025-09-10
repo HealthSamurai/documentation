@@ -1,6 +1,6 @@
 (ns gitbok.ui.meilisearch
   (:require
-   [klog.core :as log]
+   [clojure.tools.logging :as log]
    [clojure.string :as str]
    [org.httpkit.client :as http-client]
    [cheshire.core :as json]
@@ -45,7 +45,7 @@
         (-> response :body json/parse-string (get "hits"))
         []))
     (catch Exception e
-      (log/error ::meilisearch-error {:error (.getMessage e)})
+      (log/error "meilisearch error" {:error (.getMessage e)})
       [])))
 
 (defn interpret-search-results

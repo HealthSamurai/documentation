@@ -1,6 +1,6 @@
 (ns gitbok.indexing.core
   (:require
-   [klog.core :as log]
+   [clojure.tools.logging :as log]
    [gitbok.indexing.impl.summary]
    [gitbok.indexing.impl.uri-to-file :as uri-to-file]
    [gitbok.indexing.impl.common :as common]
@@ -23,11 +23,23 @@
   (gitbok.indexing.impl.file-to-uri/filepath->uri context filepath))
 
 (defn uri->filepath [context ^String uri]
-  (gitbok.indexing.impl.uri-to-file/uri->filepath
-   (uri-to-file/get-idx context) uri))
+  (let [idx (uri-to-file/get-idx context)
+        filepath (gitbok.indexing.impl.uri-to-file/uri->filepath idx uri)]
+    (log/info "uri >filepath" {:uri uri
+                                :idx-exists (boolean idx)
+                                :filepath filepath
+                                :product-id (:current-product-id context)})
+    filepath))
 
 (defn get-redirect [context ^String uri]
-  (get (uri-to-file/get-redirects-idx context) uri))
+  (let [redirects-idx (uri-to-file/get-redirects-idx context)
+        redirect (get redirects-idx uri)]
+    (log/info "get redirect" {:uri uri
+                               :redirects-idx-exists (boolean redirects-idx)
+                               :redirect-found (boolean redirect)
+                               :redirect-target redirect
+                               :product-id (:current-product-id context)})
+    redirect))
 
 (defn absolute-filepath->relative
   "Converts an absolute filepath to a relative filepath by removing the product root prefix.
@@ -104,7 +116,7 @@
                                    (read-content full-path))))) {}
                       (filter #(not (str/starts-with? % "http"))
                               filepaths-from-summary))]
-    (log/info ::files-loaded {:count (count files)})
+    (log/info "files loaded" {:count (count files)})
     files))
 
 (defn set-md-files-idx [context file-to-uri-idx]
@@ -118,7 +130,7 @@
    context
    [const/MD_FILES_IDX]))
 
-(defn search [context q]
+(defn search [_context q]
   (meilisearch/search q))
 
 (defn filepath->href [context filepath href]
@@ -177,7 +189,7 @@
                         docs-path)
                        {})]
 
-    (log/info ::✅lastmod-set {:product product-id
+    (log/info "✅lastmod set" {:product product-id
                               :docs-path docs-path
                               :entries (count lastmod-data)})
     (products/set-product-state
