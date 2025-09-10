@@ -1,9 +1,6 @@
 (ns gitbok.ui.landing-hero
   (:require [gitbok.http]
-            [gitbok.ui.main-navigation :as main-navigation]
-            [gitbok.ui.left-navigation :as left-navigation]
             [gitbok.ui.layout :as layout]
-            [gitbok.indexing.impl.summary :as summary]
             [uui.heroicons :as ico]))
 
 (defn getting-started-card
@@ -17,6 +14,11 @@
      [:div
       [:h2.text-2xl.m-0.text-tint-12.font-semibold "Getting Started"]
       [:p.text-tint-10.text-sm.m-0.mt-1 "Get started in just a few minutes."]]]
+
+    ;; One-liner command
+    [:pre {:class "text-base"}
+     [:code
+      "curl -JO https://aidbox.app/runme && docker compose up"]]
 
     ;; All icons with equal spacing - Docker and Sandbox first, then languages
     [:div.flex.justify-between
@@ -111,9 +113,8 @@
   "Bento grid with feature cards"
   [context]
   [:div
-   ;; Main Concepts header
    [:div.text-center.mb-12
-    [:h2.text-3xl.font-bold.mb-4.text-tint-12.font-sans "Main Concepts"]]
+    [:h2.text-3xl.font-bold.mb-4.text-tint-12.font-sans "Main concepts"]]
 
    ;; Bento grid layout - 4 columns
    [:div.grid.grid-cols-1.md:grid-cols-2.lg:grid-cols-4.gap-6
@@ -126,11 +127,21 @@
        :alt "FHIR Database"}]
      [:h3.text-xl.mb-3.text-tint-12.font-semibold.font-sans "FHIR Database"]
      [:div.flex.flex-wrap.gap-2.mb-3
-      [:span.px-2.py-1.text-xs.bg-tint-3.text-tint-11.rounded "PostgreSQL"]
-      [:span.px-2.py-1.text-xs.bg-tint-3.text-tint-11.rounded "JSONB"]
-      [:span.px-2.py-1.text-xs.bg-tint-3.text-tint-11.rounded "Indexes"]
-      [:span.px-2.py-1.text-xs.bg-tint-3.text-tint-11.rounded "Custom resources"]
-      [:span.px-2.py-1.text-xs.bg-tint-3.text-tint-11.rounded "SQL on FHIR"]]
+      [:span.px-2.py-1.text-xs.bg-tint-3.text-tint-11.rounded.hover:bg-tint-4.transition-colors.cursor-pointer
+       {:onclick (str "event.stopPropagation(); window.location.href='" (gitbok.http/get-product-prefixed-url context "/database/overview#how-does-aidbox-store-data") "'")}
+       "PostgreSQL"]
+      [:span.px-2.py-1.text-xs.bg-tint-3.text-tint-11.rounded.hover:bg-tint-4.transition-colors.cursor-pointer
+       {:onclick (str "event.stopPropagation(); window.location.href='" (gitbok.http/get-product-prefixed-url context "/database/overview#the-postgresql-jsonb-approach") "'")}
+       "JSONB"]
+      [:span.px-2.py-1.text-xs.bg-tint-3.text-tint-11.rounded.hover:bg-tint-4.transition-colors.cursor-pointer
+       {:onclick (str "event.stopPropagation(); window.location.href='" (gitbok.http/get-product-prefixed-url context "/deployment-and-maintenance/indexes") "'")}
+       "Indexes"]
+      [:span.px-2.py-1.text-xs.bg-tint-3.text-tint-11.rounded.hover:bg-tint-4.transition-colors.cursor-pointer
+       {:onclick (str "event.stopPropagation(); window.location.href='" (gitbok.http/get-product-prefixed-url context "/tutorials/artifact-registry-tutorials/custom-resources/custom-resources-using-structuredefinition") "'")}
+       "Custom resources"]
+      [:span.px-2.py-1.text-xs.bg-tint-3.text-tint-11.rounded.hover:bg-tint-4.transition-colors.cursor-pointer
+       {:onclick (str "event.stopPropagation(); window.location.href='" (gitbok.http/get-product-prefixed-url context "/modules/sql-on-fhir") "'")}
+       "SQL on FHIR"]]
      [:p.text-sm.leading-relaxed.text-tint-10.font-content
       "Manage FHIR data with the power of PostgreSQL — fully under your control. Aidbox stores resources transparently as JSONB, enabling you to query, join, and aggregate by any element, with full support for transactional operations, reporting, and seamless migrations."]]
 
@@ -142,9 +153,13 @@
        :alt "API"}]
      [:h3.text-xl.mb-3.text-tint-12.font-semibold.font-sans "API"]
      [:div.flex.flex-wrap.gap-2.mb-3
-      [:span.px-2.py-1.text-xs.bg-tint-3.text-tint-11.rounded "FHIR"]
+      [:span.px-2.py-1.text-xs.bg-tint-3.text-tint-11.rounded.hover:bg-tint-4.transition-colors.cursor-pointer
+       {:onclick (str "event.stopPropagation(); window.location.href='" (gitbok.http/get-product-prefixed-url context "/api/api-overview") "'")}
+       "FHIR"]
       [:span.px-2.py-1.text-xs.bg-tint-3.text-tint-11.rounded "SQL"]
-      [:span.px-2.py-1.text-xs.bg-tint-3.text-tint-11.rounded "GraphQL"]]
+      [:span.px-2.py-1.text-xs.bg-tint-3.text-tint-11.rounded.hover:bg-tint-4.transition-colors.cursor-pointer
+       {:onclick (str "event.stopPropagation(); window.location.href='" (gitbok.http/get-product-prefixed-url context "/api/graphql-api") "'")}
+       "GraphQL"]]
      [:p.text-sm.leading-relaxed.text-tint-10.font-content
       "Multiple APIs — FHIR, SQL, GraphQL, Bulk, and Subscription — to work efficiently with FHIR data for maximum flexibility and performance."]]
 
@@ -156,9 +171,15 @@
        :alt "Artifact Registry"}]
      [:h3.text-xl.mb-3.text-tint-12.font-semibold.font-sans "Artifact Registry"]
      [:div.flex.flex-wrap.gap-2.mb-3
-      [:span.px-2.py-1.text-xs.bg-tint-3.text-tint-11.rounded "IGs"]
-      [:span.px-2.py-1.text-xs.bg-tint-3.text-tint-11.rounded "Profiles"]
-      [:span.px-2.py-1.text-xs.bg-tint-3.text-tint-11.rounded "Search params"]]
+      [:span.px-2.py-1.text-xs.bg-tint-3.text-tint-11.rounded.hover:bg-tint-4.transition-colors.cursor-pointer
+       {:onclick (str "event.stopPropagation(); window.location.href='" (gitbok.http/get-product-prefixed-url context "/artifact-registry/artifact-registry-overview") "'")}
+       "IGs"]
+      [:span.px-2.py-1.text-xs.bg-tint-3.text-tint-11.rounded.hover:bg-tint-4.transition-colors.cursor-pointer
+       {:onclick (str "event.stopPropagation(); window.location.href='" (gitbok.http/get-product-prefixed-url context "/artifact-registry/structuredefinition") "'")}
+       "Profiles"]
+      [:span.px-2.py-1.text-xs.bg-tint-3.text-tint-11.rounded.hover:bg-tint-4.transition-colors.cursor-pointer
+       {:onclick (str "event.stopPropagation(); window.location.href='" (gitbok.http/get-product-prefixed-url context "/api/rest-api/fhir-search/searchparameter") "'")}
+       "Search params"]]
      [:p.text-sm.leading-relaxed.text-tint-10.font-content
       "Multiple FHIR versions: STU3, R4, R5, and R6. 500+ ready-to-use IGs: IPS, national (US, DE, CA, etc.), domain (mCode, Da Vinci, etc.), custom IGs."]]
 
@@ -170,9 +191,15 @@
        :alt "Access Control"}]
      [:h3.text-xl.mb-3.text-tint-12.font-semibold.font-sans "Access Control"]
      [:div.flex.flex-wrap.gap-2.mb-3
-      [:span.px-2.py-1.text-xs.bg-tint-3.text-tint-11.rounded "OAuth 2.0"]
-      [:span.px-2.py-1.text-xs.bg-tint-3.text-tint-11.rounded "SMART"]
-      [:span.px-2.py-1.text-xs.bg-tint-3.text-tint-11.rounded "RBAC/ABAC"]]
+      [:span.px-2.py-1.text-xs.bg-tint-3.text-tint-11.rounded.hover:bg-tint-4.transition-colors.cursor-pointer
+       {:onclick (str "event.stopPropagation(); window.location.href='" (gitbok.http/get-product-prefixed-url context "/access-control/authentication/oauth-2-0") "'")}
+       "OAuth 2.0"]
+      [:span.px-2.py-1.text-xs.bg-tint-3.text-tint-11.rounded.hover:bg-tint-4.transition-colors.cursor-pointer
+       {:onclick "event.stopPropagation(); window.open('https://www.health-samurai.io/docs/aidbox/access-control/authorization/smart-on-fhir', '_blank')"}
+       "SMART"]
+      [:span.px-2.py-1.text-xs.bg-tint-3.text-tint-11.rounded.hover:bg-tint-4.transition-colors.cursor-pointer
+       {:onclick (str "event.stopPropagation(); window.location.href='" (gitbok.http/get-product-prefixed-url context "/access-control/authorization#role-based-access-control") "'")}
+       "RBAC/ABAC"]]
      [:p.text-sm.leading-relaxed.text-tint-10.font-content
       "Enterprise-grade security with OAuth 2.0, multitenancy, flexible user management, granular access policies, and complete audit trails."]]
 
@@ -184,8 +211,12 @@
        :alt "Terminology"}]
      [:h3.text-xl.mb-3.text-tint-12.font-semibold.font-sans "Terminology"]
      [:div.flex.flex-wrap.gap-2.mb-3
-      [:span.px-2.py-1.text-xs.bg-tint-3.text-tint-11.rounded "CodeSystems"]
-      [:span.px-2.py-1.text-xs.bg-tint-3.text-tint-11.rounded "ValueSets"]]
+      [:span.px-2.py-1.text-xs.bg-tint-3.text-tint-11.rounded.hover:bg-tint-4.transition-colors.cursor-pointer
+       {:onclick (str "event.stopPropagation(); window.location.href='" (gitbok.http/get-product-prefixed-url context "/terminology-module/fhir-terminology/codesystem") "'")}
+       "CodeSystems"]
+      [:span.px-2.py-1.text-xs.bg-tint-3.text-tint-11.rounded.hover:bg-tint-4.transition-colors.cursor-pointer
+       {:onclick (str "event.stopPropagation(); window.location.href='" (gitbok.http/get-product-prefixed-url context "/terminology-module/fhir-terminology/valueset") "'")}
+       "ValueSets"]]
      [:p.text-sm.leading-relaxed.text-tint-10.font-content
       "Validate codes and perform fast lookups in ICD-10, SNOMED, LOINC. Use custom code systems and value sets."]]
 
@@ -197,10 +228,18 @@
        :alt "Developer Experience"}]
      [:h3.text-xl.mb-3.text-tint-12.font-semibold.font-sans "Developer Experience"]
      [:div.flex.flex-wrap.gap-2.mb-3
-      [:span.px-2.py-1.text-xs.bg-tint-3.text-tint-11.rounded "Python"]
-      [:span.px-2.py-1.text-xs.bg-tint-3.text-tint-11.rounded "C#"]
-      [:span.px-2.py-1.text-xs.bg-tint-3.text-tint-11.rounded "JS"]
-      [:span.px-2.py-1.text-xs.bg-tint-3.text-tint-11.rounded "Codegen"]]
+      [:span.px-2.py-1.text-xs.bg-tint-3.text-tint-11.rounded.hover:bg-tint-4.transition-colors.cursor-pointer
+       {:onclick (str "event.stopPropagation(); window.location.href='" (gitbok.http/get-product-prefixed-url context "/getting-started/python") "'")}
+       "Python"]
+      [:span.px-2.py-1.text-xs.bg-tint-3.text-tint-11.rounded.hover:bg-tint-4.transition-colors.cursor-pointer
+       {:onclick (str "event.stopPropagation(); window.location.href='" (gitbok.http/get-product-prefixed-url context "/getting-started/csharp") "'")}
+       "C#"]
+      [:span.px-2.py-1.text-xs.bg-tint-3.text-tint-11.rounded.hover:bg-tint-4.transition-colors.cursor-pointer
+       {:onclick (str "event.stopPropagation(); window.location.href='" (gitbok.http/get-product-prefixed-url context "/getting-started/typescript") "'")}
+       "TS"]
+      [:span.px-2.py-1.text-xs.bg-tint-3.text-tint-11.rounded.hover:bg-tint-4.transition-colors.cursor-pointer
+       {:onclick (str "event.stopPropagation(); window.location.href='" (gitbok.http/get-product-prefixed-url context "/developer-experience/developer-experience-overview#use-aidbox-sdks-for-customized-experience") "'")}
+       "Codegen"]]
      [:p.text-sm.leading-relaxed.text-tint-10.font-content
       "TypeScript, C#, and Python SDKs for easy Aidbox integration and rapid app development. SDK generator for custom toolkits tailored to your stack."]]
 
@@ -251,23 +290,8 @@
         title "Aidbox Documentation"
         description "Aidbox - FHIR-first healthcare application platform"
 
-        ;; Custom layout for landing page without breadcrumb and max-width constraint
-        full-page [:div
-                   (main-navigation/nav context)
-                   [:div.mobile-menu-overlay]
-                   [:div
-                    {:class "flex max-w-screen-2xl mx-auto site-full-width:max-w-full
-                     items-start overflow-visible md:px-8"}
-                    (left-navigation/left-navigation
-                     (summary/get-summary context)
-                     (:uri request))
-                    ;; Custom content area without max-w-5xl and breadcrumb
-                    [:main#content {:class "flex-1 items-start"}
-
-                     [:div {:class "flex items-start"}
-                      [:article {:class "article__content min-w-0 flex-1 transform-3d"}
-                       [:div {:class "mx-auto max-w-full"}
-                        content]]]]]]]
+        ;; Use shared page-wrapper for consistent layout
+        full-page (layout/page-wrapper context content)]
 
     ;; Return custom response bypassing standard layout
     (gitbok.http/response1
