@@ -5,10 +5,10 @@
    [gitbok.search]
    [hiccup2.core]))
 
-(defn not-found-view [context uri]
+(defn not-found-view [uri]
   (let [search-term (last (str/split uri #"/"))
         search-results (when search-term
-                         (gitbok.search/search context search-term))]
+                         (gitbok.search/search search-term))]
     [:div.min-h-screen.flex.items-center.justify-center
      [:script
       (hiccup2.core/raw "

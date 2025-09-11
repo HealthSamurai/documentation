@@ -166,7 +166,7 @@
 (defn search-dropdown-results [context request]
   (let [query (get-in request [:query-params :q] "")
         results (when (and query (pos? (count query)))
-                  (let [search-results (take 30 (gitbok.search/search context query))]
+                  (let [search-results (take 30 (gitbok.search/search query))]
                     (mapv
                      (fn [res]
                        (let [filepath (-> res :hit :filepath)

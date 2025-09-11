@@ -4,7 +4,6 @@
    [gitbok.indexing.impl.summary]
    [gitbok.indexing.impl.uri-to-file :as uri-to-file]
    [gitbok.indexing.impl.common :as common]
-   [gitbok.indexing.impl.meilisearch :as meilisearch]
    [gitbok.indexing.impl.file-to-uri :as file-to-uri]
    [gitbok.products :as products]
    [gitbok.lastmod.generator :as lastmod-gen]
@@ -126,9 +125,6 @@
   (products/get-product-state
    context
    [::md-files-idx]))
-
-(defn search [_context q]
-  (meilisearch/search q))
 
 (defn filepath->href [context filepath href]
   (if (str/starts-with? href "http")

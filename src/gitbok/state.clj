@@ -12,7 +12,7 @@
 (defn init-state!
   "Initialize application state with config from environment.
    All System/getenv calls happen here at startup."
-  [& [{:keys [port prefix base-url dev-mode version] :as override-config}]]
+  [& [{:keys [port prefix base-url dev-mode version]}]]
   (let [config {:port (or port
                           (when-let [env-port (System/getenv "PORT")]
                             (Integer/parseInt env-port))
