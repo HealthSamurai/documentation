@@ -223,7 +223,7 @@
                                           :product-id (:current-product-id context)})
               (layout/layout
                context request
-               {:content (not-found/not-found-view context uri-relative)
+               {:content (not-found/not-found-view uri-relative)
                 :status 404
                 :title "Not found"
                 :description "Page not found"
@@ -264,7 +264,7 @@
       ;; If no root-redirect configured, show 404 or default page
       (layout/layout
        context request
-       {:content (not-found/not-found-view context "/")
+       {:content (not-found/not-found-view "/")
         :status 404
         :title "Not found"
         :description "Page not found"

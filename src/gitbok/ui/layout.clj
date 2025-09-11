@@ -16,7 +16,7 @@
 
 (defn site-footer
   "Site-wide footer component"
-  [context]
+  []
   (let [reload-state (reload/get-reload-state)
         git-head (:git-head reload-state)
         version-text (when (and git-head (not= git-head ""))
@@ -90,7 +90,7 @@
       [:article {:class "article__content min-w-0 flex-1 transform-3d"}
        [:div {:class "mx-auto max-w-full"}
         content]]]]]
-   (site-footer context)])
+   (site-footer)])
 
 (defn layout-view [context body uri filepath hide-breadcrumb]
   [:div
@@ -103,7 +103,7 @@
      (summary/get-summary context)
      uri)
     (main-content/content-div context uri body filepath false hide-breadcrumb)]
-   (site-footer context)])
+   (site-footer)])
 
 (defn document [context body {:keys [title description canonical-url og-preview lastmod favicon-url section]}]
   (let [version (gitbok.http/get-version context)
@@ -144,7 +144,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
       [:meta {:name "twitter:image" :content og-preview}]
       [:meta {:name "twitter:site" :content "@health_samurai"}]
       [:meta {:name "robots" :content "index, follow"}]
-      
+
       [:meta {:name "htmx-config"
               :content "{\"scrollIntoViewOnBoost\":false,\"scrollBehavior\":\"smooth\",\"allowEval\":false,\"historyCacheSize\":0,\"historyEnabled\":true,\"refreshOnHistoryMiss\":false}"}]
       (when section

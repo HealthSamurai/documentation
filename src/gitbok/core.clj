@@ -12,11 +12,6 @@
 
 (set! *warn-on-reflection* true)
 
-;; Server management functions (moved from gitbok.server)
-
-;; Forward declaration
-(declare stop!)
-
 (defn init-products!
   "Initialize products configuration from products.yaml"
   []
@@ -59,11 +54,6 @@
   "Start the server with optional config overrides"
   ([] (start! {}))
   ([config-overrides]
-   (when (state/get-server)
-     (log/warn "Server already running, stopping first")
-     (stop!))
-
-   ;; Initialize state with environment variables
    (let [config (state/init-state! config-overrides)
          port (:port config)
          prefix (:prefix config)
