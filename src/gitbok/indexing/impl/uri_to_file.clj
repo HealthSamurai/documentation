@@ -2,12 +2,10 @@
   (:require
    [clojure.tools.logging :as log]
    [clojure.string :as str]
-   [gitbok.constants :as const]
    [gitbok.indexing.impl.summary]
    [gitbok.indexing.impl.redirects :as redirects]
    [gitbok.products :as products]
-   [clojure.data]
-   [system]))
+   [clojure.data]))
 
 (defn uri->filepath [uri->file-idx ^String uri]
   (when uri
@@ -34,7 +32,7 @@
         redirects-raw (redirects/redirects context)
         ;; Process redirects: remove leading slash and clean up README.md paths
         redirects (->> redirects-raw
-                       (mapv (fn [[k v]] 
+                       (mapv (fn [[k v]]
                                (let [from-url (subs (str k) 1)
                                      ;; Clean up the target path similar to how files are processed
                                      to-path-clean (str/replace v #"\.md$" "")
@@ -42,11 +40,11 @@
                                               ;; Root README
                                               (= to-path-clean "README")
                                               ""
-                                              
+
                                               ;; Directory README files
                                               (str/ends-with? to-path-clean "/README")
                                               (subs to-path-clean 0 (- (count to-path-clean) 7))
-                                              
+
                                               ;; Regular files
                                               :else
                                               to-path-clean)]
@@ -92,8 +90,8 @@
 
                 :else
                 (recur (rest lines) acc)))))]
-    
-    (log/info "index ready" {:type "uri->file" 
+
+    (log/info "index ready" {:type "uri->file"
                              :files (count index)
                              :redirects (count redirects)})
     ;; Return separate indexes for files and redirects
@@ -101,24 +99,24 @@
      :redirects redirects}))
 
 (defn get-idx [context]
-  (products/get-product-state context [const/URI->FILE_IDX]))
+  (products/get-product-state context [::uri-to-file-idx]))
 
 (defn set-idx [context]
   (let [indexes (uri->file-idx context)]
     ;; Store files index
     (products/set-product-state
-     context [const/URI->FILE_IDX]
+     context [::uri-to-file-idx]
      (:files indexes))
     ;; Store redirects index
     (products/set-product-state
-     context [const/URI->REDIRECTS_IDX]
+     context [::uri-to-redirects-idx]
      (:redirects indexes))))
 
 (defn get-redirects-idx [context]
-  (products/get-product-state context [const/URI->REDIRECTS_IDX]))
+  (products/get-product-state context [::uri-to-redirects-idx]))
 
 (defn set-redirects-idx [context]
   (let [indexes (uri->file-idx context)]
     (products/set-product-state
-     context [const/URI->REDIRECTS_IDX]
+     context [::uri-to-redirects-idx]
      (:redirects indexes))))

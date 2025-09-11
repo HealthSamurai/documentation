@@ -9,19 +9,18 @@
    [gitbok.reload :as reload]
    [gitbok.products :as products]
    [cheshire.core :as json]
+   [hiccup2.core]
    [clojure.tools.logging :as log]
-   [uui]
-   [system]
    [clojure.string :as str]
    [gitbok.utils :as utils]))
 
 (defn site-footer
   "Site-wide footer component"
   [context]
-  (let [reload-state (reload/get-reload-state context)
+  (let [reload-state (reload/get-reload-state)
         git-head (:git-head reload-state)
         version-text (when (and git-head (not= git-head ""))
-                      (str " (" (subs git-head 0 (min 7 (count git-head))) ")"))]
+                       (str " (" (subs git-head 0 (min 7 (count git-head))) ")"))]
     [:footer.mt-auto.border-t.border-tint-6.bg-tint-1
      [:div.max-w-screen-2xl.mx-auto.px-5.md:px-8.py-6
       ;; Mobile: stack vertically, Desktop: single row
@@ -111,17 +110,17 @@
         version-param (when version (str "?v=" version))]
     [:html.antialiased {:lang "en"}
      [:head
-      (uui/raw "<!-- Google Tag Manager -->")
+      (hiccup2.core/raw "<!-- Google Tag Manager -->")
       [:script
-       (uui/raw
+       (hiccup2.core/raw
         "(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
 new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
 j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
 })(window,document,'script','dataLayer','GTM-PMS5LG2');")]
-      (uui/raw "<!-- End Google Tag Manager -->")
+      (hiccup2.core/raw "<!-- End Google Tag Manager -->")
       [:script
-       (uui/raw "
+       (hiccup2.core/raw "
 (function(w, d) { w.PushEngage = w.PushEngage || []; w._peq = w._peq || []; PushEngage.push(['init', { appId: '795c4eea-7a69-42d7-bff3-882774303fcf' }]); var e = d.createElement('script'); e.src = 'https://clientcdn.pushengage.com/sdks/pushengage-web-sdk.js'; e.async = true; e.type = 'text/javascript'; d.head.appendChild(e); })(window, document);")]
       [:meta {:charset "utf-8"}]
       [:meta {:name "viewport" :content "width=device-width, initial-scale=1.0"}]
@@ -145,8 +144,8 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
       [:meta {:name "twitter:image" :content og-preview}]
       [:meta {:name "twitter:site" :content "@health_samurai"}]
       [:meta {:name "robots" :content "index, follow"}]
-
-      [:meta {:name "htmx-config",
+      
+      [:meta {:name "htmx-config"
               :content "{\"scrollIntoViewOnBoost\":false,\"scrollBehavior\":\"smooth\",\"allowEval\":false,\"historyCacheSize\":0,\"historyEnabled\":true,\"refreshOnHistoryMiss\":false}"}]
       (when section
         [:meta {:name "scroll-to-id" :content section}])
@@ -156,7 +155,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
       [:link {:rel "canonical" :href canonical-url}]
 
       [:script {:type "application/ld+json"}
-       (uui/raw
+       (hiccup2.core/raw
         (json/generate-string
          {"@context" "https://schema.org"
 
@@ -169,14 +168,12 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
       [:link {:rel "stylesheet", :href (str (gitbok.http/get-prefixed-url context "/static/app.min.css") version-param)}]
 
       ;; Critical scripts - load first
-      [:script {:src (gitbok.http/get-prefixed-url context "/static/htmx.min.js")
-                :deref true}]
-
+      [:script {:src (gitbok.http/get-prefixed-url context "/static/htmx.min.js")}]
       [:link {:rel "stylesheet" :href (gitbok.http/get-prefixed-url context "/static/github.min.css") :defer true}]
 
       ;; todo dark theme later
       #_[:link {:rel "stylesheet" :href (gitbok.http/get-prefixed-url context "/static/github-dark.min.css")
-              :disabled true}]
+                :disabled true}]
       [:script {:src (gitbok.http/get-prefixed-url context "/static/highlight.min.js") :defer true}]
       [:script {:src (gitbok.http/get-prefixed-url context "/static/json.min.js") :defer true}]
       [:script {:src (gitbok.http/get-prefixed-url context "/static/bash.min.js") :defer true}]
@@ -206,19 +203,20 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
       ;; Theme toggle functionality
       ;; TODO
       #_[:script {:defer true
-                :src (str (gitbok.http/get-prefixed-url context "/static/theme-toggle.js") version-param)}]
-
-      ]
+                  :src (str (gitbok.http/get-prefixed-url context "/static/theme-toggle.js") version-param)}]]
 
      [:body {:hx-on "htmx:afterSwap: window.scrollTo(0, 0);"}
-      (uui/raw "<!-- Google Tag Manager (noscript) -->")
+      (hiccup2.core/raw "<!-- Google Tag Manager (noscript) -->")
       [:noscript
        [:iframe
         {:src "https://www.googletagmanager.com/ns.html?id=GTM-PMS5LG2" :height "0" :width "0"
          :style
          "display:none;visibility:hidden"}]]
-      (uui/raw "<!-- End Google Tag Manager (noscript) -->")
+      (hiccup2.core/raw "<!-- End Google Tag Manager (noscript) -->")
       body]]))
+
+(defn hx-target [request]
+  (get-in request [:headers "hx-target"]))
 
 (defn layout [context request
               {:keys [content
@@ -230,14 +228,14 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                       status
                       hide-breadcrumb]}]
   (log/info ::layout-start {:uri (:uri request)
-                             :title title
-                             :filepath filepath
-                             :has-content (boolean content)
-                             :product-id (:current-product-id context)
-                             :status (or status 200)})
+                            :title title
+                            :filepath filepath
+                            :has-content (boolean content)
+                            :product-id (:current-product-id context)
+                            :status (or status 200)})
   (let [status (or status 200)
         uri (:uri request)
-        is-hx-target (uui/hx-target request)
+        is-hx-target (hx-target request)
         is-search-page (str/includes? uri "/search")
         body
         (cond

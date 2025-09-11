@@ -2,7 +2,6 @@
   (:require
    [clojure.string :as str]
    [gitbok.utils :as utils]
-   [uui]
    [hiccup2.core]))
 
 ;; {% code title="My cool code" lineNumbers="true" %}

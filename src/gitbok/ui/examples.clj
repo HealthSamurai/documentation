@@ -3,7 +3,6 @@
    [gitbok.ui.layout :as layout]
    [gitbok.products :as products]
    [gitbok.examples.indexer :as indexer]
-   [system]
    [gitbok.http]
    [clojure.string :as str]
    [hiccup2.core]
@@ -260,7 +259,7 @@
   (let [ctx-with-product (products/set-current-product-id context "aidbox")
         examples-data (indexer/get-examples ctx-with-product)
         {:keys [examples]} examples-data
-        
+
         ;; Get query parameters
         params (:query-params request)
         search-term (get params :search "")
@@ -277,7 +276,7 @@
                                         (string? feats) [feats]
                                         (sequential? feats) feats
                                         :else [])))
-        
+
         content (render-examples-results examples search-term selected-languages selected-features)]
     (gitbok.http/response1 content)))
 

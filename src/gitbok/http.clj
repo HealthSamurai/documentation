@@ -1,8 +1,7 @@
 (ns gitbok.http
   (:require
-   [system]
+   [gitbok.state :as state]
    [clojure.string :as str]
-   [gitbok.constants :as const]
    [gitbok.utils :as utils]
    [gitbok.products :as products]))
 
@@ -26,29 +25,22 @@
    (response1 body 200 nil nil)))
 
 (defn set-port [context port]
-  (system/set-system-state
-   context [const/PORT]
-   port))
+  (state/set-state! [:config :port] port))
 
 (defn get-port [context]
-  (system/get-system-state context [const/PORT]))
+  (state/get-config :port))
 
 (defn set-prefix [context prefix]
-  (system/set-system-state
-   context [const/PREFIX]
-   prefix))
+  (state/set-state! [:config :prefix] prefix))
 
 (defn get-prefix [context]
-  (system/get-system-state context [const/PREFIX]))
+  (state/get-config :prefix ""))
 
 (defn set-base-url [context base-url]
-
-  (system/set-system-state
-   context [const/BASE_URL]
-   base-url))
+  (state/set-state! [:config :base-url] base-url))
 
 (defn get-base-url [context]
-  (system/get-system-state context [const/BASE_URL]))
+  (state/get-config :base-url))
 
 (defn get-absolute-url [context relative-url]
   (utils/absolute-url (get-base-url context)
@@ -73,20 +65,16 @@
       uri)))
 
 (defn set-version [context version]
-  (system/set-system-state
-   context [const/VERSION]
-   version))
+  (state/set-state! [:config :version] version))
 
 (defn get-version [context]
-  (system/get-system-state context [const/VERSION]))
+  (state/get-config :version))
 
 (defn set-dev-mode [context dev-mode]
-  (system/set-system-state
-   context [const/DEV_MODE]
-   dev-mode))
+  (state/set-state! [:config :dev-mode] dev-mode))
 
 (defn get-dev-mode [context]
-  (system/get-system-state context [const/DEV_MODE]))
+  (state/get-config :dev-mode))
 
 (defn get-product-prefix
   [context]
