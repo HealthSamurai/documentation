@@ -15,6 +15,8 @@ services:
       - MEILISEARCH_URL=http://meilisearch:7700
       - MEILISEARCH_API_KEY=${MEILISEARCH_API_KEY:-60DBZGy6zoDL6Q--s1-dHBWptiVKvK-XRsaacdvkOSM}
       - PORT=8081
+    env_file:
+      - .env
     user: "1000:1000"
     volumes:
       - .:/repo:ro
