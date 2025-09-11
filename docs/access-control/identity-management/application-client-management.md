@@ -1,10 +1,10 @@
 # Application/Client Management
 
-To provide programmatic access to the Aidbox API, you have to use a `Client` resource. The primary purpose of the Client resource is to facilitate authentication and access control within Aidbox.
+To provide programmatic access to the Aidbox API, you have to use a [`Client`](../../reference/system-resources-reference/iam-module-resources.md#client) resource. The primary purpose of the `Client` resource is to facilitate authentication and access control within Aidbox.
 
-In Aidbox, a Client represents an application or service that needs to interact with the FHIR server programmatically. Clients are using Basic and OAuth2 authentication flows to authenticate requests to Aidbox.
+In Aidbox, a `Client` resource represents an application or service that needs programmatic access to the FHIR server. Clients authenticate using Basic authentication or OAuth2 flows.
 
-Unlike User resources, which represent human users, Clients typically represent:
+Unlike `User` resources (which represent human users), `Client` resources represent:
 
 * Backend services
 * Mobile applications
@@ -12,7 +12,18 @@ Unlike User resources, which represent human users, Clients typically represent:
 * Integration engines
 * Other FHIR servers
 
-Each Client has its own identity (client ID) and authentication mechanism (such as a client secret). This allows Aidbox to identify which application is making a request and apply appropriate access controls.
+Each Client has a unique identity (client ID) and authentication credentials (such as a client secret), enabling Aidbox to identify the requesting application and apply appropriate access controls.
+
+Example of a `Client` resource:
+
+```json
+{
+  "resourceType": "Client",
+  "id": "my-client",
+  "secret": "my-client-secret",
+  "grant_types": ["basic"]
+}
+```
 
 ## Client Access Control
 
@@ -62,8 +73,8 @@ Server-side applications performing automated tasks:
 
 When creating and managing Clients, consider these security best practices:
 
-* Assign the minimum necessary permissions
+* Assign the minimum necessary permissions using [`AccessPolicies`](../../access-control/authorization/access-policies.md)
 * Use secure client secrets (high entropy, regularly rotated)
-* For public clients (like SPAs), use authorization\_code with PKCE
+* For public clients (like SPAs), use [authorization\_code](../../tutorials/security-access-control-tutorials/authorization-code-grant.md) with [PKCE](https://datatracker.ietf.org/doc/html/rfc7636)
 * Specify allowed redirect URIs for OAuth2 flows
 * Consider token lifetimes and refresh policies

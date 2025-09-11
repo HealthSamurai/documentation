@@ -39,7 +39,7 @@ Validate and inspect OAuth 2.0 tokens issued by external Identity Providers.
 
 Aidbox supports username/password authentication for login to the Aidbox Console UI.
 
-See[ Identity Management](../identity-management/#user-management) for managing Users and Passwords.
+See [Identity Management](../identity-management/#user-management) for managing Users and Passwords.
 
 Two-factor authentication is also supported. See [Two Factor Authentication](../../tutorials/security-access-control-tutorials/two-factor-authentication.md) for the tutorial.
 
