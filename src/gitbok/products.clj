@@ -16,14 +16,14 @@
 (defn read-product-config-file [config-file]
   (yaml/parse-string (utils/slurp-resource config-file)))
 
-(defn volume-path []
-  (state/get-env :docs-volume-path))
+(defn volume-path [context]
+  (state/get-env context :docs-volume-path))
 
 (defn load-products-config
   "Loads products configuration from products.yaml in classpath or volume"
-  []
+  [context]
   (try
-    (let [config-str (if-let [vol-path (volume-path)]
+    (let [config-str (if-let [vol-path (volume-path context)]
                        ;; Try volume first, then fallback to classpath
                        (let [file (io/file vol-path "products.yaml")]
                          (log/info "load config" {:source "volume" :path (.getPath file)})
@@ -67,31 +67,26 @@
   "Gets current product ID - for compatibility"
   [context]
   (or (:current-product-id context)
-      (when-let [product (state/get-current-product)]
+      (when-let [product (state/get-current-product context)]
         (:id product))
       "default"))
 
 (defn set-current-product-id
-  "Sets current product ID - returns for compatibility or updates state"
-  ([product-id]
-   ;; Direct state update
-   (when-let [product (first (filter #(= (:id %) product-id) (state/get-products)))]
-     (state/set-current-product! product))
-   product-id)
-  ([context product-id]
-   ;; Legacy compatibility - returns updated context
-   (set-current-product-id product-id)
-   (assoc context :current-product-id product-id)))
+  "Sets current product ID - returns updated context"
+  [context product-id]
+  (when-let [product (first (filter #(= (:id %) product-id) (state/get-products context)))]
+    (state/set-current-product! context product))
+  (assoc context :current-product-id product-id))
 
 (defn get-product-state
   "Gets state for a specific product"
   [context path & [default]]
-  (state/get-product-state path default))
+  (state/get-product-state context path default))
 
 (defn set-product-state
   "Sets state for a specific product"
   [context path value]
-  (state/set-product-state! path value))
+  (state/set-product-state! context path value))
 
 (defn determine-product-by-uri
   "Determines product from request URI"
@@ -112,22 +107,22 @@
 (defn get-products-config
   "Gets all products configuration"
   [context]
-  (state/get-products))
+  (state/get-products context))
 
 (defn get-full-config
   "Gets full configuration including products and root-redirect"
   [context]
-  (state/get-state [:products :full-config] {}))
+  (state/get-state context [:products :full-config] {}))
 
 (defn set-products-config
   "Saves products configuration"
   [context products]
-  (state/set-products! products))
+  (state/set-products! context products))
 
 (defn set-full-config
   "Saves full configuration"
   [context config]
-  (state/set-state! [:products :full-config] config))
+  (state/set-state! context [:products :full-config] config))
 
 (defn get-product-by-id
   "Gets product configuration by its ID"

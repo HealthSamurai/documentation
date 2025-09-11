@@ -2,16 +2,17 @@
   (:require [gitbok.utils :as utils]
             [clojure.tools.logging :as log]))
 
-(defonce ^:private app-state
-  (atom {:config {}
-         :products {}
-         :cache {}
-         :schedulers {}
-         :runtime {}}))
+(def empty-state
+  {:config {}
+   :products {}
+   :cache {}
+   :schedulers {}
+   :runtime {}})
 
 (defn init-state!
   "Initialize application state with config from environment.
-   All System/getenv calls happen here at startup."
+   All System/getenv calls happen here at startup.
+   Returns a system context that should be used for all subsequent operations."
   [& [{:keys [port prefix base-url dev-mode version]}]]
   (let [config {:port (or port
                           (when-let [env-port (System/getenv "PORT")]
@@ -34,136 +35,182 @@
                       :examples-update-interval (or (System/getenv "EXAMPLES_UPDATE_INTERVAL") "60")
                       :reload-check-interval (or (System/getenv "RELOAD_CHECK_INTERVAL") "30")
                       :meilisearch-url (System/getenv "MEILISEARCH_URL")
-                      :meilisearch-api-key (System/getenv "MEILISEARCH_API_KEY")}}]
-    (reset! app-state
-            {:config config
-             :products {:config []
-                        :current nil
-                        :indices {}}
-             :cache {:lastmod {}
-                     :reload-state {:git-head nil
-                                    :last-reload-time nil
-                                    :app-version (:version config)
-                                    :in-progress false}}
-             :schedulers {}
-             :runtime {}})
+                      :meilisearch-api-key (System/getenv "MEILISEARCH_API_KEY")}}
+        initial-state {:config config
+                       :products {:config []
+                                 :current nil
+                                 :indices {}}
+                       :cache {:lastmod {}
+                              :reload-state {:git-head nil
+                                           :last-reload-time nil
+                                           :app-version (:version config)
+                                           :in-progress false}}
+                       :schedulers {}
+                       :runtime {}}]
     (log/info "State initialized" {:port (:port config)
                                    :prefix (:prefix config)
                                    :base-url (:base-url config)
                                    :dev-mode (:dev-mode config)
                                    :version (:version config)})
-    config))
+    ;; Return a context with the atom for all subsequent operations
+    {:system (atom initial-state)}))
 
 ;; Core API functions
 (defn get-state
   "Get value from state by path"
-  ([path] (get-state path nil))
-  ([path default]
-   (get-in @app-state path default)))
+  ([context path] (get-state context path nil))
+  ([context path default]
+   (get-in @(:system context) path default)))
 
 (defn set-state!
   "Set value in state by path"
-  [path value]
-  (swap! app-state assoc-in path value)
+  [context path value]
+  (swap! (:system context) assoc-in path value)
   value)
 
 (defn update-state!
   "Update value in state by path with function"
-  [path f & args]
-  (apply swap! app-state update-in path f args))
-
-(defn merge-state!
-  "Merge map into state at path"
-  [path m]
-  (swap! app-state update-in path merge m))
+  [context path f & args]
+  (apply swap! (:system context) update-in path f args))
 
 ;; Convenience getters for common paths
 (defn get-config
-  ([] (get-state [:config]))
-  ([k] (get-state [:config k]))
-  ([k default] (get-state [:config k] default)))
+  ([context] (get-state context [:config]))
+  ([context k] (get-state context [:config k]))
+  ([context k default] (get-state context [:config k] default)))
 
 (defn get-env
   "Get environment variable stored at startup"
-  ([k] (get-state [:config :env k]))
-  ([k default] (get-state [:config :env k] default)))
+  ([context k] (get-state context [:config :env k]))
+  ([context k default] (get-state context [:config :env k] default)))
 
-(defn get-products []
-  (get-state [:products :config] []))
+(defn get-products [context]
+  (get-state context [:products :config] []))
 
-(defn set-products! [products]
-  (set-state! [:products :config] products))
+(defn set-products! [context products]
+  (set-state! context [:products :config] products))
 
-(defn get-current-product []
-  (get-state [:products :current]))
+(defn get-current-product [context]
+  (get-state context [:products :current]))
 
-(defn set-current-product! [product]
-  (set-state! [:products :current] product))
+(defn set-current-product! [context product]
+  (set-state! context [:products :current] product))
 
 (defn get-product-state
   "Get state for current product or specific product"
-  ([path] (get-product-state path nil))
-  ([path default]
-   (if-let [product-id (:id (get-current-product))]
-     (get-state (concat [:products :indices product-id] path) default)
+  ([context path] (get-product-state context path nil))
+  ([context path default]
+   (if-let [product-id (:id (get-current-product context))]
+     (get-state context (concat [:products :indices product-id] path) default)
      (do
        (log/warn "No current product set when getting product state" {:path path})
        default))))
 
 (defn set-product-state!
   "Set state for current product"
-  [path value]
-  (if-let [product-id (:id (get-current-product))]
-    (set-state! (concat [:products :indices product-id] path) value)
+  [context path value]
+  (if-let [product-id (:id (get-current-product context))]
+    (set-state! context (concat [:products :indices product-id] path) value)
     (log/error "No current product set when setting product state" {:path path})))
 
 ;; Cache management
 (defn get-cache
-  ([k] (get-state [:cache k]))
-  ([k default] (get-state [:cache k] default)))
+  ([context k] (get-state context [:cache k]))
+  ([context k default] (get-state context [:cache k] default)))
 
-(defn set-cache! [k v]
-  (set-state! [:cache k] v))
+(defn set-cache! [context k v]
+  (set-state! context [:cache k] v))
 
-(defn update-cache! [k f & args]
-  (apply update-state! [:cache k] f args))
+(defn update-cache! [context k f & args]
+  (apply update-state! context [:cache k] f args))
 
 ;; Scheduler management
-(defn get-scheduler [k]
-  (get-state [:schedulers k]))
+(defn get-scheduler [context k]
+  (get-state context [:schedulers k]))
 
-(defn set-scheduler! [k scheduler]
-  (set-state! [:schedulers k] scheduler))
+(defn set-scheduler! [context k scheduler]
+  (set-state! context [:schedulers k] scheduler))
 
-(defn remove-scheduler! [k]
-  (swap! app-state update :schedulers dissoc k)
+(defn remove-scheduler! [context k]
+  (swap! (:system context) update :schedulers dissoc k)
   nil)
 
 ;; Runtime state
 (defn get-runtime
-  ([k] (get-state [:runtime k]))
-  ([k default] (get-state [:runtime k] default)))
+  ([context k] (get-state context [:runtime k]))
+  ([context k default] (get-state context [:runtime k] default)))
 
-(defn set-runtime! [k v]
-  (set-state! [:runtime k] v))
+(defn set-runtime! [context k v]
+  (set-state! context [:runtime k] v))
 
 ;; Server management
-(defn get-server []
-  (get-runtime :server))
+(defn get-server [context]
+  (get-runtime context :server))
 
-(defn set-server! [server-instance]
-  (set-runtime! :server server-instance))
+(defn set-server! [context server-instance]
+  (set-runtime! context :server server-instance))
 
-(defn clear-server! []
-  (set-runtime! :server nil))
+(defn clear-server! [context]
+  (set-runtime! context :server nil))
+
+;; Product indices and data management
+(defn set-summary! [context summary-data]
+  (set-product-state! context [:summary-hiccup] summary-data))
+
+(defn get-summary [context]
+  (get-product-state context [:summary-hiccup]))
+
+(defn set-file-to-uri-idx! [context idx]
+  (set-product-state! context [:file-to-uri-idx] idx))
+
+(defn get-file-to-uri-idx [context]
+  (get-product-state context [:file-to-uri-idx]))
+
+(defn set-uri-to-file-idx! [context idx]
+  (set-product-state! context [:uri-to-file-idx] idx))
+
+(defn get-uri-to-file-idx [context]
+  (get-product-state context [:uri-to-file-idx]))
+
+(defn set-redirects-idx! [context idx]
+  (set-product-state! context [:redirects-idx] idx))
+
+(defn get-redirects-idx [context]
+  (get-product-state context [:redirects-idx]))
+
+(defn set-sitemap! [context sitemap-data]
+  (set-product-state! context [:sitemap] sitemap-data))
+
+(defn get-sitemap [context]
+  (get-product-state context [:sitemap]))
+
+(defn set-md-files-idx! [context idx]
+  (set-product-state! context [:md-files-idx] idx))
+
+(defn get-md-files-idx [context]
+  (get-product-state context [:md-files-idx]))
+
+(defn set-parsed-markdown-idx! [context idx]
+  (set-product-state! context [:parsed-markdown-idx] idx))
+
+(defn get-parsed-markdown-idx [context]
+  (get-product-state context [:parsed-markdown-idx]))
+
+(defn set-navigation-links! [context links]
+  (set-product-state! context [:navigation-links] links))
+
+(defn get-navigation-links [context]
+  (get-product-state context [:navigation-links]))
+
+(defn set-examples-data! [context data]
+  (set-product-state! context [:examples-data] data))
+
+(defn get-examples-data [context]
+  (get-product-state context [:examples-data]))
 
 ;; Debug helper
-(defn get-full-state []
-  @app-state)
+(defn get-full-state [context]
+  @(:system context))
 
-(defn reset-state! []
-  (reset! app-state {:config {}
-                     :products {}
-                     :cache {}
-                     :schedulers {}
-                     :runtime {}}))
+(defn reset-state! [context]
+  (reset! (:system context) empty-state))

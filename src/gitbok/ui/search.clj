@@ -7,6 +7,7 @@
    [gitbok.utils :as utils]
    [gitbok.products :as products]
    [gitbok.http :as http]
+   [gitbok.state :as state]
    [clojure.string :as str]))
 
 (defn highlight-text [text query]
@@ -29,7 +30,7 @@
   [context uri]
   (let [product-prefix (http/get-product-prefix context)
         product-path (products/path context)
-        docs-prefix (http/get-prefix context)]
+        docs-prefix (state/get-config context :prefix "")]
     (cond
       ;; No URI - just return product prefix
       (nil? uri) product-prefix
@@ -52,7 +53,7 @@
         (letfn [(extract-text [hiccup]
                   (cond
                     (string? hiccup) hiccup
-                    (vector? hiccup) (let [[tag attrs & content] hiccup]
+                    (vector? hiccup) (let [[tag _attrs & content] hiccup]
                                        (if (= tag :a)
                                          (str/join " " (map extract-text content))
                                          (str/join " " (map extract-text content))))
@@ -63,7 +64,7 @@
 
 (defn dropdown-result-item [context result query index]
   (let [{:keys [hit hit-by uri]} result
-        {:keys [filepath title h1 h2 h3 h4 text]} hit
+        {:keys [_filepath title h1 h2 h3 h4 text]} hit
         page-title (or title h1 "Untitled")
         breadcrumb (get-page-breadcrumb context uri)
         ;; Build the base URL with proper /docs prefix
@@ -166,7 +167,7 @@
 (defn search-dropdown-results [context request]
   (let [query (get-in request [:query-params :q] "")
         results (when (and query (pos? (count query)))
-                  (let [search-results (take 30 (gitbok.search/search query))]
+                  (let [search-results (take 30 (gitbok.search/search context query))]
                     (mapv
                      (fn [res]
                        (let [filepath (-> res :hit :filepath)
@@ -199,7 +200,7 @@
                                 groups (group-by #(-> % :hit :filepath) indexed-results)]
                             ;; Create flat list preserving original order
                             (->> groups
-                                 (mapcat (fn [[filepath page-results]]
+                                 (mapcat (fn [[_filepath page-results]]
                                            (let [;; Sort by original index to maintain search order
                                                  sorted-results (sort-by :original-index page-results)
                                                  page-title-result (or (first (filter #(#{:title :h1} (:hit-by %)) sorted-results))

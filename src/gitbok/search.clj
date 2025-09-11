@@ -3,5 +3,5 @@
    [gitbok.indexing.impl.meilisearch :as meilisearch]
    [cheshire.core]))
 
-(defn search [query]
-  (meilisearch/search query))
+(defn search [context query]
+  (meilisearch/search context query))

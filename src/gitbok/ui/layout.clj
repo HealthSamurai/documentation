@@ -1,23 +1,22 @@
 (ns gitbok.ui.layout
   (:require
-   [gitbok.indexing.impl.summary :as summary]
+   [gitbok.http :as http]
+   [gitbok.state :as state]
    [gitbok.ui.main-content :as main-content]
    [gitbok.ui.main-navigation :as main-navigation]
    [gitbok.ui.left-navigation :as left-navigation]
    [gitbok.indexing.core :as indexing]
-   [gitbok.http]
    [gitbok.reload :as reload]
    [gitbok.products :as products]
    [cheshire.core :as json]
    [hiccup2.core]
-   [clojure.tools.logging :as log]
    [clojure.string :as str]
    [gitbok.utils :as utils]))
 
 (defn site-footer
   "Site-wide footer component"
-  []
-  (let [reload-state (reload/get-reload-state)
+  [context]
+  (let [reload-state (reload/get-reload-state context)
         git-head (:git-head reload-state)
         version-text (when (and git-head (not= git-head ""))
                        (str " (" (subs git-head 0 (min 7 (count git-head))) ")"))]
@@ -90,7 +89,7 @@
       [:article {:class "article__content min-w-0 flex-1 transform-3d"}
        [:div {:class "mx-auto max-w-full"}
         content]]]]]
-   (site-footer)])
+   (site-footer context)])
 
 (defn layout-view [context body uri filepath hide-breadcrumb]
   [:div
@@ -99,14 +98,12 @@
    [:div.flex-1
     {:class "flex max-w-screen-2xl mx-auto site-full-width:max-w-full
      items-start overflow-visible md:px-8"}
-    (left-navigation/left-navigation
-     (summary/get-summary context)
-     uri)
+    (left-navigation/left-navigation (state/get-summary context) uri)
     (main-content/content-div context uri body filepath false hide-breadcrumb)]
-   (site-footer)])
+   (site-footer context)])
 
 (defn document [context body {:keys [title description canonical-url og-preview lastmod favicon-url section]}]
-  (let [version (gitbok.http/get-version context)
+  (let [version (state/get-config context :version)
         version-param (when version (str "?v=" version))]
     [:html {:lang "en"
             :class "antialiased"}
@@ -166,45 +163,45 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
           "author" {"@type" "Organization", "name" "HealthSamurai"}}))]
       [:title (str title " | " (or (:name (products/get-current-product context)) "Documentation"))]
 
-      [:link {:rel "stylesheet", :href (str (gitbok.http/get-prefixed-url context "/static/app.min.css") version-param)}]
+      [:link {:rel "stylesheet", :href (str (http/get-prefixed-url context "/static/app.min.css") version-param)}]
 
       ;; Critical scripts - load first
-      [:script {:src (gitbok.http/get-prefixed-url context "/static/htmx.min.js")}]
-      [:link {:rel "stylesheet" :href (gitbok.http/get-prefixed-url context "/static/github.min.css") :defer true}]
+      [:script {:src (http/get-prefixed-url context "/static/htmx.min.js")}]
+      [:link {:rel "stylesheet" :href (http/get-prefixed-url context "/static/github.min.css") :defer true}]
 
       ;; todo dark theme later
-      #_[:link {:rel "stylesheet" :href (gitbok.http/get-prefixed-url context "/static/github-dark.min.css")
+      #_[:link {:rel "stylesheet" :href (http/get-prefixed-url context "/static/github-dark.min.css")
                 :disabled true}]
-      [:script {:src (gitbok.http/get-prefixed-url context "/static/highlight.min.js") :defer true}]
-      [:script {:src (gitbok.http/get-prefixed-url context "/static/json.min.js") :defer true}]
-      [:script {:src (gitbok.http/get-prefixed-url context "/static/bash.min.js") :defer true}]
-      [:script {:src (gitbok.http/get-prefixed-url context "/static/yaml.min.js") :defer true}]
-      [:script {:src (gitbok.http/get-prefixed-url context "/static/xml.min.js") :defer true}]
-      [:script {:src (gitbok.http/get-prefixed-url context "/static/http.min.js") :defer true}]
-      [:script {:src (gitbok.http/get-prefixed-url context "/static/graphql.min.js") :defer true}]
-      [:script {:src (gitbok.http/get-prefixed-url context "/static/sql.min.js") :defer true}]
-      [:script {:src (gitbok.http/get-prefixed-url context "/static/javascript.min.js") :defer true}]
+      [:script {:src (http/get-prefixed-url context "/static/highlight.min.js") :defer true}]
+      [:script {:src (http/get-prefixed-url context "/static/json.min.js") :defer true}]
+      [:script {:src (http/get-prefixed-url context "/static/bash.min.js") :defer true}]
+      [:script {:src (http/get-prefixed-url context "/static/yaml.min.js") :defer true}]
+      [:script {:src (http/get-prefixed-url context "/static/xml.min.js") :defer true}]
+      [:script {:src (http/get-prefixed-url context "/static/http.min.js") :defer true}]
+      [:script {:src (http/get-prefixed-url context "/static/graphql.min.js") :defer true}]
+      [:script {:src (http/get-prefixed-url context "/static/sql.min.js") :defer true}]
+      [:script {:src (http/get-prefixed-url context "/static/javascript.min.js") :defer true}]
 
       ;; Mermaid config (needed when Mermaid loads)
-      [:script {:src (str (gitbok.http/get-prefixed-url context "/static/mermaid-config.js") version-param) :defer true}]
+      [:script {:src (str (http/get-prefixed-url context "/static/mermaid-config.js") version-param) :defer true}]
 
       ;; Combined UI bundle (includes tabs, toc, scroll-to-id, heading-links, mobile-menu, mobile-search, lastupdated, copy-code)
       ;; Load without defer to ensure it's available for HTMX events
-      [:script {:src (str (gitbok.http/get-prefixed-url context "/static/ui-bundle.js") version-param)
+      [:script {:src (str (http/get-prefixed-url context "/static/ui-bundle.js") version-param)
                 :defer true}]
 
       ;; Other UI scripts
-      [:script {:src (str (gitbok.http/get-prefixed-url context "/static/meilisearch-htmx-nav.js") version-param)
+      [:script {:src (str (http/get-prefixed-url context "/static/meilisearch-htmx-nav.js") version-param)
                 :defer true}]
       [:script {:defer true
-                :src (str (gitbok.http/get-prefixed-url context "/static/keyboard-navigation.js") version-param)}]
+                :src (str (http/get-prefixed-url context "/static/keyboard-navigation.js") version-param)}]
       [:script {:defer true
-                :src (str (gitbok.http/get-prefixed-url context "/static/posthog.js") version-param)}]
+                :src (str (http/get-prefixed-url context "/static/posthog.js") version-param)}]
 
       ;; Theme toggle functionality
       ;; TODO
       #_[:script {:defer true
-                  :src (str (gitbok.http/get-prefixed-url context "/static/theme-toggle.js") version-param)}]]
+                  :src (str (http/get-prefixed-url context "/static/theme-toggle.js") version-param)}]]
 
      [:body {:hx-on "htmx:afterSwap: window.scrollTo(0, 0);"}
       (hiccup2.core/raw "<!-- Google Tag Manager (noscript) -->")
@@ -228,12 +225,6 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                       section
                       status
                       hide-breadcrumb]}]
-  (log/info ::layout-start {:uri (:uri request)
-                            :title title
-                            :filepath filepath
-                            :has-content (boolean content)
-                            :product-id (:current-product-id context)
-                            :status (or status 200)})
   (let [status (or status 200)
         uri (:uri request)
         is-hx-target (hx-target request)
@@ -253,22 +244,22 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
             :canonical-url
             ;; / and /readme is same
             (if (get request :/)
-              (gitbok.http/get-url context)
-              (gitbok.http/get-absolute-url context uri))
+              (http/get-url context)
+              (http/get-absolute-url context uri))
             :og-preview
             (let [current-product (products/get-current-product context)
                   product-id (when current-product (:id current-product))
                   png-filename (when filepath (str/replace filepath #"\.md" ".png"))]
               (when (and product-id png-filename)
-                (gitbok.http/get-absolute-url
+                (http/get-absolute-url
                  context
                  (utils/concat-urls "/public/og-preview" product-id png-filename))))
             :lastmod lastmod
-            :favicon-url (gitbok.http/get-product-prefixed-url context "/favicon.ico")}))
+            :favicon-url (http/get-product-prefixed-url context "/favicon.ico")}))
 
         lastmod (if is-search-page
                   nil
                   (when filepath
                     (or lastmod
                         (indexing/get-lastmod context filepath))))]
-    (gitbok.http/response1 body status lastmod section)))
+    (http/response1 body status lastmod section)))

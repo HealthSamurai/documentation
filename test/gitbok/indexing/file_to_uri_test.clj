@@ -1,8 +1,8 @@
 (ns gitbok.indexing.file-to-uri-test
-  (:require [clojure.test :refer :all]
+  (:require [clojure.test :refer [deftest is testing]]
             [gitbok.indexing.impl.file-to-uri :as file-to-uri]
             [gitbok.indexing.impl.summary :as summary]
-            [gitbok.products :as products]
+            [gitbok.state :as state]
 ))
 
 (defn mock-context []
@@ -70,16 +70,16 @@
 
 (deftest filepath->uri-test
   (testing "Should return URI for existing filepath"
-    (with-redefs [file-to-uri/get-idx 
+    (with-redefs [state/get-file-to-uri-idx 
                   (fn [_] {"test.md" {:uri "/test"}})]
       (is (= "/test" (file-to-uri/filepath->uri (mock-context) "test.md")))))
   
   (testing "Should return nil for non-existing filepath"
-    (with-redefs [file-to-uri/get-idx 
+    (with-redefs [state/get-file-to-uri-idx 
                   (fn [_] {"test.md" {:uri "/test"}})]
       (is (nil? (file-to-uri/filepath->uri (mock-context) "non-existing.md")))))
   
   (testing "Should return nil for external URLs"
-    (with-redefs [file-to-uri/get-idx 
+    (with-redefs [state/get-file-to-uri-idx 
                   (fn [_] {"test.md" {:uri "/test"}})]
       (is (nil? (file-to-uri/filepath->uri (mock-context) "https://example.com"))))))

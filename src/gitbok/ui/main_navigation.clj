@@ -1,7 +1,8 @@
 (ns gitbok.ui.main-navigation
-  (:require [gitbok.http]
-            [clojure.string :as str]
-            [gitbok.products :as products]))
+  (:require
+   [gitbok.http :as http]
+   [clojure.string :as str]
+   [gitbok.products :as products]))
 
 (defn nav [context]
   [:nav {:class "w-full bg-header-bg backdrop-blur-xl border-b border-header-border flex-shrink-0 sticky top-0 z-50"
@@ -23,12 +24,12 @@
        [:div {:class (if nav-links-right?
                        "flex items-center"
                        "flex items-center lg:w-80 flex-shrink-0")}
-        [:a {:href (gitbok.http/get-product-prefixed-url context "/")
+        [:a {:href (http/get-product-prefixed-url context "/")
              :class "group/headerlogo flex items-center"}
          [:img {:alt (str (:name product) " Logo")
                 :class "block object-contain size-8"
                 :fetchpriority "high"
-                :src (gitbok.http/get-absolute-url
+                :src (http/get-absolute-url
                       context
                       (or (:logo product) "/.gitbook/assets/aidbox_logo.jpg"))}]
          [:div {:class "text-pretty tracking-tight font-semibold ms-3 text-lg/tight lg:text-xl/tight text-tint-strong"}
@@ -59,7 +60,7 @@
                                        (str/starts-with? (:href entry) "http"))
                            href (if external?
                                   (:href entry)
-                                  (gitbok.http/get-product-prefixed-url context (:href entry)))]
+                                  (http/get-product-prefixed-url context (:href entry)))]
                        [:a (cond->
                             {:href href
                              :class "block px-4 py-2 text-sm text-tint-11 hover:bg-tint-hover no-underline"
@@ -72,7 +73,7 @@
                 [:a (let [external? (str/starts-with? (:href link) "http")
                           href (if external?
                                  (:href link)
-                                 (gitbok.http/get-product-prefixed-url context (:href link)))]
+                                 (http/get-product-prefixed-url context (:href link)))]
                       (cond-> {:href href
                                :class "text-small text-tint-10 hover:text-primary-9 transition-colors duration-200 no-underline font-normal"
                                :key (:text link)}
@@ -107,7 +108,7 @@
                                        (str/starts-with? (:href entry) "http"))
                            href (if external?
                                   (:href entry)
-                                  (gitbok.http/get-product-prefixed-url context (:href entry)))]
+                                  (http/get-product-prefixed-url context (:href entry)))]
                        [:a (cond->
                             {:href href
                              :class "block px-4 py-2 text-sm text-tint-11 hover:bg-tint-hover no-underline"
@@ -120,7 +121,7 @@
                 [:a (let [external? (str/starts-with? (:href link) "http")
                           href (if external?
                                  (:href link)
-                                 (gitbok.http/get-product-prefixed-url context (:href link)))]
+                                 (http/get-product-prefixed-url context (:href link)))]
                       (cond-> {:href href
                                :class "text-small text-tint-10 hover:text-primary-9 transition-colors duration-200 no-underline font-normal"
                                :key (:text link)}
@@ -167,7 +168,7 @@
                          [[:a (merge
                                {:href (if (clojure.string/starts-with? (:href link) "http")
                                         (:href link)
-                                        (gitbok.http/get-product-prefixed-url context (:href link)))
+                                        (http/get-product-prefixed-url context (:href link)))
                                 :class "block px-4 py-2 text-sm text-tint-11 hover:bg-tint-hover hover:text-primary-9 no-underline"
                                 :role "menuitem"}
                                (when (:target link)
@@ -176,11 +177,11 @@
                      links)
              ;; Sign up link for mobile - only for Aidbox
              #_(when (= (:id product) "aidbox")
-               [[:div {:class "border-t border-tint-subtle my-1"}]
-                [:a {:href "https://aidbox.app/ui/portal#/signup"
-                     :class "block px-4 py-2 text-sm text-primary-9 hover:bg-tint-hover no-underline font-medium"
-                     :role "menuitem"}
-                 "Sign up"]])))]]]
+                 [[:div {:class "border-t border-tint-subtle my-1"}]
+                  [:a {:href "https://aidbox.app/ui/portal#/signup"
+                       :class "block px-4 py-2 text-sm text-primary-9 hover:bg-tint-hover no-underline font-medium"
+                       :role "menuitem"}
+                   "Sign up"]])))]]]
 
        ;; Search section
        [:div {:class "relative"}
@@ -226,7 +227,7 @@
                             text-tint-strong
                             font-normal"
                      :autocomplete "off"
-                     :hx-get (gitbok.http/get-product-prefixed-url context "/meilisearch/dropdown")
+                     :hx-get (http/get-product-prefixed-url context "/meilisearch/dropdown")
                      :hx-trigger "keyup[!event.key.startsWith('Arrow') && event.key !== 'Enter' && event.key !== 'Escape'] changed delay:300ms, focus"
                      :hx-target "#meilisearch-dropdown"
                      :hx-swap "innerHTML"
@@ -281,7 +282,7 @@
                     text-tint-strong
                     font-normal"
                     :autocomplete "off"
-                    :hx-get (gitbok.http/get-product-prefixed-url context "/search/dropdown")
+                    :hx-get (http/get-product-prefixed-url context "/search/dropdown")
                     :hx-trigger "keyup[!event.key.startsWith('Arrow') && event.key !== 'Enter' && event.key !== 'Escape'] changed delay:300ms, focus"
                     :hx-target "#search-dropdown"
                     :hx-swap "innerHTML"
@@ -314,7 +315,7 @@
                     :placeholder "Ask or search..."
                     :class "flex-1 bg-transparent outline-none placeholder-tint-9 text-tint-strong font-normal"
                     :autocomplete "off"
-                    :hx-get (gitbok.http/get-product-prefixed-url context "/meilisearch/dropdown?mobile=true")
+                    :hx-get (http/get-product-prefixed-url context "/meilisearch/dropdown?mobile=true")
                     :hx-trigger "keyup[!event.key.startsWith('Arrow') && event.key !== 'Enter' && event.key !== 'Escape'] changed delay:300ms, focus"
                     :hx-target "#mobile-meilisearch-dropdown"
                     :hx-swap "innerHTML"
@@ -338,6 +339,6 @@
 
        ;; Sign up button (desktop only) - only for Aidbox
        #_(when (= (:id product) "aidbox")
-         [:a {:href "https://aidbox.app/ui/portal#/signup"
-              :class "hidden lg:inline-flex items-center justify-center px-4 py-2 text-sm font-medium text-white bg-primary-9 hover:bg-primary-10 rounded-md transition-colors duration-200 no-underline"}
-          "Sign up"])]])])
+           [:a {:href "https://aidbox.app/ui/portal#/signup"
+                :class "hidden lg:inline-flex items-center justify-center px-4 py-2 text-sm font-medium text-white bg-primary-9 hover:bg-primary-10 rounded-md transition-colors duration-200 no-underline"}
+            "Sign up"])]])])

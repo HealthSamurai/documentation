@@ -2,8 +2,8 @@
   (:require
    [clojure.test :refer [deftest testing is]]
    [gitbok.products :as products]
-   [gitbok.utils :as utils]
-   [clj-yaml.core :as yaml]))
+   [gitbok.test-helpers :as th]
+   [gitbok.utils :as utils]))
 
 (deftest test-load-products-config
   (testing "load-products-config with root-redirect"
@@ -12,10 +12,11 @@
                     (when (= path "products.yaml")
                       "root-redirect: \"/aidbox\"\n\nproducts:\n  - id: test\n    name: Test Product\n    path: /test\n    config: .gitbook.yaml"))
                   products/read-product-config-file
-                  (fn [config-file]
+                  (fn [_config-file]
                     {:structure {:summary "SUMMARY.md"
                                  :readme "README.md"}})]
-      (let [result (products/load-products-config)]
+      (let [context (th/create-test-context)
+            result (products/load-products-config context)]
         (is (= "/aidbox" (:root-redirect result)))
         (is (= 1 (count (:products result))))
         (is (= "test" (-> result :products first :id)))
@@ -27,17 +28,19 @@
                     (when (= path "products.yaml")
                       "products:\n  - id: test\n    name: Test Product\n    path: /test\n    config: .gitbook.yaml"))
                   products/read-product-config-file
-                  (fn [config-file]
+                  (fn [_config-file]
                     {:structure {:summary "SUMMARY.md"
                                  :readme "README.md"}})]
-      (let [result (products/load-products-config)]
+      (let [context (th/create-test-context)
+            result (products/load-products-config context)]
         (is (nil? (:root-redirect result)))
         (is (= 1 (count (:products result)))))))
 
   (testing "load-products-config handles exceptions"
     (with-redefs [utils/slurp-resource
-                  (fn [path]
+                  (fn [_path]
                     (throw (Exception. "File not found")))]
-      (let [result (products/load-products-config)]
+      (let [context (th/create-test-context)
+            result (products/load-products-config context)]
         (is (= products/default-aidbox (:products result)))
         (is (nil? (:root-redirect result)))))))

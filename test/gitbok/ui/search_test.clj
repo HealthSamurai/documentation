@@ -1,5 +1,7 @@
 (ns gitbok.ui.search-test
   (:require
+   [gitbok.state :as state]
+   [gitbok.test-helpers]
    [clojure.test :refer [deftest testing is]]
    [gitbok.ui.search :as search]
    [gitbok.http :as http]
@@ -37,27 +39,27 @@
            (search/highlight-text "Hello world and world again" "world")))))
 
 (deftest build-search-result-url-test
-  (let [mock-context (atom {})]
+  (let [mock-context (gitbok.test-helpers/create-test-context)]
     ;; Mock the functions we need
     (with-redefs [http/get-product-prefix (fn [_] "/docs/aidbox")
-                  http/get-prefix (fn [_] "/docs")
+                  state/get-config (fn [_ _ & [default]] (or "/docs" default))
                   products/path (fn [_] "/aidbox")]
       
       (testing "build-search-result-url returns product prefix when URI is nil"
-        (is (= "/docs/aidbox" (search/build-search-result-url @mock-context nil))))
+        (is (= "/docs/aidbox" (search/build-search-result-url mock-context nil))))
       
       (testing "build-search-result-url preserves URI that already has full prefix"
         (is (= "/docs/aidbox/api/rest" 
-               (search/build-search-result-url @mock-context "/docs/aidbox/api/rest"))))
+               (search/build-search-result-url mock-context "/docs/aidbox/api/rest"))))
       
       (testing "build-search-result-url adds /docs prefix to URI with product path only"
         (is (= "/docs/aidbox/api/rest" 
-               (search/build-search-result-url @mock-context "/aidbox/api/rest"))))
+               (search/build-search-result-url mock-context "/aidbox/api/rest"))))
       
       (testing "build-search-result-url prepends full prefix to absolute URI without product"
         (is (= "/docs/aidbox/api/rest" 
-               (search/build-search-result-url @mock-context "/api/rest"))))
+               (search/build-search-result-url mock-context "/api/rest"))))
       
       (testing "build-search-result-url handles relative URI"
         (is (= "/docs/aidbox/api/rest" 
-               (search/build-search-result-url @mock-context "api/rest")))))))
+               (search/build-search-result-url mock-context "api/rest")))))))

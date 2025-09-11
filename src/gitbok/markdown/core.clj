@@ -3,6 +3,7 @@
    [clojure.string :as str]
    [clojure.tools.logging :as log]
    [clojure.walk :as walk]
+   [gitbok.state :as state]
    [gitbok.markdown.widgets.big-links :as big-links]
    [gitbok.markdown.widgets.link :as link]
    [gitbok.markdown.widgets.headers :as headers]
@@ -297,15 +298,10 @@
   (let [parsed-files
         (mapv #(parse-markdown-content context %) md-files-idx)]
     (log/info "files parsed" {:count (count parsed-files)})
-    (products/set-product-state
-     context
-     [::parsed-markdown-idx]
-     parsed-files)))
+    (state/set-parsed-markdown-idx! context parsed-files)))
 
 (defn get-parsed-markdown-index [context]
-  (products/get-product-state
-   context
-   [::parsed-markdown-idx]))
+  (state/get-parsed-markdown-idx context))
 
 (defn get-rendered [context filepath]
   (get (products/get-product-state context [::rendered])

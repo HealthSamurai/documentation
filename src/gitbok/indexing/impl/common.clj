@@ -1,7 +1,6 @@
 (ns gitbok.indexing.impl.common
   (:require
-   [clojure.java.io :as io]
-   [clojure.string :as str]))
+   [clojure.java.io :as io]))
 
 (set! *warn-on-reflection* true)
 

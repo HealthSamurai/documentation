@@ -1,9 +1,8 @@
 (ns gitbok.markdown.widgets.big-links
   (:require
-   [gitbok.http]
    [clojure.string :as str]
    [gitbok.indexing.core :as indexing]
-   [gitbok.indexing.impl.file-to-uri :as file-to-uri]
+   [gitbok.state :as state]
    [nextjournal.markdown.utils :as u]
    [gitbok.utils :as utils]
    [gitbok.products :as products]
@@ -22,9 +21,9 @@
     url
     (when (and url filepath)
       (let [uri (-> (indexing/page-link->uri
-                      context
-                      filepath
-                      url))]
+                     context
+                     filepath
+                     url))]
         (when uri
           (if (str/starts-with? uri "/")
             uri
@@ -54,9 +53,9 @@
          ;; Get the relative URI for file lookup
          relative-uri
          (utils/uri-to-relative
-           uri
-           (gitbok.http/get-prefix context)
-           (products/path context))
+          uri
+          (state/get-config context :prefix "")
+          (products/path context))
 
          relative-uri (if (and relative-uri (str/starts-with? relative-uri "/"))
                         (subs relative-uri 1)
@@ -66,10 +65,10 @@
                 (subs file 6)
                 file)
          title
-         (or (:title (get (file-to-uri/get-idx context) file))
+         (or (:title (get (state/get-file-to-uri-idx context) file))
              (:text node))
          ;; Build the final href with prefix and product path
-         prefix (gitbok.http/get-prefix context)
+         prefix (state/get-config context :prefix "")
          product-path (products/path context)
          final-href (str prefix product-path "/" relative-uri)]
      (big-link-view final-href title))))

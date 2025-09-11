@@ -83,7 +83,7 @@
                               render-md-fn]
   (let [steps
         (map-indexed
-         (fn [idx {:keys [text start end]}]
+         (fn [idx {:keys [text]}]
            (let [lines (str/split-lines text)
                  first-line (first lines)
                  ;; Extract raw title

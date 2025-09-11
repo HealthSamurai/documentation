@@ -2,7 +2,7 @@
   (:require
    [clojure.string :as str]
    [gitbok.indexing.core :as indexing]
-   [gitbok.http]
+   [gitbok.http :as http]
    [nextjournal.markdown.utils :as u]))
 
 (defn image-renderer [context filepath _ctx node]
@@ -25,7 +25,7 @@
 
                         ;; Other relative paths - use the standard link resolution
                         :else (indexing/filepath->href context filepath normalized-src))
-        processed-src (when processed-src (gitbok.http/get-prefixed-url context processed-src))
+        processed-src (when processed-src (http/get-prefixed-url context processed-src))
 
         alt (or (:alt node)
                 (:title (:attrs node))
@@ -41,7 +41,7 @@
 
                        ;; .gitbook/assets paths - already normalized
                        (str/starts-with? base-src ".gitbook/assets")
-                       (gitbok.http/get-prefixed-url context base-src)
+                       (http/get-prefixed-url context base-src)
 
                        ;; Other relative paths - use the standard link resolution
                        :else (indexing/filepath->href context filepath base-src))))

@@ -2,6 +2,7 @@
   (:require
    [clojure.test :refer [deftest testing is]]
    [clojure.java.io :as io]
+   [clojure.java.shell]
    [gitbok.lastmod.generator :as gen]))
 
 (deftest test-no-git-available
@@ -79,7 +80,6 @@
                     gen/generate-lastmod-data (constantly {"file1.md" "2024-01-02"})]
         (let [data3 (gen/generate-or-get-cached-lastmod context product-id test-dir)]
           (is (= {"file1.md" "2024-01-02"} data3)))))))
-
 
 (deftest test-empty-directory
   (testing "Handles empty directory correctly"

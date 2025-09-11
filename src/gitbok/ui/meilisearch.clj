@@ -4,14 +4,15 @@
    [clojure.string :as str]
    [org.httpkit.client :as http-client]
    [cheshire.core :as json]
+   [hiccup2.core]
    [gitbok.utils :as utils]
    [gitbok.products :as products]
    [gitbok.state :as state]))
 
-(defn search-meilisearch [query index-name]
+(defn search-meilisearch [context query index-name]
   (try
-    (let [meilisearch-host (or (state/get-env :meilisearch-url) "http://localhost:7700")
-          meilisearch-api-key (state/get-env :meilisearch-api-key)
+    (let [meilisearch-host (or (state/get-env context :meilisearch-url) "http://localhost:7700")
+          meilisearch-api-key (state/get-env context :meilisearch-api-key)
           _ (log/info "meilisearch-search" {:query query
                                             :index index-name
                                             :host meilisearch-host
@@ -43,8 +44,8 @@
           _ (log/debug "meilisearch-request" {:url search-url
                                               :body request-body})
           response @(http-client/post search-url
-                                     {:headers headers
-                                      :body (json/generate-string request-body)})]
+                                      {:headers headers
+                                       :body (json/generate-string request-body)})]
       (log/info "meilisearch-response" {:status (:status response)
                                         :has-body (boolean (:body response))})
       (if (= 200 (:status response))
@@ -239,7 +240,7 @@
     ;; Otherwise use URL as is
     :else url))
 
-(defn render-result-item [item query index is-grouped?]
+(defn render-result-item [item _query index is-grouped?]
   (let [lvl0 (get item "hierarchy_lvl0")
         lvl1 (get item "hierarchy_lvl1")
         lvl2 (get item "hierarchy_lvl2")
@@ -490,7 +491,7 @@
         _ (log/info "meilisearch-dropdown product" {:product-name (:name current-product)
                                                     :product-index product-index})
         results (when (and query (pos? (count query)))
-                  (search-meilisearch query product-index))]
+                  (search-meilisearch context query product-index))]
 
     (if (empty? query)
       [:div] ;; Empty div when no query

@@ -1,5 +1,6 @@
 (ns gitbok.indexing.core
   (:require
+   [gitbok.http :as http]
    [clojure.tools.logging :as log]
    [gitbok.indexing.impl.summary]
    [gitbok.indexing.impl.uri-to-file :as uri-to-file]
@@ -7,11 +8,10 @@
    [gitbok.indexing.impl.file-to-uri :as file-to-uri]
    [gitbok.products :as products]
    [gitbok.lastmod.generator :as lastmod-gen]
-   [gitbok.state]
+   [gitbok.state :as state]
    [clojure.string :as str]
    [clojure.java.io :as io]
-   [gitbok.utils :as utils]
-   [gitbok.http]))
+   [gitbok.utils :as utils]))
 
 (set! *warn-on-reflection* true)
 
@@ -19,7 +19,7 @@
   (gitbok.indexing.impl.file-to-uri/filepath->uri context filepath))
 
 (defn uri->filepath [context ^String uri]
-  (let [idx (uri-to-file/get-idx context)
+  (let [idx (state/get-uri-to-file-idx context)
         filepath (gitbok.indexing.impl.uri-to-file/uri->filepath idx uri)]
     (log/info "uri >filepath" {:uri uri
                                :idx-exists (boolean idx)
@@ -28,7 +28,7 @@
     filepath))
 
 (defn get-redirect [context ^String uri]
-  (let [redirects-idx (uri-to-file/get-redirects-idx context)
+  (let [redirects-idx (state/get-redirects-idx context)
         redirect (get redirects-idx uri)]
     (log/info "get redirect" {:uri uri
                               :redirects-idx-exists (boolean redirects-idx)
@@ -75,7 +75,7 @@
         same-page? (= current-page-filename relative-page-link)]
     (if same-page?
       (str "#" section)
-      (let [file->uri-idx (file-to-uri/get-idx context)
+      (let [file->uri-idx (state/get-file-to-uri-idx context)
             _ (when-not file->uri-idx (throw (Exception. "no idx")))
             ;; Convert absolute filepath to relative filepath that matches the index
             current-page-filepath (absolute-filepath->relative context current-page-filepath)
@@ -91,7 +91,7 @@
             path (if (str/starts-with? path "/")
                    (utils/safe-subs path 1)
                    path)
-            path (gitbok.http/get-product-prefixed-url
+            path (http/get-product-prefixed-url
                   context
                   (str "/" (:uri (get file->uri-idx path))))]
 
@@ -116,15 +116,10 @@
     files))
 
 (defn set-md-files-idx [context file-to-uri-idx]
-  (products/set-product-state
-   context
-   [::md-files-idx]
-   (slurp-md-files! context (keys file-to-uri-idx))))
+  (state/set-md-files-idx! context (slurp-md-files! context (keys file-to-uri-idx))))
 
 (defn get-md-files-idx [context]
-  (products/get-product-state
-   context
-   [::md-files-idx]))
+  (state/get-md-files-idx context))
 
 (defn filepath->href [context filepath href]
   (if (str/starts-with? href "http")
@@ -155,52 +150,41 @@
 
 (defn clear-all-caches
   "Clear all product caches from state"
-  []
-  (let [products (gitbok.state/get-products)]
-    (doseq [product products]
-      (let [product-id (:id product)]
-        (gitbok.state/set-state! [:products :indices product-id] {})))
-    (log/info "All caches cleared")))
+  [context]
+  ;; Clear all product indices using context
+  (state/set-state! context [:products :indices] {})
+  (log/info "All caches cleared"))
 
 (defn set-lastmod
-  ([]
+  [context]
    ;; New API - works with state directly
-   (let [product-config (gitbok.state/get-current-product)
-         product-id (:id product-config)
-         volume-path (or (gitbok.state/get-env :docs-volume-path) ".")
+  (let [product-config (gitbok.state/get-current-product context)
+        product-id (:id product-config)
+        volume-path (or (gitbok.state/get-env context :docs-volume-path) ".")
 
          ;; Build docs path from product config
-         config-path (:config product-config)
-         config-dir (utils/parent config-path)
-         root (or (-> product-config :structure :root)
-                  (:root product-config)
-                  "./docs")
+        config-path (:config product-config)
+        config-dir (utils/parent config-path)
+        root (or (-> product-config :structure :root)
+                 (:root product-config)
+                 "./docs")
          ;; Remove leading "./" from root if present
-         root (if (str/starts-with? root "./")
-                (subs root 2)
-                root)
+        root (if (str/starts-with? root "./")
+               (subs root 2)
+               root)
 
          ;; Construct full docs path
-         docs-path (.getPath (io/file volume-path config-dir root))
+        docs-path (.getPath (io/file volume-path config-dir root))
 
          ;; Generate lastmod data in memory with caching
-         lastmod-data (if (.exists (io/file docs-path))
-                        (lastmod-gen/generate-or-get-cached-lastmod
-                         nil ;; context not needed for new version
-                         product-id
-                         docs-path)
-                        {})]
+        lastmod-data (if (.exists (io/file docs-path))
+                       (lastmod-gen/generate-or-get-cached-lastmod
+                        nil ;; context not needed for new version
+                        product-id
+                        docs-path)
+                       {})]
 
-     (log/info "✅lastmod set" {:product product-id
-                               :docs-path docs-path
-                               :entries (count lastmod-data)})
-     (gitbok.state/set-product-state! [::lastmod] lastmod-data)))
-
-  ([context]
-   ;; Legacy API - for compatibility
-   (let [product-id (products/get-current-product-id context)
-         product-config (products/get-current-product context)]
-     ;; Set the current product in state for the new API
-     (gitbok.state/set-current-product! product-config)
-     ;; Call the new version
-     (set-lastmod))))
+    (log/info "✅lastmod set" {:product product-id
+                              :docs-path docs-path
+                              :entries (count lastmod-data)})
+    (gitbok.state/set-product-state! context [::lastmod] lastmod-data)))

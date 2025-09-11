@@ -10,21 +10,13 @@
 
 (defn get-github-token
   "Get GitHub PAT from state (stored at startup)"
-  []
-  (state/get-env :github-token))
-
-(defn get-update-interval
-  "Get update interval in minutes from state, default 60"
-  []
-  (try
-    (Integer/parseInt (state/get-env :examples-update-interval "60"))
-    (catch Exception _
-      60)))
+  [context]
+  (state/get-env context :github-token))
 
 (defn fetch-artifacts-list
   "Fetch list of artifacts from GitHub API"
-  []
-  (let [token (get-github-token)
+  [context]
+  (let [token (get-github-token context)
         headers (if token
                   {"Authorization" (str "Bearer " token)
                    "Accept" "application/vnd.github.v3+json"}
@@ -55,8 +47,8 @@
 
 (defn download-artifact
   "Download artifact ZIP file from GitHub"
-  [artifact-id]
-  (let [token (get-github-token)]
+  [context artifact-id]
+  (let [token (get-github-token context)]
     (when token
       (let [url (str "https://api.github.com/repos/Aidbox/examples/actions/artifacts/"
                      artifact-id "/zip")
@@ -114,24 +106,24 @@
 
 (defn update-examples-from-artifact
   "Fetch and update examples from the latest GitHub artifact"
-  []
+  [context]
   (log/info "update examples start" {})
   (try
-    (when-let [artifacts (fetch-artifacts-list)]
+    (when-let [artifacts (fetch-artifacts-list context)]
       (when-let [latest-artifact (find-latest-artifact artifacts)]
         (let [artifact-id (:id latest-artifact)
               created-at (:created_at latest-artifact)]
           (log/info "found latest artifact" {:id artifact-id :created created-at})
 
-          (when-let [zip-bytes (download-artifact artifact-id)]
+          (when-let [zip-bytes (download-artifact context artifact-id)]
             (log/info "artifact downloaded" {:size (count zip-bytes)})
 
             (when-let [examples-data (extract-json-from-zip zip-bytes)]
               (log/info "extracted examples" {:count (count (:examples examples-data))})
 
               ;; Update for aidbox product
-              (products/set-current-product-id "aidbox")
-              (indexer/update-examples! examples-data)
+              (products/set-current-product-id context "aidbox")
+              (indexer/update-examples! context examples-data)
               (log/info "examples updated"
                         {:count (count (:examples examples-data))
                          :timestamp (:timestamp examples-data)})
@@ -145,5 +137,5 @@
 
 (defn manual-update
   "Manually trigger an update (for testing)"
-  []
-  (update-examples-from-artifact))
+  [context]
+  (update-examples-from-artifact context))
