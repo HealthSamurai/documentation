@@ -1,8 +1,6 @@
 (ns gitbok.ui.breadcrumb-test
   (:require [clojure.test :refer [deftest testing is]]
-            [clojure.string :as string]
-            [gitbok.ui.breadcrumb :as breadcrumb]
-            [gitbok.http :as http]))
+            [gitbok.ui.breadcrumb :as breadcrumb]))
 
 (defn mock-context []
   {:current-product-id "forms"

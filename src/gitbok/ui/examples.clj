@@ -1,10 +1,10 @@
 (ns gitbok.ui.examples
   (:require
+   [gitbok.http :as http]
    [gitbok.ui.layout :as layout]
    [gitbok.ui.main-navigation :as main-navigation]
    [gitbok.products :as products]
    [gitbok.examples.indexer :as indexer]
-   [gitbok.http]
    [clojure.string :as str]
    [hiccup2.core]
    [clojure.tools.logging :as log]
@@ -39,7 +39,7 @@
 
 (defn render-filter-checkbox
   "Render a single filter checkbox"
-  [type value label count checked? context]
+  [type value label count checked? _context]
   [:label.flex.items-center.space-x-2.cursor-pointer.hover:bg-tint-1.px-2.py-1.rounded
    [:input.w-4.h-4.text-primary-9.border-tint-4.rounded.focus:ring-primary-5.filter-checkbox
     {:type "checkbox"
@@ -129,7 +129,6 @@
      [:div.col-span-1.md:col-span-2.lg:col-span-3.w-full
       {:class "min-h-[300px]"}])])
 
-
 (defn filter-examples
   "Filter examples based on search and filter criteria"
   [examples search-term languages features]
@@ -198,11 +197,11 @@
                                        (str/split langs #","))
                                      [])))
         selected-features (into #{}
-                               (when-let [feats (get params "features")]
-                                 (if (string? feats)
-                                   (when-not (str/blank? feats)
-                                     (str/split feats #","))
-                                   [])))
+                                (when-let [feats (get params "features")]
+                                  (if (string? feats)
+                                    (when-not (str/blank? feats)
+                                      (str/split feats #","))
+                                    [])))
 
         ;; Filter examples
         filtered-examples (filter-examples examples search-term selected-languages selected-features)
@@ -336,14 +335,14 @@
                                        (str/split langs #","))
                                      [])))
         selected-features (into #{}
-                               (when-let [feats (get params "features")]
-                                 (if (string? feats)
-                                   (when-not (str/blank? feats)
-                                     (str/split feats #","))
-                                   [])))
+                                (when-let [feats (get params "features")]
+                                  (if (string? feats)
+                                    (when-not (str/blank? feats)
+                                      (str/split feats #","))
+                                    [])))
 
         content (render-examples-results examples search-term selected-languages selected-features)]
-    (gitbok.http/response1 content)))
+    (http/response1 content)))
 
 (defn examples-handler
   "HTTP handler for examples page"
@@ -357,19 +356,19 @@
                     [:div.max-w-screen-2xl.mx-auto.w-full.px-4.md:px-8.py-8
                      [:main#content.w-full
                       content]]]
-                   (layout/site-footer)]]
+                   (layout/site-footer context)]]
     ;; Always return full page through layout
-    (gitbok.http/response1
+    (http/response1
      (layout/document
       context
       full-page
       {:title "Aidbox examples"
        :description "Browse Aidbox integration examples and sample applications"
        :canonical-url
-       (gitbok.http/get-absolute-url
+       (http/get-absolute-url
         context
         (:uri request))
        :og-preview nil
        :lastmod nil
        :favicon-url
-       (gitbok.http/get-product-prefixed-url context "/favicon.ico")}))))
+       (http/get-product-prefixed-url context "/favicon.ico")}))))

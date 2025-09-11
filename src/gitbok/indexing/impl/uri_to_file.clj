@@ -4,7 +4,6 @@
    [clojure.string :as str]
    [gitbok.indexing.impl.summary]
    [gitbok.indexing.impl.redirects :as redirects]
-   [gitbok.products :as products]
    [clojure.data]))
 
 (defn uri->filepath [uri->file-idx ^String uri]
@@ -98,25 +97,3 @@
     {:files index
      :redirects redirects}))
 
-(defn get-idx [context]
-  (products/get-product-state context [::uri-to-file-idx]))
-
-(defn set-idx [context]
-  (let [indexes (uri->file-idx context)]
-    ;; Store files index
-    (products/set-product-state
-     context [::uri-to-file-idx]
-     (:files indexes))
-    ;; Store redirects index
-    (products/set-product-state
-     context [::uri-to-redirects-idx]
-     (:redirects indexes))))
-
-(defn get-redirects-idx [context]
-  (products/get-product-state context [::uri-to-redirects-idx]))
-
-(defn set-redirects-idx [context]
-  (let [indexes (uri->file-idx context)]
-    (products/set-product-state
-     context [::uri-to-redirects-idx]
-     (:redirects indexes))))

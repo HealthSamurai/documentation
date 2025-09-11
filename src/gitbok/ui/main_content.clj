@@ -2,7 +2,7 @@
   (:require
    [clojure.java.io :as io]
    [gitbok.indexing.core :as indexing]
-   [gitbok.indexing.impl.file-to-uri :as file-to-uri]
+   [gitbok.state :as state]
    [clojure.string :as str]
    [gitbok.markdown.core :as markdown]
    [gitbok.indexing.impl.summary :as summary]
@@ -38,9 +38,9 @@
   (when
    (and filepath
         (str/ends-with? (str/lower-case filepath) "readme.md"))
-    (let [index (file-to-uri/get-idx context)
+    (let [index (state/get-file-to-uri-idx context)
           ;; Get DOCS_PREFIX and product path dynamically
-          docs-prefix (gitbok.http/get-prefix context)
+          docs-prefix (gitbok.state/get-config context)
           product-path (or (gitbok.products/path context) "")
           ;; Remove trailing slash if present
           filepath (if (str/ends-with? filepath "/")
@@ -107,7 +107,7 @@
     (markdown/renderers context filepath) title)
    (for [[_path {:keys [title uri]}]
          (find-children-files context filepath)]
-     (let [prefix (gitbok.http/get-prefix context)
+     (let [prefix (gitbok.state/get-config context)
            product-path (or (products/path context) "")
            full-href (str prefix product-path "/" uri)]
        (big-links/big-link-view full-href title)))])

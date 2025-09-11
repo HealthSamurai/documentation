@@ -12,7 +12,6 @@
             [gitbok.ui.search]
             [gitbok.ui.meilisearch]
             [gitbok.ui.examples]
-            [gitbok.examples.webhook]
             [gitbok.examples.updater :as examples-updater]
             [gitbok.products :as products]
             [gitbok.utils :as utils]
@@ -24,8 +23,9 @@
   "Middleware to set current product based on route"
   [handler]
   (fn [request]
-    (let [uri (:uri request)
-          prefix (state/get-config :prefix "")
+    (let [context (:context request)
+          uri (:uri request)
+          prefix (state/get-config context :prefix "")
           ;; Remove prefix from URI
           uri-without-prefix (if (and (not (str/blank? prefix))
                                       (str/starts-with? uri prefix))
@@ -35,10 +35,10 @@
           product-path (when-let [segments (seq (filter #(not (str/blank? %))
                                                         (str/split uri-without-prefix #"/")))]
                          (str "/" (first segments)))
-          products-config (state/get-products)]
+          products-config (state/get-products context)]
       (if-let [product (first (filter #(= (:path %) product-path) products-config))]
         (do
-          (state/set-current-product! product)
+          (state/set-current-product! context product)
           (handler (assoc request :product product)))
         {:status 404
          :headers {"Content-Type" "text/plain"}
@@ -46,25 +46,26 @@
 
 (defn wrap-request-context
   "Add context information to request"
-  [handler]
-  (fn [request]
-    (handler (assoc request
-                    :prefix (state/get-config :prefix "")
-                    :base-url (state/get-config :base-url)
-                    :dev-mode (state/get-config :dev-mode)))))
+  [context]
+  (fn [handler]
+    (fn [request]
+      (let [updated-request (assoc request
+                                   :context context
+                                   :prefix (state/get-config context :prefix "")
+                                   :base-url (state/get-config context :base-url)
+                                   :dev-mode (state/get-config context :dev-mode))]
+        (handler updated-request)))))
 
 ;; Handler adapters - convert from old (context, request) signature to new (request) signature
 (defn adapt-handler
   "Adapt old-style handler (context, request) to new style (request)"
   [old-handler]
   (fn [request]
-    ;; Create a minimal context for compatibility
-    (let [context {:prefix (:prefix request)
-                   :base-url (:base-url request)
-                   :dev-mode (:dev-mode request)
-                   :current-product-id (when-let [p (:product request)]
-                                         (:id p))
-                   ::products/current-product (:product request)}]
+    ;; Use the full context from request, adding current product info
+    (let [context (assoc (:context request)
+                        :current-product-id (when-let [p (:product request)]
+                                              (:id p))
+                        ::products/current-product (:product request))]
       (old-handler context request))))
 
 ;; Route handlers - these will gradually be refactored to not need context
@@ -75,19 +76,20 @@
      :body "OK"}))
 
 (def version-endpoint
-  (fn [_request]
+  (fn [request]
     {:status 200
      :headers {"Content-Type" "text/plain"}
-     :body (state/get-config :version "unknown")}))
+     :body (state/get-config (:context request) :version "unknown")}))
 
 (def debug-endpoint
   (fn [request]
-    (let [dev-mode (state/get-config :dev-mode)]
+    (let [context (:context request)
+          dev-mode (state/get-config context :dev-mode)]
       (if dev-mode
         {:status 200
          :headers {"Content-Type" "application/json"}
          :body (cheshire.core/generate-string
-                {:state (state/get-full-state)
+                {:state (state/get-full-state context)
                  :request (select-keys request [:uri :request-method :path-params :query-params])})}
         {:status 403
          :headers {"Content-Type" "text/plain"}
@@ -141,26 +143,25 @@
 (def examples-results-handler
   (adapt-handler gitbok.ui.examples/examples-results-handler))
 
-(def webhook-handler
-  (adapt-handler gitbok.examples.webhook/webhook-handler))
 
 (def manual-update-handler
-  (fn [_request]
-    (if (state/get-config :dev-mode)
-      (if (examples-updater/manual-update)
-        {:status 200
+  (fn [request]
+    (let [context (:context request)]
+      (if (state/get-config context :dev-mode)
+        (if (examples-updater/manual-update context)
+          {:status 200
+           :headers {"Content-Type" "text/plain"}
+           :body "Examples updated successfully"}
+          {:status 500
+           :headers {"Content-Type" "text/plain"}
+           :body "Failed to update examples"})
+        {:status 403
          :headers {"Content-Type" "text/plain"}
-         :body "Examples updated successfully"}
-        {:status 500
-         :headers {"Content-Type" "text/plain"}
-         :body "Failed to update examples"})
-      {:status 403
-       :headers {"Content-Type" "text/plain"}
-       :body "Manual update only available in dev mode"})))
+         :body "Manual update only available in dev mode"}))))
 
 ;; Route definitions
-(defn routes []
-  (let [prefix (state/get-config :prefix "")]
+(defn routes [context]
+  (let [prefix (state/get-config context :prefix "")]
     [;; Static routes
      [(str prefix "/static/*") {:get {:handler serve-static-file}}]
      [(str prefix "/service-worker.js") {:get {:handler service-worker-handler}}]
@@ -173,11 +174,8 @@
      [(str prefix "/version") {:get {:handler version-endpoint}}]
      [(str prefix "/debug") {:get {:handler debug-endpoint}}]
 
-     ;; Webhook
-     [(str prefix "/webhook/examples") {:post {:handler webhook-handler}}]
-
      ;; Manual update (dev only)
-     (when (state/get-config :dev-mode)
+     (when (state/get-config context :dev-mode)
        [(str prefix "/update-examples") {:post {:handler manual-update-handler}}])
 
 
@@ -250,10 +248,10 @@
 
 (defn all-routes
   "Generate all routes including dynamic product routes"
-  []
-  (let [prefix (state/get-config :prefix "")
-        products-config (state/get-products)
-        static-routes (routes)
+  [context]
+  (let [prefix (state/get-config context :prefix "")
+        products-config (state/get-products context)
+        static-routes (routes context)
         product-route-list (mapcat #(product-routes % prefix) products-config)
         ;; Separate specific routes from wildcards
         specific-static (filter #(and % (not (clojure.string/includes? (first %) "*"))) static-routes)
@@ -265,10 +263,10 @@
 
 (defn create-app
   "Create the ring handler with all routes"
-  []
+  [context]
   (ring/ring-handler
    (ring/router
-    (all-routes)
+    (all-routes context)
     {:data {:muuntaja m/instance
             :middleware [;; Request parsing
                          parameters/parameters-middleware
@@ -276,7 +274,7 @@
                          muuntaja/format-response-middleware
                          muuntaja/format-request-middleware
                         ;; Custom context
-                         wrap-request-context]}
+                         (wrap-request-context context)]}
      ;; Use linear-router for predictable route matching order
      :router reitit.core/linear-router
      ;; Disable conflict detection since we want ordered matching

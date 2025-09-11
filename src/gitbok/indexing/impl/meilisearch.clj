@@ -4,16 +4,16 @@
    [org.httpkit.client :as http-client]
    [gitbok.state :as state]))
 
-(defn- get-config []
-  {:url (or (state/get-env :meilisearch-url) "http://localhost:7700")
-   :api-key (state/get-env :meilisearch-api-key)
+(defn- get-config [context]
+  {:url (or (state/get-env context :meilisearch-url) "http://localhost:7700")
+   :api-key (state/get-env context :meilisearch-api-key)
    :index-name "docs"
    :timeout-ms 3000})
 
 (defn- meilisearch-request
   "Make a request to Meilisearch API"
-  [method path & [opts]]
-  (let [config (get-config)
+  [context method path & [opts]]
+  (let [config (get-config context)
         url (str (:url config) path)
         headers (cond-> {"content-type" "application/json"}
                   (:api-key config) (assoc "authorization" (str "Bearer " (:api-key config))))
@@ -62,9 +62,10 @@
 
 (defn search
   "Search using Meilisearch API"
-  [query & {:keys [limit] :or {limit 100}}]
-  (let [config (get-config)
+  [context query & {:keys [limit] :or {limit 100}}]
+  (let [config (get-config context)
         response (meilisearch-request
+                  context
                   :post
                   (str "/indexes/" (:index-name config) "/search")
                   {:body (json/generate-string

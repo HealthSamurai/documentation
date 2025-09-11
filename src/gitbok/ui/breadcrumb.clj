@@ -1,8 +1,8 @@
 (ns gitbok.ui.breadcrumb
   (:require
+   [gitbok.http :as http]
    [clojure.string :as str]
    [gitbok.ui.heroicons :as ico]
-   [gitbok.http]
    [gitbok.products]))
 
 (defn breadcrumb [context uri]
@@ -22,10 +22,10 @@
         [:nav {:aria-label "Breadcrumb"}
          [:ol {:class "flex flex-wrap items-center"}
           [:li {:class "flex items-center gap-1.5"}
-           [:a {:href (gitbok.http/get-product-prefixed-url context "overview")
-                :hx-get (str (gitbok.http/get-product-prefixed-url context "overview") "?partial=true")
+           [:a {:href (http/get-product-prefixed-url context "overview")
+                :hx-get (str (http/get-product-prefixed-url context "overview") "?partial=true")
                 :hx-target "#content"
-                :hx-push-url (gitbok.http/get-product-prefixed-url context "overview")
+                :hx-push-url (http/get-product-prefixed-url context "overview")
                 :hx-swap "outerHTML"
                 :class "text-xs font-semibold uppercase items-center gap-1.5 hover:text-tint-strong text-primary-9"}
             "overview"]]]]
@@ -42,7 +42,7 @@
                 (fn [idx part]
                   (let [path (->> (take (inc idx) parts-to-show)
                                   (str/join "/"))
-                        href (gitbok.http/get-product-prefixed-url context path)
+                        href (http/get-product-prefixed-url context path)
                         part-text (str/replace part #"-" " ")]
                     [:li {:key idx
                           :class "flex items-center gap-1.5"}

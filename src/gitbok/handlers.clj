@@ -4,10 +4,9 @@
    [clojure.stacktrace]
    [clojure.string :as str]
    [clojure.tools.logging :as log]
-   [gitbok.examples.webhook]
-   [gitbok.http]
+   [gitbok.http :as http]
    [gitbok.indexing.core :as indexing]
-   [gitbok.indexing.impl.sitemap :as sitemap]
+   [gitbok.state :as state]
    [gitbok.indexing.impl.sitemap-index :as sitemap-index]
    [gitbok.markdown.core :as markdown]
    [gitbok.products :as products]
@@ -113,7 +112,7 @@
                   ;; Since 'docs' is in classpath directly, files are accessible as ".gitbook/assets/..."
                   (resp/resource-response (str ".gitbook/" file-path)))]
     (when response
-      (let [dev-mode? (gitbok.http/get-dev-mode context)
+      (let [dev-mode? (state/get-config context :dev-mode)
             ;; In dev mode: no cache
             ;; In production: cache for 1 year (images are typically versioned)
             cache-control (if dev-mode?
@@ -171,7 +170,7 @@
       ;; Check for redirects first
       (if-let [redirect-target (indexing/get-redirect context uri-relative)]
         ;; Return HTTP 301 redirect
-        (let [target-url (gitbok.http/get-product-prefixed-url context redirect-target)]
+        (let [target-url (http/get-product-prefixed-url context redirect-target)]
           ;; Log the redirect for monitoring
           (log/info "redirect-301" {:from uri-relative
                                     :to redirect-target
@@ -223,7 +222,7 @@
                                           :product-id (:current-product-id context)})
               (layout/layout
                context request
-               {:content (not-found/not-found-view uri-relative)
+               {:content (not-found/not-found-view context uri-relative)
                 :status 404
                 :title "Not found"
                 :description "Page not found"
@@ -233,7 +232,7 @@
   [context _]
   {:status 200
    :headers {"content-type" "application/xml"}
-   :body (sitemap/get-sitemap context)})
+   :body (state/get-sitemap context)})
 
 (defn sitemap-index-xml
   "Generates sitemap index that references all product sitemaps"
@@ -259,12 +258,12 @@
   (let [full-config (products/get-full-config context)
         root-redirect (:root-redirect full-config)]
     (if root-redirect
-      (let [redirect-uri (utils/concat-urls prefix root-redirect)]
+      (let [redirect-uri (utils/concat-urls (state/get-config context :prefix "") root-redirect)]
         (resp/redirect redirect-uri))
       ;; If no root-redirect configured, show 404 or default page
       (layout/layout
        context request
-       {:content (not-found/not-found-view "/")
+       {:content (not-found/not-found-view context "/")
         :status 404
         :title "Not found"
         :description "Page not found"
@@ -278,9 +277,9 @@
   [context _]
   {:status 200
    :body
-   {:build-engine-version (gitbok.http/get-version context)
+   {:build-engine-version (state/get-config context :version)
     :docs-update
-    (reload/get-reload-state)}})
+    (reload/get-reload-state context)}})
 
 (defn debug-endpoint
   [context request]
@@ -294,7 +293,7 @@
             :current-product current-product
             :environment {:prefix prefix
                           :base-url base-url
-                          :port (gitbok.http/get-port context)}
+                          :port (state/get-config context :port)}
             :request-info {:uri (:uri request)
                            :headers (select-keys (:headers request)
                                                  ["host" "x-forwarded-for" "x-real-ip"
@@ -303,11 +302,11 @@
 (defn serve-static-file
   "Serves static files with proper content type and cache headers"
   [context request]
-  (let [uri (gitbok.http/url-without-prefix context (:uri request))
+  (let [uri (http/url-without-prefix context (:uri request))
         path (str/replace uri #"^/static/" "")
         response (resp/resource-response (utils/concat-urls "public" path))]
     (when response
-      (let [dev-mode? (gitbok.http/get-dev-mode context)
+      (let [dev-mode? (state/get-config context :dev-mode)
             ;; In dev mode: no cache
             ;; In production: cache for 1 year (files are versioned)
             cache-control (if dev-mode?
@@ -328,7 +327,7 @@
 (defn serve-og-preview
   "Serves OG preview images from resources"
   [context request]
-  (let [uri (gitbok.http/url-without-prefix context (:uri request))
+  (let [uri (http/url-without-prefix context (:uri request))
         path (str/replace uri #"^/public/og-preview/" "")
         resource-path (utils/concat-urls "public/og-preview" path)]
     (if-let [response (resp/resource-response resource-path)]

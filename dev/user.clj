@@ -5,18 +5,22 @@
    [clj-reload.core :as reload]
    [clojure.tools.logging :as log]))
 
+(defonce ^:private dev-context (atom nil))
+
 (defn start!
   "Start the server"
   []
   (reload/init {:dirs ["src"]})
-  (core/start!)
-  (log/info "Server started")
-  :started)
+  (let [result (core/start!)]
+    (reset! dev-context (:context result))
+    (log/info "Server started")
+    :started))
 
 (defn stop!
   "Stop the server"
   []
-  (core/stop!)
+  (when-let [ctx @dev-context]
+    (core/stop! ctx))
   (log/info "Server stopped")
   :stopped)
 
@@ -37,12 +41,16 @@
 (defn status
   "Get server status"
   []
-  (core/status))
+  (if-let [ctx @dev-context]
+    (core/status ctx)
+    :not-started))
 
 (defn state
   "Get current application state"
   []
-  (state/get-full-state))
+  (if-let [ctx @dev-context]
+    (state/get-full-state ctx)
+    {}))
 
 (comment
   ;; Start server
@@ -69,8 +77,10 @@
                 :dev-mode true})
   
   ;; Clear all caches (for development)
-  (core/clear-caches!)
+  (when-let [ctx @dev-context]
+    (core/clear-caches! ctx))
   
   ;; Reload products configuration
-  (core/reload-products!)
+  (when-let [ctx @dev-context]
+    (core/reload-products! ctx))
   )

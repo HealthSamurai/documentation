@@ -14,13 +14,9 @@
 
 (defn init-products!
   "Initialize products configuration from products.yaml"
-  []
-  ;; Create a minimal context for compatibility with old code
-  (let [context {:prefix (state/get-config :prefix "")
-                 :base-url (state/get-config :base-url)
-                 :dev-mode (state/get-config :dev-mode)}
-        products-config (init/init-products context)]
-    (state/set-products! products-config)
+  [context]
+  (let [products-config (init/init-products context)]
+    (state/set-products! context products-config)
     (products/set-products-config context products-config) ; For legacy compatibility
     (log/info "Products initialized" {:count (count products-config)
                                       :products (mapv :name products-config)})
@@ -28,15 +24,13 @@
 
 (defn init-product-indices!
   "Initialize indices for a specific product"
-  [product]
+  [context product]
   (try
-    (state/set-current-product! product)
-    ;; Create context with current product for legacy code
-    (let [context {:prefix (state/get-config :prefix "")
-                   :base-url (state/get-config :base-url)
-                   :dev-mode (state/get-config :dev-mode)
-                   :current-product-id (:id product)
-                   ::products/current-product product}]
+    (state/set-current-product! context product)
+    ;; Add product info to context
+    (let [context (assoc context
+                         :current-product-id (:id product)
+                         ::products/current-product product)]
       (init/init-product-indices context product))
     (log/info "Product indices initialized" {:product (:name product)})
     (catch Exception e
@@ -44,111 +38,104 @@
 
 (defn init-all-product-indices!
   "Initialize indices for all products"
-  []
-  (let [products-config (state/get-products)]
+  [context]
+  (let [products-config (state/get-products context)]
     (doseq [product products-config]
-      (init-product-indices! product))
+      (init-product-indices! context product))
     (log/info "All product indices initialized" {:count (count products-config)})))
 
 (defn start!
   "Start the server with optional config overrides"
   ([] (start! {}))
   ([config-overrides]
-   (let [config (state/init-state! config-overrides)
-         port (:port config)
-         prefix (:prefix config)
-         base-url (:base-url config)
-         version (:version config)]
-
-     ;; ;; Set legacy http module values for compatibility
-     ;; (gitbok.http/set-port nil port)
-     ;; (gitbok.http/set-prefix nil prefix)
-     ;; (gitbok.http/set-base-url nil base-url)
-     ;; (gitbok.http/set-version nil version)
-     ;; (gitbok.http/set-dev-mode nil (:dev-mode config))
+   (let [context (state/init-state! config-overrides)
+         port (state/get-config context :port)
+         prefix (state/get-config context :prefix "")
+         base-url (state/get-config context :base-url)
+         version (state/get-config context :version)]
 
      ;; Initialize products
-     (init-products!)
+     (init-products! context)
 
      ;; Initialize all product indices
-     (init-all-product-indices!)
+     (init-all-product-indices! context)
 
      ;; Create and start HTTP server
-     (let [handler (routes/create-app)
+     (let [handler (routes/create-app context)
            server-instance (http-kit/run-server handler {:port port})]
-       (state/set-server! server-instance)
+       (state/set-server! context server-instance)
        (log/info "Server started" {:port port
                                    :prefix prefix
                                    :base-url base-url
                                    :version version}))
 
-     ;; Start schedulers
-     (when-let [reload-schedule (scheduler/start-reload-watcher!
-                                 init-product-indices!
-                                 init-products!)]
+     ;; Start schedulers with context
+     (when-let [_reload-schedule (scheduler/start-reload-watcher!
+                                  context
+                                  (partial init-product-indices! context)
+                                  (partial init-products! context))]
        (log/info "Reload watcher started"))
 
-     (when-let [examples-schedule (scheduler/start-examples-updater!)]
+     (when-let [_examples-schedule (scheduler/start-examples-updater! context)]
        (log/info "Examples updater started"))
 
      {:status :started
       :port port
-      :config config})))
+      :context context})))
 
 (defn stop!
   "Stop the server and all schedulers"
-  []
+  [context]
   ;; Stop schedulers
-  (scheduler/stop-all-schedulers!)
+  (scheduler/stop-all-schedulers! context)
 
   ;; Stop HTTP server
-  (when-let [stop-fn (state/get-server)]
+  (when-let [stop-fn (state/get-server context)]
     (stop-fn)
-    (state/clear-server!)
+    (state/clear-server! context)
     (log/info "Server stopped"))
 
   {:status :stopped})
 
 (defn restart!
   "Restart the server"
-  []
-  (stop!)
+  [context]
+  (stop! context)
   (Thread/sleep 1000) ; Give it a moment to clean up
   (start!))
 
 (defn status
   "Get server status"
-  []
-  {:server (if (state/get-server) :running :stopped)
-   :schedulers (scheduler/scheduler-status)
-   :config (state/get-config)
-   :products (count (state/get-products))})
+  [context]
+  {:server (if (state/get-server context) :running :stopped)
+   :schedulers (scheduler/scheduler-status context)
+   :config (state/get-config context :prefix "")
+   :products (count (state/get-products context))})
 
 ;; Development helpers
 (defn reload-products!
   "Reload products configuration (for development)"
-  []
-  (init-products!)
-  (init-all-product-indices!)
+  [context]
+  (init-products! context)
+  (init-all-product-indices! context)
   (log/info "Products reloaded"))
 
 (defn clear-caches!
   "Clear all caches (for development)"
-  []
-  (indexing/clear-all-caches)
-  (state/set-cache! :lastmod {})
-  (state/set-cache! :reload-state {:git-head nil
+  [context]
+  (indexing/clear-all-caches context)
+  (state/set-cache! context :lastmod {})
+  (state/set-cache! context :reload-state {:git-head nil
                                    :last-reload-time nil
-                                   :app-version (state/get-config :version)
+                                   :app-version (state/get-config context :version)
                                    :in-progress false})
   (log/info "All caches cleared"))
 
 (defn -main [& _args]
   (log/info "Starting server")
-  (start!)
-
-  ;; Setup shutdown hook
-  (.addShutdownHook (Runtime/getRuntime)
-                    (Thread. (fn []
-                               (log/info "shutdown" {:msg "Got SIGTERM."})
-                               (stop!)))))
+  (let [{:keys [context]} (start!)]
+    ;; Setup shutdown hook
+    (.addShutdownHook (Runtime/getRuntime)
+                      (Thread. (fn []
+                                 (log/info "shutdown" {:msg "Got SIGTERM."})
+                                 (stop! context))))))

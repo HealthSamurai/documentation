@@ -8,44 +8,44 @@
 
 (defn start-reload-watcher! 
   "Start periodic reload watcher using chime"
-  [init-product-indices-fn init-products-fn]
-  (when (state/get-env :docs-volume-path)
-    (let [interval-seconds (Integer/parseInt (state/get-env :reload-check-interval "30"))]
+  [context init-product-indices-fn init-products-fn]
+  (when (state/get-env context :docs-volume-path)
+    (let [interval-seconds (Integer/parseInt (state/get-env context :reload-check-interval "30"))]
       (log/info "Starting reload watcher" {:interval-seconds interval-seconds
-                                           :volume-path (state/get-env :docs-volume-path)})
+                                           :volume-path (state/get-env context :docs-volume-path)})
       
       ;; Initialize reload state
-      (reload/init-reload-state!)
+      (reload/init-reload-state! context)
       
       ;; Start periodic check
       (let [schedule (chime/chime-at
                       (chime/periodic-seq (Instant/now) (Duration/ofSeconds interval-seconds))
-                      (fn [time]
-                        (when-not (state/get-cache :reload-state-in-progress false)
+                      (fn [_time]
+                        (when-not (state/get-cache context :reload-state-in-progress false)
                           (try
-                            (state/set-cache! :reload-state-in-progress true)
-                            (reload/check-and-reload! init-product-indices-fn init-products-fn)
+                            (state/set-cache! context :reload-state-in-progress true)
+                            (reload/check-and-reload! context init-product-indices-fn init-products-fn)
                             (catch Exception e
                               (log/error e "Reload check failed"))
                             (finally
-                              (state/set-cache! :reload-state-in-progress false)))))
+                              (state/set-cache! context :reload-state-in-progress false)))))
                       {:error-handler (fn [e]
                                        (log/error e "Reload watcher error")
                                        true)})] ; continue after error
-        (state/set-scheduler! :reload schedule)
+        (state/set-scheduler! context :reload schedule)
         (log/info "Reload watcher started")
         schedule))))
 
 (defn start-examples-updater! 
   "Start periodic examples updater using chime"
-  []
-  (when (state/get-env :github-token)
-    (let [interval-minutes (Integer/parseInt (state/get-env :examples-update-interval "60"))]
+  [context]
+  (when (state/get-env context :github-token)
+    (let [interval-minutes (Integer/parseInt (state/get-env context :examples-update-interval "60"))]
       (log/info "Starting examples updater" {:interval-minutes interval-minutes})
       
       ;; Do initial update immediately
       (try
-        (examples-updater/update-examples-from-artifact)
+        (examples-updater/update-examples-from-artifact context)
         (catch Exception e
           (log/error e "Initial examples update failed")))
       
@@ -54,37 +54,37 @@
                       (chime/periodic-seq 
                         (.plus (Instant/now) (Duration/ofMinutes interval-minutes))
                         (Duration/ofMinutes interval-minutes))
-                      (fn [time]
+                      (fn [_time]
                         (try
-                          (examples-updater/update-examples-from-artifact)
+                          (examples-updater/update-examples-from-artifact context)
                           (catch Exception e
                             (log/error e "Scheduled examples update failed"))))
                       {:error-handler (fn [e]
                                        (log/error e "Examples updater error")
                                        true)})]
-        (state/set-scheduler! :examples schedule)
+        (state/set-scheduler! context :examples schedule)
         (log/info "Examples updater started")
         schedule))))
 
 (defn stop-scheduler! 
   "Stop a scheduler by key"
-  [scheduler-key]
-  (when-let [schedule (state/get-scheduler scheduler-key)]
+  [context scheduler-key]
+  (when-let [schedule (state/get-scheduler context scheduler-key)]
     (log/info "Stopping scheduler" {:scheduler scheduler-key})
     (.close schedule)  ;; chime-at returns a java.io.Closeable
-    (state/remove-scheduler! scheduler-key)
+    (state/remove-scheduler! context scheduler-key)
     (log/info "Scheduler stopped" {:scheduler scheduler-key})))
 
 (defn stop-all-schedulers! 
   "Stop all running schedulers"
-  []
+  [context]
   (log/info "Stopping all schedulers")
   (doseq [scheduler-key [:reload :examples]]
-    (stop-scheduler! scheduler-key))
+    (stop-scheduler! context scheduler-key))
   (log/info "All schedulers stopped"))
 
 (defn scheduler-status
   "Get status of all schedulers"
-  []
-  {:reload (if (state/get-scheduler :reload) :running :stopped)
-   :examples (if (state/get-scheduler :examples) :running :stopped)})
+  [context]
+  {:reload (if (state/get-scheduler context :reload) :running :stopped)
+   :examples (if (state/get-scheduler context :examples) :running :stopped)})
