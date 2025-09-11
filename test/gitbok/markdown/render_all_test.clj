@@ -7,7 +7,6 @@
    [gitbok.markdown.core :as markdown]
    [gitbok.ui.main-content :as main-content]
    [gitbok.utils :as utils]
-   [gitbok.constants :as const]
    [gitbok.http :as http]
    [system]))
 

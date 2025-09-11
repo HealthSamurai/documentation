@@ -16,12 +16,9 @@
    [nextjournal.markdown :as md]
    [nextjournal.markdown.transform :as transform]
    [hickory.core]
-   [system]
-   [gitbok.constants :as const]
    [gitbok.products :as products]
    [hiccup2.core]
-   [nextjournal.markdown.utils :as u]
-   [uui]))
+   [nextjournal.markdown.utils :as u]))
 
 (declare hack-md)
 
@@ -218,7 +215,7 @@
              (if (and c (= :table (first c))
                       (= {:data-view "cards"} (second c)))
                (cards/render-cards-from-table context filepath c)
-               (uui/raw (-> node :content first :text)))))
+               (hiccup2.core/raw (-> node :content first :text)))))
 
          :html-block
          (fn [_ctx node]
@@ -240,7 +237,7 @@
                (and c
                     (= :table (first c))
                     (= {:data-header-hidden ""} (second c)))
-               (uui/raw (-> fixed-html
+               (hiccup2.core/raw (-> fixed-html
                             (str/replace #"\<thead.*/thead>" "")))
 
                (and c
@@ -249,7 +246,7 @@
                (update c 2 remove-selects)
 
                :else
-               (uui/raw fixed-html))))))
+               (hiccup2.core/raw fixed-html))))))
 
 (defn render-md [context filepath parsed]
   (let [hiccup (transform/->hiccup (renderers context filepath) parsed)]
@@ -302,22 +299,22 @@
     (log/info "files parsed" {:count (count parsed-files)})
     (products/set-product-state
      context
-     [const/PARSED_MARKDOWN_IDX]
+     [::parsed-markdown-idx]
      parsed-files)))
 
 (defn get-parsed-markdown-index [context]
   (products/get-product-state
    context
-   [const/PARSED_MARKDOWN_IDX]))
+   [::parsed-markdown-idx]))
 
 (defn get-rendered [context filepath]
-  (get (products/get-product-state context [const/RENDERED])
+  (get (products/get-product-state context [::rendered])
        filepath))
 
 (defn render-all! [context parsed-md-index read-markdown-file]
   (products/set-product-state
    context
-   [const/RENDERED]
+   [::rendered]
    (->> parsed-md-index
         (mapv
          (fn [{:keys [filepath _parsed]}]

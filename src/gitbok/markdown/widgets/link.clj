@@ -2,7 +2,7 @@
   (:require
    [clojure.string :as str]
    [gitbok.indexing.core :as indexing]
-   [uui.heroicons :as ico]))
+   [gitbok.ui.heroicons :as ico]))
 
 (defn href [context node filepath]
   (let [href (-> node :attrs :href)]

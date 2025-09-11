@@ -4,7 +4,7 @@
    [clojure.string :as str]
    [gitbok.utils :as utils]
    [nextjournal.markdown.transform :as transform]
-   [uui.heroicons :as ico]))
+   [gitbok.ui.heroicons :as ico]))
 
 (def hint-icons
   {"!NOTE" (ico/information-circle "size-5 text-info-9" :outline)
@@ -50,10 +50,10 @@
           (update-in (:content node) [0 :content 0 :text]
                      (fn [s]
                        (or
-                         (utils/safe-subs s (+ 3 (count typ1)))
+                        (utils/safe-subs s (+ 3 (count typ1)))
                          ;; empty line e.g. "[!WARNING]"
-                         (utils/safe-subs s (+ 2 (count typ1)))
-                         s)))
+                        (utils/safe-subs s (+ 2 (count typ1)))
+                        s)))
           (:content node))
 
         class
@@ -64,8 +64,8 @@
       [:div {:class "flex-shrink-0"}
        icon]
       (into
-         [:div.hint {:class "flex-1"}]
-         (mapv #(transform/->hiccup ctx %)
+       [:div.hint {:class "flex-1"}]
+       (mapv #(transform/->hiccup ctx %)
              content))]]))
 
 (defn hack-info

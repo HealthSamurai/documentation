@@ -1,22 +1,18 @@
 (ns gitbok.indexing.impl.meilisearch
-  (:require [clojure.string :as str]
-            [cheshire.core :as json]
-            [org.httpkit.client :as http-client]
-            [system]
-            [gitbok.utils :as utils]))
+  (:require
+   [cheshire.core :as json]
+   [org.httpkit.client :as http-client]
+   [gitbok.state :as state]))
 
 (defonce ^:private health-cache (atom {:healthy? false
-                                        :last-check 0
-                                        :ttl-ms 30000}))
+                                       :last-check 0
+                                       :ttl-ms 30000}))
 
 (defn- get-config []
-  {:url (or (System/getenv "MEILISEARCH_URL") "http://localhost:7700")
-   :api-key (System/getenv "MEILISEARCH_API_KEY")
+  {:url (or (state/get-env :meilisearch-url) "http://localhost:7700")
+   :api-key (state/get-env :meilisearch-api-key)
    :index-name "docs"
-   :timeout-ms (or (when-let [t (System/getenv "MEILISEARCH_TIMEOUT_MS")]
-                     (Integer/parseInt t))
-                   2000)
-   :enabled? (not= "false" (System/getenv "ENABLE_MEILISEARCH"))})
+   :timeout-ms 3000})
 
 (defn- check-health
   "Check if Meilisearch is healthy with caching"
@@ -28,7 +24,7 @@
       (let [config (get-config)
             result (try
                      (let [response @(http-client/get (str (:url config) "/health")
-                                                       {:timeout (:timeout-ms config)})]
+                                                      {:timeout (:timeout-ms config)})]
                        (= 200 (:status response)))
                      (catch Exception _ false))]
         (swap! health-cache assoc
@@ -101,7 +97,6 @@
                            :limit limit
                            :showMatchesPosition true})})]
 
-    (def r response)
     (if (= 200 (:status response))
       (let [body (json/parse-string (:body response) true)
             hits (:hits body)]
@@ -127,8 +122,6 @@
                        :type :meilisearch-search-error})))))
 
 (defn available?
-  "Check if Meilisearch is available and enabled"
+  "Check if Meilisearch is available"
   []
-  (let [config (get-config)]
-    (and (:enabled? config)
-         (check-health))))
+  (check-health))

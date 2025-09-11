@@ -4,8 +4,6 @@
    [gitbok.indexing.core :as indexing]
    [gitbok.indexing.impl.file-to-uri :as file-to-uri]
    [clojure.string :as str]
-   [system]
-   [uui]
    [gitbok.markdown.core :as markdown]
    [gitbok.indexing.impl.summary :as summary]
    [gitbok.markdown.widgets.big-links :as big-links]
@@ -223,7 +221,7 @@
       [:article {:class "article__content py-8 min-w-0 flex-1
                  max-w-5xl transform-3d"}
        (when htmx?
-         [:script (uui/raw "
+         [:script (hiccup2.core/raw "
            window.scrollTo(0, 0);
            // Defer execution to ensure scripts are loaded
            setTimeout(function() {

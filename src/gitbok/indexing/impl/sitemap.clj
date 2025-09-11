@@ -1,8 +1,6 @@
 (ns gitbok.indexing.impl.sitemap
   (:require
    [clojure.string :as str]
-   [gitbok.constants :as const]
-   [system]
    [gitbok.http]
    [gitbok.products :as products]
    [gitbok.indexing.impl.uri-to-file :as uri-to-file]
@@ -48,7 +46,7 @@
 (defn set-sitemap [context lastmod]
   (products/set-product-state
    context
-   [const/SITEMAP]
+   [::sitemap]
    (let [;; Get primary navigation links (excluding cross-section references)
          primary-links (gitbok.indexing.impl.summary/get-primary-navigation-links context)
          ;; Extract just the hrefs, removing leading slashes
@@ -64,4 +62,4 @@
       lastmod))))
 
 (defn get-sitemap [context]
-  (products/get-product-state context [const/SITEMAP]))
+  (products/get-product-state context [::sitemap]))

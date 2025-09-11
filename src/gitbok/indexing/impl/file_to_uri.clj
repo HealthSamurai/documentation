@@ -1,9 +1,7 @@
 (ns gitbok.indexing.impl.file-to-uri
   (:require
    [clojure.tools.logging :as log]
-   [system]
    [clojure.string :as str]
-   [gitbok.constants :as const]
    [gitbok.indexing.impl.summary]
    [gitbok.products :as products]))
 
@@ -37,11 +35,11 @@
     result))
 
 (defn set-idx [context]
-  (products/set-product-state context [const/FILE->URI_IDX]
+  (products/set-product-state context [::file-to-uri-idx]
                               (file->uri-idx context)))
 
 (defn get-idx [context]
-  (products/get-product-state context [const/FILE->URI_IDX]))
+  (products/get-product-state context [::file-to-uri-idx]))
 
 (defn filepath->uri [context filepath]
   (-> context

@@ -3,7 +3,6 @@
    [clojure.string :as str]
    [hiccup2.core]
    [gitbok.http]
-   [uui]
    [gitbok.indexing.core :as indexing]))
 
 (defn render-cards-from-table
@@ -57,7 +56,7 @@
 
                  ;; Extract the actual link for navigation
                  ;; For Modules table: link is in the 5th column (five)
-                 ;; For Quickstarts: link is also in 5th column (five)  
+                 ;; For Quickstarts: link is also in 5th column (five)
                  ;; For Support table: link is in the 4th column (four)
                  navigation-link (or
                                   ;; Check 5th column first (Modules, Quickstarts)

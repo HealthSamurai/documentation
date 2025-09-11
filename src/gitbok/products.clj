@@ -4,8 +4,7 @@
    [clojure.string :as str]
    [clj-yaml.core :as yaml]
    [gitbok.utils :as utils]
-   [gitbok.constants :as const]
-   [system]
+   [gitbok.state :as state]
    [clojure.tools.logging :as log]))
 
 (def default-aidbox
@@ -17,15 +16,16 @@
 (defn read-product-config-file [config-file]
   (yaml/parse-string (utils/slurp-resource config-file)))
 
-(def volume-path (System/getenv "DOCS_VOLUME_PATH"))
+(defn volume-path []
+  (state/get-env :docs-volume-path))
 
 (defn load-products-config
   "Loads products configuration from products.yaml in classpath or volume"
   []
   (try
-    (let [config-str (if volume-path
+    (let [config-str (if-let [vol-path (volume-path)]
                        ;; Try volume first, then fallback to classpath
-                       (let [file (io/file volume-path "products.yaml")]
+                       (let [file (io/file vol-path "products.yaml")]
                          (log/info "load config" {:source "volume" :path (.getPath file)})
                          (if (.exists file)
                            (slurp file)
@@ -64,52 +64,34 @@
       {:products default-aidbox})))
 
 (defn get-current-product-id
-  "Gets current product ID from request context"
+  "Gets current product ID - for compatibility"
   [context]
-  (:current-product-id context "default"))
+  (or (:current-product-id context)
+      (when-let [product (state/get-current-product)]
+        (:id product))
+      "default"))
+
+(defn set-current-product-id
+  "Sets current product ID - returns for compatibility or updates state"
+  ([product-id]
+   ;; Direct state update
+   (when-let [product (first (filter #(= (:id %) product-id) (state/get-products)))]
+     (state/set-current-product! product))
+   product-id)
+  ([context product-id]
+   ;; Legacy compatibility - returns updated context
+   (set-current-product-id product-id)
+   (assoc context :current-product-id product-id)))
 
 (defn get-product-state
   "Gets state for a specific product"
   [context path & [default]]
-  (let [product-id (get-current-product-id context)
-        result (or (try
-                     (let [full-path (concat [::products product-id] path)
-                           state (system/get-system-state context full-path default)]
-                       (log/debug "get product state success" {:product-id product-id
-                                                                :path path
-                                                                :full-path full-path
-                                                                :found (boolean state)})
-                       state)
-                     (catch Exception e
-                       (log/warn "get product state fallback" {:product-id product-id
-                                                                :path path
-                                                                :error (.getMessage e)})
-                       (try
-                         (system/get-system-state context path default)
-                         (catch Exception e2
-                           (log/error "get product state failed" {:product-id product-id
-                                                                   :path path
-                                                                   :error (.getMessage e2)})
-                           default))))
-                   default)]
-    (when (nil? result)
-      (log/warn "get product state nil" {:product-id product-id
-                                          :path path
-                                          :default default}))
-    result))
+  (state/get-product-state path default))
 
 (defn set-product-state
   "Sets state for a specific product"
   [context path value]
-  (try
-    (let [product-id (get-current-product-id context)]
-      (system/set-system-state context
-                               (concat [::products product-id] path)
-                               value))
-    (catch Exception _
-      (try
-        (system/set-system-state context path value)
-        (catch Exception _ nil)))))
+  (state/set-product-state! path value))
 
 (defn determine-product-by-uri
   "Determines product from request URI"
@@ -128,24 +110,24 @@
     result))
 
 (defn get-products-config
-  "Gets all products configuration from context"
+  "Gets all products configuration"
   [context]
-  (system/get-system-state context [::products-config] []))
+  (state/get-products))
 
 (defn get-full-config
   "Gets full configuration including products and root-redirect"
   [context]
-  (system/get-system-state context [::full-config] {}))
+  (state/get-state [:products :full-config] {}))
 
 (defn set-products-config
-  "Saves products configuration to context"
+  "Saves products configuration"
   [context products]
-  (system/set-system-state context [::products-config] products))
+  (state/set-products! products))
 
 (defn set-full-config
-  "Saves full configuration to context"
+  "Saves full configuration"
   [context config]
-  (system/set-system-state context [::full-config] config))
+  (state/set-state! [:products :full-config] config))
 
 (defn get-product-by-id
   "Gets product configuration by its ID"
@@ -160,16 +142,8 @@
         products (get-products-config context)
         product (or (get-product-by-id context product-id)
                     (first products))]
-    (log/info "get current product" {:product-id product-id
-                                      :found-product-id (when product (:id product))
-                                      :products-count (count products)
-                                      :product-found (boolean product)})
     product))
 
-(defn set-current-product-id
-  "Sets current product ID in context"
-  [context product-id]
-  (assoc context :current-product-id product-id))
 
 (defn summary-path
   [product-config]

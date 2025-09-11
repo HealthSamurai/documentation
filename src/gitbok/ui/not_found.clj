@@ -2,8 +2,8 @@
   (:require
    [gitbok.utils :as utils]
    [clojure.string :as str]
-   [uui]
-   [gitbok.search]))
+   [gitbok.search]
+   [hiccup2.core]))
 
 (defn not-found-view [context uri]
   (let [search-term (last (str/split uri #"/"))
@@ -11,7 +11,7 @@
                          (gitbok.search/search context search-term))]
     [:div.min-h-screen.flex.items-center.justify-center
      [:script
-      (uui/raw "
+      (hiccup2.core/raw "
 document.addEventListener('DOMContentLoaded', () => {
   if (window.posthog && posthog.capture) {
     posthog.capture('Page Not Found', {

@@ -3,7 +3,6 @@
    [clojure.java.io :as io]
    [clojure.string :as str]
    [clojure.java.shell :as shell]
-   [system]
    [clojure.tools.logging :as log]))
 
 (defn batch-get-all-lastmods
@@ -249,10 +248,16 @@
 
 ;; Cache management using system state
 (defn get-lastmod-cache [context]
-  (system/get-system-state context [::lastmod-cache] {}))
+  ;; fixme
+  ;; (system/get-system-state context [::lastmod-cache] {})
+
+  )
 
 (defn set-lastmod-cache [context cache]
-  (system/set-system-state context [::lastmod-cache] cache))
+  ;; fixme
+  ;; (system/set-system-state context [::lastmod-cache] cache)
+
+  )
 
 (defn update-lastmod-cache [context product-id cache-entry]
   (let [current-cache (get-lastmod-cache context)

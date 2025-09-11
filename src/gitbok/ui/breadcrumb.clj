@@ -1,7 +1,7 @@
 (ns gitbok.ui.breadcrumb
   (:require
    [clojure.string :as str]
-   [uui.heroicons :as ico]
+   [gitbok.ui.heroicons :as ico]
    [gitbok.http]
    [gitbok.products]))
 
