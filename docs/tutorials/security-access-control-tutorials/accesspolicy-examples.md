@@ -19,10 +19,10 @@ See also:
 * [Access Policies Best Practices](accesspolicy-best-practices.md)
 * [Matcho DSL Reference](../../reference/matcho-dsl-reference.md)
 
-## 1. Policy that allows to **temporary** allow all requests
+## 1. Policy that **temporarily** allows all requests
 
 **Description:**
-We need to allow all requests to be allowed for testing purposes.
+We need to allow all requests for testing purposes.
 
 {% hint style="warning" %}
 Never use this policy in production.
@@ -109,7 +109,7 @@ GET /fhir/Observation
 ## 4. Policy that allows a system to update their patients
 
 **Description:**
-We have a couple of systems. Each system maintain ther own patients with identifiers. We want to allow these systems to update their patients - patients that have identifiers from their own system.
+We have a couple of systems. Each system maintains their own patients with identifiers. We want to allow these systems to update their patients - patients that have identifiers from their own system.
 There's a Client resource in Aidbox created for each system.
 
 **Policy:**
@@ -157,7 +157,7 @@ birthDate: 1980-01-01
 ## 5. Policy that allows a system to search for their patients
 
 **Description:**
-We have a couple of systems. Each system maintain ther own patients with identifiers. We want to allow these systems to get their patients - patients that have identifiers from their own system.
+We have a couple of systems. Each system maintains their own patients with identifiers. We want to allow these systems to get their patients - patients that have identifiers from their own system.
 
 **Policy:**
 ```yaml
@@ -193,7 +193,7 @@ resourceType: AccessPolicy
 engine: matcho
 link:
   - reference: Client/client-id
-description: Policy that allows an client-id to do CRUD on Patient and Practitioner resources
+description: Policy that allows a client-id to do CRUD on Patient and Practitioner resources
 matcho:
   params:
     resource/type:
@@ -270,7 +270,7 @@ matcho:
 ## 9. Policy that allows graphql search requests to the Patient resource
 
 **Description:**
-We want to allow a an application, registered as a Client resource in Aidbox, to search the Patient resource using GraphQL.
+We want to allow an application, registered as a Client resource in Aidbox, to search the Patient resource using GraphQL.
 [GraphQL Access Control mode](../../reference/settings/modules.md#module.graphql.access-control) is set to `rest-search`.
 ```yaml
 BOX_FEATURES_GRAPHQL_ACCESS__CONTROL=rest-search
@@ -385,7 +385,7 @@ matcho:
 GET /fhir/Patient?general-practitioner=pr-1
 ```
 
-## 13. Policy that allows the practitioner to read patients bases on given consent.
+## 13. Policy that allows the practitioner to read patients based on given consent.
 
 **Description:**
 Consent is stored in Aidbox as a `Consent` resource, with practitioner id stored in `Consent.actor` element. Practitioner is registered in Aidbox as a `User` resource with practitioner id stored in `User.data.practitioner_id` element. We want to allow the practitioner to read patients based on given consent.
@@ -432,7 +432,7 @@ and:
     matcho:
       params:
         resource/type: Observation
-      user: presents?
+      user: present?
       user: 
         data:
           practitioner_id: present?
