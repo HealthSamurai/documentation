@@ -19,8 +19,94 @@ See also:
 * [Access Policies Best Practices](accesspolicy-best-practices.md)
 * [Matcho DSL Reference](../../reference/matcho-dsl-reference.md)
 
+## 1. Policy that allows to **temporary** allow all requests
 
-## 1. Policy that allows a system to update their patients
+**Description:**
+We need to allow all requests to be allowed for testing purposes.
+
+{% hint style="warning" %}
+Never use this policy in production.
+{% endhint %}
+
+**Policy:**
+```yaml
+id: allow-all
+resourceType: AccessPolicy
+engine: allow
+```
+
+**Request to test the policy:**
+
+```http
+GET /fhir/Patient
+```
+
+## 2. Policy that allows a user to view their own patient
+
+**Description:**
+User is registered in Aidbox as a `User` resource with patient id stored in `User.fhirUser` element. We want to allow the user to view their own patient data
+
+**Policy:**
+```yaml
+id: as-patient-get-patient-data
+resourceType: AccessPolicy
+engine: matcho
+link:
+  - reference: Operation/FhirRead
+
+description: Policy that allows a patient to view their own patient data
+matcho:
+  params:
+    resource/id: .user.fhirUser.id
+    resource/type: Patient
+
+```
+
+**Request to test the policy:**
+
+```http
+GET /fhir/Patient/123
+```
+
+## 3. Policy that allows a practitioner to view all observations
+
+**Description:**
+User is registered in Aidbox as a `User` resource. 
+A `Role` resource is assigned to the user, that links to the `Practitioner` instance:
+```yaml
+name: practitioner-1
+resourceType: Role
+user:
+  reference: User/user-1
+links:
+  practitioner:
+    reference: Practitioner/pr-1
+
+```
+We want to allow the practitioner to view all observations.
+
+**Policy:**
+```yaml
+id: as-practitioner-get-all-observations
+resourceType: AccessPolicy
+link:
+  - reference: Operation/FhirSearch
+engine: matcho
+matcho:
+  session:
+    role:
+      $contains:
+        links:
+          practitioner: present?
+```
+
+**Request to test the policy:**
+
+```http
+GET /fhir/Observation
+```
+
+## 4. Policy that allows a system to update their patients
 
 **Description:**
 We have a couple of systems. Each system maintain ther own patients with identifiers. We want to allow these systems to update their patients - patients that have identifiers from their own system.
@@ -51,31 +137,24 @@ matcho:
 ```http
 PUT /fhir/Patient/123
 Authorization: Basic <base64(system1-client:client-secret)> # Base64 encoded client-id and client-secret
-content-type: application/json
-accept: application/json
+content-type: text/yaml
+accept: text/yaml
 
-{
-  "resourceType": "Patient",
-  "id": "123",
-  "identifier": [
-    {
-      "system": "http://system1",
-      "value": "12345"
-    }
-  ],
-  "name": [
-    {
-      "use": "official",
-      "family": "Doe",
-      "given": ["John"]
-    }
-  ],
-  "gender": "male",
-  "birthDate": "1980-01-01"
-}
+resourceType: Patient
+id: 123
+identifier:
+  - system: http://system1
+    value: 12345
+name:
+  - use: official
+    family: Doe
+    given:
+      - John
+gender: male
+birthDate: 1980-01-01
 ```
 
-## 2. Policy that allows a system to search for their patients
+## 5. Policy that allows a system to search for their patients
 
 **Description:**
 We have a couple of systems. Each system maintain ther own patients with identifiers. We want to allow these systems to get their patients - patients that have identifiers from their own system.
@@ -102,7 +181,7 @@ GET /fhir/Patient?id=123&identifier=http://system1|123
 Authorization: Basic <base64(system1-client:client-secret)> # Base64 encoded client-id and client-secret
 ```
 
-## 3. Policy that allows an application to do CRUD on Patient and Practitioner resources.
+## 6. Policy that allows an application to do CRUD on Patient and Practitioner resources.
 
 **Description:**
 We have an application that is registered as a Client resource with id `client-id` in Aidbox. We want to allow this application to do CRUD on Patient and Practitioner resources.
@@ -136,7 +215,7 @@ GET /fhir/Patient
 Authorization: Basic <base64(client-id:client-secret)> # Base64 encoded client-id and client-secret
 ```
 
-## 4. Policy that allows an admin access to Aidbox UI to the admin users
+## 7. Policy that allows an admin access to Aidbox UI to the admin users
 
 **Description:**
 We have integration with external identity provider configured in Aidbox. We want to users with the role `Aidbox-Admins` to access Aidbox UI.
@@ -162,7 +241,7 @@ matcho:
 **See also:**
 * [Managing Admin Access to the Aidbox UI Using Okta Groups](../../tutorials/security-access-control-tutorials/managing-admin-access-to-the-aidbox-ui-using-okta-groups.md)
 
-## 5. Policy that allows access to Workflow Engine screen only for a specific engineer
+## 8. Policy that allows access to Workflow Engine screen only for a specific engineer
 
 **Description:**
 We want to grant a specific engineer (identified by email) access to only the Workflow Engine screen in Aidbox UI. This policy restricts access to the `/rpc` endpoint with specific limitations on the `_m` parameter values, allowing only workflow-related operations. 
@@ -188,8 +267,7 @@ matcho:
         - awf.workflow/status
 ```
 
-
-## 6. Policy that allows graphql search requests to the Patient resource
+## 9. Policy that allows graphql search requests to the Patient resource
 
 **Description:**
 We want to allow a an application, registered as a Client resource in Aidbox, to search the Patient resource using GraphQL.
@@ -217,7 +295,7 @@ matcho:
 query { PatientList(_count: 1) { id } }
 ```
 
-## 7. Organization-based hierarchical access control policy for a end-user
+## 10. Organization-based hierarchical access control policy for a end-user
 
 **Description:**
 This example allows an org-based user (created by `PUT /Organization/<org-id>/fhir/User`) to see patients that are also created in the same organization.
@@ -253,7 +331,7 @@ GET /Organization/org-a/fhir/Patient/pt-1
 **See also:**
 * [Organization-based hierarchical access control](../../access-control/authorization/scoped-api/organization-based-hierarchical-access-control.md)
 
-## 8. Policy that allows all the requests with JWT issued by certain issuer
+## 11. Policy that allows all the requests with JWT issued by certain issuer
 
 **Description:**
 [Token introspector](../../tutorials/security-access-control-tutorials/set-up-token-introspection.md) is configured in Aidbox to trust JWT issued by certain issuer - `https://auth.example.com`. We want to allow all the requests with JWT issued by this issuer.
@@ -266,7 +344,7 @@ engine: matcho
 description: Policy that allows all the requests with JWT issued by certain issuer
 matcho:
   jwt:
-   iss: https://auth.example.com
+    iss: https://auth.example.com
 ```
 
 **Request to test the policy:**
@@ -275,7 +353,7 @@ matcho:
 GET /fhir/Patient
 Authorization: Bearer <your-jwt>
 ```
-## 9. Policy that allows the practitioner to read their patients
+## 12. Policy that allows the practitioner to read their patients
 
 **Description:**
 Practitioner is registered in Aidbox as a `User` resource with practitioner id stored in `User.data.practitioner_id` element. We want to allow the practitioner to read their patients.
@@ -307,7 +385,7 @@ matcho:
 GET /fhir/Patient?general-practitioner=pr-1
 ```
 
-## 10. Policy that allows the practitioner to read patients bases on given consent.
+## 13. Policy that allows the practitioner to read patients bases on given consent.
 
 **Description:**
 Consent is stored in Aidbox as a `Consent` resource, with practitioner id stored in `Consent.actor` element. Practitioner is registered in Aidbox as a `User` resource with practitioner id stored in `User.data.practitioner_id` element. We want to allow the practitioner to read patients based on given consent.
@@ -336,7 +414,7 @@ matcho:
 GET /fhir/Patient?_has:Consent:patient:actor=<practitioner-id>
 ```
 
-## 11. Policy that allows the practitioner to create Observations for their patients
+## 14. Policy that allows the practitioner to create Observations for their patients
 
 **Description:**
 Practitioner is registered in Aidbox as a `User` resource with practitioner id stored in `User.data.practitioner_id` element. We want to allow the practitioner to create observations for their patients. The relation between the practitioner and the patient is stored in `Patient.generalPractitioner` element.
@@ -345,58 +423,56 @@ Practitioner is registered in Aidbox as a `User` resource with practitioner id s
 ```yaml
 id: as-practitioner-allowed-to-create-observations-for-their-patients
 resourceType: AccessPolicy
-engine: sql
+engine: complex
 link:
   - reference: Operation/FhirCreate
-description: Allow practitioner to create observations for their patients    
-sql:
-  query: |-
-    SELECT
-      {{user}} IS NOT NULL
-      AND {{user.data.practitioner_id}}::text IS NOT NULL
-      AND {{params.resource/type}} = 'Observation'
-      AND {{request-method}} = 'post'
-      AND EXISTS (
-        SELECT 1 FROM patient p
-        WHERE p.id = split_part(({{resource.subject.reference}})::text, '/',2)
-        AND p.resource->'generalPractitioner' @>
-          jsonb_build_array(
-            jsonb_build_object(
-              'resourceType', 'Practitioner',
-              'id', {{user.data.practitioner_id}}::text
-            )
-          )
-      );
+description: Allow practitioner to create observations for their patients     
+and: 
+  - engine: matcho
+    matcho:
+      params:
+        resource/type: Observation
+      user: presents?
+      user: 
+        data:
+          practitioner_id: present?
+  - engine: sql   
+    sql:
+      query: |-
+        SELECT
+          EXISTS (
+            SELECT 1 FROM patient p
+            WHERE p.id = split_part(({{resource.subject.reference}})::text, '/',2)
+            AND p.resource->'generalPractitioner' @>
+              jsonb_build_array(
+                jsonb_build_object(
+                  'resourceType', 'Practitioner',
+                  'id', {{user.data.practitioner_id}}::text
+                )
+              )
+          );
 ```
 
 **Request to test the policy:**
 
 ```http
 POST /fhir/Observation
-Content-Type: application/json
-Accept: application/json
+Content-Type: text/yaml
+Accept: text/yaml
 
-{
-  "resourceType": "Observation",
-  "status": "final",
-  "code": {
-    "coding": [
-      {
-        "system": "http://loinc.org",
-        "code": "29463-7",
-        "display": "Body Weight"
-      }
-    ]
-  },
-  "subject": {
-    "reference": "Patient/pt-2"
-  },
-  "effectiveDateTime": "2025-09-08T10:00:00Z",
-  "valueQuantity": {
-    "value": 72,
-    "unit": "kg",
-    "system": "http://unitsofmeasure.org",
-    "code": "kg"
-  }
-}
+resourceType: Observation
+status: final
+code:
+  coding:
+    - system: http://loinc.org
+      code: "29463-7"
+      display: Body Weight
+subject:
+  reference: Patient/pt-2
+effectiveDateTime: "2025-09-08T10:00:00Z"
+valueQuantity:
+  value: 72
+  unit: kg
+  system: http://unitsofmeasure.org
+  code: kg
 ```
