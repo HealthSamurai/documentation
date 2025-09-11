@@ -3,8 +3,7 @@
    [clojure.tools.logging :as log]
    [clojure.string :as str]
    [hiccup2.core]
-   [clojure.java.io :as io]
-   [cheshire.core :as json])
+   [clojure.java.io :as io])
   (:import [java.time Instant ZoneId ZonedDateTime]
            [java.time.format DateTimeFormatter]
            [java.util Locale]))
@@ -77,8 +76,8 @@
             (uri-to-relative \"/docs/forms/api/endpoints\" \"/docs\" \"/forms\") => \"api/endpoints\""
   [uri prefix product-path]
   (log/info "uri to relative start" {:uri uri
-                                      :prefix prefix
-                                      :product-path product-path})
+                                     :prefix prefix
+                                     :product-path product-path})
   (when uri
     (let [;; First normalize multiple slashes
           normalized-uri (str/replace uri #"/+" "/")
@@ -102,12 +101,12 @@
           cleaned (str/replace without-product #"^/+" "")
           result (if (str/blank? cleaned) "/" cleaned)]
       (log/info "uri to relative result" {:uri uri
-                                           :normalized-uri normalized-uri
-                                           :without-prefix without-prefix
-                                           :with-leading-slash with-leading-slash
-                                           :without-product without-product
-                                           :cleaned cleaned
-                                           :result result})
+                                          :normalized-uri normalized-uri
+                                          :without-prefix without-prefix
+                                          :with-leading-slash with-leading-slash
+                                          :without-product without-product
+                                          :cleaned cleaned
+                                          :result result})
       result)))
 
 (defn concat-filenames [& parts]
@@ -118,18 +117,19 @@
                       (java.io.File. ^java.io.File acc ^String part)
                       (java.io.File. ^String acc ^String part)))
                   (first parts)
-                  (rest parts))]
-      (let [^java.io.File file-result (if (instance? java.io.File result)
-                                        result
-                                        (java.io.File. ^String result))
-            path (.getPath file-result)
-            ;; Remove leading slash if present
-            path (cond-> path
-                   (str/starts-with? path "/")
-                   (subs 1))
-            ;; Replace "/./" with "/"
-            path (str/replace path "/./" "/")]
-        path))))
+                  (rest parts))
+          ^java.io.File file-result
+          (if (instance? java.io.File result)
+            result
+            (java.io.File. ^String result))
+          path (.getPath file-result)
+          ;; Remove leading slash if present
+          path (cond-> path
+                 (str/starts-with? path "/")
+                 (subs 1))
+          ;; Replace "/./" with "/"
+          path (str/replace path "/./" "/")]
+      path)))
 
 (defn etag [lastmod-iso-date]
   (str "\"" lastmod-iso-date "\""))
@@ -143,19 +143,12 @@
 (defn iso-to-http-date [iso-string]
   (when iso-string
     (let [instant (Instant/parse iso-string)
-        zoned (ZonedDateTime/ofInstant instant (ZoneId/of "GMT"))]
-    (.format ^DateTimeFormatter http-date-formatter zoned))))
-
+          zoned (ZonedDateTime/ofInstant instant (ZoneId/of "GMT"))]
+      (.format ^DateTimeFormatter http-date-formatter zoned))))
 
 (defn absolute-url
   [base-url prefix relative-url]
   (concat-urls base-url (or prefix "/") relative-url))
-
-(defn ->json [data]
-  (json/generate-string data {:key-fn name}))
-
-(defn json->clj [json-str]
-  (json/parse-string json-str true))
 
 (defn parent [path]
   (.getParent (java.io.File. ^String path)))

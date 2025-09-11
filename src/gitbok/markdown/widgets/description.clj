@@ -1,7 +1,6 @@
 (ns gitbok.markdown.widgets.description
   (:require [clj-yaml.core :as yaml]
             [hiccup2.core :as hiccup]
-            [gitbok.ui.breadcrumb :as breadcrumb]
             [clojure.string :as str]))
 
 (defn parse-title 

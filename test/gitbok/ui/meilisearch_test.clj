@@ -1,7 +1,7 @@
 (ns gitbok.ui.meilisearch-test
-  (:require [clojure.test :refer :all]
+  (:require [clojure.test :refer [deftest testing is]]
             [gitbok.ui.meilisearch :as m]
-            [hiccup.core :as h]))
+            [hiccup2.core :as h]))
 
 (deftest test-interpret-search-results
   (testing "Single page without sections should not be grouped"
@@ -270,7 +270,7 @@
           rendered (m/render-result-item item "search" 0 false)
           html-str (h/html rendered)]
       ;; Should contain the content snippet
-      (is (re-find #"SearchParameter is a FHIR resource" html-str))))
+      (is (re-find #"SearchParameter is a FHIR resource" (str html-str)))))
 
   (testing "H1-only items should NOT be grouped when multiple exist"
     (let [results [{"hierarchy_lvl0" "API Reference"
@@ -329,16 +329,16 @@
           html-str (h/html rendered)]
 
       ;; Should only have one "SearchParameter" title (in the header)
-      (is (= 1 (count (re-seq #">SearchParameter<" html-str))))
+      (is (= 1 (count (re-seq #">SearchParameter<" (str html-str)))))
 
       ;; Should have "SearchParameter fields" as a child
-      (is (re-find #"SearchParameter fields" html-str))
+      (is (re-find #"SearchParameter fields" (str html-str)))
 
       ;; Should show content from h1-only item in header
-      (is (re-find #"Search parameters can be defined in" html-str))
+      (is (re-find #"Search parameters can be defined in" (str html-str)))
 
       ;; Should show content from h2 item
-      (is (re-find #"Search parameter unique canonical url" html-str))))
+      (is (re-find #"Search parameter unique canonical url" (str html-str)))))
 
   (testing "When no h1-only item exists, all items should be rendered as children"
     (let [results [{"hierarchy_lvl0" "artifact registry"
@@ -356,10 +356,10 @@
           html-str (h/html rendered)]
 
       ;; Should have header with SearchParameter
-      (is (re-find #">SearchParameter<" html-str))
+      (is (re-find #">SearchParameter<" (str html-str)))
 
       ;; Both h2 items should be present
-      (is (re-find #"SearchParameter fields" html-str))
-      (is (re-find #"Search Parameter Types" html-str)))))
+      (is (re-find #"SearchParameter fields" (str html-str)))
+      (is (re-find #"Search Parameter Types" (str html-str))))))
 
 ;; Run tests with: clojure -M:test

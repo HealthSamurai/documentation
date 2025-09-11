@@ -3,7 +3,8 @@
    [clojure.java.io :as io]
    [clojure.string :as str]
    [clojure.java.shell :as shell]
-   [clojure.tools.logging :as log]))
+   [clojure.tools.logging :as log]
+   [gitbok.state :as state]))
 
 (defn batch-get-all-lastmods
   "Get git lastmod timestamps for all files in a directory with a single git command"
@@ -248,16 +249,10 @@
 
 ;; Cache management using system state
 (defn get-lastmod-cache [context]
-  ;; fixme
-  ;; (system/get-system-state context [::lastmod-cache] {})
-
-  )
+  (state/get-state context [::lastmod-cache] {}))
 
 (defn set-lastmod-cache [context cache]
-  ;; fixme
-  ;; (system/set-system-state context [::lastmod-cache] cache)
-
-  )
+  (state/set-state! context [::lastmod-cache] cache))
 
 (defn update-lastmod-cache [context product-id cache-entry]
   (let [current-cache (get-lastmod-cache context)

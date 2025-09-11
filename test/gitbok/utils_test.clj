@@ -1,5 +1,5 @@
 (ns gitbok.utils-test
-  (:require [clojure.test :refer :all]
+  (:require [clojure.test :refer [deftest testing is]]
             [gitbok.utils :as utils]))
 
 (deftest concat-urls-test
@@ -58,7 +58,7 @@
 
   (testing "Empty paths"
     ;; concat-filenames requires at least one argument
-    ;; (is (= nil (utils/concat-filenames))) - это вызовет ошибку 
+    ;; (is (= nil (utils/concat-filenames))) - это вызовет ошибку
     (is (= "foo/bar" (utils/concat-filenames "foo" "bar")))
     (is (= "./foo" (utils/concat-filenames "." "foo"))))
 

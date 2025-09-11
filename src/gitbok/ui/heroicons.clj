@@ -1,4 +1,5 @@
 (ns gitbok.ui.heroicons
+  (:refer-clojure :exclude [key map])
   (:require
    [hiccup2.core]
    [clojure.string :as str]

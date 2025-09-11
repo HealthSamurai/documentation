@@ -2,6 +2,7 @@
   (:require
    [clojure.test :refer [deftest testing is]]
    [clojure.java.io :as io]
+   [clojure.java.shell]
    [gitbok.lastmod.generator :as gen]))
 
 (deftest test-generate-lastmod-data
@@ -10,9 +11,9 @@
           data (gen/generate-lastmod-data test-dir)]
       (is (map? data))
       (is (empty? data))))
-  
+
   (testing "Generate lastmod data for temporary directory with markdown files"
-    (let [temp-dir (io/file (System/getProperty "java.io.tmpdir") 
+    (let [temp-dir (io/file (System/getProperty "java.io.tmpdir")
                             (str "test-lastmod-" (System/currentTimeMillis)))
           test-file (io/file temp-dir "test.md")]
       (try
@@ -27,7 +28,7 @@
         (finally
           (.delete test-file)
           (.delete temp-dir)))))
-  
+
   (testing "Generate lastmod data when git is available"
     ;; Only run this test if we're in a git repository
     (when (.exists (io/file ".git"))
@@ -54,7 +55,7 @@
       (is (= data1 data2))
       (is (some? cached-entry))
       (is (= (:data cached-entry) data1))))
-  
+
   (testing "Cache invalidation when HEAD changes"
     (let [context {:system (atom {})}
           product-id "test-product"
@@ -80,11 +81,11 @@
       (when (string? head)
         ;; If we get a head, it should be a 40-char SHA1 hash
         (is (= 40 (count head))))))
-  
+
   (testing "get-repo-head returns nil when git not available"
     ;; We can't easily test this without mocking shell/sh
     ;; but we can verify the function handles exceptions gracefully
-    (with-redefs [clojure.java.shell/sh 
+    (with-redefs [clojure.java.shell/sh
                   (fn [& _] (throw (Exception. "Git not found")))]
       (is (nil? (gen/get-repo-head))))))
 
@@ -93,16 +94,16 @@
     (let [file (io/file "/non/existent/file.md")
           git-dir "."]
       (is (nil? (gen/lastmod-for-file file git-dir)))))
-  
+
   (testing "lastmod-for-file returns nil when git command fails"
-    (with-redefs [clojure.java.shell/sh 
+    (with-redefs [clojure.java.shell/sh
                   (fn [& _] {:exit 1 :out "" :err "error"})]
       (let [file (io/file "test.md")
             git-dir "."]
         (is (nil? (gen/lastmod-for-file file git-dir))))))
-  
+
   (testing "lastmod-for-file parses valid timestamp"
-    (with-redefs [clojure.java.shell/sh 
+    (with-redefs [clojure.java.shell/sh
                   (fn [& _] {:exit 0 :out "1609459200" :err ""})]
       (let [file (io/file "test.md")
             git-dir "."

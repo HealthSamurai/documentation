@@ -3,7 +3,7 @@
    [clojure.tools.logging :as log]
    [clojure.string :as str]
    [gitbok.indexing.impl.summary]
-   [gitbok.products :as products]))
+   [gitbok.state :as state]))
 
 (defn file->uri-idx [context]
   (let [summary-text (gitbok.indexing.impl.summary/read-summary context)
@@ -34,15 +34,7 @@
     (log/info "index ready" {:type "file->uri" :entries (count result)})
     result))
 
-(defn set-idx [context]
-  (products/set-product-state context [::file-to-uri-idx]
-                              (file->uri-idx context)))
-
-(defn get-idx [context]
-  (products/get-product-state context [::file-to-uri-idx]))
-
 (defn filepath->uri [context filepath]
-  (-> context
-      get-idx
+  (-> (state/get-file-to-uri-idx context)
       (get filepath)
       :uri))

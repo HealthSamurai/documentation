@@ -1,5 +1,6 @@
 (ns gitbok.markdown.widgets.cards
   (:require
+   [gitbok.state :as state]
    [clojure.string :as str]
    [hiccup2.core]
    [gitbok.http]
@@ -106,15 +107,14 @@
                    (let [three-content (if (seq? three) (last three) three)]
                      (when (and (vector? three-content)
                                 (= :a (first three-content)))
-                       (let [footer-link three-content]
-                         (let [opts
-                               (-> footer-link
-                                   second
-                                   (assoc :class "text-primary-9 hover:text-primary-10 hover:underline underline text-sm")
-                                   (update
-                                    :href
-                                    #(indexing/filepath->href context filepath %)))]
-                           [:a opts (nth footer-link 2)])))))
+                       (let [footer-link three-content
+                             opts (-> footer-link
+                                      second
+                                      (assoc :class "text-primary-9 hover:text-primary-10 hover:underline underline text-sm")
+                                      (update
+                                       :href
+                                       #(indexing/filepath->href context filepath %)))]
+                         [:a opts (nth footer-link 2)]))))
 
                  ;; Final href is title-href (processed) or nothing
                  href title-href
@@ -158,7 +158,7 @@
                    ;; .gitbook/assets paths - normalize and add prefix
                    (str/includes? img-href ".gitbook/assets")
                    (let [normalized (str ".gitbook/assets" (last (str/split img-href #"\.gitbook/assets")))]
-                     (str (gitbok.http/get-prefix context) "/" normalized))
+                     (str (state/get-config context :prefix "") "/" normalized))
 
                    ;; Other paths - keep as is for now
                    :else img-href)]

@@ -1,8 +1,8 @@
 (ns gitbok.indexing.impl.sitemap-index
   (:require
+   [gitbok.http :as http]
    [clojure.data.xml :as xml]
-   [gitbok.products :as products]
-   [gitbok.http]))
+   [gitbok.products :as products]))
 
 (defn generate-sitemap-index
   "Generates a sitemap index XML that references all product sitemaps"
@@ -11,7 +11,7 @@
         entries (mapv
                  (fn [product]
                    [:sitemap
-                    [:loc (gitbok.http/get-absolute-url
+                    [:loc (http/get-absolute-url
                            context
                            (str (:path product) "/sitemap.xml"))]
                     ;; TODO: Add actual lastmod when available
