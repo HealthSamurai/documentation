@@ -1,6 +1,7 @@
 (ns gitbok.ui.examples
   (:require
    [gitbok.ui.layout :as layout]
+   [gitbok.ui.main-navigation :as main-navigation]
    [gitbok.products :as products]
    [gitbok.examples.indexer :as indexer]
    [gitbok.http]
@@ -102,7 +103,7 @@
    ;; Note: filterFeatures function is now defined globally in ui-bundle.js
    ])
 
-(defn render-search-bar [search-term context]
+(defn render-search-bar [search-term]
   [:div.w-full
    [:div.relative.flex.items-center
     [:svg.absolute.left-3.w-5.h-5.text-tint-8.pointer-events-none
@@ -118,13 +119,15 @@
       :oninput "updateFiltersAndURL(true)"}]]])
 
 (defn render-examples-grid [examples]
-  [:div#examples-grid.grid.grid-cols-1.md:grid-cols-2.lg:grid-cols-3.gap-6
+  [:div#examples-grid.w-full.grid.grid-cols-1.md:grid-cols-2.lg:grid-cols-3.gap-6
+   {:class "min-h-[400px]"}
    (if (seq examples)
      (for [example examples]
        ^{:key (:id example)}
        (render-example-card example))
-     [:div.col-span-full.text-center.py-12
-      [:p.text-tint-8 "No examples match your filters"]])])
+     ;; Empty state - just empty space to maintain layout
+     [:div.col-span-1.md:col-span-2.lg:col-span-3.w-full
+      {:class "min-h-[300px]"}])])
 
 
 (defn filter-examples
@@ -159,7 +162,7 @@
   [examples search-term selected-languages selected-features]
   (let [filtered-examples (filter-examples examples search-term selected-languages selected-features)]
 
-    [:div#examples-results
+    [:div#examples-results.w-full
      [:div.mb-4
       [:p.text-sm.text-tint-10
        (str "Showing " (count filtered-examples)
@@ -183,18 +186,18 @@
                  {})
         _ (log/info "request params" {:params params
                                       :query-string query-string})
-        
+
         ;; Parse q parameter
         search-term (get params "q" "")
-        
+
         ;; Parse comma-separated languages and features
-        selected-languages (into #{} 
+        selected-languages (into #{}
                                  (when-let [langs (get params "languages")]
                                    (if (string? langs)
                                      (when-not (str/blank? langs)
                                        (str/split langs #","))
                                      [])))
-        selected-features (into #{} 
+        selected-features (into #{}
                                (when-let [feats (get params "features")]
                                  (if (string? feats)
                                    (when-not (str/blank? feats)
@@ -209,46 +212,46 @@
                                          :selected-languages selected-languages
                                          :selected-features selected-features})]
 
-    [:div#examples-content
+    [:div#examples-content.w-full
      ;; JavaScript for updating URL and fetching results
      [:script
       (hiccup2.core/raw
        "let searchTimeout;
-        
+
         function updateFiltersAndURL(isFromSearch = false) {
           // Clear existing timeout if updating from search
           if (isFromSearch && searchTimeout) {
             clearTimeout(searchTimeout);
           }
-          
+
           const doUpdate = () => {
             const searchInput = document.getElementById('examples-search');
             const languageCheckboxes = document.querySelectorAll('input[name=\"languages\"]:checked');
             const featureCheckboxes = document.querySelectorAll('input[name=\"features\"]:checked');
-            
+
             const params = new URLSearchParams();
-            
+
             // Add search query
             if (searchInput && searchInput.value) {
               params.set('q', searchInput.value);
             }
-            
+
             // Add selected languages
             const languages = Array.from(languageCheckboxes).map(cb => cb.value);
             if (languages.length > 0) {
               params.set('languages', languages.join(','));
             }
-            
-            // Add selected features  
+
+            // Add selected features
             const features = Array.from(featureCheckboxes).map(cb => cb.value);
             if (features.length > 0) {
               params.set('features', features.join(','));
             }
-            
+
             // Update URL without page reload
             const newUrl = window.location.pathname + (params.toString() ? '?' + params.toString() : '');
             window.history.replaceState({}, '', newUrl);
-            
+
             // Fetch updated results via HTMX
             const resultsUrl = window.location.pathname.replace('/examples', '/examples-results');
             htmx.ajax('GET', resultsUrl + '?' + params.toString(), {
@@ -256,7 +259,7 @@
               swap: 'innerHTML'
             });
           };
-          
+
           // If from search input, debounce the update
           if (isFromSearch) {
             searchTimeout = setTimeout(doUpdate, 500);
@@ -265,7 +268,7 @@
             doUpdate();
           }
         }
-        
+
         function clearAllFilters() {
           document.getElementById('examples-search').value = '';
           document.querySelectorAll('.filter-checkbox').forEach(cb => cb.checked = false);
@@ -275,10 +278,10 @@
 
      ;; Search bar
      [:div.mb-6
-      (render-search-bar search-term context)]
+      (render-search-bar search-term)]
 
      ;; Main content
-     [:div.flex.flex-col.lg:flex-row.gap-6
+     [:div.flex.flex-col.lg:flex-row.gap-6.w-full
       ;; Filters sidebar
       [:div.lg:w-64.flex-shrink-0
        [:div.bg-white.rounded-lg.border.border-tint-3.p-4
@@ -293,13 +296,13 @@
           (render-filters filtered-examples features_list languages_list
                           selected-languages selected-features context))]]
 
-      [:div.flex-1
+      [:div.flex-1.min-w-0
        (render-examples-results examples search-term selected-languages selected-features)]]]))
 
 (defn render-examples-page
   "Main examples page component - full page"
   [context request]
-  [:div
+  [:div.w-full
    ;; Header
    [:div.mb-8
     [:h1.text-3xl.font-bold.text-tint-12.mb-3 "Aidbox Examples"]
@@ -321,18 +324,18 @@
         params (if query-string
                  (ring.util.codec/form-decode query-string)
                  {})
-        
+
         ;; Parse q parameter
         search-term (get params "q" "")
-        
+
         ;; Parse comma-separated languages and features
-        selected-languages (into #{} 
+        selected-languages (into #{}
                                  (when-let [langs (get params "languages")]
                                    (if (string? langs)
                                      (when-not (str/blank? langs)
                                        (str/split langs #","))
                                      [])))
-        selected-features (into #{} 
+        selected-features (into #{}
                                (when-let [feats (get params "features")]
                                  (if (string? feats)
                                    (when-not (str/blank? feats)
@@ -346,8 +349,15 @@
   "HTTP handler for examples page"
   [context request]
   (let [content (render-examples-page context request)
-        ;; Use shared page-wrapper for consistent layout
-        full-page (layout/page-wrapper context content)]
+        ;; Custom page layout for examples to maintain full width
+        full-page [:div.min-h-screen.flex.flex-col
+                   (main-navigation/nav context)
+                   [:div.mobile-menu-overlay]
+                   [:div.flex-1
+                    [:div.max-w-screen-2xl.mx-auto.w-full.px-4.md:px-8.py-8
+                     [:main#content.w-full
+                      content]]]
+                   (layout/site-footer)]]
     ;; Always return full page through layout
     (gitbok.http/response1
      (layout/document

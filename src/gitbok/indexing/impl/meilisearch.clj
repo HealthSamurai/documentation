@@ -4,33 +4,11 @@
    [org.httpkit.client :as http-client]
    [gitbok.state :as state]))
 
-(defonce ^:private health-cache (atom {:healthy? false
-                                       :last-check 0
-                                       :ttl-ms 30000}))
-
 (defn- get-config []
   {:url (or (state/get-env :meilisearch-url) "http://localhost:7700")
    :api-key (state/get-env :meilisearch-api-key)
    :index-name "docs"
    :timeout-ms 3000})
-
-(defn- check-health
-  "Check if Meilisearch is healthy with caching"
-  []
-  (let [{:keys [healthy? last-check ttl-ms]} @health-cache
-        now (System/currentTimeMillis)]
-    (if (< (- now last-check) ttl-ms)
-      healthy?
-      (let [config (get-config)
-            result (try
-                     (let [response @(http-client/get (str (:url config) "/health")
-                                                      {:timeout (:timeout-ms config)})]
-                       (= 200 (:status response)))
-                     (catch Exception _ false))]
-        (swap! health-cache assoc
-               :healthy? result
-               :last-check now)
-        result))))
 
 (defn- meilisearch-request
   "Make a request to Meilisearch API"
@@ -85,9 +63,6 @@
 (defn search
   "Search using Meilisearch API"
   [query & {:keys [limit] :or {limit 100}}]
-  (when-not (check-health)
-    (throw (ex-info "Meilisearch is not available" {:type :meilisearch-unavailable})))
-
   (let [config (get-config)
         response (meilisearch-request
                   :post
@@ -120,8 +95,3 @@
                       {:status (:status response)
                        :body (:body response)
                        :type :meilisearch-search-error})))))
-
-(defn available?
-  "Check if Meilisearch is available"
-  []
-  (check-health))
