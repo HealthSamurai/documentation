@@ -53,9 +53,9 @@ The initial status is `active`. For the rest, consult [NewRx status table](./new
 
 ### Responding to RxRenewalRequest
 
-Response to RxRenewalRequest consists of two parts:
+Response to RxRenewalRequest consists of two parts: changing the status and responding to renewal request.
 
--  Changing the status of the **MedicationRequest** in Aidbox. Note that the actual status resides in `extension`, and not in the `status` field.
+Changing the status of the **MedicationRequest** in Aidbox happens via Resource Browser resource editing or via REST Console. Note that the actual status resides in `extension`, and not in the `status` field. Here's an example query for REST console:
 
 ```yaml
 PATCH /fhir/MedicationRequest/mr1
@@ -65,7 +65,18 @@ PATCH /fhir/MedicationRequest/mr1
   value: {"url": "http://aidbox.app/ePrescription/FHIRSchema/medication-request-rx-renewal-decision", "valueCode": "approved"}
 ```
 
-- And calling the `/eprescription/rx/respond-to-renewal` endpoint with the ID of the MedicationRequest created by the initial RxRenewalRequest.
+In case there's a need to change an earlier decision (that wasn't yet sent with `/eprescription/rx/respond-to-renewal`), you can use a similar patch, but with `replace` operation:
+
+```yaml
+PATCH /fhir/MedicationRequest/mr1
+
+- op: replace
+  # Replace with the index of the necessary extension
+  path: '/extension/3'
+  value: {"url": "http://aidbox.app/ePrescription/FHIRSchema/medication-request-rx-renewal-decision", "valueCode": "denied"}
+```
+
+After the decision is made, call the `/eprescription/rx/respond-to-renewal` endpoint with the ID of the MedicationRequest created by the initial RxRenewalRequest.
 ```json
 POST /eprescription/rx/respond-to-renewal
 
