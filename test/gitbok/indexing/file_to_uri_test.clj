@@ -3,7 +3,7 @@
             [gitbok.indexing.impl.file-to-uri :as file-to-uri]
             [gitbok.indexing.impl.summary :as summary]
             [gitbok.products :as products]
-            [gitbok.constants :as const]))
+))
 
 (defn mock-context []
   {:current-product-id "test"})

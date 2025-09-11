@@ -6,16 +6,13 @@
    [gitbok.indexing.impl.common :as common]
    [gitbok.indexing.impl.meilisearch :as meilisearch]
    [gitbok.indexing.impl.file-to-uri :as file-to-uri]
-   [gitbok.constants :as const]
    [gitbok.products :as products]
    [gitbok.lastmod.generator :as lastmod-gen]
-   [system]
+   [gitbok.state]
    [clojure.string :as str]
    [clojure.java.io :as io]
    [gitbok.utils :as utils]
-   [gitbok.http]
-   [uui]
-   [http]))
+   [gitbok.http]))
 
 (set! *warn-on-reflection* true)
 
@@ -26,19 +23,19 @@
   (let [idx (uri-to-file/get-idx context)
         filepath (gitbok.indexing.impl.uri-to-file/uri->filepath idx uri)]
     (log/info "uri >filepath" {:uri uri
-                                :idx-exists (boolean idx)
-                                :filepath filepath
-                                :product-id (:current-product-id context)})
+                               :idx-exists (boolean idx)
+                               :filepath filepath
+                               :product-id (:current-product-id context)})
     filepath))
 
 (defn get-redirect [context ^String uri]
   (let [redirects-idx (uri-to-file/get-redirects-idx context)
         redirect (get redirects-idx uri)]
     (log/info "get redirect" {:uri uri
-                               :redirects-idx-exists (boolean redirects-idx)
-                               :redirect-found (boolean redirect)
-                               :redirect-target redirect
-                               :product-id (:current-product-id context)})
+                              :redirects-idx-exists (boolean redirects-idx)
+                              :redirect-found (boolean redirect)
+                              :redirect-target redirect
+                              :product-id (:current-product-id context)})
     redirect))
 
 (defn absolute-filepath->relative
@@ -122,13 +119,13 @@
 (defn set-md-files-idx [context file-to-uri-idx]
   (products/set-product-state
    context
-   [const/MD_FILES_IDX]
+   [::md-files-idx]
    (slurp-md-files! context (keys file-to-uri-idx))))
 
 (defn get-md-files-idx [context]
   (products/get-product-state
    context
-   [const/MD_FILES_IDX]))
+   [::md-files-idx]))
 
 (defn search [_context q]
   (meilisearch/search q))
@@ -143,7 +140,7 @@
 
 (defn get-lastmod [context filepath]
   (when filepath
-    (let [lastmod-map (products/get-product-state context [const/LASTMOD])
+    (let [lastmod-map (products/get-product-state context [::lastmod])
           ;; Normalize the filepath to match lastmod keys
           ;; Lastmod keys are relative paths from docs directory
           ;; filepath might be "../docs/path/to/file.md" or "docs/path/to/file.md"
@@ -160,39 +157,54 @@
                             :else filepath)]
       (get lastmod-map normalized-path))))
 
-(defn set-lastmod [context]
-  (let [product-id (products/get-current-product-id context)
-        product-config (products/get-current-product context)
+(defn clear-all-caches
+  "Clear all product caches from state"
+  []
+  (let [products (gitbok.state/get-products)]
+    (doseq [product products]
+      (let [product-id (:id product)]
+        (gitbok.state/set-state! [:products :indices product-id] {})))
+    (log/info "All caches cleared")))
 
-        ;; Get paths from product config and environment
-        volume-path (or (System/getenv "DOCS_VOLUME_PATH") ".")
+(defn set-lastmod
+  ([]
+   ;; New API - works with state directly
+   (let [product-config (gitbok.state/get-current-product)
+         product-id (:id product-config)
+         volume-path (or (gitbok.state/get-env :docs-volume-path) ".")
 
-        ;; Build docs path from product config
-        config-path (:config product-config)
-        config-dir (utils/parent config-path)
-        root (or (-> product-config :structure :root)
-                 (:root product-config)
-                 "./docs")
-        ;; Remove leading "./" from root if present
-        root (if (str/starts-with? root "./")
-               (subs root 2)
-               root)
+         ;; Build docs path from product config
+         config-path (:config product-config)
+         config-dir (utils/parent config-path)
+         root (or (-> product-config :structure :root)
+                  (:root product-config)
+                  "./docs")
+         ;; Remove leading "./" from root if present
+         root (if (str/starts-with? root "./")
+                (subs root 2)
+                root)
 
-        ;; Construct full docs path
-        docs-path (.getPath (io/file volume-path config-dir root))
+         ;; Construct full docs path
+         docs-path (.getPath (io/file volume-path config-dir root))
 
-        ;; Generate lastmod data in memory with caching
-        lastmod-data (if (.exists (io/file docs-path))
-                       (lastmod-gen/generate-or-get-cached-lastmod
-                        context
-                        product-id
-                        docs-path)
-                       {})]
+         ;; Generate lastmod data in memory with caching
+         lastmod-data (if (.exists (io/file docs-path))
+                        (lastmod-gen/generate-or-get-cached-lastmod
+                         nil ;; context not needed for new version
+                         product-id
+                         docs-path)
+                        {})]
 
-    (log/info "✅lastmod set" {:product product-id
-                              :docs-path docs-path
-                              :entries (count lastmod-data)})
-    (products/set-product-state
-     context
-     [const/LASTMOD]
-     lastmod-data)))
+     (log/info "✅lastmod set" {:product product-id
+                               :docs-path docs-path
+                               :entries (count lastmod-data)})
+     (gitbok.state/set-product-state! [::lastmod] lastmod-data)))
+
+  ([context]
+   ;; Legacy API - for compatibility
+   (let [product-id (products/get-current-product-id context)
+         product-config (products/get-current-product context)]
+     ;; Set the current product in state for the new API
+     (gitbok.state/set-current-product! product-config)
+     ;; Call the new version
+     (set-lastmod))))

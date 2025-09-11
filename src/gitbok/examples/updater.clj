@@ -3,21 +3,21 @@
             [clojure.tools.logging :as log]
             [gitbok.examples.indexer :as indexer]
             [gitbok.products :as products]
-            [org.httpkit.client :as http-client]
-            [system])
+            [gitbok.state :as state]
+            [org.httpkit.client :as http-client])
   (:import [java.util.zip ZipInputStream]
            [java.io ByteArrayInputStream]))
 
 (defn get-github-token
-  "Get GitHub PAT from environment"
+  "Get GitHub PAT from state (stored at startup)"
   []
-  (System/getenv "GITHUB_TOKEN"))
+  (state/get-env :github-token))
 
 (defn get-update-interval
-  "Get update interval in minutes from environment, default 60"
+  "Get update interval in minutes from state, default 60"
   []
   (try
-    (Integer/parseInt (or (System/getenv "EXAMPLES_UPDATE_INTERVAL") "60"))
+    (Integer/parseInt (state/get-env :examples-update-interval "60"))
     (catch Exception _
       60)))
 
@@ -114,7 +114,7 @@
 
 (defn update-examples-from-artifact
   "Fetch and update examples from the latest GitHub artifact"
-  [context]
+  []
   (log/info "update examples start" {})
   (try
     (when-let [artifacts (fetch-artifacts-list)]
@@ -129,71 +129,21 @@
             (when-let [examples-data (extract-json-from-zip zip-bytes)]
               (log/info "extracted examples" {:count (count (:examples examples-data))})
 
-              ;; Update in context for aidbox product
-              (let [ctx-with-product (products/set-current-product-id context "aidbox")]
-                (indexer/update-examples! ctx-with-product examples-data)
-                (log/info "examples updated"
-                          {:count (count (:examples examples-data))
-                           :timestamp (:timestamp examples-data)})
-                true))))))
+              ;; Update for aidbox product
+              (products/set-current-product-id "aidbox")
+              (indexer/update-examples! examples-data)
+              (log/info "examples updated"
+                        {:count (count (:examples examples-data))
+                         :timestamp (:timestamp examples-data)})
+              true)))))
     (catch Exception e
       (log/error "update examples failed" {:error (.getMessage e)})
       false)))
 
-(defn update-loop
-  "Update loop that runs periodically"
-  [context interval-ms]
-  (let [fut (future
-              ;; Initial delay
-              (Thread/sleep 60000)
-              ;; Update loop
-              (loop []
-                (when-not (Thread/interrupted)
-                  (try
-                    (update-examples-from-artifact context)
-                    (catch Exception e
-                      (log/error "scheduled update failed" {:error (.getMessage e)})))
-                  ;; Sleep for interval, checking for interruption
-                  (let [sleep-chunks (quot interval-ms 5000)]
-                    (loop [remaining sleep-chunks]
-                      (when (and (not (Thread/interrupted)) (pos? remaining))
-                        (Thread/sleep 5000)
-                        (recur (dec remaining)))))
-                  (when-not (Thread/interrupted)
-                    (recur))))
-              (log/info "update loop stopped" {}))]
-    ;; Return control map with future
-    {:stop (fn [] (future-cancel fut))
-     :future fut}))
-
-(defn start-scheduler
-  "Start the periodic updates loop"
-  [context]
-  (let [interval-minutes (get-update-interval)
-        interval-ms (* interval-minutes 60 1000)]
-
-    (log/info "scheduler starting" {:interval-minutes interval-minutes})
-
-    ;; Do initial update immediately
-    (try
-      (update-examples-from-artifact context)
-      (catch Exception e
-        (log/error "initial update failed" {:error (.getMessage e)})))
-
-    ;; Start update loop and store control in context
-    (let [loop-control (update-loop context interval-ms)]
-      (system/set-system-state context [::update-loop] loop-control)
-      true)))
-
-(defn stop-scheduler
-  "Stop the periodic updates loop"
-  [context]
-  (when-let [loop-control (system/get-system-state context [::update-loop])]
-    (log/info "scheduler stopping" {})
-    ((:stop loop-control))
-    (system/set-system-state context [::update-loop] nil)))
+;; These functions are now handled by scheduler.clj with chime
+;; Keeping only the core update logic here
 
 (defn manual-update
   "Manually trigger an update (for testing)"
-  [context]
-  (update-examples-from-artifact context))
+  []
+  (update-examples-from-artifact))

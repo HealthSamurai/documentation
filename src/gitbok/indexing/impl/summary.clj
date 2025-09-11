@@ -2,13 +2,10 @@
   (:require
    [clojure.tools.logging :as log]
    [clojure.string :as str]
-   [gitbok.constants :as const]
    [gitbok.utils :as utils]
    [gitbok.http]
    [gitbok.products :as products]
-   [system]
-   [uui]
-   [uui.heroicons :as ico]))
+   [gitbok.ui.heroicons :as ico]))
 
 (defn count-whitespace [s] (count (re-find #"^\s*" s)))
 
@@ -213,11 +210,11 @@
 (defn set-summary [context]
   (products/set-product-state
    context
-   [const/SUMMARY_STATE]
+   [::summary-hiccup]
    (parse-summary context)))
 
 (defn get-summary [context]
-  (products/get-product-state context [const/SUMMARY_STATE]))
+  (products/get-product-state context [::summary-hiccup]))
 
 (defn flatten-navigation [items]
   (reduce (fn [acc item]

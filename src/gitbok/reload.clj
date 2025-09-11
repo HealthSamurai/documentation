@@ -3,19 +3,15 @@
    [clojure.java.io :as io]
    [clojure.java.shell :as shell]
    [clojure.string :as str]
-   [gitbok.constants :as const]
-   [gitbok.http]
+   [gitbok.state :as state]
    [gitbok.products :as products]
    [gitbok.indexing.core :as indexing]
-   [system]
    [clojure.tools.logging :as log]))
-
-(def volume-path (System/getenv "DOCS_VOLUME_PATH"))
 
 (defn get-volume-path
   "Get current volume path, with fallback to local docs/ directory for development"
   []
-  (or volume-path
+  (or (state/get-env :docs-volume-path)
       (when (.exists (io/file "docs"))
         (log/info "using local docs" {:path "docs"})
         "docs")
@@ -23,47 +19,43 @@
         (log/info "using local docs" {:path "../docs"})
         "../docs")))
 
-;; Configuration from environment
-(def reload-check-interval-ms
-  (or (some-> (System/getenv "RELOAD_CHECK_INTERVAL_SEC")
-              Integer/parseInt
-              (* 1000))
-      60000)) ;; Default: check every 60 seconds
+(defn get-reload-check-interval-ms []
+  (* 1000 (Integer/parseInt (state/get-env :reload-check-interval "60"))))
 
 ;; Removed checksum functions - now using git HEAD for change detection
 
-;; State management functions using context
-(defn get-reload-state [context]
-  (system/get-system-state context [const/RELOAD_STATE]
-                           {:git-head nil
-                            :last-reload-time nil
-                            :app-version nil
-                            :in-progress false}))
+;; State management functions
+(defn get-reload-state []
+  (state/get-cache :reload-state
+                   {:git-head nil
+                    :last-reload-time nil
+                    :app-version nil
+                    :in-progress false}))
 
-(defn set-reload-state [context state]
-  (system/set-system-state context [const/RELOAD_STATE] state))
+(defn set-reload-state! [reload-state]
+  (state/set-cache! :reload-state reload-state))
 
-(defn update-reload-state [context f & args]
-  (system/update-system-state context [const/RELOAD_STATE]
-                              (fn [state]
-                                (apply f (or state {}) args))))
+(defn update-reload-state! [f & args]
+  (state/update-cache! :reload-state
+                       (fn [state]
+                         (apply f (or state {}) args))))
 
 ;; Removed checksum getters/setters - using git HEAD instead
 
-(defn is-reloading? [context]
-  (:in-progress (get-reload-state context)))
+(defn is-reloading? []
+  (:in-progress (get-reload-state)))
 
-(defn set-reloading [context value]
-  (update-reload-state context assoc :in-progress value))
+(defn set-reloading! [value]
+  (update-reload-state! assoc :in-progress value))
 
 (defn rebuild-all-caches
   "Build complete new cache for all products.
    This reuses existing initialization logic."
-  [context init-product-indices-fn init-products-fn]
+  [init-product-indices-fn init-products-fn]
   (log/info "📦rebuild start" {:action "re-initializing-products"})
   ;; Simply re-initialize all products
   ;; This will reload products.yaml and all documentation
-  (let [products-config (init-products-fn context)
+  (let [products-config (init-products-fn)
         product-count (count products-config)]
     (log/info "📚products found" {:count product-count})
     ;; Rebuild cache for each product
@@ -82,7 +74,7 @@
           ;; 4. Parse markdown
           ;; 5. Pre-render pages
           ;; 6. Generate sitemap
-          (init-product-indices-fn context product)
+          (init-product-indices-fn product)
           (let [duration (- (System/currentTimeMillis) start-time)]
             (log/info "product rebuilt" {:product-id product-id
                                          :product-name product-name
@@ -93,11 +85,11 @@
 (defn check-and-reload!
   "Check if git HEAD changed and reload if needed.
    This ensures only one reload happens at a time."
-  [context init-product-indices-fn init-products-fn]
+  [init-product-indices-fn init-products-fn]
   (when (and (get-volume-path)
-             (not (is-reloading? context)))
+             (not (is-reloading?)))
     (let [;; Get current git HEAD
-          repo-path (or (System/getenv "DOCS_REPO_PATH") ".")
+          repo-path (state/get-env :docs-repo-path ".")
           new-head (try
                      (let [{:keys [out exit]} (shell/sh "git"
                                                         "-c" (str "safe.directory=" repo-path)
@@ -108,9 +100,9 @@
                      (catch Exception e
                        (log/warn "⚠️get head failed" {:error (.getMessage e)})
                        nil))
-          reload-state (get-reload-state context)
+          reload-state (get-reload-state)
           current-head (:git-head reload-state)
-          app-version (gitbok.http/get-version context)]
+          app-version (state/get-config :version)]
 
       (log/info "check status" {:🏷️app-version app-version
                                 :📌current-head (or current-head "none")
@@ -125,22 +117,22 @@
           (log/info "📊repo changed" {:old-head (or current-head "none")
                                       :new-head new-head})
 
-          (set-reloading context true)
+          (set-reloading! true)
           (try
             (let [start-time (System/currentTimeMillis)]
               (log/info "🚀reload start" {:action "starting-reload"})
 
               ;; Build new caches
-              (rebuild-all-caches context init-product-indices-fn init-products-fn)
+              (rebuild-all-caches init-product-indices-fn init-products-fn)
 
               ;; Update lastmod for all products
               (log/info "🔄updating lastmod data")
-              (doseq [product (products/get-products-config context)]
-                (let [ctx (assoc context ::products/current-product product)]
-                  (indexing/set-lastmod ctx)))
+              (doseq [product (state/get-products)]
+                (state/set-current-product! product)
+                (indexing/set-lastmod))
 
               ;; Update state only after successful reload
-              (update-reload-state context assoc
+              (update-reload-state! assoc
                                    :git-head new-head
                                    :last-reload-time (java.util.Date.)
                                    :app-version app-version)
@@ -152,22 +144,22 @@
               (log/error "reload failed" {:error (.getMessage e)
                                           :exception e}))
             (finally
-              (set-reloading context false))))
+              (set-reloading! false))))
 
         :else
         (log/info "📚docs unchanged")))))
 ;; Removed separate lastmod updater - now integrated into check-and-reload!
 
-(defn start-reload-watcher
-  "Start background thread that checks for git changes"
-  [context init-product-indices-fn init-products-fn]
+(defn init-reload-state!
+  "Initialize reload state at startup"
+  []
   (when-let [docs-path (get-volume-path)]
-    (let [app-version (gitbok.http/get-version context)
-          repo-path (or (System/getenv "DOCS_REPO_PATH") ".")]
+    (let [app-version (state/get-config :version)
+          repo-path (state/get-env :docs-repo-path ".")]
 
-      (log/info "watcher start" {:app-version app-version
-                                 :volume-path docs-path
-                                 :repo-path repo-path})
+      (log/info "reload state init" {:app-version app-version
+                                     :volume-path docs-path
+                                     :repo-path repo-path})
 
       ;; Get initial git HEAD
       (let [initial-head (try
@@ -180,26 +172,11 @@
                            (catch Exception e
                              (log/warn "⚠️get initial head failed" {:error (.getMessage e)})
                              nil))]
-        (set-reload-state context
-                          {:git-head initial-head
-                           :last-reload-time (java.util.Date.)
-                           :app-version app-version
-                           :in-progress false})
+        (set-reload-state!
+         {:git-head initial-head
+          :last-reload-time (java.util.Date.)
+          :app-version app-version
+          :in-progress false})
         (log/info "initial git head" {:head initial-head
-                                      :path repo-path}))
-
-      (log/info "check interval" {:interval-seconds (/ reload-check-interval-ms 1000)}))
-
-    ;; Start background thread
-    (future
-      (loop []
-        (try
-          (Thread/sleep reload-check-interval-ms)
-          (check-and-reload! context init-product-indices-fn init-products-fn)
-          (catch Exception e
-            (log/error "watcher error" {:error (.getMessage e)})))
-        (recur)))
-
-    (log/info "watcher started" {:status "success"})
-    :started))
+                                      :path repo-path})))))
 

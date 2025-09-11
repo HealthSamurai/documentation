@@ -1,7 +1,7 @@
 (ns gitbok.ui.landing-hero
   (:require [gitbok.http]
             [gitbok.ui.layout :as layout]
-            [uui.heroicons :as ico]))
+            [gitbok.ui.heroicons :as ico]))
 
 (defn getting-started-card
   "Getting Started card with tutorial icons"

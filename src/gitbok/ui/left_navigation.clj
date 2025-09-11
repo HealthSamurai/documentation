@@ -1,6 +1,6 @@
 (ns gitbok.ui.left-navigation
   (:require
-   [uui.heroicons :as ico]
+   [gitbok.ui.heroicons :as ico]
    [gitbok.http]
    [clojure.string :as str]
    [gitbok.indexing.impl.summary :as summary]))

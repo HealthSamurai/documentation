@@ -7,7 +7,7 @@
    [nextjournal.markdown.utils :as u]
    [gitbok.utils :as utils]
    [gitbok.products :as products]
-   [uui.heroicons :as ico]))
+   [gitbok.ui.heroicons :as ico]))
 
 (def big-link-tokenizer
   (u/normalize-tokenizer
@@ -57,7 +57,7 @@
            uri
            (gitbok.http/get-prefix context)
            (products/path context))
-         
+
          relative-uri (if (and relative-uri (str/starts-with? relative-uri "/"))
                         (subs relative-uri 1)
                         relative-uri)
