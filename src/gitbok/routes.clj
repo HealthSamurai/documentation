@@ -180,11 +180,6 @@
      (when (state/get-config :dev-mode)
        [(str prefix "/update-examples") {:post {:handler manual-update-handler}}])
 
-     ;; Examples (hardcoded for Aidbox)
-     [(str prefix "/aidbox/examples") {:get {:handler examples-handler
-                                             :middleware [wrap-gzip]}}]
-     [(str prefix "/aidbox/examples-results") {:get {:handler examples-results-handler
-                                                     :middleware [wrap-gzip]}}]
 
      ;; Sitemap at root
      [(str prefix "/sitemap.xml") {:get {:handler sitemap-index-xml}}]
@@ -202,41 +197,56 @@
 (defn product-routes
   "Generate routes for a specific product"
   [product prefix]
-  (let [product-path (utils/concat-urls prefix (:path product))]
-    [;; Specific routes first
-     ;; Product search
-     [(str product-path "/search/dropdown")
-      {:get {:handler search-endpoint
-             :middleware [product-middleware wrap-gzip]}}]
+  (let [product-path (utils/concat-urls prefix (:path product))
+        routes [;; Specific routes first
+                ;; Product search
+                [(str product-path "/search/dropdown")
+                 {:get {:handler search-endpoint
+                        :middleware [product-middleware wrap-gzip]}}]
 
-     ;; Meilisearch
-     [(str product-path "/meilisearch/dropdown")
-      {:get {:handler meilisearch-endpoint
-             :middleware [product-middleware]}}]
+                ;; Meilisearch
+                [(str product-path "/meilisearch/dropdown")
+                 {:get {:handler meilisearch-endpoint
+                        :middleware [product-middleware]}}]
 
-     ;; Product sitemap
-     [(str product-path "/sitemap.xml")
-      {:get {:handler sitemap-xml
-             :middleware [product-middleware]}}]
+                ;; Product sitemap
+                [(str product-path "/sitemap.xml")
+                 {:get {:handler sitemap-xml
+                        :middleware [product-middleware]}}]
 
-     ;; Product favicon
-     [(str product-path "/favicon.ico")
-      {:get {:handler render-favicon
-             :middleware [product-middleware wrap-gzip]}}]
+                ;; Product favicon
+                [(str product-path "/favicon.ico")
+                 {:get {:handler render-favicon
+                        :middleware [product-middleware wrap-gzip]}}]
 
-     ;; Product landing
-     [(str product-path "/landing")
-      {:get {:handler render-landing
-             :middleware [product-middleware wrap-gzip]}}]
+                ;; Product landing
+                [(str product-path "/landing")
+                 {:get {:handler render-landing
+                        :middleware [product-middleware wrap-gzip]}}]
 
-     ;; Product root
-     [product-path {:get {:handler redirect-to-readme
-                          :middleware [product-middleware wrap-gzip]}}]
-
-     ;; All product pages (catch-all) - must be last!
-     [(str product-path "/*")
-      {:get {:handler render-file-view
-             :middleware [product-middleware wrap-gzip]}}]]))
+                ;; Product root
+                [product-path {:get {:handler redirect-to-readme
+                                     :middleware [product-middleware wrap-gzip]}}]]]
+    ;; Add examples routes only for Aidbox product
+    (if (= (:id product) "aidbox")
+      (concat routes
+              [;; Examples page
+               [(str product-path "/examples")
+                {:get {:handler examples-handler
+                       :middleware [product-middleware wrap-gzip]}}]
+               ;; Examples results endpoint for HTMX
+               [(str product-path "/examples-results")
+                {:get {:handler examples-results-handler
+                       :middleware [product-middleware wrap-gzip]}}]
+               ;; All product pages (catch-all) - must be last!
+               [(str product-path "/*")
+                {:get {:handler render-file-view
+                       :middleware [product-middleware wrap-gzip]}}]])
+      ;; For non-Aidbox products, just add the catch-all
+      (conj routes
+            [(str product-path "/*")
+             {:get {:handler render-file-view
+                    :middleware [product-middleware wrap-gzip]}}]))))
 
 (defn all-routes
   "Generate all routes including dynamic product routes"
