@@ -1,9 +1,7 @@
 (ns gitbok.utils
   (:require
-   [clojure.tools.logging :as log]
    [clojure.string :as str]
-   [hiccup2.core]
-   [clojure.java.io :as io])
+   [hiccup2.core])
   (:import [java.time Instant ZoneId ZonedDateTime]
            [java.time.format DateTimeFormatter]
            [java.util Locale]))
@@ -28,7 +26,6 @@
                (>= end start)
                (<= end (count s)))
       (subs s start end))))
-
 
 (defn concat-urls [& parts]
   (let [clean (fn [s] (str/replace s #"^/|/$" ""))

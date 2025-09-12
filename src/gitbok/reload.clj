@@ -12,10 +12,10 @@
   [context]
   (or (state/get-config context :docs-volume-path)
       (when (.exists (io/file "docs"))
-        (log/info "using local docs" {:path "docs"})
+        (log/warn "using local docs" {:path "docs"})
         "docs")
       (when (.exists (io/file "../docs"))
-        (log/info "using local docs" {:path "../docs"})
+        (log/warn "using local docs" {:path "../docs"})
         "../docs")))
 
 ;; State management functions
@@ -127,9 +127,9 @@
 
               ;; Update state only after successful reload
               (update-reload-state! context assoc
-                                   :git-head new-head
-                                   :last-reload-time (java.util.Date.)
-                                   :app-version app-version)
+                                    :git-head new-head
+                                    :last-reload-time (java.util.Date.)
+                                    :app-version app-version)
 
               (let [duration (- (System/currentTimeMillis) start-time)]
                 (log/info "reload success" {:duration-ms duration
@@ -142,7 +142,6 @@
 
         :else
         (log/info "📚docs unchanged")))))
-;; Removed separate lastmod updater - now integrated into check-and-reload!
 
 (defn init-reload-state!
   "Initialize reload state at startup"
@@ -167,10 +166,9 @@
                              (log/warn "⚠️get initial head failed" {:error (.getMessage e)})
                              nil))]
         (set-reload-state! context
-         {:git-head initial-head
-          :last-reload-time (java.util.Date.)
-          :app-version app-version
-          :in-progress false})
+                           {:git-head initial-head
+                            :last-reload-time (java.util.Date.)
+                            :app-version app-version
+                            :in-progress false})
         (log/info "initial git head" {:head initial-head
                                       :path repo-path})))))
-
