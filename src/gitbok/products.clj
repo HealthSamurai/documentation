@@ -13,8 +13,8 @@
     :path "/aidbox"
     :config "aidbox/.gitbook.yaml"}])
 
-(defn read-product-config-file [config-file]
-  (yaml/parse-string (utils/slurp-resource config-file)))
+(defn read-product-config-file [context config-file]
+  (yaml/parse-string (state/slurp-resource context config-file)))
 
 (defn volume-path [context]
   (state/get-config context :docs-volume-path))
@@ -32,13 +32,13 @@
                            ;; Volume path set but file not found - try classpath
                            (do
                              (log/warn "fallback classpath" {:reason "file-not-in-volume"})
-                             (utils/slurp-resource "products.yaml"))))
+                             (state/slurp-resource context "products.yaml"))))
                        ;; Read from classpath
-                       (utils/slurp-resource "products.yaml"))
+                       (state/slurp-resource context "products.yaml"))
           config (yaml/parse-string config-str)
           products (mapv
                     (fn [product]
-                      (let [config-data (read-product-config-file (:config product))
+                      (let [config-data (read-product-config-file context (:config product))
                             merged (merge product config-data)
                             ;; Calculate docs-relative-path for this product
                             config-path (:config merged)
