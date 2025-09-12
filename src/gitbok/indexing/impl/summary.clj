@@ -2,7 +2,6 @@
   (:require
    [clojure.tools.logging :as log]
    [clojure.string :as str]
-   [gitbok.utils :as utils]
    [gitbok.http :as http]
    [gitbok.products :as products]
    [gitbok.state :as state]
@@ -91,7 +90,7 @@
   (let [t (str/trim (str/replace (str/replace s #"\<.*\>" "") #"#" ""))]
     (if (= "Table of contents" t) "" t)))
 
-(defn get-section-from-path 
+(defn get-section-from-path
   "Extract the top-level section from a file path.
    e.g. 'api/rest-api/fhir-search/searchparameter.md' -> 'api'"
   [path]
@@ -208,7 +207,6 @@
                                 (treefy)))))))]
     (log/info "summary parsed" {:entries (count summary)})
     summary))
-
 
 (defn flatten-navigation [items]
   (reduce (fn [acc item]
