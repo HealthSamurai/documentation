@@ -13,8 +13,8 @@
   "Initialize application state with config from environment.
    All System/getenv calls happen here at startup.
    Returns a system context that should be used for all subsequent operations."
-  [& [{:keys [port prefix base-url dev-mode version 
-              github-token docs-volume-path docs-repo-path 
+  [& [{:keys [port prefix base-url dev-mode version
+              github-token docs-volume-path docs-repo-path
               examples-update-interval reload-check-interval
               meilisearch-url meilisearch-api-key]}]]
   (let [config {:port (or port
@@ -35,22 +35,22 @@
                 :github-token (or github-token (System/getenv "GITHUB_TOKEN"))
                 :docs-volume-path (or docs-volume-path (System/getenv "DOCS_VOLUME_PATH"))
                 :docs-repo-path (or docs-repo-path (System/getenv "DOCS_REPO_PATH") ".")
-                :examples-update-interval (or examples-update-interval 
-                                             (System/getenv "EXAMPLES_UPDATE_INTERVAL") 
-                                             "60")
-                :reload-check-interval (or reload-check-interval 
-                                          (System/getenv "RELOAD_CHECK_INTERVAL") 
-                                          "30")
+                :examples-update-interval (or examples-update-interval
+                                              (System/getenv "EXAMPLES_UPDATE_INTERVAL")
+                                              "60")
+                :reload-check-interval (or reload-check-interval
+                                           (System/getenv "RELOAD_CHECK_INTERVAL")
+                                           "30")
                 :meilisearch-url (or meilisearch-url (System/getenv "MEILISEARCH_URL"))
                 :meilisearch-api-key (or meilisearch-api-key (System/getenv "MEILISEARCH_API_KEY"))}
         initial-state {:config config
                        :products {:config []
-                                 :indices {}}
+                                  :indices {}}
                        :cache {:lastmod {}
-                              :reload-state {:git-head nil
-                                           :last-reload-time nil
-                                           :app-version (:version config)
-                                           :in-progress false}}
+                               :reload-state {:git-head nil
+                                              :last-reload-time nil
+                                              :app-version (:version config)
+                                              :in-progress false}}
                        :schedulers {}
                        :runtime {}}]
     (log/info "State initialized" {:port (:port config)
@@ -85,16 +85,11 @@
   ([context k] (get-state context [:config k]))
   ([context k default] (get-state context [:config k] default)))
 
-;; Removed get-env - use get-config directly since all env vars are now in config
-
 (defn get-products [context]
   (get-state context [:products :config] []))
 
 (defn set-products! [context products]
   (set-state! context [:products :config] products))
-
-;; Removed get-current-product and set-current-product!
-;; Current product should be request-time, not global state
 
 (defn get-product-state
   "Get state for current product or specific product"

@@ -141,23 +141,6 @@
 (def examples-results-handler
   (adapt-handler gitbok.ui.examples/examples-results-handler))
 
-
-;; Removed manual-update-handler as per review comment
-#_(def manual-update-handler
-  (fn [request]
-    (let [context (:context request)]
-      (if (state/get-config context :dev-mode)
-        (if (examples-updater/manual-update context)
-          {:status 200
-           :headers {"Content-Type" "text/plain"}
-           :body "Examples updated successfully"}
-          {:status 500
-           :headers {"Content-Type" "text/plain"}
-           :body "Failed to update examples"})
-        {:status 403
-         :headers {"Content-Type" "text/plain"}
-         :body "Manual update only available in dev mode"}))))
-
 ;; Route definitions
 (defn routes [context]
   (let [prefix (state/get-config context :prefix "")]
