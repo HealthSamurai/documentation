@@ -276,8 +276,4 @@
       {:status 404
        :body "OG preview not found"})))
 
-(defn gzip-middleware [f]
-  (fn [ctx req]
-    (let [ring-handler (fn [req] (f ctx req))
-          gzip-handler (wrap-gzip ring-handler)]
-      (gzip-handler req))))
+
