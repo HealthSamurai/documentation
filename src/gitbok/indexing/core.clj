@@ -15,26 +15,19 @@
 
 (set! *warn-on-reflection* true)
 
+(def lastmod-key :gitbok.indexing.core/lastmod)
+
 (defn filepath->uri [context filepath]
   (gitbok.indexing.impl.file-to-uri/filepath->uri context filepath))
 
 (defn uri->filepath [context ^String uri]
   (let [idx (state/get-uri-to-file-idx context)
         filepath (gitbok.indexing.impl.uri-to-file/uri->filepath idx uri)]
-    (log/info "uri >filepath" {:uri uri
-                               :idx-exists (boolean idx)
-                               :filepath filepath
-                               :product-id (:current-product-id context)})
     filepath))
 
 (defn get-redirect [context ^String uri]
   (let [redirects-idx (state/get-redirects-idx context)
         redirect (get redirects-idx uri)]
-    (log/info "get redirect" {:uri uri
-                              :redirects-idx-exists (boolean redirects-idx)
-                              :redirect-found (boolean redirect)
-                              :redirect-target redirect
-                              :product-id (:current-product-id context)})
     redirect))
 
 (defn absolute-filepath->relative
@@ -131,7 +124,7 @@
 
 (defn get-lastmod [context filepath]
   (when filepath
-    (let [lastmod-map (products/get-product-state context [::lastmod])
+    (let [lastmod-map (products/get-product-state context [lastmod-key])
           ;; Normalize the filepath to match lastmod keys
           ;; Lastmod keys are relative paths from docs directory
           ;; filepath might be "../docs/path/to/file.md" or "docs/path/to/file.md"
@@ -149,7 +142,7 @@
       (get lastmod-map normalized-path))))
 
 (defn clear-all-caches
-  "Clear all product caches from state"
+  "Clear all product caches from state - for development use only"
   [context]
   ;; Clear all product indices using context
   (state/set-state! context [:products :indices] {})
@@ -158,9 +151,10 @@
 (defn set-lastmod
   [context]
    ;; New API - works with state directly
-  (let [product-config (gitbok.state/get-current-product context)
+  (let [product-config (or (:product context)
+                           (products/get-current-product context))
         product-id (:id product-config)
-        volume-path (or (gitbok.state/get-env context :docs-volume-path) ".")
+        volume-path (or (gitbok.state/get-config context :docs-volume-path) ".")
 
          ;; Build docs path from product config
         config-path (:config product-config)
@@ -187,4 +181,4 @@
     (log/info "✅lastmod set" {:product product-id
                               :docs-path docs-path
                               :entries (count lastmod-data)})
-    (gitbok.state/set-product-state! context [::lastmod] lastmod-data)))
+    (gitbok.state/set-product-state! context [lastmod-key] lastmod-data)))

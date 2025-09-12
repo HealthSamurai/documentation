@@ -13,7 +13,10 @@
   "Initialize application state with config from environment.
    All System/getenv calls happen here at startup.
    Returns a system context that should be used for all subsequent operations."
-  [& [{:keys [port prefix base-url dev-mode version]}]]
+  [& [{:keys [port prefix base-url dev-mode version 
+              github-token docs-volume-path docs-repo-path 
+              examples-update-interval reload-check-interval
+              meilisearch-url meilisearch-api-key]}]]
   (let [config {:port (or port
                           (when-let [env-port (System/getenv "PORT")]
                             (Integer/parseInt env-port))
@@ -28,17 +31,20 @@
                               (= "true" (System/getenv "DEV_MODE")))
                 :version (or version
                              (utils/slurp-resource "version"))
-                ;; Store environment variables that will be used later
-                :env {:github-token (System/getenv "GITHUB_TOKEN")
-                      :docs-volume-path (System/getenv "DOCS_VOLUME_PATH")
-                      :docs-repo-path (or (System/getenv "DOCS_REPO_PATH") ".")
-                      :examples-update-interval (or (System/getenv "EXAMPLES_UPDATE_INTERVAL") "60")
-                      :reload-check-interval (or (System/getenv "RELOAD_CHECK_INTERVAL") "30")
-                      :meilisearch-url (System/getenv "MEILISEARCH_URL")
-                      :meilisearch-api-key (System/getenv "MEILISEARCH_API_KEY")}}
+                ;; All environment variables are now at the same level
+                :github-token (or github-token (System/getenv "GITHUB_TOKEN"))
+                :docs-volume-path (or docs-volume-path (System/getenv "DOCS_VOLUME_PATH"))
+                :docs-repo-path (or docs-repo-path (System/getenv "DOCS_REPO_PATH") ".")
+                :examples-update-interval (or examples-update-interval 
+                                             (System/getenv "EXAMPLES_UPDATE_INTERVAL") 
+                                             "60")
+                :reload-check-interval (or reload-check-interval 
+                                          (System/getenv "RELOAD_CHECK_INTERVAL") 
+                                          "30")
+                :meilisearch-url (or meilisearch-url (System/getenv "MEILISEARCH_URL"))
+                :meilisearch-api-key (or meilisearch-api-key (System/getenv "MEILISEARCH_API_KEY"))}
         initial-state {:config config
                        :products {:config []
-                                 :current nil
                                  :indices {}}
                        :cache {:lastmod {}
                               :reload-state {:git-head nil
@@ -79,10 +85,7 @@
   ([context k] (get-state context [:config k]))
   ([context k default] (get-state context [:config k] default)))
 
-(defn get-env
-  "Get environment variable stored at startup"
-  ([context k] (get-state context [:config :env k]))
-  ([context k default] (get-state context [:config :env k] default)))
+;; Removed get-env - use get-config directly since all env vars are now in config
 
 (defn get-products [context]
   (get-state context [:products :config] []))
@@ -90,17 +93,17 @@
 (defn set-products! [context products]
   (set-state! context [:products :config] products))
 
-(defn get-current-product [context]
-  (get-state context [:products :current]))
-
-(defn set-current-product! [context product]
-  (set-state! context [:products :current] product))
+;; Removed get-current-product and set-current-product!
+;; Current product should be request-time, not global state
 
 (defn get-product-state
   "Get state for current product or specific product"
   ([context path] (get-product-state context path nil))
   ([context path default]
-   (if-let [product-id (:id (get-current-product context))]
+   ;; Product should now be in context from middleware/request
+   (if-let [product-id (or (:current-product-id context)
+                           (:id (:product context))
+                           (:id (:gitbok.products/current-product context)))]
      (get-state context (concat [:products :indices product-id] path) default)
      (do
        (log/warn "No current product set when getting product state" {:path path})
@@ -109,7 +112,10 @@
 (defn set-product-state!
   "Set state for current product"
   [context path value]
-  (if-let [product-id (:id (get-current-product context))]
+  ;; Product should now be in context from middleware/request
+  (if-let [product-id (or (:current-product-id context)
+                          (:id (:product context))
+                          (:id (:gitbok.products/current-product context)))]
     (set-state! context (concat [:products :indices product-id] path) value)
     (log/error "No current product set when setting product state" {:path path})))
 

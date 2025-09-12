@@ -8,10 +8,3 @@
   (.getCanonicalPath
     (io/file (.getParent (io/file filepath-a)) relative-filepath)))
 
-(comment
-
-  ;; todo write tests
-  (get-filepath
-    "./docs/a/b/c/d"
-    "../../../e/f/g/h") ;; "/home/svt/dev/hs/documentation/docs/e/f/g/h"
-  )

@@ -5,8 +5,8 @@
    [gitbok.state :as state]))
 
 (defn- get-config [context]
-  {:url (or (state/get-env context :meilisearch-url) "http://localhost:7700")
-   :api-key (state/get-env context :meilisearch-api-key)
+  {:url (or (state/get-config context :meilisearch-url) "http://localhost:7700")
+   :api-key (state/get-config context :meilisearch-api-key)
    :index-name "docs"
    :timeout-ms 3000})
 

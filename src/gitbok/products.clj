@@ -17,7 +17,7 @@
   (yaml/parse-string (utils/slurp-resource config-file)))
 
 (defn volume-path [context]
-  (state/get-env context :docs-volume-path))
+  (state/get-config context :docs-volume-path))
 
 (defn load-products-config
   "Loads products configuration from products.yaml in classpath or volume"
@@ -67,15 +67,14 @@
   "Gets current product ID - for compatibility"
   [context]
   (or (:current-product-id context)
-      (when-let [product (state/get-current-product context)]
-        (:id product))
+      (:id (:product context))
+      (:id (:gitbok.products/current-product context))
       "default"))
 
 (defn set-current-product-id
   "Sets current product ID - returns updated context"
   [context product-id]
-  (when-let [product (first (filter #(= (:id %) product-id) (state/get-products context)))]
-    (state/set-current-product! context product))
+  ;; Just return updated context with product-id
   (assoc context :current-product-id product-id))
 
 (defn get-product-state

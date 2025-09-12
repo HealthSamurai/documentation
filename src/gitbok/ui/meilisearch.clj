@@ -11,8 +11,8 @@
 
 (defn search-meilisearch [context query index-name]
   (try
-    (let [meilisearch-host (or (state/get-env context :meilisearch-url) "http://localhost:7700")
-          meilisearch-api-key (state/get-env context :meilisearch-api-key)
+    (let [meilisearch-host (or (state/get-config context :meilisearch-url) "http://localhost:7700")
+          meilisearch-api-key (state/get-config context :meilisearch-api-key)
           _ (log/info "meilisearch-search" {:query query
                                             :index index-name
                                             :host meilisearch-host

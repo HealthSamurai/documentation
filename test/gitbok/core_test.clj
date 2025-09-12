@@ -52,7 +52,7 @@
                     (fn [_ctx] "readme")
                     products/uri
                     (fn [_ctx prefix uri] (str prefix uri))
-                    state/get-config (fn [_] "/")
+                    state/get-config (fn [_ _ & [default]] (or "/" default))
                     handlers/render-file-view
                     (fn [_ctx req]
                       {:status 200

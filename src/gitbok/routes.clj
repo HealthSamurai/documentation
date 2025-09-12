@@ -12,7 +12,7 @@
             [gitbok.ui.search]
             [gitbok.ui.meilisearch]
             [gitbok.ui.examples]
-            [gitbok.examples.updater :as examples-updater]
+            [gitbok.ui.landing-hero]
             [gitbok.products :as products]
             [gitbok.utils :as utils]
             [clojure.string :as str]
@@ -37,9 +37,7 @@
                          (str "/" (first segments)))
           products-config (state/get-products context)]
       (if-let [product (first (filter #(= (:path %) product-path) products-config))]
-        (do
-          (state/set-current-product! context product)
-          (handler (assoc request :product product)))
+        (handler (assoc request :product product))
         {:status 404
          :headers {"Content-Type" "text/plain"}
          :body (str "Product not found for path: " product-path)}))))
@@ -49,23 +47,23 @@
   [context]
   (fn [handler]
     (fn [request]
-      (let [updated-request (assoc request
-                                   :context context
-                                   :prefix (state/get-config context :prefix "")
-                                   :base-url (state/get-config context :base-url)
-                                   :dev-mode (state/get-config context :dev-mode))]
-        (handler updated-request)))))
+      ;; Request should be part of context, not the other way around
+      (let [context-with-request (assoc context :request request)]
+        (handler (assoc request :context context-with-request))))))
 
 ;; Handler adapters - convert from old (context, request) signature to new (request) signature
 (defn adapt-handler
   "Adapt old-style handler (context, request) to new style (request)"
   [old-handler]
   (fn [request]
-    ;; Use the full context from request, adding current product info
-    (let [context (assoc (:context request)
-                        :current-product-id (when-let [p (:product request)]
-                                              (:id p))
-                        ::products/current-product (:product request))]
+    ;; Use context from request
+    (let [context (:context request)
+          ;; Add product info to context if available
+          context (if-let [product (:product request)]
+                    (assoc context
+                           :current-product-id (:id product)
+                           ::products/current-product product)
+                    context)]
       (old-handler context request))))
 
 ;; Route handlers - these will gradually be refactored to not need context
@@ -117,7 +115,7 @@
   (adapt-handler handlers/render-favicon))
 
 (def render-landing
-  (adapt-handler handlers/render-landing))
+  (adapt-handler gitbok.ui.landing-hero/render-landing))
 
 (def sitemap-xml
   (adapt-handler handlers/sitemap-xml))
@@ -144,7 +142,8 @@
   (adapt-handler gitbok.ui.examples/examples-results-handler))
 
 
-(def manual-update-handler
+;; Removed manual-update-handler as per review comment
+#_(def manual-update-handler
   (fn [request]
     (let [context (:context request)]
       (if (state/get-config context :dev-mode)
@@ -163,10 +162,10 @@
 (defn routes [context]
   (let [prefix (state/get-config context :prefix "")]
     [;; Static routes
-     [(str prefix "/static/*") {:get {:handler serve-static-file}}]
-     [(str prefix "/service-worker.js") {:get {:handler service-worker-handler}}]
-     [(str prefix "/public/og-preview/*") {:get {:handler serve-og-preview}}]
-     [(str prefix "/.gitbook/assets/*") {:get {:handler render-pictures
+     [(utils/concat-urls prefix "/static/*") {:get {:handler serve-static-file}}]
+     [(utils/concat-urls prefix "/service-worker.js") {:get {:handler service-worker-handler}}]
+     [(utils/concat-urls prefix "/public/og-preview/*") {:get {:handler serve-og-preview}}]
+     [(utils/concat-urls prefix "/.gitbook/assets/*") {:get {:handler render-pictures
                                                :middleware [wrap-gzip]}}]
 
      ;; System routes
@@ -174,9 +173,7 @@
      [(str prefix "/version") {:get {:handler version-endpoint}}]
      [(str prefix "/debug") {:get {:handler debug-endpoint}}]
 
-     ;; Manual update (dev only)
-     (when (state/get-config context :dev-mode)
-       [(str prefix "/update-examples") {:post {:handler manual-update-handler}}])
+     ;; Removed manual update handler
 
 
      ;; Sitemap at root
@@ -188,8 +185,7 @@
      [(str prefix "/") {:get {:handler root-redirect-handler
                               :middleware [wrap-gzip]}}]
 
-     ;; Product routes - these are dynamic based on products config
-     ;; We'll generate these dynamically from products
+     ;; Product routes are generated dynamically from products config
      ]))
 
 (defn product-routes
@@ -205,7 +201,7 @@
                 ;; Meilisearch
                 [(str product-path "/meilisearch/dropdown")
                  {:get {:handler meilisearch-endpoint
-                        :middleware [product-middleware]}}]
+                        :middleware [product-middleware wrap-gzip]}}]
 
                 ;; Product sitemap
                 [(str product-path "/sitemap.xml")

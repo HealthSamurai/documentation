@@ -11,7 +11,7 @@
 (defn get-github-token
   "Get GitHub PAT from state (stored at startup)"
   [context]
-  (state/get-env context :github-token))
+  (state/get-config context :github-token))
 
 (defn fetch-artifacts-list
   "Fetch list of artifacts from GitHub API"
