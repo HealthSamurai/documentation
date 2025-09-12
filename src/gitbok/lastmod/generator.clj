@@ -282,7 +282,7 @@
                              "rev-parse" "HEAD"
                              :dir repo-path)
                    (catch Throwable e
-                     ;; Silently return nil for Future.get() errors
+                     (log/warn "Git repo head rev-parse error " {:error  (take 5 (.getStackTrace e))})
                      nil))]
       (if result
         (let [{:keys [out exit]} result]
@@ -290,7 +290,7 @@
             (str/trim out)))
         nil))
     (catch Throwable e
-      ;; Silently return nil for any git errors
+      (log/warn "Git repo head rev-parse error 2" {:error (take 5 (.getStackTrace e))})
       nil)))
 
 (defn generate-or-get-cached-lastmod

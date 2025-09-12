@@ -12,9 +12,7 @@
    [gitbok.indexing.core :as indexing]
    [gitbok.indexing.impl.summary :as summary]
    [gitbok.indexing.impl.uri-to-file :as uri-to-file]
-   [gitbok.indexing.impl.file-to-uri :as file-to-uri]
-   [gitbok.utils :as utils]
-))
+   [gitbok.indexing.impl.file-to-uri :as file-to-uri]))
 
 (defn read-markdown-file-no-try-catch
   "Version of read-markdown-file without try-catch block - any exception will fail the test"
@@ -68,9 +66,9 @@
             _ (products/set-full-config context {:products [test-product]
                                                  :root-redirect "/"})
             ;; Add product to context for the new architecture
-            context (assoc context 
-                          :current-product-id "test"
-                          :product test-product)]
+            context (assoc context
+                           :current-product-id "test"
+                           :product test-product)]
 
           ;; Initialize indices - just test that basic initialization works
         (testing "Loading markdown files"

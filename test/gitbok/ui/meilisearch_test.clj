@@ -325,7 +325,7 @@
                     "content" "Search parameter unique canonical url"
                     "url" "https://example.com/searchparameter#fields"}]
           grouped (m/group-results-by-hierarchy results)
-          rendered (m/render-search-results grouped "search")
+          rendered (m/render-search-results grouped)
           html-str (h/html rendered)]
 
       ;; Should only have one "SearchParameter" title (in the header)
@@ -352,7 +352,7 @@
                     "content" "Types content"
                     "url" "https://example.com/searchparameter#types"}]
           grouped (m/group-results-by-hierarchy results)
-          rendered (m/render-search-results grouped "search")
+          rendered (m/render-search-results grouped)
           html-str (h/html rendered)]
 
       ;; Should have header with SearchParameter

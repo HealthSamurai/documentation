@@ -13,10 +13,6 @@
   (try
     (let [meilisearch-host (or (state/get-config context :meilisearch-url) "http://localhost:7700")
           meilisearch-api-key (state/get-config context :meilisearch-api-key)
-          _ (log/info "meilisearch-search" {:query query
-                                            :index index-name
-                                            :host meilisearch-host
-                                            :has-api-key (boolean meilisearch-api-key)})
           headers (if meilisearch-api-key
                     {"Authorization" (str "Bearer " meilisearch-api-key)
                      "Content-Type" "application/json"}
@@ -41,16 +37,11 @@
                                                            "hierarchy_lvl2" "hierarchy_lvl3" "hierarchy_lvl6"]
                                    :highlightPreTag "<mark class=\"bg-warning-2 text-tint-12 p-1 px-0.5 -mx-0.5 py-0.5 rounded\">"
                                    :highlightPostTag "</mark>"}]}
-          _ (log/debug "meilisearch-request" {:url search-url
-                                              :body request-body})
           response @(http-client/post search-url
                                       {:headers headers
                                        :body (json/generate-string request-body)})]
-      (log/info "meilisearch-response" {:status (:status response)
-                                        :has-body (boolean (:body response))})
       (if (= 200 (:status response))
         (let [hits (-> response :body json/parse-string (get "hits"))]
-          (log/info "meilisearch-hits" {:count (count hits)})
           hits)
         (do
           (log/warn "meilisearch-non-200" {:status (:status response)
@@ -436,7 +427,7 @@
 
 (defn render-search-results
   "Renders the search results with appropriate grouping."
-  [groups query]
+  [groups]
   (let [indexed-groups (calculate-indexed-groups groups)]
     (for [group indexed-groups]
       (let [group-info (:group-info group)
@@ -477,16 +468,12 @@
                   (get-in request [:query-params :q])
                   (get-in request [:params :q])
                   "")
-        _ (log/info "meilisearch-dropdown query extracted" {:query query
-                                                            :query-type (type query)})
         is-mobile (= "true" (or (get-in request [:query-params "mobile"])
                                 (get-in request [:params "mobile"])
                                 (get-in request [:query-params :mobile])
                                 (get-in request [:params :mobile])))
         current-product (products/get-current-product context)
         product-index (get current-product :meilisearch-index "docs")
-        _ (log/info "meilisearch-dropdown product" {:product-name (:name current-product)
-                                                    :product-index product-index})
         results (when (and query (pos? (count query)))
                   (search-meilisearch context query product-index))]
 
@@ -504,7 +491,7 @@
                              (when-not is-mobile "md:w-[32rem]"))}
            [:div {:class "p-2 space-y-1"}
             ;; Render grouped results
-            (render-search-results groups query)]])))))
+            (render-search-results groups)]])))))
 
 (defn meilisearch-endpoint [context request]
   (log/info "meilisearch-endpoint called" {:uri (:uri request)
