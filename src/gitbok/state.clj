@@ -247,21 +247,16 @@
 (defn get-parsed-markdown-idx [context]
   (get-product-state context [:parsed-markdown-idx]))
 
-(defn set-navigation-links! [context links]
-  (set-product-state! context [:navigation-links] links))
 
-(defn get-navigation-links [context]
-  (get-product-state context [:navigation-links]))
 
-(defn set-examples-data! [context data]
-  (set-product-state! context [:examples-data] data))
 
-(defn get-examples-data [context]
-  (get-product-state context [:examples-data]))
+
+
+
+
 
 ;; Debug helper
 (defn get-full-state [context]
   @(:system context))
 
-(defn reset-state! [context]
-  (reset! (:system context) empty-state))
+
