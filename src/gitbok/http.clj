@@ -1,6 +1,7 @@
 (ns gitbok.http
   (:require
    [gitbok.state :as state]
+   [gitbok.products :as products]
    [clojure.string :as str]
    [gitbok.utils :as utils]))
 
@@ -50,7 +51,9 @@
 
 (defn get-product-prefix
   [context]
-  (let [product (state/get-current-product context)
+  (let [product (or (:product context)
+                    (:gitbok.products/current-product context)
+                    (products/get-current-product context))
         docs-prefix (state/get-config context :prefix "")]
     (utils/concat-urls docs-prefix (:path product))))
 
