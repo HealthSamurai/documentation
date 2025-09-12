@@ -39,7 +39,7 @@
 
 (defn render-filter-checkbox
   "Render a single filter checkbox"
-  [type value label count checked? _context]
+  [type value label count checked?]
   [:label.flex.items-center.space-x-2.cursor-pointer.hover:bg-tint-1.px-2.py-1.rounded
    [:input.w-4.h-4.text-primary-9.border-tint-4.rounded.focus:ring-primary-5.filter-checkbox
     {:type "checkbox"
@@ -60,7 +60,7 @@
 
 (defn render-filters
   "Render filter sidebar"
-  [examples features-list languages-list selected-languages selected-features context]
+  [examples features-list languages-list selected-languages selected-features]
   [:div.space-y-6
    ;; Languages filter - sorted by count
    [:div
@@ -74,10 +74,9 @@
          ^{:key lang}
          (render-filter-checkbox "languages" lang lang
                                  count
-                                 (contains? selected-languages lang)
-                                 context)))]]
+                                 (contains? selected-languages lang))))]]
 
-   ;; Features filter - sorted by count with search
+;; Features filter - sorted by count with search
    [:div
     [:h4.text-sm.font-semibold.text-tint-12.mb-3 "Features"]
     [:input.w-full.px-3.py-1.5.mb-3.text-sm.border.border-tint-3.rounded-md.focus:outline-none.focus:ring-2.focus:ring-primary-5
@@ -97,10 +96,9 @@
           {:data-feature-name (str/lower-case feature)}
           (render-filter-checkbox "features" feature feature
                                   count
-                                  (contains? selected-features feature)
-                                  context)]))]]
+                                  (contains? selected-features feature))]))]]
 
-   ;; Note: filterFeatures function is now defined globally in ui-bundle.js
+;; Note: filterFeatures function is now defined globally in ui-bundle.js
    ])
 
 (defn render-search-bar [search-term]
@@ -119,15 +117,15 @@
       :oninput "updateFiltersAndURL(true)"}]]])
 
 (defn render-examples-grid [examples]
-  [:div#examples-grid.w-full.grid.grid-cols-1.md:grid-cols-2.lg:grid-cols-3.gap-6
-   {:class "min-h-[400px]"}
+  [:div#examples-grid
+   {:class "min-h-[400px] w-full grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"}
    (if (seq examples)
      (for [example examples]
        ^{:key (:id example)}
        (render-example-card example))
      ;; Empty state - just empty space to maintain layout
-     [:div.col-span-1.md:col-span-2.lg:col-span-3.w-full
-      {:class "min-h-[300px]"}])])
+     [:div
+      {:class "min-h-[300px] col-span-1 md:col-span-2 lg:col-span-3 w-full"}])])
 
 (defn filter-examples
   "Filter examples based on search and filter criteria"
@@ -293,7 +291,7 @@
             "Clear all"])]
         (when (and features_list languages_list)
           (render-filters filtered-examples features_list languages_list
-                          selected-languages selected-features context))]]
+                          selected-languages selected-features))]]
 
       [:div.flex-1.min-w-0
        (render-examples-results examples search-term selected-languages selected-features)]]]))

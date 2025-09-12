@@ -14,7 +14,7 @@
                       "https://example.com/docs"
                       "api/reference.md"]]
       (with-redefs [products/filepath (fn [_ path] (str "./docs/" path))
-                    indexing/read-content (fn [path] (str "Content of " path))]
+                    indexing/read-content (fn [_context path] (str "Content of " path))]
         (let [result (indexing/slurp-md-files! (mock-context) test-files)]
           ;; Should only process internal files
           (is (= 3 (count result)))
@@ -31,7 +31,7 @@
 
   (testing "Should handle empty list"
     (with-redefs [products/filepath (fn [_ path] (str "./docs/" path))
-                  indexing/read-content (fn [path] (str "Content of " path))]
+                  indexing/read-content (fn [_context path] (str "Content of " path))]
       (let [result (indexing/slurp-md-files! (mock-context) [])]
         (is (= 0 (count result))))))
 
@@ -40,14 +40,14 @@
                       "http://example.com/2"
                       "https://github.com/docs"]]
       (with-redefs [products/filepath (fn [_ path] (str "./docs/" path))
-                    indexing/read-content (fn [path] (str "Content of " path))]
+                    indexing/read-content (fn [_context path] (str "Content of " path))]
         (let [result (indexing/slurp-md-files! (mock-context) test-files)]
           (is (= 0 (count result)))))))
 
   (testing "Should correctly process internal files"
     (let [test-files ["file1.md" "dir/file2.md"]]
       (with-redefs [products/filepath (fn [_ path] (str "./test/" path))
-                    indexing/read-content (fn [path]
+                    indexing/read-content (fn [_context path]
                                            (str "Mock content for " path))]
         (let [result (indexing/slurp-md-files! (mock-context) test-files)]
           (is (= 2 (count result)))
@@ -63,7 +63,7 @@
                       "another.md"
                       "https://example.com"]]
       (with-redefs [products/filepath (fn [_ path] path)
-                    indexing/read-content (fn [_path] "content")]
+                    indexing/read-content (fn [_context _path] "content")]
         (let [result (indexing/slurp-md-files! (mock-context) test-files)]
           (is (= 2 (count result)))
           (is (contains? result "internal.md"))

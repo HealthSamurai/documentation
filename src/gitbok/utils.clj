@@ -29,32 +29,6 @@
                (<= end (count s)))
       (subs s start end))))
 
-(def volume-path (System/getenv "DOCS_VOLUME_PATH"))
-
-(defn slurp-resource [path]
-  (if volume-path
-    (let [file-path (str volume-path "/" path)
-          file (io/file file-path)]
-      (if (.exists file)
-        (do
-          (log/debug "read volume" {:path path})
-          (slurp file))
-        ;; Fallback to classpath for non-documentation resources
-        (if-let [r (io/resource path)]
-          (do
-            (log/debug "read classpath" {:path path :reason "not-in-volume"})
-            (slurp r))
-          (do
-            (log/error "file not found" {:path path :locations ["volume" "classpath"]})
-            (throw (Exception. (str "Cannot find " path " in volume or classpath")))))))
-    ;; Original classpath logic for backward compatibility
-    (if-let [r (io/resource path)]
-      (do
-        (log/debug "read classpath" {:path path :reason "no-volume"})
-        (slurp r))
-      (do
-        (log/error "file not found" {:path path :location "classpath"})
-        (throw (Exception. (str "Cannot find " path)))))))
 
 (defn concat-urls [& parts]
   (let [clean (fn [s] (str/replace s #"^/|/$" ""))
@@ -75,9 +49,6 @@
    Example: (uri-to-relative \"/docs/aidbox/readme\" \"/docs\" \"/aidbox\") => \"readme\"
             (uri-to-relative \"/docs/forms/api/endpoints\" \"/docs\" \"/forms\") => \"api/endpoints\""
   [uri prefix product-path]
-  (log/info "uri to relative start" {:uri uri
-                                     :prefix prefix
-                                     :product-path product-path})
   (when uri
     (let [;; First normalize multiple slashes
           normalized-uri (str/replace uri #"/+" "/")
@@ -100,13 +71,6 @@
           ;; Clean up leading slashes
           cleaned (str/replace without-product #"^/+" "")
           result (if (str/blank? cleaned) "/" cleaned)]
-      (log/info "uri to relative result" {:uri uri
-                                          :normalized-uri normalized-uri
-                                          :without-prefix without-prefix
-                                          :with-leading-slash with-leading-slash
-                                          :without-product without-product
-                                          :cleaned cleaned
-                                          :result result})
       result)))
 
 (defn concat-filenames [& parts]

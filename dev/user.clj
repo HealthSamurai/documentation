@@ -114,10 +114,8 @@
                 :dev-mode true})
 
   ;; Clear all caches (for development)
-  (when-let [ctx @dev-context]
-    (core/clear-caches! ctx))
+  (clear-caches!)
 
   ;; Reload products configuration
-  (when-let [ctx @dev-context]
-    (core/reload-products! ctx))
+  (reload-products!)
   )

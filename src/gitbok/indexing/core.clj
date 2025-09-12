@@ -11,7 +11,8 @@
    [gitbok.state :as state]
    [clojure.string :as str]
    [clojure.java.io :as io]
-   [gitbok.utils :as utils]))
+   [gitbok.utils :as utils]
+))
 
 (set! *warn-on-reflection* true)
 
@@ -92,8 +93,8 @@
           (str path "#" section)
           path)))))
 
-(defn read-content [filepath]
-  (utils/slurp-resource filepath))
+(defn read-content [context filepath]
+  (state/slurp-resource context filepath))
 
 (defn slurp-md-files! [context filepaths-from-summary]
   (let [files (reduce (fn [acc filename]
@@ -102,7 +103,7 @@
                           (let [full-path (products/filepath context filename)]
                             ;; Use original filename as key, not the full path
                             (assoc acc filename
-                                   (read-content full-path))))) {}
+                                   (read-content context full-path))))) {}
                       (filter #(not (str/starts-with? % "http"))
                               filepaths-from-summary))]
     (log/info "files loaded" {:count (count files)})
@@ -166,7 +167,7 @@
          ;; Generate lastmod data in memory with caching
         lastmod-data (if (.exists (io/file docs-path))
                        (lastmod-gen/generate-or-get-cached-lastmod
-                        nil ;; context not needed for new version
+                        context
                         product-id
                         docs-path)
                        {})]

@@ -10,24 +10,26 @@
     (with-redefs [clojure.java.shell/sh
                   (constantly {:exit 127 :out "" :err "git: command not found"})]
       ;; get-repo-head should return nil
-      (is (nil? (gen/get-repo-head)))
+      (let [context {:system (atom {:config {:docs-repo-path "."}})}]
+        (is (nil? (gen/get-repo-head context)))
 
-      ;; generate-lastmod-data should return empty map
-      (let [data (gen/generate-lastmod-data "/some/path")]
-        (is (map? data))
-        (is (empty? data)))
+        ;; generate-lastmod-data should return empty map
+        (let [data (gen/generate-lastmod-data context "/some/path")]
+          (is (map? data))
+          (is (empty? data)))
 
-      ;; lastmod-for-file should return nil
-      (is (nil? (gen/lastmod-for-file (io/file "test.md") "."))))))
+        ;; lastmod-for-file should return nil
+        (is (nil? (gen/lastmod-for-file (io/file "test.md") ".")))))))
 
 (deftest test-git-permission-denied
   (testing "System handles git permission errors"
     (with-redefs [clojure.java.shell/sh
                   (constantly {:exit 128 :out "" :err "fatal: detected dubious ownership"})]
-      (is (nil? (gen/get-repo-head)))
-      (let [data (gen/generate-lastmod-data "/some/path")]
-        (is (map? data))
-        (is (empty? data))))))
+      (let [context {:system (atom {:config {:docs-repo-path "."}})}]
+        (is (nil? (gen/get-repo-head context)))
+        (let [data (gen/generate-lastmod-data context "/some/path")]
+          (is (map? data))
+          (is (empty? data)))))))
 
 (deftest test-performance-many-files
   (testing "Performance with many markdown files"
@@ -40,8 +42,9 @@
           (spit (io/file temp-dir (str "test-" i ".md")) (str "# Test " i)))
 
         ;; Measure generation time
-        (let [start (System/currentTimeMillis)
-              data (gen/generate-lastmod-data (.getPath temp-dir))
+        (let [context {:system (atom {:config {:docs-repo-path "."}})}  
+              start (System/currentTimeMillis)
+              data (gen/generate-lastmod-data context (.getPath temp-dir))
               duration (- (System/currentTimeMillis) start)]
           ;; Should complete in reasonable time (5 seconds for 100 files)
           (println duration)
@@ -63,21 +66,21 @@
           test-dir "/test/dir"]
 
       ;; Mock initial HEAD
-      (with-redefs [gen/get-repo-head (constantly "abc123")
-                    gen/generate-lastmod-data (constantly {"file1.md" "2024-01-01"})]
+      (with-redefs [gen/get-repo-head (fn [_] "abc123")
+                    gen/generate-lastmod-data (fn [_ _] {"file1.md" "2024-01-01"})]
         (let [data1 (gen/generate-or-get-cached-lastmod context product-id test-dir)]
           (is (= {"file1.md" "2024-01-01"} data1))))
 
       ;; Same HEAD - should use cache
-      (with-redefs [gen/get-repo-head (constantly "abc123")
+      (with-redefs [gen/get-repo-head (fn [_] "abc123")
                     gen/generate-lastmod-data
-                    (fn [_] (throw (Exception. "Should not be called - should use cache")))]
+                    (fn [_ _] (throw (Exception. "Should not be called - should use cache")))]
         (let [data2 (gen/generate-or-get-cached-lastmod context product-id test-dir)]
           (is (= {"file1.md" "2024-01-01"} data2))))
 
       ;; Different HEAD - should regenerate
-      (with-redefs [gen/get-repo-head (constantly "def456")
-                    gen/generate-lastmod-data (constantly {"file1.md" "2024-01-02"})]
+      (with-redefs [gen/get-repo-head (fn [_] "def456")
+                    gen/generate-lastmod-data (fn [_ _] {"file1.md" "2024-01-02"})]
         (let [data3 (gen/generate-or-get-cached-lastmod context product-id test-dir)]
           (is (= {"file1.md" "2024-01-02"} data3)))))))
 
@@ -87,7 +90,8 @@
                             (str "test-empty-" (System/currentTimeMillis)))]
       (try
         (.mkdirs temp-dir)
-        (let [data (gen/generate-lastmod-data (.getPath temp-dir))]
+        (let [context {:system (atom {:config {:docs-repo-path "."}})}  
+              data (gen/generate-lastmod-data context (.getPath temp-dir))]
           (is (map? data))
           (is (empty? data)))
         (finally
@@ -110,7 +114,8 @@
                       (fn [_ _]
                         ;; Return timestamps only for .md files
                         {"test.md" "2024-01-01T00:00:00Z"})]
-          (let [data (gen/generate-lastmod-data (.getPath temp-dir))]
+          (let [context {:system (atom {:config {:docs-repo-path "."}})}  
+                data (gen/generate-lastmod-data context (.getPath temp-dir))]
             ;; Should only have the .md file
             (is (= 1 (count data)))
             (is (contains? data "test.md"))))
@@ -145,5 +150,6 @@
                       (fn [& args]
                         ;; Verify that :dir is "." when env var not set
                         (is (some #(= % ".") args))
-                        {:exit 1 :out "" :err ""})]
-          (gen/get-repo-head))))))
+                        {:exit 1 :out "" :err ""})]  
+          (let [context {:system (atom {:config {:docs-repo-path "."}})}]
+            (gen/get-repo-head context)))))))

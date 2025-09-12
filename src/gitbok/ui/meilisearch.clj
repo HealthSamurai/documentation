@@ -381,7 +381,7 @@
 
 (defn render-group-header
   "Renders a group header for grouped results."
-  [first-item group-info query start-index]
+  [first-item group-info start-index]
   (let [group-level (:level group-info)
         clean-url (when-let [url (get first-item "url")]
                     (first (str/split url #"#")))
@@ -458,7 +458,7 @@
                                      items)]
             [:div {:class "p-1 space-y-0.5"}
              ;; Group header
-             (render-group-header first-item group-info query start-index)
+             (render-group-header first-item group-info start-index)
              ;; Child items - render with grouping, skipping h1-only if it's the header
              (map-indexed
               (fn [idx item]

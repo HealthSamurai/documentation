@@ -149,24 +149,21 @@
      [(utils/concat-urls prefix "/service-worker.js") {:get {:handler service-worker-handler}}]
      [(utils/concat-urls prefix "/public/og-preview/*") {:get {:handler serve-og-preview}}]
      [(utils/concat-urls prefix "/.gitbook/assets/*") {:get {:handler render-pictures
-                                               :middleware [wrap-gzip]}}]
+                                                             :middleware [wrap-gzip]}}]
 
      ;; System routes
      ["/healthcheck" {:get {:handler healthcheck}}]
-     [(str prefix "/version") {:get {:handler version-endpoint}}]
-     [(str prefix "/debug") {:get {:handler debug-endpoint}}]
-
-     ;; Removed manual update handler
-
+     [(utils/concat-urls prefix "/version") {:get {:handler version-endpoint}}]
+     [(utils/concat-urls prefix "/debug") {:get {:handler debug-endpoint}}]
 
      ;; Sitemap at root
-     [(str prefix "/sitemap.xml") {:get {:handler sitemap-index-xml}}]
+     [(utils/concat-urls prefix "/sitemap.xml") {:get {:handler sitemap-index-xml}}]
 
      ;; Root handlers
      [prefix {:get {:handler root-redirect-handler
                     :middleware [wrap-gzip]}}]
-     [(str prefix "/") {:get {:handler root-redirect-handler
-                              :middleware [wrap-gzip]}}]
+     [(utils/concat-urls prefix "/") {:get {:handler root-redirect-handler
+                                            :middleware [wrap-gzip]}}]
 
      ;; Product routes are generated dynamically from products config
      ]))

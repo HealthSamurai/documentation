@@ -31,18 +31,33 @@
         content* (if dev-mode
                    ;; Force re-read from disk in DEV mode
                    (do
-                     (log/debug "reading-fresh" {:path full-filepath})
-                     (utils/slurp-resource full-filepath))
+                     (log/info "DEV: reading-fresh" {:path full-filepath :filepath filepath})
+                     (let [from-disk (try (state/slurp-resource context full-filepath)
+                                          (catch Exception e
+                                            (log/warn "Failed to read from disk" {:path full-filepath :error (.getMessage e)})
+                                            nil))
+                           from-index (get (indexing/get-md-files-idx context) filepath)
+                           content (or from-disk from-index)]
+                       (log/info "DEV: content loaded" {:path full-filepath 
+                                                        :from-disk? (some? from-disk)
+                                                        :from-index? (some? from-index)
+                                                        :size (if content (count content) 0) 
+                                                        :nil? (nil? content)})
+                       content))
                    ;; In production, use cached content from memory
                    (or (get (indexing/get-md-files-idx context) filepath)
-                       (utils/slurp-resource full-filepath)))
+                       (state/slurp-resource context full-filepath)))
+        _ (when-not content*
+            (log/error "No content found" {:filepath filepath :full-filepath full-filepath}))
         {:keys [parsed description title]}
-        (markdown/parse-markdown-content
-         context
-         [full-filepath content*])]
+        (if content*
+          (markdown/parse-markdown-content
+           context
+           [full-filepath content*])
+          {:parsed [:div "No content"] :description "" :title "Error"})]
     (try
       {:content
-       (main-content/render-file* context full-filepath parsed title content*)
+       (main-content/render-file* context full-filepath parsed title (or content* ""))
        :title title
        :description description
        :section section}
@@ -60,12 +75,15 @@
 
 (defn render-file
   [context filepath]
-  (let [result
+  (let [dev-mode (state/get-config context :dev-mode)
+        _ (when dev-mode (log/info "render-file in DEV mode" {:filepath filepath}))
+        result
         (try
-          (if (state/get-config context :dev-mode)
+          (if dev-mode
             (read-markdown-file context filepath)
             (markdown/get-rendered context filepath))
           (catch Exception e
+            (log/error e "Error rendering file" {:filepath filepath})
             [:div {:role "alert"}
              (.getMessage e)
              [:pre (pr-str e)]]))]
@@ -181,17 +199,13 @@
                     :section section
                     :filepath filepath}))))
 
-            (do
-              (log/warn "file-not-found" {:uri-relative uri-relative
-                                          :uri uri
-                                          :product-id (:current-product-id context)})
-              (layout/layout
-               context request
-               {:content (not-found/not-found-view context uri-relative)
-                :status 404
-                :title "Not found"
-                :description "Page not found"
-                :hide-breadcrumb true}))))))))
+            (layout/layout
+             context request
+             {:content (not-found/not-found-view context uri-relative)
+              :status 404
+              :title "Not found"
+              :description "Page not found"
+              :hide-breadcrumb true})))))))
 
 (defn sitemap-xml
   [context _]
@@ -215,8 +229,7 @@
              (or (products/readme-url context) "readme"))
         request
         (assoc request
-               :uri uri
-               :/ true)]
+               :uri uri)]
     (render-file-view context request)))
 
 (defn root-redirect-handler
@@ -243,12 +256,8 @@
         path (str/replace uri #"^/static/" "")
         response (resp/resource-response (utils/concat-urls "public" path))]
     (when response
-      (let [dev-mode? (state/get-config context :dev-mode)
-            ;; In dev mode: no cache
-            ;; In production: cache for 1 year (files are versioned)
-            cache-control (if dev-mode?
-                            "no-cache, no-store, must-revalidate"
-                            "public, max-age=31536000, immutable")
+      (let [;; Cache for 1 year (files are versioned)
+            cache-control "public, max-age=31536000, immutable"
             ;; First add content-type
             response-with-type (content-type-response response request)
             ;; Then add cache-control to the headers map

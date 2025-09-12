@@ -179,7 +179,7 @@
         ;; Extract relative URI for breadcrumb
         uri-relative (utils/uri-to-relative
                       uri
-                      (System/getenv "DOCS_PREFIX")
+                      (state/get-config context :prefix)
                       (:path (gitbok.products/get-current-product context)))
         ;; Generate breadcrumb (skip if hide-breadcrumb is true)
         breadcrumb-elem (when-not hide-breadcrumb
@@ -210,7 +210,7 @@
                 (let [toc-result (right-toc/render-right-toc parsed)]
                   toc-result)
                 (try
-                  (let [content* (utils/slurp-resource filepath)
+                  (let [content* (state/slurp-resource context filepath)
                         {:keys [parsed]} (markdown/parse-markdown-content context [filepath content*])
                         toc-result (right-toc/render-right-toc parsed)]
                     toc-result)

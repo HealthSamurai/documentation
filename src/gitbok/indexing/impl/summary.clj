@@ -85,7 +85,7 @@
   (let [config (products/get-current-product context)
         summary-path (products/summary-path config)]
     (log/debug "read summary" {:path summary-path})
-    (utils/slurp-resource summary-path)))
+    (state/slurp-resource context summary-path)))
 
 (defn title [s]
   (let [t (str/trim (str/replace (str/replace s #"\<.*\>" "") #"#" ""))]

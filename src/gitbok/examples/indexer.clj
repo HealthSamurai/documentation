@@ -14,11 +14,3 @@
   "Retrieve examples data for the current product"
   [context]
   (state/get-product-state context [EXAMPLES-KEY]))
-
-(defn update-examples!
-  "Update examples data"
-  [context examples-data]
-  (set-examples context examples-data)
-  (log/info "examples updated"
-            {:timestamp (:timestamp examples-data)
-             :count (count (:examples examples-data))}))

@@ -29,7 +29,12 @@
                  "--"
                  relative-docs-path]
         _ (log/info "🔍batch git command" {:cmd git-cmd :dir git-dir})
-        {:keys [out exit err]} (apply shell/sh (concat git-cmd [:dir git-dir]))]
+        {:keys [out exit err]} (try
+                                 (apply shell/sh (concat git-cmd [:dir git-dir]))
+                                 (catch Throwable e
+                                   (log/warn "⚠️git command exception" {:error (str e)
+                                                                        :type (type e)})
+                                   {:exit 1 :err (str "Git command failed: " e) :out ""}))]
     (if-not (zero? exit)
       (do
         (log/warn "⚠️batch git command failed" {:exit exit :error err :cmd git-cmd})
@@ -120,7 +125,12 @@
                  "--follow"  ; Important: follow renames/symlinks
                  (str relative-path)]
         _ (log/info "🔍git command" {:cmd git-cmd :dir git-dir :file (.getPath file)})
-        {:keys [out exit err]} (apply shell/sh (concat git-cmd [:dir git-dir]))]
+        {:keys [out exit err]} (try
+                                 (apply shell/sh (concat git-cmd [:dir git-dir]))
+                                 (catch Throwable e
+                                   (log/warn "⚠️git command exception" {:error (str e)
+                                                                        :type (type e)})
+                                   {:exit 1 :err (str "Git command failed: " e) :out ""}))]
     (when-not (zero? exit)
       (log/warn "⚠️git command failed" {:file (.getPath file)
                                         :exit exit
@@ -138,10 +148,12 @@
 
 (defn generate-lastmod-data
   "Generates lastmod data for MD files in directory using batch git command"
-  [docs-dir]
+  [context docs-dir]
   (try
     (let [docs-file (io/file docs-dir)
-          repo-path (or (System/getenv "DOCS_REPO_PATH") ".")]
+          repo-path (or (when context
+                          (state/get-config context :docs-repo-path))
+                        ".")]
       (log/info "🔍checking docs dir" {:dir docs-dir :exists (.exists docs-file) :git-dir repo-path})
       (if (.exists docs-file)
         (let [;; Check if it's a symlink
@@ -151,7 +163,7 @@
               ;; Resolve symlinks first - if docs-dir is a symlink, resolve it
               canonical-docs-file (.getCanonicalFile docs-file)
               _ (when (not= (.getPath docs-file) (.getPath canonical-docs-file))
-                  (log/info "📎symlink resolved" {:from (.getPath docs-file)
+                  (log/info "🔎symlink resolved" {:from (.getPath docs-file)
                                                   :to (.getPath canonical-docs-file)}))
 
               ;; Get all lastmod timestamps with a single git command
@@ -259,24 +271,33 @@
         updated-cache (assoc current-cache product-id cache-entry)]
     (set-lastmod-cache context updated-cache)))
 
-(defn get-repo-head []
+(defn get-repo-head [context]
   (try
-    (let [repo-path (or (System/getenv "DOCS_REPO_PATH") ".")
-          {:keys [out exit]} (shell/sh "git"
-                                       "-c" (str "safe.directory=" repo-path)
-                                       "rev-parse" "HEAD"
-                                       :dir repo-path)]
-      (when (zero? exit)
-        (str/trim out)))
-    (catch Exception e
-      (log/warn "⚠️get repo head failed" {:error (.getMessage e)})
+    (let [repo-path (or (when context
+                          (state/get-config context :docs-repo-path))
+                        ".")
+          result (try
+                   (shell/sh "git"
+                             "-c" (str "safe.directory=" repo-path)
+                             "rev-parse" "HEAD"
+                             :dir repo-path)
+                   (catch Throwable e
+                     ;; Silently return nil for Future.get() errors
+                     nil))]
+      (if result
+        (let [{:keys [out exit]} result]
+          (when (zero? exit)
+            (str/trim out)))
+        nil))
+    (catch Throwable e
+      ;; Silently return nil for any git errors
       nil)))
 
 (defn generate-or-get-cached-lastmod
   "Generate lastmod or return from cache if HEAD unchanged"
   [context product-id docs-dir]
   (try
-    (let [current-head (get-repo-head)
+    (let [current-head (get-repo-head context)
           cache-key product-id
           cached (get (get-lastmod-cache context) cache-key)]
 
@@ -288,7 +309,7 @@
           (log/debug "💾using cached lastmod" {:product product-id})
           (:data cached))
         ;; Generate new data
-        (let [new-data (generate-lastmod-data docs-dir)]
+        (let [new-data (generate-lastmod-data context docs-dir)]
           (when current-head
             (update-lastmod-cache context product-id
                                   {:head current-head

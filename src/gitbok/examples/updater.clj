@@ -122,8 +122,8 @@
               (log/info "extracted examples" {:count (count (:examples examples-data))})
 
               ;; Update for aidbox product
-              (products/set-current-product-id context "aidbox")
-              (indexer/update-examples! context examples-data)
+              (let [ctx (products/set-current-product-id context "aidbox")]
+                (indexer/set-examples ctx examples-data))
               (log/info "examples updated"
                         {:count (count (:examples examples-data))
                          :timestamp (:timestamp examples-data)})

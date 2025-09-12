@@ -13,14 +13,15 @@
    [gitbok.indexing.impl.summary :as summary]
    [gitbok.indexing.impl.uri-to-file :as uri-to-file]
    [gitbok.indexing.impl.file-to-uri :as file-to-uri]
-   [gitbok.utils :as utils]))
+   [gitbok.utils :as utils]
+))
 
 (defn read-markdown-file-no-try-catch
   "Version of read-markdown-file without try-catch block - any exception will fail the test"
   [context filepath]
   (let [[filepath section] (str/split filepath #"#")
         filepath (products/filepath context filepath)
-        content* (utils/slurp-resource filepath)
+        content* (state/slurp-resource context filepath)
         {:keys [parsed description title]}
         (markdown/parse-markdown-content
          context
@@ -38,7 +39,7 @@
 
     (with-redefs [gitbok.handlers/read-markdown-file read-markdown-file-no-try-catch
                     ;; Make utils/slurp-resource read from file system instead of classpath
-                  utils/slurp-resource (fn [path]
+                  state/slurp-resource (fn [_context path]
                                          (let [file (clojure.java.io/file path)]
                                            (if (.exists file)
                                              (slurp file)
