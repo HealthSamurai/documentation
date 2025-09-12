@@ -8,25 +8,23 @@
             [gitbok.indexing.impl.summary :as summary]
             [gitbok.indexing.impl.uri-to-file :as uri-to-file]
             [gitbok.markdown.core :as markdown]
-            [gitbok.utils :as utils]
             [clojure.string :as str]
             [clojure.tools.logging :as log]))
-
-(def dev? (= "true" (System/getenv "DEV")))
 
 (defn read-markdown-file [context filepath]
   (let [[filepath section] (str/split filepath #"#")
         full-filepath (products/filepath context filepath)
+        dev-mode (state/get-config context :dev-mode)
         ;; In DEV mode, always read fresh content from disk/volume
-        _ (when dev? (log/debug "reading-file" {:filepath filepath :full-path full-filepath}))
-        content* (if dev?
+        _ (when dev-mode (log/debug "reading-file" {:filepath filepath :full-path full-filepath}))
+        content* (if dev-mode
                    ;; Force re-read from disk in DEV mode
                    (do
                      (log/debug "reading-fresh" {:path full-filepath})
-                     (utils/slurp-resource full-filepath))
+                     (state/slurp-resource context full-filepath))
                    ;; In production, use cached content from memory
                    (or (get (indexing/get-md-files-idx context) filepath)
-                       (utils/slurp-resource full-filepath)))
+                       (state/slurp-resource context full-filepath)))
         {:keys [parsed description title]}
         (markdown/parse-markdown-content
          context
@@ -74,14 +72,18 @@
     (markdown/set-parsed-markdown-index ctx (indexing/get-md-files-idx ctx))
     (log/info "init-product" {:msg "6. render it on start"
                               :product (:id product)})
-    (when-not dev?
-      (log/info "init-product" {:msg "Not DEV, render all pages into memory"
-                                :product (:id product)})
-      (markdown/render-all! ctx
-                            (markdown/get-parsed-markdown-index ctx)
-                            read-markdown-file)
-      (log/info "init-product" {:msg "render done"
-                                :product (:id product)}))
+    (let [dev-mode (state/get-config ctx :dev-mode)]
+      (if dev-mode
+        (log/info "init-product" {:msg "DEV mode, skip pre-rendering"
+                                  :product (:id product)})
+        (do
+          (log/info "init-product" {:msg "Production mode, render all pages into memory"
+                                    :product (:id product)})
+          (markdown/render-all! ctx
+                                (markdown/get-parsed-markdown-index ctx)
+                                read-markdown-file)
+          (log/info "init-product" {:msg "render done"
+                                    :product (:id product)}))))
     (log/info "init-product" {:msg "7. set lastmod data in context for Last Modified metadata"
                               :product (:id product)})
     (indexing/set-lastmod ctx)

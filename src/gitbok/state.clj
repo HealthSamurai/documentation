@@ -1,6 +1,6 @@
 (ns gitbok.state
-  (:require [gitbok.utils :as utils]
-            [clojure.tools.logging :as log]))
+  (:require [clojure.tools.logging :as log]
+            [clojure.java.io]))
 
 (def empty-state
   {:config {}
@@ -8,6 +8,21 @@
    :cache {}
    :schedulers {}
    :runtime {}})
+
+;; Resource loading functions - defined before init-state! which uses them
+(declare get-config) ;; Forward declaration since get-config is defined later
+
+(defn slurp-resource-init
+  "Reads a resource for initialization when context is not yet available.
+   Uses classpath only - no volume path support."
+  [path]
+  (if-let [r (clojure.java.io/resource path)]
+    (do
+      (log/debug "read classpath for init" {:path path})
+      (slurp r))
+    (do
+      (log/error "file not found during init" {:path path})
+      (throw (Exception. (str "Cannot find " path " in classpath"))))))
 
 (defn init-state!
   "Initialize application state with config from environment.
@@ -28,9 +43,9 @@
                               (System/getenv "BASE_URL")
                               "http://localhost:8080")
                 :dev-mode (or dev-mode
-                              (= "true" (System/getenv "DEV_MODE")))
+                              (= "true" (System/getenv "DEV")))
                 :version (or version
-                             (utils/slurp-resource "version"))
+                             (slurp-resource-init "version"))
                 ;; All environment variables are now at the same level
                 :github-token (or github-token (System/getenv "GITHUB_TOKEN"))
                 :docs-volume-path (or docs-volume-path (System/getenv "DOCS_VOLUME_PATH"))
@@ -66,7 +81,11 @@
   "Get value from state by path"
   ([context path] (get-state context path nil))
   ([context path default]
-   (get-in @(:system context) path default)))
+   (if-let [system (:system context)]
+     (get-in @system path default)
+     (do
+       (log/warn "Get state: no :system in context!")
+       nil))))
 
 (defn set-state!
   "Set value in state by path"
@@ -84,6 +103,37 @@
   ([context] (get-state context [:config]))
   ([context k] (get-state context [:config k]))
   ([context k default] (get-state context [:config k] default)))
+
+(defn slurp-resource
+  "Reads a resource from volume path or classpath.
+   Requires context to get volume-path from state."
+  [context path]
+  (when-not context
+    (throw (IllegalArgumentException. "Context is required for slurp-resource")))
+  (let [volume-path (get-config context :docs-volume-path)]
+    (if volume-path
+      (let [file-path (str volume-path "/" path)
+            file (clojure.java.io/file file-path)]
+        (if (.exists file)
+          (do
+            (log/debug "read volume" {:path path})
+            (slurp file))
+          ;; Fallback to classpath for non-documentation resources
+          (if-let [r (clojure.java.io/resource path)]
+            (do
+              (log/debug "read classpath" {:path path :reason "not-in-volume"})
+              (slurp r))
+            (do
+              (log/error "file not found" {:path path :locations ["volume" "classpath"]})
+              (throw (Exception. (str "Cannot find " path " in volume or classpath")))))))
+      ;; Original classpath logic when no volume-path configured
+      (if-let [r (clojure.java.io/resource path)]
+        (do
+          (log/debug "read classpath" {:path path :reason "no-volume"})
+          (slurp r))
+        (do
+          (log/error "file not found" {:path path :location "classpath"})
+          (throw (Exception. (str "Cannot find " path))))))))
 
 (defn get-products [context]
   (get-state context [:products :config] []))

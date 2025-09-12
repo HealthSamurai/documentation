@@ -24,6 +24,7 @@ repl: init-test
 	MEILISEARCH_URL=http://localhost:7700 \
 	MEILISEARCH_API_KEY=60DBZGy6zoDL6Q--s1-dHBWptiVKvK-XRsaacdvkOSM \
 	PORT=8081 \
+	DOCS_REPO_PATH=$$(pwd) \
 	clj -M:dev:nrepl:test:build
 
 repl-classpath: init-test
