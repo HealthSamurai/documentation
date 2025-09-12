@@ -240,7 +240,7 @@
     ;; Otherwise use URL as is
     :else url))
 
-(defn render-result-item [item _query index is-grouped?]
+(defn render-result-item [item index is-grouped?]
   (let [lvl0 (get item "hierarchy_lvl0")
         lvl1 (get item "hierarchy_lvl1")
         lvl2 (get item "hierarchy_lvl2")
@@ -411,7 +411,7 @@
                                    "hierarchy_lvl6" nil
                                    "anchor" nil))
                       first-item)]
-    (render-result-item header-item query start-index false)))
+    (render-result-item header-item start-index false)))
 
 (defn calculate-indexed-groups
   "Pre-calculates indices for each result item in groups."
@@ -462,19 +462,16 @@
              ;; Child items - render with grouping, skipping h1-only if it's the header
              (map-indexed
               (fn [idx item]
-                (render-result-item item query (+ start-index 1 idx) true))
+                (render-result-item item (+ start-index 1 idx) true))
               children-to-render)])
 
           ;; Ungrouped results - show as individual items
           (map-indexed
            (fn [idx item]
-             (render-result-item item query (+ start-index idx) false))
+             (render-result-item item (+ start-index idx) false))
            items))))))
 
 (defn meilisearch-dropdown [context request]
-  (log/info "meilisearch-dropdown called" {:query-params (:query-params request)
-                                           :params (:params request)
-                                           :uri (:uri request)})
   (let [query (or (get-in request [:query-params "q"])
                   (get-in request [:params "q"])
                   (get-in request [:query-params :q])

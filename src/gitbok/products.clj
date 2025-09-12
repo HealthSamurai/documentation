@@ -52,8 +52,8 @@
                                    root)
                             ;; Build relative docs path
                             docs-relative-path (if (str/blank? config-dir)
-                                                  root
-                                                  (.getPath (io/file config-dir root)))]
+                                                 root
+                                                 (.getPath (io/file config-dir root)))]
                         (assoc merged :docs-relative-path docs-relative-path)))
                     (:products config))]
       {:products products
@@ -86,22 +86,6 @@
   "Sets state for a specific product"
   [context path value]
   (state/set-product-state! context path value))
-
-(defn determine-product-by-uri
-  "Determines product from request URI"
-  [products uri]
-  (let [by-path (first (filter #(str/starts-with? uri (:path %))
-                               (sort-by #(- (count (:path %))) products)))
-        default-product (first (filter #(= (:id %) "default") products))
-        fallback (first products)
-        result (or by-path default-product fallback)]
-    (log/info "determine product by uri" {:uri uri
-                                           :products-count (count products)
-                                           :matched-by-path (when by-path (:id by-path))
-                                           :default-product (when default-product (:id default-product))
-                                           :fallback-product (when fallback (:id fallback))
-                                           :result-id (when result (:id result))})
-    result))
 
 (defn get-products-config
   "Gets all products configuration"
@@ -137,7 +121,6 @@
         product (or (get-product-by-id context product-id)
                     (first products))]
     product))
-
 
 (defn summary-path
   [product-config]
@@ -184,10 +167,5 @@
     "")))
 
 (defn path [context]
-  (let [product (get-current-product context)
-        product-path (when product (:path product))]
-    (log/info "path lookup" {:product-id (when product (:id product))
-                             :product-exists (boolean product)
-                             :path product-path
-                             :context-product-id (:current-product-id context)})
-    product-path))
+  (let [product (get-current-product context)]
+    (when product (:path product))))

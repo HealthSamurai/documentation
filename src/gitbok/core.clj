@@ -72,8 +72,7 @@
        (log/info "Examples updater started"))
 
      {:status :started
-      :port port
-      :context context})))
+      :port port})))
 
 (defn stop!
   "Stop the server and all schedulers"
@@ -88,14 +87,6 @@
     (log/info "Server stopped"))
 
   {:status :stopped})
-
-(defn status
-  "Get server status"
-  [context]
-  {:server (if (state/get-server context) :running :stopped)
-   :schedulers (scheduler/scheduler-status context)
-   :config (state/get-config context :prefix "")
-   :products (count (state/get-products context))})
 
 (defn -main [& _args]
   (log/info "Starting server")

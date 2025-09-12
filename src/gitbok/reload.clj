@@ -18,11 +18,6 @@
         (log/info "using local docs" {:path "../docs"})
         "../docs")))
 
-(defn get-reload-check-interval-ms [context]
-  (* 1000 (Integer/parseInt (state/get-config context :reload-check-interval "60"))))
-
-;; Removed checksum functions - now using git HEAD for change detection
-
 ;; State management functions
 (defn get-reload-state [context]
   (state/get-cache context :reload-state
@@ -38,8 +33,6 @@
   (state/update-cache! context :reload-state
                        (fn [state]
                          (apply f (or state {}) args))))
-
-;; Removed checksum getters/setters - using git HEAD instead
 
 (defn is-reloading? [context]
   (:in-progress (get-reload-state context)))
@@ -127,7 +120,7 @@
               ;; Update lastmod for all products
               (log/info "🔄updating lastmod data")
               (doseq [product (state/get-products context)]
-                (let [context-with-product (assoc context 
+                (let [context-with-product (assoc context
                                                   :product product
                                                   :current-product-id (:id product))]
                   (indexing/set-lastmod context-with-product)))

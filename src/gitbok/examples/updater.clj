@@ -70,8 +70,8 @@
             (log/info "following redirect" {:url redirect-url})
             ;; Follow redirect without Authorization header
             (let [{:keys [status body error]} @(http-client/get redirect-url
-                                                               {:as :byte-array
-                                                                :timeout 30000})]
+                                                                {:as :byte-array
+                                                                 :timeout 30000})]
               (cond
                 error (do (log/error "redirect download failed" {:error error})
                           nil)
@@ -83,8 +83,8 @@
 
           (not= status 200)
           (do (log/error "download artifact failed"
-                        {:status status
-                         :artifact-id artifact-id})
+                         {:status status
+                          :artifact-id artifact-id})
               nil)
 
           :else body)))))
@@ -131,11 +131,3 @@
     (catch Exception e
       (log/error "update examples failed" {:error (.getMessage e)})
       false)))
-
-;; These functions are now handled by scheduler.clj with chime
-;; Keeping only the core update logic here
-
-(defn manual-update
-  "Manually trigger an update (for testing)"
-  [context]
-  (update-examples-from-artifact context))

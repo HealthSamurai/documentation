@@ -10,7 +10,6 @@
    [gitbok.indexing.impl.sitemap-index :as sitemap-index]
    [gitbok.markdown.core :as markdown]
    [gitbok.products :as products]
-   [gitbok.reload :as reload]
    [gitbok.ui.examples]
    [gitbok.ui.layout :as layout]
    [gitbok.ui.main-content :as main-content]
@@ -22,8 +21,6 @@
    [ring.middleware.content-type :refer [content-type-response]]
    [ring.middleware.gzip :refer [wrap-gzip]]
    [ring.util.response :as resp]))
-
-;; Removed global env reads - use state/get-config from context instead
 
 (defn read-markdown-file [context filepath]
   (let [[filepath section] (str/split filepath #"#")
@@ -137,8 +134,6 @@
       ;; Regular resource path
       (resp/resource-response favicon-path))))
 
-;; Removed useless wrapper - use landing-hero/render-landing directly
-
 (defn render-file-view
   [context request]
   (let [uri (:uri request)
@@ -209,6 +204,7 @@
   [context _]
   {:status 200
    :headers {"content-type" "application/xml"}
+   ;; TODO: calculate on start and reload
    :body (gitbok.indexing.impl.sitemap-index/generate-sitemap-index context)})
 
 (defn redirect-to-readme
@@ -240,36 +236,6 @@
         :description "Page not found"
         :hide-breadcrumb true}))))
 
-(defn healthcheck
-  [_ _]
-  {:status 200 :body {:status "ok"}})
-
-(defn version-endpoint
-  [context _]
-  {:status 200
-   :body
-   {:build-engine-version (state/get-config context :version)
-    :docs-update
-    (reload/get-reload-state context)}})
-
-(defn debug-endpoint
-  [context request]
-  (let [products (products/get-products-config context)
-        full-config (products/get-full-config context)
-        current-product (:product context)]
-    {:status 200
-     :headers {"content-type" "application/json"}
-     :body {:products products
-            :full-config full-config
-            :current-product current-product
-            :environment {:prefix (state/get-config context :prefix "")
-                          :base-url (state/get-config context :base-url)
-                          :port (state/get-config context :port)}
-            :request-info {:uri (:uri request)
-                           :headers (select-keys (:headers request)
-                                                 ["host" "x-forwarded-for" "x-real-ip"
-                                                  "x-forwarded-proto" "x-forwarded-host"])}}}))
-
 (defn serve-static-file
   "Serves static files with proper content type and cache headers"
   [context request]
@@ -288,11 +254,6 @@
             ;; Then add cache-control to the headers map
             headers (assoc (or (:headers response-with-type) {})
                            "Cache-Control" cache-control)]
-        (log/debug "serving-static-file" {:path path
-                                          :dev-mode? dev-mode?
-                                          :cache-control cache-control
-                                          :headers headers})
-        ;; Return response with updated headers
         (assoc response-with-type :headers headers)))))
 
 (defn serve-og-preview
@@ -305,44 +266,6 @@
       (resp/content-type response "image/png")
       {:status 404
        :body "OG preview not found"})))
-
-;; Removed global port variable - use state/get-config from context
-
-;; Removed product-middleware - should be handled in routes.clj
-
-#_(defn product-middleware
-  "Middleware to determine product from request URI"
-  [handler]
-  (fn [context request]
-    (try
-      (let [uri (:uri request)
-            prefix (state/get-config context :prefix "")
-            uri-without-prefix (if (str/starts-with? uri prefix)
-                                 (subs uri (count prefix))
-                                 uri)
-            products-config (products/get-products-config context)
-            _ (log/info "product-middleware" {:uri uri
-                                              :uri-without-prefix uri-without-prefix
-                                              :products-count (count products-config)
-                                              :has-products (boolean (seq products-config))})
-            product (products/determine-product-by-uri products-config uri-without-prefix)
-            _ (when-not product
-                (log/error "no-product-found" {:uri uri
-                                               :uri-without-prefix uri-without-prefix
-                                               :products-config products-config}))
-            product-id (if product
-                         (:id product)
-                         (do
-                           (log/warn "using-fallback-product-id" {:uri uri})
-                           "default"))
-            context (products/set-current-product-id context product-id)]
-        (handler context request))
-      (catch Exception e
-        (log/error "product-middleware-error" {:uri (:uri request)
-                                               :error (.getMessage e)
-                                               :stacktrace (with-out-str (clojure.stacktrace/print-stack-trace e))})
-        ;; Try to continue with default product
-        (handler (products/set-current-product-id context "default") request)))))
 
 (defn gzip-middleware [f]
   (fn [ctx req]

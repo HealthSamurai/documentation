@@ -141,13 +141,6 @@
                             :else filepath)]
       (get lastmod-map normalized-path))))
 
-(defn clear-all-caches
-  "Clear all product caches from state - for development use only"
-  [context]
-  ;; Clear all product indices using context
-  (state/set-state! context [:products :indices] {})
-  (log/info "All caches cleared"))
-
 (defn set-lastmod
   [context]
    ;; New API - works with state directly

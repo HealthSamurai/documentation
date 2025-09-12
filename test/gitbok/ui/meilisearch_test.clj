@@ -267,7 +267,7 @@
                 "content" "SearchParameter is a FHIR resource that defines a search parameter."
                 "url" "/docs/api/searchparameter"}
           ;; Render as ungrouped item (is-grouped? = false)
-          rendered (m/render-result-item item "search" 0 false)
+          rendered (m/render-result-item item 0 false)
           html-str (h/html rendered)]
       ;; Should contain the content snippet
       (is (re-find #"SearchParameter is a FHIR resource" (str html-str)))))

@@ -24,8 +24,6 @@
   ([body]
    (response1 body 200 nil nil)))
 
-;; All get-/set- functions removed - use state functions directly
-
 (defn get-absolute-url [context relative-url]
   (utils/absolute-url (state/get-config context :base-url)
                       (state/get-config context :prefix "")
