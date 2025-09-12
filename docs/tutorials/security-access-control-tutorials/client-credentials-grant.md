@@ -41,7 +41,7 @@ You can also configure token's format and expiration, as well refresh the token:
 | _auth.client\_credentials_**.refresh\_token\_expiration** | int (seconds) | refresh token expiration time from issued or last usage |
 
 ```yaml
-PUT /Client/api-client
+PUT /fhir/Client/api-client
 Accept: text/yaml
 Content-Type: text/yaml
 
@@ -59,7 +59,7 @@ auth:
 Since by default new client has no access to any resources, you probably want to configure AccessPolicy for this specific client:
 
 ```yaml
-PUT /AccessPolicy/api-client
+PUT /fhir/AccessPolicy/api-client
 Accept: text/yaml
 Content-Type: text/yaml
 
@@ -78,7 +78,7 @@ Using Authorization header `{base64(Client.id + ':' + Client.secret)}` or by JSO
 {% tabs %}
 {% tab title="Request with Authorization header " %}
 ```yaml
-POST /auth/token
+POST /fhir/auth/token
 Authorization: Basic YXBpLWNsaWVudDp2ZXJ5c2VjcmV0
 Content-Type: application/x-www-form-urlencoded
 
@@ -88,7 +88,7 @@ grant_type=client_credentials
 
 {% tab title="Request with credentials in body" %}
 ```yaml
-POST /auth/token
+POST /fhir/auth/token
 Content-Type: application/json
 
 {
@@ -151,7 +151,7 @@ If you use JWT token format and provide in token request additional parameter `a
 You can use access token in `Authorization` header for Aidbox API calls:
 
 ```yaml
-GET /Patient
+GET /fhir/Patient
 Authorization: Bearer ZjQyNGFhY2EtNTY2MS00NjVjLWEzYmEtMjIwYjFkNDI5Yjhi
 ```
 
@@ -168,7 +168,7 @@ To get new access token using refresh token
 {% tabs %}
 {% tab title="Request" %}
 ```yaml
-POST /auth/token
+POST /fhir/auth/token
 Content-Type: application/json
 
 {
@@ -197,7 +197,7 @@ Aidbox create Session (resource) for each Access Token that can be closed with t
 
 {% code title="close-session" %}
 ```yaml
-DELETE /Session
+DELETE /fhir/Session
 Authorization: Bearer ZjQyNGFhY2EtNTY2MS00NjVjLWEzYmEtMjIwYjFkNDI5Yjhi
 ```
 {% endcode %}
