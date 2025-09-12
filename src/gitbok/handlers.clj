@@ -12,7 +12,6 @@
    [gitbok.products :as products]
    [gitbok.reload :as reload]
    [gitbok.ui.examples]
-   [gitbok.ui.landing-hero :as landing-hero]
    [gitbok.ui.layout :as layout]
    [gitbok.ui.main-content :as main-content]
    [gitbok.ui.meilisearch]
@@ -24,17 +23,15 @@
    [ring.middleware.gzip :refer [wrap-gzip]]
    [ring.util.response :as resp]))
 
-(def dev? (= "true" (System/getenv "DEV")))
-(def prefix (or (System/getenv "DOCS_PREFIX") "/"))
-(def base-url (or (System/getenv "BASE_URL")
-                  "http://localhost:8081"))
+;; Removed global env reads - use state/get-config from context instead
 
 (defn read-markdown-file [context filepath]
   (let [[filepath section] (str/split filepath #"#")
         full-filepath (products/filepath context filepath)
+        dev-mode (state/get-config context :dev-mode)
         ;; In DEV mode, always read fresh content from disk/volume
-        _ (when dev? (log/debug "reading-file" {:filepath filepath :full-path full-filepath}))
-        content* (if dev?
+        _ (when dev-mode (log/debug "reading-file" {:filepath filepath :full-path full-filepath}))
+        content* (if dev-mode
                    ;; Force re-read from disk in DEV mode
                    (do
                      (log/debug "reading-fresh" {:path full-filepath})
@@ -68,7 +65,7 @@
   [context filepath]
   (let [result
         (try
-          (if dev?
+          (if (state/get-config context :dev-mode)
             (read-markdown-file context filepath)
             (markdown/get-rendered context filepath))
           (catch Exception e
@@ -97,6 +94,7 @@
 
 (defn render-pictures [context request]
   (let [uri (:uri request)
+        prefix (state/get-config context :prefix "")
         uri-relative
         (utils/uri-to-relative uri prefix
                                (products/path context))
@@ -129,7 +127,8 @@
         (assoc response-with-type :headers headers)))))
 
 (defn render-favicon [context _]
-  (let [product (products/get-current-product context)
+  ;; TODO: Calculate favicon-path at start/reload instead of runtime
+  (let [product (:product context) ;; Product is now in context from middleware
         favicon-path (or (:favicon product) "public/favicon.ico")]
     (if (str/starts-with? favicon-path ".gitbook/")
       ;; Handle .gitbook/assets paths like render-pictures does
@@ -138,75 +137,46 @@
       ;; Regular resource path
       (resp/resource-response favicon-path))))
 
-(defn render-landing
-  [context request]
-  (landing-hero/render-landing context request))
+;; Removed useless wrapper - use landing-hero/render-landing directly
 
 (defn render-file-view
   [context request]
   (let [uri (:uri request)
         product-path (products/path context)
-        _ (log/info "render-file-view-start"
-                    {:uri uri
-                     :prefix prefix
-                     :product-path product-path
-                     :current-product-id (:current-product-id context)
-                     :headers (select-keys (:headers request) ["user-agent" "referer"])})
+        prefix (state/get-config context :prefix "")
         uri-relative
         (utils/uri-to-relative
          uri
          prefix
          product-path)]
-    (log/info "uri-relative-calculated" {:uri uri :uri-relative uri-relative})
     (cond
 
       (or (picture-url? uri-relative)
           (picture-url? uri))
-      (do
-        (log/info "serving-picture" {:uri-relative uri-relative})
-        (render-pictures context request))
+      (render-pictures context request)
 
       :else
       ;; Check for redirects first
       (if-let [redirect-target (indexing/get-redirect context uri-relative)]
         ;; Return HTTP 301 redirect
         (let [target-url (http/get-product-prefixed-url context redirect-target)]
-          ;; Log the redirect for monitoring
-          (log/info "redirect-301" {:from uri-relative
-                                    :to redirect-target
-                                    :target-url target-url
-                                    :user-agent (get-in request [:headers "user-agent"])
-                                    :referer (get-in request [:headers "referer"])})
-
           {:status 301
            :headers {"Location" target-url}})
         ;; Otherwise proceed with normal file handling
-        (let [_ (log/info "looking-up-filepath" {:uri-relative uri-relative})
-              filepath (indexing/uri->filepath context uri-relative)
-              _ (log/info "filepath-resolved" {:uri-relative uri-relative :filepath filepath})]
+        (let [filepath (indexing/uri->filepath context uri-relative)]
           (if filepath
             (let [lastmod (indexing/get-lastmod context filepath)
                   lastmod-iso (utils/iso-to-http-date lastmod)
-                  etag (utils/etag lastmod-iso)
-                  _ (log/info "file-metadata" {:filepath filepath
-                                               :lastmod lastmod
-                                               :etag etag})]
+                  etag (utils/etag lastmod-iso)]
               (if (or (check-cache-etag request etag)
                       (and lastmod
                            (check-cache-lastmod request lastmod)))
-                (do
-                  (log/info "returning-304-not-modified" {:filepath filepath})
-                  {:status 304
-                   :headers {"Cache-Control" "public, max-age=300"
-                             "Last-Modified" lastmod-iso
-                             "ETag" etag}})
-                (let [_ (log/info "rendering-file" {:filepath filepath})
-                      {:keys [title description content section]}
-                      (render-file (assoc context :current-uri uri-relative) filepath)
-                      _ (log/info "file-rendered" {:filepath filepath
-                                                   :title title
-                                                   :has-content (boolean content)
-                                                   :section section})]
+                {:status 304
+                 :headers {"Cache-Control" "public, max-age=300"
+                           "Last-Modified" lastmod-iso
+                           "ETag" etag}}
+                (let [{:keys [title description content section]}
+                      (render-file (assoc context :current-uri uri-relative) filepath)]
                   (layout/layout
                    context request
                    {:content content
@@ -243,7 +213,8 @@
 
 (defn redirect-to-readme
   [context request]
-  (let [uri (products/uri
+  (let [prefix (state/get-config context :prefix "")
+        uri (products/uri
              context prefix
              (or (products/readme-url context) "readme"))
         request
@@ -285,14 +256,14 @@
   [context request]
   (let [products (products/get-products-config context)
         full-config (products/get-full-config context)
-        current-product (products/get-current-product context)]
+        current-product (:product context)]
     {:status 200
      :headers {"content-type" "application/json"}
      :body {:products products
             :full-config full-config
             :current-product current-product
-            :environment {:prefix prefix
-                          :base-url base-url
+            :environment {:prefix (state/get-config context :prefix "")
+                          :base-url (state/get-config context :base-url)
                           :port (state/get-config context :port)}
             :request-info {:uri (:uri request)
                            :headers (select-keys (:headers request)
@@ -335,22 +306,17 @@
       {:status 404
        :body "OG preview not found"})))
 
-(def default-port 8081)
+;; Removed global port variable - use state/get-config from context
 
-(def port
-  (let [p (System/getenv "PORT")]
-    (or
-     (when (string? p)
-       (try (Integer/parseInt p)
-            (catch Exception _ nil)))
-     default-port)))
+;; Removed product-middleware - should be handled in routes.clj
 
-(defn product-middleware
+#_(defn product-middleware
   "Middleware to determine product from request URI"
   [handler]
   (fn [context request]
     (try
       (let [uri (:uri request)
+            prefix (state/get-config context :prefix "")
             uri-without-prefix (if (str/starts-with? uri prefix)
                                  (subs uri (count prefix))
                                  uri)

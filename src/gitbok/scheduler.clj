@@ -9,10 +9,10 @@
 (defn start-reload-watcher! 
   "Start periodic reload watcher using chime"
   [context init-product-indices-fn init-products-fn]
-  (when (state/get-env context :docs-volume-path)
-    (let [interval-seconds (Integer/parseInt (state/get-env context :reload-check-interval "30"))]
+  (when (state/get-config context :docs-volume-path)
+    (let [interval-seconds (Integer/parseInt (state/get-config context :reload-check-interval "30"))]
       (log/info "Starting reload watcher" {:interval-seconds interval-seconds
-                                           :volume-path (state/get-env context :docs-volume-path)})
+                                           :volume-path (state/get-config context :docs-volume-path)})
       
       ;; Initialize reload state
       (reload/init-reload-state! context)
@@ -39,8 +39,8 @@
 (defn start-examples-updater! 
   "Start periodic examples updater using chime"
   [context]
-  (when (state/get-env context :github-token)
-    (let [interval-minutes (Integer/parseInt (state/get-env context :examples-update-interval "60"))]
+  (when (state/get-config context :github-token)
+    (let [interval-minutes (Integer/parseInt (state/get-config context :examples-update-interval "60"))]
       (log/info "Starting examples updater" {:interval-minutes interval-minutes})
       
       ;; Do initial update immediately

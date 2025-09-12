@@ -66,7 +66,10 @@
             _ (products/set-products-config context [test-product])
             _ (products/set-full-config context {:products [test-product]
                                                  :root-redirect "/"})
-            _ (products/set-current-product-id context "test")]
+            ;; Add product to context for the new architecture
+            context (assoc context 
+                          :current-product-id "test"
+                          :product test-product)]
 
           ;; Initialize indices - just test that basic initialization works
         (testing "Loading markdown files"

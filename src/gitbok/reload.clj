@@ -10,7 +10,7 @@
 (defn get-volume-path
   "Get current volume path, with fallback to local docs/ directory for development"
   [context]
-  (or (state/get-env context :docs-volume-path)
+  (or (state/get-config context :docs-volume-path)
       (when (.exists (io/file "docs"))
         (log/info "using local docs" {:path "docs"})
         "docs")
@@ -19,7 +19,7 @@
         "../docs")))
 
 (defn get-reload-check-interval-ms [context]
-  (* 1000 (Integer/parseInt (state/get-env context :reload-check-interval "60"))))
+  (* 1000 (Integer/parseInt (state/get-config context :reload-check-interval "60"))))
 
 ;; Removed checksum functions - now using git HEAD for change detection
 
@@ -88,7 +88,7 @@
   (when (and (get-volume-path context)
              (not (is-reloading? context)))
     (let [;; Get current git HEAD
-          repo-path (state/get-env context :docs-repo-path ".")
+          repo-path (state/get-config context :docs-repo-path ".")
           new-head (try
                      (let [{:keys [out exit]} (shell/sh "git"
                                                         "-c" (str "safe.directory=" repo-path)
@@ -127,8 +127,10 @@
               ;; Update lastmod for all products
               (log/info "🔄updating lastmod data")
               (doseq [product (state/get-products context)]
-                (state/set-current-product! context product)
-                (indexing/set-lastmod context))
+                (let [context-with-product (assoc context 
+                                                  :product product
+                                                  :current-product-id (:id product))]
+                  (indexing/set-lastmod context-with-product)))
 
               ;; Update state only after successful reload
               (update-reload-state! context assoc
@@ -154,7 +156,7 @@
   [context]
   (when-let [docs-path (get-volume-path context)]
     (let [app-version (state/get-config context :version)
-          repo-path (state/get-env context :docs-repo-path ".")]
+          repo-path (state/get-config context :docs-repo-path ".")]
 
       (log/info "reload state init" {:app-version app-version
                                      :volume-path docs-path
