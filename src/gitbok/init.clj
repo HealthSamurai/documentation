@@ -72,7 +72,10 @@
       (state/set-sitemap! ctx sitemap-xml))
 
     ;; 9. Pre-calculate favicon path for product
-    (let [favicon-path (or (:favicon product) "public/favicon.ico")]
+    (let [favicon-path (or (:favicon product) "public/favicon.ico")
+          favicon-path (if (str/starts-with? favicon-path ".gitbook/")
+                         (str/replace-first favicon-path #".*.gitbook/" "")
+                         favicon-path)]
       (state/set-product-state! ctx [:favicon-path] favicon-path))))
 
 (defn init-products

@@ -5,25 +5,19 @@
    [clojure.java.io :as io]
    [gitbok.indexing.impl.summary]
    [gitbok.indexing.impl.uri-to-file :as uri-to-file]
-   [gitbok.indexing.impl.file-to-uri :as file-to-uri]
    [gitbok.products :as products]
    [gitbok.lastmod.generator :as lastmod-gen]
    [gitbok.state :as state]
    [clojure.string :as str]
-   [clojure.java.io :as io]
-   [gitbok.utils :as utils]
-))
+   [gitbok.utils :as utils]))
 
 (set! *warn-on-reflection* true)
 
 (defn get-filepath [filepath-a relative-filepath]
   (.getCanonicalPath
-    (io/file (.getParent (io/file filepath-a)) relative-filepath)))
+   (io/file (.getParent (io/file filepath-a)) relative-filepath)))
 
 (def lastmod-key :gitbok.indexing.core/lastmod)
-
-(defn filepath->uri [context filepath]
-  (gitbok.indexing.impl.file-to-uri/filepath->uri context filepath))
 
 (defn uri->filepath [context ^String uri]
   (let [idx (state/get-uri-to-file-idx context)
@@ -176,7 +170,8 @@
                         docs-path)
                        {})]
 
-    (log/info "✅lastmod set" {:product product-id
-                              :docs-path docs-path
-                              :entries (count lastmod-data)})
+    (log/info "✅lastmod set"
+              {:product product-id
+               :docs-path docs-path
+               :entries (count lastmod-data)})
     (gitbok.state/set-product-state! context [lastmod-key] lastmod-data)))
