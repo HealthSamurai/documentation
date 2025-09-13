@@ -21,8 +21,8 @@
   "Stop the server"
   []
   (when-let [ctx @dev-context]
+    (log/info "Server stopped")
     (core/stop! ctx))
-  (log/info "Server stopped")
   :stopped)
 
 (defn restart!
@@ -36,8 +36,15 @@
 (defn reload!
   "Reload code without restarting server"
   []
-  (reload/reload)
-  :reloaded)
+  (let [result (reload/reload)]
+    (if (seq (:loaded result))
+      (do
+        (log/info "Reloaded namespaces:" (:loaded result))
+        {:status :reloaded
+         :namespaces (:loaded result)})
+      (do
+        (log/info "No namespaces needed reloading")
+        {:status :no-changes}))))
 
 (defn status1
   "Get server status"
@@ -89,16 +96,17 @@
     {}))
 
 (comment
-  ;; Start server
+  ;; Start server with hot-reload support via Var references
   (start!)
 
   ;; Stop server
   (stop!)
 
-  ;; Restart server (stop, reload code, start)
+  ;; Full restart - only needed for structural changes (new routes, middleware changes)
   (restart!)
 
-  ;; Just reload code without restarting
+  ;; Hot reload - reloads code, handlers are automatically updated via Var references
+  ;; Use this for handler logic changes
   (reload!)
 
   ;; Check server status
