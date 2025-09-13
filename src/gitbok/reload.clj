@@ -5,6 +5,7 @@
    [clojure.string :as str]
    [clojure.tools.logging :as log]
    [clojure.java.shell :as shell]
+   [clojure.stacktrace]
    [gitbok.initialization :as initialization]
    [gitbok.state :as state]))
 
@@ -69,7 +70,9 @@
                        (when (zero? exit)
                          (str/trim out)))
                      (catch Exception e
-                       (log/warn "⚠️get head failed" {:error (.getMessage e)})
+                       (let [stack-trace (with-out-str (clojure.stacktrace/print-stack-trace e))]
+                         (log/warn "⚠️get head failed" {:error (.getMessage e)
+                                                        :stack-trace stack-trace}))
                        nil))
           reload-state (get-reload-state context)
           current-head (:git-head reload-state)
@@ -106,8 +109,10 @@
                 (log/info "reload success" {:duration-ms duration
                                             :new-head new-head})))
             (catch Exception e
-              (log/error "reload failed" {:error (.getMessage e)
-                                          :exception e}))
+              (let [stack-trace (with-out-str (clojure.stacktrace/print-stack-trace e))]
+                (log/error e "reload failed" {:error (.getMessage e)
+                                              :exception-class (.getName (.getClass e))
+                                              :stack-trace stack-trace})))
             (finally
               (set-reloading! context false))))
 
@@ -134,7 +139,9 @@
                              (when (zero? exit)
                                (str/trim out)))
                            (catch Exception e
-                             (log/warn "⚠️get initial head failed" {:error (.getMessage e)})
+                             (let [stack-trace (with-out-str (clojure.stacktrace/print-stack-trace e))]
+                               (log/warn "⚠️get initial head failed" {:error (.getMessage e)
+                                                                      :stack-trace stack-trace}))
                              nil))]
         (set-reload-state! context
                            {:git-head initial-head

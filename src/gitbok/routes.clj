@@ -15,6 +15,7 @@
             [gitbok.utils :as utils]
             [clojure.string :as str]
             [clojure.tools.logging :as log]
+            [clojure.stacktrace]
             [cheshire.core]
             [clojure.walk]
             [hiccup.util]))
@@ -47,6 +48,41 @@
                                            :uri uri
                                            :duration-ms duration})
             (throw e)))))))
+
+(defn wrap-exception-handler
+  "Global exception handler middleware that captures and logs stack traces"
+  [handler]
+  (fn [request]
+    (try
+      (handler request)
+      (catch Exception e
+        (let [error-id (str (java.util.UUID/randomUUID))
+              stack-trace (with-out-str (clojure.stacktrace/print-stack-trace e))
+              uri (:uri request)
+              method (:request-method request)]
+          (log/error e "Unhandled exception caught by global handler"
+                     {:error-id error-id
+                      :uri uri
+                      :method method
+                      :message (.getMessage e)
+                      :exception-class (.getName (.getClass e))
+                      :stack-trace stack-trace})
+          ;; Return appropriate error response
+          {:status 500
+           :headers {"Content-Type" "text/html; charset=utf-8"}
+           :body (str "<!DOCTYPE html>\n"
+                     "<html><head><title>Internal Server Error</title></head>\n"
+                     "<body>\n"
+                     "<h1>Internal Server Error</h1>\n"
+                     "<p>An unexpected error occurred.</p>\n"
+                     "<p><strong>Error ID:</strong> " error-id "</p>\n"
+                     ;; Only show stack trace in dev mode
+                     (when (state/get-config request :dev-mode)
+                       (str "<h2>Stack Trace (Development Mode Only)</h2>\n"
+                            "<pre style=\"background: #f4f4f4; padding: 10px; overflow: auto;\">"
+                            (hiccup.util/escape-html stack-trace)
+                            "</pre>"))
+                     "</body></html>")})))))
 (defn product-middleware
   "Middleware to set current product based on route"
   [handler]
@@ -64,18 +100,10 @@
                                                         (str/split uri-without-prefix #"/")))]
                          (str "/" (first segments)))
           products-config (state/get-products ctx)]
-      (log/debug "Product middleware" {:uri uri
-                                       :prefix prefix
-                                       :uri-without-prefix uri-without-prefix
-                                       :product-path product-path
-                                       :products-count (count products-config)})
       (if-let [product (first (filter #(= (:path %) product-path) products-config))]
-        (do
-          (log/debug "Product found" {:product-id (:id product)
-                                      :product-name (:name product)})
-          (handler (assoc ctx
+        (handler (assoc ctx
                           :product product
-                          :current-product-id (:id product))))
+                          :current-product-id (:id product)))
         (do
           (log/warn "Product not found" {:product-path product-path
                                          :available-paths (map :path products-config)})
@@ -283,7 +311,9 @@
      (ring/router
       routes
       {:data {:muuntaja m/instance
-              :middleware [;; Request logging
+              :middleware [;; Global exception handler (must be first/outermost)
+                           wrap-exception-handler
+                           ;; Request logging
                            wrap-request-logging
                            ;; Request parsing
                            parameters/parameters-middleware
@@ -295,5 +325,6 @@
        ;; Use linear-router for predictable route matching order
        :router reitit.core/linear-router
        ;; Disable conflict detection since we want ordered matching
-       :conflicts nil}))))
+       :conflicts nil})))
 
+)
