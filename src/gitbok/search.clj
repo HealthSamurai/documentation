@@ -1,7 +1,0 @@
-(ns gitbok.search
-  (:require
-   [gitbok.indexing.impl.meilisearch :as meilisearch]
-   [cheshire.core]))
-
-(defn search [context query]
-  (meilisearch/search context query))

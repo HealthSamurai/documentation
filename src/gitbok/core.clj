@@ -72,7 +72,8 @@
        (log/info "Examples updater started"))
 
      {:status :started
-      :port port})))
+      :port port
+      :context context})))
 
 (defn stop!
   "Stop the server and all schedulers"

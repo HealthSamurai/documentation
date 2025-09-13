@@ -56,8 +56,11 @@
                 :reload-check-interval (or reload-check-interval
                                            (System/getenv "RELOAD_CHECK_INTERVAL")
                                            "30")
-                :meilisearch-url (or meilisearch-url (System/getenv "MEILISEARCH_URL"))
-                :meilisearch-api-key (or meilisearch-api-key (System/getenv "MEILISEARCH_API_KEY"))}
+                :meilisearch-url (or meilisearch-url
+                                     (System/getenv "MEILISEARCH_URL")
+                                     "http://localhost:7700")
+                :meilisearch-api-key (or meilisearch-api-key
+                                         (System/getenv "MEILISEARCH_API_KEY"))}
         initial-state {:config config
                        :products {:config []
                                   :indices {}}
@@ -147,8 +150,7 @@
   ([context path default]
    ;; Product should now be in context from middleware/request
    (if-let [product-id (or (:current-product-id context)
-                           (:id (:product context))
-                           (:id (:gitbok.products/current-product context)))]
+                           (:id (:product context)))]
      (get-state context (concat [:products :indices product-id] path) default)
      (do
        (log/warn "No current product set when getting product state" {:path path})
@@ -159,8 +161,7 @@
   [context path value]
   ;; Product should now be in context from middleware/request
   (if-let [product-id (or (:current-product-id context)
-                          (:id (:product context))
-                          (:id (:gitbok.products/current-product context)))]
+                          (:id (:product context)))]
     (set-state! context (concat [:products :indices product-id] path) value)
     (log/error "No current product set when setting product state" {:path path})))
 
@@ -247,16 +248,6 @@
 (defn get-parsed-markdown-idx [context]
   (get-product-state context [:parsed-markdown-idx]))
 
-
-
-
-
-
-
-
-
 ;; Debug helper
 (defn get-full-state [context]
   @(:system context))
-
-

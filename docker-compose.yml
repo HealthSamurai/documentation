@@ -37,7 +37,7 @@ services:
     environment:
       - MEILI_ENV=development
       # For production, set a secure master key (at least 16 bytes)
-      - MEILI_MASTER_KEY=${MEILISEARCH_API_KEY:-60DBZGy6zoDL6Q--s1-dHBWptiVKvK-XRsaacdvkOSM}
+      - MEILISEARCH_API_KEY=-60DBZGy6zoDL6Q--s1-dHBWptiVKvK-XRsaacdvkOSM
       - MEILI_NO_ANALYTICS=true
       - MEILI_DB_PATH=/meili_data
       - MEILI_HTTP_ADDR=0.0.0.0:7700
@@ -61,7 +61,7 @@ services:
     environment:
       - MEILISEARCH_HOST_URL=http://meilisearch:7700
       # For development, use the generated key from logs or set your own
-      - MEILISEARCH_API_KEY=${MEILISEARCH_API_KEY:-60DBZGy6zoDL6Q--s1-dHBWptiVKvK-XRsaacdvkOSM}
+      - MEILISEARCH_API_KEY=-60DBZGy6zoDL6Q--s1-dHBWptiVKvK-XRsaacdvkOSM
     volumes:
       - ./k8s/meilisearch/config.json:/docs-scraper/config.json:ro
     networks:

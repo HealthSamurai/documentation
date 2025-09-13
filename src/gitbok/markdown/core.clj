@@ -21,6 +21,8 @@
    [hiccup2.core]
    [nextjournal.markdown.utils :as u]))
 
+(def rendered-key ::rendered)
+
 (declare hack-md)
 
 (def custom-doc
@@ -304,13 +306,13 @@
   (state/get-parsed-markdown-idx context))
 
 (defn get-rendered [context filepath]
-  (get (products/get-product-state context [::rendered])
+  (get (products/get-product-state context [rendered-key])
        filepath))
 
 (defn render-all! [context parsed-md-index read-markdown-file]
   (products/set-product-state
    context
-   [::rendered]
+   [rendered-key]
    (->> parsed-md-index
         (mapv
          (fn [{:keys [filepath _parsed]}]
