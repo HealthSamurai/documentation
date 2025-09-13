@@ -107,7 +107,7 @@
     (markdown/renderers context filepath) title)
    (for [[_path {:keys [title uri]}]
          (find-children-files context filepath)]
-     (let [prefix (gitbok.state/get-config context)
+     (let [prefix (gitbok.state/get-config context :prefix "")
            product-path (or (products/path context) "")
            full-href (str prefix product-path "/" uri)]
        (big-links/big-link-view full-href title)))])
