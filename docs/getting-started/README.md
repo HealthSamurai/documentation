@@ -20,6 +20,22 @@ Discover how to start with Aidbox in just a few minutes.
 [run-aidbox-in-kubernetes](../deployment-and-maintenance/deploy-aidbox/run-aidbox-in-kubernetes/)
 {% endcontent-ref %}
 
+{% content-ref url="csharp.md" %}
+[csharp.md](csharp.md)
+{% endcontent-ref %}
+
+{% content-ref url="java.md" %}
+[java.md](java.md)
+{% endcontent-ref %}
+
+{% content-ref url="python.md" %}
+[python.md](python.md)
+{% endcontent-ref %}
+
+{% content-ref url="typescript.md" %}
+[typescript.md](typescript.md)
+{% endcontent-ref %}
+
 {% content-ref url="upload-sample-data.md" %}
 [upload-sample-data.md](upload-sample-data.md)
 {% endcontent-ref %}
