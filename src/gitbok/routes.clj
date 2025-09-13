@@ -203,18 +203,17 @@
                  {:get {:handler render-favicon
                         :middleware [product-middleware wrap-gzip]}}]
 
-                ;; Product landing
-                [(str product-path "/landing")
-                 {:get {:handler render-landing
-                        :middleware [product-middleware wrap-gzip]}}]
-
                 ;; Product root
                 [product-path {:get {:handler redirect-to-readme
                                      :middleware [product-middleware wrap-gzip]}}]]]
-    ;; Add examples routes only for Aidbox product
+    ;; Add Aidbox-specific routes
     (if (= (:id product) "aidbox")
       (concat routes
-              [;; Examples page
+              [;; Landing page - Aidbox only
+               [(str product-path "/landing")
+                {:get {:handler render-landing
+                       :middleware [product-middleware wrap-gzip]}}]
+               ;; Examples page
                [(str product-path "/examples")
                 {:get {:handler examples-handler
                        :middleware [product-middleware wrap-gzip]}}]
@@ -230,7 +229,7 @@
       (conj routes
             [(str product-path "/*")
              {:get {:handler render-file-view
-                    :middleware [product-middleware wrap-gzip]}}]))))
+                    :middleware [product-middleware wrap-gzip]}}])))))
 
 (defn all-routes
   "Generate all routes including dynamic product routes"
