@@ -1,10 +1,9 @@
 (ns gitbok.http
   (:require
-   [system]
+   [gitbok.state :as state]
+   [gitbok.products :as products]
    [clojure.string :as str]
-   [gitbok.constants :as const]
-   [gitbok.utils :as utils]
-   [gitbok.products :as products]))
+   [gitbok.utils :as utils]))
 
 (defn response1
   ([body status lastmod section]
@@ -25,73 +24,35 @@
   ([body]
    (response1 body 200 nil nil)))
 
-(defn set-port [context port]
-  (system/set-system-state
-   context [const/PORT]
-   port))
-
-(defn get-port [context]
-  (system/get-system-state context [const/PORT]))
-
-(defn set-prefix [context prefix]
-  (system/set-system-state
-   context [const/PREFIX]
-   prefix))
-
-(defn get-prefix [context]
-  (system/get-system-state context [const/PREFIX]))
-
-(defn set-base-url [context base-url]
-
-  (system/set-system-state
-   context [const/BASE_URL]
-   base-url))
-
-(defn get-base-url [context]
-  (system/get-system-state context [const/BASE_URL]))
-
 (defn get-absolute-url [context relative-url]
-  (utils/absolute-url (get-base-url context)
-                      (get-prefix context)
+  (utils/absolute-url (state/get-config context :base-url)
+                      (state/get-config context :prefix "")
                       relative-url))
 
 (defn get-prefixed-url [context relative-url]
-  (utils/concat-urls (get-prefix context) relative-url))
+  (utils/concat-urls (state/get-config context :prefix "") relative-url))
 
 (defn get-url [context]
   (utils/concat-urls
-   (get-base-url context)
-   (get-prefix context)))
+   (state/get-config context :base-url)
+   (state/get-config context :prefix "")))
 
 (defn url-without-prefix
   [context uri]
   (let [prefix
-        (get-prefix context)]
+        (state/get-config context :prefix "")]
     (if
      (str/starts-with? uri prefix)
       (subs uri (count prefix))
       uri)))
 
-(defn set-version [context version]
-  (system/set-system-state
-   context [const/VERSION]
-   version))
-
-(defn get-version [context]
-  (system/get-system-state context [const/VERSION]))
-
-(defn set-dev-mode [context dev-mode]
-  (system/set-system-state
-   context [const/DEV_MODE]
-   dev-mode))
-
-(defn get-dev-mode [context]
-  (system/get-system-state context [const/DEV_MODE]))
 
 (defn get-product-prefix
   [context]
-  (let [product (products/get-current-product context)
-        docs-prefix (get-prefix context)]
+  (let [product (or (:product context)
+                    (:gitbok.products/current-product context)
+                    (products/get-current-product context))
+        docs-prefix (state/get-config context :prefix "")]
     (utils/concat-urls docs-prefix (:path product))))
 
 (defn get-product-prefixed-url
@@ -100,7 +61,7 @@
 
 (defn get-product-absolute-url
   [context relative-url]
-  (utils/absolute-url (get-base-url context)
+  (utils/absolute-url (state/get-config context :base-url)
                       (get-product-prefix context)
                       relative-url))
 

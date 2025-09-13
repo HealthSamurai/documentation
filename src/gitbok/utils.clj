@@ -1,11 +1,7 @@
 (ns gitbok.utils
   (:require
-   [klog.core :as log]
    [clojure.string :as str]
-   [hiccup2.core]
-   [system]
-   [clojure.java.io :as io]
-   [cheshire.core :as json])
+   [hiccup2.core])
   (:import [java.time Instant ZoneId ZonedDateTime]
            [java.time.format DateTimeFormatter]
            [java.util Locale]))
@@ -30,33 +26,6 @@
                (>= end start)
                (<= end (count s)))
       (subs s start end))))
-
-(def volume-path (System/getenv "DOCS_VOLUME_PATH"))
-
-(defn slurp-resource [path]
-  (if volume-path
-    (let [file-path (str volume-path "/" path)
-          file (io/file file-path)]
-      (if (.exists file)
-        (do
-          (log/debug ::read-volume {:path path})
-          (slurp file))
-        ;; Fallback to classpath for non-documentation resources
-        (if-let [r (io/resource path)]
-          (do
-            (log/debug ::read-classpath {:path path :reason "not-in-volume"})
-            (slurp r))
-          (do
-            (log/error ::file-not-found {:path path :locations ["volume" "classpath"]})
-            (throw (Exception. (str "Cannot find " path " in volume or classpath")))))))
-    ;; Original classpath logic for backward compatibility
-    (if-let [r (io/resource path)]
-      (do
-        (log/debug ::read-classpath {:path path :reason "no-volume"})
-        (slurp r))
-      (do
-        (log/error ::file-not-found {:path path :location "classpath"})
-        (throw (Exception. (str "Cannot find " path)))))))
 
 (defn concat-urls [& parts]
   (let [clean (fn [s] (str/replace s #"^/|/$" ""))
@@ -97,8 +66,9 @@
                             (subs with-leading-slash (count product-path))
                             without-prefix) ;; Use original without-prefix if no match
           ;; Clean up leading slashes
-          cleaned (str/replace without-product #"^/+" "")]
-      (if (str/blank? cleaned) "/" cleaned))))
+          cleaned (str/replace without-product #"^/+" "")
+          result (if (str/blank? cleaned) "/" cleaned)]
+      result)))
 
 (defn concat-filenames [& parts]
   (when (seq parts)
@@ -108,18 +78,19 @@
                       (java.io.File. ^java.io.File acc ^String part)
                       (java.io.File. ^String acc ^String part)))
                   (first parts)
-                  (rest parts))]
-      (let [^java.io.File file-result (if (instance? java.io.File result)
-                                        result
-                                        (java.io.File. ^String result))
-            path (.getPath file-result)
-            ;; Remove leading slash if present
-            path (cond-> path
-                   (str/starts-with? path "/")
-                   (subs 1))
-            ;; Replace "/./" with "/"
-            path (str/replace path "/./" "/")]
-        path))))
+                  (rest parts))
+          ^java.io.File file-result
+          (if (instance? java.io.File result)
+            result
+            (java.io.File. ^String result))
+          path (.getPath file-result)
+          ;; Remove leading slash if present
+          path (cond-> path
+                 (str/starts-with? path "/")
+                 (subs 1))
+          ;; Replace "/./" with "/"
+          path (str/replace path "/./" "/")]
+      path)))
 
 (defn etag [lastmod-iso-date]
   (str "\"" lastmod-iso-date "\""))
@@ -133,19 +104,12 @@
 (defn iso-to-http-date [iso-string]
   (when iso-string
     (let [instant (Instant/parse iso-string)
-        zoned (ZonedDateTime/ofInstant instant (ZoneId/of "GMT"))]
-    (.format ^DateTimeFormatter http-date-formatter zoned))))
-
+          zoned (ZonedDateTime/ofInstant instant (ZoneId/of "GMT"))]
+      (.format ^DateTimeFormatter http-date-formatter zoned))))
 
 (defn absolute-url
   [base-url prefix relative-url]
   (concat-urls base-url (or prefix "/") relative-url))
-
-(defn ->json [data]
-  (json/generate-string data {:key-fn name}))
-
-(defn json->clj [json-str]
-  (json/parse-string json-str true))
 
 (defn parent [path]
   (.getParent (java.io.File. ^String path)))

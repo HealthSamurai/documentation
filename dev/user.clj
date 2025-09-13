@@ -1,30 +1,129 @@
 (ns user
   (:require
-   [system.dev :as dev]
-   [system]
-   [gitbok.core :as gitbok]
+   [gitbok.core :as core]
+   [gitbok.state :as state]
+   [gitbok.scheduler :as scheduler]
+   [gitbok.handlers :as handlers]
+   [gitbok.initialization :as initialization]
    [clj-reload.core :as reload]
-   [gitbok.examples.updater :as examples-updater]
-   [klog.core :as log]
-   [gitbok.reload :as gitbok-reload]))
+   [clojure.tools.logging :as log]))
+
+(defonce ^:private dev-context (atom nil))
+
+(defn start!
+  "Start the server"
+  []
+  (reload/init {:dirs ["src"]})
+  (let [result (core/start!)]
+    (reset! dev-context (:context result))
+    (log/info "Server started")
+    :started))
+
+(defn stop!
+  "Stop the server"
+  []
+  (when-let [ctx @dev-context]
+    (log/info "Server stopped")
+    (core/stop! ctx))
+  :stopped)
+
+(defn restart!
+  "Restart the server"
+  []
+  (stop!)
+  (reload/reload)
+  (start!)
+  :restarted)
+
+(defn reload!
+  "Reload code without restarting server"
+  []
+  (let [result (reload/reload)]
+    (if (seq (:loaded result))
+      (do
+        (log/info "Reloaded namespaces:" (:loaded result))
+        {:status :reloaded
+         :namespaces (:loaded result)})
+      (do
+        (log/info "No namespaces needed reloading")
+        {:status :no-changes}))))
+
+(defn status1
+  "Get server status"
+  [context]
+  {:server (if (state/get-server context) :running :stopped)
+   :schedulers (scheduler/scheduler-status context)
+   :config (state/get-config context :prefix "")
+   :products (count (state/get-products context))})
+
+(defn status
+  "Get server status"
+  []
+  (if-let [ctx @dev-context]
+    (status1 ctx)
+    :not-started))
+
+(defn clear-all-caches
+  "Clear all product caches from state - for development use only"
+  [context]
+  ;; Clear all product indices using context
+  (state/set-state! context [:products :indices] {})
+  (log/info "All caches cleared"))
+
+(defn clear-caches!
+  "Clear all caches (for development)"
+  []
+  (when-let [ctx @dev-context]
+    (clear-all-caches ctx)
+    (state/set-cache! ctx :lastmod {})
+    (state/set-cache! ctx :reload-state {:git-head nil
+                                        :last-reload-time nil
+                                        :app-version (state/get-config ctx :version)
+                                        :in-progress false})
+    (log/info "All caches cleared")))
+
+(defn reload-products!
+  "Reload products configuration (for development)"
+  []
+  (when-let [ctx @dev-context]
+    (initialization/init-all-products! ctx :read-markdown-fn handlers/read-markdown-file)
+    (log/info "Products reloaded")))
+
+(defn state
+  "Get current application state"
+  []
+  (if-let [ctx @dev-context]
+    (state/get-full-state ctx)
+    {}))
 
 (comment
+  ;; Start server with hot-reload support via Var references
+  (start!)
 
-  ;; run server
-  (do (reload/init {:dirs ["src"]})
-      (log/stdout-pretty-appender :debug)
-      (def context (system/start-system gitbok/default-config))
-      ;; Start reload watcher if DOCS_VOLUME_PATH is set
-      #_(when (and context (System/getenv "DOCS_VOLUME_PATH"))
-          (gitbok-reload/start-reload-watcher context
-                                              gitbok/init-product-indices
-                                              gitbok/init-products))
-      (examples-updater/start-scheduler context))
+  ;; Stop server
+  (stop!)
 
-  ;; reload server
-  (do
-    (system/stop-system context)
-    (reload/reload)
-    (def context (system/start-system gitbok/default-config)))
+  ;; Full restart - only needed for structural changes (new routes, middleware changes)
+  (restart!)
 
-  (dev/update-libs))
+  ;; Hot reload - reloads code, handlers are automatically updated via Var references
+  ;; Use this for handler logic changes
+  (reload!)
+
+  ;; Check server status
+  (status)
+
+  ;; Get application state
+  (state)
+
+  ;; Start with custom config
+  (core/start! {:port 3000
+                :prefix "/docs"
+                :dev-mode true})
+
+  ;; Clear all caches (for development)
+  (clear-caches!)
+
+  ;; Reload products configuration
+  (reload-products!)
+  )

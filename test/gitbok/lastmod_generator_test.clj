@@ -2,37 +2,41 @@
   (:require
    [clojure.test :refer [deftest testing is]]
    [clojure.java.io :as io]
+   [clojure.java.shell]
    [gitbok.lastmod.generator :as gen]))
 
 (deftest test-generate-lastmod-data
   (testing "Generate lastmod data for non-existent directory returns empty map"
     (let [test-dir "/non/existent/directory"
-          data (gen/generate-lastmod-data test-dir)]
+          context {:system (atom {})}
+          data (gen/generate-lastmod-data context test-dir)]
       (is (map? data))
       (is (empty? data))))
-  
+
   (testing "Generate lastmod data for temporary directory with markdown files"
-    (let [temp-dir (io/file (System/getProperty "java.io.tmpdir") 
+    (let [temp-dir (io/file (System/getProperty "java.io.tmpdir")
                             (str "test-lastmod-" (System/currentTimeMillis)))
-          test-file (io/file temp-dir "test.md")]
+          test-file (io/file temp-dir "test.md")
+          context {:system (atom {})}]
       (try
         (.mkdirs temp-dir)
         (spit test-file "# Test Content")
         ;; Without git history, files won't have lastmod dates
         ;; So we expect an empty map even with files present
-        (let [data (gen/generate-lastmod-data (.getPath temp-dir))]
+        (let [data (gen/generate-lastmod-data context (.getPath temp-dir))]
           (is (map? data))
           ;; Files exist but have no git history
           (is (empty? data)))
         (finally
           (.delete test-file)
           (.delete temp-dir)))))
-  
+
   (testing "Generate lastmod data when git is available"
     ;; Only run this test if we're in a git repository
     (when (.exists (io/file ".git"))
       (let [test-dir "docs"
-            data (gen/generate-lastmod-data test-dir)]
+            context {:system (atom {})}
+            data (gen/generate-lastmod-data context test-dir)]
         (is (map? data))
         ;; Only check for non-empty if docs directory exists
         (when (.exists (io/file test-dir))
@@ -54,7 +58,7 @@
       (is (= data1 data2))
       (is (some? cached-entry))
       (is (= (:data cached-entry) data1))))
-  
+
   (testing "Cache invalidation when HEAD changes"
     (let [context {:system (atom {})}
           product-id "test-product"
@@ -75,34 +79,36 @@
   (testing "get-repo-head with DOCS_REPO_PATH environment variable"
     ;; This test will return nil if not in a git repo or if git command fails
     ;; That's expected behavior on CI
-    (let [head (gen/get-repo-head)]
+    (let [context {:system (atom {:config {:docs-repo-path "."}})}
+          head (gen/get-repo-head context)]
       (is (or (nil? head) (string? head)))
       (when (string? head)
         ;; If we get a head, it should be a 40-char SHA1 hash
         (is (= 40 (count head))))))
-  
+
   (testing "get-repo-head returns nil when git not available"
     ;; We can't easily test this without mocking shell/sh
     ;; but we can verify the function handles exceptions gracefully
-    (with-redefs [clojure.java.shell/sh 
-                  (fn [& _] (throw (Exception. "Git not found")))]
-      (is (nil? (gen/get-repo-head))))))
+    (let [context {:system (atom {:config {:docs-repo-path "."}})}]
+      (with-redefs [clojure.java.shell/sh
+                    (fn [& _] (throw (Exception. "Git not found")))]
+        (is (nil? (gen/get-repo-head context)))))))
 
 (deftest test-lastmod-for-file
   (testing "lastmod-for-file returns nil for non-existent file"
     (let [file (io/file "/non/existent/file.md")
           git-dir "."]
       (is (nil? (gen/lastmod-for-file file git-dir)))))
-  
+
   (testing "lastmod-for-file returns nil when git command fails"
-    (with-redefs [clojure.java.shell/sh 
+    (with-redefs [clojure.java.shell/sh
                   (fn [& _] {:exit 1 :out "" :err "error"})]
       (let [file (io/file "test.md")
             git-dir "."]
         (is (nil? (gen/lastmod-for-file file git-dir))))))
-  
+
   (testing "lastmod-for-file parses valid timestamp"
-    (with-redefs [clojure.java.shell/sh 
+    (with-redefs [clojure.java.shell/sh
                   (fn [& _] {:exit 0 :out "1609459200" :err ""})]
       (let [file (io/file "test.md")
             git-dir "."

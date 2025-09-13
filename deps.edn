@@ -8,10 +8,23 @@
          ".gitbook"
          "version"]
  :deps {org.clojure/clojure {:mvn/version "1.12.0"}
-        context/system {:local/root "./libs/system"}
-        context/http {:local/root "./libs/http"}
+
+        ;; Web server and routing
+        http-kit/http-kit {:mvn/version "2.8.1"}
+        metosin/reitit {:mvn/version "0.9.1"}
+        metosin/reitit-ring {:mvn/version "0.9.1"}
+        metosin/reitit-middleware {:mvn/version "0.9.1"}
+        metosin/muuntaja {:mvn/version "0.6.10"}
+
+        cheshire/cheshire {:mvn/version "6.1.0"}
+
+        ;; Scheduler
+        jarohen/chime {:mvn/version "0.3.3"}
+
+        ;; UI
         hiccup/hiccup {:mvn/version "2.0.0-RC4"}
         ring/ring-core {:mvn/version "1.14.1"}
+        org.clj-commons/hickory {:mvn/version "0.7.7"}
 
         io.github.nextjournal/markdown
         {:git/url "https://github.com/nextjournal/markdown.git"
@@ -21,8 +34,10 @@
         clj-commons/clj-yaml {:mvn/version "1.0.29"}
         borkdude/edamame {:mvn/version "1.4.31"}
         amalloy/ring-gzip-middleware {:mvn/version "0.1.4"}
-        healthsamurai/klog {:git/url "https://github.com/healthsamurai/klog"
-                            :sha "9ea2d40d95c534f0524827f3a8020d337720121c"}
+        ;; Logging
+        org.clojure/tools.logging {:mvn/version "1.3.0"}
+        ch.qos.logback/logback-classic {:mvn/version "1.5.6"}
+        org.slf4j/slf4j-api {:mvn/version "2.0.13"}
         ;; recompile java automaticallydeps
         ;; virgil/virgil {:mvn/version "0.4.0"}
 

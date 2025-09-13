@@ -1,33 +1,33 @@
 (ns gitbok.indexing.core
   (:require
-   [klog.core :as log]
+   [gitbok.http :as http]
+   [clojure.tools.logging :as log]
+   [clojure.java.io :as io]
    [gitbok.indexing.impl.summary]
    [gitbok.indexing.impl.uri-to-file :as uri-to-file]
-   [gitbok.indexing.impl.common :as common]
-   [gitbok.indexing.impl.meilisearch :as meilisearch]
-   [gitbok.indexing.impl.file-to-uri :as file-to-uri]
-   [gitbok.constants :as const]
    [gitbok.products :as products]
    [gitbok.lastmod.generator :as lastmod-gen]
-   [system]
+   [gitbok.state :as state]
    [clojure.string :as str]
-   [clojure.java.io :as io]
-   [gitbok.utils :as utils]
-   [gitbok.http]
-   [uui]
-   [http]))
+   [gitbok.utils :as utils]))
 
 (set! *warn-on-reflection* true)
 
-(defn filepath->uri [context filepath]
-  (gitbok.indexing.impl.file-to-uri/filepath->uri context filepath))
+(defn get-filepath [filepath-a relative-filepath]
+  (.getCanonicalPath
+   (io/file (.getParent (io/file filepath-a)) relative-filepath)))
+
+(def lastmod-key :gitbok.indexing.core/lastmod)
 
 (defn uri->filepath [context ^String uri]
-  (gitbok.indexing.impl.uri-to-file/uri->filepath
-   (uri-to-file/get-idx context) uri))
+  (let [idx (state/get-uri-to-file-idx context)
+        filepath (gitbok.indexing.impl.uri-to-file/uri->filepath idx uri)]
+    filepath))
 
 (defn get-redirect [context ^String uri]
-  (get (uri-to-file/get-redirects-idx context) uri))
+  (let [redirects-idx (state/get-redirects-idx context)
+        redirect (get redirects-idx uri)]
+    redirect))
 
 (defn absolute-filepath->relative
   "Converts an absolute filepath to a relative filepath by removing the product root prefix.
@@ -67,13 +67,13 @@
         same-page? (= current-page-filename relative-page-link)]
     (if same-page?
       (str "#" section)
-      (let [file->uri-idx (file-to-uri/get-idx context)
+      (let [file->uri-idx (state/get-file-to-uri-idx context)
             _ (when-not file->uri-idx (throw (Exception. "no idx")))
             ;; Convert absolute filepath to relative filepath that matches the index
             current-page-filepath (absolute-filepath->relative context current-page-filepath)
             path
             (utils/safe-subs
-             (common/get-filepath
+             (get-filepath
               current-page-filepath
               relative-page-link)
              (count
@@ -83,7 +83,7 @@
             path (if (str/starts-with? path "/")
                    (utils/safe-subs path 1)
                    path)
-            path (gitbok.http/get-product-prefixed-url
+            path (http/get-product-prefixed-url
                   context
                   (str "/" (:uri (get file->uri-idx path))))]
 
@@ -91,8 +91,8 @@
           (str path "#" section)
           path)))))
 
-(defn read-content [filepath]
-  (utils/slurp-resource filepath))
+(defn read-content [context filepath]
+  (state/slurp-resource context filepath))
 
 (defn slurp-md-files! [context filepaths-from-summary]
   (let [files (reduce (fn [acc filename]
@@ -101,25 +101,17 @@
                           (let [full-path (products/filepath context filename)]
                             ;; Use original filename as key, not the full path
                             (assoc acc filename
-                                   (read-content full-path))))) {}
+                                   (read-content context full-path))))) {}
                       (filter #(not (str/starts-with? % "http"))
                               filepaths-from-summary))]
-    (log/info ::files-loaded {:count (count files)})
+    (log/info "files loaded" {:count (count files)})
     files))
 
 (defn set-md-files-idx [context file-to-uri-idx]
-  (products/set-product-state
-   context
-   [const/MD_FILES_IDX]
-   (slurp-md-files! context (keys file-to-uri-idx))))
+  (state/set-md-files-idx! context (slurp-md-files! context (keys file-to-uri-idx))))
 
 (defn get-md-files-idx [context]
-  (products/get-product-state
-   context
-   [const/MD_FILES_IDX]))
-
-(defn search [context q]
-  (meilisearch/search q))
+  (state/get-md-files-idx context))
 
 (defn filepath->href [context filepath href]
   (if (str/starts-with? href "http")
@@ -131,7 +123,7 @@
 
 (defn get-lastmod [context filepath]
   (when filepath
-    (let [lastmod-map (products/get-product-state context [const/LASTMOD])
+    (let [lastmod-map (products/get-product-state context [lastmod-key])
           ;; Normalize the filepath to match lastmod keys
           ;; Lastmod keys are relative paths from docs directory
           ;; filepath might be "../docs/path/to/file.md" or "docs/path/to/file.md"
@@ -148,28 +140,29 @@
                             :else filepath)]
       (get lastmod-map normalized-path))))
 
-(defn set-lastmod [context]
-  (let [product-id (products/get-current-product-id context)
-        product-config (products/get-current-product context)
+(defn set-lastmod
+  [context]
+   ;; New API - works with state directly
+  (let [product-config (or (:product context)
+                           (products/get-current-product context))
+        product-id (:id product-config)
+        volume-path (or (gitbok.state/get-config context :docs-volume-path) ".")
 
-        ;; Get paths from product config and environment
-        volume-path (or (System/getenv "DOCS_VOLUME_PATH") ".")
-
-        ;; Build docs path from product config
+         ;; Build docs path from product config
         config-path (:config product-config)
         config-dir (utils/parent config-path)
         root (or (-> product-config :structure :root)
                  (:root product-config)
                  "./docs")
-        ;; Remove leading "./" from root if present
+         ;; Remove leading "./" from root if present
         root (if (str/starts-with? root "./")
                (subs root 2)
                root)
 
-        ;; Construct full docs path
+         ;; Construct full docs path
         docs-path (.getPath (io/file volume-path config-dir root))
 
-        ;; Generate lastmod data in memory with caching
+         ;; Generate lastmod data in memory with caching
         lastmod-data (if (.exists (io/file docs-path))
                        (lastmod-gen/generate-or-get-cached-lastmod
                         context
@@ -177,10 +170,8 @@
                         docs-path)
                        {})]
 
-    (log/info ::✅lastmod-set {:product product-id
-                              :docs-path docs-path
-                              :entries (count lastmod-data)})
-    (products/set-product-state
-     context
-     [const/LASTMOD]
-     lastmod-data)))
+    (log/info "✅lastmod set"
+              {:product product-id
+               :docs-path docs-path
+               :entries (count lastmod-data)})
+    (gitbok.state/set-product-state! context [lastmod-key] lastmod-data)))

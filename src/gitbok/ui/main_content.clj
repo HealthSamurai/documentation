@@ -2,11 +2,8 @@
   (:require
    [clojure.java.io :as io]
    [gitbok.indexing.core :as indexing]
-   [gitbok.indexing.impl.file-to-uri :as file-to-uri]
+   [gitbok.state :as state]
    [clojure.string :as str]
-   [klog.core :as log]
-   [system]
-   [uui]
    [gitbok.markdown.core :as markdown]
    [gitbok.indexing.impl.summary :as summary]
    [gitbok.markdown.widgets.big-links :as big-links]
@@ -41,10 +38,10 @@
   (when
    (and filepath
         (str/ends-with? (str/lower-case filepath) "readme.md"))
-    (let [index (file-to-uri/get-idx context)
+    (let [index (state/get-file-to-uri-idx context)
           ;; Get DOCS_PREFIX and product path dynamically
-          docs-prefix (gitbok.http/get-prefix context)
-          product-path (gitbok.products/path context)
+          docs-prefix (gitbok.state/get-config context)
+          product-path (or (gitbok.products/path context) "")
           ;; Remove trailing slash if present
           filepath (if (str/ends-with? filepath "/")
                      (subs filepath 0 (dec (count filepath)))
@@ -110,8 +107,8 @@
     (markdown/renderers context filepath) title)
    (for [[_path {:keys [title uri]}]
          (find-children-files context filepath)]
-     (let [prefix (gitbok.http/get-prefix context)
-           product-path (products/path context)
+     (let [prefix (gitbok.state/get-config context)
+           product-path (or (products/path context) "")
            full-href (str prefix product-path "/" uri)]
        (big-links/big-link-view full-href title)))])
 
@@ -182,7 +179,7 @@
         ;; Extract relative URI for breadcrumb
         uri-relative (utils/uri-to-relative
                       uri
-                      (System/getenv "DOCS_PREFIX")
+                      (state/get-config context :prefix)
                       (:path (gitbok.products/get-current-product context)))
         ;; Generate breadcrumb (skip if hide-breadcrumb is true)
         breadcrumb-elem (when-not hide-breadcrumb
@@ -213,7 +210,7 @@
                 (let [toc-result (right-toc/render-right-toc parsed)]
                   toc-result)
                 (try
-                  (let [content* (utils/slurp-resource filepath)
+                  (let [content* (state/slurp-resource context filepath)
                         {:keys [parsed]} (markdown/parse-markdown-content context [filepath content*])
                         toc-result (right-toc/render-right-toc parsed)]
                     toc-result)
@@ -224,8 +221,8 @@
       [:article {:class "article__content py-8 min-w-0 flex-1
                  max-w-5xl transform-3d"}
        (when htmx?
-         [:script (uui/raw "
-           window.scrollTo(0, 0); 
+         [:script (hiccup2.core/raw "
+           window.scrollTo(0, 0);
            // Defer execution to ensure scripts are loaded
            setTimeout(function() {
              if (typeof updateActiveNavItem === 'function') {
@@ -238,11 +235,7 @@
          ")])
        [:div {:class "mx-auto max-w-full"} body-with-breadcrumb]
        (navigation-buttons context uri)
-       (let [lastupdated (indexing/get-lastmod context filepath)
-             _ (when (and filepath (str/includes? (or filepath "") "database/overview"))
-                 (log/info ::📅lastmod-check {:filepath filepath
-                                              :lastupdated lastupdated
-                                              :has-lastmod (boolean lastupdated)}))]
+       (let [lastupdated (indexing/get-lastmod context filepath)]
          (when lastupdated
            [:p {:class "mt-4 text-sm text-tint-11"
                 :id "lastupdated"

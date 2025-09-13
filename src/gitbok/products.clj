@@ -4,41 +4,41 @@
    [clojure.string :as str]
    [clj-yaml.core :as yaml]
    [gitbok.utils :as utils]
-   [gitbok.constants :as const]
-   [system]
-   [klog.core :as log]))
+   [gitbok.state :as state]
+   [clojure.tools.logging :as log]))
 
 (def default-aidbox
   [{:id "aidbox"
     :name "Aidbox Documentation"
     :path "/aidbox"
-    :config "aidbox/.gitbook.yaml"}])
+    :config ".gitbook.yaml"}])
 
-(defn read-product-config-file [config-file]
-  (yaml/parse-string (utils/slurp-resource config-file)))
+(defn read-product-config-file [context config-file]
+  (yaml/parse-string (state/slurp-resource context config-file)))
 
-(def volume-path (System/getenv "DOCS_VOLUME_PATH"))
+(defn volume-path [context]
+  (state/get-config context :docs-volume-path))
 
 (defn load-products-config
   "Loads products configuration from products.yaml in classpath or volume"
-  []
+  [context]
   (try
-    (let [config-str (if volume-path
+    (let [config-str (if-let [vol-path (volume-path context)]
                        ;; Try volume first, then fallback to classpath
-                       (let [file (io/file volume-path "products.yaml")]
-                         (log/info ::load-config {:source "volume" :path (.getPath file)})
+                       (let [file (io/file vol-path "products.yaml")]
+                         (log/info "load config" {:source "volume" :path (.getPath file)})
                          (if (.exists file)
                            (slurp file)
                            ;; Volume path set but file not found - try classpath
                            (do
-                             (log/warn ::fallback-classpath {:reason "file-not-in-volume"})
-                             (utils/slurp-resource "products.yaml"))))
+                             (log/warn "fallback classpath" {:reason "file-not-in-volume"})
+                             (state/slurp-resource context "products.yaml"))))
                        ;; Read from classpath
-                       (utils/slurp-resource "products.yaml"))
+                       (state/slurp-resource context "products.yaml"))
           config (yaml/parse-string config-str)
           products (mapv
                     (fn [product]
-                      (let [config-data (read-product-config-file (:config product))
+                      (let [config-data (read-product-config-file context (:config product))
                             merged (merge product config-data)
                             ;; Calculate docs-relative-path for this product
                             config-path (:config merged)
@@ -52,77 +52,60 @@
                                    root)
                             ;; Build relative docs path
                             docs-relative-path (if (str/blank? config-dir)
-                                                  root
-                                                  (.getPath (io/file config-dir root)))]
+                                                 root
+                                                 (.getPath (io/file config-dir root)))]
                         (assoc merged :docs-relative-path docs-relative-path)))
                     (:products config))]
       {:products products
        :root-redirect (:root-redirect config)})
     (catch Exception e
-      (log/error ::load-config-error {:error (.getMessage e)
+      (log/error "load config error" {:error (.getMessage e)
                                       :fallback "default-aidbox"})
       {:products default-aidbox})))
 
 (defn get-current-product-id
-  "Gets current product ID from request context"
+  "Gets current product ID - for compatibility"
   [context]
-  (:current-product-id context "default"))
+  (or (:current-product-id context)
+      (:id (:product context))
+      (:id (:gitbok.products/current-product context))
+      "default"))
+
+(defn set-current-product-id
+  "Sets current product ID - returns updated context"
+  [context product-id]
+  ;; Just return updated context with product-id
+  (assoc context :current-product-id product-id))
 
 (defn get-product-state
   "Gets state for a specific product"
   [context path & [default]]
-  (or (try
-        (let [product-id (get-current-product-id context)]
-          (system/get-system-state context
-                                   (concat [::products product-id] path)
-                                   default))
-        (catch Exception _
-          (try
-            (system/get-system-state context path default)
-            (catch Exception _
-              default))))
-      default))
+  (state/get-product-state context path default))
 
 (defn set-product-state
   "Sets state for a specific product"
   [context path value]
-  (try
-    (let [product-id (get-current-product-id context)]
-      (system/set-system-state context
-                               (concat [::products product-id] path)
-                               value))
-    (catch Exception _
-      (try
-        (system/set-system-state context path value)
-        (catch Exception _ nil)))))
-
-(defn determine-product-by-uri
-  "Determines product from request URI"
-  [products uri]
-  (or (first (filter #(str/starts-with? uri (:path %))
-                     (sort-by #(- (count (:path %))) products)))
-      (first (filter #(= (:id %) "default") products))
-      (first products)))
+  (state/set-product-state! context path value))
 
 (defn get-products-config
-  "Gets all products configuration from context"
+  "Gets all products configuration"
   [context]
-  (system/get-system-state context [::products-config] []))
+  (state/get-products context))
 
 (defn get-full-config
   "Gets full configuration including products and root-redirect"
   [context]
-  (system/get-system-state context [::full-config] {}))
+  (state/get-state context [:products :full-config] {}))
 
 (defn set-products-config
-  "Saves products configuration to context"
+  "Saves products configuration"
   [context products]
-  (system/set-system-state context [::products-config] products))
+  (state/set-products! context products))
 
 (defn set-full-config
-  "Saves full configuration to context"
+  "Saves full configuration"
   [context config]
-  (system/set-system-state context [::full-config] config))
+  (state/set-state! context [:products :full-config] config))
 
 (defn get-product-by-id
   "Gets product configuration by its ID"
@@ -134,14 +117,10 @@
   "Gets current product configuration"
   [context]
   (let [product-id (get-current-product-id context)
-        products (get-products-config context)]
-    (or (get-product-by-id context product-id)
-        (first products))))
-
-(defn set-current-product-id
-  "Sets current product ID in context"
-  [context product-id]
-  (assoc context :current-product-id product-id))
+        products (get-products-config context)
+        product (or (get-product-by-id context product-id)
+                    (first products))]
+    product))
 
 (defn summary-path
   [product-config]
@@ -188,4 +167,5 @@
     "")))
 
 (defn path [context]
-  (:path (get-current-product context)))
+  (let [product (get-current-product context)]
+    (when product (:path product))))

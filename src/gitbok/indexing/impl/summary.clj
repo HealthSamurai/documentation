@@ -1,14 +1,11 @@
 (ns gitbok.indexing.impl.summary
   (:require
-   [klog.core :as log]
+   [clojure.tools.logging :as log]
    [clojure.string :as str]
-   [gitbok.constants :as const]
-   [gitbok.utils :as utils]
-   [gitbok.http]
+   [gitbok.http :as http]
    [gitbok.products :as products]
-   [system]
-   [uui]
-   [uui.heroicons :as ico]))
+   [gitbok.state :as state]
+   [gitbok.ui.heroicons :as ico]))
 
 (defn count-whitespace [s] (count (re-find #"^\s*" s)))
 
@@ -86,16 +83,17 @@
 (defn read-summary [context]
   (let [config (products/get-current-product context)
         summary-path (products/summary-path config)]
-    (log/debug ::read-summary {:path summary-path})
-    (utils/slurp-resource summary-path)))
+    (log/debug "read summary" {:path summary-path})
+    (state/slurp-resource context summary-path)))
 
 (defn title [s]
   (let [t (str/trim (str/replace (str/replace s #"\<.*\>" "") #"#" ""))]
     (if (= "Table of contents" t) "" t)))
 
-(defn get-section-from-path [path]
+(defn get-section-from-path
   "Extract the top-level section from a file path.
    e.g. 'api/rest-api/fhir-search/searchparameter.md' -> 'api'"
+  [path]
   (when path
     (let [clean-path (str/replace path #"^/" "")
           parts (str/split clean-path #"/")]
@@ -185,15 +183,15 @@
                                                    ;; Condition 1: File appears in multiple sections
                                                    (> (count file-sections-set) 1)
                                                    ;; Condition 2: Path goes outside current section
-                                                   (and path-section
-                                                        (not= (str/lower-case path-section)
-                                                              (str/lower-case (first (str/split current-section #" "))))))))
+                                                   path-section
+                                                   (not= (str/lower-case path-section)
+                                                         (str/lower-case (first (str/split current-section #" ")))))))
 
                                               href (:href parsed)
                                               href
                                               (when href (if (str/starts-with? href "http")
                                                            href
-                                                           (let [h (gitbok.http/get-product-prefixed-url context href)]
+                                                           (let [h (http/get-product-prefixed-url context href)]
                                                              (if (str/starts-with? h "/") h
                                                                  (str "/" h)))))]
 
@@ -207,17 +205,8 @@
                                                                                             :is-cross-section is-cross-section))}))))
                                 (remove nil?)
                                 (treefy)))))))]
-    (log/info ::summary-parsed {:entries (count summary)})
+    (log/info "summary parsed" {:entries (count summary)})
     summary))
-
-(defn set-summary [context]
-  (products/set-product-state
-   context
-   [const/SUMMARY_STATE]
-   (parse-summary context)))
-
-(defn get-summary [context]
-  (products/get-product-state context [const/SUMMARY_STATE]))
 
 (defn flatten-navigation [items]
   (reduce (fn [acc item]
@@ -231,7 +220,7 @@
           items))
 
 (defn get-navigation-links [context]
-  (let [summary (gitbok.indexing.impl.summary/get-summary context)
+  (let [summary (state/get-summary context)
         flattened (gitbok.indexing.impl.summary/flatten-navigation summary)]
     (filterv (fn [item]
                (and (:parsed item)
@@ -243,7 +232,7 @@
 (defn get-primary-navigation-links
   "Returns only primary navigation links, excluding cross-section references."
   [context]
-  (let [summary (gitbok.indexing.impl.summary/get-summary context)
+  (let [summary (state/get-summary context)
         flattened (gitbok.indexing.impl.summary/flatten-navigation summary)]
     (filterv (fn [item]
                (and (:parsed item)

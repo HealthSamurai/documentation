@@ -1,8 +1,9 @@
 (ns gitbok.markdown.core
   (:require
    [clojure.string :as str]
-   [klog.core :as log]
+   [clojure.tools.logging :as log]
    [clojure.walk :as walk]
+   [gitbok.state :as state]
    [gitbok.markdown.widgets.big-links :as big-links]
    [gitbok.markdown.widgets.link :as link]
    [gitbok.markdown.widgets.headers :as headers]
@@ -16,12 +17,11 @@
    [nextjournal.markdown :as md]
    [nextjournal.markdown.transform :as transform]
    [hickory.core]
-   [system]
-   [gitbok.constants :as const]
    [gitbok.products :as products]
    [hiccup2.core]
-   [nextjournal.markdown.utils :as u]
-   [uui]))
+   [nextjournal.markdown.utils :as u]))
+
+(def rendered-key ::rendered)
 
 (declare hack-md)
 
@@ -218,7 +218,7 @@
              (if (and c (= :table (first c))
                       (= {:data-view "cards"} (second c)))
                (cards/render-cards-from-table context filepath c)
-               (uui/raw (-> node :content first :text)))))
+               (hiccup2.core/raw (-> node :content first :text)))))
 
          :html-block
          (fn [_ctx node]
@@ -240,7 +240,7 @@
                (and c
                     (= :table (first c))
                     (= {:data-header-hidden ""} (second c)))
-               (uui/raw (-> fixed-html
+               (hiccup2.core/raw (-> fixed-html
                             (str/replace #"\<thead.*/thead>" "")))
 
                (and c
@@ -249,7 +249,7 @@
                (update c 2 remove-selects)
 
                :else
-               (uui/raw fixed-html))))))
+               (hiccup2.core/raw fixed-html))))))
 
 (defn render-md [context filepath parsed]
   (let [hiccup (transform/->hiccup (renderers context filepath) parsed)]
@@ -299,28 +299,23 @@
 (defn set-parsed-markdown-index [context md-files-idx]
   (let [parsed-files
         (mapv #(parse-markdown-content context %) md-files-idx)]
-    (log/info ::files-parsed {:count (count parsed-files)})
-    (products/set-product-state
-     context
-     [const/PARSED_MARKDOWN_IDX]
-     parsed-files)))
+    (log/info "files parsed" {:count (count parsed-files)})
+    (state/set-parsed-markdown-idx! context parsed-files)))
 
 (defn get-parsed-markdown-index [context]
-  (products/get-product-state
-   context
-   [const/PARSED_MARKDOWN_IDX]))
+  (state/get-parsed-markdown-idx context))
 
 (defn get-rendered [context filepath]
-  (get (products/get-product-state context [const/RENDERED])
+  (get (products/get-product-state context [rendered-key])
        filepath))
 
 (defn render-all! [context parsed-md-index read-markdown-file]
   (products/set-product-state
    context
-   [const/RENDERED]
+   [rendered-key]
    (->> parsed-md-index
         (mapv
          (fn [{:keys [filepath _parsed]}]
-           (log/debug ::render-file {:filepath filepath})
+           (log/debug "render file" {:filepath filepath})
            [filepath (read-markdown-file context filepath)]))
         (into {}))))

@@ -1,31 +1,26 @@
 (ns gitbok.ui.meilisearch
   (:require
-   [klog.core :as log]
+   [clojure.tools.logging :as log]
    [clojure.string :as str]
    [org.httpkit.client :as http-client]
    [cheshire.core :as json]
-   [uui]
+   [hiccup2.core]
    [gitbok.utils :as utils]
-   [gitbok.products :as products]))
+   [gitbok.products :as products]
+   [gitbok.state :as state]))
 
-(def meilisearch-host (or (System/getenv "MEILISEARCH_URL") "http://localhost:7700"))
-(def meilisearch-api-key (System/getenv "MEILISEARCH_API_KEY"))
-
-(defn search-meilisearch [query index-name]
+(defn search-meilisearch [context query index-name]
   (try
-    (let [headers (if meilisearch-api-key
+    (let [search-url (str (state/get-config context :meilisearch-url) "/multi-search")
+          meilisearch-api-key (state/get-config context :meilisearch-api-key)
+          headers (if meilisearch-api-key
                     {"Authorization" (str "Bearer " meilisearch-api-key)
                      "Content-Type" "application/json"}
                     {"Content-Type" "application/json"})
           ;; Filter to exclude deprecated pages using STARTS WITH
           ;; This operator is available by default (no experimental features needed)
           deprecated-filter "NOT url STARTS WITH \"https://www.health-samurai.io/docs/aidbox/deprecated\""
-          response @(http-client/post
-                     (str meilisearch-host "/multi-search")
-                     {:headers headers
-                      :body
-                      (json/generate-string
-                       {:federation {:limit 30} ; Set limit at federation level
+          request-body {:federation {:limit 30} ; Set limit at federation level
                         :queries [{:indexUid index-name
                                    :q query
                                    :filter (str deprecated-filter " AND hierarchy_lvl6 = \"" query "\"")
@@ -40,12 +35,20 @@
                                    :attributesToHighlight ["content" "hierarchy_lvl0" "hierarchy_lvl1"
                                                            "hierarchy_lvl2" "hierarchy_lvl3" "hierarchy_lvl6"]
                                    :highlightPreTag "<mark class=\"bg-warning-2 text-tint-12 p-1 px-0.5 -mx-0.5 py-0.5 rounded\">"
-                                   :highlightPostTag "</mark>"}]})})]
+                                   :highlightPostTag "</mark>"}]}
+          response @(http-client/post search-url
+                                      {:headers headers
+                                       :body (json/generate-string request-body)})]
       (if (= 200 (:status response))
-        (-> response :body json/parse-string (get "hits"))
-        []))
+        (let [hits (-> response :body json/parse-string (get "hits"))]
+          hits)
+        (do
+          (log/warn "meilisearch-non-200" {:status (:status response)
+                                           :body (:body response)})
+          [])))
     (catch Exception e
-      (log/error ::meilisearch-error {:error (.getMessage e)})
+      (log/error e "meilisearch error" {:query query
+                                        :index index-name})
       [])))
 
 (defn interpret-search-results
@@ -227,7 +230,7 @@
     ;; Otherwise use URL as is
     :else url))
 
-(defn render-result-item [item query index is-grouped?]
+(defn render-result-item [item index is-grouped?]
   (let [lvl0 (get item "hierarchy_lvl0")
         lvl1 (get item "hierarchy_lvl1")
         lvl2 (get item "hierarchy_lvl2")
@@ -271,7 +274,7 @@
                                       lvl2 "hierarchy_lvl2"
                                       :else "hierarchy_lvl1")
                                     title)]
-                (uui/raw highlighted)
+                (hiccup2.core/raw highlighted)
                 title)]))
 
          ;; Show content for grouped items
@@ -279,7 +282,7 @@
            [:div {:class "text-xs text-tint-10 mt-1 pl-4 line-clamp-2"}
             (let [highlighted-content (get-highlighted "content" content)]
               (if (string? highlighted-content)
-                (uui/raw highlighted-content)
+                (hiccup2.core/raw highlighted-content)
                 highlighted-content))])]
 
         ;; Ungrouped item - show all levels
@@ -289,7 +292,7 @@
            [:div {:class "text-xs uppercase text-tint-9 tracking-wider mb-0.5"}
             (let [highlighted (get-highlighted "hierarchy_lvl0" lvl0)]
               (if (string? highlighted)
-                (uui/raw highlighted)
+                (hiccup2.core/raw highlighted)
                 highlighted))])
 
          ;; lvl1 - bold, main title
@@ -297,7 +300,7 @@
            [:div {:class "text-base font-bold leading-tight text-tint-strong"}
             (let [highlighted (get-highlighted "hierarchy_lvl1" lvl1)]
               (if (string? highlighted)
-                (uui/raw highlighted)
+                (hiccup2.core/raw highlighted)
                 highlighted))])
 
          ;; lvl2 - semibold
@@ -305,7 +308,7 @@
            [:div {:class "text-sm font-semibold leading-tight text-tint-strong mt-0.5"}
             (let [highlighted (get-highlighted "hierarchy_lvl2" lvl2)]
               (if (string? highlighted)
-                (uui/raw highlighted)
+                (hiccup2.core/raw highlighted)
                 highlighted))])
 
          ;; lvl3 - medium weight
@@ -313,7 +316,7 @@
            [:div {:class "text-sm font-medium leading-tight text-tint-strong mt-0.5"}
             (let [highlighted (get-highlighted "hierarchy_lvl3" lvl3)]
               (if (string? highlighted)
-                (uui/raw highlighted)
+                (hiccup2.core/raw highlighted)
                 highlighted))])
 
          ;; lvl4 - normal weight
@@ -321,7 +324,7 @@
            [:div {:class "text-sm font-normal leading-tight text-tint-strong mt-0.5"}
             (let [highlighted (get-highlighted "hierarchy_lvl4" lvl4)]
               (if (string? highlighted)
-                (uui/raw highlighted)
+                (hiccup2.core/raw highlighted)
                 highlighted))])
 
          ;; lvl5 - normal weight, slightly muted
@@ -329,7 +332,7 @@
            [:div {:class "text-sm font-normal leading-tight text-tint-11 mt-0.5"}
             (let [highlighted (get-highlighted "hierarchy_lvl5" lvl5)]
               (if (string? highlighted)
-                (uui/raw highlighted)
+                (hiccup2.core/raw highlighted)
                 highlighted))])
 
          ;; lvl6 - monospace with background
@@ -338,7 +341,7 @@
             [:span {:class "text-xs font-mono bg-tint-3 text-tint-11 px-1.5 py-0.5 rounded inline-block"}
              (let [highlighted (get-highlighted "hierarchy_lvl6" lvl6)]
                (if (string? highlighted)
-                 (uui/raw highlighted)
+                 (hiccup2.core/raw highlighted)
                  highlighted))]])
 
          ;; content - description text
@@ -349,7 +352,7 @@
                               (str (subs content 0 150) "...")
                               content)]
               (if (string? highlighted-content)
-                (uui/raw highlighted-content)
+                (hiccup2.core/raw highlighted-content)
                 truncated))])])]
 
      ;; Arrow icon
@@ -360,15 +363,13 @@
 
 (defn render-no-results
   "Renders the no results message."
-  [query is-mobile]
-  [:div {:class (str (if is-mobile "border border-tint-6" "shadow-lg ring-1 ring-tint-subtle")
-                     "  p-4 text-sm text-tint-9 "
-                     (when-not is-mobile "md:w-[32rem]"))}
+  [query]
+  [:div {:class "border border-tint-6 md:shadow-lg md:ring-1 md:ring-tint-subtle p-4 text-sm text-tint-9 md:w-[32rem]"}
    (str "No results found for \"" query "\"")])
 
 (defn render-group-header
   "Renders a group header for grouped results."
-  [first-item group-info query start-index]
+  [first-item group-info start-index]
   (let [group-level (:level group-info)
         clean-url (when-let [url (get first-item "url")]
                     (first (str/split url #"#")))
@@ -398,7 +399,7 @@
                                    "hierarchy_lvl6" nil
                                    "anchor" nil))
                       first-item)]
-    (render-result-item header-item query start-index false)))
+    (render-result-item header-item start-index false)))
 
 (defn calculate-indexed-groups
   "Pre-calculates indices for each result item in groups."
@@ -423,7 +424,7 @@
 
 (defn render-search-results
   "Renders the search results with appropriate grouping."
-  [groups query]
+  [groups]
   (let [indexed-groups (calculate-indexed-groups groups)]
     (for [group indexed-groups]
       (let [group-info (:group-info group)
@@ -445,46 +446,52 @@
                                      items)]
             [:div {:class "p-1 space-y-0.5"}
              ;; Group header
-             (render-group-header first-item group-info query start-index)
+             (render-group-header first-item group-info start-index)
              ;; Child items - render with grouping, skipping h1-only if it's the header
              (map-indexed
               (fn [idx item]
-                (render-result-item item query (+ start-index 1 idx) true))
+                (render-result-item item (+ start-index 1 idx) true))
               children-to-render)])
 
           ;; Ungrouped results - show as individual items
           (map-indexed
            (fn [idx item]
-             (render-result-item item query (+ start-index idx) false))
+             (render-result-item item (+ start-index idx) false))
            items))))))
 
-(defn meilisearch-dropdown [context request]
-  (let [query (get-in request [:query-params :q] "")
-        is-mobile (= "true" (get-in request [:query-params :mobile]))
-        current-product (products/get-current-product context)
+(defn meilisearch-dropdown [ctx]
+  (let [request (:request ctx)
+        query (or (get-in request [:query-params "q"])
+                  (get-in request [:params "q"])
+                  (get-in request [:query-params :q])
+                  (get-in request [:params :q])
+                  "")
+        current-product (products/get-current-product ctx)
         product-index (get current-product :meilisearch-index "docs")
         results (when (and query (pos? (count query)))
-                  (search-meilisearch query product-index))]
+                  (search-meilisearch ctx query product-index))]
 
     (if (empty? query)
       [:div] ;; Empty div when no query
 
       (if (empty? results)
         ;; No results found
-        (render-no-results query is-mobile)
+        (render-no-results query)
 
         ;; Results found - group and render
         (let [groups (group-results-by-hierarchy results)]
-          [:div {:class (str "bg-white " (if is-mobile "border border-tint-6" "shadow-lg ring-1 ring-tint-subtle")
-                             " overflow-hidden max-h-[48rem] overflow-y-auto "
-                             (when-not is-mobile "md:w-[32rem]"))}
+          [:div {:class "bg-white border border-tint-6 md:shadow-lg md:ring-1 md:ring-tint-subtle overflow-hidden max-h-[48rem] overflow-y-auto md:w-[32rem]"}
            [:div {:class "p-2 space-y-1"}
             ;; Render grouped results
-            (render-search-results groups query)]])))))
+            (render-search-results groups)]])))))
 
-(defn meilisearch-endpoint [context request]
-  (let [result (meilisearch-dropdown context request)]
-    {:status 200
-     :headers {"content-type" "text/html; charset=utf-8"
-               "Cache-Control" "no-cache, no-store, must-revalidate"}
-     :body (utils/->html result)}))
+(defn meilisearch-endpoint [ctx]
+  (let [request (:request ctx)]
+    (log/info "meilisearch-endpoint called" {:uri (:uri request)
+                                             :query-params (:query-params request)
+                                             :context-keys (keys ctx)})
+    (let [result (meilisearch-dropdown ctx)]
+      {:status 200
+       :headers {"content-type" "text/html; charset=utf-8"
+                 "Cache-Control" "no-cache, no-store, must-revalidate"}
+       :body (utils/->html result)})))
