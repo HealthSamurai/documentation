@@ -25,3 +25,8 @@
            {:xmlns "http://www.sitemaps.org/schemas/sitemap/0.9"}]
           entries))]
     (xml/emit-str sitemapindex)))
+
+(defn generate-and-cache-sitemap-index!
+  "Generates sitemap index XML and returns it"
+  [context]
+  (generate-sitemap-index context))
