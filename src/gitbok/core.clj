@@ -2,7 +2,6 @@
   (:gen-class)
   (:require
    [clojure.tools.logging :as log]
-   [gitbok.examples.updater :as updater]
    [gitbok.handlers :as handlers]
    [gitbok.initialization :as initialization]
    [gitbok.routes :as routes]
@@ -11,7 +10,6 @@
    [org.httpkit.server :as http-kit]))
 
 (set! *warn-on-reflection* true)
-
 
 (defn start!
   "Start the server with optional config overrides"

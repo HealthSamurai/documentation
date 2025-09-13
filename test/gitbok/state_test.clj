@@ -1,6 +1,6 @@
 (ns gitbok.state-test
   (:require
-   [clojure.test :refer [deftest testing is are]]
+   [clojure.test :refer [deftest testing is]]
    [gitbok.state :as state]
    [gitbok.test-helpers :as th]
    [clojure.java.io :as io]))
@@ -12,7 +12,10 @@
 (deftest test-init-state!
   (testing "initializes with default values"
     (with-redefs [state/slurp-resource-init (fn [_] "1.0.0")]
-      (let [context (state/init-state!)]
+      (let [context (state/init-state! {:port 8080
+                                        :prefix ""
+                                        :base-url "http://localhost:8080"
+                                        :dev-mode false})]
         (is (map? context))
         (is (instance? clojure.lang.Atom (:system context)))
         (is (= 8080 (state/get-config context :port)))
@@ -204,10 +207,10 @@
 (deftest test-product-state
   (testing "get product state with current product"
     (let [context (th/create-test-context
-                   {:products {:indices {"prod1" {:data "test"}}}})]
-      (let [ctx-with-product (assoc context :current-product-id "prod1")]
-        (is (= {:data "test"} (state/get-product-state ctx-with-product [])))
-        (is (= "test" (state/get-product-state ctx-with-product [:data]))))))
+                   {:products {:indices {"prod1" {:data "test"}}}})
+          ctx-with-product (assoc context :current-product-id "prod1")]
+      (is (= {:data "test"} (state/get-product-state ctx-with-product [])))
+      (is (= "test" (state/get-product-state ctx-with-product [:data])))))
 
   (testing "set product state"
     (let [context (th/create-test-context)
