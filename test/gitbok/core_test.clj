@@ -15,7 +15,7 @@
       (products/set-full-config context {:root-redirect "/aidbox"
                                          :products []})
       (with-redefs [state/get-config (fn [_ _ & [default]] (or "/" default))]
-        (let [response (handlers/root-redirect-handler context {})]
+        (let [response (handlers/root-redirect-handler (assoc context :request {}))]
           (is (= 302 (:status response)))
           (is (= "/aidbox" (get-in response [:headers "Location"])))))))
 
@@ -25,7 +25,7 @@
       (products/set-full-config context {:root-redirect "/aidbox"
                                          :products []})
       (with-redefs [state/get-config (fn [_ _ & [default]] (or "/docs" default))]
-        (let [response (handlers/root-redirect-handler context {})]
+        (let [response (handlers/root-redirect-handler (assoc context :request {}))]
           (is (= 302 (:status response)))
           (is (= "/docs/aidbox" (get-in response [:headers "Location"])))))))
 
@@ -34,17 +34,18 @@
       ;; Set up full config without root-redirect
       (products/set-full-config context {:products []})
       (with-redefs [layout/layout
-                    (fn [_ctx _req opts]
+                    (fn [_ctx opts]
                       {:status (:status opts)
                        :body "404 page"})]
-        (let [response (handlers/root-redirect-handler context {})]
+        (let [response (handlers/root-redirect-handler (assoc context :request {}))]
           (is (= 404 (:status response)))
           (is (= "404 page" (:body response))))))))
 
 (deftest test-redirect-to-readme
   (testing "redirect-to-readme renders readme view"
     (let [context {:system (atom {})}
-          request {:uri "/test"}]
+          request {:uri "/test"}
+          ctx (assoc context :request request)]
       ;; Mock current product
       (with-redefs [products/get-current-product
                     (fn [_ctx] {:id "test" :path "/test"})
@@ -54,10 +55,10 @@
                     (fn [_ctx prefix uri] (str prefix uri))
                     state/get-config (fn [_ _ & [default]] (or "/" default))
                     handlers/render-file-view
-                    (fn [_ctx req]
+                    (fn [ctx]
                       {:status 200
-                       :body (str "Rendered: " (:uri req))})]
-        (let [response (handlers/redirect-to-readme context request)]
+                       :body (str "Rendered: " (get-in ctx [:request :uri]))})]
+        (let [response (handlers/redirect-to-readme ctx)]
           (is (= 200 (:status response)))
           (is (= "Rendered: /readme" (:body response)))))))
 

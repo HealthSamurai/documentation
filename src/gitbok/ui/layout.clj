@@ -216,7 +216,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 (defn hx-target [request]
   (get-in request [:headers "hx-target"]))
 
-(defn layout [context request
+(defn layout [ctx
               {:keys [content
                       title
                       description
@@ -225,41 +225,42 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                       section
                       status
                       hide-breadcrumb]}]
-  (let [status (or status 200)
+  (let [request (:request ctx)
+        status (or status 200)
         uri (:uri request)
         is-hx-target (hx-target request)
         is-search-page (str/includes? uri "/search")
         body
         (cond
           is-hx-target
-          (main-content/content-div context uri content filepath true hide-breadcrumb)
+          (main-content/content-div ctx uri content filepath true hide-breadcrumb)
 
           :else
           (document
-           context
-           (layout-view context content uri filepath hide-breadcrumb)
+           ctx
+           (layout-view ctx content uri filepath hide-breadcrumb)
            {:title title
             :description description
             :section section
             :canonical-url
             ;; / and /readme is same
             (if (get request :/)
-              (http/get-url context)
-              (http/get-absolute-url context uri))
+              (http/get-url ctx)
+              (http/get-absolute-url ctx uri))
             :og-preview
-            (let [current-product (products/get-current-product context)
+            (let [current-product (products/get-current-product ctx)
                   product-id (when current-product (:id current-product))
                   png-filename (when filepath (str/replace filepath #"\.md" ".png"))]
               (when (and product-id png-filename)
                 (http/get-absolute-url
-                 context
+                 ctx
                  (utils/concat-urls "/public/og-preview" product-id png-filename))))
             :lastmod lastmod
-            :favicon-url (http/get-product-prefixed-url context "/favicon.ico")}))
+            :favicon-url (http/get-product-prefixed-url ctx "/favicon.ico")}))
 
         lastmod (if is-search-page
                   nil
                   (when filepath
                     (or lastmod
-                        (indexing/get-lastmod context filepath))))]
+                        (indexing/get-lastmod ctx filepath))))]
     (http/response1 body status lastmod section)))

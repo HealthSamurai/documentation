@@ -311,8 +311,9 @@
 
 (defn examples-results-handler
   "HTTP handler for examples results (HTMX partial updates)"
-  [context request]
-  (let [ctx-with-product (products/set-current-product-id context "aidbox")
+  [ctx]
+  (let [request (:request ctx)
+        ctx-with-product (products/set-current-product-id ctx "aidbox")
         examples-data (indexer/get-examples ctx-with-product)
         {:keys [examples]} examples-data
 
@@ -344,29 +345,30 @@
 
 (defn examples-handler
   "HTTP handler for examples page"
-  [context request]
-  (let [content (render-examples-page context request)
+  [ctx]
+  (let [request (:request ctx)
+        content (render-examples-page ctx request)
         ;; Custom page layout for examples to maintain full width
         full-page [:div.min-h-screen.flex.flex-col
-                   (main-navigation/nav context)
+                   (main-navigation/nav ctx)
                    [:div.mobile-menu-overlay]
                    [:div.flex-1
                     [:div.max-w-screen-2xl.mx-auto.w-full.px-4.md:px-8.py-8
                      [:main#content.w-full
                       content]]]
-                   (layout/site-footer context)]]
+                   (layout/site-footer ctx)]]
     ;; Always return full page through layout
     (http/response1
      (layout/document
-      context
+      ctx
       full-page
       {:title "Aidbox examples"
        :description "Browse Aidbox integration examples and sample applications"
        :canonical-url
        (http/get-absolute-url
-        context
+        ctx
         (:uri request))
        :og-preview nil
        :lastmod nil
        :favicon-url
-       (http/get-product-prefixed-url context "/favicon.ico")}))))
+       (http/get-product-prefixed-url ctx "/favicon.ico")}))))
