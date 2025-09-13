@@ -1,41 +1,17 @@
 (ns gitbok.core
+  (:gen-class)
   (:require
    [clojure.tools.logging :as log]
-   [org.httpkit.server :as http-kit]
+   [gitbok.examples.updater :as updater]
+   [gitbok.handlers :as handlers]
+   [gitbok.initialization :as initialization]
    [gitbok.routes :as routes]
-   [gitbok.state :as state]
    [gitbok.scheduler :as scheduler]
-   [gitbok.init :as init]
-   [gitbok.indexing.impl.sitemap-index :as sitemap-index])
-  (:gen-class))
+   [gitbok.state :as state]
+   [org.httpkit.server :as http-kit]))
 
 (set! *warn-on-reflection* true)
 
-(defn init-products!
-  "Initialize products configuration from products.yaml"
-  [context]
-  (let [products-config (init/init-products context)]
-    (state/set-products! context products-config)
-    (log/info "Products initialized" {:count (count products-config)
-                                      :products (mapv :name products-config)})
-    products-config))
-
-(defn init-product-indices!
-  "Initialize indices for a specific product"
-  [context product]
-  (try
-    (init/init-product-indices context product)
-    (log/info "Product indices initialized" {:product (:name product)})
-    (catch Exception e
-      (log/error e "Failed to initialize product indices" {:product (:name product)}))))
-
-(defn init-all-product-indices!
-  "Initialize indices for all products"
-  [context]
-  (let [products-config (state/get-products context)]
-    (doseq [product products-config]
-      (init-product-indices! context product))
-    (log/info "All product indices initialized" {:count (count products-config)})))
 
 (defn start!
   "Start the server with optional config overrides"
@@ -47,16 +23,8 @@
          base-url (state/get-config context :base-url)
          version (state/get-config context :version)]
 
-     ;; Initialize products
-     (init-products! context)
-
-     ;; Initialize all product indices
-     (init-all-product-indices! context)
-
-     ;; Generate and cache sitemap index
-     (log/info "Generating sitemap index")
-     (let [sitemap-index-xml (sitemap-index/generate-and-cache-sitemap-index! context)]
-       (state/set-cache! context :sitemap-index-xml sitemap-index-xml))
+     ;; Initialize all products and their indices
+     (initialization/init-all-products! context :read-markdown-fn handlers/read-markdown-file)
 
      ;; Mark app as initialized for healthcheck
      (state/set-cache! context :app-initialized true)
@@ -71,10 +39,7 @@
                                    :version version}))
 
      ;; Start schedulers with context
-     (when-let [_reload-schedule (scheduler/start-reload-watcher!
-                                  context
-                                  (partial init-product-indices! context)
-                                  (partial init-products! context))]
+     (when-let [_reload-schedule (scheduler/start-reload-watcher! context)]
        (log/info "Reload watcher started"))
 
      (when-let [_examples-schedule (scheduler/start-examples-updater! context)]
