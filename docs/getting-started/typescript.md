@@ -115,7 +115,7 @@ It will generate static FHIR Client and the set of types for your FHIR package. 
    npx tsx index.ts
    ```
 
-## Next Steps
+## Next steps
 
 * Learn more about [Aidbox SDKs generation](../developer-experience/developer-experience-overview.md#use-aidbox-sdks-for-customized-experience)
 * Learn more about [Aidbox Access Control](../access-control/access-control.md)
