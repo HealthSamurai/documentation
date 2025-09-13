@@ -20,10 +20,10 @@
 (defn product-middleware
   "Middleware to set current product based on route"
   [handler]
-  (fn [request]
-    (let [context (:context request)
+  (fn [ctx]
+    (let [request (:request ctx)
           uri (:uri request)
-          prefix (state/get-config context :prefix "")
+          prefix (state/get-config ctx :prefix "")
           ;; Remove prefix from URI
           uri-without-prefix (if (and (not (str/blank? prefix))
                                       (str/starts-with? uri prefix))
@@ -33,129 +33,77 @@
           product-path (when-let [segments (seq (filter #(not (str/blank? %))
                                                         (str/split uri-without-prefix #"/")))]
                          (str "/" (first segments)))
-          products-config (state/get-products context)]
+          products-config (state/get-products ctx)]
       (if-let [product (first (filter #(= (:path %) product-path) products-config))]
-        (handler (assoc request :product product))
+        (handler (assoc ctx
+                        :product product
+                        :current-product-id (:id product)))
         {:status 404
          :headers {"Content-Type" "text/plain"}
          :body (str "Product not found for path: " product-path)}))))
 
 (defn wrap-request-context
-  "Add context information to request"
-  [context]
+  "Middleware that creates a unified context containing system state and request"
+  [system-context]
   (fn [handler]
     (fn [request]
-      ;; Request should be part of context, not the other way around
-      (let [context-with-request (assoc context :request request)]
-        (handler (assoc request :context context-with-request))))))
+      ;; Create unified context with request inside
+      (let [ctx (assoc system-context :request request)]
+        (handler ctx)))))
 
-;; Handler adapters - convert from old (context, request) signature to new (request) signature
-(defn adapt-handler
-  "Adapt old-style handler (context, request) to new style (request)"
-  [old-handler]
-  (fn [request]
-    ;; Use context from request
-    (let [context (:context request)
-          ;; Add product info to context if available
-          context (if-let [product (:product request)]
-                    (assoc context
-                           :current-product-id (:id product)
-                           :product product)
-                    context)]
-      (old-handler context request))))
-
-;; Route handlers - these will gradually be refactored to not need context
-(def healthcheck
-  (adapt-handler
-   (fn [context _request]
-     (if (state/get-cache context :app-initialized false)
-       {:status 200
-        :headers {"Content-Type" "text/plain"}
-        :body "OK"}
-       {:status 503
-        :headers {"Content-Type" "text/plain"}
-        :body "Service Unavailable - Application still initializing"}))))
-
-(def version-endpoint
-  (fn [request]
+;; Route handlers
+(defn healthcheck
+  [ctx]
+  (if (state/get-cache ctx :app-initialized false)
     {:status 200
      :headers {"Content-Type" "text/plain"}
-     :body (state/get-config (:context request) :version "unknown")}))
+     :body "OK"}
+    {:status 503
+     :headers {"Content-Type" "text/plain"}
+     :body "Service Unavailable - Application still initializing"}))
 
-(def debug-endpoint
-  (fn [request]
-    (let [context (:context request)
-          dev-mode (state/get-config context :dev-mode)]
-      (if dev-mode
-        {:status 200
-         :headers {"Content-Type" "application/json"}
-         :body (cheshire.core/generate-string
-                {:state (state/get-full-state context)
-                 :request (select-keys request [:uri :request-method :path-params :query-params])})}
-        {:status 403
-         :headers {"Content-Type" "text/plain"}
-         :body "Debug endpoint only available in dev mode"}))))
+(defn version-endpoint
+  [ctx]
+  {:status 200
+   :headers {"Content-Type" "text/plain"}
+   :body (state/get-config ctx :version "unknown")})
 
-(def root-redirect-handler
-  (adapt-handler handlers/root-redirect-handler))
+(defn debug-endpoint
+  [ctx]
+  (let [request (:request ctx)
+        dev-mode (state/get-config ctx :dev-mode)]
+    (if dev-mode
+      {:status 200
+       :headers {"Content-Type" "application/json"}
+       :body (cheshire.core/generate-string
+              {:state (state/get-full-state ctx)
+               :request (select-keys request [:uri :request-method :path-params :query-params])})}
+      {:status 403
+       :headers {"Content-Type" "text/plain"}
+       :body "Debug endpoint only available in dev mode"})))
 
-(def redirect-to-readme
-  (adapt-handler handlers/redirect-to-readme))
-
-(def render-file-view
-  (adapt-handler handlers/render-file-view))
-
-(def serve-static-file
-  (adapt-handler handlers/serve-static-file))
-
-(def serve-og-preview
-  (adapt-handler handlers/serve-og-preview))
-
-(def render-pictures
-  (adapt-handler handlers/render-pictures))
-
-(def render-favicon
-  (adapt-handler handlers/render-favicon))
-
-(def render-landing
-  (adapt-handler gitbok.ui.landing-hero/render-landing))
-
-(def sitemap-xml
-  (adapt-handler handlers/sitemap-xml))
-
-(def sitemap-index-xml
-  (adapt-handler handlers/sitemap-index-xml))
-
-(def service-worker-handler
-  (fn [request]
-    (let [response (ring.util.response/resource-response "public/service-worker.js")]
-      (when response
-        (ring.middleware.content-type/content-type-response response request)))))
-
-(def meilisearch-endpoint
-  (adapt-handler gitbok.ui.meilisearch/meilisearch-endpoint))
-
-(def examples-handler
-  (adapt-handler gitbok.ui.examples/examples-handler))
-
-(def examples-results-handler
-  (adapt-handler gitbok.ui.examples/examples-results-handler))
+(defn service-worker-handler
+  [ctx]
+  (let [request (:request ctx)
+        response (ring.util.response/resource-response "public/service-worker.js")]
+    (when response
+      (ring.middleware.content-type/content-type-response response request))))
 
 ;; Route definitions
 (defn routes [context]
   (let [prefix (state/get-config context :prefix "")]
     [;; Static routes
      [(utils/concat-urls prefix "/static/*")
-      {:get {:handler serve-static-file
+      {:get {:handler handlers/serve-static-file
              :middleware [wrap-gzip]}}]
      [(utils/concat-urls prefix "/service-worker.js")
       {:get {:handler service-worker-handler
              :middleware [wrap-gzip]}}]
      [(utils/concat-urls prefix "/public/og-preview/*")
-      {:get {:handler serve-og-preview
+      {:get {:handler handlers/serve-og-preview
              :middleware [wrap-gzip]}}]
      [(utils/concat-urls prefix "/.gitbook/assets/*")
-      {:get {:handler render-pictures
+      {:get {:handler handlers/render-pictures
              :middleware [wrap-gzip]}}]
 
      ;; System routes
@@ -169,14 +117,14 @@
 
      ;; Sitemap at root
      [(utils/concat-urls prefix "/sitemap.xml")
-      {:get {:handler sitemap-index-xml
+      {:get {:handler handlers/sitemap-index-xml
              :middleware [wrap-gzip]}}]
 
-     ;; Root handlers
-     [prefix {:get {:handler root-redirect-handler
+     ;; Root handlers - handle both with and without trailing slash
+     [prefix {:get {:handler handlers/root-redirect-handler
                     :middleware [wrap-gzip]}}]
-     [(utils/concat-urls prefix "/")
-      {:get {:handler root-redirect-handler
+     [(str prefix "/")
+      {:get {:handler handlers/root-redirect-handler
              :middleware [wrap-gzip]}}]
 
      ;; Product routes are generated dynamically from products config
@@ -190,46 +138,55 @@
 
                 ;; Meilisearch
                 [(str product-path "/meilisearch/dropdown")
-                 {:get {:handler meilisearch-endpoint
+                 {:get {:handler gitbok.ui.meilisearch/meilisearch-endpoint
                         :middleware [product-middleware wrap-gzip]}}]
 
                 ;; Product sitemap
                 [(str product-path "/sitemap.xml")
-                 {:get {:handler sitemap-xml
+                 {:get {:handler handlers/sitemap-xml
                         :middleware [product-middleware wrap-gzip]}}]
 
                 ;; Product favicon
                 [(str product-path "/favicon.ico")
-                 {:get {:handler render-favicon
+                 {:get {:handler handlers/render-favicon
                         :middleware [product-middleware wrap-gzip]}}]
 
-                ;; Product root
-                [product-path {:get {:handler redirect-to-readme
+                ;; Product root - with trailing slash (redirect to without)
+                [(str product-path "/") {:get {:handler (fn [ctx]
+                                                          (let [request (:request ctx)
+                                                                uri (:uri request)
+                                                                ;; Remove trailing slash
+                                                                new-uri (subs uri 0 (dec (count uri)))]
+                                                            {:status 301
+                                                             :headers {"Location" new-uri}}))
+                                               :middleware [wrap-gzip]}}]
+                ;; Product root - without trailing slash
+                [product-path {:get {:handler handlers/redirect-to-readme
                                      :middleware [product-middleware wrap-gzip]}}]]]
     ;; Add Aidbox-specific routes
     (if (= (:id product) "aidbox")
       (concat routes
               [;; Landing page - Aidbox only
                [(str product-path "/landing")
-                {:get {:handler render-landing
+                {:get {:handler gitbok.ui.landing-hero/render-landing
                        :middleware [product-middleware wrap-gzip]}}]
                ;; Examples page
                [(str product-path "/examples")
-                {:get {:handler examples-handler
+                {:get {:handler gitbok.ui.examples/examples-handler
                        :middleware [product-middleware wrap-gzip]}}]
                ;; Examples results endpoint for HTMX
                [(str product-path "/examples-results")
-                {:get {:handler examples-results-handler
+                {:get {:handler gitbok.ui.examples/examples-results-handler
                        :middleware [product-middleware wrap-gzip]}}]
                ;; All product pages (catch-all) - must be last!
                [(str product-path "/*")
-                {:get {:handler render-file-view
+                {:get {:handler handlers/render-file-view
                        :middleware [product-middleware wrap-gzip]}}]])
       ;; For non-Aidbox products, just add the catch-all
       (conj routes
             [(str product-path "/*")
-             {:get {:handler render-file-view
-                    :middleware [product-middleware wrap-gzip]}}])))))
+             {:get {:handler handlers/render-file-view
+                    :middleware [product-middleware wrap-gzip]}}]))))
 
 (defn all-routes
   "Generate all routes including dynamic product routes"

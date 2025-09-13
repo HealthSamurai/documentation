@@ -459,16 +459,17 @@
              (render-result-item item (+ start-index idx) false))
            items))))))
 
-(defn meilisearch-dropdown [context request]
-  (let [query (or (get-in request [:query-params "q"])
+(defn meilisearch-dropdown [ctx]
+  (let [request (:request ctx)
+        query (or (get-in request [:query-params "q"])
                   (get-in request [:params "q"])
                   (get-in request [:query-params :q])
                   (get-in request [:params :q])
                   "")
-        current-product (products/get-current-product context)
+        current-product (products/get-current-product ctx)
         product-index (get current-product :meilisearch-index "docs")
         results (when (and query (pos? (count query)))
-                  (search-meilisearch context query product-index))]
+                  (search-meilisearch ctx query product-index))]
 
     (if (empty? query)
       [:div] ;; Empty div when no query
@@ -484,12 +485,13 @@
             ;; Render grouped results
             (render-search-results groups)]])))))
 
-(defn meilisearch-endpoint [context request]
-  (log/info "meilisearch-endpoint called" {:uri (:uri request)
-                                           :query-params (:query-params request)
-                                           :context-keys (keys context)})
-  (let [result (meilisearch-dropdown context request)]
-    {:status 200
-     :headers {"content-type" "text/html; charset=utf-8"
-               "Cache-Control" "no-cache, no-store, must-revalidate"}
-     :body (utils/->html result)}))
+(defn meilisearch-endpoint [ctx]
+  (let [request (:request ctx)]
+    (log/info "meilisearch-endpoint called" {:uri (:uri request)
+                                             :query-params (:query-params request)
+                                             :context-keys (keys ctx)})
+    (let [result (meilisearch-dropdown ctx)]
+      {:status 200
+       :headers {"content-type" "text/html; charset=utf-8"
+                 "Cache-Control" "no-cache, no-store, must-revalidate"}
+       :body (utils/->html result)})))

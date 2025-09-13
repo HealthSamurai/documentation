@@ -105,12 +105,13 @@
   (let [if-none-match (get-in request [:headers "if-none-match"])]
     (and if-none-match (= if-none-match etag))))
 
-(defn render-pictures [context request]
-  (let [uri (:uri request)
-        prefix (state/get-config context :prefix "")
+(defn render-pictures [ctx]
+  (let [request (:request ctx)
+        uri (:uri request)
+        prefix (state/get-config ctx :prefix "")
         uri-relative
         (utils/uri-to-relative uri prefix
-                               (products/path context))
+                               (products/path ctx))
         file-path (->
                    uri-relative
                    (str/replace #"%20" " ")
@@ -123,7 +124,7 @@
                   ;; Since 'docs' is in classpath directly, files are accessible as ".gitbook/assets/..."
                   (resp/resource-response (str ".gitbook/" file-path)))]
     (when response
-      (let [dev-mode? (state/get-config context :dev-mode)
+      (let [dev-mode? (state/get-config ctx :dev-mode)
             ;; In dev mode: no cache
             ;; In production: cache for 1 year (images are typically versioned)
             cache-control (if dev-mode?
@@ -139,15 +140,16 @@
         ;; Return response with updated headers
         (assoc response-with-type :headers headers)))))
 
-(defn render-favicon [context _]
+(defn render-favicon [ctx]
   (resp/resource-response
-    (state/get-product-state context [:favicon-path])))
+    (state/get-product-state ctx [:favicon-path])))
 
 (defn render-file-view
-  [context request]
-  (let [uri (:uri request)
-        product-path (products/path context)
-        prefix (state/get-config context :prefix "")
+  [ctx]
+  (let [request (:request ctx)
+        uri (:uri request)
+        product-path (products/path ctx)
+        prefix (state/get-config ctx :prefix "")
         uri-relative
         (utils/uri-to-relative
          uri
@@ -157,19 +159,19 @@
 
       (or (picture-url? uri-relative)
           (picture-url? uri))
-      (render-pictures context request)
+      (render-pictures ctx)
 
       :else
       ;; Check for redirects first
-      (if-let [redirect-target (indexing/get-redirect context uri-relative)]
+      (if-let [redirect-target (indexing/get-redirect ctx uri-relative)]
         ;; Return HTTP 301 redirect
-        (let [target-url (http/get-product-prefixed-url context redirect-target)]
+        (let [target-url (http/get-product-prefixed-url ctx redirect-target)]
           {:status 301
            :headers {"Location" target-url}})
         ;; Otherwise proceed with normal file handling
-        (let [filepath (indexing/uri->filepath context uri-relative)]
+        (let [filepath (indexing/uri->filepath ctx uri-relative)]
           (if filepath
-            (let [lastmod (indexing/get-lastmod context filepath)
+            (let [lastmod (indexing/get-lastmod ctx filepath)
                   lastmod-iso (utils/iso-to-http-date lastmod)
                   etag (utils/etag lastmod-iso)]
               (if (or (check-cache-etag request etag)
@@ -180,9 +182,9 @@
                            "Last-Modified" lastmod-iso
                            "ETag" etag}}
                 (let [{:keys [title description content section]}
-                      (render-file (assoc context :current-uri uri-relative) filepath)]
+                      (render-file ctx filepath)]
                   (layout/layout
-                   context request
+                   ctx
                    {:content content
                     :lastmod lastmod
                     :title title
@@ -191,53 +193,52 @@
                     :filepath filepath}))))
 
             (layout/layout
-             context request
-             {:content (not-found/not-found-view context uri-relative)
+             ctx
+             {:content (not-found/not-found-view ctx uri-relative)
               :status 404
               :title "Not found"
               :description "Page not found"
               :hide-breadcrumb true})))))))
 
 (defn sitemap-xml
-  [context _]
+  [ctx]
   {:status 200
    :headers {"content-type" "application/xml"}
-   :body (state/get-sitemap context)})
+   :body (state/get-sitemap ctx)})
 
 (defn sitemap-index-xml
   "Returns cached sitemap index XML"
-  [context _]
+  [ctx]
   {:status 200
    :headers {"content-type" "application/xml"}
-   :body (or (gitbok.state/get-cache context :sitemap-index-xml)
+   :body (or (gitbok.state/get-cache ctx :sitemap-index-xml)
              ;; Fallback: generate on-the-fly if cache is empty
              (do
                (log/warn "sitemap cache was not available")
-               (gitbok.indexing.impl.sitemap-index/generate-and-cache-sitemap-index! context)))})
+               (gitbok.indexing.impl.sitemap-index/generate-and-cache-sitemap-index! ctx)))})
 
 (defn redirect-to-readme
-  [context request]
-  (let [prefix (state/get-config context :prefix "")
+  [ctx]
+  (let [request (:request ctx)
+        prefix (state/get-config ctx :prefix "")
         uri (products/uri
-             context prefix
-             (or (products/readme-url context) "readme"))
-        request
-        (assoc request
-               :uri uri)]
-    (render-file-view context request)))
+             ctx prefix
+             (or (products/readme-url ctx) "readme"))
+        new-ctx (assoc ctx :request (assoc request :uri uri))]
+    (render-file-view new-ctx)))
 
 (defn root-redirect-handler
   "Handles root path redirect based on configuration"
-  [context request]
-  (let [full-config (products/get-full-config context)
+  [ctx]
+  (let [full-config (products/get-full-config ctx)
         root-redirect (:root-redirect full-config)]
     (if root-redirect
-      (let [redirect-uri (utils/concat-urls (state/get-config context :prefix "") root-redirect)]
+      (let [redirect-uri (utils/concat-urls (state/get-config ctx :prefix "") root-redirect)]
         (resp/redirect redirect-uri))
       ;; If no root-redirect configured, show 404 or default page
       (layout/layout
-       context request
-       {:content (not-found/not-found-view context "/")
+       ctx
+       {:content (not-found/not-found-view ctx "/")
         :status 404
         :title "Not found"
         :description "Page not found"
@@ -245,8 +246,9 @@
 
 (defn serve-static-file
   "Serves static files with proper content type and cache headers"
-  [context request]
-  (let [uri (http/url-without-prefix context (:uri request))
+  [ctx]
+  (let [request (:request ctx)
+        uri (http/url-without-prefix ctx (:uri request))
         path (str/replace uri #"^/static/" "")
         response (resp/resource-response (utils/concat-urls "public" path))]
     (when response
@@ -261,8 +263,9 @@
 
 (defn serve-og-preview
   "Serves OG preview images from resources"
-  [context request]
-  (let [uri (http/url-without-prefix context (:uri request))
+  [ctx]
+  (let [request (:request ctx)
+        uri (http/url-without-prefix ctx (:uri request))
         path (str/replace uri #"^/public/og-preview/" "")
         resource-path (utils/concat-urls "public/og-preview" path)]
     (if-let [response (resp/resource-response resource-path)]
