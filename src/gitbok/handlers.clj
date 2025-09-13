@@ -116,16 +116,29 @@
                    uri-relative
                    (str/replace #"%20" " ")
                    (str/replace-first #".*.gitbook/" ""))
+        dev-mode? (state/get-config ctx :dev-mode)
+        volume-path (state/get-config ctx :docs-volume-path)
         ;; Try to find the image in multiple locations
-        response (or
-                  ;; First try the standard location (.gitbook/assets/)
-                  (resp/resource-response file-path)
-                  ;; If not found, try without 'assets/' prefix (for docs/.gitbook/assets/)
-                  ;; Since 'docs' is in classpath directly, files are accessible as ".gitbook/assets/..."
-                  (resp/resource-response (str ".gitbook/" file-path)))]
+        response (if volume-path
+                   ;; When volume path is available: try filesystem first
+                   (or
+                    ;; Try at root .gitbook/assets/
+                    (resp/file-response (str volume-path "/.gitbook/assets/" file-path))
+                    ;; Try at .gitbook/ (for compatibility)
+                    (resp/file-response (str volume-path "/.gitbook/" file-path))
+                    ;; Try docs/.gitbook/assets/
+                    (resp/file-response (str volume-path "/docs/.gitbook/assets/" file-path))
+                    ;; Try docs/.gitbook/ (for compatibility)
+                    (resp/file-response (str volume-path "/docs/.gitbook/" file-path))
+                    ;; Fallback to classpath resources
+                    (resp/resource-response file-path)
+                    (resp/resource-response (str ".gitbook/" file-path)))
+                   ;; No volume path: use classpath only
+                   (or
+                    (resp/resource-response file-path)
+                    (resp/resource-response (str ".gitbook/" file-path))))]
     (when response
-      (let [dev-mode? (state/get-config ctx :dev-mode)
-            ;; In dev mode: no cache
+      (let [;; In dev mode: no cache
             ;; In production: cache for 1 year (images are typically versioned)
             cache-control (if dev-mode?
                             "no-cache, no-store, must-revalidate"

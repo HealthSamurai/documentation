@@ -3,6 +3,8 @@
    [gitbok.core :as core]
    [gitbok.state :as state]
    [gitbok.scheduler :as scheduler]
+   [gitbok.handlers :as handlers]
+   [gitbok.initialization :as initialization]
    [clj-reload.core :as reload]
    [clojure.tools.logging :as log]))
 
@@ -84,8 +86,7 @@
   "Reload products configuration (for development)"
   []
   (when-let [ctx @dev-context]
-    (core/init-products! ctx)
-    (core/init-all-product-indices! ctx)
+    (initialization/init-all-products! ctx :read-markdown-fn handlers/read-markdown-file)
     (log/info "Products reloaded")))
 
 (defn state

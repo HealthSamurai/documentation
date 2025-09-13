@@ -2,13 +2,14 @@
   (:require [chime.core :as chime]
             [gitbok.state :as state]
             [gitbok.reload :as reload]
+            [gitbok.handlers :as handlers]
             [gitbok.examples.updater :as examples-updater]
             [clojure.tools.logging :as log])
   (:import [java.time Instant Duration]))
 
 (defn start-reload-watcher! 
   "Start periodic reload watcher using chime"
-  [context init-product-indices-fn init-products-fn]
+  [context]
   (when (state/get-config context :docs-volume-path)
     (let [interval-seconds (Integer/parseInt (state/get-config context :reload-check-interval "30"))]
       (log/info "Starting reload watcher" {:interval-seconds interval-seconds
@@ -24,7 +25,7 @@
                         (when-not (state/get-cache context :reload-state-in-progress false)
                           (try
                             (state/set-cache! context :reload-state-in-progress true)
-                            (reload/check-and-reload! context init-product-indices-fn init-products-fn)
+                            (reload/check-and-reload! context :read-markdown-fn handlers/read-markdown-file)
                             (catch Exception e
                               (log/error e "Reload check failed"))
                             (finally
