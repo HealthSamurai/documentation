@@ -15,11 +15,9 @@
    [gitbok.ui.main-content :as main-content]
    [gitbok.ui.meilisearch]
    [gitbok.ui.not-found :as not-found]
-   [gitbok.ui.search]
    [gitbok.utils :as utils]
    [hiccup2.core]
    [ring.middleware.content-type :refer [content-type-response]]
-   [ring.middleware.gzip :refer [wrap-gzip]]
    [ring.util.response :as resp]))
 
 (defn read-markdown-file [context filepath]
@@ -38,10 +36,10 @@
                                             nil))
                            from-index (get (indexing/get-md-files-idx context) filepath)
                            content (or from-disk from-index)]
-                       (log/info "DEV: content loaded" {:path full-filepath 
+                       (log/info "DEV: content loaded" {:path full-filepath
                                                         :from-disk? (some? from-disk)
                                                         :from-index? (some? from-index)
-                                                        :size (if content (count content) 0) 
+                                                        :size (if content (count content) 0)
                                                         :nil? (nil? content)})
                        content))
                    ;; In production, use cached content from memory

@@ -11,7 +11,7 @@
 
 (defn search-meilisearch [context query index-name]
   (try
-    (let [meilisearch-host (or (state/get-config context :meilisearch-url) "http://localhost:7700")
+    (let [search-url (str (state/get-config context :meilisearch-url) "/multi-search")
           meilisearch-api-key (state/get-config context :meilisearch-api-key)
           headers (if meilisearch-api-key
                     {"Authorization" (str "Bearer " meilisearch-api-key)
@@ -20,7 +20,6 @@
           ;; Filter to exclude deprecated pages using STARTS WITH
           ;; This operator is available by default (no experimental features needed)
           deprecated-filter "NOT url STARTS WITH \"https://www.health-samurai.io/docs/aidbox/deprecated\""
-          search-url (str meilisearch-host "/multi-search")
           request-body {:federation {:limit 30} ; Set limit at federation level
                         :queries [{:indexUid index-name
                                    :q query
@@ -364,10 +363,8 @@
 
 (defn render-no-results
   "Renders the no results message."
-  [query is-mobile]
-  [:div {:class (str (if is-mobile "border border-tint-6" "shadow-lg ring-1 ring-tint-subtle")
-                     "  p-4 text-sm text-tint-9 "
-                     (when-not is-mobile "md:w-[32rem]"))}
+  [query]
+  [:div {:class "border border-tint-6 md:shadow-lg md:ring-1 md:ring-tint-subtle p-4 text-sm text-tint-9 md:w-[32rem]"}
    (str "No results found for \"" query "\"")])
 
 (defn render-group-header
@@ -468,10 +465,6 @@
                   (get-in request [:query-params :q])
                   (get-in request [:params :q])
                   "")
-        is-mobile (= "true" (or (get-in request [:query-params "mobile"])
-                                (get-in request [:params "mobile"])
-                                (get-in request [:query-params :mobile])
-                                (get-in request [:params :mobile])))
         current-product (products/get-current-product context)
         product-index (get current-product :meilisearch-index "docs")
         results (when (and query (pos? (count query)))
@@ -482,13 +475,11 @@
 
       (if (empty? results)
         ;; No results found
-        (render-no-results query is-mobile)
+        (render-no-results query)
 
         ;; Results found - group and render
         (let [groups (group-results-by-hierarchy results)]
-          [:div {:class (str "bg-white " (if is-mobile "border border-tint-6" "shadow-lg ring-1 ring-tint-subtle")
-                             " overflow-hidden max-h-[48rem] overflow-y-auto "
-                             (when-not is-mobile "md:w-[32rem]"))}
+          [:div {:class "bg-white border border-tint-6 md:shadow-lg md:ring-1 md:ring-tint-subtle overflow-hidden max-h-[48rem] overflow-y-auto md:w-[32rem]"}
            [:div {:class "p-2 space-y-1"}
             ;; Render grouped results
             (render-search-results groups)]])))))

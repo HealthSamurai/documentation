@@ -2,9 +2,9 @@
   (:require
    [gitbok.http :as http]
    [clojure.tools.logging :as log]
+   [clojure.java.io :as io]
    [gitbok.indexing.impl.summary]
    [gitbok.indexing.impl.uri-to-file :as uri-to-file]
-   [gitbok.indexing.impl.common :as common]
    [gitbok.indexing.impl.file-to-uri :as file-to-uri]
    [gitbok.products :as products]
    [gitbok.lastmod.generator :as lastmod-gen]
@@ -15,6 +15,10 @@
 ))
 
 (set! *warn-on-reflection* true)
+
+(defn get-filepath [filepath-a relative-filepath]
+  (.getCanonicalPath
+    (io/file (.getParent (io/file filepath-a)) relative-filepath)))
 
 (def lastmod-key :gitbok.indexing.core/lastmod)
 
@@ -75,7 +79,7 @@
             current-page-filepath (absolute-filepath->relative context current-page-filepath)
             path
             (utils/safe-subs
-             (common/get-filepath
+             (get-filepath
               current-page-filepath
               relative-page-link)
              (count
