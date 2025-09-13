@@ -16,9 +16,6 @@
         (clojure.string/replace #"^-|-$" "")
         clojure.string/lower-case)))
 
-(defn distinct-by [f coll]
-  (vals (into {} (map (juxt f identity)) coll)))
-
 (defn safe-subs [s start & [end]]
   (let [end (or end (count s))]
     (when (and s
