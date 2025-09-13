@@ -15,7 +15,9 @@
             [gitbok.utils :as utils]
             [clojure.string :as str]
             [clojure.tools.logging :as log]
-            [cheshire.core]))
+            [cheshire.core]
+            [clojure.walk]
+            [hiccup.util]))
 
 ;; Middleware
 (defn wrap-request-logging
@@ -27,23 +29,23 @@
           uri (:uri request)
           query-string (:query-string request)]
       (log/info "→ Request" {:method method
-                            :uri uri
-                            :query query-string
-                            :headers (select-keys (:headers request) ["user-agent" "referer"])})
+                             :uri uri
+                             :query query-string
+                             :headers (select-keys (:headers request) ["user-agent" "referer"])})
       (try
         (let [response (handler request)
               duration (- (System/currentTimeMillis) start-time)
               status (:status response)]
           (log/info "← Response" {:method method
-                                 :uri uri
-                                 :status status
-                                 :duration-ms duration})
+                                  :uri uri
+                                  :status status
+                                  :duration-ms duration})
           response)
         (catch Exception e
           (let [duration (- (System/currentTimeMillis) start-time)]
             (log/error e "Request failed" {:method method
-                                          :uri uri
-                                          :duration-ms duration})
+                                           :uri uri
+                                           :duration-ms duration})
             (throw e)))))))
 (defn product-middleware
   "Middleware to set current product based on route"
@@ -103,20 +105,46 @@
 
 (defn version-endpoint
   [ctx]
-  {:status 200
-   :headers {"Content-Type" "text/plain"}
-   :body (state/get-config ctx :version "unknown")})
+  (let [version (state/get-config ctx :version "unknown")
+        reload-state (state/get-cache ctx :reload-state {})]
+    {:status 200
+     :headers {"Content-Type" "application/json"}
+     :body (cheshire.core/generate-string
+            {:build-engine-version version
+             :docs-update {:git-head (:git-head reload-state)
+                           :last-reload-time (:last-reload-time reload-state)
+                           :app-version (:app-version reload-state)
+                           :in-progress (:in-progress reload-state false)}})}))
 
 (defn debug-endpoint
   [ctx]
   (let [request (:request ctx)
         dev-mode (state/get-config ctx :dev-mode)]
     (if dev-mode
-      {:status 200
-       :headers {"Content-Type" "application/json"}
-       :body (cheshire.core/generate-string
-              {:state (state/get-full-state ctx)
-               :request (select-keys request [:uri :request-method :path-params :query-params])})}
+      (let [full-state (state/get-full-state ctx)
+            ;; Convert state to a JSON-safe structure
+            json-safe-state (clojure.walk/postwalk
+                             (fn [v]
+                               (cond
+                                 ;; Convert RawString to plain string
+                                 (instance? hiccup.util.RawString v) (str v)
+                                 ;; Convert other non-serializable objects to strings
+                                 (and (not (or (nil? v)
+                                               (boolean? v)
+                                               (number? v)
+                                               (string? v)
+                                               (keyword? v)
+                                               (map? v)
+                                               (sequential? v)))
+                                      (instance? Object v))
+                                 (str (class v))
+                                 :else v))
+                             full-state)]
+        {:status 200
+         :headers {"Content-Type" "application/json"}
+         :body (cheshire.core/generate-string
+                {:state json-safe-state
+                 :request (select-keys request [:uri :request-method :path-params :query-params])})})
       {:status 403
        :headers {"Content-Type" "text/plain"}
        :body "Debug endpoint only available in dev mode"})))
@@ -238,8 +266,8 @@
         specific-static (filter #(and % (not (clojure.string/includes? (first %) "*"))) static-routes)
         wildcard-static (filter #(and % (clojure.string/includes? (first %) "*")) static-routes)]
     (vec (concat
-          specific-static           ; Specific static routes first
-          product-route-list        ; Product routes (with their own ordering)
+          specific-static ; Specific static routes first
+          product-route-list ; Product routes (with their own ordering)
           wildcard-static))))
 
 (defn create-app
