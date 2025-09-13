@@ -16,19 +16,17 @@ init:
 	git submodule update --init --recursive
 
 repl: init-test
-	DOCS_VOLUME_PATH=$$(pwd)/docs-new \
-	RELOAD_CHECK_INTERVAL_SEC=10 \
-	DEV=true \
 	BASE_URL=http://localhost:8081 \
+	DEV=true \
 	DOCS_PREFIX=/docs \
-	MEILISEARCH_URL=http://localhost:7700 \
-	MEILISEARCH_API_KEY=60DBZGy6zoDL6Q--s1-dHBWptiVKvK-XRsaacdvkOSM \
-	PORT=8081 \
 	DOCS_REPO_PATH=$$(pwd) \
+	DOCS_VOLUME_PATH=$$(pwd)/docs-new \
+	MEILISEARCH_API_KEY=60DBZGy6zoDL6Q--s1-dHBWptiVKvK-XRsaacdvkOSM \
+	MEILISEARCH_URL=http://localhost:7700 \
+	PORT=8081 \
+	RELOAD_CHECK_INTERVAL_SEC=10 \
+  EXAMPLES_UPDATE_INTERVAL=1 \
 	clj -M:dev:nrepl:test:build
-
-repl-classpath: init-test
-	DEV=true BASE_URL=http://localhost:8081 DOCS_PREFIX=/docs MEILISEARCH_URL=http://localhost:7700 MEILISEARCH_API_KEY=60DBZGy6zoDL6Q--s1-dHBWptiVKvK-XRsaacdvkOSM clj -M:dev:nrepl:test:build
 
 mcp:
 	clojure -X:mcp :port 7888

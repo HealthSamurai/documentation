@@ -1,12 +1,12 @@
 (ns gitbok.reload
+  "Git HEAD monitoring and automatic reload functionality"
   (:require
    [clojure.java.io :as io]
-   [clojure.java.shell :as shell]
    [clojure.string :as str]
-   [gitbok.state :as state]
-   [gitbok.indexing.core :as indexing]
-   [gitbok.indexing.impl.sitemap-index :as sitemap-index]
-   [clojure.tools.logging :as log]))
+   [clojure.tools.logging :as log]
+   [clojure.java.shell :as shell]
+   [gitbok.initialization :as initialization]
+   [gitbok.state :as state]))
 
 (defn get-volume-path
   "Get current volume path, with fallback to local docs/ directory for development"
@@ -42,43 +42,21 @@
   (update-reload-state! context assoc :in-progress value))
 
 (defn rebuild-all-caches
-  "Build complete new cache for all products.
-   This reuses existing initialization logic."
-  [init-product-indices-fn init-products-fn]
-  (log/info "📦rebuild start" {:action "re-initializing-products"})
-  ;; Simply re-initialize all products
-  ;; This will reload products.yaml and all documentation
-  (let [products-config (init-products-fn)
-        product-count (count products-config)]
-    (log/info "📚products found" {:count product-count})
-    ;; Rebuild cache for each product
-    (doseq [[idx product] (map-indexed vector products-config)]
-      (let [product-name (:name product)
-            product-id (:id product)]
-        (log/info "rebuilding product" {:product-id product-id
-                                        :product-name product-name
-                                        :index (inc idx)
-                                        :total product-count})
-        (let [start-time (System/currentTimeMillis)]
-          ;; This will:
-          ;; 1. Read SUMMARY.md
-          ;; 2. Build URI mappings
-          ;; 3. Load all markdown files
-          ;; 4. Parse markdown
-          ;; 5. Pre-render pages
-          ;; 6. Generate sitemap
-          (init-product-indices-fn product)
-          (let [duration (- (System/currentTimeMillis) start-time)]
-            (log/info "product rebuilt" {:product-id product-id
-                                         :product-name product-name
-                                         :duration-ms duration})))))
-    (log/info "rebuild complete" {:product-count product-count})
+  "Rebuild all caches by re-initializing all products.
+   This is now a simple wrapper around the unified initialization."
+  [context & {:keys [read-markdown-fn]}]
+  (log/info "🔄 Rebuild start" {:action "re-initializing-products"})
+  (let [start-time (System/currentTimeMillis)
+        products-config (initialization/init-all-products! context :read-markdown-fn read-markdown-fn)
+        duration (- (System/currentTimeMillis) start-time)]
+    (log/info "Rebuild complete" {:product-count (count products-config)
+                                  :duration-ms duration})
     true))
 
 (defn check-and-reload!
   "Check if git HEAD changed and reload if needed.
    This ensures only one reload happens at a time."
-  [context init-product-indices-fn init-products-fn]
+  [context & {:keys [read-markdown-fn]}]
   (when (and (get-volume-path context)
              (not (is-reloading? context)))
     (let [;; Get current git HEAD
@@ -107,7 +85,7 @@
 
         (and new-head (not= new-head current-head))
         (do
-          (log/info "📊repo changed" {:old-head (or current-head "none")
+          (log/info "📚repo changed" {:old-head (or current-head "none")
                                       :new-head new-head})
 
           (set-reloading! context true)
@@ -115,21 +93,8 @@
             (let [start-time (System/currentTimeMillis)]
               (log/info "🚀reload start" {:action "starting-reload"})
 
-              ;; Build new caches
-              (rebuild-all-caches init-product-indices-fn init-products-fn)
-
-              ;; Update lastmod for all products
-              (log/info "🔄updating lastmod data")
-              (doseq [product (state/get-products context)]
-                (let [context-with-product (assoc context
-                                                  :product product
-                                                  :current-product-id (:id product))]
-                  (indexing/set-lastmod context-with-product)))
-
-              ;; Regenerate and cache sitemap index
-              (log/info "🔄regenerating sitemap index")
-              (let [sitemap-index-xml (sitemap-index/generate-and-cache-sitemap-index! context)]
-                (state/set-cache! context :sitemap-index-xml sitemap-index-xml))
+              ;; Use unified initialization
+              (rebuild-all-caches context :read-markdown-fn read-markdown-fn)
 
               ;; Update state only after successful reload
               (update-reload-state! context assoc

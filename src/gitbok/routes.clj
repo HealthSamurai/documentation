@@ -14,9 +14,37 @@
             [gitbok.ui.landing-hero]
             [gitbok.utils :as utils]
             [clojure.string :as str]
+            [clojure.tools.logging :as log]
             [cheshire.core]))
 
 ;; Middleware
+(defn wrap-request-logging
+  "Middleware to log incoming requests and responses"
+  [handler]
+  (fn [request]
+    (let [start-time (System/currentTimeMillis)
+          method (:request-method request)
+          uri (:uri request)
+          query-string (:query-string request)]
+      (log/info "→ Request" {:method method
+                            :uri uri
+                            :query query-string
+                            :headers (select-keys (:headers request) ["user-agent" "referer"])})
+      (try
+        (let [response (handler request)
+              duration (- (System/currentTimeMillis) start-time)
+              status (:status response)]
+          (log/info "← Response" {:method method
+                                 :uri uri
+                                 :status status
+                                 :duration-ms duration})
+          response)
+        (catch Exception e
+          (let [duration (- (System/currentTimeMillis) start-time)]
+            (log/error e "Request failed" {:method method
+                                          :uri uri
+                                          :duration-ms duration})
+            (throw e)))))))
 (defn product-middleware
   "Middleware to set current product based on route"
   [handler]
@@ -34,13 +62,24 @@
                                                         (str/split uri-without-prefix #"/")))]
                          (str "/" (first segments)))
           products-config (state/get-products ctx)]
+      (log/debug "Product middleware" {:uri uri
+                                       :prefix prefix
+                                       :uri-without-prefix uri-without-prefix
+                                       :product-path product-path
+                                       :products-count (count products-config)})
       (if-let [product (first (filter #(= (:path %) product-path) products-config))]
-        (handler (assoc ctx
-                        :product product
-                        :current-product-id (:id product)))
-        {:status 404
-         :headers {"Content-Type" "text/plain"}
-         :body (str "Product not found for path: " product-path)}))))
+        (do
+          (log/debug "Product found" {:product-id (:id product)
+                                      :product-name (:name product)})
+          (handler (assoc ctx
+                          :product product
+                          :current-product-id (:id product))))
+        (do
+          (log/warn "Product not found" {:product-path product-path
+                                         :available-paths (map :path products-config)})
+          {:status 404
+           :headers {"Content-Type" "text/plain"}
+           :body (str "Product not found for path: " product-path)})))))
 
 (defn wrap-request-context
   "Middleware that creates a unified context containing system state and request"
@@ -206,19 +245,27 @@
 (defn create-app
   "Create the ring handler with all routes"
   [context]
-  (ring/ring-handler
-   (ring/router
-    (all-routes context)
-    {:data {:muuntaja m/instance
-            :middleware [;; Request parsing
-                         parameters/parameters-middleware
-                         muuntaja/format-negotiate-middleware
-                         muuntaja/format-response-middleware
-                         muuntaja/format-request-middleware
-                        ;; Custom context
-                         (wrap-request-context context)]}
-     ;; Use linear-router for predictable route matching order
-     :router reitit.core/linear-router
-     ;; Disable conflict detection since we want ordered matching
-     :conflicts nil})))
+  (let [routes (all-routes context)
+        products (state/get-products context)]
+    (log/info "Creating app" {:routes-count (count routes)
+                              :products-count (count products)
+                              :products (map #(select-keys % [:id :name :path]) products)
+                              :sample-routes (take 10 (map first routes))})
+    (ring/ring-handler
+     (ring/router
+      routes
+      {:data {:muuntaja m/instance
+              :middleware [;; Request logging
+                           wrap-request-logging
+                           ;; Request parsing
+                           parameters/parameters-middleware
+                           muuntaja/format-negotiate-middleware
+                           muuntaja/format-response-middleware
+                           muuntaja/format-request-middleware
+                          ;; Custom context
+                           (wrap-request-context context)]}
+       ;; Use linear-router for predictable route matching order
+       :router reitit.core/linear-router
+       ;; Disable conflict detection since we want ordered matching
+       :conflicts nil}))))
 

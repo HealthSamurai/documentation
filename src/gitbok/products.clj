@@ -11,7 +11,7 @@
   [{:id "aidbox"
     :name "Aidbox Documentation"
     :path "/aidbox"
-    :config "aidbox/.gitbook.yaml"}])
+    :config ".gitbook.yaml"}])
 
 (defn read-product-config-file [context config-file]
   (yaml/parse-string (state/slurp-resource context config-file)))
