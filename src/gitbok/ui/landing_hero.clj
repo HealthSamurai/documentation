@@ -259,8 +259,9 @@
 
 (defn render-landing
   "Render the landing page for a product"
-  [context request]
-  (let [content
+  [ctx]
+  (let [request (:request ctx)
+        content
         [:div.px-4.mx-auto
          ;; Documentation header and Getting Started in one section
          [:div.relative.z-10.w-full.bg-tint-base.border-tint-6.mb-8
@@ -270,20 +271,20 @@
             [:div.flex.items-center.gap-4
              [:img {:alt "Aidbox Logo"
                     :class "block object-contain size-22"
-                    :src (http/get-absolute-url context "/.gitbook/assets/aidbox_logo.jpg")}]
+                    :src (http/get-absolute-url ctx "/.gitbook/assets/aidbox_logo.jpg")}]
              [:div.flex.flex-col
               [:h1.m-0.mb-2.text-3xl.sm:text-4xl.text-tint-12.font-sans "Aidbox Documentation"]
               [:p.m-0.text-tint-10.font-content.text-base
                "Learn how to get up and running with Aidbox through tutorials, APIs and platform resources."]]]
 
             ;; Right side - Getting Started card
-            (getting-started-card context)]]]
+            (getting-started-card ctx)]]]
 
          ;; Bento grid with Main Concepts header
-         (bento-grid context)
+         (bento-grid ctx)
 
          ;; Additional links section with See also header
-         (additional-links context)
+         (additional-links ctx)
 
          ;; Zulip community section
          (zulip-community)]
@@ -292,18 +293,18 @@
         description "Aidbox - FHIR-first healthcare application platform"
 
         ;; Use shared page-wrapper for consistent layout
-        full-page (layout/page-wrapper context content)]
+        full-page (layout/page-wrapper ctx content)]
 
     ;; Return custom response bypassing standard layout
     (http/response1
      (layout/document
-      context
+      ctx
       full-page
       {:title title
        :description description
-       :canonical-url (http/get-absolute-url context (:uri request))
+       :canonical-url (http/get-absolute-url ctx (:uri request))
        :og-preview nil
        :lastmod nil
        :favicon-url (http/get-product-prefixed-url
-                     context
+                     ctx
                      "/favicon.ico")}))))
