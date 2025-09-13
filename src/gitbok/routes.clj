@@ -94,37 +94,37 @@
   (let [prefix (state/get-config context :prefix "")]
     [;; Static routes
      [(utils/concat-urls prefix "/static/*")
-      {:get {:handler handlers/serve-static-file
+      {:get {:handler #'handlers/serve-static-file
              :middleware [wrap-gzip]}}]
      [(utils/concat-urls prefix "/service-worker.js")
-      {:get {:handler service-worker-handler
+      {:get {:handler #'service-worker-handler
              :middleware [wrap-gzip]}}]
      [(utils/concat-urls prefix "/public/og-preview/*")
-      {:get {:handler handlers/serve-og-preview
+      {:get {:handler #'handlers/serve-og-preview
              :middleware [wrap-gzip]}}]
      [(utils/concat-urls prefix "/.gitbook/assets/*")
-      {:get {:handler handlers/render-pictures
+      {:get {:handler #'handlers/render-pictures
              :middleware [wrap-gzip]}}]
 
      ;; System routes
      ["/healthcheck"
-      {:get {:handler healthcheck}}]
+      {:get {:handler #'healthcheck}}]
 
      [(utils/concat-urls prefix "/version")
-      {:get {:handler version-endpoint}}]
+      {:get {:handler #'version-endpoint}}]
      [(utils/concat-urls prefix "/debug")
-      {:get {:handler debug-endpoint}}]
+      {:get {:handler #'debug-endpoint}}]
 
      ;; Sitemap at root
      [(utils/concat-urls prefix "/sitemap.xml")
-      {:get {:handler handlers/sitemap-index-xml
+      {:get {:handler #'handlers/sitemap-index-xml
              :middleware [wrap-gzip]}}]
 
      ;; Root handlers - handle both with and without trailing slash
-     [prefix {:get {:handler handlers/root-redirect-handler
+     [prefix {:get {:handler #'handlers/root-redirect-handler
                     :middleware [wrap-gzip]}}]
      [(str prefix "/")
-      {:get {:handler handlers/root-redirect-handler
+      {:get {:handler #'handlers/root-redirect-handler
              :middleware [wrap-gzip]}}]
 
      ;; Product routes are generated dynamically from products config
@@ -138,17 +138,17 @@
 
                 ;; Meilisearch
                 [(str product-path "/meilisearch/dropdown")
-                 {:get {:handler gitbok.ui.meilisearch/meilisearch-endpoint
+                 {:get {:handler #'gitbok.ui.meilisearch/meilisearch-endpoint
                         :middleware [product-middleware wrap-gzip]}}]
 
                 ;; Product sitemap
                 [(str product-path "/sitemap.xml")
-                 {:get {:handler handlers/sitemap-xml
+                 {:get {:handler #'handlers/sitemap-xml
                         :middleware [product-middleware wrap-gzip]}}]
 
                 ;; Product favicon
                 [(str product-path "/favicon.ico")
-                 {:get {:handler handlers/render-favicon
+                 {:get {:handler #'handlers/render-favicon
                         :middleware [product-middleware wrap-gzip]}}]
 
                 ;; Product root - with trailing slash (redirect to without)
@@ -161,31 +161,31 @@
                                                              :headers {"Location" new-uri}}))
                                                :middleware [wrap-gzip]}}]
                 ;; Product root - without trailing slash
-                [product-path {:get {:handler handlers/redirect-to-readme
+                [product-path {:get {:handler #'handlers/redirect-to-readme
                                      :middleware [product-middleware wrap-gzip]}}]]]
     ;; Add Aidbox-specific routes
     (if (= (:id product) "aidbox")
       (concat routes
               [;; Landing page - Aidbox only
                [(str product-path "/landing")
-                {:get {:handler gitbok.ui.landing-hero/render-landing
+                {:get {:handler #'gitbok.ui.landing-hero/render-landing
                        :middleware [product-middleware wrap-gzip]}}]
                ;; Examples page
                [(str product-path "/examples")
-                {:get {:handler gitbok.ui.examples/examples-handler
+                {:get {:handler #'gitbok.ui.examples/examples-handler
                        :middleware [product-middleware wrap-gzip]}}]
                ;; Examples results endpoint for HTMX
                [(str product-path "/examples-results")
-                {:get {:handler gitbok.ui.examples/examples-results-handler
+                {:get {:handler #'gitbok.ui.examples/examples-results-handler
                        :middleware [product-middleware wrap-gzip]}}]
                ;; All product pages (catch-all) - must be last!
                [(str product-path "/*")
-                {:get {:handler handlers/render-file-view
+                {:get {:handler #'handlers/render-file-view
                        :middleware [product-middleware wrap-gzip]}}]])
       ;; For non-Aidbox products, just add the catch-all
       (conj routes
             [(str product-path "/*")
-             {:get {:handler handlers/render-file-view
+             {:get {:handler #'handlers/render-file-view
                     :middleware [product-middleware wrap-gzip]}}]))))
 
 (defn all-routes
@@ -221,3 +221,4 @@
      :router reitit.core/linear-router
      ;; Disable conflict detection since we want ordered matching
      :conflicts nil})))
+
