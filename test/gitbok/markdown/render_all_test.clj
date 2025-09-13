@@ -8,7 +8,6 @@
    [gitbok.state :as state]
    [gitbok.ui.main-content :as main-content]
    [gitbok.handlers]
-   [gitbok.init]
    [gitbok.indexing.core :as indexing]
    [gitbok.indexing.impl.summary :as summary]
    [gitbok.indexing.impl.uri-to-file :as uri-to-file]

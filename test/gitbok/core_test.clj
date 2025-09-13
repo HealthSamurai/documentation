@@ -6,7 +6,7 @@
    [gitbok.handlers :as handlers]
    [gitbok.ui.layout :as layout]
    [gitbok.products :as products]
-   [gitbok.init :as init]))
+   [gitbok.initialization :as initialization]))
 
 (deftest test-root-redirect-handler
   (testing "root-redirect-handler with configured redirect"
@@ -66,10 +66,10 @@
     (testing "init-products stores full config"
       (let [context (th/create-test-context)]
         (with-redefs [products/load-products-config
-                      (fn []
+                      (fn [_ctx]
                         {:root-redirect "/aidbox"
                          :products [{:id "test" :path "/test"}]})]
-          (let [result (init/init-products context)]
+          (let [result (initialization/init-products context)]
           ;; Check that products were returned
             (is (= 1 (count result)))
             (is (= "test" (-> result first :id)))
