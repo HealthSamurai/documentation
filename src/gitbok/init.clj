@@ -2,6 +2,7 @@
   "Initialization functions for products and indices"
   (:require [gitbok.products :as products]
             [gitbok.state :as state]
+            [gitbok.handlers :as handlers]
             [gitbok.indexing.core :as indexing]
             [gitbok.indexing.impl.file-to-uri :as file-to-uri]
             [gitbok.indexing.impl.sitemap :as sitemap]
@@ -10,38 +11,6 @@
             [gitbok.markdown.core :as markdown]
             [clojure.string :as str]
             [clojure.tools.logging :as log]))
-
-(defn read-markdown-file [context filepath]
-  (let [[filepath section] (str/split filepath #"#")
-        full-filepath (products/filepath context filepath)
-        dev-mode (state/get-config context :dev-mode)
-        ;; In DEV mode, always read fresh content from disk/volume
-        _ (when dev-mode (log/debug "reading-file" {:filepath filepath :full-path full-filepath}))
-        content* (if dev-mode
-                   ;; Force re-read from disk in DEV mode
-                   (do
-                     (log/debug "reading-fresh" {:path full-filepath})
-                     (state/slurp-resource context full-filepath))
-                   ;; In production, use cached content from memory
-                   (or (get (indexing/get-md-files-idx context) filepath)
-                       (state/slurp-resource context full-filepath)))
-        {:keys [parsed description title]}
-        (markdown/parse-markdown-content
-         context
-         [full-filepath content*])]
-    (try
-      {:content
-       ((requiring-resolve 'gitbok.ui.main-content/render-file*)
-        context full-filepath parsed title content*)
-       :title title
-       :description description
-       :section section}
-      (catch Exception e
-        (log/info "cannot-render-file" {:filepath full-filepath})
-        {:content [:div {:role "alert"}
-                   (.getMessage e)
-                   [:pre (pr-str e)]
-                   [:pre content*]]}))))
 
 (defn init-product-indices
   "Initializes indexes for a specific product"
@@ -81,7 +50,7 @@
                                     :product (:id product)})
           (markdown/render-all! ctx
                                 (markdown/get-parsed-markdown-index ctx)
-                                read-markdown-file)
+                                handlers/read-markdown-file)
           (log/info "init-product" {:msg "render done"
                                     :product (:id product)}))))
     (log/info "init-product" {:msg "7. set lastmod data in context for Last Modified metadata"
@@ -100,7 +69,11 @@
                                    href)))
                              primary-links)
           sitemap-xml (sitemap/generate-sitemap ctx primary-urls lastmod-data)]
-      (state/set-sitemap! ctx sitemap-xml))))
+      (state/set-sitemap! ctx sitemap-xml))
+
+    ;; 9. Pre-calculate favicon path for product
+    (let [favicon-path (or (:favicon product) "public/favicon.ico")]
+      (state/set-product-state! ctx [:favicon-path] favicon-path))))
 
 (defn init-products
   "Initializes all products from configuration"

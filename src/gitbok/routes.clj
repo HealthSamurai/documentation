@@ -9,11 +9,9 @@
             [gitbok.state :as state]
             [gitbok.handlers :as handlers]
             [ring.util.response]
-            [gitbok.ui.search]
             [gitbok.ui.meilisearch]
             [gitbok.ui.examples]
             [gitbok.ui.landing-hero]
-            [gitbok.products :as products]
             [gitbok.utils :as utils]
             [clojure.string :as str]
             [cheshire.core]))
@@ -62,7 +60,7 @@
           context (if-let [product (:product request)]
                     (assoc context
                            :current-product-id (:id product)
-                           ::products/current-product product)
+                           :product product)
                     context)]
       (old-handler context request))))
 
@@ -129,9 +127,6 @@
       (when response
         (ring.middleware.content-type/content-type-response response request)))))
 
-(def search-endpoint
-  (adapt-handler gitbok.ui.search/search-endpoint))
-
 (def meilisearch-endpoint
   (adapt-handler gitbok.ui.meilisearch/meilisearch-endpoint))
 
@@ -173,10 +168,6 @@
   [product prefix]
   (let [product-path (utils/concat-urls prefix (:path product))
         routes [;; Specific routes first
-                ;; Product search
-                [(str product-path "/search/dropdown")
-                 {:get {:handler search-endpoint
-                        :middleware [product-middleware wrap-gzip]}}]
 
                 ;; Meilisearch
                 [(str product-path "/meilisearch/dropdown")

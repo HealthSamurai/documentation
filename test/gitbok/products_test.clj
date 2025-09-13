@@ -8,13 +8,9 @@
 (deftest test-load-products-config
   (testing "load-products-config with root-redirect"
     (with-redefs [state/slurp-resource
-                  (fn 
-                    ([path] ;; for backward compatibility in tests
-                     (when (= path "products.yaml")
-                       "root-redirect: \"/aidbox\"\n\nproducts:\n  - id: test\n    name: Test Product\n    path: /test\n    config: .gitbook.yaml"))
-                    ([_context path] ;; new signature
-                     (when (= path "products.yaml")
-                       "root-redirect: \"/aidbox\"\n\nproducts:\n  - id: test\n    name: Test Product\n    path: /test\n    config: .gitbook.yaml")))
+                  (fn [_context path]
+                    (when (= path "products.yaml")
+                      "root-redirect: \"/aidbox\"\n\nproducts:\n  - id: test\n    name: Test Product\n    path: /test\n    config: .gitbook.yaml"))
                   products/read-product-config-file
                   (fn [_context _config-file]
                     {:structure {:summary "SUMMARY.md"
