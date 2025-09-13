@@ -2,7 +2,6 @@
   (:require
    [gitbok.core :as core]
    [gitbok.state :as state]
-   [gitbok.indexing.core :as indexing]
    [gitbok.scheduler :as scheduler]
    [clj-reload.core :as reload]
    [clojure.tools.logging :as log]))

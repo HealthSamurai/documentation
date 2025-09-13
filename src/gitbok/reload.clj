@@ -5,6 +5,7 @@
    [clojure.string :as str]
    [gitbok.state :as state]
    [gitbok.indexing.core :as indexing]
+   [gitbok.indexing.impl.sitemap-index :as sitemap-index]
    [clojure.tools.logging :as log]))
 
 (defn get-volume-path
@@ -124,6 +125,11 @@
                                                   :product product
                                                   :current-product-id (:id product))]
                   (indexing/set-lastmod context-with-product)))
+
+              ;; Regenerate and cache sitemap index
+              (log/info "🔄regenerating sitemap index")
+              (let [sitemap-index-xml (sitemap-index/generate-and-cache-sitemap-index! context)]
+                (state/set-cache! context :sitemap-index-xml sitemap-index-xml))
 
               ;; Update state only after successful reload
               (update-reload-state! context assoc

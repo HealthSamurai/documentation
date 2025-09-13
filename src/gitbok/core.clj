@@ -5,7 +5,8 @@
    [gitbok.routes :as routes]
    [gitbok.state :as state]
    [gitbok.scheduler :as scheduler]
-   [gitbok.init :as init])
+   [gitbok.init :as init]
+   [gitbok.indexing.impl.sitemap-index :as sitemap-index])
   (:gen-class))
 
 (set! *warn-on-reflection* true)
@@ -51,6 +52,14 @@
 
      ;; Initialize all product indices
      (init-all-product-indices! context)
+
+     ;; Generate and cache sitemap index
+     (log/info "Generating sitemap index")
+     (let [sitemap-index-xml (sitemap-index/generate-and-cache-sitemap-index! context)]
+       (state/set-cache! context :sitemap-index-xml sitemap-index-xml))
+
+     ;; Mark app as initialized for healthcheck
+     (state/set-cache! context :app-initialized true)
 
      ;; Create and start HTTP server
      (let [handler (routes/create-app context)

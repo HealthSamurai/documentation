@@ -66,10 +66,15 @@
 
 ;; Route handlers - these will gradually be refactored to not need context
 (def healthcheck
-  (fn [_request]
-    {:status 200
-     :headers {"Content-Type" "text/plain"}
-     :body "OK"}))
+  (adapt-handler
+   (fn [context _request]
+     (if (state/get-cache context :app-initialized false)
+       {:status 200
+        :headers {"Content-Type" "text/plain"}
+        :body "OK"}
+       {:status 503
+        :headers {"Content-Type" "text/plain"}
+        :body "Service Unavailable - Application still initializing"}))))
 
 (def version-endpoint
   (fn [request]
@@ -140,25 +145,39 @@
 (defn routes [context]
   (let [prefix (state/get-config context :prefix "")]
     [;; Static routes
-     [(utils/concat-urls prefix "/static/*") {:get {:handler serve-static-file}}]
-     [(utils/concat-urls prefix "/service-worker.js") {:get {:handler service-worker-handler}}]
-     [(utils/concat-urls prefix "/public/og-preview/*") {:get {:handler serve-og-preview}}]
-     [(utils/concat-urls prefix "/.gitbook/assets/*") {:get {:handler render-pictures
-                                                             :middleware [wrap-gzip]}}]
+     [(utils/concat-urls prefix "/static/*")
+      {:get {:handler serve-static-file
+             :middleware [wrap-gzip]}}]
+     [(utils/concat-urls prefix "/service-worker.js")
+      {:get {:handler service-worker-handler
+             :middleware [wrap-gzip]}}]
+     [(utils/concat-urls prefix "/public/og-preview/*")
+      {:get {:handler serve-og-preview
+             :middleware [wrap-gzip]}}]
+     [(utils/concat-urls prefix "/.gitbook/assets/*")
+      {:get {:handler render-pictures
+             :middleware [wrap-gzip]}}]
 
      ;; System routes
-     ["/healthcheck" {:get {:handler healthcheck}}]
-     [(utils/concat-urls prefix "/version") {:get {:handler version-endpoint}}]
-     [(utils/concat-urls prefix "/debug") {:get {:handler debug-endpoint}}]
+     ["/healthcheck"
+      {:get {:handler healthcheck}}]
+
+     [(utils/concat-urls prefix "/version")
+      {:get {:handler version-endpoint}}]
+     [(utils/concat-urls prefix "/debug")
+      {:get {:handler debug-endpoint}}]
 
      ;; Sitemap at root
-     [(utils/concat-urls prefix "/sitemap.xml") {:get {:handler sitemap-index-xml}}]
+     [(utils/concat-urls prefix "/sitemap.xml")
+      {:get {:handler sitemap-index-xml
+             :middleware [wrap-gzip]}}]
 
      ;; Root handlers
      [prefix {:get {:handler root-redirect-handler
                     :middleware [wrap-gzip]}}]
-     [(utils/concat-urls prefix "/") {:get {:handler root-redirect-handler
-                                            :middleware [wrap-gzip]}}]
+     [(utils/concat-urls prefix "/")
+      {:get {:handler root-redirect-handler
+             :middleware [wrap-gzip]}}]
 
      ;; Product routes are generated dynamically from products config
      ]))
@@ -177,7 +196,7 @@
                 ;; Product sitemap
                 [(str product-path "/sitemap.xml")
                  {:get {:handler sitemap-xml
-                        :middleware [product-middleware]}}]
+                        :middleware [product-middleware wrap-gzip]}}]
 
                 ;; Product favicon
                 [(str product-path "/favicon.ico")

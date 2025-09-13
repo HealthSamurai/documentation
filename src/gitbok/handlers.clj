@@ -140,15 +140,8 @@
         (assoc response-with-type :headers headers)))))
 
 (defn render-favicon [context _]
-  ;; TODO: Calculate favicon-path at start/reload instead of runtime
-  (let [product (:product context) ;; Product is now in context from middleware
-        favicon-path (or (:favicon product) "public/favicon.ico")]
-    (if (str/starts-with? favicon-path ".gitbook/")
-      ;; Handle .gitbook/assets paths like render-pictures does
-      (resp/resource-response
-       (str/replace-first favicon-path #".*.gitbook/" ""))
-      ;; Regular resource path
-      (resp/resource-response favicon-path))))
+  (resp/resource-response
+    (state/get-product-state context [:favicon-path])))
 
 (defn render-file-view
   [context request]
@@ -212,12 +205,15 @@
    :body (state/get-sitemap context)})
 
 (defn sitemap-index-xml
-  "Generates sitemap index that references all product sitemaps"
+  "Returns cached sitemap index XML"
   [context _]
   {:status 200
    :headers {"content-type" "application/xml"}
-   ;; TODO: calculate on start and reload
-   :body (gitbok.indexing.impl.sitemap-index/generate-sitemap-index context)})
+   :body (or (gitbok.state/get-cache context :sitemap-index-xml)
+             ;; Fallback: generate on-the-fly if cache is empty
+             (do
+               (log/warn "sitemap cache was not available")
+               (gitbok.indexing.impl.sitemap-index/generate-and-cache-sitemap-index! context)))})
 
 (defn redirect-to-readme
   [context request]
