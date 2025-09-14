@@ -281,12 +281,12 @@
                 ;; Partial root route - redirect to overview/readme
                 [partial-product-path
                  {:get {:handler #'handlers/render-partial-view
-                        :middleware [partial-product-middleware]}}]
+                        :middleware [partial-product-middleware wrap-gzip]}}]
 
-                ;; Partial routes for HTMX - no gzip for faster response
+                ;; Partial routes for HTMX
                 [(str partial-product-path "/*")
                  {:get {:handler #'handlers/render-partial-view
-                        :middleware [partial-product-middleware]}}]
+                        :middleware [partial-product-middleware wrap-gzip]}}]
                 
                 ;; Product root - with trailing slash (redirect to without)
                 [(str product-path "/") {:get {:handler (fn [ctx]
