@@ -263,4 +263,4 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                   (when filepath
                     (or lastmod
                         (indexing/get-lastmod ctx filepath))))]
-    (http/response1 body status lastmod section)))
+    (http/response1 ctx body status lastmod section)))

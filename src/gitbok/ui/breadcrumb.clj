@@ -23,7 +23,7 @@
          [:ol {:class "flex flex-wrap items-center"}
           [:li {:class "flex items-center gap-1.5"}
            [:a {:href (http/get-product-prefixed-url context "overview")
-                :hx-get (str (http/get-product-prefixed-url context "overview") "?partial=true")
+                :hx-get (http/get-partial-product-prefixed-url context "overview")
                 :hx-target "#content"
                 :hx-push-url (http/get-product-prefixed-url context "overview")
                 :hx-swap "outerHTML"
@@ -47,7 +47,7 @@
                     [:li {:key idx
                           :class "flex items-center gap-1.5"}
                      [:a {:href href
-                          :hx-get (str href "?partial=true")
+                          :hx-get (http/get-partial-product-prefixed-url context path)
                           :hx-target "#content"
                           :hx-push-url href
                           :hx-swap "outerHTML"

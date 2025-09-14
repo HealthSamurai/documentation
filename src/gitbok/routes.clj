@@ -109,6 +109,39 @@
            :headers {"Content-Type" "text/plain"}
            :body (str "Product not found for path: " product-path)})))))
 
+(defn partial-product-middleware
+  "Middleware to set current product for partial routes"
+  [handler]
+  (fn [ctx]
+    (let [request (:request ctx)
+          uri (:uri request)
+          prefix (state/get-config ctx :prefix "")
+          ;; Remove prefix and /partial from URI
+          uri-without-prefix (if (and (not (str/blank? prefix))
+                                      (str/starts-with? uri prefix))
+                               (subs uri (count prefix))
+                               uri)
+          ;; Remove /partial prefix
+          uri-without-partial (if (str/starts-with? uri-without-prefix "/partial")
+                                (subs uri-without-prefix 8) ; length of "/partial"
+                                uri-without-prefix)
+          ;; Extract product path from URI (first segment after removing /partial)
+          product-path (when-let [segments (seq (filter #(not (str/blank? %))
+                                                        (str/split uri-without-partial #"/")))]
+                         (str "/" (first segments)))
+          products-config (state/get-products ctx)]
+      (if-let [product (first (filter #(= (:path %) product-path) products-config))]
+        (handler (assoc ctx
+                        :product product
+                        :current-product-id (:id product)))
+        (do
+          (log/warn "Product not found for partial" {:product-path product-path
+                                                     :uri uri
+                                                     :available-paths (map :path products-config)})
+          {:status 404
+           :headers {"Content-Type" "text/plain"}
+           :body (str "Product not found for partial path: " product-path)})))))
+
 (defn wrap-request-context
   "Middleware that creates a unified context containing system state and request"
   [system-context]
@@ -227,6 +260,7 @@
   "Generate routes for a specific product"
   [product prefix]
   (let [product-path (utils/concat-urls prefix (:path product))
+        partial-product-path (utils/concat-urls prefix "/partial" (:path product))
         routes [;; Specific routes first
 
                 ;; Meilisearch
@@ -243,7 +277,17 @@
                 [(str product-path "/favicon.ico")
                  {:get {:handler #'handlers/render-favicon
                         :middleware [product-middleware wrap-gzip]}}]
+                
+                ;; Partial root route - redirect to overview/readme
+                [partial-product-path
+                 {:get {:handler #'handlers/render-partial-view
+                        :middleware [partial-product-middleware]}}]
 
+                ;; Partial routes for HTMX - no gzip for faster response
+                [(str partial-product-path "/*")
+                 {:get {:handler #'handlers/render-partial-view
+                        :middleware [partial-product-middleware]}}]
+                
                 ;; Product root - with trailing slash (redirect to without)
                 [(str product-path "/") {:get {:handler (fn [ctx]
                                                           (let [request (:request ctx)
