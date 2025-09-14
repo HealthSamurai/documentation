@@ -285,5 +285,3 @@
       (resp/content-type response "image/png")
       {:status 404
        :body "OG preview not found"})))
-
-
