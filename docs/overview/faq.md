@@ -4,7 +4,7 @@
 
 To ensure full functionality, the Aidbox container must be able to make **outbound HTTPS (port 443)** connections to the following endpoints:
 
-### Required Internet Addresses
+### Required Internet addresses
 
 | Purpose                     | Address                                                       | Port |
 |-----------------------------|---------------------------------------------------------------|------|
