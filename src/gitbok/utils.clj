@@ -1,6 +1,7 @@
 (ns gitbok.utils
   (:require
    [clojure.string :as str]
+   [gitbok.state :as state]
    [hiccup2.core])
   (:import [java.time Instant ZoneId ZonedDateTime]
            [java.time.format DateTimeFormatter]
@@ -91,6 +92,20 @@
 
 (defn etag [lastmod-iso-date]
   (str "\"" lastmod-iso-date "\""))
+
+(defn generate-versioned-etag 
+  "Generate an ETag that includes build version, docs commit, and content type"
+  [context content-type lastmod]
+  ;; content-type: "full" or "partial"
+  ;; Format: "prefix-buildVersion-docsCommit-lastmod"
+  (let [build-version (state/get-config context :version "unknown")
+        reload-state (state/get-cache context :reload-state {})
+        docs-commit (or (:git-head reload-state) "no-commit")
+        ;; Take first 7 chars of commits for brevity
+        short-docs-commit (subs docs-commit 0 (min 7 (count docs-commit)))
+        short-build-version (subs build-version 0 (min 7 (count build-version)))]
+    (str "\"" content-type "-" short-build-version "-" short-docs-commit 
+         "-" (hash lastmod) "\"")))
 
 (defn ->html [hiccup]
   (str "<!DOCTYPE html>\n" (hiccup2.core/html hiccup)))

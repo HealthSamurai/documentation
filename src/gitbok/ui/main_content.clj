@@ -12,7 +12,7 @@
    [gitbok.ui.breadcrumb :as breadcrumb]
    [gitbok.utils :as utils]
    [gitbok.products :as products]
-   [gitbok.http]
+   [gitbok.http :as http]
    [hiccup2.core]))
 
 (defn empty-content-after-h1?
@@ -131,7 +131,8 @@
         [:a {:href prev-page-url
              :hx-target "#content"
              :hx-push-url prev-page-url
-             :hx-get (str prev-page-url "?partial=true")
+             :hx-get (str (http/get-partial-product-prefixed-url context
+                           (subs prev-page-url (count (http/get-product-prefix context)))))
              :hx-swap "outerHTML"
              :class (str nav-button-classes " flex-row-reverse")}
          [:span {:class "flex flex-col flex-1 text-right justify-center"}
@@ -150,7 +151,8 @@
         [:a {:href next-page-url
              :hx-target "#content"
              :hx-push-url next-page-url
-             :hx-get (str next-page-url "?partial=true")
+             :hx-get (str (http/get-partial-product-prefixed-url context
+                           (subs next-page-url (count (http/get-product-prefix context)))))
              :hx-swap "outerHTML"
              :class nav-button-classes}
          [:span {:class "flex flex-col flex-1 justify-center"}

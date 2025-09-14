@@ -32,7 +32,7 @@
    active:hover:bg-primary-2
    active:hover:text-primary-9"))
 
-(defn render-markdown-link-in-toc [title href & {:keys [is-cross-section] :or {is-cross-section false}}]
+(defn render-markdown-link-in-toc [context title href & {:keys [is-cross-section] :or {is-cross-section false}}]
   (let [is-external (str/starts-with? href "http")
         link-attrs
         {:class leaf-classes
@@ -46,7 +46,8 @@
           (assoc :data-cross-section "true")
           ;; Only add HTMX attributes if not external and not cross-section
           (and (not is-external) (not is-cross-section))
-          (assoc :hx-get (str href "?partial=true")
+          (assoc :hx-get (str (http/get-partial-product-prefixed-url context
+                                  (subs href (count (http/get-product-prefix context)))))
                  :hx-target "#content"
                  :hx-push-url href
                  :hx-swap "outerHTML"))
@@ -201,7 +202,7 @@
                                              :parsed parsed
                                              :href href
                                              :is-cross-section is-cross-section ;; Store the flag in the data structure
-                                             :title (when href (render-markdown-link-in-toc (:title parsed) href
+                                             :title (when href (render-markdown-link-in-toc context (:title parsed) href
                                                                                             :is-cross-section is-cross-section))}))))
                                 (remove nil?)
                                 (treefy)))))))]

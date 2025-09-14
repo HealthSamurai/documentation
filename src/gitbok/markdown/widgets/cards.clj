@@ -3,7 +3,7 @@
    [gitbok.state :as state]
    [clojure.string :as str]
    [hiccup2.core]
-   [gitbok.http]
+   [gitbok.http :as http]
    [gitbok.indexing.core :as indexing]))
 
 (defn render-cards-from-table
@@ -134,7 +134,9 @@
                           "rounded-sm overflow-hidden h-full "
                           "min-h-[150px] md:max-h-[300px] "
                           "transition-colors duration-200 relative")
-              :hx-get (when (and clickable? (not external?)) (str href "?partial=true"))
+              :hx-get (when (and clickable? (not external?))
+                       (str (http/get-partial-product-prefixed-url context
+                             (subs href (count (http/get-product-prefix context))))))
               :hx-target (when (and clickable? (not external?)) "#content")
               :hx-push-url (when (and clickable? (not external?)) href)
               :hx-swap (when (and clickable? (not external?)) "outerHTML")}

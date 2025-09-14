@@ -6,8 +6,11 @@
    [gitbok.utils :as utils]))
 
 (defn response1
-  ([body status lastmod section]
-   (let [html (utils/->html body)]
+  ([context body status lastmod section]
+   (let [html (utils/->html body)
+         etag (if (and context lastmod)
+                (utils/generate-versioned-etag context "full" lastmod)
+                (utils/etag lastmod))]
      {:status (or status 200)
       :headers
       (cond-> {"content-type" "text/html; ; charset=utf-8"}
@@ -19,10 +22,13 @@
          "Scroll-To-Id" section
          "Cache-Control" "public, max-age=300"
          "Last-Modified" (utils/iso-to-http-date lastmod)
-         "ETag" (utils/etag lastmod)))
+         "ETag" etag))
       :body html}))
+  ([body status lastmod section]
+   ;; Backward compatibility - no context
+   (response1 nil body status lastmod section))
   ([body]
-   (response1 body 200 nil nil)))
+   (response1 nil body 200 nil nil)))
 
 (defn get-absolute-url [context relative-url]
   (utils/absolute-url (state/get-config context :base-url)
@@ -58,6 +64,11 @@
 (defn get-product-prefixed-url
   [context relative-url]
   (utils/concat-urls (get-product-prefix context) relative-url))
+
+(defn get-partial-product-prefixed-url
+  "Get URL with /partial prefix for HTMX requests"
+  [context relative-url]
+  (utils/concat-urls (get-prefixed-url context "/partial") (products/path context) relative-url))
 
 (defn get-product-absolute-url
   [context relative-url]

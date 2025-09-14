@@ -105,6 +105,29 @@
   (let [if-none-match (get-in request [:headers "if-none-match"])]
     (and if-none-match (= if-none-match etag))))
 
+(defn handle-cached-response
+  "Common function to handle cached responses with ETag and Last-Modified"
+  [ctx filepath content-type render-fn]
+  (let [request (:request ctx)
+        lastmod (indexing/get-lastmod ctx filepath)
+        lastmod-iso (utils/iso-to-http-date lastmod)
+        etag (utils/generate-versioned-etag ctx content-type lastmod-iso)]
+    (if (or (check-cache-etag request etag)
+            (and lastmod
+                 (check-cache-lastmod request lastmod)))
+      {:status 304
+       :headers {"Cache-Control" "public, max-age=300"
+                 "Last-Modified" lastmod-iso
+                 "ETag" etag
+                 "Vary" "Accept"}}
+      (let [response (render-fn)]
+        (assoc response
+               :headers (merge (:headers response {})
+                               {"Cache-Control" "public, max-age=300"
+                                "Last-Modified" (or lastmod-iso "")
+                                "ETag" etag
+                                "Vary" "Accept"}))))))
+
 (defn render-pictures [ctx]
   (let [request (:request ctx)
         uri (:uri request)
@@ -155,7 +178,7 @@
 
 (defn render-favicon [ctx]
   (resp/resource-response
-    (state/get-product-state ctx [:favicon-path])))
+   (state/get-product-state ctx [:favicon-path])))
 
 (defn render-file-view
   [ctx]
@@ -184,26 +207,19 @@
         ;; Otherwise proceed with normal file handling
         (let [filepath (indexing/uri->filepath ctx uri-relative)]
           (if filepath
-            (let [lastmod (indexing/get-lastmod ctx filepath)
-                  lastmod-iso (utils/iso-to-http-date lastmod)
-                  etag (utils/etag lastmod-iso)]
-              (if (or (check-cache-etag request etag)
-                      (and lastmod
-                           (check-cache-lastmod request lastmod)))
-                {:status 304
-                 :headers {"Cache-Control" "public, max-age=300"
-                           "Last-Modified" lastmod-iso
-                           "ETag" etag}}
-                (let [{:keys [title description content section]}
-                      (render-file ctx filepath)]
-                  (layout/layout
-                   ctx
-                   {:content content
-                    :lastmod lastmod
-                    :title title
-                    :description description
-                    :section section
-                    :filepath filepath}))))
+            (handle-cached-response ctx filepath "full"
+                                    (fn []
+                                      (let [{:keys [title description content section]}
+                                            (render-file ctx filepath)
+                                            lastmod (indexing/get-lastmod ctx filepath)]
+                                        (layout/layout
+                                         ctx
+                                         {:content content
+                                          :lastmod lastmod
+                                          :title title
+                                          :description description
+                                          :section section
+                                          :filepath filepath}))))
 
             (layout/layout
              ctx
@@ -212,6 +228,59 @@
               :title "Not found"
               :description "Page not found"
               :hide-breadcrumb true})))))))
+
+(defn render-partial-view
+  "Render partial content for HTMX requests (without full layout)"
+  [ctx]
+  (let [request (:request ctx)
+        uri (:uri request)
+        ;; Remove /partial prefix to get the actual resource path
+        uri-without-partial (str/replace-first uri #"/partial" "")
+        product-path (products/path ctx)
+        prefix (state/get-config ctx :prefix "")
+        uri-relative
+        (utils/uri-to-relative
+         uri-without-partial
+         prefix
+         product-path)]
+    ;; Partial requests are only for HTML content, not images
+    ;; Handle root path - redirect to readme
+    (if (or (str/blank? uri-relative)
+            (= "/" uri-relative))
+      (let [readme-url (or (products/readme-url ctx) "readme")]
+        (handle-cached-response ctx readme-url "partial"
+                                (fn []
+                                  (let [{:keys [_title _description content _section]}
+                                        (render-file ctx readme-url)]
+                                    {:status 200
+                                     :headers {"Content-Type" "text/html; charset=utf-8"}
+                                     :body (str (hiccup2.core/html
+                                                 (main-content/content-div ctx uri-without-partial content readme-url true false)))}))))
+        ;; Check for redirects first
+      (if-let [redirect-target (indexing/get-redirect ctx uri-relative)]
+          ;; Return HTTP 301 redirect to partial URL
+        (let [target-url (str (http/get-product-prefixed-url ctx "/partial")
+                              (http/get-product-prefixed-url ctx redirect-target))]
+          {:status 301
+           :headers {"Location" target-url}})
+          ;; Otherwise proceed with normal file handling
+        (let [filepath (indexing/uri->filepath ctx uri-relative)]
+          (if filepath
+            (handle-cached-response ctx filepath "partial"
+                                    (fn []
+                                      (let [{:keys [_title _description content _section]}
+                                            (render-file ctx filepath)]
+                                        {:status 200
+                                         :headers {"Content-Type" "text/html; charset=utf-8"}
+                                         :body (str (hiccup2.core/html
+                                                     (main-content/content-div ctx uri-without-partial content filepath true false)))})))
+
+              ;; 404 for partial requests
+            {:status 404
+             :headers {"Content-Type" "text/html; charset=utf-8"
+                       "Cache-Control" "private, no-cache"}
+             :body (str (hiccup2.core/html
+                         (not-found/not-found-view ctx uri-relative)))}))))))
 
 (defn sitemap-xml
   [ctx]
@@ -261,10 +330,10 @@
   "Serves static files with proper content type and cache headers"
   [ctx]
   (let [request (:request ctx)
-        uri (http/url-without-prefix ctx (:uri request))
-        path (str/replace uri #"^/static/" "")
-        response (resp/resource-response (utils/concat-urls "public" path))]
-    (when response
+        uri (:uri request)
+        ;; Remove /static prefix to get actual file path
+        file-path (str/replace-first uri #"^.*/static" "public")]
+    (when-let [response (resp/resource-response file-path)]
       (let [;; Cache for 1 year (files are versioned)
             cache-control "public, max-age=31536000, immutable"
             ;; First add content-type
@@ -275,13 +344,22 @@
         (assoc response-with-type :headers headers)))))
 
 (defn serve-og-preview
-  "Serves OG preview images from resources"
+  "Serves OG preview images with proper headers"
   [ctx]
   (let [request (:request ctx)
-        uri (http/url-without-prefix ctx (:uri request))
-        path (str/replace uri #"^/public/og-preview/" "")
-        resource-path (utils/concat-urls "public/og-preview" path)]
-    (if-let [response (resp/resource-response resource-path)]
-      (resp/content-type response "image/png")
-      {:status 404
-       :body "OG preview not found"})))
+        uri (:uri request)
+        prefix (state/get-config ctx :prefix "")
+        ;; Extract file path from /public/og-preview/<product>/<path>
+        path-pattern (re-pattern (str "^" (java.util.regex.Pattern/quote prefix) "/public/og-preview/(.+)$"))
+        file-path (when-let [[_ relative-path] (re-find path-pattern uri)]
+                    (str "public/og-preview/" relative-path))]
+    (when file-path
+      (when-let [response (resp/resource-response file-path)]
+        (let [;; Cache OG images for 1 hour
+              cache-control "public, max-age=3600"
+              ;; First add content-type
+              response-with-type (content-type-response response request)
+              ;; Then add cache-control to the headers map
+              headers (assoc (or (:headers response-with-type) {})
+                             "Cache-Control" cache-control)]
+          (assoc response-with-type :headers headers))))))
