@@ -6,15 +6,16 @@ services:
     ports:
       - "8081:8081"
     environment:
-      - DOCS_VOLUME_PATH=/repo/docs-new
-      - DOCS_REPO_PATH=/repo
-      - RELOAD_CHECK_INTERVAL_SEC=10
       - BASE_URL=http://localhost:8081
-      - DOCS_PREFIX=/docs
       - DEV=false
-      - MEILISEARCH_URL=http://meilisearch:7700
+      - DOCS_PREFIX=/docs
+      - DOCS_REPO_PATH=/repo
+      - DOCS_VOLUME_PATH=/repo/docs-new
       - MEILISEARCH_API_KEY=${MEILISEARCH_API_KEY:-60DBZGy6zoDL6Q--s1-dHBWptiVKvK-XRsaacdvkOSM}
+      - MEILISEARCH_URL=http://meilisearch:7700
       - PORT=8081
+      - RELOAD_CHECK_INTERVAL_SEC=10
+      - EXAMPLES_UPDATE_INTERVAL=1
     env_file:
       - .env
     user: "1000:1000"

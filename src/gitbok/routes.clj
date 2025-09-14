@@ -29,18 +29,16 @@
           method (:request-method request)
           uri (:uri request)
           query-string (:query-string request)]
-      (log/info "→ Request" {:method method
-                             :uri uri
-                             :query query-string
-                             :headers (select-keys (:headers request) ["user-agent" "referer"])})
       (try
         (let [response (handler request)
               duration (- (System/currentTimeMillis) start-time)
               status (:status response)]
-          (log/info "← Response" {:method method
-                                  :uri uri
-                                  :status status
-                                  :duration-ms duration})
+          (log/info
+           (str uri " " status)
+           {:method method
+            :uri uri
+            :duration-ms duration
+            :query-string query-string})
           response)
         (catch Exception e
           (let [duration (- (System/currentTimeMillis) start-time)]
@@ -71,18 +69,18 @@
           {:status 500
            :headers {"Content-Type" "text/html; charset=utf-8"}
            :body (str "<!DOCTYPE html>\n"
-                     "<html><head><title>Internal Server Error</title></head>\n"
-                     "<body>\n"
-                     "<h1>Internal Server Error</h1>\n"
-                     "<p>An unexpected error occurred.</p>\n"
-                     "<p><strong>Error ID:</strong> " error-id "</p>\n"
+                      "<html><head><title>Internal Server Error</title></head>\n"
+                      "<body>\n"
+                      "<h1>Internal Server Error</h1>\n"
+                      "<p>An unexpected error occurred.</p>\n"
+                      "<p><strong>Error ID:</strong> " error-id "</p>\n"
                      ;; Only show stack trace in dev mode
-                     (when (state/get-config request :dev-mode)
-                       (str "<h2>Stack Trace (Development Mode Only)</h2>\n"
-                            "<pre style=\"background: #f4f4f4; padding: 10px; overflow: auto;\">"
-                            (hiccup.util/escape-html stack-trace)
-                            "</pre>"))
-                     "</body></html>")})))))
+                      (when (state/get-config request :dev-mode)
+                        (str "<h2>Stack Trace (Development Mode Only)</h2>\n"
+                             "<pre style=\"background: #f4f4f4; padding: 10px; overflow: auto;\">"
+                             (hiccup.util/escape-html stack-trace)
+                             "</pre>"))
+                      "</body></html>")})))))
 (defn product-middleware
   "Middleware to set current product based on route"
   [handler]
@@ -102,8 +100,8 @@
           products-config (state/get-products ctx)]
       (if-let [product (first (filter #(= (:path %) product-path) products-config))]
         (handler (assoc ctx
-                          :product product
-                          :current-product-id (:id product)))
+                        :product product
+                        :current-product-id (:id product)))
         (do
           (log/warn "Product not found" {:product-path product-path
                                          :available-paths (map :path products-config)})
@@ -325,6 +323,4 @@
        ;; Use linear-router for predictable route matching order
        :router reitit.core/linear-router
        ;; Disable conflict detection since we want ordered matching
-       :conflicts nil})))
-
-)
+       :conflicts nil}))))
