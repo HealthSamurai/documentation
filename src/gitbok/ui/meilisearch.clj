@@ -20,7 +20,7 @@
           ;; Filter to exclude deprecated pages using STARTS WITH
           ;; This operator is available by default (no experimental features needed)
           deprecated-filter "NOT url STARTS WITH \"https://www.health-samurai.io/docs/aidbox/deprecated\""
-          request-body {:federation {:limit 30} ; Set limit at federation level
+          request-body {:federation {:limit 100} ; Increased limit to get more diverse results
                         :queries [{:indexUid index-name
                                    :q query
                                    :filter (str deprecated-filter " AND hierarchy_lvl6 = \"" query "\"")
@@ -218,7 +218,7 @@
                                   ;; No grouping needed
                                   :else nil)]
              {:group-info deepest-common
-              :items (vec items)}))
+              :items (vec (take 10 items))}))
          groups)))
 
 (defn build-final-url
