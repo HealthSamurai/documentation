@@ -7,7 +7,7 @@
 * Aidbox FHIR server
   * **Breaking change:** ViewDefinitions are no longer materialized automatically. You now need to explicitly call the new [operation](../modules/sql-on-fhir/operation-materialize.md) to create a database table or view.
   * Added support for the `$translate` operation on `ConceptMap` resources in the Aidbox Terminology [module](../terminology-module/aidbox-terminology-module/capabilities.md).
-  * [Instance name](../reference/settings/general.md#instance-name) and [instance id ](../reference/settings/general.md#box-id)are now included in OTEL traces, logs, and metrics.
+  * [Instance name](../reference/settings/general.md#instance-name) and [instance id](../reference/settings/general.md#box-id) are now included in OTEL traces, logs, and metrics.
   * Enhanced validation for [FHIRSchema](../modules/profiling-and-validation/fhir-schema-validator/) resources.
   * Added the ability to restart Cloud Sandbox directly from the [Aidbox portal](https://aidbox.app/).
   * Improvements in [`_filter`](../api/rest-api/fhir-search/searchparameter.md#filter) parameter processing.
