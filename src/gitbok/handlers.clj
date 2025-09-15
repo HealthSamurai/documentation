@@ -131,9 +131,9 @@
         ;; Per RFC 7232: If-None-Match takes precedence over If-Modified-Since
         cache-hit? (if if-none-match
                      (check-cache-etag request etag)
-                     (and if-modified-since lastmod 
+                     (and if-modified-since lastmod
                           (check-cache-lastmod request lastmod)))]
-    
+
     (if cache-hit?
       {:status 304
        :headers {"Cache-Control" "public, max-age=300"
@@ -217,8 +217,12 @@
           (picture-url? uri))
       (render-pictures ctx)
 
+      ;; Special case: redirect "readme" to root
+      (= uri-relative "readme")
+      {:status 301
+       :headers {"Location" (http/get-product-prefixed-url ctx "")}}
+
       :else
-      ;; Check for redirects first
       (if-let [redirect-target (indexing/get-redirect ctx uri-relative)]
         ;; Return HTTP 301 redirect
         (let [target-url (http/get-product-prefixed-url ctx redirect-target)]
@@ -276,31 +280,36 @@
                                      :headers {"Content-Type" "text/html; charset=utf-8"}
                                      :body (str (hiccup2.core/html
                                                  (main-content/content-div ctx uri-without-partial content readme-url true false)))}))))
-        ;; Check for redirects first
-      (if-let [redirect-target (indexing/get-redirect ctx uri-relative)]
+        ;; Special case: redirect "readme" to root
+      (if (= uri-relative "readme")
+        {:status 301
+         :headers {"Location" (str (http/get-product-prefixed-url ctx "/partial")
+                                   (http/get-product-prefixed-url ctx ""))}}
+        ;; Check for other redirects
+        (if-let [redirect-target (indexing/get-redirect ctx uri-relative)]
           ;; Return HTTP 301 redirect to partial URL
-        (let [target-url (str (http/get-product-prefixed-url ctx "/partial")
-                              (http/get-product-prefixed-url ctx redirect-target))]
-          {:status 301
-           :headers {"Location" target-url}})
+          (let [target-url (str (http/get-product-prefixed-url ctx "/partial")
+                                (http/get-product-prefixed-url ctx redirect-target))]
+            {:status 301
+             :headers {"Location" target-url}})
           ;; Otherwise proceed with normal file handling
-        (let [filepath (indexing/uri->filepath ctx uri-relative)]
-          (if filepath
-            (handle-cached-response ctx filepath "partial"
-                                    (fn []
-                                      (let [{:keys [_title _description content _section]}
-                                            (render-file ctx filepath)]
-                                        {:status 200
-                                         :headers {"Content-Type" "text/html; charset=utf-8"}
-                                         :body (str (hiccup2.core/html
-                                                     (main-content/content-div ctx uri-without-partial content filepath true false)))})))
+          (let [filepath (indexing/uri->filepath ctx uri-relative)]
+            (if filepath
+              (handle-cached-response ctx filepath "partial"
+                                      (fn []
+                                        (let [{:keys [_title _description content _section]}
+                                              (render-file ctx filepath)]
+                                          {:status 200
+                                           :headers {"Content-Type" "text/html; charset=utf-8"}
+                                           :body (str (hiccup2.core/html
+                                                       (main-content/content-div ctx uri-without-partial content filepath true false)))})))
 
               ;; 404 for partial requests
-            {:status 404
-             :headers {"Content-Type" "text/html; charset=utf-8"
-                       "Cache-Control" "private, no-cache"}
-             :body (str (hiccup2.core/html
-                         (not-found/not-found-view ctx uri-relative)))}))))))
+              {:status 404
+               :headers {"Content-Type" "text/html; charset=utf-8"
+                         "Cache-Control" "private, no-cache"}
+               :body (str (hiccup2.core/html
+                           (not-found/not-found-view ctx uri-relative)))})))))))
 
 (defn sitemap-xml
   [ctx]
@@ -321,13 +330,23 @@
 
 (defn redirect-to-readme
   [ctx]
-  (let [request (:request ctx)
-        prefix (state/get-config ctx :prefix "")
-        uri (products/uri
-             ctx prefix
-             (or (products/readme-url ctx) "readme"))
-        new-ctx (assoc ctx :request (assoc request :uri uri))]
-    (render-file-view new-ctx)))
+  (let [readme-path (products/readme-relative-path ctx)
+        filepath (or readme-path "readme/README.md")]
+    ;; Directly render the readme file without going through URI resolution
+    ;; to avoid redirect loops
+    (handle-cached-response ctx filepath "full"
+                            (fn []
+                              (let [{:keys [title description content section]}
+                                    (render-file ctx filepath)
+                                    lastmod (indexing/get-lastmod ctx filepath)]
+                                (layout/layout
+                                 ctx
+                                 {:content content
+                                  :lastmod lastmod
+                                  :title title
+                                  :description description
+                                  :section section
+                                  :filepath filepath}))))))
 
 (defn root-redirect-handler
   "Handles root path redirect based on configuration"

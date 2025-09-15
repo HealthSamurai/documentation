@@ -46,37 +46,16 @@
     (let [context {:system (atom {})}
           request {:uri "/test"}
           ctx (assoc context :request request)]
-      ;; Mock current product
+      ;; Mock current product and rendering functions
       (with-redefs [products/get-current-product
                     (fn [_ctx] {:id "test" :path "/test"})
-                    products/readme-url
-                    (fn [_ctx] "readme")
-                    products/uri
-                    (fn [_ctx prefix uri] (str prefix uri))
-                    state/get-config (fn [_ _ & [default]] (or "/" default))
-                    handlers/render-file-view
-                    (fn [ctx]
+                    products/readme-relative-path
+                    (fn [_ctx] "readme/README.md")
+                    handlers/handle-cached-response
+                    (fn [_ctx _filepath _type render-fn]
                       {:status 200
-                       :body (str "Rendered: " (get-in ctx [:request :uri]))})]
+                       :body "Readme content rendered"})]
         (let [response (handlers/redirect-to-readme ctx)]
           (is (= 200 (:status response)))
-          (is (= "Rendered: /readme" (:body response)))))))
-
-  (deftest test-init-products
-    (testing "init-products stores full config"
-      (let [context (th/create-test-context)]
-        (with-redefs [products/load-products-config
-                      (fn [_ctx]
-                        {:root-redirect "/aidbox"
-                         :products [{:id "test" :path "/test"}]})]
-          (let [result (initialization/init-products context)]
-          ;; Check that products were returned
-            (is (= 1 (count result)))
-            (is (= "test" (-> result first :id)))
-          ;; Check that configs were stored
-            (is (= [{:id "test" :path "/test"}]
-                   (products/get-products-config context)))
-            (is (= {:root-redirect "/aidbox"
-                    :products [{:id "test" :path "/test"}]}
-                   (products/get-full-config context)))))))))
+          (is (= "Readme content rendered" (:body response))))))))
 

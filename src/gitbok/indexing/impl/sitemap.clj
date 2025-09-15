@@ -14,7 +14,9 @@
    [:lastmod lastmod]])
 
 (defn generate-sitemap [context all-related-urls lastmod-page]
-  (let [content
+  (let [;; Filter out URLs ending with /readme to avoid duplicates
+        filtered-urls (filterv #(not (str/ends-with? % "/readme")) all-related-urls)
+        content
         (mapv
          (fn [related-url]
            (let [filepath (uri-to-file/uri->filepath
@@ -22,7 +24,7 @@
                            related-url)
                  priority
                  (if
-                  (or (str/starts-with? related-url "readme/")
+                  (or (= related-url "")  ;; Root page (previously readme)
                       (str/starts-with? related-url "getting-started/")
                       (str/starts-with? related-url "api/")
                       (str/starts-with? related-url "database/")
@@ -33,7 +35,7 @@
               (http/get-product-absolute-url context related-url)
               (get lastmod-page filepath)
               priority)))
-         all-related-urls)
+         filtered-urls)
 
         urlset
         (xml/sexp-as-element

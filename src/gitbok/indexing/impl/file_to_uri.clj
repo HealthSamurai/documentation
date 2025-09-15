@@ -3,11 +3,13 @@
    [clojure.tools.logging :as log]
    [clojure.string :as str]
    [gitbok.indexing.impl.summary]
+   [gitbok.products :as products]
    [gitbok.state :as state]))
 
 (defn file->uri-idx [context]
   (let [summary-text (gitbok.indexing.impl.summary/read-summary context)
         link-pattern #"\[([^\]]+)\]\(([^)]+)\)"
+        readme-path (products/readme-relative-path context)
 
         result
         (into {}
@@ -17,7 +19,17 @@
                       clean-path (str/replace filepath #"\.md$" "")
                       ;; Generate URL from file path
                       uri (cond
-                            ;; Root README
+                            ;; Root README - check against configured readme path
+                            (and readme-path
+                                 (= filepath readme-path))
+                            "/"
+
+                            ;; Also check clean path
+                            (and readme-path
+                                 (= clean-path (str/replace readme-path #"\.md$" "")))
+                            "/"
+
+                            ;; Legacy fallback
                             (= clean-path "README")
                             "/"
 

@@ -189,6 +189,8 @@
                                                          (str/lower-case (first (str/split current-section #" ")))))))
 
                                               href (:href parsed)
+                                              ;; Special handling for readme - should map to root
+                                              href (if (= href "readme") "" href)
                                               href
                                               (when href (if (str/starts-with? href "http")
                                                            href

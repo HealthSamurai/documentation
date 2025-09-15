@@ -4,6 +4,7 @@
    [clojure.string :as str]
    [gitbok.indexing.impl.summary]
    [gitbok.indexing.impl.redirects :as redirects]
+   [gitbok.products :as products]
    [clojure.data]))
 
 (defn uri->filepath [uri->file-idx ^String uri]
@@ -29,6 +30,7 @@
   (let [summary-text (gitbok.indexing.impl.summary/read-summary context)
         lines (str/split-lines summary-text)
         redirects-raw (redirects/redirects context)
+        readme-path (products/readme-relative-path context)
         ;; Process redirects: remove leading slash and clean up README.md paths
         redirects (->> redirects-raw
                        (mapv (fn [[k v]]
@@ -36,7 +38,17 @@
                                      ;; Clean up the target path similar to how files are processed
                                      to-path-clean (str/replace v #"\.md$" "")
                                      to-url (cond
-                                              ;; Root README
+                                              ;; Root README - check against configured readme path
+                                              (and readme-path
+                                                   (= v readme-path))
+                                              ""
+
+                                              ;; Also check clean path
+                                              (and readme-path
+                                                   (= to-path-clean (str/replace readme-path #"\.md$" "")))
+                                              ""
+
+                                              ;; Legacy fallback
                                               (= to-path-clean "README")
                                               ""
 
@@ -47,7 +59,10 @@
                                               ;; Regular files
                                               :else
                                               to-path-clean)]
-                                 [from-url to-url])))
+                                 ;; Don't create redirect if from and to are the same
+                                 (when (not= from-url to-url)
+                                   [from-url to-url]))))
+                       (remove nil?)
                        (into {}))
         index
         (loop [lines lines
@@ -73,7 +88,17 @@
                           clean-path (str/replace path #"\.md$" "")
                           ;; Create URL from file path
                           url (cond
-                                ;; Root README
+                                ;; Root README - check against configured readme path
+                                (and readme-path
+                                     (= path readme-path))
+                                ""
+
+                                ;; Also check clean path (without .md)
+                                (and readme-path
+                                     (= clean-path (str/replace readme-path #"\.md$" "")))
+                                ""
+
+                                ;; Legacy fallback
                                 (= clean-path "README")
                                 ""
 
@@ -84,8 +109,16 @@
                                 ;; Regular files
                                 :else
                                 clean-path)]
-                      (recur (rest lines)
-                             (assoc acc url path)))))
+                      (let [;; Map the URL to the original path
+                            acc-with-url (assoc acc url path)]
+                        ;; For root page, also add "readme" mapping if it matches the pattern
+                        (if (and (= url "")
+                                 readme-path
+                                 (str/starts-with? readme-path "readme/"))
+                          (recur (rest lines)
+                                 (assoc acc-with-url "readme" path))
+                          (recur (rest lines)
+                                 acc-with-url))))))
 
                 :else
                 (recur (rest lines) acc)))))]
