@@ -1,6 +1,7 @@
 (ns gitbok.utils
   (:require
    [clojure.string :as str]
+   [clojure.tools.logging :as log]
    [gitbok.state :as state]
    [hiccup2.core])
   (:import [java.time Instant ZoneId ZonedDateTime]
@@ -93,7 +94,7 @@
 (defn etag [lastmod-iso-date]
   (str "\"" lastmod-iso-date "\""))
 
-(defn generate-versioned-etag 
+(defn generate-versioned-etag
   "Generate an ETag that includes build version, docs commit, and content type"
   [context content-type lastmod]
   ;; content-type: "full" or "partial"
@@ -104,7 +105,8 @@
         ;; Take first 7 chars of commits for brevity
         short-docs-commit (subs docs-commit 0 (min 7 (count docs-commit)))
         short-build-version (subs build-version 0 (min 7 (count build-version)))]
-    (str "\"" content-type "-" short-build-version "-" short-docs-commit 
+    ;; ETag must be quoted per RFC 7232
+    (str "\"" content-type "-" short-build-version "-" short-docs-commit
          "-" (hash lastmod) "\"")))
 
 (defn ->html [hiccup]
@@ -118,6 +120,31 @@
     (let [instant (Instant/parse iso-string)
           zoned (ZonedDateTime/ofInstant instant (ZoneId/of "GMT"))]
       (.format ^DateTimeFormatter http-date-formatter zoned))))
+
+(defn parse-http-date
+  "Parse HTTP date string to Instant"
+  [date-string]
+  (when date-string
+    (try
+      (.toInstant
+       (ZonedDateTime/parse date-string http-date-formatter))
+      (catch Exception _
+        ;; Try alternative formats that browsers might send
+        (try
+          ;; Try parsing as RFC 850 format (deprecated but still used)
+          (let [rfc850-formatter (DateTimeFormatter/ofPattern "EEEE, dd-MMM-yy HH:mm:ss 'GMT'" Locale/US)]
+            (.toInstant
+             (ZonedDateTime/parse date-string rfc850-formatter)))
+          (catch Exception _
+            ;; Try parsing as ANSI C asctime() format
+            (try
+              (let [asctime-formatter (DateTimeFormatter/ofPattern "EEE MMM dd HH:mm:ss yyyy" Locale/US)]
+                (.toInstant
+                 (ZonedDateTime/parse date-string asctime-formatter)))
+              (catch Exception e3
+                (log/debug "Could not parse HTTP date" {:date date-string
+                                                        :error (.getMessage e3)})
+                nil))))))))
 
 (defn absolute-url
   [base-url prefix relative-url]

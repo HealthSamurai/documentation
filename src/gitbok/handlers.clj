@@ -94,16 +94,30 @@
      :title (:title result)}))
 
 (defn check-cache-lastmod [request last-mod]
-  (let [if-modified-since
-        (get-in request [:headers "if-modified-since"])
+  (let [if-modified-since (get-in request [:headers "if-modified-since"])
         lastmod (utils/iso-to-http-date last-mod)]
-    (and if-modified-since
-         lastmod
-         (= if-modified-since lastmod))))
+    (when (and if-modified-since lastmod)
+      (try
+        ;; Parse both dates and compare as timestamps
+        (let [if-modified-instant (utils/parse-http-date if-modified-since)
+              lastmod-instant (utils/parse-http-date lastmod)]
+          (and if-modified-instant
+               lastmod-instant
+               ;; Use >= to handle minor time differences (within 1 second)
+               (>= (.toEpochMilli if-modified-instant)
+                   (.toEpochMilli lastmod-instant))))
+        (catch Exception e
+          ;; Fallback to string comparison if parsing fails
+          (log/debug "Failed to parse dates for comparison"
+                     {:error (.getMessage e)
+                      :if-modified-since if-modified-since
+                      :lastmod lastmod})
+          (= if-modified-since lastmod))))))
 
 (defn check-cache-etag [request etag]
   (let [if-none-match (get-in request [:headers "if-none-match"])]
-    (and if-none-match (= if-none-match etag))))
+    ;; Direct comparison - both should have quotes
+    (= if-none-match etag)))
 
 (defn handle-cached-response
   "Common function to handle cached responses with ETag and Last-Modified"
@@ -111,10 +125,16 @@
   (let [request (:request ctx)
         lastmod (indexing/get-lastmod ctx filepath)
         lastmod-iso (utils/iso-to-http-date lastmod)
-        etag (utils/generate-versioned-etag ctx content-type lastmod-iso)]
-    (if (or (check-cache-etag request etag)
-            (and lastmod
-                 (check-cache-lastmod request lastmod)))
+        etag (utils/generate-versioned-etag ctx content-type lastmod-iso)
+        if-none-match (get-in request [:headers "if-none-match"])
+        if-modified-since (get-in request [:headers "if-modified-since"])
+        ;; Per RFC 7232: If-None-Match takes precedence over If-Modified-Since
+        cache-hit? (if if-none-match
+                     (check-cache-etag request etag)
+                     (and if-modified-since lastmod 
+                          (check-cache-lastmod request lastmod)))]
+    
+    (if cache-hit?
       {:status 304
        :headers {"Cache-Control" "public, max-age=300"
                  "Last-Modified" lastmod-iso
