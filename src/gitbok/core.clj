@@ -22,15 +22,17 @@
          version (state/get-config context :version)]
 
      ;; Initialize all products and their indices
-     (initialization/init-all-products! context :read-markdown-fn handlers/read-markdown-file)
+     (initialization/init-all-products!
+       context
+       :read-markdown-fn handlers/read-markdown-file)
 
-     ;; Mark app as initialized for healthcheck
-     (state/set-cache! context :app-initialized true)
 
      ;; Create and start HTTP server
      (let [handler (routes/create-app context)
            server-instance (http-kit/run-server handler {:port port})]
        (state/set-server! context server-instance)
+       ;; Mark app as initialized for healthcheck
+       (state/set-cache! context :app-initialized true)
        (log/info "Server started" {:port port
                                    :prefix prefix
                                    :base-url base-url

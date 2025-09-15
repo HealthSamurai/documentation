@@ -28,10 +28,18 @@
   "Initialize application state with config from environment.
    All System/getenv calls happen here at startup.
    Returns a system context that should be used for all subsequent operations."
-  [& [{:keys [port prefix base-url dev-mode version
-              github-token docs-volume-path docs-repo-path
-              examples-update-interval reload-check-interval
-              meilisearch-url meilisearch-api-key]}]]
+  [& [{:keys [base-url
+              dev-mode
+              docs-repo-path
+              docs-volume-path
+              examples-update-interval
+              github-token
+              meilisearch-api-key
+              meilisearch-url
+              port
+              prefix
+              reload-check-interval
+              version]}]]
   (let [config {:port (or port
                           (when-let [env-port (System/getenv "PORT")]
                             (Integer/parseInt env-port))
@@ -48,7 +56,7 @@
                              (slurp-resource-init "version"))
                 ;; All environment variables are now at the same level
                 :github-token (or github-token (System/getenv "GITHUB_TOKEN"))
-                :docs-volume-path (or docs-volume-path 
+                :docs-volume-path (or docs-volume-path
                                      (System/getenv "DOCS_VOLUME_PATH")
                                      ;; Fallback for local development
                                      (when (.exists (clojure.java.io/file "docs-new"))
