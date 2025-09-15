@@ -107,7 +107,7 @@
 (defn document [context body {:keys [title description canonical-url og-preview lastmod favicon-url section]}]
   (let [version (gitbok.http/get-version context)
         version-param (when version (str "?v=" version))]
-    [:html {:lang "en"}
+    [:html.antialiased {:lang "en"}
      [:head
       (uui/raw "<!-- Google Tag Manager -->")
       [:script
