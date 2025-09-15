@@ -87,6 +87,7 @@
     * [GCP Pub/Sub AidboxTopicDestination](tutorials/subscriptions-tutorials/gcp-pub-sub-aidboxtopicdestination.md)
     * [Webhook AidboxTopicDestination](tutorials/subscriptions-tutorials/webhook-aidboxtopicdestination.md)
     * [AidboxTopicSubscription NATS tutorial](tutorials/subscriptions-tutorials/aidboxtopicsubscription-nats-tutorial.md)
+    * [AidboxTopicSubscription RabbitMQ tutorial](tutorials/subscriptions-tutorials/rabbitmq-tutorial.md)
   * [Artifact Registry Tutorials](tutorials/artifact-registry-tutorials/README.md)
     * [How to create FHIR npm package](tutorials/artifact-registry-tutorials/how-to-create-fhir-npm-package.md)
     * [Define Extensions](tutorials/artifact-registry-tutorials/define-extensions/README.md)
