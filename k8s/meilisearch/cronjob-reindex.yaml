@@ -4,7 +4,7 @@ metadata:
   name: meilisearch-reindex
   namespace: gitbok
 spec:
-  schedule: "0 */4 * * *"
+  schedule: "0 6 * * *"
   successfulJobsHistoryLimit: 1
   failedJobsHistoryLimit: 2
   jobTemplate:
