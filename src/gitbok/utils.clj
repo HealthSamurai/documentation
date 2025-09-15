@@ -99,9 +99,12 @@
   [context content-type lastmod]
   ;; content-type: "full" or "partial"
   ;; Format: "prefix-buildVersion-docsCommit-lastmod"
-  (let [build-version (state/get-config context :version "unknown")
+  (let [build-version (str/trim (state/get-config context :version "unknown"))
         reload-state (state/get-cache context :reload-state {})
-        docs-commit (or (:git-head reload-state) "no-commit")
+        docs-commit (let [gh (:git-head reload-state)]
+                     (if (and gh (not= gh "") (not= gh nil))
+                       gh
+                       "no-commit"))
         ;; Take first 7 chars of commits for brevity
         short-docs-commit (subs docs-commit 0 (min 7 (count docs-commit)))
         short-build-version (subs build-version 0 (min 7 (count build-version)))]

@@ -1,5 +1,6 @@
 (ns gitbok.state
   (:require [clojure.tools.logging :as log]
+            [clojure.string :as str]
             [clojure.java.io]))
 
 (def empty-state
@@ -19,7 +20,7 @@
   (if-let [r (clojure.java.io/resource path)]
     (do
       (log/debug "read classpath for init" {:path path})
-      (slurp r))
+      (str/trim (slurp r)))
     (do
       (log/error "file not found during init" {:path path})
       (throw (Exception. (str "Cannot find " path " in classpath"))))))
@@ -57,10 +58,10 @@
                 ;; All environment variables are now at the same level
                 :github-token (or github-token (System/getenv "GITHUB_TOKEN"))
                 :docs-volume-path (or docs-volume-path
-                                     (System/getenv "DOCS_VOLUME_PATH")
+                                      (System/getenv "DOCS_VOLUME_PATH")
                                      ;; Fallback for local development
-                                     (when (.exists (clojure.java.io/file "docs-new"))
-                                       "docs-new"))
+                                      (when (.exists (clojure.java.io/file "docs-new"))
+                                        "docs-new"))
                 :docs-repo-path (or docs-repo-path (System/getenv "DOCS_REPO_PATH") ".")
                 :examples-update-interval (or examples-update-interval
                                               (System/getenv "EXAMPLES_UPDATE_INTERVAL")
