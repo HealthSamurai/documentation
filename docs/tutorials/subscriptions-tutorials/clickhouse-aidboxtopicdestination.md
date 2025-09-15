@@ -151,11 +151,50 @@ Both delivery modes support the following parameters:
 
 ## Usage Examples
 
-### 1. Best Effort Configuration
+To use ClickHouse as a destination for your FHIR data, you need to:
+
+1. Create an `AidboxSubscriptionTopic` to define what data to capture
+2. Configure an `AidboxTopicDestination` to send that data to ClickHouse
+3. Create a `ViewDefinition` to transform the data (referenced in the destination)
+
+### Complete Example: Patient Data Export
+
+#### Step 1: Create Subscription Topic
+
+First, create a topic that captures patient changes:
+
+```yaml
+POST /fhir/AidboxSubscriptionTopic
+Content-Type: application/json
+
+{
+  "resourceType": "AidboxSubscriptionTopic",
+  "url": "http://example.org/subscriptions/patient-updates",
+  "status": "active",
+  "trigger": [
+    {
+      "resource": "Patient",
+      "supportedInteraction": ["create", "update", "delete"],
+      "fhirPathCriteria": "active = true"
+    }
+  ]
+}
+```
+
+**Topic Parameters:**
+
+- **url**: Unique identifier for the topic, referenced by destinations
+- **status**: Must be "active" for the topic to process events
+- **trigger.resource**: FHIR resource type to monitor
+- **trigger.supportedInteraction**: Which operations to track
+- **trigger.fhirPathCriteria**: Optional FHIRPath expression to filter resources
+
+#### Step 2: Configure Best Effort Destination
 
 ```yaml
 resourceType: AidboxTopicDestination
 id: patient-clickhouse-best-effort
+topic: "http://example.org/subscriptions/patient-updates"
 kind: clickhouse
 parameter:
   - name: url
@@ -170,13 +209,19 @@ parameter:
     valueString: "patient_flat_view"
   - name: destinationTable
     valueString: "patients"
+meta:
+  profile: 
+    - "http://aidbox.app/StructureDefinition/aidboxtopicdestination-clickhouse"
 ```
 
-### 2. At-Least-Once Configuration
+### Alternative: At-Least-Once Configuration
+
+For guaranteed delivery with batch processing:
 
 ```yaml
 resourceType: AidboxTopicDestination
 id: patient-clickhouse-reliable
+topic: "http://example.org/subscriptions/patient-updates"
 kind: clickhouse-at-least-once
 parameter:
   - name: url
@@ -195,7 +240,39 @@ parameter:
     valueUnsignedInt: 50
   - name: sendIntervalMs
     valueUnsignedInt: 5000
+meta:
+  profile:
+    - "http://aidbox.app/StructureDefinition/aidboxtopicdestination-clickhouse-at-least-once"
 ```
+
+### Advanced Topic Filtering
+
+You can create more sophisticated topics using FHIRPath variables to detect specific state transitions:
+
+```yaml
+POST /fhir/AidboxSubscriptionTopic
+Content-Type: application/json
+
+{
+  "resourceType": "AidboxSubscriptionTopic",
+  "url": "http://example.org/subscriptions/encounter-completed",
+  "status": "active",
+  "trigger": [
+    {
+      "resource": "Encounter",
+      "supportedInteraction": ["update"],
+      "fhirPathCriteria": "%previous.status = 'in-progress' and %current.status = 'finished'"
+    }
+  ]
+}
+```
+
+**Special Variables:**
+
+- `%current`: Current state of the resource after an update
+- `%previous`: Previous state of the resource before an update
+- On create: `%previous` returns `{}`
+- On delete: `%current` returns `{}`
 
 ## ViewDefinition Integration
 
