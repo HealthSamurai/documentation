@@ -34,7 +34,7 @@ spec:
         - "rm -rf /meili_data/lost+found && echo 'Volume cleaned'"
       containers:
       - name: meilisearch
-        image: getmeili/meilisearch:v1.17.1
+        image: getmeili/meilisearch:v1.21.0
         imagePullPolicy: IfNotPresent
         ports:
         - containerPort: 7700
@@ -57,6 +57,8 @@ spec:
           value: "/meili_data"
         - name: MEILI_HTTP_ADDR
           value: "0.0.0.0:7700"
+        - name: MEILI_EXPERIMENTAL_DUMPLESS_UPGRADE
+          value: "true"
         securityContext:
           allowPrivilegeEscalation: false
           capabilities:

@@ -170,3 +170,9 @@ Content-Type: application/json
 GET http://localhost:7700/indexes/docs/search?q=BOX_OBSERVABILITY_ELASTIC_SEARCH_URL
 Authorization: Bearer {{auth}}
 Content-Type: application/json
+
+###
+
+POST http://localhost:7700/snapshots
+Authorization: Bearer {{auth}}
+Content-Type: application/json

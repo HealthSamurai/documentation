@@ -31,17 +31,18 @@ services:
       - full
 
   meilisearch:
-    image: getmeili/meilisearch:v1.17.1
+    image: getmeili/meilisearch:v1.21.0
     container_name: meilisearch
     ports:
       - "7700:7700"
     environment:
       - MEILI_ENV=development
       # For production, set a secure master key (at least 16 bytes)
-      - MEILISEARCH_API_KEY=-60DBZGy6zoDL6Q--s1-dHBWptiVKvK-XRsaacdvkOSM
+      - MEILI_MASTER_KEY=-60DBZGy6zoDL6Q--s1-dHBWptiVKvK-XRsaacdvkOSM
       - MEILI_NO_ANALYTICS=true
       - MEILI_DB_PATH=/meili_data
       - MEILI_HTTP_ADDR=0.0.0.0:7700
+      - MEILI_EXPERIMENTAL_DUMPLESS_UPGRADE=true
     volumes:
       - ./meili_data:/meili_data
     networks:
