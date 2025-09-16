@@ -200,7 +200,24 @@ function initializeHeadingLinks() {
       existingButton.remove();
     }
 
-    const id = heading.getAttribute('id');
+    // Skip h4 elements that are inside li elements
+    if (heading.tagName.toLowerCase() === 'h4' && heading.closest('li')) {
+      return;
+    }
+
+    // Check if heading contains an inline anchor tag with an id
+    const inlineAnchor = heading.querySelector('a[id]');
+    let id = heading.getAttribute('id');
+
+    // If there's an inline anchor with an id, use that id for the link
+    // This handles cases where the heading has both its own id and an inline anchor
+    if (inlineAnchor) {
+      const anchorId = inlineAnchor.getAttribute('id');
+      if (anchorId) {
+        id = anchorId; // Use the inline anchor's id for the button link
+      }
+    }
+
     if (!id) return;
 
     const button = document.createElement('button');
@@ -268,8 +285,8 @@ function initializeHeadingLinks() {
         behavior: 'smooth'
       });
 
-      // Update URL with the hash
-      window.history.replaceState(null, '', '#' + heading.id);
+      // Update URL with the hash - use the id we determined earlier (might be from inline anchor)
+      window.history.replaceState(null, '', '#' + id);
     });
 
     heading.appendChild(button);

@@ -15,7 +15,18 @@
                             (map :text)
                             (str/join " "))))
                (str/join " "))
-          href (str "#" (utils/s->url-slug (:id (:attrs item))))
+          ;; Try to extract id from inline HTML anchor tag if present
+          html-anchor-id (some (fn [node]
+                                 (when (= :html-inline (:type node))
+                                   (let [html-text (-> node :content first :text)]
+                                     ;; Extract id from <a ... id="some-id">
+                                     (when-let [match (re-find #"id=\"([^\"]+)\"" html-text)]
+                                       (second match)))))
+                              (:content item))
+          ;; Use extracted id if found, otherwise generate from text
+          href (if html-anchor-id
+                 (str "#" html-anchor-id)
+                 (str "#" (utils/s->url-slug (:id (:attrs item)))))
           level (when (= :toc (:type item))
                   (:heading-level item))
           ;; Add border styling for nested items like left navigation
