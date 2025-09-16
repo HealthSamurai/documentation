@@ -1,5 +1,5 @@
 {
-  "index_uid": "fhirbase",
+  "index_uid": "fhirbase_temp",
   "start_urls": [
     "https://www.health-samurai.io/docs/fhirbase/"
   ],

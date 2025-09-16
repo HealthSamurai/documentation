@@ -83,7 +83,7 @@ services:
     environment:
       - MEILISEARCH_HOST_URL=http://meilisearch:7700
       # For development, use the generated key from logs or set your own
-      - MEILISEARCH_API_KEY=${MEILISEARCH_API_KEY:-60DBZGy6zoDL6Q--s1-dHBWptiVKvK-XRsaacdvkOSM}
+      - MEILISEARCH_API_KEY=-60DBZGy6zoDL6Q--s1-dHBWptiVKvK-XRsaacdvkOSM
     volumes:
       - ./k8s/meilisearch/config-fhirbase.json:/docs-scraper/config-fhirbase.json:ro
     networks:

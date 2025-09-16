@@ -66,6 +66,14 @@ reindex-search:
 post-build-reindex: reindex-search
 	@echo "Documentation has been reindexed in Meilisearch"
 
+# Zero-downtime reindex using index swapping for docs
+reindex-search-swap:
+	@bash scripts/reindex-with-swap.sh docs k8s/meilisearch/config.json docs-scraper
+
+# Zero-downtime reindex using index swapping for fhirbase
+reindex-search-fhirbase-swap:
+	@bash scripts/reindex-with-swap.sh fhirbase k8s/meilisearch/config-fhirbase.json docs-scraper-fhirbase
+
 
 # Test reload by touching files
 test-reload:
