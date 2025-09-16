@@ -283,11 +283,20 @@ article pre {
 }
 
 
-article pre code.hljs {
+/* Default code block styles - prevent flash of unstyled content */
+article pre code {
   @apply text-sm! leading-relaxed! block! px-4! py-2! border! border-tint-6! bg-tint-subtle! text-tint-12! rounded-lg! overflow-x-auto! max-w-full! min-w-0! relative!;
   white-space: pre !important;
   box-sizing: border-box !important;
   contain: layout inline-size !important;
+}
+
+/* Remove default Prism pre styles to avoid double backgrounds */
+article pre[class*="language-"] {
+  background: transparent !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  border: none !important;
 }
 
 article .code-gitbook pre {

@@ -2,6 +2,10 @@
 // UI BUNDLE - Consolidated JavaScript for all UI functionality
 // ============================================================================
 
+// Configure Prism.js to manual mode before it loads (prevents automatic highlighting)
+window.Prism = window.Prism || {};
+window.Prism.manual = true;
+
 // ============================================================================
 // TAB FUNCTIONALITY
 // ============================================================================
@@ -253,17 +257,17 @@ function initializeHeadingLinks() {
     button.addEventListener('click', function (e) {
       e.preventDefault();
       e.stopPropagation();
-      
+
       // Scroll to the heading with offset for header
       const headerHeight = 64; // 4rem = 64px
       const rect = heading.getBoundingClientRect();
       const targetPosition = rect.top + window.scrollY - headerHeight;
-      
+
       window.scrollTo({
         top: targetPosition,
         behavior: 'smooth'
       });
-      
+
       // Update URL with the hash
       window.history.replaceState(null, '', '#' + heading.id);
     });
@@ -559,7 +563,7 @@ function showCopySuccess(button) {
   const originalBackground = button.style.background;
   button.innerHTML = 'Copied!';
   button.style.background = 'rgba(34, 197, 94, 0.2)';
-  
+
   setTimeout(() => {
     button.innerHTML = originalText;
     button.style.background = originalBackground;
@@ -709,22 +713,29 @@ function showCopySuccess(button) {
     document.head.appendChild(script);
   }
 
-  // Render code highlighting
-  function renderHighlightJS(container) {
-    if (typeof hljs === 'undefined') return;
+  // Render code highlighting with Prism.js
+  function renderCodeHighlighting(container) {
+    if (typeof Prism !== 'undefined') {
+      // Find unprocessed code blocks
+      const codeBlocks = container.querySelectorAll('pre code:not([data-prism-processed])');
+      codeBlocks.forEach(block => {
+        const pre = block.parentElement;
 
-    // Find unprocessed code blocks
-    const codeBlocks = container.querySelectorAll('pre code:not([data-hljs-processed])');
-    codeBlocks.forEach(block => {
-      if (!block.classList.contains('hljs')) {
-        hljs.highlightElement(block);
-      }
-      block.setAttribute('data-hljs-processed', 'true');
-    });
+        // Remove language class from pre if it exists (Prism adds it automatically)
+        if (pre && pre.className) {
+          pre.className = pre.className.replace(/\blanguage-\S+/g, '').trim();
+        }
 
-    // Initialize copy buttons after highlighting
-    setTimeout(initializeCopyButtons, 50);
+        // Highlight with Prism (it will add language class to pre automatically)
+        Prism.highlightElement(block);
+        block.setAttribute('data-prism-processed', 'true');
+      });
+
+      // Initialize copy buttons after highlighting
+      setTimeout(initializeCopyButtons, 50);
+    }
   }
+
 
   // Render Mermaid diagrams
   function renderMermaid(container) {
@@ -851,31 +862,31 @@ function showCopySuccess(button) {
 
     const headerHeight = 64; // 4rem = 64px
     const scrollTop = window.scrollY;
-    
+
     let currentSection = null;
-    
+
     // Special case: if we're at the exact position from a click
     // Check which heading is at the top of the viewport (below header)
     for (let i = 0; i < headings.length; i++) {
       const heading = headings[i];
       const rect = heading.getBoundingClientRect();
-      
+
       // If heading is at or just below the header, it's our active section
       if (rect.top >= headerHeight - 5 && rect.top <= headerHeight + 15) {
         currentSection = heading.id;
         break;
       }
     }
-    
+
     // If no exact match, find the last heading that's above the viewport
     if (!currentSection) {
       const viewportTop = scrollTop + headerHeight + 5;
-      
+
       for (let i = headings.length - 1; i >= 0; i--) {
         const heading = headings[i];
         const rect = heading.getBoundingClientRect();
         const headingTop = rect.top + scrollTop;
-        
+
         if (headingTop <= viewportTop) {
           currentSection = heading.id;
           break;
@@ -967,8 +978,8 @@ function showCopySuccess(button) {
       renderKaTeX(target);
     }
 
-    // Always render highlight.js if available
-    renderHighlightJS(target);
+    // Always render code highlighting (Prism.js or highlight.js)
+    renderCodeHighlighting(target);
 
     // Initialize TOC if on full page
     if (target === document.body || target === document) {
@@ -1111,12 +1122,8 @@ function showCopySuccess(button) {
     }
   });
 
-  // Also initialize highlight.js hooks if available
-  if (typeof hljs !== 'undefined') {
-    const originalHighlightAll = hljs.highlightAll;
-    hljs.highlightAll = function () {
-      originalHighlightAll.apply(this, arguments);
-      setTimeout(initializeCopyButtons, 50);
-    };
-  }
+  // Set Prism to manual mode immediately (before it loads)
+  // This prevents automatic highlighting on DOMContentLoaded
+  window.Prism = window.Prism || {};
+  window.Prism.manual = true;
 })();

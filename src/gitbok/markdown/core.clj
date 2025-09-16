@@ -172,11 +172,31 @@
          :code
          (fn [_ctx node]
            (if (and (:info node) (str/starts-with? (:info node) "mermaid"))
-             [:pre.mermaid.nohljs (-> node :content first :text)]
-             [:pre {:class "text-base"}
-              [:code
-               ;; protect from xss, do not use raw
-               (-> node :content first :text)]]))
+             [:pre.mermaid (-> node :content first :text)]
+             (let [code-text (-> node :content first :text)
+                   info-lang (when (and (:info node) (not= (:info node) ""))
+                               (:info node))
+
+                   detected-lang (when-not info-lang
+                                   ;; Auto-detect only bash and yaml if not specified
+                                   (cond
+                                     ;; commented - bash envs are ugly yellow
+                                     ;; Bash - environment variables with = (multiline mode)
+                                     ;; (re-find #"(?m)^\s*[A-Z_]+[A-Z0-9_]*\s*=" code-text)
+                                     ;; "bash"
+
+                                     ;; YAML - key: value structure (multiline mode)
+                                     (re-find #"(?m)^\s*\w+:\s" code-text)
+                                     "yaml"
+
+                                     ;; Default: no language
+                                     :else nil))
+                   lang (or info-lang detected-lang)]
+               [:pre {:class "text-base"}
+                [:code (when lang
+                         {:class (str "language-" lang)})
+                 ;; protect from xss, do not use raw
+                 code-text]])))
 
          :monospace
          (fn [_ctx node]

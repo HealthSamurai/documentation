@@ -167,37 +167,30 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 
       ;; Critical scripts - load first
       [:script {:src (http/get-prefixed-url context "/static/htmx.min.js")}]
-      [:link {:rel "stylesheet" :href (http/get-prefixed-url context "/static/github.min.css") :defer true}]
 
-      ;; todo dark theme later
-      #_[:link {:rel "stylesheet" :href (http/get-prefixed-url context "/static/github-dark.min.css")
-                :disabled true}]
-      [:script {:src (http/get-prefixed-url context "/static/highlight.min.js") :defer true}]
-      [:script {:src (http/get-prefixed-url context "/static/json.min.js") :defer true}]
-      [:script {:src (http/get-prefixed-url context "/static/bash.min.js") :defer true}]
-      [:script {:src (http/get-prefixed-url context "/static/yaml.min.js") :defer true}]
-      [:script {:src (http/get-prefixed-url context "/static/xml.min.js") :defer true}]
-      [:script {:src (http/get-prefixed-url context "/static/http.min.js") :defer true}]
-      [:script {:src (http/get-prefixed-url context "/static/graphql.min.js") :defer true}]
-      [:script {:src (http/get-prefixed-url context "/static/sql.min.js") :defer true}]
-      [:script {:src (http/get-prefixed-url context "/static/javascript.min.js") :defer true}]
+      ;; Prism.js for syntax highlighting
+      [:link {:rel "stylesheet" :href (http/get-prefixed-url context "/static/prism.css")
+              :defer true}]
+      [:script {:src (str (http/get-prefixed-url context "/static/prism.js") version-param)
+                :defer true}]
 
-      ;; Mermaid config (needed when Mermaid loads)
-      [:script {:src (str (http/get-prefixed-url context "/static/mermaid-config.js") version-param) :defer true}]
 
       ;; Combined UI bundle (includes tabs, toc, scroll-to-id, heading-links, mobile-menu, mobile-search, lastupdated, copy-code)
-      ;; Load without defer to ensure it's available for HTMX events
       [:script {:src (str (http/get-prefixed-url context "/static/ui-bundle.js") version-param)
                 :defer true}]
 
       ;; Other UI scripts
       [:script {:src (str (http/get-prefixed-url context "/static/meilisearch-htmx-nav.js") version-param)
                 :defer true}]
+
       [:script {:defer true
                 :src (str (http/get-prefixed-url context "/static/keyboard-navigation.js") version-param)}]
+
+      ;; Mermaid config (needed when Mermaid loads)
+      [:script {:src (str (http/get-prefixed-url context "/static/mermaid-config.js") version-param) :defer true}]
+
       [:script {:defer true
                 :src (str (http/get-prefixed-url context "/static/posthog.js") version-param)}]
-
       ;; Theme toggle functionality
       ;; TODO
       #_[:script {:defer true
