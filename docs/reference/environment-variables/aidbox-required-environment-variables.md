@@ -40,7 +40,7 @@ BOX_FHIR_COMPLIANT_MODE: true
 PGHOST=<PostgreSQL server hostname>
 ```
 
-Aidboxdb host address.
+AidboxDB host address.
 
 ### PGPORT
 
@@ -48,7 +48,7 @@ Aidboxdb host address.
 PGPORT=<PostgreSQL server port>
 ```
 
-Aidboxdb port.
+AidboxDB port.
 
 ### PGDATABASE
 
