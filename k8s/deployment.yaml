@@ -50,7 +50,7 @@ spec:
           - name: DOCS_REPO_PATH
             value: "/git-data/repo"
           - name: RELOAD_CHECK_INTERVAL_SEC
-            value: "300"
+            value: "30"
           - name: ENABLE_LASTMOD_UPDATER
             value: "true"
           - name: LASTMOD_UPDATE_INTERVAL_MINUTES
@@ -125,7 +125,7 @@ spec:
         - name: GIT_SYNC_DEST
           value: repo
         - name: GIT_SYNC_PERIOD
-          value: 240s
+          value: 30s
         - name: GIT_SYNC_ONE_TIME
           value: "false"
         - name: GIT_SYNC_DEPTH
