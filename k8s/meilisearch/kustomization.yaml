@@ -9,6 +9,7 @@ resources:
   - service.yaml
   - statefulset.yaml
   - cronjob-reindex.yaml
+  - cronjob-reindex-fhirbase.yaml
   - job-fhirbase-index.yaml
 
 commonLabels:

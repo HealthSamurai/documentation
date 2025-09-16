@@ -1,10 +1,10 @@
 apiVersion: batch/v1
 kind: CronJob
 metadata:
-  name: meilisearch-reindex
+  name: meilisearch-reindex-fhirbase
   namespace: gitbok
 spec:
-  schedule: "0 * * * *"  # Every hour
+  schedule: "30 * * * *"  # Every hour at 30 minutes (offset from docs)
   successfulJobsHistoryLimit: 1
   failedJobsHistoryLimit: 2
   jobTemplate:
@@ -24,7 +24,7 @@ spec:
                   name: meilisearch-secret
                   key: master-key
             - name: INDEX_NAME
-              value: "docs"
+              value: "fhirbase"
             volumeMounts:
             - name: config
               mountPath: /docs-scraper/config.json
@@ -90,5 +90,4 @@ spec:
           volumes:
           - name: config
             configMap:
-              name: meilisearch-scraper-config
-
+              name: meilisearch-scraper-config-fhirbase
