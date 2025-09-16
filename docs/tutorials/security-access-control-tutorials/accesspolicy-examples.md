@@ -476,3 +476,45 @@ valueQuantity:
   system: http://unitsofmeasure.org
   code: kg
 ```
+
+## 15. Policy that denies a system to update "protected" resources
+
+**Description:**
+We have a system that is registered as a `Client` resource in Aidbox. We want to allow this system to update all the Practitioner resources except the ones with `meta.source` equal to `MDM`.
+
+**Policy:**
+```yaml
+id: as-system-allowed-to-update-practitioners-except-mdm
+resourceType: AccessPolicy
+engine: complex
+link:
+  - reference: Operation/FhirUpdate
+description: Allow practitioner to create observations for their patients     
+and: 
+  - engine: matcho
+    matcho:
+      params:
+        resource/type: Practitioner
+  - engine: sql   
+    sql:
+      query: |-
+        SELECT resource -> 'meta' ->> 'source' IS NULL OR  resource -> 'meta' ->> 'source' != 'MDM'  FROM practitioner WHERE id = {{params.resource/id}};
+```          
+
+**Request to test the policy:**
+
+```http
+PUT /fhir/Practitioner/pr-1
+Authorization: Basic <base64(system1-client:client-secret)> # Base64 encoded client-id and client-secret
+
+{
+  "name": [
+    {
+      "given": [
+        "John"
+      ]
+    }
+  ]
+}
+```
+
