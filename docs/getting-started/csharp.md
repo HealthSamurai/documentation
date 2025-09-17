@@ -17,7 +17,7 @@ It will generate static FHIR Client and the set of types for your FHIR package. 
 
    Navigate to [REST Console](http://localhost:8080/ui/console#/rest) in Aidbox UI and execute the following requests:
    
-   ```json
+   ```http
    POST /fhir/Client
    content-type: application/json
    accept: application/json
@@ -32,7 +32,7 @@ It will generate static FHIR Client and the set of types for your FHIR package. 
    }
    ```
    
-   ```json
+   ```http
    POST /fhir/AccessPolicy
    content-type: application/json
    accept: application/json
@@ -80,7 +80,7 @@ It will generate static FHIR Client and the set of types for your FHIR package. 
    ```
 
 4. Create a Patient using created Client:
-   ```c#
+   ```csharp
    using Aidbox.Client;
    using Aidbox.FHIR.R4.Core;
    
