@@ -29,17 +29,65 @@ def load_products_config():
     # Return None if yaml module is not available
     if not YAML_AVAILABLE:
         return None
-    
+
     products_yaml_path = os.path.join(DOCS_NEW_DIR, "products.yaml")
     if not os.path.exists(products_yaml_path):
         return None
-    
+
     try:
         with open(products_yaml_path, 'r', encoding='utf-8') as f:
             return yaml.safe_load(f)
     except Exception as e:
         print(f"Warning: Could not load products.yaml: {str(e)}")
         return None
+
+def load_product_config(product_id, config_path):
+    """Load product-specific .gitbook.yaml configuration"""
+    if not YAML_AVAILABLE:
+        return None
+
+    # Since docs-new/aidbox doesn't exist (was a symlink), we start from docs-new/
+    # and resolve the config path from there
+    # For aidbox: config is ../.gitbook.yaml which means go up one level from docs-new/
+    # For fhirbase: config is fhirbase/.gitbook.yaml which means docs-new/fhirbase/.gitbook.yaml
+    base_path = DOCS_NEW_DIR
+    full_config_path = os.path.join(base_path, config_path)
+    full_config_path = os.path.normpath(full_config_path)
+
+    if not os.path.exists(full_config_path):
+        print(f"Warning: Product config not found: {full_config_path}")
+        return None
+
+    try:
+        with open(full_config_path, 'r', encoding='utf-8') as f:
+            return yaml.safe_load(f)
+    except Exception as e:
+        print(f"Warning: Could not load product config {full_config_path}: {str(e)}")
+        return None
+
+def get_product_docs_path(product_id, config_path):
+    """Get the actual documentation path for a product by reading its config"""
+    product_config = load_product_config(product_id, config_path)
+    if not product_config:
+        return None
+
+    # Get root path from config (default to './docs/' if not specified)
+    root_path = product_config.get('root', './docs/')
+
+    # Resolve the docs path relative to the config file location
+    # First, get the absolute path to the config file
+    base_path = DOCS_NEW_DIR
+    full_config_path = os.path.join(base_path, config_path)
+    full_config_path = os.path.normpath(full_config_path)
+
+    # Get the directory containing the config file
+    config_dir = os.path.dirname(full_config_path)
+
+    # Resolve the docs path relative to the config directory
+    docs_path = os.path.join(config_dir, root_path)
+    docs_path = os.path.normpath(docs_path)
+
+    return docs_path
 
 def find_actual_file(base_path, image_path, product_path=None):
     """
@@ -178,27 +226,42 @@ def check_files():
             print("\nChecking multi-product documentation...")
             for product in products_config.get('products', []):
                 product_id = product['id']
-                product_path = os.path.join(DOCS_NEW_DIR, product_id)
-                
-                if not os.path.exists(product_path):
-                    print(f"Warning: Product directory not found: {product_path}")
+                config_path = product.get('config')
+
+                if not config_path:
+                    print(f"Warning: No config specified for product: {product_id}")
                     continue
-                
-                print(f"  Checking product: {product_id}")
-                product_docs_dir = os.path.join(product_path, 'docs')
-                
-                if os.path.exists(product_docs_dir):
-                    for root, _, files in os.walk(product_docs_dir):
-                        for file in files:
-                            if not file.endswith('.md'):
-                                continue
-                            
-                            file_path = os.path.join(root, file)
-                            images_found, images_missing = process_file(
-                                file_path, missing_images, product_path=product_path
-                            )
-                            total_images += images_found
-                            processed_files += 1
+
+                # Get actual docs path from product config
+                product_docs_dir = get_product_docs_path(product_id, config_path)
+
+                if not product_docs_dir:
+                    print(f"Warning: Could not determine docs path for product: {product_id}")
+                    continue
+
+                if not os.path.exists(product_docs_dir):
+                    print(f"Warning: Product docs directory not found: {product_docs_dir}")
+                    continue
+
+                print(f"  Checking product: {product_id} (docs at: {product_docs_dir})")
+
+                # Determine product base path for assets
+                product_path = os.path.join(DOCS_NEW_DIR, product_id)
+                if not os.path.exists(product_path):
+                    # For products like aidbox where config points outside docs-new
+                    product_path = None
+
+                for root, _, files in os.walk(product_docs_dir):
+                    for file in files:
+                        if not file.endswith('.md'):
+                            continue
+
+                        file_path = os.path.join(root, file)
+                        images_found, images_missing = process_file(
+                            file_path, missing_images, product_path=product_path
+                        )
+                        total_images += images_found
+                        processed_files += 1
     
     # Print summary
     print("\n=== SUMMARY ===")
