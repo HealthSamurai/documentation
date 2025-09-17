@@ -271,15 +271,15 @@
     ;; Handle root path - redirect to readme
     (if (or (str/blank? uri-relative)
             (= "/" uri-relative))
-      (let [readme-url (or (products/readme-url ctx) "readme")]
-        (handle-cached-response ctx readme-url "partial"
+      (let [readme-path (or (products/readme-relative-path ctx) "readme/README.md")]
+        (handle-cached-response ctx readme-path "partial"
                                 (fn []
                                   (let [{:keys [_title _description content _section]}
-                                        (render-file ctx readme-url)]
+                                        (render-file ctx readme-path)]
                                     {:status 200
                                      :headers {"Content-Type" "text/html; charset=utf-8"}
                                      :body (str (hiccup2.core/html
-                                                 (main-content/content-div ctx uri-without-partial content readme-url true false)))}))))
+                                                 (main-content/content-div ctx uri-without-partial content readme-path true false)))}))))
         ;; Special case: redirect "readme" to root
       (if (= uri-relative "readme")
         {:status 301
