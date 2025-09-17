@@ -10,30 +10,78 @@
 
 (defonce ^:private dev-context (atom nil))
 
+ ;; Store the actual server stop function separately to survive reloads
+(defonce ^:private server-stop-fn (atom nil))
+
 (defn start!
   "Start the server"
   []
-  (reload/init {:dirs ["src"]})
+  (reload/init {:dirs ["src", "dev"]})
   (let [result (core/start!)]
     (reset! dev-context (:context result))
+    ;; Store the stop function separately so it survives reloads
+    (when-let [stop-fn (state/get-server (:context result))]
+      (reset! server-stop-fn stop-fn))
     (log/info "Server started")
     :started))
 
 (defn stop!
   "Stop the server"
   []
+  ;; Try to use the stored stop function first
+  (when-let [stop-fn @server-stop-fn]
+    (try
+      (log/info "Stopping server with stored stop function...")
+      (stop-fn)
+      (reset! server-stop-fn nil)
+      (catch Exception e
+        (log/warn e "Error with stored stop function"))))
+
+  ;; Also try the normal stop through context
   (when-let [ctx @dev-context]
-    (log/info "Server stopped")
-    (core/stop! ctx))
+    (try
+      (log/info "Stopping through context...")
+      (core/stop! ctx)
+      (catch Exception e
+        (log/warn e "Error stopping through context")))
+    (reset! dev-context nil))
+
   :stopped)
 
 (defn restart!
-  "Restart the server"
+  "Restart the server with proper cleanup"
   []
+  ;; Stop the server
   (stop!)
-  (reload/reload)
+
+  ;; Give it time to clean up
+  (Thread/sleep 500)
+
+  ;; Reload the code
+  (log/info "Reloading code...")
+  (let [reload-result (reload/reload)]
+    (log/info "Reloaded namespaces:" (:loaded reload-result)))
+
+  ;; Start the server with a fresh context
+  (log/info "Starting server...")
   (start!)
+
   :restarted)
+
+(defn restart-server!
+  "Restart just the server without reloading code - useful for debugging"
+  []
+  ;; Stop the server
+  (stop!)
+
+  ;; Small delay to ensure port is released
+  (Thread/sleep 500)
+
+  ;; Start the server
+  (log/info "Starting server...")
+  (start!)
+
+  :server-restarted)
 
 (defn reload!
   "Reload code without restarting server"
@@ -77,9 +125,9 @@
     (clear-all-caches ctx)
     (state/set-cache! ctx :lastmod {})
     (state/set-cache! ctx :reload-state {:git-head nil
-                                        :last-reload-time nil
-                                        :app-version (state/get-config ctx :version)
-                                        :in-progress false})
+                                         :last-reload-time nil
+                                         :app-version (state/get-config ctx :version)
+                                         :in-progress false})
     (log/info "All caches cleared")))
 
 (defn reload-products!
@@ -103,8 +151,11 @@
   ;; Stop server
   (stop!)
 
-  ;; Full restart - only needed for structural changes (new routes, middleware changes)
+  ;; Full restart - reloads code and restarts server (use when reload doesn't work)
   (restart!)
+
+  ;; Restart just the server without reloading code (useful for debugging)
+  (restart-server!)
 
   ;; Hot reload - reloads code, handlers are automatically updated via Var references
   ;; Use this for handler logic changes
@@ -125,5 +176,4 @@
   (clear-caches!)
 
   ;; Reload products configuration
-  (reload-products!)
-  )
+  (reload-products!))

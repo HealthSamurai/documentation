@@ -23,11 +23,10 @@
 
      ;; Initialize all products and their indices
      (initialization/init-all-products!
-       context
-       :read-markdown-fn handlers/read-markdown-file)
+      context
+      :read-markdown-fn handlers/read-markdown-file)
 
-
-     ;; Create and start HTTP server
+;; Create and start HTTP server
      (let [handler (routes/create-app context)
            server-instance (http-kit/run-server handler {:port port})]
        (state/set-server! context server-instance)
@@ -57,7 +56,11 @@
 
   ;; Stop HTTP server
   (when-let [stop-fn (state/get-server context)]
-    (stop-fn)
+    (try
+      ;; Call stop with timeout to force shutdown
+      (stop-fn :timeout 100)
+      (catch Exception e
+        (log/warn e "Error stopping server")))
     (state/clear-server! context)
     (log/info "Server stopped"))
 
