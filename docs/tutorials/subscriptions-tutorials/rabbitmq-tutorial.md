@@ -13,7 +13,7 @@
 
 [RabbitMQ](https://www.rabbitmq.com/) is a reliable and mature messaging broker that implements the Advanced Message Queuing Protocol (AMQP). It provides robust message delivery, routing capabilities, and supports various messaging patterns including publish/subscribe, request/reply, and point-to-point communication.
 
-In Aidbox, create [AidboxTopicDestination](../../modules/topic-based-subscriptions/aidbox-topic-based-subscriptions.md#aidboxtopicdestination) with `http://aidbox.app/StructureDefinition/aidboxtopicdestination-rabbitmq-core-best-effort` profile to integrate with RabbitMQ.
+In Aidbox, create [AidboxTopicDestination](../../modules/topic-based-subscriptions/aidbox-topic-based-subscriptions.md#aidboxtopicdestination) with `http://aidbox.app/StructureDefinition/aidboxtopicdestination-rabbitmq-core-best-effort` profile to integrate with RabbitMQ. You can find an example of the resource in [this section](../subscriptions-tutorials/rabbitmq-tutorial.md#basic-usage) below. 
 
 ## Setting up
 
