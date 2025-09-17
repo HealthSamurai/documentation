@@ -1,4 +1,5 @@
 @import "tailwindcss";
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;600&display=swap');
 
 /* Tailwind v4 Theme Configuration */
 @theme {
@@ -48,6 +49,10 @@
   --color-neutral-10: rgb(121 121 121);
   --color-neutral-11: rgb(110 110 110);
   --color-neutral-12: rgb(29 29 29);
+
+  /* Color System - Custom colors from Figma */
+  --color-grey-12: #1F1C1C;
+  --color-blue-26: #353B50;
 
   /* Color System - Semantic Colors */
   /* Info (blue-based) */

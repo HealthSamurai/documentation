@@ -44,7 +44,7 @@
               (if (:title link)
                 ;; Dropdown menu item
                 [:div {:class "relative group" :key (:title link)}
-                 [:button {:class "flex items-center gap-1 text-small text-tint-10 hover:text-primary-9 transition-colors duration-200 font-normal"
+                 [:button {:class "flex items-center gap-1 text-sm leading-5 text-[#353B50] hover:text-primary-9 transition-colors duration-200 font-normal"
                            :type "button"
                            :aria-label (str (:title link) " menu")
                            :aria-expanded "false"
@@ -63,7 +63,7 @@
                                   (http/get-product-prefixed-url context (:href entry)))]
                        [:a (cond->
                             {:href href
-                             :class "block px-4 py-2 text-sm text-tint-11 hover:bg-tint-hover no-underline"
+                             :class "block px-4 py-2 text-sm text-[#353B50] hover:text-primary-9 hover:bg-tint-hover no-underline transition-colors duration-200 font-normal"
                              :role "menuitem"
                              :key (:text entry)}
                              (:target entry)
@@ -75,7 +75,7 @@
                                  (:href link)
                                  (http/get-product-prefixed-url context (:href link)))]
                       (cond-> {:href href
-                               :class "text-small text-tint-10 hover:text-primary-9 transition-colors duration-200 no-underline font-normal"
+                               :class "text-sm leading-5 text-[#353B50] hover:text-primary-9 transition-colors duration-200 no-underline font-normal"
                                :key (:text link)}
                         (:target link)
                         (assoc :target (:target link))))
@@ -92,7 +92,7 @@
               (if (:title link)
                 ;; Dropdown menu item
                 [:div {:class "relative group" :key (:title link)}
-                 [:button {:class "flex items-center gap-1 text-small text-tint-10 hover:text-primary-9 transition-colors duration-200 font-normal"
+                 [:button {:class "flex items-center gap-1 text-sm leading-5 text-[#353B50] hover:text-primary-9 transition-colors duration-200 font-normal"
                            :type "button"
                            :aria-label (str (:title link) " menu")
                            :aria-expanded "false"
@@ -111,7 +111,7 @@
                                   (http/get-product-prefixed-url context (:href entry)))]
                        [:a (cond->
                             {:href href
-                             :class "block px-4 py-2 text-sm text-tint-11 hover:bg-tint-hover no-underline"
+                             :class "block px-4 py-2 text-sm text-[#353B50] hover:text-primary-9 hover:bg-tint-hover no-underline transition-colors duration-200 font-normal"
                              :role "menuitem"
                              :key (:text entry)}
                              (:target entry)
@@ -123,7 +123,7 @@
                                  (:href link)
                                  (http/get-product-prefixed-url context (:href link)))]
                       (cond-> {:href href
-                               :class "text-small text-tint-10 hover:text-primary-9 transition-colors duration-200 no-underline font-normal"
+                               :class "text-sm leading-5 text-[#353B50] hover:text-primary-9 transition-colors duration-200 no-underline font-normal"
                                :key (:text link)}
                         (:target link)
                         (assoc :target (:target link))))
@@ -154,12 +154,13 @@
                        (if (:title link)
                          ;; Dropdown section in mobile menu
                          (concat
-                          [[:div {:class "px-4 py-2 text-xs font-semibold text-tint-9 uppercase tracking-wide"}
-                            (:title link)]]
+                          (when (not= "PRODUCT" (:title link))
+                            [[:div {:class "px-4 py-2 text-xs font-semibold text-tint-9 uppercase tracking-wide"}
+                              (:title link)]])
                           (for [entry (:entries link)]
                             [:a (merge
                                  {:href (:href entry)
-                                  :class "block px-4 py-2 text-sm text-tint-11 hover:bg-tint-hover hover:text-primary-9 no-underline"
+                                  :class "block px-4 py-2 text-sm text-[#353B50] hover:text-primary-9 hover:bg-tint-hover no-underline transition-colors duration-200 font-normal"
                                   :role "menuitem"}
                                  (when (:target entry)
                                    {:target (:target entry)}))
@@ -169,7 +170,7 @@
                                {:href (if (clojure.string/starts-with? (:href link) "http")
                                         (:href link)
                                         (http/get-product-prefixed-url context (:href link)))
-                                :class "block px-4 py-2 text-sm text-tint-11 hover:bg-tint-hover hover:text-primary-9 no-underline"
+                                :class "block px-4 py-2 text-sm text-[#353B50] hover:text-primary-9 hover:bg-tint-hover no-underline transition-colors duration-200 font-normal"
                                 :role "menuitem"}
                                (when (:target link)
                                  {:target (:target link)}))
@@ -197,19 +198,18 @@
 
         ;; Meilisearch custom search with HTMX (desktop)
         [:div {:class "hidden md:block"}
-         [:div {:class "relative h-9 w-60 max-w-64"
+         [:div {:class "relative h-9 w-64 max-w-64"
                 :id "meilisearch-wrapper"}
           [:div {:class "flex h-9 w-full items-center overflow-hidden
-                         rounded-md border border-tint-subtle bg-tint-base
-                         text-tint shadow-sm transition-all
+                         rounded-md border border-[#E7E9EF] bg-white
+                         text-tint transition-all
                          hover:border-tint-hover
-                         hover:shadow-md
                          has-[input:focus-visible]:ring-2
                          has-[input:focus-visible]:ring-primary-7
                          focus-within:[&_#meilisearch-shortcut]:hidden"}
            [:div {:class "flex min-w-0 flex-1 items-center gap-2"}
             [:div {:class "flex items-center justify-center pl-3"}
-             [:svg {:class "size-4 text-tint-9 shrink-0"
+             [:svg {:class "size-4 text-[#7E8291] shrink-0"
                     :fill "none"
                     :stroke "currentColor"
                     :viewBox "0 0 24 24"}
@@ -223,7 +223,7 @@
                      :placeholder "Ask or search..."
                      :class "min-w-0 flex-1 bg-transparent py-1.5 pr-3
                             text-sm outline-none placeholder:text-sm
-                            placeholder:text-tint-9
+                            placeholder:text-[#7E8291]
                             text-tint-strong
                             font-normal"
                      :autocomplete "off"
@@ -234,11 +234,11 @@
                      :hx-indicator "#meilisearch-indicator"
                      :onfocus "document.getElementById('meilisearch-shortcut').style.display='none'"
                      :onblur "document.getElementById('meilisearch-shortcut').style.display='flex'"}]]
-           [:div {:class "flex shrink-0 items-center pr-3"}
+           [:div {:class "flex shrink-0 items-center pr-2"}
             [:div {:id "meilisearch-shortcut"
                    :class "hidden sm:flex justify-end gap-0.5 whitespace-nowrap text-xs text-tint-9 font-normal transition-opacity duration-200"}
-             [:kbd {:class "inline-flex h-5 min-w-5 items-center justify-center rounded border border-tint-subtle bg-tint-base px-1 text-xs"} "Ctrl"]
-             [:kbd {:class "inline-flex h-5 min-w-5 items-center justify-center rounded border border-tint-subtle bg-tint-base px-1 text-xs"} "K"]]
+             [:kbd {:class "inline-flex h-5 w-[39px] items-center justify-center rounded border border-[#E7E9EF] bg-[#F6F7F9] px-[5px] py-[1px] text-xs leading-4 text-[#7E8291] font-normal text-center"} "Ctrl"]
+             [:kbd {:class "inline-flex h-5 w-5 min-w-[20px] items-center justify-center rounded border border-[#E7E9EF] bg-[#F6F7F9] px-[5px] py-[1px] text-xs leading-4 text-[#7E8291] font-normal text-center"} "K"]]
             [:div {:id "meilisearch-indicator"
                    :class "htmx-indicator"}
              [:svg {:class "animate-spin size-4 text-tint-9"
@@ -257,19 +257,18 @@
                  :class "absolute top-full mt-2 right-0 left-0 md:left-auto md:min-w-[32rem] z-50"}]]]
 
         ;; Desktop search input (existing HTMX search) - hidden when Meilisearch is active
-        [:div {:class "hidden relative h-9 w-60 max-w-64"
+        [:div {:class "hidden relative h-9 w-64 max-w-64"
                :id "desktop-search-container"}
          [:div {:class "flex h-9 w-full items-center overflow-hidden
-                rounded-md border border-tint-subtle bg-tint-base
-                text-tint shadow-sm transition-all
+                rounded-md border border-[#E7E9EF] bg-white
+                text-tint transition-all
                 hover:border-tint-hover
-                hover:shadow-md
                 has-[input:focus-visible]:ring-2
                 has-[input:focus-visible]:ring-primary-7
                 focus-within:[&_#search-shortcut]:hidden"}
           [:div {:class "flex min-w-0 flex-1 items-center gap-2"}
            [:div {:class "flex items-center justify-center pl-3"}
-            [:svg {:class "size-4 text-tint-9 shrink-0" :fill "none" :stroke "currentColor" :viewBox "0 0 24 24"}
+            [:svg {:class "size-4 text-[#7E8291] shrink-0" :fill "none" :stroke "currentColor" :viewBox "0 0 24 24"}
              [:path {:stroke-linecap "round" :stroke-linejoin "round" :stroke-width "2" :d "m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607Z"}]]]
            [:input {:type "text"
                     :id "search-input"
@@ -278,7 +277,7 @@
                     :class
                     "min-w-0 flex-1 bg-transparent py-1.5 pr-3
                     text-sm outline-none placeholder:text-sm
-                    placeholder:text-tint-9
+                    placeholder:text-[#7E8291]
                     text-tint-strong
                     font-normal"
                     :autocomplete "off"
@@ -289,11 +288,11 @@
                     :hx-indicator "#search-indicator"
                     :onfocus "document.getElementById('search-shortcut').style.display='none'"
                     :onblur "document.getElementById('search-shortcut').style.display='flex'"}]]
-          [:div {:class "flex shrink-0 items-center pr-3"}
+          [:div {:class "flex shrink-0 items-center pr-2"}
            [:div {:id "search-shortcut"
                   :class "hidden sm:flex justify-end gap-0.5 whitespace-nowrap text-xs text-tint-9 font-normal transition-opacity duration-200"}
-            [:kbd {:class "inline-flex h-5 min-w-5 items-center justify-center rounded border border-tint-subtle bg-tint-base px-1 text-xs"} "Ctrl"]
-            [:kbd {:class "inline-flex h-5 min-w-5 items-center justify-center rounded border border-tint-subtle bg-tint-base px-1 text-xs"} "K"]]
+            [:kbd {:class "inline-flex h-5 w-[39px] items-center justify-center rounded border border-[#E7E9EF] bg-[#F6F7F9] px-[5px] py-[1px] text-xs leading-4 text-[#7E8291] font-normal text-center"} "Ctrl"]
+            [:kbd {:class "inline-flex h-5 w-5 min-w-[20px] items-center justify-center rounded border border-[#E7E9EF] bg-[#F6F7F9] px-[5px] py-[1px] text-xs leading-4 text-[#7E8291] font-normal text-center"} "K"]]
            [:div {:id "search-indicator" :class "htmx-indicator"}
             [:svg {:class "animate-spin size-4 text-tint-9" :fill "none" :viewBox "0 0 24 24"}
              [:circle {:class "opacity-25" :cx "12" :cy "12" :r "10" :stroke "currentColor" :stroke-width "4"}]
@@ -313,7 +312,7 @@
                     :id "mobile-meilisearch-input"
                     :name "q"
                     :placeholder "Ask or search..."
-                    :class "flex-1 bg-transparent outline-none placeholder-tint-9 text-tint-strong font-normal"
+                    :class "flex-1 bg-transparent outline-none placeholder:text-[#7E8291] text-tint-strong font-normal"
                     :autocomplete "off"
                     :hx-get (http/get-product-prefixed-url context "/meilisearch/dropdown?mobile=true")
                     :hx-trigger "keyup[!event.key.startsWith('Arrow') && event.key !== 'Enter' && event.key !== 'Escape'] changed delay:300ms, focus"
