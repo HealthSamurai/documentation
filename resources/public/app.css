@@ -285,18 +285,21 @@ article pre {
 
 /* Default code block styles - prevent flash of unstyled content */
 article pre code {
-  @apply text-sm! leading-relaxed! block! px-4! py-2! border! border-tint-6! bg-tint-subtle! text-tint-12! rounded-lg! overflow-x-auto! max-w-full! min-w-0! relative!;
-  white-space: pre !important;
-  box-sizing: border-box !important;
-  contain: layout inline-size !important;
+  @apply text-sm leading-relaxed block px-4 py-2 border border-tint-6 bg-tint-subtle text-tint-12 rounded-lg overflow-x-auto max-w-full min-w-0 relative;
+  white-space: pre;
+  box-sizing: border-box;
+  contain: layout inline-size;
 }
 
-/* Remove default Prism pre styles to avoid double backgrounds */
+/* Override Prism's default styles while keeping our theme */
 article pre[class*="language-"] {
+  background-color: var(--color-tint-subtle) !important;
+  padding: 0;
+}
+
+/* Remove background from inline code with Prism classes */
+article :not(pre) > code[class*="language-"] {
   background: transparent !important;
-  margin: 0 !important;
-  padding: 0 !important;
-  border: none !important;
 }
 
 article .code-gitbook pre {
@@ -340,8 +343,8 @@ article details>*:not(summary):last-child {
 
 /* Hint/Admonition styles */
 article .hint img {
-  max-width: min(300px, 100%) !important;
-  height: auto !important;
+  max-width: min(300px, 100%);
+  height: auto;
 }
 
 article .hint p:first-child {
@@ -456,7 +459,6 @@ article .hint p {
     box-sizing: border-box !important;
   }
 
-  /* Text content */
   article p,
   article div,
   article blockquote,
@@ -464,21 +466,12 @@ article .hint p {
     max-width: 100% !important;
     box-sizing: border-box !important;
     overflow: clip !important;
-    word-wrap: break-word !important;
     overflow-wrap: break-word !important;
     hyphens: none !important;
   }
 
-  /* Handle long URLs and text */
-  article a {
-    word-wrap: break-word !important;
-    overflow-wrap: break-word !important;
-    hyphens: none !important;
-  }
-
-  /* Force all text to wrap */
+  /* Force all text to wrap - simplified */
   article * {
-    word-wrap: break-word !important;
     overflow-wrap: break-word !important;
     hyphens: none !important;
   }
@@ -491,14 +484,11 @@ article .hint p {
 
   /* Allow code in tables to break properly on mobile */
   article table code {
+    @apply break-words hyphens-manual;
     white-space: normal !important;
-    word-break: break-word !important;
-    word-wrap: break-word !important;
     display: inline !important;
     max-width: 100% !important;
-    overflow-wrap: break-word !important;
     line-height: 1.8 !important;
-    hyphens: manual !important;
   }
 
   /* Remove min-width constraint from tables on mobile */
@@ -508,8 +498,8 @@ article .hint p {
 
   /* Ensure hint images are fully visible on mobile */
   article .hint img {
-    max-width: 100% !important;
-    width: auto !important;
+    max-width: 100%;
+    width: auto;
     height: auto !important;
   }
 }
