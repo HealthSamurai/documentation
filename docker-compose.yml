@@ -11,7 +11,7 @@ services:
       - DOCS_PREFIX=/docs
       - DOCS_REPO_PATH=/repo
       - DOCS_VOLUME_PATH=/repo/docs-new
-      - MEILISEARCH_API_KEY=${MEILISEARCH_API_KEY:-60DBZGy6zoDL6Q--s1-dHBWptiVKvK-XRsaacdvkOSM}
+      - MEILISEARCH_API_KEY=-60DBZGy6zoDL6Q--s1-dHBWptiVKvK-XRsaacdvkOSM
       - MEILISEARCH_URL=http://meilisearch:7700
       - PORT=8081
       - RELOAD_CHECK_INTERVAL_SEC=10

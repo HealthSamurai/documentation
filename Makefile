@@ -21,7 +21,7 @@ repl: init-test
 	DOCS_PREFIX=/docs \
 	DOCS_REPO_PATH=$$(pwd) \
 	DOCS_VOLUME_PATH=$$(pwd)/docs-new \
-	MEILISEARCH_API_KEY=60DBZGy6zoDL6Q--s1-dHBWptiVKvK-XRsaacdvkOSM \
+	MEILISEARCH_API_KEY=-60DBZGy6zoDL6Q--s1-dHBWptiVKvK-XRsaacdvkOSM \
 	MEILISEARCH_URL=http://localhost:7700 \
 	PORT=8081 \
 	RELOAD_CHECK_INTERVAL_SEC=10 \
