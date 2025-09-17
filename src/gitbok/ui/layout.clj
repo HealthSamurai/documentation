@@ -108,18 +108,6 @@
     [:html {:lang "en"
             :class "antialiased"}
      [:head
-      (hiccup2.core/raw "<!-- Google Tag Manager -->")
-      [:script
-       (hiccup2.core/raw
-        "(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-})(window,document,'script','dataLayer','GTM-PMS5LG2');")]
-      (hiccup2.core/raw "<!-- End Google Tag Manager -->")
-      [:script
-       (hiccup2.core/raw "
-(function(w, d) { w.PushEngage = w.PushEngage || []; w._peq = w._peq || []; PushEngage.push(['init', { appId: '795c4eea-7a69-42d7-bff3-882774303fcf' }]); var e = d.createElement('script'); e.src = 'https://clientcdn.pushengage.com/sdks/pushengage-web-sdk.js'; e.async = true; e.type = 'text/javascript'; d.head.appendChild(e); })(window, document);")]
       [:meta {:charset "utf-8"}]
       [:meta {:name "viewport" :content "width=device-width, initial-scale=1.0"}]
       [:meta {:name "description" :content description}]
@@ -194,7 +182,23 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
       ;; Theme toggle functionality
       ;; TODO
       #_[:script {:defer true
-                  :src (str (http/get-prefixed-url context "/static/theme-toggle.js") version-param)}]]
+                  :src (str (http/get-prefixed-url context "/static/theme-toggle.js") version-param)}]
+
+      ;; PushEngage - moved to end of head
+      [:script {:defer true}
+       (hiccup2.core/raw "
+(function(w, d) { w.PushEngage = w.PushEngage || []; w._peq = w._peq || []; PushEngage.push(['init', { appId: '795c4eea-7a69-42d7-bff3-882774303fcf' }]); var e = d.createElement('script'); e.src = 'https://clientcdn.pushengage.com/sdks/pushengage-web-sdk.js'; e.async = true; e.type = 'text/javascript'; d.head.appendChild(e); })(window, document);")]
+
+      ;; Google Tag Manager - moved to end of head with defer
+      (hiccup2.core/raw "<!-- Google Tag Manager -->")
+      [:script {:defer true}
+       (hiccup2.core/raw
+        "(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-PMS5LG2');")]
+      (hiccup2.core/raw "<!-- End Google Tag Manager -->")]
 
      [:body {:hx-on "htmx:afterSwap: window.scrollTo(0, 0);"}
       (hiccup2.core/raw "<!-- Google Tag Manager (noscript) -->")
