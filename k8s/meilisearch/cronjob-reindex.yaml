@@ -5,6 +5,7 @@ metadata:
   namespace: gitbok
 spec:
   schedule: "0 * * * *"  # Every hour
+  concurrencyPolicy: Forbid  # Don't start new job if previous is still running
   successfulJobsHistoryLimit: 1
   failedJobsHistoryLimit: 2
   jobTemplate:

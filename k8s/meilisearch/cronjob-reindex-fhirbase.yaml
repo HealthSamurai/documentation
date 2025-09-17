@@ -5,6 +5,7 @@ metadata:
   namespace: gitbok
 spec:
   schedule: "30 * * * *"  # Every hour at 30 minutes (offset from docs)
+  concurrencyPolicy: Forbid  # Don't start new job if previous is still running
   successfulJobsHistoryLimit: 1
   failedJobsHistoryLimit: 2
   jobTemplate:
