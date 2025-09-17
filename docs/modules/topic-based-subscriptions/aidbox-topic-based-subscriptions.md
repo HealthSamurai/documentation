@@ -226,6 +226,10 @@ graph TD
 [aidboxtopicsubscription-nats-tutorial.md](../../tutorials/subscriptions-tutorials/aidboxtopicsubscription-nats-tutorial.md)
 {% endcontent-ref %}
 
+{% content-ref url="../../tutorials/subscriptions-tutorials/rabbitmq-tutorial.md" %}
+[rabbitmq-tutorial.md](../../tutorials/subscriptions-tutorials/rabbitmq-tutorial.md)
+{% endcontent-ref %}
+
 ## Notification Shape
 
 Notification is a [FHIR Bundle](https://build.fhir.org/bundle.html) resource with `history` type, containing relevant resources in its entries. The first entry is a `AidboxSubscriptionStatus` resource, which describes the payload.\
