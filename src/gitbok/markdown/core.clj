@@ -192,7 +192,7 @@
                                      ;; Default: no language
                                      :else nil))
                    lang (or info-lang detected-lang)]
-               [:pre {:class "text-base"}
+               [:pre {:class "markdown-code text-base"}
                 [:code (when lang
                          {:class (str "language-" lang)})
                  ;; protect from xss, do not use raw
