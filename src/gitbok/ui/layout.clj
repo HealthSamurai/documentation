@@ -153,12 +153,15 @@
 
       [:link {:rel "stylesheet", :href (str (http/get-prefixed-url context "/static/app.min.css") version-param)}]
 
-      ;; Critical scripts - load first
-      [:script {:src (http/get-prefixed-url context "/static/htmx.min.js")}]
+      ;; Critical scripts - load with defer to avoid render blocking
+      [:script {:src (http/get-prefixed-url context "/static/htmx.min.js")
+                :defer true}]
 
-      ;; Prism.js for syntax highlighting
-      [:link {:rel "stylesheet" :href (http/get-prefixed-url context "/static/prism.css")
-              :defer true}]
+      ;; Prism.js for syntax highlighting - lazy load with media trick
+      [:link {:rel "stylesheet"
+              :href (http/get-prefixed-url context "/static/prism.css")
+              :media "print"
+              :onload "this.media='all'"}]
       [:script {:src (str (http/get-prefixed-url context "/static/prism.js") version-param)
                 :defer true}]
 
