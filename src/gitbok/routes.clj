@@ -220,17 +220,13 @@
   (let [prefix (state/get-config context :prefix "")]
     [;; Static routes
      [(utils/concat-urls prefix "/static/*")
-      {:get {:handler #'handlers/serve-static-file
-             :middleware [wrap-gzip]}}]
+      {:get {:handler #'handlers/serve-static-file}}]
      [(utils/concat-urls prefix "/service-worker.js")
-      {:get {:handler #'service-worker-handler
-             :middleware [wrap-gzip]}}]
+      {:get {:handler #'service-worker-handler}}]
      [(utils/concat-urls prefix "/public/og-preview/*")
-      {:get {:handler #'handlers/serve-og-preview
-             :middleware [wrap-gzip]}}]
+      {:get {:handler #'handlers/serve-og-preview}}]
      [(utils/concat-urls prefix "/.gitbook/assets/*")
-      {:get {:handler #'handlers/render-pictures
-             :middleware [wrap-gzip]}}]
+      {:get {:handler #'handlers/render-pictures}}]
 
      ;; System routes
      ["/healthcheck"
@@ -243,15 +239,12 @@
 
      ;; Sitemap at root
      [(utils/concat-urls prefix "/sitemap.xml")
-      {:get {:handler #'handlers/sitemap-index-xml
-             :middleware [wrap-gzip]}}]
+      {:get {:handler #'handlers/sitemap-index-xml}}]
 
      ;; Root handlers - handle both with and without trailing slash
-     [prefix {:get {:handler #'handlers/root-redirect-handler
-                    :middleware [wrap-gzip]}}]
+     [prefix {:get {:handler #'handlers/root-redirect-handler}}]
      [(str prefix "/")
-      {:get {:handler #'handlers/root-redirect-handler
-             :middleware [wrap-gzip]}}]
+      {:get {:handler #'handlers/root-redirect-handler}}]
 
      ;; Product routes are generated dynamically from products config
      ]))
@@ -266,28 +259,28 @@
                 ;; Meilisearch
                 [(str product-path "/meilisearch/dropdown")
                  {:get {:handler #'gitbok.ui.meilisearch/meilisearch-endpoint
-                        :middleware [product-middleware wrap-gzip]}}]
+                        :middleware [product-middleware]}}]
 
                 ;; Product sitemap
                 [(str product-path "/sitemap.xml")
                  {:get {:handler #'handlers/sitemap-xml
-                        :middleware [product-middleware wrap-gzip]}}]
+                        :middleware [product-middleware]}}]
 
                 ;; Product favicon
                 [(str product-path "/favicon.ico")
                  {:get {:handler #'handlers/render-favicon
-                        :middleware [product-middleware wrap-gzip]}}]
-                
+                        :middleware [product-middleware]}}]
+
                 ;; Partial root route - redirect to overview/readme
                 [partial-product-path
                  {:get {:handler #'handlers/render-partial-view
-                        :middleware [partial-product-middleware wrap-gzip]}}]
+                        :middleware [partial-product-middleware]}}]
 
                 ;; Partial routes for HTMX
                 [(str partial-product-path "/*")
                  {:get {:handler #'handlers/render-partial-view
-                        :middleware [partial-product-middleware wrap-gzip]}}]
-                
+                        :middleware [partial-product-middleware]}}]
+
                 ;; Product root - with trailing slash (redirect to without)
                 [(str product-path "/") {:get {:handler (fn [ctx]
                                                           (let [request (:request ctx)
@@ -295,35 +288,34 @@
                                                                 ;; Remove trailing slash
                                                                 new-uri (subs uri 0 (dec (count uri)))]
                                                             {:status 301
-                                                             :headers {"Location" new-uri}}))
-                                               :middleware [wrap-gzip]}}]
+                                                             :headers {"Location" new-uri}}))}}]
                 ;; Product root - without trailing slash
                 [product-path {:get {:handler #'handlers/redirect-to-readme
-                                     :middleware [product-middleware wrap-gzip]}}]]]
+                                     :middleware [product-middleware]}}]]]
     ;; Add Aidbox-specific routes
     (if (= (:id product) "aidbox")
       (concat routes
               [;; Landing page - Aidbox only
                [(str product-path "/landing")
                 {:get {:handler #'gitbok.ui.landing-hero/render-landing
-                       :middleware [product-middleware wrap-gzip]}}]
+                       :middleware [product-middleware]}}]
                ;; Examples page
                [(str product-path "/examples")
                 {:get {:handler #'gitbok.ui.examples/examples-handler
-                       :middleware [product-middleware wrap-gzip]}}]
+                       :middleware [product-middleware]}}]
                ;; Examples results endpoint for HTMX
                [(str product-path "/examples-results")
                 {:get {:handler #'gitbok.ui.examples/examples-results-handler
-                       :middleware [product-middleware wrap-gzip]}}]
+                       :middleware [product-middleware]}}]
                ;; All product pages (catch-all) - must be last!
                [(str product-path "/*")
                 {:get {:handler #'handlers/render-file-view
-                       :middleware [product-middleware wrap-gzip]}}]])
+                       :middleware [product-middleware]}}]])
       ;; For non-Aidbox products, just add the catch-all
       (conj routes
             [(str product-path "/*")
              {:get {:handler #'handlers/render-file-view
-                    :middleware [product-middleware wrap-gzip]}}]))))
+                    :middleware [product-middleware]}}]))))
 
 (defn all-routes
   "Generate all routes including dynamic product routes"
@@ -353,7 +345,9 @@
      (ring/router
       routes
       {:data {:muuntaja m/instance
-              :middleware [;; Global exception handler (must be first/outermost)
+              :middleware [;; Gzip compression (must be early to compress final response)
+                           wrap-gzip
+                           ;; Global exception handler
                            wrap-exception-handler
                            ;; Request logging
                            wrap-request-logging
