@@ -37,7 +37,6 @@ services:
       - "7700:7700"
     environment:
       - MEILI_ENV=development
-      # For production, set a secure master key (at least 16 bytes)
       - MEILI_MASTER_KEY=-60DBZGy6zoDL6Q--s1-dHBWptiVKvK-XRsaacdvkOSM
       - MEILI_NO_ANALYTICS=true
       - MEILI_DB_PATH=/meili_data
