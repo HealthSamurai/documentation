@@ -156,7 +156,7 @@ params:
 
 ### Licensing and Support
 
-[This page](https://www.health-samurai.io/docs/aidbox/overview/licensing-and-support) covers types of Aidbox licenses and describes Aidbox Support tiers.
+[This page](../licensing-and-support) covers types of Aidbox licenses and describes Aidbox Support tiers.
 
 ### Run Aidbox locally
 
