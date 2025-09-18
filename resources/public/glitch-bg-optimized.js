@@ -2,8 +2,8 @@
 (function() {
   'use strict';
 
-  // Character set - NO SPACES
-  const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789!@#$%^&*()_+-=[]{}|\\;:\'",.>?/`~';
+  // Character set - NO SPACES, NO HTML SPECIAL CHARS
+  const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789!@#$%^*()_+-=[]{}|;:,.?/~';
 
   // Configuration
   const config = {

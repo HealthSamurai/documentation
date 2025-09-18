@@ -31,10 +31,13 @@
   font-weight: 400;
   color: #e5e7eb; /* Very light gray, barely visible */
   user-select: none;
-  transition: all 0.3s ease;
+  /* Remove transition for better performance */
   line-height: 123%;
   letter-spacing: 0.45em; /* 45% as em units */
   text-align: center;
+  /* Enable GPU acceleration */
+  will-change: contents;
+  contain: layout style;
 }
 
 .glitch-letter.active {
