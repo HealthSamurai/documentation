@@ -3,6 +3,7 @@
    [gitbok.http :as http]
    [gitbok.ui.layout :as layout]
    [gitbok.ui.main-navigation :as main-navigation]
+   [gitbok.ui.tags :as tags]
    [gitbok.ui.heroicons :as ico]))
 
 (defn getting-started-card
@@ -143,22 +144,14 @@
             :src "https://cdn.prod.website-files.com/57441aa5da71fdf07a0a2e19/685e9a442bb239cfcd007e5c_Database%20%2B%20FHIR.svg"
             :alt "FHIR Database"}]
      [:h3 {:class "text-lg font-medium leading-8 tracking-[-0.03em] mb-3 text-tint-12 font-sans"} "FHIR Database"]
-     [:div {:class "flex flex-wrap gap-2 mb-3"}
-      [:span {:class "px-2 py-0.5 h-[25px] inline-flex items-center text-xs bg-[#EBEFF2B2] text-tint-11 rounded-md hover:bg-[#DDE1E8] hover:text-[#7E8291] transition-colors cursor-pointer"
-              :onclick (str "event.stopPropagation(); window.location.href='" (http/get-product-prefixed-url context "/database/overview#how-does-aidbox-store-data") "'")}
-       "PostgreSQL"]
-      [:span {:class "px-2 py-0.5 h-[25px] inline-flex items-center text-xs bg-[#EBEFF2B2] text-tint-11 rounded-md hover:bg-[#DDE1E8] hover:text-[#7E8291] transition-colors cursor-pointer"
-              :onclick (str "event.stopPropagation(); window.location.href='" (http/get-product-prefixed-url context "/database/overview#the-postgresql-jsonb-approach") "'")}
-       "JSONB"]
-      [:span {:class "px-2 py-0.5 h-[25px] inline-flex items-center text-xs bg-[#EBEFF2B2] text-tint-11 rounded-md hover:bg-[#DDE1E8] hover:text-[#7E8291] transition-colors cursor-pointer"
-              :onclick (str "event.stopPropagation(); window.location.href='" (http/get-product-prefixed-url context "/deployment-and-maintenance/indexes") "'")}
-       "Indexes"]
-      [:span {:class "px-2 py-0.5 h-[25px] inline-flex items-center text-xs bg-[#EBEFF2B2] text-tint-11 rounded-md hover:bg-[#DDE1E8] hover:text-[#7E8291] transition-colors cursor-pointer"
-              :onclick (str "event.stopPropagation(); window.location.href='" (http/get-product-prefixed-url context "/tutorials/artifact-registry-tutorials/custom-resources/custom-resources-using-structuredefinition") "'")}
-       "Custom resources"]
-      [:span {:class "px-2 py-0.5 h-[25px] inline-flex items-center text-xs bg-[#EBEFF2B2] text-tint-11 rounded-md hover:bg-[#DDE1E8] hover:text-[#7E8291] transition-colors cursor-pointer"
-              :onclick (str "event.stopPropagation(); window.location.href='" (http/get-product-prefixed-url context "/modules/sql-on-fhir") "'")}
-       "SQL on FHIR"]]
+     [:div {:class "mb-3"}
+      (tags/render-tags
+       [{:text "PostgreSQL" :onclick (str "event.stopPropagation(); window.location.href='" (http/get-product-prefixed-url context "/database/overview#how-does-aidbox-store-data") "'")}
+        {:text "JSONB" :onclick (str "event.stopPropagation(); window.location.href='" (http/get-product-prefixed-url context "/database/overview#the-postgresql-jsonb-approach") "'")}
+        {:text "Indexes" :onclick (str "event.stopPropagation(); window.location.href='" (http/get-product-prefixed-url context "/deployment-and-maintenance/indexes") "'")}
+        {:text "Custom resources" :onclick (str "event.stopPropagation(); window.location.href='" (http/get-product-prefixed-url context "/tutorials/artifact-registry-tutorials/custom-resources/custom-resources-using-structuredefinition") "'")}
+        {:text "SQL on FHIR" :onclick (str "event.stopPropagation(); window.location.href='" (http/get-product-prefixed-url context "/modules/sql-on-fhir") "'")}]
+       :clickable)]
      [:p {:class "text-sm leading-[22.75px] font-normal text-[#353B50] font-content"}
       "Manage FHIR data with the power of PostgreSQL — fully under your control. Aidbox stores resources transparently as JSONB, enabling you to query, join, and aggregate by any element, with full support for transactional operations, reporting, and seamless migrations."]]
 
@@ -169,15 +162,12 @@
             :src "https://cdn.prod.website-files.com/57441aa5da71fdf07a0a2e19/685e9a444fc720f2ad877e7d_API.svg"
             :alt "API"}]
      [:h3 {:class "text-lg font-medium leading-8 tracking-[-0.03em] mb-3 text-tint-12 font-sans"} "API"]
-     [:div {:class "flex flex-wrap gap-2 mb-3"}
-      [:span {:class "px-2 py-0.5 h-[25px] inline-flex items-center text-xs bg-[#EBEFF2B2] text-tint-11 rounded-md hover:bg-[#DDE1E8] hover:text-[#7E8291] transition-colors cursor-pointer"
-              :onclick (str "event.stopPropagation(); window.location.href='" (http/get-product-prefixed-url context "/api/api-overview") "'")}
-       "FHIR"]
-      [:span {:class "px-2 py-0.5 h-[25px] inline-flex items-center text-xs bg-[#EBEFF2B2] text-tint-11 rounded-md hover:bg-[#DDE1E8] hover:text-[#7E8291] transition-colors"}
-       "SQL"]
-      [:span {:class "px-2 py-0.5 h-[25px] inline-flex items-center text-xs bg-[#EBEFF2B2] text-tint-11 rounded-md hover:bg-[#DDE1E8] hover:text-[#7E8291] transition-colors cursor-pointer"
-              :onclick (str "event.stopPropagation(); window.location.href='" (http/get-product-prefixed-url context "/api/graphql-api") "'")}
-       "GraphQL"]]
+     [:div {:class "mb-3"}
+      (tags/render-tags
+       [{:text "FHIR" :onclick (str "event.stopPropagation(); window.location.href='" (http/get-product-prefixed-url context "/api/api-overview") "'")}
+        {:text "SQL"}
+        {:text "GraphQL" :onclick (str "event.stopPropagation(); window.location.href='" (http/get-product-prefixed-url context "/api/graphql-api") "'")}]
+       :clickable)]
      [:p {:class "text-sm leading-[22.75px] font-normal text-[#353B50] font-content"}
       "Multiple APIs — FHIR, SQL, GraphQL, Bulk, and Subscription — to work efficiently with FHIR data for maximum flexibility and performance."]]
 
@@ -188,16 +178,12 @@
             :src "https://cdn.prod.website-files.com/57441aa5da71fdf07a0a2e19/685e9a44bf8f6440a9a0bcc2_FHIR%20Artefact%20Registry.svg"
             :alt "Artifact Registry"}]
      [:h3 {:class "text-lg font-medium leading-8 tracking-[-0.03em] mb-3 text-tint-12 font-sans"} "Artifact Registry"]
-     [:div {:class "flex flex-wrap gap-2 mb-3"}
-      [:span {:class "px-2 py-0.5 h-[25px] inline-flex items-center text-xs bg-[#EBEFF2B2] text-tint-11 rounded-md hover:bg-[#DDE1E8] hover:text-[#7E8291] transition-colors cursor-pointer"
-              :onclick (str "event.stopPropagation(); window.location.href='" (http/get-product-prefixed-url context "/artifact-registry/artifact-registry-overview") "'")}
-       "IGs"]
-      [:span {:class "px-2 py-0.5 h-[25px] inline-flex items-center text-xs bg-[#EBEFF2B2] text-tint-11 rounded-md hover:bg-[#DDE1E8] hover:text-[#7E8291] transition-colors cursor-pointer"
-              :onclick (str "event.stopPropagation(); window.location.href='" (http/get-product-prefixed-url context "/artifact-registry/structuredefinition") "'")}
-       "Profiles"]
-      [:span {:class "px-2 py-0.5 h-[25px] inline-flex items-center text-xs bg-[#EBEFF2B2] text-tint-11 rounded-md hover:bg-[#DDE1E8] hover:text-[#7E8291] transition-colors cursor-pointer"
-              :onclick (str "event.stopPropagation(); window.location.href='" (http/get-product-prefixed-url context "/api/rest-api/fhir-search/searchparameter") "'")}
-       "Search params"]]
+     [:div {:class "mb-3"}
+      (tags/render-tags
+       [{:text "IGs" :onclick (str "event.stopPropagation(); window.location.href='" (http/get-product-prefixed-url context "/artifact-registry/artifact-registry-overview") "'")}
+        {:text "Profiles" :onclick (str "event.stopPropagation(); window.location.href='" (http/get-product-prefixed-url context "/artifact-registry/structuredefinition") "'")}
+        {:text "Search params" :onclick (str "event.stopPropagation(); window.location.href='" (http/get-product-prefixed-url context "/api/rest-api/fhir-search/searchparameter") "'")}]
+       :clickable)]
      [:p {:class "text-sm leading-[22.75px] font-normal text-[#353B50] font-content"}
       "Multiple FHIR versions: STU3, R4, R5, and R6. 500+ ready-to-use IGs: IPS, national (US, DE, CA, etc.), domain (mCode, Da Vinci, etc.), custom IGs."]]
 
@@ -208,16 +194,12 @@
             :src "https://cdn.prod.website-files.com/57441aa5da71fdf07a0a2e19/685e9a441cfd9ebadf77b357_AUTH.svg"
             :alt "Access Control"}]
      [:h3 {:class "text-lg font-medium leading-8 tracking-[-0.03em] mb-3 text-tint-12 font-sans"} "Access Control"]
-     [:div {:class "flex flex-wrap gap-2 mb-3"}
-      [:span {:class "px-2 py-0.5 h-[25px] inline-flex items-center text-xs bg-[#EBEFF2B2] text-tint-11 rounded-md hover:bg-[#DDE1E8] hover:text-[#7E8291] transition-colors cursor-pointer"
-              :onclick (str "event.stopPropagation(); window.location.href='" (http/get-product-prefixed-url context "/access-control/authentication/oauth-2-0") "'")}
-       "OAuth 2.0"]
-      [:span {:class "px-2 py-0.5 h-[25px] inline-flex items-center text-xs bg-[#EBEFF2B2] text-tint-11 rounded-md hover:bg-[#DDE1E8] hover:text-[#7E8291] transition-colors cursor-pointer"
-              :onclick "event.stopPropagation(); window.open('https://www.health-samurai.io/docs/aidbox/access-control/authorization/smart-on-fhir', '_blank')"}
-       "SMART"]
-      [:span {:class "px-2 py-0.5 h-[25px] inline-flex items-center text-xs bg-[#EBEFF2B2] text-tint-11 rounded-md hover:bg-[#DDE1E8] hover:text-[#7E8291] transition-colors cursor-pointer"
-              :onclick (str "event.stopPropagation(); window.location.href='" (http/get-product-prefixed-url context "/access-control/authorization#role-based-access-control") "'")}
-       "RBAC/ABAC"]]
+     [:div {:class "mb-3"}
+      (tags/render-tags
+       [{:text "OAuth 2.0" :onclick (str "event.stopPropagation(); window.location.href='" (http/get-product-prefixed-url context "/access-control/authentication/oauth-2-0") "'")}
+        {:text "SMART" :onclick "event.stopPropagation(); window.open('https://www.health-samurai.io/docs/aidbox/access-control/authorization/smart-on-fhir', '_blank')"}
+        {:text "RBAC/ABAC" :onclick (str "event.stopPropagation(); window.location.href='" (http/get-product-prefixed-url context "/access-control/authorization#role-based-access-control") "'")}]
+       :clickable)]
      [:p {:class "text-sm leading-[22.75px] font-normal text-[#353B50] font-content"}
       "Enterprise-grade security with OAuth 2.0, multitenancy, flexible user management, granular access policies, and complete audit trails."]]
 
@@ -228,13 +210,11 @@
             :src "https://cdn.prod.website-files.com/57441aa5da71fdf07a0a2e19/685e9a4419fe3f4c5c0e24b5_Translation%20Book.svg"
             :alt "Terminology"}]
      [:h3 {:class "text-lg font-medium leading-8 tracking-[-0.03em] mb-3 text-tint-12 font-sans"} "Terminology"]
-     [:div {:class "flex flex-wrap gap-2 mb-3"}
-      [:span {:class "px-2 py-0.5 h-[25px] inline-flex items-center text-xs bg-[#EBEFF2B2] text-tint-11 rounded-md hover:bg-[#DDE1E8] hover:text-[#7E8291] transition-colors cursor-pointer"
-              :onclick (str "event.stopPropagation(); window.location.href='" (http/get-product-prefixed-url context "/terminology-module/fhir-terminology/codesystem") "'")}
-       "CodeSystems"]
-      [:span {:class "px-2 py-0.5 h-[25px] inline-flex items-center text-xs bg-[#EBEFF2B2] text-tint-11 rounded-md hover:bg-[#DDE1E8] hover:text-[#7E8291] transition-colors cursor-pointer"
-              :onclick (str "event.stopPropagation(); window.location.href='" (http/get-product-prefixed-url context "/terminology-module/fhir-terminology/valueset") "'")}
-       "ValueSets"]]
+     [:div {:class "mb-3"}
+      (tags/render-tags
+       [{:text "CodeSystems" :onclick (str "event.stopPropagation(); window.location.href='" (http/get-product-prefixed-url context "/terminology-module/fhir-terminology/codesystem") "'")}
+        {:text "ValueSets" :onclick (str "event.stopPropagation(); window.location.href='" (http/get-product-prefixed-url context "/terminology-module/fhir-terminology/valueset") "'")}]
+       :clickable)]
      [:p {:class "text-sm leading-[22.75px] font-normal text-[#353B50] font-content"}
       "Validate codes and perform fast lookups in ICD-10, SNOMED, LOINC. Use custom code systems and value sets."]]
 
@@ -245,19 +225,13 @@
             :src "https://cdn.prod.website-files.com/57441aa5da71fdf07a0a2e19/685e9a4478a178659dd16f36_SDK.svg"
             :alt "Developer Experience"}]
      [:h3 {:class "text-lg font-medium leading-8 tracking-[-0.03em] mb-3 text-tint-12 font-sans"} "Developer Experience"]
-     [:div {:class "flex flex-wrap gap-2 mb-3"}
-      [:span {:class "px-2 py-0.5 h-[25px] inline-flex items-center text-xs bg-[#EBEFF2B2] text-tint-11 rounded-md hover:bg-[#DDE1E8] hover:text-[#7E8291] transition-colors cursor-pointer"
-              :onclick (str "event.stopPropagation(); window.location.href='" (http/get-product-prefixed-url context "/getting-started/python") "'")}
-       "Python"]
-      [:span {:class "px-2 py-0.5 h-[25px] inline-flex items-center text-xs bg-[#EBEFF2B2] text-tint-11 rounded-md hover:bg-[#DDE1E8] hover:text-[#7E8291] transition-colors cursor-pointer"
-              :onclick (str "event.stopPropagation(); window.location.href='" (http/get-product-prefixed-url context "/getting-started/csharp") "'")}
-       "C#"]
-      [:span {:class "px-2 py-0.5 h-[25px] inline-flex items-center text-xs bg-[#EBEFF2B2] text-tint-11 rounded-md hover:bg-[#DDE1E8] hover:text-[#7E8291] transition-colors cursor-pointer"
-              :onclick (str "event.stopPropagation(); window.location.href='" (http/get-product-prefixed-url context "/getting-started/typescript") "'")}
-       "TS"]
-      [:span {:class "px-2 py-0.5 h-[25px] inline-flex items-center text-xs bg-[#EBEFF2B2] text-tint-11 rounded-md hover:bg-[#DDE1E8] hover:text-[#7E8291] transition-colors cursor-pointer"
-              :onclick (str "event.stopPropagation(); window.location.href='" (http/get-product-prefixed-url context "/developer-experience/developer-experience-overview#use-aidbox-sdks-for-customized-experience") "'")}
-       "Codegen"]]
+     [:div {:class "mb-3"}
+      (tags/render-tags
+       [{:text "Python" :onclick (str "event.stopPropagation(); window.location.href='" (http/get-product-prefixed-url context "/getting-started/python") "'")}
+        {:text "C#" :onclick (str "event.stopPropagation(); window.location.href='" (http/get-product-prefixed-url context "/getting-started/csharp") "'")}
+        {:text "TS" :onclick (str "event.stopPropagation(); window.location.href='" (http/get-product-prefixed-url context "/getting-started/typescript") "'")}
+        {:text "Codegen" :onclick (str "event.stopPropagation(); window.location.href='" (http/get-product-prefixed-url context "/developer-experience/developer-experience-overview#use-aidbox-sdks-for-customized-experience") "'")}]
+       :clickable)]
      [:p {:class "text-sm leading-[22.75px] font-normal text-[#353B50] font-content"}
       "TypeScript, C#, and Python SDKs for easy Aidbox integration and rapid app development. SDK generator for custom toolkits tailored to your stack."]]
 
@@ -268,11 +242,10 @@
             :src "https://cdn.prod.website-files.com/57441aa5da71fdf07a0a2e19/685e9a44f6b12fad351dc0d6_UI.svg"
             :alt "UI"}]
      [:h3 {:class "text-lg font-medium leading-8 tracking-[-0.03em] mb-3 text-tint-12 font-sans"} "UI"]
-     [:div {:class "flex flex-wrap gap-2 mb-3"}
-      [:span {:class "px-2 py-0.5 h-[25px] inline-flex items-center text-xs bg-[#EBEFF2B2] text-tint-11 rounded-md hover:bg-[#DDE1E8] hover:text-[#7E8291] transition-colors"}
-       "FHIR Viewer"]
-      [:span {:class "px-2 py-0.5 h-[25px] inline-flex items-center text-xs bg-[#EBEFF2B2] text-tint-11 rounded-md hover:bg-[#DDE1E8] hover:text-[#7E8291] transition-colors"}
-       "Search params"]]
+     [:div {:class "mb-3"}
+      (tags/render-tags
+       ["FHIR Viewer" "Search params"]
+       :default)]
      [:p {:class "text-sm leading-[22.75px] font-normal text-[#353B50] font-content"}
       "Intuitive UI to work with FHIR data, manage users, clients, access policies, and configure system settings."]]]])
 
@@ -289,10 +262,13 @@
          ;; Container for gray background and card that extends beyond it
          [:div {:class "w-full relative"}
           ;; Gray background - ends 50px before card bottom
-          [:div {:class "bg-gray-50 w-full absolute inset-0 bottom-[70px]"}]
+          [:div {:class "letter-glitch-container"}]
+
+          ;; Ellipse overlay for lighter background effect
+          [:div {:class "hero-ellipse-overlay"}]
 
           ;; Content
-          [:div {:class "max-w-screen-2xl mx-auto px-4 md:px-8 pt-8 sm:pt-12 xl:pt-16 pb-8 relative"}
+          [:div {:class "max-w-screen-2xl mx-auto px-4 md:px-8 pt-8 sm:pt-12 xl:pt-16 pb-8 relative z-10"}
            [:div {:class "grid grid-cols-1 lg:grid-cols-2 gap-8 items-start"}
             ;; Left side - Documentation header
             [:div {:class "flex items-center gap-4"}
@@ -321,7 +297,13 @@
            (zulip-community)]]
 
          ;; Footer
-         (layout/site-footer ctx)]
+         (layout/site-footer ctx)
+
+         ;; Glitch background scripts and styles
+         [:link {:rel "stylesheet" :href (http/get-prefixed-url ctx "/static/glitch-bg.css")}]
+         [:script {:src "https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" :defer true}]
+         [:script {:src "https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/TextPlugin.min.js" :defer true}]
+         [:script {:src (http/get-prefixed-url ctx "/static/glitch-bg.js") :defer true}]]
 
         title "Aidbox Documentation"
         description "Aidbox - FHIR-first healthcare application platform"]

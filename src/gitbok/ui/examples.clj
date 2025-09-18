@@ -3,6 +3,7 @@
    [gitbok.http :as http]
    [gitbok.ui.layout :as layout]
    [gitbok.ui.main-navigation :as main-navigation]
+   [gitbok.ui.tags :as tags]
    [gitbok.products :as products]
    [gitbok.examples.indexer :as indexer]
    [clojure.string :as str]
@@ -13,29 +14,22 @@
 (defn render-example-card
   "Render a single example card"
   [{:keys [id title description features languages github_url]}]
-  [:div.border.border-tint-2.rounded-lg.p-6.hover:shadow-lg.transition-shadow.duration-200.bg-white
-   {:data-example-id id
-    :class "example-card"}
+  [:div.rounded-lg.p-6.hover:shadow-lg.transition-shadow.duration-200
+   {:class "border border-[#E7E9EF] bg-gradient-to-b from-white to-[#F8F9FA] example-card"
+    :data-example-id id}
    ;; Title as clickable link
    [:a {:href github_url :target "_blank" :rel "noopener noreferrer"}
-    [:h3.text-lg.font-semibold.mb-2.text-tint-12.hover:text-primary-9.transition-colors title]]
-   [:p.text-sm.text-tint-10.mb-4.line-clamp-3 description]
+    [:h3 {:class "text-lg font-medium leading-7 tracking-[-0.03em] mb-2 text-[#1F1C1C] hover:text-primary-9 transition-colors"} title]]
+   [:p {:class "text-sm leading-[22.75px] tracking-[-0.02em] text-[#353B50] mb-4 line-clamp-3"} description]
 
-   ;; Languages tags - green color with lighter border
+   ;; Languages tags
    (when (seq languages)
-     [:div.flex.flex-wrap.gap-2.mb-2
-      (for [lang languages]
-        [:span.inline-flex.items-center.px-2.py-0.5.rounded.text-xs.font-medium.bg-success-2.text-success-11.border.border-success-3
-         {:key lang}
-         lang])])
+     [:div.mb-2
+      (tags/render-tags languages :default)])
 
-   ;; Features tags - blue color, same style as languages
+   ;; Features tags
    (when (seq features)
-     [:div.flex.flex-wrap.gap-2
-      (for [feature features]
-        [:span.inline-flex.items-center.px-2.py-0.5.rounded.text-xs.font-medium.bg-primary-2.text-primary-11.border.border-primary-4
-         {:key feature}
-         feature])])])
+     (tags/render-tags features :default))])
 
 (defn render-filter-checkbox
   "Render a single filter checkbox"
@@ -49,7 +43,7 @@
      :data-filter-type type
      :data-filter-value value
      :onchange "updateFiltersAndURL()"}]
-   [:span.text-sm.text-tint-11 label]
+   [:span {:class "text-sm text-[#353B50] leading-5"} label]
    (when count
      [:span.text-xs.text-tint-10 (str "(" count ")")])])
 
@@ -64,7 +58,7 @@
   [:div.space-y-6
    ;; Languages filter - sorted by count
    [:div
-    [:h4.text-sm.font-semibold.text-tint-12.mb-3 "Languages"]
+    [:h4 {:class "text-sm font-semibold text-[#1F1C1C] leading-5 mb-3"} "Languages"]
     [:div.space-y-1
      (let [langs-with-counts (map (fn [lang]
                                     [lang (count-examples-by-filter examples "languages" lang)])
@@ -78,7 +72,7 @@
 
 ;; Features filter - sorted by count with search
    [:div
-    [:h4.text-sm.font-semibold.text-tint-12.mb-3 "Features"]
+    [:h4 {:class "text-sm font-semibold text-[#1F1C1C] leading-5 mb-3"} "Features"]
     [:input.w-full.px-3.py-1.5.mb-3.text-sm.border.border-tint-3.rounded-md.focus:outline-none.focus:ring-2.focus:ring-primary-5
      {:type "text"
       :id "features-search"
@@ -161,7 +155,7 @@
 
     [:div#examples-results.w-full
      [:div.mb-4
-      [:p.text-sm.text-tint-10
+      [:p {:class "text-sm text-[#808492] leading-5"}
        (str "Showing " (count filtered-examples)
             (when (or search-term (seq selected-languages) (seq selected-features))
               (str " of " (count examples)))
@@ -281,9 +275,9 @@
      [:div.flex.flex-col.lg:flex-row.gap-6.w-full
       ;; Filters sidebar
       [:div.lg:w-64.flex-shrink-0
-       [:div.bg-white.rounded-lg.border.border-tint-3.p-4
+       [:div {:class "bg-white rounded-lg border border-[#E7E9EF] p-[17px]"}
         [:div.flex.items-center.justify-between.mb-4
-         [:h3.text-lg.font-semibold.text-tint-12 "Filters"]
+         [:h3 {:class "text-xl font-medium leading-8 text-[#1F1C1C]"} "Filters"]
          (when (or (seq selected-languages) (seq selected-features) (not (str/blank? search-term)))
            [:button.text-sm.text-primary-9.hover:text-primary-10.cursor-pointer
             {:type "button"
@@ -302,8 +296,8 @@
   [:div.w-full
    ;; Header
    [:div.mb-8
-    [:h1.text-3xl.font-bold.text-tint-12.mb-3 "Aidbox Examples"]
-    [:p.text-lg.text-tint-10
+    [:h1 {:class "text-[28px] font-semibold leading-9 tracking-[-0.03em] text-[#1F1C1C] mb-3"} "Aidbox Examples"]
+    [:p {:class "text-base leading-6 text-[#353B50]"}
      "Browse Aidbox integration examples and sample applications"]]
 
    ;; Content

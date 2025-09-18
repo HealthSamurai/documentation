@@ -167,6 +167,36 @@ html {
 /* ================================================
    Component Classes
    ================================================ */
+
+/* Hero Ellipse Overlay */
+.hero-ellipse-overlay {
+  position: absolute;
+  width: 900px;
+  height: 600px;
+  background: radial-gradient(ellipse at center, rgba(255, 255, 255, 0.8) 0%, rgba(255, 255, 255, 0.4) 40%, transparent 70%);
+  pointer-events: none;
+  top: 40%;
+  left: 10%;
+  transform: translate(-50%, -50%);
+  z-index: 5;
+  mix-blend-mode: screen;
+}
+
+@media (max-width: 1024px) {
+  .hero-ellipse-overlay {
+    width: 600px;
+    height: 400px;
+    left: 40%;
+  }
+}
+
+@media (max-width: 768px) {
+  .hero-ellipse-overlay {
+    width: 500px;
+    height: 350px;
+    left: 50%;
+  }
+}
 /* Overlay for mobile menu */
 .mobile-menu-overlay {
   display: none;

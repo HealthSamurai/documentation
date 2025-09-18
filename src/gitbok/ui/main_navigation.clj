@@ -81,8 +81,8 @@
                         (assoc :target (:target link))))
                  (:text link)])))])]
 
-      ;; Right section: Navigation (if nav-links-right), Search, Sign up button
-      [:div {:class "flex items-center gap-3"}
+      ;; Right section: Navigation (if nav-links-right), Search, Login button
+      [:div {:class "flex items-center gap-6"}
        ;; Navigation links when nav-links-right is true
        (when nav-links-right?
          [:nav {:id "top-navigation"
@@ -336,8 +336,9 @@
         [:div {:id "search-dropdown"
                :class "absolute top-full mt-2 right-0 left-0 md:left-auto z-50"}]]
 
-       ;; Sign up button (desktop only) - only for Aidbox
-       #_(when (= (:id product) "aidbox")
-           [:a {:href "https://aidbox.app/ui/portal#/signup"
-                :class "hidden lg:inline-flex items-center justify-center px-4 py-2 text-sm font-medium text-white bg-primary-9 hover:bg-primary-10 rounded-md transition-colors duration-200 no-underline"}
-            "Sign up"])]])])
+       ;; Login button (desktop only) - far right with borders
+       [:a {:href "https://aidbox.app/ui/portal#/signin"
+            :class "hidden lg:inline-flex items-center justify-center px-4 py-2 text-sm font-semibold leading-5 text-[#717684] hover:text-primary-9 border border-[#E7E9EF] hover:border-primary-9 rounded-md transition-colors"
+            :target "_blank"
+            :rel "noopener noreferrer"}
+        "Login"]]])])

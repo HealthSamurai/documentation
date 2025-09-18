@@ -1,0 +1,72 @@
+/* Letter Glitch Background Effect */
+.letter-glitch-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: calc(100% - 70px); /* Reduced by 70px from bottom */
+  overflow: hidden;
+  background: #f9fafb; /* Gray-50 background */
+  z-index: 0;
+}
+
+.letter-glitch-grid {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, 20px);
+  grid-template-rows: repeat(auto-fill, 20px);
+  gap: 0;
+  padding: 20px;
+  pointer-events: none;
+}
+
+.glitch-letter {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  font-size: 11px;
+  font-weight: 400;
+  color: #e5e7eb; /* Very light gray, barely visible */
+  user-select: none;
+  transition: all 0.3s ease;
+  line-height: 123%;
+  letter-spacing: 0.45em; /* 45% as em units */
+  text-align: center;
+}
+
+.glitch-letter.active {
+  color: #d1d5db; /* Very light gray, just slightly darker than base */
+  font-weight: 500; /* Medium weight for active state */
+  /* No animation */
+}
+
+/* Pattern debug borders */
+/* .letter-pattern-grid { */
+/*   border: 1px solid red; */
+/*   box-sizing: border-box; */
+/* } */
+
+/* Reduced motion support */
+@media (prefers-reduced-motion: reduce) {
+  .glitch-letter,
+  .glitch-letter.active {
+    animation: none;
+    transition: none;
+  }
+}
+
+/* Mobile optimization */
+@media (max-width: 768px) {
+  .letter-glitch-grid {
+    grid-template-columns: repeat(auto-fill, 18px);
+    grid-template-rows: repeat(auto-fill, 18px);
+  }
+
+  .glitch-letter {
+    font-size: 9px;
+    letter-spacing: 0.35em; /* Slightly less spacing on mobile */
+  }
+}
