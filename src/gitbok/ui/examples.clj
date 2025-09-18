@@ -22,14 +22,28 @@
     [:h3 {:class "text-lg font-medium leading-7 tracking-[-0.03em] mb-2 text-[#1F1C1C] hover:text-primary-9 transition-colors"} title]]
    [:p {:class "text-sm leading-[22.75px] tracking-[-0.02em] text-[#353B50] mb-4 line-clamp-3"} description]
 
-   ;; Languages tags
+   ;; Languages tags - clickable with green color
    (when (seq languages)
      [:div.mb-2
-      (tags/render-tags languages :default)])
+      [:div.flex.flex-wrap.gap-2
+       (for [lang languages]
+         (tags/render-tag {:text lang
+                          :key lang
+                          :variant :language
+                          :data-type "languages"
+                          :data-value lang
+                          :onclick (str "event.preventDefault(); event.stopPropagation(); toggleFilter('languages', '" lang "'); return false;")}))]])
 
-   ;; Features tags
+   ;; Features tags - clickable
    (when (seq features)
-     (tags/render-tags features :default))])
+     [:div.flex.flex-wrap.gap-2
+      (for [feature features]
+        (tags/render-tag {:text feature
+                         :key feature
+                         :variant :clickable
+                         :data-type "features"
+                         :data-value feature
+                         :onclick (str "event.preventDefault(); event.stopPropagation(); toggleFilter('features', '" feature "'); return false;")}))])])
 
 (defn render-filter-checkbox
   "Render a single filter checkbox"
@@ -45,7 +59,8 @@
      :onchange "updateFiltersAndURL()"}]
    [:span {:class "text-sm text-[#353B50] leading-5"} label]
    (when count
-     [:span.text-xs.text-tint-10 (str "(" count ")")])])
+     [:span {:class "text-sm text-[#353B50] leading-5"}
+      (str "(" count ")")])])
 
 (defn count-examples-by-filter
   "Count examples that have a specific filter value"
@@ -257,6 +272,17 @@
           } else {
             // For checkboxes, update immediately
             doUpdate();
+          }
+        }
+
+        function toggleFilter(type, value) {
+          // Find the corresponding checkbox
+          const checkbox = document.querySelector(`input[name=\"${type}\"][value=\"${value}\"]`);
+          if (checkbox) {
+            // Toggle the checkbox state
+            checkbox.checked = !checkbox.checked;
+            // Update filters
+            updateFiltersAndURL();
           }
         }
 

@@ -2,16 +2,20 @@
 
 (defn render-tag
   "Render a reusable tag component with optional click handler"
-  [{:keys [text onclick href variant key]}]
+  [{:keys [text onclick href variant key data-type data-value]}]
   (let [base-classes "inline-flex items-center px-2 py-0.5 h-[25px] rounded text-xs font-medium transition-colors"
         variant-classes (case (or variant :default)
                           :default "bg-[#EBEFF2B2] text-tint-11 hover:bg-[#DDE1E8] hover:text-[#7E8291]"
+                          :language "bg-success-2 text-success-12 hover:bg-success-3 hover:text-success-12"
                           :clickable "bg-[#EBEFF2B2] text-tint-11 hover:bg-[#DDE1E8] hover:text-[#7E8291] cursor-pointer"
                           "bg-[#EBEFF2B2] text-tint-11 hover:bg-[#DDE1E8] hover:text-[#7E8291]")
         attrs {:class (str base-classes " " variant-classes)}
-        attrs (if key (assoc attrs :key key) attrs)]
+        attrs (if key (assoc attrs :key key) attrs)
+        attrs (if data-type (assoc attrs :data-tag-type data-type) attrs)
+        attrs (if data-value (assoc attrs :data-tag-value data-value) attrs)]
     (cond
-      onclick [:span (assoc attrs :onclick onclick) text]
+      ;; For onclick, use span with cursor-pointer instead of button to avoid HTML nesting issues
+      onclick [:span (assoc attrs :onclick onclick :style "cursor: pointer;") text]
       href [:a (assoc attrs :href href) text]
       :else [:span attrs text])))
 

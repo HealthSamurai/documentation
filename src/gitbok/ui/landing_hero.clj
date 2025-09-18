@@ -138,113 +138,114 @@
    [:div {:class "grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6"}
 
     ;; FHIR Database Card - spans 2 columns
-    [:a {:class "block p-4 rounded-lg bg-gradient-to-b from-white to-[#F8F9FA] border border-tint-6 hover:shadow-lg transition-shadow duration-300 lg:col-span-2"
-         :href (http/get-product-prefixed-url context "/database/overview")}
+    [:div {:class "block p-4 rounded-lg bg-gradient-to-b from-white to-[#F8F9FA] border border-tint-6 hover:shadow-lg transition-shadow duration-300 lg:col-span-2"}
      [:img {:class "w-20 h-20 mb-4"
             :src "https://cdn.prod.website-files.com/57441aa5da71fdf07a0a2e19/685e9a442bb239cfcd007e5c_Database%20%2B%20FHIR.svg"
             :alt "FHIR Database"}]
-     [:h3 {:class "text-lg font-medium leading-8 tracking-[-0.03em] mb-3 text-tint-12 font-sans"} "FHIR Database"]
+     [:a {:href (http/get-product-prefixed-url context "/database/overview")}
+      [:h3 {:class "text-lg font-medium leading-8 tracking-[-0.03em] mb-3 text-tint-12 font-sans hover:text-primary-9 transition-colors"} "FHIR Database"]]
      [:div {:class "mb-3"}
       (tags/render-tags
-       [{:text "PostgreSQL" :onclick (str "event.stopPropagation(); window.location.href='" (http/get-product-prefixed-url context "/database/overview#how-does-aidbox-store-data") "'")}
-        {:text "JSONB" :onclick (str "event.stopPropagation(); window.location.href='" (http/get-product-prefixed-url context "/database/overview#the-postgresql-jsonb-approach") "'")}
-        {:text "Indexes" :onclick (str "event.stopPropagation(); window.location.href='" (http/get-product-prefixed-url context "/deployment-and-maintenance/indexes") "'")}
-        {:text "Custom resources" :onclick (str "event.stopPropagation(); window.location.href='" (http/get-product-prefixed-url context "/tutorials/artifact-registry-tutorials/custom-resources/custom-resources-using-structuredefinition") "'")}
-        {:text "SQL on FHIR" :onclick (str "event.stopPropagation(); window.location.href='" (http/get-product-prefixed-url context "/modules/sql-on-fhir") "'")}]
-       :clickable)]
+       [{:text "PostgreSQL" :href (http/get-product-prefixed-url context "/database/overview#how-does-aidbox-store-data")}
+        {:text "JSONB" :href (http/get-product-prefixed-url context "/database/overview#the-postgresql-jsonb-approach")}
+        {:text "Indexes" :href (http/get-product-prefixed-url context "/deployment-and-maintenance/indexes")}
+        {:text "Custom resources" :href (http/get-product-prefixed-url context "/tutorials/artifact-registry-tutorials/custom-resources/custom-resources-using-structuredefinition")}
+        {:text "SQL on FHIR" :href (http/get-product-prefixed-url context "/modules/sql-on-fhir")}]
+       :default)]
      [:p {:class "text-sm leading-[22.75px] font-normal text-[#353B50] font-content"}
       "Manage FHIR data with the power of PostgreSQL — fully under your control. Aidbox stores resources transparently as JSONB, enabling you to query, join, and aggregate by any element, with full support for transactional operations, reporting, and seamless migrations."]]
 
     ;; API Card
-    [:a {:class "block p-4 rounded-lg bg-gradient-to-b from-white to-[#F8F9FA] border border-tint-6 hover:shadow-lg transition-shadow duration-300"
-         :href (http/get-product-prefixed-url context "/api/api-overview")}
+    [:div {:class "block p-4 rounded-lg bg-gradient-to-b from-white to-[#F8F9FA] border border-tint-6 hover:shadow-lg transition-shadow duration-300"}
      [:img {:class "w-20 h-20 mb-4"
             :src "https://cdn.prod.website-files.com/57441aa5da71fdf07a0a2e19/685e9a444fc720f2ad877e7d_API.svg"
             :alt "API"}]
-     [:h3 {:class "text-lg font-medium leading-8 tracking-[-0.03em] mb-3 text-tint-12 font-sans"} "API"]
+     [:a {:href (http/get-product-prefixed-url context "/api/api-overview")}
+      [:h3 {:class "text-lg font-medium leading-8 tracking-[-0.03em] mb-3 text-tint-12 font-sans hover:text-primary-9 transition-colors"} "API"]]
      [:div {:class "mb-3"}
       (tags/render-tags
-       [{:text "FHIR" :onclick (str "event.stopPropagation(); window.location.href='" (http/get-product-prefixed-url context "/api/api-overview") "'")}
-        {:text "SQL"}
-        {:text "GraphQL" :onclick (str "event.stopPropagation(); window.location.href='" (http/get-product-prefixed-url context "/api/graphql-api") "'")}]
-       :clickable)]
+       [{:text "FHIR" :href (http/get-product-prefixed-url context "/api/api-overview")}
+        {:text "SQL" :href (http/get-product-prefixed-url context "/api/sql-api")}
+        {:text "GraphQL" :href (http/get-product-prefixed-url context "/api/graphql-api")}]
+       :default)]
      [:p {:class "text-sm leading-[22.75px] font-normal text-[#353B50] font-content"}
       "Multiple APIs — FHIR, SQL, GraphQL, Bulk, and Subscription — to work efficiently with FHIR data for maximum flexibility and performance."]]
 
     ;; Artifact Registry Card
-    [:a {:class "block p-4 rounded-lg bg-gradient-to-b from-white to-[#F8F9FA] border border-tint-6 hover:shadow-lg transition-shadow duration-300"
-         :href (http/get-product-prefixed-url context "/artifact-registry/artifact-registry-overview")}
+    [:div {:class "block p-4 rounded-lg bg-gradient-to-b from-white to-[#F8F9FA] border border-tint-6 hover:shadow-lg transition-shadow duration-300"}
      [:img {:class "w-20 h-20 mb-4"
             :src "https://cdn.prod.website-files.com/57441aa5da71fdf07a0a2e19/685e9a44bf8f6440a9a0bcc2_FHIR%20Artefact%20Registry.svg"
             :alt "Artifact Registry"}]
-     [:h3 {:class "text-lg font-medium leading-8 tracking-[-0.03em] mb-3 text-tint-12 font-sans"} "Artifact Registry"]
+     [:a {:href (http/get-product-prefixed-url context "/artifact-registry/artifact-registry-overview")}
+      [:h3 {:class "text-lg font-medium leading-8 tracking-[-0.03em] mb-3 text-tint-12 font-sans hover:text-primary-9 transition-colors"} "Artifact Registry"]]
      [:div {:class "mb-3"}
       (tags/render-tags
-       [{:text "IGs" :onclick (str "event.stopPropagation(); window.location.href='" (http/get-product-prefixed-url context "/artifact-registry/artifact-registry-overview") "'")}
-        {:text "Profiles" :onclick (str "event.stopPropagation(); window.location.href='" (http/get-product-prefixed-url context "/artifact-registry/structuredefinition") "'")}
-        {:text "Search params" :onclick (str "event.stopPropagation(); window.location.href='" (http/get-product-prefixed-url context "/api/rest-api/fhir-search/searchparameter") "'")}]
-       :clickable)]
+       [{:text "IGs" :href (http/get-product-prefixed-url context "/artifact-registry/artifact-registry-overview")}
+        {:text "Profiles" :href (http/get-product-prefixed-url context "/artifact-registry/structuredefinition")}
+        {:text "Search params" :href (http/get-product-prefixed-url context "/api/rest-api/fhir-search/searchparameter")}]
+       :default)]
      [:p {:class "text-sm leading-[22.75px] font-normal text-[#353B50] font-content"}
       "Multiple FHIR versions: STU3, R4, R5, and R6. 500+ ready-to-use IGs: IPS, national (US, DE, CA, etc.), domain (mCode, Da Vinci, etc.), custom IGs."]]
 
     ;; Access Control Card
-    [:a {:class "block p-4 rounded-lg bg-gradient-to-b from-white to-[#F8F9FA] border border-tint-6 hover:shadow-lg transition-shadow duration-300"
-         :href (http/get-product-prefixed-url context "/access-control/access-control")}
+    [:div {:class "block p-4 rounded-lg bg-gradient-to-b from-white to-[#F8F9FA] border border-tint-6 hover:shadow-lg transition-shadow duration-300"}
      [:img {:class "w-20 h-20 mb-4"
             :src "https://cdn.prod.website-files.com/57441aa5da71fdf07a0a2e19/685e9a441cfd9ebadf77b357_AUTH.svg"
             :alt "Access Control"}]
-     [:h3 {:class "text-lg font-medium leading-8 tracking-[-0.03em] mb-3 text-tint-12 font-sans"} "Access Control"]
+     [:a {:href (http/get-product-prefixed-url context "/access-control/access-control")}
+      [:h3 {:class "text-lg font-medium leading-8 tracking-[-0.03em] mb-3 text-tint-12 font-sans hover:text-primary-9 transition-colors"} "Access Control"]]
      [:div {:class "mb-3"}
       (tags/render-tags
-       [{:text "OAuth 2.0" :onclick (str "event.stopPropagation(); window.location.href='" (http/get-product-prefixed-url context "/access-control/authentication/oauth-2-0") "'")}
-        {:text "SMART" :onclick "event.stopPropagation(); window.open('https://www.health-samurai.io/docs/aidbox/access-control/authorization/smart-on-fhir', '_blank')"}
-        {:text "RBAC/ABAC" :onclick (str "event.stopPropagation(); window.location.href='" (http/get-product-prefixed-url context "/access-control/authorization#role-based-access-control") "'")}]
-       :clickable)]
+       [{:text "OAuth 2.0" :href (http/get-product-prefixed-url context "/access-control/authentication/oauth-2-0")}
+        {:text "SMART" :href "https://www.health-samurai.io/docs/aidbox/access-control/authorization/smart-on-fhir"}
+        {:text "RBAC/ABAC" :href (http/get-product-prefixed-url context "/access-control/authorization#role-based-access-control")}]
+       :default)]
      [:p {:class "text-sm leading-[22.75px] font-normal text-[#353B50] font-content"}
       "Enterprise-grade security with OAuth 2.0, multitenancy, flexible user management, granular access policies, and complete audit trails."]]
 
     ;; Terminology Card
-    [:a {:class "block p-4 rounded-lg bg-gradient-to-b from-white to-[#F8F9FA] border border-tint-6 hover:shadow-lg transition-shadow duration-300"
-         :href (http/get-product-prefixed-url context "/terminology-module/overview")}
+    [:div {:class "block p-4 rounded-lg bg-gradient-to-b from-white to-[#F8F9FA] border border-tint-6 hover:shadow-lg transition-shadow duration-300"}
      [:img {:class "w-20 h-20 mb-4"
             :src "https://cdn.prod.website-files.com/57441aa5da71fdf07a0a2e19/685e9a4419fe3f4c5c0e24b5_Translation%20Book.svg"
             :alt "Terminology"}]
-     [:h3 {:class "text-lg font-medium leading-8 tracking-[-0.03em] mb-3 text-tint-12 font-sans"} "Terminology"]
+     [:a {:href (http/get-product-prefixed-url context "/terminology-module/overview")}
+      [:h3 {:class "text-lg font-medium leading-8 tracking-[-0.03em] mb-3 text-tint-12 font-sans hover:text-primary-9 transition-colors"} "Terminology"]]
      [:div {:class "mb-3"}
       (tags/render-tags
-       [{:text "CodeSystems" :onclick (str "event.stopPropagation(); window.location.href='" (http/get-product-prefixed-url context "/terminology-module/fhir-terminology/codesystem") "'")}
-        {:text "ValueSets" :onclick (str "event.stopPropagation(); window.location.href='" (http/get-product-prefixed-url context "/terminology-module/fhir-terminology/valueset") "'")}]
-       :clickable)]
+       [{:text "CodeSystems" :href (http/get-product-prefixed-url context "/terminology-module/fhir-terminology/codesystem")}
+        {:text "ValueSets" :href (http/get-product-prefixed-url context "/terminology-module/fhir-terminology/valueset")}]
+       :default)]
      [:p {:class "text-sm leading-[22.75px] font-normal text-[#353B50] font-content"}
       "Validate codes and perform fast lookups in ICD-10, SNOMED, LOINC. Use custom code systems and value sets."]]
 
     ;; Developer Experience Card
-    [:a {:class "block p-4 rounded-lg bg-gradient-to-b from-white to-[#F8F9FA] border border-tint-6 hover:shadow-lg transition-shadow duration-300"
-         :href (http/get-product-prefixed-url context "/developer-experience/developer-experience-overview")}
+    [:div {:class "block p-4 rounded-lg bg-gradient-to-b from-white to-[#F8F9FA] border border-tint-6 hover:shadow-lg transition-shadow duration-300"}
      [:img {:class "w-20 h-20 mb-4"
             :src "https://cdn.prod.website-files.com/57441aa5da71fdf07a0a2e19/685e9a4478a178659dd16f36_SDK.svg"
             :alt "Developer Experience"}]
-     [:h3 {:class "text-lg font-medium leading-8 tracking-[-0.03em] mb-3 text-tint-12 font-sans"} "Developer Experience"]
+     [:a {:href (http/get-product-prefixed-url context "/developer-experience/developer-experience-overview")}
+      [:h3 {:class "text-lg font-medium leading-8 tracking-[-0.03em] mb-3 text-tint-12 font-sans hover:text-primary-9 transition-colors"} "Developer Experience"]]
      [:div {:class "mb-3"}
       (tags/render-tags
-       [{:text "Python" :onclick (str "event.stopPropagation(); window.location.href='" (http/get-product-prefixed-url context "/getting-started/python") "'")}
-        {:text "C#" :onclick (str "event.stopPropagation(); window.location.href='" (http/get-product-prefixed-url context "/getting-started/csharp") "'")}
-        {:text "TS" :onclick (str "event.stopPropagation(); window.location.href='" (http/get-product-prefixed-url context "/getting-started/typescript") "'")}
-        {:text "Codegen" :onclick (str "event.stopPropagation(); window.location.href='" (http/get-product-prefixed-url context "/developer-experience/developer-experience-overview#use-aidbox-sdks-for-customized-experience") "'")}]
-       :clickable)]
+       [{:text "Python" :href (http/get-product-prefixed-url context "/getting-started/python")}
+        {:text "C#" :href (http/get-product-prefixed-url context "/getting-started/csharp")}
+        {:text "TS" :href (http/get-product-prefixed-url context "/getting-started/typescript")}
+        {:text "Codegen" :href (http/get-product-prefixed-url context "/developer-experience/developer-experience-overview#use-aidbox-sdks-for-customized-experience")}]
+       :default)]
      [:p {:class "text-sm leading-[22.75px] font-normal text-[#353B50] font-content"}
       "TypeScript, C#, and Python SDKs for easy Aidbox integration and rapid app development. SDK generator for custom toolkits tailored to your stack."]]
 
     ;; UI Card
-    [:a {:class "block p-4 rounded-lg bg-gradient-to-b from-white to-[#F8F9FA] border border-tint-6 hover:shadow-lg transition-shadow duration-300"
-         :href (http/get-product-prefixed-url context "/overview/aidbox-ui")}
+    [:div {:class "block p-4 rounded-lg bg-gradient-to-b from-white to-[#F8F9FA] border border-tint-6 hover:shadow-lg transition-shadow duration-300"}
      [:img {:class "w-20 h-20 mb-4"
             :src "https://cdn.prod.website-files.com/57441aa5da71fdf07a0a2e19/685e9a44f6b12fad351dc0d6_UI.svg"
             :alt "UI"}]
-     [:h3 {:class "text-lg font-medium leading-8 tracking-[-0.03em] mb-3 text-tint-12 font-sans"} "UI"]
+     [:a {:href (http/get-product-prefixed-url context "/overview/aidbox-ui")}
+      [:h3 {:class "text-lg font-medium leading-8 tracking-[-0.03em] mb-3 text-tint-12 font-sans hover:text-primary-9 transition-colors"} "UI"]]
      [:div {:class "mb-3"}
       (tags/render-tags
-       ["FHIR Viewer" "Search params"]
+       ["FHIR Viewer"
+        {:text "Search params" :href (http/get-product-prefixed-url context "/api/rest-api/fhir-search/searchparameter")}]
        :default)]
      [:p {:class "text-sm leading-[22.75px] font-normal text-[#353B50] font-content"}
       "Intuitive UI to work with FHIR data, manage users, clients, access policies, and configure system settings."]]]])
@@ -301,9 +302,8 @@
 
          ;; Glitch background scripts and styles
          [:link {:rel "stylesheet" :href (http/get-prefixed-url ctx "/static/glitch-bg.css")}]
-         [:script {:src "https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" :defer true}]
-         [:script {:src "https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/TextPlugin.min.js" :defer true}]
-         [:script {:src (http/get-prefixed-url ctx "/static/glitch-bg.js") :defer true}]]
+
+         [:script {:src (http/get-prefixed-url ctx "/static/glitch-bg-optimized.js") :defer true}]]
 
         title "Aidbox Documentation"
         description "Aidbox - FHIR-first healthcare application platform"]
