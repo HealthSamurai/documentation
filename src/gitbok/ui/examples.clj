@@ -14,36 +14,41 @@
 (defn render-example-card
   "Render a single example card"
   [{:keys [id title description features languages github_url]}]
-  [:div.rounded-lg.p-6.hover:shadow-lg.transition-shadow.duration-200
-   {:class "border border-[#E7E9EF] bg-gradient-to-b from-white to-[#F8F9FA] example-card"
-    :data-example-id id}
-   ;; Title as clickable link
-   [:a {:href github_url :target "_blank" :rel "noopener noreferrer"}
-    [:h3 {:class "text-lg font-medium leading-7 tracking-[-0.03em] mb-2 text-[#1F1C1C] hover:text-primary-9 transition-colors"} title]]
-   [:p {:class "text-sm leading-[22.75px] tracking-[-0.02em] text-[#353B50] mb-4 line-clamp-3"} description]
+  [:a {:href github_url :target "_blank" :rel "noopener noreferrer"
+       :class "block"}
+   [:div.rounded-lg.p-6.hover:shadow-lg.transition-shadow.duration-200.flex.flex-col.gap-4
+    {:class "border border-[#E7E9EF] bg-gradient-to-b from-white to-[#F8F9FA] example-card h-[275px] w-[349px]"
+     :data-example-id id}
+    ;; Content section (title and description)
+    [:div.flex.flex-col.gap-2
+     ;; Title - truncate after 2 lines
+     [:h3 {:class "text-lg font-medium leading-7 tracking-[-0.03em] text-[#1F1C1C] hover:text-primary-9 transition-colors line-clamp-2"} title]
+     ;; Description - truncate after 3 lines
+     [:p {:class "text-sm leading-[22.75px] tracking-[-0.02em] text-[#353B50] line-clamp-3"} description]]
 
-   ;; Languages tags - clickable with green color
-   (when (seq languages)
-     [:div.mb-2
-      [:div.flex.flex-wrap.gap-2
-       (for [lang languages]
-         (tags/render-tag {:text lang
-                          :key lang
-                          :variant :language
-                          :data-type "languages"
-                          :data-value lang
-                          :onclick (str "event.preventDefault(); event.stopPropagation(); toggleFilter('languages', '" lang "'); return false;")}))]])
+    ;; Tags container - pushed to bottom with mt-auto
+    [:div.mt-auto.flex.flex-col.gap-2
+     ;; Languages tags - clickable with green color
+     (when (seq languages)
+       [:div.flex.flex-wrap.gap-2
+        (for [lang languages]
+          (tags/render-tag {:text lang
+                           :key lang
+                           :variant :language
+                           :data-type "languages"
+                           :data-value lang
+                           :onclick (str "event.preventDefault(); event.stopPropagation(); toggleFilter('languages', '" lang "'); return false;")}))])
 
-   ;; Features tags - clickable
-   (when (seq features)
-     [:div.flex.flex-wrap.gap-2
-      (for [feature features]
-        (tags/render-tag {:text feature
-                         :key feature
-                         :variant :clickable
-                         :data-type "features"
-                         :data-value feature
-                         :onclick (str "event.preventDefault(); event.stopPropagation(); toggleFilter('features', '" feature "'); return false;")}))])])
+     ;; Features tags - clickable
+     (when (seq features)
+       [:div.flex.flex-wrap.gap-2
+        (for [feature features]
+          (tags/render-tag {:text feature
+                           :key feature
+                           :variant :clickable
+                           :data-type "features"
+                           :data-value feature
+                           :onclick (str "event.preventDefault(); event.stopPropagation(); toggleFilter('features', '" feature "'); return false;")}))])]]])
 
 (defn render-filter-checkbox
   "Render a single filter checkbox"
@@ -127,14 +132,14 @@
 
 (defn render-examples-grid [examples]
   [:div#examples-grid
-   {:class "min-h-[400px] w-full grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"}
+   {:class "w-full flex flex-wrap gap-6"}
    (if (seq examples)
      (for [example examples]
        ^{:key (:id example)}
        (render-example-card example))
      ;; Empty state - just empty space to maintain layout
      [:div
-      {:class "min-h-[300px] col-span-1 md:col-span-2 lg:col-span-3 w-full"}])])
+      {:class "min-h-[300px] w-full"}])])
 
 (defn filter-examples
   "Filter examples based on search and filter criteria"
@@ -310,7 +315,8 @@
              :onclick "clearAllFilters()"}
             "Clear all"])]
         (when (and features_list languages_list)
-          (render-filters filtered-examples features_list languages_list
+          ;; Pass the complete examples list for correct count calculation
+          (render-filters examples features_list languages_list
                           selected-languages selected-features))]]
 
       [:div.flex-1.min-w-0
