@@ -154,8 +154,9 @@ Both delivery modes support the following parameters:
 To use ClickHouse as a destination for your FHIR data, you need to:
 
 1. Create an `AidboxSubscriptionTopic` to define what data to capture
-2. Configure an `AidboxTopicDestination` to send that data to ClickHouse
-3. Create a `ViewDefinition` to transform the data (referenced in the destination)
+2. Create a `ViewDefinition` to transform the data
+3. Materialize the ViewDefinition as a database view using `$materialize`
+4. Configure an `AidboxTopicDestination` to send that data to ClickHouse
 
 ### Complete Example: Patient Data Export
 
@@ -189,7 +190,61 @@ Content-Type: application/json
 - **trigger.supportedInteraction**: Which operations to track
 - **trigger.fhirPathCriteria**: Optional FHIRPath expression to filter resources
 
-#### Step 2: Configure Best Effort Destination
+#### Step 2: Create ViewDefinition
+
+Create a ViewDefinition to transform Patient resources into a flat structure:
+
+```yaml
+POST /fhir/ViewDefinition
+Content-Type: application/json
+
+{
+  "resourceType": "ViewDefinition",
+  "id": "patient_flat_view",
+  "name": "patient_flat_view",
+  "resource": "Patient",
+  "status": "active",
+  "select": [
+    {
+      "column": [
+        {"name": "id", "path": "id"},
+        {"name": "gender", "path": "gender"},
+        {"name": "birth_date", "path": "birthDate"}
+      ]
+    },
+    {
+      "forEach": "name.where(use = 'official').first()",
+      "column": [
+        {"name": "family_name", "path": "family"},
+        {"name": "given_name", "path": "given.join(' ')"}
+      ]
+    }
+  ]
+}
+```
+
+#### Step 3: Materialize ViewDefinition as View
+
+Materialize the ViewDefinition as a database view (required for ClickHouse integration):
+
+```yaml
+POST /fhir/ViewDefinition/patient_flat_view/$materialize
+Content-Type: application/json
+
+{
+  "resourceType": "Parameters",
+  "parameter": [
+    {
+      "name": "type",
+      "valueCode": "view"
+    }
+  ]
+}
+```
+
+This creates a database view that the ClickHouse module will use to transform data.
+
+#### Step 4: Configure Best Effort Destination
 
 ```yaml
 resourceType: AidboxTopicDestination
@@ -278,6 +333,10 @@ Content-Type: application/json
 
 The module uses [ViewDefinitions](../../modules/sql-on-fhir/defining-flat-views-with-view-definitions.md) to transform FHIR resources into flat, analytical structures.
 
+{% hint style="info" %}
+**Important**: For ClickHouse integration to work properly, the ViewDefinition must be materialized as a **view** (not as a table or materialized view). Use the [`$materialize`](../../modules/sql-on-fhir/operation-materialize.md) operation with `type: "view"` to create the necessary database view before configuring your ClickHouse destination.
+{% endhint %}
+
 ### Example ViewDefinition
 
 ```yaml
@@ -308,6 +367,27 @@ select:
 ```
 
 This ViewDefinition will flatten Patient resources into a table with columns: `id`, `gender`, `birth_date`, `family_name`, `given_name`.
+
+### Materializing the ViewDefinition
+
+After creating the ViewDefinition, you must materialize it as a database view using the `$materialize` operation:
+
+```yaml
+POST /fhir/ViewDefinition/patient_flat_view/$materialize
+Content-Type: application/json
+
+{
+  "resourceType": "Parameters",
+  "parameter": [
+    {
+      "name": "type",
+      "valueCode": "view"
+    }
+  ]
+}
+```
+
+This creates a database view in the `sof` schema (by default) that the ClickHouse module will use to transform data. The view must be created before configuring your ClickHouse destination.
 
 ## Data Transformation
 
