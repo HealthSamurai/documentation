@@ -890,6 +890,7 @@ Base module includes the following resource types:
 </thead>
 <tbody>
 <tr><td width="290">_source</td><td width="70">0..1</td><td width="150">string</td><td>System Property. DO NOT USE IT.</td></tr>
+<tr><td width="290">collection</td><td width="70">0..1</td><td width="150">string</td><td></td></tr>
 <tr><td width="290">command</td><td width="70">0..1</td><td width="150">string</td><td></td></tr>
 <tr><td width="290">title</td><td width="70">0..1</td><td width="150">string</td><td></td></tr>
 <tr><td width="290">type</td><td width="70">0..1</td><td width="150">string</td><td>
