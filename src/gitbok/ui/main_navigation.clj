@@ -23,7 +23,7 @@
        ;; Logo and product name - conditionally aligned
        [:div {:class (if nav-links-right?
                        "flex items-center"
-                       "flex items-center lg:w-80 flex-shrink-0")}
+                       "flex items-center flex-shrink-0")}
         [:a {:href (http/get-product-prefixed-url context "/")
              :class "group/headerlogo flex items-center"}
          [:img {:alt (str (:name product) " Logo")
@@ -38,7 +38,7 @@
        ;; Navigation container - shown on left when nav-links-right is false
        (when-not nav-links-right?
          [:nav {:id "top-navigation"
-                :class "hidden lg:flex items-center gap-4"}
+                :class "hidden lg:flex items-center gap-8 ml-16"}
           (let [links (or (:links product) [])]
             (for [link links]
               (if (:title link)

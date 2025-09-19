@@ -6,10 +6,23 @@
    [gitbok.ui.tags :as tags]
    [gitbok.ui.heroicons :as ico]))
 
+ ;; Common card styles
+(def card-base-styles
+  "Base styles for landing page cards"
+  "block rounded-lg bg-gradient-to-b from-white to-[#F8F9FA] border border-[#E7E9EF] transition-all duration-300")
+
+(def card-hover-styles
+  "Hover styles for landing page cards"
+  "hover:bg-white hover:bg-none hover:border-[#DADDE7]")
+
+(def card-clickable-styles
+  "Combined styles for clickable cards"
+  (str card-base-styles " " card-hover-styles " cursor-pointer"))
+
 (defn getting-started-card
   "Getting Started card with tutorial icons"
   [context]
-  [:div {:class "border-t border-[#E7E9EF] border-l border-r border-b bg-tint-base relative overflow-hidden rounded-lg p-6 border-tint-6 shadow-md"}
+  [:div {:class "bg-gradient-to-b from-white to-[#F8F9FA] border border-[#E7E9EF] relative overflow-hidden rounded-lg p-6 shadow-xl"}
    [:div {:class "flex flex-col gap-4"}
     [:div {:class "flex flex-col"}
      [:h2 {:class "text-xl leading-8 m-0 text-tint-12 font-medium"} "Get your Aidbox up and running"]
@@ -21,43 +34,44 @@
       [:span {:class "text-gray-300 mr-2 select-none flex-shrink-0"} "$"]
       [:span {:class "text-white"} "curl -JO https://aidbox.app/runme && docker compose up"]]
      [:button {:class "bg-[#D95640] text-white px-2.5 py-0.5 rounded text-xs font-medium shadow-[inset_0px_-2px_1.4px_0px_#00000026] hover:bg-[#C94A36] transition-colors whitespace-nowrap cursor-pointer"
-               :onclick "navigator.clipboard.writeText('curl -JO https://aidbox.app/runme && docker compose up')"}
+               :id "copy-button"
+               :onclick "const btn = this; const originalText = btn.textContent; btn.textContent = 'COPIED'; navigator.clipboard.writeText('curl -JO https://aidbox.app/runme && docker compose up'); setTimeout(() => { btn.textContent = originalText; }, 2000);"}
       "COPY"]]
 
     ;; All icons with equal spacing - Docker and Sandbox first, then languages
     [:div {:class "flex flex-wrap gap-3 sm:flex-nowrap"}
      ;; Docker (Run locally)
-     [:a {:class "p-3 rounded-lg bg-gradient-to-b from-white to-[#F8F9FA] border border-tint-6 hover:shadow-lg transition-shadow duration-300 relative group"
+     [:a {:class "p-3 rounded-lg bg-gradient-to-b from-white to-[#F8F9FA] border border-[#E7E9EF] transition-colors duration-300 relative group"
           :href (http/get-product-prefixed-url context "/getting-started/run-aidbox-locally")
           :title "Run Aidbox locally with Docker"}
       [:img {:src "/docs/.gitbook/assets/docker-mark-blue.svg" :alt "Run locally" :class "w-8 h-8"}]]
 
      ;; Sandbox - with cloud icon
-     [:a {:class "p-3 rounded-lg bg-gradient-to-b from-white to-[#F8F9FA] border border-tint-6 hover:shadow-lg transition-shadow duration-300 relative group"
+     [:a {:class "p-3 rounded-lg bg-gradient-to-b from-white to-[#F8F9FA] border border-[#E7E9EF] transition-colors duration-300 relative group"
           :href (http/get-product-prefixed-url context "/getting-started/run-aidbox-in-sandbox")
           :title "Try Aidbox in Sandbox"}
       [:img {:src "/docs/.gitbook/assets/cloud.svg" :alt "Run in Sandbox" :class "w-8 h-8"}]]
 
      ;; TypeScript
-     [:a {:class "p-3 rounded-lg bg-gradient-to-b from-white to-[#F8F9FA] border border-tint-6 hover:shadow-lg transition-shadow duration-300 relative group"
+     [:a {:class "p-3 rounded-lg bg-gradient-to-b from-white to-[#F8F9FA] border border-[#E7E9EF] transition-colors duration-300 relative group"
           :href (http/get-product-prefixed-url context "/getting-started/typescript")
           :title "TypeScript SDK Tutorial"}
       [:img {:src "/docs/.gitbook/assets/typescript.svg" :alt "TypeScript" :class "w-8 h-8"}]]
 
      ;; Java
-     [:a {:class "p-3 rounded-lg bg-gradient-to-b from-white to-[#F8F9FA] border border-tint-6 hover:shadow-lg transition-shadow duration-300 relative group"
+     [:a {:class "p-3 rounded-lg bg-gradient-to-b from-white to-[#F8F9FA] border border-[#E7E9EF] transition-colors duration-300 relative group"
           :href (http/get-product-prefixed-url context "/getting-started/java")
           :title "Java SDK Tutorial"}
       [:img {:src "/docs/.gitbook/assets/java.svg" :alt "Java" :class "w-8 h-8"}]]
 
      ;; Python
-     [:a {:class "p-3 rounded-lg bg-gradient-to-b from-white to-[#F8F9FA] border border-tint-6 hover:shadow-lg transition-shadow duration-300 relative group"
+     [:a {:class "p-3 rounded-lg bg-gradient-to-b from-white to-[#F8F9FA] border border-[#E7E9EF] transition-colors duration-300 relative group"
           :href (http/get-product-prefixed-url context "/getting-started/python")
           :title "Python SDK Tutorial"}
       [:img {:src "/docs/.gitbook/assets/python.svg" :alt "Python" :class "w-8 h-8"}]]
 
      ;; C#
-     [:a {:class "p-3 rounded-lg bg-gradient-to-b from-white to-[#F8F9FA] border border-tint-6 hover:shadow-lg transition-shadow duration-300 relative group"
+     [:a {:class "p-3 rounded-lg bg-gradient-to-b from-white to-[#F8F9FA] border border-[#E7E9EF] transition-colors duration-300 relative group"
           :href (http/get-product-prefixed-url context "/getting-started/csharp")
           :title "C# SDK Tutorial"}
       [:img {:src "/docs/.gitbook/assets/csharp.svg" :alt "C#" :class "w-8 h-8"}]]]]])
@@ -72,39 +86,39 @@
 
    [:div {:class "grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4"}
     ;; Features
-    [:a {:class "block p-6 h-[176px] rounded-lg bg-gradient-to-b from-white to-[#F8F9FA] border border-tint-6 hover:shadow-lg transition-shadow duration-300 no-underline"
+    [:a {:class (str card-base-styles " " card-hover-styles " p-6 h-[176px] no-underline")
          :href (http/get-product-prefixed-url context "/readme/features")}
      [:img {:src "/docs/.gitbook/assets/star_icon.svg"
             :alt "Features"
             :class "w-6 h-6 mb-4"}]
-     [:h3 {:class "text-lg font-semibold text-tint-12 m-0"} "Features"]
+     [:h3 {:class "text-lg font-medium leading-8 tracking-[-0.03em] text-tint-12 m-0"} "Features"]
      [:p {:class "text-sm leading-[22.75px] font-normal text-[#353B50] m-0 mt-2"} "Explore all the features and capabilities that Aidbox offers"]]
 
-    ;; Architecture
-    [:a {:class "block p-6 h-[176px] rounded-lg bg-gradient-to-b from-white to-[#F8F9FA] border border-tint-6 hover:shadow-lg transition-shadow duration-300 no-underline"
+    ;; Architecture  
+    [:a {:class (str card-base-styles " " card-hover-styles " p-6 h-[176px] no-underline")
          :href (http/get-product-prefixed-url context "/readme/architecture")}
      [:img {:src "/docs/.gitbook/assets/architecture_icon.svg"
             :alt "Architecture"
             :class "w-6 h-6 mb-4"}]
-     [:h3 {:class "text-lg font-semibold text-tint-12 m-0"} "Architecture"]
+     [:h3 {:class "text-lg font-medium leading-8 tracking-[-0.03em] text-tint-12 m-0"} "Architecture"]
      [:p {:class "text-sm leading-[22.75px] font-normal text-[#353B50] m-0 mt-2"} "Learn about Aidbox's technical architecture and design principles"]]
 
     ;; Licensing and Support
-    [:a {:class "block p-6 h-[176px] rounded-lg bg-gradient-to-b from-white to-[#F8F9FA] border border-tint-6 hover:shadow-lg transition-shadow duration-300 no-underline"
+    [:a {:class (str card-base-styles " " card-hover-styles " p-6 h-[176px] no-underline")
          :href (http/get-product-prefixed-url context "/readme/licensing")}
      [:img {:src "/docs/.gitbook/assets/licensing_and_support_logo.svg"
             :alt "Licensing & Support"
             :class "w-6 h-6 mb-4"}]
-     [:h3 {:class "text-lg font-semibold text-tint-12 m-0"} "Licensing & Support"]
+     [:h3 {:class "text-lg font-medium leading-8 tracking-[-0.03em] text-tint-12 m-0"} "Licensing & Support"]
      [:p {:class "text-sm leading-[22.75px] font-normal text-[#353B50] m-0 mt-2"} "Information about licensing options and support services"]]
 
     ;; Release Notes
-    [:a {:class "block p-6 h-[176px] rounded-lg bg-gradient-to-b from-white to-[#F8F9FA] border border-tint-6 hover:shadow-lg transition-shadow duration-300 no-underline"
-         :href (http/get-product-prefixed-url context "/release-notes")}
+    [:a {:class (str card-base-styles " " card-hover-styles " p-6 h-[176px] no-underline")
+         :href (http/get-product-prefixed-url context "/overview/release-notes")}
      [:img {:src "/docs/.gitbook/assets/release_notes.svg"
             :alt "Release Notes"
             :class "w-6 h-6 mb-4"}]
-     [:h3 {:class "text-lg font-semibold text-tint-12 m-0"} "Release Notes"]
+     [:h3 {:class "text-lg font-medium leading-8 tracking-[-0.03em] text-tint-12 m-0"} "Release Notes"]
      [:p {:class "text-sm leading-[22.75px] font-normal text-[#353B50] m-0 mt-2"} "Stay up to date with the latest updates and improvements"]]]])
 
 (defn zulip-community
@@ -138,12 +152,15 @@
    [:div {:class "grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6"}
 
     ;; FHIR Database Card - spans 2 columns
-    [:div {:class "block p-4 rounded-lg bg-gradient-to-b from-white to-[#F8F9FA] border border-tint-6 hover:shadow-lg transition-shadow duration-300 lg:col-span-2"}
+    [:div {:class (str card-clickable-styles " p-4 lg:col-span-2 group/card")
+           :data-href (http/get-product-prefixed-url context "/database/overview")
+           :onclick "if(!event.target.closest('a')) { if(event.ctrlKey || event.metaKey) { window.open(this.dataset.href, '_blank'); } else { window.location.href = this.dataset.href; } }"
+           :onmouseenter "window.status = this.dataset.href; return true;"
+           :onmouseleave "window.status = ''; return true;"}
      [:img {:class "w-20 h-20 mb-4"
             :src "https://cdn.prod.website-files.com/57441aa5da71fdf07a0a2e19/685e9a442bb239cfcd007e5c_Database%20%2B%20FHIR.svg"
             :alt "FHIR Database"}]
-     [:a {:href (http/get-product-prefixed-url context "/database/overview")}
-      [:h3 {:class "text-lg font-medium leading-8 tracking-[-0.03em] mb-3 text-tint-12 font-sans hover:text-primary-9 transition-colors"} "FHIR Database"]]
+     [:h3 {:class "text-lg font-medium leading-8 tracking-[-0.03em] mb-3 text-tint-12 font-sans"} "FHIR Database"]
      [:div {:class "mb-3"}
       (tags/render-tags
        [{:text "PostgreSQL" :href (http/get-product-prefixed-url context "/database/overview#how-does-aidbox-store-data")}
@@ -156,12 +173,15 @@
       "Manage FHIR data with the power of PostgreSQL — fully under your control. Aidbox stores resources transparently as JSONB, enabling you to query, join, and aggregate by any element, with full support for transactional operations, reporting, and seamless migrations."]]
 
     ;; API Card
-    [:div {:class "block p-4 rounded-lg bg-gradient-to-b from-white to-[#F8F9FA] border border-tint-6 hover:shadow-lg transition-shadow duration-300"}
+    [:div {:class (str card-clickable-styles " p-4 group/card")
+           :data-href (http/get-product-prefixed-url context "/api/api-overview")
+           :onclick "if(!event.target.closest('a')) { if(event.ctrlKey || event.metaKey) { window.open(this.dataset.href, '_blank'); } else { window.location.href = this.dataset.href; } }"
+           :onmouseenter "window.status = this.dataset.href; return true;"
+           :onmouseleave "window.status = ''; return true;"}
      [:img {:class "w-20 h-20 mb-4"
             :src "https://cdn.prod.website-files.com/57441aa5da71fdf07a0a2e19/685e9a444fc720f2ad877e7d_API.svg"
             :alt "API"}]
-     [:a {:href (http/get-product-prefixed-url context "/api/api-overview")}
-      [:h3 {:class "text-lg font-medium leading-8 tracking-[-0.03em] mb-3 text-tint-12 font-sans hover:text-primary-9 transition-colors"} "API"]]
+     [:h3 {:class "text-lg font-medium leading-8 tracking-[-0.03em] mb-3 text-tint-12 font-sans"} "API"]
      [:div {:class "mb-3"}
       (tags/render-tags
        [{:text "FHIR" :href (http/get-product-prefixed-url context "/api/api-overview")}
@@ -172,12 +192,15 @@
       "Multiple APIs — FHIR, SQL, GraphQL, Bulk, and Subscription — to work efficiently with FHIR data for maximum flexibility and performance."]]
 
     ;; Artifact Registry Card
-    [:div {:class "block p-4 rounded-lg bg-gradient-to-b from-white to-[#F8F9FA] border border-tint-6 hover:shadow-lg transition-shadow duration-300"}
+    [:div {:class (str card-clickable-styles " p-4 group/card")
+           :data-href (http/get-product-prefixed-url context "/artifact-registry/artifact-registry-overview")
+           :onclick "if(!event.target.closest('a')) { if(event.ctrlKey || event.metaKey) { window.open(this.dataset.href, '_blank'); } else { window.location.href = this.dataset.href; } }"
+           :onmouseenter "window.status = this.dataset.href; return true;"
+           :onmouseleave "window.status = ''; return true;"}
      [:img {:class "w-20 h-20 mb-4"
             :src "https://cdn.prod.website-files.com/57441aa5da71fdf07a0a2e19/685e9a44bf8f6440a9a0bcc2_FHIR%20Artefact%20Registry.svg"
             :alt "Artifact Registry"}]
-     [:a {:href (http/get-product-prefixed-url context "/artifact-registry/artifact-registry-overview")}
-      [:h3 {:class "text-lg font-medium leading-8 tracking-[-0.03em] mb-3 text-tint-12 font-sans hover:text-primary-9 transition-colors"} "Artifact Registry"]]
+     [:h3 {:class "text-lg font-medium leading-8 tracking-[-0.03em] mb-3 text-tint-12 font-sans"} "Artifact Registry"]
      [:div {:class "mb-3"}
       (tags/render-tags
        [{:text "IGs" :href (http/get-product-prefixed-url context "/artifact-registry/artifact-registry-overview")}
@@ -188,12 +211,15 @@
       "Multiple FHIR versions: STU3, R4, R5, and R6. 500+ ready-to-use IGs: IPS, national (US, DE, CA, etc.), domain (mCode, Da Vinci, etc.), custom IGs."]]
 
     ;; Access Control Card
-    [:div {:class "block p-4 rounded-lg bg-gradient-to-b from-white to-[#F8F9FA] border border-tint-6 hover:shadow-lg transition-shadow duration-300"}
+    [:div {:class (str card-clickable-styles " p-4 group/card")
+           :data-href (http/get-product-prefixed-url context "/access-control/access-control")
+           :onclick "if(!event.target.closest('a')) { if(event.ctrlKey || event.metaKey) { window.open(this.dataset.href, '_blank'); } else { window.location.href = this.dataset.href; } }"
+           :onmouseenter "window.status = this.dataset.href; return true;"
+           :onmouseleave "window.status = ''; return true;"}
      [:img {:class "w-20 h-20 mb-4"
             :src "https://cdn.prod.website-files.com/57441aa5da71fdf07a0a2e19/685e9a441cfd9ebadf77b357_AUTH.svg"
             :alt "Access Control"}]
-     [:a {:href (http/get-product-prefixed-url context "/access-control/access-control")}
-      [:h3 {:class "text-lg font-medium leading-8 tracking-[-0.03em] mb-3 text-tint-12 font-sans hover:text-primary-9 transition-colors"} "Access Control"]]
+     [:h3 {:class "text-lg font-medium leading-8 tracking-[-0.03em] mb-3 text-tint-12 font-sans"} "Access Control"]
      [:div {:class "mb-3"}
       (tags/render-tags
        [{:text "OAuth 2.0" :href (http/get-product-prefixed-url context "/access-control/authentication/oauth-2-0")}
@@ -204,12 +230,15 @@
       "Enterprise-grade security with OAuth 2.0, multitenancy, flexible user management, granular access policies, and complete audit trails."]]
 
     ;; Terminology Card
-    [:div {:class "block p-4 rounded-lg bg-gradient-to-b from-white to-[#F8F9FA] border border-tint-6 hover:shadow-lg transition-shadow duration-300"}
+    [:div {:class (str card-clickable-styles " p-4 group/card")
+           :data-href (http/get-product-prefixed-url context "/terminology-module/overview")
+           :onclick "if(!event.target.closest('a')) { if(event.ctrlKey || event.metaKey) { window.open(this.dataset.href, '_blank'); } else { window.location.href = this.dataset.href; } }"
+           :onmouseenter "window.status = this.dataset.href; return true;"
+           :onmouseleave "window.status = ''; return true;"}
      [:img {:class "w-20 h-20 mb-4"
             :src "https://cdn.prod.website-files.com/57441aa5da71fdf07a0a2e19/685e9a4419fe3f4c5c0e24b5_Translation%20Book.svg"
             :alt "Terminology"}]
-     [:a {:href (http/get-product-prefixed-url context "/terminology-module/overview")}
-      [:h3 {:class "text-lg font-medium leading-8 tracking-[-0.03em] mb-3 text-tint-12 font-sans hover:text-primary-9 transition-colors"} "Terminology"]]
+     [:h3 {:class "text-lg font-medium leading-8 tracking-[-0.03em] mb-3 text-tint-12 font-sans"} "Terminology"]
      [:div {:class "mb-3"}
       (tags/render-tags
        [{:text "CodeSystems" :href (http/get-product-prefixed-url context "/terminology-module/fhir-terminology/codesystem")}
@@ -219,12 +248,15 @@
       "Validate codes and perform fast lookups in ICD-10, SNOMED, LOINC. Use custom code systems and value sets."]]
 
     ;; Developer Experience Card
-    [:div {:class "block p-4 rounded-lg bg-gradient-to-b from-white to-[#F8F9FA] border border-tint-6 hover:shadow-lg transition-shadow duration-300"}
+    [:div {:class (str card-clickable-styles " p-4 group/card")
+           :data-href (http/get-product-prefixed-url context "/developer-experience/developer-experience-overview")
+           :onclick "if(!event.target.closest('a')) { if(event.ctrlKey || event.metaKey) { window.open(this.dataset.href, '_blank'); } else { window.location.href = this.dataset.href; } }"
+           :onmouseenter "window.status = this.dataset.href; return true;"
+           :onmouseleave "window.status = ''; return true;"}
      [:img {:class "w-20 h-20 mb-4"
             :src "https://cdn.prod.website-files.com/57441aa5da71fdf07a0a2e19/685e9a4478a178659dd16f36_SDK.svg"
             :alt "Developer Experience"}]
-     [:a {:href (http/get-product-prefixed-url context "/developer-experience/developer-experience-overview")}
-      [:h3 {:class "text-lg font-medium leading-8 tracking-[-0.03em] mb-3 text-tint-12 font-sans hover:text-primary-9 transition-colors"} "Developer Experience"]]
+     [:h3 {:class "text-lg font-medium leading-8 tracking-[-0.03em] mb-3 text-tint-12 font-sans"} "Developer Experience"]
      [:div {:class "mb-3"}
       (tags/render-tags
        [{:text "Python" :href (http/get-product-prefixed-url context "/getting-started/python")}
@@ -236,12 +268,15 @@
       "TypeScript, C#, and Python SDKs for easy Aidbox integration and rapid app development. SDK generator for custom toolkits tailored to your stack."]]
 
     ;; UI Card
-    [:div {:class "block p-4 rounded-lg bg-gradient-to-b from-white to-[#F8F9FA] border border-tint-6 hover:shadow-lg transition-shadow duration-300"}
+    [:div {:class (str card-clickable-styles " p-4 group/card")
+           :data-href (http/get-product-prefixed-url context "/overview/aidbox-ui")
+           :onclick "if(!event.target.closest('a')) { if(event.ctrlKey || event.metaKey) { window.open(this.dataset.href, '_blank'); } else { window.location.href = this.dataset.href; } }"
+           :onmouseenter "window.status = this.dataset.href; return true;"
+           :onmouseleave "window.status = ''; return true;"}
      [:img {:class "w-20 h-20 mb-4"
             :src "https://cdn.prod.website-files.com/57441aa5da71fdf07a0a2e19/685e9a44f6b12fad351dc0d6_UI.svg"
             :alt "UI"}]
-     [:a {:href (http/get-product-prefixed-url context "/overview/aidbox-ui")}
-      [:h3 {:class "text-lg font-medium leading-8 tracking-[-0.03em] mb-3 text-tint-12 font-sans hover:text-primary-9 transition-colors"} "UI"]]
+     [:h3 {:class "text-lg font-medium leading-8 tracking-[-0.03em] mb-3 text-tint-12 font-sans"} "UI"]
      [:div {:class "mb-3"}
       (tags/render-tags
        ["FHIR Viewer"

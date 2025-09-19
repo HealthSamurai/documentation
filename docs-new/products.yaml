@@ -10,7 +10,7 @@ products:
     favicon: .gitbook/assets/favicon.ico
     og-preview-text: "Aidbox User Docs"  # Optional: custom text for OG preview images
     meilisearch-index: "docs"
-    nav-links-right: true  # Move navigation links to the right side
+    # nav-links-right: true  # Move navigation links to the right side
     links:
       - title: Product
         entries:

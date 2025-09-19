@@ -350,30 +350,98 @@ h2[id], h3[id] {
   scroll-margin-top: 80px;
 }
 
-/* Details and Summary */
+/* Details and Summary - Modern expandable design */
 article details {
-  @apply my-6 border border-tint-subtle rounded-lg bg-tint-base shadow-aidbox overflow-hidden;
+  @apply w-full bg-tint-base border border-tint-6 print:break-inside-avoid;
+  margin-top: 0;
+  border-bottom-width: 0;
 }
 
+/* First details element gets top rounded corners and top margin */
+article details:first-of-type {
+  @apply mt-5 rounded-t-lg;
+}
+
+/* Details elements that don't have another details immediately before them get top margin and rounded top */
+article details:not(:has(+ details)) + details,
+article *:not(details) + details {
+  @apply mt-5 rounded-t-lg;
+}
+
+/* Last details or details not followed by another details get bottom border and rounded bottom */
+article details:last-of-type,
+article details:not(:has(+ details)):not(:last-child) {
+  @apply mb-5 rounded-b-lg;
+  border-bottom-width: 1px;
+}
+
+/* Summary styling */
 article summary {
-  @apply px-6 py-4 border-b border-tint-subtle cursor-pointer select-none font-medium text-tint-12 hover:bg-tint-hover transition-colors duration-200 flex items-center justify-between;
+  @apply px-4 pr-10 py-4 text-tint-10;
+  cursor: pointer;
+  position: relative;
+  list-style: none;
+  user-select: none;
+  transition: color 200ms;
+  /* Use flexbox for perfect alignment */
+  display: flex;
+  align-items: center;
 }
 
-article summary::after {
-  content: "▼";
-  @apply text-tint-10 text-sm transition-transform duration-200;
+article summary:hover {
+  @apply text-tint-12;
 }
 
-article details[open] summary::after {
-  transform: rotate(180deg);
+/* Hide default marker */
+article summary::-webkit-details-marker {
+  display: none;
 }
 
-article details>*:not(summary) {
-  @apply px-6 py-4;
+article summary::marker {
+  display: none;
 }
 
-article details>*:not(summary):last-child {
-  @apply pb-6;
+/* Chevron icon */
+article summary::before {
+  content: "";
+  flex-shrink: 0;
+  width: 20px;
+  height: 20px;
+  margin-right: 0.5rem;
+  background-color: currentColor;
+  transition: transform 200ms;
+  /* Simple chevron using CSS borders */
+  mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='9 18 15 12 9 6'%3E%3C/polyline%3E%3C/svg%3E");
+  -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='9 18 15 12 9 6'%3E%3C/polyline%3E%3C/svg%3E");
+  mask-repeat: no-repeat;
+  -webkit-mask-repeat: no-repeat;
+  mask-position: center;
+  -webkit-mask-position: center;
+  mask-size: contain;
+  -webkit-mask-size: contain;
+}
+
+/* Rotate chevron when open */
+article details[open] summary::before {
+  transform: rotate(90deg);
+}
+
+/* Content inside details */
+article details > *:not(summary) {
+  @apply px-10 py-4;
+}
+
+article details > *:not(summary):last-child {
+  @apply pb-5;
+}
+
+/* Hover and open state */
+article details:hover summary {
+  @apply text-tint-strong;
+}
+
+article details[open] summary {
+  @apply text-tint-strong;
 }
 
 /* Hint/Admonition styles */
