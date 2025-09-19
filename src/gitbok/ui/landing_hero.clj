@@ -305,7 +305,7 @@
 
           ;; Content
           [:div {:class "max-w-screen-2xl mx-auto px-4 md:px-8 pt-8 sm:pt-12 xl:pt-16 pb-8 relative z-10"}
-           [:div {:class "grid grid-cols-1 lg:grid-cols-2 gap-8 items-start"}
+           [:div {:class "grid grid-cols-1 lg:grid-cols-2 gap-8 items-start px-6"}
             ;; Left side - Documentation header
             [:div {:class "flex items-center gap-4"}
              [:div {:class "flex flex-col"}
