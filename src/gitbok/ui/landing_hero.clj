@@ -22,7 +22,7 @@
 (defn getting-started-card
   "Getting Started card with tutorial icons"
   [context]
-  [:div {:class "bg-gradient-to-b from-white to-[#F8F9FA] border border-[#E7E9EF] relative overflow-hidden rounded-lg p-6 shadow-xl"}
+  [:div {:class "bg-gradient-to-b from-white to-[#F8F9FA] border border-[#E7E9EF] relative overflow-hidden rounded-lg p-6 shadow-[0px_6px_13px_0px_#00000008,0px_24px_24px_0px_#00000005,0px_54px_32px_0px_#00000003]"}
    [:div {:class "flex flex-col gap-4"}
     [:div {:class "flex flex-col"}
      [:h2 {:class "text-xl leading-8 m-0 text-tint-12 font-medium"} "Get your Aidbox up and running"]
