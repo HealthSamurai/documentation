@@ -94,7 +94,7 @@
      [:h3 {:class "text-lg font-medium leading-8 tracking-[-0.03em] text-tint-12 m-0"} "Features"]
      [:p {:class "text-sm leading-[22.75px] font-normal text-[#353B50] m-0 mt-2"} "Explore all the features and capabilities that Aidbox offers"]]
 
-    ;; Architecture  
+    ;; Architecture
     [:a {:class (str card-base-styles " " card-hover-styles " p-6 h-[176px] no-underline")
          :href (http/get-product-prefixed-url context "/readme/architecture")}
      [:img {:src "/docs/.gitbook/assets/architecture_icon.svg"
@@ -185,7 +185,7 @@
      [:div {:class "mb-3"}
       (tags/render-tags
        [{:text "FHIR" :href (http/get-product-prefixed-url context "/api/api-overview")}
-        {:text "SQL" :href (http/get-product-prefixed-url context "/api/sql-api")}
+        {:text "SQL" :href (http/get-product-prefixed-url context "/api/rest-api/other/sql-endpoints")}
         {:text "GraphQL" :href (http/get-product-prefixed-url context "/api/graphql-api")}]
        :default)]
      [:p {:class "text-sm leading-[22.75px] font-normal text-[#353B50] font-content"}
