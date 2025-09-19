@@ -19,17 +19,6 @@ To get `204 No Content` instead of `200 OK`, use the `_no-content=true` query pa
 Delete of non-existing resource will return 204 status and no body. Read [this thread](https://chat.fhir.org/#narrow/stream/179177-conformance/topic/Delete.20error.20codes) for more details.
 {% endhint %}
 
-### Conditional Delete
-
-```
-DELETE [base]/[type]?[search parameters]
-```
-
-It's not clear how to perform an ordinary `delete` on no matches. That's why `404 Not Found` will be returned in this case.
-
-* **No matches:** The respond with `404 Not Found`
-* **One Match**: The server performs an ordinary `delete` on the matching resource
-* **Multiple matches**: Servers respond with `412 Precondition Failed` error indicating the client's criteria were not selective enough
 
 ## delete
 
