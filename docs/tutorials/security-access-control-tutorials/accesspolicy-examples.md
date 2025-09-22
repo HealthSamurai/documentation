@@ -518,3 +518,14 @@ Authorization: Basic <base64(system1-client:client-secret)> # Base64 encoded cli
 }
 ```
 
+## 15. Policy that allows only read operations to $sql endpoint
+This policy restricts access to the $sql endpoint by allowing only read-only SQL queries (such as `SELECT`). Any write or schema-modifying operations (`INSERT`, `UPDATE`, `DELETE`, `CREATE`, etc.) are explicitly denied, ensuring that the endpoint can be used safely for querying data without risk of altering the database.
+
+```yaml
+engine: matcho
+matcho:
+  uri: /$sql
+  body:
+    sql: "#^(?i)(?!.*(INSERT|UPDATE|DELETE|MERGE|COPY|CREATE|ALTER|DROP|GRANT|REVOKE|TRUNCATE|CALL|DO|COMMENT|VACUUM|ANALYZE)).*"
+  request-method: post
+```
