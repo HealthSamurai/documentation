@@ -522,6 +522,8 @@ Authorization: Basic <base64(system1-client:client-secret)> # Base64 encoded cli
 This policy restricts access to the $sql endpoint by allowing only read-only SQL queries (such as `SELECT`). Any write or schema-modifying operations (`INSERT`, `UPDATE`, `DELETE`, `CREATE`, etc.) are explicitly denied, ensuring that the endpoint can be used safely for querying data without risk of altering the database.
 
 ```yaml
+link:
+  - reference: User/ca57d5ad-22de-4cce-aaba-b5d6c50a88e8
 engine: matcho
 matcho:
   uri: /$sql
