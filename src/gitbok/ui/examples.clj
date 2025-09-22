@@ -11,6 +11,13 @@
    [clojure.tools.logging :as log]
    [ring.util.codec]))
 
+(defn strip-markdown-links
+  "Remove markdown links from text, keeping only the link text"
+  [text]
+  (if text
+    (str/replace text #"\[([^\]]+)\]\([^\)]+\)" "$1")
+    ""))
+
 (defn render-example-card
   "Render a single example card"
   [{:keys [id title description features languages github_url]}]
@@ -23,8 +30,8 @@
     [:div.flex.flex-col.gap-2
      ;; Title - truncate after 2 lines
      [:h3 {:class "text-lg font-medium leading-7 tracking-[-0.03em] text-[#1F1C1C] hover:text-primary-9 transition-colors line-clamp-2"} title]
-     ;; Description - truncate after 3 lines
-     [:p {:class "text-sm leading-[22.75px] tracking-[-0.02em] text-[#353B50] line-clamp-3"} description]]
+     ;; Description - truncate after 3 lines, with markdown links stripped
+     [:p {:class "text-sm leading-[22.75px] tracking-[-0.02em] text-[#353B50] line-clamp-3"} (strip-markdown-links description)]]
 
     ;; Tags container - pushed to bottom with mt-auto
     [:div.mt-auto.flex.flex-col.gap-2
