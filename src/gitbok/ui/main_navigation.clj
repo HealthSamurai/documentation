@@ -256,49 +256,6 @@
           [:div {:id "meilisearch-dropdown"
                  :class "absolute top-full mt-2 right-0 left-0 md:left-auto md:min-w-[32rem] z-50"}]]]
 
-        ;; Desktop search input (existing HTMX search) - hidden when Meilisearch is active
-        [:div {:class "hidden relative h-9 w-64 max-w-64"
-               :id "desktop-search-container"}
-         [:div {:class "flex h-9 w-full items-center overflow-hidden
-                rounded-md border border-[#E7E9EF] bg-white
-                text-tint transition-all
-                hover:border-tint-hover
-                has-[input:focus-visible]:ring-2
-                has-[input:focus-visible]:ring-primary-7
-                focus-within:[&_#search-shortcut]:hidden"}
-          [:div {:class "flex min-w-0 flex-1 items-center gap-2"}
-           [:div {:class "flex items-center justify-center pl-3"}
-            [:svg {:class "size-4 text-[#7E8291] shrink-0" :fill "none" :stroke "currentColor" :viewBox "0 0 24 24"}
-             [:path {:stroke-linecap "round" :stroke-linejoin "round" :stroke-width "2" :d "m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607Z"}]]]
-           [:input {:type "text"
-                    :id "search-input"
-                    :name "q"
-                    :placeholder "Ask or search..."
-                    :class
-                    "min-w-0 flex-1 bg-transparent py-1.5 pr-3
-                    text-sm outline-none placeholder:text-sm
-                    placeholder:text-[#7E8291]
-                    text-tint-strong
-                    font-normal"
-                    :autocomplete "off"
-                    :hx-get (http/get-product-prefixed-url context "/search/dropdown")
-                    :hx-trigger "keyup[!event.key.startsWith('Arrow') && event.key !== 'Enter' && event.key !== 'Escape'] changed delay:300ms, focus"
-                    :hx-target "#search-dropdown"
-                    :hx-swap "innerHTML"
-                    :hx-indicator "#search-indicator"
-                    :onfocus "document.getElementById('search-shortcut').style.display='none'"
-                    :onblur "document.getElementById('search-shortcut').style.display='flex'"}]]
-          [:div {:class "flex shrink-0 items-center pr-2"}
-           [:div {:id "search-shortcut"
-                  :class "hidden sm:flex justify-end gap-0.5 whitespace-nowrap text-xs text-tint-9 font-normal transition-opacity duration-200"}
-            [:kbd {:class "inline-flex h-5 w-[39px] items-center justify-center rounded border border-[#E7E9EF] bg-[#F6F7F9] px-[5px] py-[1px] text-xs leading-4 text-[#7E8291] font-normal text-center"} "Ctrl"]
-            [:kbd {:class "inline-flex h-5 w-5 min-w-[20px] items-center justify-center rounded border border-[#E7E9EF] bg-[#F6F7F9] px-[5px] py-[1px] text-xs leading-4 text-[#7E8291] font-normal text-center"} "K"]]
-           [:div {:id "search-indicator" :class "htmx-indicator"}
-            [:svg {:class "animate-spin size-4 text-tint-9" :fill "none" :viewBox "0 0 24 24"}
-             [:circle {:class "opacity-25" :cx "12" :cy "12" :r "10" :stroke "currentColor" :stroke-width "4"}]
-             [:path {:class "opacity-75" :fill "currentColor"
-                     :d "M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 714 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"}]]]]]]
-
         ;; Mobile search container with Meilisearch (hidden by default)
         [:div {:class "hidden fixed inset-x-0 top-16 z-50 bg-white border-b border-tint-6 md:hidden"
                :id "mobile-search-container"}
@@ -330,11 +287,7 @@
             [:svg {:class "size-5" :fill "none" :stroke "currentColor" :viewBox "0 0 24 24"}
              [:path {:stroke-linecap "round" :stroke-linejoin "round" :stroke-width "2" :d "M6 18L18 6M6 6l12 12"}]]]]]
          [:div {:id "mobile-meilisearch-dropdown"
-                :class "px-4 pb-4 z-50 max-h-[60vh] overflow-y-auto"}]]
-
-        ;; Dropdown container (for both desktop and mobile)
-        [:div {:id "search-dropdown"
-               :class "absolute top-full mt-2 right-0 left-0 md:left-auto z-50"}]]
+                :class "px-4 pb-4 z-50 max-h-[60vh] overflow-y-auto"}]]]
 
        ;; Login button (desktop only) - far right with borders
        [:a {:href "https://aidbox.app/ui/portal#/signin"

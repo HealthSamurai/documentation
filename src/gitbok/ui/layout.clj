@@ -165,17 +165,13 @@
       [:script {:src (str (http/get-prefixed-url context "/static/prism.js") version-param)
                 :defer true}]
 
-
-      ;; Combined UI bundle (includes tabs, toc, scroll-to-id, heading-links, mobile-menu, mobile-search, lastupdated, copy-code)
+;; Combined UI bundle (includes tabs, toc, scroll-to-id, heading-links, mobile-menu, mobile-search, lastupdated, copy-code)
       [:script {:src (str (http/get-prefixed-url context "/static/ui-bundle.js") version-param)
                 :defer true}]
 
       ;; Other UI scripts
       [:script {:src (str (http/get-prefixed-url context "/static/meilisearch-htmx-nav.js") version-param)
                 :defer true}]
-
-      [:script {:defer true
-                :src (str (http/get-prefixed-url context "/static/keyboard-navigation.js") version-param)}]
 
       ;; Mermaid config (needed when Mermaid loads)
       [:script {:src (str (http/get-prefixed-url context "/static/mermaid-config.js") version-param) :defer true}]
