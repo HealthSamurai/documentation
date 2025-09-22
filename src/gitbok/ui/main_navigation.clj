@@ -234,7 +234,7 @@
                      :hx-indicator "#meilisearch-indicator"
                      :onfocus "document.getElementById('meilisearch-shortcut').style.display='none'"
                      :onblur "document.getElementById('meilisearch-shortcut').style.display='flex'"}]]
-           [:div {:class "flex shrink-0 items-center pr-2"}
+           [:div {:class "flex shrink-0 items-center"}
             [:div {:id "meilisearch-shortcut"
                    :class "hidden sm:flex justify-end gap-0.5 whitespace-nowrap text-xs text-tint-9 font-normal transition-opacity duration-200"}
              [:kbd {:class "inline-flex h-5 w-[39px] items-center justify-center rounded border border-[#E7E9EF] bg-[#F6F7F9] px-[5px] py-[1px] text-xs leading-4 text-[#7E8291] font-normal text-center"} "Ctrl"]
