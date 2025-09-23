@@ -80,6 +80,8 @@ Both versions support AMQP 1.0 protocol, making them compatible with Aidbox's `a
 
    Now, in AidboxUI, go to **FHIR Packages -> io.healthsamurai.topic** and make sure that AMQP profiles are present.
 
+![AMQP profiles](../../../.gitbook/assets/amqp.png)
+
 ## Basic usage with AMQP 1.0
 
 1. ActiveMQ Artemis is configured to auto-create queues when first accessed, so manual queue creation is optional.

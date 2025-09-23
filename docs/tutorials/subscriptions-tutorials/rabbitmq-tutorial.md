@@ -57,7 +57,9 @@ RabbitMQ natively uses AMQP 0-9-1 protocol and also supports AMQP 1.0 (since Rab
 
    Now, in AidboxUI, go to **FHIR Packages -> io.healthsamurai.topic** and make sure that AMQP profiles are present.
 
-## Basic Usage with AMQP 1.0
+![AMQP profiles](../../../.gitbook/assets/amqp.png)
+
+## Basic usage with AMQP 1.0
 
 1. Access RabbitMQ Management UI at http://localhost:15672 (login: admin/admin).
 
