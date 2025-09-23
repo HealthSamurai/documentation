@@ -1,8 +1,8 @@
-# AidboxTopicSubscription RabbitMQ tutorial
+# AidboxTopicSubscription RabbitMQ Tutorial
 
 ## Objectives
 
-* Learn how to integrate [AidboxTopicSubscriptions](../../modules/topic-based-subscriptions/aidbox-topic-based-subscriptions.md) with RabbitMQ
+* Learn how to integrate [AidboxTopicSubscriptions](../../modules/topic-based-subscriptions/aidbox-topic-based-subscriptions.md) with RabbitMQ using AMQP protocols
 
 ## Before you begin
 
@@ -13,7 +13,7 @@
 
 [RabbitMQ](https://www.rabbitmq.com/) is a reliable and mature messaging broker that implements the Advanced Message Queuing Protocol (AMQP). It provides robust message delivery, routing capabilities, and supports various messaging patterns including publish/subscribe, request/reply, and point-to-point communication.
 
-In Aidbox, create [AidboxTopicDestination](../../modules/topic-based-subscriptions/aidbox-topic-based-subscriptions.md#aidboxtopicdestination) with `http://aidbox.app/StructureDefinition/aidboxtopicdestination-rabbitmq-core-best-effort` profile to integrate with RabbitMQ. You can find an example of the resource in [this section](../subscriptions-tutorials/rabbitmq-tutorial.md#basic-usage) below. 
+RabbitMQ natively uses AMQP 0-9-1 protocol and also supports AMQP 1.0 (since RabbitMQ 4.0 without plugins). In Aidbox, you can use both protocol versions, the tutorial uses version 1.0.
 
 ## Setting up
 
@@ -21,33 +21,32 @@ In Aidbox, create [AidboxTopicDestination](../../modules/topic-based-subscriptio
 
    ```yaml
      rabbitmq:
-       image: rabbitmq:3-management
+       image: rabbitmq:4-management
        environment:
          RABBITMQ_DEFAULT_USER: admin
          RABBITMQ_DEFAULT_PASS: admin
        ports:
-         - "5672:5672"
-         - "15672:15672"
+         - "5672:5672"    # AMQP port
+         - "15672:15672"  # Management UI port
    ```
 
-2. Download **.jar** RabbitMQ module file from [our bucket](https://console.cloud.google.com/storage/browser/aidbox-modules) and place it next to **docker-compose.yaml**.
+2. Download **.jar** AMQP module file from [our bucket](https://console.cloud.google.com/storage/browser/aidbox-modules) and place it next to **docker-compose.yaml**.
 
    ```sh
-   curl -O https://storage.googleapis.com/aidbox-modules/topic-destination-rabbitmq/topic-destination-rabbitmq-2509.1.jar
+   curl -O https://storage.googleapis.com/aidbox-modules/topic-destination-amqp/topic-destination-amqp-2509.4.jar
    ```
-
 
 3. Add jar module file to Aidbox:
    ```yaml
        volumes:
-       # module jar to turn on rabbitmq support
-       - ./topic-destination-rabbitmq-2509.1.jar:/topic-destination-rabbitmq-2509.1.jar
+       # module jar to turn on AMQP support
+       - ./topic-destination-amqp-2509.4.jar:/topic-destination-amqp-2509.4.jar
    ```
 
    Set envs to import it on start:
    ```yaml
-      BOX_MODULE_JAR: "/topic-destination-rabbitmq-2509.1.jar"
-      BOX_MODULE_LOAD: io.healthsamurai.topic-destination.rabbitmq.core
+      BOX_MODULE_JAR: "/topic-destination-amqp-2509.4.jar"
+      BOX_MODULE_LOAD: io.healthsamurai.topic-destination.amqp.core
    ```
 
 4. Start the services.
@@ -56,9 +55,9 @@ In Aidbox, create [AidboxTopicDestination](../../modules/topic-based-subscriptio
    docker compose up
    ```
 
-   Now, in AidboxUI, go to **FHIR Packages -> io.healthsamurai.topic** and make sure that RabbitMQ profile is present.
+   Now, in AidboxUI, go to **FHIR Packages -> io.healthsamurai.topic** and make sure that AMQP profiles are present.
 
-## Basic Usage
+## Basic Usage with AMQP 1.0
 
 1. Access RabbitMQ Management UI at http://localhost:15672 (login: admin/admin).
 
@@ -90,7 +89,7 @@ In Aidbox, create [AidboxTopicDestination](../../modules/topic-based-subscriptio
    }
    ```
 
-4. Create **AidboxTopicDestination** with RabbitMQ profile.
+4. Create **AidboxTopicDestination** with AMQP 1.0 profile.
 
    ```
    POST /fhir/AidboxTopicDestination
@@ -98,14 +97,14 @@ In Aidbox, create [AidboxTopicDestination](../../modules/topic-based-subscriptio
    accept: application/json
 
    {
-     "id": "rabbitmq-basic",
+     "id": "rabbitmq-destination",
      "resourceType": "AidboxTopicDestination",
      "meta": {
        "profile": [
-         "http://aidbox.app/StructureDefinition/aidboxtopicdestination-rabbitmq-core-best-effort"
+         "http://aidbox.app/StructureDefinition/aidboxtopicdestination-amqp-1-0-at-least-once"
        ]
      },
-     "kind": "rabbitmq-core-best-effort",
+     "kind": "amqp-1-0-at-least-once",
      "topic": "patient-topic",
      "parameter": [
        {
@@ -113,7 +112,7 @@ In Aidbox, create [AidboxTopicDestination](../../modules/topic-based-subscriptio
          "valueString": "rabbitmq"
        },
        {
-         "name": "routingKey",
+         "name": "address",
          "valueString": "patient-events"
        },
        {
@@ -128,7 +127,9 @@ In Aidbox, create [AidboxTopicDestination](../../modules/topic-based-subscriptio
    }
    ```
 
-5. Create a patient with a name.
+## Testing the integration
+
+1. Create a patient with a name.
 
    ```
    POST /fhir/Patient
@@ -137,20 +138,20 @@ In Aidbox, create [AidboxTopicDestination](../../modules/topic-based-subscriptio
    - family: smith
    ```
 
-6. Check the message in RabbitMQ Management UI(http://localhost:15672):
+2. Check the message in RabbitMQ Management UI(http://localhost:15672):
    - Go to **Queues** tab
    - Click on `patient-events` queue
    - You should see 1 message in the queue
    - Click "Get messages" to view the content
 
-   The message will contain:
+   The message will be base64-encoded and contain:
    ```json
    {
      "topic": "patient-events",
      "value": {
        "resourceType": "Bundle",
        "type": "history",
-       "timestamp": "2025-05-05T09:54:29Z",
+       "timestamp": "2025-09-23T10:19:32Z",
        "entry": [
          {
            "resource": {
@@ -161,13 +162,13 @@ In Aidbox, create [AidboxTopicDestination](../../modules/topic-based-subscriptio
                {
                  "eventNumber": 1,
                  "focus": {
-                   "reference": "Patient/[patient-id]"
+                   "reference": "Patient/f1181c9b-09a3-474f-800e-ed4ac6bae444"
                  }
                }
              ],
              "topic": "patient-topic",
              "topic-destination": {
-               "reference": "AidboxTopicDestination/rabbitmq-basic"
+               "reference": "AidboxTopicDestination/rabbitmq-destination"
              }
            }
          },
@@ -176,14 +177,24 @@ In Aidbox, create [AidboxTopicDestination](../../modules/topic-based-subscriptio
              "method": "POST",
              "url": "/fhir/Patient"
            },
-           "fullUrl": "http://localhost:8080/fhir/Patient/[patient-id]",
+           "fullUrl": "http://localhost:8080/fhir/Patient/f1181c9b-09a3-474f-800e-ed4ac6bae444",
            "resource": {
-             "name": [{"family": "smith"}],
-             "id": "[patient-id]",
+             "name": [
+               {
+                 "family": "smith"
+               }
+             ],
+             "id": "f1181c9b-09a3-474f-800e-ed4ac6bae444",
              "resourceType": "Patient",
              "meta": {
-               "lastUpdated": "2025-05-05T09:54:29.496342Z",
-               "versionId": "1"
+               "lastUpdated": "2025-09-23T10:19:32.612898Z",
+               "versionId": "19",
+               "extension": [
+                 {
+                   "url": "https://aidbox.app/ex/createdAt",
+                   "valueInstant": "2025-09-23T10:19:32.612898Z"
+                 }
+               ]
              }
            }
          }
@@ -197,7 +208,7 @@ In Aidbox, create [AidboxTopicDestination](../../modules/topic-based-subscriptio
 Check the status of your topic destination:
 
 ```
-GET /fhir/AidboxTopicDestination/rabbitmq-basic/$status
+GET /fhir/AidboxTopicDestination/rabbitmq-destination/$status
 ```
 
 Response will include metrics:
@@ -207,7 +218,7 @@ Response will include metrics:
   "parameter": [
     {
       "name": "messagesDelivered",
-      "valueInteger": 5
+      "valueInteger": 1
     },
     {
       "name": "messagesInProcess",
@@ -224,27 +235,14 @@ Response will include metrics:
     {
       "name": "status",
       "valueString": "active"
+    },
+    {
+      "name": "startTimestamp",
+      "valueString": "2025-05-05T09:54:29Z"
     }
   ]
 }
 ```
-
-## Configuration Parameters
-
-The RabbitMQ topic destination supports the following parameters:
-
-| Parameter | Required | Default | Description |
-|-----------|----------|---------|-------------|
-| `host` | Yes | - | RabbitMQ server hostname |
-| `routingKey` | Yes | - | Routing key (queue name for default exchange) |
-| `port` | No | 5672 | RabbitMQ server port |
-| `vhost` | No | "/" | Virtual host |
-| `exchange` | No | "" | Exchange name (empty for default exchange) |
-| `username` | No | - | Username for authentication |
-| `password` | No | - | Password for authentication |
-| `connectionName` | No | "aidbox-{id}" | Connection name for monitoring |
-| `ssl` | No | false | Enable SSL/TLS connection |
-| `automaticallyRecover` | No | true | Enable automatic connection recovery |
 
 ## Troubleshooting
 
@@ -261,11 +259,12 @@ If you see authentication errors:
 - Verify username/password in AidboxTopicDestination parameters
 - Check user permissions in RabbitMQ Management UI
 - Default Docker setup uses admin/admin
+- AMQP 1.0 uses SASL authentication
 
 ### Messages Not Delivered
 
 If messages aren't appearing in queues:
 - Check Topic Destination status: `GET /fhir/AidboxTopicDestination/{id}/$status`
 - Verify queue exists in RabbitMQ
-- Check exchange bindings if using exchanges
+- Check exchange bindings if using exchanges (AMQP 0-9-1 only)
 - Ensure subscription topic is active and matches your resource criteria
