@@ -1,4 +1,4 @@
-# AidboxTopicSubscription RabbitMQ Tutorial
+# AidboxTopicSubscription RabbitMQ tutorial
 
 ## Objectives
 
