@@ -69,6 +69,7 @@ A global Configuration resource can be instantiated to serve as the system-wide 
   * `hide-title`  A boolean value that specifies whether the title of the Form should be shown.
   * `enable-amend-button`: A boolean value that specifies whether the Amend button should be shown.
   * `enable-save-button`: A boolean value that specifies whether the Save button should be shown.
+  * `allow-repopulate` : A boolean value that specifies whether repopulate is allowed in all forms with populate logic
 
 ### Configuration Resource Example
 
@@ -141,9 +142,10 @@ Content-Type: application/json
     "redirect-on-save": "https://example.com/save",
     "read-only": false,
     "app-name": "Example App",
-	"non-sticky-footer": true,
-	"hide-print-button": true,
-	"enable-amend-button": true
+    "non-sticky-footer": true,
+    "hide-print-button": true,
+    "enable-amend-button": true,
+    "allow-repopulate" : false
   }
 }
 ```
