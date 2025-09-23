@@ -93,6 +93,18 @@ Requires all referenced extensions to be formally defined in
 
 <details><summary>Details</summary><table data-header-hidden="true"><thead><tr><th width="200"></th><th></th></tr></thead><tbody><tr><td>ID</td><td><code>fhir.validation.strict-extension-resolution</code></td></tr><tr><td>Type</td><td>Bool</td></tr><tr><td>Default value</td><td><code>false</code></td></tr><tr><td>Environment variable</td><td><code>BOX_FHIR_VALIDATOR_STRICT_EXTENSION_RESOLUTION</code></td></tr><tr><td>Deprecated environment variables</td><td><code>AIDBOX_VALIDATOR_STRICT_EXTENSION_RESOLUTION_ENABLED</code></td></tr><tr><td>Sensitive</td><td><code>false</code> — value will be visible in plaintext in Admin UI</td></tr><tr><td>Set via</td><td>Admin UI → Settings<br />Environment variables</td></tr><tr><td>Hot reload</td><td><code>false</code> — setting requires system restart</td></tr></tbody></table></details>
 
+### Bundle execution validation mode<a href="#fhir.bundle-execution-validation-mode" id="fhir.bundle-execution-validation-mode"></a>
+
+```yaml
+BOX_FHIR_BUNDLE_EXECUTION_VALIDATION_MODE: "legacy"
+```
+
+Define validation mode for FHIR Bundle execution (after POST on `/fhir` endpoint).
+ Doesn't effect CRUD on Bundle resources.
+ Doesn't effect if `fhir.validation.fhir-schema-validation` is disabled.
+
+<details><summary>Details</summary><table data-header-hidden="true"><thead><tr><th width="200"></th><th></th></tr></thead><tbody><tr><td>ID</td><td><code>fhir.bundle-execution-validation-mode</code></td></tr><tr><td>Type</td><td>Enum</td></tr><tr><td>Values</td><td><code>legacy</code> — Check only essential to execute bundle structure (default)<br /><code>limited</code> — Separated validation of the bundle structure (before execution) and resources in it (during execution)<br /><code>full</code> — Full bundle validation before execution (may cause performance issues due to double validation of resources</td></tr><tr><td>Default value</td><td><code>legacy</code></td></tr><tr><td>Environment variable</td><td><code>BOX_FHIR_BUNDLE_EXECUTION_VALIDATION_MODE</code></td></tr><tr><td>Available from</td><td><code>2509</code></td></tr><tr><td>Sensitive</td><td><code>false</code> — value will be visible in plaintext in Admin UI</td></tr><tr><td>Set via</td><td>Admin UI → Settings<br />Environment variables</td></tr><tr><td>Hot reload</td><td><code>true</code> — setting can be changed at runtime</td></tr></tbody></table></details>
+
 ### Skip FHIR reference validation<a href="#fhir.validation.skip-reference" id="fhir.validation.skip-reference"></a>
 
 ```yaml
