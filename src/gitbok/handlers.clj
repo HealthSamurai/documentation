@@ -158,7 +158,7 @@
         file-path (->
                    uri-relative
                    (str/replace #"%20" " ")
-                   (str/replace-first #".*.gitbook/" ""))
+                   (str/replace-first #".*.gitbook/assets/" ""))
         dev-mode? (state/get-config ctx :dev-mode)
         volume-path (state/get-config ctx :docs-volume-path)
         ;; Try to find the image in multiple locations
@@ -167,20 +167,28 @@
                    (or
                     ;; Try at root .gitbook/assets/
                     (resp/file-response (str volume-path "/.gitbook/assets/" file-path))
-                    ;; Try at .gitbook/ (for compatibility)
-                    (resp/file-response (str volume-path "/.gitbook/" file-path))
                     ;; Try docs/.gitbook/assets/
                     (resp/file-response (str volume-path "/docs/.gitbook/assets/" file-path))
+                    ;; Try at .gitbook/ (for compatibility)
+                    (resp/file-response (str volume-path "/.gitbook/" file-path))
                     ;; Try docs/.gitbook/ (for compatibility)
                     (resp/file-response (str volume-path "/docs/.gitbook/" file-path))
                     ;; Fallback to classpath resources
                     (resp/resource-response file-path)
-                    (resp/resource-response (str ".gitbook/" file-path)))
+                    (resp/resource-response (str ".gitbook/" file-path))
+                    (resp/resource-response (str ".gitbook/assets/" file-path))
+                    (resp/resource-response (str "assets/" file-path))
+                    (resp/resource-response (str "docs/.gitbook/" file-path))
+                    (resp/resource-response (str "docs/.gitbook/assets/" file-path)))
                    ;; No volume path: use classpath only
                    (or
+                    (resp/resource-response (str "assets/" file-path))
                     (resp/resource-response file-path)
-                    (resp/resource-response (str ".gitbook/" file-path))))]
-    (when response
+                    (resp/resource-response (str ".gitbook/" file-path))
+                    (resp/resource-response (str ".gitbook/assets/" file-path))
+                    (resp/resource-response (str "docs/.gitbook/" file-path))
+                    (resp/resource-response (str "docs/.gitbook/assets/" file-path))))]
+    (if response
       (let [;; In dev mode: no cache
             ;; In production: cache for 1 year (images are typically versioned)
             cache-control (if dev-mode?
@@ -194,7 +202,10 @@
             headers (assoc (or (:headers response-with-type) {})
                            "Cache-Control" cache-control)]
         ;; Return response with updated headers
-        (assoc response-with-type :headers headers)))))
+        (assoc response-with-type :headers headers))
+      (do
+        (log/warn "Image not found" {:uri uri :file-path file-path})
+        nil))))
 
 (defn render-favicon [ctx]
   (resp/resource-response
