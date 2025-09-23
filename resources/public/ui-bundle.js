@@ -1144,3 +1144,34 @@ function showCopySuccess(button) {
   window.Prism = window.Prism || {};
   window.Prism.manual = true;
 })();
+
+// ============================================================================
+// FIX FOR CTRL/CMD/SHIFT+CLICK ON HTMX NAVIGATION LINKS
+// ============================================================================
+(function() {
+  'use strict';
+
+  // Fix for Ctrl/Cmd/Shift+click on HTMX navigation links
+  document.addEventListener('htmx:configRequest', function(evt) {
+    const triggeringEvent = evt.detail.triggeringEvent;
+    const target = evt.detail.elt;
+
+    // Only handle navigation links
+    if (target && target.closest('#navigation')) {
+      const href = target.getAttribute('href');
+
+      if (href && triggeringEvent) {
+        // Ctrl/Cmd+click - open in new tab
+        if (triggeringEvent.ctrlKey || triggeringEvent.metaKey) {
+          evt.preventDefault();
+          window.open(href, '_blank');
+        }
+        // Shift+click - open in new window
+        else if (triggeringEvent.shiftKey) {
+          evt.preventDefault();
+          window.open(href, '_blank', 'noopener,noreferrer');
+        }
+      }
+    }
+  });
+})();
