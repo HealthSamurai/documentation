@@ -22,7 +22,7 @@
 (defn getting-started-card
   "Getting Started card with tutorial icons"
   [context]
-  [:div {:class "bg-gradient-to-b from-white to-[#F8F9FA] border border-[#E7E9EF] relative overflow-hidden rounded-lg p-6 shadow-[0px_6px_13px_0px_#00000008,0px_24px_24px_0px_#00000005,0px_54px_32px_0px_#00000003]"}
+  [:div {:class "bg-gradient-to-b from-white to-[#F8F9FA] border border-[#E7E9EF] relative rounded-lg p-6 shadow-[0px_6px_13px_0px_#00000008,0px_24px_24px_0px_#00000005,0px_54px_32px_0px_#00000003]"}
    [:div {:class "flex flex-col gap-4"}
     [:div {:class "flex flex-col"}
      [:h2 {:class "text-xl leading-8 m-0 text-tint-12 font-medium"} "Get your Aidbox up and running"]
@@ -42,39 +42,53 @@
     [:div {:class "flex flex-wrap gap-3 sm:flex-nowrap"}
      ;; Docker (Run locally)
      [:a {:class "p-3 rounded-lg bg-gradient-to-b from-white to-[#F8F9FA] border border-[#E7E9EF] transition-colors duration-300 relative group"
-          :href (http/get-product-prefixed-url context "/getting-started/run-aidbox-locally")
-          :title "Run Aidbox locally with Docker"}
-      [:img {:src "/docs/.gitbook/assets/docker-mark-blue.svg" :alt "Run locally" :class "w-8 h-8"}]]
+          :href (http/get-product-prefixed-url context "/getting-started/run-aidbox-locally")}
+      [:img {:src "/docs/.gitbook/assets/docker-mark-blue.svg" :alt "Run locally" :class "w-8 h-8"}]
+      [:span {:class "absolute -top-10 left-1/2 -translate-x-1/2 px-2 py-1 bg-gray-900 text-white text-xs rounded whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity duration-150 pointer-events-none z-50"}
+       "Run Aidbox locally with Docker"]]
 
      ;; Sandbox - with cloud icon
      [:a {:class "p-3 rounded-lg bg-gradient-to-b from-white to-[#F8F9FA] border border-[#E7E9EF] transition-colors duration-300 relative group"
-          :href (http/get-product-prefixed-url context "/getting-started/run-aidbox-in-sandbox")
-          :title "Try Aidbox in Sandbox"}
-      [:img {:src "/docs/.gitbook/assets/cloud.svg" :alt "Run in Sandbox" :class "w-8 h-8"}]]
+          :href (http/get-product-prefixed-url context "/getting-started/run-aidbox-in-sandbox")}
+      [:img {:src "/docs/.gitbook/assets/cloud.svg" :alt "Run in Sandbox" :class "w-8 h-8"}]
+      [:span {:class "absolute -top-10 left-1/2 -translate-x-1/2 px-2 py-1 bg-gray-900 text-white text-xs rounded whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity duration-150 pointer-events-none z-50"}
+       "Try Aidbox in Sandbox"]]
 
      ;; TypeScript
      [:a {:class "p-3 rounded-lg bg-gradient-to-b from-white to-[#F8F9FA] border border-[#E7E9EF] transition-colors duration-300 relative group"
-          :href (http/get-product-prefixed-url context "/getting-started/typescript")
-          :title "TypeScript SDK Tutorial"}
-      [:img {:src "/docs/.gitbook/assets/typescript.svg" :alt "TypeScript" :class "w-8 h-8"}]]
+          :href (http/get-product-prefixed-url context "/getting-started/typescript")}
+      [:img {:src "/docs/.gitbook/assets/typescript.svg" :alt "TypeScript" :class "w-8 h-8"}]
+      [:span {:class "absolute -top-10 left-1/2 -translate-x-1/2 px-2 py-1 bg-gray-900 text-white text-xs rounded whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity duration-150 pointer-events-none z-50"}
+       "TypeScript SDK Tutorial"]]
 
      ;; Java
      [:a {:class "p-3 rounded-lg bg-gradient-to-b from-white to-[#F8F9FA] border border-[#E7E9EF] transition-colors duration-300 relative group"
-          :href (http/get-product-prefixed-url context "/getting-started/java")
-          :title "Java SDK Tutorial"}
-      [:img {:src "/docs/.gitbook/assets/java.svg" :alt "Java" :class "w-8 h-8"}]]
+          :href (http/get-product-prefixed-url context "/getting-started/java")}
+      [:img {:src "/docs/.gitbook/assets/java.svg" :alt "Java" :class "w-8 h-8"}]
+      [:span {:class "absolute -top-10 left-1/2 -translate-x-1/2 px-2 py-1 bg-gray-900 text-white text-xs rounded whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity duration-150 pointer-events-none z-50"}
+       "Java SDK Tutorial"]]
 
      ;; Python
      [:a {:class "p-3 rounded-lg bg-gradient-to-b from-white to-[#F8F9FA] border border-[#E7E9EF] transition-colors duration-300 relative group"
-          :href (http/get-product-prefixed-url context "/getting-started/python")
-          :title "Python SDK Tutorial"}
-      [:img {:src "/docs/.gitbook/assets/python.svg" :alt "Python" :class "w-8 h-8"}]]
+          :href (http/get-product-prefixed-url context "/getting-started/python")}
+      [:img {:src "/docs/.gitbook/assets/python.svg" :alt "Python" :class "w-8 h-8"}]
+      [:span {:class "absolute -top-10 left-1/2 -translate-x-1/2 px-2 py-1 bg-gray-900 text-white text-xs rounded whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity duration-150 pointer-events-none z-50"}
+       "Python SDK Tutorial"]]
 
      ;; C#
+          ;; C#
      [:a {:class "p-3 rounded-lg bg-gradient-to-b from-white to-[#F8F9FA] border border-[#E7E9EF] transition-colors duration-300 relative group"
-          :href (http/get-product-prefixed-url context "/getting-started/csharp")
-          :title "C# SDK Tutorial"}
-      [:img {:src "/docs/.gitbook/assets/csharp.svg" :alt "C#" :class "w-8 h-8"}]]]]])
+          :href (http/get-product-prefixed-url context "/getting-started/csharp")}
+      [:img {:src "/docs/.gitbook/assets/csharp.svg" :alt "C#" :class "w-8 h-8"}]
+      [:span {:class "absolute -top-10 left-1/2 -translate-x-1/2 px-2 py-1 bg-gray-900 text-white text-xs rounded whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity duration-150 pointer-events-none z-50"}
+       "C# SDK Tutorial"]]
+
+     ;; MCP
+     [:a {:class "p-3 rounded-lg bg-gradient-to-b from-white to-[#F8F9FA] border border-[#E7E9EF] transition-colors duration-300 relative group"
+          :href (http/get-product-prefixed-url context "/modules/other-modules/mcp")}
+      [:img {:src "/docs/.gitbook/assets/mcp.png" :alt "MCP" :class "w-8 h-8"}]
+      [:span {:class "absolute -top-10 left-1/2 -translate-x-1/2 px-2 py-1 bg-gray-900 text-white text-xs rounded whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity duration-150 pointer-events-none z-50"}
+       "Model Context Protocol (MCP)"]]]]])
 
 (defn additional-links
   "Additional important documentation links"
@@ -152,7 +166,7 @@
    [:div {:class "grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6"}
 
     ;; FHIR Database Card - spans 2 columns
-    [:div {:class (str card-clickable-styles " p-4 lg:col-span-2 group/card")
+    [:div {:class (str card-clickable-styles " p-4 lg:col-span-2 group")
            :data-href (http/get-product-prefixed-url context "/database/overview")
            :onclick "if(!event.target.closest('a')) { if(event.ctrlKey || event.metaKey) { window.open(this.dataset.href, '_blank'); } else { window.location.href = this.dataset.href; } }"
            :onmouseenter "window.status = this.dataset.href; return true;"
@@ -173,7 +187,7 @@
       "Manage FHIR data with the power of PostgreSQL — fully under your control. Aidbox stores resources transparently as JSONB, enabling you to query, join, and aggregate by any element, with full support for transactional operations, reporting, and seamless migrations."]]
 
     ;; API Card
-    [:div {:class (str card-clickable-styles " p-4 group/card")
+    [:div {:class (str card-clickable-styles " p-4 group")
            :data-href (http/get-product-prefixed-url context "/api/api-overview")
            :onclick "if(!event.target.closest('a')) { if(event.ctrlKey || event.metaKey) { window.open(this.dataset.href, '_blank'); } else { window.location.href = this.dataset.href; } }"
            :onmouseenter "window.status = this.dataset.href; return true;"
@@ -192,7 +206,7 @@
       "Multiple APIs — FHIR, SQL, GraphQL, Bulk, and Subscription — to work efficiently with FHIR data for maximum flexibility and performance."]]
 
     ;; Artifact Registry Card
-    [:div {:class (str card-clickable-styles " p-4 group/card")
+    [:div {:class (str card-clickable-styles " p-4 group")
            :data-href (http/get-product-prefixed-url context "/artifact-registry/artifact-registry-overview")
            :onclick "if(!event.target.closest('a')) { if(event.ctrlKey || event.metaKey) { window.open(this.dataset.href, '_blank'); } else { window.location.href = this.dataset.href; } }"
            :onmouseenter "window.status = this.dataset.href; return true;"
@@ -211,7 +225,7 @@
       "Multiple FHIR versions: STU3, R4, R5, and R6. 500+ ready-to-use IGs: IPS, national (US, DE, CA, etc.), domain (mCode, Da Vinci, etc.), custom IGs."]]
 
     ;; Access Control Card
-    [:div {:class (str card-clickable-styles " p-4 group/card")
+    [:div {:class (str card-clickable-styles " p-4 group")
            :data-href (http/get-product-prefixed-url context "/access-control/access-control")
            :onclick "if(!event.target.closest('a')) { if(event.ctrlKey || event.metaKey) { window.open(this.dataset.href, '_blank'); } else { window.location.href = this.dataset.href; } }"
            :onmouseenter "window.status = this.dataset.href; return true;"
@@ -230,7 +244,7 @@
       "Enterprise-grade security with OAuth 2.0, multitenancy, flexible user management, granular access policies, and complete audit trails."]]
 
     ;; Terminology Card
-    [:div {:class (str card-clickable-styles " p-4 group/card")
+    [:div {:class (str card-clickable-styles " p-4 group")
            :data-href (http/get-product-prefixed-url context "/terminology-module/overview")
            :onclick "if(!event.target.closest('a')) { if(event.ctrlKey || event.metaKey) { window.open(this.dataset.href, '_blank'); } else { window.location.href = this.dataset.href; } }"
            :onmouseenter "window.status = this.dataset.href; return true;"
@@ -248,7 +262,7 @@
       "Validate codes and perform fast lookups in ICD-10, SNOMED, LOINC. Use custom code systems and value sets."]]
 
     ;; Developer Experience Card
-    [:div {:class (str card-clickable-styles " p-4 group/card")
+    [:div {:class (str card-clickable-styles " p-4 group")
            :data-href (http/get-product-prefixed-url context "/developer-experience/developer-experience-overview")
            :onclick "if(!event.target.closest('a')) { if(event.ctrlKey || event.metaKey) { window.open(this.dataset.href, '_blank'); } else { window.location.href = this.dataset.href; } }"
            :onmouseenter "window.status = this.dataset.href; return true;"
@@ -268,7 +282,7 @@
       "TypeScript, C#, and Python SDKs for easy Aidbox integration and rapid app development. SDK generator for custom toolkits tailored to your stack."]]
 
     ;; UI Card
-    [:div {:class (str card-clickable-styles " p-4 group/card")
+    [:div {:class (str card-clickable-styles " p-4 group")
            :data-href (http/get-product-prefixed-url context "/overview/aidbox-ui")
            :onclick "if(!event.target.closest('a')) { if(event.ctrlKey || event.metaKey) { window.open(this.dataset.href, '_blank'); } else { window.location.href = this.dataset.href; } }"
            :onmouseenter "window.status = this.dataset.href; return true;"
