@@ -105,7 +105,7 @@
       :id "features-search"
       :placeholder "Search features..."
       :oninput "filterFeatures(this.value)"}]
-    [:div.space-y-1.max-h-96.overflow-y-auto
+    [:div.space-y-1
      {:id "features-list"}
      (let [features-with-counts (map (fn [feature]
                                        [feature (count-examples-by-filter examples "features" feature)])
