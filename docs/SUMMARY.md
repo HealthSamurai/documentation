@@ -338,6 +338,7 @@
     * [Import Questionnaire](modules/aidbox-forms/aidbox-ui-builder-alpha/import-questionnaire.md)
     * [Form sharing](modules/aidbox-forms/aidbox-ui-builder-alpha/form-sharing.md)
     * [Printing forms](modules/aidbox-forms/aidbox-ui-builder-alpha/printing-forms/README.md)
+      * [Native look form printing](modules/aidbox-forms/aidbox-ui-builder-alpha/printing-forms/native-look-form-printing.md)
       * [Template-based PDF generation](modules/aidbox-forms/aidbox-ui-builder-alpha/printing-forms/template-based-pdf-generation.md)
     * [FHIR versions](modules/aidbox-forms/aidbox-ui-builder-alpha/fhir-versions.md)
     * [Offline forms](modules/aidbox-forms/aidbox-ui-builder-alpha/offline-forms.md)
