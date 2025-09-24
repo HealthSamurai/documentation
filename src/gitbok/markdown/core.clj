@@ -319,20 +319,25 @@
 (defn set-parsed-markdown-index [context md-files-idx]
   (log/info "Parsing markdown files" {:count (count md-files-idx)})
   (let [start-time (System/currentTimeMillis)
-        parsed-files (->> md-files-idx
-                         ;; Use pmap for parallel processing
-                          (pmap (fn [[filepath content]]
-                                  (try
-                                    (parse-markdown-content context [filepath content])
-                                    (catch Exception e
-                                      (log/error e "Failed to parse" {:filepath filepath})
-                                      {:filepath filepath
-                                       :description ""
-                                       :title "Parse Error"
-                                       :parsed [:div "Parse error"]}))))
-                         ;; Force evaluation of lazy sequence
+        ;; Process in batches to reduce future overhead
+        batch-size 50
+        batches (partition-all batch-size md-files-idx)
+        ;; Process batches in parallel, files within batch sequentially
+        parsed-files (->> batches
+                          (pmap (fn [batch]
+                                       ;; Process files within batch sequentially
+                                       (map (fn [[filepath content]]
+                                              (try
+                                                (parse-markdown-content context [filepath content])
+                                                (catch Exception e
+                                                  (log/error e "Failed to parse" {:filepath filepath})
+                                                  {:filepath filepath
+                                                   :description ""
+                                                   :title "Parse Error"
+                                                   :parsed [:div "Parse error"]})))
+                                            batch)))
                           doall
-                         ;; Convert to vector
+                          (mapcat identity)
                           vec)
         duration (- (System/currentTimeMillis) start-time)]
     (log/info "files parsed" {:count (count parsed-files)
@@ -349,22 +354,26 @@
 (defn render-all! [context parsed-md-index read-markdown-file]
   (log/info "Pre-rendering all pages" {:count (count parsed-md-index)})
   (let [start-time (System/currentTimeMillis)
-        rendered (->> parsed-md-index
-                     ;; Use pmap for parallel rendering
-                      (pmap
-                       (fn [{:keys [filepath _parsed]}]
-                         (try
-                           (log/debug "render file" {:filepath filepath})
-                           [filepath (read-markdown-file context filepath)]
-                           (catch Exception e
-                             (log/error e "Failed to render" {:filepath filepath})
-                             [filepath {:content [:div "Render error"]
-                                        :title "Error"
-                                        :description ""}]))))
-                     ;; Force evaluation
-                      doall
-                     ;; Convert to map
-                      (into {}))
+        ;; Process in batches to reduce future overhead
+        batch-size 50
+        batches (partition-all batch-size parsed-md-index)
+        ;; Process batches in parallel, files within batch sequentially
+        rendered (into {}
+                      (mapcat identity
+                              (doall
+                               (pmap (fn [batch]
+                                       ;; Process files within batch sequentially
+                                       (map (fn [{:keys [filepath _parsed]}]
+                                              (try
+                                                (log/debug "render file" {:filepath filepath})
+                                                [filepath (read-markdown-file context filepath)]
+                                                (catch Exception e
+                                                  (log/error e "Failed to render" {:filepath filepath})
+                                                  [filepath {:content [:div "Render error"]
+                                                             :title "Error"
+                                                             :description ""}])))
+                                            batch))
+                                     batches))))
         duration (- (System/currentTimeMillis) start-time)]
     (log/info "Rendering complete" {:count (count rendered)
                                     :duration-ms duration})

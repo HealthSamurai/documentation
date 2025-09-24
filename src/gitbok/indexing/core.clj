@@ -95,16 +95,26 @@
   (state/slurp-resource context filepath))
 
 (defn slurp-md-files! [context filepaths-from-summary]
-  (let [files (reduce (fn [acc filename]
-                        (if (str/starts-with? filename "http")
-                          acc
-                          (let [full-path (products/filepath context filename)]
-                            ;; Use original filename as key, not the full path
-                            (assoc acc filename
-                                   (read-content context full-path))))) {}
-                      (filter #(not (str/starts-with? % "http"))
-                              filepaths-from-summary))]
-    (log/info "files loaded" {:count (count files)})
+  (let [;; Filter out http URLs
+        start (System/currentTimeMillis)
+        local-files (filter #(not (str/starts-with? % "http")) filepaths-from-summary)
+        ;; Chunk files for better parallel processing
+        ;; Process in batches to reduce future overhead
+        batch-size 50
+        batches (partition-all batch-size local-files)
+        ;; Process batches in parallel, files within batch sequentially
+        files (->> batches
+                   (pmap (fn [batch]
+                           ;; Process files within batch sequentially
+                           (map (fn [filename]
+                                  [filename
+                                   (read-content context (products/filepath context filename))])
+                                batch)))
+                   doall
+                   (mapcat identity)
+                   (into {}))]
+    (log/info "files loaded" {:count (count files)
+                              :duration-ms (- (System/currentTimeMillis) start)})
     files))
 
 (defn set-md-files-idx [context file-to-uri-idx]

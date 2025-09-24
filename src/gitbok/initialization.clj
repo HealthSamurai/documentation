@@ -19,47 +19,38 @@
   (let [;; Temporarily set current product for initialization
         ctx (products/set-current-product-id context (:id product))]
     ;; order is important
-    (log/info "init-product" {:msg "1. read summary. create toc htmx."
-                              :product (:id product)})
+    (log/info "1. read summary. create toc htmx." {:product (:id product)})
     (let [parsed-summary (summary/parse-summary ctx)]
       (state/set-summary! ctx parsed-summary))
-    (log/info "init-product" {:msg "2. get uris from summary (using slugging), merge with redirects"
-                              :product (:id product)})
+    (log/info "2. get uris from summary , merge with redirects" {:product (:id product)})
     (let [indexes (uri-to-file/uri->file-idx ctx)]
       ;; Store files index
       (state/set-uri-to-file-idx! ctx (:files indexes))
       ;; Store redirects index
       (state/set-redirects-idx! ctx (:redirects indexes)))
-    (log/info "init-product" {:msg "3. reverse file to uri idx"
-                              :product (:id product)})
+    (log/info "3. reverse file to uri idx" {:product (:id product)})
     (let [file-to-uri-idx (file-to-uri/file->uri-idx ctx)]
       (state/set-file-to-uri-idx! ctx file-to-uri-idx))
-    (log/info "init-product" {:msg "4. using files from summary (step 3), read all files into memory"
-                              :product (:id product)})
+    (log/info "4. using files from summary (step 3), read all files into memory" {:product (:id product)})
     (indexing/set-md-files-idx ctx (state/get-file-to-uri-idx ctx))
-    (log/info "init-product" {:msg "5. parse all files into memory, some things are already rendered as plain html"
-                              :product (:id product)})
+    (log/info "5. parse all files into memory, some things are already rendered as plain html"
+              {:product (:id product)})
     (markdown/set-parsed-markdown-index ctx (indexing/get-md-files-idx ctx))
-    (log/info "init-product" {:msg "6. render it on start"
-                              :product (:id product)})
     (let [dev-mode (state/get-config ctx :dev-mode)]
       (if dev-mode
         (log/info "init-product" {:msg "DEV mode, skip pre-rendering"
                                   :product (:id product)})
         (do
-          (log/info "init-product" {:msg "Production mode, render all pages into memory"
-                                    :product (:id product)})
+          (log/info "6. render it on start" {:product (:id product)})
           (when read-markdown-fn
             (markdown/render-all! ctx
                                   (markdown/get-parsed-markdown-index ctx)
                                   read-markdown-fn))
-          (log/info "init-product" {:msg "render done"
-                                    :product (:id product)}))))
-    (log/info "init-product" {:msg "7. set lastmod data in context for Last Modified metadata"
-                              :product (:id product)})
+          (log/info "RENDER DONE" {:product (:id product)}))))
+    (log/info "7. set lastmod data in context for Last Modified metadata"
+              {:product (:id product)})
     (indexing/set-lastmod ctx)
-    (log/info "init-product" {:msg "8. generate sitemap.xml for product"
-                              :product (:id product)})
+    (log/info "8. generate sitemap.xml for product" {:product (:id product)})
     (let [lastmod-data (products/get-product-state ctx [::lastmod])
           ;; Get primary navigation links (excluding cross-section references)
           primary-links (summary/get-primary-navigation-links ctx)
@@ -73,7 +64,6 @@
           sitemap-xml (sitemap/generate-sitemap ctx primary-urls lastmod-data)]
       (state/set-sitemap! ctx sitemap-xml))
 
-    ;; 9. Pre-calculate favicon path for product
     (let [favicon-path (or (:favicon product) "public/favicon.ico")
           favicon-path (if (str/starts-with? favicon-path ".gitbook/")
                          (str/replace-first favicon-path #".*.gitbook/" "")
@@ -106,7 +96,7 @@
     (state/set-products! context products-config)
     (log/info "Products initialized" {:count (count products-config)
                                       :products (mapv :name products-config)})
-    
+
     ;; Initialize each product's indices
     (doseq [[idx product] (map-indexed vector products-config)]
       (log/info "Initializing product" {:product-id (:id product)
@@ -119,7 +109,7 @@
           (log/info "Product initialized" {:product-id (:id product)
                                            :product-name (:name product)
                                            :duration-ms duration}))))
-    
+
     ;; Update lastmod for all products
     (log/info "Updating lastmod data for all products")
     (doseq [product products-config]
@@ -127,10 +117,10 @@
                                         :product product
                                         :current-product-id (:id product))]
         (indexing/set-lastmod context-with-product)))
-    
+
     ;; Generate and cache sitemap index
     (log/info "Generating sitemap index")
     (let [sitemap-index-xml (sitemap-index/generate-and-cache-sitemap-index! context)]
       (state/set-cache! context :sitemap-index-xml sitemap-index-xml))
-    
+
     products-config))
