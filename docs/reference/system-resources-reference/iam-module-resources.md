@@ -509,7 +509,7 @@ User role
 <tr><td width="290">department</td><td width="70">0..1</td><td width="150">string</td><td>Identifies the name of a department.</td></tr>
 <tr><td width="290">displayName</td><td width="70">0..1</td><td width="150">string</td><td>The name of the User, suitable for display to end-users.</td></tr>
 <tr><td width="290">division</td><td width="70">0..1</td><td width="150">string</td><td>Identifies the name of a division.</td></tr>
-<tr><td width="290">email</td><td width="70">0..1</td><td width="150">email</td><td>Primary email for the user.</td></tr>
+<tr><td width="290">email</td><td width="70">0..1</td><td width="150">string</td><td>Primary email for the user.</td></tr>
 <tr><td width="290">emails</td><td width="70">0..*</td><td width="150">BackboneElement</td><td>Email addresses for the user. Values should be canonicalized (e.g. 'bjensen@example.com').</td></tr>
 <tr><td width="290">emails.<strong>value</strong></td><td width="70">0..1</td><td width="150">string</td><td>An individual email address (canonicalized).</td></tr>
 <tr><td width="290">emails.<strong>display</strong></td><td width="70">0..1</td><td width="150">string</td><td>A human-readable name for display purposes (READ-ONLY).</td></tr>
