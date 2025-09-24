@@ -28,7 +28,8 @@
 
 ;; Create and start HTTP server
      (let [handler (routes/create-app context)
-           server-instance (http-kit/run-server handler {:port port})]
+           server-instance (http-kit/run-server handler {:port port
+                                                         :thread 8})]
        (state/set-server! context server-instance)
        ;; Mark app as initialized for healthcheck
        (state/set-cache! context :app-initialized true)
