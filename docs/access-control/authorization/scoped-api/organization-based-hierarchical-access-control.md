@@ -158,6 +158,21 @@ Organization-based hierarchical filtering is available starting from version 250
 POST <AIDBOX_BASE_URL>/Organization/<org-id>/fhir/<resource-type>
 ```
 
+#### Conditional Create
+Create the resource only if no existing resource matches the given search criteria.
+```
+POST /Organization/<org-id>/fhir/Observation
+If-None-Exist: identifier=http://acme.org/obs|12345
+Content-Type: application/fhir+json
+
+{
+  "resourceType": "Observation",
+  "status": "final",
+  "identifier": [{ "system": "http://acme.org/obs", "value": "12345" }],
+  "code": { "text": "Example observation" }
+}
+```
+
 ### Read
 
 ```
@@ -171,18 +186,49 @@ GET <AIDBOX_BASE_URL>/Organization/<org-id>/fhir/<resource-type>/<id>
 ```
 PUT <AIDBOX_BASE_URL>/Organization/<org-id>/fhir/<resource-type>/<id>
 ```
+#### Conditional Put 
+Update a resource that matches the search; create if none exists.
+
+```
+PUT /Organization/<org-id>/fhir/Observation?identifier=http://acme.org/obs|12345
+Content-Type: application/fhir+json
+
+{
+  "resourceType": "Observation",
+  "status": "final",
+  "identifier": [{ "system": "http://acme.org/obs", "value": "12345" }],
+  "code": { "text": "Example observation (updated)" }
+}
+```
 
 #### Patch
 
 <pre><code><strong>PATCH &#x3C;AIDBOX_BASE_URL>/Organization/&#x3C;org-id>/fhir/&#x3C;resource-type>/&#x3C;id>?[_method={ json-patch | merge-patch | fhirpath-patch }]
 </strong></code></pre>
 
-All PATCH methods are supported. See also [patch](../../../api/rest-api/crud/patch.md)
+All PATCH methods are supported under org-scoped API. See also [patch](../../../api/rest-api/crud/patch.md)
+
+#### Conditional Patch
+Patch a resource matched by a search expression. 
+
+```
+PATCH /Organization/<org-id>/fhir/Observation?identifier=http://acme.org/obs|12345&_method=merge-patch
+Content-Type: application/merge-patch+json
+
+{ "status": "final" }
+```
 
 ### Delete
 
 ```
 DELETE <AIDBOX_BASE_URL>/Organization/<org-id>/fhir/<resource-type>/<id>
+```
+
+#### Conditional Delete
+Delete resource(s) matching a search expression at the type endpoint under the organization.
+
+```
+DELETE /Organization/<org-id>/fhir/Observation?identifier=http://acme.org/obs|12345
 ```
 
 ### Search
@@ -295,6 +341,76 @@ entry:
 </code></pre>
 
 See also [Transactions page](../../../api/batch-transaction.md)
+
+#### Conditional Create with Bundle
+```
+POST /Organization/org-a/fhir/
+Content-Type: application/fhir+json
+
+{
+  "resourceType": "Bundle",
+  "type": "batch",
+  "entry": [
+    {
+      "request": {
+        "method": "POST",
+        "url": "Observation",
+        "ifNoneExist": "identifier=http://acme.org/obs|12345"
+      },
+      "resource": {
+        "resourceType": "Observation",
+        "status": "final",
+        "identifier": [{ "system": "http://acme.org/obs", "value": "12345" }],
+        "code": { "text": "Example observation" }
+      }
+    }
+  ]
+}
+```
+
+#### Conditional Update with Bundle
+```
+POST /Organization/org-a/fhir/
+Content-Type: application/fhir+json
+
+{
+  "resourceType": "Bundle",
+  "type": "batch",
+  "entry": [
+    {
+      "request": {
+        "method": "PUT",
+        "url": "Observation?identifier=http://acme.org/obs|12345"
+      },
+      "resource": {
+        "resourceType": "Observation",
+        "status": "final",
+        "identifier": [{ "system": "http://acme.org/obs", "value": "12345" }],
+        "code": { "text": "Example observation" }
+      }
+    }
+  ]
+}
+```
+
+#### Conditional Delete with Bundle
+```
+POST /Organization/org-a/fhir/
+Content-Type: application/fhir+json
+
+{
+  "resourceType": "Bundle",
+  "type": "batch",
+  "entry": [
+    {
+      "request": {
+        "method": "DELETE",
+        "url": "Observation?identifier=http://acme.org/obs|12345"
+      }
+    }
+  ]
+}
+```
 
 ### Metadata
 
