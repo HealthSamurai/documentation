@@ -4,6 +4,7 @@
    [clojure.tools.logging :as log]
    [gitbok.handlers :as handlers]
    [gitbok.initialization :as initialization]
+   [gitbok.metrics :as metrics]
    [gitbok.routes :as routes]
    [gitbok.scheduler :as scheduler]
    [gitbok.state :as state]
@@ -22,6 +23,9 @@
          base-url (state/get-config context :base-url)
          version (state/get-config context :version)]
 
+     ;; Initialize metrics
+     (metrics/initialize-metrics!)
+     
      ;; Initialize all products and their indices
      (initialization/init-all-products!
       context

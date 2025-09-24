@@ -89,15 +89,19 @@ docker-build:
 
 # Run full stack with docker-compose (meilisearch + gitbok with volume)
 docker-up:
-	docker-compose --profile full up -d --build
+	docker-compose --profile full -f docker-compose.yml -f docker-compose.monitoring.yml up -d --build
 	@echo "Services started:"
 	@echo "  - Gitbok: http://localhost:8081/docs"
 	@echo "  - Meilisearch: http://localhost:7700"
+	@echo "  - Prometheus: http://localhost:9090"
+	@echo "  - Alertmanager: http://localhost:9093"
+	@echo "  - Grafana: http://localhost:3000 (admin/admin)"
+	@echo "  - Metrics: http://localhost:8081/docs/metrics"
 	@echo "Logs: docker-compose logs -f gitbok"
 
 # Stop docker-compose stack
 docker-down:
-	docker-compose --profile full down
+	docker-compose --profile full -f docker-compose.yml -f docker-compose.monitoring.yml down
 
 # Rebuild and restart gitbok container
 docker-restart:

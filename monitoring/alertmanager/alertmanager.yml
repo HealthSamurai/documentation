@@ -1,0 +1,91 @@
+global:
+  # The smarthost and SMTP sender used for mail notifications.
+  resolve_timeout: 5m
+
+# The directory from which notification templates are read.
+templates:
+  - '/etc/alertmanager/templates/*.tmpl'
+
+# The root route on which each incoming alert enters.
+route:
+  # Group alerts by these labels
+  group_by: ['alertname', 'cluster', 'service']
+
+  # Wait before sending notification for a group
+  group_wait: 10s
+
+  # Wait before sending notification about new alerts in a group
+  group_interval: 10s
+
+  # Wait before resending notifications
+  repeat_interval: 1h
+
+  # Default receiver
+  receiver: 'telegram-notifications'
+
+  # Child routes for specific routing
+  routes:
+    # Critical alerts should be sent immediately
+    - match:
+        severity: critical
+      receiver: 'telegram-critical'
+      group_wait: 5s
+      repeat_interval: 15m
+
+    # Warning alerts can wait a bit longer
+    - match:
+        severity: warning
+      receiver: 'telegram-notifications'
+      group_wait: 10s
+      repeat_interval: 30m
+
+# Inhibition rules to mute certain alerts when others are firing
+inhibit_rules:
+  # Inhibit warning alerts if critical alert is firing for the same job
+  - source_match:
+      severity: 'critical'
+    target_match:
+      severity: 'warning'
+    equal: ['alertname', 'job']
+
+receivers:
+  # Default Telegram receiver
+  - name: 'telegram-notifications'
+    telegram_configs:
+      - bot_token: 'YOUR_BOT_TOKEN'  # Replace with your bot token
+        chat_id: YOUR_CHAT_ID        # Replace with your chat ID (number)
+        parse_mode: 'HTML'
+        message: |
+          <b>⚠️ Alert: {{ .GroupLabels.alertname }}</b>
+
+          <b>Status:</b> {{ .Status }}
+          <b>Severity:</b> {{ range .Alerts }}{{ .Labels.severity }}{{ end }}
+
+          {{ range .Alerts }}
+          <b>Summary:</b> {{ .Annotations.summary }}
+          <b>Description:</b> {{ .Annotations.description }}
+
+          <b>Labels:</b>
+          {{ range $key, $value := .Labels }}
+            - {{ $key }}: {{ $value }}
+          {{ end }}
+          {{ end }}
+
+  # Critical alerts receiver with different formatting
+  - name: 'telegram-critical'
+    telegram_configs:
+      - bot_token: 'YOUR_BOT_TOKEN'  # Replace with your bot token
+        chat_id: YOUR_CHAT_ID        # Replace with your chat ID
+        parse_mode: 'HTML'
+        message: |
+          <b>🚨🚨 CRITICAL ALERT 🚨🚨</b>
+          <b>{{ .GroupLabels.alertname }}</b>
+
+          {{ range .Alerts }}
+          <b>{{ .Annotations.summary }}</b>
+          {{ .Annotations.description }}
+
+          Time: {{ .StartsAt.Format "15:04:05 MST" }}
+          {{ end }}
+
+          <b>IMMEDIATE ACTION REQUIRED!</b>

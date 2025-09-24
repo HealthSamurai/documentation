@@ -1,0 +1,85 @@
+groups:
+  - name: application_alerts
+    interval: 30s
+    rules:
+      # Alert when 5xx errors exceed threshold
+      - alert: High5xxErrorRate
+        expr: |
+          (
+            sum(rate(http_errors_5xx_total[5m])) by (job)
+            /
+            sum(rate(http_requests_total[5m])) by (job)
+          ) * 100 > 1
+        for: 2m
+        labels:
+          severity: critical
+          team: backend
+        annotations:
+          summary: "High 5xx error rate detected"
+          description: "{{ $labels.job }} is experiencing {{ $value | humanize }}% 5xx errors (threshold: 1%)"
+
+      # Alert on absolute number of 5xx errors
+      - alert: Frequent5xxErrors
+        expr: sum(rate(http_errors_5xx_total[5m])) by (job) * 60 > 5
+        for: 1m
+        labels:
+          severity: warning
+          team: backend
+        annotations:
+          summary: "Frequent 5xx errors detected"
+          description: "{{ $labels.job }} is generating {{ $value | humanize }} 5xx errors per minute"
+
+      # Alert when application is down
+      - alert: ApplicationDown
+        expr: up{job="gitbok-app"} == 0
+        for: 1m
+        labels:
+          severity: critical
+          team: backend
+        annotations:
+          summary: "Application is down"
+          description: "Gitbok application ({{ $labels.instance }}) has been down for more than 1 minute"
+
+      # Alert on health check failures
+      - alert: HealthCheckFailing
+        expr: |
+          probe_success{job="gitbok-app", path="/healthcheck"} == 0
+          or
+          http_requests_total{path="/health", status!="200"}
+        for: 2m
+        labels:
+          severity: warning
+          team: backend
+        annotations:
+          summary: "Health check is failing"
+          description: "Health check for {{ $labels.instance }} has been failing for more than 2 minutes"
+
+      # Alert on high response times
+      - alert: HighResponseTime
+        expr: |
+          histogram_quantile(0.95,
+            sum(rate(http_request_duration_seconds_bucket[5m])) by (job, le)
+          ) > 2
+        for: 5m
+        labels:
+          severity: warning
+          team: backend
+        annotations:
+          summary: "High response time detected"
+          description: "95th percentile response time for {{ $labels.job }} is {{ $value | humanize }}s (threshold: 2s)"
+
+      # Alert on sustained high error rate
+      - alert: SustainedHighErrorRate
+        expr: |
+          (
+            sum(rate(http_requests_total{status=~"5.."}[10m])) by (job)
+            /
+            sum(rate(http_requests_total[10m])) by (job)
+          ) * 100 > 0.5
+        for: 10m
+        labels:
+          severity: warning
+          team: backend
+        annotations:
+          summary: "Sustained high error rate"
+          description: "{{ $labels.job }} has maintained {{ $value | humanize }}% error rate for 10 minutes"
