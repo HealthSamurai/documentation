@@ -12,16 +12,23 @@
   "Start periodic reload watcher using chime"
   [context]
   (when (state/get-config context :docs-volume-path)
-    (let [interval-seconds (Integer/parseInt (state/get-config context :reload-check-interval "30"))]
+    (let [interval-seconds (Integer/parseInt (state/get-config context :reload-check-interval "30"))
+          ;; Add random jitter 0-45 seconds to spread reloads between replicas
+          ;; This helps prevent all replicas from reloading simultaneously
+          jitter-seconds (rand-int 45)
+          first-check (-> (Instant/now)
+                          (.plusSeconds jitter-seconds))]
       (log/info "Starting reload watcher" {:interval-seconds interval-seconds
-                                           :volume-path (state/get-config context :docs-volume-path)})
+                                           :volume-path (state/get-config context :docs-volume-path)
+                                           :jitter-seconds jitter-seconds
+                                           :first-check-in (str jitter-seconds "s")})
 
       ;; Initialize reload state
       (reload/init-reload-state! context)
 
-      ;; Start periodic check
+      ;; Start periodic check with jittered start time
       (let [schedule (chime/chime-at
-                      (chime/periodic-seq (Instant/now) (Duration/ofSeconds interval-seconds))
+                      (chime/periodic-seq first-check (Duration/ofSeconds interval-seconds))
                       (fn [_time]
                         (when-not (state/get-cache context :reload-state-in-progress false)
                           (try
