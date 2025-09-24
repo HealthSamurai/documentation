@@ -107,7 +107,9 @@
 
               (let [duration (- (System/currentTimeMillis) start-time)]
                 (log/info "reload success" {:duration-ms duration
-                                            :new-head new-head})))
+                                            :new-head new-head})
+                (log/info "🎯🎯🎯 RELOAD COMPLETE 🎯🎯🎯" {:TOTAL-DURATION-MS duration
+                                                           :TOTAL-DURATION-SECONDS (/ duration 1000.0)})))
             (catch Exception e
               (let [stack-trace (with-out-str (clojure.stacktrace/print-stack-trace e))]
                 (log/error e "reload failed" {:error (.getMessage e)

@@ -15,7 +15,8 @@
   "Start the server with optional config overrides"
   ([] (start! {}))
   ([config-overrides]
-   (let [context (state/init-state! config-overrides)
+   (let [startup-time (System/currentTimeMillis)
+         context (state/init-state! config-overrides)
          port (state/get-config context :port)
          prefix (state/get-config context :prefix "")
          base-url (state/get-config context :base-url)
@@ -44,6 +45,11 @@
 
      (when-let [_examples-schedule (scheduler/start-examples-updater! context)]
        (log/info "Examples updater started"))
+
+     (let [total-duration (- (System/currentTimeMillis) startup-time)]
+       (log/info "🚀🚀🚀 STARTUP COMPLETE 🚀🚀🚀" {:TOTAL-DURATION-MS total-duration
+                                                    :TOTAL-DURATION-SECONDS (/ total-duration 1000.0)
+                                                    :port port}))
 
      {:status :started
       :port port
