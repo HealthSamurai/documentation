@@ -145,6 +145,7 @@ Addednum Resource. Contains additional information abount SDCDocument/SDCWorkflo
 <tr><td width="290">form.<strong>enable-amend-button</strong></td><td width="70">0..1</td><td width="150">boolean</td><td>Enable amend button</td></tr>
 <tr><td width="290">form.<strong>read-only</strong></td><td width="70">0..1</td><td width="150">boolean</td><td>Should form be read-only</td></tr>
 <tr><td width="290">form.<strong>hide-language-selector</strong></td><td width="70">0..1</td><td width="150">boolean</td><td>Hide language selector in the builder</td></tr>
+<tr><td width="290">form.<strong>allow-repopulate</strong></td><td width="70">0..1</td><td width="150">boolean</td><td>Allow repopulate for all forms</td></tr>
 <tr><td width="290">form.<strong>hide-footer</strong></td><td width="70">0..1</td><td width="150">boolean</td><td>Hide the footer in the renderer altogether</td></tr>
 <tr><td width="290">form.<strong>default-max-width</strong></td><td width="70">0..1</td><td width="150">string</td><td>Default max width of the form</td></tr>
 <tr><td width="290">form.<strong>hide-download-attachment-button</strong></td><td width="70">0..1</td><td width="150">boolean</td><td>Hide download button in attachment widget</td></tr>
