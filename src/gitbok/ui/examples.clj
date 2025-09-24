@@ -24,38 +24,36 @@
   [:a {:href github_url :target "_blank" :rel "noopener noreferrer"
        :class "block"}
    [:div.group.rounded-lg.p-6.transition-shadow.duration-200.flex.flex-col.gap-4
-    {:class "border border-[#E7E9EF] bg-gradient-to-b from-white to-[#F8F9FA] example-card h-[275px] w-[349px]"
+    {:class "border border-[#E7E9EF] bg-gradient-to-b from-white to-[#F8F9FA] hover:bg-white hover:border-[#DADDE7] hover:from-transparent hover:to-transparent example-card h-[275px] w-[349px]"
      :data-example-id id}
     ;; Content section (title and description)
     [:div.flex.flex-col.gap-2
      ;; Title - truncate after 2 lines
-     [:h3 {:class "text-lg font-medium leading-7 tracking-[-0.03em] text-[#1F1C1C] hover:text-primary-9 transition-colors line-clamp-2"} title]
+     [:h3 {:class "text-lg font-medium leading-7 tracking-[-0.03em] text-[#1F1C1C] group-hover:text-primary-9 transition-colors line-clamp-2"} title]
      ;; Description - truncate after 3 lines, with markdown links stripped
      [:p {:class "text-sm leading-[22.75px] tracking-[-0.02em] text-[#353B50] line-clamp-3"} (strip-markdown-links description)]]
 
-    ;; Tags container - pushed to bottom with mt-auto
-    [:div.mt-auto.flex.flex-col.gap-2
-     ;; Languages tags - clickable with green color
+    ;; Tags container - pushed to bottom with mt-auto, all tags on one line
+    [:div.mt-auto.flex.flex-wrap.gap-2
+     ;; Languages tags first - clickable with green color
      (when (seq languages)
-       [:div.flex.flex-wrap.gap-2
-        (for [lang languages]
-          (tags/render-tag {:text lang
+       (for [lang languages]
+         (tags/render-tag {:text lang
                            :key lang
                            :variant :language
                            :data-type "languages"
                            :data-value lang
-                           :onclick (str "event.preventDefault(); event.stopPropagation(); toggleFilter('languages', '" lang "'); return false;")}))])
+                           :onclick (str "event.preventDefault(); event.stopPropagation(); toggleFilter('languages', '" lang "'); return false;")})))
 
      ;; Features tags - clickable
      (when (seq features)
-       [:div.flex.flex-wrap.gap-2
-        (for [feature features]
-          (tags/render-tag {:text feature
+       (for [feature features]
+         (tags/render-tag {:text feature
                            :key feature
                            :variant :clickable
                            :data-type "features"
                            :data-value feature
-                           :onclick (str "event.preventDefault(); event.stopPropagation(); toggleFilter('features', '" feature "'); return false;")}))])]]])
+                           :onclick (str "event.preventDefault(); event.stopPropagation(); toggleFilter('features', '" feature "'); return false;")})))]]])
 
 (defn render-filter-checkbox
   "Render a single filter checkbox"
