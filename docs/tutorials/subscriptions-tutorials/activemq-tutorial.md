@@ -11,7 +11,7 @@
 
 ## What is ActiveMQ?
 
-[Apache ActiveMQ](https://activemq.apache.org/) is a popular open source messaging and Integration Patterns server. ActiveMQ comes in two flavors:
+[Apache ActiveMQ](https://activemq.apache.org/) is a popular open source message broker. ActiveMQ comes in two flavors:
 
 * **ActiveMQ Classic**: The long-established broker with full JMS support
 * **ActiveMQ Artemis**: The next generation broker with improved performance and AMQP 1.0 native support
@@ -53,7 +53,7 @@ Both versions support AMQP 1.0 protocol, making them compatible with Aidbox's `a
          - "8161:8161"     # Web Console port
    ```
 
-2. Download **.jar** AMQP module file from [our bucket](https://console.cloud.google.com/storage/browser/aidbox-modules) and place it next to **docker-compose.yaml**.
+2. Download **.jar** AMQP module file from [our bucket](https://storage.googleapis.com/aidbox-modules) and place it next to **docker-compose.yaml**.
 
    ```sh
    curl -O https://storage.googleapis.com/aidbox-modules/topic-destination-amqp/topic-destination-amqp-2509.4.jar

@@ -30,7 +30,7 @@ RabbitMQ natively uses AMQP 0-9-1 protocol and also supports AMQP 1.0 (since Rab
          - "15672:15672"  # Management UI port
    ```
 
-2. Download **.jar** AMQP module file from [our bucket](https://console.cloud.google.com/storage/browser/aidbox-modules) and place it next to **docker-compose.yaml**.
+2. Download **.jar** AMQP module file from [our bucket](https://storage.googleapis.com/aidbox-modules) and place it next to **docker-compose.yaml**.
 
    ```sh
    curl -O https://storage.googleapis.com/aidbox-modules/topic-destination-amqp/topic-destination-amqp-2509.4.jar
@@ -115,7 +115,7 @@ RabbitMQ natively uses AMQP 0-9-1 protocol and also supports AMQP 1.0 (since Rab
        },
        {
          "name": "address",
-         "valueString": "patient-events"
+         "valueString": "/queues/patient-events"
        },
        {
          "name": "username",
@@ -248,22 +248,21 @@ Response will include metrics:
 
 ## Troubleshooting
 
-### Connection Issues
+### Connection issues
 
 If you see connection errors:
 - Verify RabbitMQ is running: `docker compose ps`
 - Check RabbitMQ logs: `docker compose logs rabbitmq`
 - Ensure the host parameter matches your RabbitMQ service name or IP
 
-### Authentication Failures
+### Authentication failures
 
 If you see authentication errors:
 - Verify username/password in AidboxTopicDestination parameters
 - Check user permissions in RabbitMQ Management UI
 - Default Docker setup uses admin/admin
-- AMQP 1.0 uses SASL authentication
 
-### Messages Not Delivered
+### Messages not delivered
 
 If messages aren't appearing in queues:
 - Check Topic Destination status: `GET /fhir/AidboxTopicDestination/{id}/$status`
