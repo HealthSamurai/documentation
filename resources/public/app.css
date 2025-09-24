@@ -264,6 +264,11 @@ article table {
   @apply min-w-full bg-tint-base my-6;
 }
 
+/* Remove margin from tables inside details elements */
+article details table {
+  @apply my-0;
+}
+
 article thead {
   @apply border-b border-tint-8 bg-tint-3;
 }
