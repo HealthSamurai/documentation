@@ -261,7 +261,7 @@
                     (= :table (first c))
                     (= {:data-header-hidden ""} (second c)))
                (hiccup2.core/raw (-> fixed-html
-                            (str/replace #"\<thead.*/thead>" "")))
+                                     (str/replace #"\<thead.*/thead>" "")))
 
                (and c
                     (= :table (first c))
@@ -317,9 +317,26 @@
           render-md))))
 
 (defn set-parsed-markdown-index [context md-files-idx]
-  (let [parsed-files
-        (mapv #(parse-markdown-content context %) md-files-idx)]
-    (log/info "files parsed" {:count (count parsed-files)})
+  (log/info "Parsing markdown files" {:count (count md-files-idx)})
+  (let [start-time (System/currentTimeMillis)
+        parsed-files (->> md-files-idx
+                         ;; Use pmap for parallel processing
+                          (pmap (fn [[filepath content]]
+                                  (try
+                                    (parse-markdown-content context [filepath content])
+                                    (catch Exception e
+                                      (log/error e "Failed to parse" {:filepath filepath})
+                                      {:filepath filepath
+                                       :description ""
+                                       :title "Parse Error"
+                                       :parsed [:div "Parse error"]}))))
+                         ;; Force evaluation of lazy sequence
+                          doall
+                         ;; Convert to vector
+                          vec)
+        duration (- (System/currentTimeMillis) start-time)]
+    (log/info "files parsed" {:count (count parsed-files)
+                              :duration-ms duration})
     (state/set-parsed-markdown-idx! context parsed-files)))
 
 (defn get-parsed-markdown-index [context]
@@ -330,12 +347,28 @@
        filepath))
 
 (defn render-all! [context parsed-md-index read-markdown-file]
-  (products/set-product-state
-   context
-   [rendered-key]
-   (->> parsed-md-index
-        (mapv
-         (fn [{:keys [filepath _parsed]}]
-           (log/debug "render file" {:filepath filepath})
-           [filepath (read-markdown-file context filepath)]))
-        (into {}))))
+  (log/info "Pre-rendering all pages" {:count (count parsed-md-index)})
+  (let [start-time (System/currentTimeMillis)
+        rendered (->> parsed-md-index
+                     ;; Use pmap for parallel rendering
+                      (pmap
+                       (fn [{:keys [filepath _parsed]}]
+                         (try
+                           (log/debug "render file" {:filepath filepath})
+                           [filepath (read-markdown-file context filepath)]
+                           (catch Exception e
+                             (log/error e "Failed to render" {:filepath filepath})
+                             [filepath {:content [:div "Render error"]
+                                        :title "Error"
+                                        :description ""}]))))
+                     ;; Force evaluation
+                      doall
+                     ;; Convert to map
+                      (into {}))
+        duration (- (System/currentTimeMillis) start-time)]
+    (log/info "Rendering complete" {:count (count rendered)
+                                    :duration-ms duration})
+    (products/set-product-state
+     context
+     [rendered-key]
+     rendered)))
