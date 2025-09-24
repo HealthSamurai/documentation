@@ -51,10 +51,6 @@ spec:
             value: "/git-data/repo"
           - name: RELOAD_CHECK_INTERVAL_SEC
             value: "30"
-          - name: ENABLE_LASTMOD_UPDATER
-            value: "true"
-          - name: LASTMOD_UPDATE_INTERVAL_MINUTES
-            value: "5"
           - name: GITHUB_TOKEN
             valueFrom:
               secretKeyRef:
