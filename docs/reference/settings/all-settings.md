@@ -1,4 +1,4 @@
-# Aidbox Settings Reference
+# All Settings
 
 ## General
 

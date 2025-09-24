@@ -562,7 +562,7 @@
   * [Web Server](reference/settings/web-server.md)
   * [Observability](reference/settings/observability.md)
   * [Zen Project](reference/settings/zen-project.md)
-  * [Aidbox Settings Reference](reference/settings/all-settings.md)
+  * [All Settings](reference/settings/all-settings.md)
 * [System Resources Reference](reference/system-resources-reference/README.md)
   * [IAM Module Resources](reference/system-resources-reference/iam-module-resources.md)
   * [SDC Module Resources](reference/system-resources-reference/sdc-module-resources.md)
