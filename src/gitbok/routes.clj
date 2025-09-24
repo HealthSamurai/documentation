@@ -8,6 +8,7 @@
             [ring.middleware.gzip :refer [wrap-gzip]]
             [gitbok.state :as state]
             [gitbok.handlers :as handlers]
+            [gitbok.metrics :as metrics]
             [ring.util.response]
             [gitbok.ui.meilisearch]
             [gitbok.ui.examples]
@@ -232,6 +233,10 @@
      ["/healthcheck"
       {:get {:handler #'healthcheck}}]
 
+     ;; Metrics endpoint for Prometheus
+     [(utils/concat-urls prefix "/metrics")
+      {:get {:handler #'metrics/metrics-handler}}]
+
      [(utils/concat-urls prefix "/version")
       {:get {:handler #'version-endpoint}}]
      [(utils/concat-urls prefix "/debug")
@@ -347,6 +352,8 @@
       {:data {:muuntaja m/instance
               :middleware [;; Gzip compression (must be early to compress final response)
                            wrap-gzip
+                           ;; Metrics collection middleware
+                           metrics/wrap-metrics
                            ;; Global exception handler
                            wrap-exception-handler
                            ;; Request logging

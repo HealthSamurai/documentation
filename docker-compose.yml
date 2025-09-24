@@ -23,6 +23,7 @@ services:
       - .:/repo:ro
     networks:
       - meilisearch-network
+      - app-network
     depends_on:
       meilisearch:
         condition: service_healthy
@@ -95,6 +96,8 @@ services:
 
 networks:
   meilisearch-network:
+    driver: bridge
+  app-network:
     driver: bridge
 
 volumes:

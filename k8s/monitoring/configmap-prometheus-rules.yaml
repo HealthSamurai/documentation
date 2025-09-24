@@ -1,0 +1,115 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: gitbok-prometheus-rules
+  namespace: gitbok
+  labels:
+    app: gitbok
+    prometheus: kube-prometheus
+data:
+  gitbok.rules.yaml: |
+    groups:
+      - name: gitbok_alerts
+        interval: 30s
+        rules:
+          # Alert when 5xx errors exceed threshold across all pods
+          - alert: GitbokHigh5xxErrorRate
+            expr: |
+              (
+                sum(rate(http_errors_5xx_total{job="gitbok-metrics"}[5m]))
+                /
+                sum(rate(http_requests_total{job="gitbok-metrics"}[5m]))
+              ) * 100 > 1
+            for: 2m
+            labels:
+              severity: critical
+              team: backend
+              service: gitbok
+            annotations:
+              summary: "High 5xx error rate detected in Gitbok"
+              description: "Gitbok is experiencing {{ $value | humanize }}% 5xx errors across all pods (threshold: 1%)"
+
+          # Alert on absolute number of 5xx errors
+          - alert: GitbokFrequent5xxErrors
+            expr: sum(rate(http_errors_5xx_total{job="gitbok-metrics"}[5m])) * 60 > 5
+            for: 1m
+            labels:
+              severity: warning
+              team: backend
+              service: gitbok
+            annotations:
+              summary: "Frequent 5xx errors in Gitbok"
+              description: "Gitbok is generating {{ $value | humanize }} 5xx errors per minute across all pods"
+
+          # Alert when any pod is down
+          - alert: GitbokPodDown
+            expr: up{job="gitbok-metrics"} == 0
+            for: 1m
+            labels:
+              severity: critical
+              team: backend
+              service: gitbok
+            annotations:
+              summary: "Gitbok pod is down"
+              description: "Gitbok pod {{ $labels.pod }} in namespace {{ $labels.namespace }} has been down for more than 1 minute"
+
+          # Alert when less pods than expected are running
+          - alert: GitbokInsufficientReplicas
+            expr: count(up{job="gitbok-metrics"} == 1) < 2
+            for: 5m
+            labels:
+              severity: warning
+              team: backend
+              service: gitbok
+            annotations:
+              summary: "Gitbok has insufficient replicas"
+              description: "Only {{ $value }} Gitbok replica(s) are running, expected at least 2"
+
+          # Alert on high response times (p95)
+          - alert: GitbokHighResponseTime
+            expr: |
+              histogram_quantile(0.95,
+                sum(rate(http_request_duration_seconds_bucket{job="gitbok-metrics"}[5m])) by (le)
+              ) > 2
+            for: 5m
+            labels:
+              severity: warning
+              team: backend
+              service: gitbok
+            annotations:
+              summary: "High response time in Gitbok"
+              description: "95th percentile response time is {{ $value | humanize }}s (threshold: 2s)"
+
+          # Alert on high memory usage
+          - alert: GitbokHighMemoryUsage
+            expr: |
+              (
+                avg(jvm_memory_bytes_used{job="gitbok-metrics", area="heap"})
+                /
+                avg(jvm_memory_bytes_max{job="gitbok-metrics", area="heap"})
+              ) * 100 > 80
+            for: 5m
+            labels:
+              severity: warning
+              team: backend
+              service: gitbok
+            annotations:
+              summary: "High JVM heap memory usage in Gitbok"
+              description: "Gitbok JVM heap memory usage is {{ $value | humanize }}% (threshold: 80%)"
+
+          # Alert on pod memory pressure
+          - alert: GitbokPodMemoryPressure
+            expr: |
+              (
+                jvm_memory_bytes_used{job="gitbok-metrics", area="heap"}
+                /
+                jvm_memory_bytes_max{job="gitbok-metrics", area="heap"}
+              ) * 100 > 90
+            for: 2m
+            labels:
+              severity: critical
+              team: backend
+              service: gitbok
+            annotations:
+              summary: "Critical memory pressure in Gitbok pod"
+              description: "Pod {{ $labels.pod }} has {{ $value | humanize }}% heap usage (threshold: 90%)"
