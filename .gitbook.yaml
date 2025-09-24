@@ -65,7 +65,6 @@ redirects:
   api-1/bulk-api/import-and-fhir-import: api/bulk-api/import-and-fhir-import.md
   api-1/bulk-api/load-and-fhir-load: api/bulk-api/load-and-fhir-load.md
   api-1/fhir-api/bundle: api/rest-api/bundle.md
-  api-1/fhir-api/bundle: api/rest-api/bundle.md
   api-1/fhir-api/search-1/chained-parameters: api/rest-api/fhir-search/chaining.md
   api-1/fhir-api/search-1/custom-search-parameter/custom-search-parameters: tutorials/crud-search-tutorials/search-tutorials/custom-searchparameter-tutorial.md
   api-1/fhir-api/search-1/custom-search: tutorials/crud-search-tutorials/search-tutorials/custom-searchparameter-tutorial.md
