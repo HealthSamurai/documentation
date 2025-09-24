@@ -131,9 +131,33 @@ function updateActiveNavItem(pathname) {
   }
 }
 
+// Scroll navigation to show active item
+function scrollToActiveNavItem() {
+  const navigation = document.getElementById('navigation');
+  const activeItem = navigation ? navigation.querySelector('.active') : null;
+
+  if (!navigation || !activeItem) return;
+
+  // Get the position of the active item relative to the page
+  const activeRect = activeItem.getBoundingClientRect();
+  const navRect = navigation.getBoundingClientRect();
+
+  // Calculate the active item's position relative to the navigation container
+  const activeOffsetTop = activeItem.offsetTop;
+  const activeHeight = activeRect.height;
+  const navHeight = navRect.height;
+
+  // Calculate the target scroll position to center the active item
+  // We want the active item to be roughly in the middle of the visible area
+  const targetScrollTop = activeOffsetTop - (navHeight / 2) + (activeHeight / 2);
+
+  // Smooth scroll to the target position
+  navigation.scrollTop = Math.max(0, targetScrollTop);
+}
 
 // Make functions globally available
 window.updateActiveNavItem = updateActiveNavItem;
+window.scrollToActiveNavItem = scrollToActiveNavItem;
 window.switchTab = switchTab;
 
 function updatePageTitle() {
@@ -1081,6 +1105,8 @@ function showCopySuccess(button) {
     if (document.body) {
       updateActiveNavItem(window.location.pathname);
       updatePageTitle();
+      // Scroll to active item only on initial page load (not HTMX navigation)
+      scrollToActiveNavItem();
     }
 
     // Initialize all UI components
