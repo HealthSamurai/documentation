@@ -23,7 +23,7 @@
   [{:keys [id title description features languages github_url]}]
   [:a {:href github_url :target "_blank" :rel "noopener noreferrer"
        :class "block"}
-   [:div.rounded-lg.p-6.hover:shadow-lg.transition-shadow.duration-200.flex.flex-col.gap-4
+   [:div.group.rounded-lg.p-6.transition-shadow.duration-200.flex.flex-col.gap-4
     {:class "border border-[#E7E9EF] bg-gradient-to-b from-white to-[#F8F9FA] example-card h-[275px] w-[349px]"
      :data-example-id id}
     ;; Content section (title and description)
