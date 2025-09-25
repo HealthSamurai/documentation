@@ -9,7 +9,7 @@ General FHIR settings
 ### Enable FHIR compliant mode<a href="#fhir.compliant-mode" id="fhir.compliant-mode"></a>
 
 ```yaml
-BOX_FHIR_COMPLIANT_MODE: "true"
+BOX_FHIR_COMPLIANT_MODE: true
 ```
 
 Enforces FHIR compatibility when enabled:
@@ -30,7 +30,7 @@ Enforces FHIR compatibility when enabled:
 ### Return 404 on deleting non-existent resources<a href="#fhir.return-404-on-empty-delete" id="fhir.return-404-on-empty-delete"></a>
 
 ```yaml
-BOX_FHIR_RETURN_404_ON_EMPTY_DELETE: "false"
+BOX_FHIR_RETURN_404_ON_EMPTY_DELETE: false
 ```
 
 Controls server response when deleting non-existing resources.
@@ -44,7 +44,7 @@ deletion.
 ### Transaction max isolation level<a href="#fhir.transaction-max-isolation-level" id="fhir.transaction-max-isolation-level"></a>
 
 ```yaml
-BOX_FHIR_TRANSACTION_MAX_ISOLATION_LEVEL: ""none""
+BOX_FHIR_TRANSACTION_MAX_ISOLATION_LEVEL: "none"
 ```
 
 Sets the maximum (inclusive) isolation level for transactions. Can be overridden by the `x-max-isolation-level` header.
@@ -58,7 +58,7 @@ Validation settings
 ### Enable FHIR Schema validation mode<a href="#fhir.validation.fhir-schema-validation" id="fhir.validation.fhir-schema-validation"></a>
 
 ```yaml
-BOX_FHIR_SCHEMA_VALIDATION: "true"
+BOX_FHIR_SCHEMA_VALIDATION: true
 ```
 
 Activates the FHIR Schema validation engine which replaces
@@ -72,7 +72,7 @@ reporting.
 ### Enforce strict profile resolution<a href="#fhir.validation.strict-profile-resolution" id="fhir.validation.strict-profile-resolution"></a>
 
 ```yaml
-BOX_FHIR_VALIDATOR_STRICT_PROFILE_RESOLUTION: "false"
+BOX_FHIR_VALIDATOR_STRICT_PROFILE_RESOLUTION: false
 ```
 
 Requires all referenced profiles to be pre-loaded in Aidbox before
@@ -85,7 +85,7 @@ by preventing partial validation against unknown profiles.
 ### Enforce strict FHIR extension resolution<a href="#fhir.validation.strict-extension-resolution" id="fhir.validation.strict-extension-resolution"></a>
 
 ```yaml
-BOX_FHIR_VALIDATOR_STRICT_EXTENSION_RESOLUTION: "false"
+BOX_FHIR_VALIDATOR_STRICT_EXTENSION_RESOLUTION: false
 ```
 
 Requires all referenced extensions to be formally defined in
@@ -96,7 +96,7 @@ Requires all referenced extensions to be formally defined in
 ### Bundle execution validation mode<a href="#fhir.bundle-execution-validation-mode" id="fhir.bundle-execution-validation-mode"></a>
 
 ```yaml
-BOX_FHIR_BUNDLE_EXECUTION_VALIDATION_MODE: ""limited""
+BOX_FHIR_BUNDLE_EXECUTION_VALIDATION_MODE: "limited"
 ```
 
 Define validation mode for FHIR Bundle execution (after POST on `/fhir` endpoint).
@@ -108,7 +108,7 @@ Define validation mode for FHIR Bundle execution (after POST on `/fhir` endpoint
 ### Skip FHIR reference validation<a href="#fhir.validation.skip-reference" id="fhir.validation.skip-reference"></a>
 
 ```yaml
-BOX_FHIR_VALIDATION_SKIP_REFERENCE: "false"
+BOX_FHIR_VALIDATION_SKIP_REFERENCE: false
 ```
 
 Bypasses validation of resource references during FHIR
@@ -122,7 +122,7 @@ integrity.
 ### Correct Aidbox format<a href="#fhir.validation.correct-aidbox-format" id="fhir.validation.correct-aidbox-format"></a>
 
 ```yaml
-BOX_FHIR_CORRECT_AIDBOX_FORMAT: "true"
+BOX_FHIR_CORRECT_AIDBOX_FORMAT: true
 ```
 
 Transforms polymorphic extensions from FHIR format to Aidbox's internal
@@ -136,7 +136,7 @@ compatibility in API responses.
 ### createdAt extension URL<a href="#fhir.validation.createdat-url" id="fhir.validation.createdat-url"></a>
 
 ```yaml
-BOX_FHIR_CREATEDAT_URL: ""https://aidbox.app/ex/createdAt""
+BOX_FHIR_CREATEDAT_URL: "https://aidbox.app/ex/createdAt"
 ```
 
 Specifies the URL for the `createdAt` extension.
@@ -146,7 +146,7 @@ Specifies the URL for the `createdAt` extension.
 ### JSON schema datetime<a href="#fhir.validation.json-schema-datetime-regex" id="fhir.validation.json-schema-datetime-regex"></a>
 
 ```yaml
-BOX_FHIR_JSON_SCHEMA_DATETIME_REGEX: ""#{:fhir-datetime}""
+BOX_FHIR_JSON_SCHEMA_DATETIME_REGEX: "#{:fhir-datetime}"
 ```
 
 Enables strict datetime validation in JSON schema validation engine.
@@ -156,7 +156,7 @@ Enables strict datetime validation in JSON schema validation engine.
 ### Legacy FCE package<a href="#fhir.validation.legacy-fce-package" id="fhir.validation.legacy-fce-package"></a>
 
 ```yaml
-BOX_FHIR_LEGACY_FCE_PACKAGE: ""<String>""
+BOX_FHIR_LEGACY_FCE_PACKAGE: "<String>"
 ```
 
 The name and version of the package from which Aidbox first-class extensions are generated
@@ -171,7 +171,7 @@ Search settings
 ### Use correct range arithmetic in search<a href="#fhir.search.comparisons" id="fhir.search.comparisons"></a>
 
 ```yaml
-BOX_FHIR_SEARCH_COMPARISONS: "true"
+BOX_FHIR_SEARCH_COMPARISONS: true
 ```
 
 FHIR date search is range based.
@@ -185,7 +185,7 @@ Turn on this setting to use FHIR comparisons.
 ### Enable FHIR-conformant (rev)include behavior<a href="#fhir.search.include.conformant" id="fhir.search.include.conformant"></a>
 
 ```yaml
-BOX_FHIR_SEARCH_INCLUDE_CONFORMANT: "true"
+BOX_FHIR_SEARCH_INCLUDE_CONFORMANT: true
 ```
 
 Due to historical reasons Aidbox treats the _include and _revinclude parameters slightly differently from the behavior described in the specification (without FHIR-conformant mode on).
@@ -198,7 +198,7 @@ In Aidbox mode, it is possible to search without specifying source type: GET /Pa
 ### Authorize inline requests<a href="#fhir.search.authorize-inline-requests" id="fhir.search.authorize-inline-requests"></a>
 
 ```yaml
-BOX_FHIR_SEARCH_AUTHORIZE_INLINE_REQUESTS: "true"
+BOX_FHIR_SEARCH_AUTHORIZE_INLINE_REQUESTS: true
 ```
 
 Authorize inline requests (`_revinclude` and `_include`) with access policies. [Learn more](https://docs.aidbox.app/api/rest-api/fhir-search/include-and-revinclude#authorize-inline-requests-mode)
@@ -208,7 +208,7 @@ Authorize inline requests (`_revinclude` and `_include`) with access policies. [
 ### Use semi join in chained searches<a href="#fhir.search.chain.subselect" id="fhir.search.chain.subselect"></a>
 
 ```yaml
-BOX_FHIR_SEARCH_CHAIN_SUBSELECT: "true"
+BOX_FHIR_SEARCH_CHAIN_SUBSELECT: true
 ```
 
 When the search query does not use _has search parameters, use subselect instead of INNER JOIN for forward chain searches.
@@ -219,7 +219,7 @@ This is a performance optimization which could require building additional index
 ### Enable FHIR composite search parameters<a href="#fhir.search.composite-parameters" id="fhir.search.composite-parameters"></a>
 
 ```yaml
-BOX_FHIR_SEARCH_COMPOSITE_PARAMETERS: "false"
+BOX_FHIR_SEARCH_COMPOSITE_PARAMETERS: false
 ```
 
 Enable support for FHIR composite search parameters.
@@ -229,7 +229,7 @@ Enable support for FHIR composite search parameters.
 ### Iteration limit for (rev)include:iterate<a href="#fhir.search.include.iterate-max" id="fhir.search.include.iterate-max"></a>
 
 ```yaml
-BOX_FHIR_SEARCH_INCLUDE_ITERATE_MAX: "10"
+BOX_FHIR_SEARCH_INCLUDE_ITERATE_MAX: 10
 ```
 
 Maximum number of iterations for `_include` and `_revinclude`
@@ -244,7 +244,7 @@ If set to a negative value, no limit will be applied.
 ### Default search timeout<a href="#fhir.search.default-params.timeout" id="fhir.search.default-params.timeout"></a>
 
 ```yaml
-BOX_FHIR_SEARCH_DEFAULT_PARAMS_TIMEOUT: "60"
+BOX_FHIR_SEARCH_DEFAULT_PARAMS_TIMEOUT: 60
 ```
 
 Default timeout value (seconds). Also uses as timeout for the `count` query.
@@ -254,7 +254,7 @@ Default timeout value (seconds). Also uses as timeout for the `count` query.
 ### Default number of results per search page<a href="#fhir.search.default-params.count" id="fhir.search.default-params.count"></a>
 
 ```yaml
-BOX_FHIR_SEARCH_DEFAULT_PARAMS_COUNT: "100"
+BOX_FHIR_SEARCH_DEFAULT_PARAMS_COUNT: 100
 ```
 
 This is the default value of the _count search parameter.
@@ -266,7 +266,7 @@ It limits number of results per page
 ### Default search result count estimation method<a href="#fhir.search.default-params.total" id="fhir.search.default-params.total"></a>
 
 ```yaml
-BOX_FHIR_SEARCH_DEFAULT_PARAMS_TOTAL: ""accurate""
+BOX_FHIR_SEARCH_DEFAULT_PARAMS_TOTAL: "accurate"
 ```
 
 FHIR search response bundle may contain a result count estimation.
@@ -276,7 +276,7 @@ FHIR search response bundle may contain a result count estimation.
 ### SQL operator to use for token search<a href="#fhir.search.token-operator" id="fhir.search.token-operator"></a>
 
 ```yaml
-BOX_FHIR_SEARCH_TOKEN_OPERATOR: ""@>""
+BOX_FHIR_SEARCH_TOKEN_OPERATOR: "@>"
 ```
 
 Token and Reference search parameters use exact match.
@@ -293,7 +293,7 @@ Engines options:
 ### JSONB query engine<a href="#fhir.search.engine" id="fhir.search.engine"></a>
 
 ```yaml
-BOX_FHIR_SEARCH_ENGINE: ""knife""
+BOX_FHIR_SEARCH_ENGINE: "knife"
 ```
 
 Aidbox has two engines to search: jsonpath and jsonknife.
@@ -311,7 +311,7 @@ jsonknife:
 ### Enable support for multiple languages in search<a href="#fhir.search.multilingual.enable" id="fhir.search.multilingual.enable"></a>
 
 ```yaml
-BOX_FHIR_SEARCH_MULTILINGUAL_ENABLE: "false"
+BOX_FHIR_SEARCH_MULTILINGUAL_ENABLE: false
 ```
 
 FHIR uses special extension to provide translations in resources.
@@ -330,7 +330,7 @@ across translations.
 ### Use Accept-Language header for search<a href="#fhir.search.multilingual.use-accept-language-header" id="fhir.search.multilingual.use-accept-language-header"></a>
 
 ```yaml
-BOX_FHIR_SEARCH_MULTILINGUAL_USE_ACCEPT_LANGUAGE_HEADER: "false"
+BOX_FHIR_SEARCH_MULTILINGUAL_USE_ACCEPT_LANGUAGE_HEADER: false
 ```
 
 Use the Accept-Language header to specify search language
@@ -342,7 +342,7 @@ See fhir.search.multilingual.enable for details.
 ### Use main value if translation is not found<a href="#fhir.search.multilingual.fallback" id="fhir.search.multilingual.fallback"></a>
 
 ```yaml
-BOX_FHIR_SEARCH_MULTILINGUAL_FALLBACK: "true"
+BOX_FHIR_SEARCH_MULTILINGUAL_FALLBACK: true
 ```
 
 When the _search-language parameter is used,
@@ -360,7 +360,7 @@ Terminology settings
 ### FHIR terminology service base URL<a href="#fhir.terminology.service-base-url" id="fhir.terminology.service-base-url"></a>
 
 ```yaml
-BOX_FHIR_TERMINOLOGY_SERVICE_BASE_URL: ""https://tx.health-samurai.io/fhir""
+BOX_FHIR_TERMINOLOGY_SERVICE_BASE_URL: "https://tx.health-samurai.io/fhir"
 ```
 
 Specifies the base URL of the terminology server used for code
@@ -373,7 +373,7 @@ validation is skipped entirely.
 ### Terminology Engine<a href="#fhir.terminology.engine" id="fhir.terminology.engine"></a>
 
 ```yaml
-BOX_FHIR_TERMINOLOGY_ENGINE: ""hybrid""
+BOX_FHIR_TERMINOLOGY_ENGINE: "hybrid"
 ```
 
 Controls how Aidbox handles terminology APIs
@@ -383,7 +383,7 @@ Controls how Aidbox handles terminology APIs
 ### External Terminology Server<a href="#fhir.terminology.engine.hybrid.external-tx-server" id="fhir.terminology.engine.hybrid.external-tx-server"></a>
 
 ```yaml
-BOX_FHIR_TERMINOLOGY_ENGINE_HYBRID_EXTERNAL_TX_SERVER: ""https://tx.health-samurai.io/fhir""
+BOX_FHIR_TERMINOLOGY_ENGINE_HYBRID_EXTERNAL_TX_SERVER: "https://tx.health-samurai.io/fhir"
 ```
 
 Specifies the base URL of an external terminology server to be used in 'hybrid' terminology engine mode. This setting is ignored for other modes.
@@ -397,7 +397,7 @@ Bulk Data Export settings
 ### Bulk storage provider<a href="#fhir.bulk-storage.provider" id="fhir.bulk-storage.provider"></a>
 
 ```yaml
-BOX_FHIR_BULK_STORAGE_PROVIDER: ""<Enum>""
+BOX_FHIR_BULK_STORAGE_PROVIDER: "<Enum>"
 ```
 
 Storage provider for bulk export
@@ -407,7 +407,7 @@ Storage provider for bulk export
 ### GCP service account<a href="#fhir.bulk-storage.gcp.service-account" id="fhir.bulk-storage.gcp.service-account"></a>
 
 ```yaml
-BOX_FHIR_BULK_STORAGE_GCP_SERVICE_ACCOUNT: ""<String>""
+BOX_FHIR_BULK_STORAGE_GCP_SERVICE_ACCOUNT: "<String>"
 ```
 
 `GCPServiceAccount` resource ID for `$export`
@@ -417,7 +417,7 @@ BOX_FHIR_BULK_STORAGE_GCP_SERVICE_ACCOUNT: ""<String>""
 ### GCP bucket<a href="#fhir.bulk-storage.gcp.bucket" id="fhir.bulk-storage.gcp.bucket"></a>
 
 ```yaml
-BOX_FHIR_BULK_STORAGE_GCP_BUCKET: ""<String>""
+BOX_FHIR_BULK_STORAGE_GCP_BUCKET: "<String>"
 ```
 
 GCP bucket name for `$export`
@@ -427,7 +427,7 @@ GCP bucket name for `$export`
 ### AWS service account ID<a href="#fhir.bulk-storage.aws.account" id="fhir.bulk-storage.aws.account"></a>
 
 ```yaml
-BOX_FHIR_BULK_STORAGE_AWS_ACCOUNT: ""<String>""
+BOX_FHIR_BULK_STORAGE_AWS_ACCOUNT: "<String>"
 ```
 
 AWS Account resource ID for `$export`
@@ -437,7 +437,7 @@ AWS Account resource ID for `$export`
 ### AWS bucket<a href="#fhir.bulk-storage.aws.bucket" id="fhir.bulk-storage.aws.bucket"></a>
 
 ```yaml
-BOX_FHIR_BULK_STORAGE_AWS_BUCKET: ""<String>""
+BOX_FHIR_BULK_STORAGE_AWS_BUCKET: "<String>"
 ```
 
 AWS S3 bucket name for `$export`
@@ -447,7 +447,7 @@ AWS S3 bucket name for `$export`
 ### Azure service account ID<a href="#fhir.bulk-storage.azure.container" id="fhir.bulk-storage.azure.container"></a>
 
 ```yaml
-BOX_FHIR_BULK_STORAGE_AZURE_CONTAINER: ""<String>""
+BOX_FHIR_BULK_STORAGE_AZURE_CONTAINER: "<String>"
 ```
 
 Azure Container resource ID for `$export`
