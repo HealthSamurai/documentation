@@ -1,4 +1,6 @@
-# All Settings
+# Aidbox Settings Reference
+
+This document contains the full list of settings available in Aidbox.
 
 ## General
 
@@ -7,7 +9,7 @@ General settings
 ### Aidbox name<a href="#box-id" id="box-id"></a>
 
 ```yaml
-BOX_ID: "devbox"
+BOX_ID: ""devbox""
 ```
 
 Aidbox instance unique ID. Can be used to separate telemetry data (logs, metrics, traces) in observability systems for multiple deployments.
@@ -17,7 +19,7 @@ Aidbox instance unique ID. Can be used to separate telemetry data (logs, metrics
 ### Instance name<a href="#instance-name" id="instance-name"></a>
 
 ```yaml
-BOX_INSTANCE_NAME: "Aidbox"
+BOX_INSTANCE_NAME: ""Aidbox""
 ```
 
 Provided instance name will be attached to metric labels. It is required for monitoring multiple Aidbox instances.
@@ -27,7 +29,7 @@ Provided instance name will be attached to metric labels. It is required for mon
 ### Root FHIR package<a href="#root-fhir-package" id="root-fhir-package"></a>
 
 ```yaml
-BOX_ROOT_FHIR_PACKAGE: "app.aidbox.main#0.0.1"
+BOX_ROOT_FHIR_PACKAGE: ""app.aidbox.main#0.0.1""
 ```
 
 Identifier for the main Aidbox FHIR package that stores dependencies and canonical resources provided by the user.
@@ -37,21 +39,21 @@ Identifier for the main Aidbox FHIR package that stores dependencies and canonic
 ### Bootstrap FHIR package list<a href="#bootstrap-fhir-packages" id="bootstrap-fhir-packages"></a>
 
 ```yaml
-BOX_BOOTSTRAP_FHIR_PACKAGES: "<String>"
+BOX_BOOTSTRAP_FHIR_PACKAGES: ""hl7.fhir.r4.core#4.0.1""
 ```
 
 During the first startup Aidbox loads these packages.
 This setting has no effect on any consecutive starts.
 
-Format:
+Format: 
 `<name1>#<version1>:<name2>#<version2>...`
 
-<details><summary>Details</summary><table data-header-hidden="true"><thead><tr><th width="200"></th><th></th></tr></thead><tbody><tr><td>ID</td><td><code>bootstrap-fhir-packages</code></td></tr><tr><td>Type</td><td>String</td></tr><tr><td>Default value</td><td>(no default)</td></tr><tr><td>Environment variable</td><td><code>BOX_BOOTSTRAP_FHIR_PACKAGES</code></td></tr><tr><td>Deprecated environment variables</td><td><code>AIDBOX_FHIR_PACKAGES</code></td></tr><tr><td>Sensitive</td><td><code>false</code> — value will be visible in plaintext in Admin UI</td></tr><tr><td>Set via</td><td>Admin UI → Settings<br />Environment variables</td></tr><tr><td>Hot reload</td><td><code>false</code> — setting requires system restart</td></tr></tbody></table></details>
+<details><summary>Details</summary><table data-header-hidden="true"><thead><tr><th width="200"></th><th></th></tr></thead><tbody><tr><td>ID</td><td><code>bootstrap-fhir-packages</code></td></tr><tr><td>Type</td><td>String</td></tr><tr><td>Recommended value</td><td><code>hl7.fhir.r4.core#4.0.1</code></td></tr><tr><td>Default value</td><td>(no default)</td></tr><tr><td>Environment variable</td><td><code>BOX_BOOTSTRAP_FHIR_PACKAGES</code></td></tr><tr><td>Deprecated environment variables</td><td><code>AIDBOX_FHIR_PACKAGES</code></td></tr><tr><td>Sensitive</td><td><code>false</code> — value will be visible in plaintext in Admin UI</td></tr><tr><td>Set via</td><td>Admin UI → Settings<br />Environment variables</td></tr><tr><td>Hot reload</td><td><code>false</code> — setting requires system restart</td></tr></tbody></table></details>
 
 ### Init bundle<a href="#init-bundle" id="init-bundle"></a>
 
 ```yaml
-BOX_INIT_BUNDLE: "<String>"
+BOX_INIT_BUNDLE: ""<String>""
 ```
 
 URL of the Bundle resource in JSON format executed on Aidbox startup. Not available to edit because if file is not reachable, Aidbox will not start.
@@ -71,18 +73,18 @@ Allows Aidbox to collect and send high-level API usage statistics to help improv
 ### Settings mode<a href="#settings-mode" id="settings-mode"></a>
 
 ```yaml
-BOX_SETTINGS_MODE: "legacy"
+BOX_SETTINGS_MODE: ""read-write""
 ```
 
 Settings mode defines the source of settings values and
     possibility to change them at runtime.
 
-<details><summary>Details</summary><table data-header-hidden="true"><thead><tr><th width="200"></th><th></th></tr></thead><tbody><tr><td>ID</td><td><code>settings-mode</code></td></tr><tr><td>Type</td><td>Enum</td></tr><tr><td>Values</td><td><code>legacy</code> — Reads configuration values from the legacy Aidbox                 configuration project (zen) in read-only mode. This mode exists                 for backward compatibility. It will be obsolete in July 2025.                 &lt;a href=&apos;https://www.health-samurai.io/news/aidbox-transitions-to-the-fhir-schema-engine&apos;&gt;Read more&lt;/a&gt;<br /><code>read-only</code> — Reads settings values from environment variables and                 Aidbox settings in read-only mode. Loading configuration from                 the Aidbox configuration project (Zen) is disabled.<br /><code>read-write</code> — Enables editing Aidbox settings using the UI. Loading                 configuration from the Aidbox configuration project (Zen) is                 disabled.</td></tr><tr><td>Default value</td><td><code>legacy</code></td></tr><tr><td>Environment variable</td><td><code>BOX_SETTINGS_MODE</code></td></tr><tr><td>Available from</td><td><code>2502</code></td></tr><tr><td>Sensitive</td><td><code>false</code> — value will be visible in plaintext in Admin UI</td></tr><tr><td>Set via</td><td>Environment variables</td></tr><tr><td>Hot reload</td><td><code>false</code> — setting requires system restart</td></tr></tbody></table></details>
+<details><summary>Details</summary><table data-header-hidden="true"><thead><tr><th width="200"></th><th></th></tr></thead><tbody><tr><td>ID</td><td><code>settings-mode</code></td></tr><tr><td>Type</td><td>Enum</td></tr><tr><td>Values</td><td><code>legacy</code> — Reads configuration values from the legacy Aidbox                 configuration project (zen) in read-only mode. This mode exists                 for backward compatibility. It will be obsolete in July 2025.                 &lt;a href=&apos;https://www.health-samurai.io/news/aidbox-transitions-to-the-fhir-schema-engine&apos;&gt;Read more&lt;/a&gt;<br /><code>read-only</code> — Reads settings values from environment variables and                 Aidbox settings in read-only mode. Loading configuration from                 the Aidbox configuration project (Zen) is disabled.<br /><code>read-write</code> — Enables editing Aidbox settings using the UI. Loading                 configuration from the Aidbox configuration project (Zen) is                 disabled.</td></tr><tr><td>Recommended value</td><td><code>read-write</code></td></tr><tr><td>Default value</td><td><code>legacy</code></td></tr><tr><td>Environment variable</td><td><code>BOX_SETTINGS_MODE</code></td></tr><tr><td>Available from</td><td><code>2502</code></td></tr><tr><td>Sensitive</td><td><code>false</code> — value will be visible in plaintext in Admin UI</td></tr><tr><td>Set via</td><td>Environment variables</td></tr><tr><td>Hot reload</td><td><code>false</code> — setting requires system restart</td></tr></tbody></table></details>
 
 ### Enable export settings endpoint<a href="#export-settings-endpoint" id="export-settings-endpoint"></a>
 
 ```yaml
-BOX_EXPORT_SETTINGS_ENDPOINT: "<Bool>"
+BOX_EXPORT_SETTINGS_ENDPOINT: "false"
 ```
 
 Allow user to request current Aidbox settings as a set of environment variables on `/api/v1/settings/export`.
@@ -94,7 +96,7 @@ Allow user to request current Aidbox settings as a set of environment variables 
 ### Enable cache replication<a href="#cache-replication-disable" id="cache-replication-disable"></a>
 
 ```yaml
-BOX_CACHE_REPLICATION_DISABLE: "<Bool>"
+BOX_CACHE_REPLICATION_DISABLE: "false"
 ```
 
 Aidbox automatically syncs runtime cache (SearchParameters, FHIR Schemas, OperationDefinitions, etc) across multiple instances for high availability. If you configure everything at startup and don't modify metadata at runtime, you can disable cache replication to improve performance.
@@ -104,11 +106,11 @@ Aidbox automatically syncs runtime cache (SearchParameters, FHIR Schemas, Operat
 ### Aidbox modules load list<a href="#module-load" id="module-load"></a>
 
 ```yaml
-BOX_MODULE_LOAD: "<String>"
+BOX_MODULE_LOAD: ""<String>""
 ```
 
 During startup Aidbox loads these modules.
-Format:
+Format: 
 `<module-name2>,<module-name2>,<module-name3>...`
 
 <details><summary>Details</summary><table data-header-hidden="true"><thead><tr><th width="200"></th><th></th></tr></thead><tbody><tr><td>ID</td><td><code>module-load</code></td></tr><tr><td>Type</td><td>String</td></tr><tr><td>Default value</td><td>(no default)</td></tr><tr><td>Environment variable</td><td><code>BOX_MODULE_LOAD</code></td></tr><tr><td>Available from</td><td><code>2505</code></td></tr><tr><td>Sensitive</td><td><code>false</code> — value will be visible in plaintext in Admin UI</td></tr><tr><td>Set via</td><td>Environment variables</td></tr><tr><td>Hot reload</td><td><code>false</code> — setting requires system restart</td></tr></tbody></table></details>
@@ -116,11 +118,11 @@ Format:
 ### Aidbox module jar<a href="#module-jar" id="module-jar"></a>
 
 ```yaml
-BOX_MODULE_JAR: "<String>"
+BOX_MODULE_JAR: ""<String>""
 ```
 
 Path to an Aidbox module jar files separated by ":"
-Format:
+Format: 
 `<path1>:<path2>:<path3>...`
 
 <details><summary>Details</summary><table data-header-hidden="true"><thead><tr><th width="200"></th><th></th></tr></thead><tbody><tr><td>ID</td><td><code>module-jar</code></td></tr><tr><td>Type</td><td>String</td></tr><tr><td>Default value</td><td>(no default)</td></tr><tr><td>Environment variable</td><td><code>BOX_MODULE_JAR</code></td></tr><tr><td>Available from</td><td><code>2505</code></td></tr><tr><td>Sensitive</td><td><code>false</code> — value will be visible in plaintext in Admin UI</td></tr><tr><td>Set via</td><td>Environment variables</td></tr><tr><td>Hot reload</td><td><code>false</code> — setting requires system restart</td></tr></tbody></table></details>
@@ -136,7 +138,7 @@ General FHIR settings
 #### Enable FHIR compliant mode<a href="#fhir.compliant-mode" id="fhir.compliant-mode"></a>
 
 ```yaml
-BOX_FHIR_COMPLIANT_MODE: "<Bool>"
+BOX_FHIR_COMPLIANT_MODE: "true"
 ```
 
 Enforces FHIR compatibility when enabled:
@@ -152,12 +154,12 @@ Enforces FHIR compatibility when enabled:
 - Removes `Bundle.entry` if empty
 
 
-<details><summary>Details</summary><table data-header-hidden="true"><thead><tr><th width="200"></th><th></th></tr></thead><tbody><tr><td>ID</td><td><code>fhir.compliant-mode</code></td></tr><tr><td>Type</td><td>Bool</td></tr><tr><td>Default value</td><td><code>false</code></td></tr><tr><td>Environment variable</td><td><code>BOX_FHIR_COMPLIANT_MODE</code></td></tr><tr><td>Deprecated environment variables</td><td><code>AIDBOX_FHIR_COMPLIANT_MODE</code> , <br /><code>BOX_COMPLIANT__MODE__ENABLED?</code> , <br /><code>AIDBOX_COMPLIANCE</code></td></tr><tr><td>Sensitive</td><td><code>false</code> — value will be visible in plaintext in Admin UI</td></tr><tr><td>Set via</td><td>Admin UI → Settings<br />Environment variables</td></tr><tr><td>Hot reload</td><td><code>true</code> — setting can be changed at runtime</td></tr></tbody></table></details>
+<details><summary>Details</summary><table data-header-hidden="true"><thead><tr><th width="200"></th><th></th></tr></thead><tbody><tr><td>ID</td><td><code>fhir.compliant-mode</code></td></tr><tr><td>Type</td><td>Bool</td></tr><tr><td>Recommended value</td><td><code>true</code></td></tr><tr><td>Default value</td><td><code>false</code></td></tr><tr><td>Environment variable</td><td><code>BOX_FHIR_COMPLIANT_MODE</code></td></tr><tr><td>Deprecated environment variables</td><td><code>AIDBOX_FHIR_COMPLIANT_MODE</code> , <br /><code>BOX_COMPLIANT__MODE__ENABLED?</code> , <br /><code>AIDBOX_COMPLIANCE</code></td></tr><tr><td>Sensitive</td><td><code>false</code> — value will be visible in plaintext in Admin UI</td></tr><tr><td>Set via</td><td>Admin UI → Settings<br />Environment variables</td></tr><tr><td>Hot reload</td><td><code>true</code> — setting can be changed at runtime</td></tr></tbody></table></details>
 
 #### Return 404 on deleting non-existent resources<a href="#fhir.return-404-on-empty-delete" id="fhir.return-404-on-empty-delete"></a>
 
 ```yaml
-BOX_FHIR_RETURN_404_ON_EMPTY_DELETE: "<Bool>"
+BOX_FHIR_RETURN_404_ON_EMPTY_DELETE: "false"
 ```
 
 Controls server response when deleting non-existing resources.
@@ -171,7 +173,7 @@ deletion.
 #### Transaction max isolation level<a href="#fhir.transaction-max-isolation-level" id="fhir.transaction-max-isolation-level"></a>
 
 ```yaml
-BOX_FHIR_TRANSACTION_MAX_ISOLATION_LEVEL: "none"
+BOX_FHIR_TRANSACTION_MAX_ISOLATION_LEVEL: ""none""
 ```
 
 Sets the maximum (inclusive) isolation level for transactions. Can be overridden by the `x-max-isolation-level` header.
@@ -185,7 +187,7 @@ Validation settings
 #### Enable FHIR Schema validation mode<a href="#fhir.validation.fhir-schema-validation" id="fhir.validation.fhir-schema-validation"></a>
 
 ```yaml
-BOX_FHIR_SCHEMA_VALIDATION: "<Bool>"
+BOX_FHIR_SCHEMA_VALIDATION: "true"
 ```
 
 Activates the FHIR Schema validation engine which replaces
@@ -194,12 +196,12 @@ comprehensive structure validation against the FHIR resource schemas,
 ensuring stronger conformance to FHIR specifications and more precise error
 reporting.
 
-<details><summary>Details</summary><table data-header-hidden="true"><thead><tr><th width="200"></th><th></th></tr></thead><tbody><tr><td>ID</td><td><code>fhir.validation.fhir-schema-validation</code></td></tr><tr><td>Type</td><td>Bool</td></tr><tr><td>Default value</td><td><code>false</code></td></tr><tr><td>Environment variable</td><td><code>BOX_FHIR_SCHEMA_VALIDATION</code></td></tr><tr><td>Deprecated environment variables</td><td><code>AIDBOX_FHIR_SCHEMA_VALIDATION</code></td></tr><tr><td>Sensitive</td><td><code>false</code> — value will be visible in plaintext in Admin UI</td></tr><tr><td>Set via</td><td>Admin UI → Settings<br />Environment variables</td></tr><tr><td>Hot reload</td><td><code>false</code> — setting requires system restart</td></tr></tbody></table></details>
+<details><summary>Details</summary><table data-header-hidden="true"><thead><tr><th width="200"></th><th></th></tr></thead><tbody><tr><td>ID</td><td><code>fhir.validation.fhir-schema-validation</code></td></tr><tr><td>Type</td><td>Bool</td></tr><tr><td>Recommended value</td><td><code>true</code></td></tr><tr><td>Default value</td><td><code>false</code></td></tr><tr><td>Environment variable</td><td><code>BOX_FHIR_SCHEMA_VALIDATION</code></td></tr><tr><td>Deprecated environment variables</td><td><code>AIDBOX_FHIR_SCHEMA_VALIDATION</code></td></tr><tr><td>Sensitive</td><td><code>false</code> — value will be visible in plaintext in Admin UI</td></tr><tr><td>Set via</td><td>Admin UI → Settings<br />Environment variables</td></tr><tr><td>Hot reload</td><td><code>false</code> — setting requires system restart</td></tr></tbody></table></details>
 
 #### Enforce strict profile resolution<a href="#fhir.validation.strict-profile-resolution" id="fhir.validation.strict-profile-resolution"></a>
 
 ```yaml
-BOX_FHIR_VALIDATOR_STRICT_PROFILE_RESOLUTION: "<Bool>"
+BOX_FHIR_VALIDATOR_STRICT_PROFILE_RESOLUTION: "false"
 ```
 
 Requires all referenced profiles to be pre-loaded in Aidbox before
@@ -212,7 +214,7 @@ by preventing partial validation against unknown profiles.
 #### Enforce strict FHIR extension resolution<a href="#fhir.validation.strict-extension-resolution" id="fhir.validation.strict-extension-resolution"></a>
 
 ```yaml
-BOX_FHIR_VALIDATOR_STRICT_EXTENSION_RESOLUTION: "<Bool>"
+BOX_FHIR_VALIDATOR_STRICT_EXTENSION_RESOLUTION: "false"
 ```
 
 Requires all referenced extensions to be formally defined in
@@ -223,19 +225,19 @@ Requires all referenced extensions to be formally defined in
 #### Bundle execution validation mode<a href="#fhir.bundle-execution-validation-mode" id="fhir.bundle-execution-validation-mode"></a>
 
 ```yaml
-BOX_FHIR_BUNDLE_EXECUTION_VALIDATION_MODE: "legacy"
+BOX_FHIR_BUNDLE_EXECUTION_VALIDATION_MODE: ""limited""
 ```
 
 Define validation mode for FHIR Bundle execution (after POST on `/fhir` endpoint).
  Doesn't effect CRUD on Bundle resources.
  Doesn't effect if `fhir.validation.fhir-schema-validation` is disabled.
 
-<details><summary>Details</summary><table data-header-hidden="true"><thead><tr><th width="200"></th><th></th></tr></thead><tbody><tr><td>ID</td><td><code>fhir.bundle-execution-validation-mode</code></td></tr><tr><td>Type</td><td>Enum</td></tr><tr><td>Values</td><td><code>legacy</code> — Check only essential to execute bundle structure (default)<br /><code>limited</code> — Separated validation of the bundle structure (before execution) and resources in it (during execution)<br /><code>full</code> — Full bundle validation before execution (may cause performance issues due to double validation of resources</td></tr><tr><td>Default value</td><td><code>legacy</code></td></tr><tr><td>Environment variable</td><td><code>BOX_FHIR_BUNDLE_EXECUTION_VALIDATION_MODE</code></td></tr><tr><td>Available from</td><td><code>2509</code></td></tr><tr><td>Sensitive</td><td><code>false</code> — value will be visible in plaintext in Admin UI</td></tr><tr><td>Set via</td><td>Admin UI → Settings<br />Environment variables</td></tr><tr><td>Hot reload</td><td><code>true</code> — setting can be changed at runtime</td></tr></tbody></table></details>
+<details><summary>Details</summary><table data-header-hidden="true"><thead><tr><th width="200"></th><th></th></tr></thead><tbody><tr><td>ID</td><td><code>fhir.bundle-execution-validation-mode</code></td></tr><tr><td>Type</td><td>Enum</td></tr><tr><td>Values</td><td><code>legacy</code> — Check only essential to execute bundle structure (default)<br /><code>limited</code> — Separated validation of the bundle structure (before execution) and resources in it (during execution)<br /><code>full</code> — Full bundle validation before execution (may cause performance issues due to double validation of resources</td></tr><tr><td>Recommended value</td><td><code>limited</code></td></tr><tr><td>Default value</td><td><code>legacy</code></td></tr><tr><td>Environment variable</td><td><code>BOX_FHIR_BUNDLE_EXECUTION_VALIDATION_MODE</code></td></tr><tr><td>Available from</td><td><code>2509</code></td></tr><tr><td>Sensitive</td><td><code>false</code> — value will be visible in plaintext in Admin UI</td></tr><tr><td>Set via</td><td>Admin UI → Settings<br />Environment variables</td></tr><tr><td>Hot reload</td><td><code>true</code> — setting can be changed at runtime</td></tr></tbody></table></details>
 
 #### Skip FHIR reference validation<a href="#fhir.validation.skip-reference" id="fhir.validation.skip-reference"></a>
 
 ```yaml
-BOX_FHIR_VALIDATION_SKIP_REFERENCE: "<Bool>"
+BOX_FHIR_VALIDATION_SKIP_REFERENCE: "false"
 ```
 
 Bypasses validation of resource references during FHIR
@@ -249,7 +251,7 @@ integrity.
 #### Correct Aidbox format<a href="#fhir.validation.correct-aidbox-format" id="fhir.validation.correct-aidbox-format"></a>
 
 ```yaml
-BOX_FHIR_CORRECT_AIDBOX_FORMAT: "<Bool>"
+BOX_FHIR_CORRECT_AIDBOX_FORMAT: "true"
 ```
 
 Transforms polymorphic extensions from FHIR format to Aidbox's internal
@@ -258,32 +260,32 @@ as `extension.0.value.string` instead. Improves query performance and
 consistency in Aidbox-specific operations while maintaining FHIR
 compatibility in API responses.
 
-<details><summary>Details</summary><table data-header-hidden="true"><thead><tr><th width="200"></th><th></th></tr></thead><tbody><tr><td>ID</td><td><code>fhir.validation.correct-aidbox-format</code></td></tr><tr><td>Type</td><td>Bool</td></tr><tr><td>Default value</td><td><code>false</code></td></tr><tr><td>Environment variable</td><td><code>BOX_FHIR_CORRECT_AIDBOX_FORMAT</code></td></tr><tr><td>Deprecated environment variables</td><td><code>AIDBOX_CORRECT_AIDBOX_FORMAT</code></td></tr><tr><td>Sensitive</td><td><code>false</code> — value will be visible in plaintext in Admin UI</td></tr><tr><td>Set via</td><td>Admin UI → Settings<br />Environment variables</td></tr><tr><td>Hot reload</td><td><code>true</code> — setting can be changed at runtime</td></tr></tbody></table></details>
+<details><summary>Details</summary><table data-header-hidden="true"><thead><tr><th width="200"></th><th></th></tr></thead><tbody><tr><td>ID</td><td><code>fhir.validation.correct-aidbox-format</code></td></tr><tr><td>Type</td><td>Bool</td></tr><tr><td>Recommended value</td><td><code>true</code></td></tr><tr><td>Default value</td><td><code>false</code></td></tr><tr><td>Environment variable</td><td><code>BOX_FHIR_CORRECT_AIDBOX_FORMAT</code></td></tr><tr><td>Deprecated environment variables</td><td><code>AIDBOX_CORRECT_AIDBOX_FORMAT</code></td></tr><tr><td>Sensitive</td><td><code>false</code> — value will be visible in plaintext in Admin UI</td></tr><tr><td>Set via</td><td>Admin UI → Settings<br />Environment variables</td></tr><tr><td>Hot reload</td><td><code>true</code> — setting can be changed at runtime</td></tr></tbody></table></details>
 
 #### createdAt extension URL<a href="#fhir.validation.createdat-url" id="fhir.validation.createdat-url"></a>
 
 ```yaml
-BOX_FHIR_CREATEDAT_URL: "ex:createdAt"
+BOX_FHIR_CREATEDAT_URL: ""https://aidbox.app/ex/createdAt""
 ```
 
 Specifies the URL for the `createdAt` extension.
 
-<details><summary>Details</summary><table data-header-hidden="true"><thead><tr><th width="200"></th><th></th></tr></thead><tbody><tr><td>ID</td><td><code>fhir.validation.createdat-url</code></td></tr><tr><td>Type</td><td>String</td></tr><tr><td>Default value</td><td><code>ex:createdAt</code></td></tr><tr><td>Environment variable</td><td><code>BOX_FHIR_CREATEDAT_URL</code></td></tr><tr><td>Deprecated environment variables</td><td><code>AIDBOX_CREATED_AT_URL</code></td></tr><tr><td>Sensitive</td><td><code>false</code> — value will be visible in plaintext in Admin UI</td></tr><tr><td>Set via</td><td>Admin UI → Settings<br />Environment variables</td></tr><tr><td>Hot reload</td><td><code>false</code> — setting requires system restart</td></tr></tbody></table></details>
+<details><summary>Details</summary><table data-header-hidden="true"><thead><tr><th width="200"></th><th></th></tr></thead><tbody><tr><td>ID</td><td><code>fhir.validation.createdat-url</code></td></tr><tr><td>Type</td><td>String</td></tr><tr><td>Recommended value</td><td><code>https://aidbox.app/ex/createdAt</code></td></tr><tr><td>Default value</td><td><code>ex:createdAt</code></td></tr><tr><td>Environment variable</td><td><code>BOX_FHIR_CREATEDAT_URL</code></td></tr><tr><td>Deprecated environment variables</td><td><code>AIDBOX_CREATED_AT_URL</code></td></tr><tr><td>Sensitive</td><td><code>false</code> — value will be visible in plaintext in Admin UI</td></tr><tr><td>Set via</td><td>Admin UI → Settings<br />Environment variables</td></tr><tr><td>Hot reload</td><td><code>false</code> — setting requires system restart</td></tr></tbody></table></details>
 
 #### JSON schema datetime<a href="#fhir.validation.json-schema-datetime-regex" id="fhir.validation.json-schema-datetime-regex"></a>
 
 ```yaml
-BOX_FHIR_JSON_SCHEMA_DATETIME_REGEX: "#{}"
+BOX_FHIR_JSON_SCHEMA_DATETIME_REGEX: ""#{:fhir-datetime}""
 ```
 
 Enables strict datetime validation in JSON schema validation engine.
 
-<details><summary>Details</summary><table data-header-hidden="true"><thead><tr><th width="200"></th><th></th></tr></thead><tbody><tr><td>ID</td><td><code>fhir.validation.json-schema-datetime-regex</code></td></tr><tr><td>Type</td><td>String</td></tr><tr><td>Default value</td><td><code>#{}</code></td></tr><tr><td>Environment variable</td><td><code>BOX_FHIR_JSON_SCHEMA_DATETIME_REGEX</code></td></tr><tr><td>Deprecated environment variables</td><td><code>BOX_COMPATIBILITY_VALIDATION_JSON__SCHEMA_REGEX</code></td></tr><tr><td>Sensitive</td><td><code>false</code> — value will be visible in plaintext in Admin UI</td></tr><tr><td>Set via</td><td>Admin UI → Settings<br />Environment variables</td></tr><tr><td>Hot reload</td><td><code>false</code> — setting requires system restart</td></tr></tbody></table></details>
+<details><summary>Details</summary><table data-header-hidden="true"><thead><tr><th width="200"></th><th></th></tr></thead><tbody><tr><td>ID</td><td><code>fhir.validation.json-schema-datetime-regex</code></td></tr><tr><td>Type</td><td>String</td></tr><tr><td>Recommended value</td><td><code>#{:fhir-datetime}</code></td></tr><tr><td>Default value</td><td><code>#{}</code></td></tr><tr><td>Environment variable</td><td><code>BOX_FHIR_JSON_SCHEMA_DATETIME_REGEX</code></td></tr><tr><td>Deprecated environment variables</td><td><code>BOX_COMPATIBILITY_VALIDATION_JSON__SCHEMA_REGEX</code></td></tr><tr><td>Sensitive</td><td><code>false</code> — value will be visible in plaintext in Admin UI</td></tr><tr><td>Set via</td><td>Admin UI → Settings<br />Environment variables</td></tr><tr><td>Hot reload</td><td><code>false</code> — setting requires system restart</td></tr></tbody></table></details>
 
 #### Legacy FCE package<a href="#fhir.validation.legacy-fce-package" id="fhir.validation.legacy-fce-package"></a>
 
 ```yaml
-BOX_FHIR_LEGACY_FCE_PACKAGE: "<String>"
+BOX_FHIR_LEGACY_FCE_PACKAGE: ""<String>""
 ```
 
 The name and version of the package from which Aidbox first-class extensions are generated
@@ -298,7 +300,7 @@ Search settings
 #### Use correct range arithmetic in search<a href="#fhir.search.comparisons" id="fhir.search.comparisons"></a>
 
 ```yaml
-BOX_FHIR_SEARCH_COMPARISONS: "<Bool>"
+BOX_FHIR_SEARCH_COMPARISONS: "true"
 ```
 
 FHIR date search is range based.
@@ -307,12 +309,12 @@ That is, dates are always converted to datetime ranges and then compared.
 Historically, Aidbox uses slightly different range comparison arithmetic.
 Turn on this setting to use FHIR comparisons.
 
-<details><summary>Details</summary><table data-header-hidden="true"><thead><tr><th width="200"></th><th></th></tr></thead><tbody><tr><td>ID</td><td><code>fhir.search.comparisons</code></td></tr><tr><td>Type</td><td>Bool</td></tr><tr><td>Default value</td><td><code>false</code></td></tr><tr><td>Environment variable</td><td><code>BOX_FHIR_SEARCH_COMPARISONS</code></td></tr><tr><td>Deprecated environment variables</td><td><code>BOX_SEARCH_FHIR__COMPARISONS</code></td></tr><tr><td>Sensitive</td><td><code>false</code> — value will be visible in plaintext in Admin UI</td></tr><tr><td>Set via</td><td>Admin UI → Settings<br />Environment variables</td></tr><tr><td>Hot reload</td><td><code>true</code> — setting can be changed at runtime</td></tr></tbody></table></details>
+<details><summary>Details</summary><table data-header-hidden="true"><thead><tr><th width="200"></th><th></th></tr></thead><tbody><tr><td>ID</td><td><code>fhir.search.comparisons</code></td></tr><tr><td>Type</td><td>Bool</td></tr><tr><td>Recommended value</td><td><code>true</code></td></tr><tr><td>Default value</td><td><code>false</code></td></tr><tr><td>Environment variable</td><td><code>BOX_FHIR_SEARCH_COMPARISONS</code></td></tr><tr><td>Deprecated environment variables</td><td><code>BOX_SEARCH_FHIR__COMPARISONS</code></td></tr><tr><td>Sensitive</td><td><code>false</code> — value will be visible in plaintext in Admin UI</td></tr><tr><td>Set via</td><td>Admin UI → Settings<br />Environment variables</td></tr><tr><td>Hot reload</td><td><code>true</code> — setting can be changed at runtime</td></tr></tbody></table></details>
 
 #### Enable FHIR-conformant (rev)include behavior<a href="#fhir.search.include.conformant" id="fhir.search.include.conformant"></a>
 
 ```yaml
-BOX_FHIR_SEARCH_INCLUDE_CONFORMANT: "<Bool>"
+BOX_FHIR_SEARCH_INCLUDE_CONFORMANT: "true"
 ```
 
 Due to historical reasons Aidbox treats the _include and _revinclude parameters slightly differently from the behavior described in the specification (without FHIR-conformant mode on).
@@ -320,33 +322,33 @@ The _(rev)include search parameter without the :iterate or :recurse modifier sho
 The _(rev)include parameter with the :iterate(:recurse) modifier should be repeatedly applied to the result with included resources. However, in Aidbox mode, it only resolves cyclic references.
 In Aidbox mode, it is possible to search without specifying source type: GET /Patient?_include=general-practitioner, but in the FHIR-conformant mode it is not possible.
 
-<details><summary>Details</summary><table data-header-hidden="true"><thead><tr><th width="200"></th><th></th></tr></thead><tbody><tr><td>ID</td><td><code>fhir.search.include.conformant</code></td></tr><tr><td>Type</td><td>Bool</td></tr><tr><td>Default value</td><td><code>false</code></td></tr><tr><td>Environment variable</td><td><code>BOX_FHIR_SEARCH_INCLUDE_CONFORMANT</code></td></tr><tr><td>Deprecated environment variables</td><td><code>BOX_SEARCH_INCLUDE_CONFORMANT</code></td></tr><tr><td>Sensitive</td><td><code>false</code> — value will be visible in plaintext in Admin UI</td></tr><tr><td>Set via</td><td>Admin UI → Settings<br />Environment variables</td></tr><tr><td>Hot reload</td><td><code>true</code> — setting can be changed at runtime</td></tr></tbody></table></details>
+<details><summary>Details</summary><table data-header-hidden="true"><thead><tr><th width="200"></th><th></th></tr></thead><tbody><tr><td>ID</td><td><code>fhir.search.include.conformant</code></td></tr><tr><td>Type</td><td>Bool</td></tr><tr><td>Recommended value</td><td><code>true</code></td></tr><tr><td>Default value</td><td><code>false</code></td></tr><tr><td>Environment variable</td><td><code>BOX_FHIR_SEARCH_INCLUDE_CONFORMANT</code></td></tr><tr><td>Deprecated environment variables</td><td><code>BOX_SEARCH_INCLUDE_CONFORMANT</code></td></tr><tr><td>Sensitive</td><td><code>false</code> — value will be visible in plaintext in Admin UI</td></tr><tr><td>Set via</td><td>Admin UI → Settings<br />Environment variables</td></tr><tr><td>Hot reload</td><td><code>true</code> — setting can be changed at runtime</td></tr></tbody></table></details>
 
 #### Authorize inline requests<a href="#fhir.search.authorize-inline-requests" id="fhir.search.authorize-inline-requests"></a>
 
 ```yaml
-BOX_FHIR_SEARCH_AUTHORIZE_INLINE_REQUESTS: "<Bool>"
+BOX_FHIR_SEARCH_AUTHORIZE_INLINE_REQUESTS: "true"
 ```
 
 Authorize inline requests (`_revinclude` and `_include`) with access policies. [Learn more](https://docs.aidbox.app/api/rest-api/fhir-search/include-and-revinclude#authorize-inline-requests-mode)
 
-<details><summary>Details</summary><table data-header-hidden="true"><thead><tr><th width="200"></th><th></th></tr></thead><tbody><tr><td>ID</td><td><code>fhir.search.authorize-inline-requests</code></td></tr><tr><td>Type</td><td>Bool</td></tr><tr><td>Default value</td><td><code>false</code></td></tr><tr><td>Environment variable</td><td><code>BOX_FHIR_SEARCH_AUTHORIZE_INLINE_REQUESTS</code></td></tr><tr><td>Deprecated environment variables</td><td><code>BOX_SEARCH_AUTHORIZE_INLINE_REQUESTS</code></td></tr><tr><td>Sensitive</td><td><code>false</code> — value will be visible in plaintext in Admin UI</td></tr><tr><td>Set via</td><td>Admin UI → Settings<br />Environment variables</td></tr><tr><td>Hot reload</td><td><code>true</code> — setting can be changed at runtime</td></tr></tbody></table></details>
+<details><summary>Details</summary><table data-header-hidden="true"><thead><tr><th width="200"></th><th></th></tr></thead><tbody><tr><td>ID</td><td><code>fhir.search.authorize-inline-requests</code></td></tr><tr><td>Type</td><td>Bool</td></tr><tr><td>Recommended value</td><td><code>true</code></td></tr><tr><td>Default value</td><td><code>false</code></td></tr><tr><td>Environment variable</td><td><code>BOX_FHIR_SEARCH_AUTHORIZE_INLINE_REQUESTS</code></td></tr><tr><td>Deprecated environment variables</td><td><code>BOX_SEARCH_AUTHORIZE_INLINE_REQUESTS</code></td></tr><tr><td>Sensitive</td><td><code>false</code> — value will be visible in plaintext in Admin UI</td></tr><tr><td>Set via</td><td>Admin UI → Settings<br />Environment variables</td></tr><tr><td>Hot reload</td><td><code>true</code> — setting can be changed at runtime</td></tr></tbody></table></details>
 
 #### Use semi join in chained searches<a href="#fhir.search.chain.subselect" id="fhir.search.chain.subselect"></a>
 
 ```yaml
-BOX_FHIR_SEARCH_CHAIN_SUBSELECT: "<Bool>"
+BOX_FHIR_SEARCH_CHAIN_SUBSELECT: "true"
 ```
 
 When the search query does not use _has search parameters, use subselect instead of INNER JOIN for forward chain searches.
 This is a performance optimization which could require building additional indexes.
 
-<details><summary>Details</summary><table data-header-hidden="true"><thead><tr><th width="200"></th><th></th></tr></thead><tbody><tr><td>ID</td><td><code>fhir.search.chain.subselect</code></td></tr><tr><td>Type</td><td>Bool</td></tr><tr><td>Default value</td><td><code>false</code></td></tr><tr><td>Environment variable</td><td><code>BOX_FHIR_SEARCH_CHAIN_SUBSELECT</code></td></tr><tr><td>Deprecated environment variables</td><td><code>BOX_SEARCH_CHAIN_SUBSELECT</code></td></tr><tr><td>Sensitive</td><td><code>false</code> — value will be visible in plaintext in Admin UI</td></tr><tr><td>Set via</td><td>Admin UI → Settings<br />Environment variables</td></tr><tr><td>Hot reload</td><td><code>true</code> — setting can be changed at runtime</td></tr></tbody></table></details>
+<details><summary>Details</summary><table data-header-hidden="true"><thead><tr><th width="200"></th><th></th></tr></thead><tbody><tr><td>ID</td><td><code>fhir.search.chain.subselect</code></td></tr><tr><td>Type</td><td>Bool</td></tr><tr><td>Recommended value</td><td><code>true</code></td></tr><tr><td>Default value</td><td><code>false</code></td></tr><tr><td>Environment variable</td><td><code>BOX_FHIR_SEARCH_CHAIN_SUBSELECT</code></td></tr><tr><td>Deprecated environment variables</td><td><code>BOX_SEARCH_CHAIN_SUBSELECT</code></td></tr><tr><td>Sensitive</td><td><code>false</code> — value will be visible in plaintext in Admin UI</td></tr><tr><td>Set via</td><td>Admin UI → Settings<br />Environment variables</td></tr><tr><td>Hot reload</td><td><code>true</code> — setting can be changed at runtime</td></tr></tbody></table></details>
 
 #### Enable FHIR composite search parameters<a href="#fhir.search.composite-parameters" id="fhir.search.composite-parameters"></a>
 
 ```yaml
-BOX_FHIR_SEARCH_COMPOSITE_PARAMETERS: "<Bool>"
+BOX_FHIR_SEARCH_COMPOSITE_PARAMETERS: "false"
 ```
 
 Enable support for FHIR composite search parameters.
@@ -393,7 +395,7 @@ It limits number of results per page
 #### Default search result count estimation method<a href="#fhir.search.default-params.total" id="fhir.search.default-params.total"></a>
 
 ```yaml
-BOX_FHIR_SEARCH_DEFAULT_PARAMS_TOTAL: "accurate"
+BOX_FHIR_SEARCH_DEFAULT_PARAMS_TOTAL: ""accurate""
 ```
 
 FHIR search response bundle may contain a result count estimation.
@@ -403,7 +405,7 @@ FHIR search response bundle may contain a result count estimation.
 #### SQL operator to use for token search<a href="#fhir.search.token-operator" id="fhir.search.token-operator"></a>
 
 ```yaml
-BOX_FHIR_SEARCH_TOKEN_OPERATOR: "@>"
+BOX_FHIR_SEARCH_TOKEN_OPERATOR: ""@>""
 ```
 
 Token and Reference search parameters use exact match.
@@ -420,13 +422,13 @@ Engines options:
 #### JSONB query engine<a href="#fhir.search.engine" id="fhir.search.engine"></a>
 
 ```yaml
-BOX_FHIR_SEARCH_ENGINE: "knife"
+BOX_FHIR_SEARCH_ENGINE: ""knife""
 ```
 
 Aidbox has two engines to search: jsonpath and jsonknife.
 
 The engine is responsible for SQL generation for search operations.
-SQL by jsonpath and jsonknife is different for search parameter types: date, number, quantity, reference, string, token, uri.
+SQL by jsonpath and jsonknife is different for search parameter types: date, number, quantity, reference, string, token, uri. 
 _lastUpdated, _createdAt senarch parameters and :missing modifier searches also differ by engine.
 jsonpath-engine:
 
@@ -438,7 +440,7 @@ jsonknife:
 #### Enable support for multiple languages in search<a href="#fhir.search.multilingual.enable" id="fhir.search.multilingual.enable"></a>
 
 ```yaml
-BOX_FHIR_SEARCH_MULTILINGUAL_ENABLE: "<Bool>"
+BOX_FHIR_SEARCH_MULTILINGUAL_ENABLE: "false"
 ```
 
 FHIR uses special extension to provide translations in resources.
@@ -457,7 +459,7 @@ across translations.
 #### Use Accept-Language header for search<a href="#fhir.search.multilingual.use-accept-language-header" id="fhir.search.multilingual.use-accept-language-header"></a>
 
 ```yaml
-BOX_FHIR_SEARCH_MULTILINGUAL_USE_ACCEPT_LANGUAGE_HEADER: "<Bool>"
+BOX_FHIR_SEARCH_MULTILINGUAL_USE_ACCEPT_LANGUAGE_HEADER: "false"
 ```
 
 Use the Accept-Language header to specify search language
@@ -487,7 +489,7 @@ Terminology settings
 #### FHIR terminology service base URL<a href="#fhir.terminology.service-base-url" id="fhir.terminology.service-base-url"></a>
 
 ```yaml
-BOX_FHIR_TERMINOLOGY_SERVICE_BASE_URL: "<String>"
+BOX_FHIR_TERMINOLOGY_SERVICE_BASE_URL: ""https://tx.health-samurai.io/fhir""
 ```
 
 Specifies the base URL of the terminology server used for code
@@ -495,27 +497,27 @@ validation and ValueSet expansion operations. Required for validating coded
 elements against their ValueSets and CodeSystems. When not configured, code
 validation is skipped entirely.
 
-<details><summary>Details</summary><table data-header-hidden="true"><thead><tr><th width="200"></th><th></th></tr></thead><tbody><tr><td>ID</td><td><code>fhir.terminology.service-base-url</code></td></tr><tr><td>Type</td><td>String</td></tr><tr><td>Default value</td><td>(no default)</td></tr><tr><td>Environment variable</td><td><code>BOX_FHIR_TERMINOLOGY_SERVICE_BASE_URL</code></td></tr><tr><td>Deprecated environment variables</td><td><code>AIDBOX_TERMINOLOGY_SERVICE_BASE_URL</code></td></tr><tr><td>Sensitive</td><td><code>false</code> — value will be visible in plaintext in Admin UI</td></tr><tr><td>Set via</td><td>Admin UI → Settings<br />Environment variables</td></tr><tr><td>Hot reload</td><td><code>true</code> — setting can be changed at runtime</td></tr></tbody></table></details>
+<details><summary>Details</summary><table data-header-hidden="true"><thead><tr><th width="200"></th><th></th></tr></thead><tbody><tr><td>ID</td><td><code>fhir.terminology.service-base-url</code></td></tr><tr><td>Type</td><td>String</td></tr><tr><td>Recommended value</td><td><code>https://tx.health-samurai.io/fhir</code></td></tr><tr><td>Default value</td><td>(no default)</td></tr><tr><td>Environment variable</td><td><code>BOX_FHIR_TERMINOLOGY_SERVICE_BASE_URL</code></td></tr><tr><td>Deprecated environment variables</td><td><code>AIDBOX_TERMINOLOGY_SERVICE_BASE_URL</code></td></tr><tr><td>Sensitive</td><td><code>false</code> — value will be visible in plaintext in Admin UI</td></tr><tr><td>Set via</td><td>Admin UI → Settings<br />Environment variables</td></tr><tr><td>Hot reload</td><td><code>true</code> — setting can be changed at runtime</td></tr></tbody></table></details>
 
 #### Terminology Engine<a href="#fhir.terminology.engine" id="fhir.terminology.engine"></a>
 
 ```yaml
-BOX_FHIR_TERMINOLOGY_ENGINE: "legacy"
+BOX_FHIR_TERMINOLOGY_ENGINE: ""hybrid""
 ```
 
 Controls how Aidbox handles terminology APIs
 
-<details><summary>Details</summary><table data-header-hidden="true"><thead><tr><th width="200"></th><th></th></tr></thead><tbody><tr><td>ID</td><td><code>fhir.terminology.engine</code></td></tr><tr><td>Type</td><td>Enum</td></tr><tr><td>Values</td><td><code>hybrid</code> — Combines local storage with external server fallback (recommended)<br /><code>legacy</code> — Routes all requests to external terminology servers<br /><code>local</code> — Uses only resources stored in Aidbox&apos;s FAR</td></tr><tr><td>Default value</td><td><code>legacy</code></td></tr><tr><td>Environment variable</td><td><code>BOX_FHIR_TERMINOLOGY_ENGINE</code></td></tr><tr><td>Available from</td><td><code>2507</code></td></tr><tr><td>Sensitive</td><td><code>false</code> — value will be visible in plaintext in Admin UI</td></tr><tr><td>Set via</td><td>Admin UI → Settings<br />Environment variables</td></tr><tr><td>Hot reload</td><td><code>false</code> — setting requires system restart</td></tr></tbody></table></details>
+<details><summary>Details</summary><table data-header-hidden="true"><thead><tr><th width="200"></th><th></th></tr></thead><tbody><tr><td>ID</td><td><code>fhir.terminology.engine</code></td></tr><tr><td>Type</td><td>Enum</td></tr><tr><td>Values</td><td><code>hybrid</code> — Combines local storage with external server fallback (recommended)<br /><code>legacy</code> — Routes all requests to external terminology servers<br /><code>local</code> — Uses only resources stored in Aidbox&apos;s FAR</td></tr><tr><td>Recommended value</td><td><code>hybrid</code></td></tr><tr><td>Default value</td><td><code>legacy</code></td></tr><tr><td>Environment variable</td><td><code>BOX_FHIR_TERMINOLOGY_ENGINE</code></td></tr><tr><td>Available from</td><td><code>2507</code></td></tr><tr><td>Sensitive</td><td><code>false</code> — value will be visible in plaintext in Admin UI</td></tr><tr><td>Set via</td><td>Admin UI → Settings<br />Environment variables</td></tr><tr><td>Hot reload</td><td><code>false</code> — setting requires system restart</td></tr></tbody></table></details>
 
 #### External Terminology Server<a href="#fhir.terminology.engine.hybrid.external-tx-server" id="fhir.terminology.engine.hybrid.external-tx-server"></a>
 
 ```yaml
-BOX_FHIR_TERMINOLOGY_ENGINE_HYBRID_EXTERNAL_TX_SERVER: "<String>"
+BOX_FHIR_TERMINOLOGY_ENGINE_HYBRID_EXTERNAL_TX_SERVER: ""https://tx.health-samurai.io/fhir""
 ```
 
 Specifies the base URL of an external terminology server to be used in 'hybrid' terminology engine mode. This setting is ignored for other modes.
 
-<details><summary>Details</summary><table data-header-hidden="true"><thead><tr><th width="200"></th><th></th></tr></thead><tbody><tr><td>ID</td><td><code>fhir.terminology.engine.hybrid.external-tx-server</code></td></tr><tr><td>Type</td><td>String</td></tr><tr><td>Default value</td><td>(no default)</td></tr><tr><td>Environment variable</td><td><code>BOX_FHIR_TERMINOLOGY_ENGINE_HYBRID_EXTERNAL_TX_SERVER</code></td></tr><tr><td>Available from</td><td><code>2507</code></td></tr><tr><td>Sensitive</td><td><code>false</code> — value will be visible in plaintext in Admin UI</td></tr><tr><td>Set via</td><td>Admin UI → Settings<br />Environment variables</td></tr><tr><td>Hot reload</td><td><code>false</code> — setting requires system restart</td></tr></tbody></table></details>
+<details><summary>Details</summary><table data-header-hidden="true"><thead><tr><th width="200"></th><th></th></tr></thead><tbody><tr><td>ID</td><td><code>fhir.terminology.engine.hybrid.external-tx-server</code></td></tr><tr><td>Type</td><td>String</td></tr><tr><td>Recommended value</td><td><code>https://tx.health-samurai.io/fhir</code></td></tr><tr><td>Default value</td><td>(no default)</td></tr><tr><td>Environment variable</td><td><code>BOX_FHIR_TERMINOLOGY_ENGINE_HYBRID_EXTERNAL_TX_SERVER</code></td></tr><tr><td>Available from</td><td><code>2507</code></td></tr><tr><td>Sensitive</td><td><code>false</code> — value will be visible in plaintext in Admin UI</td></tr><tr><td>Set via</td><td>Admin UI → Settings<br />Environment variables</td></tr><tr><td>Hot reload</td><td><code>false</code> — setting requires system restart</td></tr></tbody></table></details>
 
 ### Bulk Data Export
 
@@ -524,7 +526,7 @@ Bulk Data Export settings
 #### Bulk storage provider<a href="#fhir.bulk-storage.provider" id="fhir.bulk-storage.provider"></a>
 
 ```yaml
-BOX_FHIR_BULK_STORAGE_PROVIDER: "<Enum>"
+BOX_FHIR_BULK_STORAGE_PROVIDER: ""<Enum>""
 ```
 
 Storage provider for bulk export
@@ -534,7 +536,7 @@ Storage provider for bulk export
 #### GCP service account<a href="#fhir.bulk-storage.gcp.service-account" id="fhir.bulk-storage.gcp.service-account"></a>
 
 ```yaml
-BOX_FHIR_BULK_STORAGE_GCP_SERVICE_ACCOUNT: "<String>"
+BOX_FHIR_BULK_STORAGE_GCP_SERVICE_ACCOUNT: ""<String>""
 ```
 
 `GCPServiceAccount` resource ID for `$export`
@@ -544,7 +546,7 @@ BOX_FHIR_BULK_STORAGE_GCP_SERVICE_ACCOUNT: "<String>"
 #### GCP bucket<a href="#fhir.bulk-storage.gcp.bucket" id="fhir.bulk-storage.gcp.bucket"></a>
 
 ```yaml
-BOX_FHIR_BULK_STORAGE_GCP_BUCKET: "<String>"
+BOX_FHIR_BULK_STORAGE_GCP_BUCKET: ""<String>""
 ```
 
 GCP bucket name for `$export`
@@ -554,7 +556,7 @@ GCP bucket name for `$export`
 #### AWS service account ID<a href="#fhir.bulk-storage.aws.account" id="fhir.bulk-storage.aws.account"></a>
 
 ```yaml
-BOX_FHIR_BULK_STORAGE_AWS_ACCOUNT: "<String>"
+BOX_FHIR_BULK_STORAGE_AWS_ACCOUNT: ""<String>""
 ```
 
 AWS Account resource ID for `$export`
@@ -564,7 +566,7 @@ AWS Account resource ID for `$export`
 #### AWS bucket<a href="#fhir.bulk-storage.aws.bucket" id="fhir.bulk-storage.aws.bucket"></a>
 
 ```yaml
-BOX_FHIR_BULK_STORAGE_AWS_BUCKET: "<String>"
+BOX_FHIR_BULK_STORAGE_AWS_BUCKET: ""<String>""
 ```
 
 AWS S3 bucket name for `$export`
@@ -574,7 +576,7 @@ AWS S3 bucket name for `$export`
 #### Azure service account ID<a href="#fhir.bulk-storage.azure.container" id="fhir.bulk-storage.azure.container"></a>
 
 ```yaml
-BOX_FHIR_BULK_STORAGE_AZURE_CONTAINER: "<String>"
+BOX_FHIR_BULK_STORAGE_AZURE_CONTAINER: ""<String>""
 ```
 
 Azure Container resource ID for `$export`
@@ -588,7 +590,7 @@ Security & Access Control settings
 ### Grant page URL<a href="#security.grant-page-url" id="security.grant-page-url"></a>
 
 ```yaml
-BOX_SECURITY_GRANT_PAGE_URL: "/auth/grant"
+BOX_SECURITY_GRANT_PAGE_URL: ""/auth/grant""
 ```
 
 URL of consent screen. A consent screen is an interface presented to a user during the authorization code grant flow.
@@ -598,17 +600,17 @@ URL of consent screen. A consent screen is an interface presented to a user duri
 ### Enable FHIR Audit Log<a href="#security.audit-log.enabled" id="security.audit-log.enabled"></a>
 
 ```yaml
-BOX_SECURITY_AUDIT_LOG_ENABLED: "<Bool>"
+BOX_SECURITY_AUDIT_LOG_ENABLED: "true"
 ```
 
 Generates structured audit logs in FHIR R4 AuditEvent format (with other FHIR versions will not be generated).
 
-<details><summary>Details</summary><table data-header-hidden="true"><thead><tr><th width="200"></th><th></th></tr></thead><tbody><tr><td>ID</td><td><code>security.audit-log.enabled</code></td></tr><tr><td>Type</td><td>Bool</td></tr><tr><td>Default value</td><td><code>false</code></td></tr><tr><td>Environment variable</td><td><code>BOX_SECURITY_AUDIT_LOG_ENABLED</code></td></tr><tr><td>Deprecated environment variables</td><td><code>AIDBOX_SECURITY_AUDIT__LOG_ENABLED</code></td></tr><tr><td>Sensitive</td><td><code>false</code> — value will be visible in plaintext in Admin UI</td></tr><tr><td>Set via</td><td>Admin UI → Settings<br />Environment variables</td></tr><tr><td>Hot reload</td><td><code>false</code> — setting requires system restart</td></tr></tbody></table></details>
+<details><summary>Details</summary><table data-header-hidden="true"><thead><tr><th width="200"></th><th></th></tr></thead><tbody><tr><td>ID</td><td><code>security.audit-log.enabled</code></td></tr><tr><td>Type</td><td>Bool</td></tr><tr><td>Recommended value</td><td><code>true</code></td></tr><tr><td>Default value</td><td><code>false</code></td></tr><tr><td>Environment variable</td><td><code>BOX_SECURITY_AUDIT_LOG_ENABLED</code></td></tr><tr><td>Deprecated environment variables</td><td><code>AIDBOX_SECURITY_AUDIT__LOG_ENABLED</code></td></tr><tr><td>Sensitive</td><td><code>false</code> — value will be visible in plaintext in Admin UI</td></tr><tr><td>Set via</td><td>Admin UI → Settings<br />Environment variables</td></tr><tr><td>Hot reload</td><td><code>false</code> — setting requires system restart</td></tr></tbody></table></details>
 
 ### Audit Log repository URL<a href="#security.audit-log.repository-url" id="security.audit-log.repository-url"></a>
 
 ```yaml
-BOX_SECURITY_AUDIT_LOG_REPOSITORY_URL: "<String>"
+BOX_SECURITY_AUDIT_LOG_REPOSITORY_URL: ""<String>""
 ```
 
 Full URL of the external destination where Aidbox streams all audit events.
@@ -650,7 +652,7 @@ Max count of Audit Log batch (FHIR bandle entry count).
 ### Audit Log request headers<a href="#security.audit-log.request-headers" id="security.audit-log.request-headers"></a>
 
 ```yaml
-BOX_SECURITY_AUDIT_LOG_REQUEST_HEADERS: "<String>"
+BOX_SECURITY_AUDIT_LOG_REQUEST_HEADERS: ""<String>""
 ```
 
 The headers for Audit Log external repository requests, formatted as HeaderName:HeaderValue&#92;nHeaderName:HeaderValue.
@@ -660,7 +662,7 @@ The headers for Audit Log external repository requests, formatted as HeaderName:
 ### Enable access control for mapping<a href="#security.iam.mapping.enable-access-control" id="security.iam.mapping.enable-access-control"></a>
 
 ```yaml
-BOX_SECURITY_IAM_MAPPING_ENABLE_ACCESS_CONTROL: "<Bool>"
+BOX_SECURITY_IAM_MAPPING_ENABLE_ACCESS_CONTROL: "false"
 ```
 
 Enable access control for `/Mapping/<mapping-id>/$apply` operation.
@@ -672,7 +674,7 @@ If disabled, only access to $apply endpoints are verified.
 ### Encryption API secret<a href="#security.encrypt-secret" id="security.encrypt-secret"></a>
 
 ```yaml
-BOX_SECURITY_ENCRYPT_SECRET: "<String>"
+BOX_SECURITY_ENCRYPT_SECRET: ""<String>""
 ```
 
 Secret key for encryption API. [Learn more](https://docs.aidbox.app/api/other/encryption-api)
@@ -692,18 +694,18 @@ Enable Cross-Origin Resource Sharing (CORS) request handling.
 ### Allow CORS requests from origins<a href="#security.cors.origins" id="security.cors.origins"></a>
 
 ```yaml
-BOX_SECURITY_CORS_ORIGINS: "*"
+BOX_SECURITY_CORS_ORIGINS: ""*""
 ```
 
 Comma separated list of origins `[schema]://[domain]:[port]`
-Default is wildcard value `"*"`
+Default is wildcard value `"*"` 
 
 <details><summary>Details</summary><table data-header-hidden="true"><thead><tr><th width="200"></th><th></th></tr></thead><tbody><tr><td>ID</td><td><code>security.cors.origins</code></td></tr><tr><td>Type</td><td>String</td></tr><tr><td>Default value</td><td><code>*</code></td></tr><tr><td>Environment variable</td><td><code>BOX_SECURITY_CORS_ORIGINS</code></td></tr><tr><td>Deprecated environment variables</td><td><code>BOX_WEB_CORS_ORIGINS</code></td></tr><tr><td>Sensitive</td><td><code>false</code> — value will be visible in plaintext in Admin UI</td></tr><tr><td>Set via</td><td>Admin UI → Settings<br />Environment variables</td></tr><tr><td>Hot reload</td><td><code>true</code> — setting can be changed at runtime</td></tr></tbody></table></details>
 
 ### Content security policy header<a href="#security.content-security-policy-header" id="security.content-security-policy-header"></a>
 
 ```yaml
-BOX_SECURITY_CONTENT_SECURITY_POLICY_HEADER: "<String>"
+BOX_SECURITY_CONTENT_SECURITY_POLICY_HEADER: ""<String>""
 ```
 
 Defines the Content Security Policy (CSP) header to enhance
@@ -722,7 +724,7 @@ default-src 'self'; script-src 'report-sample' 'self' 'unsafe-inline' 'unsafe-ev
 ### Skip JWT validation<a href="#security.skip-jwt-validation" id="security.skip-jwt-validation"></a>
 
 ```yaml
-BOX_SECURITY_SKIP_JWT_VALIDATION: "<Bool>"
+BOX_SECURITY_SKIP_JWT_VALIDATION: "false"
 ```
 
 Skip JWT token validation process.
@@ -732,7 +734,7 @@ Skip JWT token validation process.
 ### JWT public key<a href="#security.auth.keys.public" id="security.auth.keys.public"></a>
 
 ```yaml
-BOX_SECURITY_AUTH_KEYS_PUBLIC: "<String>"
+BOX_SECURITY_AUTH_KEYS_PUBLIC: ""<String>""
 ```
 
 RS256 signing algorithm expects providing private key for signing JWT and public key for verifying it.
@@ -742,7 +744,7 @@ RS256 signing algorithm expects providing private key for signing JWT and public
 ### JWT private key<a href="#security.auth.keys.private" id="security.auth.keys.private"></a>
 
 ```yaml
-BOX_SECURITY_AUTH_KEYS_PRIVATE: "<String>"
+BOX_SECURITY_AUTH_KEYS_PRIVATE: ""<String>""
 ```
 
 RS256 signing algorithm expects providing private key for signing JWT and public key for verifying it.
@@ -752,7 +754,7 @@ RS256 signing algorithm expects providing private key for signing JWT and public
 ### JWT secret<a href="#security.auth.keys.secret" id="security.auth.keys.secret"></a>
 
 ```yaml
-BOX_SECURITY_AUTH_KEYS_SECRET: "<String>"
+BOX_SECURITY_AUTH_KEYS_SECRET: ""<String>""
 ```
 
 HS256 signing algorithm needs only having a secret for both operations.
@@ -762,7 +764,7 @@ HS256 signing algorithm needs only having a secret for both operations.
 ### Auto-create users from foreign tokens<a href="#security.introspection-create-user" id="security.introspection-create-user"></a>
 
 ```yaml
-BOX_SECURITY_INTROSPECTION_CREATE_USER: "<Bool>"
+BOX_SECURITY_INTROSPECTION_CREATE_USER: "false"
 ```
 
 Creates local user accounts automatically when valid external JWT tokens are presented but no matching user exists.
@@ -772,7 +774,7 @@ Creates local user accounts automatically when valid external JWT tokens are pre
 ### Auth with non-validated JWT<a href="#security.auth-with-not-validated-jwt" id="security.auth-with-not-validated-jwt"></a>
 
 ```yaml
-BOX_SECURITY_AUTH_WITH_NOT_VALIDATED_JWT: "<String>"
+BOX_SECURITY_AUTH_WITH_NOT_VALIDATED_JWT: ""<String>""
 ```
 
 This configuration is used when `skip-jwt-validation` setting is enabled.
@@ -784,7 +786,7 @@ For example: `{:headers #{"authorization" "x-client-token"}, :user-id-paths #{[:
 ### Enable LBAC<a href="#security.lbac.enabled" id="security.lbac.enabled"></a>
 
 ```yaml
-BOX_SECURITY_LBAC_ENABLED: "<Bool>"
+BOX_SECURITY_LBAC_ENABLED: "false"
 ```
 
 Label-based Access Control engine provides a mechanism to restrict access to bundles, resources, or resource elements depending on permissions associated with a request.
@@ -794,7 +796,7 @@ Label-based Access Control engine provides a mechanism to restrict access to bun
 ### Strip security labels<a href="#security.lbac.strip-labels" id="security.lbac.strip-labels"></a>
 
 ```yaml
-BOX_SECURITY_LBAC_STRIP_LABELS: "<Bool>"
+BOX_SECURITY_LBAC_STRIP_LABELS: "false"
 ```
 
 Removes security labels from resource responses before
@@ -808,19 +810,19 @@ details from end users.
 ### Enable organization-based hierarchical access control<a href="#security.orgbac.enabled" id="security.orgbac.enabled"></a>
 
 ```yaml
-BOX_SECURITY_ORGBAC_ENABLED: "<Bool>"
+BOX_SECURITY_ORGBAC_ENABLED: "false"
 ```
 
 Activates hierarchical access control based on organizational
 structure. Restricts user access to resources based on their organizational
-affiliation and hierarchy position.
+affiliation and hierarchy position. 
 
 <details><summary>Details</summary><table data-header-hidden="true"><thead><tr><th width="200"></th><th></th></tr></thead><tbody><tr><td>ID</td><td><code>security.orgbac.enabled</code></td></tr><tr><td>Type</td><td>Bool</td></tr><tr><td>Default value</td><td><code>false</code></td></tr><tr><td>Environment variable</td><td><code>BOX_SECURITY_ORGBAC_ENABLED</code></td></tr><tr><td>Deprecated environment variables</td><td><code>BOX_FEATURES_ORGBAC_ENABLE</code></td></tr><tr><td>Sensitive</td><td><code>false</code> — value will be visible in plaintext in Admin UI</td></tr><tr><td>Set via</td><td>Admin UI → Settings<br />Environment variables</td></tr><tr><td>Hot reload</td><td><code>false</code> — setting requires system restart</td></tr></tbody></table></details>
 
 ### Enable SU header<a href="#security.debug-su-enable" id="security.debug-su-enable"></a>
 
 ```yaml
-BOX_SECURITY_DEBUG_SU_ENABLE: "<Bool>"
+BOX_SECURITY_DEBUG_SU_ENABLE: "false"
 ```
 
 This setting enables `SU` header functionality.
@@ -832,12 +834,12 @@ Only the administrator is allowed to use the `SU` header.
 ### Enable Aidbox developer mode<a href="#security.dev-mode" id="security.dev-mode"></a>
 
 ```yaml
-BOX_SECURITY_DEV_MODE: "<Bool>"
+BOX_SECURITY_DEV_MODE: "true"
 ```
 
 Activates debugging features for access policy development, including the `_debug=policy URL` parameter and `x-debug` header. Returns detailed policy evaluation traces showing why requests were allowed or denied. For development environments only - not recommended for production systems.
 
-<details><summary>Details</summary><table data-header-hidden="true"><thead><tr><th width="200"></th><th></th></tr></thead><tbody><tr><td>ID</td><td><code>security.dev-mode</code></td></tr><tr><td>Type</td><td>Bool</td></tr><tr><td>Default value</td><td><code>false</code></td></tr><tr><td>Environment variable</td><td><code>BOX_SECURITY_DEV_MODE</code></td></tr><tr><td>Deprecated environment variables</td><td><code>AIDBOX_DEV_MODE</code></td></tr><tr><td>Sensitive</td><td><code>false</code> — value will be visible in plaintext in Admin UI</td></tr><tr><td>Set via</td><td>Admin UI → Settings<br />Environment variables</td></tr><tr><td>Hot reload</td><td><code>true</code> — setting can be changed at runtime</td></tr></tbody></table></details>
+<details><summary>Details</summary><table data-header-hidden="true"><thead><tr><th width="200"></th><th></th></tr></thead><tbody><tr><td>ID</td><td><code>security.dev-mode</code></td></tr><tr><td>Type</td><td>Bool</td></tr><tr><td>Recommended value</td><td><code>true</code></td></tr><tr><td>Default value</td><td><code>false</code></td></tr><tr><td>Environment variable</td><td><code>BOX_SECURITY_DEV_MODE</code></td></tr><tr><td>Deprecated environment variables</td><td><code>AIDBOX_DEV_MODE</code></td></tr><tr><td>Sensitive</td><td><code>false</code> — value will be visible in plaintext in Admin UI</td></tr><tr><td>Set via</td><td>Admin UI → Settings<br />Environment variables</td></tr><tr><td>Hot reload</td><td><code>true</code> — setting can be changed at runtime</td></tr></tbody></table></details>
 
 ## Modules
 
@@ -850,7 +852,7 @@ Google Cloud Pub/Sub subscriptions settings
 #### Google Cloud Pub/Sub topic name<a href="#module.subscriptions.pubsub.topic" id="module.subscriptions.pubsub.topic"></a>
 
 ```yaml
-BOX_MODULE_SUBSCRIPTIONS_PUBSUB_TOPIC: "<String>"
+BOX_MODULE_SUBSCRIPTIONS_PUBSUB_TOPIC: ""<String>""
 ```
 
 Name of the Google Cloud Pub/Sub topic.
@@ -860,7 +862,7 @@ Name of the Google Cloud Pub/Sub topic.
 #### Google Cloud Pub/Sub project name<a href="#module.subscriptions.pubsub.project" id="module.subscriptions.pubsub.project"></a>
 
 ```yaml
-BOX_MODULE_SUBSCRIPTIONS_PUBSUB_PROJECT: "<String>"
+BOX_MODULE_SUBSCRIPTIONS_PUBSUB_PROJECT: ""<String>""
 ```
 
 Name of the Google Cloud Project which contains Pub/Sub topics and subscriptions.
@@ -870,7 +872,7 @@ Name of the Google Cloud Project which contains Pub/Sub topics and subscriptions
 #### Google Cloud Pub/Sub resource types<a href="#module.subscriptions.pubsub.resource-types" id="module.subscriptions.pubsub.resource-types"></a>
 
 ```yaml
-BOX_MODULE_SUBSCRIPTIONS_PUBSUB_RESOURCE_TYPES: "<String>"
+BOX_MODULE_SUBSCRIPTIONS_PUBSUB_RESOURCE_TYPES: ""<String>""
 ```
 
 Specify resource types and boxes for which to publish notifications.
@@ -896,7 +898,7 @@ If not set, messages for all resource types from all boxes are published.
 #### Google Cloud Pub/Sub service account email<a href="#module.subscriptions.pubsub.service-account.email" id="module.subscriptions.pubsub.service-account.email"></a>
 
 ```yaml
-BOX_MODULE_SUBSCRIPTIONS_PUBSUB_SERVICE_ACCOUNT_EMAIL: "<String>"
+BOX_MODULE_SUBSCRIPTIONS_PUBSUB_SERVICE_ACCOUNT_EMAIL: ""<String>""
 ```
 
 Email of the Google Cloud Pub/Sub service account.
@@ -906,7 +908,7 @@ Email of the Google Cloud Pub/Sub service account.
 #### Google Cloud Pub/Sub service account private key<a href="#module.subscriptions.pubsub.service-account.private-key" id="module.subscriptions.pubsub.service-account.private-key"></a>
 
 ```yaml
-BOX_MODULE_SUBSCRIPTIONS_PUBSUB_SERVICE_ACCOUNT_PRIVATE_KEY: "<String>"
+BOX_MODULE_SUBSCRIPTIONS_PUBSUB_SERVICE_ACCOUNT_PRIVATE_KEY: ""<String>""
 ```
 
 Private key of the Google Cloud Pub/Sub service account.
@@ -916,7 +918,7 @@ Private key of the Google Cloud Pub/Sub service account.
 #### Google Cloud Pub/Sub publish before save<a href="#module.subscriptions.pubsub.before-save" id="module.subscriptions.pubsub.before-save"></a>
 
 ```yaml
-BOX_MODULE_SUBSCRIPTIONS_PUBSUB_BEFORE_SAVE: "<Bool>"
+BOX_MODULE_SUBSCRIPTIONS_PUBSUB_BEFORE_SAVE: "false"
 ```
 
 If true, the resource will be published to the Pub/Sub topic before saving it to the database.
@@ -926,7 +928,7 @@ If true, the resource will be published to the Pub/Sub topic before saving it to
 #### Google Cloud Pub/Sub emulator URL<a href="#module.subscriptions.pubsub.emulator-url" id="module.subscriptions.pubsub.emulator-url"></a>
 
 ```yaml
-BOX_MODULE_SUBSCRIPTIONS_PUBSUB_EMULATOR_URL: "<String>"
+BOX_MODULE_SUBSCRIPTIONS_PUBSUB_EMULATOR_URL: ""<String>""
 ```
 
 URL of the Google Cloud Pub/Sub emulator.
@@ -941,7 +943,7 @@ Aidbox notebooks settings
 #### Notebook repository URL<a href="#module.notebook.repo-url" id="module.notebook.repo-url"></a>
 
 ```yaml
-BOX_MODULE_NOTEBOOK_REPO_URL: "https://aidbox.app"
+BOX_MODULE_NOTEBOOK_REPO_URL: ""https://aidbox.app""
 ```
 
 Set repository to fetch published notebooks
@@ -955,7 +957,7 @@ Mail Provider settings
 #### Default provider type<a href="#provider.default.type" id="provider.default.type"></a>
 
 ```yaml
-BOX_MODULE_PROVIDER_DEFAULT_TYPE: "<String>"
+BOX_MODULE_PROVIDER_DEFAULT_TYPE: ""<String>""
 ```
 
 Specifies the email service provider used for system-generated communications.
@@ -965,7 +967,7 @@ Specifies the email service provider used for system-generated communications.
 #### Default provider from address<a href="#provider.default.from" id="provider.default.from"></a>
 
 ```yaml
-BOX_MODULE_PROVIDER_DEFAULT_FROM: "<String>"
+BOX_MODULE_PROVIDER_DEFAULT_FROM: ""<String>""
 ```
 
 From address for the default provider
@@ -975,7 +977,7 @@ From address for the default provider
 #### Default provider username<a href="#provider.default.username" id="provider.default.username"></a>
 
 ```yaml
-BOX_MODULE_PROVIDER_DEFAULT_USERNAME: "<String>"
+BOX_MODULE_PROVIDER_DEFAULT_USERNAME: ""<String>""
 ```
 
 Username for the default provider
@@ -985,7 +987,7 @@ Username for the default provider
 #### Default provider password<a href="#provider.default.password" id="provider.default.password"></a>
 
 ```yaml
-BOX_MODULE_PROVIDER_DEFAULT_PASSWORD: "<String>"
+BOX_MODULE_PROVIDER_DEFAULT_PASSWORD: ""<String>""
 ```
 
 Password for the default provider
@@ -995,7 +997,7 @@ Password for the default provider
 #### Default provider URL<a href="#provider.default.url" id="provider.default.url"></a>
 
 ```yaml
-BOX_MODULE_PROVIDER_DEFAULT_URL: "<String>"
+BOX_MODULE_PROVIDER_DEFAULT_URL: ""<String>""
 ```
 
 URL for the default provider
@@ -1005,7 +1007,7 @@ URL for the default provider
 #### Default provider port<a href="#provider.default.port" id="provider.default.port"></a>
 
 ```yaml
-BOX_MODULE_PROVIDER_DEFAULT_PORT: "<String>"
+BOX_MODULE_PROVIDER_DEFAULT_PORT: ""<String>""
 ```
 
 Port for the default provider
@@ -1015,7 +1017,7 @@ Port for the default provider
 #### Default provider SSL<a href="#provider.default.ssl" id="provider.default.ssl"></a>
 
 ```yaml
-BOX_MODULE_PROVIDER_DEFAULT_SSL: "<Bool>"
+BOX_MODULE_PROVIDER_DEFAULT_SSL: "false"
 ```
 
 Enable SSL for the default provider
@@ -1025,7 +1027,7 @@ Enable SSL for the default provider
 #### Default provider TLS<a href="#provider.default.tls" id="provider.default.tls"></a>
 
 ```yaml
-BOX_MODULE_PROVIDER_DEFAULT_TLS: "<Bool>"
+BOX_MODULE_PROVIDER_DEFAULT_TLS: "false"
 ```
 
 Enable TLS for the default provider
@@ -1035,7 +1037,7 @@ Enable TLS for the default provider
 #### Default provider host<a href="#provider.default.host" id="provider.default.host"></a>
 
 ```yaml
-BOX_MODULE_PROVIDER_DEFAULT_HOST: "<String>"
+BOX_MODULE_PROVIDER_DEFAULT_HOST: ""<String>""
 ```
 
 Host for the default provider
@@ -1045,7 +1047,7 @@ Host for the default provider
 #### Mailgun provider from address<a href="#provider.mailgun.from" id="provider.mailgun.from"></a>
 
 ```yaml
-BOX_MODULE_PROVIDER_MAILGUN_FROM: "<String>"
+BOX_MODULE_PROVIDER_MAILGUN_FROM: ""<String>""
 ```
 
 From address for the Mailgun provider
@@ -1055,7 +1057,7 @@ From address for the Mailgun provider
 #### Mailgun provider username<a href="#provider.mailgun.username" id="provider.mailgun.username"></a>
 
 ```yaml
-BOX_MODULE_PROVIDER_MAILGUN_USERNAME: "<String>"
+BOX_MODULE_PROVIDER_MAILGUN_USERNAME: ""<String>""
 ```
 
 Username for the Mailgun provider
@@ -1065,7 +1067,7 @@ Username for the Mailgun provider
 #### Mailgun provider password<a href="#provider.mailgun.password" id="provider.mailgun.password"></a>
 
 ```yaml
-BOX_MODULE_PROVIDER_MAILGUN_PASSWORD: "<String>"
+BOX_MODULE_PROVIDER_MAILGUN_PASSWORD: ""<String>""
 ```
 
 Password for the Mailgun provider
@@ -1075,7 +1077,7 @@ Password for the Mailgun provider
 #### Mailgun provider URL<a href="#provider.mailgun.url" id="provider.mailgun.url"></a>
 
 ```yaml
-BOX_MODULE_PROVIDER_MAILGUN_URL: "<String>"
+BOX_MODULE_PROVIDER_MAILGUN_URL: ""<String>""
 ```
 
 URL for the Mailgun provider
@@ -1085,7 +1087,7 @@ URL for the Mailgun provider
 #### Postmark provider from address<a href="#provider.postmark.from" id="provider.postmark.from"></a>
 
 ```yaml
-BOX_MODULE_PROVIDER_POSTMARK_FROM: "<String>"
+BOX_MODULE_PROVIDER_POSTMARK_FROM: ""<String>""
 ```
 
 From address for the Postmark provider
@@ -1095,7 +1097,7 @@ From address for the Postmark provider
 #### Postmark provider API key<a href="#provider.postmark.api-key" id="provider.postmark.api-key"></a>
 
 ```yaml
-BOX_MODULE_PROVIDER_POSTMARK_API_KEY: "<String>"
+BOX_MODULE_PROVIDER_POSTMARK_API_KEY: ""<String>""
 ```
 
 API key for the Postmark provider
@@ -1105,7 +1107,7 @@ API key for the Postmark provider
 #### SMTP provider from address<a href="#provider.smtp.from" id="provider.smtp.from"></a>
 
 ```yaml
-BOX_MODULE_PROVIDER_SMTP_FROM: "<String>"
+BOX_MODULE_PROVIDER_SMTP_FROM: ""<String>""
 ```
 
 From address for the SMTP provider
@@ -1115,7 +1117,7 @@ From address for the SMTP provider
 #### SMTP provider host<a href="#provider.smtp.host" id="provider.smtp.host"></a>
 
 ```yaml
-BOX_MODULE_PROVIDER_SMTP_HOST: "<String>"
+BOX_MODULE_PROVIDER_SMTP_HOST: ""<String>""
 ```
 
 Host for the SMTP provider
@@ -1125,7 +1127,7 @@ Host for the SMTP provider
 #### SMTP provider password<a href="#provider.smtp.password" id="provider.smtp.password"></a>
 
 ```yaml
-BOX_MODULE_PROVIDER_SMTP_PASSWORD: "<String>"
+BOX_MODULE_PROVIDER_SMTP_PASSWORD: ""<String>""
 ```
 
 Password for the SMTP provider
@@ -1135,7 +1137,7 @@ Password for the SMTP provider
 #### SMTP provider port<a href="#provider.smtp.port" id="provider.smtp.port"></a>
 
 ```yaml
-BOX_MODULE_PROVIDER_SMTP_PORT: "<String>"
+BOX_MODULE_PROVIDER_SMTP_PORT: ""<String>""
 ```
 
 Port for the SMTP provider
@@ -1145,7 +1147,7 @@ Port for the SMTP provider
 #### SMTP provider SSL<a href="#provider.smtp.ssl" id="provider.smtp.ssl"></a>
 
 ```yaml
-BOX_MODULE_PROVIDER_SMTP_SSL: "<Bool>"
+BOX_MODULE_PROVIDER_SMTP_SSL: "false"
 ```
 
 Enable SSL for the SMTP provider
@@ -1155,7 +1157,7 @@ Enable SSL for the SMTP provider
 #### SMTP provider TLS<a href="#provider.smtp.tls" id="provider.smtp.tls"></a>
 
 ```yaml
-BOX_MODULE_PROVIDER_SMTP_TLS: "<Bool>"
+BOX_MODULE_PROVIDER_SMTP_TLS: "false"
 ```
 
 Enable TLS for the SMTP provider
@@ -1165,7 +1167,7 @@ Enable TLS for the SMTP provider
 #### SMTP provider username<a href="#provider.smtp.username" id="provider.smtp.username"></a>
 
 ```yaml
-BOX_MODULE_PROVIDER_SMTP_USERNAME: "<String>"
+BOX_MODULE_PROVIDER_SMTP_USERNAME: ""<String>""
 ```
 
 Username for the SMTP provider
@@ -1179,7 +1181,7 @@ SMARTbox settings
 #### Sandbox URL<a href="#module.smartbox.sandbox-url" id="module.smartbox.sandbox-url"></a>
 
 ```yaml
-BOX_MODULE_SMARTBOX_SANDBOX_URL: "<String>"
+BOX_MODULE_SMARTBOX_SANDBOX_URL: ""<String>""
 ```
 
 URL for accessing sandbox environment
@@ -1189,7 +1191,7 @@ URL for accessing sandbox environment
 #### Terms of use URL<a href="#module.smartbox.terms-of-use-url" id="module.smartbox.terms-of-use-url"></a>
 
 ```yaml
-BOX_MODULE_SMARTBOX_TERMS_OF_USE_URL: "<String>"
+BOX_MODULE_SMARTBOX_TERMS_OF_USE_URL: ""<String>""
 ```
 
 URL for accessing terms of use
@@ -1199,7 +1201,7 @@ URL for accessing terms of use
 #### Sandbox basic<a href="#module.smartbox.sandbox-basic" id="module.smartbox.sandbox-basic"></a>
 
 ```yaml
-BOX_MODULE_SMARTBOX_SANDBOX_BASIC: "<String>"
+BOX_MODULE_SMARTBOX_SANDBOX_BASIC: ""<String>""
 ```
 
 Basic authentication credentials for sandbox
@@ -1209,7 +1211,7 @@ Basic authentication credentials for sandbox
 #### Sandbox admin<a href="#module.smartbox.sandbox-admin" id="module.smartbox.sandbox-admin"></a>
 
 ```yaml
-BOX_MODULE_SMARTBOX_SANDBOX_ADMIN: "<String>"
+BOX_MODULE_SMARTBOX_SANDBOX_ADMIN: ""<String>""
 ```
 
 Admin credentials for sandbox access
@@ -1219,7 +1221,7 @@ Admin credentials for sandbox access
 #### Session logs link<a href="#module.smartbox.session-logs-link" id="module.smartbox.session-logs-link"></a>
 
 ```yaml
-BOX_MODULE_SMARTBOX_SESSION_LOGS_LINK: "<String>"
+BOX_MODULE_SMARTBOX_SESSION_LOGS_LINK: ""<String>""
 ```
 
 Link to access session logs
@@ -1233,7 +1235,7 @@ MDM settings
 #### Default MDM model<a href="#module.mdm.default-patient-model" id="module.mdm.default-patient-model"></a>
 
 ```yaml
-BOX_MODULE_DEFAULT_PATIENT_MODEL: "<String>"
+BOX_MODULE_DEFAULT_PATIENT_MODEL: ""<String>""
 ```
 
 The default MDM model used for `$match` operation. Will be used if no model is specified with the `model` query parameter.
@@ -1247,7 +1249,7 @@ MCP settings
 #### Enable MCP server<a href="#module.mcp.server-enabled" id="module.mcp.server-enabled"></a>
 
 ```yaml
-BOX_MODULE_MCP_SERVER_ENABLED: "<Bool>"
+BOX_MODULE_MCP_SERVER_ENABLED: "false"
 ```
 
 Enable MCP server working through SSE protocol
@@ -1261,7 +1263,7 @@ Forms settings
 #### Questionnaire.url prefix<a href="#module.sdc.builder.form-url-prefix" id="module.sdc.builder.form-url-prefix"></a>
 
 ```yaml
-BOX_MODULE_SDC_BUILDER_FORM_URL_PREFIX: "http://forms.aidbox.io/questionnaire/"
+BOX_MODULE_SDC_BUILDER_FORM_URL_PREFIX: ""http://forms.aidbox.io/questionnaire/""
 ```
 
 URL prefix that will be used in URL generation for new forms
@@ -1271,7 +1273,7 @@ URL prefix that will be used in URL generation for new forms
 #### OpenAI API key<a href="#module.sdc.openai-api-key" id="module.sdc.openai-api-key"></a>
 
 ```yaml
-BOX_MODULE_SDC_OPENAI_API_KEY: "<String>"
+BOX_MODULE_SDC_OPENAI_API_KEY: ""<String>""
 ```
 
 API key for OpenAI service
@@ -1281,7 +1283,7 @@ API key for OpenAI service
 #### Gemini API key<a href="#aidbox.modules.sdc.gemini-api-key" id="aidbox.modules.sdc.gemini-api-key"></a>
 
 ```yaml
-BOX_SDC_GEMINI_API_KEY: "<String>"
+BOX_SDC_GEMINI_API_KEY: ""<String>""
 ```
 
 API key for Gemini service
@@ -1291,7 +1293,7 @@ API key for Gemini service
 #### Default language for UI<a href="#module.sdc.language" id="module.sdc.language"></a>
 
 ```yaml
-BOX_MODULE_SDC_LANGUAGE: "en"
+BOX_MODULE_SDC_LANGUAGE: ""en""
 ```
 
 Language used as default in Form Builder and Form Renderer
@@ -1301,7 +1303,7 @@ Language used as default in Form Builder and Form Renderer
 #### Default form theme<a href="#module.sdc.theme" id="module.sdc.theme"></a>
 
 ```yaml
-BOX_MODULE_SDC_THEME: "<String>"
+BOX_MODULE_SDC_THEME: ""<String>""
 ```
 
 Theme that will be used in all forms
@@ -1311,7 +1313,7 @@ Theme that will be used in all forms
 #### Hide builder's back button<a href="#module.sdc.builder.hide-back-button" id="module.sdc.builder.hide-back-button"></a>
 
 ```yaml
-BOX_MODULE_SDC_BUILDER_HIDE_BACK_BUTTON: "<Bool>"
+BOX_MODULE_SDC_BUILDER_HIDE_BACK_BUTTON: "false"
 ```
 
 Hide back button in UI Form Builder
@@ -1321,7 +1323,7 @@ Hide back button in UI Form Builder
 #### Form's redirect-on-submit URL<a href="#module.sdc.form.redirect-on-submit" id="module.sdc.form.redirect-on-submit"></a>
 
 ```yaml
-BOX_MODULE_SDC_FORM_REDIRECT_ON_SUBMIT: "<String>"
+BOX_MODULE_SDC_FORM_REDIRECT_ON_SUBMIT: ""<String>""
 ```
 
 Redirect URI that will be used on form submit/amend button click
@@ -1331,7 +1333,7 @@ Redirect URI that will be used on form submit/amend button click
 #### Form's redirect-on-save URL<a href="#module.sdc.form.redirect-on-save" id="module.sdc.form.redirect-on-save"></a>
 
 ```yaml
-BOX_MODULE_SDC_FORM_REDIRECT_ON_SAVE: "<String>"
+BOX_MODULE_SDC_FORM_REDIRECT_ON_SAVE: ""<String>""
 ```
 
 Redirect URI that will be used on form save/close button click
@@ -1341,12 +1343,12 @@ Redirect URI that will be used on form save/close button click
 #### Enable strict access control for sdc operations<a href="#module.sdc.strict-access-control" id="module.sdc.strict-access-control"></a>
 
 ```yaml
-BOX_MODULE_SDC_STRICT_ACCESS_CONTROL: "<Bool>"
+BOX_MODULE_SDC_STRICT_ACCESS_CONTROL: "true"
 ```
 
 Enable strict access control for operations(like populate/submit/reference-lookup) that can request different FHIR resources
 
-<details><summary>Details</summary><table data-header-hidden="true"><thead><tr><th width="200"></th><th></th></tr></thead><tbody><tr><td>ID</td><td><code>module.sdc.strict-access-control</code></td></tr><tr><td>Type</td><td>Bool</td></tr><tr><td>Default value</td><td><code>false</code></td></tr><tr><td>Environment variable</td><td><code>BOX_MODULE_SDC_STRICT_ACCESS_CONTROL</code></td></tr><tr><td>Deprecated environment variables</td><td><code>BOX_SDC_STRICT_ACCESS_CONTROL</code></td></tr><tr><td>Available from</td><td><code>2506</code></td></tr><tr><td>Sensitive</td><td><code>false</code> — value will be visible in plaintext in Admin UI</td></tr><tr><td>Set via</td><td>Admin UI → Settings<br />Environment variables</td></tr><tr><td>Hot reload</td><td><code>true</code> — setting can be changed at runtime</td></tr></tbody></table></details>
+<details><summary>Details</summary><table data-header-hidden="true"><thead><tr><th width="200"></th><th></th></tr></thead><tbody><tr><td>ID</td><td><code>module.sdc.strict-access-control</code></td></tr><tr><td>Type</td><td>Bool</td></tr><tr><td>Recommended value</td><td><code>true</code></td></tr><tr><td>Default value</td><td><code>false</code></td></tr><tr><td>Environment variable</td><td><code>BOX_MODULE_SDC_STRICT_ACCESS_CONTROL</code></td></tr><tr><td>Deprecated environment variables</td><td><code>BOX_SDC_STRICT_ACCESS_CONTROL</code></td></tr><tr><td>Available from</td><td><code>2506</code></td></tr><tr><td>Sensitive</td><td><code>false</code> — value will be visible in plaintext in Admin UI</td></tr><tr><td>Set via</td><td>Admin UI → Settings<br />Environment variables</td></tr><tr><td>Hot reload</td><td><code>true</code> — setting can be changed at runtime</td></tr></tbody></table></details>
 
 ### GraphQL
 
@@ -1355,7 +1357,7 @@ GraphQL settings
 #### Warmup GraphQL cache on startup<a href="#module.graphql.warmup-on-startup" id="module.graphql.warmup-on-startup"></a>
 
 ```yaml
-BOX_MODULE_GRAPHQL_WARMUP_ON_STARTUP: "<Bool>"
+BOX_MODULE_GRAPHQL_WARMUP_ON_STARTUP: "false"
 ```
 
 Warmup GraphQL API cache on startup. When false, cache will be warmed up on first request.
@@ -1365,7 +1367,7 @@ Warmup GraphQL API cache on startup. When false, cache will be warmed up on firs
 #### Allow reference to any resource<a href="#module.graphql.reference-any" id="module.graphql.reference-any"></a>
 
 ```yaml
-BOX_MODULE_GRAPHQL_REFERENCE_ANY: "<Bool>"
+BOX_MODULE_GRAPHQL_REFERENCE_ANY: "false"
 ```
 
 Enable GraphQL API (rev)include for reference with target - any
@@ -1385,7 +1387,7 @@ GraphQL API query timeout in seconds: Set to zero to disable.
 #### GraphQL access control mode<a href="#module.graphql.access-control" id="module.graphql.access-control"></a>
 
 ```yaml
-BOX_MODULE_GRAPHQL_ACCESS_CONTROL: "disabled"
+BOX_MODULE_GRAPHQL_ACCESS_CONTROL: ""disabled""
 ```
 
 Access control in GraphQL API
@@ -1399,7 +1401,7 @@ Webpush settings
 #### Public Key<a href="#module.webpush.public-key" id="module.webpush.public-key"></a>
 
 ```yaml
-BOX_MODULE_WEBPUSH_PUBLIC_KEY: "<String>"
+BOX_MODULE_WEBPUSH_PUBLIC_KEY: ""<String>""
 ```
 
 ECDH/BC/prime256v1 Public Key
@@ -1409,7 +1411,7 @@ ECDH/BC/prime256v1 Public Key
 #### Private Key<a href="#module.webpush.private-key" id="module.webpush.private-key"></a>
 
 ```yaml
-BOX_MODULE_WEBPUSH_PRIVATE_KEY: "<String>"
+BOX_MODULE_WEBPUSH_PRIVATE_KEY: ""<String>""
 ```
 
 ECDH/BC/prime256v1 Private Key
@@ -1419,7 +1421,7 @@ ECDH/BC/prime256v1 Private Key
 #### JWT mail<a href="#module.webpush.jwt-mail" id="module.webpush.jwt-mail"></a>
 
 ```yaml
-BOX_MODULE_WEBPUSH_JWT_MAIL: "<String>"
+BOX_MODULE_WEBPUSH_JWT_MAIL: ""<String>""
 ```
 
 `JWT.sub` field value needs to be either a URL or a mailto email address.
@@ -1438,12 +1440,12 @@ Primary database settings
 #### Database host<a href="#db.host" id="db.host"></a>
 
 ```yaml
-BOX_DB_HOST: "<String>"
+BOX_DB_HOST: ""postgres""
 ```
 
 Database host address.
 
-<details><summary>Details</summary><table data-header-hidden="true"><thead><tr><th width="200"></th><th></th></tr></thead><tbody><tr><td>ID</td><td><code>db.host</code></td></tr><tr><td>Type</td><td>String</td></tr><tr><td>Default value</td><td>(no default)</td></tr><tr><td>Environment variable</td><td><code>BOX_DB_HOST</code></td></tr><tr><td>Deprecated environment variables</td><td><code>PGHOST</code></td></tr><tr><td>Sensitive</td><td><code>false</code> — value will be visible in plaintext in Admin UI</td></tr><tr><td>Set via</td><td>Environment variables</td></tr><tr><td>Hot reload</td><td><code>false</code> — setting requires system restart</td></tr></tbody></table></details>
+<details><summary>Details</summary><table data-header-hidden="true"><thead><tr><th width="200"></th><th></th></tr></thead><tbody><tr><td>ID</td><td><code>db.host</code></td></tr><tr><td>Type</td><td>String</td></tr><tr><td>Recommended value</td><td><code>postgres</code></td></tr><tr><td>Default value</td><td>(no default)</td></tr><tr><td>Environment variable</td><td><code>BOX_DB_HOST</code></td></tr><tr><td>Deprecated environment variables</td><td><code>PGHOST</code></td></tr><tr><td>Sensitive</td><td><code>false</code> — value will be visible in plaintext in Admin UI</td></tr><tr><td>Set via</td><td>Environment variables</td></tr><tr><td>Hot reload</td><td><code>false</code> — setting requires system restart</td></tr></tbody></table></details>
 
 #### Database port<a href="#db.port" id="db.port"></a>
 
@@ -1453,37 +1455,37 @@ BOX_DB_PORT: "5432"
 
 Database port.
 
-<details><summary>Details</summary><table data-header-hidden="true"><thead><tr><th width="200"></th><th></th></tr></thead><tbody><tr><td>ID</td><td><code>db.port</code></td></tr><tr><td>Type</td><td>Int</td></tr><tr><td>Default value</td><td><code>5432</code></td></tr><tr><td>Environment variable</td><td><code>BOX_DB_PORT</code></td></tr><tr><td>Deprecated environment variables</td><td><code>PGPORT</code></td></tr><tr><td>Sensitive</td><td><code>false</code> — value will be visible in plaintext in Admin UI</td></tr><tr><td>Set via</td><td>Environment variables</td></tr><tr><td>Hot reload</td><td><code>false</code> — setting requires system restart</td></tr></tbody></table></details>
+<details><summary>Details</summary><table data-header-hidden="true"><thead><tr><th width="200"></th><th></th></tr></thead><tbody><tr><td>ID</td><td><code>db.port</code></td></tr><tr><td>Type</td><td>Int</td></tr><tr><td>Recommended value</td><td><code>5432</code></td></tr><tr><td>Default value</td><td><code>5432</code></td></tr><tr><td>Environment variable</td><td><code>BOX_DB_PORT</code></td></tr><tr><td>Deprecated environment variables</td><td><code>PGPORT</code></td></tr><tr><td>Sensitive</td><td><code>false</code> — value will be visible in plaintext in Admin UI</td></tr><tr><td>Set via</td><td>Environment variables</td></tr><tr><td>Hot reload</td><td><code>false</code> — setting requires system restart</td></tr></tbody></table></details>
 
 #### Database name<a href="#db.database" id="db.database"></a>
 
 ```yaml
-BOX_DB_DATABASE: "<String>"
+BOX_DB_DATABASE: ""aidbox""
 ```
 
 The database name. `postgres` name is not allowed.
 
-<details><summary>Details</summary><table data-header-hidden="true"><thead><tr><th width="200"></th><th></th></tr></thead><tbody><tr><td>ID</td><td><code>db.database</code></td></tr><tr><td>Type</td><td>String</td></tr><tr><td>Default value</td><td>(no default)</td></tr><tr><td>Environment variable</td><td><code>BOX_DB_DATABASE</code></td></tr><tr><td>Deprecated environment variables</td><td><code>PGDATABASE</code></td></tr><tr><td>Sensitive</td><td><code>false</code> — value will be visible in plaintext in Admin UI</td></tr><tr><td>Set via</td><td>Environment variables</td></tr><tr><td>Hot reload</td><td><code>false</code> — setting requires system restart</td></tr></tbody></table></details>
+<details><summary>Details</summary><table data-header-hidden="true"><thead><tr><th width="200"></th><th></th></tr></thead><tbody><tr><td>ID</td><td><code>db.database</code></td></tr><tr><td>Type</td><td>String</td></tr><tr><td>Recommended value</td><td><code>aidbox</code></td></tr><tr><td>Default value</td><td>(no default)</td></tr><tr><td>Environment variable</td><td><code>BOX_DB_DATABASE</code></td></tr><tr><td>Deprecated environment variables</td><td><code>PGDATABASE</code></td></tr><tr><td>Sensitive</td><td><code>false</code> — value will be visible in plaintext in Admin UI</td></tr><tr><td>Set via</td><td>Environment variables</td></tr><tr><td>Hot reload</td><td><code>false</code> — setting requires system restart</td></tr></tbody></table></details>
 
 #### Database user<a href="#db.user" id="db.user"></a>
 
 ```yaml
-BOX_DB_USER: "<String>"
+BOX_DB_USER: ""aidbox""
 ```
 
 The database username.
 
-<details><summary>Details</summary><table data-header-hidden="true"><thead><tr><th width="200"></th><th></th></tr></thead><tbody><tr><td>ID</td><td><code>db.user</code></td></tr><tr><td>Type</td><td>String</td></tr><tr><td>Default value</td><td>(no default)</td></tr><tr><td>Environment variable</td><td><code>BOX_DB_USER</code></td></tr><tr><td>Deprecated environment variables</td><td><code>PGUSER</code></td></tr><tr><td>Sensitive</td><td><code>false</code> — value will be visible in plaintext in Admin UI</td></tr><tr><td>Set via</td><td>Environment variables</td></tr><tr><td>Hot reload</td><td><code>false</code> — setting requires system restart</td></tr></tbody></table></details>
+<details><summary>Details</summary><table data-header-hidden="true"><thead><tr><th width="200"></th><th></th></tr></thead><tbody><tr><td>ID</td><td><code>db.user</code></td></tr><tr><td>Type</td><td>String</td></tr><tr><td>Recommended value</td><td><code>aidbox</code></td></tr><tr><td>Default value</td><td>(no default)</td></tr><tr><td>Environment variable</td><td><code>BOX_DB_USER</code></td></tr><tr><td>Deprecated environment variables</td><td><code>PGUSER</code></td></tr><tr><td>Sensitive</td><td><code>false</code> — value will be visible in plaintext in Admin UI</td></tr><tr><td>Set via</td><td>Environment variables</td></tr><tr><td>Hot reload</td><td><code>false</code> — setting requires system restart</td></tr></tbody></table></details>
 
 #### Database password<a href="#db.password" id="db.password"></a>
 
 ```yaml
-BOX_DB_PASSWORD: "<String>"
+BOX_DB_PASSWORD: ""<pg-password>""
 ```
 
 A password of database role name.
 
-<details><summary>Details</summary><table data-header-hidden="true"><thead><tr><th width="200"></th><th></th></tr></thead><tbody><tr><td>ID</td><td><code>db.password</code></td></tr><tr><td>Type</td><td>String</td></tr><tr><td>Default value</td><td>(no default)</td></tr><tr><td>Environment variable</td><td><code>BOX_DB_PASSWORD</code></td></tr><tr><td>Deprecated environment variables</td><td><code>PGPASSWORD</code></td></tr><tr><td>Sensitive</td><td><code>true</code> — value will be masked in Admin UI</td></tr><tr><td>Set via</td><td>Environment variables</td></tr><tr><td>Hot reload</td><td><code>false</code> — setting requires system restart</td></tr></tbody></table></details>
+<details><summary>Details</summary><table data-header-hidden="true"><thead><tr><th width="200"></th><th></th></tr></thead><tbody><tr><td>ID</td><td><code>db.password</code></td></tr><tr><td>Type</td><td>String</td></tr><tr><td>Recommended value</td><td><code>&lt;pg-password&gt;</code></td></tr><tr><td>Default value</td><td>(no default)</td></tr><tr><td>Environment variable</td><td><code>BOX_DB_PASSWORD</code></td></tr><tr><td>Deprecated environment variables</td><td><code>PGPASSWORD</code></td></tr><tr><td>Sensitive</td><td><code>true</code> — value will be masked in Admin UI</td></tr><tr><td>Set via</td><td>Environment variables</td></tr><tr><td>Hot reload</td><td><code>false</code> — setting requires system restart</td></tr></tbody></table></details>
 
 #### Install PostgreSQL extensions at startup<a href="#db.install-pg-extensions" id="db.install-pg-extensions"></a>
 
@@ -1498,7 +1500,7 @@ Automatically installs PostgreSQL extensions (pgcrypto, unaccent, pg_trgm, fuzzy
 #### Database extension schema<a href="#db.extension-schema" id="db.extension-schema"></a>
 
 ```yaml
-BOX_DB_EXTENSION_SCHEMA: "<String>"
+BOX_DB_EXTENSION_SCHEMA: ""<String>""
 ```
 
 Schema for PostgreSQL extensions. Default is current schema.
@@ -1508,7 +1510,7 @@ Schema for PostgreSQL extensions. Default is current schema.
 #### ViewDefinition materialization schema<a href="#db.view-definition-schema" id="db.view-definition-schema"></a>
 
 ```yaml
-BOX_VIEW_DEFINITION_SCHEMA: "sof"
+BOX_VIEW_DEFINITION_SCHEMA: ""sof""
 ```
 
 Schema for storing `ViewDefinition` materialization. Changing this setting does not affect already materialized views; it applies only to new ones. It is recommended to use a dedicated schema for `ViewDefinition` to avoid potential collisions.
@@ -1528,7 +1530,7 @@ Maximum wait time (in milliseconds) for a database connection from the pool befo
 #### Pool connection init SQL<a href="#db.pool.connection-init-sql" id="db.pool.connection-init-sql"></a>
 
 ```yaml
-BOX_DB_POOL_CONNECTION_INIT_SQL: "select 1"
+BOX_DB_POOL_CONNECTION_INIT_SQL: ""select 1""
 ```
 
 Specifies a SQL statement that will be executed after every new connection creation before adding it to the pool.
@@ -1568,7 +1570,7 @@ Maximum number of simultaneous database connections.
 #### Propagate DB health status to Aidbox<a href="#db.propagate-db-health-status-to-box" id="db.propagate-db-health-status-to-box"></a>
 
 ```yaml
-BOX_PROPAGATE_DB_HEALTH_STATUS_TO_BOX: "<Bool>"
+BOX_PROPAGATE_DB_HEALTH_STATUS_TO_BOX: "false"
 ```
 
 If enabled, the health status of the database will be reflected in the overall health status of Aidbox.
@@ -1586,7 +1588,7 @@ Read-only database replica settings
 #### Read-only replica enable<a href="#db.ro-replica.enabled" id="db.ro-replica.enabled"></a>
 
 ```yaml
-BOX_DB_RO_REPLICA_ENABLED: "<Bool>"
+BOX_DB_RO_REPLICA_ENABLED: "false"
 ```
 
 Enable options to process requests to read-only db replica.
@@ -1598,7 +1600,7 @@ If enabled you should define: `db.ro-replica.database`, `db.ro-replica.host`,
 #### Database name<a href="#db.ro-replica.database" id="db.ro-replica.database"></a>
 
 ```yaml
-BOX_DB_RO_REPLICA_DATABASE: "<String>"
+BOX_DB_RO_REPLICA_DATABASE: ""<String>""
 ```
 
 The database name. `postgres` name is not allowed.
@@ -1608,7 +1610,7 @@ The database name. `postgres` name is not allowed.
 #### Database host<a href="#db.ro-replica.host" id="db.ro-replica.host"></a>
 
 ```yaml
-BOX_DB_RO_REPLICA_HOST: "<String>"
+BOX_DB_RO_REPLICA_HOST: ""<String>""
 ```
 
 AidboxDB host address.
@@ -1618,7 +1620,7 @@ AidboxDB host address.
 #### Database port<a href="#db.ro-replica.port" id="db.ro-replica.port"></a>
 
 ```yaml
-BOX_DB_RO_REPLICA_PORT: "<Int>"
+BOX_DB_RO_REPLICA_PORT: ""<Int>""
 ```
 
 The database port number.
@@ -1628,7 +1630,7 @@ The database port number.
 #### Database user<a href="#db.ro-replica.user" id="db.ro-replica.user"></a>
 
 ```yaml
-BOX_DB_RO_REPLICA_USER: "<String>"
+BOX_DB_RO_REPLICA_USER: ""<String>""
 ```
 
 The database username.
@@ -1638,7 +1640,7 @@ The database username.
 #### Database password<a href="#db.ro-replica.password" id="db.ro-replica.password"></a>
 
 ```yaml
-BOX_DB_RO_REPLICA_PASSWORD: "<String>"
+BOX_DB_RO_REPLICA_PASSWORD: ""<String>""
 ```
 
 The database password.
@@ -1648,7 +1650,7 @@ The database password.
 #### Database extension schema<a href="#db.ro-replica.extension-schema" id="db.ro-replica.extension-schema"></a>
 
 ```yaml
-AIDBOX_EXTENSION_SCHEMA: "<String>"
+AIDBOX_EXTENSION_SCHEMA: ""<String>""
 ```
 
 The database extension schema.
@@ -1698,7 +1700,7 @@ Maximum number of simultaneous database connections.
 #### Pool connection init SQL<a href="#db.ro-replica.pool.connection-init-sql" id="db.ro-replica.pool.connection-init-sql"></a>
 
 ```yaml
-BOX_DB_RO_REPLICA_POOL_CONNECTION_INIT_SQL: "select 1"
+BOX_DB_RO_REPLICA_POOL_CONNECTION_INIT_SQL: ""select 1""
 ```
 
 The pool connection initialization SQL statement.
@@ -1712,22 +1714,22 @@ Web Server settings
 ### Base URL<a href="#web.base-url" id="web.base-url"></a>
 
 ```yaml
-BOX_WEB_BASE_URL: "<String>"
+BOX_WEB_BASE_URL: ""<base-url>""
 ```
 
 Base URL is the URL Aidbox is available at. It consists of scheme (HTTP, HTTPS), domain, port (optional) and URL path (optional). Trailing slash is not allowed.
 
-<details><summary>Details</summary><table data-header-hidden="true"><thead><tr><th width="200"></th><th></th></tr></thead><tbody><tr><td>ID</td><td><code>web.base-url</code></td></tr><tr><td>Type</td><td>String</td></tr><tr><td>Default value</td><td>(no default)</td></tr><tr><td>Environment variable</td><td><code>BOX_WEB_BASE_URL</code></td></tr><tr><td>Deprecated environment variables</td><td><code>AIDBOX_BASE_URL</code></td></tr><tr><td>Sensitive</td><td><code>false</code> — value will be visible in plaintext in Admin UI</td></tr><tr><td>Set via</td><td>Admin UI → Settings<br />Environment variables</td></tr><tr><td>Hot reload</td><td><code>false</code> — setting requires system restart</td></tr></tbody></table></details>
+<details><summary>Details</summary><table data-header-hidden="true"><thead><tr><th width="200"></th><th></th></tr></thead><tbody><tr><td>ID</td><td><code>web.base-url</code></td></tr><tr><td>Type</td><td>String</td></tr><tr><td>Recommended value</td><td><code>&lt;base-url&gt;</code></td></tr><tr><td>Default value</td><td>(no default)</td></tr><tr><td>Environment variable</td><td><code>BOX_WEB_BASE_URL</code></td></tr><tr><td>Deprecated environment variables</td><td><code>AIDBOX_BASE_URL</code></td></tr><tr><td>Sensitive</td><td><code>false</code> — value will be visible in plaintext in Admin UI</td></tr><tr><td>Set via</td><td>Admin UI → Settings<br />Environment variables</td></tr><tr><td>Hot reload</td><td><code>false</code> — setting requires system restart</td></tr></tbody></table></details>
 
 ### Web server port<a href="#web.port" id="web.port"></a>
 
 ```yaml
-BOX_WEB_PORT: "8080"
+BOX_WEB_PORT: "8888"
 ```
 
 Web server port that Aidbox listens on.
 
-<details><summary>Details</summary><table data-header-hidden="true"><thead><tr><th width="200"></th><th></th></tr></thead><tbody><tr><td>ID</td><td><code>web.port</code></td></tr><tr><td>Type</td><td>Int</td></tr><tr><td>Default value</td><td><code>8080</code></td></tr><tr><td>Environment variable</td><td><code>BOX_WEB_PORT</code></td></tr><tr><td>Deprecated environment variables</td><td><code>AIDBOX_PORT</code></td></tr><tr><td>Sensitive</td><td><code>false</code> — value will be visible in plaintext in Admin UI</td></tr><tr><td>Set via</td><td>Admin UI → Settings<br />Environment variables</td></tr><tr><td>Hot reload</td><td><code>false</code> — setting requires system restart</td></tr></tbody></table></details>
+<details><summary>Details</summary><table data-header-hidden="true"><thead><tr><th width="200"></th><th></th></tr></thead><tbody><tr><td>ID</td><td><code>web.port</code></td></tr><tr><td>Type</td><td>Int</td></tr><tr><td>Recommended value</td><td><code>8888</code></td></tr><tr><td>Default value</td><td><code>8080</code></td></tr><tr><td>Environment variable</td><td><code>BOX_WEB_PORT</code></td></tr><tr><td>Deprecated environment variables</td><td><code>AIDBOX_PORT</code></td></tr><tr><td>Sensitive</td><td><code>false</code> — value will be visible in plaintext in Admin UI</td></tr><tr><td>Set via</td><td>Admin UI → Settings<br />Environment variables</td></tr><tr><td>Hot reload</td><td><code>false</code> — setting requires system restart</td></tr></tbody></table></details>
 
 ### Web thread count<a href="#web.thread" id="web.thread"></a>
 
@@ -1770,7 +1772,7 @@ Logs settings
 #### Disable health logs<a href="#observability.disable-health-logs" id="observability.disable-health-logs"></a>
 
 ```yaml
-BOX_OBSERVABILITY_DISABLE_HEALTH_LOGS: "<Bool>"
+BOX_OBSERVABILITY_DISABLE_HEALTH_LOGS: "false"
 ```
 
 Disable `/health` endpoint requests logging. Default value is `false`
@@ -1780,7 +1782,7 @@ Disable `/health` endpoint requests logging. Default value is `false`
 #### Log file path<a href="#observability.log-file.path" id="observability.log-file.path"></a>
 
 ```yaml
-BOX_OBSERVABILITY_LOG_FILE_PATH: "<String>"
+BOX_OBSERVABILITY_LOG_FILE_PATH: ""<String>""
 ```
 
 If provided, enables mode to pipe logs as JSON into the file by specified path.
@@ -1828,7 +1830,7 @@ Metrics settings
 #### Metrics server port<a href="#observability.metrics.server-port" id="observability.metrics.server-port"></a>
 
 ```yaml
-BOX_METRICS_PORT: "<Int>"
+BOX_METRICS_PORT: ""<Int>""
 ```
 
 Port on which Aidbox will expose metrics.
@@ -1853,13 +1855,13 @@ Stdout settings
 #### Stdout log level<a href="#observability.stdout.log-level" id="observability.stdout.log-level"></a>
 
 ```yaml
-BOX_OBSERVABILITY_STDOUT_LOG_LEVEL: "<Enum>"
+BOX_OBSERVABILITY_STDOUT_LOG_LEVEL: ""<Enum>""
 ```
 
 Controls stdout with specified logs level.
-Possible values: off, fatal, error, warn, info, debug, trace, all, true
-By setting one of these levels you would also get all the levels to the left.
-e.g. if you set log level to `warn` you would also get log events with `fatal`
+Possible values: off, fatal, error, warn, info, debug, trace, all, true 
+By setting one of these levels you would also get all the levels to the left. 
+e.g. if you set log level to `warn` you would also get log events with `fatal` 
 and `error` levels (off is excluded).
 
 <details><summary>Details</summary><table data-header-hidden="true"><thead><tr><th width="200"></th><th></th></tr></thead><tbody><tr><td>ID</td><td><code>observability.stdout.log-level</code></td></tr><tr><td>Type</td><td>Enum</td></tr><tr><td>Values</td><td><code>off</code><br /><code>fatal</code><br /><code>error</code><br /><code>warn</code><br /><code>info</code><br /><code>debug</code><br /><code>trace</code><br /><code>all</code><br /><code>true</code></td></tr><tr><td>Default value</td><td>(no default)</td></tr><tr><td>Environment variable</td><td><code>BOX_OBSERVABILITY_STDOUT_LOG_LEVEL</code></td></tr><tr><td>Deprecated environment variables</td><td><code>AIDBOX_STDOUT_JSON</code></td></tr><tr><td>Sensitive</td><td><code>false</code> — value will be visible in plaintext in Admin UI</td></tr><tr><td>Set via</td><td>Admin UI → Settings<br />Environment variables</td></tr><tr><td>Hot reload</td><td><code>false</code> — setting requires system restart</td></tr></tbody></table></details>
@@ -1867,13 +1869,13 @@ and `error` levels (off is excluded).
 #### Pretty print log level<a href="#observability.stdout.pretty-log-level" id="observability.stdout.pretty-log-level"></a>
 
 ```yaml
-BOX_OBSERVABILITY_STDOUT_PRETTY_LOG_LEVEL: "warn"
+BOX_OBSERVABILITY_STDOUT_PRETTY_LOG_LEVEL: ""warn""
 ```
 
 Controls pretty print of logs to stdout with specified level.
-Possible values: off, fatal, error, warn, info, debug, trace, all, true
-By setting one of these levels you would also get all the levels to the left.
-e.g. if you set log level to `warn` you would also get log events with `fatal`
+Possible values: off, fatal, error, warn, info, debug, trace, all, true 
+By setting one of these levels you would also get all the levels to the left. 
+e.g. if you set log level to `warn` you would also get log events with `fatal` 
 and `error` levels (off is excluded).
 
 <details><summary>Details</summary><table data-header-hidden="true"><thead><tr><th width="200"></th><th></th></tr></thead><tbody><tr><td>ID</td><td><code>observability.stdout.pretty-log-level</code></td></tr><tr><td>Type</td><td>Enum</td></tr><tr><td>Values</td><td><code>off</code><br /><code>fatal</code><br /><code>error</code><br /><code>warn</code><br /><code>info</code><br /><code>debug</code><br /><code>trace</code><br /><code>all</code><br /><code>true</code></td></tr><tr><td>Default value</td><td><code>warn</code></td></tr><tr><td>Environment variable</td><td><code>BOX_OBSERVABILITY_STDOUT_PRETTY_LOG_LEVEL</code></td></tr><tr><td>Deprecated environment variables</td><td><code>AIDBOX_STDOUT_PRETTY</code></td></tr><tr><td>Sensitive</td><td><code>false</code> — value will be visible in plaintext in Admin UI</td></tr><tr><td>Set via</td><td>Admin UI → Settings<br />Environment variables</td></tr><tr><td>Hot reload</td><td><code>false</code> — setting requires system restart</td></tr></tbody></table></details>
@@ -1881,13 +1883,13 @@ and `error` levels (off is excluded).
 #### Google log level<a href="#observability.stdout.google-log-level" id="observability.stdout.google-log-level"></a>
 
 ```yaml
-BOX_OBSERVABILITY_STDOUT_GOOGLE_LOG_LEVEL: "<Enum>"
+BOX_OBSERVABILITY_STDOUT_GOOGLE_LOG_LEVEL: ""<Enum>""
 ```
 
 Produces in Google Logging format with specified log level.
-Possible values: off, fatal, error, warn, info, debug, trace, all, true
-By setting one of these levels you would also get all the levels to the left.
-e.g. if you set log level to `warn` you would also get log events with `fatal`
+Possible values: off, fatal, error, warn, info, debug, trace, all, true 
+By setting one of these levels you would also get all the levels to the left. 
+e.g. if you set log level to `warn` you would also get log events with `fatal` 
 and `error` levels (off is excluded).
 
 <details><summary>Details</summary><table data-header-hidden="true"><thead><tr><th width="200"></th><th></th></tr></thead><tbody><tr><td>ID</td><td><code>observability.stdout.google-log-level</code></td></tr><tr><td>Type</td><td>Enum</td></tr><tr><td>Values</td><td><code>off</code><br /><code>fatal</code><br /><code>error</code><br /><code>warn</code><br /><code>info</code><br /><code>debug</code><br /><code>trace</code><br /><code>all</code><br /><code>true</code></td></tr><tr><td>Default value</td><td>(no default)</td></tr><tr><td>Environment variable</td><td><code>BOX_OBSERVABILITY_STDOUT_GOOGLE_LOG_LEVEL</code></td></tr><tr><td>Deprecated environment variables</td><td><code>AIDBOX_STDOUT_GOOGLE_JSON</code></td></tr><tr><td>Sensitive</td><td><code>false</code> — value will be visible in plaintext in Admin UI</td></tr><tr><td>Set via</td><td>Admin UI → Settings<br />Environment variables</td></tr><tr><td>Hot reload</td><td><code>false</code> — setting requires system restart</td></tr></tbody></table></details>
@@ -1899,7 +1901,7 @@ Grafana Loki settings
 #### Loki URL<a href="#observability.loki-url" id="observability.loki-url"></a>
 
 ```yaml
-BOX_OBSERVABILITY_LOKI_URL: "<String>"
+BOX_OBSERVABILITY_LOKI_URL: ""<String>""
 ```
 
 Loki URL to enable Aidbox logs uploading into Loki
@@ -1909,7 +1911,7 @@ Loki URL to enable Aidbox logs uploading into Loki
 #### Loki batch size<a href="#observability.loki.batch-size" id="observability.loki.batch-size"></a>
 
 ```yaml
-BOX_OBSERVABILITY_LOKI_BATCH_SIZE: "<String>"
+BOX_OBSERVABILITY_LOKI_BATCH_SIZE: ""<String>""
 ```
 
 Loki batch size for log uploading.
@@ -1921,7 +1923,7 @@ or time passed from previous log uploading exceeds `observability.loki.batch-tim
 #### Loki batch timeout<a href="#observability.loki.batch-timeout" id="observability.loki.batch-timeout"></a>
 
 ```yaml
-BOX_OBSERVABILITY_LOKI_BATCH_TIMEOUT: "<Int>"
+BOX_OBSERVABILITY_LOKI_BATCH_TIMEOUT: ""<Int>""
 ```
 
 How long to wait before uploading
@@ -1933,7 +1935,7 @@ or time passed from previous log uploading exceeds `observability.loki.batch-tim
 #### Loki stream<a href="#observability.loki.stream" id="observability.loki.stream"></a>
 
 ```yaml
-BOX_OBSERVABILITY_LOKI_STREAM: "<String>"
+BOX_OBSERVABILITY_LOKI_STREAM: ""<String>""
 ```
 
 Stream refers to the labels or metadata associated with a log stream
@@ -1949,7 +1951,7 @@ Datadog settings
 #### Datadog API Key<a href="#observability.datadog.api-key" id="observability.datadog.api-key"></a>
 
 ```yaml
-BOX_OBSERVABILITY_DATADOG_API_KEY: "<String>"
+BOX_OBSERVABILITY_DATADOG_API_KEY: ""<String>""
 ```
 
 Datadog API Key.
@@ -1959,7 +1961,7 @@ Datadog API Key.
 #### Datadog regional site<a href="#observability.datadog.site" id="observability.datadog.site"></a>
 
 ```yaml
-BOX_OBSERVABILITY_DATADOG_SITE: "<Enum>"
+BOX_OBSERVABILITY_DATADOG_SITE: ""<Enum>""
 ```
 
 The regional site for a Datadog customer.
@@ -1969,7 +1971,7 @@ The regional site for a Datadog customer.
 #### Datadog log tags<a href="#observability.datadog.tags" id="observability.datadog.tags"></a>
 
 ```yaml
-BOX_OBSERVABILITY_DATADOG_TAGS: "<String>"
+BOX_OBSERVABILITY_DATADOG_TAGS: ""<String>""
 ```
 
 Tags associated with your logs.
@@ -1981,7 +1983,7 @@ For example `env:staging`.
 #### Datadog log file path<a href="#observability.datadog.logs" id="observability.datadog.logs"></a>
 
 ```yaml
-BOX_OBSERVABILITY_DATADOG_LOGS: "<String>"
+BOX_OBSERVABILITY_DATADOG_LOGS: ""<String>""
 ```
 
 Fallback file to write logs in if uploading to Datadog fails
@@ -1991,7 +1993,7 @@ Fallback file to write logs in if uploading to Datadog fails
 #### Datadog log batch size<a href="#observability.datadog.batch-size" id="observability.datadog.batch-size"></a>
 
 ```yaml
-BOX_OBSERVABILITY_DATADOG_BATCH_SIZE: "<Int>"
+BOX_OBSERVABILITY_DATADOG_BATCH_SIZE: ""<Int>""
 ```
 
 How many log entries to collect before uploading.
@@ -2003,7 +2005,7 @@ or time passed from previous log uploading exceeds `observability.datadog.batch-
 #### Datadog log batch timeout<a href="#observability.datadog.batch-timeout" id="observability.datadog.batch-timeout"></a>
 
 ```yaml
-BOX_OBSERVABILITY_DATADOG_BATCH_TIMEOUT: "<Int>"
+BOX_OBSERVABILITY_DATADOG_BATCH_TIMEOUT: ""<Int>""
 ```
 
 How long to wait before uploading
@@ -2019,7 +2021,7 @@ Elastic settings
 #### Elastic Search auth<a href="#observability.elastic.search-auth" id="observability.elastic.search-auth"></a>
 
 ```yaml
-BOX_OBSERVABILITY_ELASTIC_SEARCH_AUTH: "<String>"
+BOX_OBSERVABILITY_ELASTIC_SEARCH_AUTH: ""<String>""
 ```
 
 Format: `<user>:<password>`
@@ -2030,7 +2032,7 @@ Basic auth credentials for ElasticSearch. API key is not supported.
 #### Elastic Search URL<a href="#observability.elastic.search-url" id="observability.elastic.search-url"></a>
 
 ```yaml
-BOX_OBSERVABILITY_ELASTIC_SEARCH_URL: "<String>"
+BOX_OBSERVABILITY_ELASTIC_SEARCH_URL: ""<String>""
 ```
 
 If provided, enables mode to push logs to ElasticSearch
@@ -2040,7 +2042,7 @@ If provided, enables mode to push logs to ElasticSearch
 #### Elastic Search batch size<a href="#observability.elastic.batch-size" id="observability.elastic.batch-size"></a>
 
 ```yaml
-BOX_OBSERVABILITY_ELASTIC_BATCH_SIZE: "<Int>"
+BOX_OBSERVABILITY_ELASTIC_BATCH_SIZE: ""<Int>""
 ```
 
 Log batch size used to optimize log shipping performance. The default value is 200
@@ -2060,7 +2062,7 @@ Timeout to post a batch to ElasticSearch. If there is not enough records to reac
 #### Elastic Search log format<a href="#observability.elastic.index-pattern" id="observability.elastic.index-pattern"></a>
 
 ```yaml
-BOX_OBSERVABILITY_ELASTIC_INDEX_PATTERN: "'aidbox-logs'-yyyy-MM-dd"
+BOX_OBSERVABILITY_ELASTIC_INDEX_PATTERN: ""'aidbox-logs'-yyyy-MM-dd""
 ```
 
 Custom index format string. The default value is 'aidbox-logs'-yyyy-MM-dd.
@@ -2074,7 +2076,7 @@ Grafana settings
 #### Grafana URL for metrics dashboards<a href="#observability.grafana.url" id="observability.grafana.url"></a>
 
 ```yaml
-BOX_OBSERVABILITY_GRAFANA_URL: "<String>"
+BOX_OBSERVABILITY_GRAFANA_URL: ""<String>""
 ```
 
 Grafana URL to update the metrics dashboards.
@@ -2084,7 +2086,7 @@ Grafana URL to update the metrics dashboards.
 #### Grafana user for metrics dashboards<a href="#observability.grafana.user" id="observability.grafana.user"></a>
 
 ```yaml
-BOX_OBSERVABILITY_GRAFANA_USER: "<String>"
+BOX_OBSERVABILITY_GRAFANA_USER: ""<String>""
 ```
 
 Grafana user to update the metrics dashboards.
@@ -2094,7 +2096,7 @@ Grafana user to update the metrics dashboards.
 #### Grafana password for metrics dashboards<a href="#observability.grafana.password" id="observability.grafana.password"></a>
 
 ```yaml
-BOX_OBSERVABILITY_GRAFANA_PASSWORD: "<String>"
+BOX_OBSERVABILITY_GRAFANA_PASSWORD: ""<String>""
 ```
 
 Grafana password to update the metrics dashboards.
@@ -2108,7 +2110,7 @@ OpenTelemetry settings
 #### OTEL metrics request headers<a href="#observability.otel.metrics-request-headers" id="observability.otel.metrics-request-headers"></a>
 
 ```yaml
-BOX_OBSERVABILITY_OTEL_METRICS_REQUEST_HEADERS: "<String>"
+BOX_OBSERVABILITY_OTEL_METRICS_REQUEST_HEADERS: ""<String>""
 ```
 
 The headers for OTEL metrics requests, formatted as HeaderName:HeaderValue
@@ -2119,7 +2121,7 @@ HeaderName:HeaderValue.
 #### OTEL metrics URL<a href="#observability.otel.metrics-url" id="observability.otel.metrics-url"></a>
 
 ```yaml
-BOX_OBSERVABILITY_OTEL_METRICS_URL: "<String>"
+BOX_OBSERVABILITY_OTEL_METRICS_URL: ""<String>""
 ```
 
 The metrics' consumer URL (OTEL collector, Elastic EPM etc.).
@@ -2139,7 +2141,7 @@ The time interval (in seconds) for sending OTEL metrics.
 #### OTEL traces request headers<a href="#observability.otel.traces-request-headers" id="observability.otel.traces-request-headers"></a>
 
 ```yaml
-BOX_OBSERVABILITY_OTEL_TRACES_REQUEST_HEADERS: "<String>"
+BOX_OBSERVABILITY_OTEL_TRACES_REQUEST_HEADERS: ""<String>""
 ```
 
 The headers for OTEL traces requests, formatted as HeaderName:HeaderValue
@@ -2150,7 +2152,7 @@ HeaderName:HeaderValue.
 #### OTEL traces URL<a href="#observability.otel.traces-url" id="observability.otel.traces-url"></a>
 
 ```yaml
-BOX_OBSERVABILITY_OTEL_TRACES_URL: "<String>"
+BOX_OBSERVABILITY_OTEL_TRACES_URL: ""<String>""
 ```
 
 The traces' consumer URL (OTEL collector, Elastic EPM etc.).
@@ -2190,7 +2192,7 @@ Traces history size on telemetry $status endpoint
 #### OTEL logs request headers<a href="#observability.otel.logs-request-headers" id="observability.otel.logs-request-headers"></a>
 
 ```yaml
-BOX_OBSERVABILITY_OTEL_LOGS_REQUEST_HEADERS: "<String>"
+BOX_OBSERVABILITY_OTEL_LOGS_REQUEST_HEADERS: ""<String>""
 ```
 
 The headers for OTEL logs requests, formatted as HeaderName:HeaderValue
@@ -2201,7 +2203,7 @@ HeaderName:HeaderValue.
 #### OTEL logs URL<a href="#observability.otel.logs-url" id="observability.otel.logs-url"></a>
 
 ```yaml
-BOX_OBSERVABILITY_OTEL_LOGS_URL: "<String>"
+BOX_OBSERVABILITY_OTEL_LOGS_URL: ""<String>""
 ```
 
 The logs' consumer URL (OTEL collector, Elastic EPM etc.).
@@ -2245,7 +2247,7 @@ Settings related to Zen Project for backward compatibility. Read [d͟e͟t͟a͟i�
 ### Zen project entrypoint<a href="#zen-project.entrypoint" id="zen-project.entrypoint"></a>
 
 ```yaml
-BOX_ZEN_PROJECT_ENTRYPOINT: "<String>"
+BOX_ZEN_PROJECT_ENTRYPOINT: ""<String>""
 ```
 
 Entrypoint for zen project to start from.
@@ -2255,7 +2257,7 @@ Entrypoint for zen project to start from.
 ### Zen project entry<a href="#zen-project.entry" id="zen-project.entry"></a>
 
 ```yaml
-BOX_ZEN_PROJECT_ENTRY: "<String>"
+BOX_ZEN_PROJECT_ENTRY: ""<String>""
 ```
 
 Environment variable is used to specify zen project entry namespace
@@ -2265,7 +2267,7 @@ Environment variable is used to specify zen project entry namespace
 ### Load zen namespace as EDN<a href="#zen-project.load" id="zen-project.load"></a>
 
 ```yaml
-BOX_ZEN_PROJECT_LOAD: "<String>"
+BOX_ZEN_PROJECT_LOAD: ""<String>""
 ```
 
 Used to load a single namespace represented as EDN
@@ -2275,7 +2277,7 @@ Used to load a single namespace represented as EDN
 ### URL or path to the zen project source<a href="#zen-project.paths" id="zen-project.paths"></a>
 
 ```yaml
-BOX_ZEN_PROJECT_PATHS: "<String>"
+BOX_ZEN_PROJECT_PATHS: ""<String>""
 ```
 
 Source of the zen project using the following syntax `<source>:<format>:<path>[,<source>:<format>:<path>]*`.
@@ -2285,7 +2287,7 @@ Source of the zen project using the following syntax `<source>:<format>:<path>[,
 ### Zen project git protocol<a href="#zen-project.git.protocol" id="zen-project.git.protocol"></a>
 
 ```yaml
-BOX_ZEN_PROJECT_GIT_PROTOCOL: "<String>"
+BOX_ZEN_PROJECT_GIT_PROTOCOL: ""<String>""
 ```
 
 Either `https` or `ssh`. Assumes local directory if omitted.
@@ -2295,7 +2297,7 @@ Either `https` or `ssh`. Assumes local directory if omitted.
 ### Zen project git URL<a href="#zen-project.git.url" id="zen-project.git.url"></a>
 
 ```yaml
-BOX_ZEN_PROJECT_GIT_URL: "<String>"
+BOX_ZEN_PROJECT_GIT_URL: ""<String>""
 ```
 
 Where to clone your project from. Aidbox substitutes it to `git clone <url>` command.
@@ -2305,7 +2307,7 @@ Where to clone your project from. Aidbox substitutes it to `git clone <url>` com
 ### Zen project git access token<a href="#zen-project.git.access-token" id="zen-project.git.access-token"></a>
 
 ```yaml
-BOX_ZEN_PROJECT_GIT_ACCESS_TOKEN: "<String>"
+BOX_ZEN_PROJECT_GIT_ACCESS_TOKEN: ""<String>""
 ```
 
 Token to access HTTPS private repository
@@ -2315,7 +2317,7 @@ Token to access HTTPS private repository
 ### Zen project git checkout<a href="#zen-project.git.checkout" id="zen-project.git.checkout"></a>
 
 ```yaml
-BOX_ZEN_PROJECT_GIT_CHECKOUT: "<String>"
+BOX_ZEN_PROJECT_GIT_CHECKOUT: ""<String>""
 ```
 
 Git branch or commit
@@ -2325,7 +2327,7 @@ Git branch or commit
 ### Zen project target path<a href="#zen-project.git.target-path" id="zen-project.git.target-path"></a>
 
 ```yaml
-BOX_ZEN_PROJECT_GIT_TARGET_PATH: "<String>"
+BOX_ZEN_PROJECT_GIT_TARGET_PATH: ""<String>""
 ```
 
 Clone the repository into a directory. Default value is a directory in `/tmp`
@@ -2335,7 +2337,7 @@ Clone the repository into a directory. Default value is a directory in `/tmp`
 ### Path to the zen project inside a git repository<a href="#zen-project.git.sub-path" id="zen-project.git.sub-path"></a>
 
 ```yaml
-BOX_ZEN_PROJECT_GIT_SUB_PATH: "<String>"
+BOX_ZEN_PROJECT_GIT_SUB_PATH: ""<String>""
 ```
 
 The value of the setting should be set to a path starting with a repository name.
@@ -2345,7 +2347,7 @@ The value of the setting should be set to a path starting with a repository name
 ### Zen dev mode<a href="#zen-project.dev.mode" id="zen-project.dev.mode"></a>
 
 ```yaml
-BOX_ZEN_PROJECT_DEV_MODE: "<Bool>"
+BOX_ZEN_PROJECT_DEV_MODE: "false"
 ```
 
 Enables watcher which reloads zen namespaces when they change.
@@ -2365,7 +2367,7 @@ The default number of task executor service workers.
 ### Zen config expose<a href="#zen-project.config.expose" id="zen-project.config.expose"></a>
 
 ```yaml
-BOX_ZEN_PROJECT_CONFIG_EXPOSE: "<Bool>"
+BOX_ZEN_PROJECT_CONFIG_EXPOSE: "false"
 ```
 
 Show zen Aidbox config in zen UI and on $config endpoint
@@ -2375,7 +2377,7 @@ Show zen Aidbox config in zen UI and on $config endpoint
 ### Sync indexes on startup<a href="#zen-project.index.sync-on-start" id="zen-project.index.sync-on-start"></a>
 
 ```yaml
-BOX_ZEN_PROJECT_INDEX_SYNC_ON_START: "<Bool>"
+BOX_ZEN_PROJECT_INDEX_SYNC_ON_START: "false"
 ```
 
 If enabled, Aidbox synchronizes managed index on startup
@@ -2385,7 +2387,7 @@ If enabled, Aidbox synchronizes managed index on startup
 ### Manifest to zen migration<a href="#zen-project.manifest-to-zen-migration" id="zen-project.manifest-to-zen-migration"></a>
 
 ```yaml
-BOX_ZEN_PROJECT_MANIFEST_TO_ZEN_MIGRATION: "<String>"
+BOX_ZEN_PROJECT_MANIFEST_TO_ZEN_MIGRATION: ""<String>""
 ```
 
 
@@ -2395,13 +2397,13 @@ BOX_ZEN_PROJECT_MANIFEST_TO_ZEN_MIGRATION: "<String>"
 ### Enable zen-FHIR search parameters<a href="#zen-project.search.zen-fhir" id="zen-project.search.zen-fhir"></a>
 
 ```yaml
-BOX_ZEN_PROJECT_SEARCH_ZEN_FHIR: "<Enum>"
+BOX_ZEN_PROJECT_SEARCH_ZEN_FHIR: ""<Enum>""
 ```
 
 Aidbox zen packages may contain search parameters.
 
 Enable this setting to load these search parameters into Aidbox.
-If disabled, only the pre-bundled and user-created search
+If disabled, only the pre-bundled and user-created search 
 parameters are available.
 
 This setting has no effect if FHIR-Schema validator is enabled.
@@ -2445,7 +2447,7 @@ Enable terminology import.
 ### Enable terminology sync<a href="#zen-project.terminology.import.sync" id="zen-project.terminology.import.sync"></a>
 
 ```yaml
-BOX_ZEN_PROJECT_TERMINOLOGY_IMPORT_SYNC: "<Bool>"
+BOX_ZEN_PROJECT_TERMINOLOGY_IMPORT_SYNC: "false"
 ```
 
 Enable terminology sync.
@@ -2465,7 +2467,7 @@ Build FTR index on startup.
 ### Sync FTR index on Aidbox start<a href="#zen-project.ftr.build-index-on-startup.sync" id="zen-project.ftr.build-index-on-startup.sync"></a>
 
 ```yaml
-BOX_ZEN_PROJECT_FTR_BUILD_INDEX_ON_STARTUP_SYNC: "<Bool>"
+BOX_ZEN_PROJECT_FTR_BUILD_INDEX_ON_STARTUP_SYNC: "false"
 ```
 
 Sync FTR index on Aidbox start.
@@ -2485,7 +2487,7 @@ Enable incremental updates of the FTR index
 ### Load FTR index into Aidbox DB<a href="#zen-project.ftr.pull.enable" id="zen-project.ftr.pull.enable"></a>
 
 ```yaml
-BOX_ZEN_PROJECT_FTR_PULL_ENABLE: "<Bool>"
+BOX_ZEN_PROJECT_FTR_PULL_ENABLE: "false"
 ```
 
 Load FTR index into Aidbox DB
@@ -2495,7 +2497,7 @@ Load FTR index into Aidbox DB
 ### Load FTR index synchronously<a href="#zen-project.ftr.pull.sync" id="zen-project.ftr.pull.sync"></a>
 
 ```yaml
-BOX_ZEN_PROJECT_FTR_PULL_SYNC: "<Bool>"
+BOX_ZEN_PROJECT_FTR_PULL_SYNC: "false"
 ```
 
 Block Aidbox start until FTR index is loaded into Aidbox DB.
