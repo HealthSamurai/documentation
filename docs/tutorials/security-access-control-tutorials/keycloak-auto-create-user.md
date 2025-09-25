@@ -169,6 +169,7 @@ Copy `access_token`. You can view the issued JWT in https://www.jwt.io/.
 
 <details>
 <summary>Example JWT</summary>
+
 ```json
 {
   "exp": 1758805244,
@@ -207,6 +208,7 @@ Copy `access_token`. You can view the issued JWT in https://www.jwt.io/.
   "client_id": "aidbox-client"
 }
 ```
+
 </details>
 
 ## Using token with Aidbox
@@ -266,18 +268,7 @@ User example:
 
 - In client settings enable Service accounts roles: ON
 
-### "Invalid constraint result for ID 'cont-10'"
-
-- Check that `jwks_uri` is at the top level of the resource, not inside `jwt`
-
 ### Aidbox cannot connect to Keycloak
 
 - Within Docker use `http://keycloak:8080` instead of `localhost:8180`
 - Verify both containers are in the same Docker network
-
-## Useful Keycloak endpoints
-
-- JWKS: `http://localhost:8180/realms/myrealm/protocol/openid-connect/certs`
-- Token: `http://localhost:8180/realms/myrealm/protocol/openid-connect/token`
-- Introspection: `http://localhost:8180/realms/myrealm/protocol/openid-connect/token/introspect`
-- OpenID Configuration: `http://localhost:8180/realms/myrealm/.well-known/openid-configuration`
