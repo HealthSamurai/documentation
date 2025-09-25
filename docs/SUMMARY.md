@@ -117,6 +117,7 @@
     * [Set up Aidbox with Postman](tutorials/other-tutorials/set-up-aidbox-with-postman.md)
     * [How to run Aidbox in GCP Cloud Run](tutorials/other-tutorials/how-to-run-aidbox-in-gcp-cloud-run.md)
     * [How to run Aidbox using different Java](tutorials/other-tutorials/how-to-run-aidbox-using-different-java.md)
+    * [AI Prompts](tutorials/other-tutorials/ai-prompts.md)
 
 ## Overview
 
