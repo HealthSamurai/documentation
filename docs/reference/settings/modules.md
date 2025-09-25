@@ -9,7 +9,7 @@ Google Cloud Pub/Sub subscriptions settings
 ### Google Cloud Pub/Sub topic name<a href="#module.subscriptions.pubsub.topic" id="module.subscriptions.pubsub.topic"></a>
 
 ```yaml
-BOX_MODULE_SUBSCRIPTIONS_PUBSUB_TOPIC: "<String>"
+BOX_MODULE_SUBSCRIPTIONS_PUBSUB_TOPIC: ""<String>""
 ```
 
 Name of the Google Cloud Pub/Sub topic.
@@ -19,7 +19,7 @@ Name of the Google Cloud Pub/Sub topic.
 ### Google Cloud Pub/Sub project name<a href="#module.subscriptions.pubsub.project" id="module.subscriptions.pubsub.project"></a>
 
 ```yaml
-BOX_MODULE_SUBSCRIPTIONS_PUBSUB_PROJECT: "<String>"
+BOX_MODULE_SUBSCRIPTIONS_PUBSUB_PROJECT: ""<String>""
 ```
 
 Name of the Google Cloud Project which contains Pub/Sub topics and subscriptions.
@@ -29,7 +29,7 @@ Name of the Google Cloud Project which contains Pub/Sub topics and subscriptions
 ### Google Cloud Pub/Sub resource types<a href="#module.subscriptions.pubsub.resource-types" id="module.subscriptions.pubsub.resource-types"></a>
 
 ```yaml
-BOX_MODULE_SUBSCRIPTIONS_PUBSUB_RESOURCE_TYPES: "<String>"
+BOX_MODULE_SUBSCRIPTIONS_PUBSUB_RESOURCE_TYPES: ""<String>""
 ```
 
 Specify resource types and boxes for which to publish notifications.
@@ -55,7 +55,7 @@ If not set, messages for all resource types from all boxes are published.
 ### Google Cloud Pub/Sub service account email<a href="#module.subscriptions.pubsub.service-account.email" id="module.subscriptions.pubsub.service-account.email"></a>
 
 ```yaml
-BOX_MODULE_SUBSCRIPTIONS_PUBSUB_SERVICE_ACCOUNT_EMAIL: "<String>"
+BOX_MODULE_SUBSCRIPTIONS_PUBSUB_SERVICE_ACCOUNT_EMAIL: ""<String>""
 ```
 
 Email of the Google Cloud Pub/Sub service account.
@@ -65,7 +65,7 @@ Email of the Google Cloud Pub/Sub service account.
 ### Google Cloud Pub/Sub service account private key<a href="#module.subscriptions.pubsub.service-account.private-key" id="module.subscriptions.pubsub.service-account.private-key"></a>
 
 ```yaml
-BOX_MODULE_SUBSCRIPTIONS_PUBSUB_SERVICE_ACCOUNT_PRIVATE_KEY: "<String>"
+BOX_MODULE_SUBSCRIPTIONS_PUBSUB_SERVICE_ACCOUNT_PRIVATE_KEY: ""<String>""
 ```
 
 Private key of the Google Cloud Pub/Sub service account.
@@ -75,7 +75,7 @@ Private key of the Google Cloud Pub/Sub service account.
 ### Google Cloud Pub/Sub publish before save<a href="#module.subscriptions.pubsub.before-save" id="module.subscriptions.pubsub.before-save"></a>
 
 ```yaml
-BOX_MODULE_SUBSCRIPTIONS_PUBSUB_BEFORE_SAVE: "<Bool>"
+BOX_MODULE_SUBSCRIPTIONS_PUBSUB_BEFORE_SAVE: "false"
 ```
 
 If true, the resource will be published to the Pub/Sub topic before saving it to the database.
@@ -85,7 +85,7 @@ If true, the resource will be published to the Pub/Sub topic before saving it to
 ### Google Cloud Pub/Sub emulator URL<a href="#module.subscriptions.pubsub.emulator-url" id="module.subscriptions.pubsub.emulator-url"></a>
 
 ```yaml
-BOX_MODULE_SUBSCRIPTIONS_PUBSUB_EMULATOR_URL: "<String>"
+BOX_MODULE_SUBSCRIPTIONS_PUBSUB_EMULATOR_URL: ""<String>""
 ```
 
 URL of the Google Cloud Pub/Sub emulator.
@@ -100,7 +100,7 @@ Aidbox notebooks settings
 ### Notebook repository URL<a href="#module.notebook.repo-url" id="module.notebook.repo-url"></a>
 
 ```yaml
-BOX_MODULE_NOTEBOOK_REPO_URL: "https://aidbox.app"
+BOX_MODULE_NOTEBOOK_REPO_URL: ""https://aidbox.app""
 ```
 
 Set repository to fetch published notebooks
@@ -114,7 +114,7 @@ Mail Provider settings
 ### Default provider type<a href="#provider.default.type" id="provider.default.type"></a>
 
 ```yaml
-BOX_MODULE_PROVIDER_DEFAULT_TYPE: "<String>"
+BOX_MODULE_PROVIDER_DEFAULT_TYPE: ""<String>""
 ```
 
 Specifies the email service provider used for system-generated communications.
@@ -124,7 +124,7 @@ Specifies the email service provider used for system-generated communications.
 ### Default provider from address<a href="#provider.default.from" id="provider.default.from"></a>
 
 ```yaml
-BOX_MODULE_PROVIDER_DEFAULT_FROM: "<String>"
+BOX_MODULE_PROVIDER_DEFAULT_FROM: ""<String>""
 ```
 
 From address for the default provider
@@ -134,7 +134,7 @@ From address for the default provider
 ### Default provider username<a href="#provider.default.username" id="provider.default.username"></a>
 
 ```yaml
-BOX_MODULE_PROVIDER_DEFAULT_USERNAME: "<String>"
+BOX_MODULE_PROVIDER_DEFAULT_USERNAME: ""<String>""
 ```
 
 Username for the default provider
@@ -144,7 +144,7 @@ Username for the default provider
 ### Default provider password<a href="#provider.default.password" id="provider.default.password"></a>
 
 ```yaml
-BOX_MODULE_PROVIDER_DEFAULT_PASSWORD: "<String>"
+BOX_MODULE_PROVIDER_DEFAULT_PASSWORD: ""<String>""
 ```
 
 Password for the default provider
@@ -154,7 +154,7 @@ Password for the default provider
 ### Default provider URL<a href="#provider.default.url" id="provider.default.url"></a>
 
 ```yaml
-BOX_MODULE_PROVIDER_DEFAULT_URL: "<String>"
+BOX_MODULE_PROVIDER_DEFAULT_URL: ""<String>""
 ```
 
 URL for the default provider
@@ -164,7 +164,7 @@ URL for the default provider
 ### Default provider port<a href="#provider.default.port" id="provider.default.port"></a>
 
 ```yaml
-BOX_MODULE_PROVIDER_DEFAULT_PORT: "<String>"
+BOX_MODULE_PROVIDER_DEFAULT_PORT: ""<String>""
 ```
 
 Port for the default provider
@@ -174,7 +174,7 @@ Port for the default provider
 ### Default provider SSL<a href="#provider.default.ssl" id="provider.default.ssl"></a>
 
 ```yaml
-BOX_MODULE_PROVIDER_DEFAULT_SSL: "<Bool>"
+BOX_MODULE_PROVIDER_DEFAULT_SSL: "false"
 ```
 
 Enable SSL for the default provider
@@ -184,7 +184,7 @@ Enable SSL for the default provider
 ### Default provider TLS<a href="#provider.default.tls" id="provider.default.tls"></a>
 
 ```yaml
-BOX_MODULE_PROVIDER_DEFAULT_TLS: "<Bool>"
+BOX_MODULE_PROVIDER_DEFAULT_TLS: "false"
 ```
 
 Enable TLS for the default provider
@@ -194,7 +194,7 @@ Enable TLS for the default provider
 ### Default provider host<a href="#provider.default.host" id="provider.default.host"></a>
 
 ```yaml
-BOX_MODULE_PROVIDER_DEFAULT_HOST: "<String>"
+BOX_MODULE_PROVIDER_DEFAULT_HOST: ""<String>""
 ```
 
 Host for the default provider
@@ -204,7 +204,7 @@ Host for the default provider
 ### Mailgun provider from address<a href="#provider.mailgun.from" id="provider.mailgun.from"></a>
 
 ```yaml
-BOX_MODULE_PROVIDER_MAILGUN_FROM: "<String>"
+BOX_MODULE_PROVIDER_MAILGUN_FROM: ""<String>""
 ```
 
 From address for the Mailgun provider
@@ -214,7 +214,7 @@ From address for the Mailgun provider
 ### Mailgun provider username<a href="#provider.mailgun.username" id="provider.mailgun.username"></a>
 
 ```yaml
-BOX_MODULE_PROVIDER_MAILGUN_USERNAME: "<String>"
+BOX_MODULE_PROVIDER_MAILGUN_USERNAME: ""<String>""
 ```
 
 Username for the Mailgun provider
@@ -224,7 +224,7 @@ Username for the Mailgun provider
 ### Mailgun provider password<a href="#provider.mailgun.password" id="provider.mailgun.password"></a>
 
 ```yaml
-BOX_MODULE_PROVIDER_MAILGUN_PASSWORD: "<String>"
+BOX_MODULE_PROVIDER_MAILGUN_PASSWORD: ""<String>""
 ```
 
 Password for the Mailgun provider
@@ -234,7 +234,7 @@ Password for the Mailgun provider
 ### Mailgun provider URL<a href="#provider.mailgun.url" id="provider.mailgun.url"></a>
 
 ```yaml
-BOX_MODULE_PROVIDER_MAILGUN_URL: "<String>"
+BOX_MODULE_PROVIDER_MAILGUN_URL: ""<String>""
 ```
 
 URL for the Mailgun provider
@@ -244,7 +244,7 @@ URL for the Mailgun provider
 ### Postmark provider from address<a href="#provider.postmark.from" id="provider.postmark.from"></a>
 
 ```yaml
-BOX_MODULE_PROVIDER_POSTMARK_FROM: "<String>"
+BOX_MODULE_PROVIDER_POSTMARK_FROM: ""<String>""
 ```
 
 From address for the Postmark provider
@@ -254,7 +254,7 @@ From address for the Postmark provider
 ### Postmark provider API key<a href="#provider.postmark.api-key" id="provider.postmark.api-key"></a>
 
 ```yaml
-BOX_MODULE_PROVIDER_POSTMARK_API_KEY: "<String>"
+BOX_MODULE_PROVIDER_POSTMARK_API_KEY: ""<String>""
 ```
 
 API key for the Postmark provider
@@ -264,7 +264,7 @@ API key for the Postmark provider
 ### SMTP provider from address<a href="#provider.smtp.from" id="provider.smtp.from"></a>
 
 ```yaml
-BOX_MODULE_PROVIDER_SMTP_FROM: "<String>"
+BOX_MODULE_PROVIDER_SMTP_FROM: ""<String>""
 ```
 
 From address for the SMTP provider
@@ -274,7 +274,7 @@ From address for the SMTP provider
 ### SMTP provider host<a href="#provider.smtp.host" id="provider.smtp.host"></a>
 
 ```yaml
-BOX_MODULE_PROVIDER_SMTP_HOST: "<String>"
+BOX_MODULE_PROVIDER_SMTP_HOST: ""<String>""
 ```
 
 Host for the SMTP provider
@@ -284,7 +284,7 @@ Host for the SMTP provider
 ### SMTP provider password<a href="#provider.smtp.password" id="provider.smtp.password"></a>
 
 ```yaml
-BOX_MODULE_PROVIDER_SMTP_PASSWORD: "<String>"
+BOX_MODULE_PROVIDER_SMTP_PASSWORD: ""<String>""
 ```
 
 Password for the SMTP provider
@@ -294,7 +294,7 @@ Password for the SMTP provider
 ### SMTP provider port<a href="#provider.smtp.port" id="provider.smtp.port"></a>
 
 ```yaml
-BOX_MODULE_PROVIDER_SMTP_PORT: "<String>"
+BOX_MODULE_PROVIDER_SMTP_PORT: ""<String>""
 ```
 
 Port for the SMTP provider
@@ -304,7 +304,7 @@ Port for the SMTP provider
 ### SMTP provider SSL<a href="#provider.smtp.ssl" id="provider.smtp.ssl"></a>
 
 ```yaml
-BOX_MODULE_PROVIDER_SMTP_SSL: "<Bool>"
+BOX_MODULE_PROVIDER_SMTP_SSL: "false"
 ```
 
 Enable SSL for the SMTP provider
@@ -314,7 +314,7 @@ Enable SSL for the SMTP provider
 ### SMTP provider TLS<a href="#provider.smtp.tls" id="provider.smtp.tls"></a>
 
 ```yaml
-BOX_MODULE_PROVIDER_SMTP_TLS: "<Bool>"
+BOX_MODULE_PROVIDER_SMTP_TLS: "false"
 ```
 
 Enable TLS for the SMTP provider
@@ -324,7 +324,7 @@ Enable TLS for the SMTP provider
 ### SMTP provider username<a href="#provider.smtp.username" id="provider.smtp.username"></a>
 
 ```yaml
-BOX_MODULE_PROVIDER_SMTP_USERNAME: "<String>"
+BOX_MODULE_PROVIDER_SMTP_USERNAME: ""<String>""
 ```
 
 Username for the SMTP provider
@@ -338,7 +338,7 @@ SMARTbox settings
 ### Sandbox URL<a href="#module.smartbox.sandbox-url" id="module.smartbox.sandbox-url"></a>
 
 ```yaml
-BOX_MODULE_SMARTBOX_SANDBOX_URL: "<String>"
+BOX_MODULE_SMARTBOX_SANDBOX_URL: ""<String>""
 ```
 
 URL for accessing sandbox environment
@@ -348,7 +348,7 @@ URL for accessing sandbox environment
 ### Terms of use URL<a href="#module.smartbox.terms-of-use-url" id="module.smartbox.terms-of-use-url"></a>
 
 ```yaml
-BOX_MODULE_SMARTBOX_TERMS_OF_USE_URL: "<String>"
+BOX_MODULE_SMARTBOX_TERMS_OF_USE_URL: ""<String>""
 ```
 
 URL for accessing terms of use
@@ -358,7 +358,7 @@ URL for accessing terms of use
 ### Sandbox basic<a href="#module.smartbox.sandbox-basic" id="module.smartbox.sandbox-basic"></a>
 
 ```yaml
-BOX_MODULE_SMARTBOX_SANDBOX_BASIC: "<String>"
+BOX_MODULE_SMARTBOX_SANDBOX_BASIC: ""<String>""
 ```
 
 Basic authentication credentials for sandbox
@@ -368,7 +368,7 @@ Basic authentication credentials for sandbox
 ### Sandbox admin<a href="#module.smartbox.sandbox-admin" id="module.smartbox.sandbox-admin"></a>
 
 ```yaml
-BOX_MODULE_SMARTBOX_SANDBOX_ADMIN: "<String>"
+BOX_MODULE_SMARTBOX_SANDBOX_ADMIN: ""<String>""
 ```
 
 Admin credentials for sandbox access
@@ -378,7 +378,7 @@ Admin credentials for sandbox access
 ### Session logs link<a href="#module.smartbox.session-logs-link" id="module.smartbox.session-logs-link"></a>
 
 ```yaml
-BOX_MODULE_SMARTBOX_SESSION_LOGS_LINK: "<String>"
+BOX_MODULE_SMARTBOX_SESSION_LOGS_LINK: ""<String>""
 ```
 
 Link to access session logs
@@ -392,7 +392,7 @@ MDM settings
 ### Default MDM model<a href="#module.mdm.default-patient-model" id="module.mdm.default-patient-model"></a>
 
 ```yaml
-BOX_MODULE_DEFAULT_PATIENT_MODEL: "<String>"
+BOX_MODULE_DEFAULT_PATIENT_MODEL: ""<String>""
 ```
 
 The default MDM model used for `$match` operation. Will be used if no model is specified with the `model` query parameter.
@@ -406,7 +406,7 @@ MCP settings
 ### Enable MCP server<a href="#module.mcp.server-enabled" id="module.mcp.server-enabled"></a>
 
 ```yaml
-BOX_MODULE_MCP_SERVER_ENABLED: "<Bool>"
+BOX_MODULE_MCP_SERVER_ENABLED: "false"
 ```
 
 Enable MCP server working through SSE protocol
@@ -420,7 +420,7 @@ Forms settings
 ### Questionnaire.url prefix<a href="#module.sdc.builder.form-url-prefix" id="module.sdc.builder.form-url-prefix"></a>
 
 ```yaml
-BOX_MODULE_SDC_BUILDER_FORM_URL_PREFIX: "http://forms.aidbox.io/questionnaire/"
+BOX_MODULE_SDC_BUILDER_FORM_URL_PREFIX: ""http://forms.aidbox.io/questionnaire/""
 ```
 
 URL prefix that will be used in URL generation for new forms
@@ -430,7 +430,7 @@ URL prefix that will be used in URL generation for new forms
 ### OpenAI API key<a href="#module.sdc.openai-api-key" id="module.sdc.openai-api-key"></a>
 
 ```yaml
-BOX_MODULE_SDC_OPENAI_API_KEY: "<String>"
+BOX_MODULE_SDC_OPENAI_API_KEY: ""<String>""
 ```
 
 API key for OpenAI service
@@ -440,7 +440,7 @@ API key for OpenAI service
 ### Gemini API key<a href="#aidbox.modules.sdc.gemini-api-key" id="aidbox.modules.sdc.gemini-api-key"></a>
 
 ```yaml
-BOX_SDC_GEMINI_API_KEY: "<String>"
+BOX_SDC_GEMINI_API_KEY: ""<String>""
 ```
 
 API key for Gemini service
@@ -450,7 +450,7 @@ API key for Gemini service
 ### Default language for UI<a href="#module.sdc.language" id="module.sdc.language"></a>
 
 ```yaml
-BOX_MODULE_SDC_LANGUAGE: "en"
+BOX_MODULE_SDC_LANGUAGE: ""en""
 ```
 
 Language used as default in Form Builder and Form Renderer
@@ -460,7 +460,7 @@ Language used as default in Form Builder and Form Renderer
 ### Default form theme<a href="#module.sdc.theme" id="module.sdc.theme"></a>
 
 ```yaml
-BOX_MODULE_SDC_THEME: "<String>"
+BOX_MODULE_SDC_THEME: ""<String>""
 ```
 
 Theme that will be used in all forms
@@ -470,7 +470,7 @@ Theme that will be used in all forms
 ### Hide builder's back button<a href="#module.sdc.builder.hide-back-button" id="module.sdc.builder.hide-back-button"></a>
 
 ```yaml
-BOX_MODULE_SDC_BUILDER_HIDE_BACK_BUTTON: "<Bool>"
+BOX_MODULE_SDC_BUILDER_HIDE_BACK_BUTTON: "false"
 ```
 
 Hide back button in UI Form Builder
@@ -480,7 +480,7 @@ Hide back button in UI Form Builder
 ### Form's redirect-on-submit URL<a href="#module.sdc.form.redirect-on-submit" id="module.sdc.form.redirect-on-submit"></a>
 
 ```yaml
-BOX_MODULE_SDC_FORM_REDIRECT_ON_SUBMIT: "<String>"
+BOX_MODULE_SDC_FORM_REDIRECT_ON_SUBMIT: ""<String>""
 ```
 
 Redirect URI that will be used on form submit/amend button click
@@ -490,7 +490,7 @@ Redirect URI that will be used on form submit/amend button click
 ### Form's redirect-on-save URL<a href="#module.sdc.form.redirect-on-save" id="module.sdc.form.redirect-on-save"></a>
 
 ```yaml
-BOX_MODULE_SDC_FORM_REDIRECT_ON_SAVE: "<String>"
+BOX_MODULE_SDC_FORM_REDIRECT_ON_SAVE: ""<String>""
 ```
 
 Redirect URI that will be used on form save/close button click
@@ -500,12 +500,12 @@ Redirect URI that will be used on form save/close button click
 ### Enable strict access control for sdc operations<a href="#module.sdc.strict-access-control" id="module.sdc.strict-access-control"></a>
 
 ```yaml
-BOX_MODULE_SDC_STRICT_ACCESS_CONTROL: "<Bool>"
+BOX_MODULE_SDC_STRICT_ACCESS_CONTROL: "true"
 ```
 
 Enable strict access control for operations(like populate/submit/reference-lookup) that can request different FHIR resources
 
-<details><summary>Details</summary><table data-header-hidden="true"><thead><tr><th width="200"></th><th></th></tr></thead><tbody><tr><td>ID</td><td><code>module.sdc.strict-access-control</code></td></tr><tr><td>Type</td><td>Bool</td></tr><tr><td>Default value</td><td><code>false</code></td></tr><tr><td>Environment variable</td><td><code>BOX_MODULE_SDC_STRICT_ACCESS_CONTROL</code></td></tr><tr><td>Deprecated environment variables</td><td><code>BOX_SDC_STRICT_ACCESS_CONTROL</code></td></tr><tr><td>Available from</td><td><code>2506</code></td></tr><tr><td>Sensitive</td><td><code>false</code> — value will be visible in plaintext in Admin UI</td></tr><tr><td>Set via</td><td>Admin UI → Settings<br />Environment variables</td></tr><tr><td>Hot reload</td><td><code>true</code> — setting can be changed at runtime</td></tr></tbody></table></details>
+<details><summary>Details</summary><table data-header-hidden="true"><thead><tr><th width="200"></th><th></th></tr></thead><tbody><tr><td>ID</td><td><code>module.sdc.strict-access-control</code></td></tr><tr><td>Type</td><td>Bool</td></tr><tr><td>Recommended value</td><td><code>true</code></td></tr><tr><td>Default value</td><td><code>false</code></td></tr><tr><td>Environment variable</td><td><code>BOX_MODULE_SDC_STRICT_ACCESS_CONTROL</code></td></tr><tr><td>Deprecated environment variables</td><td><code>BOX_SDC_STRICT_ACCESS_CONTROL</code></td></tr><tr><td>Available from</td><td><code>2506</code></td></tr><tr><td>Sensitive</td><td><code>false</code> — value will be visible in plaintext in Admin UI</td></tr><tr><td>Set via</td><td>Admin UI → Settings<br />Environment variables</td></tr><tr><td>Hot reload</td><td><code>true</code> — setting can be changed at runtime</td></tr></tbody></table></details>
 
 ## GraphQL
 
@@ -514,7 +514,7 @@ GraphQL settings
 ### Warmup GraphQL cache on startup<a href="#module.graphql.warmup-on-startup" id="module.graphql.warmup-on-startup"></a>
 
 ```yaml
-BOX_MODULE_GRAPHQL_WARMUP_ON_STARTUP: "<Bool>"
+BOX_MODULE_GRAPHQL_WARMUP_ON_STARTUP: "false"
 ```
 
 Warmup GraphQL API cache on startup. When false, cache will be warmed up on first request.
@@ -524,7 +524,7 @@ Warmup GraphQL API cache on startup. When false, cache will be warmed up on firs
 ### Allow reference to any resource<a href="#module.graphql.reference-any" id="module.graphql.reference-any"></a>
 
 ```yaml
-BOX_MODULE_GRAPHQL_REFERENCE_ANY: "<Bool>"
+BOX_MODULE_GRAPHQL_REFERENCE_ANY: "false"
 ```
 
 Enable GraphQL API (rev)include for reference with target - any
@@ -544,7 +544,7 @@ GraphQL API query timeout in seconds: Set to zero to disable.
 ### GraphQL access control mode<a href="#module.graphql.access-control" id="module.graphql.access-control"></a>
 
 ```yaml
-BOX_MODULE_GRAPHQL_ACCESS_CONTROL: "disabled"
+BOX_MODULE_GRAPHQL_ACCESS_CONTROL: ""disabled""
 ```
 
 Access control in GraphQL API
@@ -558,7 +558,7 @@ Webpush settings
 ### Public Key<a href="#module.webpush.public-key" id="module.webpush.public-key"></a>
 
 ```yaml
-BOX_MODULE_WEBPUSH_PUBLIC_KEY: "<String>"
+BOX_MODULE_WEBPUSH_PUBLIC_KEY: ""<String>""
 ```
 
 ECDH/BC/prime256v1 Public Key
@@ -568,7 +568,7 @@ ECDH/BC/prime256v1 Public Key
 ### Private Key<a href="#module.webpush.private-key" id="module.webpush.private-key"></a>
 
 ```yaml
-BOX_MODULE_WEBPUSH_PRIVATE_KEY: "<String>"
+BOX_MODULE_WEBPUSH_PRIVATE_KEY: ""<String>""
 ```
 
 ECDH/BC/prime256v1 Private Key
@@ -578,7 +578,7 @@ ECDH/BC/prime256v1 Private Key
 ### JWT mail<a href="#module.webpush.jwt-mail" id="module.webpush.jwt-mail"></a>
 
 ```yaml
-BOX_MODULE_WEBPUSH_JWT_MAIL: "<String>"
+BOX_MODULE_WEBPUSH_JWT_MAIL: ""<String>""
 ```
 
 `JWT.sub` field value needs to be either a URL or a mailto email address.
