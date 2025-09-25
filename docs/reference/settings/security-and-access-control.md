@@ -5,7 +5,7 @@ Security & Access Control settings
 ## Grant page URL<a href="#security.grant-page-url" id="security.grant-page-url"></a>
 
 ```yaml
-BOX_SECURITY_GRANT_PAGE_URL: ""/auth/grant""
+BOX_SECURITY_GRANT_PAGE_URL: "/auth/grant"
 ```
 
 URL of consent screen. A consent screen is an interface presented to a user during the authorization code grant flow.
@@ -15,7 +15,7 @@ URL of consent screen. A consent screen is an interface presented to a user duri
 ## Enable FHIR Audit Log<a href="#security.audit-log.enabled" id="security.audit-log.enabled"></a>
 
 ```yaml
-BOX_SECURITY_AUDIT_LOG_ENABLED: "true"
+BOX_SECURITY_AUDIT_LOG_ENABLED: true
 ```
 
 Generates structured audit logs in FHIR R4 AuditEvent format (with other FHIR versions will not be generated).
@@ -25,7 +25,7 @@ Generates structured audit logs in FHIR R4 AuditEvent format (with other FHIR ve
 ## Audit Log repository URL<a href="#security.audit-log.repository-url" id="security.audit-log.repository-url"></a>
 
 ```yaml
-BOX_SECURITY_AUDIT_LOG_REPOSITORY_URL: ""<String>""
+BOX_SECURITY_AUDIT_LOG_REPOSITORY_URL: "<String>"
 ```
 
 Full URL of the external destination where Aidbox streams all audit events.
@@ -37,7 +37,7 @@ If audit log is enabled, repository URL not specified, Aidbox will store Audit E
 ## Audit Log flush interval<a href="#security.audit-log.flush-interval" id="security.audit-log.flush-interval"></a>
 
 ```yaml
-BOX_SECURITY_AUDIT_LOG_FLUSH_INTERVAL: "5000"
+BOX_SECURITY_AUDIT_LOG_FLUSH_INTERVAL: 5000
 ```
 
 Interval time in ms to flush audit events to Audit Log Repository
@@ -47,7 +47,7 @@ Interval time in ms to flush audit events to Audit Log Repository
 ## Audit Log maximum flush interval<a href="#security.audit-log.max-flush-interval" id="security.audit-log.max-flush-interval"></a>
 
 ```yaml
-BOX_SECURITY_AUDIT_LOG_MAX_FLUSH_INTERVAL: "60000"
+BOX_SECURITY_AUDIT_LOG_MAX_FLUSH_INTERVAL: 60000
 ```
 
 If sending the audit event to the repository fails, the send interval gradually increases up to this value.
@@ -57,7 +57,7 @@ If sending the audit event to the repository fails, the send interval gradually 
 ## Audit Log batch count<a href="#security.audit-log.batch-count" id="security.audit-log.batch-count"></a>
 
 ```yaml
-BOX_SECURITY_AUDIT_LOG_BATCH_COUNT: "1000"
+BOX_SECURITY_AUDIT_LOG_BATCH_COUNT: 1000
 ```
 
 Max count of Audit Log batch (FHIR bandle entry count).
@@ -67,7 +67,7 @@ Max count of Audit Log batch (FHIR bandle entry count).
 ## Audit Log request headers<a href="#security.audit-log.request-headers" id="security.audit-log.request-headers"></a>
 
 ```yaml
-BOX_SECURITY_AUDIT_LOG_REQUEST_HEADERS: ""<String>""
+BOX_SECURITY_AUDIT_LOG_REQUEST_HEADERS: "<String>"
 ```
 
 The headers for Audit Log external repository requests, formatted as HeaderName:HeaderValue&#92;nHeaderName:HeaderValue.
@@ -77,7 +77,7 @@ The headers for Audit Log external repository requests, formatted as HeaderName:
 ## Enable access control for mapping<a href="#security.iam.mapping.enable-access-control" id="security.iam.mapping.enable-access-control"></a>
 
 ```yaml
-BOX_SECURITY_IAM_MAPPING_ENABLE_ACCESS_CONTROL: "false"
+BOX_SECURITY_IAM_MAPPING_ENABLE_ACCESS_CONTROL: false
 ```
 
 Enable access control for `/Mapping/<mapping-id>/$apply` operation.
@@ -89,7 +89,7 @@ If disabled, only access to $apply endpoints are verified.
 ## Encryption API secret<a href="#security.encrypt-secret" id="security.encrypt-secret"></a>
 
 ```yaml
-BOX_SECURITY_ENCRYPT_SECRET: ""<String>""
+BOX_SECURITY_ENCRYPT_SECRET: "<String>"
 ```
 
 Secret key for encryption API. [Learn more](https://docs.aidbox.app/api/other/encryption-api)
@@ -99,7 +99,7 @@ Secret key for encryption API. [Learn more](https://docs.aidbox.app/api/other/en
 ## Allow CORS requests<a href="#security.cors.enabled" id="security.cors.enabled"></a>
 
 ```yaml
-BOX_SECURITY_CORS_ENABLED: "true"
+BOX_SECURITY_CORS_ENABLED: true
 ```
 
 Enable Cross-Origin Resource Sharing (CORS) request handling.
@@ -109,7 +109,7 @@ Enable Cross-Origin Resource Sharing (CORS) request handling.
 ## Allow CORS requests from origins<a href="#security.cors.origins" id="security.cors.origins"></a>
 
 ```yaml
-BOX_SECURITY_CORS_ORIGINS: ""*""
+BOX_SECURITY_CORS_ORIGINS: "*"
 ```
 
 Comma separated list of origins `[schema]://[domain]:[port]`
@@ -120,7 +120,7 @@ Default is wildcard value `"*"`
 ## Content security policy header<a href="#security.content-security-policy-header" id="security.content-security-policy-header"></a>
 
 ```yaml
-BOX_SECURITY_CONTENT_SECURITY_POLICY_HEADER: ""<String>""
+BOX_SECURITY_CONTENT_SECURITY_POLICY_HEADER: "<String>"
 ```
 
 Defines the Content Security Policy (CSP) header to enhance
@@ -139,7 +139,7 @@ default-src 'self'; script-src 'report-sample' 'self' 'unsafe-inline' 'unsafe-ev
 ## Skip JWT validation<a href="#security.skip-jwt-validation" id="security.skip-jwt-validation"></a>
 
 ```yaml
-BOX_SECURITY_SKIP_JWT_VALIDATION: "false"
+BOX_SECURITY_SKIP_JWT_VALIDATION: false
 ```
 
 Skip JWT token validation process.
@@ -149,7 +149,7 @@ Skip JWT token validation process.
 ## JWT public key<a href="#security.auth.keys.public" id="security.auth.keys.public"></a>
 
 ```yaml
-BOX_SECURITY_AUTH_KEYS_PUBLIC: ""<String>""
+BOX_SECURITY_AUTH_KEYS_PUBLIC: "<String>"
 ```
 
 RS256 signing algorithm expects providing private key for signing JWT and public key for verifying it.
@@ -159,7 +159,7 @@ RS256 signing algorithm expects providing private key for signing JWT and public
 ## JWT private key<a href="#security.auth.keys.private" id="security.auth.keys.private"></a>
 
 ```yaml
-BOX_SECURITY_AUTH_KEYS_PRIVATE: ""<String>""
+BOX_SECURITY_AUTH_KEYS_PRIVATE: "<String>"
 ```
 
 RS256 signing algorithm expects providing private key for signing JWT and public key for verifying it.
@@ -169,7 +169,7 @@ RS256 signing algorithm expects providing private key for signing JWT and public
 ## JWT secret<a href="#security.auth.keys.secret" id="security.auth.keys.secret"></a>
 
 ```yaml
-BOX_SECURITY_AUTH_KEYS_SECRET: ""<String>""
+BOX_SECURITY_AUTH_KEYS_SECRET: "<String>"
 ```
 
 HS256 signing algorithm needs only having a secret for both operations.
@@ -179,7 +179,7 @@ HS256 signing algorithm needs only having a secret for both operations.
 ## Auto-create users from foreign tokens<a href="#security.introspection-create-user" id="security.introspection-create-user"></a>
 
 ```yaml
-BOX_SECURITY_INTROSPECTION_CREATE_USER: "false"
+BOX_SECURITY_INTROSPECTION_CREATE_USER: false
 ```
 
 Creates local user accounts automatically when valid external JWT tokens are presented but no matching user exists.
@@ -189,7 +189,7 @@ Creates local user accounts automatically when valid external JWT tokens are pre
 ## Auth with non-validated JWT<a href="#security.auth-with-not-validated-jwt" id="security.auth-with-not-validated-jwt"></a>
 
 ```yaml
-BOX_SECURITY_AUTH_WITH_NOT_VALIDATED_JWT: ""<String>""
+BOX_SECURITY_AUTH_WITH_NOT_VALIDATED_JWT: "<String>"
 ```
 
 This configuration is used when `skip-jwt-validation` setting is enabled.
@@ -201,7 +201,7 @@ For example: `{:headers #{"authorization" "x-client-token"}, :user-id-paths #{[:
 ## Enable LBAC<a href="#security.lbac.enabled" id="security.lbac.enabled"></a>
 
 ```yaml
-BOX_SECURITY_LBAC_ENABLED: "false"
+BOX_SECURITY_LBAC_ENABLED: false
 ```
 
 Label-based Access Control engine provides a mechanism to restrict access to bundles, resources, or resource elements depending on permissions associated with a request.
@@ -211,7 +211,7 @@ Label-based Access Control engine provides a mechanism to restrict access to bun
 ## Strip security labels<a href="#security.lbac.strip-labels" id="security.lbac.strip-labels"></a>
 
 ```yaml
-BOX_SECURITY_LBAC_STRIP_LABELS: "false"
+BOX_SECURITY_LBAC_STRIP_LABELS: false
 ```
 
 Removes security labels from resource responses before
@@ -225,7 +225,7 @@ details from end users.
 ## Enable organization-based hierarchical access control<a href="#security.orgbac.enabled" id="security.orgbac.enabled"></a>
 
 ```yaml
-BOX_SECURITY_ORGBAC_ENABLED: "false"
+BOX_SECURITY_ORGBAC_ENABLED: false
 ```
 
 Activates hierarchical access control based on organizational
@@ -237,7 +237,7 @@ affiliation and hierarchy position.
 ## Enable SU header<a href="#security.debug-su-enable" id="security.debug-su-enable"></a>
 
 ```yaml
-BOX_SECURITY_DEBUG_SU_ENABLE: "false"
+BOX_SECURITY_DEBUG_SU_ENABLE: false
 ```
 
 This setting enables `SU` header functionality.
@@ -249,7 +249,7 @@ Only the administrator is allowed to use the `SU` header.
 ## Enable Aidbox developer mode<a href="#security.dev-mode" id="security.dev-mode"></a>
 
 ```yaml
-BOX_SECURITY_DEV_MODE: "true"
+BOX_SECURITY_DEV_MODE: true
 ```
 
 Activates debugging features for access policy development, including the `_debug=policy URL` parameter and `x-debug` header. Returns detailed policy evaluation traces showing why requests were allowed or denied. For development environments only - not recommended for production systems.
