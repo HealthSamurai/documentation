@@ -4,6 +4,8 @@ structure:
   summary: SUMMARY.md
 
 redirects:
+  readme/features: features.md
+  readme/architecture: architecture.md
   access-control/authentication/access-to-aidboxui: access-control/authentication/README.md
   access-control/how-to-guides/smart-app: deprecated/deprecated/other/how-to-guides/smart-on-fhir/get-a-smart-app-launched.md
   access-control/how-to-guides/smart-on-fhir/smart-on-fhir-app-launch: deprecated/deprecated/other/how-to-guides/smart-on-fhir/get-a-smart-app-launched.md

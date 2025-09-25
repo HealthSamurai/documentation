@@ -1,8 +1,5 @@
 # Table of contents
 
-* [Aidbox FHIR platform documentation](readme/README.md)
-  * [Features](readme/features.md)
-  * [Architecture](readme/architecture.md)
 * [Getting Started](getting-started/README.md)
   * [Run Aidbox in Sandbox](getting-started/run-aidbox-in-sandbox.md)
   * [Run Aidbox locally](getting-started/run-aidbox-locally.md)
@@ -12,6 +9,8 @@
   * [Use Aidbox with C#](getting-started/csharp.md)
   * [Run Aidbox on AWS](getting-started/run-aidbox-on-aws.md)
   * [Upload Sample Data](getting-started/upload-sample-data.md)
+* [Features](features.md)
+* [Architecture](architecture.md)
 * [Tutorials](tutorials/README.md)
   * [CRUD, Search Tutorials](tutorials/crud-search-tutorials/README.md)
     * [Delete data](tutorials/crud-search-tutorials/delete-data.md)
