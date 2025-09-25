@@ -5,7 +5,7 @@ Web Server settings
 ## Base URL<a href="#web.base-url" id="web.base-url"></a>
 
 ```yaml
-BOX_WEB_BASE_URL: ""<base-url>""
+BOX_WEB_BASE_URL: "<base-url>"
 ```
 
 Base URL is the URL Aidbox is available at. It consists of scheme (HTTP, HTTPS), domain, port (optional) and URL path (optional). Trailing slash is not allowed.
@@ -15,7 +15,7 @@ Base URL is the URL Aidbox is available at. It consists of scheme (HTTP, HTTPS),
 ## Web server port<a href="#web.port" id="web.port"></a>
 
 ```yaml
-BOX_WEB_PORT: "8888"
+BOX_WEB_PORT: 8888
 ```
 
 Web server port that Aidbox listens on.
@@ -25,7 +25,7 @@ Web server port that Aidbox listens on.
 ## Web thread count<a href="#web.thread" id="web.thread"></a>
 
 ```yaml
-BOX_WEB_THREAD: "8"
+BOX_WEB_THREAD: 8
 ```
 
 The number of web server workers in Aidbox. The number of workers determines how many concurrent web requests Aidbox can handle.
@@ -35,7 +35,7 @@ The number of web server workers in Aidbox. The number of workers determines how
 ## HTTP initial line max length<a href="#web.max-line" id="web.max-line"></a>
 
 ```yaml
-BOX_WEB_MAX_LINE: "8192"
+BOX_WEB_MAX_LINE: 8192
 ```
 
 Length limit for HTTP initial line and per header length, 414 (Request-URI Too Long) will be returned if exceeding this limit.
@@ -45,7 +45,7 @@ Length limit for HTTP initial line and per header length, 414 (Request-URI Too L
 ## Request max body size<a href="#web.max-body" id="web.max-body"></a>
 
 ```yaml
-BOX_WEB_MAX_BODY: "20971520"
+BOX_WEB_MAX_BODY: 20971520
 ```
 
 Maximum size of the request body in bytes.
