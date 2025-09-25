@@ -27,8 +27,8 @@ Discover how to start with Aidbox in just a few minutes.
 
 Aidbox is a mature and reliable FHIR platform that enables rapid development of digital health solutions, reducing development time and cost by up to 70% from the start.
 
-* [Features](features.md)
-* [Architecture](architecture.md)
+* [Features](../features.md)
+* [Architecture](../architecture.md)
 * [Licensing and support](../overview/licensing-and-support.md)
 * [Release notes](../overview/release-notes.md)
 * [Run Aidbox on Kubernetes](../deployment-and-maintenance/deploy-aidbox/run-aidbox-in-kubernetes/)

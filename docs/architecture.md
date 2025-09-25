@@ -22,7 +22,7 @@ Aidbox uses [FHIR](https://www.hl7.org/fhir/overview.html) as a foundation and p
 
 ​[Read Features Overview](features.md)​
 
-![](../../.gitbook/assets/1-aidbox.jpg)
+![](../.gitbook/assets/1-aidbox.jpg)
 
 ​[Aidbox](https://www.health-samurai.io/aidbox) is a metadata-driven platform. It means that almost everything in Aidbox is represented as data (resources). For example, REST endpoints (operations), resource definitions, profiles, and access policies are resources in Aidbox. We call them meta-resources. Meta-resources play by the same rules as other resources - you can request and manipulate meta-resources with the use of the unified REST API.
 
@@ -30,16 +30,16 @@ Aidbox uses [FHIR](https://www.hl7.org/fhir/overview.html) as a foundation and p
 
 You can get Aidbox hosted in the cloud (Aidbox Sandbox or AWS) or get self-hosted Aidbox license for evaluation on your local computer or your own infrastructure.
 
-{% content-ref url="../getting-started/run-aidbox-in-sandbox.md" %}
-[run-aidbox-in-sandbox.md](../getting-started/run-aidbox-in-sandbox.md)
+{% content-ref url="getting-started/run-aidbox-in-sandbox.md" %}
+[run-aidbox-in-sandbox.md](getting-started/run-aidbox-in-sandbox.md)
 {% endcontent-ref %}
 
-{% content-ref url="../getting-started/run-aidbox-locally.md" %}
-[run-aidbox-locally.md](../getting-started/run-aidbox-locally.md)
+{% content-ref url="getting-started/run-aidbox-locally.md" %}
+[run-aidbox-locally.md](getting-started/run-aidbox-locally.md)
 {% endcontent-ref %}
 
-{% content-ref url="../getting-started/run-aidbox-on-aws.md" %}
-[run-aidbox-on-aws.md](../getting-started/run-aidbox-on-aws.md)
+{% content-ref url="getting-started/run-aidbox-on-aws.md" %}
+[run-aidbox-on-aws.md](getting-started/run-aidbox-on-aws.md)
 {% endcontent-ref %}
 
 ### FHIR & Aidbox
