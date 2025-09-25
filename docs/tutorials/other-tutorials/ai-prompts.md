@@ -1,9 +1,11 @@
-# How to use
+# AI Prompts
+
+## How to use
 Copy the prompt to a file in your repo.
 
 Use the "include file" feature from your AI tool to include the prompt when chatting with your AI assistant. For example, with GitHub Copilot, use #<filename>, in Cursor, use @Files, and in Zed, use /file, in Claude Code use @<filename>.
 
-# For creating Access Policies
+## For creating Access Policies
 
 Use the following script to generate promt file:
 
