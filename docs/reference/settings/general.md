@@ -5,7 +5,7 @@ General settings
 ## Aidbox name<a href="#box-id" id="box-id"></a>
 
 ```yaml
-BOX_ID: "devbox"
+BOX_ID: ""devbox""
 ```
 
 Aidbox instance unique ID. Can be used to separate telemetry data (logs, metrics, traces) in observability systems for multiple deployments.
@@ -15,7 +15,7 @@ Aidbox instance unique ID. Can be used to separate telemetry data (logs, metrics
 ## Instance name<a href="#instance-name" id="instance-name"></a>
 
 ```yaml
-BOX_INSTANCE_NAME: "Aidbox"
+BOX_INSTANCE_NAME: ""Aidbox""
 ```
 
 Provided instance name will be attached to metric labels. It is required for monitoring multiple Aidbox instances.
@@ -25,7 +25,7 @@ Provided instance name will be attached to metric labels. It is required for mon
 ## Root FHIR package<a href="#root-fhir-package" id="root-fhir-package"></a>
 
 ```yaml
-BOX_ROOT_FHIR_PACKAGE: "app.aidbox.main#0.0.1"
+BOX_ROOT_FHIR_PACKAGE: ""app.aidbox.main#0.0.1""
 ```
 
 Identifier for the main Aidbox FHIR package that stores dependencies and canonical resources provided by the user.
@@ -35,7 +35,7 @@ Identifier for the main Aidbox FHIR package that stores dependencies and canonic
 ## Bootstrap FHIR package list<a href="#bootstrap-fhir-packages" id="bootstrap-fhir-packages"></a>
 
 ```yaml
-BOX_BOOTSTRAP_FHIR_PACKAGES: "<String>"
+BOX_BOOTSTRAP_FHIR_PACKAGES: ""hl7.fhir.r4.core#4.0.1""
 ```
 
 During the first startup Aidbox loads these packages.
@@ -44,12 +44,12 @@ This setting has no effect on any consecutive starts.
 Format: 
 `<name1>#<version1>:<name2>#<version2>...`
 
-<details><summary>Details</summary><table data-header-hidden="true"><thead><tr><th width="200"></th><th></th></tr></thead><tbody><tr><td>ID</td><td><code>bootstrap-fhir-packages</code></td></tr><tr><td>Type</td><td>String</td></tr><tr><td>Default value</td><td>(no default)</td></tr><tr><td>Environment variable</td><td><code>BOX_BOOTSTRAP_FHIR_PACKAGES</code></td></tr><tr><td>Deprecated environment variables</td><td><code>AIDBOX_FHIR_PACKAGES</code></td></tr><tr><td>Sensitive</td><td><code>false</code> — value will be visible in plaintext in Admin UI</td></tr><tr><td>Set via</td><td>Admin UI → Settings<br />Environment variables</td></tr><tr><td>Hot reload</td><td><code>false</code> — setting requires system restart</td></tr></tbody></table></details>
+<details><summary>Details</summary><table data-header-hidden="true"><thead><tr><th width="200"></th><th></th></tr></thead><tbody><tr><td>ID</td><td><code>bootstrap-fhir-packages</code></td></tr><tr><td>Type</td><td>String</td></tr><tr><td>Recommended value</td><td><code>hl7.fhir.r4.core#4.0.1</code></td></tr><tr><td>Default value</td><td>(no default)</td></tr><tr><td>Environment variable</td><td><code>BOX_BOOTSTRAP_FHIR_PACKAGES</code></td></tr><tr><td>Deprecated environment variables</td><td><code>AIDBOX_FHIR_PACKAGES</code></td></tr><tr><td>Sensitive</td><td><code>false</code> — value will be visible in plaintext in Admin UI</td></tr><tr><td>Set via</td><td>Admin UI → Settings<br />Environment variables</td></tr><tr><td>Hot reload</td><td><code>false</code> — setting requires system restart</td></tr></tbody></table></details>
 
 ## Init bundle<a href="#init-bundle" id="init-bundle"></a>
 
 ```yaml
-BOX_INIT_BUNDLE: "<String>"
+BOX_INIT_BUNDLE: ""<String>""
 ```
 
 URL of the Bundle resource in JSON format executed on Aidbox startup. Not available to edit because if file is not reachable, Aidbox will not start.
@@ -69,18 +69,18 @@ Allows Aidbox to collect and send high-level API usage statistics to help improv
 ## Settings mode<a href="#settings-mode" id="settings-mode"></a>
 
 ```yaml
-BOX_SETTINGS_MODE: "legacy"
+BOX_SETTINGS_MODE: ""read-write""
 ```
 
 Settings mode defines the source of settings values and
     possibility to change them at runtime.
 
-<details><summary>Details</summary><table data-header-hidden="true"><thead><tr><th width="200"></th><th></th></tr></thead><tbody><tr><td>ID</td><td><code>settings-mode</code></td></tr><tr><td>Type</td><td>Enum</td></tr><tr><td>Values</td><td><code>legacy</code> — Reads configuration values from the legacy Aidbox                 configuration project (zen) in read-only mode. This mode exists                 for backward compatibility. It will be obsolete in July 2025.                 &lt;a href=&apos;https://www.health-samurai.io/news/aidbox-transitions-to-the-fhir-schema-engine&apos;&gt;Read more&lt;/a&gt;<br /><code>read-only</code> — Reads settings values from environment variables and                 Aidbox settings in read-only mode. Loading configuration from                 the Aidbox configuration project (Zen) is disabled.<br /><code>read-write</code> — Enables editing Aidbox settings using the UI. Loading                 configuration from the Aidbox configuration project (Zen) is                 disabled.</td></tr><tr><td>Default value</td><td><code>legacy</code></td></tr><tr><td>Environment variable</td><td><code>BOX_SETTINGS_MODE</code></td></tr><tr><td>Available from</td><td><code>2502</code></td></tr><tr><td>Sensitive</td><td><code>false</code> — value will be visible in plaintext in Admin UI</td></tr><tr><td>Set via</td><td>Environment variables</td></tr><tr><td>Hot reload</td><td><code>false</code> — setting requires system restart</td></tr></tbody></table></details>
+<details><summary>Details</summary><table data-header-hidden="true"><thead><tr><th width="200"></th><th></th></tr></thead><tbody><tr><td>ID</td><td><code>settings-mode</code></td></tr><tr><td>Type</td><td>Enum</td></tr><tr><td>Values</td><td><code>legacy</code> — Reads configuration values from the legacy Aidbox                 configuration project (zen) in read-only mode. This mode exists                 for backward compatibility. It will be obsolete in July 2025.                 &lt;a href=&apos;https://www.health-samurai.io/news/aidbox-transitions-to-the-fhir-schema-engine&apos;&gt;Read more&lt;/a&gt;<br /><code>read-only</code> — Reads settings values from environment variables and                 Aidbox settings in read-only mode. Loading configuration from                 the Aidbox configuration project (Zen) is disabled.<br /><code>read-write</code> — Enables editing Aidbox settings using the UI. Loading                 configuration from the Aidbox configuration project (Zen) is                 disabled.</td></tr><tr><td>Recommended value</td><td><code>read-write</code></td></tr><tr><td>Default value</td><td><code>legacy</code></td></tr><tr><td>Environment variable</td><td><code>BOX_SETTINGS_MODE</code></td></tr><tr><td>Available from</td><td><code>2502</code></td></tr><tr><td>Sensitive</td><td><code>false</code> — value will be visible in plaintext in Admin UI</td></tr><tr><td>Set via</td><td>Environment variables</td></tr><tr><td>Hot reload</td><td><code>false</code> — setting requires system restart</td></tr></tbody></table></details>
 
 ## Enable export settings endpoint<a href="#export-settings-endpoint" id="export-settings-endpoint"></a>
 
 ```yaml
-BOX_EXPORT_SETTINGS_ENDPOINT: "<Bool>"
+BOX_EXPORT_SETTINGS_ENDPOINT: "false"
 ```
 
 Allow user to request current Aidbox settings as a set of environment variables on `/api/v1/settings/export`.
@@ -92,7 +92,7 @@ Allow user to request current Aidbox settings as a set of environment variables 
 ## Enable cache replication<a href="#cache-replication-disable" id="cache-replication-disable"></a>
 
 ```yaml
-BOX_CACHE_REPLICATION_DISABLE: "<Bool>"
+BOX_CACHE_REPLICATION_DISABLE: "false"
 ```
 
 Aidbox automatically syncs runtime cache (SearchParameters, FHIR Schemas, OperationDefinitions, etc) across multiple instances for high availability. If you configure everything at startup and don't modify metadata at runtime, you can disable cache replication to improve performance.
@@ -102,7 +102,7 @@ Aidbox automatically syncs runtime cache (SearchParameters, FHIR Schemas, Operat
 ## Aidbox modules load list<a href="#module-load" id="module-load"></a>
 
 ```yaml
-BOX_MODULE_LOAD: "<String>"
+BOX_MODULE_LOAD: ""<String>""
 ```
 
 During startup Aidbox loads these modules.
@@ -114,7 +114,7 @@ Format:
 ## Aidbox module jar<a href="#module-jar" id="module-jar"></a>
 
 ```yaml
-BOX_MODULE_JAR: "<String>"
+BOX_MODULE_JAR: ""<String>""
 ```
 
 Path to an Aidbox module jar files separated by ":"
