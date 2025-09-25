@@ -248,7 +248,7 @@ See also:
 
 Healthcare applications need to retrieve and analyze patient data efficiently, from simple lookups to complex analytical queries. Aidbox provides multiple querying approaches that balance FHIR compliance with the performance demands of production healthcare systems, allowing developers to choose the right tool for each specific use case.
 
-### FHIR Search
+### FHIR search
 
 When building healthcare applications, you often need to find patients by name, retrieve recent lab results, or search for medications prescribed within a date range. FHIR Search provides a standardized way to query resources using familiar REST patterns, with Aidbox implementing the complete [FHIR Search specification](https://www.hl7.org/fhir/search.html) including all standard search parameters, modifiers, and chaining capabilities.
 
