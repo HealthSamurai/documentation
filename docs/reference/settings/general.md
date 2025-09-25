@@ -5,7 +5,7 @@ General settings
 ## Aidbox name<a href="#box-id" id="box-id"></a>
 
 ```yaml
-BOX_ID: ""devbox""
+BOX_ID: "devbox"
 ```
 
 Aidbox instance unique ID. Can be used to separate telemetry data (logs, metrics, traces) in observability systems for multiple deployments.
@@ -15,7 +15,7 @@ Aidbox instance unique ID. Can be used to separate telemetry data (logs, metrics
 ## Instance name<a href="#instance-name" id="instance-name"></a>
 
 ```yaml
-BOX_INSTANCE_NAME: ""Aidbox""
+BOX_INSTANCE_NAME: "Aidbox"
 ```
 
 Provided instance name will be attached to metric labels. It is required for monitoring multiple Aidbox instances.
@@ -25,7 +25,7 @@ Provided instance name will be attached to metric labels. It is required for mon
 ## Root FHIR package<a href="#root-fhir-package" id="root-fhir-package"></a>
 
 ```yaml
-BOX_ROOT_FHIR_PACKAGE: ""app.aidbox.main#0.0.1""
+BOX_ROOT_FHIR_PACKAGE: "app.aidbox.main#0.0.1"
 ```
 
 Identifier for the main Aidbox FHIR package that stores dependencies and canonical resources provided by the user.
@@ -35,7 +35,7 @@ Identifier for the main Aidbox FHIR package that stores dependencies and canonic
 ## Bootstrap FHIR package list<a href="#bootstrap-fhir-packages" id="bootstrap-fhir-packages"></a>
 
 ```yaml
-BOX_BOOTSTRAP_FHIR_PACKAGES: ""hl7.fhir.r4.core#4.0.1""
+BOX_BOOTSTRAP_FHIR_PACKAGES: "hl7.fhir.r4.core#4.0.1"
 ```
 
 During the first startup Aidbox loads these packages.
@@ -49,7 +49,7 @@ Format:
 ## Init bundle<a href="#init-bundle" id="init-bundle"></a>
 
 ```yaml
-BOX_INIT_BUNDLE: ""<String>""
+BOX_INIT_BUNDLE: "<String>"
 ```
 
 URL of the Bundle resource in JSON format executed on Aidbox startup. Not available to edit because if file is not reachable, Aidbox will not start.
@@ -59,7 +59,7 @@ URL of the Bundle resource in JSON format executed on Aidbox startup. Not availa
 ## Share usage statistics with Aidbox developers<a href="#usage-stats" id="usage-stats"></a>
 
 ```yaml
-BOX_USAGE_STATS: "true"
+BOX_USAGE_STATS: true
 ```
 
 Allows Aidbox to collect and send high-level API usage statistics to help improve the product.
@@ -69,7 +69,7 @@ Allows Aidbox to collect and send high-level API usage statistics to help improv
 ## Settings mode<a href="#settings-mode" id="settings-mode"></a>
 
 ```yaml
-BOX_SETTINGS_MODE: ""read-write""
+BOX_SETTINGS_MODE: "read-write"
 ```
 
 Settings mode defines the source of settings values and
@@ -80,7 +80,7 @@ Settings mode defines the source of settings values and
 ## Enable export settings endpoint<a href="#export-settings-endpoint" id="export-settings-endpoint"></a>
 
 ```yaml
-BOX_EXPORT_SETTINGS_ENDPOINT: "false"
+BOX_EXPORT_SETTINGS_ENDPOINT: false
 ```
 
 Allow user to request current Aidbox settings as a set of environment variables on `/api/v1/settings/export`.
@@ -92,7 +92,7 @@ Allow user to request current Aidbox settings as a set of environment variables 
 ## Enable cache replication<a href="#cache-replication-disable" id="cache-replication-disable"></a>
 
 ```yaml
-BOX_CACHE_REPLICATION_DISABLE: "false"
+BOX_CACHE_REPLICATION_DISABLE: false
 ```
 
 Aidbox automatically syncs runtime cache (SearchParameters, FHIR Schemas, OperationDefinitions, etc) across multiple instances for high availability. If you configure everything at startup and don't modify metadata at runtime, you can disable cache replication to improve performance.
@@ -102,7 +102,7 @@ Aidbox automatically syncs runtime cache (SearchParameters, FHIR Schemas, Operat
 ## Aidbox modules load list<a href="#module-load" id="module-load"></a>
 
 ```yaml
-BOX_MODULE_LOAD: ""<String>""
+BOX_MODULE_LOAD: "<String>"
 ```
 
 During startup Aidbox loads these modules.
@@ -114,7 +114,7 @@ Format:
 ## Aidbox module jar<a href="#module-jar" id="module-jar"></a>
 
 ```yaml
-BOX_MODULE_JAR: ""<String>""
+BOX_MODULE_JAR: "<String>"
 ```
 
 Path to an Aidbox module jar files separated by ":"
