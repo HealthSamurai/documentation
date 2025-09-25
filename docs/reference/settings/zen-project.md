@@ -5,7 +5,7 @@ Settings related to Zen Project for backward compatibility. Read [d͟e͟t͟a͟i�
 ## Zen project entrypoint<a href="#zen-project.entrypoint" id="zen-project.entrypoint"></a>
 
 ```yaml
-BOX_ZEN_PROJECT_ENTRYPOINT: ""<String>""
+BOX_ZEN_PROJECT_ENTRYPOINT: "<String>"
 ```
 
 Entrypoint for zen project to start from.
@@ -15,7 +15,7 @@ Entrypoint for zen project to start from.
 ## Zen project entry<a href="#zen-project.entry" id="zen-project.entry"></a>
 
 ```yaml
-BOX_ZEN_PROJECT_ENTRY: ""<String>""
+BOX_ZEN_PROJECT_ENTRY: "<String>"
 ```
 
 Environment variable is used to specify zen project entry namespace
@@ -25,7 +25,7 @@ Environment variable is used to specify zen project entry namespace
 ## Load zen namespace as EDN<a href="#zen-project.load" id="zen-project.load"></a>
 
 ```yaml
-BOX_ZEN_PROJECT_LOAD: ""<String>""
+BOX_ZEN_PROJECT_LOAD: "<String>"
 ```
 
 Used to load a single namespace represented as EDN
@@ -35,7 +35,7 @@ Used to load a single namespace represented as EDN
 ## URL or path to the zen project source<a href="#zen-project.paths" id="zen-project.paths"></a>
 
 ```yaml
-BOX_ZEN_PROJECT_PATHS: ""<String>""
+BOX_ZEN_PROJECT_PATHS: "<String>"
 ```
 
 Source of the zen project using the following syntax `<source>:<format>:<path>[,<source>:<format>:<path>]*`.
@@ -45,7 +45,7 @@ Source of the zen project using the following syntax `<source>:<format>:<path>[,
 ## Zen project git protocol<a href="#zen-project.git.protocol" id="zen-project.git.protocol"></a>
 
 ```yaml
-BOX_ZEN_PROJECT_GIT_PROTOCOL: ""<String>""
+BOX_ZEN_PROJECT_GIT_PROTOCOL: "<String>"
 ```
 
 Either `https` or `ssh`. Assumes local directory if omitted.
@@ -55,7 +55,7 @@ Either `https` or `ssh`. Assumes local directory if omitted.
 ## Zen project git URL<a href="#zen-project.git.url" id="zen-project.git.url"></a>
 
 ```yaml
-BOX_ZEN_PROJECT_GIT_URL: ""<String>""
+BOX_ZEN_PROJECT_GIT_URL: "<String>"
 ```
 
 Where to clone your project from. Aidbox substitutes it to `git clone <url>` command.
@@ -65,7 +65,7 @@ Where to clone your project from. Aidbox substitutes it to `git clone <url>` com
 ## Zen project git access token<a href="#zen-project.git.access-token" id="zen-project.git.access-token"></a>
 
 ```yaml
-BOX_ZEN_PROJECT_GIT_ACCESS_TOKEN: ""<String>""
+BOX_ZEN_PROJECT_GIT_ACCESS_TOKEN: "<String>"
 ```
 
 Token to access HTTPS private repository
@@ -75,7 +75,7 @@ Token to access HTTPS private repository
 ## Zen project git checkout<a href="#zen-project.git.checkout" id="zen-project.git.checkout"></a>
 
 ```yaml
-BOX_ZEN_PROJECT_GIT_CHECKOUT: ""<String>""
+BOX_ZEN_PROJECT_GIT_CHECKOUT: "<String>"
 ```
 
 Git branch or commit
@@ -85,7 +85,7 @@ Git branch or commit
 ## Zen project target path<a href="#zen-project.git.target-path" id="zen-project.git.target-path"></a>
 
 ```yaml
-BOX_ZEN_PROJECT_GIT_TARGET_PATH: ""<String>""
+BOX_ZEN_PROJECT_GIT_TARGET_PATH: "<String>"
 ```
 
 Clone the repository into a directory. Default value is a directory in `/tmp`
@@ -95,7 +95,7 @@ Clone the repository into a directory. Default value is a directory in `/tmp`
 ## Path to the zen project inside a git repository<a href="#zen-project.git.sub-path" id="zen-project.git.sub-path"></a>
 
 ```yaml
-BOX_ZEN_PROJECT_GIT_SUB_PATH: ""<String>""
+BOX_ZEN_PROJECT_GIT_SUB_PATH: "<String>"
 ```
 
 The value of the setting should be set to a path starting with a repository name.
@@ -105,7 +105,7 @@ The value of the setting should be set to a path starting with a repository name
 ## Zen dev mode<a href="#zen-project.dev.mode" id="zen-project.dev.mode"></a>
 
 ```yaml
-BOX_ZEN_PROJECT_DEV_MODE: "false"
+BOX_ZEN_PROJECT_DEV_MODE: false
 ```
 
 Enables watcher which reloads zen namespaces when they change.
@@ -115,7 +115,7 @@ Enables watcher which reloads zen namespaces when they change.
 ## Task executor service workers<a href="#zen-project.default-service-workers" id="zen-project.default-service-workers"></a>
 
 ```yaml
-BOX_ZEN_PROJECT_DEFAULT_SERVICE_WORKERS: "3"
+BOX_ZEN_PROJECT_DEFAULT_SERVICE_WORKERS: 3
 ```
 
 The default number of task executor service workers.
@@ -125,7 +125,7 @@ The default number of task executor service workers.
 ## Zen config expose<a href="#zen-project.config.expose" id="zen-project.config.expose"></a>
 
 ```yaml
-BOX_ZEN_PROJECT_CONFIG_EXPOSE: "false"
+BOX_ZEN_PROJECT_CONFIG_EXPOSE: false
 ```
 
 Show zen Aidbox config in zen UI and on $config endpoint
@@ -135,7 +135,7 @@ Show zen Aidbox config in zen UI and on $config endpoint
 ## Sync indexes on startup<a href="#zen-project.index.sync-on-start" id="zen-project.index.sync-on-start"></a>
 
 ```yaml
-BOX_ZEN_PROJECT_INDEX_SYNC_ON_START: "false"
+BOX_ZEN_PROJECT_INDEX_SYNC_ON_START: false
 ```
 
 If enabled, Aidbox synchronizes managed index on startup
@@ -145,7 +145,7 @@ If enabled, Aidbox synchronizes managed index on startup
 ## Manifest to zen migration<a href="#zen-project.manifest-to-zen-migration" id="zen-project.manifest-to-zen-migration"></a>
 
 ```yaml
-BOX_ZEN_PROJECT_MANIFEST_TO_ZEN_MIGRATION: ""<String>""
+BOX_ZEN_PROJECT_MANIFEST_TO_ZEN_MIGRATION: "<String>"
 ```
 
 
@@ -155,7 +155,7 @@ BOX_ZEN_PROJECT_MANIFEST_TO_ZEN_MIGRATION: ""<String>""
 ## Enable zen-FHIR search parameters<a href="#zen-project.search.zen-fhir" id="zen-project.search.zen-fhir"></a>
 
 ```yaml
-BOX_ZEN_PROJECT_SEARCH_ZEN_FHIR: ""<Enum>""
+BOX_ZEN_PROJECT_SEARCH_ZEN_FHIR: "<Enum>"
 ```
 
 Aidbox zen packages may contain search parameters.
@@ -171,7 +171,7 @@ This setting has no effect if FHIR-Schema validator is enabled.
 ## Check bindings<a href="#zen-project.validation.value-set-mode" id="zen-project.validation.value-set-mode"></a>
 
 ```yaml
-BOX_ZEN_PROJECT_VALIDATION_VALUE_SET_MODE: "true"
+BOX_ZEN_PROJECT_VALIDATION_VALUE_SET_MODE: true
 ```
 
 Disable validation of FHIR terminology bindings
@@ -181,7 +181,7 @@ Disable validation of FHIR terminology bindings
 ## Use SQL backward-compatible with old zen search<a href="#zen-project.search.resource-compat" id="zen-project.search.resource-compat"></a>
 
 ```yaml
-BOX_ZEN_PROJECT_SEARCH_RESOURCE_COMPAT: "true"
+BOX_ZEN_PROJECT_SEARCH_RESOURCE_COMPAT: true
 ```
 
 For some time zen-search generated slightly different
@@ -195,7 +195,7 @@ and do not wish to update indexes.
 ## Enable terminology import<a href="#zen-project.terminology.import.enable" id="zen-project.terminology.import.enable"></a>
 
 ```yaml
-BOX_ZEN_PROJECT_TERMINOLOGY_IMPORT_ENABLE: "true"
+BOX_ZEN_PROJECT_TERMINOLOGY_IMPORT_ENABLE: true
 ```
 
 Enable terminology import.
@@ -205,7 +205,7 @@ Enable terminology import.
 ## Enable terminology sync<a href="#zen-project.terminology.import.sync" id="zen-project.terminology.import.sync"></a>
 
 ```yaml
-BOX_ZEN_PROJECT_TERMINOLOGY_IMPORT_SYNC: "false"
+BOX_ZEN_PROJECT_TERMINOLOGY_IMPORT_SYNC: false
 ```
 
 Enable terminology sync.
@@ -215,7 +215,7 @@ Enable terminology sync.
 ## Build FTR index on startup<a href="#zen-project.ftr.build-index-on-startup.enable" id="zen-project.ftr.build-index-on-startup.enable"></a>
 
 ```yaml
-BOX_ZEN_PROJECT_FTR_BUILD_INDEX_ON_STARTUP_ENABLE: "true"
+BOX_ZEN_PROJECT_FTR_BUILD_INDEX_ON_STARTUP_ENABLE: true
 ```
 
 Build FTR index on startup.
@@ -225,7 +225,7 @@ Build FTR index on startup.
 ## Sync FTR index on Aidbox start<a href="#zen-project.ftr.build-index-on-startup.sync" id="zen-project.ftr.build-index-on-startup.sync"></a>
 
 ```yaml
-BOX_ZEN_PROJECT_FTR_BUILD_INDEX_ON_STARTUP_SYNC: "false"
+BOX_ZEN_PROJECT_FTR_BUILD_INDEX_ON_STARTUP_SYNC: false
 ```
 
 Sync FTR index on Aidbox start.
@@ -235,7 +235,7 @@ Sync FTR index on Aidbox start.
 ## Enable incremental updates of the FTR index<a href="#zen-project.ftr.incremental-index-updates.enable" id="zen-project.ftr.incremental-index-updates.enable"></a>
 
 ```yaml
-BOX_ZEN_PROJECT_FTR_INCREMENTAL_INDEX_UPDATES_ENABLE: "true"
+BOX_ZEN_PROJECT_FTR_INCREMENTAL_INDEX_UPDATES_ENABLE: true
 ```
 
 Enable incremental updates of the FTR index
@@ -245,7 +245,7 @@ Enable incremental updates of the FTR index
 ## Load FTR index into Aidbox DB<a href="#zen-project.ftr.pull.enable" id="zen-project.ftr.pull.enable"></a>
 
 ```yaml
-BOX_ZEN_PROJECT_FTR_PULL_ENABLE: "false"
+BOX_ZEN_PROJECT_FTR_PULL_ENABLE: false
 ```
 
 Load FTR index into Aidbox DB
@@ -255,7 +255,7 @@ Load FTR index into Aidbox DB
 ## Load FTR index synchronously<a href="#zen-project.ftr.pull.sync" id="zen-project.ftr.pull.sync"></a>
 
 ```yaml
-BOX_ZEN_PROJECT_FTR_PULL_SYNC: "false"
+BOX_ZEN_PROJECT_FTR_PULL_SYNC: false
 ```
 
 Block Aidbox start until FTR index is loaded into Aidbox DB.
