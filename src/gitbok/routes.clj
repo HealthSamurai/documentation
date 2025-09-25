@@ -290,16 +290,15 @@
                                                             {:status 301
                                                              :headers {"Location" new-uri}}))}}]
                 ;; Product root - without trailing slash
-                [product-path {:get {:handler #'handlers/redirect-to-readme
+                ;; For Aidbox - show landing, for others - redirect to readme
+                [product-path {:get {:handler (if (= (:id product) "aidbox")
+                                                #'gitbok.ui.landing-hero/render-landing
+                                                #'handlers/redirect-to-readme)
                                      :middleware [product-middleware]}}]]]
     ;; Add Aidbox-specific routes
     (if (= (:id product) "aidbox")
       (concat routes
-              [;; Landing page - Aidbox only
-               [(str product-path "/landing")
-                {:get {:handler #'gitbok.ui.landing-hero/render-landing
-                       :middleware [product-middleware]}}]
-               ;; Examples page
+              [;; Examples page
                [(str product-path "/examples")
                 {:get {:handler #'gitbok.ui.examples/examples-handler
                        :middleware [product-middleware]}}]
