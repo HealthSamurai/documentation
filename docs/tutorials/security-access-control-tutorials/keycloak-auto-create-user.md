@@ -69,7 +69,7 @@ Service URLs:
 1. Clients → Create client
 2. Settings:
    - Client type: `OpenID Connect`
-   - Client ID: `aidbox-client`
+   - Client ID: `my-client`
 3. Next → Capability config:
    - Client authentication: `ON`
    - Standard flow: `ON`
@@ -82,7 +82,7 @@ Service URLs:
 
 ### 3. Get Client secret
 
-1. Open `aidbox-client` → "Credentials" tab
+1. Open `my-client` → "Credentials" tab
 2. Copy the Client secret
 
 ### 4. Create User
@@ -157,7 +157,7 @@ matcho:
 ```bash
 curl -X POST http://localhost:8180/realms/myrealm/protocol/openid-connect/token \
   -H "Content-Type: application/x-www-form-urlencoded" \
-  -d "client_id=aidbox-client" \
+  -d "client_id=my-client" \
   -d "client_secret=YOUR_CLIENT_SECRET" \
   -d "grant_type=client_credentials" \
   -d "scope=openid profile email"
@@ -179,7 +179,7 @@ Copy `access_token`. You can view the issued JWT in https://www.jwt.io/.
   "aud": "account",
   "sub": "74ae9aaf-5681-4231-96d3-eeec940a20b4",
   "typ": "Bearer",
-  "azp": "aidbox-client",
+  "azp": "my-client",
   "acr": "1",
   "allowed-origins": [
     "/*"
@@ -203,9 +203,9 @@ Copy `access_token`. You can view the issued JWT in https://www.jwt.io/.
   "scope": "profile email",
   "email_verified": false,
   "clientHost": "192.168.112.1",
-  "preferred_username": "service-account-aidbox-client",
+  "preferred_username": "service-account-my-client",
   "clientAddress": "192.168.112.1",
-  "client_id": "aidbox-client"
+  "client_id": "my-client"
 }
 ```
 
@@ -233,7 +233,7 @@ User example:
   "data": {
     "sub": "74ae9aaf-5681-4231-96d3-eeec940a20b4",
     "email_verified": false,
-    "preferred_username": "service-account-aidbox-client"
+    "preferred_username": "service-account-my-client"
   },
   "identifier": [
     {
