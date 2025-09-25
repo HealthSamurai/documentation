@@ -9,7 +9,7 @@ Logs settings
 ### Disable health logs<a href="#observability.disable-health-logs" id="observability.disable-health-logs"></a>
 
 ```yaml
-BOX_OBSERVABILITY_DISABLE_HEALTH_LOGS: "<Bool>"
+BOX_OBSERVABILITY_DISABLE_HEALTH_LOGS: "false"
 ```
 
 Disable `/health` endpoint requests logging. Default value is `false`
@@ -19,7 +19,7 @@ Disable `/health` endpoint requests logging. Default value is `false`
 ### Log file path<a href="#observability.log-file.path" id="observability.log-file.path"></a>
 
 ```yaml
-BOX_OBSERVABILITY_LOG_FILE_PATH: "<String>"
+BOX_OBSERVABILITY_LOG_FILE_PATH: ""<String>""
 ```
 
 If provided, enables mode to pipe logs as JSON into the file by specified path.
@@ -67,7 +67,7 @@ Metrics settings
 ### Metrics server port<a href="#observability.metrics.server-port" id="observability.metrics.server-port"></a>
 
 ```yaml
-BOX_METRICS_PORT: "<Int>"
+BOX_METRICS_PORT: ""<Int>""
 ```
 
 Port on which Aidbox will expose metrics.
@@ -92,7 +92,7 @@ Stdout settings
 ### Stdout log level<a href="#observability.stdout.log-level" id="observability.stdout.log-level"></a>
 
 ```yaml
-BOX_OBSERVABILITY_STDOUT_LOG_LEVEL: "<Enum>"
+BOX_OBSERVABILITY_STDOUT_LOG_LEVEL: ""<Enum>""
 ```
 
 Controls stdout with specified logs level.
@@ -106,7 +106,7 @@ and `error` levels (off is excluded).
 ### Pretty print log level<a href="#observability.stdout.pretty-log-level" id="observability.stdout.pretty-log-level"></a>
 
 ```yaml
-BOX_OBSERVABILITY_STDOUT_PRETTY_LOG_LEVEL: "warn"
+BOX_OBSERVABILITY_STDOUT_PRETTY_LOG_LEVEL: ""warn""
 ```
 
 Controls pretty print of logs to stdout with specified level.
@@ -120,7 +120,7 @@ and `error` levels (off is excluded).
 ### Google log level<a href="#observability.stdout.google-log-level" id="observability.stdout.google-log-level"></a>
 
 ```yaml
-BOX_OBSERVABILITY_STDOUT_GOOGLE_LOG_LEVEL: "<Enum>"
+BOX_OBSERVABILITY_STDOUT_GOOGLE_LOG_LEVEL: ""<Enum>""
 ```
 
 Produces in Google Logging format with specified log level.
@@ -138,7 +138,7 @@ Grafana Loki settings
 ### Loki URL<a href="#observability.loki-url" id="observability.loki-url"></a>
 
 ```yaml
-BOX_OBSERVABILITY_LOKI_URL: "<String>"
+BOX_OBSERVABILITY_LOKI_URL: ""<String>""
 ```
 
 Loki URL to enable Aidbox logs uploading into Loki
@@ -148,7 +148,7 @@ Loki URL to enable Aidbox logs uploading into Loki
 ### Loki batch size<a href="#observability.loki.batch-size" id="observability.loki.batch-size"></a>
 
 ```yaml
-BOX_OBSERVABILITY_LOKI_BATCH_SIZE: "<String>"
+BOX_OBSERVABILITY_LOKI_BATCH_SIZE: ""<String>""
 ```
 
 Loki batch size for log uploading.
@@ -160,7 +160,7 @@ or time passed from previous log uploading exceeds `observability.loki.batch-tim
 ### Loki batch timeout<a href="#observability.loki.batch-timeout" id="observability.loki.batch-timeout"></a>
 
 ```yaml
-BOX_OBSERVABILITY_LOKI_BATCH_TIMEOUT: "<Int>"
+BOX_OBSERVABILITY_LOKI_BATCH_TIMEOUT: ""<Int>""
 ```
 
 How long to wait before uploading
@@ -172,7 +172,7 @@ or time passed from previous log uploading exceeds `observability.loki.batch-tim
 ### Loki stream<a href="#observability.loki.stream" id="observability.loki.stream"></a>
 
 ```yaml
-BOX_OBSERVABILITY_LOKI_STREAM: "<String>"
+BOX_OBSERVABILITY_LOKI_STREAM: ""<String>""
 ```
 
 Stream refers to the labels or metadata associated with a log stream
@@ -188,7 +188,7 @@ Datadog settings
 ### Datadog API Key<a href="#observability.datadog.api-key" id="observability.datadog.api-key"></a>
 
 ```yaml
-BOX_OBSERVABILITY_DATADOG_API_KEY: "<String>"
+BOX_OBSERVABILITY_DATADOG_API_KEY: ""<String>""
 ```
 
 Datadog API Key.
@@ -198,7 +198,7 @@ Datadog API Key.
 ### Datadog regional site<a href="#observability.datadog.site" id="observability.datadog.site"></a>
 
 ```yaml
-BOX_OBSERVABILITY_DATADOG_SITE: "<Enum>"
+BOX_OBSERVABILITY_DATADOG_SITE: ""<Enum>""
 ```
 
 The regional site for a Datadog customer.
@@ -208,7 +208,7 @@ The regional site for a Datadog customer.
 ### Datadog log tags<a href="#observability.datadog.tags" id="observability.datadog.tags"></a>
 
 ```yaml
-BOX_OBSERVABILITY_DATADOG_TAGS: "<String>"
+BOX_OBSERVABILITY_DATADOG_TAGS: ""<String>""
 ```
 
 Tags associated with your logs.
@@ -220,7 +220,7 @@ For example `env:staging`.
 ### Datadog log file path<a href="#observability.datadog.logs" id="observability.datadog.logs"></a>
 
 ```yaml
-BOX_OBSERVABILITY_DATADOG_LOGS: "<String>"
+BOX_OBSERVABILITY_DATADOG_LOGS: ""<String>""
 ```
 
 Fallback file to write logs in if uploading to Datadog fails
@@ -230,7 +230,7 @@ Fallback file to write logs in if uploading to Datadog fails
 ### Datadog log batch size<a href="#observability.datadog.batch-size" id="observability.datadog.batch-size"></a>
 
 ```yaml
-BOX_OBSERVABILITY_DATADOG_BATCH_SIZE: "<Int>"
+BOX_OBSERVABILITY_DATADOG_BATCH_SIZE: ""<Int>""
 ```
 
 How many log entries to collect before uploading.
@@ -242,7 +242,7 @@ or time passed from previous log uploading exceeds `observability.datadog.batch-
 ### Datadog log batch timeout<a href="#observability.datadog.batch-timeout" id="observability.datadog.batch-timeout"></a>
 
 ```yaml
-BOX_OBSERVABILITY_DATADOG_BATCH_TIMEOUT: "<Int>"
+BOX_OBSERVABILITY_DATADOG_BATCH_TIMEOUT: ""<Int>""
 ```
 
 How long to wait before uploading
@@ -258,7 +258,7 @@ Elastic settings
 ### Elastic Search auth<a href="#observability.elastic.search-auth" id="observability.elastic.search-auth"></a>
 
 ```yaml
-BOX_OBSERVABILITY_ELASTIC_SEARCH_AUTH: "<String>"
+BOX_OBSERVABILITY_ELASTIC_SEARCH_AUTH: ""<String>""
 ```
 
 Format: `<user>:<password>`
@@ -269,7 +269,7 @@ Basic auth credentials for ElasticSearch. API key is not supported.
 ### Elastic Search URL<a href="#observability.elastic.search-url" id="observability.elastic.search-url"></a>
 
 ```yaml
-BOX_OBSERVABILITY_ELASTIC_SEARCH_URL: "<String>"
+BOX_OBSERVABILITY_ELASTIC_SEARCH_URL: ""<String>""
 ```
 
 If provided, enables mode to push logs to ElasticSearch
@@ -279,7 +279,7 @@ If provided, enables mode to push logs to ElasticSearch
 ### Elastic Search batch size<a href="#observability.elastic.batch-size" id="observability.elastic.batch-size"></a>
 
 ```yaml
-BOX_OBSERVABILITY_ELASTIC_BATCH_SIZE: "<Int>"
+BOX_OBSERVABILITY_ELASTIC_BATCH_SIZE: ""<Int>""
 ```
 
 Log batch size used to optimize log shipping performance. The default value is 200
@@ -299,7 +299,7 @@ Timeout to post a batch to ElasticSearch. If there is not enough records to reac
 ### Elastic Search log format<a href="#observability.elastic.index-pattern" id="observability.elastic.index-pattern"></a>
 
 ```yaml
-BOX_OBSERVABILITY_ELASTIC_INDEX_PATTERN: "'aidbox-logs'-yyyy-MM-dd"
+BOX_OBSERVABILITY_ELASTIC_INDEX_PATTERN: ""'aidbox-logs'-yyyy-MM-dd""
 ```
 
 Custom index format string. The default value is 'aidbox-logs'-yyyy-MM-dd.
@@ -313,7 +313,7 @@ Grafana settings
 ### Grafana URL for metrics dashboards<a href="#observability.grafana.url" id="observability.grafana.url"></a>
 
 ```yaml
-BOX_OBSERVABILITY_GRAFANA_URL: "<String>"
+BOX_OBSERVABILITY_GRAFANA_URL: ""<String>""
 ```
 
 Grafana URL to update the metrics dashboards.
@@ -323,7 +323,7 @@ Grafana URL to update the metrics dashboards.
 ### Grafana user for metrics dashboards<a href="#observability.grafana.user" id="observability.grafana.user"></a>
 
 ```yaml
-BOX_OBSERVABILITY_GRAFANA_USER: "<String>"
+BOX_OBSERVABILITY_GRAFANA_USER: ""<String>""
 ```
 
 Grafana user to update the metrics dashboards.
@@ -333,7 +333,7 @@ Grafana user to update the metrics dashboards.
 ### Grafana password for metrics dashboards<a href="#observability.grafana.password" id="observability.grafana.password"></a>
 
 ```yaml
-BOX_OBSERVABILITY_GRAFANA_PASSWORD: "<String>"
+BOX_OBSERVABILITY_GRAFANA_PASSWORD: ""<String>""
 ```
 
 Grafana password to update the metrics dashboards.
@@ -347,7 +347,7 @@ OpenTelemetry settings
 ### OTEL metrics request headers<a href="#observability.otel.metrics-request-headers" id="observability.otel.metrics-request-headers"></a>
 
 ```yaml
-BOX_OBSERVABILITY_OTEL_METRICS_REQUEST_HEADERS: "<String>"
+BOX_OBSERVABILITY_OTEL_METRICS_REQUEST_HEADERS: ""<String>""
 ```
 
 The headers for OTEL metrics requests, formatted as HeaderName:HeaderValue
@@ -358,7 +358,7 @@ HeaderName:HeaderValue.
 ### OTEL metrics URL<a href="#observability.otel.metrics-url" id="observability.otel.metrics-url"></a>
 
 ```yaml
-BOX_OBSERVABILITY_OTEL_METRICS_URL: "<String>"
+BOX_OBSERVABILITY_OTEL_METRICS_URL: ""<String>""
 ```
 
 The metrics' consumer URL (OTEL collector, Elastic EPM etc.).
@@ -378,7 +378,7 @@ The time interval (in seconds) for sending OTEL metrics.
 ### OTEL traces request headers<a href="#observability.otel.traces-request-headers" id="observability.otel.traces-request-headers"></a>
 
 ```yaml
-BOX_OBSERVABILITY_OTEL_TRACES_REQUEST_HEADERS: "<String>"
+BOX_OBSERVABILITY_OTEL_TRACES_REQUEST_HEADERS: ""<String>""
 ```
 
 The headers for OTEL traces requests, formatted as HeaderName:HeaderValue
@@ -389,7 +389,7 @@ HeaderName:HeaderValue.
 ### OTEL traces URL<a href="#observability.otel.traces-url" id="observability.otel.traces-url"></a>
 
 ```yaml
-BOX_OBSERVABILITY_OTEL_TRACES_URL: "<String>"
+BOX_OBSERVABILITY_OTEL_TRACES_URL: ""<String>""
 ```
 
 The traces' consumer URL (OTEL collector, Elastic EPM etc.).
@@ -429,7 +429,7 @@ Traces history size on telemetry $status endpoint
 ### OTEL logs request headers<a href="#observability.otel.logs-request-headers" id="observability.otel.logs-request-headers"></a>
 
 ```yaml
-BOX_OBSERVABILITY_OTEL_LOGS_REQUEST_HEADERS: "<String>"
+BOX_OBSERVABILITY_OTEL_LOGS_REQUEST_HEADERS: ""<String>""
 ```
 
 The headers for OTEL logs requests, formatted as HeaderName:HeaderValue
@@ -440,7 +440,7 @@ HeaderName:HeaderValue.
 ### OTEL logs URL<a href="#observability.otel.logs-url" id="observability.otel.logs-url"></a>
 
 ```yaml
-BOX_OBSERVABILITY_OTEL_LOGS_URL: "<String>"
+BOX_OBSERVABILITY_OTEL_LOGS_URL: ""<String>""
 ```
 
 The logs' consumer URL (OTEL collector, Elastic EPM etc.).
