@@ -53,6 +53,7 @@
     * [How to configure Azure AD SSO with certificate authentication for access to the Aidbox UI](tutorials/security-access-control-tutorials/azure-ad-with-certificate-authentication.md)
     * [How to configure GitHub SSO for access to Aidbox UI](tutorials/security-access-control-tutorials/github.md)
     * [How to configure Keycloak for access for AidboxUI](tutorials/security-access-control-tutorials/keycloak.md)
+    * [Auto-create User from foreign token tutorial](tutorials/security-access-control-tutorials/keycloak-auto-create-user.md)
     * [How to implement consent-based access control using FHIR Search and Aidbox Access Policy](tutorials/security-access-control-tutorials/how-to-implement-consent-based-access-control-using-fhir-search-and-aidbox-access-policy.md)
     * [Debug Access Control](tutorials/security-access-control-tutorials/debug-access-control.md)
     * [AccessPolicy best practices](tutorials/security-access-control-tutorials/accesspolicy-best-practices.md)
@@ -66,6 +67,7 @@
     * [Configuring Two Factor Authentication in Aidbox Identity Provider](tutorials/security-access-control-tutorials/two-factor-authentication.md)
     * [SSO with External OAuth Identity Provider](tutorials/security-access-control-tutorials/set-up-external-identity-provider.md)
     * [Access policies examples](tutorials/security-access-control-tutorials/accesspolicy-examples.md)
+
   * [Terminology Tutorials](tutorials/terminology-tutorials/README.md)
     * [Load ICD-10 terminology into Aidbox](tutorials/terminology-tutorials/load-icd-10-terminology-into-aidbox.md)
     * [Uploading IG terminology content to external FHIR terminology server](tutorials/terminology-tutorials/uploading-ig-terminology-content-to-external-fhir-terminology-server.md)
