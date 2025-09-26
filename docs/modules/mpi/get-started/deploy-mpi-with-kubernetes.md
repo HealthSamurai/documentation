@@ -25,4 +25,4 @@ For detailed deployment instructions, use this guide:
 
 ### Next step
 
-**Create a matching model** – after deploying MPI, you need to create a matching model to enable record linkage. See [Configure MPI Module](broken-reference) for details.
+**Create a matching model** – after deploying MPI, you need to create a matching model to enable record linkage. See [Configure MPI Module](configure-mpi-module.md) for details.

@@ -10,9 +10,9 @@ description: >-
 
 **MPI enables:**
 
-* accurate [**matching**](broken-reference) of patient records across different systems and facilities,
-* [**merging**](broken-reference) of duplicate records into a single record,
-* [**unmerging**](broken-reference) of incorrectly linked records,
+* accurate [**matching**](find-duplicates-match.md) of patient records across different systems and facilities,
+* [**merging**](merging-and-unmerging-records-usdmerge-and-usdunmerge.md#merge-operation) of duplicate records into a single record,
+* [**unmerging**](merging-and-unmerging-records-usdmerge-and-usdunmerge.md#unmerge-operation) of incorrectly linked records,
 * maintaining the **integrity** of clinical data and treatment history.
 
 Using MPI **reduces the risk** of lost or duplicated medical data, treatment errors, and issues with data exchange. This is especially critical in complex ecosystems with many sources — such as clinics, labs, and telemedicine platforms.
@@ -56,20 +56,21 @@ The MPI module utilizes **probabilistic** (score-based or Fellegi-Sunter) method
 
 Configure Aidbox MPI module to use your matching model
 
-{% content-ref url="broken-reference" %}
-[Broken link](broken-reference)
+{% content-ref url="get-started/configure-mpi-module.md" %}
+[configure-mpi-module.md](get-started/configure-mpi-module.md)
 {% endcontent-ref %}
 
 ## Find Duplicates
 
 Use `$match` operation to find duplicates
 
+
 ## Merge and Unmerge Records
 
 Use `$merge` and `$unmerge` operations to manage duplicate patient records
 
-{% content-ref url="broken-reference" %}
-[Broken link](broken-reference)
+{% content-ref url="merging-and-unmerging-records-usdmerge-and-usdunmerge.md" %}
+[merging-and-unmerging-records-usdmerge-and-usdunmerge.md](merging-and-unmerging-records-usdmerge-and-usdunmerge.md)
 {% endcontent-ref %}
 
 ## How It Works
@@ -78,14 +79,14 @@ Learn more about:
 
 1. How our matching model works
 
-{% content-ref url="broken-reference" %}
-[Broken link](broken-reference)
+{% content-ref url="matching-model-explanation.md" %}
+[matching-model-explanation.md](matching-model-explanation.md)
 {% endcontent-ref %}
 
 2. How record merge and unmerge operations work
 
-{% content-ref url="broken-reference" %}
-[Broken link](broken-reference)
+{% content-ref url="merging-and-unmerging-records-usdmerge-and-usdunmerge.md" %}
+[merging-and-unmerging-records-usdmerge-and-usdunmerge.md](merging-and-unmerging-records-usdmerge-and-usdunmerge.md)
 {% endcontent-ref %}
 
 3. Mathematics behind probabilistic matching
