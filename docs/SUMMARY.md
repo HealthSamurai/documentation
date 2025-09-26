@@ -211,7 +211,7 @@
 
 * [Overview](access-control/access-control.md)
 * [Identity Management](access-control/identity-management/README.md)
-  * [User Management](access-control/identity-management/user-management.md)
+  * [User management](access-control/identity-management/user-management.md)
   * [Application/Client Management](access-control/identity-management/application-client-management.md)
 * [Authentication](access-control/authentication/README.md)
   * [Basic HTTP Authentication](access-control/authentication/basic-http-authentication.md)
@@ -555,16 +555,7 @@
 
 ## Reference
 
-* [Settings Reference](reference/settings/README.md)
-  * [General](reference/settings/general.md)
-  * [FHIR](reference/settings/fhir.md)
-  * [Security and Access Control](reference/settings/security-and-access-control.md)
-  * [Modules](reference/settings/modules.md)
-  * [Database](reference/settings/database.md)
-  * [Web Server](reference/settings/web-server.md)
-  * [Observability](reference/settings/observability.md)
-  * [Zen Project](reference/settings/zen-project.md)
-  * [Aidbox Settings Reference](reference/settings/all-settings.md)
+* [Aidbox Settings Reference](reference/all-settings.md)
 * [System Resources Reference](reference/system-resources-reference/README.md)
   * [IAM Module Resources](reference/system-resources-reference/iam-module-resources.md)
   * [SDC Module Resources](reference/system-resources-reference/sdc-module-resources.md)

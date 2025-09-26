@@ -491,7 +491,15 @@ redirects:
   reference/configuration/environment-variables/mailgun-environment-variables: reference/email-providers-reference/mailgun-environment-variables.md
   reference/configuration/environment-variables/optional-environment-variables: reference/environment-variables/optional-environment-variables.md
   reference/configuration/environment-variables: reference/environment-variables/README.md
-  reference/settings/security-access-control: reference/settings/security-and-access-control.md
+  reference/settings/database: reference/all-settings.md
+  reference/settings/fhir: reference/all-settings.md
+  reference/settings/general: reference/all-settings.md
+  reference/settings/modules: reference/all-settings.md
+  reference/settings/observability: reference/all-settings.md
+  reference/settings/security-access-control: reference/security-and-access-control.md
+  reference/settings/security-and-access-control: reference/all-settings.md
+  reference/settings/web-server: reference/all-settings.md
+  reference/settings/zen-project: reference/all-settings.md
   security-and-access-control-1/auth/external-oauth-2.0-providers/configure-okta: tutorials/security-access-control-tutorials/okta.md
   security-and-access-control-1/auth/two-factor-authentication: tutorials/security-access-control-tutorials/two-factor-authentication.md
   security-and-access-control-1/overview: access-control/access-control.md
