@@ -9,11 +9,27 @@ Aidbox fully supports [version 1 ](https://www.hl7.org/fhir/smart-app-launch/1.0
 
 <figure><img src="../../../../.gitbook/assets/smart-scopes-v1.png" alt=""><figcaption><p>SMART scopes V1</p></figcaption></figure>
 
-And support everything except search parameters in [version 2](https://build.fhir.org/ig/HL7/smart-app-launch/scopes-and-launch-context.html) of SMART on FHIR scopes:
+And [version 2](https://build.fhir.org/ig/HL7/smart-app-launch/scopes-and-launch-context.html) of SMART on FHIR scopes with partial support of [search parameters](smart-scopes-for-limiting-access.md#scopes-with-search-parameters) in scopes:
 
-<figure><img src="../../../../.gitbook/assets/smart-scope-v2.png" alt=""><figcaption><p>SMART scopes V2</p></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/scope_v2.jpg" alt=""><figcaption></figcaption></figure>
 
 If a requested operation is not permitted by the scopes, Aidbox will deny access. If access is granted, Aidbox will retrieve and return only the data allowed by the specified scopes and context.
+
+## Scopes with search parameters
+
+{% hint style="info" %}
+This functionality is available starting from version 2509.
+{% endhint %}
+
+SMART on FHIR v2 supports [finer-grained access control](https://build.fhir.org/ig/HL7/smart-app-launch/scopes-and-launch-context.html#finer-grained-resource-constraints-using-search-parameters) by allowing FHIR search parameters to be embedded in scopes. In Aidbox, you can append a query string to a scope to restrict what a client can read/search.
+
+### Example
+
+`patient/Observation.rs?status=final`  - Grants read & search access only to `Observation` resources whose `status` is `final`. Any request such as `GET /fhir/Observation` (or other Observation searches) will be automatically filtered to include only `status=final` results.
+
+You can combine as many search parameters and scopes as you want using FHIR search syntax, except for complex search parameters like `_include`, `_revinclude`, `_has`, `_assoc`, `_with`.
+
+Also, Aidbox **forbids** using search parameters in scopes with `create/update/delete` (cud) permissions.&#x20;
 
 ## Access Token
 
