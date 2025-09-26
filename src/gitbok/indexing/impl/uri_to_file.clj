@@ -9,18 +9,25 @@
 
 (defn uri->filepath [uri->file-idx ^String uri]
   (when uri
-    (let [;; Handle root path "/" specially - map it to empty string
+    (let [;; First remove any fragment from the URI
+          uri-without-fragment (if (str/includes? uri "#")
+                                 (first (str/split uri #"#"))
+                                 uri)
+          ;; Handle root path "/" specially - map it to empty string
           uri (cond
-                (= uri "/") ""
-                (and (> (count uri) 0) (= "/" (subs uri 0 1))) (subs uri 1)
-                :else uri)
+                (= uri-without-fragment "/") ""
+                (and (> (count uri-without-fragment) 0)
+                     (= "/" (subs uri-without-fragment 0 1)))
+                (subs uri-without-fragment 1)
+                :else uri-without-fragment)
           ;; Remove trailing slash if present
           fixed-url (if (and (> (count uri) 0)
                              (= "/" (subs uri (dec (count uri)))))
                       (subs uri 0 (dec (count uri)))
                       uri)
-          ;; Handle anchors in redirects
+          ;; Look up filepath in index
           filepath (get uri->file-idx fixed-url)]
+      ;; Remove any fragment from the filepath if present
       (if (and filepath (str/includes? filepath "#"))
         (str/replace filepath #"#.*$" "")
         filepath))))

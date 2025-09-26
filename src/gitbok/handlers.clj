@@ -208,8 +208,40 @@
         nil))))
 
 (defn render-favicon [ctx]
-  (resp/resource-response
-   (state/get-product-state ctx [:favicon-path])))
+  (let [favicon-path (or (state/get-product-state ctx [:favicon-path])
+                         "public/favicon.ico")]
+    (or (resp/resource-response favicon-path)
+        {:status 404
+         :headers {"Content-Type" "text/plain"}
+         :body "Favicon not found"})))
+
+(defn process-redirect-target
+  "Process redirect target to remove .md extension while preserving fragments"
+  [target]
+  (when target
+    (let [[path fragment] (str/split target #"#" 2)]
+      (str (str/replace path #"\.md$" "")
+           (when fragment (str "#" fragment))))))
+
+(defn get-redirect-with-fragment
+  "Get redirect for a URI, checking both with and without fragment.
+   Returns [redirect-target preserve-fragment?] where preserve-fragment? 
+   indicates if we should append the original fragment to the redirect target."
+  [ctx uri-with-possible-fragment]
+  (let [redirects-idx (state/get-redirects-idx ctx)
+        [base-uri fragment] (str/split uri-with-possible-fragment #"#" 2)]
+    (cond
+      ;; First check if there's a specific redirect for the URI with fragment
+      (and fragment (get redirects-idx uri-with-possible-fragment))
+      [(get redirects-idx uri-with-possible-fragment) false]
+
+      ;; Then check for a redirect for the base URI
+      (get redirects-idx base-uri)
+      [(get redirects-idx base-uri) (boolean fragment)]
+
+      ;; No redirect found
+      :else
+      [nil false])))
 
 (defn render-file-view
   [ctx]
@@ -234,35 +266,45 @@
        :headers {"Location" (http/get-product-prefixed-url ctx "")}}
 
       :else
-      (if-let [redirect-target (indexing/get-redirect ctx uri-relative)]
-        ;; Return HTTP 301 redirect
-        (let [target-url (http/get-product-prefixed-url ctx redirect-target)]
-          {:status 301
-           :headers {"Location" target-url}})
-        ;; Otherwise proceed with normal file handling
-        (let [filepath (indexing/uri->filepath ctx uri-relative)]
-          (if filepath
-            (handle-cached-response ctx filepath "full"
-                                    (fn []
-                                      (let [{:keys [title description content section]}
-                                            (render-file ctx filepath)
-                                            lastmod (indexing/get-lastmod ctx filepath)]
-                                        (layout/layout
-                                         ctx
-                                         {:content content
-                                          :lastmod lastmod
-                                          :title title
-                                          :description description
-                                          :section section
-                                          :filepath filepath}))))
-
-            (layout/layout
-             ctx
-             {:content (not-found/not-found-view ctx uri-relative)
-              :status 404
-              :title "Not found"
-              :description "Page not found"
-              :hide-breadcrumb true})))))))
+      (let [filepath (indexing/uri->filepath ctx uri-relative)]
+        ;; Check if file exists first
+        (if filepath
+          (handle-cached-response ctx filepath "full"
+                                  (fn []
+                                    (let [{:keys [title description content section]}
+                                          (render-file ctx filepath)
+                                          lastmod (indexing/get-lastmod ctx filepath)]
+                                      (layout/layout
+                                       ctx
+                                       {:content content
+                                        :lastmod lastmod
+                                        :title title
+                                        :description description
+                                        :section section
+                                        :filepath filepath}))))
+          ;; No file - check for redirect
+          (let [[redirect-target preserve-fragment?] (get-redirect-with-fragment ctx uri-relative)]
+            (if redirect-target
+              ;; Return HTTP 301 redirect
+              (let [processed-target (process-redirect-target redirect-target)
+                    ;; Extract fragment from original URI if we need to preserve it
+                    [_ original-fragment] (when preserve-fragment?
+                                            (str/split uri-relative #"#" 2))
+                    ;; Build final target URL with fragment handling
+                    final-target (if (and preserve-fragment? original-fragment)
+                                   (str processed-target "#" original-fragment)
+                                   processed-target)
+                    target-url (http/get-product-prefixed-url ctx final-target)]
+                {:status 301
+                 :headers {"Location" target-url}})
+              ;; No file and no redirect - show 404
+              (layout/layout
+               ctx
+               {:content (not-found/not-found-view ctx uri-relative)
+                :status 404
+                :title "Not found"
+                :description "Page not found"
+                :hide-breadcrumb true}))))))))
 
 (defn render-partial-view
   "Render partial content for HTMX requests (without full layout)"
@@ -296,31 +338,39 @@
         {:status 301
          :headers {"Location" (str (http/get-product-prefixed-url ctx "/partial")
                                    (http/get-product-prefixed-url ctx ""))}}
-        ;; Check for other redirects
-        (if-let [redirect-target (indexing/get-redirect ctx uri-relative)]
-          ;; Return HTTP 301 redirect to partial URL
-          (let [target-url (str (http/get-product-prefixed-url ctx "/partial")
-                                (http/get-product-prefixed-url ctx redirect-target))]
-            {:status 301
-             :headers {"Location" target-url}})
-          ;; Otherwise proceed with normal file handling
-          (let [filepath (indexing/uri->filepath ctx uri-relative)]
-            (if filepath
-              (handle-cached-response ctx filepath "partial"
-                                      (fn []
-                                        (let [{:keys [_title _description content _section]}
-                                              (render-file ctx filepath)]
-                                          {:status 200
-                                           :headers {"Content-Type" "text/html; charset=utf-8"}
-                                           :body (str (hiccup2.core/html
-                                                       (main-content/content-div ctx uri-without-partial content filepath true false)))})))
-
-              ;; 404 for partial requests
-              {:status 404
-               :headers {"Content-Type" "text/html; charset=utf-8"
-                         "Cache-Control" "private, no-cache"}
-               :body (str (hiccup2.core/html
-                           (not-found/not-found-view ctx uri-relative)))})))))))
+        ;; Check for files first
+        (let [filepath (indexing/uri->filepath ctx uri-relative)]
+          (if filepath
+            (handle-cached-response ctx filepath "partial"
+                                    (fn []
+                                      (let [{:keys [_title _description content _section]}
+                                            (render-file ctx filepath)]
+                                        {:status 200
+                                         :headers {"Content-Type" "text/html; charset=utf-8"}
+                                         :body (str (hiccup2.core/html
+                                                     (main-content/content-div ctx uri-without-partial content filepath true false)))})))
+            ;; No file - check for redirect
+            (let [[redirect-target preserve-fragment?] (get-redirect-with-fragment ctx uri-relative)]
+              (if redirect-target
+                ;; Return HTTP 301 redirect to partial URL
+                (let [processed-target (process-redirect-target redirect-target)
+                      ;; Extract fragment from original URI if we need to preserve it
+                      [_ original-fragment] (when preserve-fragment?
+                                              (str/split uri-relative #"#" 2))
+                      ;; Build final target URL with fragment handling
+                      final-target (if (and preserve-fragment? original-fragment)
+                                     (str processed-target "#" original-fragment)
+                                     processed-target)
+                      target-url (str (http/get-product-prefixed-url ctx "/partial")
+                                      (http/get-product-prefixed-url ctx final-target))]
+                  {:status 301
+                   :headers {"Location" target-url}})
+                ;; No file and no redirect - show 404
+                {:status 404
+                 :headers {"Content-Type" "text/html; charset=utf-8"
+                           "Cache-Control" "private, no-cache"}
+                 :body (str (hiccup2.core/html
+                             (not-found/not-found-view ctx uri-relative)))}))))))))
 
 (defn sitemap-xml
   [ctx]
