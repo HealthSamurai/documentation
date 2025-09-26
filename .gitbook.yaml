@@ -496,7 +496,6 @@ redirects:
   reference/settings/general: reference/all-settings.md
   reference/settings/modules: reference/all-settings.md
   reference/settings/observability: reference/all-settings.md
-  reference/settings/security-access-control: reference/security-and-access-control.md
   reference/settings/security-and-access-control: reference/all-settings.md
   reference/settings/web-server: reference/all-settings.md
   reference/settings/zen-project: reference/all-settings.md

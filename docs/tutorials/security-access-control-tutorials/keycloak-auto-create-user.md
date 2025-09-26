@@ -1,6 +1,6 @@
 # Auto-create User from foreign token tutorial
 
-This tutorial explains how to use [Auto-create users from foreign tokens](../../reference/settings/all-settings#security.introspection-create-user) setting.
+This tutorial explains how to use [Auto-create users from foreign tokens](../../reference/all-settings#security.introspection-create-user) setting.
 To illustrate this feature, we are using Keycloak in this tutorial.
 
 ## Before you begin

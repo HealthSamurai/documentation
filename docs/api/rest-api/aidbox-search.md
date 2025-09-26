@@ -397,7 +397,7 @@ query:
 
 With `_timeout` parameter, you can control the search query timeout in seconds. If the query takes more than the timeout value, it will be cancelled. The default timeout value is 60 seconds.
 
-See also [Default timeout ](../../reference/settings/fhir.md#fhir.search.default-params.timeout)setting.
+See also [Default timeout ](../../reference/all-settings.md#fhir.search.default-params.timeout)setting.
 
 ### \_createdAt
 

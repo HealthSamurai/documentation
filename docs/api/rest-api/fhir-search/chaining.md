@@ -137,4 +137,4 @@ This means "find all patients who visited the given practitioner".
 
 ## See also:
 
-* [Chain search subselect reference](../../../reference/settings/fhir.md#fhir.search.chain.subselect)
+* [Chain search subselect reference](../../../reference/all-settings.md#fhir.search.chain.subselect)

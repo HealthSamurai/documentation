@@ -1,7 +1,7 @@
 # Include and Revinclude
 
 {% hint style="warning" %}
-Make sure [Conformant Include](../../../reference/settings/fhir.md#fhir.search.include.conformant) is set!&#x20;
+Make sure [Conformant Include](../../../reference/all-settings.md#fhir.search.include.conformant) is set!&#x20;
 {% endhint %}
 
 The `_include` and `_revinclude` search parameters allow a search to return additional resources related to the matching resources.
@@ -169,4 +169,4 @@ If this mode is not enabled, you must define the specific \_include or \_revincl
 
 ## See also:
 
-* [Search Settings Reference](../../../reference/settings/fhir.md#search)
+* [Search Settings Reference](../../../reference/all-settings.md#search)

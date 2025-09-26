@@ -167,7 +167,7 @@ matcho:
 {% endtab %}
 
 {% tab title="Correct Aidbox format is false" %}
-**We do not recommend setting** [**Correct Aidbox format**](../../reference/settings/fhir.md#fhir.validation.correct-aidbox-format) **to false.**
+**We do not recommend setting** [**Correct Aidbox format**](../../reference/all-settings.md#fhir.validation.correct-aidbox-format) **to false.**
 
 <pre><code><strong>PUT /AccessPolicy/as-user-allow-org-patients
 </strong>

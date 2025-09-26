@@ -7,7 +7,7 @@
 * Aidbox FHIR server
   * **Breaking change:** ViewDefinitions are no longer materialized automatically. You now need to explicitly call the new [operation](../modules/sql-on-fhir/operation-materialize.md) to create a database table or view.
   * Added support for the `$translate` operation on `ConceptMap` resources in the Aidbox Terminology [module](../terminology-module/aidbox-terminology-module/capabilities.md).
-  * [Instance name](../reference/settings/general.md#instance-name) and [instance id](../reference/settings/general.md#box-id) are now included in OTEL traces, logs, and metrics.
+  * [Instance name](../reference/all-settings.md#instance-name) and [instance id](../reference/all-settings.md#box-id) are now included in OTEL traces, logs, and metrics.
   * Enhanced validation for [FHIRSchema](../modules/profiling-and-validation/fhir-schema-validator/) resources.
   * Added the ability to restart Cloud Sandbox directly from the [Aidbox portal](https://aidbox.app/).
   * Improvements in [`_filter`](../api/rest-api/fhir-search/searchparameter.md#filter) parameter processing.
@@ -145,7 +145,7 @@
   * Supported [Apple](../tutorials/security-access-control-tutorials/apple.md) as an [external identity provider](../tutorials/security-access-control-tutorials/set-up-external-identity-provider.md)
   * Released `deprecated/capabilities`endpoint to detect deprectated zen and Entity/Atributes entities and updated the [migration guide](../tutorials/artifact-registry-tutorials/custom-resources/migrate-to-fhirschema/).
   * Implemented a 24-hour grace period for all Aidbox instances that cannot connect to the Aidbox portal for license verification. Also available in versions 2502, 2501, 2412, 2411, 2410, 2402, 2306, and 2302.
-  * Supported [OTEL collector](../modules/observability/) configuration as an [Aidbox setting](../reference/settings/observability.md#otel). Updated [Aidbox example](https://github.com/Aidbox/examples/tree/main/aidbox-features/OpenTelemetry) that shows how to launch and explore the Aidbox observability features (logs, traces, and metrics) locally.
+  * Supported [OTEL collector](../modules/observability/) configuration as an [Aidbox setting](../reference/all-settings.md#otel). Updated [Aidbox example](https://github.com/Aidbox/examples/tree/main/aidbox-features/OpenTelemetry) that shows how to launch and explore the Aidbox observability features (logs, traces, and metrics) locally.
   * Added new [AuditEvents](../access-control/audit-and-logging.md) for password changes and unsuccessful login attempts.
   * Added a synthetic data import progress bar on the Aidbox UI home page.
 * Aidbox Forms
@@ -170,7 +170,7 @@
 
 * Aidbox
   * Introduced [Settings](../configuration/settings.md)
-  * Published [settings reference documentation](../reference/settings/)
+  * Published [settings reference documentation](../reference/all-settings.md)
 * Aidbox Forms
   * PDF-Form conversion (enhancement): [Re-generation from PDF ](../modules/aidbox-forms/aidbox-ui-builder-alpha/import-questionnaire.md#common-functionality-across-all-scenarios)and insertion of a part of the form into an existing form
   * Added enabling of Print, Amend, and Save buttons in [SDCConfig](../modules/aidbox-forms/aidbox-ui-builder-alpha/configuration.md)
@@ -329,7 +329,7 @@ Minor updates:
 * Aidbox
   * Introduced support for [custom resources using FHIR StructureDefinitions](../tutorials/artifact-registry-tutorials/custom-resources/custom-resources-using-structuredefinition.md) and [custom resources using FHIR schemas](../tutorials/artifact-registry-tutorials/custom-resources/custom-resources-using-fhir-schema.md)
   * Published [JavaScript app example](https://github.com/Aidbox/examples/tree/main/aidbox-features/aidbox-notify-via-custom-resources) demonstrating custom resources with a typical notification flow: requesting a notification, locking it for sending, and sending it (placeholder)
-  * Supported [enabling Audit Log using an environment variable](../reference/settings/security-and-access-control.md)
+  * Supported [enabling Audit Log using an environment variable](../reference/all-settings.md)
 * [Aidbox Forms](../modules/aidbox-forms/)
   * UI builder updates (FHIR Questionnaire-based):
     * [Implemented Offline mode for forms](../modules/aidbox-forms/aidbox-ui-builder-alpha/offline-forms.md)
@@ -415,7 +415,7 @@ Minor updates:
 * Security and Access Control
   * Released beta version of [Label-based Access Control](../access-control/authorization/label-based-access-control.md) to control access to data based on the classification of the data (privacy, sensitivity, etc) and the attributes of the requester.
 * Data API
-  * Supported FHIR-conformant [`_include` and `_revinclude` parameters](../reference/settings/fhir.md)
+  * Supported FHIR-conformant [`_include` and `_revinclude` parameters](../reference/all-settings.md)
   * Added parameter to set the maximum number of import retries for [/v2/$import](../api/bulk-api/import-and-fhir-import.md#v2-import-on-top-of-the-workflow-engine)
 * [Aidbox Forms](../modules/aidbox-forms/)
   * Questionnaire-based forms updates:
@@ -856,7 +856,7 @@ Minor updates:
   * Supported Care Team section mapping
 * Search API
   * Added [execute type in AidboxQuery](../api/rest-api/aidbox-search.md#aidboxquery)
-  * Added [FHIR compliant date search](../reference/settings/fhir.md#fhir.compliant-mode)
+  * Added [FHIR compliant date search](../reference/all-settings.md#fhir.compliant-mode)
   * Added 180-second timeout for [(rev)include queries](../api/rest-api/fhir-search/include-and-revinclude.md)
   * **Breaking change:** removed limit of 1000 in [\_count](../api/rest-api/fhir-search/searchparameter.md#count) queries
 * FHIR API for EHRs

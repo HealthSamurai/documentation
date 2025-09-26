@@ -237,7 +237,7 @@ Users may pass an optional resource type (e.g., `Patient` or `Observation` ) to 
 
 Aidbox stores some data in separate columns and gives access to it by Aidbox-specific functions.
 
-For example, it is impossible to get [created date time](../../reference/settings/fhir.md#fhir.validation.createdat-url) value using a `meta` field in fhirpath, because it is stored in `cts` column and appended to the response at runtime.&#x20;
+For example, it is impossible to get [created date time](../../reference/all-settings.md#fhir.validation.createdat-url) value using a `meta` field in fhirpath, because it is stored in `cts` column and appended to the response at runtime.&#x20;
 
 See also [Aidbox database schema](../../database/database-schema.md).
 

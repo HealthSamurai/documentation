@@ -20,7 +20,7 @@ Limitation: currently works with only FHIR R4 version. If you need to support R5
 
 ### Enable FHIR Audit Log
 
-To enable audit logging in Aidbox, use the following setting: [security.audit-log.enabled](../../reference/settings/security-and-access-control.md#security.audit-log.enabled). When enabled, Aidbox will generate structured audit logs in FHIR R4 AuditEvent format.
+To enable audit logging in Aidbox, use the following setting: [security.audit-log.enabled](../../reference/all-settings.md#security.audit-log.enabled). When enabled, Aidbox will generate structured audit logs in FHIR R4 AuditEvent format.
 
 ### Install the BALP Package
 
@@ -72,10 +72,10 @@ Aidbox supports forwarding audit logs produced by Aidbox to an external reposito
 To configure an external Audit log repository, use the following settings:
 
 * URL of the external destination where Aidbox streams all audit events
-* [security.audit-log.flush-interval](../../reference/settings/security-and-access-control.md#security.audit-log.flush-interval) - Interval time in ms to flush audit events to Audit Log Repository
-* [security.audit-log.max-flush-interval](../../reference/settings/security-and-access-control.md#security.audit-log.max-flush-interval) - Maximum interval for retries if sending audit events fails
-* [security.audit-log.batch-count](../../reference/settings/security-and-access-control.md#security.audit-log.batch-count) - Maximum count of Audit Events in a batch
-* [security.audit-log.request-headers](../../reference/settings/security-and-access-control.md#security.audit-log.request-headers) - Custom headers to add to repository requests
+* [security.audit-log.flush-interval](../../reference/all-settings.md#security.audit-log.flush-interval) - Interval time in ms to flush audit events to Audit Log Repository
+* [security.audit-log.max-flush-interval](../../reference/all-settings.md#security.audit-log.max-flush-interval) - Maximum interval for retries if sending audit events fails
+* [security.audit-log.batch-count](../../reference/all-settings.md#security.audit-log.batch-count) - Maximum count of Audit Events in a batch
+* [security.audit-log.request-headers](../../reference/all-settings.md#security.audit-log.request-headers) - Custom headers to add to repository requests
 
 ## Reliability of Audit Event Storing
 

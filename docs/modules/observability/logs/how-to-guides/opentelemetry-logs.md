@@ -9,7 +9,7 @@ Aidbox supports exporting logs using the Protobuf protocol in line with the OTEL
 {% endhint %}
 
 {% hint style="info" %}
-This way of enabling OTEL capabilities is available in Aidbox versions 2503 and later. On previous AIdbox versions it was possible to enable OTEL with Aidbox configuration project.
+This way of enabling OTEL capabilities is available in Aidbox versions 2503 and later. On previous Aidbox versions it was possible to enable OTEL with Aidbox configuration project.
 {% endhint %}
 
 ## Prerequisites
@@ -18,7 +18,7 @@ This way of enabling OTEL capabilities is available in Aidbox versions 2503 and 
 
 ## How to enable logs export to the OTEL collector
 
-To enable exporting logs to the OTEL collector set the OTEL collector logs receiver endpoint to the Aidbox setting [observability.otel.logs-url](../../../../reference/settings/observability.md#observability.otel.logs-url)
+To enable exporting logs to the OTEL collector set the OTEL collector logs receiver endpoint to the Aidbox setting [observability.otel.logs-url](../../../../reference/all-settings.md#observability.otel.logs-url)
 
 ## How to check the OTEL collector receives logs
 

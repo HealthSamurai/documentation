@@ -22,7 +22,7 @@
 
 
 
-You can learn more about these configuration options [here](../../reference/settings/fhir.md#terminology).
+You can learn more about these configuration options [here](../../reference/all-settings.md#terminology).
 
 ## Creating and Uploading a FHIR package
 
