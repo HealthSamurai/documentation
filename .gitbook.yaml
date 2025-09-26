@@ -491,6 +491,7 @@ redirects:
   reference/configuration/environment-variables/mailgun-environment-variables: reference/email-providers-reference/mailgun-environment-variables.md
   reference/configuration/environment-variables/optional-environment-variables: reference/environment-variables/optional-environment-variables.md
   reference/configuration/environment-variables: reference/environment-variables/README.md
+  reference/settings/all-settings: reference/all-settings.md
   reference/settings/database: reference/all-settings.md
   reference/settings/fhir: reference/all-settings.md
   reference/settings/general: reference/all-settings.md
