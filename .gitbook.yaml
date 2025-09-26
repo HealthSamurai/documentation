@@ -390,9 +390,9 @@ redirects:
   modules-1/observability/traces/how-to-use-tracing: modules/observability/traces/how-to-use-tracing.md
   modules-1/observability/traces/otel-traces-exporter-parameters: modules/observability/traces/otel-traces-exporter-parameters.md
   modules-1/other-modules/mcp: modules/other-modules/mcp.md
-  modules-1/other-modules/mdm/configure-mdm-module: modules/other-modules/mpi/get-started/configure-mpi-module.md
-  modules-1/other-modules/mdm/find-duplicates-usdmatch: modules/other-modules/mpi/find-duplicates-match.md
-  modules-1/other-modules/mdm/mathematical-details: modules/other-modules/mpi/mathematical-details.md
+  modules-1/other-modules/mdm/configure-mdm-module: modules/mpi/get-started/configure-mpi-module.md
+  modules-1/other-modules/mdm/find-duplicates-usdmatch: modules/mpi/find-duplicates-match.md
+  modules-1/other-modules/mdm/mathematical-details: modules/mpi/mathematical-details.md
   modules-1/profiling-and-validation/asynchronous-resource-validation: modules/profiling-and-validation/asynchronous-resource-validation.md
   modules-1/profiling-and-validation/fhir-schema-validator/aidbox-fhir-igs-registry: modules/profiling-and-validation/fhir-schema-validator/aidbox-fhir-igs-registry.md
   modules-1/profiling-and-validation/fhir-schema-validator/setup-aidbox-with-fhir-schema-validation-engine: modules/profiling-and-validation/fhir-schema-validator/setup-aidbox-with-fhir-schema-validation-engine.md
@@ -464,8 +464,16 @@ redirects:
   modules/observability/logging-and-audit/readme-1/how-to-explore-and-visualize-aidbox-logs-with-kibana-and-grafana: modules/observability/logs/tutorials/log-analysis-and-visualization-tutorial.md
   modules/observability/logging-and-audit/technical-reference: modules/observability/logs/technical-reference/README.md
   modules/observability/logging-and-audit: access-control/audit-and-logging.md
-  modules/other-modules/mdm/find-duplicates-usdmatch.md: modules/other-modules/mpi/find-duplicates-match.md
-  modules/other-modules/mdm: modules/other-modules/mpi/README.md
+  modules/other-modules/mdm/find-duplicates-usdmatch.md: modules/mpi/find-duplicates-match.md
+  modules/other-modules/mdm: modules/mpi/README.md
+  modules/other-modules/mpi/find-duplicates-match: modules/mpi/find-duplicates-match.md
+  modules/other-modules/mpi/get-started/configure-mpi-module: modules/mpi/get-started/configure-mpi-module.md
+  modules/other-modules/mpi/get-started/deploy-mpi-with-kubernetes: modules/mpi/get-started/deploy-mpi-with-kubernetes.md
+  modules/other-modules/mpi/get-started: modules/mpi/get-started/README.md
+  modules/other-modules/mpi/matching-model-explanation: modules/mpi/matching-model-explanation.md
+  modules/other-modules/mpi/mathematical-details: modules/mpi/mathematical-details.md
+  modules/other-modules/mpi/merging-and-unmerging-records-usdmerge-and-usdunmerge: modules/mpi/merging-and-unmerging-records-usdmerge-and-usdunmerge.md
+  modules/other-modules/mpi: modules/mpi/README.md
   modules/security-and-access-control/patient-data-access-api/how-to-enable-patient-data-access-api: tutorials/security-access-control-tutorials/how-to-enable-patient-data-access-api.md
   modules/smartbox/how-to-guides/find-out-what-resources-were-exported-during-the-usdexport-operation.md: modules/smartbox/how-to-guides/find-out-what-resources-were-exported-during-the-export-operation.md
   modules/terminology/concept/usdtranslate-concepts.md: deprecated/deprecated/other/terminology/concept/translate-concepts.md

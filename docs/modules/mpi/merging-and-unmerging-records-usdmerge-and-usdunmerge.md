@@ -20,7 +20,7 @@ The **unmerge** operation allows reversing a previous merge by restoring the ori
 This page provides key information about using `$merge` and `$unmerge` . For full API details, refer to our [Swagger documentation](https://mpi.aidbox.io/static/swagger.html).
 
 {% hint style="success" %}
-If you need **alternative merge and unmerge approaches** to adjust MPI to your specific workflows and requirements, please [contact us](../../../overview/contact-us.md).
+If you need **alternative merge and unmerge approaches** to adjust MPI to your specific workflows and requirements, please [contact us](../../overview/contact-us.md).
 {% endhint %}
 
 ## Merge Operation
