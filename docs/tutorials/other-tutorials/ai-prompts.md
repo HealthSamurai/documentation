@@ -15,21 +15,15 @@ OUT="combined_access_policy_docs.md"
 {
 echo "# Aidbox Access Policies - Combined Documentation
 
----
-
 # Access Policies Overview
 "
 curl -s "https://raw.githubusercontent.com/HealthSamurai/documentation/master/docs/access-control/authorization/access-policies.md"
 echo "
 
----
-
 # Access Policy Examples
 "
 curl -s "https://raw.githubusercontent.com/HealthSamurai/documentation/master/docs/tutorials/security-access-control-tutorials/accesspolicy-examples.md"
 echo "
-
----
 
 # Access Policy Best Practices
 "
