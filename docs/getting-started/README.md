@@ -12,12 +12,12 @@ Discover how to start with Aidbox in just a few minutes.
 
 ## Tutorials
 
-{% content-ref url="deployment-and-maintenance/deploy-aidbox/run-aidbox-on-managed-postgresql.md" %}
-[run-aidbox-on-managed-postgresql.md](deployment-and-maintenance/deploy-aidbox/run-aidbox-on-managed-postgresql.md)
+{% content-ref url="../deployment-and-maintenance/deploy-aidbox/run-aidbox-on-managed-postgresql.md" %}
+[run-aidbox-on-managed-postgresql.md](../deployment-and-maintenance/deploy-aidbox/run-aidbox-on-managed-postgresql.md)
 {% endcontent-ref %}
 
-{% content-ref url="deployment-and-maintenance/deploy-aidbox/run-aidbox-in-kubernetes/" %}
-[run-aidbox-in-kubernetes](deployment-and-maintenance/deploy-aidbox/run-aidbox-in-kubernetes/)
+{% content-ref url="../deployment-and-maintenance/deploy-aidbox/run-aidbox-in-kubernetes/" %}
+[run-aidbox-in-kubernetes](../deployment-and-maintenance/deploy-aidbox/run-aidbox-in-kubernetes/)
 {% endcontent-ref %}
 
 {% content-ref url="csharp.md" %}
