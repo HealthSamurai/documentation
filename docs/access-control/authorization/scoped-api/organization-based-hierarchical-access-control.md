@@ -25,6 +25,7 @@ Let's create the organization structure in Aidbox:
 ```
 POST /fhir
 
+resourceType: Bundle
 type: batch
 entry:
 - request:
@@ -32,11 +33,13 @@ entry:
     url: Organization/org-a
   resource:
     name: Organization A
+    resourceType: Organization
 - request:
     method: PUT
     url: Organization/org-b
   resource:
     name: Organization B
+    resourceType: Organization
     partOf:
       reference: Organization/org-a
 - request:
@@ -44,6 +47,7 @@ entry:
     url: Organization/org-c
   resource:
     name: Organization C
+    resourceType: Organization
     partOf:
       reference: Organization/org-a
 - request:
@@ -51,11 +55,13 @@ entry:
     url: Organization/org-d
   resource:
     name: Organization D
+    resourceType: Organization
 - request:
     method: PUT
     url: Organization/org-E
   resource:
     name: Organization E
+    resourceType: Organization
     partOf:
       reference: Organization/org-d
 ```
