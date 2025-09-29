@@ -1,6 +1,6 @@
 # Table of contents
 
-* [Getting Started](README.md)
+* [Getting Started](getting-started/README.md)
   * [Run Aidbox in Sandbox](getting-started/run-aidbox-in-sandbox.md)
   * [Run Aidbox locally](getting-started/run-aidbox-locally.md)
   * [Use Aidbox with Java](getting-started/java.md)

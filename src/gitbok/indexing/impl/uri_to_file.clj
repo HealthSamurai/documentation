@@ -38,6 +38,10 @@
         lines (str/split-lines summary-text)
         redirects-raw (redirects/redirects context)
         readme-path (products/readme-relative-path context)
+        ;; Get readme-mode from product config
+        product (products/get-current-product context)
+        readme-mode (get product :readme-mode "root-only")
+        preserve-original? (= readme-mode "preserve-original-path")
         ;; Process redirects: remove leading slash and clean up README.md paths
         redirects (->> redirects-raw
                        (mapv (fn [[k v]]
@@ -95,7 +99,15 @@
                           clean-path (str/replace path #"\.md$" "")
                           ;; Create URL from file path
                           url (cond
-                                ;; Root README - check against configured readme path
+                                ;; If preserve-original? is true, keep the original path
+                                (and readme-path
+                                     (= path readme-path)
+                                     preserve-original?)
+                                (-> path
+                                    (str/replace #"\.md$" "")
+                                    (str/replace #"/README$" ""))
+
+                                ;; Root README - check against configured readme path (root-only mode)
                                 (and readme-path
                                      (= path readme-path))
                                 ""
@@ -117,15 +129,21 @@
                                 :else
                                 clean-path)]
                       (let [;; Map the URL to the original path
-                            acc-with-url (assoc acc url path)]
+                            acc-with-url (assoc acc url path)
+                            ;; If preserve-original? and this is the readme path, also add root mapping
+                            acc-with-root (if (and readme-path
+                                                   (= path readme-path)
+                                                   preserve-original?)
+                                            (assoc acc-with-url "" path)
+                                            acc-with-url)]
                         ;; For root page, also add "readme" mapping if it matches the pattern
                         (if (and (= url "")
                                  readme-path
                                  (str/starts-with? readme-path "readme/"))
                           (recur (rest lines)
-                                 (assoc acc-with-url "readme" path))
+                                 (assoc acc-with-root "readme" path))
                           (recur (rest lines)
-                                 acc-with-url))))))
+                                 acc-with-root))))))
 
                 :else
                 (recur (rest lines) acc)))))]
