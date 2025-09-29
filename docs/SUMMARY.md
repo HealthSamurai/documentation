@@ -545,6 +545,7 @@
 ## Developer experience
 
 * [Developer experience overview](developer-experience/developer-experience-overview.md)
+* [Working with AI](developer-experience/ai.md)
 * [Apps](developer-experience/apps.md)
 * [Use Aidbox with React](developer-experience/use-aidbox-with-react.md)
 * [Aidbox SDK](developer-experience/aidbox-sdk/README.md)
@@ -552,6 +553,7 @@
   * [NodeJs SDK](developer-experience/aidbox-sdk/nodejs-sdk.md)
   * [Python SDK](developer-experience/aidbox-sdk/python-sdk.md)
 * [Examples](https://github.com/Aidbox/examples)
+
 
 ## Reference
 
