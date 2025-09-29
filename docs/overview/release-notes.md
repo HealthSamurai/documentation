@@ -2,6 +2,14 @@
 
 ## September 2025 _`edge`_
 
+* Aidbox FHIR server (in progress)
+* Aidbox Forms
+  * Implemented OpenEHR Templates to FHIR Questionnaire and QuestionnaireResponse to OpenEHR Composition conversion.
+  * Enriched the Aidbox Form Gallery with OpenEHR-converted templates.
+  * Added config and theme parameters to the [`$print` operation](../modules/aidbox-forms/aidbox-ui-builder-alpha/printing-forms/native-look-form-printing.md) for granular configuration.
+  * Added the [`allow-repopulate` flag](../modules/aidbox-forms/aidbox-ui-builder-alpha/configuration.md#configuration-resource-structure) to the SDCConfig resource to enable form repopulation.
+  * Implemented pagination for the Form Templates grid.
+
 ## August 2025 _`latest, 2508`_
 
 * Aidbox FHIR server

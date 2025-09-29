@@ -1,6 +1,6 @@
 # Table of contents
 
-* [Getting Started](getting-started/README.md)
+* [Getting Started](README.md)
   * [Run Aidbox in Sandbox](getting-started/run-aidbox-in-sandbox.md)
   * [Run Aidbox locally](getting-started/run-aidbox-locally.md)
   * [Use Aidbox with Java](getting-started/java.md)
@@ -67,7 +67,6 @@
     * [Configuring Two Factor Authentication in Aidbox Identity Provider](tutorials/security-access-control-tutorials/two-factor-authentication.md)
     * [SSO with External OAuth Identity Provider](tutorials/security-access-control-tutorials/set-up-external-identity-provider.md)
     * [Access policies examples](tutorials/security-access-control-tutorials/accesspolicy-examples.md)
-
   * [Terminology Tutorials](tutorials/terminology-tutorials/README.md)
     * [Load ICD-10 terminology into Aidbox](tutorials/terminology-tutorials/load-icd-10-terminology-into-aidbox.md)
     * [Uploading IG terminology content to external FHIR terminology server](tutorials/terminology-tutorials/uploading-ig-terminology-content-to-external-fhir-terminology-server.md)
@@ -553,7 +552,6 @@
   * [NodeJs SDK](developer-experience/aidbox-sdk/nodejs-sdk.md)
   * [Python SDK](developer-experience/aidbox-sdk/python-sdk.md)
 * [Examples](https://github.com/Aidbox/examples)
-
 
 ## Reference
 
