@@ -55,10 +55,7 @@
                                webp-exists? (or
                                             ;; Try to find in classpath
                                              (not (nil? (clojure.java.io/resource base-src)))
-                                             (not (nil? (clojure.java.io/resource (str "assets/" (last (str/split base-src #"\.gitbook/assets/"))))))
-                                            ;; For known files that have WebP versions
-                                             (str/includes? base-src "rest-console")
-                                             (str/includes? base-src "rest-console-get-patient"))]
+                                             (not (nil? (clojure.java.io/resource (str "assets/" (last (str/split base-src #"\.gitbook/assets/")))))))]
                            (when webp-exists?
                              (http/get-prefixed-url context webp-path)))
 
