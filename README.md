@@ -8,10 +8,20 @@ Run `make init` to set up the pre-push git hook. This hook will automatically ru
 
 ## Run locally
 ```
-docker pull ghcr.io/healthsamurai/documentation:latest && docker run -p 8081:8081 -e DOCS_PREFIX=/docs --rm ghcr.io/healthsamurai/documentation:latest
+docker pull ghcr.io/healthsamurai/documentation:latest && docker run -p 8081:8081 \
+  -e BASE_URL=http://localhost:8081 \
+  -e DEV=true \
+  -e DOCS_PREFIX=/docs \
+	-e DOCS_REPO_PATH=/repo \
+	-e DOCS_VOLUME_PATH=/repo/docs-new \
+	-e PORT=8081 \
+	-e RELOAD_CHECK_INTERVAL_SEC=10 \
+  -e EXAMPLES_UPDATE_INTERVAL=1 \
+  -v $(pwd):/repo \
+  --rm ghcr.io/healthsamurai/documentation:latest
 ```
 
-And go to `http://localhost:8081`.
+And go to `http://localhost:8081/docs/aidbox`.
 
 Aidbox docs search:
 1. Run meilisearch.
