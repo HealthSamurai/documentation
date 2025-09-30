@@ -12,9 +12,10 @@
   (let [href (href context node filepath)
         is-external (str/starts-with? href "http")]
     [:a {:href href
-         :class "text-primary-9 underline underline-offset-2
+         :class (str "text-primary-9 underline underline-offset-2
          decoration-[max(0.07em,1px)] hover:text-primary-12 hover:decoration-primary-9
-         transition-all duration-200 inline-flex items-center gap-1"}
+         transition-all duration-200"
+                    (when is-external " inline-flex items-center gap-1"))}
      (or (-> node :content (get 0) :text)
          (-> node :content (get 0)
              :content (get 0) :text))
