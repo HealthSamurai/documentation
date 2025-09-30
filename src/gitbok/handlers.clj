@@ -1,6 +1,7 @@
 (ns gitbok.handlers
   "HTTP request handlers for the application"
   (:require
+   [clojure.java.io :as io]
    [clojure.stacktrace]
    [clojure.string :as str]
    [clojure.tools.logging :as log]
@@ -70,6 +71,19 @@
   (when url
     (or (str/starts-with? url "/.gitbook/assets")
         (str/includes? url "/.gitbook/assets"))))
+
+(defn canonical-file-response
+  "Like ring.util.response/file-response but resolves symlinks to canonical paths.
+   This ensures git-sync symlinks are followed correctly."
+  [path]
+  (try
+    (let [file (io/file path)]
+      (when (.exists file)
+        (let [canonical-path (.getCanonicalPath file)]
+          (resp/file-response canonical-path))))
+    (catch Exception e
+      ;; Return nil on any exception, just like file-response does
+      nil)))
 
 (defn render-file
   [context filepath]
@@ -166,13 +180,13 @@
                    ;; When volume path is available: try filesystem first
                    (or
                     ;; Try at root .gitbook/assets/
-                    (resp/file-response (str volume-path "/.gitbook/assets/" file-path))
+                    (canonical-file-response (str volume-path "/.gitbook/assets/" file-path))
                     ;; Try docs/.gitbook/assets/
-                    (resp/file-response (str volume-path "/docs/.gitbook/assets/" file-path))
+                    (canonical-file-response (str volume-path "/docs/.gitbook/assets/" file-path))
                     ;; Try at .gitbook/ (for compatibility)
-                    (resp/file-response (str volume-path "/.gitbook/" file-path))
+                    (canonical-file-response (str volume-path "/.gitbook/" file-path))
                     ;; Try docs/.gitbook/ (for compatibility)
-                    (resp/file-response (str volume-path "/docs/.gitbook/" file-path))
+                    (canonical-file-response (str volume-path "/docs/.gitbook/" file-path))
                     ;; Fallback to classpath resources
                     (resp/resource-response file-path)
                     (resp/resource-response (str ".gitbook/" file-path))

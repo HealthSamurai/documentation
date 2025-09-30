@@ -106,10 +106,14 @@
         files (->> batches
                    (pmap (fn [batch]
                            ;; Process files within batch sequentially
-                           (map (fn [filename]
-                                  [filename
-                                   (read-content context (products/filepath context filename))])
-                                batch)))
+                           (keep (fn [filename]
+                                   (try
+                                     [filename
+                                      (read-content context (products/filepath context filename))]
+                                     (catch Exception e
+                                       (log/warn "Failed to read file" {:filename filename :error (.getMessage e)})
+                                       nil)))
+                                 batch)))
                    doall
                    (mapcat identity)
                    (into {}))]

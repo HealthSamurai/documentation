@@ -122,7 +122,8 @@
 
 (defn slurp-resource
   "Reads a resource from volume path or classpath.
-   Requires context to get volume-path from state."
+   Requires context to get volume-path from state.
+   Resolves symlinks using canonical paths to work with git-sync."
   [context path]
   (when-not context
     (throw (IllegalArgumentException. "Context is required for slurp-resource")))
@@ -130,18 +131,31 @@
     (if volume-path
       (let [file-path (str volume-path "/" path)
             file (clojure.java.io/file file-path)]
-        (if (.exists file)
-          (do
-            (log/debug "read volume" {:path path})
-            (slurp file))
-          ;; Fallback to classpath for non-documentation resources
-          (if-let [r (clojure.java.io/resource path)]
-            (do
-              (log/debug "read classpath" {:path path :reason "not-in-volume"})
-              (slurp r))
-            (do
-              (log/error "file not found" {:path path :locations ["volume" "classpath"]})
-              (throw (Exception. (str "Cannot find " path " in volume or classpath")))))))
+        (try
+          ;; Resolve symlinks to canonical path before checking existence
+          ;; This is critical for git-sync which creates symlinked directories
+          (let [canonical-file (.getCanonicalFile file)]
+            (if (.exists canonical-file)
+              (do
+                (log/debug "read volume" {:path path})
+                (slurp canonical-file))
+              ;; Fallback to classpath for non-documentation resources
+              (if-let [r (clojure.java.io/resource path)]
+                (do
+                  (log/debug "read classpath" {:path path :reason "not-in-volume"})
+                  (slurp r))
+                (do
+                  (log/error "file not found" {:path path :locations ["volume" "classpath"]})
+                  (throw (Exception. (str "Cannot find " path " in volume or classpath")))))))
+          (catch java.io.IOException e
+            ;; If canonical path resolution fails (e.g., broken symlink), try classpath
+            (if-let [r (clojure.java.io/resource path)]
+              (do
+                (log/debug "read classpath" {:path path :reason "symlink-error"})
+                (slurp r))
+              (do
+                (log/error "file not found" {:path path :locations ["volume" "classpath"] :error (.getMessage e)})
+                (throw (Exception. (str "Cannot find " path " in volume or classpath"))))))))
       ;; Original classpath logic when no volume-path configured
       (if-let [r (clojure.java.io/resource path)]
         (do
