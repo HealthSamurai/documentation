@@ -57,7 +57,7 @@
  :aliases
  {:dev
   {:extra-paths ["dev" "test" "resources"]
-   :extra-deps {io.github.tonsky/clj-reload {:mvn/version "0.9.8"}
+   :extra-deps {io.github.tonsky/clj-reload {:mvn/version "1.0.0"}
                 io.github.tonsky/clojure-plus {:mvn/version "1.6.1"}}
    :jvm-opts []}
 

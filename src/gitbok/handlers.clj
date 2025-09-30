@@ -175,10 +175,16 @@
                    (str/replace-first #".*.gitbook/assets/" ""))
         dev-mode? (state/get-config ctx :dev-mode)
         volume-path (state/get-config ctx :docs-volume-path)
+        repo-path (state/get-config ctx :docs-repo-path)
         ;; Try to find the image in multiple locations
         response (if volume-path
                    ;; When volume path is available: try filesystem first
                    (or
+                    ;; Try repo path first (for assets in repo root)
+                    (when repo-path
+                      (or
+                       (canonical-file-response (str repo-path "/.gitbook/assets/" file-path))
+                       (canonical-file-response (str repo-path "/docs/.gitbook/assets/" file-path))))
                     ;; Try at root .gitbook/assets/
                     (canonical-file-response (str volume-path "/.gitbook/assets/" file-path))
                     ;; Try docs/.gitbook/assets/
