@@ -207,7 +207,7 @@ NOTE: All parameters wrapped with `Parameters object`
 resourceType: Parameters
 parameter:
 - name: response
-  resource: 
+  resource:
     # QuestionnaireResponse resource here
 ```
 {% endhint %}
@@ -408,7 +408,7 @@ NOTE: All parameters wrapped with `Parameters object`
 resourceType: Parameters
 parameter:
 - name: response
-  resource: 
+  resource:
     # QuestionnaireResponse resource here
 ```
 {% endhint %}

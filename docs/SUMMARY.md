@@ -578,6 +578,7 @@
   * [FHIR SDC API](reference/aidbox-forms-reference/fhir-sdc-api.md)
   * [Aidbox SDC API](reference/aidbox-forms-reference/aidbox-sdc-api.md)
   * [Generating Questionnaire from PDF API](reference/aidbox-forms-reference/generating-questionnaire-from-pdf-api.md)
+  * [Generating Questionnaire from openEHR Template API](reference/aidbox-forms-reference/generating-questionnaire-from-openehr-template.md)
 * [Aidbox SQL Functions](reference/aidbox-sql-functions.md)
 * [Matcho DSL Reference](reference/matcho-dsl-reference.md)
 
