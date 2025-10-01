@@ -230,6 +230,10 @@ graph TD
 [rabbitmq-tutorial.md](../../tutorials/subscriptions-tutorials/rabbitmq-tutorial.md)
 {% endcontent-ref %}
 
+{% content-ref url="../../tutorials/subscriptions-tutorials/activemq-tutorial.md" %}
+[activemq-tutorial.md](../../tutorials/subscriptions-tutorials/activemq-tutorial.md)
+{% endcontent-ref %}
+
 ## Notification Shape
 
 Notification is a [FHIR Bundle](https://build.fhir.org/bundle.html) resource with `history` type, containing relevant resources in its entries. The first entry is a `AidboxSubscriptionStatus` resource, which describes the payload.\

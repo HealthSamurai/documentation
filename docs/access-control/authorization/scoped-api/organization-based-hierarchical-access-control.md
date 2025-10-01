@@ -25,6 +25,7 @@ Let's create the organization structure in Aidbox:
 ```
 POST /fhir
 
+resourceType: Bundle
 type: batch
 entry:
 - request:
@@ -32,11 +33,13 @@ entry:
     url: Organization/org-a
   resource:
     name: Organization A
+    resourceType: Organization
 - request:
     method: PUT
     url: Organization/org-b
   resource:
     name: Organization B
+    resourceType: Organization
     partOf:
       reference: Organization/org-a
 - request:
@@ -44,6 +47,7 @@ entry:
     url: Organization/org-c
   resource:
     name: Organization C
+    resourceType: Organization
     partOf:
       reference: Organization/org-a
 - request:
@@ -51,11 +55,13 @@ entry:
     url: Organization/org-d
   resource:
     name: Organization D
+    resourceType: Organization
 - request:
     method: PUT
     url: Organization/org-E
   resource:
     name: Organization E
+    resourceType: Organization
     partOf:
       reference: Organization/org-d
 ```
@@ -159,6 +165,10 @@ POST <AIDBOX_BASE_URL>/Organization/<org-id>/fhir/<resource-type>
 ```
 
 #### Conditional Create
+{% hint style="warning" %}
+Conditional operations are available starting from version 2509.
+{% endhint %}
+
 Create the resource only if no existing resource matches the given search criteria.
 ```
 POST /Organization/<org-id>/fhir/Observation
@@ -187,6 +197,10 @@ GET <AIDBOX_BASE_URL>/Organization/<org-id>/fhir/<resource-type>/<id>
 PUT <AIDBOX_BASE_URL>/Organization/<org-id>/fhir/<resource-type>/<id>
 ```
 #### Conditional Put 
+{% hint style="warning" %}
+Conditional operations are available starting from version 2509.
+{% endhint %}
+
 Update a resource that matches the search; create if none exists.
 
 ```
@@ -209,6 +223,10 @@ Content-Type: application/fhir+json
 All PATCH methods are supported under org-scoped API. See also [patch](../../../api/rest-api/crud/patch.md)
 
 #### Conditional Patch
+{% hint style="warning" %}
+Conditional operations are available starting from version 2509.
+{% endhint %}
+
 Patch a resource matched by a search expression. 
 
 ```
@@ -225,6 +243,10 @@ DELETE <AIDBOX_BASE_URL>/Organization/<org-id>/fhir/<resource-type>/<id>
 ```
 
 #### Conditional Delete
+{% hint style="warning" %}
+Conditional operations are available starting from version 2509.
+{% endhint %}
+
 Delete resource(s) matching a search expression at the type endpoint under the organization.
 
 ```
@@ -343,6 +365,10 @@ entry:
 See also [Transactions page](../../../api/batch-transaction.md)
 
 #### Conditional Create with Bundle
+{% hint style="warning" %}
+Conditional operations are available starting from version 2509.
+{% endhint %}
+
 ```
 POST /Organization/org-a/fhir/
 Content-Type: application/fhir+json
@@ -369,6 +395,10 @@ Content-Type: application/fhir+json
 ```
 
 #### Conditional Update with Bundle
+{% hint style="warning" %}
+Conditional operations are available starting from version 2509.
+{% endhint %}
+
 ```
 POST /Organization/org-a/fhir/
 Content-Type: application/fhir+json
@@ -394,6 +424,10 @@ Content-Type: application/fhir+json
 ```
 
 #### Conditional Delete with Bundle
+{% hint style="warning" %}
+Conditional operations are available starting from version 2509.
+{% endhint %}
+
 ```
 POST /Organization/org-a/fhir/
 Content-Type: application/fhir+json

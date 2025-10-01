@@ -6,6 +6,7 @@ Resources for configuration and management Aidbox SDC module.
 
 SDC module includes the following resource types:
 
+- OpenEHRTemplate
 - QuestionnaireTheme
 - SDCAddendum
 - SDCConfig
@@ -15,6 +16,22 @@ SDC module includes the following resource types:
 - SDCPrintTemplate
 - SDCWorkflow
 - SDCWorkflowVersion
+
+## OpenEHRTemplate
+
+<table>
+<thead>
+<tr>
+<th width="290">Path</th>
+<th width="70">Card.</th>
+<th width="150">Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr><td width="290">content</td><td width="70">0..1</td><td width="150">string</td><td>Template for SDC print</td></tr></tbody>
+</table>
+
 
 ## QuestionnaireTheme
 

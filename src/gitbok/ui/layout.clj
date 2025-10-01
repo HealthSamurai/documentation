@@ -62,7 +62,7 @@
        ;; Links group
        [:div {:class "flex flex-col sm:flex-row items-center gap-3 text-center"}
         [:a {:class "text-[#353B50] hover:text-primary-9 transition-colors no-underline text-sm leading-5"
-             :href "https://connect.health-samurai.io"
+             :href "https://www.health-samurai.io/contacts"
              :target "_blank"
              :rel "noopener noreferrer"}
          "Contact us"]

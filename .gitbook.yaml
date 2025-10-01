@@ -1,7 +1,7 @@
 root: ./docs/
 structure:
-  readme: readme/README.md
   summary: SUMMARY.md
+  readme: getting-started/README.md
 
 redirects:
   access-control/authentication/access-to-aidboxui: access-control/authentication/README.md
@@ -391,9 +391,9 @@ redirects:
   modules-1/observability/traces/how-to-use-tracing: modules/observability/traces/how-to-use-tracing.md
   modules-1/observability/traces/otel-traces-exporter-parameters: modules/observability/traces/otel-traces-exporter-parameters.md
   modules-1/other-modules/mcp: modules/other-modules/mcp.md
-  modules-1/other-modules/mdm/configure-mdm-module: modules/other-modules/mpi/get-started/configure-mpi-module.md
-  modules-1/other-modules/mdm/find-duplicates-usdmatch: modules/other-modules/mpi/find-duplicates-match.md
-  modules-1/other-modules/mdm/mathematical-details: modules/other-modules/mpi/mathematical-details.md
+  modules-1/other-modules/mdm/configure-mdm-module: modules/mpi/get-started/configure-mpi-module.md
+  modules-1/other-modules/mdm/find-duplicates-usdmatch: modules/mpi/find-duplicates-match.md
+  modules-1/other-modules/mdm/mathematical-details: modules/mpi/mathematical-details.md
   modules-1/profiling-and-validation/asynchronous-resource-validation: modules/profiling-and-validation/asynchronous-resource-validation.md
   modules-1/profiling-and-validation/fhir-schema-validator/aidbox-fhir-igs-registry: modules/profiling-and-validation/fhir-schema-validator/aidbox-fhir-igs-registry.md
   modules-1/profiling-and-validation/fhir-schema-validator/setup-aidbox-with-fhir-schema-validation-engine: modules/profiling-and-validation/fhir-schema-validator/setup-aidbox-with-fhir-schema-validation-engine.md
@@ -465,8 +465,16 @@ redirects:
   modules/observability/logging-and-audit/readme-1/how-to-explore-and-visualize-aidbox-logs-with-kibana-and-grafana: modules/observability/logs/tutorials/log-analysis-and-visualization-tutorial.md
   modules/observability/logging-and-audit/technical-reference: modules/observability/logs/technical-reference/README.md
   modules/observability/logging-and-audit: access-control/audit-and-logging.md
-  modules/other-modules/mdm/find-duplicates-usdmatch.md: modules/other-modules/mpi/find-duplicates-match.md
-  modules/other-modules/mdm: modules/other-modules/mpi/README.md
+  modules/other-modules/mdm/find-duplicates-usdmatch.md: modules/mpi/find-duplicates-match.md
+  modules/other-modules/mdm: modules/mpi/README.md
+  modules/other-modules/mpi/find-duplicates-match: modules/mpi/find-duplicates-match.md
+  modules/other-modules/mpi/get-started/configure-mpi-module: modules/mpi/get-started/configure-mpi-module.md
+  modules/other-modules/mpi/get-started/deploy-mpi-with-kubernetes: modules/mpi/get-started/deploy-mpi-with-kubernetes.md
+  modules/other-modules/mpi/get-started: modules/mpi/get-started/README.md
+  modules/other-modules/mpi/matching-model-explanation: modules/mpi/matching-model-explanation.md
+  modules/other-modules/mpi/mathematical-details: modules/mpi/mathematical-details.md
+  modules/other-modules/mpi/merging-and-unmerging-records-usdmerge-and-usdunmerge: modules/mpi/merging-and-unmerging-records-usdmerge-and-usdunmerge.md
+  modules/other-modules/mpi: modules/mpi/README.md
   modules/security-and-access-control/patient-data-access-api/how-to-enable-patient-data-access-api: tutorials/security-access-control-tutorials/how-to-enable-patient-data-access-api.md
   modules/smartbox/how-to-guides/find-out-what-resources-were-exported-during-the-usdexport-operation.md: modules/smartbox/how-to-guides/find-out-what-resources-were-exported-during-the-export-operation.md
   modules/terminology/concept/usdtranslate-concepts.md: deprecated/deprecated/other/terminology/concept/translate-concepts.md
@@ -480,18 +488,27 @@ redirects:
   plan-api/patient-access-api: access-control/authorization/scoped-api/patient-data-access-api.md
   plan-api/plan-api-overview: api/other/plan-api/plan-api-overview.md
   plan-api: api/other/plan-api/README.md
-  readme-1/README: readme/README.md
-  readme-1/architecture: readme/architecture.md
-  readme-1/features: readme/features.md
+  readme-1/architecture: architecture.md
+  readme-1/features: features.md
   readme-1/readme-1-1/access-policy: access-control/authorization/access-policies.md
   readme-1/readme-1-1/basic-auth-tutorial: tutorials/security-access-control-tutorials/basic-auth.md
   readme-1/readme-1-1/relationship-based-access-control-in-aidbox: tutorials/security-access-control-tutorials/rbac/README.md
   readme-1/subscriptions: modules/topic-based-subscriptions/README.md
   readme-1/validation-tutorials/upload-fhir-implementation-guide/uploading-fhir-ig-using-uploadfig-library: tutorials/artifact-registry-tutorials/upload-fhir-implementation-guide/uploadfig-tool.md
+  readme/architecture: architecture.md
+  readme/features: features.md
   reference/configuration/environment-variables/mailgun-environment-variables: reference/email-providers-reference/mailgun-environment-variables.md
   reference/configuration/environment-variables/optional-environment-variables: reference/environment-variables/optional-environment-variables.md
   reference/configuration/environment-variables: reference/environment-variables/README.md
-  reference/settings/security-access-control: reference/settings/security-and-access-control.md
+  reference/settings/all-settings: reference/all-settings.md
+  reference/settings/database: reference/all-settings.md
+  reference/settings/fhir: reference/all-settings.md
+  reference/settings/general: reference/all-settings.md
+  reference/settings/modules: reference/all-settings.md
+  reference/settings/observability: reference/all-settings.md
+  reference/settings/security-and-access-control: reference/all-settings.md
+  reference/settings/web-server: reference/all-settings.md
+  reference/settings/zen-project: reference/all-settings.md
   security-and-access-control-1/auth/external-oauth-2.0-providers/configure-okta: tutorials/security-access-control-tutorials/okta.md
   security-and-access-control-1/auth/two-factor-authentication: tutorials/security-access-control-tutorials/two-factor-authentication.md
   security-and-access-control-1/overview: access-control/access-control.md

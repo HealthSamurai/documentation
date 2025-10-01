@@ -4,9 +4,7 @@ description: Learn how to use REST Console to work with your Aidbox via REST API
 
 # REST Console
 
-### REST Console
-
-![REST Console UI](../../../.gitbook/assets/rest-console.png)
+![REST Console UI](../../../.gitbook/assets/ui-rest-console.jpg)
 
 REST Console is designed to work with your Aidbox via [REST API](../../api/rest-api/README.md). To make a request type an HTTP method (`GET`, `POST`, `PUT`, `PATCH`, `DELETE`) and an operation endpoint (for example`/Patient` — _please pay attention to the capital letter in the resource name_).
 

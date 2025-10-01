@@ -143,7 +143,7 @@ Where:
 
 1. `smart-app-launch-endpoint` - SMART Application launch endpoint. It shall be equal to `Client.smart.launch_uri`.
 2. `iss` - Identifies the EHR's FHIR endpoint.
-3. `launch` - JWT identifier for this specific launch and context associated with it. It shall be signed with an [Aidbox private key](../../../../reference/settings/security-and-access-control.md).
+3. `launch` - JWT identifier for this specific launch and context associated with it. It shall be signed with an [Aidbox private key](../../../../reference/all-settings.md).
 
 `launch` parameter JWT shall contain the following claims:
 

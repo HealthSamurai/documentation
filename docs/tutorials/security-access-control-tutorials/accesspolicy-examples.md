@@ -271,7 +271,7 @@ matcho:
 
 **Description:**
 We want to allow an application, registered as a Client resource in Aidbox, to search the Patient resource using GraphQL.
-[GraphQL Access Control mode](../../reference/settings/modules.md#module.graphql.access-control) is set to `rest-search`.
+[GraphQL Access Control mode](../../reference/all-settings.md#module.graphql.access-control) is set to `rest-search`.
 ```yaml
 BOX_FEATURES_GRAPHQL_ACCESS__CONTROL=rest-search
 ```

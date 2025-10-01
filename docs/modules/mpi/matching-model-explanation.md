@@ -12,7 +12,7 @@ For an overview of probabilistic matching concepts and match score calculation, 
 {% endhint %}
 
 This model is used for **patient record matching**, but the same approach can be adapted to detect duplicates for any type of resource.\
-If you are interested in applying this approach to your use case, please, [contact us](../../../overview/contact-us.md).
+If you are interested in applying this approach to your use case, please, [contact us](../../overview/contact-us.md).
 
 ## Core Idea
 

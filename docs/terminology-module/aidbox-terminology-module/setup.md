@@ -177,5 +177,5 @@ You should now receive a successful `201` status code response:
 
 For complete details on all terminology-related environment variables, see:
 
-* [FHIR Settings Reference](../../reference/settings/fhir.md#terminology)
-* [General Settings Reference](../../reference/settings/general.md#bootstrap-fhir-packages)
+* [FHIR Settings Reference](../../reference/all-settings.md#terminology)
+* [General Settings Reference](../../reference/all-settings.md#bootstrap-fhir-packages)

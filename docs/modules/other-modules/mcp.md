@@ -17,7 +17,7 @@ Aidbox MCP server works through Server-Sent Events (SSE) protocol and provides t
 
 Aidbox provides a set of MCP tools to cover FHIR CRUDS operations.
 
-<table><thead><tr><th width="198.7421875">Tool Name</th><th>Properties</th><th>Description</th></tr></thead><tbody><tr><td>read-fhir-resource</td><td>- resourceType (string, required)<br>- id (string, required)</td><td>Read an individual FHIR resource</td></tr><tr><td>create-fhir-resource</td><td>- resourceType (string, required)<br>- resource (JSON object, required)<br>- headers (JSON object)</td><td>Create a new FHIR resource</td></tr><tr><td>update-fhir-resource</td><td>- resourceType (string, required)<br>- id (string, required)<br>- resource (JSON object, required)</td><td>Update an existing FHIR resource</td></tr><tr><td>conditional-update-fhir-resource</td><td>- resourceType (string, required)<br>- resource (JSON object, required)<br>- query (string)<br>- headers (JSON object)</td><td>Conditional update an existing FHIR resource</td></tr><tr><td>conditional-patch-fhir-resource</td><td>- resourceType (string, required)<br>- resource (JSON object, required)<br>- query (string)<br>- headers (JSON object)</td><td>Conditional patch an existing FHIR resource</td></tr><tr><td>patch-fhir-resource</td><td>- resourceType (string, required)<br>- id (string, required)<br>- resource (JSON object, required)</td><td>Patch an existing FHIR resource</td></tr><tr><td>delete-fhir-resource</td><td>- resourceType (string, required)<br>- id (string, required)</td><td>Delete an existing FHIR resource</td></tr><tr><td>search-fhir-resources</td><td>- resourceType (string, required)<br>- query (string, required)</td><td>Search an existing FHIR resources</td></tr></tbody></table>
+<table><thead><tr><th width="198.7421875">Tool Name</th><th>Properties</th><th>Description</th></tr></thead><tbody><tr><td>read-fhir-resource</td><td>- resourceType (string, required)<br>- id (string, required)</td><td>Read an individual FHIR resource</td></tr><tr><td>create-fhir-resource</td><td>- resourceType (string, required)<br>- resource (JSON object, required)<br>- headers (JSON object)</td><td>Create a new FHIR resource</td></tr><tr><td>update-fhir-resource</td><td>- resourceType (string, required)<br>- id (string, required)<br>- resource (JSON object, required)</td><td>Update an existing FHIR resource</td></tr><tr><td>conditional-update-fhir-resource</td><td>- resourceType (string, required)<br>- resource (JSON object, required)<br>- query (string)<br>- headers (JSON object)</td><td>Conditional update an existing FHIR resource</td></tr><tr><td>conditional-patch-fhir-resource</td><td>- resourceType (string, required)<br>- resource (JSON object, required)<br>- query (string)<br>- headers (JSON object)</td><td>Conditional patch an existing FHIR resource</td></tr><tr><td>patch-fhir-resource</td><td>- resourceType (string, required)<br>- id (string, required)<br>- resource (JSON object, required)</td><td>Patch an existing FHIR resource</td></tr><tr><td>delete-fhir-resource</td><td>- resourceType (string, required)<br>- id (string, required)</td><td>Delete an existing FHIR resource</td></tr><tr><td>search-fhir-resources</td><td>- resourceType (string, required)<br>- query (string, required)</td><td>Search an existing FHIR resources</td></tr><tr><td>validate-fhir-resource<br><small><em>* available since 2509</em></small></td><td>- resourceType (string, required)<br>- resource (JSON object, required)<br>- mode (string - create|update|delete|patch, required)</td><td>Validate FHIR resource</td></tr></tbody></table>
 
 ## Configure Aidbox MCP server
 
@@ -35,7 +35,7 @@ You will get Aidbox with enabled MCP server and created `AccessPolicy` for it.
 
 If you have already configured Aidbox to enable the MCP server:
 
-1. Set [`module.mcp.server-enabled` setting](../../reference/settings/modules.md#module.mcp.server-enabled) to `true`
+1. Set [`module.mcp.server-enabled` setting](../../reference/all-settings.md#module.mcp.server-enabled) to `true`
 2. Set up Access Control for MCP endpoints via `AccessPolicy`
 
 #### Option 1. Public MCP Endpoint
@@ -171,8 +171,9 @@ $ npx -y supergateway --sse <your-box-base-url>/sse
 }
 ```
 
+* For Claude Code, run `claude mcp add aidbox-mcp -- npx -y supergateway --sse http://localhost:8765/sse`
 * For the `Cursor` editor add this config to your project folder `.cursor/mcp.json` and make sure that `Settings` -> `Cursor Settings` -> `MCP` is enabled.
-* For the LLM Desktop applications, such `Claude`, `ChatGPT` etc. go to the `Settings` and set the config. For example, in `Claude` desktop app go to `Settings` -> `Developer` -> `Edit Config`.
+* For the LLM Desktop applications, such `Claude Desktop`, `ChatGPT` etc. go to the `Settings` and set the config. For example, in `Claude` desktop app go to `Settings` -> `Developer` -> `Edit Config`.
 
 Now you can ask your LLM agent to Create, Read, Update or Delete FHIR resources in Aidbox.
 

@@ -284,6 +284,7 @@ The example provided below represents a comprehensive translations object for En
     },
     "choice": {
       "no-options": { "en": "No options" },
+      "specify-other": { "en": "Specify other..." },
       "select": { "en": "Select" },
       "search": { "en": "Search" },
       "loading-more": { "en": "Loading options..." },
@@ -292,8 +293,9 @@ The example provided below represents a comprehensive translations object for En
     "file": {
       "browse": { "en": "Browse" },
       "preview": {
-        "title": { "en": "Preview" },
-        "alt": { "en": "Unable to show image" }
+        "title": { "en": "File Preview" },
+        "alt": { "en": "Unable to show image" },
+        "content-type": { "en": "Content Type: Unknown" }
       },
       "placeholder": { "en": "Choose file" }
     },
@@ -326,6 +328,7 @@ The example provided below represents a comprehensive translations object for En
         "other": { "en": "Not submitted yet" }
       },
       "amended": { "en": "Form amended" },
+      "recording": { "en": "Recording input..." },
       "saving": { "en": "Saving changes..." },
       "submitted": { "en": "Form submitted" },
       "amending": { "en": "Amending changes..." }
@@ -336,9 +339,14 @@ The example provided below represents a comprehensive translations object for En
       "repopulate": { "en": "Repopulate" },
       "offline-submit": { "en": "You are offline and cannot submit" },
       "print": { "en": "Print" },
+      "skip-item": { "en": "Skip Question" },
       "saved": { "en": "Saved" },
+      "next-item": { "en": "Next" },
       "submit": { "en": "Submit" },
-      "save-and-close": { "en": "Save & Close" }
+      "save-and-close": { "en": "Save" }
+    },
+    "label": {
+      "last-one-question": { "en": "That's the last one" }
     },
     "outline": {
       "title": { "en": "Contents" }
@@ -347,13 +355,14 @@ The example provided below represents a comprehensive translations object for En
   "error": {
     "validation": {
       "invalid-answer": { "en": "Invalid answer" },
-      "value-less-than-min": { "en": "Value can't be less than %d" },
+      "value-less-than-min": { "en": "Value can't be less than %s" },
       "file-too-large": { "en": "File is too large (allowed max size: %s)" },
       "type-mismatch": { "en": "Expected answer of type: '%s', got: '%s'" },
       "signature-author-required": { "en": "Signature author is required" },
       "signature-required": { "en": "Signature is required" },
+      "group-answer-required": { "en": "At least one child item must be answered" },
       "answer-required": { "en": "Answer is required" },
-      "value-greater-than-max": { "en": "Value can't be greater than %d" }
+      "value-greater-than-max": { "en": "Value can't be greater than %s" }
     },
     "invalid-jwt": { "en": "Invalid JWT" },
     "fhir": {
@@ -361,6 +370,9 @@ The example provided below represents a comprehensive translations object for En
       "resource-not-questionnaire": { "en": "The provided resource does not match the format of a questionnaire." },
       "empty-resource": { "en": "The provided resource contains no data." },
       "version-incompatible": { "en": "The questionnaire contains properties from multiple incompatible FHIR versions." }
+    },
+    "validate": {
+      "value-decimal-places": { "en": "Answer exceeds maximum decimal places: %s" }
     }
   },
   "alert": {
@@ -388,7 +400,7 @@ The example provided below represents a comprehensive translations object for En
     },
     "questionnaire-not-found": {
       "message": { "en": "Cannot load the questionnaire" },
-      "details": { "en": "Questionnaire with url '%' does not exists" }
+      "details": { "en": "Questionnaire with url '%s' does not exists" }
     },
     "questionnaire-response-save-issues": {
       "message": { "en": "Warnings" }
@@ -396,6 +408,19 @@ The example provided below represents a comprehensive translations object for En
     "unauthorized": {
       "message": { "en": "Authorization required" },
       "details": { "en": "Your token is invalid or expired" }
+    }
+  },
+  "builder": {
+    "warning": {
+      "questionnaire-changed-version-when-in-production-status": { "en": "Changing Questionnaire version while in production status (%s) may cause data inconsistencies and affect existing form submissions" },
+      "questionnaire-in-production-status-changed": { "en": "Changes to Questionnaire in production status may affect existing form submissions and data collection processes" },
+      "questionnaire-is-used-as-component": { "en": "This Questionnaire is used as a component in other Questionnaires - changes will propagate to all forms using this component" },
+      "questionnaire-changed-url-when-in-production-status": { "en": "Changing Questionnaire.url while in production status (%s) may break existing integrations and references to this Questionnaire" },
+      "questionnaire-moved-from-production-status": { "en": "Moving Questionnaire from production status (%s) may invalidate existing form submissions and break dependent integrations" }
+    },
+    "error": {
+      "questionnaire-with-same-url-and-version-exists": { "en": "A Questionnaire with the same URL and version already exists (ID: %s)" },
+      "questionnaire-move-to-production-status-when-no-url": { "en": "A Questionnaire URL is required for production use to ensure stable references and proper versioning" }
     }
   },
   "offline": {

@@ -9,7 +9,7 @@ Aidbox supports exporting metrics using the Protobuf protocol in line with the O
 {% endhint %}
 
 {% hint style="info" %}
-This way of enabling OTEL capabilities is available in Aidbox versions 2503 and later. On previous AIdbox versions it was possible to enable OTEL with Aidbox configuration project.
+This way of enabling OTEL capabilities is available in Aidbox versions 2503 and later. On previous Aidbox versions it was possible to enable OTEL with Aidbox configuration project.
 {% endhint %}
 
 {% hint style="info" %}
@@ -74,7 +74,7 @@ docker logs -f otel-collector
 
 ## How to enable metrics export to the OTEL collector
 
-To enable exporting metrics to the OTEL collector set the OTEL collector metrics receiver endpoint to the Aidbox setting [observability.otel.metrics-url](../../../../reference/settings/observability.md#observability.otel.metrics-url).
+To enable exporting metrics to the OTEL collector set the OTEL collector metrics receiver endpoint to the Aidbox setting [observability.otel.metrics-url](../../../../reference/all-settings.md#observability.otel.metrics-url).
 
 ## How to check the OTEL collector receives metrics
 

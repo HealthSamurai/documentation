@@ -10,7 +10,7 @@ Aidbox Forms supports two main scenarios for sharing forms with users:
 2. [Embed the Form via iframe into an application or website](form-sharing.md#embed-the-form-via-iframe-into-an-application-or-website)
 
 {% hint style="warning" %}
-To use **form sharing**, you must explicitly [configure RSA private/public keys and a secret](../../../reference/settings/security-and-access-control.md).
+To use **form sharing**, you must explicitly [configure RSA private/public keys and a secret](../../../reference/all-settings.md).
 {% endhint %}
 
 ## Sharing a Form Link with the User

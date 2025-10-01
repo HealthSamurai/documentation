@@ -10,6 +10,7 @@ products:
     favicon: .gitbook/assets/favicon.ico
     og-preview-text: "Aidbox User Docs"  # Optional: custom text for OG preview images
     meilisearch-index: "docs"
+    readme-mode: "preserve-original-path"  # Keep readme accessible at its original path
     # nav-links-right: true  # Move navigation links to the right side
     links:
       - title: Product

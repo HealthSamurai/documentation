@@ -1,10 +1,9 @@
-# User Management
+# User management
 
-There are three ways to manage users in Aidbox:
+There are two ways to manage users in Aidbox:
 
 1. Manage Users in Aidbox
 2. Manage Users in external systems
-3. Automatically create users from external systems
 
 ## Manage Users in Aidbox
 
@@ -25,7 +24,7 @@ If you already have an identity provider, you can delegate authentication to it 
 
 Two building blocks are involved:
 
-* `IdentityProvider` – resource to configure an external identity provider. Log in to Aidbox UI with SSO. When users hit the Aidbox UI, they are redirected to the IdP; after successful login, the IdP posts an ID‑token back to Aidbox, establishing a browser session.
+* `IdentityProvider` – resource to configure an external identity provider. Log in to Aidbox UI with SSO. When users hit the Aidbox UI, they are redirected to the IdP; after successful login, the IdP posts an ID‑token back to Aidbox, establishing a browser session. Aidbox retrieves user data from external identity provider and stores it in the User resource.
 * `TokenIntrospector` – For API access, point your application to the IdP directly, then present the resulting JWT/Opaque token to Aidbox. The TokenIntrospector resource tells Aidbox how to verify the token signature.
 
 See also:
@@ -38,6 +37,13 @@ See also:
 [token-introspector.md](../authentication/token-introspector.md)
 {% endcontent-ref %}
 
-## Automatically create users from external systems
+### Automatically create users from external systems
+In some cases, you want to authenticate with an external IdP and still have a corresponding User resource inside Aidbox for auditing, patient‑to‑user mapping, or granular AccessPolicy rules. Aidbox supports just‑in‑time user provisioning:
+- In case of SSO, Users are created automatically.
+– In case of API access, it is possible to create User at first request using [setting](../../reference/all-settings.md#security.introspection-create-user).
 
-In some cases, you want to authenticate with an external IdP and still have a corresponding User resource inside Aidbox for auditing, patient‑to‑user mapping, or granular AccessPolicy rules. Aidbox supports just‑in‑time (JIT) user provisioning – it transparently creates a local user record the first time a foreign identity appears.
+See also:
+
+{% content-ref url="../../tutorials/security-access-control-tutorials/keycloak-auto-create-user.md" %}
+[keycloak-auto-create-user.md](../../tutorials/security-access-control-tutorials/keycloak-auto-create-user.md)
+{% endcontent-ref %}

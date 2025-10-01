@@ -113,10 +113,10 @@ Load performance testing results [here](https://www.health-samurai.io/downloads/
 ### Modules
 
 * Aidbox Forms:
-  * Ready-made medical form repository ([Aidbox Form Gallery](../modules/aidbox-forms/aidbox-form-gallery.md))
-  * [UI Builder](../modules/aidbox-forms/aidbox-ui-builder-alpha/README.md) for creating forms without code (based on[ FHIR SDC Implementation Guide](https://build.fhir.org/ig/HL7/sdc/index.html))
+  * Ready-made medical form repository ([Aidbox Form Gallery](modules/aidbox-forms/aidbox-form-gallery.md))
+  * [UI Builder](modules/aidbox-forms/aidbox-ui-builder-alpha/README.md) for creating forms without code (based on [FHIR SDC Implementation Guide](https://build.fhir.org/ig/HL7/sdc/index.html))
   * Form rendering engine
-  * FHIR  and Aidbox SDC APIs
+  * FHIR and Aidbox SDC APIs
 * ePrescriptions
 * Aidbox Billing
 * MDM (Master Data Management)

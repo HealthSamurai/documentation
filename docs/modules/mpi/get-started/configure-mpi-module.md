@@ -8,7 +8,7 @@ description: >-
 # Configure MPI module
 
 {% hint style="info" %}
-The current implementation only supports the Patient resource. If you need support for additional resources, please [contact us](../../../../overview/contact-us.md).
+The current implementation only supports the Patient resource. If you need support for additional resources, please [contact us](../../../overview/contact-us.md).
 {% endhint %}
 
 The example in the next section provides a **basic model** that allows you to **start the MPI module** and **test** its functionality. For a detailed explanation of all model elements and matching logic, see [Matching Model Explanation](../matching-model-explanation.md).
@@ -125,7 +125,7 @@ For production use and reliable, accurate matching on your data, you should:
 
 {% hint style="success" %}
 We offer a **professional service** for model training and expert tuning.\
-If you need assistance, please [contact us](../../../../overview/contact-us.md).
+If you need assistance, please [contact us](../../../overview/contact-us.md).
 {% endhint %}
 
 ### Performance considerations

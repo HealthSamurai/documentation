@@ -5,52 +5,55 @@
 
 (defn render-right-toc-item [item]
   (when (:content item)
-    (let [content
-          (->> (:content item)
-               (remove (fn [node]
-                         (= :html-inline (:type node))))
-               (map #(if (= :text (:type %))
-                       (:text %)
-                       (->> (:content %)
-                            (map :text)
-                            (str/join " "))))
-               (str/join " "))
-          ;; Try to extract id from inline HTML anchor tag if present
-          html-anchor-id (some (fn [node]
-                                 (when (= :html-inline (:type node))
-                                   (let [html-text (-> node :content first :text)]
-                                     ;; Extract id from <a ... id="some-id">
-                                     (when-let [match (re-find #"id=\"([^\"]+)\"" html-text)]
-                                       (second match)))))
-                              (:content item))
-          ;; Use extracted id if found, otherwise generate from text
-          href (if html-anchor-id
-                 (str "#" html-anchor-id)
-                 (str "#" (utils/s->url-slug (:id (:attrs item)))))
+    (let [;; Get heading level early to check if we should render
           level (when (= :toc (:type item))
-                  (:heading-level item))
-          ;; Add border styling for nested items like left navigation
-          li-class (str
-                    "hover:bg-tint-hover hover:text-tint-strong hover:border-tint-7 max-w-56"
-                    (cond
-                      (= level 2) "break-words py-0.5 border-transparent"
-                      (>= level 3) "break-words ml-2 border-l-2 border-tint-3 my-0"))
+                  (:heading-level item))]
+      ;; Skip rendering for level 4 and higher headers
+      (when-not (and level (>= level 4))
+        (let [content
+              (->> (:content item)
+                   (remove (fn [node]
+                             (= :html-inline (:type node))))
+                   (map #(if (= :text (:type %))
+                           (:text %)
+                           (->> (:content %)
+                                (map :text)
+                                (str/join " "))))
+                   (str/join " "))
+              ;; Try to extract id from inline HTML anchor tag if present
+              html-anchor-id (some (fn [node]
+                                     (when (= :html-inline (:type node))
+                                       (let [html-text (-> node :content first :text)]
+                                         ;; Extract id from <a ... id="some-id">
+                                         (when-let [match (re-find #"id=\"([^\"]+)\"" html-text)]
+                                           (second match)))))
+                                   (:content item))
+              ;; Use extracted id if found, otherwise generate from text
+              href (if html-anchor-id
+                     (str "#" html-anchor-id)
+                     (str "#" (utils/s->url-slug (:id (:attrs item)))))
+              ;; Add border styling for nested items like left navigation
+              li-class (str
+                        "hover:bg-tint-hover hover:text-tint-strong hover:border-tint-7 max-w-56"
+                        (cond
+                          (= level 2) "break-words py-0.5 border-transparent"
+                          (>= level 3) "break-words ml-2 border-l-2 border-tint-3 my-0"))
 
-          link-class (str "block px-3 text-small font-content text-tint-strong/70 "
-                          "transition-colors duration-200 ease-in-out no-underline "
-                          "relative py-1 "
-                          (if (>= level 3)
-                            " opacity-60 text-sm "
-                            " opacity-80 text-sm "))]
-      [:li {:class li-class}
-       [:a {:href href
-            :class link-class}
-        [:span content]]
+              link-class (str "block px-3 text-small font-content text-tint-strong/70 "
+                              "transition-colors duration-200 ease-in-out no-underline "
+                              "relative py-1 "
+                              (if (>= level 3)
+                                " opacity-60 text-sm "
+                                " opacity-80 text-sm "))]
+          [:li {:class li-class}
+           [:a {:href href
+                :class link-class}
+            [:span content]]
 
-       ;; Render children if any
-       (when (:children item)
-         (for [child (:children item)]
-           (render-right-toc-item child)))])))
+           ;; Render children if any
+           (when (:children item)
+             (for [child (:children item)]
+               (render-right-toc-item child)))])))))
 
 (defn render-right-toc [parsed]
   (when (:toc parsed)

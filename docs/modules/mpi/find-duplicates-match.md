@@ -13,7 +13,7 @@ To use `$match` operation you need to set up an MPI. Read the [MPI manual](./) t
 
 {% hint style="success" %}
 Currently, the `$match` operation is available **only for Patient resources**.\
-If you are interested in extending this functionality to **other resource types**, please [contact us](../../../overview/contact-us.md).
+If you are interested in extending this functionality to **other resource types**, please [contact us](../../overview/contact-us.md).
 {% endhint %}
 
 The `$match` operation is used to **find potential duplicate patient records**.&#x20;

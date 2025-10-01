@@ -12,8 +12,7 @@ Supported browsers: the latest versions of Chrome and Firefox.
 
 For machine printing, you can choose between two approaches depending on your needs:
 
-- **[$print](./native-look-form-printing.md) API** – Prints forms in their original/native appearance, preserving the exact layout and styling as seen in the browser. (Requires a headless browser)  
-  *Best when you want a faithful replica of the on-screen form.*
-
-- **[$render](./template-based-pdf-generation.md) API** – Prints forms using custom templates, allowing full control over layout, styling, and formatting.  
-  *Best when you need a tailored design or a standardized PDF format.*
+* [**$print**](native-look-form-printing.md) **API** – Prints forms in their original/native appearance, preserving the exact layout and styling as seen in the browser. (Requires a headless browser)\
+  &#xNAN;_&#x42;est when you want a faithful replica of the on-screen form._
+* [**$render**](template-based-pdf-generation.md) **API** – Prints forms using custom templates, allowing full control over layout, styling, and formatting.\
+  &#xNAN;_&#x42;est when you need a tailored design or a standardized PDF format._

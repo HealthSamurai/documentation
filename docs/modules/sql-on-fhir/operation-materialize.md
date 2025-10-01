@@ -108,7 +108,7 @@ The `ViewDefinition` resource should be specified by:
 ## Schema configuration
 
 By default, Aidbox creates all materialized ViewDefinitions in the `sof` schema.
-This schema can be configured in Aidbox settings through the [`db.view-definition-schema`](../../reference/settings/database.md#db.view-definition-schema) setting.
+This schema can be configured in Aidbox settings through the [`db.view-definition-schema`](../../reference/all-settings.md#db.view-definition-schema) setting.
 
 Please note that changing this setting only affects new materializations and does not retroactively change already materialized database objects.
 We recommend using a dedicated schema for ViewDefinition materializations to prevent naming conflicts with other database objects.

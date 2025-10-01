@@ -31,7 +31,7 @@ When you press the **Save & Run** button, the dev tool saves AccessPolicy and pe
 * _Evaluate policy result._ List of all access policies and the result of evaluation.
 * _Parsed HTTP request._ It's an internal representation of the request, which Aidbox passes to the eval-policy function.
 
-To use the Access policy dev tool, [Aidbox Development mode](../../reference/settings/security-and-access-control.md#security.dev-mode) setting must be enabled.
+To use the Access policy dev tool, [Aidbox Development mode](../../reference/all-settings.md#security.dev-mode) setting must be enabled.
 
 ### Sending the request as a user
 
@@ -50,7 +50,7 @@ There is a special query-string parameter `__debug=policy` you can pass to every
 * an array of existing AccessPolicies;
 * evaluation result for every AccessPolicy (under `AccessPolicy.evalResult`).
 
-To use the header, [Aidbox Development mode](../../reference/settings/security-and-access-control.md#security.dev-mode) setting must be enabled.
+To use the header, [Aidbox Development mode](../../reference/all-settings.md#security.dev-mode) setting must be enabled.
 
 ## `x-debug: policy` request header
 
@@ -65,13 +65,13 @@ x-debug: policy
 # :auth/trace-policy {:access-policy-id :policy-2, :policy-type "json-schema",...
 ```
 
-To use the header, [Aidbox Development mode](../../reference/settings/security-and-access-control.md#security.dev-mode) setting must be enabled.
+To use the header, [Aidbox Development mode](../../reference/all-settings.md#security.dev-mode) setting must be enabled.
 
 ## `su` request header
 
 `su` header allows to switch user on behalf of whom request is executed. Use `su=<user/client id>` to check how access control works for that user.
 
-To use the header, [SU enable setting](../../reference/settings/security-and-access-control.md#security.debug-su-enable) must be enabled.
+To use the header, [SU enable setting](../../reference/all-settings.md#security.debug-su-enable) must be enabled.
 
 {% hint style="info" %}
 `su` header is only available to admin users, who have at least one `AccessPolicy` with `engine` = `allow` linked to them.

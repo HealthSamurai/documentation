@@ -1,8 +1,5 @@
 # Table of contents
 
-* [Aidbox FHIR platform documentation](readme/README.md)
-  * [Features](readme/features.md)
-  * [Architecture](readme/architecture.md)
 * [Getting Started](getting-started/README.md)
   * [Run Aidbox in Sandbox](getting-started/run-aidbox-in-sandbox.md)
   * [Run Aidbox locally](getting-started/run-aidbox-locally.md)
@@ -12,6 +9,8 @@
   * [Use Aidbox with C#](getting-started/csharp.md)
   * [Run Aidbox on AWS](getting-started/run-aidbox-on-aws.md)
   * [Upload Sample Data](getting-started/upload-sample-data.md)
+* [Features](features.md)
+* [Architecture](architecture.md)
 * [Tutorials](tutorials/README.md)
   * [CRUD, Search Tutorials](tutorials/crud-search-tutorials/README.md)
     * [Delete data](tutorials/crud-search-tutorials/delete-data.md)
@@ -54,6 +53,7 @@
     * [How to configure Azure AD SSO with certificate authentication for access to the Aidbox UI](tutorials/security-access-control-tutorials/azure-ad-with-certificate-authentication.md)
     * [How to configure GitHub SSO for access to Aidbox UI](tutorials/security-access-control-tutorials/github.md)
     * [How to configure Keycloak for access for AidboxUI](tutorials/security-access-control-tutorials/keycloak.md)
+    * [Auto-create User from foreign token tutorial](tutorials/security-access-control-tutorials/keycloak-auto-create-user.md)
     * [How to implement consent-based access control using FHIR Search and Aidbox Access Policy](tutorials/security-access-control-tutorials/how-to-implement-consent-based-access-control-using-fhir-search-and-aidbox-access-policy.md)
     * [Debug Access Control](tutorials/security-access-control-tutorials/debug-access-control.md)
     * [AccessPolicy best practices](tutorials/security-access-control-tutorials/accesspolicy-best-practices.md)
@@ -116,6 +116,7 @@
     * [Set up Aidbox with Postman](tutorials/other-tutorials/set-up-aidbox-with-postman.md)
     * [How to run Aidbox in GCP Cloud Run](tutorials/other-tutorials/how-to-run-aidbox-in-gcp-cloud-run.md)
     * [How to run Aidbox using different Java](tutorials/other-tutorials/how-to-run-aidbox-using-different-java.md)
+    * [AI Prompts](tutorials/other-tutorials/ai-prompts.md)
 
 ## Overview
 
@@ -209,7 +210,7 @@
 
 * [Overview](access-control/access-control.md)
 * [Identity Management](access-control/identity-management/README.md)
-  * [User Management](access-control/identity-management/user-management.md)
+  * [User management](access-control/identity-management/user-management.md)
   * [Application/Client Management](access-control/identity-management/application-client-management.md)
 * [Authentication](access-control/authentication/README.md)
   * [Basic HTTP Authentication](access-control/authentication/basic-http-authentication.md)
@@ -496,15 +497,15 @@
     * [Environment Variables](modules/eprescription/reference/environment-variables.md)
     * [List of Metrics](modules/eprescription/reference/list-of-metrics.md)
   * [Frequently Asked Questions](modules/eprescription/frequently-asked-questions.md)
+* [MPI — Master Patient Index](modules/mpi/README.md)
+  * [Get started](modules/mpi/get-started/README.md)
+    * [Deploy MPI with Kubernetes](modules/mpi/get-started/deploy-mpi-with-kubernetes.md)
+    * [Configure MPI module](modules/mpi/get-started/configure-mpi-module.md)
+  * [Find duplicates: $match](modules/mpi/find-duplicates-match.md)
+  * [Merging and Unmerging Records: $merge and $unmerge](modules/mpi/merging-and-unmerging-records-usdmerge-and-usdunmerge.md)
+  * [Matching Model Explanation](modules/mpi/matching-model-explanation.md)
+  * [Mathematical Details](modules/mpi/mathematical-details.md)
 * [Other Modules](modules/other-modules/README.md)
-  * [MPI — Master Patient Index](modules/other-modules/mpi/README.md)
-    * [Get started](modules/other-modules/mpi/get-started/README.md)
-      * [Deploy MPI with Kubernetes](modules/other-modules/mpi/get-started/deploy-mpi-with-kubernetes.md)
-      * [Configure MPI module](modules/other-modules/mpi/get-started/configure-mpi-module.md)
-    * [Find duplicates: $match](modules/other-modules/mpi/find-duplicates-match.md)
-    * [Merging and Unmerging Records: $merge and $unmerge](modules/other-modules/mpi/merging-and-unmerging-records-usdmerge-and-usdunmerge.md)
-    * [Matching Model Explanation](modules/other-modules/mpi/matching-model-explanation.md)
-    * [Mathematical Details](modules/other-modules/mpi/mathematical-details.md)
   * [MCP](modules/other-modules/mcp.md)
   * [AidboxTrigger](modules/other-modules/aidbox-trigger.md)
   * [HL7v2](modules/other-modules/hl7v2/README.md)
@@ -543,6 +544,7 @@
 ## Developer experience
 
 * [Developer experience overview](developer-experience/developer-experience-overview.md)
+* [Working with AI](developer-experience/ai.md)
 * [Apps](developer-experience/apps.md)
 * [Use Aidbox with React](developer-experience/use-aidbox-with-react.md)
 * [Aidbox SDK](developer-experience/aidbox-sdk/README.md)
@@ -553,16 +555,7 @@
 
 ## Reference
 
-* [Settings Reference](reference/settings/README.md)
-  * [General](reference/settings/general.md)
-  * [FHIR](reference/settings/fhir.md)
-  * [Security and Access Control](reference/settings/security-and-access-control.md)
-  * [Modules](reference/settings/modules.md)
-  * [Database](reference/settings/database.md)
-  * [Web Server](reference/settings/web-server.md)
-  * [Observability](reference/settings/observability.md)
-  * [Zen Project](reference/settings/zen-project.md)
-  * [All Settings](reference/settings/all-settings.md)
+* [Aidbox Settings Reference](reference/all-settings.md)
 * [System Resources Reference](reference/system-resources-reference/README.md)
   * [IAM Module Resources](reference/system-resources-reference/iam-module-resources.md)
   * [SDC Module Resources](reference/system-resources-reference/sdc-module-resources.md)
@@ -585,6 +578,7 @@
   * [FHIR SDC API](reference/aidbox-forms-reference/fhir-sdc-api.md)
   * [Aidbox SDC API](reference/aidbox-forms-reference/aidbox-sdc-api.md)
   * [Generating Questionnaire from PDF API](reference/aidbox-forms-reference/generating-questionnaire-from-pdf-api.md)
+  * [Generating Questionnaire from openEHR Template API](reference/aidbox-forms-reference/generating-questionnaire-from-openehr-template.md)
 * [Aidbox SQL Functions](reference/aidbox-sql-functions.md)
 * [Matcho DSL Reference](reference/matcho-dsl-reference.md)
 
