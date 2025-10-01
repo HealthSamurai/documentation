@@ -9,3 +9,4 @@ resources:
 - ingress-fhirbase.yaml
 - ingress-docs-aidbox.yaml
 - meilisearch/
+- monitoring/

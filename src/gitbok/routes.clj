@@ -233,8 +233,8 @@
      ["/healthcheck"
       {:get {:handler #'healthcheck}}]
 
-     ;; Metrics endpoint for Prometheus
-     [(utils/concat-urls prefix "/metrics")
+     ;; Metrics endpoint for Prometheus (without prefix)
+     ["/metrics"
       {:get {:handler #'metrics/metrics-handler}}]
 
      [(utils/concat-urls prefix "/version")
