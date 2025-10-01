@@ -1,0 +1,53 @@
+apiVersion: monitoring.coreos.com/v1alpha1
+kind: AlertmanagerConfig
+metadata:
+  name: gitbok-grafana-oncall
+  namespace: gitbok
+  labels:
+    app: gitbok
+spec:
+  route:
+    receiver: grafana-oncall
+    groupBy: ['alertname', 'service', 'namespace']
+    groupWait: 10s
+    groupInterval: 10s
+    repeatInterval: 1h
+    routes:
+      # Watchdog heartbeat route - must be processed quickly
+      - receiver: grafana-oncall-heartbeat
+        matchers:
+          - name: alertname
+            matchType: "="
+            value: GitbokWatchdog
+        groupWait: 0s
+        groupInterval: 1m
+        repeatInterval: 50s
+
+      # Critical alerts
+      - receiver: grafana-oncall
+        matchers:
+          - name: severity
+            matchType: "="
+            value: critical
+        groupWait: 5s
+        repeatInterval: 15m
+
+      # Warning alerts
+      - receiver: grafana-oncall
+        matchers:
+          - name: severity
+            matchType: "="
+            value: warning
+        groupWait: 30s
+        repeatInterval: 30m
+
+  receivers:
+    - name: grafana-oncall
+      webhookConfigs:
+        - url: https://oncall.aidbox.io/integrations/v1/alertmanager/slGWB0G7OkKeanLgCM1Jb7I8y/
+          sendResolved: true
+
+    - name: grafana-oncall-heartbeat
+      webhookConfigs:
+        - url: https://oncall.aidbox.io/integrations/v1/alertmanager/slGWB0G7OkKeanLgCM1Jb7I8y/heartbeat/
+          sendResolved: false

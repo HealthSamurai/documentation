@@ -10,11 +10,11 @@ metadata:
     # Universal annotations for automatic scraping
     prometheus.io/scrape: "true"
     prometheus.io/port: "8081"
-    prometheus.io/path: "/docs/metrics"
+    prometheus.io/path: "/metrics"
     # Victoria Metrics compatibility
     vm_operator_prometheus.io/scrape: "true"
     vm_operator_prometheus.io/port: "8081"
-    vm_operator_prometheus.io/path: "/docs/metrics"
+    vm_operator_prometheus.io/path: "/metrics"
 spec:
   type: ClusterIP
   ports:

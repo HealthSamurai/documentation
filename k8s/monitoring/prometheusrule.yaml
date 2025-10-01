@@ -1,15 +1,27 @@
-apiVersion: operator.victoriametrics.com/v1beta1
-kind: VMRule
+apiVersion: monitoring.coreos.com/v1
+kind: PrometheusRule
 metadata:
   name: gitbok-alerts
   namespace: gitbok
   labels:
     app: gitbok
+    release: monitoring
 spec:
   groups:
     - name: gitbok_alerts
       interval: 30s
       rules:
+        # Watchdog heartbeat alert for Grafana OnCall monitoring
+        - alert: GitbokWatchdog
+          expr: vector(1)
+          labels:
+            severity: watch
+            service: gitbok
+            namespace: gitbok
+          annotations:
+            summary: "Gitbok monitoring heartbeat"
+            description: "This is a heartbeat alert that always fires. Used to monitor the monitoring system itself."
+
         # Alert when 5xx errors exceed threshold across all pods
         - alert: GitbokHigh5xxErrorRate
           expr: |
