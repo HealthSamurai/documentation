@@ -349,10 +349,10 @@
      (ring/router
       routes
       {:data {:muuntaja m/instance
-              :middleware [;; Gzip compression (must be early to compress final response)
-                           wrap-gzip
-                           ;; Metrics collection middleware
+              :middleware [;; Metrics collection middleware (before gzip to measure actual response time)
                            metrics/wrap-metrics
+                           ;; Gzip compression (must be early to compress final response)
+                           wrap-gzip
                            ;; Global exception handler
                            wrap-exception-handler
                            ;; Request logging

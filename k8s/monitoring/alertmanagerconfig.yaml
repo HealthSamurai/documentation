@@ -10,7 +10,7 @@ spec:
     receiver: telegram-gitbok
     groupBy: ['alertname', 'service', 'namespace']
     groupWait: 10s
-    groupInterval: 10s
+    groupInterval: 5m
     repeatInterval: 1h
     routes:
       # Watchdog heartbeat route - must be processed quickly
