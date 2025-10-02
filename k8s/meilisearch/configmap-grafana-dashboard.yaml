@@ -347,7 +347,7 @@ data:
               },
               "editorMode": "builder",
               "exemplar": true,
-              "expr": "round(increase(meilisearch_http_requests_total{method=\"POST\", path=\"/indexes/$Index/search\", job=\"$job\"}[1h]))",
+              "expr": "round(increase(meilisearch_http_requests_total{method=\"POST\", path=\"/multi-search\", job=\"$job\"}[1h]))",
               "interval": "",
               "legendFormat": "",
               "range": true,
@@ -410,7 +410,7 @@ data:
               },
               "editorMode": "builder",
               "exemplar": true,
-              "expr": "round(increase(meilisearch_http_requests_total{method=\"POST\", path=\"/indexes/$Index/search\", job=\"$job\"}[24h]))",
+              "expr": "round(increase(meilisearch_http_requests_total{method=\"POST\", path=\"/multi-search\", job=\"$job\"}[24h]))",
               "interval": "",
               "legendFormat": "",
               "range": true,
@@ -473,7 +473,7 @@ data:
               },
               "editorMode": "builder",
               "exemplar": true,
-              "expr": "round(increase(meilisearch_http_requests_total{method=\"POST\", path=\"/indexes/$Index/search\", job=\"$job\"}[30d]))",
+              "expr": "round(increase(meilisearch_http_requests_total{method=\"POST\", path=\"/multi-search\", job=\"$job\"}[30d]))",
               "interval": "",
               "legendFormat": "",
               "range": true,
@@ -1057,7 +1057,7 @@ data:
               },
               "editorMode": "builder",
               "exemplar": true,
-              "expr": "sum by(le) (increase(meilisearch_http_response_time_seconds_bucket{path=\"/indexes/$Index/search\", instance=\"$instance\", job=\"$job\"}[30s]))",
+              "expr": "sum by(le) (increase(meilisearch_http_response_time_seconds_bucket{path=\"/multi-search\", instance=\"$instance\", job=\"$job\"}[30s]))",
               "format": "heatmap",
               "interval": "",
               "legendFormat": "{{le}}",
@@ -1065,7 +1065,7 @@ data:
               "refId": "A"
             }
           ],
-          "title": "Response time distribution over time (`POST /indexes/:index/search`)",
+          "title": "Response time distribution over time (`POST /multi-search`)",
           "tooltip": {
             "show": true,
             "showHistogram": false
