@@ -53,6 +53,8 @@ spec:
               key: master-key
         - name: MEILI_NO_ANALYTICS
           value: "true"
+        - name: MEILI_EXPERIMENTAL_ENABLE_METRICS
+          value: "true"
         - name: MEILI_DB_PATH
           value: "/meili_data"
         - name: MEILI_HTTP_ADDR
