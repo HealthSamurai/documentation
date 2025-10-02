@@ -4,6 +4,7 @@ metadata:
   name: meilisearch-index-fhirbase
   namespace: gitbok
 spec:
+  ttlSecondsAfterFinished: 86400  # Delete job after 24 hours
   template:
     spec:
       restartPolicy: OnFailure
