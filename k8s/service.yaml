@@ -3,6 +3,8 @@ kind: Service
 metadata:
   name: gitbok
   namespace: gitbok
+  labels:
+    app.kubernetes.io/name: gitbok
 spec:
   ports:
   - name: http
