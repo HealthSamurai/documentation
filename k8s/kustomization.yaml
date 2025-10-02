@@ -9,4 +9,6 @@ resources:
 - ingress-fhirbase.yaml
 - ingress-docs-aidbox.yaml
 - meilisearch/
-- monitoring/
+# Temporarily disabled until app is deployed with /metrics endpoint
+# Uncomment after successful deployment and verification
+# - monitoring/
