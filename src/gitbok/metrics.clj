@@ -56,18 +56,19 @@
 (defn normalize-path
   "Normalize path for metrics to avoid high cardinality"
   [path]
-  (cond
-    ;; Static assets
-    (re-matches #"^/public/.*" path) "/public/*"
-    ;; Health and metrics endpoints
-    (= path "/health") "/health"
-    (= path "/metrics") "/metrics"
-    (= path "/version") "/version"
-    ;; Documentation paths - group by product
-    :else
-    (if-let [[_ product] (re-matches #"^/([^/]+)(/.*)?$" path)]
-      (str "/" product "/*")
-      path)))
+  (when path  ; Protect against nil/empty paths
+    (cond
+      ;; Static assets
+      (re-matches #"^/public/.*" path) "/public/*"
+      ;; Health and metrics endpoints
+      (= path "/healthcheck") "/healthcheck"
+      (= path "/metrics") "/metrics"
+      (= path "/version") "/version"
+      ;; Documentation paths - group by product
+      :else
+      (if-let [[_ product] (re-matches #"^/([^/]+)(/.*)?$" path)]
+        (str "/" product "/*")
+        path))))
 
 
 (defn wrap-metrics
