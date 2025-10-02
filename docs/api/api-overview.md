@@ -259,7 +259,7 @@ See also:
 * [FHIR Search](rest-api/fhir-search/)
 * [FHIR Search Specification](https://www.hl7.org/fhir/search.html)
 
-### Aidbox Search
+### Aidbox search
 
 While FHIR Search provides comprehensive querying capabilities, healthcare applications sometimes need specialized filtering approaches that extend beyond the standard FHIR specification. Aidbox provides several advanced search approaches that offer the flexibility needed for complex clinical workflows.
 
