@@ -152,6 +152,13 @@
       (let [ctx (assoc system-context :request request)]
         (handler ctx)))))
 
+(defn head-handler
+  "Create a HEAD handler from a GET handler that returns the same response without body"
+  [get-handler]
+  (fn [ctx]
+    (let [response (get-handler ctx)]
+      (assoc response :body ""))))
+
 ;; Route handlers
 (defn healthcheck
   [ctx]
@@ -259,6 +266,16 @@
   [product prefix]
   (let [product-path (utils/concat-urls prefix (:path product))
         partial-product-path (utils/concat-urls prefix "/partial" (:path product))
+        trailing-slash-handler (fn [ctx]
+                                 (let [request (:request ctx)
+                                       uri (:uri request)
+                                       ;; Remove trailing slash
+                                       new-uri (subs uri 0 (dec (count uri)))]
+                                   {:status 301
+                                    :headers {"Location" new-uri}}))
+        product-root-handler (if (= (:id product) "aidbox")
+                              #'gitbok.ui.landing-hero/render-landing
+                              #'handlers/redirect-to-readme)
         routes [;; Specific routes first
 
                 ;; Meilisearch
@@ -287,19 +304,13 @@
                         :middleware [partial-product-middleware]}}]
 
                 ;; Product root - with trailing slash (redirect to without)
-                [(str product-path "/") {:get {:handler (fn [ctx]
-                                                          (let [request (:request ctx)
-                                                                uri (:uri request)
-                                                                ;; Remove trailing slash
-                                                                new-uri (subs uri 0 (dec (count uri)))]
-                                                            {:status 301
-                                                             :headers {"Location" new-uri}}))}}]
+                [(str product-path "/") {:get {:handler trailing-slash-handler}}]
                 ;; Product root - without trailing slash
                 ;; For Aidbox - show landing, for others - redirect to readme
-                [product-path {:get {:handler (if (= (:id product) "aidbox")
-                                                #'gitbok.ui.landing-hero/render-landing
-                                                #'handlers/redirect-to-readme)
-                                     :middleware [product-middleware]}}]]]
+                [product-path {:get {:handler product-root-handler
+                                     :middleware [product-middleware]}
+                               :head {:handler (head-handler product-root-handler)
+                                      :middleware [product-middleware]}}]]]
     ;; Add Aidbox-specific routes
     (if (= (:id product) "aidbox")
       (concat routes
@@ -314,12 +325,16 @@
                ;; All product pages (catch-all) - must be last!
                [(str product-path "/*")
                 {:get {:handler #'handlers/render-file-view
-                       :middleware [product-middleware]}}]])
+                       :middleware [product-middleware]}
+                 :head {:handler (head-handler #'handlers/render-file-view)
+                        :middleware [product-middleware]}}]])
       ;; For non-Aidbox products, just add the catch-all
       (conj routes
             [(str product-path "/*")
              {:get {:handler #'handlers/render-file-view
-                    :middleware [product-middleware]}}]))))
+                    :middleware [product-middleware]}
+              :head {:handler (head-handler #'handlers/render-file-view)
+                     :middleware [product-middleware]}}]))))
 
 (defn all-routes
   "Generate all routes including dynamic product routes"

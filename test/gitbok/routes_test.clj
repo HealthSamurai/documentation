@@ -124,3 +124,50 @@
               (let [response (app {:request-method :get :uri "/docs/aidbox/test-page"})]
                 (is (= 200 (:status response)))
                 (is (= "full-page" (:body response)))))))))))
+(deftest test-head-requests
+  (testing "HEAD request support for landing page"
+    (let [context (th/create-test-context)]
+      (state/set-products! context [{:id "aidbox" :path "/aidbox" :name "Aidbox"}])
+      (state/set-cache! context :app-initialized true)
+
+      (with-redefs [state/get-config (fn [_ key & [default]]
+                                       (case key
+                                         :prefix "/docs"
+                                         :base-url "http://localhost:8081"
+                                         default))
+                    gitbok.ui.landing-hero/render-landing
+                    (fn [_]
+                      {:status 200
+                       :headers {"Content-Type" "text/html; charset=utf-8"}
+                       :body "landing"})]
+
+        (let [app (routes/create-app context)]
+          ;; Test HEAD request to product landing page
+          (let [response (app {:request-method :head :uri "/docs/aidbox"})]
+            (is (= 200 (:status response)))
+            (is (= "text/html; charset=utf-8" (get-in response [:headers "Content-Type"])))
+            (is (or (nil? (:body response)) (empty? (:body response)))))))))
+
+  (testing "HEAD request support for render-file-view"
+    (let [context (th/create-test-context)]
+      (state/set-products! context [{:id "aidbox" :path "/aidbox" :name "Aidbox"}])
+      (state/set-cache! context :app-initialized true)
+
+      (with-redefs [state/get-config (fn [_ key & [default]]
+                                       (case key
+                                         :prefix "/docs"
+                                         :base-url "http://localhost:8081"
+                                         default))
+                    gitbok.handlers/render-file-view
+                    (fn [_]
+                      {:status 200
+                       :headers {"Content-Type" "text/html; charset=utf-8"
+                                 "Cache-Control" "public, max-age=300"}
+                       :body "full-page"})]
+
+        (let [app (routes/create-app context)]
+          ;; Test HEAD request to file view
+          (let [response (app {:request-method :head :uri "/docs/aidbox/test-page"})]
+            (is (= 200 (:status response)))
+            (is (= "text/html; charset=utf-8" (get-in response [:headers "Content-Type"])))
+            (is (or (nil? (:body response)) (empty? (:body response))))))))))
