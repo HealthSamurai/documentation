@@ -24,7 +24,7 @@
                 :http/request-duration-seconds
                 {:description "HTTP request duration in seconds"
                  :labels [:method :status :path]}
-                [0.001 0.005 0.01 0.025 0.05 0.075 0.1 0.25 0.5 0.75 1 2.5 5 7.5 10]))
+                [0.01 0.05 0.1 0.5 1 2 5]))
 
               (prometheus/register
                (prometheus/counter
@@ -64,10 +64,10 @@
     (= path "/metrics") "/metrics"
     (= path "/version") "/version"
     ;; Documentation paths - group by product
-    (re-matches #"^/([^/]+)(/.*)?$" path)
-    (let [[_ product] (re-matches #"^/([^/]+)(/.*)?$" path)]
-      (str "/" product "/*"))
-    :else path))
+    :else
+    (if-let [[_ product] (re-matches #"^/([^/]+)(/.*)?$" path)]
+      (str "/" product "/*")
+      path)))
 
 
 (defn wrap-metrics
@@ -106,9 +106,6 @@
               (prometheus/inc reg :http/errors-4xx-total
                              {:method method :path path}))
 
-            ;; Decrement in-flight requests
-            (prometheus/dec reg :http/in-flight-requests {:method method})
-
             response)
           (catch Exception e
             (let [duration (/ (- (System/currentTimeMillis) start-time) 1000.0)]
@@ -120,9 +117,11 @@
                                      {:method method :status "500" :path path}
                                      duration)
                   (prometheus/inc :http/errors-5xx-total
-                                 {:method method :path path})
-                  (prometheus/dec :http/in-flight-requests {:method method})))
-            (throw e))))
+                                 {:method method :path path})))
+            (throw e))
+          (finally
+            ;; Always decrement in-flight requests
+            (prometheus/dec reg :http/in-flight-requests {:method method}))))
       ;; If registry not initialized, just pass through
       (handler request))))
 
