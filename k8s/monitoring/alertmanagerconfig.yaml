@@ -1,19 +1,20 @@
 apiVersion: monitoring.coreos.com/v1alpha1
 kind: AlertmanagerConfig
 metadata:
-  name: gitbok-grafana-oncall
+  name: gitbok-alerts
   namespace: gitbok
   labels:
     app: gitbok
 spec:
   route:
-    receiver: grafana-oncall
+    receiver: telegram-gitbok
     groupBy: ['alertname', 'service', 'namespace']
     groupWait: 10s
     groupInterval: 10s
     repeatInterval: 1h
     routes:
       # Watchdog heartbeat route - must be processed quickly
+      # This goes to Grafana OnCall for UptimeRobot monitoring
       - receiver: grafana-oncall-heartbeat
         matchers:
           - name: alertname
@@ -23,8 +24,8 @@ spec:
         groupInterval: 1m
         repeatInterval: 50s
 
-      # Critical alerts
-      - receiver: grafana-oncall
+      # Critical alerts to Telegram
+      - receiver: telegram-gitbok
         matchers:
           - name: severity
             matchType: "="
@@ -32,8 +33,8 @@ spec:
         groupWait: 5s
         repeatInterval: 15m
 
-      # Warning alerts
-      - receiver: grafana-oncall
+      # Warning alerts to Telegram
+      - receiver: telegram-gitbok
         matchers:
           - name: severity
             matchType: "="
@@ -42,11 +43,36 @@ spec:
         repeatInterval: 30m
 
   receivers:
+    # Telegram receiver for gitbok alerts
+    - name: telegram-gitbok
+      telegramConfigs:
+        - botToken:
+            name: gitbok-telegram-credentials
+            key: bot-token
+          chatID: -1002923251778  # Note: chatID must be an integer, cannot reference secret
+          parseMode: HTML
+          sendResolved: true
+          message: |
+            <b>🚨 Alert: {{ .GroupLabels.alertname }}</b>
+
+            <b>Service:</b> {{ .GroupLabels.service }}
+            <b>Namespace:</b> {{ .GroupLabels.namespace }}
+            <b>Status:</b> {{ .Status }}
+
+            {{ range .Alerts }}
+            <b>Severity:</b> {{ .Labels.severity }}
+            {{ if .Labels.pod }}<b>Pod:</b> {{ .Labels.pod }}{{ end }}
+            <b>Summary:</b> {{ .Annotations.summary }}
+            <b>Description:</b> {{ .Annotations.description }}
+            {{ end }}
+
+    # Grafana OnCall webhook (kept for compatibility)
     - name: grafana-oncall
       webhookConfigs:
         - url: https://oncall.aidbox.io/integrations/v1/alertmanager/slGWB0G7OkKeanLgCM1Jb7I8y/
           sendResolved: true
 
+    # Grafana OnCall heartbeat for UptimeRobot
     - name: grafana-oncall-heartbeat
       webhookConfigs:
         - url: https://oncall.aidbox.io/integrations/v1/alertmanager/slGWB0G7OkKeanLgCM1Jb7I8y/heartbeat/
