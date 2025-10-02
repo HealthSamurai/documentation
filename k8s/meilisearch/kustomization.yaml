@@ -11,6 +11,8 @@ resources:
   - cronjob-reindex.yaml
   - cronjob-reindex-fhirbase.yaml
   - job-fhirbase-index.yaml
+  - servicemonitor.yaml
+  - configmap-grafana-dashboard.yaml
 
 commonLabels:
   app.kubernetes.io/name: meilisearch
