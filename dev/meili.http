@@ -183,3 +183,8 @@ Content-Type: application/json
 GET http://localhost:7700/tasks
 Authorization: Bearer {{auth}}
 Content-Type: application/json
+
+###
+GET http://localhost:7700/metrics
+Authorization: Bearer {{auth}}
+Content-Type: application/json

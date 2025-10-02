@@ -16,6 +16,10 @@ spec:
       path: /metrics
       interval: 30s
       scrapeTimeout: 10s
+      authorization:
+        credentials:
+          name: meilisearch-secret
+          key: master-key
       relabelings:
         - sourceLabels: [__meta_kubernetes_pod_name]
           targetLabel: pod
