@@ -26,9 +26,9 @@ spec:
         - alert: GitbokHigh5xxErrorRate
           expr: |
             (
-              sum(rate(http_errors_5xx_total{job="gitbok-metrics"}[5m]))
+              sum(rate(http_errors_5xx_total{job="gitbok"}[5m]))
               /
-              sum(rate(http_requests_total{job="gitbok-metrics"}[5m]))
+              sum(rate(http_requests_total{job="gitbok"}[5m]))
             ) * 100 > 1
           for: 2m
           labels:
@@ -41,7 +41,7 @@ spec:
 
         # Alert on absolute number of 5xx errors
         - alert: GitbokFrequent5xxErrors
-          expr: sum(rate(http_errors_5xx_total{job="gitbok-metrics"}[5m])) * 60 > 5
+          expr: sum(rate(http_errors_5xx_total{job="gitbok"}[5m])) * 60 > 5
           for: 1m
           labels:
             severity: warning
@@ -53,7 +53,7 @@ spec:
 
         # Alert when any pod is down
         - alert: GitbokPodDown
-          expr: up{job="gitbok-metrics"} == 0
+          expr: up{job="gitbok"} == 0
           for: 1m
           labels:
             severity: critical
@@ -65,7 +65,7 @@ spec:
 
         # Alert when less pods than expected are running
         - alert: GitbokInsufficientReplicas
-          expr: count(up{job="gitbok-metrics"} == 1) < 2
+          expr: count(up{job="gitbok"} == 1) < 2
           for: 5m
           labels:
             severity: warning
@@ -79,7 +79,7 @@ spec:
         - alert: GitbokHighResponseTime
           expr: |
             histogram_quantile(0.95,
-              sum(rate(http_request_duration_seconds_bucket{job="gitbok-metrics"}[5m])) by (le)
+              sum(rate(http_request_duration_seconds_bucket{job="gitbok"}[5m])) by (le)
             ) > 2
           for: 5m
           labels:
@@ -94,9 +94,9 @@ spec:
         - alert: GitbokHighMemoryUsage
           expr: |
             (
-              avg(jvm_memory_bytes_used{job="gitbok-metrics", area="heap"})
+              avg(jvm_memory_bytes_used{job="gitbok", area="heap"})
               /
-              avg(jvm_memory_bytes_max{job="gitbok-metrics", area="heap"})
+              avg(jvm_memory_bytes_max{job="gitbok", area="heap"})
             ) * 100 > 80
           for: 5m
           labels:
@@ -111,9 +111,9 @@ spec:
         - alert: GitbokPodMemoryPressure
           expr: |
             (
-              jvm_memory_bytes_used{job="gitbok-metrics", area="heap"}
+              jvm_memory_bytes_used{job="gitbok", area="heap"}
               /
-              jvm_memory_bytes_max{job="gitbok-metrics", area="heap"}
+              jvm_memory_bytes_max{job="gitbok", area="heap"}
             ) * 100 > 90
           for: 2m
           labels:

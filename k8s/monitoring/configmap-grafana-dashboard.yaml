@@ -100,12 +100,12 @@ data:
           },
           "targets": [
             {
-              "expr": "(sum(rate(http_errors_5xx_total{job=\"gitbok-metrics\",namespace=\"$namespace\"}[5m]) or vector(0)) / sum(rate(http_requests_total{job=\"gitbok-metrics\",namespace=\"$namespace\"}[5m]))) * 100",
+              "expr": "(sum(rate(http_errors_5xx_total{job=\"gitbok\",namespace=\"$namespace\"}[5m]) or vector(0)) / sum(rate(http_requests_total{job=\"gitbok\",namespace=\"$namespace\"}[5m]))) * 100",
               "legendFormat": "Overall 5xx Rate",
               "refId": "A"
             },
             {
-              "expr": "(sum(rate(http_errors_5xx_total{job=\"gitbok-metrics\",namespace=\"$namespace\"}[5m]) or vector(0)) by (pod) / sum(rate(http_requests_total{job=\"gitbok-metrics\",namespace=\"$namespace\"}[5m])) by (pod)) * 100",
+              "expr": "(sum(rate(http_errors_5xx_total{job=\"gitbok\",namespace=\"$namespace\"}[5m]) or vector(0)) by (pod) / sum(rate(http_requests_total{job=\"gitbok\",namespace=\"$namespace\"}[5m])) by (pod)) * 100",
               "legendFormat": "{{ pod }}",
               "refId": "B"
             }
@@ -181,12 +181,12 @@ data:
           },
           "targets": [
             {
-              "expr": "sum(rate(http_requests_total{job=\"gitbok-metrics\",namespace=\"$namespace\"}[5m])) by (status)",
+              "expr": "sum(rate(http_requests_total{job=\"gitbok\",namespace=\"$namespace\"}[5m])) by (status)",
               "legendFormat": "{{status}} - Total",
               "refId": "A"
             },
             {
-              "expr": "sum(rate(http_requests_total{job=\"gitbok-metrics\",namespace=\"$namespace\"}[5m])) by (pod, status)",
+              "expr": "sum(rate(http_requests_total{job=\"gitbok\",namespace=\"$namespace\"}[5m])) by (pod, status)",
               "legendFormat": "{{pod}} - {{status}}",
               "refId": "B"
             }
@@ -257,7 +257,7 @@ data:
           "pluginVersion": "8.0.0",
           "targets": [
             {
-              "expr": "up{job=\"gitbok-metrics\",namespace=\"$namespace\"}",
+              "expr": "up{job=\"gitbok\",namespace=\"$namespace\"}",
               "legendFormat": "{{ pod }}",
               "refId": "A"
             }
@@ -314,7 +314,7 @@ data:
           "pluginVersion": "8.0.0",
           "targets": [
             {
-              "expr": "(sum(rate(http_errors_5xx_total{job=\"gitbok-metrics\",namespace=\"$namespace\"}[5m])) or vector(0)) * 60",
+              "expr": "(sum(rate(http_errors_5xx_total{job=\"gitbok\",namespace=\"$namespace\"}[5m])) or vector(0)) * 60",
               "legendFormat": "",
               "refId": "A"
             }
@@ -398,17 +398,17 @@ data:
           },
           "targets": [
             {
-              "expr": "histogram_quantile(0.95, sum(rate(http_request_duration_seconds_bucket{job=\"gitbok-metrics\",namespace=\"$namespace\"}[5m])) by (le))",
+              "expr": "histogram_quantile(0.95, sum(rate(http_request_duration_seconds_bucket{job=\"gitbok\",namespace=\"$namespace\"}[5m])) by (le))",
               "legendFormat": "p95 - All Pods",
               "refId": "A"
             },
             {
-              "expr": "histogram_quantile(0.95, sum(rate(http_request_duration_seconds_bucket{job=\"gitbok-metrics\",namespace=\"$namespace\"}[5m])) by (le, pod))",
+              "expr": "histogram_quantile(0.95, sum(rate(http_request_duration_seconds_bucket{job=\"gitbok\",namespace=\"$namespace\"}[5m])) by (le, pod))",
               "legendFormat": "p95 - {{ pod }}",
               "refId": "B"
             },
             {
-              "expr": "histogram_quantile(0.99, sum(rate(http_request_duration_seconds_bucket{job=\"gitbok-metrics\",namespace=\"$namespace\"}[5m])) by (le))",
+              "expr": "histogram_quantile(0.99, sum(rate(http_request_duration_seconds_bucket{job=\"gitbok\",namespace=\"$namespace\"}[5m])) by (le))",
               "legendFormat": "p99 - All Pods",
               "refId": "C"
             }
@@ -484,12 +484,12 @@ data:
           },
           "targets": [
             {
-              "expr": "jvm_memory_bytes_used{job=\"gitbok-metrics\",namespace=\"$namespace\",area=\"heap\"}",
+              "expr": "jvm_memory_bytes_used{job=\"gitbok\",namespace=\"$namespace\",area=\"heap\"}",
               "legendFormat": "{{ pod }} - Heap Used",
               "refId": "A"
             },
             {
-              "expr": "jvm_memory_bytes_max{job=\"gitbok-metrics\",namespace=\"$namespace\",area=\"heap\"}",
+              "expr": "jvm_memory_bytes_max{job=\"gitbok\",namespace=\"$namespace\",area=\"heap\"}",
               "legendFormat": "{{ pod }} - Heap Max",
               "refId": "B"
             }
@@ -550,7 +550,7 @@ data:
           "repeatDirection": "h",
           "targets": [
             {
-              "expr": "(jvm_memory_bytes_used{job=\"gitbok-metrics\",namespace=\"$namespace\",area=\"heap\",pod=\"$pod\"} / jvm_memory_bytes_max{job=\"gitbok-metrics\",namespace=\"$namespace\",area=\"heap\",pod=\"$pod\"}) * 100",
+              "expr": "(jvm_memory_bytes_used{job=\"gitbok\",namespace=\"$namespace\",area=\"heap\",pod=\"$pod\"} / jvm_memory_bytes_max{job=\"gitbok\",namespace=\"$namespace\",area=\"heap\",pod=\"$pod\"}) * 100",
               "legendFormat": "{{ pod }}",
               "refId": "A"
             }
@@ -626,7 +626,7 @@ data:
           },
           "targets": [
             {
-              "expr": "rate(jvm_gc_collection_seconds_count{job=\"gitbok-metrics\",namespace=\"$namespace\"}[5m])",
+              "expr": "rate(jvm_gc_collection_seconds_count{job=\"gitbok\",namespace=\"$namespace\"}[5m])",
               "legendFormat": "{{ pod }} - {{ gc }}",
               "refId": "A"
             }
@@ -677,7 +677,7 @@ data:
           "pluginVersion": "8.0.0",
           "targets": [
             {
-              "expr": "jvm_threads_current{job=\"gitbok-metrics\",namespace=\"$namespace\"}",
+              "expr": "jvm_threads_current{job=\"gitbok\",namespace=\"$namespace\"}",
               "legendFormat": "{{ pod }}",
               "refId": "A"
             }
@@ -728,7 +728,7 @@ data:
           "pluginVersion": "8.0.0",
           "targets": [
             {
-              "expr": "time() - process_start_time_seconds{job=\"gitbok-metrics\",namespace=\"$namespace\"}",
+              "expr": "time() - process_start_time_seconds{job=\"gitbok\",namespace=\"$namespace\"}",
               "legendFormat": "{{ pod }}",
               "refId": "A"
             }
@@ -787,7 +787,7 @@ data:
           "pluginVersion": "8.0.0",
           "targets": [
             {
-              "expr": "rate(process_cpu_seconds_total{job=\"gitbok-metrics\",namespace=\"$namespace\"}[5m])",
+              "expr": "rate(process_cpu_seconds_total{job=\"gitbok\",namespace=\"$namespace\"}[5m])",
               "legendFormat": "{{ pod }}",
               "refId": "A"
             }
@@ -842,7 +842,7 @@ data:
           "pluginVersion": "8.0.0",
           "targets": [
             {
-              "expr": "count(up{job=\"gitbok-metrics\",namespace=\"$namespace\"} == 1)",
+              "expr": "count(up{job=\"gitbok\",namespace=\"$namespace\"} == 1)",
               "legendFormat": "",
               "refId": "A"
             }
@@ -882,7 +882,7 @@ data:
               "value": "default"
             },
             "datasource": "${datasource}",
-            "definition": "label_values(up{job=\"gitbok-metrics\"}, namespace)",
+            "definition": "label_values(up{job=\"gitbok\"}, namespace)",
             "hide": 0,
             "includeAll": false,
             "label": "Namespace",
@@ -890,7 +890,7 @@ data:
             "name": "namespace",
             "options": [],
             "query": {
-              "query": "label_values(up{job=\"gitbok-metrics\"}, namespace)",
+              "query": "label_values(up{job=\"gitbok\"}, namespace)",
               "refId": "PrometheusVariableQueryEditor-VariableQuery"
             },
             "refresh": 1,
@@ -906,7 +906,7 @@ data:
               "value": "$__all"
             },
             "datasource": "${datasource}",
-            "definition": "label_values(up{job=\"gitbok-metrics\",namespace=\"$namespace\"}, pod)",
+            "definition": "label_values(up{job=\"gitbok\",namespace=\"$namespace\"}, pod)",
             "hide": 0,
             "includeAll": true,
             "label": "Pod",
@@ -914,7 +914,7 @@ data:
             "name": "pod",
             "options": [],
             "query": {
-              "query": "label_values(up{job=\"gitbok-metrics\",namespace=\"$namespace\"}, pod)",
+              "query": "label_values(up{job=\"gitbok\",namespace=\"$namespace\"}, pod)",
               "refId": "PrometheusVariableQueryEditor-VariableQuery"
             },
             "refresh": 1,
