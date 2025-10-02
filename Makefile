@@ -96,7 +96,7 @@ docker-up:
 	@echo "  - Prometheus: http://localhost:9090"
 	@echo "  - Alertmanager: http://localhost:9093"
 	@echo "  - Grafana: http://localhost:3000 (admin/admin)"
-	@echo "  - Metrics: http://localhost:8081/docs/metrics"
+	@echo "  - Metrics: http://localhost:8081/metrics"
 	@echo "Logs: docker-compose logs -f gitbok"
 
 # Stop docker-compose stack
