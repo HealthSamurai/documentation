@@ -9,10 +9,10 @@ metadata:
 spec:
   selector:
     matchLabels:
-      app: gitbok
-      component: metrics
+      app.kubernetes.io/name: gitbok
+
   endpoints:
-    - port: metrics
+    - port: http
       path: /metrics
       interval: 30s
       scrapeTimeout: 10s
