@@ -15,7 +15,7 @@ products:
     links:
       - title: Product
         entries:
-        - text: "Homepage"
+        - text: "FHIR server"
           href: "https://www.health-samurai.io/fhir-server"
           target: "_blank"
         - text: "Release notes"
