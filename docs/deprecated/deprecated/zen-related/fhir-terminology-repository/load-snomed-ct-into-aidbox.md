@@ -10,7 +10,7 @@ Since the 2405 release, using Aidbox in FHIRSchema mode is recommended, which is
 [Broken link](broken-reference/)
 {% endhint %}
 
-[SNOMED CT](https://www.snomed.org/snomed-ct/Use-SNOMED-CT) is a large medical terminology which can be used in [FHIR ValueSet](http://hl7.org/fhir/valueset.html) resources. It is distributed under a free license which you have to set up with them.
+[SNOMED CT](https://www.snomed.org/snomed-ct) is a large medical terminology which can be used in [FHIR ValueSet](http://hl7.org/fhir/valueset.html) resources. It is distributed under a free license which you have to set up with them.
 
 We provide out-of-the-box integration with SNOMED CT through [Aidbox Configuration project](../aidbox-zen-lang-project/). You may start using it after we make sure you have the required SNOMED license.
 
