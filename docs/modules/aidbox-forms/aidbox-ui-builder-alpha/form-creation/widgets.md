@@ -242,6 +242,7 @@ The Choice widget allows users to select one or more options from a predefined l
 * **Static:** A list of values that the user can choose from.
   * Each option should have a display text, code and system. The user can fill in values ​​or use the import option. In this case, the user will be given the opportunity to select a terminology server, select a valueset in it and find the needed coded value, then the code, system and display will be automatically filled in.
   * Optionally, the user can include a score to each option and show the score if needed, which will be taken into account in the calculations. To do this, need to click on the include score and show score boxes.
+  * Optionally, the user can add an option prefix to each answer option and the prefix will be displayed in front of an option (e.g. "(a)", or "1.").
   * Instead of inlining options into the form, the use can use a ValueSet that is stored in the Aidbox instance. To do this, the user need to click on the ValueSet box and select the ValueSet.
 * **ValueSet**: Use predefined options in ValueSet
   * **Use external terminology server**: You can specify external terminology server which will be used to `$expand` ValueSet options
@@ -269,6 +270,7 @@ it is displayed on the form as a drop-down list.
 * **Static:** A list of values that the user can choose from.
   * Each option should have a display text, code and system. The user can fill in values ​​or use the import option. In this case, the user will be given the opportunity to select a terminology server, select a valueset in it and find the needed coded value, then the code, system and display will be automatically filled in.
   * Optionally, the user can include a score to each option and show the score if needed, which will be taken into account in the calculations. To do this, need to click on the include score and show score boxes.
+  * Optionally, the user can add an option prefix to each answer option and the prefix will be displayed in front of an option (e.g. "(a)", or "1.").
   * Instead of inlining options into the form, the use can use a ValueSet that is stored in the Aidbox instance. To do this, the user need to click on the ValueSet box and select the ValueSet.
 * **ValueSet**: Use predefined options in ValueSet
   * **Use external terminology server**: You can specify external terminology server which will be used to `$expand` ValueSet options
@@ -307,6 +309,7 @@ The Radio Button widget allows users to select one option from a set of predefin
 * **Static:** A list of values that the user can choose from.
   * Each option should have a display text, code and system. The user can fill in values ​​or use the import option. In this case, the user will be given the opportunity to select a terminology server, select a valueset in it and find the needed coded value, then the code, system and display will be automatically filled in.
   * Optionally, the user can include a score to each option and show the score if needed, which will be taken into account in the calculations. To do this, need to click on the include score and show score boxes.
+  * Optionally, the user can add an option prefix to each answer option and the prefix will be displayed in front of an option (e.g. "(a)", or "1.").
   * Instead of inlining options into the form, the use can use a ValueSet that is stored in the Aidbox instance. To do this, the user need to click on the ValueSet box and select the ValueSet.
   * The user can optionally choose to attach media, adding an additional field to each answer option. This makes it possible to include images or animated GIFs in the answer options.
 * **ValueSet**: Use predefined options in ValueSet
@@ -334,6 +337,7 @@ The Checkbox List widget allows users to select multiple options from a predefin
 * **Static:** A list of values that the user can choose from.
   * Each option should have a display text, code and system. The user can fill in values ​​or use the import option. In this case, the user will be given the opportunity to select a terminology server, select a valueset in it and find the needed coded value, then the code, system and display will be automatically filled in.
   * Optionally, the user can include a score to each option and show the score if needed, which will be taken into account in the calculations. To do this, need to click on the include score and show score boxes.
+  * Optionally, the user can add an option prefix to each answer option and the prefix will be displayed in front of an option (e.g. "(a)", or "1.").
   * Instead of inlining options into the form, the use can use a ValueSet that is stored in the Aidbox instance. To do this, the user need to click on the ValueSet box and select the ValueSet.
   * The user can optionally choose to attach media, adding an additional field to each answer option. This makes it possible to include images or animated GIFs in the answer options.
 * **ValueSet**: Use predefined options in ValueSet
