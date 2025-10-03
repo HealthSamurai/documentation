@@ -31,10 +31,14 @@ jobs:
         docker pull ghcr.io/healthsamurai/documentation:latest
         docker run -d \
           -p 8081:8081 \
-          -e DOCS_PREFIX=/docs \
-          -e DOCS_VOLUME_PATH=/repo/docs-new \
-          -e DOCS_REPO_PATH=/repo \
+          -e BASE_URL=http://localhost:8081 \
           -e DEV=true \
+          -e DOCS_PREFIX=/docs \
+          -e DOCS_REPO_PATH=/repo \
+          -e DOCS_VOLUME_PATH=/repo/docs-new \
+          -e PORT=8081 \
+          -e RELOAD_CHECK_INTERVAL_SEC=10 \
+          -e EXAMPLES_UPDATE_INTERVAL=1 \
           -v $(pwd):/repo:ro \
           --name docs-server \
           --rm \
