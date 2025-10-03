@@ -517,5 +517,6 @@ redirects:
   security-and-access-control-1/security/accesspolicy-best-practices: tutorials/security-access-control-tutorials/accesspolicy-best-practices.md
   storage-1/database: database/overview.md
   storage-1/other/s3-compatible-storages: file-storage/aws-s3.md
+  storage-1/sql-on-fhir: modules/sql-on-fhir/README.md
   terminology/aidbox-terminology-module/hybrid: terminology-module/aidbox-terminology-module/hybrid.md
   tutorials/security-and-access-control/basic-auth-tutorial: tutorials/security-access-control-tutorials/basic-auth.md
