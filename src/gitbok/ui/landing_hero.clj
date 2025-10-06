@@ -88,7 +88,15 @@
           :href (http/get-product-prefixed-url context "/modules/other-modules/mcp")}
       [:img {:src "/docs/.gitbook/assets/mcp.png" :alt "MCP" :class "w-8 h-8"}]
       [:span {:class "absolute -top-10 left-1/2 -translate-x-1/2 px-2 py-1 bg-gray-900 text-white text-xs rounded whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity duration-150 pointer-events-none z-50"}
-       "Model Context Protocol (MCP)"]]]]])
+       "Model Context Protocol (MCP)"]]]
+
+    ;; Working with AI button
+    [:a {:class "group w-full flex rounded-full border border-[#E7E9EF] px-3 py-1 gap-2 items-center justify-between text-[#353B50] text-sm leading-[22.75px] font-normal hover:border-primary-9 hover:text-primary-9 transition-colors "
+         :href (http/get-product-prefixed-url context "/developer-experience/ai")}
+     [:div {:class "flex gap-2 items-center"}
+      (ico/sparkles "size-4" :outline)
+      "Working with AI"]
+     (ico/chevron-right "size-3 group-hover:translate-x-1 transition-transform" :outline)]]])
 
 (defn additional-links
   "Additional important documentation links"
