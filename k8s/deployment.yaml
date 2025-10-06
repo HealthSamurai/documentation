@@ -86,9 +86,12 @@ spec:
                 key: pat
           - name: EXAMPLES_UPDATE_INTERVAL
             value: "60"
+        command: ["java"]
         args:
           - "-Xms2g"
           - "-Xmx2g"
+          - "-jar"
+          - "/gitbok.jar"
         ports:
           - containerPort: 8080
             name: http
