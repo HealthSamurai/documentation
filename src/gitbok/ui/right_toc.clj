@@ -34,12 +34,12 @@
                      (str "#" (utils/s->url-slug (:id (:attrs item)))))
               ;; Add border styling for nested items like left navigation
               li-class (str
-                        "hover:bg-tint-hover hover:text-tint-strong hover:border-tint-7 max-w-56"
+                        "hover:bg-surface-hover hover:text-on-surface-strong hover:border-outline-hover max-w-56"
                         (cond
                           (= level 2) "break-words py-0.5 border-transparent"
-                          (>= level 3) "break-words ml-2 border-l-2 border-tint-3 my-0"))
+                          (>= level 3) "break-words ml-2 border-l-2 border-outline-subtle my-0"))
 
-              link-class (str "block px-3 text-small font-content text-tint-strong/70 "
+              link-class (str "block px-3 text-small font-content text-on-surface-strong/70 "
                               "transition-colors duration-200 ease-in-out no-underline "
                               "relative py-1 "
                               (if (>= level 3)
@@ -71,7 +71,7 @@
 
       [:nav#toc-container
        {:class "max-w-56 basis-56 flex-shrink-0 sticky top-16 h-[calc(100vh-4rem)]
-        ml-12 overflow-y-auto py-8 bg-tint-base
+        ml-12 overflow-y-auto py-8 bg-surface
         font-content hidden lg:block
         "
         :aria-label "On-page navigation"}

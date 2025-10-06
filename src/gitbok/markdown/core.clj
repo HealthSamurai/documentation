@@ -143,12 +143,12 @@
 
          :paragraph
          (fn [ctx node]
-           (into [:p {:class "text-base text-tint-12 leading-relaxed"}]
+           (into [:p {:class "text-base text-on-surface-strong leading-relaxed"}]
                  (mapv #(transform/->hiccup ctx %) (:content node))))
 
          :bullet-list
          (fn [ctx node]
-           (into [:ul {:class "ml-8 text-tint-12 text-base space-y-2"}]
+           (into [:ul {:class "ml-8 text-on-surface-strong text-base space-y-2"}]
                  (mapv #(transform/->hiccup ctx %)
                        (:content node))))
 

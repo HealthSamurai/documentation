@@ -118,11 +118,11 @@
         ;; Left side with indicator and line (GitBook-style)
         [:div {:class "relative select-none"}
          ;; Circle with number - smaller size like GitBook
-         [:div {:class "flex size-7 items-center justify-center rounded-full bg-primary-9 text-white font-semibold text-sm"}
+         [:div {:class "flex size-7 items-center justify-center rounded-full bg-brand text-white font-semibold text-sm"}
           (str index)]
          ;; Vertical line (not for last step)
          (when-not is-last
-           [:div {:class "absolute top-9 bottom-2 left-3.5 w-px bg-tint-4"}])]
+           [:div {:class "absolute top-9 bottom-2 left-3.5 w-px bg-outline-subtle"}])]
         ;; Right side with content
         ;; Use different negative margin based on title type for proper alignment
         [:div {:class (str "flex-1 "
@@ -130,7 +130,7 @@
                              "-mt-[0.875rem]" ; For h1-h6 headings (14px)
                              "-mt-[0.4375rem]") ; For bold text (7px)
                            " " (if is-last "pb-0" "pb-6"))}
-         [:div {:class "text-lg font-bold text-tint-12 mb-3"}
+         [:div {:class "text-lg font-bold text-on-surface-strong mb-3"}
           ;; Title is already rendered HTML/hiccup
           ;; Extract content from div wrapper if present
           (if (and (vector? title)
@@ -138,7 +138,7 @@
                    (vector? (last title)))
             (last title) ; Use inner element from div wrapper
             title)]
-         [:div {:class "text-base text-tint-11 leading-relaxed"}
+         [:div {:class "text-base text-on-surface-muted leading-relaxed"}
           (if (= :pre (first content))
             content
             [:div content])]]])]))

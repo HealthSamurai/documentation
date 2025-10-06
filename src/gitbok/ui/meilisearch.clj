@@ -27,14 +27,14 @@
                                    :federationOptions {:weight 1.2}
                                    :attributesToHighlight ["content" "hierarchy_lvl0" "hierarchy_lvl1"
                                                            "hierarchy_lvl2" "hierarchy_lvl3" "hierarchy_lvl6"]
-                                   :highlightPreTag "<mark class=\"bg-warning-2 text-tint-12 p-1 px-0.5 -mx-0.5 py-0.5 rounded\">"
+                                   :highlightPreTag "<mark class=\"bg-warning-2 text-on-surface-strong p-1 px-0.5 -mx-0.5 py-0.5 rounded\">"
                                    :highlightPostTag "</mark>"}
                                   {:indexUid index-name
                                    :q query
                                    :filter deprecated-filter
                                    :attributesToHighlight ["content" "hierarchy_lvl0" "hierarchy_lvl1"
                                                            "hierarchy_lvl2" "hierarchy_lvl3" "hierarchy_lvl6"]
-                                   :highlightPreTag "<mark class=\"bg-warning-2 text-tint-12 p-1 px-0.5 -mx-0.5 py-0.5 rounded\">"
+                                   :highlightPreTag "<mark class=\"bg-warning-2 text-on-surface-strong p-1 px-0.5 -mx-0.5 py-0.5 rounded\">"
                                    :highlightPostTag "</mark>"}]}
           response @(http-client/post search-url
                                       {:headers headers
@@ -253,7 +253,7 @@
                             level-value))]
 
     [:a {:href final-url
-         :class "flex items-center gap-3 px-3 py-2.5 rounded-md text-tint-strong transition-colors block hover:bg-tint-hover"
+         :class "flex items-center gap-3 px-3 py-2.5 rounded-md text-on-surface-strong transition-colors block hover:bg-surface-hover"
          :data-result-index index}
 
      ;; Main content container
@@ -265,7 +265,7 @@
          ;; For grouped items, show the deepest level as title
          (let [title (or lvl5 lvl4 lvl3 lvl2 lvl1)]
            (when title
-             [:div {:class "text-sm font-normal leading-tight text-tint-strong pl-4"}
+             [:div {:class "text-sm font-normal leading-tight text-on-surface-strong pl-4"}
               (if-let [highlighted (get-highlighted
                                     (cond
                                       lvl5 "hierarchy_lvl5"
@@ -279,7 +279,7 @@
 
          ;; Show content for grouped items
          (when content
-           [:div {:class "text-xs text-tint-10 mt-1 pl-4 line-clamp-2"}
+           [:div {:class "text-xs text-on-surface mt-1 pl-4 line-clamp-2"}
             (let [highlighted-content (get-highlighted "content" content)]
               (if (string? highlighted-content)
                 (hiccup2.core/raw highlighted-content)
@@ -289,7 +289,7 @@
         [:div
          ;; lvl0 - uppercase gray
          (when lvl0
-           [:div {:class "text-xs uppercase text-tint-9 tracking-wider mb-0.5"}
+           [:div {:class "text-xs uppercase text-on-surface-placeholder tracking-wider mb-0.5"}
             (let [highlighted (get-highlighted "hierarchy_lvl0" lvl0)]
               (if (string? highlighted)
                 (hiccup2.core/raw highlighted)
@@ -297,7 +297,7 @@
 
          ;; lvl1 - bold, main title
          (when lvl1
-           [:div {:class "text-base font-bold leading-tight text-tint-strong"}
+           [:div {:class "text-base font-bold leading-tight text-on-surface-strong"}
             (let [highlighted (get-highlighted "hierarchy_lvl1" lvl1)]
               (if (string? highlighted)
                 (hiccup2.core/raw highlighted)
@@ -305,7 +305,7 @@
 
          ;; lvl2 - semibold
          (when lvl2
-           [:div {:class "text-sm font-semibold leading-tight text-tint-strong mt-0.5"}
+           [:div {:class "text-sm font-semibold leading-tight text-on-surface-strong mt-0.5"}
             (let [highlighted (get-highlighted "hierarchy_lvl2" lvl2)]
               (if (string? highlighted)
                 (hiccup2.core/raw highlighted)
@@ -313,7 +313,7 @@
 
          ;; lvl3 - medium weight
          (when lvl3
-           [:div {:class "text-sm font-medium leading-tight text-tint-strong mt-0.5"}
+           [:div {:class "text-sm font-medium leading-tight text-on-surface-strong mt-0.5"}
             (let [highlighted (get-highlighted "hierarchy_lvl3" lvl3)]
               (if (string? highlighted)
                 (hiccup2.core/raw highlighted)
@@ -321,7 +321,7 @@
 
          ;; lvl4 - normal weight
          (when lvl4
-           [:div {:class "text-sm font-normal leading-tight text-tint-strong mt-0.5"}
+           [:div {:class "text-sm font-normal leading-tight text-on-surface-strong mt-0.5"}
             (let [highlighted (get-highlighted "hierarchy_lvl4" lvl4)]
               (if (string? highlighted)
                 (hiccup2.core/raw highlighted)
@@ -329,7 +329,7 @@
 
          ;; lvl5 - normal weight, slightly muted
          (when lvl5
-           [:div {:class "text-sm font-normal leading-tight text-tint-11 mt-0.5"}
+           [:div {:class "text-sm font-normal leading-tight text-on-surface-muted mt-0.5"}
             (let [highlighted (get-highlighted "hierarchy_lvl5" lvl5)]
               (if (string? highlighted)
                 (hiccup2.core/raw highlighted)
@@ -338,7 +338,7 @@
          ;; lvl6 - monospace with background
          (when lvl6
            [:div {:class "mt-1"}
-            [:span {:class "text-xs font-mono bg-tint-3 text-tint-11 px-1.5 py-0.5 rounded inline-block"}
+            [:span {:class "text-xs font-mono bg-surface-alt text-on-surface-muted px-1.5 py-0.5 rounded inline-block"}
              (let [highlighted (get-highlighted "hierarchy_lvl6" lvl6)]
                (if (string? highlighted)
                  (hiccup2.core/raw highlighted)
@@ -346,7 +346,7 @@
 
          ;; content - description text
          (when content
-           [:div {:class "text-xs text-tint-10 mt-1 line-clamp-2"}
+           [:div {:class "text-xs text-on-surface mt-1 line-clamp-2"}
             (let [highlighted-content (get-highlighted "content" content)
                   truncated (if (> (count content) 150)
                               (str (subs content 0 150) "...")
@@ -356,7 +356,7 @@
                 truncated))])])]
 
      ;; Arrow icon
-     [:div {:class "size-6 shrink-0 flex items-center justify-center text-tint-9 opacity-40"}
+     [:div {:class "size-6 shrink-0 flex items-center justify-center text-on-surface-placeholder opacity-40"}
       [:svg {:class "size-3.5" :fill "none" :stroke "currentColor" :viewBox "0 0 24 24"}
        [:path {:stroke-linecap "round" :stroke-linejoin "round" :stroke-width "2.5"
                :d "M9 5l7 7-7 7"}]]]]))
@@ -364,7 +364,7 @@
 (defn render-no-results
   "Renders the no results message."
   [query]
-  [:div {:class "border border-tint-6 md:shadow-lg md:ring-1 md:ring-tint-subtle p-4 text-sm text-tint-9 md:w-[32rem]"}
+  [:div {:class "border border-outline md:shadow-lg md:ring-1 md:ring-outline-subtle p-4 text-sm text-on-surface-placeholder md:w-[32rem]"}
    (str "No results found for \"" query "\"")])
 
 (defn render-group-header
@@ -480,7 +480,7 @@
 
         ;; Results found - group and render
         (let [groups (group-results-by-hierarchy results)]
-          [:div {:class "bg-white border border-tint-6 md:shadow-lg md:ring-1 md:ring-tint-subtle overflow-hidden max-h-[48rem] overflow-y-auto md:w-[32rem]"}
+          [:div {:class "bg-white border border-outline md:shadow-lg md:ring-1 md:ring-outline-subtle overflow-hidden max-h-[48rem] overflow-y-auto md:w-[32rem]"}
            [:div {:class "p-2 space-y-1"}
             ;; Render grouped results
             (render-search-results groups)]])))))

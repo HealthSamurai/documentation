@@ -31,8 +31,8 @@
 
 (defn big-link-view [href title & [image]]
   [:div {:class "my-6 p-4 border
-         border-tint-8
-         rounded-lg bg-tint-base hover:border-primary-7
+         border-outline
+         rounded-lg bg-surface hover:border-brand
          transition-all duration-200 flex
          items-center cursor-pointer group"}
    (when image
@@ -40,10 +40,10 @@
       [:img {:src image :alt title :class "w-6 h-6 object-contain"}]])
    [:div {:class "flex-1"}
     [:a {:href href
-         :class "group-hover:text-primary-9 text-base transition-colors duration-200
+         :class "group-hover:text-brand text-base transition-colors duration-200
          no-underline block w-full h-full"}
      title]]
-   (ico/chevron-right "chevron size-5 text-tint-strong/40")])
+   (ico/chevron-right "chevron size-5 text-on-surface-strong/40")])
 
 (defn render-big-link
   ([context filepath url]

@@ -17,5 +17,5 @@ document.addEventListener('DOMContentLoaded', () => {
 });")]
    [:div.max-w-2xl.w-full.px-4
     [:div
-     [:h2.mt-4.text-3xl.font-semibold.text-tint-11.text-center "Page not found"]
-     [:p.mt-2.text-base.text-tint-10.text-center "The page you are looking for doesn't exist."]]]])
+     [:h2.mt-4.text-3xl.font-semibold.text-on-surface-muted.text-center "Page not found"]
+     [:p.mt-2.text-base.text-on-surface.text-center "The page you are looking for doesn't exist."]]]])

@@ -22,7 +22,7 @@
        [:summary
         {:class "flex items-center justify-between
                   text-small font-normal
-                  hover:bg-tint-hover
+                  hover:bg-surface-hover
                   transition-colors duration-200 ease-in-out
                   cursor-pointer group"}
         [:div {:class "flex-1 clickable-summary"}
@@ -31,9 +31,9 @@
                   (fn [title] (assoc-in title [1 :class] summary/summary-classes)))
           active?)]
         (ico/chevron-right "chevron size-3 text-small font-normal
-                            group-hover:text-primary-9 transition-all
+                            group-hover:text-brand transition-all
                             duration-200 transform rotate-0 group-open:rotate-90 mr-4")]
-       [:div {:class "ml-6 border-l-1 border-tint-8"}
+       [:div {:class "ml-6 border-l-1 border-outline"}
         (for [c (:children item)]
           (render-left-navigation url c))]]
       (add-active-class item active?))))
@@ -41,7 +41,7 @@
 (defn left-navigation [summary url]
   [:nav#navigation
    {:class "w-80 flex-shrink-0 sticky top-16 h-[calc(100vh-4rem)]
-    overflow-y-auto py-6 bg-tint-base border-r border-tint-subtle
+    overflow-y-auto py-6 bg-surface border-r border-outline-subtle
     font-content lg:mr-20 space-y-4
     lg:-ms-4"
     :aria-label "Documentation menu"}
@@ -50,7 +50,7 @@
       (when-not
        (str/blank? (:title item))
         [:div {:class "mt-4 mb-1 first:mt-2 ml-4"}
-         [:span {:class "text-mini font-semibold text-tint-strong uppercase tracking-wider"}
+         [:span {:class "text-mini font-semibold text-on-surface-strong uppercase tracking-wider"}
           (:title item)]])
       (for [ch (:children item)]
         (render-left-navigation url ch))])])
