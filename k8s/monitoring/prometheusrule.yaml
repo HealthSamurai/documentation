@@ -53,7 +53,10 @@ spec:
 
         # Alert when any pod is down
         - alert: GitbokPodDown
-          expr: up{job="gitbok"} == 0
+          expr: |
+            up{job="gitbok"} == 0
+            and on(pod, namespace)
+            kube_pod_status_ready{condition="true", namespace="gitbok"} == 1
           for: 1m
           labels:
             severity: critical
