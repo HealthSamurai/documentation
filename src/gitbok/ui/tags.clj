@@ -3,10 +3,10 @@
 (defn render-tag
   "Render a reusable tag component with optional click handler"
   [{:keys [text onclick href variant key data-type data-value]}]
-  (let [base-classes "inline-flex items-center px-2 py-0.5 h-[25px] rounded text-xs font-normal transition-colors"
+  (let [base-classes "inline-flex items-center px-2 py-0.5 h-[25px] rounded text-[13px] font-normal transition-colors"
         variant-classes (case (or variant :default)
                           :default "bg-[#EBEFF2B2] text-[#353B50] hover:bg-[#DDE1E8] hover:text-[#7E8291] group-hover:bg-[#F6F7F9] group-hover:text-[#7E8291]"
-                          :language "bg-success-2 text-success-12 hover:bg-success-3 hover:text-success-12"
+                          :language "bg-[#717684] text-white hover:bg-[#5a5d68] hover:text-white leading-[160%] tracking-[-0.03em] text-center"
                           :clickable "bg-[#EBEFF2B2] text-[#353B50] hover:bg-[#DDE1E8] hover:text-[#7E8291] cursor-pointer group-hover:bg-[#F6F7F9] group-hover:text-[#7E8291]"
                           "bg-[#EBEFF2B2] text-[#353B50] hover:bg-[#DDE1E8] hover:text-[#353B50]")
         attrs {:class (str base-classes " " variant-classes)}
