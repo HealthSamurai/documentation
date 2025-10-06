@@ -3,6 +3,7 @@ kind: Kustomization
 
 resources:
 - ns.yaml
+- configmap-git-sync-env.yaml
 - deployment.yaml
 - service.yaml
 - ingress.yaml

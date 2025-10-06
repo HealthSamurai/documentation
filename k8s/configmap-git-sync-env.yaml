@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: git-sync-env
+  namespace: gitbok
+data:
+  GIT_SYNC_REPO: "https://github.com/HealthSamurai/documentation.git"
+  GIT_SYNC_BRANCH: "master"
+  GIT_SYNC_ROOT: "/git-data"
+  GIT_SYNC_DEST: "repo"
+  GIT_SYNC_DEPTH: "0"
+  GIT_SYNC_SUBMODULES: "off"
