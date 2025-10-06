@@ -38,6 +38,7 @@ If a Bundle file is created at `/tmp/bundle.json`:
 ```json
 {
   "type": "batch",
+  "resourceType": "Bundle",
   "entry": [
     {
       "request": {
