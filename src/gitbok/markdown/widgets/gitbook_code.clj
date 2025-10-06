@@ -104,10 +104,10 @@
              html (str "<div class=\"code-gitbook group/codeblock grid grid-flow-col w-full decoration-primary/6 page-full-width:ml-0 max-w-3xl page-api-block:ml-0\">"
                        (when title
                          (str "<div class=\"flex items-center justify-start gap-2 text-sm [grid-area:1/1] -mb-px\">"
-                              "<div class=\"relative top-px z-20 inline-flex items-center justify-center rounded-t straight-corners:rounded-t-s border border-tint-6 border-b-0 bg-tint-subtle theme-muted:bg-tint-base px-3 py-2 text-tint-11 text-xs leading-none tracking-wide [html.theme-bold.sidebar-filled_&]:bg-tint-base\">"
+                              "<div class=\"relative top-px z-20 inline-flex items-center justify-center rounded-t straight-corners:rounded-t-s border border-outline border-b-0 bg-surface-subtle theme-muted:bg-surface px-3 py-2 text-on-surface-muted text-xs leading-none tracking-wide [html.theme-bold.sidebar-filled_&]:bg-surface\">"
                               title
                               "</div></div>"))
-                       "<div class=\"relative overflow-auto border border-tint-6 bg-tint-subtle theme-muted:bg-tint-base [grid-area:2/1] contrast-more:border-tint contrast-more:bg-tint-base [html.theme-bold.sidebar-filled_&]:bg-tint-base rounded-md straight-corners:rounded-sm rounded-ss-none\">"
+                       "<div class=\"relative overflow-auto border border-outline bg-surface-subtle theme-muted:bg-surface [grid-area:2/1] contrast-more:border-tint contrast-more:bg-surface [html.theme-bold.sidebar-filled_&]:bg-surface rounded-md straight-corners:rounded-sm rounded-ss-none\">"
                        "<pre class=\"text-base\"><code>"
                        single-line-content
                        "</code></pre>"

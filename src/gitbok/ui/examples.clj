@@ -24,14 +24,14 @@
   [:a {:href github_url :target "_blank" :rel "noopener noreferrer"
        :class "block"}
    [:div.group.rounded-lg.p-6.transition-shadow.duration-200.flex.flex-col.gap-4
-    {:class "border border-[#E7E9EF] bg-gradient-to-b from-white to-[#F8F9FA] hover:bg-white hover:border-[#DADDE7] hover:from-transparent hover:to-transparent example-card h-[275px] w-[349px]"
+    {:class "border border-outline bg-gradient-to-b from-white to-surface-alt hover:bg-white hover:border-outline-hover hover:from-transparent hover:to-transparent example-card h-[275px] w-[349px]"
      :data-example-id id}
     ;; Content section (title and description)
     [:div.flex.flex-col.gap-2
      ;; Title - truncate after 2 lines
-     [:h3 {:class "text-lg font-medium leading-7 tracking-[-0.03em] text-[#1F1C1C] group-hover:text-primary-9 transition-colors line-clamp-2"} title]
+     [:h3 {:class "text-lg font-medium leading-7 tracking-[-0.03em] text-on-surface-strong group-hover:text-brand transition-colors line-clamp-2"} title]
      ;; Description - truncate after 3 lines, with markdown links stripped
-     [:p {:class "text-sm leading-[22.75px] tracking-[-0.02em] text-[#353B50] line-clamp-3"} (strip-markdown-links description)]]
+     [:p {:class "text-sm leading-[22.75px] tracking-[-0.02em] text-on-surface-strong line-clamp-3"} (strip-markdown-links description)]]
 
     ;; Tags container - pushed to bottom with mt-auto, all tags on one line
     [:div.mt-auto.flex.flex-wrap.gap-2
@@ -58,8 +58,8 @@
 (defn render-filter-checkbox
   "Render a single filter checkbox"
   [type value label count checked?]
-  [:label.flex.items-center.space-x-2.cursor-pointer.hover:bg-tint-1.px-2.py-1.rounded
-   [:input.w-4.h-4.text-primary-9.border-tint-4.rounded.focus:ring-primary-5.filter-checkbox
+  [:label.flex.items-center.space-x-2.cursor-pointer.hover:bg-surface-subtle.px-2.py-1.rounded
+   [:input.w-4.h-4.text-brand.border-outline-subtle.rounded.focus:ring-brand.filter-checkbox
     {:type "checkbox"
      :name type
      :value value
@@ -67,9 +67,9 @@
      :data-filter-type type
      :data-filter-value value
      :onchange "updateFiltersAndURL()"}]
-   [:span {:class "text-sm text-[#353B50] leading-5"} label]
+   [:span {:class "text-sm text-on-surface-strong leading-5"} label]
    (when count
-     [:span {:class "text-sm text-[#353B50] leading-5"}
+     [:span {:class "text-sm text-on-surface-strong leading-5"}
       (str "(" count ")")])])
 
 (defn count-examples-by-filter
@@ -83,7 +83,7 @@
   [:div.space-y-6
    ;; Languages filter - sorted by count
    [:div
-    [:h4 {:class "text-sm font-semibold text-[#1F1C1C] leading-5 mb-3"} "Languages"]
+    [:h4 {:class "text-sm font-semibold text-on-surface-strong leading-5 mb-3"} "Languages"]
     [:div.space-y-1
      (let [langs-with-counts (map (fn [lang]
                                     [lang (count-examples-by-filter examples "languages" lang)])
@@ -97,8 +97,8 @@
 
 ;; Features filter - sorted by count with search
    [:div
-    [:h4 {:class "text-sm font-semibold text-[#1F1C1C] leading-5 mb-3"} "Features"]
-    [:input.w-full.px-3.py-1.5.mb-3.text-sm.border.border-tint-3.rounded-md.focus:outline-none.focus:ring-2.focus:ring-primary-5
+    [:h4 {:class "text-sm font-semibold text-on-surface-strong leading-5 mb-3"} "Features"]
+    [:input.w-full.px-3.py-1.5.mb-3.text-sm.border.border-outline-subtle.rounded-md.focus:outline-none.focus:ring-2.focus:ring-brand
      {:type "text"
       :id "features-search"
       :placeholder "Search features..."
@@ -123,11 +123,10 @@
 (defn render-search-bar [search-term]
   [:div.w-full
    [:div.relative.flex.items-center
-    [:svg.absolute.left-3.w-5.h-5.text-tint-8.pointer-events-none
-     {:fill "none" :stroke "currentColor" :viewBox "0 0 24 24"}
-     [:path {:stroke-linecap "round" :stroke-linejoin "round" :stroke-width "2"
-             :d "M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"}]]
-    [:input#examples-search.w-full.px-4.py-3.pl-10.pr-4.text-tint-12.bg-white.border.border-tint-4.rounded-lg.focus:outline-none.focus:ring-2.focus:ring-primary-5.focus:border-transparent
+    [:img {:src "/docs/static/search-icon.svg"
+           :alt "Search"
+           :class "absolute left-3 pointer-events-none"}]
+    [:input#examples-search.w-full.px-4.py-3.pl-10.pr-4.text-on-surface-strong.bg-white.border.border-outline-subtle.rounded-lg.focus:outline-none.focus:ring-2.focus:ring-brand.focus:border-transparent
      {:type "text"
       :name "q"
       :placeholder "Search examples by title, description, or tags..."
@@ -180,7 +179,7 @@
 
     [:div#examples-results.w-full
      [:div.mb-4
-      [:p {:class "text-sm text-[#808492] leading-5"}
+      [:p {:class "text-sm text-on-surface-placeholder leading-5"}
        (str "Showing " (count filtered-examples)
             (when (or search-term (seq selected-languages) (seq selected-features))
               (str " of " (count examples)))
@@ -311,11 +310,11 @@
      [:div.flex.flex-col.lg:flex-row.gap-6.w-full
       ;; Filters sidebar
       [:div.lg:w-64.flex-shrink-0
-       [:div {:class "bg-white rounded-lg border border-[#E7E9EF] p-[17px]"}
+       [:div {:class "bg-white rounded-lg border border-outline p-[17px]"}
         [:div.flex.items-center.justify-between.mb-4
-         [:h3 {:class "text-xl font-medium leading-8 text-[#1F1C1C]"} "Filters"]
+         [:h3 {:class "text-xl font-medium leading-8 text-on-surface-strong"} "Filters"]
          (when (or (seq selected-languages) (seq selected-features) (not (str/blank? search-term)))
-           [:button.text-sm.text-primary-9.hover:text-primary-10.cursor-pointer
+           [:button.text-sm.text-brand.hover:text-brand-hover.cursor-pointer
             {:type "button"
              :onclick "clearAllFilters()"}
             "Clear all"])]
@@ -333,8 +332,8 @@
   [:div.w-full
    ;; Header
    [:div.mb-8
-    [:h1 {:class "text-[28px] font-semibold leading-9 tracking-[-0.03em] text-[#1F1C1C] mb-3"} "Aidbox Examples"]
-    [:p {:class "text-base leading-6 text-[#353B50]"}
+    [:h1 {:class "text-[28px] font-semibold leading-9 tracking-[-0.03em] text-on-surface-strong mb-3"} "Aidbox Examples"]
+    [:p {:class "text-base leading-6 text-on-surface-strong"}
      "Browse Aidbox integration examples and sample applications"]]
 
    ;; Content

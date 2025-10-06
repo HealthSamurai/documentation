@@ -110,7 +110,7 @@
                        (let [footer-link three-content
                              opts (-> footer-link
                                       second
-                                      (assoc :class "text-primary-9 hover:text-primary-10 hover:underline underline text-sm")
+                                      (assoc :class "text-brand hover:text-brand-hover hover:underline underline text-sm")
                                       (update
                                        :href
                                        #(indexing/filepath->href context filepath %)))]
@@ -129,8 +129,8 @@
        ;; Render card
        [:div {:class (str "card group flex hover:shadow-md transition-all duration-200 "
                           (when clickable? "cursor-pointer ")
-                          "flex-col bg-tint-1 border border-tint-4 "
-                          "hover:border-tint-5 "
+                          "flex-col bg-surface-subtle border border-outline-subtle "
+                          "hover:border-outline "
                           "rounded-sm overflow-hidden h-full "
                           "min-h-[150px] md:max-h-[300px] "
                           "transition-colors duration-200 relative")
@@ -174,13 +174,13 @@
           (when one
             (let [one-content (if (seq? one) (last one) one)]
               (when one-content
-                (into [:div {:class "text-sm text-tint-11"}]
+                (into [:div {:class "text-sm text-on-surface-muted"}]
                       (if (seq? one-content) one-content [one-content])))))
           ;; Description
           (when two
             (let [two-content (if (seq? two) (last two) two)]
               (when two-content
-                (into [:p {:class "text-tint-11 text-sm group-hover:text-tint-12"}]
+                (into [:p {:class "text-on-surface-muted text-sm group-hover:text-on-surface-strong"}]
                       (if (seq? two-content) two-content [two-content])))))
           (when processed-footer
             [:div {:class "text-sm mt-2 pointer-events-auto relative z-30"}

@@ -27,7 +27,7 @@
                 :hx-target "#content"
                 :hx-push-url (http/get-product-prefixed-url context "overview")
                 :hx-swap "outerHTML"
-                :class "text-xs font-semibold uppercase items-center gap-1.5 hover:text-tint-strong text-primary-9"}
+                :class "text-xs font-semibold uppercase items-center gap-1.5 hover:text-on-surface-strong text-brand"}
             "overview"]]]]
 
         ;; For other nested pages, show normal breadcrumb
@@ -37,7 +37,7 @@
             [:nav {:aria-label "Breadcrumb"}
              [:ol {:class "flex flex-wrap items-center"}
               (interpose
-               (ico/chevron-right "chevron size-3 text-tint-10 group-hover:text-primary-9 mx-2")
+               (ico/chevron-right "chevron size-3 text-on-surface group-hover:text-brand mx-2")
                (map-indexed
                 (fn [idx part]
                   (let [path (->> (take (inc idx) parts-to-show)
@@ -51,6 +51,6 @@
                           :hx-target "#content"
                           :hx-push-url href
                           :hx-swap "outerHTML"
-                          :class "text-xs font-semibold uppercase items-center gap-1.5 hover:text-tint-strong text-primary-9"}
+                          :class "text-xs font-semibold uppercase items-center gap-1.5 hover:text-on-surface-strong text-brand"}
                       part-text]]))
                 parts-to-show))]]))))))

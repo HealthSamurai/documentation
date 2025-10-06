@@ -11,6 +11,7 @@
 4. Please every step of the way just give me a high level explanation of what changes you made
 5. Make every task and code change you do as simple as possible. We want to avoid making any massive or complex changes. Every change should impact as little code as possible. Everything is about simplicity.
 6. Prefer small functions.
+7. In hiccup, always use :class instead of "[:sometag.someclass-a.someclass-b]"
 
 ## Tailwind 4
 

@@ -3,56 +3,150 @@
 
 /* Tailwind v4 Theme Configuration */
 @theme {
-  /* Color System - Primary */
-  --color-primary-1: rgb(255, 255, 255);
-  --color-primary-2: rgb(255, 248, 246);
-  --color-primary-3: rgb(255, 244, 240);
-  --color-primary-4: rgb(255, 237, 232);
-  --color-primary-5: rgb(255, 230, 223);
-  --color-primary-6: rgb(255, 220, 212);
-  --color-primary-7: rgb(249, 205, 196);
-  --color-primary-8: rgb(241, 191, 181);
-  --color-primary-9: rgb(217, 86, 64);
-  --color-primary-10: rgb(202, 72, 51);
-  --color-primary-11: rgb(145, 95, 86);
-  --color-primary-12: rgb(36, 26, 24);
+  /* ==========================================================================
+     SEMANTIC COLOR SYSTEM (Material Design Inspired)
+     See: adr/002-tailwind-theme.md
+     Inspired by: https://www.penguinui.com/theme
+     ========================================================================== */
 
-  /* Color System - Tint */
-  --color-tint-1: rgb(255, 255, 255);
-  --color-tint-2: rgb(251, 249, 249);
-  --color-tint-3: rgb(250, 247, 246);
-  --color-tint-4: rgb(246, 241, 240);
-  --color-tint-5: rgb(242, 236, 234);
-  --color-tint-6: rgb(235, 228, 226);
-  --color-tint-7: rgb(224, 215, 213);
-  --color-tint-8: rgb(229, 231, 235);
-  --color-tint-9: rgb(152, 126, 120);
-  --color-tint-10: rgb(140, 114, 109);
-  --color-tint-11: rgb(118, 108, 105);
-  --color-tint-12: rgb(31, 28, 28);
-  --color-tint-base: rgb(255 255 255);
-  --color-tint-subtle: rgb(251 249 249);
-  --color-tint-hover: rgb(243 245 249);
-  --color-tint-active: rgb(235 228 226);
-  --color-tint-strong: rgb(31 28 28);
+  /* Surface Colors (Backgrounds) */
+  --color-surface: #FFFFFF;
+  /* Pure white - main background
+   * Used in: Page backgrounds, card backgrounds, modal backgrounds
+   * Utilities: bg-surface
+   */
 
-  /* Color System - Neutral */
-  --color-neutral-1: rgb(255 255 255);
-  --color-neutral-2: rgb(250 250 250);
-  --color-neutral-3: rgb(247 247 247);
-  --color-neutral-4: rgb(242 242 242);
-  --color-neutral-5: rgb(237 237 237);
-  --color-neutral-6: rgb(229 229 229);
-  --color-neutral-7: rgb(217 217 217);
-  --color-neutral-8: rgb(204 204 204);
-  --color-neutral-9: rgb(120 120 120);
-  --color-neutral-10: rgb(121 121 121);
-  --color-neutral-11: rgb(110 110 110);
-  --color-neutral-12: rgb(29 29 29);
+  --color-surface-alt: #F8F9FA;
+  /* Light gray background - alternative surface
+   * Used in: Card backgrounds (with gradients), Zulip banner, hover states
+   * Locations: 15+ places - landing_hero.clj, examples.clj, tags.clj
+   * Utilities: bg-surface-alt
+   * Note: Often used in gradients: bg-gradient-to-b from-white to-surface-alt
+   */
 
-  /* Color System - Custom colors from Figma */
-  --color-grey-12: #1F1C1C;
-  --color-blue-26: #353B50;
+  --color-surface-subtle: #FDFDFE;
+  /* Nearly white - NEW FROM DESIGNER (was #FBF9F9)
+   * Change: Even closer to white, cooler tone
+   * Used in: Code block backgrounds, inline code backgrounds
+   * Locations: app.css (@apply rules for article code blocks)
+   * Utilities: bg-surface-subtle
+   */
+
+  --color-surface-hover: #F3F5F9;
+  /* Hover state background - cooler tone
+   * Used in: Table row hovers, navigation item hovers, dropdown hovers
+   * Locations: app.css (table hover), main_navigation.clj, summary.clj
+   * Utilities: hover:bg-surface-hover
+   */
+
+  /* On-Surface Colors (Text on Backgrounds) */
+  --color-on-surface: #717684;
+  /* Main body text - NEW FROM DESIGNER (was #1F1C1C)
+   * Change: Lighter, more gray (from near-black to medium gray)
+   * Used in: All body text, main content (50+ places)
+   * Locations: headers.clj, landing_hero.clj, examples.clj, main_content.clj
+   * Utilities: text-on-surface
+   * NOTE: This is the most impactful change - affects readability across entire app
+   */
+
+  --color-on-surface-strong: #1F1C1C;
+  /* Headings and emphasis - FROM FIGMA --color-grey-12 (was #353B50)
+   * Change: Much darker, almost black for better heading contrast
+   * Used in: All headings H1-H6, card titles, emphasis text, navigation items (85+ places)
+   * Locations: headers.clj, landing_hero.clj, examples.clj, layout.clj, navigation
+   * Utilities: text-on-surface-strong
+   */
+
+  --color-on-surface-secondary: #353b50;
+  /* Secondary text for card descriptions - FROM FIGMA
+   * Blue-gray color for description text, darker than on-surface but lighter than on-surface-strong
+   * Used in: Landing page card descriptions (14 places)
+   * Locations: landing_hero.clj (Getting Started card, See Also cards, Main Concepts cards, Zulip section)
+   * Utilities: text-on-surface-secondary
+   */
+
+  --color-on-surface-muted: #717684;
+  /* Muted/helper text - NEW FROM DESIGNER (was #987E78)
+   * Change: Cooler gray, now same as on-surface (simplifies hierarchy)
+   * Used in: Labels, helper text, "Previous/Next" labels, breadcrumb chevrons (15+ places)
+   * Locations: main_content.clj, breadcrumb.clj, meilisearch.clj
+   * Utilities: text-on-surface-muted
+   * NOTE: Designer intentionally made this same as on-surface
+   */
+
+  --color-on-surface-placeholder: #7E8291;
+  /* Input placeholders, disabled states
+   * Used in: Search input placeholders, disabled text, kbd shortcuts
+   * Locations: main_navigation.clj (search), tags.clj (kbd shortcuts)
+   * Utilities: text-on-surface-placeholder, placeholder:text-on-surface-placeholder
+   */
+
+  /* Outline Colors (Borders) */
+  --color-outline: #E7E9EF;
+  /* Default border color - FROM HARDCODES
+   * Used in: Card borders, input borders, default UI element borders (15+ places)
+   * Locations: landing_hero.clj (cards), examples.clj, main_navigation.clj (search input)
+   * Utilities: border-outline
+   */
+
+  --color-outline-hover: #DADDE7;
+  /* Border hover state - FROM HARDCODES
+   * Used in: Interactive element border hovers (cards, buttons) (3+ places)
+   * Locations: landing_hero.clj, examples.clj
+   * Utilities: hover:border-outline-hover
+   */
+
+  --color-outline-subtle: #EBECEE;
+  /* Subtle borders - NEW FROM DESIGNER (was #FAF7F6)
+   * Change: From warm off-white to cool gray
+   * Used in: Table header backgrounds, tag backgrounds
+   * Locations: app.css (table thead), meilisearch.clj (tags)
+   * Utilities: border-outline-subtle, bg-outline-subtle (sometimes used as background)
+   */
+
+  --color-outline-strong: #EBE4E2;
+  /* Strong/emphasized borders
+   * Used in: Emphasized borders, structural dividers, code block borders
+   * Locations: app.css (code blocks, tables), layout.clj (footer border)
+   * Utilities: border-outline-strong
+   */
+
+  /* Brand Colors (Primary Actions) */
+  --color-brand: #D95640;
+  /* Coral/red brand color
+   * Used in: Primary buttons, active links, hover states for navigation (20+ places)
+   * Locations: landing_hero.clj, left_navigation.clj, breadcrumb.clj
+   * Utilities: bg-brand, text-brand, border-brand
+   */
+
+  --color-on-brand: #FFFFFF;
+  /* Text on brand color (white on buttons)
+   * Used in: Button text, text on brand backgrounds
+   * Utilities: text-on-brand
+   */
+
+  --color-brand-hover: #CA4833;
+  /* Darker brand color for hover states
+   * Used in: Button hovers, interactive element hovers (5+ places)
+   * Locations: landing_hero.clj, main_navigation.clj
+   * Utilities: hover:bg-brand-hover
+   */
+
+  --color-brand-light: #FFF8F6;
+  /* Very light brand tint for subtle backgrounds
+   * Used in: Active navigation item backgrounds
+   * Locations: summary.clj (active:hover:bg state)
+   * Utilities: bg-brand-light
+   */
+
+  /* Warning Colors (Highlighting) */
+  --color-warning-bg: #FFF4EC;
+  /* Warning/highlight background (light orange)
+   * Used in: Search result highlighting in Meilisearch
+   * Locations: meilisearch.clj (mark highlighting), app.css (mark styling)
+   * Utilities: bg-warning-bg
+   * NOTE: Only warning color we actually use
+   */
 
   /* Color System - Semantic Colors */
   /* Info (blue-based) */
@@ -219,7 +313,7 @@ html {
 
 /* Typography - Basic elements */
 article ul {
-  @apply ml-8 text-tint-12;
+  @apply ml-8 text-on-surface-strong;
   list-style: none;
 }
 
@@ -231,7 +325,7 @@ article ul>li {
 /* Custom bullet styling to match the example */
 article ul>li::before {
   content: "•";
-  color: var(--color-tint-9);
+  color: var(--color-on-surface-muted);
   font-family: Arial, sans-serif;
   font-size: min(1.5em, 24px);
   line-height: 1;
@@ -250,7 +344,7 @@ article strong {
 }
 
 article .card strong {
-  @apply group-hover:font-bold group-hover:text-tint-12;
+  @apply group-hover:font-bold group-hover:text-on-surface-strong;
 }
 
 /* Special mark styling */
@@ -261,7 +355,7 @@ article mark[style*="background-color:blue"] {
 
 /* Tables */
 article table {
-  @apply min-w-full bg-tint-base my-6;
+  @apply min-w-full bg-surface my-6;
 }
 
 /* Remove margin from tables inside details elements */
@@ -270,23 +364,23 @@ article details table {
 }
 
 article thead {
-  @apply border-b border-tint-8 bg-tint-3;
+  @apply border-b border-outline-strong bg-surface-alt;
 }
 
 article th {
-  @apply px-4 py-2 text-sm text-tint-12 font-medium text-left;
+  @apply px-4 py-2 text-sm text-on-surface-strong font-medium text-left;
 }
 
 article tbody {
-  @apply divide-y divide-tint-8;
+  @apply divide-y divide-outline-strong;
 }
 
 article tr {
-  @apply hover:bg-tint-hover transition-colors duration-200;
+  @apply hover:bg-surface-hover transition-colors duration-200;
 }
 
 article td {
-  @apply px-4 py-1.5 text-sm leading-relaxed border-r border-tint-8 last:border-r-0 text-tint-12 text-left;
+  @apply px-4 py-1.5 text-sm leading-relaxed border-r border-outline-strong last:border-r-0 text-on-surface-strong text-left;
 }
 
 /* Figure and Images */
@@ -299,7 +393,7 @@ article figure img {
 }
 
 article figure figcaption {
-  @apply mt-3 text-sm text-center text-neutral-9;
+  @apply mt-3 text-sm text-center text-on-surface-muted;
 }
 
 article pre+pre {
@@ -308,7 +402,7 @@ article pre+pre {
 
 /* Inline code (not in pre blocks) */
 article code:not(pre code) {
-  @apply py-[1px]! px-1.5! min-w-[1.625rem] ring-1 ring-inset ring-tint-4 bg-tint-2 rounded text-[.875em] inline break-words;
+  @apply py-[1px]! px-1.5! min-w-[1.625rem] ring-1 ring-inset ring-outline-subtle bg-surface-subtle rounded text-[.875em] inline break-words;
   font-family: var(--font-code);
   line-height: calc(max(1.20em, 1.25rem));
   overflow-wrap: break-word !important;
@@ -325,7 +419,7 @@ article pre {
 
 /* Default code block styles - prevent flash of unstyled content */
 article pre code {
-  @apply text-sm leading-relaxed block px-4 py-2 border border-tint-6 bg-tint-subtle text-tint-12 rounded-lg overflow-x-auto max-w-full min-w-0 relative;
+  @apply text-sm leading-relaxed block px-4 py-2 border border-outline bg-surface-subtle text-on-surface-strong rounded-lg overflow-x-auto max-w-full min-w-0 relative;
   white-space: pre;
   box-sizing: border-box;
   contain: layout inline-size;
@@ -333,7 +427,7 @@ article pre code {
 
 /* Override Prism's default styles while keeping our theme */
 article pre[class*="language-"] {
-  background-color: var(--color-tint-subtle) !important;
+  background-color: var(--color-surface-subtle) !important;
   padding: 0;
 }
 
@@ -357,7 +451,7 @@ h2[id], h3[id] {
 
 /* Details and Summary - Modern expandable design */
 article details {
-  @apply w-full bg-tint-base border border-tint-6 print:break-inside-avoid;
+  @apply w-full bg-surface border border-outline print:break-inside-avoid;
   margin-top: 0;
   border-bottom-width: 0;
 }
@@ -382,7 +476,7 @@ article details:not(:has(+ details)):not(:last-child) {
 
 /* Summary styling */
 article summary {
-  @apply px-4 pr-10 py-4 text-tint-10;
+  @apply px-4 pr-10 py-4 text-on-surface;
   cursor: pointer;
   position: relative;
   list-style: none;
@@ -394,7 +488,7 @@ article summary {
 }
 
 article summary:hover {
-  @apply text-tint-12;
+  @apply text-on-surface-strong;
 }
 
 /* Hide default marker */
@@ -442,11 +536,11 @@ article details > *:not(summary):last-child {
 
 /* Hover and open state */
 article details:hover summary {
-  @apply text-tint-strong;
+  @apply text-on-surface-strong;
 }
 
 article details[open] summary {
-  @apply text-tint-strong;
+  @apply text-on-surface-strong;
 }
 
 /* Hint/Admonition styles */
@@ -472,12 +566,12 @@ article .hint p {
    ================================================ */
 
 #navigation a.active {
-  @apply text-primary-9 font-bold;
+  @apply text-brand font-bold;
 }
 
 /* Apply left border only to nested pages (not first level) */
 #navigation details a.active:not(summary) {
-  @apply border-l-1 border-primary-9;
+  @apply border-l-1 border-brand;
 }
 
 /* Remove left border for summary elements (section headers) */
@@ -493,12 +587,12 @@ article .hint p {
 /* Add left border for nested summary elements (summary inside details) */
 #navigation details details summary a.active,
 #navigation details * details summary a.active {
-  @apply border-l-1 border-primary-9;
+  @apply border-l-1 border-brand;
 }
 
 /* TOC container - consistent with left navigation */
 #toc-container a.active {
-  @apply text-primary-9 font-medium;
+  @apply text-brand font-medium;
 }
 
 
@@ -630,11 +724,11 @@ article .hint p {
 }
 
 #navigation:hover::-webkit-scrollbar-thumb {
-  background: var(--color-tint-7);
+  background: var(--color-outline-hover);
 }
 
 #navigation::-webkit-scrollbar-thumb:active {
-  background: var(--color-tint-7);
+  background: var(--color-outline-hover);
 }
 
 #navigation::-webkit-scrollbar-corner {

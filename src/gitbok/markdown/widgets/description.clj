@@ -76,7 +76,7 @@
   (if (:parsing-in-hack-phase context)
     content
     (let [description (parse-description content)
-          new-desc (when description [:p {:class "text-lg text-tint-11"} description])
+          new-desc (when description [:p {:class "text-lg text-on-surface-muted"} description])
           title (parse-title content)
           lines (str/split-lines content)
           start-idx (.indexOf ^java.util.List lines "---")
