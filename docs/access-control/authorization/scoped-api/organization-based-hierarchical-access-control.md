@@ -511,6 +511,8 @@ meta:
 
 ### Access shared resource from a nested API
 
+Now, if `org-b` is a child organization of `org-a`, (**Organization.partOf** references `org-a`), we get the access to the shared resource:
+
 ```
 GET /Organization/org-b/fhir/Practitioner/prac-1
 ```
