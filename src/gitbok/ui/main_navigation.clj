@@ -203,9 +203,8 @@
           [:div {:class "flex h-9 w-full items-center overflow-hidden
                          rounded-md border border-outline bg-white
                          text-tint transition-all
-                         hover:border-surface-hover
-                         has-[input:focus-visible]:ring-2
-                         has-[input:focus-visible]:ring-brand
+                         hover:border-outline-input-focus
+                         focus-within:border-outline-input-focus
                          focus-within:[&_#meilisearch-shortcut]:hidden"}
            [:div {:class "flex min-w-0 flex-1 items-center gap-2"}
             [:div {:class "flex items-center justify-center pl-3"}

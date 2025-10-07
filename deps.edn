@@ -10,7 +10,7 @@
  :deps {org.clojure/clojure {:mvn/version "1.12.0"}
 
         ;; Web server and routing
-        http-kit/http-kit {:mvn/version "2.8.1"}
+        http-kit/http-kit {:mvn/version "2.9.0-beta2"}
         metosin/reitit {:mvn/version "0.9.1"}
         metosin/reitit-ring {:mvn/version "0.9.1"}
         metosin/reitit-middleware {:mvn/version "0.9.1"}
