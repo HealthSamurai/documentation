@@ -33,7 +33,7 @@ docker-compose up -d meilisearch
 make reindex-search
 ```
 
-## Environment Variables
+## Environment variables
 
 ### `PORT`
 ```
@@ -126,7 +126,7 @@ Runs Meilisearch:
 make up
 ```
 
-## Multi-Product Documentation Support
+## Multi-product documentation support
 
 This documentation system supports hosting multiple product documentation under a single deployment using the `products.yaml` configuration file.
 
@@ -172,7 +172,7 @@ products:
     ...
 ```
 
-### Expected Folder Structure
+### Expected folder structure
 
 Each product should have its own folder with the following structure:
 
@@ -190,7 +190,7 @@ docs-new/
         └── ...
 ```
 
-### GitBook Configuration (.gitbook.yaml)
+### GitBook configuration (.gitbook.yaml)
 
 Each product needs a `.gitbook.yaml` file with the following structure:
 
@@ -222,41 +222,87 @@ SUMMARY.md structure example:
 ...
 ```
 
-### How It Works
+### How it works
 
 1. The system reads `products.yaml` to discover available products.
 2. Each product configuration is loaded from its respective `.gitbook.yaml`. SUMMARY.md is loaded from the path provided by `.gitbook.yaml`.
 3. URLs are constructed as: `BASE_URL + DOCS_PREFIX + product.path + page-path`.
 4. The `root-redirect` option (if specified) redirects the root URL to a specific product.
 
+### Testing if everything is right
+
+Go to [run locally](#run-locally) section, run locally as described, then go to `localhost:8081/docs/<product-id>`.
+
 ## Set up search
 
 We use [Meilisearch](https://www.meilisearch.com/) as a search engine. 
-It is deployed in k8s (see k8s/meilisearch directory).
+It is deployed in k8s (see **k8s/meilisearch** directory).
 
 Every product has its own [meilisearch **index**](https://www.meilisearch.com/docs/learn/getting_started/indexes).
 To index the product documentation, we use [Meilisearch docs-scraper](https://github.com/meilisearch/docs-scraper]). 
 
-Every hour we scrap the html from `<domain>/<DOCS_PREFIX>/<product>/sitemap.xml` and recreate the index.
-See `k8s/meilisearch/cronjob-reindex.yaml` cronjob.
+Every hour (depends on a product) we scrap the html from `<domain>/<DOCS_PREFIX>/<product>/sitemap.xml` and recreate the index.
+See **k8s/meilisearch/cronjob-reindex.yaml** cronjob.
 
 ### How to set up search for a new product
 
-You need a deployed documentation website to set up a search.
+You need a deployed documentation website to set up a search, because we create search index through parsing the HTML of a product documentation.
 Setting up search means to create Meilisearch index using [Meilisearch docs-scraper](https://github.com/meilisearch/docs-scraper]).
 
-1. Add scrapper config
+Here's the instruction how to add meilisearch docs-scraper config and set k8s cronjob.
+
+1. Add scraper config.
 ```
 cp k8s/meilisearch/config.json k8s/meilisearch/config-<your-product>.json
 ```
-Make sure that `index_uid` is the same as `meilisearch-index` from the `products.yaml` file.
-Change `start_urls` and `sitemap_urls`.
+2. Make sure that `index_uid` is the same as `meilisearch-index` from the **products.yaml** file.
+3. Change `start_urls` and `sitemap_urls`.
+4. Add reindex cronjob
+```
+cp k8s/meilisearch/cronjob-reindex.yaml k8s/meilisearch/cronjob-reindex-<your-product>.yaml
+```
 
-2. Add scrapper config to `k8s/meilisearch/kustomization.yaml`. Update `configMapGenerator`.
+Update the following fields:
+- `metadata.name`: `meilisearch-reindex-<your-product>`
+- `spec.schedule`: adjust if you want
+- `env[].INDEX_NAME`: set to your index name (same as `index_uid` in config)
+- `volumes[].config.configMap.name`: `meilisearch-scraper-config-<your-product>`
 
-3. Commit and push, wait until FluxCD applies it.
+Example:
+```yaml
+metadata:
+  name: meilisearch-reindex-<your-product>
+spec:
+  schedule: "45 * * * *"  # Adjust timing
+  # ...
+  env:
+    - name: INDEX_NAME
+      value: "<your-index-name>"
+  # ...
+  volumes:
+    - name: config
+      configMap:
+        name: meilisearch-scraper-config-<your-product>
+```
+
+Note: The cronjob uses shared resources:
+- `configmap-reindex-env.yaml`: common Meilisearch URL
+- `configmap-reindex-script.yaml`: reindex script that ensures the update is atomic
+- `meilisearch-secret`: API key
+
+3. Add scraper config to `k8s/meilisearch/kustomization.yaml`
+
+Update `configMapGenerator` section:
+```yaml
+configMapGenerator:
+  - name: meilisearch-scraper-config-<your-product>
+    files:
+      - config.json=config-<your-product>.json
+```
+
+4. Commit and push, wait until FluxCD applies it
 
 You can also try it locally:
-- Run `make up` to run meilisearch from `docker-compose.yaml`.
-- `docker-compose run -v ./k8s/meilisearch/config-<your-product>.json:/docs-scraper/config-fhirbase.json --rm docs-scraper`
-- GET http://localhost:7700/index/<index-name> (Authorization: Basic -60DBZGy6zoDL6Q--s1-dHBWptiVKvK-XRsaacdvkOSM)
+1. Run `make up` to run meilisearch from `docker-compose.yaml`
+2. `docker-compose run -v ./k8s/meilisearch/config-<your-product>.json:/docs-scraper/config.json --rm docs-scraper`
+3. GET http://localhost:7700/indexes/<index-name> (Authorization: Bearer 60DBZGy6zoDL6Q--s1-dHBWptiVKvK-XRsaacdvkOSM)
