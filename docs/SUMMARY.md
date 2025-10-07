@@ -484,6 +484,7 @@
     * [NewRx Message](modules/eprescription/prescribing/newrx-message.md)
     * [CancelRx Message](modules/eprescription/prescribing/cancelrx-message.md)
     * [RxRenewal Message](modules/eprescription/prescribing/rx-renewal.md)
+    * [RxChange Message](modules/eprescription/prescribing/rx-change.md)
     * [How to test Callback](modules/eprescription/prescribing/how-to-test-callback.md)
   * [Directory](modules/eprescription/directory/README.md)
     * [DirectoryDownload Message](modules/eprescription/directory/directorydownload-message.md)
