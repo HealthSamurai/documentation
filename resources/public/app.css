@@ -307,11 +307,10 @@ html {
 /*   background-color: transparent; */
 /* } */
 
-/* Merge adjacent highlight marks */
+/* Merge adjacent highlight marks - remove inner border-radius */
 mark + mark {
   border-top-left-radius: 0;
   border-bottom-left-radius: 0;
-  margin-left: -4px;
 }
 
 mark:has(+ mark) {
@@ -763,16 +762,20 @@ article .hint p {
   }
 }
 
-#navigation::-webkit-scrollbar {
+/* Custom scrollbar for navigation and search dropdown */
+#navigation::-webkit-scrollbar,
+#meilisearch-dropdown::-webkit-scrollbar {
   width: 8px;
   height: 8px;
 }
 
-#navigation::-webkit-scrollbar-track {
+#navigation::-webkit-scrollbar-track,
+#meilisearch-dropdown::-webkit-scrollbar-track {
   background: transparent;
 }
 
-#navigation::-webkit-scrollbar-thumb {
+#navigation::-webkit-scrollbar-thumb,
+#meilisearch-dropdown::-webkit-scrollbar-thumb {
   background: transparent;
   background-clip: content-box;
   border: 1px solid transparent;
@@ -780,15 +783,18 @@ article .hint p {
   transition: background 0.3s ease;
 }
 
-#navigation:hover::-webkit-scrollbar-thumb {
+#navigation:hover::-webkit-scrollbar-thumb,
+#meilisearch-dropdown:hover::-webkit-scrollbar-thumb {
   background: var(--color-outline-hover);
 }
 
-#navigation::-webkit-scrollbar-thumb:active {
+#navigation::-webkit-scrollbar-thumb:active,
+#meilisearch-dropdown::-webkit-scrollbar-thumb:active {
   background: var(--color-outline-hover);
 }
 
-#navigation::-webkit-scrollbar-corner {
+#navigation::-webkit-scrollbar-corner,
+#meilisearch-dropdown::-webkit-scrollbar-corner {
   background: transparent;
 }
 
