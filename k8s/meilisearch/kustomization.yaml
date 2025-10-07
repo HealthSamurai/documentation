@@ -4,14 +4,16 @@ kind: Kustomization
 namespace: gitbok
 
 resources:
-  - serviceaccount.yaml
-  - configmap.yaml
-  - service.yaml
-  - statefulset.yaml
-  - cronjob-reindex.yaml
-  - cronjob-reindex-fhirbase.yaml
-  - servicemonitor.yaml
   - configmap-grafana-dashboard.yaml
+  - configmap.yaml
+  - configmap-reindex-env.yaml
+  - configmap-reindex-script.yaml
+  - cronjob-reindex-fhirbase.yaml
+  - cronjob-reindex.yaml
+  - service.yaml
+  - serviceaccount.yaml
+  - servicemonitor.yaml
+  - statefulset.yaml
 
 commonLabels:
   app.kubernetes.io/name: meilisearch
