@@ -453,11 +453,12 @@
                 (render-result-item item (+ start-index 1 idx) true))
               children-to-render)])
 
-          ;; Ungrouped results - show as individual items
-          (map-indexed
-           (fn [idx item]
-             (render-result-item item (+ start-index idx) false))
-           items))))))
+          ;; Ungrouped results - show as individual items with gray background
+          [:div {:class "rounded-2xl p-4 pr-5 pb-3 pl-5 space-y-2 bg-surface-alt"}
+           (map-indexed
+            (fn [idx item]
+              (render-result-item item (+ start-index idx) false))
+            items)])))))
 
 (defn meilisearch-dropdown [ctx]
   (let [request (:request ctx)
@@ -480,7 +481,8 @@
 
         ;; Results found - group and render
         (let [groups (group-results-by-hierarchy results)]
-          [:div {:class "w-[555px] max-h-[767px] overflow-y-auto rounded-lg p-6 pr-8 bg-white border border-outline shadow-dropdown"}
+          [:div {:id "meilisearch-dropdown"
+                 :class "w-[555px] max-h-[767px] overflow-y-auto rounded-lg p-6 pr-8 bg-white border border-outline shadow-dropdown"}
            [:div {:class "space-y-4"}
             ;; Render grouped results
             (render-search-results groups)]])))))
