@@ -27,14 +27,14 @@
                                    :federationOptions {:weight 1.2}
                                    :attributesToHighlight ["content" "hierarchy_lvl0" "hierarchy_lvl1"
                                                            "hierarchy_lvl2" "hierarchy_lvl3" "hierarchy_lvl6"]
-                                   :highlightPreTag "<mark class=\"bg-warning-2 text-on-surface-strong p-1 px-0.5 -mx-0.5 py-0.5 rounded\">"
+                                   :highlightPreTag "<mark class=\"!bg-highlight text-on-surface-strong px-0.5 py-0.5 -mx-0.5 rounded-sm\">"
                                    :highlightPostTag "</mark>"}
                                   {:indexUid index-name
                                    :q query
                                    :filter deprecated-filter
                                    :attributesToHighlight ["content" "hierarchy_lvl0" "hierarchy_lvl1"
                                                            "hierarchy_lvl2" "hierarchy_lvl3" "hierarchy_lvl6"]
-                                   :highlightPreTag "<mark class=\"bg-warning-2 text-on-surface-strong p-1 px-0.5 -mx-0.5 py-0.5 rounded\">"
+                                   :highlightPreTag "<mark class=\"!bg-highlight text-on-surface-strong px-0.5 py-0.5 -mx-0.5 rounded-sm\">"
                                    :highlightPostTag "</mark>"}]}
           response @(http-client/post search-url
                                       {:headers headers
@@ -253,7 +253,7 @@
                             level-value))]
 
     [:a {:href final-url
-         :class "flex items-center gap-3 px-3 py-2.5 rounded-md text-on-surface-strong transition-colors block hover:bg-surface-hover"
+         :class "flex items-center gap-3 p-2 rounded-lg text-on-surface-strong transition-all block border border-transparent hover:bg-surface-result-hover hover:border-outline-subtle"
          :data-result-index index}
 
      ;; Main content container
@@ -265,7 +265,7 @@
          ;; For grouped items, show the deepest level as title
          (let [title (or lvl5 lvl4 lvl3 lvl2 lvl1)]
            (when title
-             [:div {:class "text-sm font-normal leading-tight text-on-surface-strong pl-4"}
+             [:div {:class "text-sm font-normal leading-5 tracking-tight text-on-surface-secondary pl-4"}
               (if-let [highlighted (get-highlighted
                                     (cond
                                       lvl5 "hierarchy_lvl5"
@@ -279,7 +279,7 @@
 
          ;; Show content for grouped items
          (when content
-           [:div {:class "text-xs text-on-surface mt-1 pl-4 line-clamp-2"}
+           [:div {:class "text-xs text-text-muted leading-5 tracking-tight mt-1 pl-4 line-clamp-2"}
             (let [highlighted-content (get-highlighted "content" content)]
               (if (string? highlighted-content)
                 (hiccup2.core/raw highlighted-content)
@@ -287,17 +287,17 @@
 
         ;; Ungrouped item - show all levels
         [:div
-         ;; lvl0 - uppercase gray
+         ;; lvl0 - uppercase brand color
          (when lvl0
-           [:div {:class "text-xs uppercase text-on-surface-placeholder tracking-wider mb-0.5"}
+           [:div {:class "text-xs font-medium uppercase text-brand tracking-wider leading-4 mb-0.5"}
             (let [highlighted (get-highlighted "hierarchy_lvl0" lvl0)]
               (if (string? highlighted)
                 (hiccup2.core/raw highlighted)
                 highlighted))])
 
-         ;; lvl1 - bold, main title
+         ;; lvl1 - semibold, main title
          (when lvl1
-           [:div {:class "text-base font-bold leading-tight text-on-surface-strong"}
+           [:div {:class "text-base font-semibold leading-5 tracking-tight text-on-surface-strong"}
             (let [highlighted (get-highlighted "hierarchy_lvl1" lvl1)]
               (if (string? highlighted)
                 (hiccup2.core/raw highlighted)
@@ -305,7 +305,7 @@
 
          ;; lvl2 - semibold
          (when lvl2
-           [:div {:class "text-sm font-semibold leading-tight text-on-surface-strong mt-0.5"}
+           [:div {:class "text-sm font-semibold leading-5 tracking-tight text-on-surface-strong mt-0.5"}
             (let [highlighted (get-highlighted "hierarchy_lvl2" lvl2)]
               (if (string? highlighted)
                 (hiccup2.core/raw highlighted)
@@ -313,7 +313,7 @@
 
          ;; lvl3 - medium weight
          (when lvl3
-           [:div {:class "text-sm font-medium leading-tight text-on-surface-strong mt-0.5"}
+           [:div {:class "text-sm font-medium leading-5 tracking-tight text-on-surface-strong mt-0.5"}
             (let [highlighted (get-highlighted "hierarchy_lvl3" lvl3)]
               (if (string? highlighted)
                 (hiccup2.core/raw highlighted)
@@ -321,7 +321,7 @@
 
          ;; lvl4 - normal weight
          (when lvl4
-           [:div {:class "text-sm font-normal leading-tight text-on-surface-strong mt-0.5"}
+           [:div {:class "text-sm font-normal leading-5 tracking-tight text-on-surface-strong mt-0.5"}
             (let [highlighted (get-highlighted "hierarchy_lvl4" lvl4)]
               (if (string? highlighted)
                 (hiccup2.core/raw highlighted)
@@ -329,7 +329,7 @@
 
          ;; lvl5 - normal weight, slightly muted
          (when lvl5
-           [:div {:class "text-sm font-normal leading-tight text-on-surface-muted mt-0.5"}
+           [:div {:class "text-sm font-normal leading-5 tracking-tight text-on-surface-muted mt-0.5"}
             (let [highlighted (get-highlighted "hierarchy_lvl5" lvl5)]
               (if (string? highlighted)
                 (hiccup2.core/raw highlighted)
@@ -346,7 +346,7 @@
 
          ;; content - description text
          (when content
-           [:div {:class "text-xs text-on-surface mt-1 line-clamp-2"}
+           [:div {:class "text-xs text-text-muted leading-5 tracking-tight mt-1 line-clamp-2"}
             (let [highlighted-content (get-highlighted "content" content)
                   truncated (if (> (count content) 150)
                               (str (subs content 0 150) "...")
@@ -444,7 +444,7 @@
                 children-to-render (if first-is-h1-only?
                                      (rest items)
                                      items)]
-            [:div {:class "p-1 space-y-0.5"}
+            [:div {:class "rounded-2xl p-4 pr-5 pb-3 pl-5 space-y-2 bg-surface-alt"}
              ;; Group header
              (render-group-header first-item group-info start-index)
              ;; Child items - render with grouping, skipping h1-only if it's the header
@@ -480,8 +480,8 @@
 
         ;; Results found - group and render
         (let [groups (group-results-by-hierarchy results)]
-          [:div {:class "bg-white border border-outline md:shadow-lg md:ring-1 md:ring-outline-subtle overflow-hidden max-h-[48rem] overflow-y-auto md:w-[32rem]"}
-           [:div {:class "p-2 space-y-1"}
+          [:div {:class "w-[555px] max-h-[767px] overflow-y-auto rounded-lg p-6 pr-8 bg-white border border-outline shadow-dropdown"}
+           [:div {:class "space-y-4"}
             ;; Render grouped results
             (render-search-results groups)]])))))
 

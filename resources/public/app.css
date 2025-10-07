@@ -39,6 +39,14 @@
    * Utilities: hover:bg-surface-hover
    */
 
+  --color-surface-result-hover: #F0F0F0;
+  /* Search result hover background - FROM FIGMA
+   * Medium gray for search result item hover state
+   * Used in: Search result items on hover
+   * Locations: meilisearch.clj (result items)
+   * Utilities: hover:bg-surface-result-hover
+   */
+
   /* On-Surface Colors (Text on Backgrounds) */
   --color-on-surface: #717684;
   /* Main body text - NEW FROM DESIGNER (was #1F1C1C)
@@ -81,6 +89,13 @@
    * Utilities: text-on-surface-placeholder, placeholder:text-on-surface-placeholder
    */
 
+  --color-text-muted: #858894;
+  /* Muted descriptive text - FROM FIGMA
+   * Used in: Search result content descriptions, secondary informational text
+   * Locations: meilisearch.clj (content text in search results)
+   * Utilities: text-text-muted
+   */
+
   /* Outline Colors (Borders) */
   --color-outline: #E7E9EF;
   /* Default border color - FROM HARDCODES
@@ -94,6 +109,14 @@
    * Used in: Interactive element border hovers (cards, buttons) (3+ places)
    * Locations: landing_hero.clj, examples.clj
    * Utilities: hover:border-outline-hover
+   */
+
+  --color-outline-input-focus: #98A1AE;
+  /* Input border focus - FROM FIGMA
+   * Medium blue-gray for search input border when typing
+   * Used in: Search input focus state
+   * Locations: main_navigation.clj (search input)
+   * Utilities: focus-within:border-outline-input-focus
    */
 
   --color-outline-subtle: #EBECEE;
@@ -146,6 +169,14 @@
    * Locations: meilisearch.clj (mark highlighting), app.css (mark styling)
    * Utilities: bg-warning-bg
    * NOTE: Only warning color we actually use
+   */
+
+  --color-highlight: #F8D9D4;
+  /* Search highlight background - FROM FIGMA
+   * Soft pink/peach for highlighted search terms in search results
+   * Used in: Search result text highlighting (mark tags)
+   * Locations: meilisearch.clj (highlightPreTag in search queries)
+   * Utilities: bg-highlight
    */
 
   /* Color System - Semantic Colors */
@@ -242,6 +273,15 @@
   --shadow-aidbox-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1),
     0 4px 6px -4px rgb(0 0 0 / 0.1);
   --shadow-header: rgba(31, 28, 28, 0.08) 0px 1px 0px 0px;
+  --shadow-dropdown: 0px 21px 46px 0px rgba(0, 0, 0, 0.1),
+    0px 84px 84px 0px rgba(0, 0, 0, 0.09),
+    0px 190px 114px 0px rgba(0, 0, 0, 0.05),
+    0px 337px 135px 0px rgba(0, 0, 0, 0.01),
+    0px 527px 148px 0px rgba(0, 0, 0, 0);
+  /* Search dropdown shadow - FROM FIGMA
+   * Multi-layer shadow for search dropdown (5 layers)
+   * Locations: meilisearch.clj
+   */
 
   /* Border Radius */
   --radius-aidbox: 3px;
@@ -261,6 +301,23 @@ html {
 /* ================================================
    Component Classes
    ================================================ */
+
+/* Reset browser default styles for mark element */
+/* mark { */
+/*   background-color: transparent; */
+/* } */
+
+/* Merge adjacent highlight marks */
+mark + mark {
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0;
+  margin-left: -4px;
+}
+
+mark:has(+ mark) {
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 0;
+}
 
 /* Hero Ellipse Overlay */
 .hero-ellipse-overlay {
