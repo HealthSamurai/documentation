@@ -871,7 +871,9 @@ article .hint p {
   padding: 16px 0;
 }
 
-article .code-gitbook+.code-gitbook {
+/* Add spacing between consecutive elements of the same type */
+article .code-gitbook+.code-gitbook,
+article .big-link+.big-link {
   @apply mt-4;
 }
 
