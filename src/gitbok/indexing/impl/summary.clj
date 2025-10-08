@@ -23,13 +23,13 @@
 
 (def summary-classes
   "block py-1.5 transition-colors duration-200 ease-in-out
-   mr-2 my-0.5 clickable-summary text-small text-on-surface-muted
+   mr-2 my-0.5 clickable-summary text-sm leading-5 tracking-tight text-on-surface-secondary
    hover:text-brand")
 
 (def leaf-classes
   (str summary-classes
-       " hover:bg-surface-hover
-   active:hover:bg-brand-light
+       " hover:bg-surface-nav-hover
+   active:hover:bg-surface-nav-active
    active:hover:text-brand"))
 
 (defn render-markdown-link-in-toc [context title href & {:keys [is-cross-section] :or {is-cross-section false}}]

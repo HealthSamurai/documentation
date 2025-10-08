@@ -981,10 +981,10 @@ function showCopySuccess(button) {
               window.location.hash = targetId;
             }
 
-            // Instant scroll without animation
+            // Smooth scroll with animation (300ms ease-out)
             window.scrollTo({
               top: targetPosition,
-              behavior: 'instant'
+              behavior: 'smooth'
             });
 
             // Force immediate update of active section
