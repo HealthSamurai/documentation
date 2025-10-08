@@ -25,14 +25,21 @@
 
      ;; Initialize metrics
      (metrics/initialize-metrics!)
-     
+
      ;; Initialize all products and their indices
      (initialization/init-all-products!
       context
       :read-markdown-fn handlers/read-markdown-file)
 
 ;; Create and start HTTP server
-     (let [handler (routes/create-app context)
+     (let [;; Create initial router and save to state
+           initial-router (routes/create-app context)
+           _ (state/set-cache! context :app-router initial-router)
+           ;; Save router rebuild callback for use during reload
+           _ (state/set-cache! context :rebuild-router-fn
+                               (fn [] (routes/create-app context)))
+           ;; Create dynamic handler that reads router from state
+           handler (routes/create-dynamic-handler context)
            server-instance (http-kit/run-server handler {:port port
                                                          :thread 8})]
        (state/set-server! context server-instance)
@@ -52,8 +59,8 @@
 
      (let [total-duration (- (System/currentTimeMillis) startup-time)]
        (log/info "🚀🚀🚀 STARTUP COMPLETE 🚀🚀🚀" {:TOTAL-DURATION-MS total-duration
-                                                    :TOTAL-DURATION-SECONDS (/ total-duration 1000.0)
-                                                    :port port}))
+                                                   :TOTAL-DURATION-SECONDS (/ total-duration 1000.0)
+                                                   :port port}))
 
      {:status :started
       :port port

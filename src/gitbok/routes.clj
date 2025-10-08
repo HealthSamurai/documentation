@@ -274,8 +274,8 @@
                                    {:status 301
                                     :headers {"Location" new-uri}}))
         product-root-handler (if (= (:id product) "aidbox")
-                              #'gitbok.ui.landing-hero/render-landing
-                              #'handlers/redirect-to-readme)
+                               #'gitbok.ui.landing-hero/render-landing
+                               #'handlers/redirect-to-readme)
         routes [;; Specific routes first
 
                 ;; Meilisearch
@@ -383,3 +383,14 @@
        :router reitit.core/linear-router
        ;; Disable conflict detection since we want ordered matching
        :conflicts nil}))))
+
+(defn create-dynamic-handler
+  "Creates a handler wrapper that reads the current router from state on each request.
+   This allows the router to be updated (e.g., during reload) without restarting the HTTP server."
+  [context]
+  (fn [request]
+    (if-let [router (state/get-cache context :app-router)]
+      (router request)
+      {:status 503
+       :headers {"Content-Type" "text/plain"}
+       :body "Service initializing - router not ready"})))

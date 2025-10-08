@@ -96,10 +96,22 @@
             (let [start-time (System/currentTimeMillis)]
               (log/info "🚀reload start" {:action "starting-reload"})
 
-              ;; Use unified initialization
+              ;; Use unified initialization (throws on error)
               (rebuild-all-caches context :read-markdown-fn read-markdown-fn)
 
-              ;; Update state only after successful reload
+              ;; Rebuild router with updated products using callback (throws on error)
+              (when-let [rebuild-fn (state/get-cache context :rebuild-router-fn)]
+                (log/info "🔄 Rebuilding router" {:action "router-rebuild-start"})
+                (let [router-start-time (System/currentTimeMillis)
+                      new-router (rebuild-fn)]
+                  (state/set-cache! context :app-router new-router)
+                  (let [duration (- (System/currentTimeMillis) router-start-time)
+                        products (state/get-products context)]
+                    (log/info "✅ Router rebuilt" {:duration-ms duration
+                                                  :product-count (count products)
+                                                  :products (mapv :id products)}))))
+
+              ;; Update state ONLY after ALL operations succeeded
               (update-reload-state! context assoc
                                     :git-head new-head
                                     :last-reload-time (java.util.Date.)
@@ -112,9 +124,9 @@
                                                            :TOTAL-DURATION-SECONDS (/ duration 1000.0)})))
             (catch Exception e
               (let [stack-trace (with-out-str (clojure.stacktrace/print-stack-trace e))]
-                (log/error e "reload failed" {:error (.getMessage e)
-                                              :exception-class (.getName (.getClass e))
-                                              :stack-trace stack-trace})))
+                (log/error e "❌ Reload failed - will retry on next check" {:error (.getMessage e)
+                                                                           :exception-class (.getName (.getClass e))
+                                                                           :stack-trace stack-trace})))
             (finally
               (set-reloading! context false))))
 
