@@ -9,12 +9,14 @@ It is required that RxChange is preceded by NewRx.
 
 Once the pharmacy sends an RxChangeRequest, ePrescription module receives Surescripts message at `/eprescriptions/rx` endpoint and saves it to Aidbox.
 Resources created:
+
 - `Provenance` - solely as a record that an event has occurred.
-It is intended to serve as an audit/logging artifact, and should not be relied upon for driving business logic.
+  It is intended to serve as an audit/logging artifact, and should not be relied upon for driving business logic.
 - `MedicationRequest` reflecting the incoming data
 - `DetectedIssue` - if only there were some mismatches in related resources
 
 There are several ways to track the newly created **MedicationRequest**s:
+
 - [Either of Aidbox Subscriptions mechanisms](../../topic-based-subscriptions/README.md)
 - Manual/automated tracking based on **MedicationRequest** modification date and/or status
 
@@ -41,7 +43,7 @@ PATCH /fhir/MedicationRequest/mr1
 
 - op: add
   path: '/extension/-'
-  value: {"url": "http://aidbox.app/ePrescription/FHIRSchema/medication-request-rx-change-decision", "valueCode": "approved"}
+  value: { "url": "http://aidbox.app/ePrescription/FHIRSchema/medication-request-rx-change-decision", "valueCode": "approved" }
 ```
 
 In case there's a need to change an earlier decision (that wasn't yet sent with `/eprescription/rx/respond-to-renewal`), you can use a similar patch, but with `replace` operation:
@@ -52,7 +54,7 @@ PATCH /fhir/MedicationRequest/mr1
 - op: replace
   # Replace with the index of the necessary extension
   path: '/extension/3'
-  value: {"url": "http://aidbox.app/ePrescription/FHIRSchema/medication-request-rx-change-decision", "valueCode": "denied"}
+  value: { "url": "http://aidbox.app/ePrescription/FHIRSchema/medication-request-rx-change-decision", "valueCode": "denied" }
 ```
 
 Allowed decisions are:
@@ -69,7 +71,20 @@ Allowed decisions are:
   - Uses `http://aidbox.app/ePrescription/FHIRSchema/medication-request-rx-change-decision-note` as a decision note.
 - **validated**: Can only be used for **U** request type, alongside **denied**.
 
-After the response is set, `/api/rx/respond-to-change` endpoint should be invoked with the ID of the decision-containing MedicationRequest.
+
+| MessageRequestCode | Approved | ApprovedWithChanges | Denied | Pending | Validated |
+|--------------------|----------|---------------------|--------|---------|-----------|
+| **G**              | ✓        | ✓                   | ✓      | ✓       |           |
+| **T**              | ✓        | ✓                   | ✓      | ✓       |           |
+| **S**              | ✓        | ✓                   | ✓      | ✓       |           |
+| **OS**             | ✓        | ✓                   | ✓      | ✓       |           |
+| **D**              | ✓        | ✓                   | ✓      | ✓       |           |
+| **U**              |          |                     | ✓      | ✓       | ✓         |
+| **P**              | ✓        | ✗                   | ✓      | ✓       |           |
+
+
+After the response is set, `/api/rx/respond-to-change` endpoint should be invoked with the ID of the decision-containing
+MedicationRequest.
 
 ```json
 POST /eprescription/rx/respond-to-renewal
