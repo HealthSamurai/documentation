@@ -23,14 +23,9 @@
 
 (def summary-classes
   "block py-1.5 transition-colors duration-200 ease-in-out
-   mr-2 my-0.5 clickable-summary text-sm leading-5 tracking-tight text-on-surface-secondary
-   hover:text-brand")
+   mr-2 my-0.5 clickable-summary text-sm leading-5 tracking-tight text-on-surface-secondary")
 
-(def leaf-classes
-  (str summary-classes
-       " hover:bg-surface-nav-hover
-   active:hover:bg-surface-nav-active
-   active:hover:text-brand"))
+(def leaf-classes summary-classes)
 
 (defn render-markdown-link-in-toc [context title href & {:keys [is-cross-section] :or {is-cross-section false}}]
   (let [is-external (str/starts-with? href "http")
@@ -47,7 +42,7 @@
           ;; Only add HTMX attributes if not external and not cross-section
           (and (not is-external) (not is-cross-section))
           (assoc :hx-get (str (http/get-partial-product-prefixed-url context
-                                  (subs href (count (http/get-product-prefix context)))))
+                                                                     (subs href (count (http/get-product-prefix context)))))
                  :hx-target "#content"
                  :hx-push-url href
                  :hx-swap "outerHTML"))
