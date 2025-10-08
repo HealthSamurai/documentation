@@ -3,7 +3,7 @@
             [hiccup2.core :as hiccup]
             [clojure.string :as str]))
 
-(defn parse-title 
+(defn parse-title
   ([content] (parse-title content nil))
   ([content filepath]
    (let [lines (str/split-lines content)
@@ -18,12 +18,12 @@
          yaml-lines (when (and start-idx end-idx)
                       (subvec (vec lines)
                               (inc start-idx) end-idx))
-         frontmatter (when yaml-lines 
+         frontmatter (when yaml-lines
                        (try
                          (yaml/parse-string (str/join "\n" yaml-lines))
                          (catch Exception _ nil)))
          yaml-title (:title frontmatter)
-         
+
          ;; Then try H1
          h1-idx (some #(when (and (>= % 0)
                                   (str/starts-with? (str/trim (nth lines %)) "# "))
@@ -31,7 +31,7 @@
                       (range (count lines)))
          h1-line (when h1-idx (nth lines h1-idx))
          h1-title (when h1-line (str/trim (subs h1-line 2)))
-         
+
          ;; Then try H2
          h2-idx (when-not h1-title
                   (some #(when (and (>= % 0)
@@ -40,7 +40,7 @@
                         (range (count lines))))
          h2-line (when h2-idx (nth lines h2-idx))
          h2-title (when h2-line (str/trim (subs h2-line 3)))
-         
+
          ;; Finally, use filename as fallback
          filename-title (when filepath
                           (-> filepath
@@ -76,7 +76,7 @@
   (if (:parsing-in-hack-phase context)
     content
     (let [description (parse-description content)
-          new-desc (when description [:p {:class "text-lg text-on-surface-muted"} description])
+          new-desc (when description [:p {:class "text-lg leading-7 font-normal text-on-surface-secondary border-b border-outline-subtle pb-[17px]"} description])
           title (parse-title content)
           lines (str/split-lines content)
           start-idx (.indexOf ^java.util.List lines "---")
