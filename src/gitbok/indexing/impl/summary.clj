@@ -148,6 +148,7 @@
                  (recur
                   (if cur (conj acc cur) acc)
                   {:title section-title
+                   :section-title section-title
                    :j j
                    :children []}
                   section-title ;; Track current section
@@ -204,6 +205,7 @@
                                              :parsed parsed
                                              :href href
                                              :is-cross-section is-cross-section ;; Store the flag in the data structure
+                                             :section-title current-section
                                              :title (when href (render-markdown-link-in-toc context (:title parsed) href
                                                                                             :is-cross-section is-cross-section))}))))
                                 (remove nil?)
