@@ -8,6 +8,7 @@ resources:
   - configmap.yaml
   - configmap-reindex-env.yaml
   - configmap-reindex-script.yaml
+  - cronjob-cleanup-tasks.yaml
   - cronjob-reindex-fhirbase.yaml
   - cronjob-reindex.yaml
   - service.yaml

@@ -84,3 +84,4 @@ data:
         print(f'Error: Temp index {INDEX_NAME}_temp was not created')
         exit(1)
     "
+

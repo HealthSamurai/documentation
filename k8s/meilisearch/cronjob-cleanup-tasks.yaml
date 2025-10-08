@@ -1,0 +1,75 @@
+apiVersion: batch/v1
+kind: CronJob
+metadata:
+  name: meilisearch-cleanup-tasks
+  namespace: gitbok
+spec:
+  schedule: "0 2 * * *" # Daily at 2 AM
+  concurrencyPolicy: Forbid
+  successfulJobsHistoryLimit: 1
+  failedJobsHistoryLimit: 2
+  jobTemplate:
+    spec:
+      ttlSecondsAfterFinished: 86400 # Delete jobs after 24 hours
+      template:
+        spec:
+          restartPolicy: OnFailure
+          containers:
+            - name: cleanup
+              image: python:3.10-slim
+              envFrom:
+                - configMapRef:
+                    name: meilisearch-reindex-env
+              env:
+                - name: MEILISEARCH_API_KEY
+                  valueFrom:
+                    secretKeyRef:
+                      name: meilisearch-secret
+                      key: master-key
+              command:
+                - python3
+                - -c
+                - |
+                  import os
+                  import json
+                  import urllib.request
+                  import urllib.error
+                  from datetime import datetime, timedelta
+
+                  MEILISEARCH_HOST_URL = os.environ.get('MEILISEARCH_HOST_URL')
+                  MEILISEARCH_API_KEY = os.environ.get('MEILISEARCH_API_KEY')
+
+                  headers = {
+                      'Authorization': f'Bearer {MEILISEARCH_API_KEY}',
+                      'Content-Type': 'application/json'
+                  }
+
+                  # Calculate cutoff date (7 days ago)
+                  cutoff_date = (datetime.utcnow() - timedelta(days=7)).strftime('%Y-%m-%dT%H:%M:%S.%fZ')
+
+                  print(f'Cleaning up Meilisearch tasks older than {cutoff_date}...')
+
+                  # Delete old tasks
+                  url = f'{MEILISEARCH_HOST_URL}/tasks?statuses=succeeded,failed,canceled&beforeEnqueuedAt={cutoff_date}'
+
+                  try:
+                      req = urllib.request.Request(url, headers=headers, method='DELETE')
+                      with urllib.request.urlopen(req) as response:
+                          status_code = response.getcode()
+                          resp_body = response.read().decode('utf-8')
+
+                          if status_code in [200, 202]:
+                              print(f'Task cleanup initiated successfully')
+                              print(f'Response: {resp_body}')
+                          else:
+                              print(f'Warning: Unexpected status code {status_code}')
+                              print(f'Response: {resp_body}')
+                  except urllib.error.HTTPError as e:
+                      print(f'Error: Task cleanup failed with code {e.code}')
+                      print(f'Response: {e.read().decode("utf-8")}')
+                      exit(1)
+                  except Exception as e:
+                      print(f'Error: {str(e)}')
+                      exit(1)
+
+                  print('Task cleanup completed')
