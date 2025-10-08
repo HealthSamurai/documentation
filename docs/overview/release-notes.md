@@ -7,7 +7,7 @@
 * Aidbox FHIR server
   * Added the [`validate-fhir-resource`](../modules/other-modules/mcp.md#tools) MCP tool to validate FHIR resources.
   * Added support for SMART-on-FHIR v2 scopes with [search parameters](../access-control/authorization/smart-on-fhir/smart-scopes-for-limiting-access.md#scopes-with-search-parameters).
-  * The Aidbox terminology module now supports [supplements](../terminology-module/aidbox-terminology-module/capabilities.md) for CodeSystems and ValueSets allowting to override the external terminology content with local supplements.
+  * The Aidbox terminology module now supports [supplements](../terminology-module/aidbox-terminology-module/capabilities.md) for CodeSystems and ValueSets allowing to override the external terminology content with local supplements.
   * Improvements to [SSO with Github](../tutorials/security-access-control-tutorials/github.md) flow.
   * The Aidbox Topic-based subscriptions module now supports [AMQP message broker](../modules/topic-based-subscriptions/aidbox-topic-based-subscriptions.md#currently-supported-channels) as a destination.
   * Added support for [Orgaization-based hierarchical access control](../modules/topic-based-subscriptions/aidbox-topic-based-subscriptions.md#organization-based-hierarchical-filtering) in Topic-based Subscriptions
