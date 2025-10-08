@@ -22,7 +22,6 @@
        [:summary
         {:class "flex items-center justify-between
                   text-small font-normal
-                  hover:bg-surface-nav-hover
                   transition-colors duration-200 ease-in-out
                   cursor-pointer group"}
         [:div {:class "flex-1 clickable-summary"}
@@ -31,7 +30,7 @@
                   (fn [title] (assoc-in title [1 :class] summary/summary-classes)))
           active?)]
         (ico/chevron-right "chevron size-3 text-small font-normal
-                            group-hover:text-brand transition-all
+                            transition-all
                             duration-200 transform rotate-0 group-open:rotate-90 mr-4")]
        [:div {:class "ml-6 border-l-1 border-outline"}
         (for [c (:children item)]

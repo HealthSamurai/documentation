@@ -78,6 +78,14 @@
    * Utilities: text-breadcrumb-separator
    */
 
+  --color-tag-bg: #EEF1F4;
+  /* Tag background color - FROM FIGMA
+   * Light gray background for tags in landing cards
+   * Used in: Landing page card tags
+   * Locations: tags.clj (landing cards)
+   * Utilities: bg-tag-bg
+   */
+
   /* On-Surface Colors (Text on Backgrounds) */
   --color-on-surface: #717684;
   /* Main body text - NEW FROM DESIGNER (was #1F1C1C)
@@ -685,8 +693,22 @@ article .hint p {
    Navigation Styles (#navigation)
    ================================================ */
 
-#navigation a.active {
-  @apply text-brand font-bold;
+/* Base state - always have padding to prevent layout shift */
+#navigation a,
+#navigation summary {
+  @apply py-1 rounded;
+}
+
+/* Hover state for navigation links */
+#navigation a:hover,
+#navigation summary:hover {
+  @apply bg-surface-nav-active text-on-surface-secondary font-normal;
+}
+
+/* Active state for navigation links */
+#navigation a.active,
+#navigation summary:has(a.active) {
+  @apply bg-surface-nav-active text-on-surface-secondary font-medium;
 }
 
 /* Apply left border only to nested pages (not first level) */
