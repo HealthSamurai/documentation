@@ -95,7 +95,7 @@ In this guide we will use the [HAPI FHIR Java client library](https://github.com
    ```
 
 3. Create **src/main/java/com/example/AidboxHapiClient.java**:
-   ```
+   ```java
    package com.example;
    
    import ca.uhn.fhir.context.FhirContext;
