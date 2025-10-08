@@ -57,3 +57,16 @@ products:
       - text: "Github"
         href: "https://github.com/fhirbase/fhirbase"
 
+  - id: auditbox
+    name: "Auditbox"
+    # url <BASE_URL><DOCS_PREFIX>/auditbox
+    path: /auditbox
+    config: auditbox/.gitbook.yaml
+    logo: .gitbook/assets/aidbox_logo.jpg
+    favicon: .gitbook/assets/favicon.ico
+    og-preview-text: "Auditbox Docs"
+    meilisearch-index: "auditbox"
+    links:
+      - text: "Overview"
+        href: "/"
+
