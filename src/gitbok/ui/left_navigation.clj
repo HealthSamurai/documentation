@@ -22,7 +22,7 @@
        [:summary
         {:class "flex items-center justify-between
                   text-small font-normal
-                  hover:bg-surface-hover
+                  hover:bg-surface-nav-hover
                   transition-colors duration-200 ease-in-out
                   cursor-pointer group"}
         [:div {:class "flex-1 clickable-summary"}
@@ -50,7 +50,7 @@
       (when-not
        (str/blank? (:title item))
         [:div {:class "mt-4 mb-1 first:mt-2 ml-4"}
-         [:span {:class "text-mini font-semibold text-on-surface-strong uppercase tracking-wider"}
+         [:span {:class "text-xs font-medium leading-4 text-brand uppercase tracking-wider"}
           (:title item)]])
       (for [ch (:children item)]
         (render-left-navigation url ch))])])
