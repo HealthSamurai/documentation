@@ -47,6 +47,22 @@
    * Utilities: hover:bg-surface-result-hover
    */
 
+  --color-surface-nav-hover: #F6F7F9;
+  /* Left navigation hover background - FROM FIGMA
+   * Light gray for navigation item hover state
+   * Used in: Left navigation items on hover
+   * Locations: left_navigation.clj, summary.clj
+   * Utilities: hover:bg-surface-nav-hover
+   */
+
+  --color-surface-nav-active: #FCF8F7;
+  /* Left navigation active background - FROM FIGMA
+   * Light warm gray for active navigation item
+   * Used in: Active navigation items
+   * Locations: summary.clj
+   * Utilities: active:hover:bg-surface-nav-active
+   */
+
   /* On-Surface Colors (Text on Backgrounds) */
   --color-on-surface: #717684;
   /* Main body text - NEW FROM DESIGNER (was #1F1C1C)
@@ -646,9 +662,9 @@ article .hint p {
   @apply border-l-1 border-brand;
 }
 
-/* TOC container - consistent with left navigation */
+/* TOC container - active state from Figma */
 #toc-container a.active {
-  @apply text-brand font-medium;
+  @apply text-on-surface-secondary font-medium;
 }
 
 

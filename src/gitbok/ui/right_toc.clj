@@ -34,17 +34,17 @@
                      (str "#" (utils/s->url-slug (:id (:attrs item)))))
               ;; Add border styling for nested items like left navigation
               li-class (str
-                        "hover:bg-surface-hover hover:text-on-surface-strong hover:border-outline-hover max-w-56"
+                        "max-w-56"
                         (cond
-                          (= level 2) "break-words py-0.5 border-transparent"
-                          (>= level 3) "break-words ml-2 border-l-2 border-outline-subtle my-0"))
+                          (= level 2) " break-words py-0.5"
+                          (>= level 3) " break-words ml-2 border-l-2 border-outline-subtle my-0"))
 
-              link-class (str "block px-3 text-small font-content text-on-surface-strong/70 "
-                              "transition-colors duration-200 ease-in-out no-underline "
-                              "relative py-1 "
-                              (if (>= level 3)
-                                " opacity-60 text-sm "
-                                " opacity-80 text-sm "))]
+              link-class (str "block px-3 text-sm leading-5 font-normal no-underline relative py-1 "
+                              "transition-colors duration-[300ms] ease-out "
+                              "hover:bg-surface-nav-hover "
+                              (if (= level 2)
+                                "text-on-surface-secondary"
+                                "text-on-surface"))]
           [:li {:class li-class}
            [:a {:href href
                 :class link-class}
