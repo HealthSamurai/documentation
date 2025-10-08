@@ -37,7 +37,7 @@
                         "max-w-56"
                         (cond
                           (= level 2) " break-words py-0.5"
-                          (>= level 3) " break-words ml-2 border-l-2 border-outline-subtle my-0"))
+                          (>= level 3) " break-words ml-2 border-l-1 border-outline-subtle my-0"))
 
               link-class (str "block px-3 text-sm leading-5 font-normal no-underline relative py-1 "
                               "transition-colors duration-[300ms] ease-out "
