@@ -2,55 +2,94 @@
   (:require
    [gitbok.http :as http]
    [clojure.string :as str]
-   [gitbok.ui.heroicons :as ico]
-   [gitbok.products]))
+   [gitbok.products]
+   [gitbok.state :as state]))
+
+(defn find-breadcrumb-path
+  "Recursively searches for an item with matching href in the summary tree.
+   Returns a vector of items representing the path from root to the matching item."
+  ([summary target-href]
+   (find-breadcrumb-path summary target-href []))
+  ([node target-href path]
+   (cond
+     (nil? node) nil
+
+     ;; If this is a map with :href matching our target
+     (and (map? node) (:href node))
+     (if (= (:href node) target-href)
+       (conj path node)
+       ;; Search in children
+       (when-let [children (:children node)]
+         (some #(find-breadcrumb-path % target-href (conj path node)) children)))
+
+     ;; If this is a sequence (like the root summary), search each item
+     (sequential? node)
+     (some #(find-breadcrumb-path % target-href path) node)
+
+     ;; Otherwise, check for children
+     :else
+     (when-let [children (:children node)]
+       (some #(find-breadcrumb-path % target-href path) children)))))
 
 (defn breadcrumb [context uri]
   (when (and uri (not (str/blank? uri)))
-    (let [parts (->> (str/split uri #"/")
-                     (remove str/blank?)
-                     vec)]
+    (let [summary (state/get-summary context)
+          ;; Build full URI with product prefix for matching
+          full-uri (http/get-product-prefixed-url context uri)
+          ;; Find the breadcrumb path in the navigation structure
+          breadcrumb-path (when summary (find-breadcrumb-path summary full-uri))
+          ;; Get the current page (last item in path)
+          current-page (last breadcrumb-path)
+          ;; Get section title from current page
+          section-title (:section-title current-page)
+          ;; Get parent pages (all except current page)
+          parent-pages (when (> (count breadcrumb-path) 1)
+                         (drop-last breadcrumb-path))]
 
-      ;; Special handling based on specific requirements
       (cond
         ;; Don't show breadcrumb for readme pages
-        (= (first parts) "readme")
+        (str/includes? uri "readme")
         nil
 
-        ;; For single-level pages like "getting-started", show "overview" link
-        (= 1 (count parts))
-        [:nav {:aria-label "Breadcrumb"}
+        ;; Show breadcrumb with section title and parent pages
+        (or section-title (seq parent-pages))
+        [:nav {:aria-label "Breadcrumb"
+               :class "mb-[11px]"}
          [:ol {:class "flex flex-wrap items-center"}
-          [:li {:class "flex items-center gap-1.5"}
-           [:a {:href (http/get-product-prefixed-url context "overview")
-                :hx-get (http/get-partial-product-prefixed-url context "overview")
-                :hx-target "#content"
-                :hx-push-url (http/get-product-prefixed-url context "overview")
-                :hx-swap "outerHTML"
-                :class "text-xs font-semibold uppercase items-center gap-1.5 hover:text-on-surface-strong text-brand"}
-            "overview"]]]]
+          (let [items (vec (concat
+                            ;; Add section title as first item if available
+                            (when section-title
+                              [{:type :section :title section-title}])
+                            ;; Add parent pages
+                            (when parent-pages
+                              (map (fn [page]
+                                     {:type :page
+                                      :title (get-in page [:parsed :title])
+                                      :href (:href page)
+                                      :relative-href (str/replace-first (get-in page [:parsed :href] "") #"^/" "")})
+                                   parent-pages))))]
+            (interpose
+             [:span {:class "text-xs font-semibold leading-none text-breadcrumb-separator mx-2"} "/"]
+             (map-indexed
+              (fn [idx item]
+                (if (= :section (:type item))
+                  ;; Section title without link
+                  [:li {:key idx
+                        :class "flex items-center gap-2 bg-breadcrumb-bg rounded-md px-2 py-0.5"}
+                   [:span {:class "text-sm font-normal leading-6 text-on-surface"}
+                    (:title item)]]
+                  ;; Parent page with link
+                  [:li {:key idx
+                        :class "flex items-center gap-2 bg-breadcrumb-bg rounded-md px-2 py-0.5"}
+                   [:a {:href (:href item)
+                        :hx-get (http/get-partial-product-prefixed-url context (:relative-href item))
+                        :hx-target "#content"
+                        :hx-push-url (:href item)
+                        :hx-swap "outerHTML"
+                        :class "text-sm font-normal leading-6 text-on-surface hover:text-on-surface-strong"}
+                    (:title item)]]))
+              items)))]]
 
-        ;; For other nested pages, show normal breadcrumb
+        ;; Fallback: no breadcrumb
         :else
-        (let [parts-to-show (vec (drop-last parts))]
-          (when (seq parts-to-show)
-            [:nav {:aria-label "Breadcrumb"}
-             [:ol {:class "flex flex-wrap items-center"}
-              (interpose
-               (ico/chevron-right "chevron size-3 text-on-surface group-hover:text-brand mx-2")
-               (map-indexed
-                (fn [idx part]
-                  (let [path (->> (take (inc idx) parts-to-show)
-                                  (str/join "/"))
-                        href (http/get-product-prefixed-url context path)
-                        part-text (str/replace part #"-" " ")]
-                    [:li {:key idx
-                          :class "flex items-center gap-1.5"}
-                     [:a {:href href
-                          :hx-get (http/get-partial-product-prefixed-url context path)
-                          :hx-target "#content"
-                          :hx-push-url href
-                          :hx-swap "outerHTML"
-                          :class "text-xs font-semibold uppercase items-center gap-1.5 hover:text-on-surface-strong text-brand"}
-                      part-text]]))
-                parts-to-show))]]))))))
+        nil))))
