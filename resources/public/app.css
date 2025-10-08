@@ -218,6 +218,28 @@
    * Utilities: bg-highlight
    */
 
+  /* Module card colors */
+  --color-module-bg-end: #FFF0F0;
+  /* Light pink background end for module cards gradient
+   * Used in: Module cards background gradient
+   * Locations: landing_hero.clj (modules section)
+   */
+
+  --color-module-border: #FDDFDD;
+  /* Module card top border color
+   * Light pink border for module cards
+   * Used in: Module cards border-top
+   * Locations: landing_hero.clj (modules section)
+   * Utilities: border-module-border
+   */
+
+  --color-module-label: #EF4136;
+  /* Module card label text color - bright red/orange
+   * Used in: Module card category labels (MPI, ePrescription, Forms)
+   * Locations: landing_hero.clj (modules section)
+   * Utilities: text-module-label
+   */
+
   /* Color System - Semantic Colors */
   /* Info (blue-based) */
   --color-info-2: rgb(239, 246, 255);
@@ -347,6 +369,11 @@ html {
 /* ================================================
    Component Classes
    ================================================ */
+
+/* Module card gradient background */
+.module-card-gradient {
+  background: linear-gradient(90deg, #FFFFFF 44.8%, var(--color-module-bg-end) 161.49%);
+}
 
 /* Reset browser default styles for mark element */
 /* mark { */
@@ -694,9 +721,17 @@ article .hint p {
    ================================================ */
 
 /* Base state - always have padding to prevent layout shift */
-#navigation a,
+#navigation a {
+  @apply py-1 rounded flex items-center min-h-9;
+}
+
 #navigation summary {
-  @apply py-1 rounded;
+  @apply py-1 rounded min-h-9;
+}
+
+/* Remove padding from links inside summary to avoid double padding */
+#navigation summary a {
+  @apply py-0 min-h-0;
 }
 
 /* Hover state for navigation links */
@@ -902,4 +937,13 @@ article .big-link+.big-link {
 /* Add spacing between consecutive markdown-code blocks that are direct siblings */
 article pre.markdown-code+pre.markdown-code {
   margin-top: 1rem !important;
+}
+
+/* Navigation chevron rotation - only for direct parent details */
+details.nav-item > summary .nav-chevron {
+  transform: rotate(0deg);
+}
+
+details.nav-item[open] > summary .nav-chevron {
+  transform: rotate(90deg);
 }

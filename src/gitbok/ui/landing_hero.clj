@@ -308,6 +308,38 @@
      [:p {:class "text-sm leading-[22.75px] font-normal text-on-surface-secondary font-content"}
       "Intuitive UI to work with FHIR data, manage users, clients, access policies, and configure system settings."]]]])
 
+(defn modules-section
+  "Modules section with MPI, ePrescription, and Forms cards"
+  [context]
+  [:div {:class "mt-16 mb-12"}
+   ;; Modules header - matching Main concepts styling
+   [:div {:class "mb-6"}
+    [:h2 {:class "text-[28px] font-semibold leading-9 tracking-[-0.03em] text-on-surface-strong font-sans"} "Modules"]]
+
+   ;; Three cards in horizontal layout - responsive grid
+   [:div {:class "grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4"}
+    
+    ;; Card 1: Master Patient Index (MPI)
+    [:a {:class "module-card-gradient rounded-lg p-6 flex flex-col border border-module-border min-h-[171px] no-underline hover:bg-white transition-all duration-300"
+         :href (http/get-product-prefixed-url context "/modules/mpi")}
+     [:div {:class "text-xs font-medium uppercase tracking-[0.05em] text-module-label leading-[14px]"} "MPI"]
+     [:h3 {:class "text-base font-medium leading-8 tracking-[-0.03em] text-on-surface-strong m-0"} "Master Patient Index"]
+     [:p {:class "text-sm font-normal text-on-surface-secondary m-0 mt-2 leading-[22.75px]"} "A module in Aidbox that ensures accurate patient identification by detecting and removing duplicate records"]]
+    
+    ;; Card 2: Electronic prescriptions (ePrescription)
+    [:a {:class "module-card-gradient rounded-lg p-6 flex flex-col border border-module-border min-h-[171px] no-underline hover:bg-white transition-all duration-300"
+         :href (http/get-product-prefixed-url context "/modules/eprescription")}
+     [:div {:class "text-xs font-medium uppercase tracking-[0.05em] text-module-label leading-[14px]"} "ePrescription"]
+     [:h3 {:class "text-base font-medium leading-8 tracking-[-0.03em] text-on-surface-strong m-0"} "Electronic prescriptions"]
+     [:p {:class "text-sm font-normal text-on-surface-secondary m-0 mt-2 leading-[22.75px]"} "A module for managing electronic prescriptions Modern solution for healthcare organizations compliant with strict industry standards"]]
+    
+    ;; Card 3: Form building and SDC (Forms)
+    [:a {:class "module-card-gradient rounded-lg p-6 flex flex-col border border-module-border min-h-[171px] no-underline hover:bg-white transition-all duration-300"
+         :href (http/get-product-prefixed-url context "/modules/aidbox-forms")}
+     [:div {:class "text-xs font-medium uppercase tracking-[0.05em] text-module-label leading-[14px]"} "Forms"]
+     [:h3 {:class "text-base font-medium leading-8 tracking-[-0.03em] text-on-surface-strong m-0"} "Form building and SDC"]
+     [:p {:class "text-sm font-normal text-on-surface-secondary m-0 mt-2 leading-[22.75px]"} "A pluggable module for healthcare vendors who need to create digital forms, questionnaires, and surveys for clinical workflows"]]]])
+
 (defn render-landing
   "Render the landing page for a product"
   [ctx]
@@ -348,6 +380,9 @@
           [:div {:class "max-w-screen-2xl mx-auto px-4 md:px-8 py-8"}
            ;; Bento grid with Main Concepts header
            (bento-grid ctx)
+
+           ;; Modules section
+           (modules-section ctx)
 
            ;; Additional links section with See also header
            (additional-links ctx)
