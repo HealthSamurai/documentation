@@ -356,7 +356,7 @@
                 truncated))])])]
 
      ;; Arrow icon
-     [:div {:class "size-6 shrink-0 flex items-center justify-center text-on-surface-placeholder opacity-40"}
+     [:div {:class "size-6 shrink-0 flex items-center justify-center text-on-surface-strong"}
       [:svg {:class "size-3.5" :fill "none" :stroke "currentColor" :viewBox "0 0 24 24"}
        [:path {:stroke-linecap "round" :stroke-linejoin "round" :stroke-width "2.5"
                :d "M9 5l7 7-7 7"}]]]]))
