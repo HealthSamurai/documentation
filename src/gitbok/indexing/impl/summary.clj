@@ -22,8 +22,8 @@
         (str/replace #"^/" ""))))
 
 (def summary-classes
-  "block py-1.5 transition-colors duration-200 ease-in-out
-   mr-2 my-0.5 clickable-summary text-sm leading-5 tracking-tight text-on-surface-secondary")
+  "block transition-colors duration-200 ease-in-out
+   mr-2 clickable-summary text-sm leading-5 tracking-tight text-on-surface-secondary")
 
 (def leaf-classes summary-classes)
 
