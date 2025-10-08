@@ -8,16 +8,17 @@ It is required that RxChange is preceded by NewRx.
 ### Receiving RxChangeRequest
 
 Once the pharmacy sends an RxChangeRequest, ePrescription module receives Surescripts message at `/eprescriptions/rx` endpoint and saves it to Aidbox.
-The message is converted to a **MedicationRequest** and the creation is registered as a **Provenance** resource.
+Resources created:
+- `Provenance` - solely as a record that an event has occurred.
+It is intended to serve as an audit/logging artifact, and should not be relied upon for driving business logic.
+- `MedicationRequest` reflecting the incoming data
+- `DetectedIssue` - if only there were some mismatches in related resources
+
 There are several ways to track the newly created **MedicationRequest**s:
-- [Either of Aidbox Subscriptions mechanisms](../../topic-based-subscriptions/README.md).
-- Manual/automated tracking based on **MedicationRequest** modification date and/or status.
-- **Provenance** tracking.
+- [Either of Aidbox Subscriptions mechanisms](../../topic-based-subscriptions/README.md)
+- Manual/automated tracking based on **MedicationRequest** modification date and/or status
 
-#### Detected Issues
-
-In case some related resources (**Patient**, **Organisation**, **PractitionerRole**, **Practitioner**, **Medication**, or **Location**) were not found or didn't match the provided ones, ePrescription module additionally creates a **DetectedIssue** resource in Aidbox.
-There's only one **DetectedIssue** per RxChange, containing all the problematic resources.
+The ePrescription module creates a `DetectedIssue` whenever inbound RxRenewal data diverges from existing records; see [Detected Issues](./detected-issue.md) for the full list of checks and a sample payload.
 
 ### Supported Request Types
 
