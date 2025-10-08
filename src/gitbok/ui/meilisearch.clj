@@ -230,7 +230,7 @@
     ;; Otherwise use URL as is
     :else url))
 
-(defn render-result-item [item index is-grouped?]
+(defn render-result-item [item index is-grouped? is-last?]
   (let [lvl0 (get item "hierarchy_lvl0")
         lvl1 (get item "hierarchy_lvl1")
         lvl2 (get item "hierarchy_lvl2")
@@ -253,7 +253,7 @@
                             level-value))]
 
     [:a {:href final-url
-         :class "flex items-center gap-3 p-2 rounded-lg text-on-surface-strong transition-all block border border-transparent hover:bg-surface-result-hover hover:border-outline-subtle"
+         :class "flex items-center gap-3 p-2 rounded-lg text-on-surface-strong transition-all block hover:bg-surface-result-hover"
          :data-result-index index}
 
      ;; Main content container
@@ -265,7 +265,7 @@
          ;; For grouped items, show the deepest level as title
          (let [title (or lvl5 lvl4 lvl3 lvl2 lvl1)]
            (when title
-             [:div {:class "text-sm font-normal leading-5 tracking-tight text-on-surface-secondary pl-4"}
+             [:div {:class "text-sm font-normal leading-5 tracking-tight text-on-surface-secondary"}
               (if-let [highlighted (get-highlighted
                                     (cond
                                       lvl5 "hierarchy_lvl5"
@@ -279,7 +279,7 @@
 
          ;; Show content for grouped items
          (when content
-           [:div {:class "text-xs text-text-muted leading-5 tracking-tight mt-1 pl-4 line-clamp-2"}
+           [:div {:class "text-xs text-text-muted leading-5 tracking-tight mt-1 line-clamp-2"}
             (let [highlighted-content (get-highlighted "content" content)]
               (if (string? highlighted-content)
                 (hiccup2.core/raw highlighted-content)
@@ -356,8 +356,8 @@
                 truncated))])])]
 
      ;; Arrow icon
-     [:div {:class "size-6 shrink-0 flex items-center justify-center text-on-surface-strong"}
-      [:svg {:class "size-3.5" :fill "none" :stroke "currentColor" :viewBox "0 0 24 24"}
+     [:div {:class "size-6 shrink-0 flex items-center justify-center text-black"}
+      [:svg {:class "size-3" :fill "none" :stroke "currentColor" :viewBox "0 0 24 24"}
        [:path {:stroke-linecap "round" :stroke-linejoin "round" :stroke-width "2.5"
                :d "M9 5l7 7-7 7"}]]]]))
 
@@ -399,7 +399,7 @@
                                    "hierarchy_lvl6" nil
                                    "anchor" nil))
                       first-item)]
-    (render-result-item header-item start-index false)))
+    (render-result-item header-item start-index false false)))
 
 (defn calculate-indexed-groups
   "Pre-calculates indices for each result item in groups."
@@ -432,7 +432,7 @@
             start-index (:start-index group)]
 
         (if group-info
-          ;; Grouped results - show header and children
+          ;; Grouped results - show header and children with dividers
           (let [first-item (first items)
                 ;; Check if first item is h1-only (it becomes the header)
                 first-is-h1-only? (and (get first-item "hierarchy_lvl1")
@@ -444,20 +444,23 @@
                 children-to-render (if first-is-h1-only?
                                      (rest items)
                                      items)]
-            [:div {:class "rounded-2xl p-4 pr-5 pb-3 pl-5 space-y-2 bg-surface-alt"}
+            [:div {:class "rounded-2xl p-4 pr-5 pb-3 pl-5 bg-surface-alt"}
              ;; Group header
              (render-group-header first-item group-info start-index)
-             ;; Child items - render with grouping, skipping h1-only if it's the header
-             (map-indexed
-              (fn [idx item]
-                (render-result-item item (+ start-index 1 idx) true))
-              children-to-render)])
+             ;; Child items container with border-top and dividers between items
+             [:div {:class "divide-y divide-outline border-t border-outline"}
+              (map-indexed
+               (fn [idx item]
+                 (let [is-last? (= idx (dec (count children-to-render)))]
+                   (render-result-item item (+ start-index 1 idx) true is-last?)))
+               children-to-render)]])
 
-          ;; Ungrouped results - show as individual items with gray background
+          ;; Ungrouped results - show as individual items without dividers
           [:div {:class "rounded-2xl p-4 pr-5 pb-3 pl-5 space-y-2 bg-surface-alt"}
            (map-indexed
             (fn [idx item]
-              (render-result-item item (+ start-index idx) false))
+              (let [is-last? (= idx (dec (count items)))]
+                (render-result-item item (+ start-index idx) false is-last?)))
             items)])))))
 
 (defn meilisearch-dropdown [ctx]
