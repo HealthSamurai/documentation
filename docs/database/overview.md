@@ -158,7 +158,7 @@ VALUES (
 );
 ```
 
-The Aidbox supports both auto-generated UUIDs via `gen_random_uuid()` and client-provided IDs for migrations or deterministic scenarios.
+Aidbox supports both auto-generated UUIDs via `gen_random_uuid()` and client-provided IDs for migrations or deterministic scenarios.
 
 The `txid` (transaction ID) uses a global sequence that provides cross-resource transaction ordering, reliable change tracking across the entire database, and serves as the foundation for change feeds and synchronization.
 

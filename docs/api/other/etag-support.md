@@ -11,7 +11,7 @@ This saves bandwidth and speeds up the loading process, as the client can use it
 All ETag values are cached to make ETag queries efficient. If you somehow made this cache invalid, you can reset Aidbox ETag cache by `DELETE /$etags-cache` or `DELETE /Patient/$etags-cache`.
 
 {% hint style="warning" %}
-The Aidbox **ETags** mechanism is based on **txid** column of the resource table in the database! If you update resources in the database, don't forget to update the **txid** column and reset cache. `UPDATE resource SET txid = nextval('transaction_id_seq')`
+Aidbox **ETags** mechanism is based on **txid** column of the resource table in the database! If you update resources in the database, don't forget to update the **txid** column and reset cache. `UPDATE resource SET txid = nextval('transaction_id_seq')`
 {% endhint %}
 
 ### ETag Cache performance

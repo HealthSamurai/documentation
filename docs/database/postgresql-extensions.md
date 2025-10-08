@@ -23,7 +23,7 @@ If any **required** extensions are missing, Aidbox won’t start.
 
 ## Installation Notes
 
-Most of these extensions are included in standard PostgreSQL distributions. The AidboxDB distribution comes with all required extensions pre-installed. \
+Most of these extensions are included in standard PostgreSQL distributions. AidboxDB distribution comes with all required extensions pre-installed. \
 \
 For standard PostgreSQL installations, you may need to install some extensions manually using the `CREATE EXTENSION` command or through your package manager.\
 \
