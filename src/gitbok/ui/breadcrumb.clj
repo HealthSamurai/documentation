@@ -52,13 +52,13 @@
         nil
 
         ;; Show breadcrumb with section title and parent pages
-        (or section-title (seq parent-pages))
+        (or (and section-title (not (str/blank? section-title))) (seq parent-pages))
         [:nav {:aria-label "Breadcrumb"
                :class "mb-[11px]"}
          [:ol {:class "flex flex-wrap items-center"}
           (let [items (vec (concat
                             ;; Add section title as first item if available
-                            (when section-title
+                            (when (and section-title (not (str/blank? section-title)))
                               [{:type :section :title section-title}])
                             ;; Add parent pages
                             (when parent-pages
