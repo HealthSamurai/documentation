@@ -354,7 +354,7 @@ WHERE p.id = c.id;
 
 See [conditional create documentation](../api/rest-api/crud/create.md) for complete API details.
 
-### Bulk Operations
+### Bulk operations
 
 #### Aidbox Bulk API
 
@@ -366,7 +366,7 @@ Aidbox provides several bulk operation APIs for efficient data processing:
 * [Transaction bundles](../api/batch-transaction.md) - Multiple operations in single HTTP request
 * [Batch upsert](../api/batch-transaction.md) - Lightweight collection upserting
 
-#### SQL Bulk Operations
+#### SQL Bulk operations
 
 SQL bulk operations are the underlying implementation of Aidbox's bulk APIs. When you use `$import` or `$load`, Aidbox translates these into optimized PostgreSQL operations. For direct database access, you can use these same SQL capabilities.
 
