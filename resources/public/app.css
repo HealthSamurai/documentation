@@ -78,6 +78,14 @@
    * Utilities: text-breadcrumb-separator
    */
 
+  --color-list-marker: #D1D5DB;
+  /* List bullet point color - FROM FIGMA
+   * Light gray color for ul bullet points (•)
+   * Used in: Article list bullets
+   * Locations: app.css (article ul>li::before)
+   * Utilities: Used via var() in custom CSS
+   */
+
   --color-tag-bg: #EEF1F4;
   /* Tag background color - FROM FIGMA
    * Light gray background for tags in landing cards
@@ -454,7 +462,7 @@ article ul>li {
 /* Custom bullet styling to match the example */
 article ul>li::before {
   content: "•";
-  color: var(--color-on-surface-muted);
+  color: var(--color-list-marker);
   font-family: Arial, sans-serif;
   font-size: min(1.5em, 24px);
   line-height: 1;
