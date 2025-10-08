@@ -4,10 +4,6 @@
 > ⚠️ Since the 2405 release, using Aidbox in FHIR schema validation engine is recommended,\
 > which is incompatible with zen or Entity/Attribute options.[Setup Aidbox with FHIR Schema validation engine](broken-reference/)
 
-{% content-ref url="fhir-terminology-repository/" %}
-[fhir-terminology-repository](fhir-terminology-repository/)
-{% endcontent-ref %}
-
 ## `BOX_FEATURES_FTR_PULL_ENABLE`
 
 Either `true` or `false`. By default, `false`.
