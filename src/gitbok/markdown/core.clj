@@ -143,7 +143,7 @@
 
          :paragraph
          (fn [ctx node]
-           (into [:p {:class "text-base text-on-surface-strong leading-relaxed"}]
+           (into [:p {:class "text-base text-on-surface-secondary leading-relaxed"}]
                  (mapv #(transform/->hiccup ctx %) (:content node))))
 
          :bullet-list
@@ -326,16 +326,16 @@
         parsed-files (->> batches
                           (pmap (fn [batch]
                                        ;; Process files within batch sequentially
-                                       (map (fn [[filepath content]]
-                                              (try
-                                                (parse-markdown-content context [filepath content])
-                                                (catch Exception e
-                                                  (log/error e "Failed to parse" {:filepath filepath})
-                                                  {:filepath filepath
-                                                   :description ""
-                                                   :title "Parse Error"
-                                                   :parsed [:div "Parse error"]})))
-                                            batch)))
+                                  (map (fn [[filepath content]]
+                                         (try
+                                           (parse-markdown-content context [filepath content])
+                                           (catch Exception e
+                                             (log/error e "Failed to parse" {:filepath filepath})
+                                             {:filepath filepath
+                                              :description ""
+                                              :title "Parse Error"
+                                              :parsed [:div "Parse error"]})))
+                                       batch)))
                           doall
                           (mapcat identity)
                           vec)
@@ -359,21 +359,21 @@
         batches (partition-all batch-size parsed-md-index)
         ;; Process batches in parallel, files within batch sequentially
         rendered (into {}
-                      (mapcat identity
-                              (doall
-                               (pmap (fn [batch]
+                       (mapcat identity
+                               (doall
+                                (pmap (fn [batch]
                                        ;; Process files within batch sequentially
-                                       (map (fn [{:keys [filepath _parsed]}]
-                                              (try
-                                                (log/debug "render file" {:filepath filepath})
-                                                [filepath (read-markdown-file context filepath)]
-                                                (catch Exception e
-                                                  (log/error e "Failed to render" {:filepath filepath})
-                                                  [filepath {:content [:div "Render error"]
-                                                             :title "Error"
-                                                             :description ""}])))
-                                            batch))
-                                     batches))))
+                                        (map (fn [{:keys [filepath _parsed]}]
+                                               (try
+                                                 (log/debug "render file" {:filepath filepath})
+                                                 [filepath (read-markdown-file context filepath)]
+                                                 (catch Exception e
+                                                   (log/error e "Failed to render" {:filepath filepath})
+                                                   [filepath {:content [:div "Render error"]
+                                                              :title "Error"
+                                                              :description ""}])))
+                                             batch))
+                                      batches))))
         duration (- (System/currentTimeMillis) start-time)]
     (log/info "Rendering complete" {:count (count rendered)
                                     :duration-ms duration})
