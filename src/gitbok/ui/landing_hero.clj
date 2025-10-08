@@ -91,7 +91,7 @@
        "Model Context Protocol (MCP)"]]]
 
     ;; AI MCP Server button
-    [:a {:class "inline-flex h-[47px] items-center rounded-[26px] border border-outline bg-white py-2 pr-3 pl-2 gap-2 hover:border-brand transition-colors"
+    [:a {:class "inline-flex self-start h-[47px] items-center rounded-[26px] border border-outline bg-white py-2 pr-3 pl-2 gap-2 hover:border-brand transition-colors"
          :href (http/get-product-prefixed-url context "/developer-experience/ai")}
      [:div {:class "w-7 h-[31px] rounded-[25px] bg-surface-nav-hover flex items-center justify-center text-xs font-medium text-on-surface-secondary"}
       "AI"]
