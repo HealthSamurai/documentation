@@ -6,18 +6,15 @@ description: The article describes how to translate or create a multilingual for
 
 In some applications, there is a need to support multiple languages within the same questionnaire. Aidbox Forms allows you to create multilingual forms that can cater to users speaking different languages.
 
-**Steps to Create a Multilingual Form:**
+## **Steps to create a multilingual form**
 
 1. **Select the Default Language:**
    * Begin by selecting the default language for your form in the form settings. This will be the primary language used during the initial creation of the form. Once the default language is selected, the option to add translations will become available in the UI form builder.
 2. **Access the Translation Feature:**
    * After you have created your form in the default language, you can add translations. Click the translation icon located in the toolbar at the top of the form builder. This will open a separate page dedicated to translations.
-3.  **Add and Manage Translations:**
-
-    * On the translation page, click the plus (`+`) icon to select a new language for translation. For each selected language, you can translate all field labels and answer options. There is an option to translate all labels automatically using AI. To do this, in the upper right corner you need to click on the icon and enter the OpenAI or Google Generative AI API key.&#x20;
-    * All translations are stored within a single FHIR Questionnaire resource, utilizing a specific extension for each questionnaire element to maintain multilingual support.
-
-
+3. **Add and Manage Translations:**
+   * On the translation page, click the plus (`+`) icon to select a new language for translation. For each selected language, you can translate all field labels and answer options. There is an option to translate all labels automatically using AI. To do this, in the upper right corner you need to click on the icon and enter the OpenAI or Google Generative AI API key.
+   * All translations are stored within a single FHIR Questionnaire resource, utilizing a specific extension for each questionnaire element to maintain multilingual support.
 
 An example of the simple multilingual questionnaire:
 
@@ -191,8 +188,6 @@ An example of the simple multilingual questionnaire:
 }
 ```
 
-
-
 {% hint style="info" %}
 Aidbox Forms supports a predefined set of languages:
 
@@ -201,9 +196,12 @@ Chinese, Croatian, Czech, Danish, Dutch, English, Finnish, French, German, Hunga
 Additional languages can be added upon request.
 {% endhint %}
 
-4. **Switching Languages During Form Completion:**
-   * When users are filling out the form, they will initially see the form in the default language. They can switch to any of the translated languages using a dropdown menu available on the form. This allows users to complete the form in their preferred language.
+## **Multilingual form behaviour during completion**
+
+* When users are filling out the form, they will initially see the form in the default language. They can switch to any of the translated languages using a dropdown menu available on the form.  When changing the language, responses are also translated (except for inputs with free text). This allows users to complete the form in their preferred language.
+* The user can switch the language of an already completed form; responses will be translated according to the selected language (except for free text fields)
+* QuestionnaireResponses should be saved in the language in which it was being viewed at the time of the save (except for free-text answers). If a user fills out question A in French, switches to Spanish, fills out question B, and saves, the saved language of both should be Spanish.
 
 {% hint style="info" %}
-Validation errors are translated automatically.&#x20;
+Validation errors are translated automatically.
 {% endhint %}
