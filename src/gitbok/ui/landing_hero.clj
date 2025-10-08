@@ -90,13 +90,14 @@
       [:span {:class "absolute -top-10 left-1/2 -translate-x-1/2 px-2 py-1 bg-gray-900 text-white text-xs rounded whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity duration-150 pointer-events-none z-50"}
        "Model Context Protocol (MCP)"]]]
 
-    ;; Working with AI button
-    [:a {:class "group w-full flex rounded-full border border-outline px-3 py-1 gap-2 items-center justify-between text-on-surface-strong text-sm leading-[22.75px] font-normal hover:border-brand hover:text-brand transition-colors "
+    ;; AI MCP Server button
+    [:a {:class "inline-flex h-[47px] items-center rounded-[26px] border border-outline bg-white py-2 pr-3 pl-2 gap-2 hover:border-brand transition-colors"
          :href (http/get-product-prefixed-url context "/developer-experience/ai")}
-     [:div {:class "flex gap-2 items-center"}
-      (ico/sparkles "size-4" :outline)
-      "Working with AI"]
-     (ico/chevron-right "size-3 group-hover:translate-x-1 transition-transform" :outline)]]])
+     [:div {:class "w-7 h-[31px] rounded-[25px] bg-surface-nav-hover flex items-center justify-center text-xs font-medium text-on-surface-secondary"}
+      "AI"]
+     [:span {:class "text-sm leading-[22.75px] font-normal text-on-surface-secondary"}
+      "Learn about Aidbox MCP Server and AI prompts"]
+     (ico/chevron-right "size-3 text-on-surface-secondary" :outline)]]])
 
 (defn additional-links
   "Additional important documentation links"
