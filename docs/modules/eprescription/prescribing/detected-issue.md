@@ -1,4 +1,4 @@
-# Detected Issues
+# DetectedIssue
 
 This guidance applies to inbound RxRenewal and RxChange messages processed by the ePrescription module.
 
