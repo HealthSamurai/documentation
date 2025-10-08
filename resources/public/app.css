@@ -1,5 +1,4 @@
 @import "tailwindcss";
-@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;600&display=swap');
 
 /* Tailwind v4 Theme Configuration */
 @theme {
@@ -61,6 +60,22 @@
    * Used in: Active navigation items
    * Locations: summary.clj
    * Utilities: active:hover:bg-surface-nav-active
+   */
+
+  --color-breadcrumb-bg: #F4F5F6;
+  /* Breadcrumb item background - FROM FIGMA
+   * Light gray background for breadcrumb items
+   * Used in: Breadcrumb items
+   * Locations: breadcrumb.clj
+   * Utilities: bg-breadcrumb-bg
+   */
+
+  --color-breadcrumb-separator: #BBBBBB;
+  /* Breadcrumb separator color - FROM FIGMA
+   * Gray color for "/" separator between breadcrumb items
+   * Used in: Breadcrumb separators
+   * Locations: breadcrumb.clj
+   * Utilities: text-breadcrumb-separator
    */
 
   /* On-Surface Colors (Text on Backgrounds) */
@@ -228,10 +243,17 @@
   /* Font Families */
   --font-sans: Inter, "Inter Fallback", system-ui, arial;
   --font-mono: "IBM Plex Mono", monospace;
-  --font-code: "JetBrains Mono", ui-monospace, Menlo, Monaco, "Cascadia Mono",
+  --font-code: Menlo, "JetBrains Mono", ui-monospace, Monaco, "Cascadia Mono",
     "Segoe UI Mono", "Roboto Mono", "Oxygen Mono", "Ubuntu Monospace",
     "Source Code Pro", "Fira Mono", "Droid Sans Mono", "Courier New", monospace;
   --font-content: Inter, "Inter Fallback", system-ui, arial;
+
+  /* Code Styles */
+  --code-font-size: 13px;
+  --code-line-height: 20px;
+  --code-font-weight: 400;
+  --code-shadow: 0px 1px 0px 0px #FFFFFF;
+  --color-code-inline-border: #F6F1F0;
 
   /* Font Sizes - Tailwind v4 syntax (Scalar/GitBook compatible) */
   --text-micro: 0.75rem;
@@ -474,9 +496,13 @@ article pre+pre {
 
 /* Inline code (not in pre blocks) */
 article code:not(pre code) {
-  @apply py-[1px]! px-1.5! min-w-[1.625rem] ring-1 ring-inset ring-outline-subtle bg-surface-subtle rounded text-[.875em] inline break-words;
+  @apply py-[1px]! px-1.5! min-w-[1.625rem] bg-surface-subtle text-on-surface-secondary rounded inline break-words;
   font-family: var(--font-code);
-  line-height: calc(max(1.20em, 1.25rem));
+  font-size: var(--text-small);
+  line-height: var(--code-line-height);
+  font-weight: var(--code-font-weight);
+  vertical-align: middle;
+  box-shadow: 0px 0px 0px 1px var(--color-code-inline-border) inset;
   overflow-wrap: break-word !important;
   word-break: break-word !important;
   white-space: pre-wrap !important;
@@ -491,7 +517,11 @@ article pre {
 
 /* Default code block styles - prevent flash of unstyled content */
 article pre code {
-  @apply text-sm leading-relaxed block px-4 py-2 border border-outline bg-surface-subtle text-on-surface-strong rounded-lg overflow-x-auto max-w-full min-w-0 relative;
+  @apply block px-4 py-2 border border-outline bg-surface-subtle text-on-surface-strong rounded-lg overflow-x-auto max-w-full min-w-0 relative;
+  font-size: var(--code-font-size);
+  line-height: var(--code-line-height);
+  font-weight: var(--code-font-weight);
+  box-shadow: var(--code-shadow);
   white-space: pre;
   box-sizing: border-box;
   contain: layout inline-size;
@@ -505,6 +535,24 @@ article pre[class*="language-"] {
 
 /* Remove background from inline code with Prism classes */
 article :not(pre) > code[class*="language-"] {
+  background: transparent !important;
+}
+
+/* Override Prism.js styles to use our theme variables */
+article code[class*="language-"],
+article pre[class*="language-"] code {
+  font-family: var(--font-code) !important;
+  font-size: var(--code-font-size) !important;
+  line-height: var(--code-line-height) !important;
+  font-weight: var(--code-font-weight) !important;
+  box-shadow: var(--code-shadow) !important;
+}
+
+article pre[class*="language-"] {
+  background-color: var(--color-surface-subtle) !important;
+}
+
+article code[class*="language-"] {
   background: transparent !important;
 }
 

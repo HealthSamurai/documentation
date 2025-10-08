@@ -140,6 +140,12 @@
       [:link {:rel "apple-touch-icon" :href favicon-url}]
       [:link {:rel "canonical" :href canonical-url}]
 
+      ;; JetBrains Mono font for code
+      [:link {:rel "preconnect" :href "https://fonts.googleapis.com"}]
+      [:link {:rel "preconnect" :href "https://fonts.gstatic.com" :crossorigin "anonymous"}]
+      [:link {:rel "stylesheet"
+              :href "https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;600&display=swap"}]
+
       [:script {:type "application/ld+json"}
        (hiccup2.core/raw
         (json/generate-string
