@@ -748,7 +748,7 @@ article .hint p {
 
 /* Apply left border only to nested pages (not first level) */
 #navigation details a.active:not(summary) {
-  @apply border-l-1 border-brand;
+  @apply border-l-1 border-brand rounded-l-none;
 }
 
 /* Remove left border for summary elements (section headers) */
@@ -764,7 +764,7 @@ article .hint p {
 /* Add left border for nested summary elements (summary inside details) */
 #navigation details details summary a.active,
 #navigation details * details summary a.active {
-  @apply border-l-1 border-brand;
+  @apply border-l-1 border-brand rounded-l-none;
 }
 
 /* TOC container - active state from Figma */

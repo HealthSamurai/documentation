@@ -43,7 +43,7 @@
                               "transition-colors duration-[300ms] ease-out "
                               "hover:bg-surface-nav-hover "
                               (if (= level 2)
-                                "text-on-surface-secondary"
+                                "text-on-surface-placeholder"
                                 "text-on-surface"))]
           [:li {:class li-class}
            [:a {:href href
