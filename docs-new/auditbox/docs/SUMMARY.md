@@ -1,6 +1,6 @@
 # Table of contents
 
-* [Overview](README.md)
-* [Run Auditbox Locally](run-locally.md)
+* [Getting Started](getting-started/README.md)
+  * [Run Auditbox Locally](getting-started/run-locally.md)
 * [Configuration](configuration.md)
 * [API Reference](api.md)
