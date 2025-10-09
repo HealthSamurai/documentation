@@ -89,16 +89,15 @@
            :content rendered-content
            :start start
            :end end})]
-    [:div {:class "bg-surface-subtle border border-outline-subtle rounded-lg overflow-hidden my-4"}
+    [:div {:class "bg-surface-subtle border border-outline-subtle rounded-lg overflow-hidden my-4"
+           :data-tab-container "true"}
      [:div {:class "flex border-b border-outline-subtle"}
       (for [[idx {:keys [title]}]
             (map-indexed vector tabs)]
         [:button
          {:class
           (str "px-4 py-2 text-sm font-medium border-b-2 transition-colors cursor-pointer "
-               (if (= idx 0)
-                 "border-brand text-brand"
-                 "border-transparent text-on-surface-placeholder hover:text-on-surface-muted"))
+               (when (= idx 0) "tab-active"))
           :data-tab idx
           :onclick (str "switchTab(this, " idx ")")}
          title])]

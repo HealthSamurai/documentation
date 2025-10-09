@@ -971,3 +971,16 @@ details.nav-item > summary .nav-chevron {
 details.nav-item[open] > summary .nav-chevron {
   transform: rotate(90deg);
 }
+
+/* Tab widget styles */
+[data-tab-container] button[data-tab] {
+  @apply border-transparent text-on-surface-placeholder;
+}
+
+[data-tab-container] button[data-tab]:not(.tab-active):hover {
+  @apply text-on-surface-muted;
+}
+
+[data-tab-container] button[data-tab].tab-active {
+  @apply border-brand text-brand;
+}

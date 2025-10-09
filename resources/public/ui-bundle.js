@@ -10,21 +10,19 @@ window.Prism.manual = true;
 // TAB FUNCTIONALITY
 // ============================================================================
 function switchTab(button, tabIndex) {
-  // Find the parent container - it has the tab buttons container and content container
-  const tabContainer = button.closest('.bg-tint-1');
+  // Find the parent container using data attribute
+  const tabContainer = button.closest('[data-tab-container]');
   if (!tabContainer) return;
 
   // Find all tab buttons in this container
-  const tabButtons = tabContainer.querySelectorAll('[data-tab]');
+  const tabButtons = tabContainer.querySelectorAll('button[data-tab]');
 
-  // Update active tab button styles
+  // Update active tab button - toggle tab-active class
   tabButtons.forEach(btn => {
     if (parseInt(btn.getAttribute('data-tab')) === tabIndex) {
-      btn.classList.remove('border-transparent', 'text-tint-9');
-      btn.classList.add('border-primary-9', 'text-primary-9');
+      btn.classList.add('tab-active');
     } else {
-      btn.classList.remove('border-primary-9', 'text-primary-9');
-      btn.classList.add('border-transparent', 'text-tint-9');
+      btn.classList.remove('tab-active');
     }
   });
 
