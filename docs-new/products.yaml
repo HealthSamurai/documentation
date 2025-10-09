@@ -65,6 +65,7 @@ products:
     logo: .gitbook/assets/aidbox_logo.jpg
     favicon: .gitbook/assets/favicon.ico
     og-preview-text: "Auditbox Docs"
+    readme-mode: "preserve-original-path"  # Keep readme accessible at its original path
     meilisearch-index: "auditbox"
     links:
       - text: "Overview"

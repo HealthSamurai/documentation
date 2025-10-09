@@ -1,6 +1,6 @@
 root: ./docs/
 structure:
-  readme: README.md
+  readme: getting-started/README.md
   summary: SUMMARY.md
 
 redirects: {}
