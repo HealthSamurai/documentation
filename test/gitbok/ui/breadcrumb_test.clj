@@ -51,8 +51,8 @@
     (is (nil? (breadcrumb/breadcrumb (mock-context) nil))))
 
   (testing "readme pages have no breadcrumb"
-    (is (nil? (breadcrumb/breadcrumb (mock-context) "readme")))
-    (is (nil? (breadcrumb/breadcrumb (mock-context) "readme/README.md"))))
+    (is (nil? (breadcrumb/breadcrumb (mock-context) "readme/README.md")))
+    (is (nil? (breadcrumb/breadcrumb (mock-context) "readme/setup"))))
 
   (testing "single level pages show overview link"
     (let [ctx (mock-context)

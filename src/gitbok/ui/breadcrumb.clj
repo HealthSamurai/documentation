@@ -48,7 +48,7 @@
 
       (cond
         ;; Don't show breadcrumb for readme pages
-        (str/includes? uri "readme")
+        (str/starts-with? (str/lower-case uri) "readme/")
         nil
 
         ;; Show breadcrumb with section title and parent pages
@@ -90,6 +90,6 @@
                     (:title item)]]))
               items)))]]
 
-        ;; Fallback: no breadcrumb
+        ;; No breadcrumb
         :else
         nil))))
