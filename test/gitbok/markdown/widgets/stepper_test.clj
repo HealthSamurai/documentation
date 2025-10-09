@@ -85,7 +85,7 @@ node --version
                   content)]
       (is (str/includes? result "stepper-container"))
       (is (str/includes? result "Setup Environment"))
-      (is (str/includes? result "bg-tint-1"))
+      (is (str/includes? result "bg-surface-subtle"))
       (is (str/includes? result "data-tab"))
       (is (str/includes? result "macOS"))
       (is (str/includes? result "Linux"))
@@ -221,7 +221,7 @@ This is the third step.
       (is (str/includes? result ">2</div>"))
       (is (str/includes? result ">3</div>"))
       (is (str/includes? result "rounded-full"))
-      (is (str/includes? result "bg-primary-9"))
+      (is (str/includes? result "bg-brand"))
       (is (str/includes? result "text-white"))
       (is (str/includes? result "pb-0"))
       (is (str/includes? result "pb-6"))
