@@ -94,6 +94,22 @@
    * Utilities: bg-tag-bg
    */
 
+  --color-tag-language-bg: #717684;
+  /* Language tag background color
+   * Dark gray background for language/code tags
+   * Used in: Language tags (e.g., Java, Python)
+   * Locations: tags.clj (language variant)
+   * Utilities: bg-tag-language-bg
+   */
+
+  --color-tag-language-hover: #5a5d68;
+  /* Language tag hover background color
+   * Darker gray for language tag hover state
+   * Used in: Language tag hover states
+   * Locations: tags.clj (language variant hover)
+   * Utilities: hover:bg-tag-language-hover
+   */
+
   /* On-Surface Colors (Text on Backgrounds) */
   --color-on-surface: #717684;
   /* Main body text - NEW FROM DESIGNER (was #1F1C1C)
