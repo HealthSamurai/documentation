@@ -10,29 +10,29 @@ It is required that RxChange is preceded by NewRx.
 Once the pharmacy sends an RxChangeRequest, ePrescription module receives Surescripts message at `/eprescriptions/rx` endpoint and saves it to Aidbox.
 Resources created:
 
-- `Provenance` - solely as a record that an event has occurred.
+- **MedicationRequest** reflecting the incoming data
+- **DetectedIssue** - if only there were some mismatches in related resources
+- **Provenance** - solely as a record that an event has occurred.
   It is intended to serve as an audit/logging artifact, and should not be relied upon for driving business logic.
-- `MedicationRequest` reflecting the incoming data
-- `DetectedIssue` - if only there were some mismatches in related resources
 
 There are several ways to track the newly created **MedicationRequest**s:
 
 - [Either of Aidbox Subscriptions mechanisms](../../topic-based-subscriptions/README.md)
 - Manual/automated tracking based on **MedicationRequest** modification date and/or status
 
-The ePrescription module creates a `DetectedIssue` whenever inbound RxRenewal data diverges from existing records; see [Detected Issues](./detected-issue.md) for the full list of checks and a sample payload.
+The ePrescription module creates a **DetectedIssue** whenever inbound RxRenewal data diverges from existing records; see [Detected Issues](./detected-issue.md) for the full list of checks and a sample payload.
 
 ### Supported Request Types
 
 - **D**: Drug Use Evaluation
 - **G**:  Generic Substitution - A modification of the product prescribed to a generic equivalent.
 - **OS**: Pharmacy is out of stock of the medication prescribed and it cannot be obtained in a clinically appropriate timeframe.
-<!-- - **P**: Prior Authorization Required - A request to obtain prior authorization before dispensing. -->
 - **S**: Script Clarification
 - **T**: Therapeutic Interchange/Substitution - A modification of the product prescribed to a preferred product choice
 - **RM**: REMS dispensing authorization requirements not met
 - **U**: Prescriber Authorization – Resolution of the prescriber authorization conflict related to state/federal regulatory requirements is required before dispensing.
   - This is the only message type Validated response type can be used for.
+<!-- - **P**: Prior Authorization Required - A request to obtain prior authorization before dispensing. -->
 
 ### Supported Response Types:
 
@@ -80,7 +80,8 @@ Allowed decisions are:
 | **OS**             | ✓        | ✓                   | ✓      | ✓       |           |
 | **D**              | ✓        | ✓                   | ✓      | ✓       |           |
 | **U**              |          |                     | ✓      | ✓       | ✓         |
-| **P**              | ✓        | ✗                   | ✓      | ✓       |           |
+
+[//]: # (| **P**              | ✓        | ✗                   | ✓      | ✓       |           |)
 
 
 After the response is set, `/api/rx/respond-to-change` endpoint should be invoked with the ID of the decision-containing

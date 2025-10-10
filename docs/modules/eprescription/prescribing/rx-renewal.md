@@ -9,16 +9,16 @@ It is required that RxRenewal is preceded by NewRx.
 
 Once the pharmacy sends an RxRenewalRequest, ePrescription module receives Surescripts message at `/eprescriptions/rx` endpoint and saves it to Aidbox.
 Resources created:
-- `Provenance` - solely as a record that an event has occurred.
-It is intended to serve as an audit/logging artifact, and should not be relied upon for driving business logic.
-- `MedicationRequest` reflecting the incoming data
-- `DetectedIssue` - if only there were some mismatches in related resources
+- **MedicationRequest** reflecting the incoming data
+- **DetectedIssue** - if only there were some mismatches in related resources
+- **Provenance** - solely as a record that an event has occurred.
+  It is intended to serve as an audit/logging artifact, and should not be relied upon for driving business logic.
 
 There are several ways to track the newly created **MedicationRequest**s:
 - [Either of Aidbox Subscriptions mechanisms](../../topic-based-subscriptions/README.md)
 - Manual/automated tracking based on **MedicationRequest** modification date and/or status
 
-The ePrescription module creates a `DetectedIssue` whenever inbound RxRenewal data diverges from existing records; see [Detected Issues](./detected-issue.md) for the full list of checks and a sample payload.
+The ePrescription module creates a **DetectedIssue** whenever inbound RxRenewal data diverges from existing records; see [Detected Issues](./detected-issue.md) for the full list of checks and a sample payload.
 
 ### Renewal statuses
 
