@@ -1,36 +1,36 @@
 # DetectedIssue
 
-This guidance applies to inbound RxRenewal and RxChange messages processed by the ePrescription module.
+This guidance applies to inbound RxRenewalRequest and RxChangeRequest messages processed by the ePrescription module.
 
 In the ideal scenario, the resources sent by the pharmacy and those already stored in the existing Aidbox instance should match. 
-In practice, discrepancies may occur, and in such cases a `DetectedIssue` will be created and there will be a link to it: `MedicationRequest.detectedIssue`. 
+In practice, discrepancies may occur, and in such cases a **DetectedIssue** will be created and there will be a link to it: `MedicationRequest.detectedIssue`. 
 This resource is intended to illustrate inconsistencies for the EHR platform using the ePrescription Module, and it does not impose any further constraints.
 
-Below is the list of checks leading to `DetectedIssue` creation.
+Below is the list of checks leading to **DetectedIssue** creation.
 
-`Medication`:
+**Medication**:
 - NDC. Existing `Medication.code.coding` with `system` = `http://hl7.org/fhir/sid/ndc` should equal incoming NDC code.
 
-Pharmacy (`Organization`):
+Pharmacy (**Organization**):
 - name (verbatim)
 - identifiers (incoming ones should be present in the existing pharmacy `identifier`)
 - address
 - telecom
 
-Provider location (represented as `Location` or `Organization`):
+Provider location (represented as **Location** or **Organization**):
 - address
 - telecom
 
-`Practitioner`:
+**Practitioner**:
 - identifiers (incoming ones should be present in the existing practitioner)
 - names (`family` and `given` only)
 
-`PractitionerRole`:
+**PractitionerRole**:
 - SPI (`identifier` with `system` = `urn:surescripts:spi`)
 - specialty (`specialty.coding` with `system` = `http://nucc.org/provider-taxonomy`)
-- mismatches in related `Practitioner` or `Location`
+- mismatches in related **Practitioner** or **Location**
 
-`Patient`:
+**Patient**:
 - names
 - gender
 - birth date
@@ -38,7 +38,7 @@ Provider location (represented as `Location` or `Organization`):
 - address
 - any telecom channel (phone, fax, pager, email)
 
-Example `DetectedIssue` (all resources mismatched):
+Example **DetectedIssue** (all resources mismatched):
 ```json
 {
   "resourceType": "DetectedIssue",
