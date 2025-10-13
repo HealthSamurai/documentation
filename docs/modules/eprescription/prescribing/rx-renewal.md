@@ -72,7 +72,7 @@ extension:
     valueCode: denied
 ```
 
-## Denied
+### Denied
 
 `denied` is the decision that requires the least amount of steps. Setting it in the extension is the only requirement.
 You can set the denial reason (free text) in decision note extension (
@@ -87,7 +87,7 @@ POST /eprescription/rx/respond-to-renewal
 }
 ```
 
-## Pending
+### Pending
 
 Before committing the `pending` decision you need to
 
@@ -134,7 +134,7 @@ Available reason codes are listed in the table below:
 | **HS**      | Patient is currently undergoing acute care and a decision is pending resolution |
 | **HT**      | Provider wishes to delay for reasons not otherwise indicated                    |
 
-## Approved
+### Approved
 
 `approved` decision assumes that only minor changes were made.
 While the e-prescriptions module could prefill fields like `MedicationRequest.dispenseRequest` and `dosageInstruction`,
@@ -186,7 +186,7 @@ dosageInstruction:
   - text: TAKE ONE TABLET TWO TIMES A DAY UNTIL GONE
 ```
 
-## ApprovedWithChanges
+### ApprovedWithChanges
 
 TODO
 
