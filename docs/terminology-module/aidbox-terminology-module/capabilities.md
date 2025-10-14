@@ -16,46 +16,46 @@ This page provides a comprehensive overview of all FHIR terminology operations a
 
 ## Supported Operations
 
-| Resource | Operation | Status |
-|----------|-----------|--------|
-| **CodeSystem** | `$lookup` | ✅ |
-|                | `$validate-code` | ✅ |
-|                | `$subsumes` | ❌ |
-|                | `$find-matches` | ❌ |
-| **ValueSet** | `$expand` | ✅ |
-|              | `$validate-code` | ✅ |
-| **ConceptMap** | `$translate` | ✅ |
-|                | `$closure` | ❌ |
+| Resource       | Operation        | Status |
+| -------------- | ---------------- | ------ |
+| **CodeSystem** | `$lookup`        | ✅      |
+|                | `$validate-code` | ✅      |
+|                | `$subsumes`      | ❌      |
+|                | `$find-matches`  | ❌      |
+| **ValueSet**   | `$expand`        | ✅      |
+|                | `$validate-code` | ✅      |
+| **ConceptMap** | `$translate`     | ✅      |
+|                | `$closure`       | ❌      |
 
 ## Features
 
-| Feature | Status | Notes |
-|---------|--------|-------|
-| Capability Statements | ✅ | + TerminologyCapabilities |
-| CRUD of terminology resources | ✅ | Create, Read, Update, Delete operations |
-| Pre-coordinated codes | ✅ | Standard coded concepts |
-| Post-coordinated codes | ❌ | Complex expressions not yet supported |
-| Intensional ValueSets | ✅ | Filter-based ValueSet definitions |
-| Extensional ValueSets | ✅ | Explicit concept enumeration |
-| ValueSet expansion | ✅ | Full expansion with pagination |
-| ValueSet validation | ✅ | Code membership validation |
-| ValueSet inclusion/exclusion | ✅ | Deep set operations support |
-| Lookup displays, designation, and properties | ✅ | All concept attributes |
-| Text search filter | ✅ | Free-text concept search |
-| Property filters | ✅ | Property-based filtering: `=`, `in`, `regex`, etc |
-| Multi-language support | ✅ | Translations via `displaylanguage`, HTTP header, designation, etc |
-| Active/Inactive filtering | ✅ | Via `status`, `inactive`, `notSelectable`, etc |
-| Hierarchy via `parent`, `child` | ✅ |  |
-| Nested concepts | ✅ | Hierarchy via `concept.concept` |
-| Subsumption filters | ✅ | is-a, descendent-of, generalizes, etc |
-| Supplemental CodeSystems | 🏗️ | Additional concept properties |
-| Implicit ValueSets | 🏗️ | System-generated ValueSets |
-| ConceptMap translations | ✅ | Code mapping between terminology systems |
-| Multiple ConceptMap matches | ✅ | Returns all applicable mappings for source code |
-| Transitive closure table | ❌ | $closure |
-| Syntax-based code systems | ❌ | UCUM, BCP47, etc |
-| `tx-resource` parameter | ✅ | Inline resource definitions |
-| Ad-hoc ValueSets | ✅ | ValueSet as a `Parameter` |
-| R4/R5/R6 format conversion | ✅ | E.g.: `expansion.contains.concept.property` or extensions |
-| Batch validation | ❌ | |
+| Feature                                      | Status | Notes                                                             | Release |
+| -------------------------------------------- | ------ | ----------------------------------------------------------------- | ------- |
+| Capability Statements                        | ✅      | + TerminologyCapabilities                                         | 2507    |
+| CRUD of terminology resources                | ✅      | Create, Read, Update, Delete operations                           | 2507    |
+| Pre-coordinated codes                        | ✅      | Standard coded concepts                                           | 2507    |
+| Post-coordinated codes                       | ❌      | Complex expressions not yet supported                             |         |
+| Intensional ValueSets                        | ✅      | Filter-based ValueSet definitions                                 | 2507    |
+| Extensional ValueSets                        | ✅      | Explicit concept enumeration                                      | 2507    |
+| ValueSet expansion                           | ✅      | Full expansion with pagination                                    | 2507    |
+| ValueSet validation                          | ✅      | Code membership validation                                        | 2507    |
+| ValueSet inclusion/exclusion                 | ✅      | Deep set operations support                                       | 2507    |
+| Lookup displays, designation, and properties | ✅      | All concept attributes                                            | 2507    |
+| Text search filter                           | ✅      | Free-text concept search                                          | 2507    |
+| Property filters                             | ✅      | Property-based filtering: `=`, `in`, `regex`, etc                 | 2507    |
+| Multi-language support                       | ✅      | Translations via `displaylanguage`, HTTP header, designation, etc | 2507    |
+| Active/Inactive filtering                    | ✅      | Via `status`, `inactive`, `notSelectable`, etc                    | 2507    |
+| Hierarchy via `parent`, `child`              | ✅      |                                                                   | 2507    |
+| Nested concepts                              | ✅      | Hierarchy via `concept.concept`                                   | 2507    |
+| Subsumption filters                          | ✅      | is-a, descendent-of, generalizes, etc                             | 2507    |
+| Supplemental CodeSystems                     | ✅️      | Additional concept properties                                     | 2508    |
+| Implicit ValueSets                           | 🏗️      | System-generated ValueSets                                        |         |
+| ConceptMap translations                      | ✅      | Code mapping between terminology systems                          | 2508    |
+| Multiple ConceptMap matches                  | ✅      | Returns all applicable mappings for source code                   | 2508    |
+| Transitive closure table                     | ❌      | $closure                                                          |         |
+| Syntax-based code systems                    | ❌      | UCUM, BCP47, etc                                                  |         |
+| `tx-resource` parameter                      | ✅      | Inline resource definitions                                       | 2507    |
+| Ad-hoc ValueSets                             | ✅      | ValueSet as a `Parameter`                                         | 2507    |
+| R4/R5/R6 format conversion                   | ✅      | E.g.: `expansion.contains.concept.property` or extensions         | 2507    |
+| Batch validation                             | ❌      |                                                                   |         |
 
