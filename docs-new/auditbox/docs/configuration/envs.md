@@ -56,6 +56,11 @@ The Auditbox application can be configured using the following environment varia
   Application logging level
   Options: `off`, `info`, `debug`, `error`
 
+- **`AUDITBOX_ARCHIVE_S3_ENABLED`**
+  Default: `false`
+  enables S3 archival strategy with backups
+  Options: `false`, `true`
+
 - **`AUDITBOX_DATA_RETENTION_DAYS`**
   Default: `30`
   Number of days to retain audit events before archiving (must be >= 1)
@@ -64,9 +69,13 @@ The Auditbox application can be configured using the following environment varia
   Default: `default`
   Name of the Elasticsearch snapshot repository for backups
 
-- **`AUDITBOX_VERIFY_BACKUP_REPOSITORY`**
-  Default: `false`
-  Enable backup repository verification at startup (`true` or `false`)
+- **`AUDITBOX_S3_BUCKET_NAME`** 
+  (required when `AUDITBOX_ARCHIVE_S3_ENABLED`)
+  S3 bucket name for snapshot storage
+
+- **`AUDITBOX_S3_ENDPOINT`** 
+  (required when `AUDITBOX_ARCHIVE_S3_ENABLED`)
+  S3 endpoint URL (e.g., https://s3.amazonaws.com or http://minio:9000 for MinIO)
 
 ## Example Configuration
 
@@ -88,7 +97,10 @@ environment:
   PORT: 3000
   BALP_VERSION: 1.1.3
   AUDITBOX_LOG_LEVEL: info
+
+  AUDITBOX_ARCHIVE_S3_ENABLED: true
   AUDITBOX_DATA_RETENTION_DAYS: 90
-  AUDITBOX_SNAPSHOT_REPOSITORY_NAME: default
-  AUDITBOX_VERIFY_BACKUP_REPOSITORY: false
+  AUDITBOX_SNAPSHOT_REPOSITORY_NAME: my-s3
+  AUDITBOX_S3_BUCKET_NAME: es-backups-bucket
+  AUDITBOX_S3_ENDPOINT: http://minio:9000
 ```
