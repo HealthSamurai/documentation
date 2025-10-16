@@ -2,80 +2,187 @@
 
 ## Environment Variables
 
-The Auditbox application can be configured using the following environment variables:
+The Auditbox application can be configured using the following environment variables.
 
-### Required Variables
+### Elasticsearch URI<a href="#elastic-uri" id="elastic-uri"></a>
 
-- **`ELASTIC_URI`** (required)
-  URI for Elasticsearch connection (e.g., `http://elasticsearch:9200`)
+```yaml
+ELASTIC_URI: "http://elasticsearch:9200"
+```
 
-- **`AUDITBOX_BASE_URL`** (required)
-  Base URL where Auditbox is hosted (e.g., `http://localhost:3002`)
+URI for Elasticsearch connection.
 
-- **`IDP_AUTHORIZE_ENDPOINT`** (required)
-  Authorization endpoint for your identity provider (e.g., `http://localhost:8888/realms/auditbox/protocol/openid-connect/auth`)
+<details><summary>Details</summary><table data-header-hidden="true"><thead><tr><th width="200"></th><th></th></tr></thead><tbody><tr><td>Type</td><td>String</td></tr><tr><td>Default value</td><td>(no default)</td></tr><tr><td>Environment variable</td><td><code>ELASTIC_URI</code></td></tr><tr><td>Required</td><td><code>true</code></td></tr><tr><td>Set via</td><td>Environment variables</td></tr></tbody></table></details>
 
-- **`IDP_TOKEN_ENDPOINT`** (required)
-  Token endpoint for your identity provider (e.g., `http://keycloak:8888/realms/auditbox/protocol/openid-connect/token`)
+### Auditbox base URL<a href="#auditbox-base-url" id="auditbox-base-url"></a>
 
-- **`IDP_CLIENT_ID`** (required)
-  OAuth client ID for authentication (e.g., `auditbox`)
+```yaml
+AUDITBOX_BASE_URL: "http://localhost:3002"
+```
 
-- **`IDP_CLIENT_SECRET`** (required)
-  OAuth client secret for authentication
+Base URL where Auditbox is hosted.
 
-- **`AUDITBOX_API_AUTH_ENABLED`** (required)
-  Enable or disable API authentication (`true` or `false`)
+<details><summary>Details</summary><table data-header-hidden="true"><thead><tr><th width="200"></th><th></th></tr></thead><tbody><tr><td>Type</td><td>String</td></tr><tr><td>Default value</td><td>(no default)</td></tr><tr><td>Environment variable</td><td><code>AUDITBOX_BASE_URL</code></td></tr><tr><td>Required</td><td><code>true</code></td></tr><tr><td>Set via</td><td>Environment variables</td></tr></tbody></table></details>
 
-### Optional Variables
+### Identity provider authorize endpoint<a href="#idp-authorize-endpoint" id="idp-authorize-endpoint"></a>
 
-- **`CAPABILITY_STATEMENT_PATH`**
-  Default: `capability_statement.edn`
-  Path to the capability statement file
+```yaml
+IDP_AUTHORIZE_ENDPOINT: "http://localhost:8888/realms/auditbox/protocol/openid-connect/auth"
+```
 
-- **`BINDING`**
-  Default: `127.0.0.1`
-  Network binding address for the server
+Authorization endpoint for your identity provider.
 
-- **`PORT`**
-  Default: `3000`
-  Port on which the application listens
+<details><summary>Details</summary><table data-header-hidden="true"><thead><tr><th width="200"></th><th></th></tr></thead><tbody><tr><td>Type</td><td>String</td></tr><tr><td>Default value</td><td>(no default)</td></tr><tr><td>Environment variable</td><td><code>IDP_AUTHORIZE_ENDPOINT</code></td></tr><tr><td>Required</td><td><code>true</code></td></tr><tr><td>Set via</td><td>Environment variables</td></tr></tbody></table></details>
 
-- **`BALP_VERSION`**
-  Default: `1.1.3`
-  Supported BALP (Basic Audit Log Patterns) version
-  Options: `1.1.0`, `1.1.1`, `1.1.2`, `1.1.3`
+### Identity provider token endpoint<a href="#idp-token-endpoint" id="idp-token-endpoint"></a>
 
-- **`AUDITBOX_ES_AUTH`**
-  Format: `<user>:<password>`
-  Elasticsearch basic authentication credentials
-  Implemented and tested for the `superadmin` role in Elasticsearch
+```yaml
+IDP_TOKEN_ENDPOINT: "http://keycloak:8888/realms/auditbox/protocol/openid-connect/token"
+```
 
-- **`AUDITBOX_LOG_LEVEL`**
-  Default: `off`
-  Application logging level
-  Options: `off`, `info`, `debug`, `error`
+Token endpoint for your identity provider.
 
-- **`AUDITBOX_ARCHIVE_S3_ENABLED`**
-  Default: `false`
-  enables S3 archival strategy with backups
-  Options: `false`, `true`
+<details><summary>Details</summary><table data-header-hidden="true"><thead><tr><th width="200"></th><th></th></tr></thead><tbody><tr><td>Type</td><td>String</td></tr><tr><td>Default value</td><td>(no default)</td></tr><tr><td>Environment variable</td><td><code>IDP_TOKEN_ENDPOINT</code></td></tr><tr><td>Required</td><td><code>true</code></td></tr><tr><td>Set via</td><td>Environment variables</td></tr></tbody></table></details>
 
-- **`AUDITBOX_DATA_RETENTION_DAYS`**
-  Default: `30`
-  Number of days to retain audit events before archiving (must be >= 1)
+### Identity provider client ID<a href="#idp-client-id" id="idp-client-id"></a>
 
-- **`AUDITBOX_SNAPSHOT_REPOSITORY_NAME`**
-  Default: `default`
-  Name of the Elasticsearch snapshot repository for backups
+```yaml
+IDP_CLIENT_ID: "auditbox"
+```
 
-- **`AUDITBOX_S3_BUCKET_NAME`** 
-  (required when `AUDITBOX_ARCHIVE_S3_ENABLED`)
-  S3 bucket name for snapshot storage
+OAuth client ID for authentication.
 
-- **`AUDITBOX_S3_ENDPOINT`** 
-  (required when `AUDITBOX_ARCHIVE_S3_ENABLED`)
-  S3 endpoint URL (e.g., https://s3.amazonaws.com or http://minio:9000 for MinIO)
+<details><summary>Details</summary><table data-header-hidden="true"><thead><tr><th width="200"></th><th></th></tr></thead><tbody><tr><td>Type</td><td>String</td></tr><tr><td>Default value</td><td>(no default)</td></tr><tr><td>Environment variable</td><td><code>IDP_CLIENT_ID</code></td></tr><tr><td>Required</td><td><code>true</code></td></tr><tr><td>Set via</td><td>Environment variables</td></tr></tbody></table></details>
+
+### Identity provider client secret<a href="#idp-client-secret" id="idp-client-secret"></a>
+
+```yaml
+IDP_CLIENT_SECRET: "<String>"
+```
+
+OAuth client secret for authentication.
+
+<details><summary>Details</summary><table data-header-hidden="true"><thead><tr><th width="200"></th><th></th></tr></thead><tbody><tr><td>Type</td><td>String</td></tr><tr><td>Default value</td><td>(no default)</td></tr><tr><td>Environment variable</td><td><code>IDP_CLIENT_SECRET</code></td></tr><tr><td>Required</td><td><code>true</code></td></tr><tr><td>Sensitive</td><td><code>true</code> — value should be kept secret</td></tr><tr><td>Set via</td><td>Environment variables</td></tr></tbody></table></details>
+
+### API authentication enabled<a href="#auditbox-api-auth-enabled" id="auditbox-api-auth-enabled"></a>
+
+```yaml
+AUDITBOX_API_AUTH_ENABLED: true
+```
+
+Enable or disable API authentication.
+
+<details><summary>Details</summary><table data-header-hidden="true"><thead><tr><th width="200"></th><th></th></tr></thead><tbody><tr><td>Type</td><td>Bool</td></tr><tr><td>Default value</td><td>(no default)</td></tr><tr><td>Environment variable</td><td><code>AUDITBOX_API_AUTH_ENABLED</code></td></tr><tr><td>Required</td><td><code>true</code></td></tr><tr><td>Set via</td><td>Environment variables</td></tr></tbody></table></details>
+
+### Capability statement path<a href="#capability-statement-path" id="capability-statement-path"></a>
+
+```yaml
+CAPABILITY_STATEMENT_PATH: "capability_statement.edn"
+```
+
+Path to the capability statement file.
+
+<details><summary>Details</summary><table data-header-hidden="true"><thead><tr><th width="200"></th><th></th></tr></thead><tbody><tr><td>Type</td><td>String</td></tr><tr><td>Default value</td><td><code>capability_statement.edn</code></td></tr><tr><td>Environment variable</td><td><code>CAPABILITY_STATEMENT_PATH</code></td></tr><tr><td>Required</td><td><code>false</code></td></tr><tr><td>Set via</td><td>Environment variables</td></tr></tbody></table></details>
+
+### Network binding<a href="#binding" id="binding"></a>
+
+```yaml
+BINDING: "127.0.0.1"
+```
+
+Network binding address for the server.
+
+<details><summary>Details</summary><table data-header-hidden="true"><thead><tr><th width="200"></th><th></th></tr></thead><tbody><tr><td>Type</td><td>String</td></tr><tr><td>Default value</td><td><code>127.0.0.1</code></td></tr><tr><td>Environment variable</td><td><code>BINDING</code></td></tr><tr><td>Required</td><td><code>false</code></td></tr><tr><td>Set via</td><td>Environment variables</td></tr></tbody></table></details>
+
+### Port<a href="#port" id="port"></a>
+
+```yaml
+PORT: 3000
+```
+
+Port on which the application listens.
+
+<details><summary>Details</summary><table data-header-hidden="true"><thead><tr><th width="200"></th><th></th></tr></thead><tbody><tr><td>Type</td><td>Integer</td></tr><tr><td>Default value</td><td><code>3000</code></td></tr><tr><td>Environment variable</td><td><code>PORT</code></td></tr><tr><td>Required</td><td><code>false</code></td></tr><tr><td>Set via</td><td>Environment variables</td></tr></tbody></table></details>
+
+### BALP version<a href="#balp-version" id="balp-version"></a>
+
+```yaml
+BALP_VERSION: "1.1.3"
+```
+
+Supported BALP (Basic Audit Log Patterns) version.
+
+<details><summary>Details</summary><table data-header-hidden="true"><thead><tr><th width="200"></th><th></th></tr></thead><tbody><tr><td>Type</td><td>Enum</td></tr><tr><td>Values</td><td><code>1.1.0</code><br /><code>1.1.1</code><br /><code>1.1.2</code><br /><code>1.1.3</code></td></tr><tr><td>Default value</td><td><code>1.1.3</code></td></tr><tr><td>Environment variable</td><td><code>BALP_VERSION</code></td></tr><tr><td>Required</td><td><code>false</code></td></tr><tr><td>Set via</td><td>Environment variables</td></tr></tbody></table></details>
+
+### Elasticsearch authentication<a href="#auditbox-es-auth" id="auditbox-es-auth"></a>
+
+```yaml
+AUDITBOX_ES_AUTH: "<user>:<password>"
+```
+
+Elasticsearch basic authentication credentials. Implemented and tested for the `superadmin` role in Elasticsearch.
+
+<details><summary>Details</summary><table data-header-hidden="true"><thead><tr><th width="200"></th><th></th></tr></thead><tbody><tr><td>Type</td><td>String</td></tr><tr><td>Format</td><td><code>&lt;user&gt;:&lt;password&gt;</code></td></tr><tr><td>Default value</td><td>(no default)</td></tr><tr><td>Environment variable</td><td><code>AUDITBOX_ES_AUTH</code></td></tr><tr><td>Required</td><td><code>false</code></td></tr><tr><td>Sensitive</td><td><code>true</code> — value should be kept secret</td></tr><tr><td>Set via</td><td>Environment variables</td></tr></tbody></table></details>
+
+### Log level<a href="#auditbox-log-level" id="auditbox-log-level"></a>
+
+```yaml
+AUDITBOX_LOG_LEVEL: "off"
+```
+
+Application logging level.
+
+<details><summary>Details</summary><table data-header-hidden="true"><thead><tr><th width="200"></th><th></th></tr></thead><tbody><tr><td>Type</td><td>Enum</td></tr><tr><td>Values</td><td><code>off</code><br /><code>info</code><br /><code>debug</code><br /><code>error</code></td></tr><tr><td>Default value</td><td><code>off</code></td></tr><tr><td>Environment variable</td><td><code>AUDITBOX_LOG_LEVEL</code></td></tr><tr><td>Required</td><td><code>false</code></td></tr><tr><td>Set via</td><td>Environment variables</td></tr></tbody></table></details>
+
+### S3 archive enabled<a href="#auditbox-archive-s3-enabled" id="auditbox-archive-s3-enabled"></a>
+
+```yaml
+AUDITBOX_ARCHIVE_S3_ENABLED: false
+```
+
+Enables S3 archival strategy with backups.
+
+<details><summary>Details</summary><table data-header-hidden="true"><thead><tr><th width="200"></th><th></th></tr></thead><tbody><tr><td>Type</td><td>Bool</td></tr><tr><td>Default value</td><td><code>false</code></td></tr><tr><td>Environment variable</td><td><code>AUDITBOX_ARCHIVE_S3_ENABLED</code></td></tr><tr><td>Required</td><td><code>false</code></td></tr><tr><td>Set via</td><td>Environment variables</td></tr></tbody></table></details>
+
+### Data retention days<a href="#auditbox-data-retention-days" id="auditbox-data-retention-days"></a>
+
+```yaml
+AUDITBOX_DATA_RETENTION_DAYS: 30
+```
+
+Number of days to retain audit events before archiving (must be >= 1).
+
+<details><summary>Details</summary><table data-header-hidden="true"><thead><tr><th width="200"></th><th></th></tr></thead><tbody><tr><td>Type</td><td>Integer</td></tr><tr><td>Default value</td><td><code>30</code></td></tr><tr><td>Environment variable</td><td><code>AUDITBOX_DATA_RETENTION_DAYS</code></td></tr><tr><td>Required</td><td><code>false</code></td></tr><tr><td>Set via</td><td>Environment variables</td></tr></tbody></table></details>
+
+### Snapshot repository name<a href="#auditbox-snapshot-repository-name" id="auditbox-snapshot-repository-name"></a>
+
+```yaml
+AUDITBOX_SNAPSHOT_REPOSITORY_NAME: "default"
+```
+
+Name of the Elasticsearch snapshot repository for backups.
+
+<details><summary>Details</summary><table data-header-hidden="true"><thead><tr><th width="200"></th><th></th></tr></thead><tbody><tr><td>Type</td><td>String</td></tr><tr><td>Default value</td><td><code>default</code></td></tr><tr><td>Environment variable</td><td><code>AUDITBOX_SNAPSHOT_REPOSITORY_NAME</code></td></tr><tr><td>Required</td><td><code>false</code></td></tr><tr><td>Set via</td><td>Environment variables</td></tr></tbody></table></details>
+
+### S3 bucket name<a href="#auditbox-s3-bucket-name" id="auditbox-s3-bucket-name"></a>
+
+```yaml
+AUDITBOX_S3_BUCKET_NAME: "<String>"
+```
+
+S3 bucket name for snapshot storage. Required when `AUDITBOX_ARCHIVE_S3_ENABLED` is `true`.
+
+<details><summary>Details</summary><table data-header-hidden="true"><thead><tr><th width="200"></th><th></th></tr></thead><tbody><tr><td>Type</td><td>String</td></tr><tr><td>Default value</td><td>(no default)</td></tr><tr><td>Environment variable</td><td><code>AUDITBOX_S3_BUCKET_NAME</code></td></tr><tr><td>Required</td><td><code>true</code> when <code>AUDITBOX_ARCHIVE_S3_ENABLED</code> is enabled</td></tr><tr><td>Set via</td><td>Environment variables</td></tr></tbody></table></details>
+
+### S3 endpoint<a href="#auditbox-s3-endpoint" id="auditbox-s3-endpoint"></a>
+
+```yaml
+AUDITBOX_S3_ENDPOINT: "https://s3.amazonaws.com"
+```
+
+S3 endpoint URL. Required when `AUDITBOX_ARCHIVE_S3_ENABLED` is `true`.
+
+<details><summary>Details</summary><table data-header-hidden="true"><thead><tr><th width="200"></th><th></th></tr></thead><tbody><tr><td>Type</td><td>String</td></tr><tr><td>Default value</td><td>(no default)</td></tr><tr><td>Environment variable</td><td><code>AUDITBOX_S3_ENDPOINT</code></td></tr><tr><td>Required</td><td><code>true</code> when <code>AUDITBOX_ARCHIVE_S3_ENABLED</code> is enabled</td></tr><tr><td>Set via</td><td>Environment variables</td></tr></tbody></table></details>
 
 ## Example Configuration
 
