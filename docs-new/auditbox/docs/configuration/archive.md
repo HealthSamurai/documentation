@@ -35,10 +35,10 @@ environment:
   AUDITBOX_DATA_RETENTION_DAYS: 90
 
   # Elasticsearch snapshot repository name
-  AUDITBOX_SNAPSHOT_REPOSITORY_NAME: my_s3_repository
+  AUDITBOX_SNAPSHOT_REPOSITORY_NAME: auditbox_repo
 
   # S3 bucket name
-  AUDITBOX_S3_BUCKET_NAME: my-backup-bucket
+  AUDITBOX_S3_BUCKET_NAME: backup_bucket
 
   # S3 endpoint (use https://s3.amazonaws.com for AWS S3)
   AUDITBOX_S3_ENDPOINT: http://minio:9000
