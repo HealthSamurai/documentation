@@ -138,6 +138,9 @@ IAM module includes the following resource types:
 <tr><td width="290">auth.<strong>authorization_code</strong>.<strong>token_format</strong></td><td width="70">0..1</td><td width="150">string</td><td>Format of the access token. 
 
 <strong>Allowed values</strong>: `jwt`</td></tr>
+<tr><td width="290">auth.<strong>authorization_code</strong>.<strong>client_assertion_types</strong></td><td width="70">0..*</td><td width="150">string</td><td>Supported client assertion types. 
+
+<strong>Allowed values</strong>: `urn:ietf:params:oauth:client-assertion-type:jwt-bearer`</td></tr>
 <tr><td width="290">auth.<strong>authorization_code</strong>.<strong>refresh_token_expiration</strong></td><td width="70">0..1</td><td width="150">integer</td><td>Expiration time for refresh tokens in seconds.</td></tr>
 <tr><td width="290">auth.<strong>authorization_code</strong>.<strong>pkce</strong></td><td width="70">0..1</td><td width="150">boolean</td><td>Whether PKCE (Proof Key for Code Exchange) is required.</td></tr>
 <tr><td width="290">auth.<strong>authorization_code</strong>.<strong>access_token_expiration</strong></td><td width="70">0..1</td><td width="150">integer</td><td>Expiration time for access tokens in seconds.</td></tr>
@@ -420,6 +423,7 @@ User role
 <tr><td width="290">ctx</td><td width="70">0..1</td><td width="150">Object</td><td></td></tr>
 <tr><td width="290">end</td><td width="70">0..1</td><td width="150">dateTime</td><td>Time when the session ended or will end.</td></tr>
 <tr><td width="290">exp</td><td width="70">0..1</td><td width="150">integer</td><td>Expiration time for the access token (in seconds since epoch).</td></tr>
+<tr><td width="290">iss</td><td width="70">0..1</td><td width="150">string</td><td>Issuer of token for the current session</td></tr>
 <tr><td width="290">jti</td><td width="70">0..1</td><td width="150">string</td><td></td></tr>
 <tr><td width="290">on-behalf</td><td width="70">0..1</td><td width="150">Reference</td><td>Reference to a user on whose behalf this session is operating. 
 
