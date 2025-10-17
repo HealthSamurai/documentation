@@ -38,6 +38,8 @@
               meilisearch-api-key
               meilisearch-url
               port
+              posthog-api-key
+              posthog-host
               prefix
               reload-check-interval
               version]}]]
@@ -73,7 +75,11 @@
                                      (System/getenv "MEILISEARCH_URL")
                                      "http://localhost:7700")
                 :meilisearch-api-key (or meilisearch-api-key
-                                         (System/getenv "MEILISEARCH_API_KEY"))}
+                                         (System/getenv "MEILISEARCH_API_KEY"))
+                :posthog-api-key (or posthog-api-key
+                                     (System/getenv "POSTHOG_API_KEY"))
+                :posthog-host (or posthog-host
+                                  (System/getenv "POSTHOG_HOST"))}
         initial-state {:config config
                        :products {:config []
                                   :indices {}}

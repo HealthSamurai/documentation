@@ -364,7 +364,7 @@
 (defn render-no-results
   "Renders the no results message."
   [query]
-  [:div {:class "border border-outline md:shadow-lg md:ring-1 md:ring-outline-subtle p-4 text-sm text-on-surface-placeholder md:w-[32rem]"}
+  [:div {:class "bg-white border border-outline md:shadow-lg md:ring-1 md:ring-outline-subtle p-4 text-sm text-on-surface-placeholder md:w-[32rem]"}
    (str "No results found for \"" query "\"")])
 
 (defn render-group-header
@@ -491,7 +491,12 @@
             (render-search-results groups)]])))))
 
 (defn meilisearch-endpoint [ctx]
-  (let [request (:request ctx)]
+  (let [request (:request ctx)
+        query (or (get-in request [:query-params "q"])
+                  (get-in request [:params "q"])
+                  (get-in request [:query-params :q])
+                  (get-in request [:params :q])
+                  "")]
     (log/info "meilisearch-endpoint called" {:uri (:uri request)
                                              :query-params (:query-params request)
                                              :context-keys (keys ctx)})

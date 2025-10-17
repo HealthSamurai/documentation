@@ -227,7 +227,7 @@
                             font-normal"
                      :autocomplete "off"
                      :hx-get (http/get-product-prefixed-url context "/meilisearch/dropdown")
-                     :hx-trigger "keyup[!event.key.startsWith('Arrow') && event.key !== 'Enter' && event.key !== 'Escape'] changed delay:300ms, focus"
+                     :hx-trigger "keyup[!event.key.startsWith('Arrow') && event.key !== 'Enter' && event.key !== 'Escape'] changed delay:300ms"
                      :hx-target "#meilisearch-dropdown"
                      :hx-swap "innerHTML"
                      :hx-indicator "#meilisearch-indicator"
@@ -271,7 +271,7 @@
                     :class "flex-1 bg-transparent outline-none placeholder:text-on-surface-placeholder text-on-surface-strong font-normal"
                     :autocomplete "off"
                     :hx-get (http/get-product-prefixed-url context "/meilisearch/dropdown?mobile=true")
-                    :hx-trigger "keyup[!event.key.startsWith('Arrow') && event.key !== 'Enter' && event.key !== 'Escape'] changed delay:300ms, focus"
+                    :hx-trigger "keyup[!event.key.startsWith('Arrow') && event.key !== 'Enter' && event.key !== 'Escape'] changed delay:300ms"
                     :hx-target "#mobile-meilisearch-dropdown"
                     :hx-swap "innerHTML"
                     :hx-indicator "#mobile-meilisearch-indicator"}]

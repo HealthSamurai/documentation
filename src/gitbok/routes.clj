@@ -9,6 +9,8 @@
             [gitbok.state :as state]
             [gitbok.handlers :as handlers]
             [gitbok.metrics :as metrics]
+            [gitbok.middleware.session :as session]
+            [gitbok.middleware.posthog :as posthog-middleware]
             [ring.util.response]
             [gitbok.ui.meilisearch]
             [gitbok.ui.examples]
@@ -364,7 +366,11 @@
      (ring/router
       routes
       {:data {:muuntaja m/instance
-              :middleware [;; Metrics collection middleware (before gzip to measure actual response time)
+              :middleware [;; Session management (must be early to set session-id for all requests)
+                           session/wrap-session
+                           ;; PostHog tracking (after session, before metrics to track properly)
+                           #(posthog-middleware/wrap-posthog-tracking % context)
+                           ;; Metrics collection middleware (before gzip to measure actual response time)
                            metrics/wrap-metrics
                            ;; Gzip compression (must be early to compress final response)
                            wrap-gzip

@@ -79,6 +79,35 @@
       if (evt.detail.target.id === 'meilisearch-dropdown' ||
         evt.detail.target.id === 'mobile-meilisearch-dropdown') {
         currentSelectedIndex = -1;
+
+        // Track search in PostHog (frontend)
+        if (typeof posthog !== 'undefined') {
+          try {
+            const inputId = evt.detail.target.id === 'mobile-meilisearch-dropdown'
+              ? 'mobile-meilisearch-input'
+              : 'meilisearch-input';
+            const input = document.getElementById(inputId);
+            const query = input ? input.value : '';
+
+            if (query && query.length > 0) {
+              const dropdown = evt.detail.target;
+              const results = dropdown.querySelectorAll('[data-result-index]');
+              const resultsCount = results.length;
+
+              // Get product from current page context
+              const productMatch = window.location.pathname.match(/^\/([^\/]+)/);
+              const product = productMatch ? productMatch[1] : 'unknown';
+
+              posthog.capture('docs_search', {
+                'query': query,
+                'results_count': resultsCount,
+                'product': product
+              });
+            }
+          } catch (e) {
+            console.error('Failed to track search in PostHog:', e);
+          }
+        }
       }
     });
 
