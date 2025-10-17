@@ -31,22 +31,20 @@
     (log/info "3. reverse file to uri idx" {:product (:id product)})
     (let [file-to-uri-idx (file-to-uri/file->uri-idx ctx)]
       (state/set-file-to-uri-idx! ctx file-to-uri-idx))
-    (log/info "4. using files from summary (step 3), read all files into memory" {:product (:id product)})
-    (indexing/set-md-files-idx ctx (state/get-file-to-uri-idx ctx))
-    (log/info "5. parse all files into memory, some things are already rendered as plain html"
-              {:product (:id product)})
-    (markdown/set-parsed-markdown-index ctx (indexing/get-md-files-idx ctx))
+
     (let [dev-mode (state/get-config ctx :dev-mode)]
       (if dev-mode
-        (log/info "init-product" {:msg "DEV mode, skip pre-rendering"
+        (log/info "init-product" {:msg "DEV mode, skip pre-reading/parsing/rendering"
                                   :product (:id product)})
         (do
-          (log/info "6. render it on start" {:product (:id product)})
-          (when read-markdown-fn
-            (markdown/render-all! ctx
-                                  (markdown/get-parsed-markdown-index ctx)
-                                  read-markdown-fn))
-          (log/info "RENDER DONE" {:product (:id product)}))))
+          (log/info "4. read all files into memory" {:product (:id product)})
+          (let [md-files (indexing/slurp-md-files! ctx (keys (state/get-file-to-uri-idx ctx)))]
+            (log/info "5. parse all files into memory" {:product (:id product)})
+            (let [parsed-files (markdown/parse-all-files ctx md-files)]
+              (log/info "6. render all files" {:product (:id product)})
+              (when read-markdown-fn
+                (markdown/render-all! ctx parsed-files read-markdown-fn))
+              (log/info "RENDER DONE" {:product (:id product)}))))))
     (log/info "7. set lastmod data in context for Last Modified metadata"
               {:product (:id product)})
     (indexing/set-lastmod ctx)

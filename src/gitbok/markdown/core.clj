@@ -316,7 +316,10 @@
           md/parse
           render-md))))
 
-(defn set-parsed-markdown-index [context md-files-idx]
+(defn parse-all-files
+  "Parse markdown files and return the parsed result without saving to state.
+   Takes md-files-idx (map of filepath -> content) and returns vector of parsed files."
+  [context md-files-idx]
   (log/info "Parsing markdown files" {:count (count md-files-idx)})
   (let [start-time (System/currentTimeMillis)
         ;; Process in batches to reduce future overhead
@@ -342,6 +345,10 @@
         duration (- (System/currentTimeMillis) start-time)]
     (log/info "files parsed" {:count (count parsed-files)
                               :duration-ms duration})
+    parsed-files))
+
+(defn set-parsed-markdown-index [context md-files-idx]
+  (let [parsed-files (parse-all-files context md-files-idx)]
     (state/set-parsed-markdown-idx! context parsed-files)))
 
 (defn get-parsed-markdown-index [context]

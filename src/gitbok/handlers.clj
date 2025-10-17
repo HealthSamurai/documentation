@@ -34,18 +34,17 @@
                      (let [from-disk (try (state/slurp-resource context full-filepath)
                                           (catch Exception e
                                             (log/warn "Failed to read from disk" {:path full-filepath :error (.getMessage e)})
-                                            nil))
-                           from-index (get (indexing/get-md-files-idx context) filepath)
-                           content (or from-disk from-index)]
+                                            nil))]
                        (log/info "DEV: content loaded" {:path full-filepath
                                                         :from-disk? (some? from-disk)
-                                                        :from-index? (some? from-index)
-                                                        :size (if content (count content) 0)
-                                                        :nil? (nil? content)})
-                       content))
-                   ;; In production, use cached content from memory
-                   (or (get (indexing/get-md-files-idx context) filepath)
-                       (state/slurp-resource context full-filepath)))
+                                                        :size (if from-disk (count from-disk) 0)
+                                                        :nil? (nil? from-disk)})
+                       from-disk))
+                   ;; In production, this should never be called - rendered pages are pre-cached
+                   ;; But as a fallback, try to read from disk
+                   (do
+                     (log/warn "PRODUCTION: reading file on-demand (should be pre-rendered)" {:filepath filepath})
+                     (state/slurp-resource context full-filepath)))
         _ (when-not content*
             (log/error "No content found" {:filepath filepath :full-filepath full-filepath}))
         {:keys [parsed description title]}
