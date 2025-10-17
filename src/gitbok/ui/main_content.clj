@@ -101,12 +101,36 @@
                   index)]
       result)))
 
+(defn find-children-from-summary
+  "Get children sorted by SUMMARY.md order"
+  [context filepath]
+  (let [children-from-files (find-children-files context filepath)]
+    (when (seq children-from-files)
+      (let [nav-links (summary/get-navigation-links context)
+            product-prefix (http/get-product-prefix context)
+            ;; Create map: full-href (normalized) -> index for quick lookup
+            ;; Normalize by removing trailing slash
+            href-to-index (into {} 
+                                (map-indexed 
+                                  (fn [idx item] 
+                                    (let [href (str/replace (:href item) #"/$" "")]
+                                      [href idx])) 
+                                  nav-links))]
+        ;; Sort children by their index in summary navigation
+        (sort-by 
+          (fn [[_path info]]
+            (let [full-href (str product-prefix "/" (:uri info))
+                  ;; Normalize by removing trailing slash
+                  normalized-href (str/replace full-href #"/$" "")]
+              (or (get href-to-index normalized-href) 999999)))
+          children-from-files)))))
+
 (defn render-empty-page [context filepath title]
   [:div
    (headers/render-h1
     (markdown/renderers context filepath) title)
    (for [[_path {:keys [title uri]}]
-         (find-children-files context filepath)]
+         (find-children-from-summary context filepath)]
      (let [prefix (gitbok.state/get-config context :prefix "")
            product-path (or (products/path context) "")
            full-href (str prefix product-path "/" uri)]
