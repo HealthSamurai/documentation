@@ -4,169 +4,274 @@ description: >-
   Standardized API on Inferno framework.
 ---
 
-# Pass Inferno Tests with Smartbox
+# Pass Inferno Tests with Aidbox
+
+{% hint style="warning" %}
+This guide is valid for Aidbox version 3510 and higher.
+{% endhint %}
 
 {% hint style="info" %}
-The article has be reviewed for next Inferno framework v0.3.12 and test suite
+The article has be reviewed for next test suite
 
-* ONC Certification (g)(10) Standardized API v3.2.0
-* US Core 3.1.1 / USCDI v1, SMART App Launch 1.0.0, Bulk Data 1.0.1
+* ONC Certification (g)(10) Standardized API v.7.2.6
+* US Core 6.1.0 / USCDI v3, SMART App Launch 2.2.0, Bulk Data 2.0.0
 {% endhint %}
 
 ## Prerequisites
 
-{% hint style="info" %}
-Smartbox must be publicly available from the Internet in order to Inferno could reach Smartbox and run tests.
-{% endhint %}
+#### 1.  Aidbox is publicly available on the Internet
 
-Once you have your Smartbox instance up and running you need to register a FHIR server by creating Tenant resource and upload necessary resources for Inferno.
+* Run Aidbox in the cloud [Sandbox](https://aidbox.app/) or
+* Run [Aidbox on Kubernetes](../../../deployment-and-maintenance/deploy-aidbox/run-aidbox-in-kubernetes/) or
+* Run [Aidbox locally](../../../getting-started/run-aidbox-locally.md)  and proxy it with tools like ngrok/cloudflared tunnel
 
-* Patient record with all USCDIv1 data elements in us-core format,
+#### 2. Aidbox settings
+
+From the Aidbox UI left sidebar menu, go to Settings and check these two:
+
+* Use correct range arithmetic in search - should be **true**
+* Default number of results per search page - change it to **200**
+
+#### 3. Set up bucket for Bulk Export test
+
+You need to [set up](../../../api/bulk-api/export.md#setup-storage) S3 Bucket for `Multi-Patient Authorization and API STU2` test step.  &#x20;
+
+#### 4. Load US Core Package
+
+From the Aidbox UI left sidebar menu, go to FAR -> Import Package -> find hl7.fhir.us.core 6.1.0 -> click Import button
+
+#### 5. Load fixtures (read below)
+
+Once you have your Aidbox instance up and running you need to&#x20;
+
+* Patient record with all USCDIv3 data elements in us-core format,
 * User resource, associated with the patient record
-* Client resource for smart launch flows
+* User resource, associated with the practitioner record
+* Confidential and Public Client resources for smart launch flows
 * Client resource for bulk api
-
-### Create Tenant
-
-```yaml
-PUT /Tenant/my-clinic
-Content-Type: text/yaml
-
-name: My Clinic
-```
 
 ### Prepare fixtures
 
-Demo patient record with all USCDI elements for Inferno test is available on Google Storage and maintained by Health Samurai team. You can upload with `/$load` endpoint:
+Demo patient record with all USCDIv3 elements for Inferno test is available on Google Storage and maintained by Health Samurai team. You can upload with `/$load` endpoint:
 
-```yaml
-POST /$load
-Content-Type: text/yaml
+```json
+POST /fhir/$load
+content-type: application/json
+accept: application/json
 
-source: 'https://storage.googleapis.com/aidbox-public/smartbox/rows.ndjson.gz'
-merge:
-  meta:
-    tenant:
-      id: my-clinic
-      resourceType: Tenant
+{
+  "source": "https://storage.googleapis.com/aidbox-public/smartbox/uscdi_v3_dataset.ndjson.gz"
+}
 ```
 
-It contains at least two patients `test-pt-1` and `test-pt-2`. Second patient will be required for Multi-Patient API test.
+It contains at least two patients `85` and `86`. Second patient will be required for Multi-Patient API test.
 
-Let's created then User resource for `test-pt-1`:
+Let's created then User resources for patient and practitioner:
 
-```yaml
-POST /User
-Content-Type: text/yaml
+```json
+POST /fhir
+content-type: application/json
+accept: application/json
 
-email: example@mail.com
-password: password
-name:
-  givenName: Amy
-  familyName: Shaw
-active: true
-fhirUser:
-  id: test-pt-1
-  resourceType: Patient
-roles:
-- type: patient
-meta:
-  tenant:
-    id: my-clinic
-    resourceType: Tenant
+{
+  "resourceType": "Bundle",
+  "type": "transaction",
+  "entry": [
+    {
+      "resource": {
+        "email": "patient@mail.com",
+        "password": "password",
+        "resourceType": "User",
+        "name": {
+          "givenName": "Amy",
+          "familyName": "Shaw"
+        },
+        "active": true,
+        "fhirUser": {
+          "reference": "Patient/85"
+        },
+        "roles": [
+          {
+            "type": "patient"
+          }
+        ]
+      },
+      "request": {
+        "method": "PUT",
+        "url": "User/patient"
+      }
+    },
+    {
+      "resource": {
+        "email": "practitioner@mail.com",
+        "password": "password",
+        "resourceType": "User",
+        "name": {
+          "givenName": "Willena",
+          "familyName": "Oberbrunner"
+        },
+        "active": true,
+        "fhirUser": {
+          "reference": "Practitioner/8bee2ee3-d401-3728-9791-d235cfa01ab9"
+        },
+        "roles": [
+          {
+            "type": "practitioner"
+          }
+        ]
+      },
+      "request": {
+        "method": "PUT",
+        "url": "User/practitioner"
+      }
+    }
+  ]
+}
+
 ```
 
-Now you can login to My Clinic patient portal with `example@mail.com / password`.
+Now you can login to Aidbox as a patient with `patient@mail.com / password`. and as a practitioner with `practitioner@mail.com / password`
 
 ### Create client resources for Inferno
 
-Inferno will act as smart app/bulk client app. Let's register inferno's apps as Client resources in Smartbox.
+Inferno will act as smart app/bulk client app. Let's register inferno's apps as Client resources in Aidbox.
+
+{% hint style="warning" %}
+You need to replace `redirect_uri,` `launch_uri`, `jwks_uri` with Inferno g(10) TestKit URL
+{% endhint %}
 
 ```yaml
-PUT /
-Content-Type: text/yaml
+POST /fhir
+content-type: application/json
+accept: application/json
 
-- id: inferno-confidential-patient-smart-app
-  resourceType: Client
-  type: patient-facing-smart-app
-  active: true
-  secret: inferno-confidential-patient-smart-app-secret
-  grant_types:
-  - authorization_code
-  auth:
-    authorization_code:
-      pkce: false
-      redirect_uri: 'https://inferno.healthit.gov/suites/custom/smart/redirect'
-      refresh_token: true
-      secret_required: true
-      access_token_expiration: 300
-  smart:
-    launch_uri: 'https://inferno.healthit.gov/suites/custom/smart/launch'
-- id: inferno-public-patient-smart-app
-  resourceType: Client
-  type: patient-facing-smart-app
-  active: true
-  grant_types:
-  - authorization_code
-  auth:
-    authorization_code:
-      pkce: true
-      redirect_uri: 'https://inferno.healthit.gov/suites/custom/smart/redirect'
-      refresh_token: true
-      secret_required: false
-      access_token_expiration: 300
-  smart:
-    launch_uri: 'https://inferno.healthit.gov/suites/custom/smart/launch'
-- id: inferno-my-clinic-bulk-client
-  resourceType: Client
-  type: bulk-api-client
-  active: true
-  auth:
-    client_credentials:
-      client_assertion_types: ['urn:ietf:params:oauth:client-assertion-type:jwt-bearer']
-      access_token_expiration: 300
-  scope: [system/*.read]
-  jwks_uri: https://inferno.healthit.gov/suites/custom/g10_certification/.well-known/jwks.json
-  grant_types:
-  - client_credentials
-  meta:
-    tenant:
-      id: my-clinic
-      resourceType: Tenant
+{
+  "resourceType": "Bundle",
+  "type": "transaction",
+  "entry": [
+    {
+      "resource": {
+        "id": "inferno-confidential-smart-app",
+        "resourceType": "Client",
+        "type": "smart-app",
+        "active": true,
+        "grant_types": [
+          "authorization_code",
+          "basic"
+        ],
+        "auth": {
+          "authorization_code": {
+            "pkce": true,
+            "redirect_uri": "http://localhost:4567/custom/smart/redirect",
+            "audience": ["https://tqtgrrfrty.edge.aidbox.app/fhir"],
+            "refresh_token": true,
+            "secret_required": true,
+            "token_format": "jwt",
+            "access_token_expiration": 300
+          }
+        },
+        "jwks_uri": "http://localhost:4567/custom/smart_stu2/.well-known/jwks.json",
+        "smart": {
+          "launch_uri": "http://localhost:4567/custom/smart/launch"
+        },
+        "secret": "verysecret"
+      },
+      "request": {
+        "method": "PUT",
+        "url": "Client/inferno-confidential-smart-app"
+      }
+    },
+    {
+      "resource": {
+        "id": "inferno-public-smart-app",
+        "resourceType": "Client",
+        "type": "smart-app",
+        "active": true,
+        "grant_types": [
+          "authorization_code",
+          "basic"
+        ],
+        "auth": {
+          "authorization_code": {
+            "pkce": true,
+            "redirect_uri": "http://localhost:4567/custom/smart/redirect",
+            "refresh_token": true,
+            "token_format": "jwt",
+            "client_assertion_types": [
+              "urn:ietf:params:oauth:client-assertion-type:jwt-bearer"
+            ],
+            "access_token_expiration": 300
+          }
+        },
+        "jwks_uri": "http://localhost:4567/custom/smart_stu2/.well-known/jwks.json",
+        "smart": {
+          "launch_uri": "http://localhost:4567/custom/smart/launch"
+        }
+      },
+      "request": {
+        "method": "PUT",
+        "url": "Client/inferno-public-smart-app"
+      }
+    },
+    {
+      "resource": {
+        "id": "inferno-bulk-client",
+        "resourceType": "Client",
+        "type": "bulk-api-client",
+        "active": true,
+        "auth": {
+          "client_credentials": {
+            "client_assertion_types": [
+              "urn:ietf:params:oauth:client-assertion-type:jwt-bearer"
+            ],
+            "access_token_expiration": 300
+          }
+        },
+        "scope": [
+          "system/*.rs"
+        ],
+        "jwks_uri": "http://localhost:4567/custom/smart_stu2/.well-known/jwks.json",
+        "grant_types": [
+          "client_credentials"
+        ]
+      },
+      "request": {
+        "method": "PUT",
+        "url": "Client/inferno-bulk-client"
+      }
+    },
+    {
+      "resource": {
+        "id": "inferno-client-allow",
+        "resourceType": "AccessPolicy",
+        "engine": "allow",
+        "link": [
+          {
+            "reference": "Client/inferno-confidential-smart-app"
+          },
+          {
+            "reference": "Client/inferno-public-smart-app"
+          },
+          {
+            "reference": "Client/inferno-bulk-client"
+          }
+        ]
+      },
+      "request": {
+        "method": "PUT",
+        "url": "AccessPolicy/inferno-client-allow"
+      }
+    }
+  ]
+}
 ```
 
 ## Create Inferno test session
 
-Create Inferno test session by following the link [https://inferno.healthit.gov/onc-certification-g10-test-kit](https://inferno.healthit.gov/onc-certification-g10-test-kit).
+Create Inferno test session:
 
-{% hint style="info" %}
-1. To pass the `EHR Practitioner App` inferno sequence see the guide [How-to perform EHR launch](perform-ehr-launch.md)
-2. See [How-to revoke granted access](revoke-granted-access.md) to pass the `Token Revocation` Inferno test
-{% endhint %}
-
-### Run all Inferno tests
-
-Press the `Run all tests` button then provide require parameters for the tests:
-
-* FHIR Endpoint:\
-  `[aidbox-url]/tenant/my-clinic/patient/smart-api`
-* Standalone Client ID: `inferno-confidential-patient-smart-app`
-* Standalone Client Secret: `inferno-confidential-patient-smart-app-secret`
-* EHR Launch Client ID: `inferno-confidential-patient-smart-app`
-* EHR Launch Client Secret: `inferno-confidential-patient-smart-app-secret`
-* Bulk Data FHIR URL:\
-  `[aidbox-url]/tenant/my-clinic/bulk-api`
-* Backend Services Token Endpoint:\
-  `[aidbox-url]/auth/token`
-* Bulk Data Client ID: `inferno-my-clinic-bulk-client`
-* Encryption method `RS384`
-* Group ID: `test-group-1`
-* Patient IDs in exported Group: `test-pt-1,test-pt-2`
-* Public Launch Client ID: `inferno-public-patient-smart-app`
-* EHR Launch Client ID: `inferno-confidential-patient-smart-app`
-* EHR Launch Client Secret: `inferno-confidential-patient-smart-app-secret`
-
-Once you run all tests, follow Inferno instructions.
+* Offitial TestKit - [https://inferno.healthit.gov/onc-certification-g10-test-kit](https://inferno.healthit.gov/onc-certification-g10-test-kit) (temporarily unavailable)
+* While Offitial Inferno TestKit temporarily unavailable you can use Iferno Instance maintained by Health Samurai team - [https://www.health-samurai.io/inferno](https://www.health-samurai.io/inferno) or run Inferno TestKit locally - [https://github.com/onc-healthit/onc-certification-g10-test-kit](https://github.com/onc-healthit/onc-certification-g10-test-kit)
 
 ### Run Inferno tests one by one
 
@@ -174,14 +279,18 @@ Once you run all tests, follow Inferno instructions.
 
 1. Click the `Standalone Patient App` link in the left sidebar
 2. Click the `Run tests` button
-3. Provide require parameters for tests
-   * FHIR Endpoint:\
-     `[aidbox-url]/tenant/my-clinic/patient/smart-api`
-   * Standalone Client ID: `inferno-confidential-patient-smart-app`
-   * Standalone Client Secret: `inferno-confidential-patient-smart-app-secret`
+3.  Provide require parameters for tests
+
+    * FHIR Endpoint: `[aidbox-url]/fhir`&#x20;
+    * Scopes. Make sure that scopes text area contains all these scopes:
+
+    `launch/patient openid fhirUser offline_access patient/Medication.rs patient/AllergyIntolerance.rs patient/CarePlan.rs patient/CareTeam.rs patient/Condition.rs patient/Device.rs patient/DiagnosticReport.rs patient/DocumentReference.rs patient/Encounter.rs patient/Goal.rs patient/Immunization.rs patient/Location.rs patient/MedicationRequest.rs patient/Observation.rs patient/Organization.rs patient/Patient.rs patient/Practitioner.rs patient/Procedure.rs patient/Provenance.rs patient/PractitionerRole.rs patient/ServiceRequest.rs patient/Coverage.rs patient/MedicationDispense.rs patient/Specimen.rs patient/RelatedPerson.rs`
+
+    * Standalone Client ID: `inferno-confidential-smart-app`
+    * Standalone Client Secret: `verysecret`
 4. Click the `Submit` button
 
-Once you run tests, follow the Inferno instructions.
+Once you run tests, follow the Inferno instructions and login to Aidbox as a patient `patient@mail.com / password`.
 
 #### 2 Standalone Patient App - Limited Access
 
@@ -198,28 +307,50 @@ Once you run tests, follow the Inferno instructions.
 {% hint style="info" %}
 By default the test expects to not get accees to all the resources but `Patient`, `Condition`, `Observation`.
 
-To pass the test you should:
-
-1. Uncheck all the resources but those ones on the Consent screen
-2. Keep following checkboxes checked `Launch Patient`, `Open ID`, `FHIR User` and `Offline Access`
+To pass the test you should uncheck all the resources but those ones on the Consent screen
 {% endhint %}
 
 #### 3 EHR Practitioner App
 
+{% hint style="info" %}
+Before running this test step you need to LogOut from the Aidbox, because we will login as a practitioner on this step.
+{% endhint %}
+
 1. Click the `EHR Practitioner App` link in the left sidebar
 2. Click the `Run tests` button
-3. Provide require parameters for tests
-   * FHIR Endpoint:\
-     `[aidbox-url]/tenant/my-clinic/patient/smart-api`
-   * EHR Launch Client ID: `inferno-confidential-patient-smart-app`
-   * EHR Launch Client Secret: `inferno-confidential-patient-smart-app-secret`
-4. Click the `Submit` button
-5. Open the patient portal UI `[aidbox-url]/tenant/my-clinic/patient/portal`
-6. Login to the portal using credentials we created before `example@mail.com / password`
-7. Find the `inferno-confidential-patient-smart-app` application
-8. Click the `Launch` button
+3.  Provide require parameters for tests
 
-Once you perform EHR launch, follow the Inferno instructions.
+    * FHIR Endpoint:\
+      `[aidbox-url]/fhir`
+    * Scopes. Make sure that scopes text area contains all these scopes:
+
+    `launch openid fhirUser offline_access user/Medication.rs user/AllergyIntolerance.rs user/CarePlan.rs user/CareTeam.rs user/Condition.rs user/Device.rs user/DiagnosticReport.rs user/DocumentReference.rs user/Encounter.rs user/Goal.rs user/Immunization.rs user/Location.rs user/MedicationRequest.rs user/Observation.rs user/Organization.rs user/Patient.rs user/Practitioner.rs user/Procedure.rs user/Provenance.rs user/PractitionerRole.rs user/ServiceRequest.rs user/Coverage.rs user/MedicationDispense.rs user/Specimen.rs user/RelatedPerson.rs`
+
+    * EHR Launch Client ID: `inferno-confidential-smart-app`
+    * EHR Launch Client Secret: `verysecret`
+4. Click the `Submit` button
+5. Now you need to launch App. To do so obtain launch URI using Aidbox endpoint:
+
+```yaml
+POST /rpc
+authorization: Basic aW5mZXJuby1jb25maWRlbnRpYWwtc21hcnQtYXBwOnZlcnlzZWNyZXQ=
+
+{
+  "method": "aidbox.smart/get-launch-uri",
+  "params": {
+    "user": "patient",
+    "iss": "<Aidbox-base-url>/fhir",
+    "client": "inferno-confidential-smart-app",
+    "ctx": {
+      "patient": "85",
+      "encounter": "4fedd1a7-a5fa-444a-8b1b-05f19db339d0"
+    }
+  }
+}
+```
+
+6. Copy URI from response and open it in the same broser you have Inferno TestKit runnning.
+7. Follow the Inferno instructions and login as `practitioner@mail.com / password`
 
 #### 4 Single Patient API
 
@@ -233,33 +364,37 @@ This test depends on the `Standalone Patient App` test. Pass the first sequence 
 
 Once you run tests, follow the Inferno instructions.
 
-#### 7 Multi-Patient Authorization and API
+#### 8 Multi-Patient Authorization and API STU2
 
 1. Click the `7 Multi-Patient API` link in the left sidebar
 2. Click the `Run tests` button
 3. Provide require parameters for tests
    * Bulk Data FHIR URL:\
-     `[aidbox-url]/tenant/my-clinic/bulk-api`
+     `[aidbox-url]/fhir`
+   * Group ID: `1a`
+   * Patient IDs in exported Group: `85,86`
    * Backend Services Token Endpoint:\
      `[aidbox-url]/auth/token`
-   * Bulk Data Client ID: `inferno-my-clinic-bulk-client`
+   * Scopes: `system/*.rs`
+   * Bulk Data Client ID: `inferno-bulk-client`
    * Encryption method `RS384`
-   * Group ID: `test-group-1`
-   * Patient IDs in exported Group: `test-pt-1,test-pt-2`
 4. Click the `Submit` button
 
 #### 9.1 Public Client Standalone Launch with OpenID Connect
+
+{% hint style="info" %}
+Before running this test step you need to LogOut from the Aidbox, because we will login as a patient on this step.
+{% endhint %}
 
 1. Click the `9.1 SMART Public Client Launch` link in the left sidebar
 2. Click the `Run tests` button
 3. Provide require parameters for tests
    * Bulk Data FHIR URL:\
-     `[aidbox-url]/tenant/my-clinic/patient/smart-api`
-   * Public Launch Client ID: `inferno-public-patient-smart-app`
-   * Proof Key for Code Exchange (PKCE): `Enabled`
-   * OAuth 2.0 Authorize Endpoint: `[aidbox-url]/tenant/my-clinic/patient/auth/authorize`
-   * OAuth 2.0 Token Endpoint: `[aidbox-url]/auth/token`
+     `[aidbox-url]/fhir`
+   * Public Launch Client ID: `inferno-public-smart-app`
 4. Click the `Submit` button
+
+Once you run tests, follow the Inferno instructions and login to Aidbox as a patient `patient@mail.com / password`.
 
 #### 9.3 Token Revocation
 
@@ -270,10 +405,9 @@ This test depends on the `Standalone Patient App` test. Pass the first sequence 
 {% hint style="info" %}
 Before you launch the test you should:
 
-1. Open the patient portal UI `[aidbox-url]/tenant/my-clinic/patient/portal`
-2. Login to the portal using credentials we created before `example@mail.com / password`
-3. Find the `inferno-confidential-patient-smart-app`
-4. Click the `Revoke access` button
+1. Open the Aidbox UI `[aidbox-url]/auth/login`
+2. Click on `Sessions` tab
+3. Click the `Revoke` button for all Sessions
 {% endhint %}
 
 1. Click the `9.3 Token Revocation` link in the left sidebar
@@ -284,54 +418,162 @@ Before you launch the test you should:
 4. Wait up to 30 seconds
 5. Click the `Submit` button
 
-#### 9.4 SMART App Launch Error: Invalid AUD Parameter
+#### 9.4 Invalid AUD Parameter
 
-1. Click the `9.4 SMART Invalid AUD Launch` link in the left sidebar
+1. Click the `9.4  Invalid AUD Launch` link in the left sidebar
 2. Click the `Run tests` button
 3. Provide require parameters for tests
    * FHIR Endpoint:\
-     `[aidbox-url]/tenant/my-clinic/patient/smart-api`
-   * Standalone Client ID: `inferno-confidential-patient-smart-app`
-   * Standalone Client Secret: `inferno-confidential-patient-smart-app-secret`
-   * Proof Key for Code Exchange (PKCE): `Disabled`
-   * OAuth 2.0 Authorize Endpoint: `[aidbox-url]/tenant/my-clinic/patient/auth/authorize`
+     `[aidbox-url]/fhir`
+   * Standalone Client ID: `inferno-confidential-smart-app`
+   * Standalone Client Secret: `verysecret`
 4. Click the `Submit` button
 5. Click the `Perform Invalid Launch` link
 
-#### 9.5 SMART App Launch Error: Invalid Access Token Request
+#### 9.17 Invalid Access Token Request
 
-1. Click the `9.5 SMART Invalid Token Request` link in the left sidebar
+1. Click the `9.5  Invalid Token Request` link in the left sidebar
 2. Click the `Run tests` button
 3. Provide require parameters for tests
    * FHIR Endpoint:\
-     `[aidbox-url]/tenant/my-clinic/patient/smart-api`
-   * Standalone Client ID: `inferno-confidential-patient-smart-app`
-   * Standalone Client Secret: `inferno-confidential-patient-smart-app-secret`
-   * OAuth 2.0 Authorize Endpoint: `[aidbox-url]/tenant/my-clinic/patient/auth/authorize`
-   * OAuth 2.0 Token Endpoint: `[aidbox-url]/auth/token`
+     `[aidbox-url]/tenant/fhir`
+   * Standalone Client ID: `inferno-confidential-smart-app`
+   * Standalone Client Secret: `verysecret`
 4. Click the `Submit` button
 5. Click the `Follow this link to authorize with the SMART server` link
 6. Press the `Allow` button on the consent screen
 
-#### 9.8 EHR Launch with Patient Scopes
+#### 9.18 Invalid PKCE Code Verifier
 
-1. Click the `9.8 EHR Launch with Patient Scopes` link in the left sidebar
+1. Click `9.18 Invalid PKCE Code Verifier` link in the left sidebar
 2. Click the `Run tests` button
 3. Provide require parameters for tests
-   * EHR launch FHIR Endpoint:\
-     `[aidbox-url]/tenant/my-clinic/patient/smart-api`
-   * EHR Launch Client ID: `inferno-confidential-patient-smart-app`
-   * EHR Launch Client Secret: `inferno-confidential-patient-smart-app-secret`
-   * OAuth 2.0 Authorize Endpoint: `[aidbox-url]/tenant/my-clinic/patient/auth/authorize`
-   * OAuth 2.0 Token Endpoint: `[aidbox-url]/auth/token`
+   * FHIR Endpoint:\
+     `[aidbox-url]/tenant/fhir`
+   * Standalone Client ID: `inferno-confidential-smart-app`
+   * Standalone Client Secret: `verysecret`
 4. Click the `Submit` button
-5. Open the patient portal UI `[aidbox-url]/tenant/my-clinic/patient/portal`
-6. Login to the portal using credentials we created before `example@mail.com / password`
-7. Find the `inferno-confidential-patient-smart-app` application
-8. Click the `Launch` button
-9. Click the `Follow this link to authorize with the SMART server` link
-10. Press the `Allow` button on the consent screen
+5. Click the `Follow this link to authorize with the SMART server` link
+6. Press the `Allow` button on the consent screen
+7. Repeat 4 times
 
-#### 9.10 Visual Inspection and Attestation
+#### 9.19 EHR Launch with Patient Scopes
+
+1. Click the `9.19 EHR Launch with Patient Scopes` link in the left sidebar
+2. Click the `Run tests` button
+3. Provide require parameters for tests
+   * FHIR Endpoint:\
+     `[aidbox-url]/fhir`
+   * Client ID: `inferno-confidential-smart-app`
+   * Client Secret: `verysecret`
+4. Click the `Submit` button
+5.  Now you need to launch App. To do so obtain launch URI using Aidbox endpoint:
+
+    ```yaml
+    POST /rpc
+    authorization: Basic aW5mZXJuby1jb25maWRlbnRpYWwtc21hcnQtYXBwOnZlcnlzZWNyZXQ=
+
+    {
+      "method": "aidbox.smart/get-launch-uri",
+      "params": {
+        "user": "patient",
+        "iss": "<Aidbox-base-url>/fhir",
+        "client": "inferno-confidential-smart-app",
+        "ctx": {
+          "patient": "85",
+          "encounter": "4fedd1a7-a5fa-444a-8b1b-05f19db339d0"
+        }
+      }
+    }
+    ```
+
+
+6. Copy URI from response and open it in the same broser you have Inferno TestKit runnning.
+7. Click the `Follow this link to authorize with the SMART server` link
+8. Press the `Allow` button on the consent screen
+
+#### 9.20 Token Introspection
+
+* Click the `9.20 Token Introspection` link in the left sidebar
+* Click the `Run tests` button
+* Provide require parameters for tests
+  * FHIR Endpoint:\
+    `[aidbox-url]/fhir`
+  * Custom HTTP Headers for Introspection Request: `Authorization: Basic aW5mZXJuby1jb25maWRlbnRpYWwtc21hcnQtYXBwOnZlcnlzZWNyZXQ=`
+  * Client ID: `inferno-confidential-smart-app`
+  * Client Secret: `verysecret`
+* Click the `Submit` button
+* Click the `Follow this link to authorize with the SMART server` link
+* Press the `Allow` button on the consent screen
+
+#### 9.23 Asymmetric Client Standalone Launch
+
+* Click the `9.23 Asymmetric Client Standalone Launch` link in the left sidebar
+* Click the `Run tests` button
+* Provide require parameters for tests
+  * FHIR Endpoint:\
+    `[aidbox-url]/fhir`
+  * Client ID: `inferno-public-smart-app`
+  * Encryption Algorithm: `RS384`
+
+#### 9.22 App Launch with SMART v1 scopes
+
+* Click the `9.20 App Launch with  v1 scopes` link in the left sidebar
+* Click the `Run tests` button
+* Provide require parameters for tests
+  * FHIR Endpoint:\
+    `[aidbox-url]/fhir`
+  * Client ID: `inferno-confidential-smart-app`
+  * Client Secret: `verysecret`
+* Click the `Submit` button
+* Click the `Follow this link to authorize with the SMART server` link
+* Press the `Allow` button on the consent screen
+
+#### 9.23.1 Granular Scopes 1
+
+* Click the `9.23.1 Granular Scopes 1` link in the left sidebar
+* Click the `Run tests` button
+* Provide require parameters for tests
+  * FHIR Endpoint:\
+    `[aidbox-url]/fhir`
+  * Auth Type: `Confidential Symmetric`
+  * Client ID: `inferno-confidential-smart-app`
+  * Client Secret: `verysecret`
+* Click the `Submit` button
+* Click the `Follow this link to authorize with the SMART server` link
+* Press the `Allow` button on the consent screen
+
+#### 9.23.2 Granular Scopes 2
+
+* Click the `9.23.2 Granular Scopes 2` link in the left sidebar
+* Click the `Run tests` button
+* Provide require parameters for tests
+  * FHIR Endpoint:\
+    `[aidbox-url]/fhir`
+  * Auth Type: `Confidential Symmetric`
+  * Client ID: `inferno-confidential-smart-app`
+  * Client Secret: `verysecret`
+* Click the `Submit` button
+* Click the `Follow this link to authorize with the SMART server` link
+* Press the `Allow` button on the consent screen
+
+#### 9.23 SMART Granular Scope Selection
+
+* Click the `9.23.1 Granular Scopes 2` link in the left sidebar
+* Click the `Run tests` button
+* Provide require parameters for tests
+  * FHIR Endpoint:\
+    `[aidbox-url]/fhir`
+  * Auth Type: `Confidential Symmetric`
+  * Client ID: `inferno-confidential-smart-app`
+  * Client Secret: `verysecret`
+* Click the `Submit` button
+* Click the `Follow this link to authorize with the SMART server` link
+* On the concent screen you need to click on the row with resource `Condition` and `Observation` -> click `add filter`
+  * For Condition filter will be `category` `http://terminology.hl7.org/CodeSystem/condition-category|encounter-diagnosis,http://terminology.hl7.org/CodeSystem/condition-category|problem-list-item,http://hl7.org/fhir/us/core/CodeSystem/condition-category|health-concern`
+  * For Observation filter will be `category` `http://terminology.hl7.org/CodeSystem/observation-category|exam,http://terminology.hl7.org/CodeSystem/observation-category|imaging,http://terminology.hl7.org/CodeSystem/observation-category|procedure,http://terminology.hl7.org/CodeSystem/observation-category|social-history,http://hl7.org/fhir/us/core/CodeSystem/us-core-category|sdoh,http://terminology.hl7.org/CodeSystem/observation-category|survey,http://terminology.hl7.org/CodeSystem/observation-category|vital-signs`
+* Press the `Allow` button on the consent screen
+
+#### 11 Visual Inspection and Attestation
 
 To pass the visual inspection see the [Pass Inferno Visual Inspection and Attestation](pass-inferno-visual-inspection-and-attestation.md) guide.
