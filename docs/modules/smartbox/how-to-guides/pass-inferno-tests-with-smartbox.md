@@ -1,7 +1,7 @@
 ---
 description: >-
-  This article will guide you through passing ONC Certification (g)(10)
-  Standardized API on Inferno framework.
+  This article will guide you through passing Inferno ONC Certification (g)(10)
+  Standardized API Test Kit Version: 7.2.6
 ---
 
 # Pass Inferno Tests with Aidbox
@@ -11,9 +11,9 @@ This guide is valid for Aidbox version 2510 and higher.
 {% endhint %}
 
 {% hint style="info" %}
-The article has be reviewed for next test suite
+This setup has been tested using the next test suite
 
-* ONC Certification (g)(10) Standardized API v.7.2.6
+* ONC Certification (g)(10) Standardized API Test Kit v.7.2.6
 * US Core 6.1.0 / USCDI v3, SMART App Launch 2.2.0, Bulk Data 2.0.0
 {% endhint %}
 
@@ -163,7 +163,7 @@ accept: application/json
           "authorization_code": {
             "pkce": true,
             "redirect_uri": "http://localhost:4567/custom/smart/redirect",
-            "audience": ["https://tqtgrrfrty.edge.aidbox.app/fhir"],
+            "audience": ["http://localhost:4567/fhir"],
             "refresh_token": true,
             "secret_required": true,
             "token_format": "jwt",
