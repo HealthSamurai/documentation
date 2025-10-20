@@ -7,7 +7,7 @@ description: >-
 # Pass Inferno Tests with Aidbox
 
 {% hint style="warning" %}
-This guide is valid for Aidbox version 3510 and higher.
+This guide is valid for Aidbox version 2510 and higher.
 {% endhint %}
 
 {% hint style="info" %}
@@ -60,7 +60,7 @@ content-type: application/json
 accept: application/json
 
 {
-  "source": "https://storage.googleapis.com/aidbox-public/smartbox/uscdi_v3_dataset.ndjson.gz"
+  "source": "https://storage.googleapis.com/aidbox-public/smartbox/dataset_uscdi_v3.ndjson.gz"
 }
 ```
 
