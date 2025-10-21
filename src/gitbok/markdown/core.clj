@@ -92,15 +92,20 @@
 
          :numbered-list
          (fn [ctx node]
-           (into
-            [:ol
-             {:class "min-w-0 w-full decoration-primary/6 page-full-width:ml-0 max-w-3xl page-api-block:ml-0 space-y-2"}]
-            (map-indexed
-             (fn [idx child]
-               (transform/->hiccup
-                ctx
-                (assoc child :numbered-list-idx idx)))
-             (:content node))))
+           (let [start-num (:start node 1)]  ; Parser provides :start directly
+             (into
+              [:ol
+               (merge
+                {:class "min-w-0 w-full decoration-primary/6 page-full-width:ml-0 max-w-3xl page-api-block:ml-0 space-y-2 text-on-surface-secondary"}
+                (when (not= start-num 1)
+                  {:start start-num}))]
+              (map-indexed
+               (fn [idx child]
+                 (let [actual-num (+ idx start-num)]
+                   (transform/->hiccup
+                    ctx
+                    (assoc child :numbered-list-idx (dec actual-num)))))
+               (:content node)))))
 
          :list-item
          (fn [ctx {:keys [numbered-list-idx] :as node}]

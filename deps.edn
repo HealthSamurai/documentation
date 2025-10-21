@@ -26,9 +26,8 @@
         ring/ring-core {:mvn/version "1.14.1"}
         org.clj-commons/hickory {:mvn/version "0.7.7"}
 
-        io.github.nextjournal/markdown
-        {:git/url "https://github.com/nextjournal/markdown.git"
-         :sha "16be4ef6b8b5741c5d8f8432dd9ce8b52b1f3f68"}
+        io.github.spicyfalafel/markdown
+        {:git/sha "349278e04a840de3488bea1e87b913266a88350d"}
         org.clojure/data.xml {:mvn/version "0.0.8"}
         org.clojure/data.json {:mvn/version "2.5.0"}
         clj-commons/clj-yaml {:mvn/version "1.0.29"}
