@@ -458,7 +458,7 @@
     * [Source attributes](modules/smartbox/the-b11-decision-support-interventions/source-attributes.md)
     * [Feedback Sections](modules/smartbox/the-b11-decision-support-interventions/feedback-sections.md)
   * [How-to Guides](modules/smartbox/how-to-guides/README.md)
-    * [Pass Inferno Tests with Aidbox](modules/smartbox/how-to-guides/pass-inferno-tests-with-smartbox.md)
+    * [Pass Inferno Tests with Aidbox](modules/smartbox/how-to-guides/pass-inferno-tests-with-aidbox.md)
     * [Perform EHR Launch](modules/smartbox/how-to-guides/perform-ehr-launch.md)
     * [Pass Inferno Visual Inspection and Attestation](modules/smartbox/how-to-guides/pass-inferno-visual-inspection-and-attestation.md)
     * [Revoke Granted Access](modules/smartbox/how-to-guides/revoke-granted-access.md)

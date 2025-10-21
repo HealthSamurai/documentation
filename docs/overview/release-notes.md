@@ -840,7 +840,7 @@ Minor updates:
 * Smartbox
   * Improved admin UI with configuration of [EHR-level logo](../modules/smartbox/how-to-guides/set-up-ehr-level-customization.md#with-smartbox-ui), [email provider](../modules/smartbox/how-to-guides/setup-email-provider.md) and bulk export.
   * Added documentation on deployment to Kubernetes
-  * Added guides on passing [Inferno tests](../modules/smartbox/how-to-guides/pass-inferno-tests-with-smartbox.md) and [Inferno Visual Inspection and Attestation](../modules/smartbox/how-to-guides/pass-inferno-visual-inspection-and-attestation.md)
+  * Added guides on passing [Inferno tests](../modules/smartbox/how-to-guides/pass-inferno-tests-with-aidbox.md) and [Inferno Visual Inspection and Attestation](../modules/smartbox/how-to-guides/pass-inferno-visual-inspection-and-attestation.md)
 * Aidbox Configuration Projects
   * Improved startup time for Aidbox instances [configured with zen FHIR IGs](../deprecated/deprecated/zen-related/aidbox-zen-lang-project/enable-igs.md)
   * Improved local development workflow
