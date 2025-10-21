@@ -36,6 +36,7 @@ add something like "see also: <list of references in markdown bullet list>".
 and all sections start with h2 header (you can also use h3 and h4 headers).
 - Use markdown `code` highlightning when necessary. E.g. name of operation `$something`.
 - Try to mention when possible and true, that feature is implementation of FHIR specification.
+- Use sentence case in headings, not title case!
 
 ### Workflow 
 

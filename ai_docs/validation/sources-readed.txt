@@ -1,0 +1,21 @@
+# Sources Read for validation.md
+
+## Documentation Files
+- docs/modules/profiling-and-validation/README.md
+- docs/modules/profiling-and-validation/asynchronous-resource-validation.md
+- docs/modules/profiling-and-validation/skip-validation-of-references-in-resource-using-request-header.md
+- docs/modules/profiling-and-validation/fhir-schema-validator/README.md
+- docs/modules/profiling-and-validation/fhir-schema-validator/setup-aidbox-with-fhir-schema-validation-engine.md
+- docs/api/api-overview.md (for style reference)
+
+## Style Guidelines
+- ai_docs/writing-documentation.md
+- ai_docs/styleguide.md
+
+## External References
+- FHIR HTTP API: https://www.hl7.org/fhir/http.html
+- FHIR StructureDefinition: https://www.hl7.org/fhir/structuredefinition.html
+- FHIR Schema: https://github.com/fhir-schema/fhir-schema
+- FHIR Shorthand: https://build.fhir.org/ig/HL7/fhir-shorthand/
+- SUSHI: https://github.com/FHIR/sushi
+- FHIR IG Publisher: https://confluence.hl7.org/display/FHIR/IG+Publisher+Documentation
