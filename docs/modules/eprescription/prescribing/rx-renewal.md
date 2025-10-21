@@ -91,7 +91,7 @@ POST /eprescription/rx/respond-to-renewal
 
 Before committing the `pending` decision you need to
 
-1) Set the decision itself:
+Set the decision itself:
 
 ```yaml
 extension:
@@ -100,7 +100,7 @@ extension:
     valueCode: pending
 ```
 
-2) Set the expected pended response date:
+Set the expected pended response date:
 
 ```yaml
 extension:
@@ -109,7 +109,7 @@ extension:
     valueDate: '2025-12-12'
 ```
 
-3) Set the decision note (contrarily to `denied` decision, it's required for `pending`):
+Set the decision note (contrarily to `denied` decision, it's required for `pending`):
 
 ```yaml
 extension:
@@ -118,13 +118,20 @@ extension:
     valueString: Provider is on vacation
 ```
 
-4) Set the reason code:
+Set the reason code:
 
 ```yaml
-;; TODO
+extension:
+  - url: >-
+      http://aidbox.app/ePrescription/FHIRSchema/medication-request-rx-change-decision-reason-code
+    valueCodeableConcept:
+      coding:
+        - code: HR
+          system: urn:app:aidbox:e-prescriptions:surescripts:decision-reason-code
+          display: Provider is unavailable and no one is available to make a decision
 ```
 
-Available reason codes are listed in the table below:
+Available reason codes are listed in the table below (same for RxChange case):
 
 | reason code | meaning                                                                         |
 |-------------|---------------------------------------------------------------------------------|
@@ -140,7 +147,7 @@ Available reason codes are listed in the table below:
 While the e-prescriptions module could prefill fields like `MedicationRequest.dispenseRequest` and `dosageInstruction`,
 the general approach is to let the prescriber do that.
 
-1) Set the decision:
+Set the decision:
 
 ```yaml
 extension:
@@ -149,23 +156,25 @@ extension:
     valueCode: approved
 ```
 
-2) If during the process of handling incoming renewal request there was a `DetectedIssue` created
-   (meaning there were mismatches between incoming and existing data),
-   make sure you have resolved the references to implicated contained resources:
-   - `Patient` - `MedicationRequest.subject`
-   - `PractitionerRole` - `MedicationRequest.performer`
-   - `Practitioner` - `PractitionerRole.practitioner`
-   - `Location` - `PractitionerRole.location` or `PractitionerRole.organization`
-   - `Pharmacy` - `MedicationRequest.requester`
-   - `Medication` - for medications contained resource is supported, so it's up to you whether to resolve it or leave as is - `MedicationRequest.medication`
+If during the process of handling incoming renewal request there was a `DetectedIssue` created
+(meaning there were mismatches between incoming and existing data),
+make sure you have resolved the references to implicated contained resources:
 
+- `Patient` - `MedicationRequest.subject`
+- `PractitionerRole` - `MedicationRequest.performer`
+- `Practitioner` - `PractitionerRole.practitioner`
+- `Location` - `PractitionerRole.location` or `PractitionerRole.organization`
+- `Pharmacy` - `MedicationRequest.requester`
+- `Medication` - for medications contained resource is supported, so it's up to you whether to resolve it or leave as
+  is - `MedicationRequest.medication`
 
-3) Set `MedicationRequest.dispenseRequest` and `MedicationRequest.dosageInstruction`.
-  Typically, they are the same as in the request for NewRx:
-  Make sure you set
-    - `MedicationRequest.dispenseRequest.performer` (the pharmacy of initial renewal request)
-    - `MedicationRequest.dispenseRequest.numberOfRepeatsAllowed` - for `approved` decision it should be the same as pharmacy requested
-  
+Set `MedicationRequest.dispenseRequest` and `MedicationRequest.dosageInstruction`.
+Typically, they are the same as in the request for NewRx:
+Make sure you set
+
+- `MedicationRequest.dispenseRequest.performer` (the pharmacy of initial renewal request)
+- `MedicationRequest.dispenseRequest.numberOfRepeatsAllowed` - for `approved` decision it should be the same as pharmacy
+  requested
 
 ```yaml
 dispenseRequest:
