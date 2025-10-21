@@ -431,8 +431,8 @@ redirects:
   modules-1/smartbox/how-to-guides/check-email-templates: modules/smartbox/how-to-guides/check-email-templates.md
   modules-1/smartbox/how-to-guides/find-documentation-endpoint: modules/smartbox/how-to-guides/find-documentation-endpoint.md
   modules-1/smartbox/how-to-guides/find-out-what-resources-were-exported-during-the-usdexport-operation: modules/smartbox/how-to-guides/find-out-what-resources-were-exported-during-the-export-operation.md
-  modules-1/smartbox/how-to-guides/pass-inferno-tests-with-smartbox/~/comments: modules/smartbox/how-to-guides/pass-inferno-tests-with-smartbox.md
-  modules-1/smartbox/how-to-guides/pass-inferno-tests-with-smartbox: modules/smartbox/how-to-guides/pass-inferno-tests-with-smartbox.md
+  modules-1/smartbox/how-to-guides/pass-inferno-tests-with-smartbox/~/comments: modules/smartbox/how-to-guides/pass-inferno-tests-with-aidbox.md
+  modules-1/smartbox/how-to-guides/pass-inferno-tests-with-smartbox: modules/smartbox/how-to-guides/pass-inferno-tests-with-aidbox.md
   modules-1/smartbox/how-to-guides/pass-inferno-visual-inspection-and-attestation: modules/smartbox/how-to-guides/pass-inferno-visual-inspection-and-attestation.md
   modules-1/smartbox/how-to-guides/perform-ehr-launch: modules/smartbox/how-to-guides/perform-ehr-launch.md
   modules-1/smartbox/how-to-guides/publish-terms-of-use-link-onto-the-documentation-page: modules/smartbox/how-to-guides/publish-terms-of-use-link-onto-the-documentation-page.md
