@@ -466,7 +466,7 @@ mark:has(+ mark) {
 
 /* Typography - Basic elements */
 article ul {
-  @apply ml-8 text-on-surface-strong;
+  @apply ml-8;
   list-style: none;
 }
 
@@ -521,7 +521,7 @@ article thead {
 }
 
 article th {
-  @apply px-4 py-2 text-sm text-on-surface-strong font-medium text-left;
+  @apply px-4 py-2 text-sm text-on-surface-secondary font-medium text-left;
 }
 
 article tbody {
@@ -533,7 +533,7 @@ article tr {
 }
 
 article td {
-  @apply px-4 py-1.5 text-sm leading-relaxed border-r border-outline-strong last:border-r-0 text-on-surface-strong text-left;
+  @apply px-4 py-1.5 text-sm leading-relaxed border-r border-outline-strong last:border-r-0 text-on-surface-secondary text-left;
 }
 
 /* Figure and Images */

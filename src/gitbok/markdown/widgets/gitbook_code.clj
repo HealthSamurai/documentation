@@ -107,7 +107,7 @@
                               "<div class=\"relative top-px z-20 inline-flex items-center justify-center rounded-t straight-corners:rounded-t-s border border-outline border-b-0 bg-surface-subtle theme-muted:bg-surface px-3 py-2 text-on-surface-muted text-xs leading-none tracking-wide [html.theme-bold.sidebar-filled_&]:bg-surface\">"
                               title
                               "</div></div>"))
-                       "<div class=\"relative overflow-auto border border-outline bg-surface-subtle theme-muted:bg-surface [grid-area:2/1] contrast-more:border-tint contrast-more:bg-surface [html.theme-bold.sidebar-filled_&]:bg-surface rounded-md straight-corners:rounded-sm rounded-ss-none\">"
+                       "<div class=\"relative overflow-auto border border-outline bg-surface-subtle theme-muted:bg-surface [grid-area:2/1] contrast-more:border-outline-strong contrast-more:bg-surface [html.theme-bold.sidebar-filled_&]:bg-surface rounded-md straight-corners:rounded-sm rounded-ss-none\">"
                        "<pre class=\"text-base\"><code>"
                        single-line-content
                        "</code></pre>"

@@ -202,7 +202,7 @@
                 :id "meilisearch-wrapper"}
           [:div {:class "flex h-9 w-full items-center overflow-hidden
                          rounded-md border border-outline bg-white
-                         text-tint transition-all
+                         text-on-surface-secondary transition-all
                          hover:border-outline-input-focus
                          focus-within:border-outline-input-focus
                          focus-within:[&_#meilisearch-shortcut]:hidden"}
