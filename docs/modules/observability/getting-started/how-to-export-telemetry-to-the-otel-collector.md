@@ -22,7 +22,7 @@ Aidbox supports exporting telemetry using the Protobuf protocol in line with the
 This way of enabling OTEL capabilities is available in Aidbox versions 2503 and later. On previous AIdbox versions it was possible to enable OTEL with [Aidbox configuration project](#how-to-enable-export-telemetry-to-the-otel-collector-with-aidbox-configuration-project).
 {% endhint %}
 
-To  enable exporting telemetry to the OTEL collector, set up the following Aidbox settings:
+To enable exporting telemetry to the OTEL collector, set up the following Aidbox settings:
 
 * [observability.otel.metrics-url](../../../reference/all-settings.md#observability.otel.metrics-url)
 * [observability.otel.traces-url](../../../reference/all-settings.md#observability.otel.traces-url)
@@ -76,7 +76,7 @@ Open OTEL collector stdout and see the logs, metrics and traces.
 Aidbox configuration project is [deprecated](https://www.health-samurai.io/news/aidbox-transitions-to-the-fhir-schema-engine).&#x20;
 {% endhint %}
 
-To  enable exporting telemetry to the OTEL collector:
+To enable exporting telemetry to the OTEL collector:
 
 1. Import `aidbox.log`, `aidbox.telemetry.metrics`, `aidbox.telemetry.trace`
 2. Define `open-telemetry-appender`, `open-telemetry-metrics-exporter`, `otel-trace-exporter`
