@@ -35,9 +35,9 @@ X-Correlation-Id: some-uuid
 
 ## X-Audit-Req-Body
 
-By default aidbox doesn't log request body, because in most cases it's redudant. It may contain sensitve information (like passwords) or it may be pretty big and clog the log.
+By default Aidbox doesn't log request body, because in most cases it's redudant. It may contain sensitve information (like passwords) or it may be pretty big and clog the log.
 
-In case you want Aidbox to log request body (e.g. [FHIR Search over POST](http://hl7.org/fhir/http.html#search)) you can provide `X-Audit-Req-Body: true` header in the request.
+In case you want Aidbox to log request body (for example, [FHIR Search over POST](http://hl7.org/fhir/http.html#search)) you can provide `X-Audit-Req-Body: true` header in the request.
 
 ```yaml
 # without X-Audit-Req-Body
