@@ -2,8 +2,8 @@
 
 You can extend [Aidbox](https://www.health-samurai.io/aidbox) with custom Apps. The app can:
 
-* define custom resources,
 * define custom endpoints,
+* define resources,
 * subscribe to hooks or subscriptions.
 
 The app is a standalone service that will work with Aidbox to implement your specific app. The app should be registered in Aidbox.\
