@@ -16,7 +16,7 @@ Resources created:
 - **Provenance** - solely as a record that an event has occurred.
   It is intended to serve as an audit/logging artifact, and should not be relied upon for driving business logic.
 
-There are several ways to track the newly created **MedicationRequest**s:
+Ways to track the newly created **MedicationRequest**s:
 
 - [Either of Aidbox Subscriptions mechanisms](../../topic-based-subscriptions/README.md)
 - Manual/automated tracking based on **MedicationRequest** modification date and/or status
@@ -72,12 +72,20 @@ extension:
     valueCode: denied
 ```
 
-### Denied
+<details>
+<summary>Shortcut to change decision</summary>
+In case you need to change an earlier decision (that wasn't yet sent with `/eprescription/rx/respond-to-change`), you can use the following patch:
 
-`denied` is the decision that requires the least amount of steps. Setting it in the extension is the only requirement.
-You can set the denial reason (free text) in decision note extension (
-`http://aidbox.app/ePrescription/FHIRSchema/medication-request-rx-renewal-decision-note`), but this is optional.
-Call the `/eprescription/rx/respond-to-renewal` endpoint to commit your decision:
+```yaml
+PATCH /fhir/MedicationRequest/your-medication-request-id
+
+- op: replace
+  # Replace with the index of the necessary extension
+  path: '/extension/3'
+  value: { "url": "http://aidbox.app/ePrescription/FHIRSchema/medication-request-rx-change-decision", "valueCode": "denied" }
+```
+
+Once you are ready to submit your decision (with all related steps), call the `/eprescription/rx/respond-to-renewal` endpoint to commit your decision:
 
 ```json
 POST /eprescription/rx/respond-to-renewal
@@ -87,7 +95,19 @@ POST /eprescription/rx/respond-to-renewal
 }
 ```
 
+</details>
+
+### Denied
+
+<sub>Same as for [RxChange](./rx-change.md#denied).</sub>
+
+`denied` is the decision that requires the least amount of steps. Setting it in the extension is the only requirement.
+You can set the denial reason (free text) in decision note extension (
+`http://aidbox.app/ePrescription/FHIRSchema/medication-request-rx-renewal-decision-note`), but this is optional.
+
 ### Pending
+
+<sub>Same as for [RxChange](./rx-change.md#pending).</sub>
 
 Before committing the `pending` decision you need to
 

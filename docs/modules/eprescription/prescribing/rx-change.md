@@ -1,11 +1,11 @@
 # RxChange Message
 
-### Overview
+## Overview
 
 RxChange is a type of message sent by pharmacy to subscriber when the medication should be changed to a different one.
 It is required that RxChange is preceded by NewRx.
 
-### Receiving RxChangeRequest
+## Receiving RxChangeRequest
 
 Once the pharmacy sends an RxChangeRequest, ePrescription module receives Surescripts message at `/eprescriptions/rx` endpoint and saves it to Aidbox.
 Resources created:
@@ -15,14 +15,14 @@ Resources created:
 - **Provenance** - solely as a record that an event has occurred.
   It is intended to serve as an audit/logging artifact, and should not be relied upon for driving business logic.
 
-There are several ways to track the newly created **MedicationRequest**s:
+Ways to track the newly created **MedicationRequest**s:
 
 - [Either of Aidbox Subscriptions mechanisms](../../topic-based-subscriptions/README.md)
 - Manual/automated tracking based on **MedicationRequest** modification date and/or status
 
-The ePrescription module creates a **DetectedIssue** whenever inbound RxRenewal data diverges from existing records; see [Detected Issues](./detected-issue.md) for the full list of checks and a sample payload.
+The ePrescription module creates a **DetectedIssue** whenever inbound RxChange data diverges from existing records; see [Detected Issues](./detected-issue.md) for the full list of checks and a sample payload.
 
-### Supported Request Types
+## Supported Request Types
 
 - **D**: Drug Use Evaluation
 - **G**:  Generic Substitution - A modification of the product prescribed to a generic equivalent.
@@ -34,22 +34,39 @@ The ePrescription module creates a **DetectedIssue** whenever inbound RxRenewal 
   - This is the only message type Validated response type can be used for.
 <!-- - **P**: Prior Authorization Required - A request to obtain prior authorization before dispensing. -->
 
-### Supported Response Types:
+## Responding to RxChangeRequest
 
-Response type is set in `http://aidbox.app/ePrescription/FHIRSchema/medication-request-rx-change-decision` and can be one of `approved`, `approved-with-changes`, `denied`, `pending`, and `validated`:
+### Setting a decision
+
+Available decisions are `approved`, `approved-with-changes`, `denied`, `pending` or `validated`.
+It is represented as an extension:
 
 ```yaml
-PATCH /fhir/MedicationRequest/mr1
-
-- op: add
-  path: '/extension/-'
-  value: { "url": "http://aidbox.app/ePrescription/FHIRSchema/medication-request-rx-change-decision", "valueCode": "approved" }
+extension:
+  - url: >-
+      http://aidbox.app/ePrescription/FHIRSchema/medication-request-rx-change-decision
+    valueCode: denied
 ```
 
-In case there's a need to change an earlier decision (that wasn't yet sent with `/eprescription/rx/respond-to-renewal`), you can use a similar patch, but with `replace` operation:
+Table of compatibility between decisions and request types:
+
+| MessageRequestCode | approved | approved-with-changes | denied | pending | validated |
+|--------------------|----------|-----------------------|--------|---------|-----------|
+| **G**              | ✓        | ✓                     | ✓      | ✓       |           |
+| **T**              | ✓        | ✓                     | ✓      | ✓       |           |
+| **S**              | ✓        | ✓                     | ✓      | ✓       |           |
+| **OS**             | ✓        | ✓                     | ✓      | ✓       |           |
+| **D**              | ✓        | ✓                     | ✓      | ✓       |           |
+| **U**              |          |                       | ✓      | ✓       | ✓         |
+
+[//]: # (| **P**              | ✓        | ✗                   | ✓      | ✓       |           |)
+
+<details>
+<summary>Shortcut to change decision</summary>
+In case you need to change an earlier decision (that wasn't yet sent with `/eprescription/rx/respond-to-change`), you can use the following patch:
 
 ```yaml
-PATCH /fhir/MedicationRequest/mr1
+PATCH /fhir/MedicationRequest/your-medication-request-id
 
 - op: replace
   # Replace with the index of the necessary extension
@@ -57,41 +74,183 @@ PATCH /fhir/MedicationRequest/mr1
   value: { "url": "http://aidbox.app/ePrescription/FHIRSchema/medication-request-rx-change-decision", "valueCode": "denied" }
 ```
 
-Allowed decisions are:
-- **approved**: Medication change was allowed unaltered.
-  - No changes allowed to the stored MedicationRequest and the resources it references.
-- **approved-with-changes**: Medication was allowed with a change to any included resource/field of the MedicationRequest, except the Patient.
-  - Uses `http://aidbox.app/ePrescription/FHIRSchema/medication-request-rx-change-decision-note` as a decision note.
-  - It is not recommended to change anything but Medications/MedicationRequest.
-- **denied**: Medication change was denied, medication dispensing should continue as usual.
-  - Uses `http://aidbox.app/ePrescription/FHIRSchema/medication-request-rx-change-decision-note` as a decision note.
-- **pending**: Medication change was put on hold.
-  - Uses `http://aidbox.app/ePrescription/FHIRSchema/medication-request-rx-change-expected-pended-response-date` to store the date until which the decision will be made and re-sent.
-  - `http://aidbox.app/ePrescription/FHIRSchema/medication-request-rx-change-decision-reason-code` is set to Surescripts ReasonCode
-  - Uses `http://aidbox.app/ePrescription/FHIRSchema/medication-request-rx-change-decision-note` as a decision note.
-- **validated**: Can only be used for **U** request type, alongside **denied**.
+</details>
 
-
-| MessageRequestCode | Approved | ApprovedWithChanges | Denied | Pending | Validated |
-|--------------------|----------|---------------------|--------|---------|-----------|
-| **G**              | ✓        | ✓                   | ✓      | ✓       |           |
-| **T**              | ✓        | ✓                   | ✓      | ✓       |           |
-| **S**              | ✓        | ✓                   | ✓      | ✓       |           |
-| **OS**             | ✓        | ✓                   | ✓      | ✓       |           |
-| **D**              | ✓        | ✓                   | ✓      | ✓       |           |
-| **U**              |          |                     | ✓      | ✓       | ✓         |
-
-[//]: # (| **P**              | ✓        | ✗                   | ✓      | ✓       |           |)
-
-
-After the response is set, `/api/rx/respond-to-change` endpoint should be invoked with the ID of the decision-containing
-MedicationRequest.
+Once you are ready to submit your decision (with all related steps), call the `/eprescription/rx/respond-to-change` endpoint to commit your decision:
 
 ```json
-POST /eprescription/rx/respond-to-renewal
+POST /eprescription/rx/respond-to-change
 
 {
-  "medicationRequestId": "mr1"
+  "medicationRequestId": "your-medication-request-id"
 }
 ```
 
+### Denied
+
+<sub>Same as for [RxRenewal](./rx-renewal.md#denied).</sub>
+
+`denied` is the decision that requires the least amount of steps. Setting it in the extension is the only requirement.
+You can set the denial reason (free text) in decision note extension (
+`http://aidbox.app/ePrescription/FHIRSchema/medication-request-rx-change-decision-note`), but this is optional.
+Call the `/eprescription/rx/respond-to-change` endpoint to commit your decision:
+
+```json
+POST /eprescription/rx/respond-to-change
+
+{
+  "medicationRequestId": "your-medication-request-id"
+}
+```
+
+### Pending
+
+<sub>Same as for [RxRenewal](./rx-renewal.md#pending).</sub>
+
+Before committing the `pending` decision you need to
+
+Set the decision itself:
+
+```yaml
+extension:
+  - url: >-
+      http://aidbox.app/ePrescription/FHIRSchema/medication-request-rx-change-decision
+    valueCode: pending
+```
+
+Set the expected pended response date:
+
+```yaml
+extension:
+  - url: >-
+      http://aidbox.app/ePrescription/FHIRSchema/medication-request-rx-change-expected-pended-response-date
+    valueDate: '2025-12-12'
+```
+
+Set the decision note (contrarily to `denied` decision, it's required for `pending`):
+
+```yaml
+extension:
+  - url: >-
+      http://aidbox.app/ePrescription/FHIRSchema/medication-request-rx-change-decision-note
+    valueString: Provider is on vacation
+```
+
+Set the reason code:
+
+```yaml
+extension:
+  - url: >-
+      http://aidbox.app/ePrescription/FHIRSchema/medication-request-rx-change-decision-reason-code
+    valueCodeableConcept:
+      coding:
+        - code: HR
+          system: urn:app:aidbox:e-prescriptions:surescripts:decision-reason-code
+          display: Provider is unavailable and no one is available to make a decision
+```
+
+Available reason codes are listed in the table below (same for RxChange case):
+
+| reason code | meaning                                                                         |
+|-------------|---------------------------------------------------------------------------------|
+| **HP**      | Patient has an appointment scheduled                                            |
+| **HQ**      | Patient has labs/tests pending                                                  |
+| **HR**      | Provider is unavailable and no one is available to make a decision              |
+| **HS**      | Patient is currently undergoing acute care and a decision is pending resolution |
+| **HT**      | Provider wishes to delay for reasons not otherwise indicated                    |
+
+
+### Approved
+
+Use this decision when medication change was allowed unaltered. No changes allowed to the stored **MedicationRequest** and the resources it references.
+
+Set the decision:
+
+```yaml
+extension:
+  - url: >-
+      http://aidbox.app/ePrescription/FHIRSchema/medication-request-rx-change-decision
+    valueCode: approved
+```
+
+Set `MedicationRequest.dispenseRequest`, `MedicationRequest.dosageInstruction` and `MedicationRequest.medication` the way it reflects the data from one of the suggested changes.
+<details>
+<summary>What does it mean?</summary>
+When ePrescription module handles incoming RxChangeRequest, it creates a <b>MedicationRequest</b> with contained resources, including another <b>MedicationRequests</b> which represent the options suggested by pharmacy.
+Note that <code>MedicationRequest.medication</code> stored initially is NOT one of the suggested medications, but the currently prescribed medication.
+
+E. g., if contained part of created <b>MedicationRequest</b> looks like this:
+
+```yaml
+...
+contained:
+- substitution: {allowedBoolean: true}
+  dispenseRequest:
+    quantity: {code: C48480, value: 20.0, system: 'urn:app:aidbox:e-prescriptions:ncpdp:QuantityUnitOfMeasure'}
+    expectedSupplyDuration: {code: d, unit: days, value: 10, system: 'http://unitsofmeasure.org'}
+    numberOfRepeatsAllowed: 1
+  medicationCodeableConcept:
+    text: doxycycline hyclate 100 mg capsule
+    coding:
+    - {code: '00143314250', system: 'http://hl7.org/fhir/sid/ndc'}
+  resourceType: MedicationRequest
+  dosageInstruction:
+  - {text: Take 1 capsule orally every 12 hours for 10 days}
+  ...
+- substitution: {allowedBoolean: false}
+  dispenseRequest:
+    quantity: {code: C48542, value: 150.0, system: 'urn:app:aidbox:e-prescriptions:ncpdp:QuantityUnitOfMeasure'}
+    expectedSupplyDuration: {code: d, unit: days, value: 10, system: 'http://unitsofmeasure.org'}
+    numberOfRepeatsAllowed: 2
+  medicationCodeableConcept:
+    text: amoxicillin 400 mg/5 mL oral suspension
+    coding:
+    - {code: '68115002830', system: 'http://hl7.org/fhir/sid/ndc'}
+  resourceType: MedicationRequest
+  dosageInstruction:
+  - {text: Take 5 mL orally twice daily for 10 days}
+  ...
+...
+```
+
+then the higher level of this <b>MedicationRequest</b> should look like this:
+
+```yaml
+medicationCodeableConcept:
+  text: amoxicillin 400 mg/5 mL oral suspension
+  coding:
+    - {code: '68115002830', system: 'http://hl7.org/fhir/sid/ndc'}
+dispenseRequest:
+  quantity: {code: C48542, value: 150.0, system: 'urn:app:aidbox:e-prescriptions:ncpdp:QuantityUnitOfMeasure'}
+  expectedSupplyDuration: {code: d, unit: days, value: 10, system: 'http://unitsofmeasure.org'}
+  numberOfRepeatsAllowed: 2
+dosageInstruction:
+  - {text: Take 5 mL orally twice daily for 10 days}
+```
+
+</details>
+
+Set `MedicationRequest.dispenseRequest.performer`. It should be the pharmacy that initiated the change.
+
+Set `MedicationRequest.authoredOn`. It should be the date of committing the response.
+
+### ApprovedWithChanges
+
+Means the medication was allowed with a change to any included resource/field of the **MedicationRequest**, except the **Patient**. It is not recommended to change anything but **Medication**/**MedicationRequest**.
+
+Set the decision:
+
+```yaml
+extension:
+  - url: >-
+      http://aidbox.app/ePrescription/FHIRSchema/medication-request-rx-change-decision
+    valueCode: approved-with-changes
+```
+
+Set `MedicationRequest.dispenseRequest.performer`. It should be the pharmacy that initiated the change.
+
+Set `MedicationRequest.authoredOn`. It should be the date of committing the response.
+
+### Validated
+
+Can only be used for **U** request type, alongside with **denied**.
