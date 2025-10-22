@@ -253,4 +253,4 @@ Set `MedicationRequest.authoredOn`. It should be the date of committing the resp
 
 ### Validated
 
-Can only be used for **U** request type, alongside with **denied**.
+Can only be used for **U** request type, alongside with **denied**. When a provider Approves an *RxChangeRequest* with a MessageRequestCode value of “Provider Authorization” (U) each element being responded to will have a Validated tag and will include the appropriate Response Reason Code and supporting data element. Ex: If NPI was requested, the response will echo back SubCode G, Response reason code GM and will have a populated <NPI> tag. If multiple data elements were requested, a provider may send a validation response to fewer elements however at least one element must be returned.
