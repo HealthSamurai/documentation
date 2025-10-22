@@ -4,7 +4,7 @@
 
 | Attribute    | Type        | Description                                                                   |
 | ------------ | ----------- | ----------------------------------------------------------------------------- |
-| **tn**       | string      | tenant id - i.e. box id                                                       |
+| **tn**       | string      | tenant id - that is box id                                                    |
 | **ev**       | string      | log event name                                                                |
 | **lvl**      | enum        | empty - info, warn, error, panic                                              |
 | **ts**       | date string | event timestamp in ISO 8601 format                                            |
