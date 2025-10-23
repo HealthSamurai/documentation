@@ -11,8 +11,10 @@ redirects:
   access-control/security/accesspolicy: access-control/authorization/access-policies.md
   access-control/smart-on-fhir/smart-scopes: access-control/authorization/smart-on-fhir/smart-scopes-for-limiting-access.md
   access-control/technical-reference/overview: reference/system-resources-reference/iam-module-resources.md
+  ai-prompts/access-policies: tutorials/other-tutorials/ai-prompts.md
   aidbox-configuration/init-bundle: configuration/init-bundle.md
   api-1/api/crud-1/fhir-and-aidbox-crud: api/rest-api/crud/README.md
+  api-1/api/crud-1/patch: api/rest-api/crud/patch.md
   api-1/api/crud-1/read: api/rest-api/crud/read.md
   api-1/api/crud-1: api/rest-api/crud/README.md
   api-1/api/other/usdpsql: api/rest-api/other/sql-endpoints.md
@@ -52,6 +54,7 @@ redirects:
   api-1/bulk-api-1/import-and-fhir-import: api/bulk-api/import-and-fhir-import.md
   api-1/bulk-api-1/import-from-a-bucket: api/bulk-api/bulk-import-from-an-s3-bucket.md
   api-1/bulk-api-1/load-and-fhir-load: api/bulk-api/load-and-fhir-load.md
+  api-1/bulk-api-1/usdexport: api/bulk-api/export.md
   api-1/bulk-api-1/usdimport-and-fhir-usdimport: api/bulk-api/import-and-fhir-import.md
   api-1/bulk-api-1/usdload: api/bulk-api/load-and-fhir-load.md
   api-1/bulk-api-1: api/bulk-api/README.md
@@ -72,6 +75,7 @@ redirects:
   api-1/fhir-api/search-1/search-parameters-list/_include-and-_revinclude: api/rest-api/fhir-search/include-and-revinclude.md
   api-1/fhir-api/search-1/search-parameters-list/_lastupdated: api/rest-api/fhir-search/searchparameter.md
   api-1/fhir-api/search-1/search-parameters-list/_timeout: api/rest-api/aidbox-search.md
+  api-1/fhir-api/search-1: api/rest-api/fhir-search/README.md
   api-1/fhir-api/search-1: api/rest-api/fhir-search/README.md
   api-1/fhir-api: api/rest-api/README.md
   api-1/graphql-api: api/graphql-api.md
@@ -206,15 +210,21 @@ redirects:
   api/rest-api/other/usdmatcho.md: api/rest-api/other/matcho.md
   api/rest-api/other/usdto-format.md: api/rest-api/other/to-format.md
   api/rest-api/other/usdvalidate.md: api/rest-api/other/validate.md
+  app-development-guides/tutorials/authentication-and-authorization: access-control/access-control.md
   app-development-guides/tutorials/patient-encounter-notification-application: deprecated/deprecated/other/app-development-deprecated-tutorials/patient-encounter-notification-application.md
   app-development/aidbox-sdk/aidbox-apps: developer-experience/apps.md
   app-development/aidbox-sdk/aidbox-javascript-sdk: developer-experience/aidbox-sdk/aidbox-javascript-sdk.md
+  app-development/aidbox-sdk/python-sdk: developer-experience/aidbox-sdk/python-sdk.md
+  app-development/aidbox-sdk: developer-experience/aidbox-sdk/README.md
   apple-app-site-association: tutorials/security-access-control-tutorials/apple.md
   auth-betta/basic-auth: tutorials/security-access-control-tutorials/basic-auth.md
   getting-started/editions-and-pricing: overview/licensing-and-support.md
   getting-started/lisensing-and-support: overview/licensing-and-support.md
+  getting-started/run-aidbox-as-a-saas/aidbox-as-a-saas-on-aws: getting-started/run-aidbox-on-aws.md
+  getting-started/run-aidbox-in-aidbox-sandbox: getting-started/run-aidbox-in-sandbox.md
   getting-started/run-aidbox-in-kubernetes: deployment-and-maintenance/deploy-aidbox/run-aidbox-in-kubernetes/README.md
   getting-started/run-aidbox-locally-with-docker: getting-started/run-aidbox-locally.md
+  installation/setup-aidbox.dev: getting-started/README.md
   integrations/analytics: modules/integration-toolkit/analytics/README.md
   modules-1/access-control/audit-and-logging: access-control/audit-and-logging.md
   modules-1/access-control/authentication/basic-http-authentication: access-control/authentication/basic-http-authentication.md
@@ -363,11 +373,13 @@ redirects:
   modules-1/integration-toolkit/ccda-converter/sections/social-history-section-docs-v3: modules/integration-toolkit/ccda-converter/sections/social-history-section-docs-v3.md
   modules-1/integration-toolkit/ccda-converter/sections/vital-signs-section-docs-entries-optional-docs-v3: modules/integration-toolkit/ccda-converter/sections/vital-signs-section-docs-entries-optional-docs-v3.md
   modules-1/integration-toolkit/ccda-converter/sections/vital-signs-section-docs-entries-required-docs-v3: modules/integration-toolkit/ccda-converter/sections/vital-signs-section-docs-entries-required-docs-v3.md
+  modules-1/integration-toolkit/ccda-converter: modules/integration-toolkit/ccda-converter/README.md
   modules-1/integration-toolkit/email-providers/setup-smtp-provider: modules/integration-toolkit/email-providers/setup-smtp-provider.md
   modules-1/integration-toolkit/hl7-v2-integration/hl7-v2-integration-with-aidbox-project: modules/integration-toolkit/hl7-v2-integration/hl7-v2-integration-with-aidbox-project.md
   modules-1/integration-toolkit/hl7-v2-integration/mappings-with-lisp-mapping: modules/integration-toolkit/hl7-v2-integration/mappings-with-lisp-mapping.md
   modules-1/integration-toolkit/mappings: modules/integration-toolkit/mappings.md
   modules-1/integration-toolkit/x12-message-converter: modules/integration-toolkit/x12-message-converter.md
+  modules-1/mdm: modules/mpi/README.md
   modules-1/observability/getting-started/how-to-export-telemetry-to-the-otel-collector: modules/observability/getting-started/how-to-export-telemetry-to-the-otel-collector.md
   modules-1/observability/getting-started/run-aidbox-with-opentelemetry-locally: modules/observability/getting-started/run-aidbox-with-opentelemetry-locally.md
   modules-1/observability/logs/extending-aidbox-logs: modules/observability/logs/extending-aidbox-logs.md
@@ -450,16 +462,20 @@ redirects:
   modules-1/sql-on-fhir/reference: modules/sql-on-fhir/reference.md
   modules-1/terminology/codesystem-and-concept/codesystem-subsumption-testing: deprecated/deprecated/other/terminology/codesystem-and-concept/codesystem-subsumption-testing.md
   modules-1/terminology/terminology-api/import-flat-file-docs-csv: deprecated/deprecated/other/terminology/terminology-api/import-flat-file-docs-csv.md
+  modules-1/terminology: terminology-module/overview.md
   modules-1/topic-based-subscriptions/aidbox-subsubscriptions: modules/topic-based-subscriptions/aidbox-subsubscriptions.md
   modules-1/topic-based-subscriptions/wip-dynamic-subscriptiontopic-with-destinations/gcp-pub-sub-aidboxtopicdestination: tutorials/subscriptions-tutorials/gcp-pub-sub-aidboxtopicdestination.md
   modules-1/topic-based-subscriptions/wip-dynamic-subscriptiontopic-with-destinations/kafka-aidboxtopicdestination: tutorials/subscriptions-tutorials/kafka-aidboxtopicdestination.md
   modules-1/topic-based-subscriptions/wip-dynamic-subscriptiontopic-with-destinations/tutorial-produce-questionnaireresponse-to-kafka-topic: tutorials/subscriptions-tutorials/tutorial-produce-questionnaireresponse-to-kafka-topic.md
   modules-1/topic-based-subscriptions/wip-dynamic-subscriptiontopic-with-destinations/webhook-aidboxtopicdestination: tutorials/subscriptions-tutorials/webhook-aidboxtopicdestination.md
+  modules/access-control: access-control/access-control.md
   modules/aidbox-forms/aidbox-ui-builder-alpha/embedding-builder: modules/aidbox-forms/aidbox-ui-builder-alpha/embedding.md
   modules/aidbox-forms/aidbox-ui-builder-alpha/embedding-renderer: modules/aidbox-forms/aidbox-ui-builder-alpha/embedding.md
   modules/aidbox-forms/aidbox-ui-builder-alpha/embedding/request-interception: modules/aidbox-forms/aidbox-ui-builder-alpha/request-interception.md
   modules/aidbox-forms/aidbox-ui-builder-alpha/endpoints: modules/aidbox-forms/aidbox-ui-builder-alpha/request-interception.md
   modules/aidbox-forms/aidbox-ui-builder-alpha/form-creation/how-to-guides/how-to: modules/aidbox-forms/aidbox-ui-builder-alpha/form-creation/how-to-guides/README.md
+  modules/aidbox-topic-based-subscriptions: modules/topic-based-subscriptions/aidbox-topic-based-subscriptions.md
+  modules/custom-resources/migrate-to-fhirschema: tutorials/artifact-registry-tutorials/custom-resources/migrate-to-fhirschema/README.md
   modules/eprescription/tutorials/environment-variables: modules/eprescription/reference/environment-variables.md
   modules/observability/logging-and-audit/readme-1/datadog-guide: modules/observability/logs/tutorials/export-logs-to-datadog-tutorial.md
   modules/observability/logging-and-audit/readme-1/how-to-explore-and-visualize-aidbox-logs-with-kibana-and-grafana: modules/observability/logs/tutorials/log-analysis-and-visualization-tutorial.md
@@ -475,13 +491,16 @@ redirects:
   modules/other-modules/mpi/mathematical-details: modules/mpi/mathematical-details.md
   modules/other-modules/mpi/merging-and-unmerging-records-usdmerge-and-usdunmerge: modules/mpi/merging-and-unmerging-records-usdmerge-and-usdunmerge.md
   modules/other-modules/mpi: modules/mpi/README.md
+  modules/security-and-access-control/overview: access-control/access-control.md
   modules/security-and-access-control/patient-data-access-api/how-to-enable-patient-data-access-api: tutorials/security-access-control-tutorials/how-to-enable-patient-data-access-api.md
   modules/smartbox/how-to-guides/find-out-what-resources-were-exported-during-the-usdexport-operation.md: modules/smartbox/how-to-guides/find-out-what-resources-were-exported-during-the-export-operation.md
+  modules/smartbox/how-to-guides/pass-inferno-tests-with-smartbox: modules/smartbox/how-to-guides/pass-inferno-tests-with-aidbox.md
   modules/terminology/concept/usdtranslate-concepts.md: deprecated/deprecated/other/terminology/concept/translate-concepts.md
   modules/terminology/usdtranslate-on-conceptmap.md: deprecated/deprecated/other/terminology/concept/translate-concepts.md
   modules/terminology/usdtranslate-on-conceptmap: deprecated/deprecated/other/terminology/concept/translate-concepts.md
   modules/terminology: terminology-module/overview.md
   modules/topic-based-subscriptions/subscriptions-1: modules/topic-based-subscriptions/README.md
+  modules/topic-based-subscriptions/wip-dynamic-subscriptiontopic-with-destinations/tutorial-produce-questionnaireresponse-to-kafka-topic: tutorials/subscriptions-tutorials/tutorial-produce-questionnaireresponse-to-kafka-topic.md
   modules/topic-based-subscriptions/wip-dynamic-subscriptiontopic-with-destinations: modules/topic-based-subscriptions/aidbox-topic-based-subscriptions.md
   overview/aidbox-ui/notebooks: overview/aidbox-ui/aidbox-notebooks.md
   overview/aidbox-ui/rest-console-1: overview/aidbox-ui/rest-console.md
@@ -497,6 +516,7 @@ redirects:
   readme-1/validation-tutorials/upload-fhir-implementation-guide/uploading-fhir-ig-using-uploadfig-library: tutorials/artifact-registry-tutorials/upload-fhir-implementation-guide/uploadfig-tool.md
   readme/architecture: architecture.md
   readme/features: features.md
+  readme/licensing: overview/licensing-and-support.md
   reference/configuration/environment-variables/mailgun-environment-variables: reference/email-providers-reference/mailgun-environment-variables.md
   reference/configuration/environment-variables/optional-environment-variables: reference/environment-variables/optional-environment-variables.md
   reference/configuration/environment-variables: reference/environment-variables/README.md
@@ -515,8 +535,11 @@ redirects:
   security-and-access-control-1/security/access-control: access-control/authorization/access-policies.md
   security-and-access-control-1/security/access-policy-dev-tool: tutorials/security-access-control-tutorials/access-policy-dev-tool.md
   security-and-access-control-1/security/accesspolicy-best-practices: tutorials/security-access-control-tutorials/accesspolicy-best-practices.md
+  storage-1/custom-resources/custom-resources-on-fhir-logical-model: tutorials/artifact-registry-tutorials/custom-resources/README.md
   storage-1/database: database/overview.md
   storage-1/other/s3-compatible-storages: file-storage/aws-s3.md
   storage-1/sql-on-fhir: modules/sql-on-fhir/README.md
   terminology/aidbox-terminology-module/hybrid: terminology-module/aidbox-terminology-module/hybrid.md
+  tools/aidbox-sdk/aidbox-apps: developer-experience/apps.md
   tutorials/security-and-access-control/basic-auth-tutorial: tutorials/security-access-control-tutorials/basic-auth.md
+  tutorials/validation-tutorials/upload-fhir-implementation-guide: tutorials/artifact-registry-tutorials/upload-fhir-implementation-guide/README.md
