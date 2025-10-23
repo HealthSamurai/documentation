@@ -14,6 +14,8 @@
    [gitbok.markdown.widgets.stepper :as stepper]
    [gitbok.markdown.widgets.description :as description]
    [gitbok.markdown.widgets.gitbook-code :as gitbook-code]
+   [gitbok.ui.fhir-structure-table :as fhir-table]
+   [cheshire.core :as json]
    [nextjournal.markdown :as md]
    [nextjournal.markdown.transform :as transform]
    [hickory.core]
@@ -81,6 +83,25 @@
        nil
        node))
    form))
+
+(defn parse-inline-markdown
+  "Parse inline markdown for FHIR table descriptions"
+  [text]
+  (when text
+    (try
+      (let [parsed (md/parse text)
+            hiccup (transform/->hiccup transform/default-hiccup-renderers parsed)]
+        ;; Extract content from :doc > :paragraph wrapper
+        (if (and (vector? hiccup) (= :doc (first hiccup)))
+          (let [content (get hiccup 2)]
+            (if (and (vector? content) (= :paragraph (first content)))
+              (into [:span] (drop 2 content))
+              content))
+          hiccup))
+      (catch Exception e
+        ;; Fallback to plain text if parsing fails
+        (log/warn e "Failed to parse inline markdown, falling back to plain text" {:text text})
+        [:span text]))))
 
 (defn renderers [context filepath]
   (assoc transform/default-hiccup-renderers
@@ -176,8 +197,25 @@
 
          :code
          (fn [_ctx node]
-           (if (and (:info node) (str/starts-with? (:info node) "mermaid"))
+           (cond
+             ;; Mermaid diagrams
+             (and (:info node) (str/starts-with? (:info node) "mermaid"))
              [:pre.mermaid (-> node :content first :text)]
+
+             ;; FHIR Structure table
+             (and (:info node) (= (:info node) "fhir-structure"))
+             (try
+               (let [json-text (-> node :content first :text)
+                     elements (json/parse-string json-text true)]
+                 (fhir-table/render-table elements parse-inline-markdown))
+               (catch Exception e
+                 (log/error e "Failed to parse FHIR structure table")
+                 [:div {:class "text-red-600 p-4 border border-red-300 rounded"}
+                  [:p [:strong "Error parsing FHIR structure table"]]
+                  [:p {:class "text-sm"} (str "Error: " (.getMessage e))]]))
+
+             ;; Regular code blocks
+             :else
              (let [code-text (-> node :content first :text)
                    info-lang (when (and (:info node) (not= (:info node) ""))
                                (:info node))

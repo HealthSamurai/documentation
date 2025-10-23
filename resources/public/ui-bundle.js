@@ -426,6 +426,167 @@ function closeEllipsisMenu() {
 }
 
 // ============================================================================
+// PAGE ACTIONS DROPDOWN FUNCTIONALITY
+// ============================================================================
+function initializePageActionsDropdown() {
+  const toggle = document.getElementById('page-actions-toggle');
+  const dropdown = document.getElementById('page-actions-dropdown');
+
+  if (!toggle || !dropdown) return;
+
+  // Remove existing event listeners by cloning and replacing
+  const newToggle = toggle.cloneNode(true);
+  toggle.parentNode.replaceChild(newToggle, toggle);
+
+  // Toggle dropdown on arrow button click
+  newToggle.addEventListener('click', function (e) {
+    e.stopPropagation();
+    togglePageActionsDropdown();
+  });
+
+  // Remove old document click handler if exists
+  if (window._pageActionsClickHandler) {
+    document.removeEventListener('click', window._pageActionsClickHandler);
+  }
+
+  // Create new click handler
+  window._pageActionsClickHandler = function (e) {
+    const currentDropdown = document.getElementById('page-actions-dropdown');
+    const currentToggle = document.getElementById('page-actions-toggle');
+    if (currentDropdown && currentToggle) {
+      if (!currentDropdown.contains(e.target) && !currentToggle.contains(e.target)) {
+        closePageActionsDropdown();
+      }
+    }
+  };
+
+  // Close dropdown when clicking outside
+  document.addEventListener('click', window._pageActionsClickHandler);
+}
+
+function togglePageActionsDropdown() {
+  const dropdown = document.getElementById('page-actions-dropdown');
+  if (dropdown) {
+    const isOpen = !dropdown.classList.contains('hidden');
+    if (isOpen) {
+      closePageActionsDropdown();
+    } else {
+      openPageActionsDropdown();
+    }
+  }
+}
+
+function openPageActionsDropdown() {
+  const dropdown = document.getElementById('page-actions-dropdown');
+  if (dropdown) {
+    dropdown.classList.remove('hidden');
+  }
+}
+
+function closePageActionsDropdown() {
+  const dropdown = document.getElementById('page-actions-dropdown');
+  if (dropdown) {
+    dropdown.classList.add('hidden');
+  }
+}
+
+function trackPageAction(action, targetUrl) {
+  // Track action in PostHog
+  if (typeof posthog !== 'undefined') {
+    posthog.capture('docs_copy_page', {
+      action: action,
+      page_url: window.location.href,
+      target_url: targetUrl
+    });
+  }
+}
+
+function openInChatGPT() {
+  const fullUrl = window.location.origin + window.location.pathname;
+  const prompt = "Read " + fullUrl + " and answer questions about the content.";
+  const chatgptUrl = "https://chat.openai.com/?q=" + encodeURIComponent(prompt);
+  
+  // Track in PostHog
+  trackPageAction('open_chatgpt', chatgptUrl);
+  
+  // Open in new tab
+  window.open(chatgptUrl, '_blank');
+}
+
+function openInClaude() {
+  const fullUrl = window.location.origin + window.location.pathname;
+  const prompt = "Read from " + fullUrl + " so I can ask questions about it.";
+  const claudeUrl = "https://claude.ai/new?q=" + encodeURIComponent(prompt);
+  
+  // Track in PostHog
+  trackPageAction('open_claude', claudeUrl);
+  
+  // Open in new tab
+  window.open(claudeUrl, '_blank');
+}
+
+function copyPageAsMarkdown(button) {
+  const mdUrl = button.getAttribute('data-md-url');
+  if (!mdUrl) {
+    console.error('No markdown URL found');
+    return;
+  }
+
+  // Track copy action in PostHog
+  if (typeof posthog !== 'undefined') {
+    posthog.capture('docs_copy_page', {
+      action: 'copy_page',
+      page_url: window.location.href,
+      md_url: mdUrl
+    });
+  }
+
+  // Fetch markdown content
+  fetch(mdUrl)
+    .then(response => {
+      if (!response.ok) {
+        throw new Error('Failed to fetch markdown');
+      }
+      return response.text();
+    })
+    .then(markdown => {
+      // Copy to clipboard
+      if (navigator.clipboard && window.isSecureContext) {
+        navigator.clipboard.writeText(markdown).then(() => {
+          showCopySuccessForButton(button);
+          closePageActionsDropdown();
+        }).catch(err => {
+          console.error('Failed to copy:', err);
+        });
+      }
+    })
+    .catch(err => {
+      console.error('Failed to fetch markdown:', err);
+    });
+}
+
+function showCopySuccessForButton(button) {
+  const originalHTML = button.innerHTML;
+
+  // Check if this is the main split button (has a span with text)
+  const textSpan = button.querySelector('span:last-child');
+  if (textSpan && button.id === 'copy-page-button') {
+    // For split button, only change the text span
+    const originalTextContent = textSpan.textContent;
+    textSpan.textContent = 'Copied!';
+    setTimeout(() => {
+      textSpan.textContent = originalTextContent;
+    }, 2000);
+  } else {
+    // For dropdown menu item, replace entire content
+    button.innerHTML = '<span class="text-sm">Copied!</span>';
+    setTimeout(() => {
+      button.innerHTML = originalHTML;
+    }, 2000);
+  }
+}
+
+// ============================================================================
 // SEARCH FUNCTIONALITY (Meilisearch)
 // ============================================================================
 function initializeSearch() {
@@ -1025,6 +1186,9 @@ function showCopySuccess(button) {
       initializeTocScrollSpy();
       initializeTocClickHandlers();
     }
+
+    // Re-initialize page actions dropdown after HTMX content updates
+    initializePageActionsDropdown();
   }
 
   // Cleanup function for element removal
@@ -1112,6 +1276,7 @@ function showCopySuccess(button) {
     initializeHeadingLinks();
     initializeMobileMenu();
     initializeEllipsisMenu();
+    initializePageActionsDropdown();
     initializeSearch();
     initializeCopyButtons();
 

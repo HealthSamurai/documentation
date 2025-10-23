@@ -159,6 +159,21 @@
    * Utilities: text-text-muted
    */
 
+  /* Button Hover Colors */
+  --color-button-hover-text: #1d2331;
+  /* Button text color on hover
+   * Dark blue-gray for button hover state
+   * Used in: Send feedback button, Login button hover
+   * Utilities: hover:text-button-hover-text
+   */
+
+  --color-button-hover-bg: #f9f9f9;
+  /* Button background color on hover
+   * Very light gray for button hover state
+   * Used in: Send feedback button, Login button hover
+   * Utilities: hover:bg-button-hover-bg
+   */
+
   /* Outline Colors (Borders) */
   --color-outline: #E7E9EF;
   /* Default border color - FROM HARDCODES
@@ -240,6 +255,12 @@
    * Used in: Search result text highlighting (mark tags)
    * Locations: meilisearch.clj (highlightPreTag in search queries)
    * Utilities: bg-highlight
+   */
+
+  --color-outline-tree: #b3bac0;
+  /* Tree structure border - gray color for FHIR structure dotted lines
+   * Used in: FHIR structure table tree lines
+   * Utilities: border-outline-tree
    */
 
   /* Module card colors */
@@ -983,4 +1004,53 @@ details.nav-item[open] > summary .nav-chevron {
 
 [data-tab-container] button[data-tab].tab-active {
   @apply border-brand text-brand;
+}
+
+/* ================================================
+   FHIR Structure Table Styles
+   ================================================ */
+
+/* Striped rows */
+table.fhir-structure tr:nth-child(even) {
+  background-color: var(--color-surface-alt);
+}
+
+/* Hover effect for rows */
+table.fhir-structure tbody.tree > tr:hover {
+  background-color: var(--color-surface-hover) !important;
+}
+
+/* Tree structure base */
+tbody.tree,
+tbody.tree tbody {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+/* Vertical dotted lines for tree structure */
+tbody.tree .li {
+  margin: 0;
+  margin-left: 10px;
+  padding: 0 7px;
+  line-height: 20px;
+  font-family: Inter;
+  border-left: 1px dotted var(--color-outline-tree);
+}
+
+tbody.tree li:last-child {
+  border-left: none;
+}
+
+/* Horizontal connectors at the end of branches */
+tbody.tree > tr > td > .element > span:last-child:before {
+  position: relative;
+  top: 0.3em;
+  height: 1em;
+  width: 12px;
+  color: white;
+  border-bottom: 1px dotted var(--color-outline-tree);
+  content: '';
+  display: inline-block;
+  left: -7px;
 }

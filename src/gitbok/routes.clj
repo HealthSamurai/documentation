@@ -265,7 +265,7 @@
 
 (defn product-routes
   "Generate routes for a specific product"
-  [product prefix]
+  [context product prefix]
   (let [product-path (utils/concat-urls prefix (:path product))
         partial-product-path (utils/concat-urls prefix "/partial" (:path product))
         trailing-slash-handler (fn [ctx]
@@ -278,6 +278,8 @@
         product-root-handler (if (= (:id product) "aidbox")
                                #'gitbok.ui.landing-hero/render-landing
                                #'handlers/redirect-to-readme)
+        ;; Create markdown handler based on dev-mode
+        markdown-handler (handlers/make-serve-raw-markdown-handler context)
         routes [;; Specific routes first
 
                 ;; Meilisearch
@@ -313,30 +315,32 @@
                                      :middleware [product-middleware]}
                                :head {:handler (head-handler product-root-handler)
                                       :middleware [product-middleware]}}]]]
-    ;; Add Aidbox-specific routes
-    (if (= (:id product) "aidbox")
-      (concat routes
-              [;; Examples page
-               [(str product-path "/examples")
-                {:get {:handler #'gitbok.ui.examples/examples-handler
-                       :middleware [product-middleware]}}]
-               ;; Examples results endpoint for HTMX
-               [(str product-path "/examples-results")
-                {:get {:handler #'gitbok.ui.examples/examples-results-handler
-                       :middleware [product-middleware]}}]
-               ;; All product pages (catch-all) - must be last!
-               [(str product-path "/*")
-                {:get {:handler #'handlers/render-file-view
-                       :middleware [product-middleware]}
-                 :head {:handler (head-handler #'handlers/render-file-view)
+    ;; Add product-specific routes, then common routes for all products
+    (concat
+     ;; Add Aidbox-specific routes if needed
+     (if (= (:id product) "aidbox")
+       (concat routes
+               [;; Examples page
+                [(str product-path "/examples")
+                 {:get {:handler #'gitbok.ui.examples/examples-handler
+                        :middleware [product-middleware]}}]
+                ;; Examples results endpoint for HTMX
+                [(str product-path "/examples-results")
+                 {:get {:handler #'gitbok.ui.examples/examples-results-handler
                         :middleware [product-middleware]}}]])
-      ;; For non-Aidbox products, just add the catch-all
-      (conj routes
-            [(str product-path "/*")
-             {:get {:handler #'handlers/render-file-view
-                    :middleware [product-middleware]}
-              :head {:handler (head-handler #'handlers/render-file-view)
-                     :middleware [product-middleware]}}]))))
+       routes)
+     ;; Add common routes for all products (must be after specific routes)
+     [;; All product pages (catch-all) with markdown support
+      [(str product-path "/*")
+       {:get {:handler (fn [ctx]
+                         ;; Try markdown handler first if URI ends with .md
+                         (let [uri (get-in ctx [:request :uri])]
+                           (if (str/ends-with? uri ".md")
+                             (markdown-handler ctx)
+                             (#'handlers/render-file-view ctx))))
+              :middleware [product-middleware]}
+        :head {:handler (head-handler #'handlers/render-file-view)
+               :middleware [product-middleware]}}]])))
 
 (defn all-routes
   "Generate all routes including dynamic product routes"
@@ -344,7 +348,7 @@
   (let [prefix (state/get-config context :prefix "")
         products-config (state/get-products context)
         static-routes (routes context)
-        product-route-list (mapcat #(product-routes % prefix) products-config)
+        product-route-list (mapcat #(product-routes context % prefix) products-config)
         ;; Separate specific routes from wildcards
         specific-static (filter #(and % (not (clojure.string/includes? (first %) "*"))) static-routes)
         wildcard-static (filter #(and % (clojure.string/includes? (first %) "*")) static-routes)]

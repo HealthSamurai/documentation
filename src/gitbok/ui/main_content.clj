@@ -209,7 +209,7 @@
                       (:path (gitbok.products/get-current-product context)))
         ;; Generate breadcrumb (skip if hide-breadcrumb is true)
         breadcrumb-elem (when-not hide-breadcrumb
-                          (breadcrumb/breadcrumb context uri-relative))
+                          (breadcrumb/breadcrumb context uri-relative filepath))
         ;; Handle breadcrumb insertion based on body type
         body-with-breadcrumb (cond
                                ;; No breadcrumb to add

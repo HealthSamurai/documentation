@@ -39,6 +39,8 @@
         (do
           (log/info "4. read all files into memory" {:product (:id product)})
           (let [md-files (indexing/slurp-md-files! ctx (keys (state/get-file-to-uri-idx ctx)))]
+            ;; Store raw markdown files in state (they will be used for .md requests)
+            (state/set-md-files-idx! ctx md-files)
             (log/info "5. parse all files into memory" {:product (:id product)})
             (let [parsed-files (markdown/parse-all-files ctx md-files)]
               (log/info "6. render all files" {:product (:id product)})

@@ -5,6 +5,7 @@
    [clojure.stacktrace]
    [clojure.string :as str]
    [clojure.tools.logging :as log]
+   [gitbok.analytics.posthog :as posthog]
    [gitbok.http :as http]
    [gitbok.indexing.core :as indexing]
    [gitbok.state :as state]
@@ -244,7 +245,7 @@
 
 (defn get-redirect-with-fragment
   "Get redirect for a URI, checking both with and without fragment.
-   Returns [redirect-target preserve-fragment?] where preserve-fragment? 
+   Returns [redirect-target preserve-fragment?] where preserve-fragment?
    indicates if we should append the original fragment to the redirect target."
   [ctx uri-with-possible-fragment]
   (let [redirects-idx (state/get-redirects-idx ctx)
@@ -313,7 +314,21 @@
                     final-target (if (and preserve-fragment? original-fragment)
                                    (str processed-target "#" original-fragment)
                                    processed-target)
-                    target-url (http/get-product-prefixed-url ctx final-target)]
+                    target-url (http/get-product-prefixed-url ctx final-target)
+                    request (:request ctx)
+                    session-id (:session-id request)
+                    current-product (products/get-current-product ctx)
+                    product-id (or (:id current-product) "unknown")]
+                ;; Track redirect event in PostHog
+                (when session-id
+                  (future
+                    (posthog/capture-event! ctx
+                                            session-id
+                                            "docs_redirect"
+                                            {"old_url" uri-relative
+                                             "new_url" final-target
+                                             "product" product-id
+                                             "preserve_fragment" preserve-fragment?})))
                 {:status 301
                  :headers {"Location" target-url}})
               ;; No file and no redirect - show 404
@@ -381,7 +396,20 @@
                                      (str processed-target "#" original-fragment)
                                      processed-target)
                       target-url (str (http/get-product-prefixed-url ctx "/partial")
-                                      (http/get-product-prefixed-url ctx final-target))]
+                                      (http/get-product-prefixed-url ctx final-target))
+                      session-id (:session-id request)
+                      current-product (products/get-current-product ctx)
+                      product-id (or (:id current-product) "unknown")]
+                  ;; Track redirect event in PostHog
+                  (when session-id
+                    (future
+                      (posthog/capture-event! ctx
+                                              session-id
+                                              "docs_redirect"
+                                              {"old_url" uri-relative
+                                               "new_url" final-target
+                                               "product" product-id
+                                               "preserve_fragment" preserve-fragment?})))
                   {:status 301
                    :headers {"Location" target-url}})
                 ;; No file and no redirect - show 404
@@ -482,3 +510,81 @@
               headers (assoc (or (:headers response-with-type) {})
                              "Cache-Control" cache-control)]
           (assoc response-with-type :headers headers))))))
+
+(defn- parse-markdown-uri
+  "Parses URI to extract filepath for markdown file"
+  [ctx uri]
+  (let [prefix (state/get-config ctx :prefix "")
+        ;; Remove prefix and product path
+        uri-without-prefix (if (and (not (str/blank? prefix))
+                                    (str/starts-with? uri prefix))
+                             (subs uri (count prefix))
+                             uri)
+        product-path (:path (gitbok.products/get-current-product ctx))
+        uri-without-product (if (str/starts-with? uri-without-prefix product-path)
+                              (subs uri-without-prefix (count product-path))
+                              uri-without-prefix)
+        ;; Remove .md extension
+        uri-relative (if (str/ends-with? uri-without-product ".md")
+                       (subs uri-without-product 0 (- (count uri-without-product) 3))
+                       uri-without-product)]
+    (indexing/uri->filepath ctx uri-relative)))
+
+(defn- serve-raw-markdown-from-disk
+  "DEV mode: read markdown from disk on each request"
+  [ctx]
+  (let [request (:request ctx)
+        uri (:uri request)]
+    ;; Only handle URIs ending with .md
+    (if-not (str/ends-with? uri ".md")
+      nil  ; Return nil to fall through to next handler
+      (let [filepath (parse-markdown-uri ctx uri)]
+        (if filepath
+          (let [content (try
+                          (let [full-filepath (products/filepath ctx filepath)]
+                            (state/slurp-resource ctx full-filepath))
+                          (catch Exception e
+                            (log/error e "Failed to read raw markdown file" {:filepath filepath})
+                            nil))]
+            (if content
+              {:status 200
+               :headers {"Content-Type" "text/plain; charset=utf-8"
+                         "Cache-Control" "no-cache"}
+               :body content}
+              {:status 404
+               :headers {"Content-Type" "text/plain"}
+               :body "Markdown file not found"}))
+          {:status 404
+           :headers {"Content-Type" "text/plain"}
+           :body "Page not found"})))))
+
+(defn- serve-raw-markdown-from-cache
+  "Production mode: serve markdown from cache"
+  [ctx]
+  (let [request (:request ctx)
+        uri (:uri request)]
+    ;; Only handle URIs ending with .md
+    (if-not (str/ends-with? uri ".md")
+      nil  ; Return nil to fall through to next handler
+      (let [filepath (parse-markdown-uri ctx uri)]
+        (if filepath
+          (let [md-files-idx (state/get-md-files-idx ctx)
+                content (get md-files-idx filepath)]
+            (if content
+              {:status 200
+               :headers {"Content-Type" "text/plain; charset=utf-8"
+                         "Cache-Control" "public, max-age=3600"}
+               :body content}
+              {:status 404
+               :headers {"Content-Type" "text/plain"}
+               :body "Markdown file not found"}))
+          {:status 404
+           :headers {"Content-Type" "text/plain"}
+           :body "Page not found"})))))
+
+(defn make-serve-raw-markdown-handler
+  "Creates markdown handler based on dev-mode"
+  [context]
+  (if (state/get-config context :dev-mode)
+    #'serve-raw-markdown-from-disk
+    #'serve-raw-markdown-from-cache))
