@@ -24,8 +24,8 @@ All features are built with FHIR compatibility in mind, eliminating the need for
 
 * Send new prescription ([NewRx](prescribing/newrx-message.md))
 * Send cancellation request ([CancelRx](prescribing/cancelrx-message.md))
-* Handle change request ([RxChange](prescribing/rx-change.md))
-* Handle renewal request ([RxRenewal](prescribing/rx-renewal.md))
+* Handle change request ([RxChange](prescribing/pharmacy-initiated-messages/rx-change.md))
+* Handle renewal request ([RxRenewal](prescribing/pharmacy-initiated-messages/rx-renewal.md))
 * About DetectedIssue ([DetectedIssue](prescribing/detected-issue.md))
 
 {% hint style="warning" %}

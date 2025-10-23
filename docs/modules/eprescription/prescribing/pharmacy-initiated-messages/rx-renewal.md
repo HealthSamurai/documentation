@@ -5,108 +5,11 @@
 RxRenewal is a type of message sent by pharmacy to subscriber when the medication should be renewed.
 It is required that RxRenewal is preceded by NewRx.
 
-## Receiving RxRenewalRequest
-
-Once the pharmacy sends an RxRenewalRequest, ePrescription module receives Surescripts message at `/eprescriptions/rx`
-endpoint and saves it to Aidbox.
-Resources created:
-
-- **MedicationRequest** reflecting the incoming data
-- **DetectedIssue** - if only there were some mismatches in related resources
-- **Provenance** - solely as a record that an event has occurred.
-  It is intended to serve as an audit/logging artifact, and should not be relied upon for driving business logic.
-
-Ways to track the newly created **MedicationRequest**s:
-
-- [Either of Aidbox Subscriptions mechanisms](../../topic-based-subscriptions/README.md)
-- Manual/automated tracking based on **MedicationRequest** modification date and/or status
-
-The ePrescription module creates a **DetectedIssue** whenever inbound RxRenewal data diverges from existing records;
-see [Detected Issues](./detected-issue.md) for the full list of checks and a sample payload.
-
-## Renewal statuses
-
-The status of the request is stored in the created **MedicationRequest**'s `extension` field under
-`http://aidbox.app/ePrescription/FHIRSchema/medication-request-rx-renewal-status` extension.
-There's also `http://aidbox.app/ePrescription/FHIRSchema/medication-request-rx-renewal-status-reason` with a
-human-readable description of a status.
-
-```yaml
-GET /fhir/MedicationRequest
-
-resourceType: Bundle
-type: searchset
-meta:
-  versionId: '0'
-total: ...
-link:
-  - relation: first
-    url: http://127.0.0.1:8789/fhir/MedicationRequest?page=1
-  - relation: self
-    url: http://127.0.0.1:8789/fhir/MedicationRequest?page=1
-entry:
-    ...
-      - resource:
-      ...
-      resourceType: MedicationRequest
-      extension:
-        - url: >-
-            http://aidbox.app/ePrescription/FHIRSchema/medication-request-rx-renewal-status
-          valueCode: active
-      ...
-```
-
-The initial status is `active`. For the rest, consult [NewRx status table](./newrx-message.md)
-
 ## Responding to RxRenewalRequest
-
-### Setting a decision
-
-Available decisions are `approved`, `approved-with-changes`, `denied`, `pending` or `replace`.
-It is represented as an extension:
-
-```yaml
-extension:
-  - url: >-
-      http://aidbox.app/ePrescription/FHIRSchema/medication-request-rx-renewal-decision
-    valueCode: denied
-```
-
-<details>
-<summary>Shortcut to change decision</summary>
-In case you need to change an earlier decision (that wasn't yet sent with `/eprescription/rx/respond-to-change`), you can use the following patch:
-
-```yaml
-PATCH /fhir/MedicationRequest/your-medication-request-id
-
-- op: replace
-  # Replace with the index of the necessary extension
-  path: '/extension/3'
-  value: { "url": "http://aidbox.app/ePrescription/FHIRSchema/medication-request-rx-change-decision", "valueCode": "denied" }
-```
-</details>
-
-
-Once you are ready to submit your decision (with all related steps), call the `/eprescription/rx/respond-to-renewal` endpoint to commit your decision:
-
-```json
-POST /eprescription/rx/respond-to-renewal
-
-{
-  "medicationRequestId": "your-medication-request-id"
-}
-```
-
-HTTP response with status 202 designates that the response was successfully transitioned to Surescripts.
-Surescripts response is reflected in extensions for status and status reason:
-
-- `http://aidbox.app/ePrescription/FHIRSchema/medication-request-rx-renewal-status`
-- `http://aidbox.app/ePrescription/FHIRSchema/medication-request-rx-renewal-status-reason`
-
 
 ### Denied
 
-<sub>Same as for [RxChange](./rx-change.md#denied).</sub>
+<sub>Same as for [RxChange](rx-change.md#denied).</sub>
 
 `denied` is the decision that requires the least amount of steps. Setting it in the extension is the only requirement.
 You can set the denial reason (free text) in decision note extension (
@@ -114,7 +17,7 @@ You can set the denial reason (free text) in decision note extension (
 
 ### Pending
 
-<sub>Same as for [RxChange](./rx-change.md#pending).</sub>
+<sub>Same as for [RxChange](rx-change.md#pending).</sub>
 
 Before committing the `pending` decision you need to
 

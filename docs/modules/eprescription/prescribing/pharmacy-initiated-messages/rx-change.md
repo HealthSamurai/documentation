@@ -5,23 +5,6 @@
 RxChange is a type of message sent by pharmacy to subscriber when the medication should be changed to a different one.
 It is required that RxChange is preceded by NewRx.
 
-## Receiving RxChangeRequest
-
-Once the pharmacy sends an RxChangeRequest, ePrescription module receives Surescripts message at `/eprescriptions/rx` endpoint and saves it to Aidbox.
-Resources created:
-
-- **MedicationRequest** reflecting the incoming data
-- **DetectedIssue** - if only there were some mismatches in related resources
-- **Provenance** - solely as a record that an event has occurred.
-  It is intended to serve as an audit/logging artifact, and should not be relied upon for driving business logic.
-
-Ways to track the newly created **MedicationRequest**s:
-
-- [Either of Aidbox Subscriptions mechanisms](../../topic-based-subscriptions/README.md)
-- Manual/automated tracking based on **MedicationRequest** modification date and/or status
-
-The ePrescription module creates a **DetectedIssue** whenever inbound RxChange data diverges from existing records; see [Detected Issues](./detected-issue.md) for the full list of checks and a sample payload.
-
 ## Supported Request Types
 
 - **D**: Drug Use Evaluation
@@ -61,40 +44,9 @@ Table of compatibility between decisions and request types:
 
 [//]: # (| **P**              | ✓        | ✗                   | ✓      | ✓       |           |)
 
-<details>
-<summary>Shortcut to change decision</summary>
-In case you need to change an earlier decision (that wasn't yet sent with `/eprescription/rx/respond-to-change`), you can use the following patch:
-
-```yaml
-PATCH /fhir/MedicationRequest/your-medication-request-id
-
-- op: replace
-  # Replace with the index of the necessary extension
-  path: '/extension/3'
-  value: { "url": "http://aidbox.app/ePrescription/FHIRSchema/medication-request-rx-change-decision", "valueCode": "denied" }
-```
-
-</details>
-
-Once you are ready to submit your decision (with all related steps), call the `/eprescription/rx/respond-to-change` endpoint to commit your decision:
-
-```json
-POST /eprescription/rx/respond-to-change
-
-{
-  "medicationRequestId": "your-medication-request-id"
-}
-```
-
-HTTP response with status 202 designates that the response was successfully transitioned to Surescripts.
-Surescripts response is reflected in extensions for status and status reason:
-
-- `http://aidbox.app/ePrescription/FHIRSchema/medication-request-rx-renewal-status`
-- `http://aidbox.app/ePrescription/FHIRSchema/medication-request-rx-renewal-status-reason`
-
 ### Denied
 
-<sub>Same as for [RxRenewal](./rx-renewal.md#denied).</sub>
+<sub>Same as for [RxRenewal](./rx-change.md#denied).</sub>
 
 `denied` is the decision that requires the least amount of steps. Setting it in the extension is the only requirement.
 You can set the denial reason (free text) in decision note extension (
@@ -111,7 +63,7 @@ POST /eprescription/rx/respond-to-change
 
 ### Pending
 
-<sub>Same as for [RxRenewal](./rx-renewal.md#pending).</sub>
+<sub>Same as for [RxRenewal](rx-renewal.md#pending).</sub>
 
 Before committing the `pending` decision you need to
 
