@@ -86,6 +86,12 @@ POST /eprescription/rx/respond-to-change
 }
 ```
 
+HTTP response with status 202 designates that the response was successfully transitioned to Surescripts.
+Surescripts response is reflected in extensions for status and status reason:
+
+- `http://aidbox.app/ePrescription/FHIRSchema/medication-request-rx-renewal-status`
+- `http://aidbox.app/ePrescription/FHIRSchema/medication-request-rx-renewal-status-reason`
+
 ### Denied
 
 <sub>Same as for [RxRenewal](./rx-renewal.md#denied).</sub>

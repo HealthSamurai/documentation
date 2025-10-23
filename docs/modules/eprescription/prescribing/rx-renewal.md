@@ -84,6 +84,8 @@ PATCH /fhir/MedicationRequest/your-medication-request-id
   path: '/extension/3'
   value: { "url": "http://aidbox.app/ePrescription/FHIRSchema/medication-request-rx-change-decision", "valueCode": "denied" }
 ```
+</details>
+
 
 Once you are ready to submit your decision (with all related steps), call the `/eprescription/rx/respond-to-renewal` endpoint to commit your decision:
 
@@ -95,7 +97,12 @@ POST /eprescription/rx/respond-to-renewal
 }
 ```
 
-</details>
+HTTP response with status 202 designates that the response was successfully transitioned to Surescripts.
+Surescripts response is reflected in extensions for status and status reason:
+
+- `http://aidbox.app/ePrescription/FHIRSchema/medication-request-rx-renewal-status`
+- `http://aidbox.app/ePrescription/FHIRSchema/medication-request-rx-renewal-status-reason`
+
 
 ### Denied
 
@@ -161,9 +168,31 @@ Available reason codes are listed in the table below (same for RxChange case):
 | **HS**      | Patient is currently undergoing acute care and a decision is pending resolution |
 | **HT**      | Provider wishes to delay for reasons not otherwise indicated                    |
 
-### Approved
+### Approved, ApprovedWithChanges
 
-`approved` decision assumes that only minor changes were made.
+These decisions are used when prescriber approves the renewal requests.
+
+<details>
+<summary>
+Decisions differ by the approved number of refills
+</summary>
+
+The difference between `approved` and `approved-with-changes` is about the allowed number of refills.
+
+The number of refills requested by the pharmacy is stored in the following extension:
+```yaml
+extension:
+  - url: >-
+      http://aidbox.app/ePrescription/FHIRSchema/medication-request-pharmacy-request-refills
+    valueInteger: 1
+```
+The number of refills approved by the prescriber is taken from `MedicationRequest.dispenseRequest.numberOfRepeatsAllowed`.
+
+Usage of `approved` decision expects these values to be equal.
+Usage of `approved-with-changes` decision expects these values to differ.
+
+</details>
+
 While the e-prescriptions module could prefill fields like `MedicationRequest.dispenseRequest` and `dosageInstruction`,
 the general approach is to let the prescriber do that.
 
@@ -174,6 +203,7 @@ extension:
   - url: >-
       http://aidbox.app/ePrescription/FHIRSchema/medication-request-rx-renewal-decision
     valueCode: approved
+#   valueCode: approved-with-changes
 ```
 
 If during the process of handling incoming renewal request there was a `DetectedIssue` created
@@ -193,8 +223,7 @@ Typically, they are the same as in the request for NewRx:
 Make sure you set
 
 - `MedicationRequest.dispenseRequest.performer` (the pharmacy of initial renewal request)
-- `MedicationRequest.dispenseRequest.numberOfRepeatsAllowed` - for `approved` decision it should be the same as pharmacy
-  requested
+- `MedicationRequest.dispenseRequest.numberOfRepeatsAllowed`
 
 ```yaml
 dispenseRequest:
@@ -215,14 +244,6 @@ dosageInstruction:
   - text: TAKE ONE TABLET TWO TIMES A DAY UNTIL GONE
 ```
 
-### ApprovedWithChanges
+### Replace
 
 TODO
-
----
-
-HTTP response with status 202 designates that the response was successfully transitioned to Surescripts.
-Surescripts response is reflected in extensions for status and status reason:
-
-- `http://aidbox.app/ePrescription/FHIRSchema/medication-request-rx-renewal-status`
-- `http://aidbox.app/ePrescription/FHIRSchema/medication-request-rx-renewal-status-reason`
