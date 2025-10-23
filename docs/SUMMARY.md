@@ -483,7 +483,7 @@
   * [Prescribing](modules/eprescription/prescribing/README.md)
     * [NewRx Message](modules/eprescription/prescribing/newrx-message.md)
     * [CancelRx Message](modules/eprescription/prescribing/cancelrx-message.md)
-    * [Pharmacy initiated messages](modules/eprescription/prescribing/pharmacy-initiated-messages/README.md)
+    * [Pharmacy-initiated messages](modules/eprescription/prescribing/pharmacy-initiated-messages/README.md)
       * [RxRenewal Message](modules/eprescription/prescribing/pharmacy-initiated-messages/rx-renewal.md)
       * [RxChange Message](modules/eprescription/prescribing/pharmacy-initiated-messages/rx-change.md)
     * [DetectedIssue](modules/eprescription/prescribing/detected-issue.md)

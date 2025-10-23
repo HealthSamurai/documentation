@@ -21,11 +21,11 @@ Resources created:
 
 Ways to track the newly created **MedicationRequest**s:
 
-- [Either of Aidbox Subscriptions mechanisms](../../topic-based-subscriptions/README.md)
+- [Either of Aidbox Subscriptions mechanisms](../../../../modules/topic-based-subscriptions/README.md)
 - Manual/automated tracking based on **MedicationRequest** modification date and/or status
 
 The ePrescription module creates a **DetectedIssue** whenever inbound request data diverges from existing records;
-see [Detected Issues](./detected-issue.md) for the full list of checks and a sample payload.
+see [Detected Issues](../detected-issue.md) for the full list of checks and a sample payload.
 
 ### Statuses
 
