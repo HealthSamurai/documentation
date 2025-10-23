@@ -87,7 +87,7 @@
          (ico/chevron-down "size-3")]]
        ;; Dropdown menu
        [:div {:id "page-actions-dropdown"
-              :class "hidden absolute right-0 top-full mt-2 w-64 rounded-md shadow-lg bg-surface z-50 border border-outline"}
+              :class "hidden absolute right-0 top-full mt-2 w-64 rounded-md shadow-lg bg-surface z-[9999] border border-outline"}
         [:div {:class "py-1"}
          (copy-page-item md-url)
          (view-markdown-item md-url)
