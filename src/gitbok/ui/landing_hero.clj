@@ -186,7 +186,7 @@
      [:h3 {:class "text-lg font-medium leading-8 tracking-[-0.03em] mb-3 text-on-surface-strong font-sans"} "FHIR Database"]
      [:div {:class "mb-3"}
       (tags/render-tags
-       [{:text "PostgreSQL" :href (http/get-product-prefixed-url context "/database/overview#how-does-aidbox-store-data")}
+       [{:text "PostgreSQL" :href (http/get-product-prefixed-url context "/database/overview")}
         {:text "JSONB" :href (http/get-product-prefixed-url context "/database/overview#the-postgresql-jsonb-approach")}
         {:text "Indexes" :href (http/get-product-prefixed-url context "/deployment-and-maintenance/indexes")}
         {:text "Custom resources" :href (http/get-product-prefixed-url context "/tutorials/artifact-registry-tutorials/custom-resources/custom-resources-using-structuredefinition")}
@@ -318,21 +318,21 @@
 
    ;; Three cards in horizontal layout - responsive grid
    [:div {:class "grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4"}
-    
+
     ;; Card 1: Master Patient Index (MPI)
     [:a {:class "module-card-gradient rounded-lg p-6 flex flex-col border border-module-border min-h-[171px] no-underline hover:bg-white transition-all duration-300"
          :href (http/get-product-prefixed-url context "/modules/mpi")}
      [:div {:class "text-xs font-medium uppercase tracking-[0.05em] text-module-label leading-[14px]"} "MPI"]
      [:h3 {:class "text-base font-medium leading-8 tracking-[-0.03em] text-on-surface-strong m-0"} "Master Patient Index"]
      [:p {:class "text-sm font-normal text-on-surface-secondary m-0 mt-2 leading-[22.75px]"} "A module in Aidbox that ensures accurate patient identification by detecting and removing duplicate records"]]
-    
+
     ;; Card 2: Electronic prescriptions (ePrescription)
     [:a {:class "module-card-gradient rounded-lg p-6 flex flex-col border border-module-border min-h-[171px] no-underline hover:bg-white transition-all duration-300"
          :href (http/get-product-prefixed-url context "/modules/eprescription")}
      [:div {:class "text-xs font-medium uppercase tracking-[0.05em] text-module-label leading-[14px]"} "ePrescription"]
      [:h3 {:class "text-base font-medium leading-8 tracking-[-0.03em] text-on-surface-strong m-0"} "Electronic prescriptions"]
      [:p {:class "text-sm font-normal text-on-surface-secondary m-0 mt-2 leading-[22.75px]"} "A module for managing electronic prescriptions Modern solution for healthcare organizations compliant with strict industry standards"]]
-    
+
     ;; Card 3: Form building and SDC (Forms)
     [:a {:class "module-card-gradient rounded-lg p-6 flex flex-col border border-module-border min-h-[171px] no-underline hover:bg-white transition-all duration-300"
          :href (http/get-product-prefixed-url context "/modules/aidbox-forms")}
