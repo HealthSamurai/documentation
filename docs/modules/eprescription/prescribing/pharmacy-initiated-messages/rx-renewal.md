@@ -7,6 +7,34 @@ It is required that RxRenewal is preceded by NewRx.
 
 ## Responding to RxRenewalRequest
 
+### Decisions use cases
+
+{% hint style="info" %}
+
+**MedicationRequest.extension.where(url = "http://aidbox.app/ePrescription/FHIRSchema/medication-request-pharmacy-request-refills")** referred as **PharmacyRequestedRefills** for simplicity
+
+{% endhint %}
+
+*Example 1:* Prescriber wishes to deny the request because the patient must be re-examined.
+Response must be `denied`
+
+*Example 2:* Pharmacy has not requested a specific number of refills (**PharmacyRequestedRefills** not sent); prescriber wishes to approve the request, specifying 3 additional dispensings. Since the pharmacy did not request a specific number of refills **PharmacyRequestedRefills** and the **MedicationRequest.dispenseRequest.numberOfRepeatsAllowed** contains a value greater than zero, the response must be `approved`.
+
+*Example 3:* Pharmacy requests 5 refills **PharmacyRequestedRefills**; prescriber approves 3 refills **MedicationRequest.dispenseRequest.numberOfRepeatsAllowed** Since this is a change in **MedicationRequest.dispenseRequest.numberOfRepeatsAllowed** versus **PharmacyRequestedRefills**, the response must be `approved-with-changes`.
+
+*Example 4:* Prescriber changes **MedicationRequest.dosageInstruction.\*.text** from “Take one tablet daily” to “Take one tablet morning and evening.” (**MedicationRequest.dispenseRequest.quantity** and other fields may change as well).
+Response must be `replace`.
+
+*Example 5:* Pharmacy has not requested a specific number of refills (**PharmacyRequestedRefills** not sent); prescriber wishes to approve the request,
+specifying 3 additional dispensings. In addition, the prescriber changes **MedicationRequest.dosageInstruction.\*.text** from “Take one tablet daily” to “Take one tablet morning and evening.” (<Quantity> and other fields may change as well).
+Response must be `replace`.
+
+*Example 6:*
+If the prescriber wishes to send a new prescription to a different pharmacy (other than the one who made the RxRenewalRequest), the `replace` is an inappropriate response. A `denied` should be sent to the pharmacy that made the RxRenewalRequest, and a new prescription should be sent to the new pharmacy.
+
+*Example 7:* The pharmacy sent an RxRenewal request proposing to renew Lipitor 20 mg. The prescriber responded with an RxRenewalResponse of type `pending`, indicating that a decision could not yet be made and that further review was required. The prescriber must wait for subsequent RxRenewalRequest messages from the pharmacy, as once a request has been answered with `pending`, it cannot later be responded to again with `approved` or `denied` for the same transaction.
+
+
 ### Denied
 
 <sub>Same as for [RxChange](rx-change.md#denied).</sub>
@@ -149,4 +177,30 @@ dosageInstruction:
 
 ### Replace
 
-TODO
+The `replace` response is to be used when an approval includes changes outside of what is permissible for `approved` and `approved-with-changes` responses. It should only be used if data elements have been changed from the RenewalRequest and when an `approved` or
+`approved-with-change` response is not appropriate.
+
+Note:
+ - Minor corrections to the patient **birthdate** are allowed as long as it refers to the same patient.  On a `replace` response the data content for the patient information does not have to match exactly as long as it is referring to the same patient. For example, if the **patient.name.\*.given.\*** in the RxRenewalRequest is Bob and the patient **patient.name.\*.given.\*** in the RxRenewalResponse is Robert, there is no difference unless the prescriber believes they are referencing a different patient than the pharmacy or vice versa.
+ - Edits to the pharmacy are not permitted.
+ - **authoredOn** indicates the date of the replacements prescription.
+
+Before committing the `replace` decision you need to
+
+Set the decision itself:
+
+```yaml
+extension:
+  - url: >-
+      http://aidbox.app/ePrescription/FHIRSchema/medication-request-rx-renewal-decision
+    valueCode: replace
+```
+
+Set the decision note (it's not required for `replace` decision but recommended):
+
+```yaml
+extension:
+  - url: >-
+      http://aidbox.app/ePrescription/FHIRSchema/medication-request-rx-renewal-decision-note
+    valueString: Changed course of therapy, so different medication is required
+```

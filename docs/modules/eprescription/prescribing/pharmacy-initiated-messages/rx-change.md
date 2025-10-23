@@ -5,6 +5,32 @@
 RxChange is a type of message sent by pharmacy to subscriber when the medication should be changed to a different one.
 It is required that RxChange is preceded by NewRx.
 
+## Decisions use cases
+
+{% hint style="info" %}
+
+**MedicationRequest.extension.where(url = "http://aidbox.app/ePrescription/FHIRSchema/medication-request-rx-change-decision-reason-code")** referred as **ReasonCode**
+
+**MedicationRequest.extension.where(url = "http://aidbox.app/ePrescription/FHIRSchema/medication-request-rx-change-message-request-code")** referred as **MessageRequestCode**
+
+**MedicationRequest.extension.where(url = "TODO")** referred as **MessageRequestSubCodes**
+
+**PractitionerRole.identifier.where(system = 'http://hl7.org/fhir/sid/us-npi')** referred as **NPI**
+
+**PractitionerRole.identifier.where(system = 'http://terminology.hl7.org/CodeSystem/v2-0203' and code = 'DEA')** referred as **DEANumber**
+
+{% endhint %}
+
+*Example 1:* The pharmacy sent an RxChange request to the prescriber proposing to substitute the unavailable Lipitor 20 mg with Atorvastatin 20 mg under the same parameters. The prescriber agreed to the substitution without any changes and sent an RxChangeResponse with the Approved type, allowing the pharmacy to dispense the generic instead of the brand product. So `approved` response should be used.
+
+*Example 2:* The pharmacy sent an RxChange request proposing to substitute the unavailable Lipitor 20 mg with Atorvastatin 20 mg as one of the MedicationRequested options. The prescriber responded with an RxChangeResponse of type `approved-with-changes` for the same patient, selecting the requested Atorvastatin but changing the directions from "take one tablet daily" to "take two tablets daily" and instructing the pharmacy to cancel the original prescription and dispense the updated one.
+
+*Example 3:* The pharmacy sent an RxChange request proposing to substitute the unavailable Lipitor 20 mg with Atorvastatin 20 mg. The prescriber responded with an RxChangeResponse of type `denied` for the same patient, providing **ReasonCode**: "Patient allergy to the proposed product".
+
+*Example 4:* The pharmacy sent an RxChange request proposing to substitute Lipitor 20 mg with Atorvastatin 20 mg. The prescriber responded with an RxChangeResponse of type `pending`, indicating that a decision could not yet be made and that further review was required. The prescriber must wait for subsequent RxChangeRequest messages from the pharmacy, as once a request has been answered with `pending`, it cannot later be responded to again with `approved` or `denied` for the same transaction.
+
+*Example 5:* The pharmacy sent an RxChange request for Prescriber Authorization with **MessageRequestCode** = U and **MessageRequestSubCodes** = [G, B] requesting the prescriber's NPI and DEA number. The prescriber replied with an RxChangeResponse of type Validated, echoing **MessageRequestCode** = U and SubCodes G and B, providing ResponseReasonCode = GM for each and populating **NPI** with "1234567890" and **DEANumber** with "AB1234567" to confirm active registration.
+
 ## Supported Request Types
 
 - **D**: Drug Use Evaluation
