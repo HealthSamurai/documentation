@@ -2,592 +2,2367 @@
 
 The Identity and Access Management (IAM) module provides a set of resources for managing user authentication, authorization, and access control within the Aidbox.
 
- ## Overview
+ ## AccessPolicy
 
-IAM module includes the following resource types:
-
-- AccessPolicy
-- AuthConfig
-- Client
-- Grant
-- IdentityProvider
-- Notification
-- NotificationTemplate
-- Registration
-- Role
-- Scope
-- Session
-- TokenIntrospector
-- User
-
-## AccessPolicy
-
-<table>
-<thead>
-<tr>
-<th width="290">Path</th>
-<th width="70">Card.</th>
-<th width="150">Type</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr><td width="290">_source</td><td width="70">0..1</td><td width="150">string</td><td>System Property. DO NOT USE IT.</td></tr>
-<tr><td width="290">and</td><td width="70">0..*</td><td width="150">Object</td><td>A list of conditions that must all be satisfied for the policy to grant access.</td></tr>
-<tr><td width="290">clj</td><td width="70">0..1</td><td width="150">string</td><td>Clojure code that defines access policy rules. 
- DEPRECATED. DO NOT USE IT.</td></tr>
-<tr><td width="290">description</td><td width="70">0..1</td><td width="150">string</td><td>A textual description of the access policy.</td></tr>
-<tr><td width="290">engine</td><td width="70">0..1</td><td width="150">string</td><td>Specifies the evaluation engine used for the policy. 
-
-<strong>Allowed values</strong>: `json-schema` | `allow` | `sql` | `complex` | `matcho` | `clj` | `matcho-rpc` | `allow-rpc` | `signed-rpc` | `smart-on-fhir`</td></tr>
-<tr><td width="290">link</td><td width="70">0..*</td><td width="150">Reference</td><td>References to resources associated with this policy. 
-
-<strong>Allowed references</strong>: Client, User, Operation</td></tr>
-<tr><td width="290">matcho</td><td width="70">0..1</td><td width="150">Object</td><td>Defines rules using the Matcho pattern-matching syntax.</td></tr>
-<tr><td width="290">module</td><td width="70">0..1</td><td width="150">string</td><td>Module that this policy belongs to.</td></tr>
-<tr><td width="290">or</td><td width="70">0..*</td><td width="150">Object</td><td>A list of conditions where at least one must be satisfied for the policy to grant access.</td></tr>
-<tr><td width="290">roleName</td><td width="70">0..1</td><td width="150">string</td><td>Symbolic link to Role by name</td></tr>
-<tr><td width="290">rpc</td><td width="70">0..1</td><td width="150">Object</td><td>Defines rules for Remote Procedure Calls (RPCs).</td></tr>
-<tr><td width="290">schema</td><td width="70">0..1</td><td width="150">Object</td><td>JSON Schema used to validate requests against the policy.</td></tr>
-<tr><td width="290">sql</td><td width="70">0..1</td><td width="150">BackboneElement</td><td>SQL-based policy definition.</td></tr>
-<tr><td width="290">sql.<strong>query</strong></td><td width="70">0..1</td><td width="150">string</td><td>SQL query used to evaluate access conditions.</td></tr>
-<tr><td width="290">type</td><td width="70">0..1</td><td width="150">string</td><td>The type or category of the access policy. 
-
-<strong>Allowed values</strong>: `scope` | `rest` | `rpc`</td></tr></tbody>
-</table>
+```fhir-structure
+[ {
+  "path" : "_source",
+  "name" : "_source",
+  "lvl" : 0,
+  "min" : 0,
+  "max" : 1,
+  "type" : "string",
+  "desc" : "System Property. DO NOT USE IT."
+}, {
+  "path" : "and",
+  "name" : "and",
+  "lvl" : 0,
+  "min" : 0,
+  "max" : "*",
+  "type" : "Object",
+  "desc" : "A list of conditions that must all be satisfied for the policy to grant access."
+}, {
+  "path" : "clj",
+  "name" : "clj",
+  "lvl" : 0,
+  "min" : 0,
+  "max" : 1,
+  "type" : "string",
+  "desc" : "Clojure code that defines access policy rules. \n DEPRECATED. DO NOT USE IT."
+}, {
+  "path" : "description",
+  "name" : "description",
+  "lvl" : 0,
+  "min" : 0,
+  "max" : 1,
+  "type" : "string",
+  "desc" : "A textual description of the access policy."
+}, {
+  "path" : "engine",
+  "name" : "engine",
+  "lvl" : 0,
+  "min" : 0,
+  "max" : 1,
+  "type" : "string",
+  "desc" : "Specifies the evaluation engine used for the policy. \n\n**Allowed values**: `json-schema` | `allow` | `sql` | `complex` | `matcho` | `clj` | `matcho-rpc` | `allow-rpc` | `signed-rpc` | `smart-on-fhir`"
+}, {
+  "path" : "link",
+  "name" : "link",
+  "lvl" : 0,
+  "min" : 0,
+  "max" : "*",
+  "type" : "Reference",
+  "desc" : "References to resources associated with this policy. \n\n**Allowed references**: Client, User, Operation"
+}, {
+  "path" : "matcho",
+  "name" : "matcho",
+  "lvl" : 0,
+  "min" : 0,
+  "max" : 1,
+  "type" : "Object",
+  "desc" : "Defines rules using the Matcho pattern-matching syntax."
+}, {
+  "path" : "module",
+  "name" : "module",
+  "lvl" : 0,
+  "min" : 0,
+  "max" : 1,
+  "type" : "string",
+  "desc" : "Module that this policy belongs to."
+}, {
+  "path" : "or",
+  "name" : "or",
+  "lvl" : 0,
+  "min" : 0,
+  "max" : "*",
+  "type" : "Object",
+  "desc" : "A list of conditions where at least one must be satisfied for the policy to grant access."
+}, {
+  "path" : "roleName",
+  "name" : "roleName",
+  "lvl" : 0,
+  "min" : 0,
+  "max" : 1,
+  "type" : "string",
+  "desc" : "Symbolic link to Role by name"
+}, {
+  "path" : "rpc",
+  "name" : "rpc",
+  "lvl" : 0,
+  "min" : 0,
+  "max" : 1,
+  "type" : "Object",
+  "desc" : "Defines rules for Remote Procedure Calls (RPCs)."
+}, {
+  "path" : "schema",
+  "name" : "schema",
+  "lvl" : 0,
+  "min" : 0,
+  "max" : 1,
+  "type" : "Object",
+  "desc" : "JSON Schema used to validate requests against the policy."
+}, {
+  "path" : "sql",
+  "name" : "sql",
+  "lvl" : 0,
+  "min" : 0,
+  "max" : 1,
+  "type" : "BackboneElement",
+  "desc" : "SQL-based policy definition."
+}, {
+  "path" : "sql.query",
+  "name" : "query",
+  "lvl" : 1,
+  "min" : 0,
+  "max" : 1,
+  "type" : "string",
+  "desc" : "SQL query used to evaluate access conditions."
+}, {
+  "path" : "type",
+  "name" : "type",
+  "lvl" : 0,
+  "min" : 0,
+  "max" : 1,
+  "type" : "string",
+  "desc" : "The type or category of the access policy. \n\n**Allowed values**: `scope` | `rest` | `rpc`"
+} ]
+```
 
 
 ## AuthConfig
 
-<table>
-<thead>
-<tr>
-<th width="290">Path</th>
-<th width="70">Card.</th>
-<th width="150">Type</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr><td width="290">_source</td><td width="70">0..1</td><td width="150">string</td><td>System Property. DO NOT USE IT.</td></tr>
-<tr><td width="290">asidCookieMaxAge</td><td width="70">0..1</td><td width="150">integer</td><td>In Aidbox version v:2402 and later, sessions created through the Aidbox UI log-in are not infinite.The default session expiration time is set to 432000 seconds (5 days).</td></tr>
-<tr><td width="290">theme</td><td width="70">0..1</td><td width="150">BackboneElement</td><td></td></tr>
-<tr><td width="290">theme.<strong>brand</strong></td><td width="70">0..1</td><td width="150">string</td><td>Brand for auth page</td></tr>
-<tr><td width="290">theme.<strong>title</strong></td><td width="70">0..1</td><td width="150">string</td><td>Title for auth page</td></tr>
-<tr><td width="290">theme.<strong>styleUrl</strong></td><td width="70">0..1</td><td width="150">uri</td><td>URL to external stylesheet</td></tr>
-<tr><td width="290">theme.<strong>forgotPasswordUrl</strong></td><td width="70">0..1</td><td width="150">uri</td><td>URL to forgot password page</td></tr>
-<tr><td width="290">twoFactor</td><td width="70">0..1</td><td width="150">BackboneElement</td><td></td></tr>
-<tr><td width="290">twoFactor.<strong>webhook</strong></td><td width="70">0..1</td><td width="150">BackboneElement</td><td></td></tr>
-<tr><td width="290">twoFactor.<strong>webhook</strong>.<strong>headers</strong></td><td width="70">0..1</td><td width="150">Map</td><td>Map of HTTP header key-value pairs</td></tr>
-<tr><td width="290">twoFactor.<strong>webhook</strong>.<strong>timeout</strong></td><td width="70">0..1</td><td width="150">integer</td><td>Timeout in milliseconds</td></tr>
-<tr><td width="290">twoFactor.<strong>webhook</strong>.<strong>endpoint</strong></td><td width="70">1..1</td><td width="150">string</td><td>URL to webhook that supports POST method</td></tr>
-<tr><td width="290">twoFactor.<strong>issuerName</strong></td><td width="70">0..1</td><td width="150">string</td><td>Issuer name for OTP authenticator app</td></tr>
-<tr><td width="290">twoFactor.<strong>validPastTokensCount</strong></td><td width="70">0..1</td><td width="150">integer</td><td>Number of past tokens considered valid (useful with webhook since OTP lives ~30s)</td></tr></tbody>
-</table>
+```fhir-structure
+[ {
+  "path" : "_source",
+  "name" : "_source",
+  "lvl" : 0,
+  "min" : 0,
+  "max" : 1,
+  "type" : "string",
+  "desc" : "System Property. DO NOT USE IT."
+}, {
+  "path" : "asidCookieMaxAge",
+  "name" : "asidCookieMaxAge",
+  "lvl" : 0,
+  "min" : 0,
+  "max" : 1,
+  "type" : "integer",
+  "desc" : "In Aidbox version v:2402 and later, sessions created through the Aidbox UI log-in are not infinite.The default session expiration time is set to 432000 seconds (5 days)."
+}, {
+  "path" : "theme",
+  "name" : "theme",
+  "lvl" : 0,
+  "min" : 0,
+  "max" : 1,
+  "type" : "BackboneElement",
+  "desc" : ""
+}, {
+  "path" : "theme.brand",
+  "name" : "brand",
+  "lvl" : 1,
+  "min" : 0,
+  "max" : 1,
+  "type" : "string",
+  "desc" : "Brand for auth page"
+}, {
+  "path" : "theme.title",
+  "name" : "title",
+  "lvl" : 1,
+  "min" : 0,
+  "max" : 1,
+  "type" : "string",
+  "desc" : "Title for auth page"
+}, {
+  "path" : "theme.styleUrl",
+  "name" : "styleUrl",
+  "lvl" : 1,
+  "min" : 0,
+  "max" : 1,
+  "type" : "uri",
+  "desc" : "URL to external stylesheet"
+}, {
+  "path" : "theme.forgotPasswordUrl",
+  "name" : "forgotPasswordUrl",
+  "lvl" : 1,
+  "min" : 0,
+  "max" : 1,
+  "type" : "uri",
+  "desc" : "URL to forgot password page"
+}, {
+  "path" : "twoFactor",
+  "name" : "twoFactor",
+  "lvl" : 0,
+  "min" : 0,
+  "max" : 1,
+  "type" : "BackboneElement",
+  "desc" : ""
+}, {
+  "path" : "twoFactor.webhook",
+  "name" : "webhook",
+  "lvl" : 1,
+  "min" : 0,
+  "max" : 1,
+  "type" : "BackboneElement",
+  "desc" : ""
+}, {
+  "path" : "twoFactor.webhook.headers",
+  "name" : "headers",
+  "lvl" : 2,
+  "min" : 0,
+  "max" : 1,
+  "type" : "Map",
+  "desc" : "Map of HTTP header key-value pairs"
+}, {
+  "path" : "twoFactor.webhook.timeout",
+  "name" : "timeout",
+  "lvl" : 2,
+  "min" : 0,
+  "max" : 1,
+  "type" : "integer",
+  "desc" : "Timeout in milliseconds"
+}, {
+  "path" : "twoFactor.webhook.endpoint",
+  "name" : "endpoint",
+  "lvl" : 2,
+  "min" : 1,
+  "max" : 1,
+  "type" : "string",
+  "desc" : "URL to webhook that supports POST method"
+}, {
+  "path" : "twoFactor.issuerName",
+  "name" : "issuerName",
+  "lvl" : 1,
+  "min" : 0,
+  "max" : 1,
+  "type" : "string",
+  "desc" : "Issuer name for OTP authenticator app"
+}, {
+  "path" : "twoFactor.validPastTokensCount",
+  "name" : "validPastTokensCount",
+  "lvl" : 1,
+  "min" : 0,
+  "max" : 1,
+  "type" : "integer",
+  "desc" : "Number of past tokens considered valid (useful with webhook since OTP lives ~30s)"
+} ]
+```
 
 
 ## Client
 
-<table>
-<thead>
-<tr>
-<th width="290">Path</th>
-<th width="70">Card.</th>
-<th width="150">Type</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr><td width="290">_source</td><td width="70">0..1</td><td width="150">string</td><td>System Property. DO NOT USE IT.</td></tr>
-<tr><td width="290">active</td><td width="70">0..1</td><td width="150">boolean</td><td>Indicates whether this client is active and can be used for authentication.</td></tr>
-<tr><td width="290">allowed-scopes</td><td width="70">0..*</td><td width="150">Reference</td><td>References to specific Scope resources this client is allowed to request. 
-
-<strong>Allowed references</strong>: Scope</td></tr>
-<tr><td width="290">allowedIssuers</td><td width="70">0..*</td><td width="150">string</td><td>List of authorized token issuers for this client.</td></tr>
-<tr><td width="290">allowed_origins</td><td width="70">0..*</td><td width="150">uri</td><td>Allowed Origins are URLs that will be allowed to make requests.</td></tr>
-<tr><td width="290">auth</td><td width="70">0..1</td><td width="150">BackboneElement</td><td>Authentication configuration for different OAuth flows.</td></tr>
-<tr><td width="290">auth.<strong>client_credentials</strong></td><td width="70">0..1</td><td width="150">BackboneElement</td><td>Configuration for the client credentials grant type.</td></tr>
-<tr><td width="290">auth.<strong>client_credentials</strong>.<strong>token_format</strong></td><td width="70">0..1</td><td width="150">string</td><td>Format of the access token. 
-
-<strong>Allowed values</strong>: `jwt`</td></tr>
-<tr><td width="290">auth.<strong>client_credentials</strong>.<strong>access_token_expiration</strong></td><td width="70">0..1</td><td width="150">integer</td><td>Expiration time for access tokens in seconds.</td></tr>
-<tr><td width="290">auth.<strong>client_credentials</strong>.<strong>refresh_token_expiration</strong></td><td width="70">0..1</td><td width="150">integer</td><td>Expiration time for refresh tokens in seconds.</td></tr>
-<tr><td width="290">auth.<strong>client_credentials</strong>.<strong>audience</strong></td><td width="70">0..*</td><td width="150">string</td><td>Intended audience for issued tokens. Shows what resource server access is intended for. Aidbox compares the audience of the Client to the audience it receives within aJWT and decides if the access should be granted. The audience attribute can be defined in 2 ways: As a plain string, e.g. https://cmpl.aidbox.app/smart As a Regex. In that case, the audience value should start with the # symbol. For example, #https://cmpl.aidbox.app/tenant/[^\]/smart That validation of the audience happens when SMART on FHIR app launches</td></tr>
-<tr><td width="290">auth.<strong>client_credentials</strong>.<strong>client_assertion_types</strong></td><td width="70">0..*</td><td width="150">string</td><td>Supported client assertion types. 
-
-<strong>Allowed values</strong>: `urn:ietf:params:oauth:client-assertion-type:jwt-bearer`</td></tr>
-<tr><td width="290">auth.<strong>client_credentials</strong>.<strong>refresh_token</strong></td><td width="70">0..1</td><td width="150">boolean</td><td>Whether to issue refresh tokens with this grant type.</td></tr>
-<tr><td width="290">auth.<strong>implicit</strong></td><td width="70">0..1</td><td width="150">BackboneElement</td><td>Configuration for the implicit grant type.</td></tr>
-<tr><td width="290">auth.<strong>implicit</strong>.<strong>redirect_uri</strong></td><td width="70">0..1</td><td width="150">url</td><td>Redirect URI for the implicit flow.</td></tr>
-<tr><td width="290">auth.<strong>implicit</strong>.<strong>token_format</strong></td><td width="70">0..1</td><td width="150">string</td><td>Format of the access token. 
-
-<strong>Allowed values</strong>: `jwt`</td></tr>
-<tr><td width="290">auth.<strong>implicit</strong>.<strong>audience</strong></td><td width="70">0..*</td><td width="150">string</td><td>Intended audience for issued tokens.</td></tr>
-<tr><td width="290">auth.<strong>implicit</strong>.<strong>access_token_expiration</strong></td><td width="70">0..1</td><td width="150">integer</td><td>Expiration time for access tokens in seconds.</td></tr>
-<tr><td width="290">auth.<strong>password</strong></td><td width="70">0..1</td><td width="150">BackboneElement</td><td>Configuration for the password grant type.</td></tr>
-<tr><td width="290">auth.<strong>password</strong>.<strong>secret_required</strong></td><td width="70">0..1</td><td width="150">boolean</td><td>Whether client secret is required for password grant.</td></tr>
-<tr><td width="290">auth.<strong>password</strong>.<strong>audience</strong></td><td width="70">0..*</td><td width="150">string</td><td>Intended audience for issued tokens.</td></tr>
-<tr><td width="290">auth.<strong>password</strong>.<strong>refresh_token</strong></td><td width="70">0..1</td><td width="150">boolean</td><td>Whether to issue refresh tokens with this grant type.</td></tr>
-<tr><td width="290">auth.<strong>password</strong>.<strong>redirect_uri</strong></td><td width="70">0..1</td><td width="150">url</td><td>If present, turn on redirect protection</td></tr>
-<tr><td width="290">auth.<strong>password</strong>.<strong>token_format</strong></td><td width="70">0..1</td><td width="150">string</td><td>Format of the access token. 
-
-<strong>Allowed values</strong>: `jwt`</td></tr>
-<tr><td width="290">auth.<strong>password</strong>.<strong>access_token_expiration</strong></td><td width="70">0..1</td><td width="150">integer</td><td>Expiration time for access tokens in seconds.</td></tr>
-<tr><td width="290">auth.<strong>password</strong>.<strong>refresh_token_expiration</strong></td><td width="70">0..1</td><td width="150">integer</td><td>Expiration time for refresh tokens in seconds.</td></tr>
-<tr><td width="290">auth.<strong>authorization_code</strong></td><td width="70">0..1</td><td width="150">BackboneElement</td><td>Configuration for the authorization code grant type.</td></tr>
-<tr><td width="290">auth.<strong>authorization_code</strong>.<strong>token_format</strong></td><td width="70">0..1</td><td width="150">string</td><td>Format of the access token. 
-
-<strong>Allowed values</strong>: `jwt`</td></tr>
-<tr><td width="290">auth.<strong>authorization_code</strong>.<strong>client_assertion_types</strong></td><td width="70">0..*</td><td width="150">string</td><td>Supported client assertion types. 
-
-<strong>Allowed values</strong>: `urn:ietf:params:oauth:client-assertion-type:jwt-bearer`</td></tr>
-<tr><td width="290">auth.<strong>authorization_code</strong>.<strong>refresh_token_expiration</strong></td><td width="70">0..1</td><td width="150">integer</td><td>Expiration time for refresh tokens in seconds.</td></tr>
-<tr><td width="290">auth.<strong>authorization_code</strong>.<strong>pkce</strong></td><td width="70">0..1</td><td width="150">boolean</td><td>Whether PKCE (Proof Key for Code Exchange) is required.</td></tr>
-<tr><td width="290">auth.<strong>authorization_code</strong>.<strong>access_token_expiration</strong></td><td width="70">0..1</td><td width="150">integer</td><td>Expiration time for access tokens in seconds.</td></tr>
-<tr><td width="290">auth.<strong>authorization_code</strong>.<strong>secret_required</strong></td><td width="70">0..1</td><td width="150">boolean</td><td>Whether client secret is required for token exchange.</td></tr>
-<tr><td width="290">auth.<strong>authorization_code</strong>.<strong>refresh_token</strong></td><td width="70">0..1</td><td width="150">boolean</td><td>Whether to issue refresh tokens with this grant type.</td></tr>
-<tr><td width="290">auth.<strong>authorization_code</strong>.<strong>default_identity_provider</strong></td><td width="70">0..1</td><td width="150">Reference</td><td>Default IdentityProvider that will be used instead of Aidbox login. 
-
-<strong>Allowed references</strong>: IdentityProvider</td></tr>
-<tr><td width="290">auth.<strong>authorization_code</strong>.<strong>audience</strong></td><td width="70">0..*</td><td width="150">string</td><td>Intended audience for issued tokens.</td></tr>
-<tr><td width="290">auth.<strong>authorization_code</strong>.<strong>redirect_uri</strong></td><td width="70">0..1</td><td width="150">url</td><td>Redirect URI for the authorization code flow.</td></tr>
-<tr><td width="290">auth.<strong>token_exchange</strong></td><td width="70">0..1</td><td width="150">BackboneElement</td><td>Configuration for the token exchange grant type.</td></tr>
-<tr><td width="290">auth.<strong>token_exchange</strong>.<strong>token_format</strong></td><td width="70">0..1</td><td width="150">string</td><td>Format of the access token. 
-
-<strong>Allowed values</strong>: `jwt`</td></tr>
-<tr><td width="290">auth.<strong>token_exchange</strong>.<strong>access_token_expiration</strong></td><td width="70">0..1</td><td width="150">integer</td><td>Expiration time for access tokens in seconds.</td></tr>
-<tr><td width="290">auth.<strong>token_exchange</strong>.<strong>refresh_token_expiration</strong></td><td width="70">0..1</td><td width="150">integer</td><td>Expiration time for refresh tokens in seconds.</td></tr>
-<tr><td width="290">auth.<strong>token_exchange</strong>.<strong>audience</strong></td><td width="70">0..*</td><td width="150">string</td><td>Intended audience for issued tokens.</td></tr>
-<tr><td width="290">auth.<strong>token_exchange</strong>.<strong>refresh_token</strong></td><td width="70">0..1</td><td width="150">boolean</td><td>Whether to issue refresh tokens with this grant type.</td></tr>
-<tr><td width="290">description</td><td width="70">0..1</td><td width="150">string</td><td>A description of the client application for administrative purposes.</td></tr>
-<tr><td width="290">details</td><td width="70">0..1</td><td width="150">Object</td><td>Additional client details or configuration options.</td></tr>
-<tr><td width="290">fhir-base-url</td><td width="70">0..1</td><td width="150">string</td><td>Base URL of the FHIR server this client interacts with.</td></tr>
-<tr><td width="290">first_party</td><td width="70">0..1</td><td width="150">boolean</td><td>Indicates whether this is a first-party client.</td></tr>
-<tr><td width="290">grant_types</td><td width="70">0..*</td><td width="150">string</td><td>OAuth 2.0 grant types this client is authorized to use. 
-
-<strong>Allowed values</strong>: `basic` | `authorization_code` | `code` | `password` | `client_credentials` | `implicit` | `refresh_token` | `urn:ietf:params:oauth:grant-type:token-exchange`</td></tr>
-<tr><td width="290">jwks</td><td width="70">0..*</td><td width="150">BackboneElement</td><td>JSON Web Key Set for client authentication and/or verification.</td></tr>
-<tr><td width="290">jwks.<strong>kid</strong></td><td width="70">0..1</td><td width="150">string</td><td>Key ID that identifies this key.</td></tr>
-<tr><td width="290">jwks.<strong>kty</strong></td><td width="70">0..1</td><td width="150">string</td><td>Key type. 
-
-<strong>Allowed values</strong>: `RSA`</td></tr>
-<tr><td width="290">jwks.<strong>alg</strong></td><td width="70">0..1</td><td width="150">string</td><td>Algorithm used with this key. 
-
-<strong>Allowed values</strong>: `RS384`</td></tr>
-<tr><td width="290">jwks.<strong>e</strong></td><td width="70">0..1</td><td width="150">string</td><td>Exponent value for RSA key.</td></tr>
-<tr><td width="290">jwks.<strong>n</strong></td><td width="70">0..1</td><td width="150">string</td><td>Modulus value for RSA key.</td></tr>
-<tr><td width="290">jwks.<strong>use</strong></td><td width="70">0..1</td><td width="150">string</td><td>Key usage. 
-
-<strong>Allowed values</strong>: `sig`</td></tr>
-<tr><td width="290">jwks_uri</td><td width="70">0..1</td><td width="150">url</td><td>URI where the client's JSON Web Key Set can be retrieved.</td></tr>
-<tr><td width="290">name</td><td width="70">0..1</td><td width="150">string</td><td>Human-readable name of the client application.</td></tr>
-<tr><td width="290">scope</td><td width="70">0..*</td><td width="150">string</td><td>List of scopes this client is authorized to request.</td></tr>
-<tr><td width="290">scopes</td><td width="70">0..*</td><td width="150">BackboneElement</td><td>Detailed scope configurations with associated policies.</td></tr>
-<tr><td width="290">scopes.<strong>policy</strong></td><td width="70">0..1</td><td width="150">Reference</td><td>Reference to an AccessPolicy resource for this scope. 
-
-<strong>Allowed references</strong>: AccessPolicy</td></tr>
-<tr><td width="290">scopes.<strong>parameters</strong></td><td width="70">0..1</td><td width="150">Object</td><td>Parameters to be applied with the scope's policy.</td></tr>
-<tr><td width="290">secret</td><td width="70">0..1</td><td width="150">sha256Hash</td><td>Hashed client secret for authentication.</td></tr>
-<tr><td width="290">smart</td><td width="70">0..1</td><td width="150">BackboneElement</td><td>SMART on FHIR configuration for this client.</td></tr>
-<tr><td width="290">smart.<strong>launch_uri</strong></td><td width="70">0..1</td><td width="150">string</td><td>URI to launch the SMART app.</td></tr>
-<tr><td width="290">smart.<strong>name</strong></td><td width="70">0..1</td><td width="150">string</td><td>Name of the SMART app.</td></tr>
-<tr><td width="290">smart.<strong>description</strong></td><td width="70">0..1</td><td width="150">string</td><td>Description of the SMART app.</td></tr>
-<tr><td width="290">trusted</td><td width="70">0..1</td><td width="150">boolean</td><td>Indicates whether this client is trusted and given special privileges.</td></tr>
-<tr><td width="290">type</td><td width="70">0..1</td><td width="150">string</td><td>The type of client application.</td></tr></tbody>
-</table>
+```fhir-structure
+[ {
+  "path" : "_source",
+  "name" : "_source",
+  "lvl" : 0,
+  "min" : 0,
+  "max" : 1,
+  "type" : "string",
+  "desc" : "System Property. DO NOT USE IT."
+}, {
+  "path" : "active",
+  "name" : "active",
+  "lvl" : 0,
+  "min" : 0,
+  "max" : 1,
+  "type" : "boolean",
+  "desc" : "Indicates whether this client is active and can be used for authentication."
+}, {
+  "path" : "allowed-scopes",
+  "name" : "allowed-scopes",
+  "lvl" : 0,
+  "min" : 0,
+  "max" : "*",
+  "type" : "Reference",
+  "desc" : "References to specific Scope resources this client is allowed to request. \n\n**Allowed references**: Scope"
+}, {
+  "path" : "allowedIssuers",
+  "name" : "allowedIssuers",
+  "lvl" : 0,
+  "min" : 0,
+  "max" : "*",
+  "type" : "string",
+  "desc" : "List of authorized token issuers for this client."
+}, {
+  "path" : "allowed_origins",
+  "name" : "allowed_origins",
+  "lvl" : 0,
+  "min" : 0,
+  "max" : "*",
+  "type" : "uri",
+  "desc" : "Allowed Origins are URLs that will be allowed to make requests."
+}, {
+  "path" : "auth",
+  "name" : "auth",
+  "lvl" : 0,
+  "min" : 0,
+  "max" : 1,
+  "type" : "BackboneElement",
+  "desc" : "Authentication configuration for different OAuth flows."
+}, {
+  "path" : "auth.client_credentials",
+  "name" : "client_credentials",
+  "lvl" : 1,
+  "min" : 0,
+  "max" : 1,
+  "type" : "BackboneElement",
+  "desc" : "Configuration for the client credentials grant type."
+}, {
+  "path" : "auth.client_credentials.token_format",
+  "name" : "token_format",
+  "lvl" : 2,
+  "min" : 0,
+  "max" : 1,
+  "type" : "string",
+  "desc" : "Format of the access token. \n\n**Allowed values**: `jwt`"
+}, {
+  "path" : "auth.client_credentials.access_token_expiration",
+  "name" : "access_token_expiration",
+  "lvl" : 2,
+  "min" : 0,
+  "max" : 1,
+  "type" : "integer",
+  "desc" : "Expiration time for access tokens in seconds."
+}, {
+  "path" : "auth.client_credentials.refresh_token_expiration",
+  "name" : "refresh_token_expiration",
+  "lvl" : 2,
+  "min" : 0,
+  "max" : 1,
+  "type" : "integer",
+  "desc" : "Expiration time for refresh tokens in seconds."
+}, {
+  "path" : "auth.client_credentials.audience",
+  "name" : "audience",
+  "lvl" : 2,
+  "min" : 0,
+  "max" : "*",
+  "type" : "string",
+  "desc" : "Intended audience for issued tokens. Shows what resource server access is intended for. Aidbox compares the audience of the Client to the audience it receives within aJWT and decides if the access should be granted. The audience attribute can be defined in 2 ways: As a plain string, e.g. https://cmpl.aidbox.app/smart As a Regex. In that case, the audience value should start with the # symbol. For example, #https://cmpl.aidbox.app/tenant/[^\\]/smart That validation of the audience happens when SMART on FHIR app launches"
+}, {
+  "path" : "auth.client_credentials.client_assertion_types",
+  "name" : "client_assertion_types",
+  "lvl" : 2,
+  "min" : 0,
+  "max" : "*",
+  "type" : "string",
+  "desc" : "Supported client assertion types. \n\n**Allowed values**: `urn:ietf:params:oauth:client-assertion-type:jwt-bearer`"
+}, {
+  "path" : "auth.client_credentials.refresh_token",
+  "name" : "refresh_token",
+  "lvl" : 2,
+  "min" : 0,
+  "max" : 1,
+  "type" : "boolean",
+  "desc" : "Whether to issue refresh tokens with this grant type."
+}, {
+  "path" : "auth.implicit",
+  "name" : "implicit",
+  "lvl" : 1,
+  "min" : 0,
+  "max" : 1,
+  "type" : "BackboneElement",
+  "desc" : "Configuration for the implicit grant type."
+}, {
+  "path" : "auth.implicit.redirect_uri",
+  "name" : "redirect_uri",
+  "lvl" : 2,
+  "min" : 0,
+  "max" : 1,
+  "type" : "url",
+  "desc" : "Redirect URI for the implicit flow."
+}, {
+  "path" : "auth.implicit.token_format",
+  "name" : "token_format",
+  "lvl" : 2,
+  "min" : 0,
+  "max" : 1,
+  "type" : "string",
+  "desc" : "Format of the access token. \n\n**Allowed values**: `jwt`"
+}, {
+  "path" : "auth.implicit.audience",
+  "name" : "audience",
+  "lvl" : 2,
+  "min" : 0,
+  "max" : "*",
+  "type" : "string",
+  "desc" : "Intended audience for issued tokens."
+}, {
+  "path" : "auth.implicit.access_token_expiration",
+  "name" : "access_token_expiration",
+  "lvl" : 2,
+  "min" : 0,
+  "max" : 1,
+  "type" : "integer",
+  "desc" : "Expiration time for access tokens in seconds."
+}, {
+  "path" : "auth.password",
+  "name" : "password",
+  "lvl" : 1,
+  "min" : 0,
+  "max" : 1,
+  "type" : "BackboneElement",
+  "desc" : "Configuration for the password grant type."
+}, {
+  "path" : "auth.password.secret_required",
+  "name" : "secret_required",
+  "lvl" : 2,
+  "min" : 0,
+  "max" : 1,
+  "type" : "boolean",
+  "desc" : "Whether client secret is required for password grant."
+}, {
+  "path" : "auth.password.audience",
+  "name" : "audience",
+  "lvl" : 2,
+  "min" : 0,
+  "max" : "*",
+  "type" : "string",
+  "desc" : "Intended audience for issued tokens."
+}, {
+  "path" : "auth.password.refresh_token",
+  "name" : "refresh_token",
+  "lvl" : 2,
+  "min" : 0,
+  "max" : 1,
+  "type" : "boolean",
+  "desc" : "Whether to issue refresh tokens with this grant type."
+}, {
+  "path" : "auth.password.redirect_uri",
+  "name" : "redirect_uri",
+  "lvl" : 2,
+  "min" : 0,
+  "max" : 1,
+  "type" : "url",
+  "desc" : "If present, turn on redirect protection"
+}, {
+  "path" : "auth.password.token_format",
+  "name" : "token_format",
+  "lvl" : 2,
+  "min" : 0,
+  "max" : 1,
+  "type" : "string",
+  "desc" : "Format of the access token. \n\n**Allowed values**: `jwt`"
+}, {
+  "path" : "auth.password.access_token_expiration",
+  "name" : "access_token_expiration",
+  "lvl" : 2,
+  "min" : 0,
+  "max" : 1,
+  "type" : "integer",
+  "desc" : "Expiration time for access tokens in seconds."
+}, {
+  "path" : "auth.password.refresh_token_expiration",
+  "name" : "refresh_token_expiration",
+  "lvl" : 2,
+  "min" : 0,
+  "max" : 1,
+  "type" : "integer",
+  "desc" : "Expiration time for refresh tokens in seconds."
+}, {
+  "path" : "auth.authorization_code",
+  "name" : "authorization_code",
+  "lvl" : 1,
+  "min" : 0,
+  "max" : 1,
+  "type" : "BackboneElement",
+  "desc" : "Configuration for the authorization code grant type."
+}, {
+  "path" : "auth.authorization_code.token_format",
+  "name" : "token_format",
+  "lvl" : 2,
+  "min" : 0,
+  "max" : 1,
+  "type" : "string",
+  "desc" : "Format of the access token. \n\n**Allowed values**: `jwt`"
+}, {
+  "path" : "auth.authorization_code.client_assertion_types",
+  "name" : "client_assertion_types",
+  "lvl" : 2,
+  "min" : 0,
+  "max" : "*",
+  "type" : "string",
+  "desc" : "Supported client assertion types. \n\n**Allowed values**: `urn:ietf:params:oauth:client-assertion-type:jwt-bearer`"
+}, {
+  "path" : "auth.authorization_code.refresh_token_expiration",
+  "name" : "refresh_token_expiration",
+  "lvl" : 2,
+  "min" : 0,
+  "max" : 1,
+  "type" : "integer",
+  "desc" : "Expiration time for refresh tokens in seconds."
+}, {
+  "path" : "auth.authorization_code.pkce",
+  "name" : "pkce",
+  "lvl" : 2,
+  "min" : 0,
+  "max" : 1,
+  "type" : "boolean",
+  "desc" : "Whether PKCE (Proof Key for Code Exchange) is required."
+}, {
+  "path" : "auth.authorization_code.access_token_expiration",
+  "name" : "access_token_expiration",
+  "lvl" : 2,
+  "min" : 0,
+  "max" : 1,
+  "type" : "integer",
+  "desc" : "Expiration time for access tokens in seconds."
+}, {
+  "path" : "auth.authorization_code.secret_required",
+  "name" : "secret_required",
+  "lvl" : 2,
+  "min" : 0,
+  "max" : 1,
+  "type" : "boolean",
+  "desc" : "Whether client secret is required for token exchange."
+}, {
+  "path" : "auth.authorization_code.refresh_token",
+  "name" : "refresh_token",
+  "lvl" : 2,
+  "min" : 0,
+  "max" : 1,
+  "type" : "boolean",
+  "desc" : "Whether to issue refresh tokens with this grant type."
+}, {
+  "path" : "auth.authorization_code.default_identity_provider",
+  "name" : "default_identity_provider",
+  "lvl" : 2,
+  "min" : 0,
+  "max" : 1,
+  "type" : "Reference",
+  "desc" : "Default IdentityProvider that will be used instead of Aidbox login. \n\n**Allowed references**: IdentityProvider"
+}, {
+  "path" : "auth.authorization_code.audience",
+  "name" : "audience",
+  "lvl" : 2,
+  "min" : 0,
+  "max" : "*",
+  "type" : "string",
+  "desc" : "Intended audience for issued tokens."
+}, {
+  "path" : "auth.authorization_code.redirect_uri",
+  "name" : "redirect_uri",
+  "lvl" : 2,
+  "min" : 0,
+  "max" : 1,
+  "type" : "url",
+  "desc" : "Redirect URI for the authorization code flow."
+}, {
+  "path" : "auth.token_exchange",
+  "name" : "token_exchange",
+  "lvl" : 1,
+  "min" : 0,
+  "max" : 1,
+  "type" : "BackboneElement",
+  "desc" : "Configuration for the token exchange grant type."
+}, {
+  "path" : "auth.token_exchange.token_format",
+  "name" : "token_format",
+  "lvl" : 2,
+  "min" : 0,
+  "max" : 1,
+  "type" : "string",
+  "desc" : "Format of the access token. \n\n**Allowed values**: `jwt`"
+}, {
+  "path" : "auth.token_exchange.access_token_expiration",
+  "name" : "access_token_expiration",
+  "lvl" : 2,
+  "min" : 0,
+  "max" : 1,
+  "type" : "integer",
+  "desc" : "Expiration time for access tokens in seconds."
+}, {
+  "path" : "auth.token_exchange.refresh_token_expiration",
+  "name" : "refresh_token_expiration",
+  "lvl" : 2,
+  "min" : 0,
+  "max" : 1,
+  "type" : "integer",
+  "desc" : "Expiration time for refresh tokens in seconds."
+}, {
+  "path" : "auth.token_exchange.audience",
+  "name" : "audience",
+  "lvl" : 2,
+  "min" : 0,
+  "max" : "*",
+  "type" : "string",
+  "desc" : "Intended audience for issued tokens."
+}, {
+  "path" : "auth.token_exchange.refresh_token",
+  "name" : "refresh_token",
+  "lvl" : 2,
+  "min" : 0,
+  "max" : 1,
+  "type" : "boolean",
+  "desc" : "Whether to issue refresh tokens with this grant type."
+}, {
+  "path" : "description",
+  "name" : "description",
+  "lvl" : 0,
+  "min" : 0,
+  "max" : 1,
+  "type" : "string",
+  "desc" : "A description of the client application for administrative purposes."
+}, {
+  "path" : "details",
+  "name" : "details",
+  "lvl" : 0,
+  "min" : 0,
+  "max" : 1,
+  "type" : "Object",
+  "desc" : "Additional client details or configuration options."
+}, {
+  "path" : "fhir-base-url",
+  "name" : "fhir-base-url",
+  "lvl" : 0,
+  "min" : 0,
+  "max" : 1,
+  "type" : "string",
+  "desc" : "Base URL of the FHIR server this client interacts with."
+}, {
+  "path" : "first_party",
+  "name" : "first_party",
+  "lvl" : 0,
+  "min" : 0,
+  "max" : 1,
+  "type" : "boolean",
+  "desc" : "Indicates whether this is a first-party client."
+}, {
+  "path" : "grant_types",
+  "name" : "grant_types",
+  "lvl" : 0,
+  "min" : 0,
+  "max" : "*",
+  "type" : "string",
+  "desc" : "OAuth 2.0 grant types this client is authorized to use. \n\n**Allowed values**: `basic` | `authorization_code` | `code` | `password` | `client_credentials` | `implicit` | `refresh_token` | `urn:ietf:params:oauth:grant-type:token-exchange`"
+}, {
+  "path" : "jwks",
+  "name" : "jwks",
+  "lvl" : 0,
+  "min" : 0,
+  "max" : "*",
+  "type" : "BackboneElement",
+  "desc" : "JSON Web Key Set for client authentication and/or verification."
+}, {
+  "path" : "jwks.kid",
+  "name" : "kid",
+  "lvl" : 1,
+  "min" : 0,
+  "max" : 1,
+  "type" : "string",
+  "desc" : "Key ID that identifies this key."
+}, {
+  "path" : "jwks.kty",
+  "name" : "kty",
+  "lvl" : 1,
+  "min" : 0,
+  "max" : 1,
+  "type" : "string",
+  "desc" : "Key type. \n\n**Allowed values**: `RSA`"
+}, {
+  "path" : "jwks.alg",
+  "name" : "alg",
+  "lvl" : 1,
+  "min" : 0,
+  "max" : 1,
+  "type" : "string",
+  "desc" : "Algorithm used with this key. \n\n**Allowed values**: `RS384`"
+}, {
+  "path" : "jwks.e",
+  "name" : "e",
+  "lvl" : 1,
+  "min" : 0,
+  "max" : 1,
+  "type" : "string",
+  "desc" : "Exponent value for RSA key."
+}, {
+  "path" : "jwks.n",
+  "name" : "n",
+  "lvl" : 1,
+  "min" : 0,
+  "max" : 1,
+  "type" : "string",
+  "desc" : "Modulus value for RSA key."
+}, {
+  "path" : "jwks.use",
+  "name" : "use",
+  "lvl" : 1,
+  "min" : 0,
+  "max" : 1,
+  "type" : "string",
+  "desc" : "Key usage. \n\n**Allowed values**: `sig`"
+}, {
+  "path" : "jwks_uri",
+  "name" : "jwks_uri",
+  "lvl" : 0,
+  "min" : 0,
+  "max" : 1,
+  "type" : "url",
+  "desc" : "URI where the client's JSON Web Key Set can be retrieved."
+}, {
+  "path" : "name",
+  "name" : "name",
+  "lvl" : 0,
+  "min" : 0,
+  "max" : 1,
+  "type" : "string",
+  "desc" : "Human-readable name of the client application."
+}, {
+  "path" : "scope",
+  "name" : "scope",
+  "lvl" : 0,
+  "min" : 0,
+  "max" : "*",
+  "type" : "string",
+  "desc" : "List of scopes this client is authorized to request."
+}, {
+  "path" : "scopes",
+  "name" : "scopes",
+  "lvl" : 0,
+  "min" : 0,
+  "max" : "*",
+  "type" : "BackboneElement",
+  "desc" : "Detailed scope configurations with associated policies."
+}, {
+  "path" : "scopes.policy",
+  "name" : "policy",
+  "lvl" : 1,
+  "min" : 0,
+  "max" : 1,
+  "type" : "Reference",
+  "desc" : "Reference to an AccessPolicy resource for this scope. \n\n**Allowed references**: AccessPolicy"
+}, {
+  "path" : "scopes.parameters",
+  "name" : "parameters",
+  "lvl" : 1,
+  "min" : 0,
+  "max" : 1,
+  "type" : "Object",
+  "desc" : "Parameters to be applied with the scope's policy."
+}, {
+  "path" : "secret",
+  "name" : "secret",
+  "lvl" : 0,
+  "min" : 0,
+  "max" : 1,
+  "type" : "sha256Hash",
+  "desc" : "Hashed client secret for authentication."
+}, {
+  "path" : "smart",
+  "name" : "smart",
+  "lvl" : 0,
+  "min" : 0,
+  "max" : 1,
+  "type" : "BackboneElement",
+  "desc" : "SMART on FHIR configuration for this client."
+}, {
+  "path" : "smart.launch_uri",
+  "name" : "launch_uri",
+  "lvl" : 1,
+  "min" : 0,
+  "max" : 1,
+  "type" : "string",
+  "desc" : "URI to launch the SMART app."
+}, {
+  "path" : "smart.name",
+  "name" : "name",
+  "lvl" : 1,
+  "min" : 0,
+  "max" : 1,
+  "type" : "string",
+  "desc" : "Name of the SMART app."
+}, {
+  "path" : "smart.description",
+  "name" : "description",
+  "lvl" : 1,
+  "min" : 0,
+  "max" : 1,
+  "type" : "string",
+  "desc" : "Description of the SMART app."
+}, {
+  "path" : "trusted",
+  "name" : "trusted",
+  "lvl" : 0,
+  "min" : 0,
+  "max" : 1,
+  "type" : "boolean",
+  "desc" : "Indicates whether this client is trusted and given special privileges."
+}, {
+  "path" : "type",
+  "name" : "type",
+  "lvl" : 0,
+  "min" : 0,
+  "max" : 1,
+  "type" : "string",
+  "desc" : "The type of client application."
+} ]
+```
 
 
 ## Grant
 
-<table>
-<thead>
-<tr>
-<th width="290">Path</th>
-<th width="70">Card.</th>
-<th width="150">Type</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr><td width="290">_source</td><td width="70">0..1</td><td width="150">string</td><td>System Property. DO NOT USE IT.</td></tr>
-<tr><td width="290">client</td><td width="70">0..1</td><td width="150">Reference</td><td>Reference to the client application being granted access. 
-
-<strong>Allowed references</strong>: Client</td></tr>
-<tr><td width="290">patient</td><td width="70">0..1</td><td width="150">Reference</td><td>Reference to the patient this grant is for (in SMART on FHIR scenarios). 
-
-<strong>Allowed references</strong>: Patient</td></tr>
-<tr><td width="290">provided-scope</td><td width="70">0..*</td><td width="150">string</td><td>List of scopes that were actually granted by the user.</td></tr>
-<tr><td width="290">requested-scope</td><td width="70">0..*</td><td width="150">string</td><td>List of scopes that were requested by the client.</td></tr>
-<tr><td width="290">scope</td><td width="70">0..1</td><td width="150">string</td><td>Space-separated list of granted scopes.</td></tr>
-<tr><td width="290">start</td><td width="70">0..1</td><td width="150">dateTime</td><td>Time when this grant was created.</td></tr>
-<tr><td width="290">user</td><td width="70">0..1</td><td width="150">Reference</td><td>Reference to the user who granted the access. 
-
-<strong>Allowed references</strong>: User</td></tr></tbody>
-</table>
+```fhir-structure
+[ {
+  "path" : "_source",
+  "name" : "_source",
+  "lvl" : 0,
+  "min" : 0,
+  "max" : 1,
+  "type" : "string",
+  "desc" : "System Property. DO NOT USE IT."
+}, {
+  "path" : "client",
+  "name" : "client",
+  "lvl" : 0,
+  "min" : 0,
+  "max" : 1,
+  "type" : "Reference",
+  "desc" : "Reference to the client application being granted access. \n\n**Allowed references**: Client"
+}, {
+  "path" : "patient",
+  "name" : "patient",
+  "lvl" : 0,
+  "min" : 0,
+  "max" : 1,
+  "type" : "Reference",
+  "desc" : "Reference to the patient this grant is for (in SMART on FHIR scenarios). \n\n**Allowed references**: Patient"
+}, {
+  "path" : "provided-scope",
+  "name" : "provided-scope",
+  "lvl" : 0,
+  "min" : 0,
+  "max" : "*",
+  "type" : "string",
+  "desc" : "List of scopes that were actually granted by the user."
+}, {
+  "path" : "requested-scope",
+  "name" : "requested-scope",
+  "lvl" : 0,
+  "min" : 0,
+  "max" : "*",
+  "type" : "string",
+  "desc" : "List of scopes that were requested by the client."
+}, {
+  "path" : "scope",
+  "name" : "scope",
+  "lvl" : 0,
+  "min" : 0,
+  "max" : 1,
+  "type" : "string",
+  "desc" : "Space-separated list of granted scopes."
+}, {
+  "path" : "start",
+  "name" : "start",
+  "lvl" : 0,
+  "min" : 0,
+  "max" : 1,
+  "type" : "dateTime",
+  "desc" : "Time when this grant was created."
+}, {
+  "path" : "user",
+  "name" : "user",
+  "lvl" : 0,
+  "min" : 0,
+  "max" : 1,
+  "type" : "Reference",
+  "desc" : "Reference to the user who granted the access. \n\n**Allowed references**: User"
+} ]
+```
 
 
 ## IdentityProvider
 
-<table>
-<thead>
-<tr>
-<th width="290">Path</th>
-<th width="70">Card.</th>
-<th width="150">Type</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr><td width="290">_source</td><td width="70">0..1</td><td width="150">string</td><td>System Property. DO NOT USE IT.</td></tr>
-<tr><td width="290">active</td><td width="70">0..1</td><td width="150">boolean</td><td>Indicates whether this identity provider is active and can be used for authentication.</td></tr>
-<tr><td width="290">authorize_endpoint</td><td width="70">0..1</td><td width="150">string</td><td>The URL of the authorization endpoint.</td></tr>
-<tr><td width="290">base_url</td><td width="70">0..1</td><td width="150">uri</td><td></td></tr>
-<tr><td width="290">client</td><td width="70">0..1</td><td width="150">BackboneElement</td><td>Client configuration for this identity provider.</td></tr>
-<tr><td width="290">client.<strong>id</strong></td><td width="70">0..1</td><td width="150">string</td><td>Client identifier used for authentication with the identity provider.</td></tr>
-<tr><td width="290">client.<strong>redirect_uri</strong></td><td width="70">0..1</td><td width="150">uri</td><td>URI where the provider will redirect after authentication.</td></tr>
-<tr><td width="290">client.<strong>auth-method</strong></td><td width="70">0..1</td><td width="150">string</td><td>Client authentication method. 
-
-<strong>Allowed values</strong>: `symmetric` | `asymmetric`</td></tr>
-<tr><td width="290">client.<strong>secret</strong></td><td width="70">0..1</td><td width="150">string</td><td>Client secret for symmetric authentication.</td></tr>
-<tr><td width="290">client.<strong>private-key</strong></td><td width="70">0..1</td><td width="150">string</td><td>Private key for asymmetric authentication.</td></tr>
-<tr><td width="290">client.<strong>certificate</strong></td><td width="70">0..1</td><td width="150">string</td><td>Certificate</td></tr>
-<tr><td width="290">client.<strong>certificate-thumbprint</strong></td><td width="70">0..1</td><td width="150">string</td><td>Certificate thumbprint.</td></tr>
-<tr><td width="290">client.<strong>creds-ts</strong></td><td width="70">0..1</td><td width="150">string</td><td></td></tr>
-<tr><td width="290">introspection_endpoint</td><td width="70">0..1</td><td width="150">string</td><td>The URL of the token introspection endpoint.</td></tr>
-<tr><td width="290">isEmailUniqueness</td><td width="70">0..1</td><td width="150">boolean</td><td>Indicates whether email uniqueness should be enforced for this provider.</td></tr>
-<tr><td width="290">isScim</td><td width="70">0..1</td><td width="150">boolean</td><td>Indicates whether this provider supports SCIM protocol.</td></tr>
-<tr><td width="290">jwks_uri</td><td width="70">0..1</td><td width="150">string</td><td>URI where the provider's JSON Web Key Set can be retrieved.</td></tr>
-<tr><td width="290">kid</td><td width="70">0..1</td><td width="150">string</td><td>Key identifier used for token verification.</td></tr>
-<tr><td width="290">organizations</td><td width="70">0..*</td><td width="150">string</td><td>Organizations associated with this identity provider.</td></tr>
-<tr><td width="290">registration_endpoint</td><td width="70">0..1</td><td width="150">string</td><td>The URL of the registration endpoint.</td></tr>
-<tr><td width="290">revocation_endpoint</td><td width="70">0..1</td><td width="150">string</td><td>The URL of the token revocation endpoint.</td></tr>
-<tr><td width="290">scopes</td><td width="70">0..*</td><td width="150">string</td><td>OAuth scopes that should be requested during authentication.</td></tr>
-<tr><td width="290">system</td><td width="70">0..1</td><td width="150">string</td><td>System identifier for the identity provider.</td></tr>
-<tr><td width="290">team_id</td><td width="70">0..1</td><td width="150">string</td><td></td></tr>
-<tr><td width="290">title</td><td width="70">0..1</td><td width="150">string</td><td>A human-readable name for the identity provider.</td></tr>
-<tr><td width="290">toScim</td><td width="70">0..1</td><td width="150">Object</td><td>Mapping rules for transforming identity provider data.</td></tr>
-<tr><td width="290">token_endpoint</td><td width="70">0..1</td><td width="150">string</td><td>The URL of the token endpoint.</td></tr>
-<tr><td width="290">type</td><td width="70">0..1</td><td width="150">string</td><td>The type of identity provider. 
-
-<strong>Allowed values</strong>: `aidbox` | `github` | `google` | `OIDC` | `OAuth` | `az-dev` | `yandex` | `okta` | `apple`</td></tr>
-<tr><td width="290">userinfo-source</td><td width="70">0..1</td><td width="150">string</td><td>Source of userinfo details. 
-
-<strong>Allowed values</strong>: `id-token` | `userinfo-endpoint`</td></tr>
-<tr><td width="290">userinfo_endpoint</td><td width="70">0..1</td><td width="150">string</td><td>The URL of the userinfo endpoint.</td></tr>
-<tr><td width="290">userinfo_header</td><td width="70">0..1</td><td width="150">string</td><td>Header to be used when calling the userinfo endpoint.</td></tr></tbody>
-</table>
+```fhir-structure
+[ {
+  "path" : "_source",
+  "name" : "_source",
+  "lvl" : 0,
+  "min" : 0,
+  "max" : 1,
+  "type" : "string",
+  "desc" : "System Property. DO NOT USE IT."
+}, {
+  "path" : "active",
+  "name" : "active",
+  "lvl" : 0,
+  "min" : 0,
+  "max" : 1,
+  "type" : "boolean",
+  "desc" : "Indicates whether this identity provider is active and can be used for authentication."
+}, {
+  "path" : "authorize_endpoint",
+  "name" : "authorize_endpoint",
+  "lvl" : 0,
+  "min" : 0,
+  "max" : 1,
+  "type" : "string",
+  "desc" : "The URL of the authorization endpoint."
+}, {
+  "path" : "base_url",
+  "name" : "base_url",
+  "lvl" : 0,
+  "min" : 0,
+  "max" : 1,
+  "type" : "uri",
+  "desc" : ""
+}, {
+  "path" : "client",
+  "name" : "client",
+  "lvl" : 0,
+  "min" : 0,
+  "max" : 1,
+  "type" : "BackboneElement",
+  "desc" : "Client configuration for this identity provider."
+}, {
+  "path" : "client.id",
+  "name" : "id",
+  "lvl" : 1,
+  "min" : 0,
+  "max" : 1,
+  "type" : "string",
+  "desc" : "Client identifier used for authentication with the identity provider."
+}, {
+  "path" : "client.redirect_uri",
+  "name" : "redirect_uri",
+  "lvl" : 1,
+  "min" : 0,
+  "max" : 1,
+  "type" : "uri",
+  "desc" : "URI where the provider will redirect after authentication."
+}, {
+  "path" : "client.auth-method",
+  "name" : "auth-method",
+  "lvl" : 1,
+  "min" : 0,
+  "max" : 1,
+  "type" : "string",
+  "desc" : "Client authentication method. \n\n**Allowed values**: `symmetric` | `asymmetric`"
+}, {
+  "path" : "client.secret",
+  "name" : "secret",
+  "lvl" : 1,
+  "min" : 0,
+  "max" : 1,
+  "type" : "string",
+  "desc" : "Client secret for symmetric authentication."
+}, {
+  "path" : "client.private-key",
+  "name" : "private-key",
+  "lvl" : 1,
+  "min" : 0,
+  "max" : 1,
+  "type" : "string",
+  "desc" : "Private key for asymmetric authentication."
+}, {
+  "path" : "client.certificate",
+  "name" : "certificate",
+  "lvl" : 1,
+  "min" : 0,
+  "max" : 1,
+  "type" : "string",
+  "desc" : "Certificate"
+}, {
+  "path" : "client.certificate-thumbprint",
+  "name" : "certificate-thumbprint",
+  "lvl" : 1,
+  "min" : 0,
+  "max" : 1,
+  "type" : "string",
+  "desc" : "Certificate thumbprint."
+}, {
+  "path" : "client.creds-ts",
+  "name" : "creds-ts",
+  "lvl" : 1,
+  "min" : 0,
+  "max" : 1,
+  "type" : "string",
+  "desc" : ""
+}, {
+  "path" : "introspection_endpoint",
+  "name" : "introspection_endpoint",
+  "lvl" : 0,
+  "min" : 0,
+  "max" : 1,
+  "type" : "string",
+  "desc" : "The URL of the token introspection endpoint."
+}, {
+  "path" : "isEmailUniqueness",
+  "name" : "isEmailUniqueness",
+  "lvl" : 0,
+  "min" : 0,
+  "max" : 1,
+  "type" : "boolean",
+  "desc" : "Indicates whether email uniqueness should be enforced for this provider."
+}, {
+  "path" : "isScim",
+  "name" : "isScim",
+  "lvl" : 0,
+  "min" : 0,
+  "max" : 1,
+  "type" : "boolean",
+  "desc" : "Indicates whether this provider supports SCIM protocol."
+}, {
+  "path" : "jwks_uri",
+  "name" : "jwks_uri",
+  "lvl" : 0,
+  "min" : 0,
+  "max" : 1,
+  "type" : "string",
+  "desc" : "URI where the provider's JSON Web Key Set can be retrieved."
+}, {
+  "path" : "kid",
+  "name" : "kid",
+  "lvl" : 0,
+  "min" : 0,
+  "max" : 1,
+  "type" : "string",
+  "desc" : "Key identifier used for token verification."
+}, {
+  "path" : "organizations",
+  "name" : "organizations",
+  "lvl" : 0,
+  "min" : 0,
+  "max" : "*",
+  "type" : "string",
+  "desc" : "Organizations associated with this identity provider."
+}, {
+  "path" : "registration_endpoint",
+  "name" : "registration_endpoint",
+  "lvl" : 0,
+  "min" : 0,
+  "max" : 1,
+  "type" : "string",
+  "desc" : "The URL of the registration endpoint."
+}, {
+  "path" : "revocation_endpoint",
+  "name" : "revocation_endpoint",
+  "lvl" : 0,
+  "min" : 0,
+  "max" : 1,
+  "type" : "string",
+  "desc" : "The URL of the token revocation endpoint."
+}, {
+  "path" : "scopes",
+  "name" : "scopes",
+  "lvl" : 0,
+  "min" : 0,
+  "max" : "*",
+  "type" : "string",
+  "desc" : "OAuth scopes that should be requested during authentication."
+}, {
+  "path" : "system",
+  "name" : "system",
+  "lvl" : 0,
+  "min" : 0,
+  "max" : 1,
+  "type" : "string",
+  "desc" : "System identifier for the identity provider."
+}, {
+  "path" : "team_id",
+  "name" : "team_id",
+  "lvl" : 0,
+  "min" : 0,
+  "max" : 1,
+  "type" : "string",
+  "desc" : ""
+}, {
+  "path" : "title",
+  "name" : "title",
+  "lvl" : 0,
+  "min" : 0,
+  "max" : 1,
+  "type" : "string",
+  "desc" : "A human-readable name for the identity provider."
+}, {
+  "path" : "toScim",
+  "name" : "toScim",
+  "lvl" : 0,
+  "min" : 0,
+  "max" : 1,
+  "type" : "Object",
+  "desc" : "Mapping rules for transforming identity provider data."
+}, {
+  "path" : "token_endpoint",
+  "name" : "token_endpoint",
+  "lvl" : 0,
+  "min" : 0,
+  "max" : 1,
+  "type" : "string",
+  "desc" : "The URL of the token endpoint."
+}, {
+  "path" : "type",
+  "name" : "type",
+  "lvl" : 0,
+  "min" : 0,
+  "max" : 1,
+  "type" : "string",
+  "desc" : "The type of identity provider. \n\n**Allowed values**: `aidbox` | `github` | `google` | `OIDC` | `OAuth` | `az-dev` | `yandex` | `okta` | `apple`"
+}, {
+  "path" : "userinfo-source",
+  "name" : "userinfo-source",
+  "lvl" : 0,
+  "min" : 0,
+  "max" : 1,
+  "type" : "string",
+  "desc" : "Source of userinfo details. \n\n**Allowed values**: `id-token` | `userinfo-endpoint`"
+}, {
+  "path" : "userinfo_endpoint",
+  "name" : "userinfo_endpoint",
+  "lvl" : 0,
+  "min" : 0,
+  "max" : 1,
+  "type" : "string",
+  "desc" : "The URL of the userinfo endpoint."
+}, {
+  "path" : "userinfo_header",
+  "name" : "userinfo_header",
+  "lvl" : 0,
+  "min" : 0,
+  "max" : 1,
+  "type" : "string",
+  "desc" : "Header to be used when calling the userinfo endpoint."
+} ]
+```
 
 
 ## Notification
 
-<table>
-<thead>
-<tr>
-<th width="290">Path</th>
-<th width="70">Card.</th>
-<th width="150">Type</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr><td width="290">_source</td><td width="70">0..1</td><td width="150">string</td><td>System Property. DO NOT USE IT.</td></tr>
-<tr><td width="290">provider</td><td width="70">0..1</td><td width="150">string</td><td></td></tr>
-<tr><td width="290">providerData</td><td width="70">0..1</td><td width="150">Object</td><td></td></tr>
-<tr><td width="290">status</td><td width="70">0..1</td><td width="150">string</td><td>Status of the notification delivery (delivered or error). 
-
-<strong>Allowed values</strong>: `delivered` | `error`</td></tr></tbody>
-</table>
+```fhir-structure
+[ {
+  "path" : "_source",
+  "name" : "_source",
+  "lvl" : 0,
+  "min" : 0,
+  "max" : 1,
+  "type" : "string",
+  "desc" : "System Property. DO NOT USE IT."
+}, {
+  "path" : "provider",
+  "name" : "provider",
+  "lvl" : 0,
+  "min" : 0,
+  "max" : 1,
+  "type" : "string",
+  "desc" : ""
+}, {
+  "path" : "providerData",
+  "name" : "providerData",
+  "lvl" : 0,
+  "min" : 0,
+  "max" : 1,
+  "type" : "Object",
+  "desc" : ""
+}, {
+  "path" : "status",
+  "name" : "status",
+  "lvl" : 0,
+  "min" : 0,
+  "max" : 1,
+  "type" : "string",
+  "desc" : "Status of the notification delivery (delivered or error). \n\n**Allowed values**: `delivered` | `error`"
+} ]
+```
 
 
 ## NotificationTemplate
 
-<table>
-<thead>
-<tr>
-<th width="290">Path</th>
-<th width="70">Card.</th>
-<th width="150">Type</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr><td width="290">_source</td><td width="70">0..1</td><td width="150">string</td><td>System Property. DO NOT USE IT.</td></tr>
-<tr><td width="290">subject</td><td width="70">0..1</td><td width="150">string</td><td>Subject line for the notification template.</td></tr>
-<tr><td width="290">template</td><td width="70">0..1</td><td width="150">string</td><td>Template content used to generate the notification message.</td></tr></tbody>
-</table>
+```fhir-structure
+[ {
+  "path" : "_source",
+  "name" : "_source",
+  "lvl" : 0,
+  "min" : 0,
+  "max" : 1,
+  "type" : "string",
+  "desc" : "System Property. DO NOT USE IT."
+}, {
+  "path" : "subject",
+  "name" : "subject",
+  "lvl" : 0,
+  "min" : 0,
+  "max" : 1,
+  "type" : "string",
+  "desc" : "Subject line for the notification template."
+}, {
+  "path" : "template",
+  "name" : "template",
+  "lvl" : 0,
+  "min" : 0,
+  "max" : 1,
+  "type" : "string",
+  "desc" : "Template content used to generate the notification message."
+} ]
+```
 
 
 ## Registration
 
-<table>
-<thead>
-<tr>
-<th width="290">Path</th>
-<th width="70">Card.</th>
-<th width="150">Type</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr><td width="290">_source</td><td width="70">0..1</td><td width="150">string</td><td>System Property. DO NOT USE IT.</td></tr>
-<tr><td width="290">params</td><td width="70">0..1</td><td width="150">Object</td><td></td></tr>
-<tr><td width="290">resource</td><td width="70">0..1</td><td width="150">Object</td><td>Registration form data</td></tr>
-<tr><td width="290">status</td><td width="70">0..1</td><td width="150">string</td><td>Status of the registration process. 
-
-<strong>Allowed values</strong>: `activated` | `active`</td></tr></tbody>
-</table>
+```fhir-structure
+[ {
+  "path" : "_source",
+  "name" : "_source",
+  "lvl" : 0,
+  "min" : 0,
+  "max" : 1,
+  "type" : "string",
+  "desc" : "System Property. DO NOT USE IT."
+}, {
+  "path" : "params",
+  "name" : "params",
+  "lvl" : 0,
+  "min" : 0,
+  "max" : 1,
+  "type" : "Object",
+  "desc" : ""
+}, {
+  "path" : "resource",
+  "name" : "resource",
+  "lvl" : 0,
+  "min" : 0,
+  "max" : 1,
+  "type" : "Object",
+  "desc" : "Registration form data"
+}, {
+  "path" : "status",
+  "name" : "status",
+  "lvl" : 0,
+  "min" : 0,
+  "max" : 1,
+  "type" : "string",
+  "desc" : "Status of the registration process. \n\n**Allowed values**: `activated` | `active`"
+} ]
+```
 
 
 ## Role
 
 User role
 
-<table>
-<thead>
-<tr>
-<th width="290">Path</th>
-<th width="70">Card.</th>
-<th width="150">Type</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr><td width="290">_source</td><td width="70">0..1</td><td width="150">string</td><td>System Property. DO NOT USE IT.</td></tr>
-<tr><td width="290">context</td><td width="70">0..1</td><td width="150">Object</td><td></td></tr>
-<tr><td width="290">description</td><td width="70">0..1</td><td width="150">string</td><td>Text description of the role</td></tr>
-<tr><td width="290">links</td><td width="70">0..1</td><td width="150">BackboneElement</td><td>You may list resources here, which can later be granted access for the user with this role via an AccessPolicy resource.</td></tr>
-<tr><td width="290">links.<strong>patient</strong></td><td width="70">0..1</td><td width="150">Reference</td><td>Reference to Patient resource 
-
-<strong>Allowed references</strong>: Patient</td></tr>
-<tr><td width="290">links.<strong>practitionerRole</strong></td><td width="70">0..1</td><td width="150">Reference</td><td>Reference to PractitionerRole resource 
-
-<strong>Allowed references</strong>: PractitionerRole</td></tr>
-<tr><td width="290">links.<strong>practitioner</strong></td><td width="70">0..1</td><td width="150">Reference</td><td>Reference to Practitioner resource 
-
-<strong>Allowed references</strong>: Practitioner</td></tr>
-<tr><td width="290">links.<strong>organization</strong></td><td width="70">0..1</td><td width="150">Reference</td><td>Reference to Organization resource 
-
-<strong>Allowed references</strong>: Organization</td></tr>
-<tr><td width="290">links.<strong>person</strong></td><td width="70">0..1</td><td width="150">Reference</td><td>Reference to Person resource 
-
-<strong>Allowed references</strong>: Person</td></tr>
-<tr><td width="290">links.<strong>relatedPerson</strong></td><td width="70">0..1</td><td width="150">Reference</td><td>Reference to RelatedPerson resource 
-
-<strong>Allowed references</strong>: RelatedPerson</td></tr>
-<tr><td width="290">name</td><td width="70">1..1</td><td width="150">string</td><td>Role name is a string that defines role. To assign the same role to multiple users, create multiple Role resources with the same "name". [Search param: name => type string]</td></tr>
-<tr><td width="290">user</td><td width="70">1..1</td><td width="150">Reference</td><td>Reference to a User resource for which the role will be applied. [Search param: user => type reference] 
-
-<strong>Allowed references</strong>: User</td></tr></tbody>
-</table>
+```fhir-structure
+[ {
+  "path" : "_source",
+  "name" : "_source",
+  "lvl" : 0,
+  "min" : 0,
+  "max" : 1,
+  "type" : "string",
+  "desc" : "System Property. DO NOT USE IT."
+}, {
+  "path" : "context",
+  "name" : "context",
+  "lvl" : 0,
+  "min" : 0,
+  "max" : 1,
+  "type" : "Object",
+  "desc" : ""
+}, {
+  "path" : "description",
+  "name" : "description",
+  "lvl" : 0,
+  "min" : 0,
+  "max" : 1,
+  "type" : "string",
+  "desc" : "Text description of the role"
+}, {
+  "path" : "links",
+  "name" : "links",
+  "lvl" : 0,
+  "min" : 0,
+  "max" : 1,
+  "type" : "BackboneElement",
+  "desc" : "You may list resources here, which can later be granted access for the user with this role via an AccessPolicy resource."
+}, {
+  "path" : "links.patient",
+  "name" : "patient",
+  "lvl" : 1,
+  "min" : 0,
+  "max" : 1,
+  "type" : "Reference",
+  "desc" : "Reference to Patient resource \n\n**Allowed references**: Patient"
+}, {
+  "path" : "links.practitionerRole",
+  "name" : "practitionerRole",
+  "lvl" : 1,
+  "min" : 0,
+  "max" : 1,
+  "type" : "Reference",
+  "desc" : "Reference to PractitionerRole resource \n\n**Allowed references**: PractitionerRole"
+}, {
+  "path" : "links.practitioner",
+  "name" : "practitioner",
+  "lvl" : 1,
+  "min" : 0,
+  "max" : 1,
+  "type" : "Reference",
+  "desc" : "Reference to Practitioner resource \n\n**Allowed references**: Practitioner"
+}, {
+  "path" : "links.organization",
+  "name" : "organization",
+  "lvl" : 1,
+  "min" : 0,
+  "max" : 1,
+  "type" : "Reference",
+  "desc" : "Reference to Organization resource \n\n**Allowed references**: Organization"
+}, {
+  "path" : "links.person",
+  "name" : "person",
+  "lvl" : 1,
+  "min" : 0,
+  "max" : 1,
+  "type" : "Reference",
+  "desc" : "Reference to Person resource \n\n**Allowed references**: Person"
+}, {
+  "path" : "links.relatedPerson",
+  "name" : "relatedPerson",
+  "lvl" : 1,
+  "min" : 0,
+  "max" : 1,
+  "type" : "Reference",
+  "desc" : "Reference to RelatedPerson resource \n\n**Allowed references**: RelatedPerson"
+}, {
+  "path" : "name",
+  "name" : "name",
+  "lvl" : 0,
+  "min" : 1,
+  "max" : 1,
+  "type" : "string",
+  "desc" : "Role name is a string that defines role. To assign the same role to multiple users, create multiple Role resources with the same \"name\". [Search param: name => type string]"
+}, {
+  "path" : "user",
+  "name" : "user",
+  "lvl" : 0,
+  "min" : 1,
+  "max" : 1,
+  "type" : "Reference",
+  "desc" : "Reference to a User resource for which the role will be applied. [Search param: user => type reference] \n\n**Allowed references**: User"
+} ]
+```
 
 
 ## Scope
 
-<table>
-<thead>
-<tr>
-<th width="290">Path</th>
-<th width="70">Card.</th>
-<th width="150">Type</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr><td width="290">_source</td><td width="70">0..1</td><td width="150">string</td><td>System Property. DO NOT USE IT.</td></tr>
-<tr><td width="290">description</td><td width="70">0..1</td><td width="150">string</td><td>When provided, the scope definition is additionally displayed on the consent screen</td></tr>
-<tr><td width="290">scope</td><td width="70">1..1</td><td width="150">string</td><td>The value of the scope</td></tr>
-<tr><td width="290">title</td><td width="70">1..1</td><td width="150">string</td><td>A user-friendly name for the scope that appears on the consent screen</td></tr></tbody>
-</table>
+```fhir-structure
+[ {
+  "path" : "_source",
+  "name" : "_source",
+  "lvl" : 0,
+  "min" : 0,
+  "max" : 1,
+  "type" : "string",
+  "desc" : "System Property. DO NOT USE IT."
+}, {
+  "path" : "description",
+  "name" : "description",
+  "lvl" : 0,
+  "min" : 0,
+  "max" : 1,
+  "type" : "string",
+  "desc" : "When provided, the scope definition is additionally displayed on the consent screen"
+}, {
+  "path" : "scope",
+  "name" : "scope",
+  "lvl" : 0,
+  "min" : 1,
+  "max" : 1,
+  "type" : "string",
+  "desc" : "The value of the scope"
+}, {
+  "path" : "title",
+  "name" : "title",
+  "lvl" : 0,
+  "min" : 1,
+  "max" : 1,
+  "type" : "string",
+  "desc" : "A user-friendly name for the scope that appears on the consent screen"
+} ]
+```
 
 
 ## Session
 
-<table>
-<thead>
-<tr>
-<th width="290">Path</th>
-<th width="70">Card.</th>
-<th width="150">Type</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr><td width="290">_source</td><td width="70">0..1</td><td width="150">string</td><td>System Property. DO NOT USE IT.</td></tr>
-<tr><td width="290">access_token</td><td width="70">0..1</td><td width="150">sha256Hash</td><td>Access token hash associated with this session.</td></tr>
-<tr><td width="290">active</td><td width="70">0..1</td><td width="150">boolean</td><td>Indicates whether this session is currently active.</td></tr>
-<tr><td width="290">audience</td><td width="70">0..1</td><td width="150">string</td><td>Intended audience for tokens issued in this session.</td></tr>
-<tr><td width="290">authorization_code</td><td width="70">0..1</td><td width="150">sha256Hash</td><td>Authorization code used to obtain this session.</td></tr>
-<tr><td width="290">client</td><td width="70">0..1</td><td width="150">Reference</td><td>Reference to the client application associated with this session. 
-
-<strong>Allowed references</strong>: Client</td></tr>
-<tr><td width="290">ctx</td><td width="70">0..1</td><td width="150">Object</td><td></td></tr>
-<tr><td width="290">end</td><td width="70">0..1</td><td width="150">dateTime</td><td>Time when the session ended or will end.</td></tr>
-<tr><td width="290">exp</td><td width="70">0..1</td><td width="150">integer</td><td>Expiration time for the access token (in seconds since epoch).</td></tr>
-<tr><td width="290">iss</td><td width="70">0..1</td><td width="150">string</td><td>Issuer of token for the current session</td></tr>
-<tr><td width="290">jti</td><td width="70">0..1</td><td width="150">string</td><td></td></tr>
-<tr><td width="290">on-behalf</td><td width="70">0..1</td><td width="150">Reference</td><td>Reference to a user on whose behalf this session is operating. 
-
-<strong>Allowed references</strong>: User</td></tr>
-<tr><td width="290">parent</td><td width="70">0..1</td><td width="150">Reference</td><td>Reference to a parent session if this is a child session. 
-
-<strong>Allowed references</strong>: Session</td></tr>
-<tr><td width="290">patient</td><td width="70">0..1</td><td width="150">Reference</td><td>Reference to the patient associated with this session. 
-
-<strong>Allowed references</strong>: Patient</td></tr>
-<tr><td width="290">refresh_token</td><td width="70">0..1</td><td width="150">sha256Hash</td><td>Refresh token hash associated with this session.</td></tr>
-<tr><td width="290">refresh_token_exp</td><td width="70">0..1</td><td width="150">integer</td><td>Expiration time for the refresh token (in seconds since epoch).</td></tr>
-<tr><td width="290">scope</td><td width="70">0..*</td><td width="150">string</td><td>List of OAuth scopes authorized for this session.</td></tr>
-<tr><td width="290">start</td><td width="70">0..1</td><td width="150">dateTime</td><td>Time when the session started.</td></tr>
-<tr><td width="290">type</td><td width="70">0..1</td><td width="150">string</td><td>Type of session (e.g., authorization_code, password, client_credentials).</td></tr>
-<tr><td width="290">user</td><td width="70">0..1</td><td width="150">Reference</td><td>Reference to the user associated with this session. 
-
-<strong>Allowed references</strong>: User</td></tr></tbody>
-</table>
+```fhir-structure
+[ {
+  "path" : "_source",
+  "name" : "_source",
+  "lvl" : 0,
+  "min" : 0,
+  "max" : 1,
+  "type" : "string",
+  "desc" : "System Property. DO NOT USE IT."
+}, {
+  "path" : "access_token",
+  "name" : "access_token",
+  "lvl" : 0,
+  "min" : 0,
+  "max" : 1,
+  "type" : "sha256Hash",
+  "desc" : "Access token hash associated with this session."
+}, {
+  "path" : "active",
+  "name" : "active",
+  "lvl" : 0,
+  "min" : 0,
+  "max" : 1,
+  "type" : "boolean",
+  "desc" : "Indicates whether this session is currently active."
+}, {
+  "path" : "audience",
+  "name" : "audience",
+  "lvl" : 0,
+  "min" : 0,
+  "max" : 1,
+  "type" : "string",
+  "desc" : "Intended audience for tokens issued in this session."
+}, {
+  "path" : "authorization_code",
+  "name" : "authorization_code",
+  "lvl" : 0,
+  "min" : 0,
+  "max" : 1,
+  "type" : "sha256Hash",
+  "desc" : "Authorization code used to obtain this session."
+}, {
+  "path" : "client",
+  "name" : "client",
+  "lvl" : 0,
+  "min" : 0,
+  "max" : 1,
+  "type" : "Reference",
+  "desc" : "Reference to the client application associated with this session. \n\n**Allowed references**: Client"
+}, {
+  "path" : "ctx",
+  "name" : "ctx",
+  "lvl" : 0,
+  "min" : 0,
+  "max" : 1,
+  "type" : "Object",
+  "desc" : ""
+}, {
+  "path" : "end",
+  "name" : "end",
+  "lvl" : 0,
+  "min" : 0,
+  "max" : 1,
+  "type" : "dateTime",
+  "desc" : "Time when the session ended or will end."
+}, {
+  "path" : "exp",
+  "name" : "exp",
+  "lvl" : 0,
+  "min" : 0,
+  "max" : 1,
+  "type" : "integer",
+  "desc" : "Expiration time for the access token (in seconds since epoch)."
+}, {
+  "path" : "iss",
+  "name" : "iss",
+  "lvl" : 0,
+  "min" : 0,
+  "max" : 1,
+  "type" : "string",
+  "desc" : "Issuer of token for the current session"
+}, {
+  "path" : "jti",
+  "name" : "jti",
+  "lvl" : 0,
+  "min" : 0,
+  "max" : 1,
+  "type" : "string",
+  "desc" : ""
+}, {
+  "path" : "on-behalf",
+  "name" : "on-behalf",
+  "lvl" : 0,
+  "min" : 0,
+  "max" : 1,
+  "type" : "Reference",
+  "desc" : "Reference to a user on whose behalf this session is operating. \n\n**Allowed references**: User"
+}, {
+  "path" : "parent",
+  "name" : "parent",
+  "lvl" : 0,
+  "min" : 0,
+  "max" : 1,
+  "type" : "Reference",
+  "desc" : "Reference to a parent session if this is a child session. \n\n**Allowed references**: Session"
+}, {
+  "path" : "patient",
+  "name" : "patient",
+  "lvl" : 0,
+  "min" : 0,
+  "max" : 1,
+  "type" : "Reference",
+  "desc" : "Reference to the patient associated with this session. \n\n**Allowed references**: Patient"
+}, {
+  "path" : "refresh_token",
+  "name" : "refresh_token",
+  "lvl" : 0,
+  "min" : 0,
+  "max" : 1,
+  "type" : "sha256Hash",
+  "desc" : "Refresh token hash associated with this session."
+}, {
+  "path" : "refresh_token_exp",
+  "name" : "refresh_token_exp",
+  "lvl" : 0,
+  "min" : 0,
+  "max" : 1,
+  "type" : "integer",
+  "desc" : "Expiration time for the refresh token (in seconds since epoch)."
+}, {
+  "path" : "scope",
+  "name" : "scope",
+  "lvl" : 0,
+  "min" : 0,
+  "max" : "*",
+  "type" : "string",
+  "desc" : "List of OAuth scopes authorized for this session."
+}, {
+  "path" : "start",
+  "name" : "start",
+  "lvl" : 0,
+  "min" : 0,
+  "max" : 1,
+  "type" : "dateTime",
+  "desc" : "Time when the session started."
+}, {
+  "path" : "type",
+  "name" : "type",
+  "lvl" : 0,
+  "min" : 0,
+  "max" : 1,
+  "type" : "string",
+  "desc" : "Type of session (e.g., authorization_code, password, client_credentials)."
+}, {
+  "path" : "user",
+  "name" : "user",
+  "lvl" : 0,
+  "min" : 0,
+  "max" : 1,
+  "type" : "Reference",
+  "desc" : "Reference to the user associated with this session. \n\n**Allowed references**: User"
+} ]
+```
 
 
 ## TokenIntrospector
 
-<table>
-<thead>
-<tr>
-<th width="290">Path</th>
-<th width="70">Card.</th>
-<th width="150">Type</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr><td width="290">_source</td><td width="70">0..1</td><td width="150">string</td><td>System Property. DO NOT USE IT.</td></tr>
-<tr><td width="290">identity_provider</td><td width="70">0..1</td><td width="150">Reference</td><td>Link to Identity provider associated with the token introspector. 
-
-<strong>Allowed references</strong>: IdentityProvider</td></tr>
-<tr><td width="290">introspection_endpoint</td><td width="70">0..1</td><td width="150">BackboneElement</td><td></td></tr>
-<tr><td width="290">introspection_endpoint.<strong>url</strong></td><td width="70">0..1</td><td width="150">string</td><td>The fully qualified URL of the remote introspection endpoint.</td></tr>
-<tr><td width="290">introspection_endpoint.<strong>authorization</strong></td><td width="70">0..1</td><td width="150">string</td><td>The authorization header value (e.g. a Basic Auth or Bearer token) used when calling the introspection endpoint. If present it will be included in the request headers.</td></tr>
-<tr><td width="290">jwks_uri</td><td width="70">0..1</td><td width="150">string</td><td>A URL pointing to a JSON Web Key Set (JWKS). When type is jwt the introspector retrieves public keys from this URI to validate token signatures.</td></tr>
-<tr><td width="290">jwt</td><td width="70">0..1</td><td width="150">BackboneElement</td><td>Configuration for local JWT validation used when type is jwt.</td></tr>
-<tr><td width="290">jwt.<strong>iss</strong></td><td width="70">0..1</td><td width="150">string</td><td>The expected issuer (iss) claim value for JWTs. The TokenIntrospector ensures that tokens it validates come from this issuer.</td></tr>
-<tr><td width="290">jwt.<strong>secret</strong></td><td width="70">0..1</td><td width="150">string</td><td>A shared secret key or other signing key material used to verify the JWT's signature.</td></tr>
-<tr><td width="290">jwt.<strong>keys</strong></td><td width="70">0..*</td><td width="150">BackboneElement</td><td>The set of keys to use for validation.</td></tr>
-<tr><td width="290">jwt.<strong>keys</strong>.<strong>k</strong></td><td width="70">0..1</td><td width="150">string</td><td>The symmetric key to use for validation.</td></tr>
-<tr><td width="290">jwt.<strong>keys</strong>.<strong>pub</strong></td><td width="70">0..1</td><td width="150">string</td><td>The asymmetric key to use for validation.</td></tr>
-<tr><td width="290">jwt.<strong>keys</strong>.<strong>kty</strong></td><td width="70">1..1</td><td width="150">string</td><td>The key type to use for validation. 
-
-<strong>Allowed values</strong>: `RSA` | `EC` | `OCT`</td></tr>
-<tr><td width="290">jwt.<strong>keys</strong>.<strong>alg</strong></td><td width="70">1..1</td><td width="150">string</td><td>The algorithm to use for validation. 
-
-<strong>Allowed values</strong>: `RS256` | `RS384` | `ES256` | `HS256`</td></tr>
-<tr><td width="290">jwt.<strong>keys</strong>.<strong>format</strong></td><td width="70">1..1</td><td width="150">string</td><td>The format of the key to use for validation. 'plain' for symmetric algs (HS256) and 'PEM' for all asymmetric algs 
-
-<strong>Allowed values</strong>: `PEM` | `plain`</td></tr>
-<tr><td width="290">type</td><td width="70">1..1</td><td width="150">string</td><td>Specifies the type of token to introspect. 
-
-<strong>Allowed values</strong>: `opaque` | `jwt` | `aspxauth`</td></tr></tbody>
-</table>
+```fhir-structure
+[ {
+  "path" : "_source",
+  "name" : "_source",
+  "lvl" : 0,
+  "min" : 0,
+  "max" : 1,
+  "type" : "string",
+  "desc" : "System Property. DO NOT USE IT."
+}, {
+  "path" : "identity_provider",
+  "name" : "identity_provider",
+  "lvl" : 0,
+  "min" : 0,
+  "max" : 1,
+  "type" : "Reference",
+  "desc" : "Link to Identity provider associated with the token introspector. \n\n**Allowed references**: IdentityProvider"
+}, {
+  "path" : "introspection_endpoint",
+  "name" : "introspection_endpoint",
+  "lvl" : 0,
+  "min" : 0,
+  "max" : 1,
+  "type" : "BackboneElement",
+  "desc" : ""
+}, {
+  "path" : "introspection_endpoint.url",
+  "name" : "url",
+  "lvl" : 1,
+  "min" : 0,
+  "max" : 1,
+  "type" : "string",
+  "desc" : "The fully qualified URL of the remote introspection endpoint."
+}, {
+  "path" : "introspection_endpoint.authorization",
+  "name" : "authorization",
+  "lvl" : 1,
+  "min" : 0,
+  "max" : 1,
+  "type" : "string",
+  "desc" : "The authorization header value (e.g. a Basic Auth or Bearer token) used when calling the introspection endpoint. If present it will be included in the request headers."
+}, {
+  "path" : "jwks_uri",
+  "name" : "jwks_uri",
+  "lvl" : 0,
+  "min" : 0,
+  "max" : 1,
+  "type" : "string",
+  "desc" : "A URL pointing to a JSON Web Key Set (JWKS). When type is jwt the introspector retrieves public keys from this URI to validate token signatures."
+}, {
+  "path" : "jwt",
+  "name" : "jwt",
+  "lvl" : 0,
+  "min" : 0,
+  "max" : 1,
+  "type" : "BackboneElement",
+  "desc" : "Configuration for local JWT validation used when type is jwt."
+}, {
+  "path" : "jwt.iss",
+  "name" : "iss",
+  "lvl" : 1,
+  "min" : 0,
+  "max" : 1,
+  "type" : "string",
+  "desc" : "The expected issuer (iss) claim value for JWTs. The TokenIntrospector ensures that tokens it validates come from this issuer."
+}, {
+  "path" : "jwt.secret",
+  "name" : "secret",
+  "lvl" : 1,
+  "min" : 0,
+  "max" : 1,
+  "type" : "string",
+  "desc" : "A shared secret key or other signing key material used to verify the JWT's signature."
+}, {
+  "path" : "jwt.keys",
+  "name" : "keys",
+  "lvl" : 1,
+  "min" : 0,
+  "max" : "*",
+  "type" : "BackboneElement",
+  "desc" : "The set of keys to use for validation."
+}, {
+  "path" : "jwt.keys.k",
+  "name" : "k",
+  "lvl" : 2,
+  "min" : 0,
+  "max" : 1,
+  "type" : "string",
+  "desc" : "The symmetric key to use for validation."
+}, {
+  "path" : "jwt.keys.pub",
+  "name" : "pub",
+  "lvl" : 2,
+  "min" : 0,
+  "max" : 1,
+  "type" : "string",
+  "desc" : "The asymmetric key to use for validation."
+}, {
+  "path" : "jwt.keys.kty",
+  "name" : "kty",
+  "lvl" : 2,
+  "min" : 1,
+  "max" : 1,
+  "type" : "string",
+  "desc" : "The key type to use for validation. \n\n**Allowed values**: `RSA` | `EC` | `OCT`"
+}, {
+  "path" : "jwt.keys.alg",
+  "name" : "alg",
+  "lvl" : 2,
+  "min" : 1,
+  "max" : 1,
+  "type" : "string",
+  "desc" : "The algorithm to use for validation. \n\n**Allowed values**: `RS256` | `RS384` | `ES256` | `HS256`"
+}, {
+  "path" : "jwt.keys.format",
+  "name" : "format",
+  "lvl" : 2,
+  "min" : 1,
+  "max" : 1,
+  "type" : "string",
+  "desc" : "The format of the key to use for validation. 'plain' for symmetric algs (HS256) and 'PEM' for all asymmetric algs \n\n**Allowed values**: `PEM` | `plain`"
+}, {
+  "path" : "type",
+  "name" : "type",
+  "lvl" : 0,
+  "min" : 1,
+  "max" : 1,
+  "type" : "string",
+  "desc" : "Specifies the type of token to introspect. \n\n**Allowed values**: `opaque` | `jwt` | `aspxauth`"
+} ]
+```
 
 
 ## User
 
-<table>
-<thead>
-<tr>
-<th width="290">Path</th>
-<th width="70">Card.</th>
-<th width="150">Type</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr><td width="290">_source</td><td width="70">0..1</td><td width="150">string</td><td>System Property. DO NOT USE IT.</td></tr>
-<tr><td width="290">active</td><td width="70">0..1</td><td width="150">boolean</td><td>NB: this attr is ignored. Indicates the User's administrative status.</td></tr>
-<tr><td width="290">addresses</td><td width="70">0..*</td><td width="150">BackboneElement</td><td>A physical mailing address for this User (e.g. 'work', 'home').</td></tr>
-<tr><td width="290">addresses.<strong>formatted</strong></td><td width="70">0..1</td><td width="150">string</td><td>Full address, formatted for display or mailing label.</td></tr>
-<tr><td width="290">addresses.<strong>streetAddress</strong></td><td width="70">0..1</td><td width="150">string</td><td>Street address component (may contain newlines).</td></tr>
-<tr><td width="290">addresses.<strong>locality</strong></td><td width="70">0..1</td><td width="150">string</td><td>City or locality component.</td></tr>
-<tr><td width="290">addresses.<strong>region</strong></td><td width="70">0..1</td><td width="150">string</td><td>State or region component.</td></tr>
-<tr><td width="290">addresses.<strong>postalCode</strong></td><td width="70">0..1</td><td width="150">string</td><td>Zip code or postal code.</td></tr>
-<tr><td width="290">addresses.<strong>country</strong></td><td width="70">0..1</td><td width="150">string</td><td>Country name component.</td></tr>
-<tr><td width="290">addresses.<strong>type</strong></td><td width="70">0..1</td><td width="150">string</td><td>A label indicating the address type, e.g. 'work' or 'home'.</td></tr>
-<tr><td width="290">costCenter</td><td width="70">0..1</td><td width="150">string</td><td>Identifies the name of a cost center.</td></tr>
-<tr><td width="290">data</td><td width="70">0..1</td><td width="150">Object</td><td>Arbitrary user-related data.</td></tr>
-<tr><td width="290">department</td><td width="70">0..1</td><td width="150">string</td><td>Identifies the name of a department.</td></tr>
-<tr><td width="290">displayName</td><td width="70">0..1</td><td width="150">string</td><td>The name of the User, suitable for display to end-users.</td></tr>
-<tr><td width="290">division</td><td width="70">0..1</td><td width="150">string</td><td>Identifies the name of a division.</td></tr>
-<tr><td width="290">email</td><td width="70">0..1</td><td width="150">string</td><td>Primary email for the user.</td></tr>
-<tr><td width="290">emails</td><td width="70">0..*</td><td width="150">BackboneElement</td><td>Email addresses for the user. Values should be canonicalized (e.g. 'bjensen@example.com').</td></tr>
-<tr><td width="290">emails.<strong>value</strong></td><td width="70">0..1</td><td width="150">string</td><td>An individual email address (canonicalized).</td></tr>
-<tr><td width="290">emails.<strong>display</strong></td><td width="70">0..1</td><td width="150">string</td><td>A human-readable name for display purposes (READ-ONLY).</td></tr>
-<tr><td width="290">emails.<strong>type</strong></td><td width="70">0..1</td><td width="150">string</td><td>A label indicating the attribute's function, e.g. 'work', 'home'.</td></tr>
-<tr><td width="290">emails.<strong>primary</strong></td><td width="70">0..1</td><td width="150">boolean</td><td>Indicates if this is the primary email. Only one primary may be 'true'.</td></tr>
-<tr><td width="290">employeeNumber</td><td width="70">0..1</td><td width="150">string</td><td>Numeric or alphanumeric identifier assigned to a person by the organization.</td></tr>
-<tr><td width="290">entitlements</td><td width="70">0..*</td><td width="150">BackboneElement</td><td>A list of entitlements for the User that represent a thing the User has.</td></tr>
-<tr><td width="290">entitlements.<strong>value</strong></td><td width="70">0..1</td><td width="150">string</td><td>The value of an entitlement.</td></tr>
-<tr><td width="290">entitlements.<strong>display</strong></td><td width="70">0..1</td><td width="150">string</td><td>A human-readable name, primarily used for display purposes (READ-ONLY).</td></tr>
-<tr><td width="290">entitlements.<strong>type</strong></td><td width="70">0..1</td><td width="150">string</td><td>A label indicating the attribute's function.</td></tr>
-<tr><td width="290">entitlements.<strong>primary</strong></td><td width="70">0..1</td><td width="150">boolean</td><td>Indicates if this is the primary entitlement. Only one may be 'true'.</td></tr>
-<tr><td width="290">fhirUser</td><td width="70">0..1</td><td width="150">Reference</td><td>A reference to a related FHIR resource 
-
-<strong>Allowed references</strong>: Patient, Practitioner, PractitionerRole, Person, RelatedPerson</td></tr>
-<tr><td width="290">gender</td><td width="70">0..1</td><td width="150">string</td><td>The user's gender.</td></tr>
-<tr><td width="290">identifier</td><td width="70">0..*</td><td width="150">Identifier</td><td>A list of identifiers for the user.</td></tr>
-<tr><td width="290">ims</td><td width="70">0..*</td><td width="150">BackboneElement</td><td>Instant messaging addresses for the User.</td></tr>
-<tr><td width="290">ims.<strong>value</strong></td><td width="70">0..1</td><td width="150">string</td><td>Instant messaging address.</td></tr>
-<tr><td width="290">ims.<strong>display</strong></td><td width="70">0..1</td><td width="150">string</td><td>A human-readable name, primarily for display (READ-ONLY).</td></tr>
-<tr><td width="290">ims.<strong>type</strong></td><td width="70">0..1</td><td width="150">string</td><td>A label indicating the IM type, e.g. 'aim', 'gtalk'.</td></tr>
-<tr><td width="290">ims.<strong>primary</strong></td><td width="70">0..1</td><td width="150">boolean</td><td>Indicates if this is the primary IM. Only one may be 'true'.</td></tr>
-<tr><td width="290">inactive</td><td width="70">0..1</td><td width="150">boolean</td><td>A Boolean value indicating the User's administrative status.</td></tr>
-<tr><td width="290">link</td><td width="70">0..*</td><td width="150">BackboneElement</td><td>A collection of references or links associated with the user.</td></tr>
-<tr><td width="290">link.<strong>link</strong></td><td width="70">0..1</td><td width="150">Reference</td><td>A referenced resource link.</td></tr>
-<tr><td width="290">link.<strong>type</strong></td><td width="70">0..1</td><td width="150">string</td><td>A label indicating the link's function.</td></tr>
-<tr><td width="290">locale</td><td width="70">0..1</td><td width="150">string</td><td>Indicates the User's default location for localization (e.g., currency, date format).</td></tr>
-<tr><td width="290">manager</td><td width="70">0..1</td><td width="150">Reference</td><td>Another User resource who is this User's manager. 
-
-<strong>Allowed references</strong>: User</td></tr>
-<tr><td width="290">name</td><td width="70">0..1</td><td width="150">BackboneElement</td><td>The components of the user's real name (formatted, family, given, etc.).</td></tr>
-<tr><td width="290">name.<strong>formatted</strong></td><td width="70">0..1</td><td width="150">string</td><td>Full name, including titles and suffixes, formatted for display.</td></tr>
-<tr><td width="290">name.<strong>familyName</strong></td><td width="70">0..1</td><td width="150">string</td><td>Family name (last name in Western languages).</td></tr>
-<tr><td width="290">name.<strong>givenName</strong></td><td width="70">0..1</td><td width="150">string</td><td>Given name (first name in Western languages).</td></tr>
-<tr><td width="290">name.<strong>middleName</strong></td><td width="70">0..1</td><td width="150">string</td><td>The middle name(s) of the User.</td></tr>
-<tr><td width="290">name.<strong>honorificPrefix</strong></td><td width="70">0..1</td><td width="150">string</td><td>Honorific prefix (title), e.g. 'Ms.'.</td></tr>
-<tr><td width="290">name.<strong>honorificSuffix</strong></td><td width="70">0..1</td><td width="150">string</td><td>Honorific suffix, e.g. 'III'.</td></tr>
-<tr><td width="290">organization</td><td width="70">0..1</td><td width="150">Reference</td><td>Identifies the name of an organization. 
-
-<strong>Allowed references</strong>: Organization</td></tr>
-<tr><td width="290">password</td><td width="70">0..1</td><td width="150">password</td><td>The User's cleartext password, used for initial or reset scenarios.</td></tr>
-<tr><td width="290">phoneNumber</td><td width="70">0..1</td><td width="150">string</td><td>Primary phone number.</td></tr>
-<tr><td width="290">phoneNumbers</td><td width="70">0..*</td><td width="150">BackboneElement</td><td>Phone numbers for the User, e.g. 'tel:+1-201-555-0123'.</td></tr>
-<tr><td width="290">phoneNumbers.<strong>value</strong></td><td width="70">0..1</td><td width="150">string</td><td>The user's phone number.</td></tr>
-<tr><td width="290">phoneNumbers.<strong>display</strong></td><td width="70">0..1</td><td width="150">string</td><td>A human-readable name for display purposes (READ-ONLY).</td></tr>
-<tr><td width="290">phoneNumbers.<strong>type</strong></td><td width="70">0..1</td><td width="150">string</td><td>A label for the phone number's function, e.g. 'home', 'work'.</td></tr>
-<tr><td width="290">phoneNumbers.<strong>primary</strong></td><td width="70">0..1</td><td width="150">boolean</td><td>Indicates if this is the primary phone number. Only one may be 'true'.</td></tr>
-<tr><td width="290">photo</td><td width="70">0..1</td><td width="150">uri</td><td>Primary photo for the user.</td></tr>
-<tr><td width="290">photos</td><td width="70">0..*</td><td width="150">BackboneElement</td><td>URLs of photos of the user.</td></tr>
-<tr><td width="290">photos.<strong>value</strong></td><td width="70">0..1</td><td width="150">uri</td><td>URL of a photo of the User.</td></tr>
-<tr><td width="290">photos.<strong>display</strong></td><td width="70">0..1</td><td width="150">string</td><td>A human-readable name, primarily used for display purposes (READ-ONLY).</td></tr>
-<tr><td width="290">photos.<strong>type</strong></td><td width="70">0..1</td><td width="150">string</td><td>A label indicating 'photo' or 'thumbnail'.</td></tr>
-<tr><td width="290">photos.<strong>primary</strong></td><td width="70">0..1</td><td width="150">boolean</td><td>Indicates if this is the primary photo. Only one may be 'true'.</td></tr>
-<tr><td width="290">preferredLanguage</td><td width="70">0..1</td><td width="150">string</td><td>The User's preferred written or spoken language, e.g. 'en_US'.</td></tr>
-<tr><td width="290">profileUrl</td><td width="70">0..1</td><td width="150">uri</td><td>A fully qualified URL pointing to a page representing the User's online profile.</td></tr>
-<tr><td width="290">roles</td><td width="70">0..*</td><td width="150">BackboneElement</td><td>A list of roles for the User that collectively represent who the User is (e.g. 'Student', 'Faculty').</td></tr>
-<tr><td width="290">roles.<strong>value</strong></td><td width="70">0..1</td><td width="150">string</td><td>The value of a role.</td></tr>
-<tr><td width="290">roles.<strong>display</strong></td><td width="70">0..1</td><td width="150">string</td><td>A human-readable name, primarily used for display purposes (READ-ONLY).</td></tr>
-<tr><td width="290">roles.<strong>type</strong></td><td width="70">0..1</td><td width="150">string</td><td>A label indicating the attribute's function.</td></tr>
-<tr><td width="290">roles.<strong>primary</strong></td><td width="70">0..1</td><td width="150">boolean</td><td>Indicates if this is the primary role. Only one may be 'true'.</td></tr>
-<tr><td width="290">securityLabel</td><td width="70">0..*</td><td width="150">BackboneElement</td><td>List of security labes associated to the user</td></tr>
-<tr><td width="290">securityLabel.<strong>system</strong></td><td width="70">0..1</td><td width="150">string</td><td>Code system</td></tr>
-<tr><td width="290">securityLabel.<strong>code</strong></td><td width="70">0..1</td><td width="150">string</td><td>Code value</td></tr>
-<tr><td width="290">timezone</td><td width="70">0..1</td><td width="150">string</td><td>The User's time zone in the 'Olson' format, e.g. 'America/Los_Angeles'.</td></tr>
-<tr><td width="290">title</td><td width="70">0..1</td><td width="150">string</td><td>The user's title, e.g. 'Vice President'.</td></tr>
-<tr><td width="290">twoFactor</td><td width="70">0..1</td><td width="150">BackboneElement</td><td>Two factor settings for user</td></tr>
-<tr><td width="290">twoFactor.<strong>enabled</strong></td><td width="70">1..1</td><td width="150">boolean</td><td>Defines whether two-factor auth is currently enabled.</td></tr>
-<tr><td width="290">twoFactor.<strong>transport</strong></td><td width="70">0..1</td><td width="150">string</td><td>Transport of 2FA confirmation code (if used).</td></tr>
-<tr><td width="290">twoFactor.<strong>secretKey</strong></td><td width="70">1..1</td><td width="150">string</td><td>TOTP Secret key.</td></tr>
-<tr><td width="290">userName</td><td width="70">0..1</td><td width="150">string</td><td>Unique identifier for the User, typically used to directly authenticate. Must be unique across the service provider's Users.</td></tr>
-<tr><td width="290">userType</td><td width="70">0..1</td><td width="150">string</td><td>Identifies the relationship between the organization and the user (e.g. 'Employee', 'Contractor').</td></tr>
-<tr><td width="290">x509Certificates</td><td width="70">0..*</td><td width="150">BackboneElement</td><td>A list of certificates issued to the User.</td></tr>
-<tr><td width="290">x509Certificates.<strong>value</strong></td><td width="70">0..1</td><td width="150">base64Binary</td><td>The value of an X.509 certificate (base64).</td></tr>
-<tr><td width="290">x509Certificates.<strong>display</strong></td><td width="70">0..1</td><td width="150">string</td><td>A human-readable name, primarily used for display purposes (READ-ONLY).</td></tr>
-<tr><td width="290">x509Certificates.<strong>type</strong></td><td width="70">0..1</td><td width="150">string</td><td>A label indicating the certificate's function.</td></tr>
-<tr><td width="290">x509Certificates.<strong>primary</strong></td><td width="70">0..1</td><td width="150">boolean</td><td>Indicates if this is the primary certificate. Only one may be 'true'.</td></tr></tbody>
-</table>
+```fhir-structure
+[ {
+  "path" : "_source",
+  "name" : "_source",
+  "lvl" : 0,
+  "min" : 0,
+  "max" : 1,
+  "type" : "string",
+  "desc" : "System Property. DO NOT USE IT."
+}, {
+  "path" : "active",
+  "name" : "active",
+  "lvl" : 0,
+  "min" : 0,
+  "max" : 1,
+  "type" : "boolean",
+  "desc" : "NB: this attr is ignored. Indicates the User's administrative status."
+}, {
+  "path" : "addresses",
+  "name" : "addresses",
+  "lvl" : 0,
+  "min" : 0,
+  "max" : "*",
+  "type" : "BackboneElement",
+  "desc" : "A physical mailing address for this User (e.g. 'work', 'home')."
+}, {
+  "path" : "addresses.formatted",
+  "name" : "formatted",
+  "lvl" : 1,
+  "min" : 0,
+  "max" : 1,
+  "type" : "string",
+  "desc" : "Full address, formatted for display or mailing label."
+}, {
+  "path" : "addresses.streetAddress",
+  "name" : "streetAddress",
+  "lvl" : 1,
+  "min" : 0,
+  "max" : 1,
+  "type" : "string",
+  "desc" : "Street address component (may contain newlines)."
+}, {
+  "path" : "addresses.locality",
+  "name" : "locality",
+  "lvl" : 1,
+  "min" : 0,
+  "max" : 1,
+  "type" : "string",
+  "desc" : "City or locality component."
+}, {
+  "path" : "addresses.region",
+  "name" : "region",
+  "lvl" : 1,
+  "min" : 0,
+  "max" : 1,
+  "type" : "string",
+  "desc" : "State or region component."
+}, {
+  "path" : "addresses.postalCode",
+  "name" : "postalCode",
+  "lvl" : 1,
+  "min" : 0,
+  "max" : 1,
+  "type" : "string",
+  "desc" : "Zip code or postal code."
+}, {
+  "path" : "addresses.country",
+  "name" : "country",
+  "lvl" : 1,
+  "min" : 0,
+  "max" : 1,
+  "type" : "string",
+  "desc" : "Country name component."
+}, {
+  "path" : "addresses.type",
+  "name" : "type",
+  "lvl" : 1,
+  "min" : 0,
+  "max" : 1,
+  "type" : "string",
+  "desc" : "A label indicating the address type, e.g. 'work' or 'home'."
+}, {
+  "path" : "costCenter",
+  "name" : "costCenter",
+  "lvl" : 0,
+  "min" : 0,
+  "max" : 1,
+  "type" : "string",
+  "desc" : "Identifies the name of a cost center."
+}, {
+  "path" : "data",
+  "name" : "data",
+  "lvl" : 0,
+  "min" : 0,
+  "max" : 1,
+  "type" : "Object",
+  "desc" : "Arbitrary user-related data."
+}, {
+  "path" : "department",
+  "name" : "department",
+  "lvl" : 0,
+  "min" : 0,
+  "max" : 1,
+  "type" : "string",
+  "desc" : "Identifies the name of a department."
+}, {
+  "path" : "displayName",
+  "name" : "displayName",
+  "lvl" : 0,
+  "min" : 0,
+  "max" : 1,
+  "type" : "string",
+  "desc" : "The name of the User, suitable for display to end-users."
+}, {
+  "path" : "division",
+  "name" : "division",
+  "lvl" : 0,
+  "min" : 0,
+  "max" : 1,
+  "type" : "string",
+  "desc" : "Identifies the name of a division."
+}, {
+  "path" : "email",
+  "name" : "email",
+  "lvl" : 0,
+  "min" : 0,
+  "max" : 1,
+  "type" : "string",
+  "desc" : "Primary email for the user."
+}, {
+  "path" : "emails",
+  "name" : "emails",
+  "lvl" : 0,
+  "min" : 0,
+  "max" : "*",
+  "type" : "BackboneElement",
+  "desc" : "Email addresses for the user. Values should be canonicalized (e.g. 'bjensen@example.com')."
+}, {
+  "path" : "emails.value",
+  "name" : "value",
+  "lvl" : 1,
+  "min" : 0,
+  "max" : 1,
+  "type" : "string",
+  "desc" : "An individual email address (canonicalized)."
+}, {
+  "path" : "emails.display",
+  "name" : "display",
+  "lvl" : 1,
+  "min" : 0,
+  "max" : 1,
+  "type" : "string",
+  "desc" : "A human-readable name for display purposes (READ-ONLY)."
+}, {
+  "path" : "emails.type",
+  "name" : "type",
+  "lvl" : 1,
+  "min" : 0,
+  "max" : 1,
+  "type" : "string",
+  "desc" : "A label indicating the attribute's function, e.g. 'work', 'home'."
+}, {
+  "path" : "emails.primary",
+  "name" : "primary",
+  "lvl" : 1,
+  "min" : 0,
+  "max" : 1,
+  "type" : "boolean",
+  "desc" : "Indicates if this is the primary email. Only one primary may be 'true'."
+}, {
+  "path" : "employeeNumber",
+  "name" : "employeeNumber",
+  "lvl" : 0,
+  "min" : 0,
+  "max" : 1,
+  "type" : "string",
+  "desc" : "Numeric or alphanumeric identifier assigned to a person by the organization."
+}, {
+  "path" : "entitlements",
+  "name" : "entitlements",
+  "lvl" : 0,
+  "min" : 0,
+  "max" : "*",
+  "type" : "BackboneElement",
+  "desc" : "A list of entitlements for the User that represent a thing the User has."
+}, {
+  "path" : "entitlements.value",
+  "name" : "value",
+  "lvl" : 1,
+  "min" : 0,
+  "max" : 1,
+  "type" : "string",
+  "desc" : "The value of an entitlement."
+}, {
+  "path" : "entitlements.display",
+  "name" : "display",
+  "lvl" : 1,
+  "min" : 0,
+  "max" : 1,
+  "type" : "string",
+  "desc" : "A human-readable name, primarily used for display purposes (READ-ONLY)."
+}, {
+  "path" : "entitlements.type",
+  "name" : "type",
+  "lvl" : 1,
+  "min" : 0,
+  "max" : 1,
+  "type" : "string",
+  "desc" : "A label indicating the attribute's function."
+}, {
+  "path" : "entitlements.primary",
+  "name" : "primary",
+  "lvl" : 1,
+  "min" : 0,
+  "max" : 1,
+  "type" : "boolean",
+  "desc" : "Indicates if this is the primary entitlement. Only one may be 'true'."
+}, {
+  "path" : "fhirUser",
+  "name" : "fhirUser",
+  "lvl" : 0,
+  "min" : 0,
+  "max" : 1,
+  "type" : "Reference",
+  "desc" : "A reference to a related FHIR resource \n\n**Allowed references**: Patient, Practitioner, PractitionerRole, Person, RelatedPerson"
+}, {
+  "path" : "gender",
+  "name" : "gender",
+  "lvl" : 0,
+  "min" : 0,
+  "max" : 1,
+  "type" : "string",
+  "desc" : "The user's gender."
+}, {
+  "path" : "identifier",
+  "name" : "identifier",
+  "lvl" : 0,
+  "min" : 0,
+  "max" : "*",
+  "type" : "Identifier",
+  "desc" : "A list of identifiers for the user."
+}, {
+  "path" : "ims",
+  "name" : "ims",
+  "lvl" : 0,
+  "min" : 0,
+  "max" : "*",
+  "type" : "BackboneElement",
+  "desc" : "Instant messaging addresses for the User."
+}, {
+  "path" : "ims.value",
+  "name" : "value",
+  "lvl" : 1,
+  "min" : 0,
+  "max" : 1,
+  "type" : "string",
+  "desc" : "Instant messaging address."
+}, {
+  "path" : "ims.display",
+  "name" : "display",
+  "lvl" : 1,
+  "min" : 0,
+  "max" : 1,
+  "type" : "string",
+  "desc" : "A human-readable name, primarily for display (READ-ONLY)."
+}, {
+  "path" : "ims.type",
+  "name" : "type",
+  "lvl" : 1,
+  "min" : 0,
+  "max" : 1,
+  "type" : "string",
+  "desc" : "A label indicating the IM type, e.g. 'aim', 'gtalk'."
+}, {
+  "path" : "ims.primary",
+  "name" : "primary",
+  "lvl" : 1,
+  "min" : 0,
+  "max" : 1,
+  "type" : "boolean",
+  "desc" : "Indicates if this is the primary IM. Only one may be 'true'."
+}, {
+  "path" : "inactive",
+  "name" : "inactive",
+  "lvl" : 0,
+  "min" : 0,
+  "max" : 1,
+  "type" : "boolean",
+  "desc" : "A Boolean value indicating the User's administrative status."
+}, {
+  "path" : "link",
+  "name" : "link",
+  "lvl" : 0,
+  "min" : 0,
+  "max" : "*",
+  "type" : "BackboneElement",
+  "desc" : "A collection of references or links associated with the user."
+}, {
+  "path" : "link.link",
+  "name" : "link",
+  "lvl" : 1,
+  "min" : 0,
+  "max" : 1,
+  "type" : "Reference",
+  "desc" : "A referenced resource link."
+}, {
+  "path" : "link.type",
+  "name" : "type",
+  "lvl" : 1,
+  "min" : 0,
+  "max" : 1,
+  "type" : "string",
+  "desc" : "A label indicating the link's function."
+}, {
+  "path" : "locale",
+  "name" : "locale",
+  "lvl" : 0,
+  "min" : 0,
+  "max" : 1,
+  "type" : "string",
+  "desc" : "Indicates the User's default location for localization (e.g., currency, date format)."
+}, {
+  "path" : "manager",
+  "name" : "manager",
+  "lvl" : 0,
+  "min" : 0,
+  "max" : 1,
+  "type" : "Reference",
+  "desc" : "Another User resource who is this User's manager. \n\n**Allowed references**: User"
+}, {
+  "path" : "name",
+  "name" : "name",
+  "lvl" : 0,
+  "min" : 0,
+  "max" : 1,
+  "type" : "BackboneElement",
+  "desc" : "The components of the user's real name (formatted, family, given, etc.)."
+}, {
+  "path" : "name.formatted",
+  "name" : "formatted",
+  "lvl" : 1,
+  "min" : 0,
+  "max" : 1,
+  "type" : "string",
+  "desc" : "Full name, including titles and suffixes, formatted for display."
+}, {
+  "path" : "name.familyName",
+  "name" : "familyName",
+  "lvl" : 1,
+  "min" : 0,
+  "max" : 1,
+  "type" : "string",
+  "desc" : "Family name (last name in Western languages)."
+}, {
+  "path" : "name.givenName",
+  "name" : "givenName",
+  "lvl" : 1,
+  "min" : 0,
+  "max" : 1,
+  "type" : "string",
+  "desc" : "Given name (first name in Western languages)."
+}, {
+  "path" : "name.middleName",
+  "name" : "middleName",
+  "lvl" : 1,
+  "min" : 0,
+  "max" : 1,
+  "type" : "string",
+  "desc" : "The middle name(s) of the User."
+}, {
+  "path" : "name.honorificPrefix",
+  "name" : "honorificPrefix",
+  "lvl" : 1,
+  "min" : 0,
+  "max" : 1,
+  "type" : "string",
+  "desc" : "Honorific prefix (title), e.g. 'Ms.'."
+}, {
+  "path" : "name.honorificSuffix",
+  "name" : "honorificSuffix",
+  "lvl" : 1,
+  "min" : 0,
+  "max" : 1,
+  "type" : "string",
+  "desc" : "Honorific suffix, e.g. 'III'."
+}, {
+  "path" : "organization",
+  "name" : "organization",
+  "lvl" : 0,
+  "min" : 0,
+  "max" : 1,
+  "type" : "Reference",
+  "desc" : "Identifies the name of an organization. \n\n**Allowed references**: Organization"
+}, {
+  "path" : "password",
+  "name" : "password",
+  "lvl" : 0,
+  "min" : 0,
+  "max" : 1,
+  "type" : "password",
+  "desc" : "The User's cleartext password, used for initial or reset scenarios."
+}, {
+  "path" : "phoneNumber",
+  "name" : "phoneNumber",
+  "lvl" : 0,
+  "min" : 0,
+  "max" : 1,
+  "type" : "string",
+  "desc" : "Primary phone number."
+}, {
+  "path" : "phoneNumbers",
+  "name" : "phoneNumbers",
+  "lvl" : 0,
+  "min" : 0,
+  "max" : "*",
+  "type" : "BackboneElement",
+  "desc" : "Phone numbers for the User, e.g. 'tel:+1-201-555-0123'."
+}, {
+  "path" : "phoneNumbers.value",
+  "name" : "value",
+  "lvl" : 1,
+  "min" : 0,
+  "max" : 1,
+  "type" : "string",
+  "desc" : "The user's phone number."
+}, {
+  "path" : "phoneNumbers.display",
+  "name" : "display",
+  "lvl" : 1,
+  "min" : 0,
+  "max" : 1,
+  "type" : "string",
+  "desc" : "A human-readable name for display purposes (READ-ONLY)."
+}, {
+  "path" : "phoneNumbers.type",
+  "name" : "type",
+  "lvl" : 1,
+  "min" : 0,
+  "max" : 1,
+  "type" : "string",
+  "desc" : "A label for the phone number's function, e.g. 'home', 'work'."
+}, {
+  "path" : "phoneNumbers.primary",
+  "name" : "primary",
+  "lvl" : 1,
+  "min" : 0,
+  "max" : 1,
+  "type" : "boolean",
+  "desc" : "Indicates if this is the primary phone number. Only one may be 'true'."
+}, {
+  "path" : "photo",
+  "name" : "photo",
+  "lvl" : 0,
+  "min" : 0,
+  "max" : 1,
+  "type" : "uri",
+  "desc" : "Primary photo for the user."
+}, {
+  "path" : "photos",
+  "name" : "photos",
+  "lvl" : 0,
+  "min" : 0,
+  "max" : "*",
+  "type" : "BackboneElement",
+  "desc" : "URLs of photos of the user."
+}, {
+  "path" : "photos.value",
+  "name" : "value",
+  "lvl" : 1,
+  "min" : 0,
+  "max" : 1,
+  "type" : "uri",
+  "desc" : "URL of a photo of the User."
+}, {
+  "path" : "photos.display",
+  "name" : "display",
+  "lvl" : 1,
+  "min" : 0,
+  "max" : 1,
+  "type" : "string",
+  "desc" : "A human-readable name, primarily used for display purposes (READ-ONLY)."
+}, {
+  "path" : "photos.type",
+  "name" : "type",
+  "lvl" : 1,
+  "min" : 0,
+  "max" : 1,
+  "type" : "string",
+  "desc" : "A label indicating 'photo' or 'thumbnail'."
+}, {
+  "path" : "photos.primary",
+  "name" : "primary",
+  "lvl" : 1,
+  "min" : 0,
+  "max" : 1,
+  "type" : "boolean",
+  "desc" : "Indicates if this is the primary photo. Only one may be 'true'."
+}, {
+  "path" : "preferredLanguage",
+  "name" : "preferredLanguage",
+  "lvl" : 0,
+  "min" : 0,
+  "max" : 1,
+  "type" : "string",
+  "desc" : "The User's preferred written or spoken language, e.g. 'en_US'."
+}, {
+  "path" : "profileUrl",
+  "name" : "profileUrl",
+  "lvl" : 0,
+  "min" : 0,
+  "max" : 1,
+  "type" : "uri",
+  "desc" : "A fully qualified URL pointing to a page representing the User's online profile."
+}, {
+  "path" : "roles",
+  "name" : "roles",
+  "lvl" : 0,
+  "min" : 0,
+  "max" : "*",
+  "type" : "BackboneElement",
+  "desc" : "A list of roles for the User that collectively represent who the User is (e.g. 'Student', 'Faculty')."
+}, {
+  "path" : "roles.value",
+  "name" : "value",
+  "lvl" : 1,
+  "min" : 0,
+  "max" : 1,
+  "type" : "string",
+  "desc" : "The value of a role."
+}, {
+  "path" : "roles.display",
+  "name" : "display",
+  "lvl" : 1,
+  "min" : 0,
+  "max" : 1,
+  "type" : "string",
+  "desc" : "A human-readable name, primarily used for display purposes (READ-ONLY)."
+}, {
+  "path" : "roles.type",
+  "name" : "type",
+  "lvl" : 1,
+  "min" : 0,
+  "max" : 1,
+  "type" : "string",
+  "desc" : "A label indicating the attribute's function."
+}, {
+  "path" : "roles.primary",
+  "name" : "primary",
+  "lvl" : 1,
+  "min" : 0,
+  "max" : 1,
+  "type" : "boolean",
+  "desc" : "Indicates if this is the primary role. Only one may be 'true'."
+}, {
+  "path" : "securityLabel",
+  "name" : "securityLabel",
+  "lvl" : 0,
+  "min" : 0,
+  "max" : "*",
+  "type" : "BackboneElement",
+  "desc" : "List of security labes associated to the user"
+}, {
+  "path" : "securityLabel.system",
+  "name" : "system",
+  "lvl" : 1,
+  "min" : 0,
+  "max" : 1,
+  "type" : "string",
+  "desc" : "Code system"
+}, {
+  "path" : "securityLabel.code",
+  "name" : "code",
+  "lvl" : 1,
+  "min" : 0,
+  "max" : 1,
+  "type" : "string",
+  "desc" : "Code value"
+}, {
+  "path" : "timezone",
+  "name" : "timezone",
+  "lvl" : 0,
+  "min" : 0,
+  "max" : 1,
+  "type" : "string",
+  "desc" : "The User's time zone in the 'Olson' format, e.g. 'America/Los_Angeles'."
+}, {
+  "path" : "title",
+  "name" : "title",
+  "lvl" : 0,
+  "min" : 0,
+  "max" : 1,
+  "type" : "string",
+  "desc" : "The user's title, e.g. 'Vice President'."
+}, {
+  "path" : "twoFactor",
+  "name" : "twoFactor",
+  "lvl" : 0,
+  "min" : 0,
+  "max" : 1,
+  "type" : "BackboneElement",
+  "desc" : "Two factor settings for user"
+}, {
+  "path" : "twoFactor.enabled",
+  "name" : "enabled",
+  "lvl" : 1,
+  "min" : 1,
+  "max" : 1,
+  "type" : "boolean",
+  "desc" : "Defines whether two-factor auth is currently enabled."
+}, {
+  "path" : "twoFactor.transport",
+  "name" : "transport",
+  "lvl" : 1,
+  "min" : 0,
+  "max" : 1,
+  "type" : "string",
+  "desc" : "Transport of 2FA confirmation code (if used)."
+}, {
+  "path" : "twoFactor.secretKey",
+  "name" : "secretKey",
+  "lvl" : 1,
+  "min" : 1,
+  "max" : 1,
+  "type" : "string",
+  "desc" : "TOTP Secret key."
+}, {
+  "path" : "userName",
+  "name" : "userName",
+  "lvl" : 0,
+  "min" : 0,
+  "max" : 1,
+  "type" : "string",
+  "desc" : "Unique identifier for the User, typically used to directly authenticate. Must be unique across the service provider's Users."
+}, {
+  "path" : "userType",
+  "name" : "userType",
+  "lvl" : 0,
+  "min" : 0,
+  "max" : 1,
+  "type" : "string",
+  "desc" : "Identifies the relationship between the organization and the user (e.g. 'Employee', 'Contractor')."
+}, {
+  "path" : "x509Certificates",
+  "name" : "x509Certificates",
+  "lvl" : 0,
+  "min" : 0,
+  "max" : "*",
+  "type" : "BackboneElement",
+  "desc" : "A list of certificates issued to the User."
+}, {
+  "path" : "x509Certificates.value",
+  "name" : "value",
+  "lvl" : 1,
+  "min" : 0,
+  "max" : 1,
+  "type" : "base64Binary",
+  "desc" : "The value of an X.509 certificate (base64)."
+}, {
+  "path" : "x509Certificates.display",
+  "name" : "display",
+  "lvl" : 1,
+  "min" : 0,
+  "max" : 1,
+  "type" : "string",
+  "desc" : "A human-readable name, primarily used for display purposes (READ-ONLY)."
+}, {
+  "path" : "x509Certificates.type",
+  "name" : "type",
+  "lvl" : 1,
+  "min" : 0,
+  "max" : 1,
+  "type" : "string",
+  "desc" : "A label indicating the certificate's function."
+}, {
+  "path" : "x509Certificates.primary",
+  "name" : "primary",
+  "lvl" : 1,
+  "min" : 0,
+  "max" : 1,
+  "type" : "boolean",
+  "desc" : "Indicates if this is the primary certificate. Only one may be 'true'."
+} ]
+```
 
