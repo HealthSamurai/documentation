@@ -76,7 +76,6 @@ redirects:
   api-1/fhir-api/search-1/search-parameters-list/_lastupdated: api/rest-api/fhir-search/searchparameter.md
   api-1/fhir-api/search-1/search-parameters-list/_timeout: api/rest-api/aidbox-search.md
   api-1/fhir-api/search-1: api/rest-api/fhir-search/README.md
-  api-1/fhir-api/search-1: api/rest-api/fhir-search/README.md
   api-1/fhir-api: api/rest-api/README.md
   api-1/graphql-api: api/graphql-api.md
   api-1/other/archive-restore-api/create-archive: api/other/archive-restore-api/create-archive.md
