@@ -86,6 +86,10 @@ spec:
                 key: pat
           - name: EXAMPLES_UPDATE_INTERVAL
             value: "60"
+          - name: POSTHOG_API_KEY
+            value: "phc_uO4ImMUxOljaWPDRr7lWu9TYpBrpIs4R1RwLu8uLRmx"
+          - name: POSTHOG_HOST
+            value: "https://ph.aidbox.app"
         command: ["java"]
         args:
           - "-Xms2g"

@@ -17,9 +17,11 @@
                                  (assoc context :request request))
                 product-id (or (:id current-product) "unknown")
                 user-agent (get-in request [:headers "user-agent"])
+                base-url (get-in context [:state :config :base-url])
                 properties {"url" (str (:scheme request) "://"
                                        (get-in request [:headers "host"])
                                        uri)
+                            "base_url" base-url
                             "path" uri
                             "user_agent" user-agent
                             "product" product-id
