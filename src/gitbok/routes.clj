@@ -255,6 +255,10 @@
      [(utils/concat-urls prefix "/sitemap.xml")
       {:get {:handler #'handlers/sitemap-index-xml}}]
 
+     ;; Root llms.txt
+     [(utils/concat-urls prefix "/llms.txt")
+      {:get {:handler #'handlers/serve-root-llms-txt}}]
+
      ;; Root handlers - handle both with and without trailing slash
      [prefix {:get {:handler #'handlers/root-redirect-handler}}]
      [(str prefix "/")
@@ -290,6 +294,11 @@
                 ;; Product sitemap
                 [(str product-path "/sitemap.xml")
                  {:get {:handler #'handlers/sitemap-xml
+                        :middleware [product-middleware]}}]
+
+                ;; Product llms.txt
+                [(str product-path "/llms.txt")
+                 {:get {:handler #'handlers/serve-llms-txt
                         :middleware [product-middleware]}}]
 
                 ;; Product favicon

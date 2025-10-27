@@ -40,7 +40,7 @@ products:
         href: "/examples"
 
   - id: fhirbase
-    name: "fhirbase"
+    name: "Fhirbase Docs"
     # url <BASE_URL><DOCS_PREFIX>/fhirbase
     path: /fhirbase
     config: fhirbase/.gitbook.yaml

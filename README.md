@@ -1,6 +1,6 @@
 # Aidbox Documentation
 
-The source of https://docs.aidbox.app.
+The source of https://www.health-samurai.io/docs.
 
 ## Setup
 

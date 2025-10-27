@@ -10,6 +10,7 @@
    [gitbok.indexing.core :as indexing]
    [gitbok.state :as state]
    [gitbok.indexing.impl.sitemap-index :as sitemap-index]
+   [gitbok.llms-txt :as llms-txt]
    [gitbok.markdown.core :as markdown]
    [gitbok.products :as products]
    [gitbok.ui.examples]
@@ -588,3 +589,40 @@
   (if (state/get-config context :dev-mode)
     #'serve-raw-markdown-from-disk
     #'serve-raw-markdown-from-cache))
+
+;; llms.txt handlers
+
+(defn serve-llms-txt
+  "Serve llms.txt for a specific product"
+  [ctx]
+  (try
+    (let [product (:product ctx)]
+      (if product
+        (let [content (llms-txt/generate-product-llms-txt ctx product)]
+          {:status 200
+           :headers {"Content-Type" "text/plain; charset=utf-8"
+                     "Cache-Control" "public, max-age=3600"}
+           :body content})
+        {:status 404
+         :headers {"Content-Type" "text/plain"}
+         :body "Product not found"}))
+    (catch Exception e
+      (log/error e "Failed to serve llms.txt")
+      {:status 500
+       :headers {"Content-Type" "text/plain"}
+       :body "Error generating llms.txt"})))
+
+(defn serve-root-llms-txt
+  "Serve root llms.txt with list of all products"
+  [ctx]
+  (try
+    (let [content (llms-txt/generate-root-llms-txt ctx)]
+      {:status 200
+       :headers {"Content-Type" "text/plain; charset=utf-8"
+                 "Cache-Control" "public, max-age=3600"}
+       :body content})
+    (catch Exception e
+      (log/error e "Failed to serve root llms.txt")
+      {:status 500
+       :headers {"Content-Type" "text/plain"}
+       :body "Error generating llms.txt"})))
