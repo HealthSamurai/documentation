@@ -153,6 +153,8 @@ Enforces FHIR compatibility when enabled:
 - Changes cache-control header to no-store on authorization code auth flow (instead of `no-cache`, `no-store`, `max-age=0`, `must-revalidate`)
 - Removes `Bundle.entry` if empty
 
+Becomes required if FHIRSchema is enabled.
+
 
 <details><summary>Details</summary><table data-header-hidden="true"><thead><tr><th width="200"></th><th></th></tr></thead><tbody><tr><td>ID</td><td><code>fhir.compliant-mode</code></td></tr><tr><td>Type</td><td>Bool</td></tr><tr><td>Recommended value</td><td><code>true</code></td></tr><tr><td>Default value</td><td><code>false</code></td></tr><tr><td>Environment variable</td><td><code>BOX_FHIR_COMPLIANT_MODE</code></td></tr><tr><td>Deprecated environment variables</td><td><code>AIDBOX_FHIR_COMPLIANT_MODE</code> , <br /><code>BOX_COMPLIANT__MODE__ENABLED?</code> , <br /><code>AIDBOX_COMPLIANCE</code></td></tr><tr><td>Sensitive</td><td><code>false</code> — value will be visible in plaintext in Admin UI</td></tr><tr><td>Set via</td><td>Admin UI → Settings<br />Environment variables</td></tr><tr><td>Hot reload</td><td><code>true</code> — setting can be changed at runtime</td></tr></tbody></table></details>
 
@@ -399,6 +401,10 @@ BOX_FHIR_SEARCH_DEFAULT_PARAMS_TOTAL: "accurate"
 ```
 
 FHIR search response bundle may contain a result count estimation.
+
+    If you use `BOX_FHIR_SEARCH_DEFAULT_PARAMS_TOTAL=none` you still get `total`when:
+- you don't use `_page`
+- the number of returned resources is less than `_count` (by default is 100).
 
 <details><summary>Details</summary><table data-header-hidden="true"><thead><tr><th width="200"></th><th></th></tr></thead><tbody><tr><td>ID</td><td><code>fhir.search.default-params.total</code></td></tr><tr><td>Type</td><td>Enum</td></tr><tr><td>Values</td><td><code>none</code> — omit estimation (fastest)<br /><code>estimate</code> — use approximate value (fast)<br /><code>accurate</code> — use exact value (could be slow)</td></tr><tr><td>Default value</td><td><code>accurate</code></td></tr><tr><td>Environment variable</td><td><code>BOX_FHIR_SEARCH_DEFAULT_PARAMS_TOTAL</code></td></tr><tr><td>Deprecated environment variables</td><td><code>BOX_SEARCH_DEFAULT__PARAMS_TOTAL</code></td></tr><tr><td>Sensitive</td><td><code>false</code> — value will be visible in plaintext in Admin UI</td></tr><tr><td>Set via</td><td>Admin UI → Settings<br />Environment variables</td></tr><tr><td>Hot reload</td><td><code>true</code> — setting can be changed at runtime</td></tr></tbody></table></details>
 
@@ -719,6 +725,24 @@ Recommended value:
 default-src 'self'; script-src 'report-sample' 'self' 'unsafe-inline' 'unsafe-eval'; style-src 'report-sample' 'self' 'unsafe-inline'; object-src 'none'; base-uri 'self'; connect-src 'self'; font-src 'self'; frame-src 'self'; frame-ancestors 'self'; img-src 'self'; manifest-src 'self'; media-src 'self'; worker-src 'self';
 ```
 
+Explanation:
+
+| **Directive**     | **Allowed Sources**                                             | **Description**                                                                          | **Security Implications**                                                                             |
+| ----------------- | --------------------------------------------------------------- | ---------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------- |
+| `default-src`     | `'self'`                                                        | Sets the default policy for all resource types unless overridden by specific directives. | Restricts all resources to the same origin unless explicitly allowed elsewhere.                       |
+| `script-src`      | `'report-sample'`, `'self'`, `'unsafe-inline'`, `'unsafe-eval'` | Controls JavaScript sources.                                                             | Allows same-origin scripts but also permits inline scripts and `eval()`, which are security risks.    |
+| `style-src`       | `'report-sample'`, `'self'`, `'unsafe-inline'`                  | Defines valid sources for stylesheets.                                                   | Allows same-origin styles but permits inline styles, which can be exploited if not carefully managed. |
+| `object-src`      | `'none'`                                                        | Blocks `<object>` elements entirely.                                                     | Prevents the use of potentially dangerous `<object>` elements, mitigating XSS risks.                  |
+| `base-uri`        | `'self'`                                                        | Restricts the URLs allowed in `<base>` elements to the same origin.                      | Protects against base URL manipulation attacks.                                                       |
+| `connect-src`     | `'self'`                                                        | Limits connections (e.g., AJAX, WebSocket) to the same origin.                           | Prevents data exfiltration to unauthorized endpoints.                                                 |
+| `font-src`        | `'self'`                                                        | Restricts font loading to the same origin.                                               | Reduces risks from malicious or unauthorized fonts.                                                   |
+| `frame-src`       | `'self'`                                                        | Allows embedding content in frames only from the same origin.                            | Mitigates clickjacking attacks by disallowing external framing of your content.                       |
+| `frame-ancestors` | `'self'`                                                        | Ensures that only pages from the same origin can embed this page in a frame.             | Further protects against clickjacking by controlling who can frame Aidbox pages .                     |
+| `img-src`         | `'self'` `data:`                                                | Limits image sources to the same origin.                                                 | Prevents data leaks via malicious or unauthorized images.                                             |
+| `manifest-src`    | `'self'`                                                        | Ensures that web app manifests are loaded only from the same origin.                     | Protects against unauthorized or malicious web app manifests being loaded into Aidbox.                |
+| `media-src`       | `'self'`                                                        | Restricts audio and video sources to the same origin.                                    | Prevents unauthorized media files from being loaded into Aidbox                                       |
+| `worker-src`      | `'self'`                                                        | Limits web workers and shared workers to scripts from the same origin.                   | Reduces risks of malicious workers being executed within your Aidbox context.                         |
+
 <details><summary>Details</summary><table data-header-hidden="true"><thead><tr><th width="200"></th><th></th></tr></thead><tbody><tr><td>ID</td><td><code>security.content-security-policy-header</code></td></tr><tr><td>Type</td><td>String</td></tr><tr><td>Default value</td><td>(no default)</td></tr><tr><td>Environment variable</td><td><code>BOX_SECURITY_CONTENT_SECURITY_POLICY_HEADER</code></td></tr><tr><td>Deprecated environment variables</td><td><code>AIDBOX_CONTENT_SECURITY_POLICY_HEADER</code></td></tr><tr><td>Sensitive</td><td><code>false</code> — value will be visible in plaintext in Admin UI</td></tr><tr><td>Set via</td><td>Admin UI → Settings<br />Environment variables</td></tr><tr><td>Hot reload</td><td><code>true</code> — setting can be changed at runtime</td></tr></tbody></table></details>
 
 ### Skip JWT validation<a href="#security.skip-jwt-validation" id="security.skip-jwt-validation"></a>
@@ -803,7 +827,7 @@ Removes security labels from resource responses before
 returning them to clients. When enabled, prevents sensitive security
 metadata from being exposed in API responses while maintaining access
 control enforcement internally. Useful for hiding security implementation
-details from end users.
+details from end users. Stripping is only applied during the masking.
 
 <details><summary>Details</summary><table data-header-hidden="true"><thead><tr><th width="200"></th><th></th></tr></thead><tbody><tr><td>ID</td><td><code>security.lbac.strip-labels</code></td></tr><tr><td>Type</td><td>Bool</td></tr><tr><td>Default value</td><td><code>false</code></td></tr><tr><td>Environment variable</td><td><code>BOX_SECURITY_LBAC_STRIP_LABELS</code></td></tr><tr><td>Deprecated environment variables</td><td><code>BOX_FEATURES_SECURITY__LABELS_STRIP__LABELS</code></td></tr><tr><td>Sensitive</td><td><code>false</code> — value will be visible in plaintext in Admin UI</td></tr><tr><td>Set via</td><td>Admin UI → Settings<br />Environment variables</td></tr><tr><td>Hot reload</td><td><code>true</code> — setting can be changed at runtime</td></tr></tbody></table></details>
 
@@ -1719,6 +1743,8 @@ BOX_WEB_BASE_URL: "<base-url>"
 
 Base URL is the URL Aidbox is available at. It consists of scheme (HTTP, HTTPS), domain, port (optional) and URL path (optional). Trailing slash is not allowed.
 
+Aidbox uses this value to identify its own location. The Base URL is embedded in various generated artifacts, such as: tokens ("iss" field), links in search and notification bundles, and internal references. Some components validate that tokens, links , or requests originate from the same base URL, ensuring consistency and security.
+
 <details><summary>Details</summary><table data-header-hidden="true"><thead><tr><th width="200"></th><th></th></tr></thead><tbody><tr><td>ID</td><td><code>web.base-url</code></td></tr><tr><td>Type</td><td>String</td></tr><tr><td>Recommended value</td><td><code>&lt;base-url&gt;</code></td></tr><tr><td>Default value</td><td>(no default)</td></tr><tr><td>Environment variable</td><td><code>BOX_WEB_BASE_URL</code></td></tr><tr><td>Deprecated environment variables</td><td><code>AIDBOX_BASE_URL</code></td></tr><tr><td>Sensitive</td><td><code>false</code> — value will be visible in plaintext in Admin UI</td></tr><tr><td>Set via</td><td>Admin UI → Settings<br />Environment variables</td></tr><tr><td>Hot reload</td><td><code>false</code> — setting requires system restart</td></tr></tbody></table></details>
 
 ### Web server port<a href="#web.port" id="web.port"></a>
@@ -2281,6 +2307,20 @@ BOX_ZEN_PROJECT_PATHS: "<String>"
 ```
 
 Source of the zen project using the following syntax `<source>:<format>:<path>[,<source>:<format>:<path>]*`.
+
+`<source>` is either `url`, or `path`.
+* `url` is used to load project from remote location
+* `path` is used to load project from local location
+`<format>` is either `zip`, or `dir`, or `edn`.
+
+Table of sources and format compatibility:
+
+|               |       |       |       |
+| ------------- | ----- | ----- | ----- |
+| source/format | `zip` | `dir` | `edn` |
+| `url`         | ✓     |       | ✓     |
+| `path`        | ✓     | ✓     | ✓     |
+    
 
 <details><summary>Details</summary><table data-header-hidden="true"><thead><tr><th width="200"></th><th></th></tr></thead><tbody><tr><td>ID</td><td><code>zen-project.paths</code></td></tr><tr><td>Type</td><td>String</td></tr><tr><td>Default value</td><td>(no default)</td></tr><tr><td>Environment variable</td><td><code>BOX_ZEN_PROJECT_PATHS</code></td></tr><tr><td>Deprecated environment variables</td><td><code>AIDBOX_ZEN_PATHS</code></td></tr><tr><td>Sensitive</td><td><code>false</code> — value will be visible in plaintext in Admin UI</td></tr><tr><td>Set via</td><td>Environment variables</td></tr><tr><td>Hot reload</td><td><code>false</code> — setting requires system restart</td></tr></tbody></table></details>
 
