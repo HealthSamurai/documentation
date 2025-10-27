@@ -8,7 +8,7 @@ The database schema consists of many tables and schemas, organized into two grou
 ## FHIR resource and history tables
 
 Aidbox stores all FHIR resources in the `public` schema by default. 
-You can [set different schema name](../reference/environment-variables/optional-environment-variables.md#use-different-postgresql-schema). 
+You can [set different schema name](../reference/all-settings.md#db.extension-schema). 
 Aidbox creates a table for each FHIR resource type with the same name as the resource type in lowercase (e.g., `patient` for the `Patient` resource type). 
 All resource tables have the same structure:
 

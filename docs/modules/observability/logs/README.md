@@ -45,7 +45,7 @@ You can open `[aidbox-base]/_logs` in your browser, and Aidbox will produce logs
 
 ### Stdout log
 
-Aidbox sends logs into stdout if one of these env variables defined: [`AIDBOX_STDOUT_JSON`](../../../reference/environment-variables/optional-environment-variables.md#aidbox_stdout_json), [`AIDBOX_STDOUT_PRETTY`](../../../reference/environment-variables/optional-environment-variables.md#aidbox_stdout_pretty).
+Aidbox sends logs into stdout if one of these env variables defined: [`AIDBOX_STDOUT_JSON`](../../../reference/all-settings.md#observability.stdout.log-level), [`AIDBOX_STDOUT_PRETTY`](../../../reference/all-settings.md#observability.stdout.pretty-log-level).
 
 Both environment variables enable logging to stdout but the difference is log format.
 

@@ -1,5 +1,9 @@
 # AidboxDB Environment Variables
 
+{% hint style="warning" %}
+AidboxDB is deprecated since 2510.
+{% endhint %}
+
 ### Required environment variables
 
 | Env variable name   | Meaning                                                                                               |

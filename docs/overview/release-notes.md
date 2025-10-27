@@ -217,9 +217,9 @@ Aidbox is transitioning to the FHIR Schema engine. Existing zen and Entity/Attri
     * Implemented pagination
     * Introduced resizable columns
     * Added column selection
-  * Added support for specifying [Content Security Policy header as an environment variable](../reference/environment-variables/optional-environment-variables.md#content-security-policy). By default, Aidbox doesn't set CSP headers.
+  * Added support for specifying [Content Security Policy header as an environment variable](../reference/all-settings.md#security.content-security-policy-header). By default, Aidbox doesn't set CSP headers.
   * Supported [Bundle batch validation](../api/rest-api/bundle.md#validate-bundle) using Bundle/$validate endpoint for Aidbox instances using FHIR Schema validator
-  * Changed default [stdout log level](../reference/environment-variables/optional-environment-variables.md#aidbox_stdout_json) and [stdout Google log level](../reference/environment-variables/optional-environment-variables.md#aidbox_stdout_google_json) to `warn`
+  * Changed default [stdout log level](../reference/all-settings.md#observability.stdout.log-level) and [stdout Google log level](../reference/all-settings.md#observability.stdout.google-log-level) to `warn`
 * Aidbox Forms
   * Improved performance for handling large forms.
   * Added the ability to [set colors for tooltips and hover effects](../modules/aidbox-forms/aidbox-ui-builder-alpha/form-creation/form-customisation-in-theme-editor.md#how-to-create-a-new-theme) using the primary color in the Theme.
@@ -281,7 +281,7 @@ Minor updates:
   * Implemented hashing for sensitive elements User, Client and Session records. it is strongly recommended to delete the history tables for these resources to prevent access to the original un-hashed secret values.
   * Introduced ["Authorize Inline Requests"](../api/rest-api/fhir-search/include-and-revinclude.md#authorize-inline-requests-mode) mode, ensuring that users can only retrieve resources they are authorized to view when using `_include` and `_revinclude` parameters in search requests.
   * Added [Audit Logs](../access-control/audit-and-logging.md) for SQL endpoints
-  * Added configurable CORS settings, allowing users to [enable CORS](../reference/environment-variables/optional-environment-variables.md#box_web_cors_enabled) and [specify allowed origins](../reference/environment-variables/optional-environment-variables.md#box_web_cors_origins).
+  * Added configurable CORS settings, allowing users to [enable CORS](../reference/all-settings.md#security.cors.enabled) and [specify allowed origins](../reference/all-settings.md#security.cors.origins).
   * Fixed critical vulnerabilities and bugs
 * Aidbox Forms
   * [Added an ability to connect Aidbox Forms with external FHIR servers for data management](../modules/aidbox-forms/aidbox-ui-builder-alpha/external-fhir-servers-as-a-data-backend.md)
@@ -519,7 +519,7 @@ Minor updates:
 * Terminology
   * Supported [RxNorm terminology](../deprecated/deprecated/zen-related/fhir-terminology-repository/load-rxnorm-into-aidbox.md) load to Aidbox
 * Data API
-  * Added an environment variable to [synchronize managed index](../reference/environment-variables/optional-environment-variables.md#box_config_features_index_sync__on__start) when Aidbox starts
+  * Added an environment variable to [synchronize managed index](../reference/all-settings.md#zen-project.index.sync-on-start) when Aidbox starts
 * Integrations
   * Added[ Workflow Engine Connector](../deprecated/deprecated/zen-related/topic-based-subscriptions/) for FHIR Topic-based subscriptions
   * Added Workflow Engine clean-up built-in task
@@ -583,7 +583,7 @@ Minor updates:
 * Security and access control
   * Added [Capability Statement ](../access-control/authorization/scoped-api/organization-based-hierarchical-access-control.md#metadata)endpoint for multitenant API
   * Added [bundle transaction](../access-control/authorization/scoped-api/organization-based-hierarchical-access-control.md#bundle) for multitenant API
-  * Added [stdout appender](../reference/environment-variables/optional-environment-variables.md#aidbox_stdout_google_json) for logs in [Google format](https://cloud.google.com/logging/docs/reference/v2/rest/v2/LogEntry)
+  * Added [stdout appender](../reference/all-settings.md#observability.stdout.google-log-level) for logs in [Google format](https://cloud.google.com/logging/docs/reference/v2/rest/v2/LogEntry)
   * Added access policy usage in UI console on AccessPolicy page
   * Added a neat UI to rotate credentials and download certificates on IdentityProvider view page
   * Supported [BALP ](https://profiles.ihe.net/ITI/BALP/)for CRUD + Search operations. Both basic and patient profiles
@@ -762,11 +762,11 @@ Minor updates:
 * C-CDA to FHIR converter
   * Introduced FHIR to CCD transformation (alpha)
 * Security and Access Control
-  * Supported Aidbox [on path](../reference/environment-variables/optional-environment-variables.md#aidbox_base_url)
+  * Supported Aidbox [on path](../reference/all-settings.md#web.base-url)
   * Improved `__debug=policy`
 * Ops
   * [Devbox images](aidbox-user-portal/licenses.md#development-license) are no longer supported. Please use [AidboxOne image](https://hub.docker.com/r/healthsamurai/aidboxone) with [development license](aidbox-user-portal/licenses.md#development-license)
-  * Supported [box\_web\_\*](../reference/environment-variables/optional-environment-variables.md#box_web_max__body) configs for Multibox
+  * Supported [box\_web\_\*](../reference/all-settings.md#web.max-body) configs for Multibox
   * Introduced [Aidbox status page](https://status.aidbox.app)
 * Aidbox Forms
   * Added new forms templates, incl. Lifestyle, Medications, Problem List to [forms library](https://github.com/Aidbox/sdc-forms-library/)
@@ -798,7 +798,7 @@ Minor updates:
   * Add GraphQL request body in gq/resp log event
   * Changed container OS to Alpine and reduced total container size
   * [Changed internal container User to non-root user.](https://github.com/Aidbox/Issues/issues/539)
-  * Introduced [Telemetry API ](../reference/environment-variables/optional-environment-variables.md#telemetry)for errors and usage stats.
+  * Introduced [Telemetry API ](../reference/all-settings.md#observability.otel.metrics-url)for errors and usage stats.
 * Aidbox Forms
   * Added new forms templates to [forms library](https://github.com/Aidbox/sdc-forms-library/)
   * Added metadata properties to forms

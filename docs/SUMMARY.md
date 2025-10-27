@@ -569,8 +569,6 @@
   * [HL7v2 Module Resources](reference/system-resources-reference/hl7v2-module-resources.md)
   * [SQL on FHIR Module Resources](reference/system-resources-reference/sql-on-fhir-module-resources.md)
 * [Environment Variables](reference/environment-variables/README.md)
-  * [Aidbox Required Environment Variables](reference/environment-variables/aidbox-required-environment-variables.md)
-  * [Optional Environment Variables](reference/environment-variables/optional-environment-variables.md)
   * [AidboxDB Environment Variables](reference/environment-variables/aidboxdb-environment-variables.md)
 * [FHIR Schema Reference](https://fhir-schema.github.io/fhir-schema/)
 * [Email Providers Reference](reference/email-providers-reference/README.md)

@@ -13,7 +13,7 @@ Attention: by default Aidbox generates both keypair and secret on every startup.
 
 It is required to pass RSA keypair and secret as Aidbox parameters if you have multiple replicas of the same Aidbox/Multibox instance. Check out this section in the docs on how to configure it properly:
 
-[Set up RSA private/public keys and secret](../../../reference/environment-variables/optional-environment-variables.md#set-up-rsa-private-public-keys-and-secret "mention")
+[Set up RSA private/public keys and secret](../../../reference/all-settings.md#security.auth.keys.public "mention")
 {% endhint %}
 
 ### Configuration
