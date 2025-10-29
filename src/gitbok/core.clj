@@ -2,6 +2,7 @@
   (:gen-class)
   (:require
    [clojure.tools.logging :as log]
+   [gitbok.analytics.posthog :as posthog]
    [gitbok.handlers :as handlers]
    [gitbok.initialization :as initialization]
    [gitbok.metrics :as metrics]
@@ -21,7 +22,13 @@
          port (state/get-config context :port)
          prefix (state/get-config context :prefix "")
          base-url (state/get-config context :base-url)
-         version (state/get-config context :version)]
+         version (state/get-config context :version)
+         posthog-api-key (state/get-config context :posthog-api-key)
+         posthog-host (state/get-config context :posthog-host)]
+
+     ;; Initialize PostHog client once
+     (when-let [client (posthog/create-client posthog-api-key posthog-host)]
+       (state/set-runtime! context :posthog-client client))
 
      ;; Initialize metrics
      (metrics/initialize-metrics!)
@@ -81,6 +88,9 @@
         (log/warn e "Error stopping server")))
     (state/clear-server! context)
     (log/info "Server stopped"))
+
+  ;; Shutdown PostHog client
+  (posthog/shutdown! context)
 
   {:status :stopped})
 
