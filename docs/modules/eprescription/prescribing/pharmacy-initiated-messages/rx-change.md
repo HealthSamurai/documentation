@@ -261,6 +261,45 @@ In order to understand which fields are requested to populate see the notation b
 
 {% endhint %}
 
+**MessageRequestSubCode** values are stored as **MedicationRequest** extension
+
+```yaml
+...
+extension:
+  - url: >-
+      http://aidbox.app/ePrescription/FHIRSchema/medication-request-rx-change-message-request-sub-codes
+    extension:
+      - url: subcode
+        valueCoding:
+          code: A
+          system: urn:app:aidbox:e-prescriptions:surescripts:MessageRequestSubCode
+      - url: subcode
+        valueCoding:
+          code: B
+          system: urn:app:aidbox:e-prescriptions:surescripts:MessageRequestSubCode
+      - url: subcode
+        valueCoding:
+          code: D
+          system: urn:app:aidbox:e-prescriptions:surescripts:MessageRequestSubCode
+      - url: subcode
+        valueCoding:
+          code: F
+          system: urn:app:aidbox:e-prescriptions:surescripts:MessageRequestSubCode
+      - url: subcode
+        valueCoding:
+          code: G
+          system: urn:app:aidbox:e-prescriptions:surescripts:MessageRequestSubCode
+      - url: subcode
+        valueCoding:
+          code: I
+          system: urn:app:aidbox:e-prescriptions:surescripts:MessageRequestSubCode
+      - url: subcode
+        valueCoding:
+          code: M
+          system: urn:app:aidbox:e-prescriptions:surescripts:MessageRequestSubCode
+...
+```
+
 The following **MessageRequestSubCode** values can be specified by the pharmacy:
 
 | SubCode          | Message Request Description                                                                                      | Reason Code | Response Reason Description                                      | Specific Tag to Populate        |
