@@ -367,6 +367,7 @@
     * [FHIR Questionnaire to Aidbox forms and back conversion](modules/aidbox-forms/aidbox-code-editor/fhir-questionnaire-to-aidbox-forms-and-back-conversion.md)
   * [Any familiar form editor (docs deprecated)](modules/aidbox-forms/any-familiar-form-editor-docs-deprecated.md)
   * [Access control in forms](modules/aidbox-forms/access-control-in-forms.md)
+  * [Adaptive Forms](modules/aidbox-forms/adaptive-forms.md)
   * [Audit logging in forms](modules/aidbox-forms/audit-logging-in-forms.md)
   * [Aidbox Form Gallery](modules/aidbox-forms/aidbox-form-gallery.md)
 * [SQL on FHIR](modules/sql-on-fhir/README.md)
