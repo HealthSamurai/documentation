@@ -206,8 +206,11 @@
              (and (:info node) (= (:info node) "fhir-structure"))
              (try
                (let [json-text (-> node :content first :text)
-                     elements (json/parse-string json-text true)]
-                 (fhir-table/render-table elements parse-inline-markdown))
+                     elements (json/parse-string json-text true)
+                     ;; Get resource type from annotation (added by annotate-fhir-structures-with-headings)
+                     resource-type (:fhir-resource-type node)]
+                 (fhir-table/render-table elements parse-inline-markdown
+                                          (when resource-type {:resource-type resource-type})))
                (catch Exception e
                  (log/error e "Failed to parse FHIR structure table")
                  [:div {:class "text-red-600 p-4 border border-red-300 rounded"}
@@ -314,8 +317,43 @@
                :else
                (hiccup2.core/raw fixed-html))))))
 
+(defn annotate-fhir-structures-with-headings
+  "Walk through parsed markdown and annotate fhir-structure blocks with preceding heading text"
+  [parsed]
+  (let [process-nodes (fn process-nodes [nodes last-heading]
+                        (loop [result []
+                               current-heading last-heading
+                               [node & remaining] nodes]
+                          (if-not node
+                            [result current-heading]
+                            (let [is-heading? (= :heading (:type node))
+                                  is-fhir-structure? (and (= :code (:type node))
+                                                          (= "fhir-structure" (:info node)))
+                                  heading-text (when is-heading?
+                                                 (-> node :content first :text))
+                                  ;; Update heading BEFORE processing children
+                                  new-heading (if is-heading? heading-text current-heading)
+                                  ;; Recursively process children with updated heading
+                                  processed-node (if (:content node)
+                                                   (let [[processed-children _] (process-nodes (:content node) new-heading)]
+                                                     (assoc node :content processed-children))
+                                                   node)
+                                  ;; Annotate fhir-structure nodes
+                                  annotated-node (if (and is-fhir-structure? current-heading)
+                                                   (assoc processed-node :fhir-resource-type current-heading)
+                                                   processed-node)]
+                              (recur (conj result annotated-node)
+                                     new-heading
+                                     remaining)))))]
+    (if-let [children (:content parsed)]
+      (let [[annotated-children _] (process-nodes children nil)]
+        (assoc parsed :content annotated-children))
+      parsed)))
+
 (defn render-md [context filepath parsed]
-  (let [hiccup (transform/->hiccup (renderers context filepath) parsed)]
+  (let [;; First pass: annotate fhir-structure blocks with preceding headings
+        annotated-parsed (annotate-fhir-structures-with-headings parsed)
+        hiccup (transform/->hiccup (renderers context filepath) annotated-parsed)]
     ;; Clean up any temporary markers from the final output
     (walk/postwalk
      (fn [node]

@@ -43,7 +43,7 @@
   "Renders the name cell with appropriate icon"
   [element]
   [:div {:class "flex pt-2 pb-1 ml-1"}
-   [:div {:class "pt-[2px]"}
+   [:div {:class "pt-[1px]"}
     (icons/type-icon element)]
    [:div {:class "pl-2"}
     (or (:name element) (:path element))
@@ -52,13 +52,13 @@
 (defn cardinality-cell
   "Renders the cardinality (e.g., 0..1, 0..*, 1..1)"
   [element]
-  [:div {:class "flex flex-row h-full font-mono"}
+  [:div {:class "flex flex-row h-full font-mono pt-2"}
    (str (or (:min element) 0) ".." (or (:max element) 1))])
 
 (defn type-cell
   "Renders the type/datatype"
   [element]
-  [:div {:class "flex flex-row h-full"}
+  [:div {:class "flex flex-row h-full pt-2"}
    (:type element)])
 
 (defn description-cell
@@ -78,37 +78,38 @@
                            (not-empty))]
       [:tr {:class "group"}
        [:td {:class "flex h-full pl-[15px] py-0 px-4 align-top"}
-        [:div {:class "element flex h-full"}
+        [:div {:class "element flex"}
          (for [i (range lvl)]
            ^{:key i}
-           [:span {:class "block li w-[15px] h-auto"}])]
+           (let [is-last? (and last-child? (= i (dec lvl)))]
+             [:span {:class (str "block li w-[15px]" (when is-last? " last-li"))}]))]
         [:div {:class "relative"}
          (name-cell element)
          (when last-child?
            [:div {:class "relative -left-[15px] h-full -top-[10px] border-l border-surface group-even:border-surface-alt"}])]]
-       [:td {:class "px-4 py-2 align-top"}
+       [:td {:class "px-4 py-0 align-top"}
         (cardinality-cell element)]
-       [:td {:class "px-4 py-2 align-top"}
+       [:td {:class "px-4 py-0 align-top"}
         (type-cell element)]
-       [:td {:class "px-4 py-2 align-top text-[12px]"}
+       [:td {:class "px-4 pt-2 pb-0 align-top text-[12px]"}
         (description-cell element parse-markdown-fn)]])
 
     ;; Node with children
     (cons
      [:tr {:class "group"}
       [:td {:class "flex h-full pl-[15px] py-0 px-4 align-top"}
-       [:div {:class "element flex h-full"}
+       [:div {:class "element flex"}
         (for [_ (range lvl)]
-          [:span {:class "block li w-[15px] h-auto"}])]
+          [:span {:class "block li w-[15px]"}])]
        [:div {:class "relative"}
         (name-cell element)
         (when (not= 0 lvl)
           [:div {:class "ml-[10px] h-[calc(100%-6px)] border-l border-dotted border-outline-tree"}])]]
-      [:td {:class "px-4 py-2 align-top"}
+      [:td {:class "px-4 py-0 align-top"}
        (cardinality-cell element)]
-      [:td {:class "px-4 py-2 align-top"}
+      [:td {:class "px-4 py-0 align-top"}
        (type-cell element)]
-      [:td {:class "px-4 py-2 align-top text-[12px]"}
+      [:td {:class "px-4 pt-2 pb-0 align-top text-[12px]"}
        (description-cell element parse-markdown-fn)]]
 
      (for [child children]
@@ -117,24 +118,42 @@
 
 (defn render-table
   "Main rendering function for FHIR structure table"
-  [elements parse-markdown-fn]
-  (let [nested-elements (nest-by-level elements)
-        last-childs (->> elements
+  [elements parse-markdown-fn & [{:keys [resource-type]}]]
+  (let [;; Increase lvl of all elements by 1 to make them children of resource root
+        adjusted-elements (if resource-type
+                            (map #(update % :lvl inc) elements)
+                            elements)
+        nested-elements (nest-by-level adjusted-elements)
+        last-childs (->> adjusted-elements
                          (map-indexed vector)
                          (filter (fn [[idx {lvl :lvl}]]
-                                   (let [next-el-lvl (-> (nth elements (inc idx) nil)
+                                   (let [next-el-lvl (-> (nth adjusted-elements (inc idx) nil)
                                                          :lvl)]
                                      (or (= (dec lvl) next-el-lvl) (= 0 next-el-lvl)))))
                          (map second))]
 
-    [:table {:class "fhir-structure w-full font-[Inter] text-[12px] font-normal"}
+    [:table {:class "fhir-structure w-full font-sans text-[12px] font-normal border border-outline border-separate border-spacing-0"}
      [:thead
       [:tr {:class "sticky top-0 z-50"}
-       [:th {:class "px-4 py-2 text-left font-normal bg-surface-alt text-on-surface-strong"} "Path"]
+       [:th {:class "px-4 py-2 text-left font-normal bg-surface-alt text-on-surface-strong"} "Name"]
        [:th {:class "px-4 py-2 text-left font-normal bg-surface-alt text-on-surface-strong"} "Card."]
        [:th {:class "px-4 py-2 text-left font-normal bg-surface-alt text-on-surface-strong"} "Type"]
        [:th {:class "px-4 py-2 text-left font-normal bg-surface-alt text-on-surface-strong"} "Description"]]]
      [:tbody.tree
+      (when resource-type
+        [:tr {:class "group"}
+         [:td {:class "flex h-full pl-[15px] py-0 px-4 align-top"}
+          [:div {:class "element flex"}]
+          [:div {:class "relative"}
+           [:div {:class "flex pt-2 pb-1 ml-1"}
+            [:div {:class "pt-[1px]"}
+             (icons/resource-icon)]
+            [:div {:class "pl-2 font-medium"} resource-type]]
+           ;; Add vertical dotted line to show this is root of tree
+           [:div {:class "ml-[10px] h-[calc(100%-6px)] border-l border-dotted border-outline-tree"}]]]
+         [:td {:class "px-4 py-0 align-top"}]
+         [:td {:class "px-4 py-0 align-top"}]
+         [:td {:class "px-4 pt-2 pb-0 align-top"}]])
       (for [node nested-elements]
         ^{:key (:path node)}
         (tree-node node last-childs parse-markdown-fn))]]))

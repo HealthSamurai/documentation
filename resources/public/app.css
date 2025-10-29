@@ -1020,6 +1020,18 @@ table.fhir-structure tbody.tree > tr:hover {
   background-color: var(--color-surface-hover) !important;
 }
 
+/* Remove internal borders from table cells */
+table.fhir-structure td,
+table.fhir-structure th {
+  border: none;
+}
+
+/* Force zero vertical padding on ALL cells in tree rows */
+table.fhir-structure tbody.tree tr td {
+  padding-top: 0 !important;
+  padding-bottom: 0 !important;
+}
+
 /* Tree structure base */
 tbody.tree,
 tbody.tree tbody {
@@ -1028,14 +1040,25 @@ tbody.tree tbody {
   padding: 0;
 }
 
+/* Make .element stretch to full height of TD */
+tbody.tree .element {
+  min-height: 100%;
+}
+
 /* Vertical dotted lines for tree structure */
 tbody.tree .li {
   margin: 0;
   margin-left: 10px;
   padding: 0 7px;
-  line-height: 20px;
   font-family: Inter;
   border-left: 1px dotted var(--color-outline-tree);
+  align-self: stretch;
+}
+
+/* Last line should only be half height */
+tbody.tree .li.last-li {
+  height: 50%;
+  align-self: flex-start;
 }
 
 tbody.tree li:last-child {
