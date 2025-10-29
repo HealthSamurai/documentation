@@ -280,3 +280,55 @@ The following **MessageRequestSubCode** values can be specified by the pharmacy:
 | **M**            | Prescriber must confirm their Certificate To Prescribe Number status                                             | GM          | Active Registration Status                                       | `CertificateToPrescribe`      |
 
 **NOTE**: ReasonCode values are prefilled for each **MessageRequestSubCode** value
+
+For example Pharmacy requested to populated the following data:
+ * StateLicenseNumber (MessageRequestSubCode = A)
+ * DEANumber (MessageRequestSubCode = B)
+ * Data2000WaiverID (MessageRequestSubCode = F)
+ * StateControlSubstanceNumber (MessageRequestSubCode = D)
+ * CertificateToPrescribe (MessageRequestSubCode = M)
+ * NPI (MessageRequestSubCode = G)
+ * Specialty (MessageRequestSubCode = I)
+
+**Practitioner** resource related fields:
+
+```yaml
+...
+identifier:
+  - value: MD123456
+    type:
+      coding:
+        - system: http://terminology.hl7.org/CodeSystem/v2-0203
+          code: SL
+  - value: AB1234563
+    type:
+      coding:
+        - system: http://terminology.hl7.org/CodeSystem/v2-0203
+          code: DEA
+  - value: XB1234563
+    system: urn:app:aidbox:e-prescriptions:ncpdp:Data2000WaiverID
+  - value: MA-CS-456789
+    system: urn:app:aidbox:e-prescriptions:ncpdp:StateControlSubstanceNumber
+  - value: CTP.OH.123456
+    system: urn:app:aidbox:e-prescriptions:ncpdp:CertificateToPrescribe
+  - value: '9102210835'
+    system: http://hl7.org/fhir/sid/us-npi
+    type:
+      coding:
+        - system: http://terminology.hl7.org/CodeSystem/v2-0203
+          code: NPI
+...
+```
+
+**PractitionerRole** resource related fields:
+
+```yaml
+...
+specialty:
+  - coding:
+      - system: http://nucc.org/provider-taxonomy
+        code: 207Q00000X
+        display: Family Medicine
+    text: Family Medicine
+...
+```
