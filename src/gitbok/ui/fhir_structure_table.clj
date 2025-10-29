@@ -129,7 +129,9 @@
                          (filter (fn [[idx {lvl :lvl}]]
                                    (let [next-el-lvl (-> (nth adjusted-elements (inc idx) nil)
                                                          :lvl)]
-                                     (or (= (dec lvl) next-el-lvl) (= 0 next-el-lvl)))))
+                                     (or (= (dec lvl) next-el-lvl)
+                                         (= 0 next-el-lvl)
+                                         (nil? next-el-lvl))))) ;; Include last element
                          (map second))]
 
     [:table {:class "fhir-structure w-full font-sans text-[12px] font-normal border border-outline border-separate border-spacing-0"}

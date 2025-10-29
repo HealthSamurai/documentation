@@ -1057,8 +1057,8 @@ tbody.tree .li {
 
 /* Last line should only be half height */
 tbody.tree .li.last-li {
-  height: 50%;
-  align-self: flex-start;
+  height: 50% !important;
+  align-self: flex-start !important;
 }
 
 tbody.tree li:last-child {
