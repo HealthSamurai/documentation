@@ -24,6 +24,8 @@ repl: init-test
 	MEILISEARCH_API_KEY=-60DBZGy6zoDL6Q--s1-dHBWptiVKvK-XRsaacdvkOSM \
 	MEILISEARCH_URL=http://localhost:7700 \
 	PORT=8081 \
+	POSTHOG_API_KEY=phc_uO4ImMUxOljaWPDRr7lWu9TYpBrpIs4R1RwLu8uLRmx \
+	POSTHOG_HOST=https://ph.aidbox.app \
 	RELOAD_CHECK_INTERVAL_SEC=10 \
   EXAMPLES_UPDATE_INTERVAL=1 \
 	clj -M:dev:nrepl:test:build
