@@ -14,7 +14,7 @@ This approach allows:
 
 In SDC, adaptive forms are typically implemented through the **Questionnaire/$next-question** operation, which computes the next items to display based on a partial **QuestionnaireResponse**.
 
----
+
 
 ## Aidbox Implementation
 
@@ -116,7 +116,6 @@ Aidbox adds support for relevant SDC extensions, including:
 
 This ensures compatibility with both standard SDC adaptive forms and Aidbox-specific enhancements.
 
----
 
 ## Forms Builder
 
@@ -130,7 +129,6 @@ In the **Aidbox Forms Builder**, form authors can enable **Adaptive Mode** for a
 - Questionnaire should not contain any items
 - Questionnaire should have URL property
 
----
 
 ## Form Renderer
 
@@ -151,7 +149,6 @@ Key behaviors:
 4. Renderer sends partial **QuestionnaireResponse** to `$next-question`
 5. Renderer adds new questions to the UI and continues
 
----
 
 ## Adaptive Forms and *entryMode*
 
@@ -164,6 +161,6 @@ Supported modes include:
 
 - **prior-edit** — the user answers questions in order but can skip ahead or return to previous questions to edit responses. The `$next-question` operation is invoked when the user attempts to move to a question that has not yet been reached.
 
----
+
 
 **In summary**, Adaptive Forms in Aidbox extend FHIR SDC’s intelligent data capture capabilities with a full implementation of `$next-question`, seamless integration between builder and renderer, and robust support for dynamic, server-driven questionnaires.
