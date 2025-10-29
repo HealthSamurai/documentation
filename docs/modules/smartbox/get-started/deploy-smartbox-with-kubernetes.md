@@ -75,7 +75,7 @@ BOX\_SMARTBOX\_SANDBOX\_\_BASIC is deprecated. Use BOX\_SMARTBOX\_SANDBOX\_\_ADM
 {% endhint %}
 
 {% hint style="info" %}
-All the available environment variables are defined [here](../../../reference/environment-variables/README.md)
+All the available environment variables are defined [here](../../../reference/all-settings.md)
 {% endhint %}
 
 ## Components templates

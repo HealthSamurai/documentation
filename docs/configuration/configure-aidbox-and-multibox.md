@@ -148,8 +148,8 @@ Refer to the following pages for the specific image description and the list of 
 [aidboxdb-image](../database/aidboxdb-image/)
 {% endcontent-ref %}
 
-{% content-ref url="../reference/environment-variables/" %}
-[environment-variables](../reference/environment-variables/)
+{% content-ref url="../reference/all-settings.md" %}
+[all-settings.md](../reference/all-settings.md)
 {% endcontent-ref %}
 
 You can also see the environment variables in the **Settings page** in **AidboxUI**.

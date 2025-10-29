@@ -90,7 +90,7 @@ GET [/fhir]/<resourceType>?_search-language=<locale>&_sort=<string-search-param>
 
 ### **Collation**
 
-By default PostgreSQL uses system locale to specify sort order. When searching by language, SQL will contain `GROUP BY <...> COLLATE "<locale>"`. Note that if you want to use the non-default locale you must pass it to Aidboxdb with the `EXTRA_LOCALES` [environment variable](../../../reference/environment-variables/aidboxdb-environment-variables.md). Also, note that if locale does not contain a territory part (`language[_territory]`), Aidbox will use "language\_LANGUAGE", e.g. "en\_EN" (is not an locale) or "ru\_RU" (correct locale).
+By default PostgreSQL uses system locale to specify sort order. When searching by language, SQL will contain `GROUP BY <...> COLLATE "<locale>"`. Note that if you want to use the non-default locale you must pass it to Aidboxdb with the `EXTRA_LOCALES` [environment variable](../../../deprecated/deprecated/other/aidboxdb-environment-variables.md). Also, note that if locale does not contain a territory part (`language[_territory]`), Aidbox will use "language\_LANGUAGE", e.g. "en\_EN" (is not an locale) or "ru\_RU" (correct locale).
 
 Collation is supported in **Aidboxdb version 14.7+**.
 

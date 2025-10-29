@@ -6,7 +6,7 @@ Before deployment please read about infrastructure prerequisites.
 
 ## Database
 
-[AidboxDB](../../../reference/environment-variables/aidboxdb-environment-variables.md) is a specialized version of the open-source PostgreSQL database, tailored for use as the data storage backend for Aidbox.
+[AidboxDB](../../../deprecated/deprecated/other/aidboxdb-environment-variables.md) is a specialized version of the open-source PostgreSQL database, tailored for use as the data storage backend for Aidbox.
 
 1. #### **Add aidbox helm repo**
 

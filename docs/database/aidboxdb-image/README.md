@@ -61,8 +61,8 @@ See also [PostgreSQL extensions](../postgresql-extensions.md).
 
 The image is configured by supplying environment variables and command line arguments on startup. Keep in mind that you should not change the environment variables once you have initialized the database. The image expects them to be immutable.
 
-{% content-ref url="../../reference/environment-variables/aidboxdb-environment-variables.md" %}
-[aidboxdb-environment-variables.md](../../reference/environment-variables/aidboxdb-environment-variables.md)
+{% content-ref url="../../deprecated/deprecated/other/aidboxdb-environment-variables.md" %}
+[aidboxdb-environment-variables.md](../../deprecated/deprecated/other/aidboxdb-environment-variables.md)
 {% endcontent-ref %}
 
 ### Archiving
