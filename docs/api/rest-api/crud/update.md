@@ -120,6 +120,38 @@ issue:
     diagnostics: Version Id mismatch
 </code></pre>
 
+## Update Only (Prevent Create on PUT)
+
+When you want to perform a full `PUT` that strictly updates an existing resource and must not create a new one if it doesn’t already exist, you can leverage HTTP conditional headers. Simply include the `If-Match: *` header in your request.
+
+This instructs the server to execute the update only if the target resource exists (i.e., any version). If the resource does not exist, the server will respond with a **412 Precondition Failed** instead of creating a new resource.  
+
+This approach lets you avoid the “two‑call” pattern (GET → PUT) and ensures the semantics of “update only” are preserved.
+
+### Example
+```
+PUT /fhir/Patient/pt-12345
+If-Match: *
+Content-Type: application/fhir+json
+
+{
+  "resourceType": "Patient",
+  "id": "pt-12345",
+  "name": [
+    {
+      "given": ["Alice"],
+      "family": "Johnson"
+    }
+  ],
+  "gender": "female",
+  "birthDate": "1980-07-14"
+}
+```
+
+In this example:  
+- If `Patient/pt-12345` exists, its content is replaced with the supplied JSON (version incremented).  
+- If it does **not** exist, the server returns **412 Precondition Failed** (no create occurs).
+
 ## Isolation levels
 
 To prevent anomalies Aidbox uses `serializable` transaction isolation level by default. This may lead to `412` errors when you modify resources concurrently. Please refer to [the Postgres documentation](https://www.postgresql.org/docs/15/transaction-iso.html) to learn more about transaction isolation.
