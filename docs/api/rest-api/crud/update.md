@@ -126,7 +126,7 @@ When you want to perform a full `PUT` that strictly updates an existing resource
 
 This instructs the server to execute the update only if the target resource exists (i.e., any version). If the resource does not exist, the server will respond with a **412 Precondition Failed** instead of creating a new resource.  
 
-This approach lets you avoid the “two‑call” pattern (GET → PUT) and ensures the semantics of “update only” are preserved.
+This approach lets you avoid the “two‑call” pattern (GET → PUT) and ensures the semantics of “update only” are preserved. Refer to the [FHIR specification](https://hl7.org/fhir/R4/http.html#concurrency) to learn more.
 
 ### Example
 ```
