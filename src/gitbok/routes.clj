@@ -379,25 +379,27 @@
      (ring/router
       routes
       {:data {:muuntaja m/instance
-              :middleware [;; Session management (must be early to set session-id for all requests)
-                           session/wrap-session
-                           ;; PostHog tracking (after session, before metrics to track properly)
-                           #(posthog-middleware/wrap-posthog-tracking % context)
-                           ;; Metrics collection middleware (before gzip to measure actual response time)
-                           metrics/wrap-metrics
-                           ;; Gzip compression (must be early to compress final response)
-                           wrap-gzip
-                           ;; Global exception handler
-                           wrap-exception-handler
-                           ;; Request logging
-                           wrap-request-logging
-                           ;; Request parsing
-                           parameters/parameters-middleware
-                           muuntaja/format-negotiate-middleware
-                           muuntaja/format-response-middleware
-                           muuntaja/format-request-middleware
-                          ;; Custom context
-                           (wrap-request-context context)]}
+              :middleware (vec (remove nil?
+                                 [;; Session management (must be early to set session-id for all requests)
+                                  session/wrap-session
+                                  ;; PostHog tracking (skip in dev mode)
+                                  (when-not (state/get-config context :dev-mode)
+                                    #(posthog-middleware/wrap-posthog-tracking % context))
+                                  ;; Metrics collection middleware (before gzip to measure actual response time)
+                                  metrics/wrap-metrics
+                                  ;; Gzip compression (must be early to compress final response)
+                                  wrap-gzip
+                                  ;; Global exception handler
+                                  wrap-exception-handler
+                                  ;; Request logging
+                                  wrap-request-logging
+                                  ;; Request parsing
+                                  parameters/parameters-middleware
+                                  muuntaja/format-negotiate-middleware
+                                  muuntaja/format-response-middleware
+                                  muuntaja/format-request-middleware
+                                 ;; Custom context
+                                  (wrap-request-context context)]))}
        ;; Use linear-router for predictable route matching order
        :router reitit.core/linear-router
        ;; Disable conflict detection since we want ordered matching

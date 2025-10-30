@@ -182,8 +182,10 @@
       ;; Mermaid config (needed when Mermaid loads)
       [:script {:src (str (http/get-prefixed-url context "/static/mermaid-config.js") version-param) :defer true}]
 
-      [:script {:defer true
-                :src (str (http/get-prefixed-url context "/static/posthog.js") version-param)}]
+      ;; PostHog analytics (skip in dev mode)
+      (when-not (state/get-config context :dev-mode)
+        [:script {:defer true
+                  :src (str (http/get-prefixed-url context "/static/posthog.js") version-param)}])
       ;; Theme toggle functionality
       ;; TODO
       #_[:script {:defer true

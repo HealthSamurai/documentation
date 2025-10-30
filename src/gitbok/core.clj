@@ -24,11 +24,13 @@
          base-url (state/get-config context :base-url)
          version (state/get-config context :version)
          posthog-api-key (state/get-config context :posthog-api-key)
-         posthog-host (state/get-config context :posthog-host)]
+         posthog-host (state/get-config context :posthog-host)
+         dev-mode (state/get-config context :dev-mode)]
 
-     ;; Initialize PostHog client once
-     (when-let [client (posthog/create-client posthog-api-key posthog-host)]
-       (state/set-runtime! context :posthog-client client))
+     ;; Initialize PostHog client once (skip in dev mode)
+     (when-not dev-mode
+       (when-let [client (posthog/create-client posthog-api-key posthog-host)]
+         (state/set-runtime! context :posthog-client client)))
 
      ;; Initialize metrics
      (metrics/initialize-metrics!)
