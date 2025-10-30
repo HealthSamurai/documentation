@@ -22,7 +22,7 @@ Aidbox supports **Adaptive Forms** as part of the **Aidbox Forms** product, foll
 
 Aidbox implements the following key elements:
 
-### ✅ `$next-question` Operation
+### `$next-question` Operation
 
 Aidbox exposes a **Questionnaire/$next-question** operation that:
 
@@ -105,7 +105,7 @@ Example Response:
 }
 ```
 
-### 🧩 Smart Extensions
+### Smart Extensions
 
 Aidbox adds support for relevant SDC extensions, including:
 
@@ -162,5 +162,3 @@ Supported modes include:
 - **prior-edit** — the user answers questions in order but can skip ahead or return to previous questions to edit responses. The `$next-question` operation is invoked when the user attempts to move to a question that has not yet been reached.
 
 
-
-**In summary**, Adaptive Forms in Aidbox extend FHIR SDC’s intelligent data capture capabilities with a full implementation of `$next-question`, seamless integration between builder and renderer, and robust support for dynamic, server-driven questionnaires.
