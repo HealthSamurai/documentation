@@ -4,7 +4,7 @@ description: Adaptive Forms
 
 ## Adaptive Forms in FHIR SDC
 
-**Adaptive Forms** are a feature of the [FHIR Structured Data Capture (SDC)](https://build.fhir.org/ig/HL7/sdc/) Implementation Guide that enables dynamic, intelligent data collection experiences.
+**Adaptive Forms** are a feature of the [FHIR Structured Data Capture (SDC)](https://build.fhir.org/ig/HL7/sdc/en/adaptive.html) Implementation Guide that enables dynamic, intelligent data collection experiences.
 In adaptive mode, a form does not present all questions at once — instead, it adapts as the user responds, showing or hiding questions based on previous answers or dynamically requesting the next question set from a backend service.
 
 This approach allows:
