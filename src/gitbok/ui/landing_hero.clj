@@ -1,6 +1,7 @@
 (ns gitbok.ui.landing-hero
   (:require
    [gitbok.http :as http]
+   [gitbok.state :as state]
    [gitbok.ui.layout :as layout]
    [gitbok.ui.main-navigation :as main-navigation]
    [gitbok.ui.tags :as tags]
@@ -514,6 +515,8 @@
   "Render the landing page for a product"
   [ctx]
   (let [request (:request ctx)
+        version (state/get-config ctx :version)
+        version-param (when version (str "?v=" version))
         ;; Custom page structure with gray background
         full-page
         [:div.min-h-screen.flex.flex-col
@@ -564,9 +567,9 @@
          (layout/site-footer ctx)
 
          ;; Glitch background scripts and styles
-         [:link {:rel "stylesheet" :href (http/get-prefixed-url ctx "/static/glitch-bg.css")}]
+         [:link {:rel "stylesheet" :href (str (http/get-prefixed-url ctx "/static/glitch-bg.css") version-param)}]
 
-         [:script {:src (http/get-prefixed-url ctx "/static/glitch-bg-optimized.js") :defer true}]]
+         [:script {:src (str (http/get-prefixed-url ctx "/static/glitch-bg-optimized.js") version-param) :defer true}]]
 
         title "Aidbox Documentation"
         description "Aidbox - FHIR-first healthcare application platform"]
