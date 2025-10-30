@@ -73,7 +73,40 @@
              :href "https://github.com/HealthSamurai/documentation"
              :target "_blank"
              :rel "noopener noreferrer"}
-         (str "Docs source" version-text)]]]]]))
+         (str "Docs source" version-text)]]
+
+       ;; Theme toggle button
+       [:button {:onclick "toggleTheme()"
+                 :class "p-2 rounded hover:bg-surface-hover transition-colors"
+                 :aria-label "Toggle theme"
+                 :title "Toggle dark/light theme"}
+        ;; Moon icon (shown in light mode)
+        [:svg#moon-icon {:class "w-5 h-5"
+                         :viewBox "0 0 24 24"
+                         :fill "none"
+                         :stroke "currentColor"
+                         :stroke-width "2"
+                         :stroke-linecap "round"
+                         :stroke-linejoin "round"}
+         [:path {:d "M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"}]]
+        ;; Sun icon (shown in dark mode, hidden by default)
+        [:svg#sun-icon {:class "w-5 h-5"
+                        :style "display:none"
+                        :viewBox "0 0 24 24"
+                        :fill "none"
+                        :stroke "currentColor"
+                        :stroke-width "2"
+                        :stroke-linecap "round"
+                        :stroke-linejoin "round"}
+         [:circle {:cx "12" :cy "12" :r "5"}]
+         [:line {:x1 "12" :y1 "1" :x2 "12" :y2 "3"}]
+         [:line {:x1 "12" :y1 "21" :x2 "12" :y2 "23"}]
+         [:line {:x1 "4.22" :y1 "4.22" :x2 "5.64" :y2 "5.64"}]
+         [:line {:x1 "18.36" :y1 "18.36" :x2 "19.78" :y2 "19.78"}]
+         [:line {:x1 "1" :y1 "12" :x2 "3" :y2 "12"}]
+         [:line {:x1 "21" :y1 "12" :x2 "23" :y2 "12"}]
+         [:line {:x1 "4.22" :y1 "19.78" :x2 "5.64" :y2 "18.36"}]
+         [:line {:x1 "18.36" :y1 "5.64" :x2 "19.78" :y2 "4.22"}]]]]]]))
 
 (defn page-wrapper
   "Wrapper for pages with header and footer but no left navigation"
@@ -108,6 +141,14 @@
     [:html {:lang "en"
             :class "antialiased"}
      [:head
+      ;; Theme initialization - must run before render to prevent FOUC
+      [:script (hiccup2.core/raw "
+(function() {
+  const theme = localStorage.getItem('theme') || 'light';
+  if (theme === 'dark') {
+    document.documentElement.classList.add('dark');
+  }
+})();")]
       [:meta {:charset "utf-8"}]
       [:meta {:name "viewport" :content "width=device-width, initial-scale=1.0"}]
       [:meta {:name "description" :content description}]
@@ -164,7 +205,8 @@
                 :defer true}]
 
       ;; Prism.js for syntax highlighting - lazy load with media trick
-      [:link {:rel "stylesheet"
+      [:link {:id "prism-theme"
+              :rel "stylesheet"
               :href (http/get-prefixed-url context "/static/prism.css")
               :media "print"
               :onload "this.media='all'"}]
@@ -186,10 +228,6 @@
       (when-not (state/get-config context :dev-mode)
         [:script {:defer true
                   :src (str (http/get-prefixed-url context "/static/posthog.js") version-param)}])
-      ;; Theme toggle functionality
-      ;; TODO
-      #_[:script {:defer true
-                  :src (str (http/get-prefixed-url context "/static/theme-toggle.js") version-param)}]
 
       ;; PushEngage - moved to end of head
       [:script {:defer true}

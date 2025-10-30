@@ -860,9 +860,13 @@ function showCopySuccess(button) {
       libraries.mermaid.loaded = true;
       libraries.mermaid.loading = false;
 
-      // Initialize mermaid with config
-      if (typeof mermaid !== 'undefined' && window.MERMAID_CONFIG) {
-        mermaid.initialize(window.MERMAID_CONFIG);
+      // Initialize mermaid with correct theme based on current mode
+      if (typeof mermaid !== 'undefined') {
+        const isDark = document.documentElement.classList.contains('dark');
+        const config = isDark ? window.MERMAID_CONFIG_DARK : window.MERMAID_CONFIG;
+        if (config) {
+          mermaid.initialize(config);
+        }
       }
 
       if (callback) callback();
@@ -941,6 +945,11 @@ function showCopySuccess(button) {
     const mermaidBlocks = container.querySelectorAll('pre.mermaid:not([data-mermaid-processed])');
 
     mermaidBlocks.forEach((element, index) => {
+      // Save original code for theme switching (before processing)
+      if (!element.hasAttribute('data-original-code')) {
+        element.setAttribute('data-original-code', element.textContent || element.innerText);
+      }
+
       // Mark as processed immediately to prevent double processing
       element.setAttribute('data-mermaid-processed', 'true');
 
@@ -1328,6 +1337,11 @@ function showCopySuccess(button) {
   // This prevents automatic highlighting on DOMContentLoaded
   window.Prism = window.Prism || {};
   window.Prism.manual = true;
+
+  // Export renderMermaid for theme switching
+  window.renderMermaid = function() {
+    renderMermaid(document.body);
+  };
 })();
 
 // ============================================================================
@@ -1359,4 +1373,109 @@ function showCopySuccess(button) {
       }
     }
   });
+})();
+
+// ============================================================================
+// THEME MANAGEMENT (DARK/LIGHT MODE)
+// ============================================================================
+(function() {
+  'use strict';
+
+  function toggleTheme() {
+    const html = document.documentElement;
+    const isDark = html.classList.contains('dark');
+
+    if (isDark) {
+      html.classList.remove('dark');
+      localStorage.setItem('theme', 'light');
+    } else {
+      html.classList.add('dark');
+      localStorage.setItem('theme', 'dark');
+    }
+
+    updateThemeIcon();
+    updatePrismTheme();
+    updateMermaidTheme();
+  }
+
+  function updateThemeIcon() {
+    const isDark = document.documentElement.classList.contains('dark');
+    const sunIcon = document.querySelector('#sun-icon');
+    const moonIcon = document.querySelector('#moon-icon');
+
+    if (sunIcon && moonIcon) {
+      if (isDark) {
+        sunIcon.style.display = 'block';
+        moonIcon.style.display = 'none';
+      } else {
+        sunIcon.style.display = 'none';
+        moonIcon.style.display = 'block';
+      }
+    }
+  }
+
+  function updatePrismTheme() {
+    const isDark = document.documentElement.classList.contains('dark');
+    const prismLink = document.getElementById('prism-theme');
+
+    if (prismLink) {
+      const currentHref = prismLink.href;
+      const basePath = currentHref.replace(/prism(-dark)?\.css.*$/, '');
+      const newHref = isDark ? basePath + 'prism-dark.css' : basePath + 'prism.css';
+
+      if (prismLink.href !== newHref) {
+        prismLink.href = newHref;
+      }
+    }
+  }
+
+  function updateMermaidTheme() {
+    if (typeof mermaid === 'undefined') return;
+
+    const isDark = document.documentElement.classList.contains('dark');
+    const config = isDark ? window.MERMAID_CONFIG_DARK : window.MERMAID_CONFIG;
+
+    // Find all processed diagrams
+    const elements = document.querySelectorAll('pre.mermaid[data-original-code]');
+
+    if (elements.length === 0) return;
+
+    // Restore original code
+    elements.forEach(element => {
+      const originalCode = element.getAttribute('data-original-code');
+      if (originalCode) {
+        // Remove SVG container if exists
+        const container = element.nextElementSibling;
+        if (container && container.classList.contains('mermaid-container')) {
+          container.remove();
+        }
+
+        // Restore original text
+        element.textContent = originalCode;
+        element.style.display = '';
+        element.removeAttribute('data-mermaid-processed');
+      }
+    });
+
+    // Reinitialize with new theme
+    if (config) {
+      mermaid.initialize(config);
+    }
+
+    // Re-render
+    if (typeof window.renderMermaid === 'function') {
+      window.renderMermaid();
+    }
+  }
+
+  // Initialize on page load
+  document.addEventListener('DOMContentLoaded', function() {
+    updateThemeIcon();
+    updatePrismTheme();
+    // Don't call updateMermaidTheme on initial load - Mermaid will initialize
+    // with correct theme when it loads (see loadMermaid function)
+  });
+
+  // Export toggleTheme to window for use in HTML onclick handlers
+  window.toggleTheme = toggleTheme;
 })();

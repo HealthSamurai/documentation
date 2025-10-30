@@ -66,14 +66,75 @@ window.MERMAID_CONFIG = {
   `
 };
 
-// Function to initialize Mermaid when it's loaded
-window.initializeMermaid = function() {
-  if (typeof mermaid !== 'undefined') {
-    mermaid.initialize(window.MERMAID_CONFIG);
-    // Render any existing mermaid diagrams
-    const mermaidElements = document.querySelectorAll('.language-mermaid, .mermaid');
-    if (mermaidElements.length > 0) {
-      mermaid.run();
-    }
-  }
+// Dark theme configuration
+window.MERMAID_CONFIG_DARK = {
+  startOnLoad: false,
+  theme: 'base',
+  securityLevel: 'loose',
+  themeVariables: {
+    fontFamily: 'Inter, verdana',
+    lineColor: '#999999',
+    secondaryColor: '#2a2a2a',
+    tertiaryColor: '#1a1a1a',
+    primaryColor: '#2a1f1f',
+    primaryTextColor: '#e5e5e5',
+    primaryBorderColor: '#E66B55',
+    sequenceNumberColor: '#7ec699',
+    activationBkgColor: '#3a3a3a',
+    activationBorderColor: '#1a1a1a',
+    loopTextColor: '#E66B55',
+    labelTextColor: '#c792ea',
+    labelBoxBorderColor: '#7ec699',
+    labelBoxBkgColor: '#7ec699',
+    noteBkgColor: '#2a2a2a',
+    noteTextColor: '#e5e5e5',
+    noteBorderColor: '#E66B55',
+    relationColor: '#999999',
+    edgeLabelBackground: '#1a1a1a',
+    clusterBkg: '#2a2a2a',
+    clusterBorder: '#e5e5e5'
+  },
+  themeCSS: `
+    /* ==== RED ==== */
+    .node.red1 rect { fill:#2a1f1f; stroke:#E66B55; stroke-width:1px; }
+    .node.red2 rect { fill:#2a1f1f; stroke:#E66B55; stroke-width:2px; }
+    .node.red3 rect { fill:#2a1f1f; stroke:#E66B55; stroke-width:3px; }
+
+    /* ==== BLUE ==== */
+    .node.blue1 rect { fill:#1f2a3a; stroke:#82aaff; stroke-width:1px; }
+    .node.blue2 rect { fill:#1f2a3a; stroke:#82aaff; stroke-width:2px; }
+    .node.blue3 rect { fill:#1f2a3a; stroke:#82aaff; stroke-width:3px; }
+
+    /* ==== VIOLET ==== */
+    .node.violet1 rect { fill:#2a1f2a; stroke:#c792ea; stroke-width:1px; }
+    .node.violet2 rect { fill:#2a1f2a; stroke:#c792ea; stroke-width:2px; }
+    .node.violet3 rect { fill:#2a1f2a; stroke:#c792ea; stroke-width:3px; }
+
+    /* ==== GREEN ==== */
+    .node.green1 rect { fill:#1f2a23; stroke:#7ec699; stroke-width:1px; }
+    .node.green2 rect { fill:#1f2a23; stroke:#7ec699; stroke-width:2px; }
+    .node.green3 rect { fill:#1f2a23; stroke:#7ec699; stroke-width:3px; }
+
+    /* ==== YELLOW ==== */
+    .node.yellow1 rect { fill:#2a2a1f; stroke:#f8c555; stroke-width:1px; }
+    .node.yellow2 rect { fill:#2a2a1f; stroke:#f8c555; stroke-width:2px; }
+    .node.yellow3 rect { fill:#2a2a1f; stroke:#f8c555; stroke-width:3px; }
+
+    /* ==== NEUTRAL ==== */
+    .node.neutral1 rect { fill:#2a2a2a; stroke:#666666; stroke-width:1px; }
+    .node.neutral2 rect { fill:#2a2a2a; stroke:#666666; stroke-width:2px; }
+    .node.neutral3 rect { fill:#2a2a2a; stroke:#666666; stroke-width:3px; }
+
+    /* ==== LINK LABELS ==== */
+    .edgeLabel.linkLabelNeutral { fill:#e5e5e5; background:#2a2a2a; stroke:#666666; stroke-width:1px; }
+    .edgeLabel.linkLabelSuccess { fill:#e5e5e5; background:#1f2a23; stroke:#7ec699; stroke-width:1px; }
+    .edgeLabel.linkLabelError { fill:#e5e5e5; background:#2a1f1f; stroke:#E66B55; stroke-width:1px; }
+
+    .cluster-label span.nodeLabel p { padding-top: 8px; }
+    .cluster span { color: #999999; text-transform: uppercase; font-size: 12px; letter-spacing: .9px; }
+
+    /* ==== LINK LABELS ==== */
+    .nodeLabel p { padding-right: 2px; padding-left: 2px;}
+    .edgeLabel p { padding-right: 3px; }
+  `
 };

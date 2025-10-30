@@ -201,7 +201,7 @@
          [:div {:class "relative h-9 w-64 max-w-64"
                 :id "meilisearch-wrapper"}
           [:div {:class "flex h-9 w-full items-center overflow-hidden
-                         rounded-md border border-outline bg-white
+                         rounded-md border border-outline bg-surface
                          text-on-surface-secondary transition-all
                          hover:border-outline-input-focus
                          focus-within:border-outline-input-focus
@@ -256,12 +256,12 @@
                  :class "absolute top-full mt-2 right-0 left-0 md:left-auto md:min-w-[32rem] z-50"}]]]
 
         ;; Mobile search container with Meilisearch (hidden by default)
-        [:div {:class "hidden fixed inset-x-0 top-16 z-50 bg-white border-b border-outline md:hidden"
+        [:div {:class "hidden fixed inset-x-0 top-16 z-50 bg-surface border-b border-outline md:hidden"
                :id "mobile-search-container"}
          [:div {:class "p-4"}
-          [:div {:class "flex items-center gap-3 px-4 py-2.5 bg-white border
+          [:div {:class "flex items-center gap-3 px-4 py-2.5 bg-surface border
                  border-outline rounded-aidbox-lg text-on-surface-muted text-sm transition-all duration-200
-                 hover:bg-white hover:border-outline-hover focus-within:border-brand"}
+                 hover:bg-surface hover:border-outline-hover focus-within:border-brand"}
            [:svg {:class "size-4 text-on-surface-placeholder" :fill "none" :stroke "currentColor" :viewBox "0 0 24 24"}
             [:path {:stroke-linecap "round" :stroke-linejoin "round" :stroke-width "2" :d "m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607Z"}]]
            [:input {:type "text"
@@ -290,7 +290,7 @@
 
        ;; Login button (desktop only) - far right with borders
        [:a {:href "https://aidbox.app/ui/portal#/signin"
-            :class "hidden lg:inline-flex items-center justify-center px-4 py-2 text-sm font-semibold leading-5 text-on-surface hover:text-button-hover-text hover:bg-button-hover-bg border border-outline rounded-md transition-colors cursor-pointer"
+            :class "hidden lg:inline-flex items-center justify-center px-4 py-2 text-sm font-semibold leading-5 bg-surface text-on-surface hover:text-button-hover-text hover:bg-button-hover-bg border border-outline rounded-md transition-colors cursor-pointer"
             :target "_blank"
             :rel "noopener noreferrer"}
         "Login"]]])])

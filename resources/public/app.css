@@ -2,6 +2,9 @@
 @source "../docs/**/*.md";
 @source "../src/**/*.clj";
 
+/* Dark mode configuration */
+@custom-variant dark (&:where(.dark, .dark *));
+
 /* Tailwind v4 Theme Configuration */
 @theme {
   /* ==========================================================================
@@ -409,8 +412,110 @@
   --z-overlay: 40;
 }
 
+/* ==========================================================================
+   DARK THEME COLOR OVERRIDES
+   ========================================================================== */
+.dark {
+  /* Surface Colors (Backgrounds) */
+  --color-surface: #1a1a1a;
+  --color-surface-alt: #252525;
+  --color-surface-subtle: #202020;
+  --color-surface-hover: #2a2a2a;
+  --color-surface-result-hover: #2f2f2f;
+  --color-surface-nav-hover: #272727;
+  --color-surface-nav-active: #2c2420;
+  --color-breadcrumb-bg: #2b2c2d;
+  --color-list-marker: #666666;
+  --color-tag-bg: #2e3135;
+  --color-tag-language-bg: #b8b8b8;
+  --color-tag-language-hover: #d0d0d0;
+
+  /* On-Surface Colors (Text) */
+  --color-on-surface: #e5e5e5;
+  --color-on-surface-strong: #ffffff;
+  --color-on-surface-secondary: #b8b8b8;
+  --color-on-surface-muted: #999999;
+  --color-on-surface-placeholder: #7a7a7a;
+  --color-text-muted: #888888;
+
+  /* Button Hover Colors */
+  --color-button-hover-text: #e0e0e0;
+  --color-button-hover-bg: #2a2a2a;
+
+  /* Outline Colors (Borders) */
+  --color-outline: #333333;
+  --color-outline-hover: #444444;
+  --color-outline-input-focus: #666666;
+  --color-outline-subtle: #2a2a2a;
+  --color-outline-strong: #3a3a3a;
+
+  /* Brand Colors */
+  --color-brand: #E66B55;
+  --color-on-brand: #FFFFFF;
+  --color-brand-hover: #D95640;
+  --color-brand-light: #2a1f1e;
+
+  /* Warning Colors */
+  --color-warning-bg: #2d2419;
+  --color-highlight: #4a2d28;
+
+  /* Tree structure */
+  --color-outline-tree: #555555;
+
+  /* Module card colors */
+  --color-module-bg-end: #2a1f1f;
+  --color-module-border: #442d2b;
+  --color-module-label: #EF6B5F;
+
+  /* Semantic Colors */
+  --color-info-2: rgb(30, 41, 59);
+  --color-info-3: rgb(51, 65, 85);
+  --color-info-9: rgb(96, 165, 250);
+  --color-info-12: rgb(147, 197, 253);
+
+  --color-success-2: rgb(20, 83, 45);
+  --color-success-3: rgb(22, 101, 52);
+  --color-success-9: rgb(52, 211, 153);
+  --color-success-12: rgb(110, 231, 183);
+
+  --color-warning-2: rgb(69, 26, 3);
+  --color-warning-3: rgb(120, 53, 15);
+  --color-warning-9: rgb(251, 191, 36);
+  --color-warning-12: rgb(252, 211, 77);
+
+  --color-danger-2: rgb(127, 29, 29);
+  --color-danger-3: rgb(153, 27, 27);
+  --color-danger-9: rgb(248, 113, 113);
+  --color-danger-12: rgb(252, 165, 165);
+
+  /* Header colors */
+  --color-header-bg: rgba(26, 26, 26, 0.95);
+  --color-header-border: rgba(255, 255, 255, 0.08);
+  --color-header-text: rgb(255, 255, 255);
+
+  /* Code Styles */
+  --code-shadow: 0px 1px 0px 0px #000000;
+  --color-code-inline-border: #333333;
+}
+
 html {
   line-height: 1.625;
+  background-color: var(--color-surface);
+}
+
+body {
+  background-color: var(--color-surface);
+  color: var(--color-on-surface);
+}
+
+/* Main content background */
+main#content {
+  background-color: var(--color-surface);
+}
+
+article {
+  background-color: var(--color-surface);
+  color: var(--color-on-surface);
 }
 
 /* ================================================
@@ -420,6 +525,10 @@ html {
 /* Module card gradient background */
 .module-card-gradient {
   background: linear-gradient(90deg, #FFFFFF 44.8%, var(--color-module-bg-end) 161.49%);
+}
+
+.dark .module-card-gradient {
+  background: linear-gradient(90deg, var(--color-surface) 44.8%, var(--color-module-bg-end) 161.49%);
 }
 
 /* Reset browser default styles for mark element */
@@ -450,6 +559,10 @@ mark:has(+ mark) {
   transform: translate(-50%, -50%);
   z-index: 5;
   mix-blend-mode: screen;
+}
+
+.dark .hero-ellipse-overlay {
+  background: radial-gradient(ellipse at center, rgba(26, 26, 26, 0.8) 0%, rgba(26, 26, 26, 0.4) 40%, transparent 70%);
 }
 
 @media (max-width: 1024px) {
@@ -838,7 +951,7 @@ article .hint p {
   left: 0 !important;
   width: 100% !important;
   height: calc(100vh - 4rem)!important;
-  background: white !important;
+  background: var(--color-surface) !important;
   z-index: 40 !important;
   overflow-y: auto !important;
   padding: 1rem !important;
@@ -852,7 +965,7 @@ article .hint p {
 
   /* Header - make fully opaque on mobile and tablet to prevent gray overlay showing through */
   nav[aria-label="Main site menu"] {
-    background: rgb(255, 255, 255) !important; /* Fully opaque white */
+    background: var(--color-surface) !important;
   }
 }
 

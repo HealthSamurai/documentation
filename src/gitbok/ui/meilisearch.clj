@@ -356,7 +356,7 @@
                 truncated))])])]
 
      ;; Arrow icon
-     [:div {:class "size-6 shrink-0 flex items-center justify-center text-black"}
+     [:div {:class "size-6 shrink-0 flex items-center justify-center text-on-surface-strong"}
       [:svg {:class "size-3" :fill "none" :stroke "currentColor" :viewBox "0 0 24 24"}
        [:path {:stroke-linecap "round" :stroke-linejoin "round" :stroke-width "2.5"
                :d "M9 5l7 7-7 7"}]]]]))
@@ -364,7 +364,7 @@
 (defn render-no-results
   "Renders the no results message."
   [query]
-  [:div {:class "bg-white border border-outline md:shadow-lg md:ring-1 md:ring-outline-subtle p-4 text-sm text-on-surface-placeholder md:w-[32rem]"}
+  [:div {:class "bg-surface border border-outline md:shadow-lg md:ring-1 md:ring-outline-subtle p-4 text-sm text-on-surface-placeholder md:w-[32rem]"}
    (str "No results found for \"" query "\"")])
 
 (defn render-group-header
@@ -485,7 +485,7 @@
         ;; Results found - group and render
         (let [groups (group-results-by-hierarchy results)]
           [:div {:id "meilisearch-dropdown"
-                 :class "w-[555px] max-h-[767px] overflow-y-auto rounded-lg p-6 pr-8 bg-white border border-outline shadow-dropdown"}
+                 :class "w-[555px] max-h-[767px] overflow-y-auto rounded-lg p-6 pr-8 bg-surface border border-outline shadow-dropdown"}
            [:div {:class "space-y-4"}
             ;; Render grouped results
             (render-search-results groups)]])))))

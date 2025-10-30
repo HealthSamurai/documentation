@@ -6,7 +6,7 @@
 (defn render-feedback-section []
   [:div {:class "px-3 pt-0 pb-2 mb-3 border-b-1 border-outline-subtle"}
    [:button {:id "feedback-send-button"
-             :class "w-full inline-flex items-center justify-center px-4 py-2.5 text-sm font-semibold leading-5 text-on-surface hover:text-button-hover-text hover:bg-button-hover-bg border border-outline rounded-md transition-colors cursor-pointer"}
+             :class "w-full inline-flex items-center justify-center px-4 py-2.5 text-sm font-semibold leading-5 bg-surface text-on-surface hover:text-button-hover-text hover:bg-button-hover-bg border border-outline rounded-md transition-colors cursor-pointer"}
     "Send feedback"]])
 
 (defn render-right-toc-item [item]

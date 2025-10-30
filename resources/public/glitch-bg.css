@@ -6,7 +6,7 @@
   width: 100%;
   height: calc(100% - 70px); /* Reduced by 70px from bottom */
   overflow: hidden;
-  background: #f9fafb; /* Gray-50 background */
+  background: var(--color-surface-alt);
   z-index: 0;
 }
 
@@ -29,7 +29,7 @@
   font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
   font-size: 11px;
   font-weight: 400;
-  color: #e5e7eb; /* Very light gray, barely visible */
+  color: var(--color-outline-subtle);
   user-select: none;
   /* Remove transition for better performance */
   line-height: 123%;
@@ -41,7 +41,7 @@
 }
 
 .glitch-letter.active {
-  color: #d1d5db; /* Very light gray, just slightly darker than base */
+  color: var(--color-outline);
   font-weight: 500; /* Medium weight for active state */
   /* No animation */
 }

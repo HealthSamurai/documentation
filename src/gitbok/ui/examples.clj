@@ -24,7 +24,7 @@
   [:a {:href github_url :target "_blank" :rel "noopener noreferrer"
        :class "block"}
    [:div.group.rounded-lg.p-6.transition-shadow.duration-200.flex.flex-col.gap-4
-    {:class "border border-outline bg-gradient-to-b from-white to-surface-alt hover:bg-white hover:border-outline-hover hover:from-transparent hover:to-transparent example-card h-[275px] w-[349px]"
+    {:class "border border-outline bg-gradient-to-b from-surface to-surface-alt hover:bg-surface hover:border-outline-hover hover:from-transparent hover:to-transparent example-card h-[275px] w-[349px]"
      :data-example-id id}
     ;; Content section (title and description)
     [:div.flex.flex-col.gap-2
@@ -126,7 +126,7 @@
     [:img {:src "/docs/static/search-icon.svg"
            :alt "Search"
            :class "absolute left-3 pointer-events-none"}]
-    [:input#examples-search.w-full.px-4.py-3.pl-10.pr-4.text-on-surface-strong.bg-white.border.border-outline-subtle.rounded-lg.focus:outline-none.focus:ring-2.focus:ring-brand.focus:border-transparent
+    [:input#examples-search.w-full.px-4.py-3.pl-10.pr-4.text-on-surface-strong.bg-surface.border.border-outline-subtle.rounded-lg.focus:outline-none.focus:ring-2.focus:ring-brand.focus:border-transparent
      {:type "text"
       :name "q"
       :placeholder "Search examples by title, description, or tags..."
@@ -310,7 +310,7 @@
      [:div.flex.flex-col.lg:flex-row.gap-6.w-full
       ;; Filters sidebar
       [:div.lg:w-64.flex-shrink-0
-       [:div {:class "bg-white rounded-lg border border-outline p-[17px]"}
+       [:div {:class "bg-surface rounded-lg border border-outline p-[17px]"}
         [:div.flex.items-center.justify-between.mb-4
          [:h3 {:class "text-xl font-medium leading-8 text-on-surface-strong"} "Filters"]
          (when (or (seq selected-languages) (seq selected-features) (not (str/blank? search-term)))
