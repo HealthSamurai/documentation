@@ -110,7 +110,7 @@
    [:div {:class "grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4"}
     ;; Features
     [:a {:class (str card-base-styles " " card-hover-styles " p-6 h-[176px] no-underline")
-         :href (http/get-product-prefixed-url context "/readme/features")}
+         :href (http/get-product-prefixed-url context "/features")}
      [:img {:src "/docs/.gitbook/assets/star_icon.svg"
             :alt "Features"
             :class "w-6 h-6 mb-4"}]
@@ -119,7 +119,7 @@
 
     ;; Architecture
     [:a {:class (str card-base-styles " " card-hover-styles " p-6 h-[176px] no-underline")
-         :href (http/get-product-prefixed-url context "/readme/architecture")}
+         :href (http/get-product-prefixed-url context "/architecture")}
      [:img {:src "/docs/.gitbook/assets/architecture_icon.svg"
             :alt "Architecture"
             :class "w-6 h-6 mb-4"}]
@@ -128,7 +128,7 @@
 
     ;; Licensing and Support
     [:a {:class (str card-base-styles " " card-hover-styles " p-6 h-[176px] no-underline")
-         :href (http/get-product-prefixed-url context "/readme/licensing")}
+         :href (http/get-product-prefixed-url context "/overview/licensing-and-support")}
      [:img {:src "/docs/.gitbook/assets/licensing_and_support_logo.svg"
             :alt "Licensing & Support"
             :class "w-6 h-6 mb-4"}]

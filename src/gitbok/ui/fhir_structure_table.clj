@@ -78,11 +78,11 @@
                            (not-empty))]
       [:tr {:class "group"}
        [:td {:class "flex h-full pl-[15px] py-0 px-4 align-top"}
-        [:div {:class "element flex"}
+        [:div {:class "element flex h-full"}
          (for [i (range lvl)]
            ^{:key i}
            (let [is-last? (and last-child? (= i (dec lvl)))]
-             [:span {:class (str "block li w-[15px]" (when is-last? " last-li"))}]))]
+             [:span {:class (str "block li w-[15px] h-auto" (when is-last? " last-li"))}]))]
         [:div {:class "relative"}
          (name-cell element)
          (when last-child?

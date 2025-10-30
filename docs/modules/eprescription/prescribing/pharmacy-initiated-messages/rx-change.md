@@ -359,6 +359,19 @@ identifier:
 ...
 ```
 
+If only an inactive **StateLicenseNumber** is available, set the **use** field of the corresponding **identifier** to "old"
+
+```yaml
+...
+  - value: MD123456
+    use: old
+    type:
+      coding:
+        - system: http://terminology.hl7.org/CodeSystem/v2-0203
+          code: SL
+...
+```
+
 **PractitionerRole** resource related fields:
 
 ```yaml

@@ -505,10 +505,10 @@ function openInChatGPT() {
   const fullUrl = window.location.origin + window.location.pathname;
   const prompt = "Read " + fullUrl + " and answer questions about the content.";
   const chatgptUrl = "https://chat.openai.com/?q=" + encodeURIComponent(prompt);
-  
+
   // Track in PostHog
   trackPageAction('open_chatgpt', chatgptUrl);
-  
+
   // Open in new tab
   window.open(chatgptUrl, '_blank');
 }
@@ -517,10 +517,10 @@ function openInClaude() {
   const fullUrl = window.location.origin + window.location.pathname;
   const prompt = "Read from " + fullUrl + " so I can ask questions about it.";
   const claudeUrl = "https://claude.ai/new?q=" + encodeURIComponent(prompt);
-  
+
   // Track in PostHog
   trackPageAction('open_claude', claudeUrl);
-  
+
   // Open in new tab
   window.open(claudeUrl, '_blank');
 }
@@ -851,7 +851,6 @@ function showCopySuccess(button) {
       return;
     }
 
-    console.log('[Content Renderer] Loading Mermaid.js...');
     libraries.mermaid.loading = true;
 
     const script = document.createElement('script');
@@ -866,7 +865,6 @@ function showCopySuccess(button) {
         mermaid.initialize(window.MERMAID_CONFIG);
       }
 
-      console.log('[Content Renderer] Mermaid.js loaded successfully');
       if (callback) callback();
     };
 
@@ -885,7 +883,6 @@ function showCopySuccess(button) {
       return;
     }
 
-    console.log('[Content Renderer] Loading KaTeX...');
     libraries.katex.loading = true;
 
     // Load CSS first
@@ -901,7 +898,6 @@ function showCopySuccess(button) {
     script.onload = function () {
       libraries.katex.loaded = true;
       libraries.katex.loading = false;
-      console.log('[Content Renderer] KaTeX loaded successfully');
       if (callback) callback();
     };
 
