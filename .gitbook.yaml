@@ -213,10 +213,13 @@ redirects:
   app-development-guides/tutorials/patient-encounter-notification-application: deprecated/deprecated/other/app-development-deprecated-tutorials/patient-encounter-notification-application.md
   app-development/aidbox-sdk/aidbox-apps: developer-experience/apps.md
   app-development/aidbox-sdk/aidbox-javascript-sdk: developer-experience/aidbox-sdk/aidbox-javascript-sdk.md
+  app-development/aidbox-sdk/apps: developer-experience/apps.md
   app-development/aidbox-sdk/python-sdk: developer-experience/aidbox-sdk/python-sdk.md
   app-development/aidbox-sdk: developer-experience/aidbox-sdk/README.md
   apple-app-site-association: tutorials/security-access-control-tutorials/apple.md
   auth-betta/basic-auth: tutorials/security-access-control-tutorials/basic-auth.md
+  configuration/installation: configuration/configure-aidbox-and-multibox.md
+  deprecated/deprecated/zen-related/aidbox-api-constructor: deprecated/deprecated/zen-related/api-constructor-docs-beta.md
   getting-started/editions-and-pricing: overview/licensing-and-support.md
   getting-started/lisensing-and-support: overview/licensing-and-support.md
   getting-started/run-aidbox-as-a-saas/aidbox-as-a-saas-on-aws: getting-started/run-aidbox-on-aws.md
@@ -408,6 +411,7 @@ redirects:
   modules-1/profiling-and-validation/asynchronous-resource-validation: modules/profiling-and-validation/asynchronous-resource-validation.md
   modules-1/profiling-and-validation/fhir-schema-validator/aidbox-fhir-igs-registry: modules/profiling-and-validation/fhir-schema-validator/aidbox-fhir-igs-registry.md
   modules-1/profiling-and-validation/fhir-schema-validator/setup-aidbox-with-fhir-schema-validation-engine: modules/profiling-and-validation/fhir-schema-validator/setup-aidbox-with-fhir-schema-validation-engine.md
+  modules-1/profiling-and-validation/fhir-schema-validator/tutorials/how-to-create-fhir-npm-package: tutorials/artifact-registry-tutorials/how-to-create-fhir-npm-package.md
   modules-1/profiling-and-validation/skip-validation-of-references-in-resource-using-request-header: modules/profiling-and-validation/skip-validation-of-references-in-resource-using-request-header.md
   modules-1/security-and-access-control/audit/audit-log: access-control/audit-and-logging.md
   modules-1/security-and-access-control/auth/authorization-code-grant: tutorials/security-access-control-tutorials/authorization-code-grant.md
@@ -474,8 +478,11 @@ redirects:
   modules/aidbox-forms/aidbox-ui-builder-alpha/endpoints: modules/aidbox-forms/aidbox-ui-builder-alpha/request-interception.md
   modules/aidbox-forms/aidbox-ui-builder-alpha/form-creation/how-to-guides/how-to: modules/aidbox-forms/aidbox-ui-builder-alpha/form-creation/how-to-guides/README.md
   modules/aidbox-topic-based-subscriptions: modules/topic-based-subscriptions/aidbox-topic-based-subscriptions.md
+  modules/custom-resources/custom-resources-using-structuredefinition: tutorials/artifact-registry-tutorials/custom-resources/custom-resources-using-structuredefinition.md
   modules/custom-resources/migrate-to-fhirschema: tutorials/artifact-registry-tutorials/custom-resources/migrate-to-fhirschema/README.md
   modules/eprescription/tutorials/environment-variables: modules/eprescription/reference/environment-variables.md
+  modules/integration-toolkit/ccda-converter/sections/hospitaldischargeinstructionssectio: modules/integration-toolkit/ccda-converter/sections/hospital-discharge-instructions-section.md
+  modules/integration-toolkit/ccda-converter/sections/proceduredispositionsection: modules/integration-toolkit/ccda-converter/sections/procedure-disposition-section.md
   modules/observability/logging-and-audit/readme-1/datadog-guide: modules/observability/logs/tutorials/export-logs-to-datadog-tutorial.md
   modules/observability/logging-and-audit/readme-1/how-to-explore-and-visualize-aidbox-logs-with-kibana-and-grafana: modules/observability/logs/tutorials/log-analysis-and-visualization-tutorial.md
   modules/observability/logging-and-audit/technical-reference: modules/observability/logs/technical-reference/README.md
@@ -490,8 +497,10 @@ redirects:
   modules/other-modules/mpi/mathematical-details: modules/mpi/mathematical-details.md
   modules/other-modules/mpi/merging-and-unmerging-records-usdmerge-and-usdunmerge: modules/mpi/merging-and-unmerging-records-usdmerge-and-usdunmerge.md
   modules/other-modules/mpi: modules/mpi/README.md
+  modules/profiling-and-validation/fhir-schema-validator/upload-fhir-implementation-guide/environment-variable: tutorials/artifact-registry-tutorials/upload-fhir-implementation-guide/environment-variable.md
   modules/security-and-access-control/overview: access-control/access-control.md
   modules/security-and-access-control/patient-data-access-api/how-to-enable-patient-data-access-api: tutorials/security-access-control-tutorials/how-to-enable-patient-data-access-api.md
+  modules/security-and-access-control/security/attribute-based-access-control-docs-abac: access-control/authorization/README.md
   modules/smartbox/how-to-guides/find-out-what-resources-were-exported-during-the-usdexport-operation.md: modules/smartbox/how-to-guides/find-out-what-resources-were-exported-during-the-export-operation.md
   modules/smartbox/how-to-guides/pass-inferno-tests-with-smartbox: modules/smartbox/how-to-guides/pass-inferno-tests-with-aidbox.md
   modules/terminology/concept/usdtranslate-concepts.md: deprecated/deprecated/other/terminology/concept/translate-concepts.md
@@ -545,4 +554,5 @@ redirects:
   terminology/aidbox-terminology-module/hybrid: terminology-module/aidbox-terminology-module/hybrid.md
   tools/aidbox-sdk/aidbox-apps: developer-experience/apps.md
   tutorials/security-and-access-control/basic-auth-tutorial: tutorials/security-access-control-tutorials/basic-auth.md
+  tutorials/validation-tutorials/upload-fhir-implementation-guide/aidbox-ui/ig-package-from-aidbox-registry: tutorials/artifact-registry-tutorials/upload-fhir-implementation-guide/aidbox-ui/ig-package-from-aidbox-registry.md
   tutorials/validation-tutorials/upload-fhir-implementation-guide: tutorials/artifact-registry-tutorials/upload-fhir-implementation-guide/README.md
