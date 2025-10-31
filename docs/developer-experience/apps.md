@@ -1,13 +1,8 @@
 # Apps
 
-You can extend [Aidbox](https://www.health-samurai.io/aidbox) with custom Apps. The app can:
+Apps allow you to create custom endpoints in [Aidbox](https://www.health-samurai.io/aidbox). When a request is made to a custom endpoint, Aidbox proxies it to your application service.
 
-* define custom endpoints,
-* define resources,
-* subscribe to hooks or subscriptions.
-
-The app is a standalone service that will work with Aidbox to implement your specific app. The app should be registered in Aidbox.\
-Aidbox SDKs support using Apps:
+An App is a standalone service that handles custom business logic. To enable this integration, you need to register the App resource in Aidbox, defining which endpoints should be proxied to your service and where to send the requests.
 
 ## Example of App resource
 
@@ -24,20 +19,19 @@ endpoint:
    type: http-rpc
    secret: &#x3C;your-sercret>
 operations: &#x3C;Operations-definitions>
-resources: &#x3C;resources-to-be-created>
 </code></pre>
 
 ## App manifest structure
 
 Here's the manifest structure:
 
-<table><thead><tr><th width="207">Key</th><th width="149">Type</th><th>Description</th></tr></thead><tbody><tr><td><strong>id</strong></td><td>string</td><td>Id of the App resource</td></tr><tr><td><strong>apiVersion (required)</strong></td><td>integer</td><td>App API version. Currently, the only option is <code>1</code></td></tr><tr><td><strong>type (required)</strong></td><td>enum</td><td>Type of application. Currently, the only option is <code>app</code></td></tr><tr><td><strong>endpoint</strong></td><td>object</td><td>Information about endpoint: url to redirect the request, protocol, and secret</td></tr><tr><td><strong>operations</strong></td><td>array of operations</td><td>Custom endpoints</td></tr><tr><td><strong>resources</strong></td><td>array of resources in Aidbox format</td><td>Related resources that should be also created</td></tr><tr><td><strong>subscriptions</strong></td><td>array of subscriptions</td><td>Deprecated subscriptions support. Consider using <a href="../../modules/topic-based-subscriptions/aidbox-topic-based-subscriptions">Aidbox topic-based subscriptions</a> or <a href="../../app-development/aidbox-sdk/broken-reference/">SubsSubscriptions</a> instead</td></tr><tr><td><strong>entities</strong></td><td>array of entities</td><td>Deprecated <a href="../../deprecated/deprecated/entity-attribute/entities-and-attributes.md">Entities/Attributes</a> approach to create custom resources</td></tr></tbody></table>
+<table><thead><tr><th width="207">Key</th><th width="149">Type</th><th>Description</th></tr></thead><tbody><tr><td><strong>id</strong></td><td>string</td><td>Id of the App resource</td></tr><tr><td><strong>apiVersion (required)</strong></td><td>integer</td><td>App API version. Currently, the only option is <code>1</code></td></tr><tr><td><strong>type (required)</strong></td><td>enum</td><td>Type of application. Currently, the only option is <code>app</code></td></tr><tr><td><strong>endpoint</strong></td><td>object</td><td>Information about endpoint: url to redirect the request, protocol, and secret</td></tr><tr><td><strong>operations</strong></td><td>array of operations</td><td>Custom endpoints</td></tr><tr><td><strong>resources</strong></td><td>array of resources in Aidbox format</td><td>Deprecated. Related resources that should be also created</td></tr><tr><td><strong>subscriptions</strong></td><td>array of subscriptions</td><td>Deprecated subscriptions support. Consider using <a href="../../modules/topic-based-subscriptions/aidbox-topic-based-subscriptions">Aidbox topic-based subscriptions</a> or <a href="../../app-development/aidbox-sdk/broken-reference/">SubsSubscriptions</a> instead</td></tr><tr><td><strong>entities</strong></td><td>array of entities</td><td>Deprecated <a href="../../deprecated/deprecated/entity-attribute/entities-and-attributes.md">Entities/Attributes</a> approach to create custom resources</td></tr></tbody></table>
 
 ### endpoint
 
 In the `endpoint` section, you describe how Aidbox will communicate with your service:
 
-<table><thead><tr><th width="172">Key</th><th width="103.33333333333331">Type</th><th>Description</th></tr></thead><tbody><tr><td><strong>type (required)</strong></td><td>string</td><td>Protocol of communication. The only option now is <code>http-rpc</code></td></tr><tr><td><strong>url (required)</strong></td><td>string</td><td>Url of the service to redirect a request</td></tr><tr><td><strong>secret</strong></td><td>string</td><td>Secret for Basic Authorization header: <code>base64(&#x3C;id>:&#x3C;secret>)</code></td></tr></tbody></table>
+<table><thead><tr><th width="172">Key</th><th width="103.33333333333331">Type</th><th>Description</th></tr></thead><tbody><tr><td><strong>type (required)</strong></td><td>string</td><td>Protocol of communication. The only option now is <code>http-rpc</code></td></tr><tr><td><strong>url (required)</strong></td><td>string</td><td>Url of the service to redirect a request</td></tr><tr><td><strong>secret</strong></td><td>string</td><td>Secret for Basic Authorization header: <code>base64(id:secret)</code></td></tr></tbody></table>
 
 ### operations
 
@@ -66,6 +60,10 @@ Parameters:
 | **policies** | object                      | Access policies to create and bound to this operation     |
 
 ### resources
+
+{% hint style="warning" %}
+It is a deprecated option to create resources via Aidbox format.
+{% endhint %}
 
 In the resources section, you can provide other resources for Aidbox in the form `{resourceType: {id: resource}}` using Aidbox format:
 
