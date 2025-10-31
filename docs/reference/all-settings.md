@@ -1418,6 +1418,21 @@ Access control in GraphQL API
 
 <details><summary>Details</summary><table data-header-hidden="true"><thead><tr><th width="200"></th><th></th></tr></thead><tbody><tr><td>ID</td><td><code>module.graphql.access-control</code></td></tr><tr><td>Type</td><td>Enum</td></tr><tr><td>Values</td><td><code>rest-search</code> — Additionally authorization checks access to corresponding search queries<br /><code>disabled</code> — Only access to GraphQL endpoint is verified</td></tr><tr><td>Default value</td><td><code>disabled</code></td></tr><tr><td>Environment variable</td><td><code>BOX_MODULE_GRAPHQL_ACCESS_CONTROL</code></td></tr><tr><td>Deprecated environment variables</td><td><code>BOX_FEATURES_GRAPHQL_ACCESS__CONTROL</code></td></tr><tr><td>Sensitive</td><td><code>false</code> — value will be visible in plaintext in Admin UI</td></tr><tr><td>Set via</td><td>Admin UI → Settings<br />Environment variables</td></tr><tr><td>Hot reload</td><td><code>true</code> — setting can be changed at runtime</td></tr></tbody></table></details>
 
+#### Switch to old GraphQL engine (will be removed soon)<a href="#module.graphql.old-lacinia-engine" id="module.graphql.old-lacinia-engine"></a>
+
+```yaml
+BOX_MODULE_GRAPHQL_OLD_LACINIA_ENGINE: false
+```
+
+Enable only if you have compatibility issues.
+
+The new engine should be a drop-in replacement for the old one.
+If you encounter any issues with it, please report us.
+
+The old engine will be removed soon.
+
+<details><summary>Details</summary><table data-header-hidden="true"><thead><tr><th width="200"></th><th></th></tr></thead><tbody><tr><td>ID</td><td><code>module.graphql.old-lacinia-engine</code></td></tr><tr><td>Type</td><td>Bool</td></tr><tr><td>Default value</td><td><code>false</code></td></tr><tr><td>Environment variable</td><td><code>BOX_MODULE_GRAPHQL_OLD_LACINIA_ENGINE</code></td></tr><tr><td>Available from</td><td><code>2510</code></td></tr><tr><td>Sensitive</td><td><code>false</code> — value will be visible in plaintext in Admin UI</td></tr><tr><td>Set via</td><td>Admin UI → Settings<br />Environment variables</td></tr><tr><td>Hot reload</td><td><code>true</code> — setting can be changed at runtime</td></tr></tbody></table></details>
+
 ### Webpush
 
 Webpush settings
