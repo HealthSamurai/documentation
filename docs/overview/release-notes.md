@@ -5,17 +5,17 @@
 ## October 2025 _`latest, 2510`_
 
 * Aidbox FHIR server
-  * Support [$meta](../api/rest-api/other/meta.md), [$meta-add](../api/rest-api/other/meta-add.md), [$meta-delete](../api/rest-api/other/meta-delete.md) operations
-  * Upgrade to use Java 25 LTS as the base image for the `aidboxone` runtime image.
-  * Support [GCP Workload Identity](../file-storage/gcp-cloud-storage.md#workload-identity-recommended-since-2510) for file storage operations.
-  * Support search by contained resources in SearchParameters.
-  * Multiple improvements in FHIR compatibility
-    - `OperationOutcome.text.div` xhtml format
-    - Multiple bugfixes in FHIR Path engine
-    - Improve SQL on FHIR test coverage
-  * Fix issues related to starting Aidbox in multi-instance mode.
-  * Improve GraphQL API performance.
-  * Stop supporting AidboxDB image, completely switch to official PostgreSQL distribution.
+  * Added support for the [$meta](../api/rest-api/other/meta.md), [$meta-add](../api/rest-api/other/meta-add.md), [$meta-delete](../api/rest-api/other/meta-delete.md) operations
+  * Upgraded the `aidboxone` runtime base image to **Java 25 LTS**.
+  * Added support for **GCP Workload Identity** for file storage operations ([recommended since 25.10](../file-storage/gcp-cloud-storage.md#workload-identity-recommended-since-2510))
+  * Added support for **searching by contained resources** in `SearchParameter` definitions.
+  * Improved **FHIR compatibility**, including:
+    - Correct handling of `OperationOutcome.text.div` XHTML format
+    - Multiple bug fixes in **FHIRPath engine**
+    - Enhanced **SQL-on-FHIR test coverage**
+  * Fixed issues related to starting Aidbox in **multi-instance mode**.
+  * Improved **GraphQL API performance**
+  * **Deprecated AidboxDB**: switched completely to the **official PostgreSQL distribution**.
 
 * Minor updates
   * `2509.3` - Fixed vulnerabilities and issues with concurrent startup of multiple instances
