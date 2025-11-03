@@ -5,6 +5,10 @@
 ## October 2025 _`latest, 2510`_
 
 * Aidbox FHIR server
+  * Published a [tutorial](../modules/smartbox/how-to-guides/pass-inferno-tests-with-aidbox.md) on how to pas **Inferno tests** (US Core 6.1.0 / USCDI v3 and SMART App Launch 2.0.0). You can run these tests on **Health Samurai-hosted Inferno instance** [here](https://www.health-samurai.io/inferno/onc_certification_g10).
+  * Enhnanced **Smart App portals**:
+    - **Developer Portal**: Enhanced app and backend services registration and extended documentation
+    - **Administrator Portal**: Enhanced application review process, enhanced application activity dashboards
   * Added support for the [\$meta](../api/rest-api/other/meta.md), [\$meta-add](../api/rest-api/other/meta-add.md), [\$meta-delete](../api/rest-api/other/meta-delete.md) operations
   * Upgraded the `aidboxone` runtime base image to **Java 25 LTS**.
   * Added support for **GCP Workload Identity** for file storage operations ([recommended since 25.10](../file-storage/gcp-cloud-storage.md#workload-identity-recommended-since-2510))
