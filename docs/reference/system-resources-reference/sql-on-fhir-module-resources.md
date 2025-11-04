@@ -364,6 +364,14 @@
   "type" : "string",
   "desc" : "Same as forEach, but produces a single row with null values in the nested expression if the collection is empty. For example,\nwith a Patient resource, a `forEachOrNull` on address will produce a row for each patient even if there are no addresses; it will\nsimply set the address columns to `null`."
 }, {
+  "path" : "select.repeat",
+  "name" : "repeat",
+  "lvl" : 1,
+  "min" : 0,
+  "max" : "*",
+  "type" : "string",
+  "desc" : ""
+}, {
   "path" : "status",
   "name" : "status",
   "lvl" : 0,
