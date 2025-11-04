@@ -7,20 +7,24 @@
 * Aidbox FHIR server
   * Published a [tutorial](../modules/smartbox/how-to-guides/pass-inferno-tests-with-aidbox.md) on how to pas **Inferno tests** (US Core 6.1.0 / USCDI v3 and SMART App Launch 2.0.0). You can run these tests on **Health Samurai-hosted Inferno instance** [here](https://www.health-samurai.io/inferno/onc_certification_g10).
   * Enhnanced **Smart App portals**:
-    - **Developer Portal**: Enhanced app and backend services registration and extended documentation
-    - **Administrator Portal**: Enhanced application review process, enhanced application activity dashboards
-  * Added support for the [\$meta](../api/rest-api/other/meta.md), [\$meta-add](../api/rest-api/other/meta-add.md), [\$meta-delete](../api/rest-api/other/meta-delete.md) operations
+    * **Developer Portal**: Enhanced app and backend services registration and extended documentation
+    * **Administrator Portal**: Enhanced application review process, enhanced application activity dashboards
+  * Added support for the [$meta](../api/rest-api/other/meta.md), [$meta-add](../api/rest-api/other/meta-add.md), [$meta-delete](../api/rest-api/other/meta-delete.md) operations
   * Upgraded the `aidboxone` runtime base image to **Java 25 LTS**.
   * Added support for **GCP Workload Identity** for file storage operations ([recommended since 25.10](../file-storage/gcp-cloud-storage.md#workload-identity-recommended-since-2510))
   * Added support for **searching by contained resources** in `SearchParameter` definitions.
   * Improved **FHIR compatibility**, including:
-    - Correct handling of `OperationOutcome.text.div` XHTML format
-    - Multiple bug fixes in **FHIRPath engine**
-    - Enhanced **SQL-on-FHIR test coverage**
+    * Correct handling of `OperationOutcome.text.div` XHTML format
+    * Multiple bug fixes in **FHIRPath engine**
+    * Enhanced **SQL-on-FHIR test coverage**
   * Fixed issues related to starting Aidbox in **multi-instance mode**.
   * Improved **GraphQL API performance**
   * **Deprecated AidboxDB**: switched completely to the **official PostgreSQL distribution**.
-
+* Aidbox Forms
+  * Supported [Adaptive forms](../modules/aidbox-forms/adaptive-forms.md) in both the Builder and the Renderer.
+  * Implemented the [`$next-question`](../modules/aidbox-forms/adaptive-forms.md) operation for Adaptive forms.
+  * Provided a [sample project](https://github.com/Aidbox/examples/tree/main/aidbox-adaptive-forms) demonstrating how to implement an external assessment center for Adaptive forms.
+  * Supported the [`optionPrefix`](../modules/aidbox-forms/aidbox-ui-builder-alpha/form-creation/widgets.md#choice) extension to display a prefix in front of a code when presenting a list of possible values in a questionnaire.
 * Minor updates
   * `2509.3` - Fixed vulnerabilities and issues with concurrent startup of multiple instances
   * `2508.3` - Fixed vulnerabilities and issues with concurrent startup of multiple instances
