@@ -181,13 +181,20 @@
          ;; Handle LaTeX formulas from nextjournal/markdown
          :formula
          (fn [_ctx node]
-           (let [tex (:text node)]
-             (if (or (str/includes? tex "\\supset")
-                     (str/includes? tex "\\le")
-                     (str/includes? tex "\\ge"))
+           (let [tex (:text node)
+                 ;; Valid LaTeX contains backslash commands or math operators
+                 ;; but NOT markdown artifacts from broken [$meta](link) parsing
+                 valid-latex? (fn [text]
+                                (let [has-latex-command? (str/includes? text "\\")
+                                      has-math-operators? (re-find #"[\^_{}]" text)
+                                      has-math-parens? (re-find #"\([^)]+,\s*[^)]+\)" text)
+                                      is-simple-word? (re-matches #"[a-z\-]+" text)]
+                                  (and
+                                    (or has-latex-command? has-math-operators? has-math-parens?)
+                                    (not is-simple-word?))))]
+             (if (valid-latex? tex)
                [:span.katex-inline tex]
                tex)))
-         ;;
          ;; ;; Handle block formulas (when formula is on separate lines)
          ;; :block-formula
          ;; (fn [_ctx node]

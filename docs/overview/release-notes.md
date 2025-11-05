@@ -9,7 +9,7 @@
   * Enhnanced **Smart App portals**:
     * **Developer Portal**: Enhanced app and backend services registration and extended documentation
     * **Administrator Portal**: Enhanced application review process, enhanced application activity dashboards
-  * Added support for the [$meta](../api/rest-api/other/meta.md), [$meta-add](../api/rest-api/other/meta-add.md), [$meta-delete](../api/rest-api/other/meta-delete.md) operations
+  * Added support for the [`$meta`](../api/rest-api/other/meta.md), [`$meta-add`](../api/rest-api/other/meta-add.md), [`$meta-delete`](../api/rest-api/other/meta-delete.md) operations
   * Upgraded the `aidboxone` runtime base image to **Java 25 LTS**.
   * Added support for **GCP Workload Identity** for file storage operations ([recommended since 25.10](../file-storage/gcp-cloud-storage.md#workload-identity-recommended-since-2510))
   * Added support for **searching by contained resources** in `SearchParameter` definitions.
@@ -81,7 +81,7 @@
 * Aidbox FHIR server
   * Support for delegating read-only workload to the[ database read-only replica.](../database/overview.md#postgresql-with-read-only-replica)
   * Added an [AidboxTopicDestination](../tutorials/subscriptions-tutorials/clickhouse-aidboxtopicdestination.md) to export a ViewDefinition to ClickHouse, enabling real-time analytics.
-  * Implemented SQL-on-FHIR [$run](../modules/sql-on-fhir/operation-run.md) operation allowing direct querying of data through ViewDefinition resources.
+  * Implemented SQL-on-FHIR [`$run`](../modules/sql-on-fhir/operation-run.md) operation allowing direct querying of data through ViewDefinition resources.
   * Integrated a [new Terminology engine](../terminology-module/overview.md) that supports local terminology operations while delegating interactions with external code systems to an external Terminology Server.
   * Introduced `%previous` and `%current` functions for use in [AidboxSubscriptionTopic](../modules/topic-based-subscriptions/aidbox-topic-based-subscriptions.md#aidboxsubscriptiontopic) resources, allowing more precise tracking of changes between resource versions.
   * Aidbox UI improvements:
@@ -492,7 +492,7 @@ Minor updates:
 * SDK
   * Added basic FHIR Profiles support to [Python SDK](https://github.com/Aidbox/aidbox-python)
 * Security and access control
-  * Added Access policy matcho engine [$one-of operator](../reference/matcho-dsl-reference.md) to fetch the list of the available values from the request context
+  * Added Access policy matcho engine [`$one-of` operator](../reference/matcho-dsl-reference.md) to fetch the list of the available values from the request context
   * Supported history endpoint within [the Organisation-based access control](../access-control/authorization/scoped-api/organization-based-hierarchical-access-control.md#history)
   * Documented GitHub as an external identity provider
   * Published [guide on how to use self-signed SSL certificates](../deployment-and-maintenance/deploy-aidbox/run-aidbox-in-kubernetes/self-signed-ssl-certificates.md) when deploying Aidbox
@@ -565,7 +565,7 @@ Minor updates:
   * Supported Patient API
 * DevOps
   * Supported sending traces via OpenTelemetry
-  * Supported Azure Block in [$export operation](../api/bulk-api/export.md#azure)
+  * Supported Azure Block in [`$export` operation](../api/bulk-api/export.md#azure)
 * [Aidbox Forms](../modules/aidbox-forms/)
   * Improved UI-builder:
     * Supported enableWhen expressions (exclusive for Aidbox lisp)
@@ -636,7 +636,7 @@ Minor updates:
 
 * Data API
   * Added multilingual search with \_search-language parameter
-  * Added an option to translate concepts with [$translate-concepts](../deprecated/deprecated/other/terminology/concept/translate-concepts.md) endpoint
+  * Added an option to translate concepts with [`$translate-concepts`](../deprecated/deprecated/other/terminology/concept/translate-concepts.md) endpoint
   * Added \_source search parameter
 * [C-CDA / FHIR converter](../modules/integration-toolkit/ccda-converter/)
   * Supported C-CDA to work as a standalone service
@@ -753,7 +753,7 @@ Minor updates:
   * Fixed sorting by token when using jsonknife engine
   * Added a header to \[lower transaction isolation level]
 * Integrations
-  * Improved [$import operation](../api/bulk-api/import-and-fhir-import.md#import-on-top-of-the-task-api-beta), that allows for more reliable and efficient processing of multiple import requests through the Task API
+  * Improved [`$import` operation](../api/bulk-api/import-and-fhir-import.md#import-on-top-of-the-task-api-beta), that allows for more reliable and efficient processing of multiple import requests through the Task API
   * Released [the new version of HL7 v2 parser](../modules/integration-toolkit/hl7-v2-integration/hl7-v2-integration-with-aidbox-project.md#about-hl7-v2-parser) and [mapping engine](../deprecated/deprecated/other/other-deprecated-tutorials/hl7-v2-pipeline-with-patient-mapping.md)
 * C-CDA to FHIR converter
   * Released [FHIR to C-CDA bidirectional converter](../modules/integration-toolkit/ccda-converter/) (beta). Supported sections:
@@ -1070,7 +1070,7 @@ Starting from January 2022 we're switching to a new release cycle. We added`:lat
 ## November 2021 - v:2111
 
 * Implemented the [`$translate`](../deprecated/deprecated/other/terminology/translate-on-conceptmap.md) operation. So now you can translate code from one value set to another, based on the existing value set and concept maps resources, and/or other additional knowledge available to Aidbox.
-* Released FHIR bulk data export. Using [$export](../api/bulk-api/export.md) you can export patient-level, group level or system-level data to GCP, AWS storage in ndjson format.
+* Released FHIR bulk data export. Using [`$export`](../api/bulk-api/export.md) you can export patient-level, group level or system-level data to GCP, AWS storage in ndjson format.
 * Extended Aidbox Access Policies to [GraphQL API](../api/graphql-api.md).
 * Released [metrics server](../modules/observability/metrics/monitoring/) as an Aidbox component that implements the new metrics API for PostgreSQL, HikariCP and JVM metrics.
 * Added zen FHIR packages version check. Aidbox won't start if you use an outdated zen FHIR package.
@@ -1118,7 +1118,7 @@ Starting from January 2022 we're switching to a new release cycle. We added`:lat
 * Released [Aidbox RPC API](../api/other/rpc-api.md)
 * Supported conditional patch (e.g.: `PATCH /Patient?name=foo`)
 * Added an environment variable to pass the environment to Datadog (dev/staging/prod).
-* Added history for $load and [$import](../api/bulk-api/import-and-fhir-import.md) so now when using bulk import you have a source of truth for the history of every resource.
+* Added history for $load and [`$import`](../api/bulk-api/import-and-fhir-import.md) so now when using bulk import you have a source of truth for the history of every resource.
 * Added [empty query params remove #238](https://github.com/Aidbox/Issues/issues/238). Please **pay attention** **when** **using json-schema** **access policy** engine: Fields with empty values, such as `[], {}, "", null`, are removed before passing request into access policy processing. Make sure to add `require` check of the fields that are validated by a json schema
 * Fixed some bugs submitted by Aidbox users. Check it [here](https://github.com/Aidbox/Issues/milestone/3?closed=1).
 
@@ -1270,7 +1270,7 @@ It's time to upgrade your database - please stop your container and change image
 * In REST Console support for multiline URL line using `\`
 * New `/<RT>/$lookup` operation for efficient lookup search in millions of records
 * [AidboxQuery](../deprecated/deprecated/other/custom-search.md) extended with count-query and params types and defaults
-* New `/<RT>/$load` and `/$load` [bulk operations](../api/bulk-api/load-and-fhir-load.md) were added and [$import](../api/bulk-api/import-and-fhir-import.md) was upgraded
+* New `/<RT>/$load` and `/$load` [bulk operations](../api/bulk-api/load-and-fhir-load.md) were added and [`$import`](../api/bulk-api/import-and-fhir-import.md) was upgraded
 * aidbox/db upgrade to 11.4 + fixes in json\_knife pg extension - (deep patterns, indexes)
 * Highlighted logs for humans in Aidbox.Dev by default: docker logs -f \<your-box-container>
 * New Aidbox.Enterprise
@@ -1319,7 +1319,7 @@ It's time to upgrade your database - please stop your container and change image
 * Search: new \_ilike search parameter
 * Search: \_include=\* support
 * Search: \_list parameter support
-* [$dump](../api/bulk-api/dump.md) - Bulk Export Operation
+* [`$dump`](../api/bulk-api/dump.md) - Bulk Export Operation
 * [Health-Check](../api/rest-api/other/health-check.md) endpoint by [RFC](https://inadarei.github.io/rfc-healthcheck/)
 
 ### Bug Fixes
