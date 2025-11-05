@@ -23,6 +23,7 @@ var TRACKED_DOMAINS = [
                 api_host: 'https://ph.aidbox.app',
                 defaults: '2025-05-24',
                 person_profiles: 'identified_only',
+                cookieless_mode: 'on_reject'
             };
 
             if (sessionId && distinctId && typeof posthog !== 'undefined') {

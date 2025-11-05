@@ -5,6 +5,7 @@
    [gitbok.ui.main-content :as main-content]
    [gitbok.ui.main-navigation :as main-navigation]
    [gitbok.ui.left-navigation :as left-navigation]
+   [gitbok.ui.cookie-banner :as cookie-banner]
    [gitbok.indexing.core :as indexing]
    [gitbok.reload :as reload]
    [gitbok.products :as products]
@@ -73,7 +74,15 @@
              :href "https://github.com/HealthSamurai/documentation"
              :target "_blank"
              :rel "noopener noreferrer"}
-         (str "Docs source" version-text)]]
+         (str "Docs source" version-text)]
+
+        [:span {:class "hidden sm:block text-outline"} "•"]
+
+        ;; Cookie Settings button (only in production)
+        (when-not (state/get-config context :dev-mode)
+          [:button {:onclick "showCookieSettings()"
+                    :class "text-on-surface-strong hover:text-brand transition-colors text-sm leading-5 cursor-pointer bg-transparent border-0 p-0"}
+           "Cookie Settings"])]
 
        ;; Theme toggle button
        [:button {:onclick "toggleTheme()"
@@ -224,26 +233,72 @@
       ;; Mermaid config (needed when Mermaid loads)
       [:script {:src (str (http/get-prefixed-url context "/static/mermaid-config.js") version-param) :defer true}]
 
+      ;; Google Consent Mode - MUST be before GTM (skip in dev mode)
+      (when-not (state/get-config context :dev-mode)
+        [:script
+         (hiccup2.core/raw "
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+
+// Default consent - deny analytics until user accepts
+gtag('consent', 'default', {
+  'analytics_storage': 'denied',
+  'ad_storage': 'denied',
+  'functionality_storage': 'granted',
+  'security_storage': 'granted'
+});")])
+
       ;; PostHog analytics (skip in dev mode)
       (when-not (state/get-config context :dev-mode)
         [:script {:defer true
                   :src (str (http/get-prefixed-url context "/static/posthog.js") version-param)}])
 
-      ;; PushEngage - moved to end of head
-      [:script {:defer true}
-       (hiccup2.core/raw "
-(function(w, d) { w.PushEngage = w.PushEngage || []; w._peq = w._peq || []; PushEngage.push(['init', { appId: '795c4eea-7a69-42d7-bff3-882774303fcf' }]); var e = d.createElement('script'); e.src = 'https://clientcdn.pushengage.com/sdks/pushengage-web-sdk.js'; e.async = true; e.type = 'text/javascript'; d.head.appendChild(e); })(window, document);")]
+      ;; PushEngage - only load if user accepted (skip in dev mode)
+      (when-not (state/get-config context :dev-mode)
+        [:script
+         (hiccup2.core/raw "
+(function() {
+  if (localStorage.getItem('cookie_consent') === 'accepted') {
+    (function(w, d) {
+      w.PushEngage = w.PushEngage || [];
+      w._peq = w._peq || [];
+      PushEngage.push(['init', { appId: '795c4eea-7a69-42d7-bff3-882774303fcf' }]);
+      var e = d.createElement('script');
+      e.src = 'https://clientcdn.pushengage.com/sdks/pushengage-web-sdk.js';
+      e.async = true;
+      e.type = 'text/javascript';
+      d.head.appendChild(e);
+    })(window, document);
+  }
+})();")])
 
-      ;; Google Tag Manager - moved to end of head with defer
-      (hiccup2.core/raw "<!-- Google Tag Manager -->")
-      [:script {:defer true}
-       (hiccup2.core/raw
-        "(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-})(window,document,'script','dataLayer','GTM-PMS5LG2');")]
-      (hiccup2.core/raw "<!-- End Google Tag Manager -->")]
+      ;; Google Tag Manager - only load if user accepted (skip in dev mode)
+      (when-not (state/get-config context :dev-mode)
+        (list
+         (hiccup2.core/raw "<!-- Google Tag Manager -->")
+         [:script
+          (hiccup2.core/raw "
+(function() {
+  var consent = localStorage.getItem('cookie_consent');
+  console.log('[GTM] Checking consent:', consent);
+  if (consent === 'accepted') {
+    console.log('[GTM] Loading GTM...');
+    (function(w,d,s,l,i){
+      w[l]=w[l]||[];
+      w[l].push({'gtm.start': new Date().getTime(),event:'gtm.js'});
+      var f=d.getElementsByTagName(s)[0],
+      j=d.createElement(s),
+      dl=l!='dataLayer'?'&l='+l:'';
+      j.async=true;
+      j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;
+      f.parentNode.insertBefore(j,f);
+      console.log('[GTM] GTM script tag inserted');
+    })(window,document,'script','dataLayer','GTM-PMS5LG2');
+  } else {
+    console.log('[GTM] Consent not accepted, GTM not loaded');
+  }
+})();")]
+         (hiccup2.core/raw "<!-- End Google Tag Manager -->")))]
 
      [:body {:hx-on "htmx:afterSwap: window.scrollTo(0, 0);"}
       (hiccup2.core/raw "<!-- Google Tag Manager (noscript) -->")
@@ -253,6 +308,11 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
          :style
          "display:none;visibility:hidden"}]]
       (hiccup2.core/raw "<!-- End Google Tag Manager (noscript) -->")
+
+      ;; Cookie consent banner (only when PostHog is enabled)
+      (when-not (state/get-config context :dev-mode)
+        (cookie-banner/cookie-banner))
+
       body]]))
 
 (defn hx-target [request]

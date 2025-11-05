@@ -1479,3 +1479,109 @@ function showCopySuccess(button) {
   // Export toggleTheme to window for use in HTML onclick handlers
   window.toggleTheme = toggleTheme;
 })();
+
+// ============================================================================
+// COOKIE CONSENT BANNER
+// ============================================================================
+(function() {
+  'use strict';
+
+  function showCookieBanner() {
+    const banner = document.getElementById('cookie-consent-banner');
+    if (banner) {
+      banner.classList.remove('hidden');
+      banner.style.display = 'block';
+    }
+  }
+
+  function hideCookieBanner() {
+    const banner = document.getElementById('cookie-consent-banner');
+    if (banner) {
+      banner.classList.add('hidden');
+      banner.style.display = 'none';
+    }
+  }
+
+  function handleAcceptCookies() {
+    try {
+      // Set consent flag in localStorage
+      localStorage.setItem('cookie_consent', 'accepted');
+
+      // PostHog opt-in
+      if (typeof posthog !== 'undefined') {
+        posthog.opt_in_capturing();
+      }
+
+      // Update Google Consent Mode
+      if (typeof gtag !== 'undefined') {
+        gtag('consent', 'update', {
+          'analytics_storage': 'granted'
+        });
+      }
+
+      hideCookieBanner();
+
+      // Reload to load GTM and other scripts
+      window.location.reload();
+    } catch (error) {
+      console.error('[Cookie Banner] Error accepting cookies:', error);
+    }
+  }
+
+  function handleRejectCookies() {
+    try {
+      // Set reject flag in localStorage
+      localStorage.setItem('cookie_consent', 'rejected');
+
+      // PostHog opt-out
+      if (typeof posthog !== 'undefined') {
+        posthog.opt_out_capturing();
+      }
+
+      // Google Consent Mode stays denied (already set in default)
+
+      hideCookieBanner();
+
+      // Reload to remove already loaded scripts (Intercom, etc.)
+      window.location.reload();
+    } catch (error) {
+      console.error('[Cookie Banner] Error rejecting cookies:', error);
+    }
+  }
+
+  function checkConsentStatus() {
+    try {
+      // Check localStorage for consent decision
+      var consentChoice = localStorage.getItem('cookie_consent');
+
+      // If user already made a choice, don't show banner
+      if (consentChoice === 'accepted' || consentChoice === 'rejected') {
+        hideCookieBanner();
+        return;
+      }
+
+      // No choice made yet, show banner
+      showCookieBanner();
+    } catch (error) {
+      console.error('[Cookie Banner] Error checking consent status:', error);
+    }
+  }
+
+  // Initialize on page load
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', checkConsentStatus);
+  } else {
+    checkConsentStatus();
+  }
+
+  function showCookieSettings() {
+    // Clear consent choice and show banner again
+    localStorage.removeItem('cookie_consent');
+    showCookieBanner();
+  }
+
+  // Export functions to window for use in onclick handlers
+  window.handleAcceptCookies = handleAcceptCookies;
+  window.handleRejectCookies = handleRejectCookies;
+  window.showCookieSettings = showCookieSettings;
+})();
