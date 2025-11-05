@@ -14,8 +14,9 @@
 
 (defn start
   "Start the server"
-  []
-  (let [result (core/start! {:dev-mode true})]
+  [& [dev?]]
+  (println "dev? " dev?)
+  (let [result (core/start! {:dev-mode dev?})]
     (reset! server-context (:context result))
     (log/info "Server started")
     :started))
@@ -47,8 +48,9 @@
 
 (comment
   ;; Start server
-  (start)
+  (start true)
 
+  (start false)
   ;; Stop server
   (stop)
 

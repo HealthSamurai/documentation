@@ -53,8 +53,9 @@
                 :base-url (or base-url
                               (System/getenv "BASE_URL")
                               "http://localhost:8080")
-                :dev-mode (or dev-mode
-                              (= "true" (System/getenv "DEV")))
+                :dev-mode (if (nil? dev-mode)
+                            (= "true" (System/getenv "DEV"))
+                            dev-mode)
                 :version (or version
                              (slurp-resource-init "version"))
                 ;; All environment variables are now at the same level
