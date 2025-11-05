@@ -242,8 +242,3 @@ filename: data.txt
 ```
 
 The URL expires in 30 minutes (1800 seconds).
-
-## References
-
-- [Google Cloud Storage documentation](https://cloud.google.com/storage/docs)
-- [Best practices for using Workload Identity](https://cloud.google.com/iam/docs/best-practices-for-using-workload-identity)
