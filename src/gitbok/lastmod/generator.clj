@@ -232,6 +232,11 @@
                                     ;; Clean up the relative path to remove worktree artifacts
                                     ;; In k8s with git-sync, paths may include worktree hashes
                                      rel-str (str rel)
+                                    ;; If the path goes up (../) it means the file is outside our docs dir
+                                    ;; In that case, just use the filename
+                                     rel-str (if (str/starts-with? rel-str "..")
+                                               (.getName f)
+                                               rel-str)
                                     ;; Find the last occurrence of /docs/ and take everything after it
                                     ;; This handles both regular and worktree paths
                                      clean-rel (if-let [idx (str/last-index-of rel-str "/docs/")]

@@ -108,17 +108,24 @@
         (spit (io/file temp-dir "test.html") "<html>")
         (spit (io/file temp-dir "README") "No extension")
 
-        ;; Without git, all files will have nil dates
-        ;; But we can verify that only .md files are processed
+        ;; Mock batch-get-all-lastmods to return data for all files
+        ;; to verify filtering happens correctly
         (with-redefs [gen/batch-get-all-lastmods
-                      (fn [_ _]
-                        ;; Return timestamps only for .md files
-                        {"test.md" "2024-01-01T00:00:00Z"})]
+                      (fn [docs-dir _]
+                        ;; Return timestamps for ALL files to verify that only .md are processed
+                        {"test.md" "2024-01-01T00:00:00Z"
+                         "test.txt" "2024-01-02T00:00:00Z"
+                         "test.html" "2024-01-03T00:00:00Z"
+                         "README" "2024-01-04T00:00:00Z"})]
           (let [context {:system (atom {:config {:docs-repo-path "."}})}
                 data (gen/generate-lastmod-data context (.getPath temp-dir))]
-            ;; Should only have the .md file
+            ;; Should only have the .md file, others should be filtered out
+            ;; during the file walking phase (not in batch-get-all-lastmods)
             (is (= 1 (count data)))
-            (is (contains? data "test.md"))))
+            (is (contains? data "test.md"))
+            (is (not (contains? data "test.txt")))
+            (is (not (contains? data "test.html")))
+            (is (not (contains? data "README")))))
 
         (finally
           (doseq [f (.listFiles temp-dir)]
