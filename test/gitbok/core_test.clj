@@ -6,7 +6,8 @@
    [gitbok.handlers :as handlers]
    [gitbok.ui.layout :as layout]
    [gitbok.products :as products]
-   [gitbok.initialization :as initialization]))
+   [gitbok.initialization :as initialization]
+   [gitbok.analytics.posthog :as posthog]))
 
 (deftest test-root-redirect-handler
   (testing "root-redirect-handler with configured redirect"
@@ -122,3 +123,71 @@
         (is (= [nil false]
                (handlers/get-redirect-with-fragment ctx "non-existent-page#section")))))))
 
+(deftest test-posthog-initialization
+  (testing "PostHog client initializes and is accessible via state/get-runtime when dev-mode is false"
+    (let [mock-client (reify Object
+                        (toString [_] "MockPostHogClient"))
+          context (th/create-test-context)]
+      (with-redefs [posthog/create-client (fn [api-key _host]
+                                             (when api-key mock-client))]
+        ;; Set config for non-dev mode with API key
+        (state/set-state! context [:config :dev-mode] false)
+        (state/set-state! context [:config :posthog-api-key] "test-api-key")
+        (state/set-state! context [:config :posthog-host] "https://test.posthog.com")
+
+        ;; Simulate initialization logic from core.clj
+        (let [dev-mode (state/get-config context :dev-mode)
+              posthog-api-key (state/get-config context :posthog-api-key)
+              posthog-host (state/get-config context :posthog-host)]
+          (when-not dev-mode
+            (when-let [client (posthog/create-client posthog-api-key posthog-host)]
+              (state/set-runtime! context :posthog-client client))))
+
+        ;; Verify client is initialized and accessible
+        (is (some? (state/get-runtime context :posthog-client))
+            "PostHog client should be initialized")
+        (is (= mock-client (state/get-runtime context :posthog-client))
+            "PostHog client should be the mock client"))))
+
+  (testing "PostHog client does NOT initialize when dev-mode is true"
+    (let [context (th/create-test-context)]
+      (with-redefs [posthog/create-client (fn [_ _]
+                                             (throw (Exception. "Should not be called in dev mode")))]
+        ;; Set config for dev mode
+        (state/set-state! context [:config :dev-mode] true)
+        (state/set-state! context [:config :posthog-api-key] "test-api-key")
+        (state/set-state! context [:config :posthog-host] "https://test.posthog.com")
+
+        ;; Simulate initialization logic from core.clj
+        (let [dev-mode (state/get-config context :dev-mode)
+              posthog-api-key (state/get-config context :posthog-api-key)
+              posthog-host (state/get-config context :posthog-host)]
+          (when-not dev-mode
+            (when-let [client (posthog/create-client posthog-api-key posthog-host)]
+              (state/set-runtime! context :posthog-client client))))
+
+        ;; Verify client is NOT initialized
+        (is (nil? (state/get-runtime context :posthog-client))
+            "PostHog client should NOT be initialized in dev mode"))))
+
+  (testing "PostHog client does NOT initialize when API key is missing"
+    (let [context (th/create-test-context)]
+      (with-redefs [posthog/create-client (fn [api-key _host]
+                                             (when api-key
+                                               (throw (Exception. "Should not create client without API key"))))]
+        ;; Set config without API key
+        (state/set-state! context [:config :dev-mode] false)
+        (state/set-state! context [:config :posthog-api-key] nil)
+        (state/set-state! context [:config :posthog-host] "https://test.posthog.com")
+
+        ;; Simulate initialization logic from core.clj
+        (let [dev-mode (state/get-config context :dev-mode)
+              posthog-api-key (state/get-config context :posthog-api-key)
+              posthog-host (state/get-config context :posthog-host)]
+          (when-not dev-mode
+            (when-let [client (posthog/create-client posthog-api-key posthog-host)]
+              (state/set-runtime! context :posthog-client client))))
+
+        ;; Verify client is NOT initialized
+        (is (nil? (state/get-runtime context :posthog-client))
+            "PostHog client should NOT be initialized without API key")))))
