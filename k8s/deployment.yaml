@@ -52,7 +52,7 @@ spec:
           mountPath: /git-data
       containers:
       - name: main
-        image: ghcr.io/healthsamurai/documentation:1.5.0 # {"$imagepolicy": "flux-system:gitbok"}
+        image: ghcr.io/healthsamurai/documentation:1.5.1
         imagePullPolicy: Always
         resources:
           requests:
