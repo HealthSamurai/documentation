@@ -5,6 +5,8 @@
 RxChange is a type of message sent by pharmacy to subscriber when the medication should be changed to a different one.
 It is required that RxChange is preceded by NewRx.
 
+**Note**: The pharmacy may include a **ChangeReasonText** field containing the reason for requesting a medication change. This information is stored in the **MedicationRequest** resource as an extension **MedicationRequest.extension.where(url = "http://aidbox.app/ePrescription/FHIRSchema/medication-request-rx-change-change-reason-text")**
+
 ## Decisions use cases
 
 {% hint style="info" %}
