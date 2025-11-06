@@ -336,14 +336,19 @@ Authorize inline requests (`_revinclude` and `_include`) with access policies. [
 
 <details><summary>Details</summary><table data-header-hidden="true"><thead><tr><th width="200"></th><th></th></tr></thead><tbody><tr><td>ID</td><td><code>fhir.search.authorize-inline-requests</code></td></tr><tr><td>Type</td><td>Bool</td></tr><tr><td>Recommended value</td><td><code>true</code></td></tr><tr><td>Default value</td><td><code>false</code></td></tr><tr><td>Environment variable</td><td><code>BOX_FHIR_SEARCH_AUTHORIZE_INLINE_REQUESTS</code></td></tr><tr><td>Deprecated environment variables</td><td><code>BOX_SEARCH_AUTHORIZE_INLINE_REQUESTS</code></td></tr><tr><td>Sensitive</td><td><code>false</code> — value will be visible in plaintext in Admin UI</td></tr><tr><td>Set via</td><td>Admin UI → Settings<br />Environment variables</td></tr><tr><td>Hot reload</td><td><code>true</code> — setting can be changed at runtime</td></tr></tbody></table></details>
 
-#### Use semi join in chained searches<a href="#fhir.search.chain.subselect" id="fhir.search.chain.subselect"></a>
+#### Use subselects in chained searches<a href="#fhir.search.chain.subselect" id="fhir.search.chain.subselect"></a>
 
 ```yaml
 BOX_FHIR_SEARCH_CHAIN_SUBSELECT: true
 ```
 
-When the search query does not use _has search parameters, use subselect instead of INNER JOIN for forward chain searches.
-This is a performance optimization which could require building additional indexes.
+Uses subselects instead of INNER JOINs + DISTINCT ON for chain searches:
+- Forward chain searches
+- Simple reverse chain searches (_has) with one level
+
+This optimization significantly improves performance,
+especially for queries with large result sets or many-to-one relationships.
+May require building additional indexes for optimal performance.
 
 <details><summary>Details</summary><table data-header-hidden="true"><thead><tr><th width="200"></th><th></th></tr></thead><tbody><tr><td>ID</td><td><code>fhir.search.chain.subselect</code></td></tr><tr><td>Type</td><td>Bool</td></tr><tr><td>Recommended value</td><td><code>true</code></td></tr><tr><td>Default value</td><td><code>false</code></td></tr><tr><td>Environment variable</td><td><code>BOX_FHIR_SEARCH_CHAIN_SUBSELECT</code></td></tr><tr><td>Deprecated environment variables</td><td><code>BOX_SEARCH_CHAIN_SUBSELECT</code></td></tr><tr><td>Sensitive</td><td><code>false</code> — value will be visible in plaintext in Admin UI</td></tr><tr><td>Set via</td><td>Admin UI → Settings<br />Environment variables</td></tr><tr><td>Hot reload</td><td><code>true</code> — setting can be changed at runtime</td></tr></tbody></table></details>
 
