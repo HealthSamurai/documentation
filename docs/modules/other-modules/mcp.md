@@ -171,7 +171,10 @@ $ npx -y supergateway --sse <your-box-base-url>/sse
 }
 ```
 
-* For Claude Code, run `claude mcp add aidbox-mcp -- npx -y supergateway --sse http://localhost:8765/sse`
+* For Claude Code, run: 
+  ```
+  claude mcp add aidbox-mcp -- npx -y supergateway --sse http://localhost:8080/sse
+  ```
 * For the `Cursor` editor add this config to your project folder `.cursor/mcp.json` and make sure that `Settings` -> `Cursor Settings` -> `MCP` is enabled.
 * For the LLM Desktop applications, such `Claude Desktop`, `ChatGPT` etc. go to the `Settings` and set the config. For example, in `Claude` desktop app go to `Settings` -> `Developer` -> `Edit Config`.
 
