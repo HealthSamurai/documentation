@@ -30,7 +30,7 @@
             (str "/" uri)))))))
 
 (defn big-link-view [href title & [image]]
-  [:div {:class "big-link mt-6 p-4 border
+  [:div {:class "big-link mt-2 mb-4 p-4 border
          border-outline
          rounded-lg bg-surface hover:border-brand
          transition-all duration-200 flex

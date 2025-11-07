@@ -28,10 +28,10 @@
       (let [tag (first header-hiccup)
             classes (case tag
                       :h1 "mt-2 text-5xl font-bold text-on-surface-strong mx-auto max-w-full break-words"
-                      :h2 "mt-[1.05em] text-4xl font-semibold text-on-surface-strong pb-2 mx-auto"
-                      :h3 "mt-6 text-2xl font-semibold text-on-surface-strong mb-4 mx-auto"
+                      :h2 "mt-[1.05em] text-4xl font-semibold text-on-surface-strong mx-auto"
+                      :h3 "mt-8 text-2xl font-semibold text-on-surface-strong mx-auto"
                       :h4 "mt-4 text-lg font-semibold text-on-surface-strong mb-3 mx-auto"
-                      :h5 "mt-3 text-base font-semibold text-on-surface-strong mb-2 mx-auto"
+                      :h5 "mt-3 text-base font-semibold text-on-surface-strong mx-auto"
                       :h6 "mt-2 text-sm font-semibold text-on-surface-strong mb-1 mx-auto"
                       "text-on-surface-strong")
             ;; Check if there's an inline anchor with id in the node content
