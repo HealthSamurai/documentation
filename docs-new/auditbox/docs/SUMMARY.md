@@ -6,6 +6,7 @@
 ## Guides
 
   * [Setup Archiving To S3](configuration/archive.md)
+  * [Setup Archiving To GCP (Google Cloud Platform)](configuration/gcs-archive.md)
 
 ## Reference
 
