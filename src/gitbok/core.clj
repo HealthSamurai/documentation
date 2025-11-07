@@ -28,14 +28,18 @@
          dev-mode (state/get-config context :dev-mode)]
 
      ;; Initialize PostHog client once (skip in dev mode)
+     (log/info "POSTHOG INIT CHECK" {:dev-mode dev-mode
+                                      :api-key-present (boolean posthog-api-key)
+                                      :host posthog-host
+                                      :will-initialize (not dev-mode)})
      (when-not dev-mode
-       (log/info "Attempting to initialize PostHog client" {:api-key-present (boolean posthog-api-key)
-                                                             :host posthog-host})
+       (log/info "POSTHOG: Attempting to initialize PostHog client" {:api-key-present (boolean posthog-api-key)
+                                                                       :host posthog-host})
        (if-let [client (posthog/create-client posthog-api-key posthog-host)]
          (do
            (state/set-runtime! context :posthog-client client)
-           (log/info "PostHog client successfully initialized and stored in runtime"))
-         (log/warn "PostHog client creation returned nil - check logs for errors")))
+           (log/info "POSTHOG: Client successfully initialized and stored in runtime"))
+         (log/warn "POSTHOG: Client creation returned nil - check logs for errors")))
 
      ;; Initialize metrics
      (metrics/initialize-metrics!)
