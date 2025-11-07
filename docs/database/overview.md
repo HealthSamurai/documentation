@@ -108,7 +108,7 @@ WHERE resource->'address'->0->>'state' = 'MA';
 
 The beauty is that these aren't special Aidbox queries - they're standard PostgreSQL JSON operations that any PostgreSQL client (psql, pgAdmin, DBeaver, etc.) can run.
 
-See also:
+**See also:**
 
 {% content-ref url="database-schema.md" %}
 [Database Schema](database-schema.md)
