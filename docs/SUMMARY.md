@@ -464,6 +464,7 @@
   * [How-to Guides](modules/smartbox/how-to-guides/README.md)
     * [Pass Inferno Tests with Aidbox](modules/smartbox/how-to-guides/pass-inferno-tests-with-aidbox.md)
     * [Perform EHR Launch](modules/smartbox/how-to-guides/perform-ehr-launch.md)
+    * [Smartbox to Aidbox Migration Guide](modules/smartbox/how-to-guides/smartbox-to-aidbox-migration-guide.md)
     * [Pass Inferno Visual Inspection and Attestation](modules/smartbox/how-to-guides/pass-inferno-visual-inspection-and-attestation.md)
     * [Revoke Granted Access](modules/smartbox/how-to-guides/revoke-granted-access.md)
     * [Set up EHR-level Customization](modules/smartbox/how-to-guides/set-up-ehr-level-customization.md)
