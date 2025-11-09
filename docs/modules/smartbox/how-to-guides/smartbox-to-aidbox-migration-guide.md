@@ -462,19 +462,15 @@ accept: text/yaml
     WHERE resource->'details' = '{}'::jsonb;
 ```
 
----
-
 #### 7. Post-Migration Verification
 
-Now you can run Inferno G10 test kit on both Aidbox instances to verify compliance with G10 certification.
+Now you can run Inferno G10 test kit on both Aidbox instances to verify compliance with G10 certification. See [Pass Inferno Tests with Aidbox](pass-inferno-tests-with-aidbox.md) for step-by-step instructions.
 
----
-
-## API Changes: Smartbox → Aidbox
+### API Changes: Smartbox → Aidbox
 
 If you have applications built on top of Smartbox API, you need to update your API calls to use the new Aidbox endpoint patterns.
 
-### Endpoint Pattern Comparison
+#### Endpoint Pattern Comparison
 
 | API Category | Smartbox Pattern | Aidbox Pattern | Notes |
 |--------------|------------------|----------------|-------|
@@ -492,7 +488,7 @@ If you have applications built on top of Smartbox API, you need to update your A
 | **Bulk Data - Status** | `/fhir/bulkstatus/{request-id}` | `/fhir/bulkstatus/{request-id}` | ✅ No change  |
 | **C-CDA Document Generation** | `/ccda/make-doc` | `/ccda/make-doc` | ✅ No change  |
 
-### Key Changes Summary
+#### Key Changes Summary
 
 1. **Tenant → Organization** (FHIR Resources only): The primary change is replacing `/tenant/{tenant-id}` with `/Organization/{org-id}` for FHIR resource endpoints
 2. **Unified Patient/Provider**: Aidbox uses a single set of endpoints instead of separate `/patient/` and `/provider/` paths
@@ -502,5 +498,4 @@ If you have applications built on top of Smartbox API, you need to update your A
 
 
 
-### Additional Resources
 
