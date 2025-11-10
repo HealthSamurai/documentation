@@ -5,10 +5,9 @@
 
 ## Guides
 
-  * [Setup Archiving To S3](configuration/archive.md)
-  * [Setup Archiving To GCP (Google Cloud Platform)](configuration/gcs-archive.md)
+  * [How to Set Up Archiving to MinIO](configuration/minio-archive.md)
+  * [How to Set Up Archiving to GCS](configuration/gcs-archive.md)
 
 ## Reference
-
   * [Environment variables](configuration/envs.md)
   * [API](api.md)

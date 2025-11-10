@@ -1,12 +1,12 @@
-# Archive Configuration
+# How To Setup Archiving To Minio
 
-This guide explains how to configure Auditbox with S3 archiving functionality. This enables automatic backup of audit events to S3-compatible storage for long-term retention and compliance.
+This guide explains how to configure Auditbox with MinIO archiving functionality. This enables automatic backup of audit events to S3-compatible storage for long-term retention and compliance.
 
 ## Prerequisites
 
 - Elasticsearch 8.x cluster
-- AWS S3 bucket or S3-compatible storage (MinIO, etc.)
-- AWS access key ID and secret access key
+- MinIO server with a bucket created
+- MinIO access key ID and secret access key
 
 ## Step 1: Configure Elasticsearch S3 Credentials
 
@@ -24,11 +24,11 @@ echo "your-secret-access-key" | bin/elasticsearch-keystore add s3.client.default
 
 ## Step 2: Configure Auditbox Environment Variables
 
-Enable S3 archiving in Auditbox by setting the following environment variables:
+Enable MinIO archiving in Auditbox by setting the following environment variables:
 
 ```yaml
 environment:
-  # Enable S3 archiving
+  # Enable archiving to MinIO
   AUDITBOX_ARCHIVE_S3_ENABLED: true
 
   # Data retention period (days before archiving)

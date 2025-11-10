@@ -1,4 +1,4 @@
-# Archive Configuration with Google Cloud Storage
+# How To Setup Archiving To GCS
 
 This guide explains how to configure Auditbox with Google Cloud Storage (GCS) archiving functionality. This enables automatic backup of audit events to GCS for long-term retention and compliance.
 
@@ -50,7 +50,7 @@ Enable GCS archiving in Auditbox by setting the following environment variables:
 
 ```yaml
 environment:
-  # Enable S3 archiving
+  # Enable GCS archiving
   AUDITBOX_ARCHIVE_S3_ENABLED: true
 
   # Data retention period (days before archiving)
