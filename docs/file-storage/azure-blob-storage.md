@@ -1,201 +1,221 @@
+---
+description: Store files in Azure Blob Storage using Shared Access Signatures (SAS) or workload identity for secure, temporary access to blobs.
+---
+
 # Azure Blob Storage
 
-Azure Blob Storage is used to store arbitrary unstructured data like images, files, backups, etc. You can read more on Blob Storage [here](https://docs.microsoft.com/en-gb/azure/storage/blobs/storage-blobs-introduction).&#x20;
+Azure Blob Storage stores arbitrary unstructured data like images, files, and backups. Aidbox integrates with Blob Storage through [Shared Access Signatures (SAS)](https://learn.microsoft.com/en-us/rest/api/storageservices/delegate-access-with-shared-access-signature), which provide temporary, secure URLs for uploading and retrieving data.
 
-Aidbox offers integration with Blob Storage to simplify the upload and retrieval of data, called a [**Shared Access Signature**](https://learn.microsoft.com/en-us/rest/api/storageservices/delegate-access-with-shared-access-signature) **(SAS)**. Aidbox can generate two types of SAS:
+Aidbox supports three authentication methods for generating SAS tokens:
 
-* [account SAS](https://learn.microsoft.com/en-us/rest/api/storageservices/create-account-sas)
-* [user delegation SAS](https://learn.microsoft.com/en-us/rest/api/storageservices/create-user-delegation-sas) (since 2508)
+* **Workload identity** (since 2511) - uses [Azure AD workload identity](https://learn.microsoft.com/en-us/azure/active-directory/workload-identities/workload-identities-overview) with managed identities, no credentials stored in Aidbox
+* **User delegation SAS** (since 2508) - uses Azure Application credentials (client ID and secret) to generate SAS tokens
+* **Account SAS** - uses storage account keys directly
 
-The main differences between them are that the account SAS requires the account key, whereas the user delegation SAS requires the client and client secrets from the Azure Application. We recommend using a user delegation SAS.
+Workload identity is the most secure option, as it eliminates the need to manage credentials. It works with any environment that supports [OpenID Connect (OIDC)](https://openid.net/developers/how-connect-works/) federation, including Kubernetes, GitHub Actions, and other CI/CD platforms.
 
-## Set up
+## Workload identity
 
-### User delegation SAS (since 2508)
+Workload identity allows Aidbox to access Azure Blob Storage using managed identities instead of storing credentials. This approach uses [OpenID Connect (OIDC)](https://openid.net/developers/how-connect-works/) to exchange identity tokens from your platform (Kubernetes, GitHub Actions, etc.) for Azure AD tokens.
 
-1. Get **tenantId**, **clientId,** and **clientSecret** from the Microsoft Azure Portal using the [Register an application in Microsoft Entra ID guide](https://learn.microsoft.com/en-us/entra/identity-platform/quickstart-register-app).&#x20;
-2. Create the [AzureAccount resource](../reference/system-resources-reference/cloud-module-resources.md#azureaccount) with `userDelegation` sasType:
+### Prerequisites
 
-```
-POST /AzureAccount
-content-type: application/json
-accept: application/json
+Configure Azure workload identity for your environment:
+
+1. **Create user-assigned managed identity** in Azure. See [Create a user-assigned managed identity](https://learn.microsoft.com/en-us/entra/identity/managed-identities-azure-resources/how-manage-user-assigned-managed-identities).
+
+2. **Configure federated credential** to establish trust between your OIDC identity provider (like Kubernetes or GitHub Actions) and the managed identity. This allows the identity provider to request Azure tokens on behalf of Aidbox. See [Configure federated identity credentials](https://learn.microsoft.com/en-us/entra/workload-id/workload-identity-federation-create-trust).
+
+3. **Assign storage roles** to the managed identity on your storage account:
+   - `Storage Blob Data Contributor` - grants read, write, and delete permissions for blob data
+   - `Storage Blob Delegator` - allows generating user delegation SAS tokens
+
+   See [Assign Azure roles](https://learn.microsoft.com/en-us/azure/role-based-access-control/role-assignments-portal).
+
+4. **Deploy Aidbox with OIDC token access**. Your platform must provide OIDC tokens to Aidbox. For Kubernetes with AKS, create a ServiceAccount with the managed identity client ID annotation and label your pod with `azure.workload.identity/use: "true"`. See [Use workload identity with AKS](https://learn.microsoft.com/en-us/azure/aks/workload-identity-deploy-cluster).
+
+After deployment, Aidbox automatically detects the managed identity through [DefaultAzureCredential](https://learn.microsoft.com/en-us/dotnet/api/azure.identity.defaultazurecredential) and uses it to generate SAS tokens. No additional configuration resources like `AzureAccount` or `AzureContainer` are needed.
+
+### Generate SAS URLs
+
+With workload identity configured, request SAS URLs by specifying the storage account and container as query parameters.
+
+Get write URL:
+
+```http
+POST /azure/workload-identity/<container-name>?storage-account=<account-name>
+Content-Type: application/json
 
 {
-    "id": "aidbox",
-    "tenantId": "<tenantId>",
-    "clientId": "<clientId>",
-    "clientSecret": "<clientSecret>",
-    "sasType": "userDelegation"
+  "filename": "document.pdf"
 }
 ```
 
-3. Create a storage account using [Microsoft Create an Azure storage account guide](https://learn.microsoft.com/en-us/azure/storage/common/storage-account-create?tabs=azure-portal)
-4. Create a container using [this](https://learn.microsoft.com/en-us/azure/storage/blobs/storage-quickstart-blobs-portal) guide.
-5. Create AzureContainer
+Response:
 
+```json
+{
+  "url": "https://<account>.blob.core.windows.net/<container>/document.pdf?sv=...&sig=..."
+}
 ```
+
+Get read URL:
+
+```http
+GET /azure/workload-identity/<container-name>/<blob-path>?storage-account=<account-name>
+```
+
+Get delete URL:
+
+```http
+DELETE /azure/workload-identity/<container-name>/<blob-path>?storage-account=<account-name>
+```
+
+The generated URLs are valid for 30 minutes by default. Add `expiration=<seconds>` query parameter to customize the duration.
+
+See also:
+* [Azure AD workload identities overview](https://learn.microsoft.com/en-us/azure/active-directory/workload-identities/workload-identities-overview)
+* [Workload identity federation](https://learn.microsoft.com/en-us/entra/workload-id/workload-identity-federation)
+* [Configure workload identity on AKS](https://learn.microsoft.com/en-us/azure/aks/workload-identity-deploy-cluster) (Kubernetes example)
+* [DefaultAzureCredential class](https://learn.microsoft.com/en-us/dotnet/api/azure.identity.defaultazurecredential)
+
+## User delegation SAS
+
+User delegation SAS generates signed URLs using Azure Application credentials. This method requires storing client ID and secret in Aidbox but provides better security than account keys.
+
+### Prerequisites
+
+Configure Azure AD application and Aidbox resources:
+
+1. **Register application in Azure AD** to get tenant ID, client ID, and client secret. See [Register an application in Microsoft Entra ID](https://learn.microsoft.com/en-us/entra/identity-platform/quickstart-register-app).
+
+2. **Create AzureAccount resource** in Aidbox with application credentials:
+
+```http
+POST /AzureAccount
+Content-Type: application/json
+
+{
+  "id": "my-azure-account",
+  "tenantId": "<tenant-id>",
+  "clientId": "<client-id>",
+  "clientSecret": "<client-secret>",
+  "sasType": "userDelegation"
+}
+```
+
+3. **Create AzureContainer resource** to link Aidbox to your storage container:
+
+```http
 POST /AzureContainer
-content-type: application/json
-accept: application/json
+Content-Type: application/json
 
 {
   "resourceType": "AzureContainer",
   "id": "my-container",
   "account": {
-    "id": "aidbox",
+    "id": "my-azure-account",
     "resourceType": "AzureAccount"
   },
-  "storage": "<storageAccount>",
-  "container": "<container>"
+  "storage": "<storage-account-name>",
+  "container": "<container-name>"
 }
 ```
 
-6. To generate user delegation SAS, the application needs **Storage Blob Delegator** role. Follow [this guide](https://learn.microsoft.com/en-us/azure/role-based-access-control/role-assignments-portal) to add it.&#x20;
-7. To get access to the data by signed URL, the application needs **Storage Blob Data Reader** (read-only) or **Storage Blob Data Contributor** (read, write, delete).
+4. **Assign storage roles** to the application:
+   - `Storage Blob Delegator` - allows generating user delegation SAS tokens
+   - `Storage Blob Data Contributor` - grants read, write, and delete permissions for blob data
 
-### Account SAS
+   See [Assign Azure roles](https://learn.microsoft.com/en-us/azure/role-based-access-control/role-assignments-portal).
 
-1. We have to create AzureAccount resource with **id** = account name and **key** = secret key of your account. Your account name and keys can be found under "Access keys" section in Azure Storage account settings.
+### Generate SAS URLs
 
-{% tabs %}
-{% tab title="Request" %}
-**Parameters**
+Request SAS URLs using the AzureContainer resource ID.
 
-* `id` _(required)_: Azure storage Account name
-* `key` _(required)_: Azure storage Account key
+Get write URL:
 
-**Example**
+```http
+POST /azure/storage/<container-id>
 
-```yaml
+{
+  "blob": "document.pdf"
+}
+```
+
+Get read URL:
+
+```http
+GET /azure/storage/<container-id>/<blob-path>
+```
+
+Get delete URL:
+
+```http
+DELETE /azure/storage/<container-id>/<blob-path>
+```
+
+## Account SAS
+
+Account SAS generates signed URLs using storage account keys. This is the simplest method but less secure since it requires storing the account key in Aidbox. Not recommended for production use.
+
+### Prerequisites
+
+Configure storage account keys and Aidbox resources:
+
+1. **Get storage account key** from Azure Portal under "Access keys" section. See [Manage storage account access keys](https://learn.microsoft.com/en-us/azure/storage/common/storage-account-keys-manage).
+
+2. **Create AzureAccount resource** with account name and key:
+
+```http
 POST /AzureAccount
+Content-Type: application/json
 
-id: aidbox
-key: long-base64-encoded-string
+{
+  "id": "my-storage-account",
+  "key": "<storage-account-key>"
+}
 ```
 
-{% endtab %}
-{% endtabs %}
+3. **Create AzureContainer resource** to link Aidbox to your storage container:
 
-2. Register AzureContainer
-
-Go to Azure console and create a container, for example, "avatars". Now we can create an **AzureContainer** resource:
-
-{% tabs %}
-{% tab title="Request" %}
-**Parameters**
-
-* `id` _(optional)_: id to reference this container in Aidbox requests
-* `account` _(required)_: reference to `AzureAccount` resource
-* `storage` _(required)_: Azure storage account name
-* `container` _(required)_: Azure container name
-
-**Example**
-
-```yaml
+```http
 POST /AzureContainer
+Content-Type: application/json
 
-id: avatars
-account: {id: aidbox, resourceType: AzureAccount}
-storage: aidbox
-container: avatars
+{
+  "resourceType": "AzureContainer",
+  "id": "my-container",
+  "account": {
+    "id": "my-storage-account",
+    "resourceType": "AzureAccount"
+  },
+  "storage": "<storage-account-name>",
+  "container": "<container-name>"
+}
 ```
 
-{% endtab %}
-{% endtabs %}
+### Generate SAS URLs
 
-## Get Shared Access Signature (SAS) to upload file
+Request SAS URLs using the AzureContainer resource ID.
 
-When the configuration is complete, you can request a temporary URL to upload blobs. By default, such URL expires in 30 minutes. You can provide a blob name or just the extension (name will be generated).
+Get write URL:
 
-{% tabs %}
-{% tab title="Request" %}
-**Body parameters**
+```http
+POST /azure/storage/<container-id>
 
-* `blob` _(required)_: file name
-* `timeout` _(optional, default: 30)_: timeout in minutes
-
-**Example**
-
-```yaml
-POST /azure/storage/avatars
-
-blob: pt-1.png
+{
+  "blob": "document.pdf"
+}
 ```
 
-{% endtab %}
+Get read URL:
 
-{% tab title="Response" %}
-**Body**
-
-* `url`: signed url to upload file
-
-**Example**
-
-```yaml
-url:  https://aidbox.blob.core.windows.net/avatars/pt-1.png?sr=signature
+```http
+GET /azure/storage/<container-id>/<blob-path>
 ```
 
-{% endtab %}
-{% endtabs %}
+Get delete URL:
 
-Configure CORS in Azure if you want to send data from the browser:
-
-![cors](../../.gitbook/assets/76a678e6-f71d-4d04-84e6-bca208400324.png)
-
-Now you can upload file from your UI using signed URL provided by Aidbox:
-
-{% tabs %}
-{% tab title="curl" %}
-
-```
-curl -X PUT "<signed-url>"
--H "x-ms-blob-type: BlockBlob"
--H "Content-Type: text/plain"
---data-binary $'This is test content.'
-
-```
-
-{% endtab %}
-
-{% tab title="JavaScript" %}
-
-```javascript
-//onChange input[type=file]
-var file = inputEvent.file.originFileObj;
-fetch("<signed-url>", { 
-   method: 'PUT', 
-   body: file, 
-   headers: {'x-ms-blob-type': 'BlockBlob'}
- }).then(...)
-```
-
-{% endtab %}
-{% endtabs %}
-
-## Get SAS to read a file
-
-To read the uploaded file you can request a signed URL with:
-
-```yaml
-GET /azure/storage/avatar/pt-1.png
-
----
-status: 200
-url: <read-signed-url>
-
-# or
-
-GET /azure/storage/avatar/pt-1.png?redirect=true
-
----
-status: 302
-headers:
-  Location: <read-signed-url>
-```
-
-For example, you can use a trick with a redirect to render an image:
-
-```markup
-<img src="/azure/storage/avatar/pt-1.png?redirect=true"/>
+```http
+DELETE /azure/storage/<container-id>/<blob-path>
 ```
