@@ -35,6 +35,7 @@ add something like "see also: <list of references in markdown bullet list>".
 - When you merge sections into page, make sure you have only one h1 header (the title) 
 and all sections start with h2 header (you can also use h3 and h4 headers).
 - Use markdown `code` highlightning when necessary. E.g. name of operation `$something`.
+- when using code with shell command, one command = one code cell
 - Try to mention when possible and true, that feature is implementation of FHIR specification.
 - Use sentence case in headings, not title case!
 
