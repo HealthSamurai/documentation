@@ -69,12 +69,12 @@ After deployment, Aidbox automatically detects the managed identity through [Def
 
 ### Generate SAS URLs
 
-With workload identity configured, request SAS URLs by specifying the storage account and container as query parameters.
+With workload identity configured, request SAS URLs by specifying the storage account and container in the URL path.
 
 Get write URL:
 
 ```http
-POST /azure/workload-identity/<container-name>?storage-account=<account-name>
+POST /azure/workload-identity/<storage-account>/<container-name>
 Content-Type: application/json
 
 {
@@ -93,13 +93,13 @@ Response:
 Get read URL:
 
 ```http
-GET /azure/workload-identity/<container-name>/<blob-path>?storage-account=<account-name>
+GET /azure/workload-identity/<storage-account>/<container-name>/<blob-path>
 ```
 
 Get delete URL:
 
 ```http
-DELETE /azure/workload-identity/<container-name>/<blob-path>?storage-account=<account-name>
+DELETE /azure/workload-identity/<storage-account>/<container-name>/<blob-path>
 ```
 
 The generated URLs are valid for 30 minutes by default. Add `expiration=<seconds>` query parameter to customize the duration.
@@ -322,7 +322,7 @@ GET /azure/storage/<container-id>/<blob-path>?redirect=true
 For Workload identity:
 
 ```bash
-GET /azure/workload-identity/<container>/<blob-path>?storage-account=<account>&redirect=true
+GET /azure/workload-identity/<storage-account>/<container>/<blob-path>?redirect=true
 ```
 
 Both return HTTP 302 redirect with `Location` header containing the signed URL.
@@ -334,5 +334,5 @@ This allows you to directly reference the Aidbox endpoint in HTML:
 <img src="/azure/storage/<container-id>/<blob-path>?redirect=true" alt="Image" />
 
 <!-- Workload identity -->
-<img src="/azure/workload-identity/<container>/<blob-path>?storage-account=<account>&redirect=true" alt="Image" />
+<img src="/azure/workload-identity/<storage-account>/<container>/<blob-path>?redirect=true" alt="Image" />
 ```
