@@ -1,45 +1,49 @@
-## Smartbox to Aidbox Migration Guide
+# Migrate from Smartbox to Aidbox + FHIR App portal
 
-### Overview
+## Overview
 
-This guide explains how to migrate from Smartbox to Aidbox by running both systems side by side on the same database. All examples in this guide show local installation using Docker, for Kubernetes deployment do the same steps but with Kubernetes configs.
+This guide explains how to migrate from Smartbox to Aidbox + FHIR Portal by running both systems side by side on the same database. All examples in this guide demonstrate local installation using Docker. For Kubernetes deployment, follow the same steps but with Kubernetes-specific configurations.
 
 **Architecture (5 containers):**
-- 1 PostgreSQL database (`aidbox-db`)
-- 2 Smartbox instances (existing):
-  - `portal` - Smartbox portal on port 8888
-  - `sandbox` - Smartbox sandbox on port 9999
-- 2 Aidbox instances (new):
-  - `aidbox-admin` - Aidbox Admin on port 8080 (uses `portal` database)
-  - `aidbox-dev` - Aidbox Dev on port 8090 (uses `sandbox` database)
+
+* 1 PostgreSQL database (`aidbox-db`)
+* 2 Smartbox instances (existing):
+  * `portal` - Smartbox portal on port 8888
+  * `sandbox` - Smartbox sandbox on port 9999
+* 2 Aidbox instances (new):
+  * `aidbox-admin` - Aidbox Admin on port 8080 (uses `portal` database)
+  * `aidbox-dev` - Aidbox Dev on port 8090 (uses `sandbox` database)
 
 **Database mapping:**
-- Smartbox Portal + Aidbox Admin → `portal` database
-- Smartbox Sandbox + Aidbox Dev → `sandbox` database
+
+* Smartbox Portal + Aidbox Admin → `portal` database
+* Smartbox Sandbox + Aidbox Dev → `sandbox` database
 
 Once all containers are running, you'll apply migrations to both Aidbox instances to transform the data structure. After migration, you can shut down the Smartbox containers.
 
-### Prerequisites
+## Prerequisites
 
 **Required files in your project root:**
+
 1. `.env` - Environment variables (see below)
 2. `docker-compose.yaml` - 5-container setup (see below)
 3. `init-bundle.json` - Init bundle for legacy FCE package
 4. `us-core-extensions.legacy.aidbox.tar.gz` - Legacy FCE package file.
 
-### Migration Process
+## Migration Process
 
-#### 1. Reuse your existing `.env` file from Smartbox
+### 1. Reuse your existing `.env` file from Smartbox
 
 Keep your existing Smartbox `.env` file with all the same values:
-- Database credentials (`PGIMAGE`, `PGPORT`, `PGHOSTPORT`, `PGUSER`, `PGPASSWORD`, `PGDATABASE`)
-- Licenses (`PORTAL_LICENSE`, `SANDBOX_LICENSE`)
-- Smartbox image (`AIDBOX_IMAGE`)
-- Client and admin credentials
 
-The Aidbox containers will reuse these exact same environment variables to connect to the same database.
+* Database credentials (`PGIMAGE`, `PGPORT`, `PGHOSTPORT`, `PGUSER`, `PGPASSWORD`, `PGDATABASE`)
+* Licenses (`PORTAL_LICENSE`, `SANDBOX_LICENSE`)
+* Smartbox image (`AIDBOX_IMAGE`)
+* Client and admin credentials
 
-#### 2. Create `init-bundle.json`
+The Aidbox containers will reuse these same environment variables to connect to the same database.
+
+### 2. Create `init-bundle.json`
 
 ```json
 {
@@ -58,11 +62,11 @@ The Aidbox containers will reuse these exact same environment variables to conne
 }
 ```
 
-#### 3. Download `us-core-extensions.legacy.aidbox.tar.gz`
+### 3. Download `us-core-extensions.legacy.aidbox.tar.gz`
 
 Place this file in the project root (same directory as docker-compose.yaml). Download this file [here](https://storage.googleapis.com/aidbox-public/smartbox/us-core-extensions.legacy.aidbox.tar.gz).
 
-#### 4. Create `docker-compose.yaml` (5-container setup)
+### 4. Create `docker-compose.yaml` (5-container setup)
 
 ```yaml
 version: '3.7'
@@ -221,30 +225,32 @@ services:
       start_period: 30s
 ```
 
-#### 5. Start all containers
+### 5. Start all containers
 
 ```bash
 docker-compose up -d
 ```
 
 This will start:
-- **aidbox-db** on port 5437
-- **portal** (Smartbox) on port 8888
-- **sandbox** (Smartbox) on port 9999  
-- **aidbox-admin** on port 8080
-- **aidbox-dev** on port 8090
 
----
+* **aidbox-db** on port 5437
+* **portal** (Smartbox) on port 8888
+* **sandbox** (Smartbox) on port 9999
+* **aidbox-admin** on port 8080
+* **aidbox-dev** on port 8090
 
-#### 6. Apply Migrations
+***
+
+### 6. Apply Migrations
 
 Once all 5 containers are running and healthy, apply the migrations using the `/db/migrations` endpoint.
 
 > **Important**: Admin and Dev Aidbox instances require different migrations:
-> - **Admin Aidbox (portal)**: Apply all 3 migrations (has Tenant resources)
-> - **Dev Aidbox (sandbox)**: Apply only Client migration (no Tenant resources)
+>
+> * **Admin Aidbox (portal)**: Apply all 3 migrations (has Tenant resources)
+> * **Dev Aidbox (sandbox)**: Apply only Client migration (no Tenant resources)
 
-##### 6a. Apply Migrations to Admin Aidbox (port 8080)
+#### 6a. Apply Migrations to Admin Aidbox (port 8080)
 
 ```bash
 POST /db/migrations
@@ -392,7 +398,7 @@ accept: text/yaml
     WHERE resource->'details' = '{}'::jsonb;
 ```
 
-##### 6b. Apply Migrations to Dev Aidbox (port 8090)
+#### 6b. Apply Migrations to Dev Aidbox (port 8090)
 
 Dev Aidbox (sandbox) does not have Tenant resources, so we only apply the Client migration:
 
@@ -462,40 +468,36 @@ accept: text/yaml
     WHERE resource->'details' = '{}'::jsonb;
 ```
 
-#### 7. Post-Migration Verification
+### 7. Post-Migration Verification
 
-Now you can run Inferno G10 test kit on both Aidbox instances to verify compliance with G10 certification. See [Pass Inferno Tests with Aidbox](pass-inferno-tests-with-aidbox.md) for step-by-step instructions.
+the Now you can run Inferno G10 test kit on both Aidbox instances to verify compliance with G10 certification. See [Pass Inferno Tests with Aidbox](pass-inferno-tests-with-aidbox.md) for step-by-step instructions.
 
-### API Changes: Smartbox → Aidbox
+## API Changes: Smartbox → Aidbox
 
 If you have applications built on top of Smartbox API, you need to update your API calls to use the new Aidbox endpoint patterns.
 
-#### Endpoint Pattern Comparison
+### Endpoint Pattern Comparison
 
-| API Category | Smartbox Pattern | Aidbox Pattern | Notes |
-|--------------|------------------|----------------|-------|
-| **US Core FHIR Resources (Patient-facing)** | `/tenant/{tenant}/patient/smart-api/{ResourceType}` | `/Organization/{org-id}/fhir/{ResourceType}` | Tenant replaced with Organization |
-| **US Core FHIR Resources (Provider-facing)** | `/tenant/{tenant}/provider/smart-api/{ResourceType}` | `/Organization/{org-id}/fhir/{ResourceType}` | Same endpoint for both patient & provider |
-| **FHIR Resource by ID** | `/tenant/{tenant}/patient/smart-api/{ResourceType}/{id}` | `/Organization/{org-id}/fhir/{ResourceType}/{id}` | Resource ID access |
-| **FHIR Search** | `GET/POST /tenant/{tenant}/patient/smart-api/{ResourceType}?param=value` | `GET/POST /Organization/{org-id}/fhir/{ResourceType}?param=value` | Search parameters unchanged |
-| **OAuth2 - Authorize** | `/tenant/{tenant}/patient/auth/authorize` | `/auth/authorize` | OAuth2 authorization |
-| **OAuth2 - Token** | `/tenant/{tenant}/patient/auth/token` | `/auth/token` | Token endpoint |
-| **Provider Auth - Authorize** | `/tenant/{tenant}/provider/auth/authorize` | `/auth/authorize` | No separate provider auth |
-| **SMART Configuration** | `/tenant/{tenant}/patient/smart-api/.well-known/smart-configuration` | `/.well-known/smart-configuration` | SMART metadata endpoint |
-| **FHIR Metadata** | `/tenant/{tenant}/patient/smart-api/metadata` | `/Organization/{org-id}/fhir/metadata` | CapabilityStatement |
-| **Bulk Data - Patient Export** | `/fhir/Patient/$export` | `/fhir/Patient/$export` | ✅ No change |
-| **Bulk Data - Group Export** | `/fhir/Group/{id}/$export` | `/fhir/Group/{id}/$export` | ✅ No change |
-| **Bulk Data - Status** | `/fhir/bulkstatus/{request-id}` | `/fhir/bulkstatus/{request-id}` | ✅ No change  |
-| **C-CDA Document Generation** | `/ccda/make-doc` | `/ccda/make-doc` | ✅ No change  |
+| API Category                                 | Smartbox Pattern                                                         | Aidbox Pattern                                                    | Notes                                     |
+| -------------------------------------------- | ------------------------------------------------------------------------ | ----------------------------------------------------------------- | ----------------------------------------- |
+| **US Core FHIR Resources (Patient-facing)**  | `/tenant/{tenant}/patient/smart-api/{ResourceType}`                      | `/Organization/{org-id}/fhir/{ResourceType}`                      | Tenant replaced with Organization         |
+| **US Core FHIR Resources (Provider-facing)** | `/tenant/{tenant}/provider/smart-api/{ResourceType}`                     | `/Organization/{org-id}/fhir/{ResourceType}`                      | Same endpoint for both patient & provider |
+| **FHIR Resource by ID**                      | `/tenant/{tenant}/patient/smart-api/{ResourceType}/{id}`                 | `/Organization/{org-id}/fhir/{ResourceType}/{id}`                 | Resource ID access                        |
+| **FHIR Search**                              | `GET/POST /tenant/{tenant}/patient/smart-api/{ResourceType}?param=value` | `GET/POST /Organization/{org-id}/fhir/{ResourceType}?param=value` | Search parameters unchanged               |
+| **OAuth2 - Authorize**                       | `/tenant/{tenant}/patient/auth/authorize`                                | `/auth/authorize`                                                 | OAuth2 authorization                      |
+| **OAuth2 - Token**                           | `/tenant/{tenant}/patient/auth/token`                                    | `/auth/token`                                                     | Token endpoint                            |
+| **Provider Auth - Authorize**                | `/tenant/{tenant}/provider/auth/authorize`                               | `/auth/authorize`                                                 | No separate provider auth                 |
+| **SMART Configuration**                      | `/tenant/{tenant}/patient/smart-api/.well-known/smart-configuration`     | `/.well-known/smart-configuration`                                | SMART metadata endpoint                   |
+| **FHIR Metadata**                            | `/tenant/{tenant}/patient/smart-api/metadata`                            | `/Organization/{org-id}/fhir/metadata`                            | CapabilityStatement                       |
+| **Bulk Data - Patient Export**               | `/fhir/Patient/$export`                                                  | `/fhir/Patient/$export`                                           | ✅ No change                               |
+| **Bulk Data - Group Export**                 | `/fhir/Group/{id}/$export`                                               | `/fhir/Group/{id}/$export`                                        | ✅ No change                               |
+| **Bulk Data - Status**                       | `/fhir/bulkstatus/{request-id}`                                          | `/fhir/bulkstatus/{request-id}`                                   | ✅ No change                               |
+| **C-CDA Document Generation**                | `/ccda/make-doc`                                                         | `/ccda/make-doc`                                                  | ✅ No change                               |
 
-#### Key Changes Summary
+### Key Changes Summary
 
 1. **Tenant → Organization** (FHIR Resources only): The primary change is replacing `/tenant/{tenant-id}` with `/Organization/{org-id}` for FHIR resource endpoints
 2. **Unified Patient/Provider**: Aidbox uses a single set of endpoints instead of separate `/patient/` and `/provider/` paths
 3. **Removed `/smart-api/` path segment**: FHIR resources are now directly under `/fhir/` instead of `/smart-api/`
 4. **Auth Consolidation**: Authentication endpoints are now at root level (`/auth/*`) without tenant prefix
 5. **Bulk Data & C-CDA**: These endpoints remain at root level and **do not change** between Smartbox and Aidbox
-
-
-
-
