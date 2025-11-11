@@ -18,6 +18,8 @@ Aidbox Forms supports two authentication methods: credential-based (using stored
 
 ### Option 1: Workload Identity (Recommended)
 
+> Available since 2511
+
 Workload identity is the most secure option as it eliminates the need to store credentials in Aidbox. It uses your cloud provider's native identity management.
 
 **For GCP Workload Identity:**
