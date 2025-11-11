@@ -138,7 +138,7 @@ Configure Azure AD application and Aidbox resources:
 
 2. **Register application in Azure AD** to get tenant ID, client ID, and client secret. See [Register an application in Microsoft Entra ID](https://learn.microsoft.com/en-us/entra/identity-platform/quickstart-register-app).
 
-3. **Create AzureAccount resource** in Aidbox with application credentials:
+3. **Create [AzureAccount](../reference/system-resources-reference/cloud-module-resources#azureaccount) resource** in Aidbox with application credentials:
 
 ```http
 POST /AzureAccount
@@ -153,7 +153,7 @@ Content-Type: application/json
 }
 ```
 
-4. **Create AzureContainer resource** to link Aidbox to your storage container:
+4. **Create [AzureContainer](../reference/system-resources-reference/cloud-module-resources#azurecontainer) resource** to link Aidbox to your storage container:
 
 ```http
 POST /AzureContainer
@@ -215,7 +215,7 @@ Configure storage account keys and Aidbox resources:
 
 2. **Get storage account key** from Azure Portal under "Access keys" section. See [Manage storage account access keys](https://learn.microsoft.com/en-us/azure/storage/common/storage-account-keys-manage).
 
-3. **Create AzureAccount resource** with account name and key:
+3. **Create [AzureAccount](../reference/system-resources-reference/cloud-module-resources#azureaccount) resource** with account name and key:
 
 ```http
 POST /AzureAccount
@@ -227,7 +227,7 @@ Content-Type: application/json
 }
 ```
 
-4. **Create AzureContainer resource** to link Aidbox to your storage container:
+4. **Create [AzureContainer](../reference/system-resources-reference/cloud-module-resources#azurecontainer) resource** to link Aidbox to your storage container:
 
 ```http
 POST /AzureContainer
