@@ -219,3 +219,89 @@ Get delete URL:
 ```http
 DELETE /azure/storage/<container-id>/<blob-path>
 ```
+
+## Using SAS URLs
+
+Once you have obtained a SAS URL from any of the methods above, you can use it directly with standard HTTP clients.
+
+### Upload file
+
+Upload a file using the write URL:
+
+```bash
+curl -X PUT "<signed-url>" \
+  -H "x-ms-blob-type: BlockBlob" \
+  -H "Content-Type: text/plain" \
+  -d "hello"
+```
+
+For binary files, use `--data-binary` with a file:
+
+```bash
+curl -X PUT "<signed-url>" \
+  -H "x-ms-blob-type: BlockBlob" \
+  -H "Content-Type: image/png" \
+  --data-binary @image.png
+```
+
+### Download file
+
+Download a file using the read URL:
+
+```bash
+curl -s "<signed-url>"
+```
+
+Save to file:
+
+```bash
+curl -s "<signed-url>" -o downloaded-file.txt
+```
+
+### Delete file
+
+Delete a file using the delete URL:
+
+```bash
+curl -X DELETE "<signed-url>"
+```
+
+### Display image in HTML
+
+**Option 1: Use signed URL directly**
+
+Get the signed URL from Aidbox and use it in HTML:
+
+```html
+<img src="<signed-url>" alt="Image from Azure Blob Storage" />
+```
+
+This requires a two-step process: first get the URL from Aidbox API, then use it in your HTML.
+
+**Option 2: Use redirect feature**
+
+Add `?redirect=true` parameter to have Aidbox automatically redirect to the signed URL.
+
+For User delegation SAS and Account SAS:
+
+```bash
+GET /azure/storage/<container-id>/<blob-path>?redirect=true
+```
+
+For Workload identity:
+
+```bash
+GET /azure/workload-identity/<container>/<blob-path>?storage-account=<account>&redirect=true
+```
+
+Both return HTTP 302 redirect with `Location` header containing the signed URL.
+
+This allows you to directly reference the Aidbox endpoint in HTML:
+
+```html
+<!-- User delegation SAS / Account SAS -->
+<img src="/azure/storage/<container-id>/<blob-path>?redirect=true" alt="Image" />
+
+<!-- Workload identity -->
+<img src="/azure/workload-identity/<container>/<blob-path>?storage-account=<account>&redirect=true" alt="Image" />
+```
