@@ -104,7 +104,21 @@ Get delete URL:
 DELETE /azure/workload-identity/<storage-account>/<container-name>/<blob-path>
 ```
 
-The generated URLs are valid for 30 minutes by default. Add `expiration=<seconds>` query parameter to customize the duration.
+### URL expiration
+
+The generated SAS URLs are valid for 30 minutes (1800 seconds) by default. You can customize the expiration time by adding the `expiration` query parameter with the duration in seconds.
+
+Examples:
+
+```http
+# 1 hour expiration
+POST /azure/workload-identity/<storage-account>/<container>?expiration=3600
+
+# 24 hours expiration
+GET /azure/workload-identity/<storage-account>/<container>/<blob>?expiration=86400
+```
+
+The expiration parameter works for all three operations (write, read, delete) and applies to all authentication methods (workload identity, user delegation SAS, account SAS).
 
 See also:
 * [Azure AD workload identities overview](https://learn.microsoft.com/en-us/azure/active-directory/workload-identities/workload-identities-overview)
