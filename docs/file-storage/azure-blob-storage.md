@@ -32,7 +32,38 @@ Configure Azure workload identity for your environment:
 
    See [Assign Azure roles](https://learn.microsoft.com/en-us/azure/role-based-access-control/role-assignments-portal).
 
-4. **Deploy Aidbox with OIDC token access**. Your platform must provide OIDC tokens to Aidbox. For Kubernetes with AKS, create a ServiceAccount with the managed identity client ID annotation and label your pod with `azure.workload.identity/use: "true"`. See [Use workload identity with AKS](https://learn.microsoft.com/en-us/azure/aks/workload-identity-deploy-cluster).
+4. **Deploy Aidbox with OIDC token access**. Your platform must provide OIDC tokens to Aidbox. For Kubernetes with AKS:
+
+   Create a ServiceAccount with the managed identity client ID annotation:
+
+   ```yaml
+   apiVersion: v1
+   kind: ServiceAccount
+   metadata:
+     name: aidbox-sa
+     namespace: aidbox
+     annotations:
+       azure.workload.identity/client-id: "<managed-identity-client-id>"
+   ```
+
+   Label your pod with `azure.workload.identity/use: "true"`:
+
+   ```yaml
+   apiVersion: v1
+   kind: Pod
+   metadata:
+     name: aidbox
+     namespace: aidbox
+     labels:
+       azure.workload.identity/use: "true"
+   spec:
+     serviceAccountName: aidbox-sa
+     containers:
+     - name: aidbox
+       image: healthsamurai/aidboxone:edge
+   ```
+
+   The `<managed-identity-client-id>` is the client ID from the user-assigned managed identity created in step 1. See [Use workload identity with AKS](https://learn.microsoft.com/en-us/azure/aks/workload-identity-deploy-cluster).
 
 After deployment, Aidbox automatically detects the managed identity through [DefaultAzureCredential](https://learn.microsoft.com/en-us/dotnet/api/azure.identity.defaultazurecredential) and uses it to generate SAS tokens. No additional configuration resources like `AzureAccount` or `AzureContainer` are needed.
 
