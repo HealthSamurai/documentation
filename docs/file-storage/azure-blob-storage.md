@@ -76,7 +76,7 @@ With workload identity configured, request SAS URLs by specifying the storage ac
 Get write URL:
 
 ```http
-POST /azure/workload-identity/<storage-account>/<container-name>
+POST /azure/storage/<storage-account>/<container-name>
 Content-Type: application/json
 
 {
@@ -95,13 +95,13 @@ Response:
 Get read URL:
 
 ```http
-GET /azure/workload-identity/<storage-account>/<container-name>/<blob-path>
+GET /azure/storage/<storage-account>/<container-name>/<blob-path>
 ```
 
 Get delete URL:
 
 ```http
-DELETE /azure/workload-identity/<storage-account>/<container-name>/<blob-path>
+DELETE /azure/storage/<storage-account>/<container-name>/<blob-path>
 ```
 
 ### Configuration
@@ -375,7 +375,7 @@ GET /azure/storage/<container-id>/<blob-path>?redirect=true
 For Workload identity:
 
 ```bash
-GET /azure/workload-identity/<storage-account>/<container>/<blob-path>?redirect=true
+GET /azure/storage/<storage-account>/<container>/<blob-path>?redirect=true
 ```
 
 Both return HTTP 302 redirect with `Location` header containing the signed URL.
@@ -387,5 +387,5 @@ This allows you to directly reference the Aidbox endpoint in HTML:
 <img src="/azure/storage/<container-id>/<blob-path>?redirect=true" alt="Image" />
 
 <!-- Workload identity -->
-<img src="/azure/workload-identity/<storage-account>/<container>/<blob-path>?redirect=true" alt="Image" />
+<img src="/azure/storage/<storage-account>/<container>/<blob-path>?redirect=true" alt="Image" />
 ```
