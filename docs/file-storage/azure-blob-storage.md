@@ -104,21 +104,20 @@ Get delete URL:
 DELETE /azure/workload-identity/<storage-account>/<container-name>/<blob-path>
 ```
 
-### URL expiration
+### Configuration
 
-The generated SAS URLs are valid for 30 minutes (1800 seconds) by default. You can customize the expiration time by adding the `expiration` query parameter with the duration in seconds.
+**Query parameters:**
 
-Examples:
+| Parameter | Type | Default | Description |
+|-----------|------|---------|-------------|
+| `expiration` | integer | 1800 | URL validity duration in seconds (30 minutes default) |
+| `redirect` | boolean | false | Return HTTP 302 redirect instead of JSON. Useful for `<img>` tags |
 
-```http
-# 1 hour expiration
-POST /azure/workload-identity/<storage-account>/<container>?expiration=3600
+**Request body (POST only):**
 
-# 24 hours expiration
-GET /azure/workload-identity/<storage-account>/<container>/<blob>?expiration=86400
-```
-
-The expiration parameter works for all three operations (write, read, delete) and applies to all authentication methods (workload identity, user delegation SAS, account SAS).
+| Parameter | Type | Required | Description |
+|-----------|------|----------|-------------|
+| `filename` | string | No | Blob name. If not specified, random UUID with optional extension is generated |
 
 See also:
 * [Azure AD workload identities overview](https://learn.microsoft.com/en-us/azure/active-directory/workload-identities/workload-identities-overview)
@@ -203,6 +202,23 @@ Get delete URL:
 DELETE /azure/storage/<container-id>/<blob-path>
 ```
 
+### Configuration
+
+**Query parameters:**
+
+| Parameter | Type | Default | Description |
+|-----------|------|---------|-------------|
+| `expiration` | integer | 1800 | URL validity duration in seconds (30 minutes default) |
+| `redirect` | boolean | false | Return HTTP 302 redirect instead of JSON. Useful for `<img>` tags |
+
+**Request body (POST only):**
+
+| Parameter | Type | Required | Description |
+|-----------|------|----------|-------------|
+| `blob` | string | No | Blob name. If not specified, random UUID with optional extension from [AzureContainer](../reference/system-resources-reference/cloud-module-resources#azurecontainer) is generated |
+
+See [AzureAccount](../reference/system-resources-reference/cloud-module-resources#azureaccount) and [AzureContainer](../reference/system-resources-reference/cloud-module-resources#azurecontainer) resource reference for configuration details.
+
 ## Account SAS
 
 Account SAS generates signed URLs using storage account keys. This is the simplest method but less secure since it requires storing the account key in Aidbox. Not recommended for production use.
@@ -270,6 +286,23 @@ Get delete URL:
 ```http
 DELETE /azure/storage/<container-id>/<blob-path>
 ```
+
+### Configuration
+
+**Query parameters:**
+
+| Parameter | Type | Default | Description |
+|-----------|------|---------|-------------|
+| `expiration` | integer | 1800 | URL validity duration in seconds (30 minutes default) |
+| `redirect` | boolean | false | Return HTTP 302 redirect instead of JSON. Useful for `<img>` tags |
+
+**Request body (POST only):**
+
+| Parameter | Type | Required | Description |
+|-----------|------|----------|-------------|
+| `blob` | string | No | Blob name. If not specified, random UUID with optional extension from [AzureContainer](../reference/system-resources-reference/cloud-module-resources#azurecontainer) is generated |
+
+See [AzureAccount](../reference/system-resources-reference/cloud-module-resources#azureaccount) and [AzureContainer](../reference/system-resources-reference/cloud-module-resources#azurecontainer) resource reference for configuration details.
 
 ## Using SAS URLs
 
