@@ -1,104 +1,171 @@
 ---
-description: FHIR Bulk Data Export
+description: Export FHIR resources in bulk using the $export operation with cloud storage backends
 ---
 
 # $export
 
-The [FHIR Bulk Data Export](https://hl7.org/fhir/uv/bulkdata/export.html) feature allows to export FHIR resources in ndjson format.
+The `$export` operation implements the [FHIR Bulk Data Export](https://hl7.org/fhir/uv/bulkdata/export.html) specification, allowing you to export large volumes of FHIR resources in ndjson format. This operation is designed for scenarios where you need to extract data for analytics, migration, or backup purposes.
 
-Aidbox supports patient-level and group-level export. When the export request is submitted the server returns URL to check the export status. When export is finished, status endpoint returns URLs to download resources.
+Aidbox supports three export levels: patient-level, group-level, and system-level. When you submit an export request, the server processes it asynchronously and returns a status URL. You can poll this URL to check when the export completes. Once finished, the status endpoint provides signed URLs to download the exported files from your configured cloud storage.
 
-Only one export process can be run at the same time. If you try to submit an export request while there is active export, you get `429 Too Many Requests` error.
+Export operations run one at a time to prevent resource exhaustion. If you attempt to start a new export while another is in progress, the server returns a `429 Too Many Requests` error.
 
-## Setup storage
+## Cloud storage setup
 
-Aidbox can export data to GCP or AWS cloud. Export results will be in `<datetime>_<uuid>` folder on the bucket.
+Aidbox exports data to cloud storage backends including GCP, Azure, and AWS. Export files are organized in timestamped folders with the pattern `<datetime>_<uuid>` to ensure unique paths for each export operation.
+
+Each cloud provider supports two authentication modes: credential-based (using stored keys or tokens) and workload identity (using cloud-native pod identity). Workload identity is recommended for managed Kubernetes deployments (GKE, AKS) as it eliminates the need to manage credentials in Aidbox resources and uses the pod's identity to authenticate with cloud storage.
 
 ### GCP
 
-[Create bucket](https://cloud.google.com/storage/docs/creating-buckets) and [service account](https://cloud.google.com/iam/docs/creating-managing-service-accounts) that has read and write access to the bucket.
+Start by [creating a Cloud Storage bucket](https://cloud.google.com/storage/docs/creating-buckets) where Aidbox will write export files. The bucket should have appropriate lifecycle policies if you want to automatically delete old exports.
 
-[Create `GcpServiceAccount` resource](../../file-storage/gcp-cloud-storage.md) in Aidbox. Example:
+#### Using workload identity
 
-```yaml
-private-key: |
-  -----BEGIN PRIVATE KEY-----
-  your-key-here
-  -----END PRIVATE KEY-----
-service-account-email: service-account@email
-id: gcp-service-account
-resourceType: GcpServiceAccount
+This is the recommended approach for GKE deployments. When running Aidbox in [Google Kubernetes Engine with Workload Identity](https://cloud.google.com/kubernetes-engine/docs/how-to/workload-identity), your pods automatically authenticate using their Kubernetes service account. No credentials need to be stored in Aidbox.
+
+Before configuring bulk export, set up workload identity following the [GCP Cloud Storage: Workload Identity](../../file-storage/gcp-cloud-storage.md#workload-identity-recommended-since-2510) guide. This includes enabling Workload Identity on your GKE cluster, creating a GCP service account with Cloud Storage permissions, granting URL signing permissions, and binding your Kubernetes service account to the GCP service account.
+
+Once workload identity is configured, set the environment variables:
+
+```bash
+BOX_FHIR_BULK_STORAGE_PROVIDER=gcp
+BOX_FHIR_BULK_STORAGE_GCP_BUCKET=your-bucket-name
 ```
 
-Set the following environment variables:
+With workload identity configured, Aidbox uses the pod's identity to generate signed URLs for export files.
 
-* `BOX_FHIR_BULK_STORAGE_PROVIDER: gcp` — backend for export
-* `BOX_FHIR_BULK_STORAGE_GCP_SERVICE_ACCOUNT` — id of the `GcpServiceAccount` resource
-* `BOX_FHIR_BULK_STORAGE_GCP_BUCKET` — bucket name
+#### Using service account credentials
+
+For non-GKE deployments or when workload identity isn't available, [create a service account](https://cloud.google.com/iam/docs/creating-managing-service-accounts) with Storage Object Admin role on your bucket.
+
+Create a `GcpServiceAccount` resource in Aidbox:
+
+```yaml
+resourceType: GcpServiceAccount
+id: gcp-service-account
+service-account-email: export@your-project.iam.gserviceaccount.com
+private-key: |
+  -----BEGIN PRIVATE KEY-----
+  your-private-key-here
+  -----END PRIVATE KEY-----
+```
+
+Configure environment variables:
+
+```bash
+BOX_FHIR_BULK_STORAGE_PROVIDER=gcp
+BOX_FHIR_BULK_STORAGE_GCP_SERVICE_ACCOUNT=gcp-service-account
+BOX_FHIR_BULK_STORAGE_GCP_BUCKET=your-bucket-name
+```
+
+See also:
+* [File storage: GCP Cloud Storage](../../file-storage/gcp-cloud-storage.md)
 
 ### Azure
 
-[Create Azure storage account](https://learn.microsoft.com/en-us/azure/storage/common/storage-account-create?tabs=azure-portal) and [storage container](https://learn.microsoft.com/en-us/azure/storage/blobs/blob-containers-portal#create-a-container).
+Start by [creating an Azure storage account](https://learn.microsoft.com/en-us/azure/storage/common/storage-account-create?tabs=azure-portal) and [a blob container](https://learn.microsoft.com/en-us/azure/storage/blobs/blob-containers-portal#create-a-container) where Aidbox will write export files.
 
-Create `AzureAccount` resource in Aidbox.
+#### Using workload identity
 
-```yaml
-resourceType: AzureAccount
-id: azureaccount                  # your storage account id
-key: 7x..LA                       # your storage account key
-```
+This is the recommended approach for AKS deployments. When running Aidbox in [Azure Kubernetes Service with Workload Identity](https://learn.microsoft.com/en-us/azure/aks/workload-identity-overview), your pods automatically authenticate using Azure managed identities. No credentials need to be stored in Aidbox.
 
-Create `AzureContainer` resource in Aidbox.
+Before configuring bulk export, set up workload identity following the [Azure Blob Storage: Workload identity](../../file-storage/azure-blob-storage.md#workload-identity) guide. This includes creating a managed identity, configuring federated credentials, assigning storage roles, and setting up your Kubernetes ServiceAccount.
+
+Once workload identity is configured, create an `AzureContainer` resource in Aidbox that references your storage account and container:
 
 ```yaml
 resourceType: AzureContainer
-id: smartboxexporttestcontainer
-account:
-  resourceType: AzureAccount
-  id: azureaccount
-storage: azureaccount             # your storage account
-container: azureaccountcontainer  # your account container
+id: export-container
+storage: mystorageaccount
+container: exports
 ```
 
-Set the following environment variables:
+Note that the `AzureContainer` resource does not include an `account` field for workload identity mode.
 
-* `BOX_FHIR_BULK_STORAGE_PROVIDER: azure` — backend for export
-* `BOX_FHIR_BULK_STORAGE_AZURE_CONTAINER: smartboxexporttestcontainer` — id of the `AzureContainer` resource
+Configure environment variables:
+
+```bash
+BOX_FHIR_BULK_STORAGE_PROVIDER=azure
+BOX_FHIR_BULK_STORAGE_AZURE_CONTAINER=export-container
+```
+
+With workload identity configured, Aidbox uses the pod's managed identity to generate user delegation SAS tokens for export files.
+
+#### Using SAS tokens
+
+For non-AKS deployments or when workload identity isn't available, you can use [Shared Access Signature (SAS) tokens](https://learn.microsoft.com/en-us/azure/storage/common/storage-sas-overview) for authentication.
+
+Create an `AzureAccount` resource with your storage account key:
+
+```yaml
+resourceType: AzureAccount
+id: azure-account
+key: your-storage-account-key-here
+```
+
+Create an `AzureContainer` resource that references both the storage account and the Azure account:
+
+```yaml
+resourceType: AzureContainer
+id: export-container
+storage: mystorageaccount
+container: exports
+account:
+  resourceType: AzureAccount
+  id: azure-account
+```
+
+Configure environment variables:
+
+```bash
+BOX_FHIR_BULK_STORAGE_PROVIDER=azure
+BOX_FHIR_BULK_STORAGE_AZURE_CONTAINER=export-container
+```
+
+When the `AzureContainer` has an `account` field, Aidbox uses the account key to generate SAS tokens.
 
 ### AWS
 
-Create [S3 bucket](https://docs.aws.amazon.com/AmazonS3/latest/userguide/create-bucket-overview.html) and [IAM user](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_users_create.html) that has read and write access to the bucket.
+Start by [creating an S3 bucket](https://docs.aws.amazon.com/AmazonS3/latest/userguide/create-bucket-overview.html) where Aidbox will write export files. Configure appropriate bucket policies and lifecycle rules for your use case.
 
-[Create `AwsAccount` resource](../../file-storage/aws-s3.md) in Aidbox. Example:
+[Create an IAM user](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_users_create.html) with read and write access to the bucket, then create an `AwsAccount` resource in Aidbox:
 
 ```yaml
-region: us-east-1
-access-key-id: your-key-id
-secret-access-key: key
-id: aws-account
 resourceType: AwsAccount
+id: aws-account
+region: us-east-1
+access-key-id: your-access-key-id
+secret-access-key: your-secret-access-key
 ```
 
-Set the following environment variables:
+Configure environment variables:
 
-* `BOX_FHIR_BULK_STORAGE_PROVIDER: aws` — backend for export
-* `BOX_FHIR_BULK_STORAGE_AWS_ACCOUNT` — id of the `AwsAccount` resource
-* `BOX_FHIR_BULK_STORAGE_AWS_BUCKET` — bucket name
+```bash
+BOX_FHIR_BULK_STORAGE_PROVIDER=aws
+BOX_FHIR_BULK_STORAGE_AWS_ACCOUNT=aws-account
+BOX_FHIR_BULK_STORAGE_AWS_BUCKET=your-bucket-name
+```
+
+See also:
+* [File storage: AWS S3](../../file-storage/aws-s3.md)
 
 ## Parameters
 
+The `$export` operation accepts several query parameters to customize the export:
+
 | Parameter       | Description                                                                                                                                                                                                                                                                                               |
 | --------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `_outputFormat` | <p>Specifies format in which the server generates files.<br>The following formats are supported:<br></p><ul><li><code>application/fhir+ndjson</code> — <code>.ndjson</code> files will be saved</li><li><code>application/fhir+ndjson+gzip</code> — <code>.ndjson.gz</code> files will be saved</li></ul> |
-| `_type`         | Includes only the specified types. This list is comma-separated.                                                                                                                                                                                                                                          |
-| `_since`        | Includes only resources changed after the specified time.                                                                                                                                                                                                                                                 |
-| `patient`       | Export data that belongs only to listed patient. Format: comma-separated list of patient ids. Available only for patient-level export.                                                                                                                                                                    |
+| `_outputFormat` | Specifies the format in which the server generates files. Supported formats: `application/fhir+ndjson` (generates `.ndjson` files) and `application/fhir+ndjson+gzip` (generates compressed `.ndjson.gz` files). |
+| `_type`         | Comma-separated list of resource types to include in the export. Only the specified types will be exported.                                                                                                                                                                                                                                          |
+| `_since`        | Includes only resources that changed after the specified datetime. Uses ISO 8601 format.                                                                                                                                                                                                                                                 |
+| `patient`       | Comma-separated list of patient IDs. Exports data only for the listed patients. Available only for patient-level export.                                                                                    |
 
 ## Patient-level export
 
-Patient-level export exports all Patient resources and resources associated with them. This association is defined by [FHIR Compartments](http://hl7.org/fhir/r4/compartmentdefinition-patient.html).
+Patient-level export extracts all Patient resources and resources associated with them. The association is defined by [FHIR Patient Compartment](http://hl7.org/fhir/r4/compartmentdefinition-patient.html), which specifies which resource types reference patients and through which fields.
 
-To start export make a request to `/fhir/Patient/$export`:
+To start a patient-level export, send a GET request to `/fhir/Patient/$export`:
 
 {% tabs %}
 {% tab title="Request" %}
@@ -118,17 +185,17 @@ Prefer: respond-async
 
 **Headers**
 
-* `Content-Location` — Link to check export status (e.g. `/fhir/$export-status/<id>`)
+* `Content-Location` — URL to check export status (e.g. `/fhir/$export-status/<id>`)
 {% endtab %}
 {% endtabs %}
 
-Make a request to the export status endpoint to check the status:
+Poll the status endpoint to check when the export completes:
 
 {% tabs %}
 {% tab title="Request" %}
 **Rest console**
 
-```
+```http
 GET /fhir/$export-status/<id>
 ```
 {% endtab %}
@@ -140,12 +207,12 @@ GET /fhir/$export-status/<id>
 
 **Body**
 
-```jsonp
+```json
 {
   "status": "completed",
   "transactionTime": "2021-12-08T08:28:06.489Z",
   "requiresAccessToken": false,
-  "request": "[base]/fhir/Patient/$export"
+  "request": "[base]/fhir/Patient/$export",
   "output": [
     {
       "type": "Patient",
@@ -153,23 +220,24 @@ GET /fhir/$export-status/<id>
       "count": 2
     },
     {
-      "type": "Person",
+      "type": "Observation",
       "url": "https://storage/some-other-url",
-      "count": 1
+      "count": 15
     }
-  ]
+  ],
+  "error": []
 }
 ```
 {% endtab %}
 {% endtabs %}
 
-Delete request on the export status endpoint cancels export.
+To cancel an active export, send a DELETE request to the status endpoint:
 
 {% tabs %}
 {% tab title="Request" %}
 **Rest console**
 
-```
+```http
 DELETE /fhir/$export-status/<id>
 ```
 {% endtab %}
@@ -183,9 +251,9 @@ DELETE /fhir/$export-status/<id>
 
 ## Group-level export
 
-Group-level export exports all Patient resources that belong to the specified group and resources associated with them. Characteristics of the group are not exported. This association is defined by [FHIR Compartments](http://hl7.org/fhir/r4/compartmentdefinition-patient.html).
+Group-level export extracts all Patient resources that belong to a specified Group resource, plus all resources associated with those patients. The group characteristics themselves are not exported. Association is defined by the [FHIR Patient Compartment](http://hl7.org/fhir/r4/compartmentdefinition-patient.html).
 
-To start export make a request to `/fhir/Group/<group-id>/$export`:
+To start a group-level export, send a GET request to `/fhir/Group/<group-id>/$export`:
 
 {% tabs %}
 {% tab title="Request" %}
@@ -205,74 +273,18 @@ Prefer: respond-async
 
 **Headers**
 
-* `Content-Location` — Link to check export status (e.g. `/fhir/$export-status/<id>`)
+* `Content-Location` — URL to check export status (e.g. `/fhir/$export-status/<id>`)
 {% endtab %}
 {% endtabs %}
 
-Make a request to the export status endpoint to check the status:
-
-{% tabs %}
-{% tab title="Request" %}
-**Rest console**
-
-```
-GET /fhir/$export-status/<id>
-```
-{% endtab %}
-
-{% tab title="Response (completed)" %}
-**Status**
-
-200 OK
-
-**Body**
-
-```jsonp
-{
-  "status": "completed",
-  "transactionTime": "2021-12-08T08:28:06.489Z",
-  "requiresAccessToken": false,
-  "output": [
-    {
-      "type": "Patient",
-      "url": "https://storage/some-url",
-      "count": 2
-    },
-    {
-      "type": "Person",
-      "url": "https://storage/some-other-url",
-      "count": 1
-    }
-  ]
-}
-```
-{% endtab %}
-{% endtabs %}
-
-Delete request on the export status endpoint cancels export.
-
-{% tabs %}
-{% tab title="Request" %}
-**Rest console**
-
-```http
-DELETE /fhir/$export-status/<id>
-```
-{% endtab %}
-
-{% tab title="Response" %}
-**Status**
-
-202 Accepted
-{% endtab %}
-{% endtabs %}
+The status endpoint works the same way as patient-level export. Poll `/fhir/$export-status/<id>` to check progress, and send a DELETE request to cancel.
 
 ## System-level export
 
-System-level export exports data from a FHIR server, whether or not it is associated with a patient. You may restrict the resources returned using the `_type` parameter.
+System-level export extracts data from the entire FHIR server, whether or not it's associated with a patient. Use the `_type` parameter to restrict which resource types are exported.
 
 {% hint style="warning" %}
-Limitation: export operation will work for standard FHIR resources only, not for custom resources.
+System-level export works only for standard FHIR resources, not for custom resources defined in your Aidbox configuration.
 {% endhint %}
 
 {% tabs %}
@@ -284,14 +296,14 @@ Prefer: respond-async
 ```
 {% endtab %}
 
-{% tab title="Response(completed)" %}
+{% tab title="Response (completed)" %}
 **Status**
 
 200 OK
 
 **Body**
 
-```jsonp
+```json
 {
   "status": "completed",
   "transactionTime": "2021-12-08T08:28:06.489Z",
@@ -303,48 +315,33 @@ Prefer: respond-async
       "count": 2
     },
     {
-      "type": "Person",
+      "type": "Practitioner",
       "url": "https://storage/some-other-url",
-      "count": 1
+      "count": 5
     }
-  ]
+  ],
+  "error": []
 }
 ```
 {% endtab %}
 {% endtabs %}
 
-A delete request on the export status endpoint cancels export.
+The status endpoint works the same way as other export levels. Poll `/fhir/$export-status/<id>` to check progress, and send a DELETE request to cancel.
 
-{% tabs %}
-{% tab title="Request" %}
-**Rest console**
+## Troubleshooting
+
+The `$export` operation requires properly configured cloud storage. Most issues stem from incorrect Aidbox configuration. To verify your setup, run the storage healthcheck RPC:
 
 ```http
-DELETE /fhir/$export-status/<id>
-```
-{% endtab %}
-
-{% tab title="Response" %}
-**Status**
-
-202 Accepted
-{% endtab %}
-{% endtabs %}
-
-## Troubleshooting guide
-
-`$export` operation expects you set up external storage, Aidbox exports data into. In most cases, issues with `$exoprt` are the consequences of incorrect Adbox configuration. To exclude this, run the following rpc:
-
-```
 POST /rpc
 Content-Type: text/yaml
 
 method: aidbox.bulk/storage-healthcheck
 ```
 
-Normally, you should see something like this in the response body:
+A successful response looks like this:
 
-```
+```yaml
 result:
   message: ok
   storage:
@@ -355,35 +352,43 @@ result:
       resourceType: GcpServiceAccount
 ```
 
-This means that integration between Aidbox and your storage setup is correct.
+This confirms that Aidbox can authenticate to your storage backend and has the necessary permissions.
 
-Other responses you might see:
+### Common errors
 
-### Storage-type not specified
+**Storage-type not specified**
 
-The storage-type not specified error means that `BOX_FHIR_BULK_STORAGE_PROVIDER` environment variable wasn't set up. Valid values are `aws` , `azure`  and `gcp`.
+The `BOX_FHIR_BULK_STORAGE_PROVIDER` environment variable is not set. Valid values are `gcp`, `azure`, and `aws`.
 
-### Unsupported storage-type
+**Unsupported storage-type**
 
-The unsupported storage-type error means that `BOX_FHIR_BULK_STORAGE_PROVIDER` environment variable has an invalid value. Valid values are  `aws` , `azure`  and `gcp`.
+The `BOX_FHIR_BULK_STORAGE_PROVIDER` environment variable has an invalid value. Valid values are `gcp`, `azure`, and `aws`.
 
-### bulk-storage account not specified
+**Bulk-storage account not specified**
 
-This error means account is not specified
-
-* `BOX_FHIR_BULK_STORAGE_GCP_SERVICE_ACCOUNT` for GCP
+The account environment variable is not set:
+* `BOX_FHIR_BULK_STORAGE_GCP_SERVICE_ACCOUNT` for GCP with credentials
 * `BOX_FHIR_BULK_STORAGE_AWS_ACCOUNT` for AWS
 
-### Account not found
+Note: This error does not apply to workload identity mode, where no account is needed.
 
-This means there is no account for AWS or GCP
+**Account not found**
 
-Create [AWSAccount](../../file-storage/aws-s3.md) or [GCPServiceAccount](../../file-storage/gcp-cloud-storage.md), depending on your config.
+The referenced account resource does not exist in Aidbox. Create the appropriate resource:
+* `GcpServiceAccount` for GCP
+* `AwsAccount` for AWS
+* `AzureAccount` for Azure (when using SAS tokens)
 
-### Bucket is not specified
+**Bucket is not specified**
 
-This error means that the bucket is not specified.
+The bucket environment variable is not set:
+* `BOX_FHIR_BULK_STORAGE_GCP_BUCKET` for GCP
+* `BOX_FHIR_BULK_STORAGE_AWS_BUCKET` for AWS
 
-Specify `BOX_FHIR_BULK_STORAGE_GCP_BUCKET` for GCP.
+**Azure container not specified**
 
-Specify `BOX_FHIR_BULK_STORAGE_AWS_BUCKET` for AWS.
+The `BOX_FHIR_BULK_STORAGE_AZURE_CONTAINER` environment variable is not set.
+
+See also:
+* [FHIR Bulk Data Export specification](https://hl7.org/fhir/uv/bulkdata/export.html)
+* [FHIR Patient Compartment](http://hl7.org/fhir/r4/compartmentdefinition-patient.html)
