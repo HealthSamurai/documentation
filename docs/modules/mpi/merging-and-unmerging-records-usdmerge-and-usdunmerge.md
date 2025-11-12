@@ -13,11 +13,11 @@ We use a **hybrid merge strategy** that combines elements of both the **golden r
 * You have to select one of the existing records as the **survivor**.
 * You can optionally **edit its data** using fields from the other records before completing the merge.
 
-Currently, only **manual merging** is supported. However, the system is designed to support **automatic merging** in the future.&#x20;
+Currently, only **manual merging** is supported. However, the system is designed to support **automatic merging** in the future.
 
 The **unmerge** operation allows reversing a previous merge by restoring the original source record and its relationships based on audit data, ensuring no permanent data loss if a merge was done by mistake.
 
-This page provides key information about using `$merge` and `$unmerge` . For full API details, refer to our [Swagger documentation](https://mpi.aidbox.io/static/swagger.html).
+This page provides key information about using `$merge` and `$unmerge` . For full API details, refer to our [Swagger documentation](https://mdm.aidbox.io/backend/static/swagger.html).
 
 {% hint style="success" %}
 If you need **alternative merge and unmerge approaches** to adjust MPI to your specific workflows and requirements, please [contact us](../../overview/contact-us.md).

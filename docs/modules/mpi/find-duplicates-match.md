@@ -22,7 +22,7 @@ It performs a probabilistic search based on a **matching model** that compares t
 
 The **result is a list of potential duplicates**, each with a calculated match score and a detailed breakdown of feature similarity.&#x20;
 
-This page provides key information about using `$match`. For full API details, refer to our [Swagger documentation](https://mpi.aidbox.io/static/swagger.html).
+This page provides key information about using `$match`. For full API details, refer to our [Swagger documentation](https://mdm.aidbox.io/backend/static/swagger.html).
 
 ## $match
 
