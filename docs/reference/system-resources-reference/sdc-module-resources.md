@@ -253,6 +253,14 @@ Resources for configuration and management Aidbox SDC module.
   "type" : "string",
   "desc" : "Background color for filled buttons border color for outlined buttons (deprecated)"
 }, {
+  "path" : "design-system",
+  "name" : "design-system",
+  "lvl" : 0,
+  "min" : 0,
+  "max" : 1,
+  "type" : "string",
+  "desc" : "Design System used in form components \n\n**Allowed values**: `aidbox-desktop` | `aidbox-mobile` | `NHS`"
+}, {
   "path" : "font-family",
   "name" : "font-family",
   "lvl" : 0,
