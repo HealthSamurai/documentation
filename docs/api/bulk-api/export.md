@@ -354,41 +354,6 @@ result:
 
 This confirms that Aidbox can authenticate to your storage backend and has the necessary permissions.
 
-### Common errors
-
-**Storage-type not specified**
-
-The `BOX_FHIR_BULK_STORAGE_PROVIDER` environment variable is not set. Valid values are `gcp`, `azure`, and `aws`.
-
-**Unsupported storage-type**
-
-The `BOX_FHIR_BULK_STORAGE_PROVIDER` environment variable has an invalid value. Valid values are `gcp`, `azure`, and `aws`.
-
-**Bulk-storage account not specified**
-
-The account environment variable is not set:
-* `BOX_FHIR_BULK_STORAGE_GCP_SERVICE_ACCOUNT` for GCP with credentials
-* `BOX_FHIR_BULK_STORAGE_AWS_ACCOUNT` for AWS
-
-Note: This error does not apply to workload identity mode, where no account is needed.
-
-**Account not found**
-
-The referenced account resource does not exist in Aidbox. Create the appropriate resource:
-* `GcpServiceAccount` for GCP
-* `AwsAccount` for AWS
-* `AzureAccount` for Azure (when using SAS tokens)
-
-**Bucket is not specified**
-
-The bucket environment variable is not set:
-* `BOX_FHIR_BULK_STORAGE_GCP_BUCKET` for GCP
-* `BOX_FHIR_BULK_STORAGE_AWS_BUCKET` for AWS
-
-**Azure container not specified**
-
-The `BOX_FHIR_BULK_STORAGE_AZURE_CONTAINER` environment variable is not set.
-
 See also:
 * [FHIR Bulk Data Export specification](https://hl7.org/fhir/uv/bulkdata/export.html)
 * [FHIR Patient Compartment](http://hl7.org/fhir/r4/compartmentdefinition-patient.html)
