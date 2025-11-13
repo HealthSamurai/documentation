@@ -2,7 +2,6 @@
 
 * [Getting Started](getting-started/README.md)
   * [Run Auditbox Locally](getting-started/run-with-oneliner.md)
-  <!-- * [Run Auditbox Locally (Manual)](getting-started/run-locally.md) -->
 
 ## Guides
 
