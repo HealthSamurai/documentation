@@ -327,33 +327,3 @@ Prefer: respond-async
 {% endtabs %}
 
 The status endpoint works the same way as other export levels. Poll `/fhir/$export-status/<id>` to check progress, and send a DELETE request to cancel.
-
-## Troubleshooting
-
-The `$export` operation requires properly configured cloud storage. Most issues stem from incorrect Aidbox configuration. To verify your setup, run the storage healthcheck RPC:
-
-```http
-POST /rpc
-Content-Type: text/yaml
-
-method: aidbox.bulk/storage-healthcheck
-```
-
-A successful response looks like this:
-
-```yaml
-result:
-  message: ok
-  storage:
-    type: gcp
-    bucket: my_bucket
-    account:
-      id: gcp-acc
-      resourceType: GcpServiceAccount
-```
-
-This confirms that Aidbox can authenticate to your storage backend and has the necessary permissions.
-
-See also:
-* [FHIR Bulk Data Export specification](https://hl7.org/fhir/uv/bulkdata/export.html)
-* [FHIR Patient Compartment](http://hl7.org/fhir/r4/compartmentdefinition-patient.html)
