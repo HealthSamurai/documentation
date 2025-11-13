@@ -67,6 +67,22 @@ The one-liner automatically sets up and runs four Docker services:
 | Elasticsearch 8.17.0 | http://localhost:9204/ | Elasticsearch |
 | Keycloak 26.0.6 | http://localhost:8888/ | Authorization admin |
 
+<details>
+<summary>Docker services configuration</summary>
+
+```yaml
+volumes:
+  elasticsearch-demo-data:
+    driver: local
+
+services:
+  auditbox:
+    image: healthsamurai/auditbox:edge
+    pull_policy: always
+```
+
+</details>
+
 ## Stopping
 
 ```bash
