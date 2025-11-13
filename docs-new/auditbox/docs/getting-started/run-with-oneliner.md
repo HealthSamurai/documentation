@@ -5,7 +5,7 @@ Get Auditbox running on your local machine in a few minutes using our pre-config
 ## Prerequisites
 
 {% hint style="warning" %}
-<img src="../../.gitbook/assets/docker.png" alt="" data-size="original">
+<img src="../../.gitbook/assets/auditbox/docker.png" alt="" data-size="original">
 
 Please **make sure** that both [Docker & Docker Compose](https://docs.docker.com/engine/install/) are installed.
 {% endhint %}
@@ -27,7 +27,7 @@ Open **http://localhost:3000/** in your browser.
 
 You'll see the Auditbox login screen. 
 
-![Auditbox login screen](../../.gitbook/assets/kc-enter.png)
+![Auditbox login screen](../../.gitbook/assets/auditbox/kc-enter.png)
 
 Use the following credentials to sign in:
 
