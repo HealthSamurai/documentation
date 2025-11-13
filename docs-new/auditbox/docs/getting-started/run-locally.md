@@ -1,12 +1,14 @@
-# Run Auditbox Locally
+# Run Auditbox Locally (Manual Setup)
 
-This guide will help you set up and run Auditbox on your local machine using Docker.
+This guide will help you set up and run Auditbox on your local machine using Docker with manual configuration.
+
+> **Quick alternative**: For faster setup with pre-configured services, see [Run with Oneliner](run-with-oneliner.md)
 
 ## Requirements
 
 - **Docker Desktop** (includes Docker Compose)
 - 2 GB free memory
-- Ports 3002, 9204, 8888
+- Ports: 3002, 9204, 8888
 
 ## Quick Start
 
