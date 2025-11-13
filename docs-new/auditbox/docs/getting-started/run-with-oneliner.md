@@ -21,6 +21,7 @@ mkdir auditbox && cd auditbox
 curl -JO https://aidbox.app/runme/auditbox && docker compose up
 ```
 
+This command downloads the Auditbox configuration file and starts all services using Docker Compose.
 Wait about 2 minutes for all services to load.
 
 ### Step 2: Sign in to Auditbox
