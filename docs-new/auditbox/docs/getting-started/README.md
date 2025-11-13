@@ -47,7 +47,7 @@ Auditbox aligns with major compliance standards:
 
 Auditbox uses Elasticsearch behind the scenes for high-performance storage and querying. Despite its powerful capabilities, it doesn't require any special setup or a large server. Even a basic installation is sufficient, since most of the work involves writing new events (not searching), and only a few users will be reviewing events at a time.
 
-<img src="../../.gitbook/assets/auditbox/arch.png"
+<img src="../../../.gitbook/assets/auditbox/arch.png"
      width="100%"
      alt="AuditBox architecture">
 
