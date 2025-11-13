@@ -25,12 +25,10 @@ Wait about 2 minutes for all services to load.
 
 ### Step 2: Sign in to Auditbox
 
-Open **http://localhost:3000/** in your browser.
-
-You'll see the Auditbox login screen. 
+Open **http://localhost:3000/** in your browser. You'll see the Auditbox login screen. 
 
 <img src="../../.gitbook/assets/auditbox/ui_login.png"
-     width="100%"
+     width="50%"
      alt="AuditBox login screen">
 
 {% hint style="info" %}
@@ -48,27 +46,26 @@ Use the following credentials to sign in:
 - **Username or email**: `user`
 - **Password**: `password`
 
-Click "Sign In" and you will see Auditbox UI
+Click "Sign In" and you will see the Auditbox UI.
 
 <img src="../../.gitbook/assets/auditbox/ui_main.png"
      width="100%"
      alt="AuditBox UI screen">
 
+## Discover Auditbox features
+
+Use the Auditbox interface to explore audit event management and search capabilities. Test data is automatically loaded.
+
 ## What gets installed
 
-The one-liner automatically sets up and runs five Docker services:
+The one-liner automatically sets up and runs four Docker services:
 
 | Service | URL | Description |
 |---------|-----|-------------|
 | Auditbox | http://localhost:3000/ | Auditbox User Interface |
 | API | http://localhost:3000/AuditEvent | FHIR REST API |
-| Elasticsearch | http://localhost:9204/ | Elasticsearch |
-| Keycloak | http://localhost:8888/ | Authorization admin |
-| Kibana | http://localhost:5602/ | Analytics and visualization UI |
-
-## Discover Auditbox features
-
-Use the Auditbox interface to explore audit event management and search capabilities. Test data is automatically loaded, so you can start exploring right away.
+| Elasticsearch 8.17.0 | http://localhost:9204/ | Elasticsearch |
+| Keycloak 26.0.6 | http://localhost:8888/ | Authorization admin |
 
 ## Stopping
 
