@@ -4,7 +4,7 @@ This guide explains how to configure Auditbox with Google Cloud Storage (GCS) ar
 
 ## Prerequisites
 
-- Elasticsearch 8.x cluster
+- Elasticsearch 8.17 cluster
 - Google Cloud Storage bucket
 - Google Cloud service account with appropriate permissions
 - Google Cloud credentials (service account key)
@@ -38,10 +38,7 @@ You need to add GCS credentials to the Elasticsearch keystore to enable snapshot
 
 ```bash
 # Add Google Cloud service account key file path
-echo "/path/to/service-account-key.json" | bin/elasticsearch-keystore add gcs.client.default.credentials_file --stdin
-
-# Alternatively, you can set the credentials inline (not recommended for production)
-# echo "your-service-account-json-content" | bin/elasticsearch-keystore add gcs.client.default.credentials --stdin
+cat "/path/to/service-account-key.json" | bin/elasticsearch-keystore add gcs.client.default.credentials_file --stdin
 ```
 
 ## Step 3: Configure Auditbox Environment Variables

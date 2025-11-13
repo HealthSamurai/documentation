@@ -4,7 +4,7 @@ This guide explains how to configure Auditbox with MinIO archiving functionality
 
 ## Prerequisites
 
-- Elasticsearch 8.x cluster
+- Elasticsearch 8.17 cluster
 - MinIO server with a bucket created
 - MinIO access key ID and secret access key
 
