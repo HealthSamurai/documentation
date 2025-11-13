@@ -52,7 +52,7 @@ Click "Sign In" and you will see the Auditbox UI.
      width="100%"
      alt="AuditBox UI screen">
 
-## Discover Auditbox features
+### Step 3: Discover Auditbox features
 
 Use the Auditbox interface to explore audit event management and search capabilities. Test data is automatically loaded.
 
