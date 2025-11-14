@@ -129,7 +129,34 @@ When the `AzureContainer` has an `account` field, Aidbox uses the account key to
 
 Start by [creating an S3 bucket](https://docs.aws.amazon.com/AmazonS3/latest/userguide/create-bucket-overview.html) where Aidbox will write export files. Configure appropriate bucket policies and lifecycle rules for your use case.
 
-[Create an IAM user](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_users_create.html) with read and write access to the bucket, then create an `AwsAccount` resource in Aidbox:
+[Create an IAM user](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_users_create.html) with the following permissions on the bucket:
+
+```json
+{
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Effect": "Allow",
+      "Action": [
+        "s3:PutObject",
+        "s3:GetObject",
+        "s3:ListBucket"
+      ],
+      "Resource": [
+        "arn:aws:s3:::your-bucket-name",
+        "arn:aws:s3:::your-bucket-name/*"
+      ]
+    }
+  ]
+}
+```
+
+Required actions:
+- `s3:PutObject` - Write export files to the bucket
+- `s3:GetObject` - Generate signed URLs for downloading export results
+- `s3:ListBucket` - List bucket contents for export operations
+
+Once you have created the IAM user and attached the policy, create an `AwsAccount` resource in Aidbox:
 
 ```yaml
 resourceType: AwsAccount

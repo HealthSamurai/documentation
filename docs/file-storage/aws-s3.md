@@ -15,6 +15,37 @@ secret-access-key: wJalrXUtnFEMI/K7MDENG/bPxRfiCYEXAMPLEKEY
 region: us-east-1
 ```
 
+## IAM permissions
+
+The IAM user needs the following permissions on the S3 bucket:
+
+```json
+{
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Effect": "Allow",
+      "Action": [
+        "s3:PutObject",
+        "s3:GetObject",
+        "s3:DeleteObject",
+        "s3:ListBucket"
+      ],
+      "Resource": [
+        "arn:aws:s3:::your-bucket-name",
+        "arn:aws:s3:::your-bucket-name/*"
+      ]
+    }
+  ]
+}
+```
+
+Required actions:
+- `s3:PutObject` - Upload files to the bucket
+- `s3:GetObject` - Generate signed URLs for file retrieval
+- `s3:DeleteObject` - Delete files from the bucket
+- `s3:ListBucket` - List bucket contents
+
 ## Get signed URL to upload the file
 
 Provide AwsAccount id as well as the bucket name and get back the signed URL that you can use to upload the data. By default, the link is valid for 24 hours.
