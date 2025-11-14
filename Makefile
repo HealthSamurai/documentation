@@ -49,6 +49,9 @@ uberjar-legacy:
 test: init-test
 	clojure -M:test:kaocha
 
+test-single: init-test
+	clojure -M:test:kaocha
+
 minify-js:
 	find resources/public/ -type f -name "*.js" ! -name "*.min.js" -exec sh -c 'npx terser "$$0" -c -m -o "$$0.tmp" && mv "$$0.tmp" "$$0"' {} \;
 

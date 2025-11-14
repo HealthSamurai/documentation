@@ -30,7 +30,16 @@ Run:
 make test
 ```
 ### Run specific test namespace
-```bash
-clojure -M:test:kaocha --focus namespace-name
-# Example: clojure -M:test:kaocha --focus gitbok.ui.breadcrumb-test
+
 ```
+make test-single TEST=<test-ns>/<deftest-name>
+```
+For example:
+```
+make test-single TEST=proto.search.chained-int-test/test-has-with-subselect-optimization
+```
+You can run all tests in one namespace, for example:
+```
+make test-single TEST=proto.search.chained-int-test
+```
+
