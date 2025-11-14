@@ -50,6 +50,7 @@
   ;; Start server
   (start true)
 
+  ;; not dev
   (start false)
   ;; Stop server
   (stop)

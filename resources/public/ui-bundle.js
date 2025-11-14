@@ -1507,22 +1507,27 @@ function showCopySuccess(button) {
       // Set consent flag in localStorage
       localStorage.setItem('cookie_consent', 'accepted');
 
-      // PostHog opt-in
+      // PostHog: Switch from memory-only to full persistence with cookies
       if (typeof posthog !== 'undefined') {
+        console.log('[PostHog] Switching to full tracking with cookies');
+        posthog.set_config({ persistence: 'localStorage+cookie' });
         posthog.opt_in_capturing();
       }
 
-      // Update Google Consent Mode
+      // Update Google Consent Mode to granted for full tracking
       if (typeof gtag !== 'undefined') {
         gtag('consent', 'update', {
-          'analytics_storage': 'granted'
+          'analytics_storage': 'granted',
+          'ad_storage': 'granted'
         });
       }
 
       hideCookieBanner();
 
-      // Reload to load GTM and other scripts
-      window.location.reload();
+      // Dynamically load PushEngage using centralized function
+      loadPushEngage();
+
+      // No reload needed - changes applied immediately
     } catch (error) {
       console.error('[Cookie Banner] Error accepting cookies:', error);
     }
@@ -1533,17 +1538,19 @@ function showCopySuccess(button) {
       // Set reject flag in localStorage
       localStorage.setItem('cookie_consent', 'rejected');
 
-      // PostHog opt-out
+      // PostHog: Switch to memory-only persistence (no cookies, anonymous tracking)
       if (typeof posthog !== 'undefined') {
-        posthog.opt_out_capturing();
+        console.log('[PostHog] Switching to anonymous tracking (memory-only)');
+        posthog.set_config({ persistence: 'memory' });
+        // Don't call opt_out_capturing() - we still want anonymous events!
       }
 
       // Google Consent Mode stays denied (already set in default)
+      // GTM will send anonymous pings without personal data
 
       hideCookieBanner();
 
-      // Reload to remove already loaded scripts (Intercom, etc.)
-      window.location.reload();
+      // No reload needed - anonymous tracking continues immediately
     } catch (error) {
       console.error('[Cookie Banner] Error rejecting cookies:', error);
     }
@@ -1557,6 +1564,13 @@ function showCopySuccess(button) {
       // If user already made a choice, don't show banner
       if (consentChoice === 'accepted' || consentChoice === 'rejected') {
         hideCookieBanner();
+
+        // If user accepted cookies, load PushEngage automatically
+        if (consentChoice === 'accepted') {
+          console.log('[Cookie Banner] User previously accepted - loading PushEngage');
+          loadPushEngage();
+        }
+
         return;
       }
 
@@ -1574,14 +1588,40 @@ function showCopySuccess(button) {
     checkConsentStatus();
   }
 
+  function loadPushEngage() {
+    // Only load if not already loaded
+    if (window.PushEngage) {
+      console.log('[PushEngage] Already loaded, skipping');
+      return;
+    }
+
+    try {
+      console.log('[PushEngage] Loading PushEngage SDK...');
+      (function(w, d) {
+        w.PushEngage = w.PushEngage || [];
+        w._peq = w._peq || [];
+        PushEngage.push(['init', { appId: '795c4eea-7a69-42d7-bff3-882774303fcf' }]);
+        var e = d.createElement('script');
+        e.src = 'https://clientcdn.pushengage.com/sdks/pushengage-web-sdk.js';
+        e.async = true;
+        e.type = 'text/javascript';
+        d.head.appendChild(e);
+        console.log('[PushEngage] SDK script tag inserted');
+      })(window, document);
+    } catch (error) {
+      console.error('[PushEngage] Error loading SDK:', error);
+    }
+  }
+
   function showCookieSettings() {
     // Clear consent choice and show banner again
     localStorage.removeItem('cookie_consent');
     showCookieBanner();
   }
 
-  // Export functions to window for use in onclick handlers
+  // Export functions to window for use in onclick handlers and server-side code
   window.handleAcceptCookies = handleAcceptCookies;
   window.handleRejectCookies = handleRejectCookies;
   window.showCookieSettings = showCookieSettings;
+  window.loadPushEngage = loadPushEngage;
 })();
