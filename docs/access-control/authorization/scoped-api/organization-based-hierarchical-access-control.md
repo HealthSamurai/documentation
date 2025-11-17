@@ -487,6 +487,24 @@ Since version 2503 GraphQL is supported in OrgBAC mode. Note that it can be acce
 
 See also: [graphql-api.md](../../../api/graphql-api.md)
 
+## Authentication
+
+### Login View
+
+```
+GET <AIDBOX_BASE_URL>/Organization/<org-id>/auth/login
+```
+
+Returns the login view for the specified organization.
+
+### Login
+
+```
+POST <AIDBOX_BASE_URL>/Organization/<org-id>/auth/login
+```
+
+Performs loginfor the specified organization.
+
 ## Shared resource mode
 
 By default, nested API has no access to a resource that belongs to the upper organizations. Sometimes it is necessary to have resources that can be accessed by the nested APIs. To achieve it the resource should be marked as `shared`.
