@@ -82,5 +82,4 @@ Auditbox is designed for:
 Ready to try Auditbox? Check out our guides:
 
 - [Run Auditbox with Oneliner](run-with-oneliner.md) - Quick setup with pre-configured services
-- [Run Auditbox Locally (Manual)](run-locally.md) - Set up Auditbox manually
-- [Configuration](configuration.md) - Configure Auditbox for your environment
+- [Configuration](../configuration/envs.md) - Configure Auditbox for your environment
