@@ -22,37 +22,34 @@ spec:
       labels:
         app.kubernetes.io/name: gitbok
     spec:
-      # Init container commented out to improve resilience during GitHub outages
-      # Docs are embedded in the Docker image and will be used as fallback
-      # The sidecar git-sync will update docs when GitHub becomes available
-      # initContainers:
-      # - name: git-sync-init
-      #   image: registry.k8s.io/git-sync/git-sync:v3.6.9
-      #   resources:
-      #     requests:
-      #       memory: "256Mi"
-      #       cpu: "100m"
-      #     limits:
-      #       memory: "512Mi"
-      #       cpu: "500m"
-      #   securityContext:
-      #     allowPrivilegeEscalation: false
-      #     capabilities:
-      #       drop:
-      #       - ALL
-      #   envFrom:
-      #   - configMapRef:
-      #       name: git-sync-env
-      #   env:
-      #   - name: GIT_SYNC_ONE_TIME
-      #     value: "true"
-      #   - name: GIT_SYNC_TIMEOUT
-      #     value: "600"
-      #   - name: GIT_SYNC_MAX_SYNC_FAILURES
-      #     value: "0"
-      #   volumeMounts:
-      #   - name: git-repo
-      #     mountPath: /git-data
+      initContainers:
+      - name: git-sync-init
+        image: registry.k8s.io/git-sync/git-sync:v3.6.9
+        resources:
+          requests:
+            memory: "256Mi"
+            cpu: "100m"
+          limits:
+            memory: "512Mi"
+            cpu: "500m"
+        securityContext:
+          allowPrivilegeEscalation: false
+          capabilities:
+            drop:
+            - ALL
+        envFrom:
+        - configMapRef:
+            name: git-sync-env
+        env:
+        - name: GIT_SYNC_ONE_TIME
+          value: "true"
+        - name: GIT_SYNC_TIMEOUT
+          value: "600"
+        - name: GIT_SYNC_MAX_SYNC_FAILURES
+          value: "0"
+        volumeMounts:
+        - name: git-repo
+          mountPath: /git-data
       containers:
       - name: main
         image: ghcr.io/healthsamurai/documentation:1.5.4
