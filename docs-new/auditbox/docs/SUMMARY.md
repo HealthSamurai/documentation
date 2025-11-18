@@ -4,6 +4,7 @@
 
 * [Getting Started](getting-started/README.md)
 * [Run Auditbox Locally](getting-started/run-with-oneliner.md)
+* [Run Auditbox with Helm Charts](getting-started/run-k8s.md)
 
 ## Archiving
 
