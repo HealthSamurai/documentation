@@ -22,6 +22,14 @@ echo "your-access-key-id" | bin/elasticsearch-keystore add s3.client.default.acc
 echo "your-secret-access-key" | bin/elasticsearch-keystore add s3.client.default.secret_key --stdin
 ```
 
+### Reload Secure Settings
+
+After adding credentials to the keystore, you need to reload the secure settings in Elasticsearch for the changes to take effect:
+
+```bash
+curl -X POST "localhost:9200/_nodes/reload_secure_settings" -H 'Content-Type: application/json'
+```
+
 ## Step 2: Configure Auditbox Environment Variables
 
 Enable MinIO archiving in Auditbox by setting the following environment variables:

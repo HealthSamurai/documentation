@@ -41,6 +41,14 @@ You need to add GCS credentials to the Elasticsearch keystore to enable snapshot
 cat "/path/to/service-account-key.json" | bin/elasticsearch-keystore add gcs.client.default.credentials_file --stdin
 ```
 
+### Reload Secure Settings
+
+After adding credentials to the keystore, you need to reload the secure settings in Elasticsearch for the changes to take effect:
+
+```bash
+curl -X POST "localhost:9200/_nodes/reload_secure_settings" -H 'Content-Type: application/json'
+```
+
 ## Step 3: Configure Auditbox Environment Variables
 
 Enable GCS archiving in Auditbox by setting the following environment variables:
