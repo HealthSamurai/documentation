@@ -1,4 +1,4 @@
-# Deploy Auditbox with Helm Charts
+# Run Auditbox with Helm Charts
 
 Our Helm charts streamline the deployment process, enabling easy configuration and customization while ensuring a seamless deployment experience within Kubernetes clusters. Whether you're a healthcare institution, developer, or DevOps engineer, these Helm charts provide a straightforward path to deploying Auditbox in your Kubernetes environment.
 
@@ -8,14 +8,14 @@ Auditbox uses Elasticsearch as its data storage backend. You need to have an Ela
 
 ## Auditbox
 
-1. #### **Add auditbox helm repo**
+### Add auditbox helm repo
 
 ```bash
 helm repo add auditbox https://aidbox.github.io/helm-charts
 helm repo update
 ```
 
-2. #### Prepare Auditbox config
+### Prepare Auditbox config
 
 ```yaml
 image:
@@ -33,23 +33,11 @@ config:
   BINDING: 0.0.0.0
   PORT: 3000
   AUDITBOX_LOG_LEVEL: info
-
-ingress:
-  enabled: true
-  className: nginx
-  annotations:
-    acme.cert-manager.io/http01-ingress-class: nginx
-    cert-manager.io/cluster-issuer: letsencrypt
-  hosts:
-    - host: <your-auditbox-host>
-      paths:
-        - path: /
-          pathType: Prefix
 ```
 
 All Auditbox helm config values are [here](https://github.com/Aidbox/helm-charts/tree/main/auditbox#values).
 
-3. #### Apply config
+### Apply config
 
 ```bash
 helm upgrade --install auditbox auditbox/auditbox \
