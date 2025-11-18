@@ -23,16 +23,21 @@ image:
   tag: "alpha"
 
 config:
-  ELASTIC_URI: http://elasticsearch.elasticsearch.svc.cluster.local:9200
+  ELASTIC_URI: http://<your-elasticsearch>
+  
   AUDITBOX_BASE_URL: https://<your-auditbox-host>
-  IDP_AUTHORIZE_ENDPOINT: https://<your-keycloak-host>/realms/auditbox/protocol/openid-connect/auth
-  IDP_TOKEN_ENDPOINT: http://keycloak.keycloak.svc.cluster.local:8080/realms/auditbox/protocol/openid-connect/token
-  IDP_CLIENT_ID: auditbox
-  IDP_CLIENT_SECRET: <your-idp-client-secret>
   AUDITBOX_API_AUTH_ENABLED: true
+  AUDITBOX_LOG_LEVEL: info
+
+  IDP_CLIENT_ID: <your-idp-client-id>
+  IDP_CLIENT_SECRET: <your-idp-client-secret>
+
+  IDP_AUTHORIZE_ENDPOINT: <your-idp-auth-url>
+  IDP_TOKEN_ENDPOINT: <your-idp-token-url>
+  IDP_JWKS_URI: <your-idp-jwks-url>
+
   BINDING: 0.0.0.0
   PORT: 3000
-  AUDITBOX_LOG_LEVEL: info
 ```
 
 All Auditbox helm config values are [here](https://github.com/Aidbox/helm-charts/tree/main/auditbox#values).
