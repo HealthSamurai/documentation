@@ -1,6 +1,5 @@
 # Table of contents
 
-
 ## Guides
 
 * [Getting Started](getting-started/README.md)
