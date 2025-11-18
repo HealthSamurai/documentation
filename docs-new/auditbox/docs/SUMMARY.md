@@ -16,5 +16,5 @@
   * [How to Set Up JumpCloud as IDP](configuration/idp/jumpcloud.md)
 
 ## Reference
-  * [Environment variables](configuration/envs.md)
-  * [API](api.md)
+* [Environment variables](configuration/envs.md)
+* [API](api.md)
