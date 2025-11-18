@@ -36,9 +36,33 @@ You need to add GCS credentials to the Elasticsearch keystore to enable snapshot
 
 ### Add GCS Credentials to Keystore
 
+
+```bash
+# Create temp file with service account
+cat > /tmp/gcs-credentials.json << 'EOF'
+{
+  "type": "service_account",
+  ...
+}
+EOF
+```
+
 ```bash
 # Add Google Cloud service account key file path
-cat "/path/to/service-account-key.json" | bin/elasticsearch-keystore add gcs.client.default.credentials_file --stdin
+bin/elasticsearch-keystore add-file gcs.client.default.credentials_file /tmp/gcs-credentials.json
+```
+
+```bash
+# remove temp file
+rm /tmp/gcs-credentials.json
+```
+
+### Reload Secure Settings
+
+After adding credentials to the keystore, you need to reload the secure settings in Elasticsearch for the changes to take effect:
+
+```bash
+curl -X POST "localhost:9200/_nodes/reload_secure_settings" -H 'Content-Type: application/json'
 ```
 
 ## Step 3: Configure Auditbox Environment Variables
