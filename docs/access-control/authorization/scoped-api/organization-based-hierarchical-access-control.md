@@ -487,6 +487,35 @@ Since version 2503 GraphQL is supported in OrgBAC mode. Note that it can be acce
 
 See also: [graphql-api.md](../../../api/graphql-api.md)
 
+### Group-level Export
+
+#### Start Export
+
+```
+GET <AIDBOX_BASE_URL>/Organization/<org-id>/fhir/Group/<group-id>/$export
+```
+
+Starts a group-level export for the specified organization and group. 
+
+#### Check Export Status
+
+```
+GET <AIDBOX_BASE_URL>/Organization/<org-id>/fhir/$export-status/<export-id>
+```
+
+Checks the status of an export job for the specified organization.
+
+#### Cancel Export
+
+```
+DELETE <AIDBOX_BASE_URL>/Organization/<org-id>/fhir/$export-status/<export-id>
+```
+
+Cancels an active export job for the specified organization.
+
+See also [$export](../../../api/bulk-api/export.md#group-level-export)
+
+
 ## Authentication
 
 ### Login View
