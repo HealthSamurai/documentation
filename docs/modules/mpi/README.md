@@ -48,8 +48,8 @@ The MPI module utilizes **probabilistic** (score-based or Fellegi-Sunter) method
 
 ## Run MPI with Kubernetes
 
-{% content-ref url="get-started/deploy-mpi-with-kubernetes.md" %}
-[deploy-mpi-with-kubernetes.md](get-started/deploy-mpi-with-kubernetes.md)
+{% content-ref url="get-started/run-mdm-locally.md" %}
+[run-mdm-locally.md](get-started/run-mdm-locally.md)
 {% endcontent-ref %}
 
 ## Configure MPI module

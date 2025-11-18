@@ -4,7 +4,7 @@ description: This page helps you get started with Aidbox MPI.
 
 # Get started
 
-{% content-ref url="deploy-mpi-with-kubernetes.md" %}
-[deploy-mpi-with-kubernetes.md](deploy-mpi-with-kubernetes.md)
+{% content-ref url="run-mdm-locally.md" %}
+[run-mdm-locally.md](run-mdm-locally.md)
 {% endcontent-ref %}
 

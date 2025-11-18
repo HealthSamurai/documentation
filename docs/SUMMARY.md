@@ -508,7 +508,6 @@
 * [MPI — Master Patient Index](modules/mpi/README.md)
   * [Get started](modules/mpi/get-started/README.md)
     * [Run MDM locally](modules/mpi/get-started/run-mdm-locally.md)
-    * [Deploy MPI with Kubernetes](modules/mpi/get-started/deploy-mpi-with-kubernetes.md)
     * [Configure MPI module](modules/mpi/get-started/configure-mpi-module.md)
   * [Find duplicates: $match](modules/mpi/find-duplicates-match.md)
   * [Merging and Unmerging Records: $merge and $unmerge](modules/mpi/merging-and-unmerging-records-usdmerge-and-usdunmerge.md)

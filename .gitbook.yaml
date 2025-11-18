@@ -491,7 +491,6 @@ redirects:
   modules/other-modules/mdm: modules/mpi/README.md
   modules/other-modules/mpi/find-duplicates-match: modules/mpi/find-duplicates-match.md
   modules/other-modules/mpi/get-started/configure-mpi-module: modules/mpi/get-started/configure-mpi-module.md
-  modules/other-modules/mpi/get-started/deploy-mpi-with-kubernetes: modules/mpi/get-started/deploy-mpi-with-kubernetes.md
   modules/other-modules/mpi/get-started: modules/mpi/get-started/README.md
   modules/other-modules/mpi/matching-model-explanation: modules/mpi/matching-model-explanation.md
   modules/other-modules/mpi/mathematical-details: modules/mpi/mathematical-details.md
