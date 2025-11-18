@@ -507,6 +507,7 @@
   * [Frequently Asked Questions](modules/eprescription/frequently-asked-questions.md)
 * [MPI — Master Patient Index](modules/mpi/README.md)
   * [Get started](modules/mpi/get-started/README.md)
+    * [Run MDM locally](modules/mpi/get-started/run-mdm-locally.md)
     * [Deploy MPI with Kubernetes](modules/mpi/get-started/deploy-mpi-with-kubernetes.md)
     * [Configure MPI module](modules/mpi/get-started/configure-mpi-module.md)
   * [Find duplicates: $match](modules/mpi/find-duplicates-match.md)
