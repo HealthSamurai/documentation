@@ -49,7 +49,11 @@
               (log/info "RENDER DONE" {:product (:id product)}))))))
     (log/info "7. set lastmod data in context for Last Modified metadata"
               {:product (:id product)})
-    (indexing/set-lastmod ctx)
+    (try
+      (indexing/set-lastmod ctx)
+      (catch Exception e
+        (log/warn e "Failed to set lastmod data (git repo may not be available yet)"
+                  {:product (:id product)})))
     (log/info "8. generate sitemap.xml for product" {:product (:id product)})
     (let [lastmod-data (products/get-product-state ctx [::lastmod])
           ;; Get primary navigation links (excluding cross-section references)
@@ -116,7 +120,11 @@
       (let [context-with-product (assoc context
                                         :product product
                                         :current-product-id (:id product))]
-        (indexing/set-lastmod context-with-product)))
+        (try
+          (indexing/set-lastmod context-with-product)
+          (catch Exception e
+            (log/warn e "Failed to set lastmod data (git repo may not be available yet)"
+                      {:product (:id product)})))))
 
     ;; Generate and cache sitemap index
     (log/info "Generating sitemap index")
