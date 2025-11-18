@@ -6,11 +6,14 @@
 * [Run Auditbox Locally](getting-started/run-with-oneliner.md)
 * [Run Auditbox with Helm Charts](getting-started/run-k8s.md)
 
-## Archiving
+## Configuration
 
-  * [How to Set Up Archiving to MinIO](configuration/minio-archive.md)
-  * [How to Set Up Archiving to GCS](configuration/gcs-archive.md)
+* [Archiving](configuration/archiving/README.md)
+  * [How to Set Up Archiving to MinIO](configuration/archiving/minio-archive.md)
+  * [How to Set Up Archiving to GCS](configuration/archiving/gcs-archive.md)
+* [Identity providers](configuration/idp/README.md)
+  * [How to Set Up JumpCloud as IDP](configuration/idp/jumpcloud.md)
 
 ## Reference
-  * [Environment variables](configuration/envs.md)
-  * [API](api.md)
+* [Environment variables](configuration/envs.md)
+* [API](api.md)
