@@ -28,7 +28,7 @@ Wait about 2 minutes for all services to load.
 
 Open **http://localhost:3000/** in your browser. You'll see the Auditbox login screen. 
 
-<img src="../../.gitbook/assets/ui_login.png"
+<img src="../../.gitbook/assets/auditbox/ui_login.png"
      width="50%"
      alt="AuditBox login screen">
 
@@ -38,7 +38,7 @@ Auditbox uses Keycloak as the identity provider, but you can configure any other
 
 Click "Sign in with Keycloak" and you'll see the Keycloak login screen.
 
-<img src="../../.gitbook/assets/kc-enter.png"
+<img src="../../.gitbook/assets/auditbox/kc-enter.png"
      width="50%"
      alt="Keycloak login screen">
 
@@ -49,7 +49,7 @@ Use the following credentials to sign in:
 
 Click "Sign In" and you will see the Auditbox UI.
 
-<img src="../../.gitbook/assets/ui_main.png"
+<img src="../../.gitbook/assets/auditbox/ui_main.png"
      width="100%"
      alt="AuditBox UI screen">
 
