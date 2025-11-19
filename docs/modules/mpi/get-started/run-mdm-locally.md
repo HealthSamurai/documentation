@@ -187,38 +187,13 @@ Click "Continue with Aidbox account" and create a free Aidbox account in [Aidbox
 
 More about Aidbox licenses [here](../../../overview/aidbox-user-portal/licenses.md)
 
-### 6. Create OAuth Client for MDM Frontend
+### 6. Configure the MDM module
 
-To enable authentication for the MDM frontend, create an OAuth client in Aidbox:
-
-```yaml
-PUT /fhir/Client/mpi-dev
-content-type: application/json
-accept: application/json
-
-{
-  "auth": {
-    "authorization_code": {
-      "redirect_uri": "http://localhost:3005/api/auth/callback/aidbox",
-      "token_format": "jwt",
-      "refresh_token": true,
-      "secret_required": true,
-      "access_token_expiration": 36000,
-      "refresh_token_expiration": 864000
-    }
-  },
-  "secret": "pass",
-  "first_party": true,
-  "grant_types": [
-    "code"
-  ],
-  "id": "mpi-dev"
-}
-```
+Follow the [configuration guide](configure-mpi-module.md) to set up OAuth authentication, user privileges, SQL functions, and the matching model.
 
 ### 7. Access the MDM Frontend
 
-Once all services are running and the OAuth client is created, access the MPI frontend at [http://localhost:3000](http://localhost:3000)
+Once all services are running and configured, access the MPI frontend at [http://localhost:3000](http://localhost:3000)
 
 You can now log in using OAuth authentication through Aidbox.
 
