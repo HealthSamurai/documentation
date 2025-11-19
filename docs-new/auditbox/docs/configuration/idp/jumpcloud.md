@@ -15,14 +15,13 @@ and other accounts is possible.
 
 Some key points:
 - Auditbox **does not support SAML** (Security Assertion Markup Language),
-  only OIDC (OpenID Connect) authentication protocol, so some login
+  **only OIDC** (OpenID Connect) authentication protocol, so some login
   options are not currently supported.
-- Client authentication type should be set to "Client Secret Post".
+- Client authentication type should be set to **Client Secret Post**.
 - Login url should be the base url of where Auditbox is deployed.
 - Make sure your test user has permissions to access the application.
 - Make sure that the SSO setup has proper redirect URL. Upon logging
-  in, you must be redirected onto url of Auditbox with path
-  **/auth/callback/keycloak**.
+  in, you must be redirected onto **${auditbox-host}/auth/callback/keycloak**.
 
 ## Configure Auditbox
 
