@@ -1545,8 +1545,16 @@ function showCopySuccess(button) {
         // Don't call opt_out_capturing() - we still want anonymous events!
       }
 
-      // Google Consent Mode stays denied (already set in default)
-      // GTM will send anonymous pings without personal data
+      // Update Google Consent Mode to explicitly denied
+      // This tells GTM that user actively rejected (not just waiting for decision)
+      // GTM will send cookieless pings for behavioral modeling
+      if (typeof gtag !== 'undefined') {
+        gtag('consent', 'update', {
+          'analytics_storage': 'denied',
+          'ad_storage': 'denied'
+        });
+        console.log('[GTM] Consent explicitly denied - cookieless pings enabled for modeling');
+      }
 
       hideCookieBanner();
 
