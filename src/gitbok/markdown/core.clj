@@ -14,6 +14,7 @@
    [gitbok.markdown.widgets.stepper :as stepper]
    [gitbok.markdown.widgets.description :as description]
    [gitbok.markdown.widgets.gitbook-code :as gitbook-code]
+   [gitbok.markdown.widgets.assets :as assets]
    [gitbok.ui.fhir-structure-table :as fhir-table]
    [cheshire.core :as json]
    [nextjournal.markdown :as md]
@@ -383,6 +384,7 @@
          github-hint/hack-info
          image/hack-youtube
          image/hack-other-websites
+         (assets/hack-assets filepath)
          (tabs/hack-tabs
           context-hack
           filepath
