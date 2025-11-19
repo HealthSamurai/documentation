@@ -5,7 +5,7 @@ Get Auditbox running on your local machine in a few minutes using our pre-config
 ## Prerequisites
 
 {% hint style="warning" %}
-<img src="../../.gitbook/assets/auditbox/docker.png" 
+<img src="../../.gitbook/assets/docker.png" 
      alt="docker whale image" 
      data-size="original">
 

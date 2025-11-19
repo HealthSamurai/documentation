@@ -1,6 +1,6 @@
-# Run Auditbox with Helm Charts
+# Run Auditbox On Kubernetes
 
-Our Helm charts streamline the deployment process, enabling easy configuration and customization while ensuring a seamless deployment experience within Kubernetes clusters. Whether you're a healthcare institution, developer, or DevOps engineer, these Helm charts provide a straightforward path to deploying Auditbox in your Kubernetes environment.
+Our Helm charts streamline the deployment process, enabling easy configuration and customization while ensuring a seamless deployment experience within Kubernetes clusters. Whether you're a healthcare institution, developer, or DevOps engineer, these Helm charts provide a straightforward path to deploying Auditbox in your Kubernetes (k8s) environment.
 
 ## Elasticsearch
 
