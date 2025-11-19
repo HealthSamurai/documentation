@@ -26,6 +26,26 @@ Provided instance name will be attached to metric labels. It is required for mon
 
 <details><summary>Details</summary><table data-header-hidden="true"><thead><tr><th width="200"></th><th></th></tr></thead><tbody><tr><td>ID</td><td><code>instance-name</code></td></tr><tr><td>Type</td><td>String</td></tr><tr><td>Default value</td><td><code>Aidbox</code></td></tr><tr><td>Environment variable</td><td><code>BOX_INSTANCE_NAME</code></td></tr><tr><td>Sensitive</td><td><code>false</code> — value will be visible in plaintext in Admin UI</td></tr><tr><td>Set via</td><td>Admin UI → Settings<br />Environment variables</td></tr><tr><td>Hot reload</td><td><code>true</code> — setting can be changed at runtime</td></tr></tbody></table></details>
 
+### Aidbox license<a href="#license" id="license"></a>
+
+```yaml
+BOX_LICENSE: "<String>"
+```
+
+License key obtained from the Aidbox user portal.
+
+<details><summary>Details</summary><table data-header-hidden="true"><thead><tr><th width="200"></th><th></th></tr></thead><tbody><tr><td>ID</td><td><code>license</code></td></tr><tr><td>Type</td><td>String</td></tr><tr><td>Default value</td><td>(no default)</td></tr><tr><td>Environment variable</td><td><code>BOX_LICENSE</code></td></tr><tr><td>Deprecated environment variables</td><td><code>AIDBOX_LICENSE</code></td></tr><tr><td>Available from</td><td><code>2401</code></td></tr><tr><td>Sensitive</td><td><code>false</code> — value will be visible in plaintext in Admin UI</td></tr><tr><td>Set via</td><td>Environment variables</td></tr><tr><td>Hot reload</td><td><code>false</code> — setting requires system restart</td></tr></tbody></table></details>
+
+### JAVA options<a href="#java-opts" id="java-opts"></a>
+
+```yaml
+JAVA_OPTS: "<String>"
+```
+
+Configure general JAVA options. For example - request and max heap size configuration `-Xms1024m -Xmx2048m`
+
+<details><summary>Details</summary><table data-header-hidden="true"><thead><tr><th width="200"></th><th></th></tr></thead><tbody><tr><td>ID</td><td><code>java-opts</code></td></tr><tr><td>Type</td><td>String</td></tr><tr><td>Default value</td><td>(no default)</td></tr><tr><td>Environment variable</td><td><code>JAVA_OPTS</code></td></tr><tr><td>Available from</td><td><code>2401</code></td></tr><tr><td>Sensitive</td><td><code>false</code> — value will be visible in plaintext in Admin UI</td></tr><tr><td>Set via</td><td>Environment variables</td></tr><tr><td>Hot reload</td><td><code>false</code> — setting requires system restart</td></tr></tbody></table></details>
+
 ### Root FHIR package<a href="#root-fhir-package" id="root-fhir-package"></a>
 
 ```yaml
