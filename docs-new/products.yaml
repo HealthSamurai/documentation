@@ -59,7 +59,6 @@ products:
 
   - id: auditbox
     name: "Auditbox"
-    # url <BASE_URL><DOCS_PREFIX>/auditbox
     path: /auditbox
     config: auditbox/.gitbook.yaml
     # logo: .gitbook/assets/aidbox_logo.jpg
@@ -67,7 +66,3 @@ products:
     og-preview-text: "Auditbox Docs"
     readme-mode: "preserve-original-path"  # Keep readme accessible at its original path
     meilisearch-index: "auditbox"
-    links:
-      - text: "Overview"
-        href: "/"
-
