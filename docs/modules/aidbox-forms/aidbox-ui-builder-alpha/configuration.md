@@ -70,6 +70,7 @@ A global Configuration resource can be instantiated to serve as the system-wide 
   * `enable-amend-button`: A boolean value that specifies whether the Amend button should be shown.
   * `enable-save-button`: A boolean value that specifies whether the Save button should be shown.
   * `allow-repopulate` : A boolean value that specifies whether repopulate is allowed in all forms with populate logic
+  * `auto-save-interval`: An integer value that specifies auto-save interval (in milliseconds)
 
 ### Configuration Resource Example
 
@@ -145,7 +146,8 @@ Content-Type: application/json
     "non-sticky-footer": true,
     "hide-print-button": true,
     "enable-amend-button": true,
-    "allow-repopulate" : false
+    "allow-repopulate" : false,
+    "auto-save-interval": 5000
   }
 }
 ```
