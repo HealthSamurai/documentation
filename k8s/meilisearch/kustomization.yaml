@@ -9,6 +9,7 @@ resources:
   - configmap-reindex-env.yaml
   - configmap-reindex-script.yaml
   - cronjob-cleanup-tasks.yaml
+  - cronjob-reindex-auditbox.yaml
   - cronjob-reindex-fhirbase.yaml
   - cronjob-reindex.yaml
   - service.yaml
@@ -27,6 +28,9 @@ configMapGenerator:
   - name: meilisearch-scraper-config-fhirbase
     files:
       - config.json=./config-fhirbase.json
+  - name: meilisearch-scraper-config-auditbox
+    files:
+      - config.json=./config-auditbox.json
 
 generatorOptions:
   disableNameSuffixHash: false
