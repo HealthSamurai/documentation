@@ -12,6 +12,7 @@
   * [How to Set Up Archiving to MinIO](configuration/archiving/minio-archive.md)
   * [How to Set Up Archiving to GCS](configuration/archiving/gcs-archive.md)
 * [Identity providers](configuration/idp/README.md)
+  * [How to Set Up Keycloak as IDP](configuration/idp/keycloak.md)
   * [How to Set Up JumpCloud as IDP](configuration/idp/jumpcloud.md)
 
 ## Reference
