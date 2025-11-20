@@ -84,7 +84,7 @@ a template:
   "users": [
     {
       "username": "${username}",
-      "email": "${username}@${doain}",
+      "email": "${username}@${domain}",
       "enabled": true,
       "emailVerified": true,
       "firstName": "${firstName}",
