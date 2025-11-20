@@ -11,8 +11,10 @@ Follow the official
 to install keycloak into your cluster.
 
 You also need to set up a realm with a client and user on it.
-Here's an example realm config for a local system that you can use as
-a template:
+Below is an example realm config for a local system that you can use as
+a template. To use it, inject appropriate variables (replace `${...}`
+with your values), and when you log into master realm,
+[import](https://www.keycloak.org/server/importExport) the config.
 
 ```json
 {
