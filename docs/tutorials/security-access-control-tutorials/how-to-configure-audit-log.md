@@ -71,7 +71,7 @@ Aidbox supports forwarding audit logs produced by Aidbox to an external reposito
 
 To configure an external Audit log repository, use the following settings:
 
-* URL of the external destination where Aidbox streams all audit events
+* [security.audit-log.repository-url](../../reference/all-settings.md#security.audit-log.repository-url) - URL of the external destination where Aidbox streams all audit events
 * [security.audit-log.flush-interval](../../reference/all-settings.md#security.audit-log.flush-interval) - Interval time in ms to flush audit events to Audit Log Repository
 * [security.audit-log.max-flush-interval](../../reference/all-settings.md#security.audit-log.max-flush-interval) - Maximum interval for retries if sending audit events fails
 * [security.audit-log.batch-count](../../reference/all-settings.md#security.audit-log.batch-count) - Maximum count of Audit Events in a batch
