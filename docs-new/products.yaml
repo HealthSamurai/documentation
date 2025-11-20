@@ -62,7 +62,7 @@ products:
     # url <BASE_URL><DOCS_PREFIX>/auditbox
     path: /auditbox
     config: auditbox/.gitbook.yaml
-    logo: .gitbook/assets/aidbox_logo.jpg
+    # logo: .gitbook/assets/aidbox_logo.jpg
     favicon: .gitbook/assets/favicon.ico
     og-preview-text: "Auditbox Docs"
     readme-mode: "preserve-original-path"  # Keep readme accessible at its original path
