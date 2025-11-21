@@ -16,16 +16,18 @@ This page provides a comprehensive overview of all FHIR terminology operations a
 
 ## Supported Operations
 
-| Resource       | Operation        | Status |
-| -------------- | ---------------- | ------ |
-| **CodeSystem** | `$lookup`        | ✅      |
-|                | `$validate-code` | ✅      |
-|                | `$subsumes`      | ❌      |
-|                | `$find-matches`  | ❌      |
-| **ValueSet**   | `$expand`        | ✅      |
-|                | `$validate-code` | ✅      |
-| **ConceptMap** | `$translate`     | ✅      |
-|                | `$closure`       | ❌      |
+| Resource       | Operation        | Status | FHIR |
+| -------------- | ---------------- | ------ | ---- |
+| **CodeSystem** | `$lookup`        | ✅      | ✅    |
+|                | `$validate-code` | ✅      | ✅    |
+|                | `$subsumes`      | ❌      | ✅    |
+|                | `$find-matches`  | ❌      | ✅    |
+|                | `$import`        | ✅      | ❌    |
+|                | `$export`        | ✅      | ❌    |
+| **ValueSet**   | `$expand`        | ✅      | ✅    |
+|                | `$validate-code` | ✅      | ✅    |
+| **ConceptMap** | `$translate`     | ✅      | ✅    |
+|                | `$closure`       | ❌      | ✅    |
 
 ## Features
 
@@ -58,4 +60,5 @@ This page provides a comprehensive overview of all FHIR terminology operations a
 | Ad-hoc ValueSets                             | ✅      | ValueSet as a `Parameter`                                         | 2507    |
 | R4/R5/R6 format conversion                   | ✅      | E.g.: `expansion.contains.concept.property` or extensions         | 2507    |
 | Batch validation                             | ❌      |                                                                   |         |
+| Streaming operations                         | ✅      | Aidbox specific, large terminologies                              | 2511    |
 

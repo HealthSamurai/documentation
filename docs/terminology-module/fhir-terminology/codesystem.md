@@ -264,7 +264,7 @@ GET /fhir/CodeSystem/$validate-code?url=http://hl7.org/fhir/administrative-gende
   "resourceType": "Parameters",
   "parameter": [
     {
-      "name": "result", 
+      "name": "result",
       "valueBoolean": false
     },
     {
@@ -276,3 +276,75 @@ GET /fhir/CodeSystem/$validate-code?url=http://hl7.org/fhir/administrative-gende
 ```
 {% endtab %}
 {% endtabs %}
+
+## Aidbox-Specific Operations
+
+The following operations are Aidbox-specific extensions that are not part of the FHIR specification. These streaming operations are designed to handle large CodeSystems that exceed the default request body size limit.
+
+The Aidbox Terminology Module is optimized for typical FHIR interactions (create, read, update) with relatively small content. By default, Aidbox supports a maximum request body size of [**20,971,520 bytes**](../../reference/all-settings.md#web.max-body) (approximately 20 MB). For large terminologies like RxNorm (which contains approximately 225,000 concepts), regular CRUD operations become impractical.
+
+**Consider using the streaming operations when:**
+- Your CodeSystem content exceeds the default body size limit
+- You need to import/export large terminologies (e.g. RxNorm)
+
+> **Important:** Regular Aidbox validation does NOT run when using streaming operations. These operations prioritize performance and scalability for large terminologies over comprehensive validation.
+
+### $import
+
+Imports a large CodeSystem using HTTP streaming. This operation accepts a complete CodeSystem resource and streams is content efficiently in the Fhir Artifacts Registry.
+
+{% tabs %}
+{% tab title="Request" %}
+```bash
+POST /fhir/CodeSystem/:id/$import
+Content-Type: application/octet-stream
+
+< /tx/rxnorm.json
+```
+
+Example using wget:
+```bash
+wget --debug \
+  --method=POST \
+  --header='content-type: application/octet-stream' \
+  --output-document=/tmp/rxnorm.json \
+  --progress=dot:mega \
+  --body-file=/tx/rxnorm.json \
+  'http://localhost:8080/fhir/CodeSystem/rxnorm/$import'
+```
+
+The request body should contain a complete CodeSystem resource in JSON format with all concepts included.
+{% endtab %}
+
+### $export
+
+Exports a CodeSystem using HTTP streaming, allowing you to retrieve large terminologies without running out of memory.
+
+{% tabs %}
+{% tab title="Request" %}
+```bash
+GET /fhir/CodeSystem/:id/$export
+```
+
+Example using wget:
+```bash
+wget --debug \
+  --method=GET \
+  --output-document=/tmp/rxnorm.json \
+  --progress=dot:mega \
+  'http://localhost:8080/fhir/CodeSystem/rxnorm/$export'
+```
+{% endtab %}
+
+The operation streams the complete CodeSystem resource including all concepts.
+{% endtab %}
+{% endtabs %}
+
+### Configuration Requirements
+
+To use streaming operations with large CodeSystems, you must increase the maximum [request body size](../../reference/all-settings.md#web.max-body):
+
+**Environment Variable:**
+```yaml
+BOX_WEB_MAX_BODY=1073741824
+```
