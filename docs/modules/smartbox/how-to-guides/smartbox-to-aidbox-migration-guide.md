@@ -314,7 +314,7 @@ accept: text/yaml
               CASE
                 WHEN resource->'meta' IS NULL THEN jsonb_set(resource, '{meta}', '{}'::jsonb)
                 ELSE resource
-              END #- '{meta,tenant}',
+              END,
               '{meta,extension}',
               COALESCE(resource->'meta'->'extension','[]'::jsonb)
               || jsonb_build_array(
