@@ -733,6 +733,14 @@ Addednum Resource. Contains additional information abount SDCDocument/SDCWorkflo
   "type" : "string",
   "desc" : "Default max width of the form"
 }, {
+  "path" : "form.auto-save-interval",
+  "name" : "auto-save-interval",
+  "lvl" : 1,
+  "min" : 0,
+  "max" : 1,
+  "type" : "integer",
+  "desc" : "Form auto save interval (in milliseconds)"
+}, {
   "path" : "form.hide-download-attachment-button",
   "name" : "hide-download-attachment-button",
   "lvl" : 1,
