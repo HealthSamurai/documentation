@@ -306,7 +306,6 @@ accept: text/yaml
         WHERE table_schema = 'public'
           AND column_name = 'resource'
           AND data_type = 'jsonb'
-          AND table_name NOT IN ('organization','tenant')
       LOOP
         EXECUTE format($f$
           UPDATE %I
