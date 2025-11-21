@@ -1458,6 +1458,25 @@ The old engine will be removed soon.
 
 <details><summary>Details</summary><table data-header-hidden="true"><thead><tr><th width="200"></th><th></th></tr></thead><tbody><tr><td>ID</td><td><code>module.graphql.old-lacinia-engine</code></td></tr><tr><td>Type</td><td>Bool</td></tr><tr><td>Default value</td><td><code>false</code></td></tr><tr><td>Environment variable</td><td><code>BOX_MODULE_GRAPHQL_OLD_LACINIA_ENGINE</code></td></tr><tr><td>Available from</td><td><code>2510</code></td></tr><tr><td>Sensitive</td><td><code>false</code> — value will be visible in plaintext in Admin UI</td></tr><tr><td>Set via</td><td>Admin UI → Settings<br />Environment variables</td></tr><tr><td>Hot reload</td><td><code>true</code> — setting can be changed at runtime</td></tr></tbody></table></details>
 
+#### Inject resource creation timestamp at meta.createdAt<a href="#module.graphql.inject-meta-created-at" id="module.graphql.inject-meta-created-at"></a>
+
+```yaml
+BOX_MODULE_GRAPHQL_INJECT_META_CREATED_AT: false
+```
+
+Aidbox GraphQL implementation sees resources in Aidbox format.
+FHIR does not have a built-in property for creation datetime;
+ergo, in FHIR Schema mode there is no way to access creation
+datetime using GraphQL.
+
+This settings injects `createdAt` property to resource meta.
+The name is chosen to be consistent with Aidbox format
+and non FHIR Schema GraphQL implementation in Aidbox.
+
+This setting has no effect when FHIR Schema mode is not enabled.
+
+<details><summary>Details</summary><table data-header-hidden="true"><thead><tr><th width="200"></th><th></th></tr></thead><tbody><tr><td>ID</td><td><code>module.graphql.inject-meta-created-at</code></td></tr><tr><td>Type</td><td>Bool</td></tr><tr><td>Default value</td><td><code>false</code></td></tr><tr><td>Environment variable</td><td><code>BOX_MODULE_GRAPHQL_INJECT_META_CREATED_AT</code></td></tr><tr><td>Available from</td><td><code>2511</code></td></tr><tr><td>Sensitive</td><td><code>false</code> — value will be visible in plaintext in Admin UI</td></tr><tr><td>Set via</td><td>Environment variables</td></tr><tr><td>Hot reload</td><td><code>true</code> — setting can be changed at runtime</td></tr></tbody></table></details>
+
 ### Webpush
 
 Webpush settings
