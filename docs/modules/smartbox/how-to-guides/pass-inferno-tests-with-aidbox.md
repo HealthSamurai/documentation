@@ -162,17 +162,17 @@ accept: application/json
         "auth": {
           "authorization_code": {
             "pkce": true,
-            "redirect_uri": "http://localhost:4567/custom/smart/redirect",
-            "audience": ["http://localhost:4567/fhir"],
+            "redirect_uri": "https://inferno.healthit.gov/suites/custom/smart/redirect",
+            "audience": ["<Aidbox-base-url>/fhir"],
             "refresh_token": true,
             "secret_required": true,
             "token_format": "jwt",
             "access_token_expiration": 300
           }
         },
-        "jwks_uri": "http://localhost:4567/custom/smart_stu2/.well-known/jwks.json",
+        "jwks_uri": "https://inferno.healthit.gov/suites/custom/g10_certification/.well-known/jwks.json",
         "smart": {
-          "launch_uri": "http://localhost:4567/custom/smart/launch"
+          "launch_uri": "https://inferno.healthit.gov/suites/custom/smart/launch"
         },
         "secret": "verysecret"
       },
@@ -194,7 +194,7 @@ accept: application/json
         "auth": {
           "authorization_code": {
             "pkce": true,
-            "redirect_uri": "http://localhost:4567/custom/smart/redirect",
+            "redirect_uri": "https://inferno.healthit.gov/suites/custom/smart/redirect",
             "refresh_token": true,
             "token_format": "jwt",
             "client_assertion_types": [
@@ -203,9 +203,9 @@ accept: application/json
             "access_token_expiration": 300
           }
         },
-        "jwks_uri": "http://localhost:4567/custom/smart_stu2/.well-known/jwks.json",
+        "jwks_uri": "https://inferno.healthit.gov/suites/custom/g10_certification/.well-known/jwks.json",
         "smart": {
-          "launch_uri": "http://localhost:4567/custom/smart/launch"
+          "launch_uri": "https://inferno.healthit.gov/suites/custom/smart/launch"
         }
       },
       "request": {
@@ -230,7 +230,7 @@ accept: application/json
         "scope": [
           "system/*.rs"
         ],
-        "jwks_uri": "http://localhost:4567/custom/smart_stu2/.well-known/jwks.json",
+        "jwks_uri": "https://inferno.healthit.gov/suites/custom/g10_certification/.well-known/jwks.json",
         "grant_types": [
           "client_credentials"
         ]
