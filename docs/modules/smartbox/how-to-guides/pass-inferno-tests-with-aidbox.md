@@ -69,7 +69,7 @@ It contains at least two patients `85` and `86`. Second patient will be required
 Let's created then User resources for patient and practitioner:
 
 ```json
-POST /User
+POST /fhir/User
 content-type: application/json
 accept: application/json
 
