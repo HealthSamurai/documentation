@@ -69,68 +69,30 @@ It contains at least two patients `85` and `86`. Second patient will be required
 Let's created then User resources for patient and practitioner:
 
 ```json
-POST /fhir
+POST /User
 content-type: application/json
 accept: application/json
 
 {
-  "resourceType": "Bundle",
-  "type": "transaction",
-  "entry": [
+  "email": "patient@mail.com",
+  "password": "password",
+  "resourceType": "User",
+  "name": {
+    "givenName": "Amy",
+    "familyName": "Shaw"
+  },
+  "active": true,
+  "fhirUser": {
+    "reference": "Patient/85"
+  },
+  "roles": [
     {
-      "resource": {
-        "email": "patient@mail.com",
-        "password": "password",
-        "resourceType": "User",
-        "name": {
-          "givenName": "Amy",
-          "familyName": "Shaw"
-        },
-        "active": true,
-        "fhirUser": {
-          "reference": "Patient/85"
-        },
-        "roles": [
-          {
-            "type": "patient"
-          }
-        ]
-      },
-      "request": {
-        "method": "PUT",
-        "url": "User/patient"
-      }
-    },
-    {
-      "resource": {
-        "email": "practitioner@mail.com",
-        "password": "password",
-        "resourceType": "User",
-        "name": {
-          "givenName": "Willena",
-          "familyName": "Oberbrunner"
-        },
-        "active": true,
-        "fhirUser": {
-          "reference": "Practitioner/8bee2ee3-d401-3728-9791-d235cfa01ab9"
-        },
-        "roles": [
-          {
-            "type": "practitioner"
-          }
-        ]
-      },
-      "request": {
-        "method": "PUT",
-        "url": "User/practitioner"
-      }
+      "type": "patient"
     }
-  ]
 }
-
 ```
 
-Now you can login to Aidbox as a patient with `patient@mail.com / password`. and as a practitioner with `practitioner@mail.com / password`
+Now you can login to Aidbox  with `patient@mail.com / password`. 
 
 ### Create client resources for Inferno
 
@@ -312,10 +274,6 @@ To pass the test you should uncheck all the resources but those ones on the Cons
 
 #### 3 EHR Practitioner App
 
-{% hint style="info" %}
-Before running this test step you need to LogOut from the Aidbox, because we will login as a practitioner on this step.
-{% endhint %}
-
 1. Click the `EHR Practitioner App` link in the left sidebar
 2. Click the `Run tests` button
 3.  Provide require parameters for tests
@@ -350,7 +308,6 @@ authorization: Basic aW5mZXJuby1jb25maWRlbnRpYWwtc21hcnQtYXBwOnZlcnlzZWNyZXQ=
 ```
 
 6. Copy URI from response and open it in the same broser you have Inferno TestKit runnning.
-7. Follow the Inferno instructions and login as `practitioner@mail.com / password`
 
 #### 4 Single Patient API
 
@@ -381,10 +338,6 @@ Once you run tests, follow the Inferno instructions.
 4. Click the `Submit` button
 
 #### 9.16 Public Client Standalone Launch with OpenID Connect
-
-{% hint style="info" %}
-Before running this test step you need to LogOut from the Aidbox, because we will login as a patient on this step.
-{% endhint %}
 
 1. Click the `9.16 SMART Public Client Launch` link in the left sidebar
 2. Click the `Run tests` button
