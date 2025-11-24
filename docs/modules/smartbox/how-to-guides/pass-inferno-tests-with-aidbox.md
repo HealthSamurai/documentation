@@ -89,6 +89,7 @@ accept: application/json
     {
       "type": "patient"
     }
+  ]
 }
 ```
 
