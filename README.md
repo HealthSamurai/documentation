@@ -15,7 +15,7 @@ docker pull ghcr.io/healthsamurai/documentation:latest && docker run -p 8081:808
 	-e DOCS_REPO_PATH=/repo \
 	-e DOCS_VOLUME_PATH=/repo/docs-new \
 	-e PORT=8081 \
-	-e RELOAD_CHECK_INTERVAL_SEC=10 \
+	-e RELOAD_CHECK_INTERVAL=10 \
   -e EXAMPLES_UPDATE_INTERVAL=1 \
   -v $(pwd):/repo \
   --rm ghcr.io/healthsamurai/documentation:latest
@@ -100,6 +100,62 @@ Default: "http://localhost:7700"
 MEILISEARCH_API_KEY=60DBZGy6zoDL6Q--s1-dHBWptiVKvK-XRsaacdvkOSM
 ```
 Meilisearch API key.
+
+Default: none
+
+### `GITHUB_TOKEN`
+```
+GITHUB_TOKEN=ghp_xxxxxxxxxxxxxxxxxxxx
+```
+GitHub personal access token. Used for accessing GitHub API to fetch repository data, such as last modification dates for documentation files.
+
+Default: none
+
+### `DOCS_REPO_PATH`
+```
+DOCS_REPO_PATH=/path/to/repo
+```
+Path to the documentation repository root. Used to locate the git repository for determining file modification dates and other git-related operations.
+
+Default: `.` (current directory)
+
+### `DOCS_VOLUME_PATH`
+```
+DOCS_VOLUME_PATH=/repo/docs-new
+```
+Path to the documentation content directory. Points to the location where product documentation folders are located (as specified in `products.yaml`).
+
+Default: none
+
+### `EXAMPLES_UPDATE_INTERVAL`
+```
+EXAMPLES_UPDATE_INTERVAL=60
+```
+Interval in seconds for updating code examples from external sources. Controls how frequently the system checks and updates embedded code examples.
+
+Default: `60` seconds
+
+### `RELOAD_CHECK_INTERVAL`
+```
+RELOAD_CHECK_INTERVAL=30
+```
+Interval in seconds for checking file changes in development mode. When `DEV=true`, the system checks for file modifications at this interval to trigger automatic reloads.
+
+Default: `30` seconds
+
+### `POSTHOG_API_KEY`
+```
+POSTHOG_API_KEY=phc_xxxxxxxxxxxxxxxxxxxxxxxx
+```
+PostHog API key for analytics integration. Used to track usage analytics and user behavior on the documentation site.
+
+Default: none
+
+### `POSTHOG_HOST`
+```
+POSTHOG_HOST=https://app.posthog.com
+```
+PostHog host URL for analytics. Specifies the PostHog instance endpoint for sending analytics data.
 
 Default: none
 
