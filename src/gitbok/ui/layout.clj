@@ -78,11 +78,10 @@
 
         [:span {:class "hidden sm:block text-outline"} "•"]
 
-        ;; Cookie Settings button (only in production)
-        (when-not (state/get-config context :dev-mode)
-          [:button {:onclick "showCookieSettings()"
-                    :class "text-on-surface-strong hover:text-brand transition-colors text-sm leading-5 cursor-pointer bg-transparent border-0 p-0"}
-           "Cookie Settings"])]
+        ;; Cookie Settings button (always show, needed for testing)
+        [:button {:onclick "showCookieSettings()"
+                  :class "text-on-surface-strong hover:text-brand transition-colors text-sm leading-5 cursor-pointer bg-transparent border-0 p-0"}
+         "Cookie Settings"]]
 
        ;; Theme toggle button
        [:button {:onclick "toggleTheme()"
@@ -289,9 +288,8 @@ gtag('consent', 'default', {
          "display:none;visibility:hidden"}]]
       (hiccup2.core/raw "<!-- End Google Tag Manager (noscript) -->")
 
-      ;; Cookie consent banner (only when PostHog is enabled)
-      (when-not (state/get-config context :dev-mode)
-        (cookie-banner/cookie-banner))
+      ;; Cookie consent banner (always show, needed for testing geo-targeting)
+      (cookie-banner/cookie-banner)
 
       body]]))
 

@@ -1489,14 +1489,18 @@ function showCopySuccess(button) {
   function showCookieBanner() {
     const banner = document.getElementById('cookie-consent-banner');
     if (banner) {
+      console.log('[Cookie Banner] Showing banner');
       banner.classList.remove('hidden');
       banner.style.display = 'block';
+    } else {
+      console.error('[Cookie Banner] Banner element not found in DOM!');
     }
   }
 
   function hideCookieBanner() {
     const banner = document.getElementById('cookie-consent-banner');
     if (banner) {
+      console.log('[Cookie Banner] Hiding banner');
       banner.classList.add('hidden');
       banner.style.display = 'none';
     }
@@ -1564,36 +1568,94 @@ function showCopySuccess(button) {
     }
   }
 
-  function checkConsentStatus() {
-    try {
-      // Check localStorage for consent decision
-      var consentChoice = localStorage.getItem('cookie_consent');
+  // EU + EEA countries + UK where GDPR applies
+  var EU_COUNTRIES = [
+    'AT', 'BE', 'BG', 'HR', 'CY', 'CZ', 'DK', 'EE', 'FI', 'FR',
+    'DE', 'GR', 'HU', 'IE', 'IT', 'LV', 'LT', 'LU', 'MT', 'NL',
+    'PL', 'PT', 'RO', 'SK', 'SI', 'ES', 'SE',
+    'GB', // UK
+    'IS', 'LI', 'NO', // EEA
+    'CH' // Switzerland (has similar privacy laws)
+  ];
 
-      // If user already made a choice, don't show banner
-      if (consentChoice === 'accepted' || consentChoice === 'rejected') {
-        hideCookieBanner();
+  function handleCountryDetection(country) {
+    if (country && EU_COUNTRIES.indexOf(country) === -1) {
+      // Non-EU user - auto accept without showing banner
+      console.log('[Cookie Banner] Non-EU user (' + country + ') - auto-accepting cookies');
 
-        // If user accepted cookies, load PushEngage automatically
-        if (consentChoice === 'accepted') {
-          console.log('[Cookie Banner] User previously accepted - loading PushEngage');
-          loadPushEngage();
-        }
+      // Set consent to accepted
+      localStorage.setItem('cookie_consent', 'accepted');
 
-        return;
+      // Update Google Consent Mode
+      if (typeof gtag !== 'undefined') {
+        gtag('consent', 'update', {
+          'analytics_storage': 'granted',
+          'ad_storage': 'granted'
+        });
+        console.log('[GTM] Consent auto-granted for non-EU user');
       }
 
-      // No choice made yet, show banner
+      // Enable PostHog tracking (already in localStorage+cookie mode by default)
+      if (typeof posthog !== 'undefined') {
+        posthog.opt_in_capturing();
+        console.log('[PostHog] Enabled tracking for non-EU user');
+      }
+
+      // Hide banner
+      hideCookieBanner();
+
+      // Load PushEngage
+      loadPushEngage();
+
+    } else {
+      // EU user or unknown - show banner
+      console.log('[Cookie Banner] EU user (' + (country || 'unknown') + ') - showing banner');
       showCookieBanner();
-    } catch (error) {
-      console.error('[Cookie Banner] Error checking consent status:', error);
     }
   }
 
-  // Initialize on page load
+  function checkGeoAndConsent() {
+    try {
+      // Check if user already made a choice
+      var existingChoice = localStorage.getItem('cookie_consent');
+      if (existingChoice === 'accepted' || existingChoice === 'rejected') {
+        // User already decided - hide banner and load PushEngage if accepted
+        console.log('[Cookie Banner] User already made choice:', existingChoice);
+        hideCookieBanner();
+        if (existingChoice === 'accepted') {
+          loadPushEngage();
+        }
+        return;
+      }
+
+      // No choice yet - check geo location
+      console.log('[Cookie Banner] No prior consent, checking geo location...');
+
+      fetch('https://cloudflare.com/cdn-cgi/trace')
+        .then(function(response) { return response.text(); })
+        .then(function(data) {
+          var countryMatch = data.match(/loc=([A-Z]{2})/);
+          var country = countryMatch ? countryMatch[1] : null;
+          handleCountryDetection(country);
+        })
+        .catch(function(error) {
+          // Geo detection failed - show banner (safe default for GDPR compliance)
+          console.error('[Cookie Banner] Geo detection failed, showing banner as safe default:', error);
+          showCookieBanner();
+        });
+
+    } catch (error) {
+      // Any error - show banner (safe default)
+      console.error('[Cookie Banner] Error in geo check, showing banner:', error);
+      showCookieBanner();
+    }
+  }
+
+  // Initialize on page load with geo-targeting
   if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', checkConsentStatus);
+    document.addEventListener('DOMContentLoaded', checkGeoAndConsent);
   } else {
-    checkConsentStatus();
+    checkGeoAndConsent();
   }
 
   function loadPushEngage() {
