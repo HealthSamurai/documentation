@@ -289,14 +289,14 @@ The Aidbox Terminology Module is optimized for typical FHIR interactions (create
 
 > **Important:** Regular Aidbox validation does NOT run when using streaming operations. These operations prioritize performance and scalability for large terminologies over comprehensive validation.
 
-### $import
+### $codesystem-import
 
-Imports a large CodeSystem using HTTP streaming. This operation accepts a complete CodeSystem resource and streams is content efficiently in the Fhir Artifacts Registry.
+Imports a large CodeSystem using HTTP streaming. This operation accepts a complete CodeSystem resource and streams is content efficiently in the Fhir Artifacts Registry(FAR).
 
 {% tabs %}
 {% tab title="Request" %}
 ```bash
-POST /fhir/CodeSystem/:id/$import
+POST /fhir/CodeSystem/:id/$codesystem-import
 Content-Type: application/octet-stream
 
 < /tx/rxnorm.json
@@ -307,23 +307,22 @@ Example using wget:
 wget --debug \
   --method=POST \
   --header='content-type: application/octet-stream' \
-  --output-document=/tmp/rxnorm.json \
   --progress=dot:mega \
   --body-file=/tx/rxnorm.json \
-  'http://localhost:8080/fhir/CodeSystem/rxnorm/$import'
+  'http://localhost:8080/fhir/CodeSystem/rxnorm/$codesystem-import'
 ```
 
 The request body should contain a complete CodeSystem resource in JSON format with all concepts included.
 {% endtab %}
 
-### $export
+### $codesystem-export
 
 Exports a CodeSystem using HTTP streaming, allowing you to retrieve large terminologies without running out of memory.
 
 {% tabs %}
 {% tab title="Request" %}
 ```bash
-GET /fhir/CodeSystem/:id/$export
+GET /fhir/CodeSystem/:id/$codesystem-export
 ```
 
 Example using wget:
@@ -332,7 +331,7 @@ wget --debug \
   --method=GET \
   --output-document=/tmp/rxnorm.json \
   --progress=dot:mega \
-  'http://localhost:8080/fhir/CodeSystem/rxnorm/$export'
+  'http://localhost:8080/fhir/CodeSystem/rxnorm/$codesystem-export'
 ```
 {% endtab %}
 

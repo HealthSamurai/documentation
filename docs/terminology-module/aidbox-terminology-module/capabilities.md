@@ -16,18 +16,18 @@ This page provides a comprehensive overview of all FHIR terminology operations a
 
 ## Supported Operations
 
-| Resource       | Operation        | Status | FHIR |
-| -------------- | ---------------- | ------ | ---- |
-| **CodeSystem** | `$lookup`        | ✅      | ✅    |
-|                | `$validate-code` | ✅      | ✅    |
-|                | `$subsumes`      | ❌      | ✅    |
-|                | `$find-matches`  | ❌      | ✅    |
-|                | `$import`        | ✅      | ❌    |
-|                | `$export`        | ✅      | ❌    |
-| **ValueSet**   | `$expand`        | ✅      | ✅    |
-|                | `$validate-code` | ✅      | ✅    |
-| **ConceptMap** | `$translate`     | ✅      | ✅    |
-|                | `$closure`       | ❌      | ✅    |
+| Resource       | Operation            | Status | FHIR Standard |
+| -------------- | -------------------- | ------ | ------------- |
+| **CodeSystem** | `$lookup`            | ✅      | ✅             |
+|                | `$validate-code`     | ✅      | ✅             |
+|                | `$subsumes`          | ❌      | ✅             |
+|                | `$find-matches`      | ❌      | ✅             |
+|                | `$codesystem-import` | ✅      | ❌             |
+|                | `$codesystem-export` | ✅      | ❌             |
+| **ValueSet**   | `$expand`            | ✅      | ✅             |
+|                | `$validate-code`     | ✅      | ✅             |
+| **ConceptMap** | `$translate`         | ✅      | ✅             |
+|                | `$closure`           | ❌      | ✅             |
 
 ## Features
 
@@ -44,7 +44,7 @@ This page provides a comprehensive overview of all FHIR terminology operations a
 | ValueSet inclusion/exclusion                 | ✅      | Deep set operations support                                       | 2507    |
 | Lookup displays, designation, and properties | ✅      | All concept attributes                                            | 2507    |
 | Text search filter                           | ✅      | Free-text concept search                                          | 2507    |
-| Property filters                             | ✅      | Property-based filtering: `=`, `in`, `regex`, etc                 | 2507    |
+| Property filters                             | ✅      | Property-based filtering: `=`, `in`, `regex`, etc                 | 2507    ****|
 | Multi-language support                       | ✅      | Translations via `displaylanguage`, HTTP header, designation, etc | 2507    |
 | Active/Inactive filtering                    | ✅      | Via `status`, `inactive`, `notSelectable`, etc                    | 2507    |
 | Hierarchy via `parent`, `child`              | ✅      |                                                                   | 2507    |
