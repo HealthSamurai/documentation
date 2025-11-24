@@ -284,8 +284,6 @@ You need to configure your `aidbox/system` with `sdc-service` and it's configura
   :wf-items-ids-gen {:enabled true}}
 ```
 
-###
-
 ### Section id generation
 
 When `:wf-items-ids-gen` feature is enabled - each section will receive `:id` property. That id returned on `start-workflow`, `read-workflow` rpc payloads, and don't affect WF storage.

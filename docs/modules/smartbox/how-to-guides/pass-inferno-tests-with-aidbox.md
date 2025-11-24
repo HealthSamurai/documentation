@@ -443,7 +443,8 @@ Before you launch the test you should:
 5. Click the `Follow this link to authorize with the SMART server` link
 6. Press the `Allow` button on the consent screen
 
-#### 
+#### 9.18 Invalid PKCE Code Verifier
+
 1. Click `9.18 Invalid PKCE Code Verifier` link in the left sidebar
 2. Click the `Run tests` button
 3. Provide require parameters for tests
