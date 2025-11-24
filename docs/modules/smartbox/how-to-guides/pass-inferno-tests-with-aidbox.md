@@ -137,7 +137,7 @@ Now you can login to Aidbox as a patient with `patient@mail.com / password`. and
 Inferno will act as smart app/bulk client app. Let's register inferno's apps as Client resources in Aidbox.
 
 {% hint style="warning" %}
-You need to replace `redirect_uri,` `launch_uri`, `jwks_uri` with Inferno g(10) TestKit URL
+You need to replace `audience` with your Aidbox base URL in the `authorization_code` block.
 {% endhint %}
 
 ```yaml
@@ -270,8 +270,8 @@ accept: application/json
 
 Create Inferno test session:
 
-* Offitial TestKit - [https://inferno.healthit.gov/onc-certification-g10-test-kit](https://inferno.healthit.gov/onc-certification-g10-test-kit) (temporarily unavailable)
-* While Offitial Inferno TestKit temporarily unavailable you can use Iferno Instance maintained by Health Samurai team - [https://www.health-samurai.io/inferno](https://www.health-samurai.io/inferno) or run Inferno TestKit locally - [https://github.com/onc-healthit/onc-certification-g10-test-kit](https://github.com/onc-healthit/onc-certification-g10-test-kit)
+* Offitial TestKit - [https://inferno.healthit.gov/onc-certification-g10-test-kit](https://inferno.healthit.gov/onc-certification-g10-test-kit) 
+* Run Inferno TestKit locally - [https://github.com/onc-healthit/onc-certification-g10-test-kit](https://github.com/onc-healthit/onc-certification-g10-test-kit)
 
 ### Run Inferno tests one by one
 
@@ -380,13 +380,13 @@ Once you run tests, follow the Inferno instructions.
    * Encryption method `RS384`
 4. Click the `Submit` button
 
-#### 9.1 Public Client Standalone Launch with OpenID Connect
+#### 9.16 Public Client Standalone Launch with OpenID Connect
 
 {% hint style="info" %}
 Before running this test step you need to LogOut from the Aidbox, because we will login as a patient on this step.
 {% endhint %}
 
-1. Click the `9.1 SMART Public Client Launch` link in the left sidebar
+1. Click the `9.16 SMART Public Client Launch` link in the left sidebar
 2. Click the `Run tests` button
 3. Provide require parameters for tests
    * Bulk Data FHIR URL:\
@@ -494,85 +494,85 @@ Before you launch the test you should:
 
 #### 9.20 Token Introspection
 
-* Click the `9.20 Token Introspection` link in the left sidebar
-* Click the `Run tests` button
-* Provide require parameters for tests
-  * FHIR Endpoint:\
-    `[aidbox-url]/fhir`
-  * Custom HTTP Headers for Introspection Request: `Authorization: Basic aW5mZXJuby1jb25maWRlbnRpYWwtc21hcnQtYXBwOnZlcnlzZWNyZXQ=`
-  * Client ID: `inferno-confidential-smart-app`
-  * Client Secret: `verysecret`
-* Click the `Submit` button
-* Click the `Follow this link to authorize with the SMART server` link
-* Press the `Allow` button on the consent screen
+1. Click the `9.20 Token Introspection` link in the left sidebar
+2. Click the `Run tests` button
+3. Provide require parameters for tests
+   * FHIR Endpoint:\
+     `[aidbox-url]/fhir`
+   * Custom HTTP Headers for Introspection Request: `Authorization: Basic aW5mZXJuby1jb25maWRlbnRpYWwtc21hcnQtYXBwOnZlcnlzZWNyZXQ=`
+   * Client ID: `inferno-confidential-smart-app`
+   * Client Secret: `verysecret`
+4. Click the `Submit` button
+5. Click the `Follow this link to authorize with the SMART server` link
+6. Press the `Allow` button on the consent screen
 
 #### 9.23 Asymmetric Client Standalone Launch
 
-* Click the `9.23 Asymmetric Client Standalone Launch` link in the left sidebar
-* Click the `Run tests` button
-* Provide require parameters for tests
-  * FHIR Endpoint:\
-    `[aidbox-url]/fhir`
-  * Client ID: `inferno-public-smart-app`
-  * Encryption Algorithm: `RS384`
+1. Click the `9.23 Asymmetric Client Standalone Launch` link in the left sidebar
+2. Click the `Run tests` button
+3. Provide require parameters for tests
+   * FHIR Endpoint:\
+     `[aidbox-url]/fhir`
+   * Client ID: `inferno-public-smart-app`
+   * Encryption Algorithm: `RS384`
 
 #### 9.22 App Launch with SMART v1 scopes
 
-* Click the `9.20 App Launch with  v1 scopes` link in the left sidebar
-* Click the `Run tests` button
-* Provide require parameters for tests
-  * FHIR Endpoint:\
-    `[aidbox-url]/fhir`
-  * Client ID: `inferno-confidential-smart-app`
-  * Client Secret: `verysecret`
-* Click the `Submit` button
-* Click the `Follow this link to authorize with the SMART server` link
-* Press the `Allow` button on the consent screen
+1. Click the `9.20 App Launch with  v1 scopes` link in the left sidebar
+2. Click the `Run tests` button
+3. Provide require parameters for tests
+   * FHIR Endpoint:\
+     `[aidbox-url]/fhir`
+   * Client ID: `inferno-confidential-smart-app`
+   * Client Secret: `verysecret`
+4. Click the `Submit` button
+5. Click the `Follow this link to authorize with the SMART server` link
+6. Press the `Allow` button on the consent screen
 
 #### 9.23.1 Granular Scopes 1
 
-* Click the `9.23.1 Granular Scopes 1` link in the left sidebar
-* Click the `Run tests` button
-* Provide require parameters for tests
-  * FHIR Endpoint:\
-    `[aidbox-url]/fhir`
-  * Auth Type: `Confidential Symmetric`
-  * Client ID: `inferno-confidential-smart-app`
-  * Client Secret: `verysecret`
-* Click the `Submit` button
-* Click the `Follow this link to authorize with the SMART server` link
-* Press the `Allow` button on the consent screen
+1. Click the `9.23.1 Granular Scopes 1` link in the left sidebar
+2. Click the `Run tests` button
+3. Provide require parameters for tests
+   * FHIR Endpoint:\
+     `[aidbox-url]/fhir`
+   * Auth Type: `Confidential Symmetric`
+   * Client ID: `inferno-confidential-smart-app`
+   * Client Secret: `verysecret`
+4. Click the `Submit` button
+5. Click the `Follow this link to authorize with the SMART server` link
+6. Press the `Allow` button on the consent screen
 
 #### 9.23.2 Granular Scopes 2
 
-* Click the `9.23.2 Granular Scopes 2` link in the left sidebar
-* Click the `Run tests` button
-* Provide require parameters for tests
-  * FHIR Endpoint:\
-    `[aidbox-url]/fhir`
-  * Auth Type: `Confidential Symmetric`
-  * Client ID: `inferno-confidential-smart-app`
-  * Client Secret: `verysecret`
-* Click the `Submit` button
-* Click the `Follow this link to authorize with the SMART server` link
-* Press the `Allow` button on the consent screen
+1. Click the `9.23.2 Granular Scopes 2` link in the left sidebar
+2. Click the `Run tests` button
+3. Provide require parameters for tests
+   * FHIR Endpoint:\
+     `[aidbox-url]/fhir`
+   * Auth Type: `Confidential Symmetric`
+   * Client ID: `inferno-confidential-smart-app`
+   * Client Secret: `verysecret`
+4. Click the `Submit` button
+5. Click the `Follow this link to authorize with the SMART server` link
+6. Press the `Allow` button on the consent screen
 
 #### 9.23 SMART Granular Scope Selection
 
-* Click the `9.23.1 Granular Scopes 2` link in the left sidebar
-* Click the `Run tests` button
-* Provide require parameters for tests
-  * FHIR Endpoint:\
-    `[aidbox-url]/fhir`
-  * Auth Type: `Confidential Symmetric`
-  * Client ID: `inferno-confidential-smart-app`
-  * Client Secret: `verysecret`
-* Click the `Submit` button
-* Click the `Follow this link to authorize with the SMART server` link
-* On the concent screen you need to click on the row with resource `Condition` and `Observation` -> click `add filter`
-  * For Condition filter will be `category` `http://terminology.hl7.org/CodeSystem/condition-category|encounter-diagnosis,http://terminology.hl7.org/CodeSystem/condition-category|problem-list-item,http://hl7.org/fhir/us/core/CodeSystem/condition-category|health-concern`
-  * For Observation filter will be `category` `http://terminology.hl7.org/CodeSystem/observation-category|exam,http://terminology.hl7.org/CodeSystem/observation-category|imaging,http://terminology.hl7.org/CodeSystem/observation-category|procedure,http://terminology.hl7.org/CodeSystem/observation-category|social-history,http://hl7.org/fhir/us/core/CodeSystem/us-core-category|sdoh,http://terminology.hl7.org/CodeSystem/observation-category|survey,http://terminology.hl7.org/CodeSystem/observation-category|vital-signs`
-* Press the `Allow` button on the consent screen
+1. Click the `9.23.1 Granular Scopes 2` link in the left sidebar
+2. Click the `Run tests` button
+3. Provide require parameters for tests
+   * FHIR Endpoint:\
+     `[aidbox-url]/fhir`
+   * Auth Type: `Confidential Symmetric`
+   * Client ID: `inferno-confidential-smart-app`
+   * Client Secret: `verysecret`
+4. Click the `Submit` button
+5. Click the `Follow this link to authorize with the SMART server` link
+6. On the concent screen you need to click on the row with resource `Condition` and `Observation` -> click `add filter`
+   * For Condition filter will be `category` `http://terminology.hl7.org/CodeSystem/condition-category|encounter-diagnosis,http://terminology.hl7.org/CodeSystem/condition-category|problem-list-item,http://hl7.org/fhir/us/core/CodeSystem/condition-category|health-concern`
+   * For Observation filter will be `category` `http://terminology.hl7.org/CodeSystem/observation-category|exam,http://terminology.hl7.org/CodeSystem/observation-category|imaging,http://terminology.hl7.org/CodeSystem/observation-category|procedure,http://terminology.hl7.org/CodeSystem/observation-category|social-history,http://hl7.org/fhir/us/core/CodeSystem/us-core-category|sdoh,http://terminology.hl7.org/CodeSystem/observation-category|survey,http://terminology.hl7.org/CodeSystem/observation-category|vital-signs`
+7. Press the `Allow` button on the consent screen
 
 #### 11 Visual Inspection and Attestation
 
