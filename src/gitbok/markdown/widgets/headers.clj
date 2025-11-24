@@ -25,33 +25,40 @@
   [ctx node]
   ((comp
     (fn [header-hiccup]
-      (let [tag (first header-hiccup)
-            classes (case tag
-                      :h1 "mt-2 text-5xl font-bold text-on-surface-strong mx-auto max-w-full break-words"
-                      :h2 "mt-[1.05em] text-4xl font-semibold text-on-surface-strong mx-auto"
-                      :h3 "mt-8 text-2xl font-semibold text-on-surface-strong mx-auto"
-                      :h4 "mt-4 text-lg font-semibold text-on-surface-strong mb-3 mx-auto"
-                      :h5 "mt-3 text-base font-semibold text-on-surface-strong mx-auto"
-                      :h6 "mt-2 text-sm font-semibold text-on-surface-strong mb-1 mx-auto"
-                      "text-on-surface-strong")
-            ;; Check if there's an inline anchor with id in the node content
-            anchor-id (when (:content node)
-                       (extract-anchor-id-from-content (:content node)))
-            ;; Use the anchor id if found, otherwise normalize the existing id
-            final-id (if anchor-id
-                      anchor-id
-                      (when (-> header-hiccup (get 1) :id)
-                        (normalize-heading-id (-> header-hiccup (get 1) :id))))]
-        (cond-> header-hiccup
-          final-id
-          (assoc-in [1 :id] final-id)
-          :always
-          (update-in
-           [1 :class]
-           (fnil
-            (fn [existing-class]
-              (str/trim
-               (str existing-class " " classes))) "")))))
+      ;; Check if heading content is empty
+      (let [content-items (drop 2 header-hiccup)
+            has-content? (some (fn [item]
+                                 (or (and (string? item) (not (str/blank? item)))
+                                     (and (vector? item) (seq item))))
+                               content-items)]
+        (when has-content?
+          (let [tag (first header-hiccup)
+                classes (case tag
+                          :h1 "mt-2 text-5xl font-bold text-on-surface-strong mx-auto max-w-full break-words"
+                          :h2 "mt-[1.05em] text-4xl font-semibold text-on-surface-strong mx-auto"
+                          :h3 "mt-8 text-2xl font-semibold text-on-surface-strong mx-auto"
+                          :h4 "mt-4 text-lg font-semibold text-on-surface-strong mb-3 mx-auto"
+                          :h5 "mt-3 text-base font-semibold text-on-surface-strong mx-auto"
+                          :h6 "mt-2 text-sm font-semibold text-on-surface-strong mb-1 mx-auto"
+                          "text-on-surface-strong")
+                ;; Check if there's an inline anchor with id in the node content
+                anchor-id (when (:content node)
+                           (extract-anchor-id-from-content (:content node)))
+                ;; Use the anchor id if found, otherwise normalize the existing id
+                final-id (if anchor-id
+                          anchor-id
+                          (when (-> header-hiccup (get 1) :id)
+                            (normalize-heading-id (-> header-hiccup (get 1) :id))))]
+            (cond-> header-hiccup
+              final-id
+              (assoc-in [1 :id] final-id)
+              :always
+              (update-in
+               [1 :class]
+               (fnil
+                (fn [existing-class]
+                  (str/trim
+                   (str existing-class " " classes))) "")))))))
     (:heading transform/default-hiccup-renderers)) ctx node))
 
 (defn render-h1 [ctx title]
