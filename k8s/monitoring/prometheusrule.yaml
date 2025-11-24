@@ -110,7 +110,9 @@ spec:
             summary: "High JVM heap memory usage in Gitbok"
             description: "Gitbok JVM heap memory usage is {{ $value | humanize }}% (threshold: 80%)"
 
-        # Alert on pod memory pressure
+        # Alert on pod memory pressure (sustained high heap usage)
+        # Normal GC cycle: heap grows to 90%+ for <1min, then GC drops it to ~7%
+        # This alerts only if heap stays high for 5+ minutes = GC not working
         - alert: GitbokPodMemoryPressure
           expr: |
             (
@@ -118,11 +120,26 @@ spec:
               /
               jvm_memory_bytes_max{job="gitbok", area="heap"}
             ) * 100 > 90
-          for: 2m
+          for: 5m
           labels:
             severity: critical
             team: backend
             service: gitbok
           annotations:
             summary: "Critical memory pressure in Gitbok pod"
-            description: "Pod {{ $labels.pod }} has {{ $value | humanize }}% heap usage (threshold: 90%)"
+            description: "Pod {{ $labels.pod }} has {{ $value | humanize }}% heap usage for 5+ minutes (threshold: 90%). GC may not be keeping up."
+
+        # Alert on excessive GC time (best practice)
+        # Well-tuned JVM should spend <5% time in GC
+        # >10% indicates memory pressure or heap too small
+        - alert: GitbokExcessiveGCTime
+          expr: |
+            rate(jvm_gc_pause_seconds_sum{job="gitbok"}[5m]) > 0.05
+          for: 5m
+          labels:
+            severity: warning
+            team: backend
+            service: gitbok
+          annotations:
+            summary: "Gitbok spending excessive time in GC"
+            description: "Pod {{ $labels.pod }} is spending {{ $value | humanizePercentage }} of time in GC (threshold: 5%). This may indicate memory pressure."
