@@ -751,7 +751,7 @@ function initializeCopyButtons() {
           copyButton.style.display = 'none';
         }, 200);
       }, 3000);
-    });
+    }, { passive: true });
 
     // Insert button into pre element
     pre.appendChild(copyButton);
