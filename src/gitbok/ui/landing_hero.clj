@@ -223,8 +223,8 @@
 
     ;; One-liner command with dark background and COPY button - proper height
     [:div {:class "bg-black rounded-lg px-[17px] py-[9px] h-[42px] flex items-center justify-between gap-4"}
-     [:div {:class "font-code font-normal text-sm leading-[22.75px] tracking-[-0.02em] text-white flex-1 overflow-x-auto flex items-center whitespace-nowrap"}
-      [:span {:class "text-gray-300 mr-2 select-none flex-shrink-0"} "$"]
+     [:div {:class "font-code font-normal text-sm leading-[22.75px] tracking-[-0.02em] flex-1 min-w-0 overflow-hidden text-ellipsis whitespace-nowrap"}
+      [:span {:class "text-gray-300 select-none"} "$ "]
       [:span {:class "text-white"} "curl -JO https://aidbox.app/runme && docker compose up"]]
      [:button {:class "bg-brand text-white px-2.5 py-0.5 rounded text-xs font-medium shadow-[inset_0px_-2px_1.4px_0px_#00000026] hover:bg-brand-hover transition-colors whitespace-nowrap cursor-pointer"
                :id "copy-button"
