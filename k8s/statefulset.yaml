@@ -1,0 +1,192 @@
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  labels:
+    app.kubernetes.io/managed-by: fluxcd
+    app.kubernetes.io/name: gitbok
+  name: gitbok
+  namespace: gitbok
+  annotations: {}
+spec:
+  serviceName: gitbok
+  replicas: 2
+  updateStrategy:
+    type: RollingUpdate
+    rollingUpdate:
+      partition: 0
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: gitbok
+  template:
+    metadata:
+      labels:
+        app.kubernetes.io/name: gitbok
+    spec:
+      initContainers:
+      - name: git-sync-init
+        image: registry.k8s.io/git-sync/git-sync:v3.6.9
+        resources:
+          requests:
+            memory: "256Mi"
+            cpu: "100m"
+          limits:
+            memory: "512Mi"
+            cpu: "500m"
+        securityContext:
+          allowPrivilegeEscalation: false
+          capabilities:
+            drop:
+            - ALL
+        envFrom:
+        - configMapRef:
+            name: git-sync-env
+        env:
+        - name: GIT_SYNC_ROOT
+          value: "/git-data/workspace"
+        - name: GIT_SYNC_ONE_TIME
+          value: "true"
+        - name: GIT_SYNC_TIMEOUT
+          value: "120"
+        - name: GIT_SYNC_MAX_SYNC_FAILURES
+          value: "3"
+        command:
+        - /bin/sh
+        - -c
+        - |
+          # Check if git repository already exists in PVC
+          # git-sync creates .git in workspace root, not in repo symlink
+          if [ -d "/git-data/workspace/.git" ]; then
+            echo "Repository already exists in PVC, skipping git-sync init"
+            exit 0
+          fi
+          echo "PVC is empty, running git-sync to clone repository"
+          exec /git-sync
+        volumeMounts:
+        - name: git-repo
+          mountPath: /git-data
+      containers:
+      - name: main
+        image: ghcr.io/healthsamurai/documentation:1.5.7
+        imagePullPolicy: Always
+        resources:
+          requests:
+            memory: "2Gi"
+          limits:
+            memory: "3Gi"
+        env:
+          - name: PORT
+            value: "8080"
+          - name: BASE_URL
+            value: "https://www.health-samurai.io"
+          - name: DOCS_PREFIX
+            value: "/docs"
+          - name: MEILISEARCH_URL
+            value: "http://meilisearch.gitbok.svc.cluster.local:7700"
+          - name: MEILISEARCH_API_KEY
+            valueFrom:
+              secretKeyRef:
+                name: meilisearch-secret
+                key: master-key
+          - name: DOCS_VOLUME_PATH
+            value: "/git-data/workspace/repo/docs-new"
+          - name: DOCS_REPO_PATH
+            value: "/git-data/workspace/repo"
+          - name: RELOAD_CHECK_INTERVAL_SEC
+            value: "30"
+          - name: GITHUB_TOKEN
+            valueFrom:
+              secretKeyRef:
+                name: github-secret
+                key: pat
+          - name: EXAMPLES_UPDATE_INTERVAL
+            value: "60"
+          - name: POSTHOG_API_KEY
+            value: "phc_uO4ImMUxOljaWPDRr7lWu9TYpBrpIs4R1RwLu8uLRmx"
+          - name: POSTHOG_HOST
+            value: "https://ph.aidbox.app"
+        command: ["java"]
+        args:
+          - "-Xms2g"
+          - "-Xmx2g"
+          - "-jar"
+          - "/gitbok.jar"
+        ports:
+          - containerPort: 8080
+            name: http
+            protocol: TCP
+        livenessProbe:
+          httpGet:
+            path: /healthcheck
+            port: 8080
+          initialDelaySeconds: 90
+          periodSeconds: 30
+          timeoutSeconds: 10
+          failureThreshold: 3
+        readinessProbe:
+          httpGet:
+            path: /healthcheck
+            port: 8080
+          initialDelaySeconds: 90
+          periodSeconds: 10
+          timeoutSeconds: 5
+          failureThreshold: 3
+        startupProbe:
+          httpGet:
+            path: /healthcheck
+            port: 8080
+          failureThreshold: 30
+          periodSeconds: 10
+        securityContext:
+          allowPrivilegeEscalation: false
+          capabilities:
+            drop:
+            - ALL
+        volumeMounts:
+        - name: git-repo
+          mountPath: /git-data
+          readOnly: true
+      - name: git-sync
+        image: registry.k8s.io/git-sync/git-sync:v3.6.9
+        resources:
+          requests:
+            memory: "256Mi"
+            cpu: "100m"
+          limits:
+            memory: "512Mi"
+            cpu: "500m"
+        securityContext:
+          allowPrivilegeEscalation: false
+          capabilities:
+            drop:
+            - ALL
+        envFrom:
+        - configMapRef:
+            name: git-sync-env
+        env:
+        - name: GIT_SYNC_ROOT
+          value: "/git-data/workspace"
+        - name: GIT_SYNC_PERIOD
+          value: "30s"
+        - name: GIT_SYNC_ONE_TIME
+          value: "false"
+        - name: GIT_SYNC_TIMEOUT
+          value: "300"
+        - name: GIT_SYNC_MAX_SYNC_FAILURES
+          value: "-1"
+        volumeMounts:
+        - name: git-repo
+          mountPath: /git-data
+      restartPolicy: Always
+      securityContext:
+        runAsNonRoot: true
+        fsGroup: 65533  # git-sync runs as nobody:nogroup (65534:65533)
+  volumeClaimTemplates:
+  - metadata:
+      name: git-repo
+    spec:
+      accessModes:
+        - ReadWriteOnce
+      storageClassName: standard-rwo
+      resources:
+        requests:
+          storage: 2Gi

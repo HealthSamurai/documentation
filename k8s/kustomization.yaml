@@ -5,6 +5,7 @@ resources:
 - ns.yaml
 - configmap-git-sync-env.yaml
 - deployment.yaml
+- statefulset.yaml
 - service.yaml
 - ingress.yaml
 - ingress-fhirbase.yaml
