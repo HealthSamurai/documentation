@@ -290,7 +290,7 @@
 
        ;; Login button (desktop only) - far right with borders
        [:a {:href "https://aidbox.app/ui/portal#/signin"
-            :class "hidden lg:inline-flex items-center justify-center px-4 py-2 text-sm font-semibold leading-5 bg-surface text-on-surface hover:text-button-hover-text hover:bg-button-hover-bg border border-outline rounded-md transition-colors cursor-pointer"
+            :class "hidden lg:inline-flex items-center justify-center px-4 py-2 text-sm font-semibold leading-5 bg-surface text-on-surface hover:bg-button-hover-bg border border-outline rounded-md transition-colors cursor-pointer"
             :target "_blank"
             :rel "noopener noreferrer"}
         "Login"]]])])
