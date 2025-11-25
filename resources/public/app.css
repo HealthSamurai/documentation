@@ -937,7 +937,7 @@ article .hint p {
 
 /* TOC container - active state from Figma */
 #toc-container a.active {
-  @apply text-on-surface-secondary font-medium;
+  @apply text-on-surface-secondary font-medium border-l-1 border-list-marker;
 }
 
 
