@@ -6,7 +6,9 @@
   "sitemap_urls": [
     "https://www.health-samurai.io/docs/aidbox/sitemap.xml"
   ],
-  "stop_urls": [],
+  "stop_urls": [
+    "https://www.health-samurai.io/docs/aidbox/deprecated"
+  ],
   "selectors": {
     "lvl0": {
       "selector": "article nav li:last-child",
