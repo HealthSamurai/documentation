@@ -661,7 +661,7 @@ article details table {
 }
 
 article thead {
-  @apply border-b border-outline-strong bg-surface-alt;
+  @apply border-b border-outline bg-surface-alt;
 }
 
 article th {
@@ -669,7 +669,7 @@ article th {
 }
 
 article tbody {
-  @apply divide-y divide-outline-strong;
+  @apply divide-y divide-outline;
 }
 
 article tr {
@@ -677,7 +677,7 @@ article tr {
 }
 
 article td {
-  @apply px-4 py-1.5 text-sm leading-relaxed border-r border-outline-strong last:border-r-0 text-on-surface-secondary text-left;
+  @apply px-4 py-1.5 text-sm leading-relaxed border-r border-outline last:border-r-0 text-on-surface-secondary text-left;
 }
 
 /* Figure and Images */
