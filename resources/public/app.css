@@ -1129,6 +1129,42 @@ details.nav-item[open] > summary .nav-chevron {
   @apply border-brand text-brand;
 }
 
+/* Filter checkbox styles - matching Figma design */
+.filter-checkbox {
+  appearance: none;
+  -webkit-appearance: none;
+  width: 16px;
+  height: 16px;
+  border: 1px solid #808592;
+  border-radius: 2.5px;
+  background-color: transparent;
+  cursor: pointer;
+  position: relative;
+  flex-shrink: 0;
+}
+
+.filter-checkbox:checked {
+  background-color: var(--color-tag-language-bg);
+  border-color: var(--color-tag-language-bg);
+}
+
+.filter-checkbox:checked::after {
+  content: '';
+  position: absolute;
+  left: 4px;
+  top: 1px;
+  width: 5px;
+  height: 9px;
+  border: solid white;
+  border-width: 0 2px 2px 0;
+  transform: rotate(45deg);
+}
+
+.filter-checkbox:focus {
+  outline: 2px solid var(--color-tag-language-bg);
+  outline-offset: 2px;
+}
+
 /* ================================================
    FHIR Structure Table Styles
    ================================================ */

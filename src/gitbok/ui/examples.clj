@@ -70,7 +70,7 @@
   "Render a single filter checkbox"
   [type value label count checked?]
   [:label.flex.items-center.space-x-2.cursor-pointer.hover:bg-surface-subtle.px-2.py-1.rounded
-   [:input.w-4.h-4.text-brand.border-outline-subtle.rounded.focus:ring-brand.filter-checkbox
+   [:input.filter-checkbox
     {:type "checkbox"
      :name type
      :value value
@@ -109,7 +109,7 @@
 ;; Features filter - sorted by count with search
    [:div
     [:h4 {:class "text-sm font-semibold text-on-surface-strong leading-5 mb-3"} "Features"]
-    [:input.w-full.px-3.py-1.5.mb-3.text-sm.border.border-outline-subtle.rounded-md.hover:border-outline-input-focus.transition-all.focus:outline-none.focus:ring-2.focus:ring-brand
+    [:input.w-full.px-3.py-1.5.mb-3.text-sm.border.border-outline-subtle.rounded-md.hover:border-outline-input-focus.transition-all.focus:outline-none.focus:border-outline-input-focus
      {:type "text"
       :id "features-search"
       :placeholder "Search features..."
@@ -135,7 +135,7 @@
   [:div.w-full
    [:div.relative.flex.items-center
     search-icon
-    [:input#examples-search.w-full.px-4.py-3.pl-10.pr-4.text-on-surface-strong.bg-surface.border.border-outline-subtle.rounded-lg.hover:border-outline-input-focus.transition-all.focus:outline-none.focus:ring-2.focus:ring-brand.focus:border-transparent
+    [:input#examples-search.w-full.px-4.py-3.pl-10.pr-4.text-on-surface-strong.bg-surface.border.border-outline-subtle.rounded-lg.hover:border-outline-input-focus.transition-all.focus:outline-none.focus:border-outline-input-focus
      {:type "text"
       :name "q"
       :placeholder "Search examples by title, description, or tags..."
