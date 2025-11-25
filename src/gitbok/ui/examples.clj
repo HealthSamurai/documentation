@@ -11,6 +11,17 @@
    [clojure.tools.logging :as log]
    [ring.util.codec]))
 
+(def search-icon
+  "Search icon SVG component - same as in main-navigation"
+  [:svg {:class "absolute left-3 size-4 text-on-surface-placeholder shrink-0 pointer-events-none"
+         :fill "none"
+         :stroke "currentColor"
+         :viewBox "0 0 24 24"}
+   [:path {:stroke-linecap "round"
+           :stroke-linejoin "round"
+           :stroke-width "2"
+           :d "m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607Z"}]])
+
 (defn strip-markdown-links
   "Remove markdown links from text, keeping only the link text"
   [text]
@@ -29,7 +40,7 @@
     ;; Content section (title and description)
     [:div.flex.flex-col.gap-2
      ;; Title - truncate after 2 lines
-     [:h3 {:class "text-lg font-medium leading-7 tracking-[-0.03em] text-on-surface-strong group-hover:text-brand transition-colors line-clamp-2"} title]
+     [:h3 {:class "text-lg font-medium leading-7 tracking-[-0.03em] text-on-surface-strong line-clamp-2"} title]
      ;; Description - truncate after 3 lines, with markdown links stripped
      [:p {:class "text-sm leading-[22.75px] tracking-[-0.02em] text-on-surface-strong line-clamp-3"} (strip-markdown-links description)]]
 
@@ -50,7 +61,7 @@
        (for [feature features]
          (tags/render-tag {:text feature
                            :key feature
-                           :variant :clickable
+                           :variant :default
                            :data-type "features"
                            :data-value feature
                            :onclick (str "event.preventDefault(); event.stopPropagation(); toggleFilter('features', '" feature "'); return false;")})))]]])
@@ -98,7 +109,7 @@
 ;; Features filter - sorted by count with search
    [:div
     [:h4 {:class "text-sm font-semibold text-on-surface-strong leading-5 mb-3"} "Features"]
-    [:input.w-full.px-3.py-1.5.mb-3.text-sm.border.border-outline-subtle.rounded-md.focus:outline-none.focus:ring-2.focus:ring-brand
+    [:input.w-full.px-3.py-1.5.mb-3.text-sm.border.border-outline-subtle.rounded-md.hover:border-outline-input-focus.transition-all.focus:outline-none.focus:ring-2.focus:ring-brand
      {:type "text"
       :id "features-search"
       :placeholder "Search features..."
@@ -123,10 +134,8 @@
 (defn render-search-bar [search-term]
   [:div.w-full
    [:div.relative.flex.items-center
-    [:img {:src "/docs/static/search-icon.svg"
-           :alt "Search"
-           :class "absolute left-3 pointer-events-none"}]
-    [:input#examples-search.w-full.px-4.py-3.pl-10.pr-4.text-on-surface-strong.bg-surface.border.border-outline-subtle.rounded-lg.focus:outline-none.focus:ring-2.focus:ring-brand.focus:border-transparent
+    search-icon
+    [:input#examples-search.w-full.px-4.py-3.pl-10.pr-4.text-on-surface-strong.bg-surface.border.border-outline-subtle.rounded-lg.hover:border-outline-input-focus.transition-all.focus:outline-none.focus:ring-2.focus:ring-brand.focus:border-transparent
      {:type "text"
       :name "q"
       :placeholder "Search examples by title, description, or tags..."

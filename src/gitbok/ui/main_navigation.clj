@@ -4,6 +4,17 @@
    [clojure.string :as str]
    [gitbok.products :as products]))
 
+(def search-icon
+  "Search icon SVG component"
+  [:svg {:class "size-4 text-on-surface-placeholder shrink-0"
+         :fill "none"
+         :stroke "currentColor"
+         :viewBox "0 0 24 24"}
+   [:path {:stroke-linecap "round"
+           :stroke-linejoin "round"
+           :stroke-width "2"
+           :d "m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607Z"}]])
+
 (defn nav [context]
   [:nav {:class "w-full bg-header-bg backdrop-blur-xl border-b border-header-border flex-shrink-0 sticky top-0 z-50"
          :aria-label "Main site menu"}
@@ -208,14 +219,7 @@
                          focus-within:[&_#meilisearch-shortcut]:hidden"}
            [:div {:class "flex min-w-0 flex-1 items-center gap-2"}
             [:div {:class "flex items-center justify-center pl-3"}
-             [:svg {:class "size-4 text-on-surface-placeholder shrink-0"
-                    :fill "none"
-                    :stroke "currentColor"
-                    :viewBox "0 0 24 24"}
-              [:path {:stroke-linecap "round"
-                      :stroke-linejoin "round"
-                      :stroke-width "2"
-                      :d "m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607Z"}]]]
+             search-icon]
             [:input {:type "text"
                      :id "meilisearch-input"
                      :name "q"
