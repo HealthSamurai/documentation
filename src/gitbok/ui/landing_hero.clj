@@ -216,10 +216,10 @@
   "Getting Started card with tutorial icons"
   [context]
   [:div {:class "bg-gradient-to-b from-surface to-surface-alt border border-outline relative rounded-lg p-6 shadow-[0px_6px_13px_0px_#00000008,0px_24px_24px_0px_#00000005,0px_54px_32px_0px_#00000003]"}
-   [:div {:class "flex flex-col gap-4"}
+   [:div {:class "flex flex-col gap-6"}
     [:div {:class "flex flex-col"}
      [:h2 {:class "text-xl leading-8 m-0 text-on-surface-strong font-medium"} "Get your Aidbox up and running"]
-     [:p {:class "text-on-surface-secondary text-sm leading-[22.75px] m-0 mt-1 font-normal"} "Get started in just a few minutes."]]
+     [:p {:class "text-on-surface-secondary text-sm leading-[22.75px] m-0 mt-0.5 font-normal"} "Get started in just a few minutes."]]
 
     ;; One-liner command with dark background and COPY button - proper height
     [:div {:class "bg-black rounded-lg px-[17px] py-[9px] h-[42px] flex items-center justify-between gap-4"}
@@ -284,7 +284,7 @@
        "Model Context Protocol (MCP)"]]]
 
     ;; AI MCP Server button
-    [:a {:class "inline-flex self-start h-[47px] items-center rounded-[26px] border border-outline bg-surface py-2 pr-3 pl-2 gap-2 hover:border-brand transition-colors"
+    [:a {:class "inline-flex self-start h-[47px] items-center rounded-[26px] border border-outline bg-surface py-2 pr-3 pl-2 gap-2 hover:border-outline-input-focus transition-all"
          :href (http/get-product-prefixed-url context "/developer-experience/ai")}
      [:div {:class "w-7 h-[31px] rounded-[25px] bg-surface-nav-hover flex items-center justify-center text-xs font-medium text-on-surface-secondary"}
       "AI"]
@@ -491,21 +491,21 @@
    [:div {:class "grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4"}
 
     ;; Card 1: Master Patient Index (MPI)
-    [:a {:class "module-card-gradient rounded-lg p-6 flex flex-col border border-module-border min-h-[171px] no-underline hover:bg-surface transition-all duration-300"
+    [:a {:class "module-card-gradient rounded-lg p-6 flex flex-col border border-module-border min-h-[171px] no-underline transition-all duration-300"
          :href (http/get-product-prefixed-url context "/modules/mpi")}
      [:div {:class "text-xs font-medium uppercase tracking-[0.05em] text-module-label leading-[14px]"} "MPI"]
      [:h3 {:class "text-base font-medium leading-8 tracking-[-0.03em] text-on-surface-strong m-0"} "Master Patient Index"]
      [:p {:class "text-sm font-normal text-on-surface-secondary m-0 mt-2 leading-[22.75px]"} "A module in Aidbox that ensures accurate patient identification by detecting and removing duplicate records"]]
 
     ;; Card 2: Electronic prescriptions (ePrescription)
-    [:a {:class "module-card-gradient rounded-lg p-6 flex flex-col border border-module-border min-h-[171px] no-underline hover:bg-surface transition-all duration-300"
+    [:a {:class "module-card-gradient rounded-lg p-6 flex flex-col border border-module-border min-h-[171px] no-underline transition-all duration-300"
          :href (http/get-product-prefixed-url context "/modules/eprescription")}
      [:div {:class "text-xs font-medium uppercase tracking-[0.05em] text-module-label leading-[14px]"} "ePrescription"]
      [:h3 {:class "text-base font-medium leading-8 tracking-[-0.03em] text-on-surface-strong m-0"} "Electronic prescriptions"]
      [:p {:class "text-sm font-normal text-on-surface-secondary m-0 mt-2 leading-[22.75px]"} "A module for managing electronic prescriptions Modern solution for healthcare organizations compliant with strict industry standards"]]
 
     ;; Card 3: Form building and SDC (Forms)
-    [:a {:class "module-card-gradient rounded-lg p-6 flex flex-col border border-module-border min-h-[171px] no-underline hover:bg-surface transition-all duration-300"
+    [:a {:class "module-card-gradient rounded-lg p-6 flex flex-col border border-module-border min-h-[171px] no-underline transition-all duration-300"
          :href (http/get-product-prefixed-url context "/modules/aidbox-forms")}
      [:div {:class "text-xs font-medium uppercase tracking-[0.05em] text-module-label leading-[14px]"} "Forms"]
      [:h3 {:class "text-base font-medium leading-8 tracking-[-0.03em] text-on-surface-strong m-0"} "Form building and SDC"]
@@ -540,7 +540,7 @@
               ;; Terminal prompt above title
               [:div {:class "font-mono font-medium text-base leading-[22.75px] text-brand mb-3"}
                ">_"]
-              [:h1 {:class "m-0 mb-2 text-[36px] leading-[36px] tracking-[-0.03em] text-on-surface-strong font-sans font-semibold"}
+              [:h1 {:class "m-0 mb-3 text-[36px] leading-[36px] tracking-[-0.03em] text-on-surface-strong font-sans font-semibold"}
                "Aidbox Documentation"]
               [:p {:class "m-0 text-on-surface-secondary font-content text-base leading-6 font-normal max-w-[370px]"}
                "Learn how to get up and running with Aidbox through tutorials, APIs and platform resources."]]]

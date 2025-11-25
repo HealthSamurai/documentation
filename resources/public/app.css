@@ -527,8 +527,16 @@ article {
   background: linear-gradient(90deg, #FFFFFF 44.8%, var(--color-module-bg-end) 161.49%);
 }
 
+.module-card-gradient:hover {
+  background: var(--color-surface);
+}
+
 .dark .module-card-gradient {
   background: linear-gradient(90deg, var(--color-surface) 44.8%, var(--color-module-bg-end) 161.49%);
+}
+
+.dark .module-card-gradient:hover {
+  background: var(--color-surface);
 }
 
 /* Reset browser default styles for mark element */
