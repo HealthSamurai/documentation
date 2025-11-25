@@ -549,8 +549,8 @@ link:
 and:
   - engine: matcho
     matcho:
-      user:
-        id: present?
+      jwt:
+        IDP-UserId: present?
       params:
         resource/type: Patient
   - engine: sql
