@@ -518,9 +518,12 @@ Authorization: Basic <base64(system1-client:client-secret)> # Base64 encoded cli
 }
 ```
 
-## 15. Policy that allows only read operations to $sql endpoint
+## 16. Policy that allows only read operations to $sql endpoint
+
+**Description:**
 This policy restricts access to the $sql endpoint by allowing only read-only SQL queries (such as `SELECT`). Any write or schema-modifying operations (`INSERT`, `UPDATE`, `DELETE`, `CREATE`, etc.) are explicitly denied, ensuring that the endpoint can be used safely for querying data without risk of altering the database.
 
+**Policy:**
 ```yaml
 link:
   - reference: User/ca57d5ad-22de-4cce-aaba-b5d6c50a88e8
@@ -530,4 +533,40 @@ matcho:
   body:
     sql: "#^(?i)(?!.*(INSERT|UPDATE|DELETE|MERGE|COPY|CREATE|ALTER|DROP|GRANT|REVOKE|TRUNCATE|CALL|DO|COMMENT|VACUUM|ANALYZE)).*"
   request-method: post
+```
+## 17. Policy that allows using their own compartment for patients
+
+**Description:**
+Given that each patient has an external identifier corresponding to a user ID from an external Identity Provider (`jwt.IDP-UserId`), we want to enforce a policy that allows each user to access only the resources within their own compartment.
+
+**Policy:**
+```yaml
+engine: complex
+description: Allow member to use correct patient compartment
+id: as-member-allowed-to-use-thier-own-compartment
+link:
+  - reference: Operation/FhirCompartmentSearch
+and:
+  - engine: matcho
+    matcho:
+      user:
+        id: present?
+      params:
+        resource/type: Patient
+  - engine: sql
+    sql:
+      query: |-
+        SELECT p.id = ({{params.resource/id}})::text FROM patient p
+        WHERE p.resource->'identifier' @>
+          jsonb_build_array(
+            jsonb_build_object(
+              'system', 'https://IDP',
+              'value', {{jwt.IDP-UserId}}::text
+            )
+          );
+```    
+
+**Request to test the policy:**
+```http
+GET /fhir/Patient/<patient-id>/Observation
 ```
