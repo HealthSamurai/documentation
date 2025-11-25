@@ -53,15 +53,17 @@
                     product-id (or (:id current-product) "unknown")
                     user-agent (get-in request [:headers "user-agent"])
                     base-url (state/get-config context :base-url)
-                    properties {"url" (str (:scheme request) "://"
-                                           (get-in request [:headers "host"])
-                                           uri)
-                                "base_url" base-url
-                                "path" uri
-                                "user_agent" user-agent
+                    properties {"url" (str (or (:scheme request) "http") "://"
+                                           (or (get-in request [:headers "host"]) "")
+                                           (or uri ""))
+                                "base_url" (or base-url "")
+                                "path" (or uri "")
+                                "user_agent" (or user-agent "")
                                 "product" product-id
-                                "method" (name (:request-method request))
-                                "status" (:status response)}]
+                                "method" (if-let [method (:request-method request)]
+                                           (name method)
+                                           "unknown")
+                                "status" (or (:status response) 0)}]
                 ;; SDK uses internal queue - non-blocking
                 (posthog/capture-event! context
                                         session-id

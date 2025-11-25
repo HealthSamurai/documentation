@@ -46,7 +46,8 @@
     (if-let [^PostHogInterface client (get-client context)]
       (let [builder (PostHogCaptureOptions/builder)]
         (doseq [[k v] properties]
-          (.property builder (name k) v))
+          (when (some? v)
+            (.property builder (name k) v)))
         (let [options (.build builder)]
           (.capture client distinct-id event-name options)))
       (log/warn "PostHog client not available, event not sent" {:event event-name}))
