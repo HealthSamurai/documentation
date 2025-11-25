@@ -141,7 +141,8 @@
   flex gap-4 flex-1 items-center
   p-2.5
   border border-outline-subtle rounded
-  hover:border-brand
+  hover:border-outline-input-focus
+  transition-all
   text-pretty
   md:text-base
   md:h-[80px]")
@@ -161,8 +162,8 @@
              :class (str nav-button-classes " flex-row-reverse")}
          [:span {:class "flex flex-col flex-1 text-right justify-center"}
           [:span {:class "text-xs text-on-surface-placeholder"} "Previous"]
-          [:span {:class "text-on-surface-muted group-hover:text-brand line-clamp-2"} prev-page-title]]
-         [:svg {:class "size-4 text-on-surface-muted group-hover:text-brand flex-shrink-0"
+          [:span {:class "text-on-surface-muted line-clamp-2"} prev-page-title]]
+         [:svg {:class "size-4 text-on-surface-muted flex-shrink-0"
                 :fill "none"
                 :stroke "currentColor"
                 :viewBox "0 0 24 24"
@@ -181,8 +182,8 @@
              :class nav-button-classes}
          [:span {:class "flex flex-col flex-1 justify-center"}
           [:span {:class "text-xs text-on-surface-placeholder"} "Next"]
-          [:span {:class "text-on-surface-muted group-hover:text-brand line-clamp-2"} next-page-title]]
-         [:svg {:class "size-4 text-on-surface-muted group-hover:text-brand flex-shrink-0"
+          [:span {:class "text-on-surface-muted line-clamp-2"} next-page-title]]
+         [:svg {:class "size-4 text-on-surface-muted flex-shrink-0"
                 :fill "none"
                 :stroke "currentColor"
                 :viewBox "0 0 24 24"
