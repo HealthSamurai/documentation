@@ -230,36 +230,44 @@
     ;; Otherwise use URL as is
     :else url))
 
-(defn render-result-item [item index is-grouped? is-last?]
-  (let [lvl0 (get item "hierarchy_lvl0")
-        lvl1 (get item "hierarchy_lvl1")
-        lvl2 (get item "hierarchy_lvl2")
-        lvl3 (get item "hierarchy_lvl3")
-        lvl4 (get item "hierarchy_lvl4")
-        lvl5 (get item "hierarchy_lvl5")
-        lvl6 (get item "hierarchy_lvl6")
-        content (get item "content")
-        url (get item "url")
-        anchor (get item "anchor")
-        formatted (get item "_formatted")
+(defn render-result-item
+  ([item index is-grouped? is-last?]
+   (render-result-item item index is-grouped? is-last? false))
+  ([item index is-grouped? is-last? is-first?]
+   (let [lvl0 (get item "hierarchy_lvl0")
+         lvl1 (get item "hierarchy_lvl1")
+         lvl2 (get item "hierarchy_lvl2")
+         lvl3 (get item "hierarchy_lvl3")
+         lvl4 (get item "hierarchy_lvl4")
+         lvl5 (get item "hierarchy_lvl5")
+         lvl6 (get item "hierarchy_lvl6")
+         content (get item "content")
+         url (get item "url")
+         anchor (get item "anchor")
+         formatted (get item "_formatted")
 
-        ;; Build final URL with anchor
-        final-url (build-final-url url anchor)
+         ;; Build final URL with anchor
+         final-url (build-final-url url anchor)
 
-        ;; Get highlighted versions if available
-        get-highlighted (fn [level-key level-value]
-                          (if formatted
-                            (or (get formatted level-key) level-value)
-                            level-value))]
+         ;; Get highlighted versions if available
+         get-highlighted (fn [level-key level-value]
+                           (if formatted
+                             (or (get formatted level-key) level-value)
+                             level-value))
 
-    [:a {:href final-url
-         :class "flex items-center gap-3 p-2 rounded-lg text-on-surface-strong transition-all block hover:bg-surface-result-hover"
-         :data-result-index index}
+         ;; Border classes for grouped items
+         border-classes (if (and is-grouped? (not is-first?))
+                          "border-t border-outline hover:border-transparent"
+                          "")]
 
-     ;; Main content container
-     [:div {:class "flex-1 min-w-0"}
+     [:a {:href final-url
+          :class (str "flex items-center gap-3 p-2 rounded-lg text-on-surface-strong transition-all block hover:bg-surface-result-hover peer " border-classes)
+          :data-result-index index}
 
-      (if is-grouped?
+      ;; Main content container
+      [:div {:class "flex-1 min-w-0"}
+
+       (if is-grouped?
         ;; Grouped item - simpler display
         [:div
          ;; For grouped items, show the deepest level as title
@@ -355,11 +363,11 @@
                 (hiccup2.core/raw highlighted-content)
                 truncated))])])]
 
-     ;; Arrow icon
-     [:div {:class "size-6 shrink-0 flex items-center justify-center text-on-surface-strong"}
-      [:svg {:class "size-3" :fill "none" :stroke "currentColor" :viewBox "0 0 24 24"}
-       [:path {:stroke-linecap "round" :stroke-linejoin "round" :stroke-width "2.5"
-               :d "M9 5l7 7-7 7"}]]]]))
+      ;; Arrow icon
+      [:div {:class "size-6 shrink-0 flex items-center justify-center text-on-surface-strong"}
+       [:svg {:class "size-3" :fill "currentColor" :viewBox "0 0 5 9"}
+        [:path {:fill-rule "evenodd" :clip-rule "evenodd"
+                :d "M4.38065 3.85065C4.45087 3.92096 4.49032 4.01627 4.49032 4.11565C4.49032 4.21502 4.45087 4.31033 4.38065 4.38065L0.630646 8.13065C0.559558 8.19689 0.465535 8.23295 0.368385 8.23123C0.271234 8.22952 0.178541 8.19016 0.109835 8.12146C0.0411284 8.05275 0.00177253 7.96006 5.84237e-05 7.86291C-0.00165568 7.76576 0.0344058 7.67173 0.100646 7.60065L3.58565 4.11565L0.100646 0.630646C0.0344058 0.559559 -0.00165568 0.465535 5.84237e-05 0.368385C0.00177253 0.271234 0.0411284 0.178542 0.109835 0.109835C0.178541 0.0411285 0.271234 0.00177253 0.368385 5.84235e-05C0.465535 -0.00165568 0.559558 0.0344059 0.630646 0.100646L4.38065 3.85065Z"}]]]])))
 
 (defn render-no-results
   "Renders the no results message."
@@ -447,12 +455,13 @@
             [:div {:class "rounded-2xl p-4 pr-5 pb-3 pl-5 bg-surface-alt"}
              ;; Group header
              (render-group-header first-item group-info start-index)
-             ;; Child items container with border-top and dividers between items
-             [:div {:class "divide-y divide-outline border-t border-outline"}
+             ;; Child items container with border-top
+             [:div {:class "border-t border-outline"}
               (map-indexed
                (fn [idx item]
-                 (let [is-last? (= idx (dec (count children-to-render)))]
-                   (render-result-item item (+ start-index 1 idx) true is-last?)))
+                 (let [is-last? (= idx (dec (count children-to-render)))
+                       is-first? (= idx 0)]
+                   (render-result-item item (+ start-index 1 idx) true is-last? is-first?)))
                children-to-render)]])
 
           ;; Ungrouped results - show as individual items without dividers

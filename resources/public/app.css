@@ -1237,3 +1237,8 @@ tbody.tree > tr > td > .element > span:last-child:before {
   display: inline-block;
   left: -7px;
 }
+
+/* Search dropdown - hide border of next sibling when hovering */
+.peer:hover + .peer {
+  border-top-color: transparent !important;
+}
