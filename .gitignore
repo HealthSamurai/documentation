@@ -16,3 +16,4 @@ resources/.gitbook.yaml
 meili_data/
 .env
 .envrc
+.tool-versions
