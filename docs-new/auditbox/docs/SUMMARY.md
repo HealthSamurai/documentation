@@ -18,3 +18,4 @@
 ## Reference
 * [Environment variables](configuration/envs.md)
 * [API](api.md)
+* [Release notes](release-notes.md)
