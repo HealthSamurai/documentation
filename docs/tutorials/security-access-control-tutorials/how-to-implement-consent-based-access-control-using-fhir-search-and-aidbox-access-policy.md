@@ -14,6 +14,8 @@
 
 Navigate to the AIdbox REST Console.
 
+<figure><img src="../../.gitbook/assets/rest-console-get.jpg" alt=""><figcaption></figcaption></figure>
+
 Create two Practitioners by executing the following requests.
 
 ```
@@ -113,9 +115,9 @@ accept: application/json
 }
 ```
 
-To model the Patient's consent, we will use the FHIR [Consent](https://hl7.org/fhir/R4/consent.html) resource.
+To model the Patient's consent, we will use the  FHIR [Consent](https://hl7.org/fhir/R4/consent.html) resource.
 
-To model the grantee of the consent, we will use the `provision.actor` element:
+To model the grantee of the consent, we will use the  `provision.actor`  element:
 
 ```json
 {

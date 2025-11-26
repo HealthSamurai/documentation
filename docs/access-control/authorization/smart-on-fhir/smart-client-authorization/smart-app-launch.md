@@ -121,7 +121,7 @@ accept: application/json
 
 SMART Launch Interaction Diagram:
 
-<figure><img src="../../../../.gitbook/assets/svgviewer-output.svg" alt=""><figcaption><p>SMART App Lunch Ffow</p></figcaption></figure>
+<figure><img src="../../../../../.gitbook/assets/svgviewer-output.svg" alt=""><figcaption><p>SMART App Lunch Ffow</p></figcaption></figure>
 
 ## Standalone launch
 

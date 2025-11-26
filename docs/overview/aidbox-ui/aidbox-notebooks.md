@@ -29,7 +29,7 @@ So now you can easily:
 
 When clicking the notebooks tab in Aidbox UI you will get to the notebooks page. This page consists of your personal notebooks and Aidbox community notebooks.
 
-![](<../../.gitbook/assets/c75df5ad-6dc8-4925-9bf2-2a3d74a5542b (1).png>)
+![](<../../../.gitbook/assets/c75df5ad-6dc8-4925-9bf2-2a3d74a5542b (1).png>)
 
 ## Create a notebook
 
@@ -53,7 +53,7 @@ If you choose to share as a _link_, Aidbox will generate a unique link, such as 
 
 You don't need a running Aidbox instance to preview a notebook. You can open the downloaded `.html` file in any browser and view its contents.
 
-<figure><img src="../../.gitbook/assets/651a93f4-0681-44ee-a7c9-53dcc01bf546.png" alt=""><figcaption><p>Notebook preview</p></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/651a93f4-0681-44ee-a7c9-53dcc01bf546.png" alt=""><figcaption><p>Notebook preview</p></figcaption></figure>
 
 ## Upload a notebook
 
@@ -63,10 +63,10 @@ If you selected `as file` option, upload notebook `.html` file
 
 If you selected `as link` option, paste the notebook share link and click `upload` button
 
-<figure><img src="../../.gitbook/assets/0d9f1be8-fe57-44cc-8f5c-7a9b41cbf204.png" alt=""><figcaption><p>Upload via link</p></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/0d9f1be8-fe57-44cc-8f5c-7a9b41cbf204.png" alt=""><figcaption><p>Upload via link</p></figcaption></figure>
 
 ## Publish a notebook
 
 You can also publish a notebook and share it with the Aidbox community. The published notebook will be available in the Community notebooks section.
 
-![Publish Aidbox notebook](../../.gitbook/assets/2021-09-03_10-13-27.png)
+![Publish Aidbox notebook](../../../.gitbook/assets/2021-09-03_10-13-27.png)

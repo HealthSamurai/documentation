@@ -7,7 +7,7 @@ description: Follow these steps to launch Aidbox MDM module locally using Docker
 ## Prerequisites
 
 {% hint style="warning" %}
-
+<img src="../../../.gitbook/assets/docker.png" alt="" data-size="original">
 
 Please **make sure** that both [Docker & Docker Compose](https://docs.docker.com/engine/install/) are installed.
 {% endhint %}
@@ -170,16 +170,18 @@ docker compose -f mdm-compose.yml up
 
 This command starts all required services:
 
-* **aidbox-db**: PostgreSQL database
-* **aidbox**: Aidbox FHIR server
-* **backend**: MPI backend service
-* **frontend**: MPI frontend interface
+- **aidbox-db**: PostgreSQL database
+- **aidbox**: Aidbox FHIR server
+- **backend**: MPI backend service
+- **frontend**: MPI frontend interface
 
 ### 4. Access Aidbox
 
 Open in browser [http://localhost:8888/](http://localhost:8888)
 
 ### 5. Activate your Aidbox instance
+
+<figure><img src="../../../.gitbook/assets/image.png" alt=""><figcaption></figcaption></figure>
 
 Click "Continue with Aidbox account" and create a free Aidbox account in [Aidbox user portal](https://aidbox.app/).
 
@@ -199,11 +201,11 @@ You can now log in using OAuth authentication through Aidbox.
 
 After successful startup, the following services will be available:
 
-| Service      | URL                   | Description                         |
-| ------------ | --------------------- | ----------------------------------- |
-| Aidbox UI    | http://localhost:8888 | FHIR server and admin interface     |
+| Service | URL | Description |
+|---------|-----|-------------|
+| Aidbox UI | http://localhost:8888 | FHIR server and admin interface |
 | MPI Frontend | http://localhost:3000 | Master Patient Index user interface |
-| MPI Backend  | http://localhost:3003 | MPI REST API                        |
+| MPI Backend | http://localhost:3003 | MPI REST API |
 
 ## Next steps
 

@@ -76,6 +76,8 @@ See also:
 * [Using HAPI Client with Aidbox](https://github.com/Aidbox/examples/tree/main/developer-experience/aidbox-hapi-client)
 * [Using Firely Client with Aidbox](https://github.com/Aidbox/examples/tree/main/developer-experience/aidbox-firely-dotnet-client)
 
+
+
 ### Use Aidbox SDKs for customized experience
 
 Generic FHIR SDKs often struggle with several critical limitations:
@@ -170,7 +172,7 @@ These built-in tools accelerate development cycles by providing immediate feedba
 * Visual resource browser and editor
 * REST API console for direct API testing
 
-![Aidbox UI REST Console](../.gitbook/assets/rest-console.png)
+![Aidbox UI REST Console](../../.gitbook/assets/rest-console.png)
 
 See also:
 

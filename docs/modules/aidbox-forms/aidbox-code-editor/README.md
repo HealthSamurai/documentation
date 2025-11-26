@@ -17,7 +17,7 @@ This tool is based on domain-specific language (DSL) which gives flexibility and
 
 We have presented the form as a layered structure. To design the form, you need to describe the necessary layers using DSL.
 
-<figure><img src="../../../.gitbook/assets/8590de2b-148a-48ef-a986-5400aa020e5f.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../../.gitbook/assets/8590de2b-148a-48ef-a986-5400aa020e5f.png" alt=""><figcaption></figcaption></figure>
 
 **Each** **layer** is responsible for solving a **specific problem**:
 
@@ -30,17 +30,19 @@ We have presented the form as a layered structure. To design the form, you need 
 
 One layer is required - **Data Model** layer, the rest are optional depending on needs of your practice.
 
+
+
 ## Getting started
 
-* Open [http://localhost:8080/ ](http://localhost:8080/), using login / passwod - admin / admin
+* Open  [http://localhost:8080/ ](http://localhost:8080/), using login / passwod  - admin / admin
 * Go to forms by pressing the button `Aidbox Forms` (or by visiting [http://localhost:8080/ui/sdc](http://localhost:8080/ui/sdc) )
 * Go to the `Forms` page
 * Press on `Create Template` button
 
 You have two options available:
 
-* [Create form in Code Editor (from scratch)](./#create-form-in-code-editor-from-scratch)
-* [Import Questionnaire (from FHIR Questionnaire)](./#import-questionnaire-from-fhir-questionnaire)
+* [Create form in Code Editor (from scratch)](#create-form-in-code-editor-from-scratch)
+* [Import Questionnaire (from FHIR Questionnaire)](#import-questionnaire-from-fhir-questionnaire)
 
 ## Create form in Code Editor from scratch
 
@@ -48,17 +50,17 @@ You have two options available:
 * After that new form template will be generated and you will be redirected to the `Aidbox editor` page
 * You need to describe some schemas to complete the form
 
-Form DSL
+&#x20;            Form DSL
 
-Document DSL
+&#x20;            Document DSL
 
-Layout DSL
+&#x20;            Layout DSL
 
-Launch DSL
+&#x20;            Launch DSL
 
-Finalize DSL
+&#x20;            Finalize DSL
 
-FinalizeConstrains DSL
+&#x20;            FinalizeConstrains DSL
 
 {% hint style="info" %}
 Created form will be saved to local file sysem in your repository
@@ -67,6 +69,8 @@ Created form will be saved to local file sysem in your repository
 {% hint style="warning" %}
 Don't forget to import the created form into the forms.edn file so that the form is loaded after restarting the program.
 {% endhint %}
+
+
 
 Example
 

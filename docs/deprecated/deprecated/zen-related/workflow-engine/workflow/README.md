@@ -5,18 +5,18 @@ Workflow engine is configured by zen. We do not support it and do not recommend 
 
 Since the 2405 release, using Aidbox in FHIR schema validation engine is recommended, which is incompatible with zen or Entity/Attribute options.
 
-[Setup Aidbox with FHIR Schema validation engine](broken-reference/)
+[Setup Aidbox with FHIR Schema validation engine](broken-reference)
 {% endhint %}
 
 ## Introduction
 
-Workflow allows orchestrating a series of [tasks](../task/). Workflow in Aidbox is implemented through a special [decision](broken-reference/) task, an instance of which is created on every event of workflow, thus a logic behind workflow could be implemented as an executor for this task.
+Workflow allows orchestrating a series of [tasks](../task/README.md). Workflow in Aidbox is implemented through a special [decision](broken-reference) task, an instance of which is created on every event of workflow, thus a logic behind workflow could be implemented as an executor for this task.
 
 We plan to add SDK for different programming languages to allow the implementation of workflow as a code on the client side. Also, we plan to introduce DSL to describe simple workflow inside Aidbox Configuration Project.
 
 ## Workflow instance
 
-When a new workflow is created by [Broken link](broken-reference/) or by [services.md](../services.md), new resource `AidboxWorkflow` is created which stores workflow Params, Result, and Status, as well as some additional information regarding workflow execution. Bellow is an example of AidboxWorkflow with fields explanation:
+When a new workflow is created by [Broken link](broken-reference) or by [services.md](../services.md), new resource `AidboxWorkflow` is created which stores workflow Params, Result, and Status, as well as some additional information regarding workflow execution. Bellow is an example of AidboxWorkflow with fields explanation:
 
 ```clojure
 {
@@ -74,7 +74,7 @@ When a new workflow is created by [Broken link](broken-reference/) or by [servic
 
 Below is a representation of a Workflow Instance life cycle.
 
-<figure><img src="../../../../../.gitbook/assets/f4c57dbe-ff6c-49d8-9037-d6158506821e.png" alt="" width="563"><figcaption><p>Workflow instance lifecycle</p></figcaption></figure>
+<figure><img src="../../../../../../.gitbook/assets/f4c57dbe-ff6c-49d8-9037-d6158506821e.png" alt="" width="563"><figcaption><p>Workflow instance lifecycle</p></figcaption></figure>
 
 After the workflow is created, the decision task with the same definition is created to move the workflow to the `in-progress` state and to execute the workflow body until the new internal workflow activity is started. Then the decision task is completed with a successful outcome.
 
@@ -84,16 +84,16 @@ When the started activity is executed, the new decision task should execute the 
 
 ## Workflow User API
 
-[Workflow User API](broken-reference/) allows users to manually control Aidbox workflows by [RPC methods](../../../../../api/other/rpc-api.md).
+[Workflow User API](broken-reference) allows users to manually control Aidbox workflows by [RPC methods](../../../../../api/other/rpc-api.md).
 
 <details>
 
 <summary>API methods</summary>
 
-* [`awf.workflow/create-and-execute`](broken-reference/) - Creates an instance of a defined workflow and makes it ready to be executed immediately or at a specified time.
-* [`awf.workflow/status`](broken-reference/) - Returns the status of a workflow instance with the specified id.
-* [`awf.workflow/list`](broken-reference/) - Returns the list of all workflows.
-* [`awf.workflow/cancel`](broken-reference/) - Cancels a workflow that is not in status _`done`_, canceling recursively all activities started by that workflow.
+* [`awf.workflow/create-and-execute`](broken-reference) - Creates an instance of a defined workflow and makes it ready to be executed immediately or at a specified time.
+* [`awf.workflow/status`](broken-reference) - Returns the status of a workflow instance with the specified id.
+* [`awf.workflow/list`](broken-reference) - Returns the list of all workflows.
+* [`awf.workflow/cancel`](broken-reference) - Cancels a workflow that is not in status _`done`_, canceling recursively all activities started by that workflow.
 
 </details>
 
@@ -102,11 +102,11 @@ When the started activity is executed, the new decision task should execute the 
 To add a custom workflow:
 
 1. Add the definition of the workflow to Aidbox Project, so Task Service knows about the new task.
-2. Implement decision tasks logic using [Executor API](../task/task-executor-api.md) either directly or through the [SDK](broken-reference/).
+2. Implement decision tasks logic using [Executor API](../task/task-executor-api.md) either directly or through the [SDK](broken-reference).
 
 ### 1. Specify Workflow Definition
 
-The first step for implementing a new custom workflow is to specify its definition in [aidbox-zen-lang-project](../../aidbox-zen-lang-project/) .
+The first step for implementing a new custom workflow is to specify its definition in [aidbox-zen-lang-project](../../aidbox-zen-lang-project/README.md) .
 
 Workflow Definition contains all the information necessary to define the behavior of a workflow instance.
 
@@ -177,18 +177,18 @@ The decision task is a predefined task to implement workflow and once a workflow
 
 Suppose that we are implementing a simple workflow, in which we want to start Task-1 first, and only after its successful completion start Task-2. Successful completion of Task-2 means that this workflow was completed successfully. Thus, we need a decision task as the following flowchart indicates.
 
-<figure><img src="../../../../../.gitbook/assets/Decision_task.png" alt="" width="375"><figcaption><p>Flowchart</p></figcaption></figure>
+<figure><img src="../../../../../../.gitbook/assets/Decision_task.png" alt="" width="375"><figcaption><p>Flowchart</p></figcaption></figure>
 
 Given that the decision tasks are executed repeatedly, we need to determine which action it should take each time, using conditional branching.
 
-This decision task will be created the first time immediately after the workflow is started, and then each time either task-1 or task-2 is completed. Accordingly, we need to implement the entire workflow according to the following diagram. All Task-1, Task-2, and the decision task are supposed to be implemented as we explained in [#task-implementation](../task/#task-implementation).
+This decision task will be created the first time immediately after the workflow is started, and then each time either task-1 or task-2 is completed. Accordingly, we need to implement the entire workflow according to the following diagram. All Task-1, Task-2, and the decision task are supposed to be implemented as we explained in [#task-implementation](../task/README.md#task-implementation).
 
-<figure><img src="../../../../../.gitbook/assets/Implement_workflow.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../../../../.gitbook/assets/Implement_workflow.png" alt=""><figcaption></figcaption></figure>
 
 Here, to run **Task-1**, the decision task returns _`action:`_**`awf.workflow.action/schedule-task`** with the definition for Task-1, the unique label within this workflow, and the parameters for Task-1.
 
-When Task-1 is completed, the new decision task will be created, but this time it should run **Task-2** with the same process described above. When the value of _`event`_ parameter for a decision task is `awf.workflow/task-completed`, the id of the completed task is placed in the _`task-id`_ parameter, so you can check it. For more details, see [Broken link](broken-reference/).
+When Task-1 is completed, the new decision task will be created, but this time it should run **Task-2** with the same process described above. When the value of _`event`_ parameter for a decision task is `awf.workflow/task-completed`, the id of the completed task is placed in the _`task-id`_ parameter, so you can check it. For more details, see [Broken link](broken-reference).
 
 The last decision task must return the result of the workflow with the **`awf.workflow.action/complete-workflow`** action, and it changes the workflow status to `done`.
 
-This was the simplest example of workflow, but you can implement various workflows checking the event parameter and setting the actions as the result of [Broken link](broken-reference/).
+This was the simplest example of workflow, but you can implement various workflows checking the event parameter and setting the actions as the result of [Broken link](broken-reference).

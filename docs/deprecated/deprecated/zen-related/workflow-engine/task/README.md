@@ -5,33 +5,34 @@ Workflow engine is configured by zen. We do not support it and do not recommend 
 
 Since the 2405 release, using Aidbox in FHIR schema validation engine is recommended, which is incompatible with zen or Entity/Attribute options.
 
-[Setup Aidbox with FHIR Schema validation engine](broken-reference/)
+[Setup Aidbox with FHIR Schema validation engine](broken-reference)
 {% endhint %}
 
 ## Introduction
 
-**Tasks** are atomic actions **asynchronously** executed by Aidbox or by an external executor. Tasks can be used as stand-alone operations or as part of an [Aidbox Workflow](../workflow/). It allows async operations to be more reliable, to continue work after restarts, and handle errors correctly. A typical example of task usage is asynchronous sending email or transforming a resource.
+**Tasks** are atomic actions **asynchronously** executed by Aidbox or by an external executor. Tasks can be used as stand-alone operations or as part of an [Aidbox Workflow](../workflow/README.md). It allows async operations to be more reliable, to continue work after restarts, and handle errors correctly. A typical example of task usage is asynchronous sending email or transforming a resource.
 
 ## Aidbox predefined Tasks
 
-Aidbox provides several predefined tasks for routine jobs that can be called via [User API](./#task-user-api) or [task-related services](../services.md). They are executed in aidbox runtime, and available from the box.
+Aidbox provides several predefined tasks for routine jobs that can be called via [User API](#task-user-api) or [task-related services](../services.md). They are executed in aidbox runtime, and available from the box.
 
 <details>
 
 <summary>Predefined tasks</summary>
 
 * **Special tasks:**
-  * [**Decision task**](broken-reference/) - a task used to implement an [Aidbox Workflow](../workflow/).
-  * [**Subscription task**](broken-reference/) - a task that waits for the resource that meets specified criteria.
-  * [**Wait task**](broken-reference/) - a task that will wait for the indicated duration or until the indicated datetime.
-* **Self-contained tasks:**
-  * [**Import resource task**](broken-reference/) - a task that allows loading `.ndjson` files from AWS or GCP cloud into Aidbox
+  * [**Decision task**](broken-reference) - a task used to implement an [Aidbox Workflow](../workflow/README.md).
+  * [**Subscription task**](broken-reference) - a task that waits for the resource that meets specified criteria.
+  * [**Wait task**](broken-reference) - a task that will wait for the indicated duration or until the indicated datetime.
+
+- **Self-contained tasks:**
+  * [**Import resource task**](broken-reference) - a task that allows loading `.ndjson` files from AWS or GCP cloud into Aidbox
 
 </details>
 
 ## Task Instance
 
-When a new task is created by [task-user-api.md](task-user-api.md) or by [services.md](../services.md) or [workflow](../workflow/), new resource `AidboxTask` is created which stores task Params, Result, and Status, as well as some additional information regarding task execution. Bellow is an example of AidboxTask with fields explanation:
+When a new task is created by [task-user-api.md](task-user-api.md) or by [services.md](../services.md) or [workflow](../workflow/README.md), new resource `AidboxTask` is created which stores task Params, Result, and Status, as well as some additional information regarding task execution. Bellow is an example of AidboxTask with fields explanation:
 
 ```clojure
 {
@@ -91,7 +92,7 @@ When a new task is created by [task-user-api.md](task-user-api.md) or by [servic
 
 Below is a representation of a Task Instance life cycle.
 
-<div align="center"><figure><img src="../../../../../.gitbook/assets/e24289f7-9763-4962-a37c-610555391d90.png" alt="" width="375"><figcaption><p>Task lifecycle</p></figcaption></figure></div>
+<div align="center"><figure><img src="../../../../../../.gitbook/assets/e24289f7-9763-4962-a37c-610555391d90.png" alt="" width="375"><figcaption><p>Task lifecycle</p></figcaption></figure></div>
 
 After the creation of tasks, their status will be changed by Task Service to `ready`, or `waiting`, depending on the `executeAt` field.
 
@@ -121,11 +122,11 @@ Finally, the status of tasks is always changed to `done`, either by an executor,
 To add a custom task:
 
 1. Add the definition of the task to Aidbox Project, so TaskEngine knows about the new task.
-2. Implement task logic using [Executor API](task-executor-api.md) either directly or through the [SDK](broken-reference/).
+2. Implement task logic using [Executor API](task-executor-api.md) either directly or through the [SDK](broken-reference).
 
 ### 1. Specify Task Definition
 
-The first step for implementing a new custom task is to specify its definition in [aidbox-zen-lang-project](../../aidbox-zen-lang-project/) .
+The first step for implementing a new custom task is to specify its definition in [aidbox-zen-lang-project](../../aidbox-zen-lang-project/README.md) .
 
 Task Definition contains all the information necessary to define the behavior of a task instance.
 

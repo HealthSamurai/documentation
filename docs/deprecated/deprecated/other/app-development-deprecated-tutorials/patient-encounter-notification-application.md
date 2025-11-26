@@ -22,11 +22,11 @@ Clojure application with Aidbox Clojure SDK as a connector between our applicati
 
 For sending Emails we will use [MailGun](https://www.mailgun.com/) service as the easiest way to send emails instead SMPT.
 
-![Architecture of Aidbox based Application](../../../../.gitbook/assets/untitled-2.png)
+![Architecture of Aidbox based Application](../../../../../.gitbook/assets/untitled-2.png)
 
 ### Get started
 
-Firstly, you need to install local Aidbox. See the full instruction on how to [install Aidbox locally](broken-reference/) and [how to use Rest API](broken-reference/)
+Firstly, you need to install local Aidbox. See the full instruction on how to [install Aidbox locally](broken-reference) and [how to use Rest API](broken-reference)
 
 In this sample application, we use Clojure CLI. See [Getting Started](https://clojure.org/guides/getting_started) for details on how to install the tools.
 

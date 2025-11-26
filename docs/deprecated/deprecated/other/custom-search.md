@@ -6,7 +6,7 @@
 
 ## Prepare Data
 
-We need some sample data to see results of our queries. Let's create it using [Batch/Transaction](broken-reference/).\
+We need some sample data to see results of our queries. Let's create it using [Batch/Transaction](broken-reference).\
 Copy the following snippet to the Aidbox.Cloud `REST Console`.
 
 {% tabs %}
@@ -187,7 +187,7 @@ Aidbox uses PostgreSQL (open-source DBMS), which allows expressing very complex 
 
 Let's get a list of patients. Access the `DB Console` of our box and run the following code snippets:
 
-![DB Console](../../../.gitbook/assets/9954ab5e-c595-432b-9ed0-15c7daa149b2.png)
+![DB Console](../../../../.gitbook/assets/9954ab5e-c595-432b-9ed0-15c7daa149b2.png)
 
 {% code title="patients.sql" %}
 ```sql
@@ -336,7 +336,7 @@ The result should look like the following table (but without pretty printing):
 | ---------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | `patient1` | <p><code>{"id":"patient1",</code></p><p><code>"name":[{"given":["Max"],"family":"Turikov"}],</code></p><p><code>"encounters":[</code></p><p><code>{"id":"enc1",</code><br><code>"status":"draft",</code><br><code>"subject":{"id":"patient1","resourceType":"Patient"},</code><br><code>"resourceType":"Encounter"},</code><br><code>{"id":"enc2",</code><br><code>"status":"draft",</code><br><code>"subject":{"id":"patient1","resourceType":"Patient"},</code><br><code>"resourceType":"Encounter"}],</code><br><code>"resourceType":"Patient"}</code></p> |
 
-Now let's make the results of this query accessible via REST API. To do that, we need to create the [`AidboxQuery`](broken-reference/) resource:
+Now let's make the results of this query accessible via REST API. To do that, we need to create the [`AidboxQuery`](broken-reference) resource:
 
 {% tabs %}
 {% tab title="Request" %}
@@ -482,7 +482,7 @@ data:
 {% endtab %}
 {% endtabs %}
 
-We got all the needed data in the exact shape we wanted. Additional information about custom queries can be found in REST API [$query](broken-reference/) documentation.
+We got all the needed data in the exact shape we wanted. Additional information about custom queries can be found in REST API [$query](broken-reference) documentation.
 
 {% hint style="info" %}
 Want to know more about Aidbox, FHIR, and custom search? Join our community [chat](https://t.me/aidbox).

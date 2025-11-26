@@ -8,7 +8,7 @@ To use signature feature, your questionnaire must include extension [signatureRe
 
 Our form renderer will add additional field to the bottom of the form where user can draw his signature.
 
-<figure><img src="../../../../.gitbook/assets/2fac8a0e-6672-4edb-aa19-c537f9f900a3.png" alt="" width="563"><figcaption></figcaption></figure>
+<figure><img src="../../../../../.gitbook/assets/2fac8a0e-6672-4edb-aa19-c537f9f900a3.png" alt="" width="563"><figcaption></figcaption></figure>
 
 ### Enable signature in Form Builder
 

@@ -117,7 +117,7 @@ entry:
 
 Or inspect concepts in Aidbox Console UI:
 
-![](../../.gitbook/assets/31b89cd1-c3f2-4a63-8591-2873f7d562f6.png)
+![](../../../.gitbook/assets/31b89cd1-c3f2-4a63-8591-2873f7d562f6.png)
 
 ### Indexing \_like search
 

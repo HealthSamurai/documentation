@@ -3,7 +3,7 @@
 ## Overview
 
 {% hint style="warning" %}
-While FHIR topic-based subscriptions are functional, they will no longer receive active development or new features. For enhanced capabilities and ongoing support, please use [Aidbox topic-based subscriptions](broken-reference/). This newer implementation offers improved performance, flexibility, and will continue to be developed to meet future needs.
+While FHIR topic-based subscriptions are functional, they will no longer receive active development or new features. For enhanced capabilities and ongoing support, please use [Aidbox topic-based subscriptions](broken-reference). This newer implementation offers improved performance, flexibility, and will continue to be developed to meet future needs.
 {% endhint %}
 
 Aidbox's Topic-Based Subscription module offers a robust and efficient mechanism designed to allow clients to ask for notifications when data changes. It is an active notification system, an Aidbox server actively sends notifications to clients as changes occur.
@@ -26,7 +26,7 @@ The Subscription mechanism is composed of two main parts.
 
 The following image shows the architecture of the Aidbox topic-based subscriptions module:
 
-<figure><img src="../../../../.gitbook/assets/topic-based-subscription.png" alt=""><figcaption><p>topic-based subscription module</p></figcaption></figure>
+<figure><img src="../../../../../.gitbook/assets/topic-based-subscription.png" alt=""><figcaption><p>topic-based subscription module</p></figcaption></figure>
 
 {% hint style="info" %}
 At the moment, **PostgreSQL, Google Cloud Pub/Sub**, and **Aidbox Workflow Engine** are supported as the _Topic Queue Storage_. We are planning to support other options too.

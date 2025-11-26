@@ -10,6 +10,8 @@ Healthcare data exchange relies heavily on coded values to ensure consistent mea
 
 The FHIR terminology module defines how to represent, validate, and exchange coded data through a set of interconnected resources and data types. This system enables healthcare applications to share meaningful data while maintaining semantic precision and supporting various terminology standards like SNOMED CT, LOINC, and ICD-10.
 
+<figure><img src="../../.gitbook/assets/terminology-module-relationships.png" alt="Terminology Module Relationships"><figcaption><p>Figure from http://hl7.org/fhir</p></figcaption></figure>
+
 See also: [FHIR Terminology Module Specification](https://build.fhir.org/terminology-module.html)
 
 ## Canonicals
@@ -173,15 +175,15 @@ FHIR terminology is built around core concepts that work together to provide a c
 
 [**Coded Values**](coded-values.md) - FHIR provides three specialized data types for representing coded values: `code` for simple fixed vocabularies, `Coding` for precise system-code pairs, and `CodeableConcept` for complex multi-system representations.
 
-[**CodeSystem**](codesystem.md) - Resources that define sets of codes and their meanings within specific terminology domains. CodeSystems establish what codes exist and what they mean, from simple administrative codes to complex clinical terminologies.
+[**CodeSystem**](../../terminology-module/fhir-terminology/codesystem.md) - Resources that define sets of codes and their meanings within specific terminology domains. CodeSystems establish what codes exist and what they mean, from simple administrative codes to complex clinical terminologies.
 
-[**ValueSet**](valueset.md) - Collections of codes from one or more CodeSystems that are appropriate for specific contexts. ValueSets curate relevant subsets of codes for particular use cases or implementation requirements.
+[**ValueSet**](../../terminology-module/fhir-terminology/valueset.md) - Collections of codes from one or more CodeSystems that are appropriate for specific contexts. ValueSets curate relevant subsets of codes for particular use cases or implementation requirements.
 
 **ConceptMap** - Resources that define relationships and translations between codes from different CodeSystems, enabling structured mapping and transformation between different terminology systems.
 
 See also:
 
 * [Coded Values](coded-values.md)
-* [CodeSystem](codesystem.md)
-* [ValueSet](valueset.md)
+* [CodeSystem](../../terminology-module/fhir-terminology/codesystem.md)
+* [ValueSet](../../terminology-module/fhir-terminology/valueset.md)
 * [Profiles, Binding, and Validation](profiles-binding-validation.md)

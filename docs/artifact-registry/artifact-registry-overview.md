@@ -6,11 +6,17 @@ description: >-
 
 # Artifact Registry overview
 
-FHIR Artifact Registry (FAR) is Aidbox's centralized system for storing, managing, and resolving FHIR canonical resources and packages. It serves as the foundation for FHIR validation, profiling, and terminology operations by providing a unified repository for **CodeSystems**, **ValueSets**, **ConceptMaps**, **StructureDefinitions**, and **SearchParameters**. This overview explains how the registry works, its integration with external FHIR package sources, and the versioning strategies used to ensure consistent canonical resource resolution across your FHIR implementation.
+FHIR Artifact Registry (FAR) is Aidbox's centralized system for storing, managing, and resolving FHIR canonical resources and packages. 
+It serves as the foundation for FHIR validation, profiling, and terminology operations by providing a unified repository for **CodeSystems**, **ValueSets**, 
+**ConceptMaps**, **StructureDefinitions**, and **SearchParameters**. 
+This overview explains how the registry works, its integration with external FHIR package sources, 
+and the versioning strategies used to ensure consistent canonical resource resolution across your FHIR implementation.
 
 ## What's the Artifact Registry
 
-The Artifact Registry is a specialized repository within Aidbox that manages [FHIR canonical resources](https://build.fhir.org/canonicalresource.html)—resources that define the structure, constraints, and terminology used in FHIR implementations.
+The Artifact Registry is a specialized repository within Aidbox that manages 
+[FHIR canonical resources](https://build.fhir.org/canonicalresource.html)—resources that define the structure, constraints, and terminology used 
+in FHIR implementations.
 
 * [**CodeSystems**](../terminology-module/fhir-terminology/codesystem.md) for defining terminologies,
 * [**ValueSets**](../terminology-module/fhir-terminology/valueset.md) for grouping codes,
@@ -20,7 +26,9 @@ The Artifact Registry is a specialized repository within Aidbox that manages [FH
 
 The registry acts as the authoritative source for these definitions, ensuring consistent [validation](../modules/profiling-and-validation/) and data exchange across your FHIR ecosystem.
 
-Aidbox stores canonical resources in a dedicated database schema called `far` (FHIR Artifact Registry). The registry automatically initializes during Aidbox startup using the `BOX_BOOTSTRAP_FHIR_PACKAGES` configuration, which typically includes core FHIR packages like `hl7.fhir.r4.core#4.0.1` and all specified Implementation Guides.
+Aidbox stores canonical resources in a dedicated database schema called `far` (FHIR Artifact Registry). 
+The registry automatically initializes during Aidbox startup using the `BOX_BOOTSTRAP_FHIR_PACKAGES` configuration, 
+which typically includes core FHIR packages like `hl7.fhir.r4.core#4.0.1` and all specified Implementation Guides.
 
 ```mermaid
 graph LR
@@ -32,7 +40,8 @@ graph LR
 
 ## Access Methods to the Artifact Registry
 
-The Artifact Registry provides 2 ways to interact with canonical resources. You can access registry contents programmatically through standard FHIR REST APIs or manage packages visually through Aidbox's web interface.
+The Artifact Registry provides 2 ways to interact with canonical resources.
+You can access registry contents programmatically through standard FHIR REST APIs or manage packages visually through Aidbox's web interface.
 
 ### Access via REST APIs
 
@@ -48,11 +57,13 @@ Canonical resources are accessible through standard FHIR REST endpoints followin
 
 Aidbox provides a web-based interface for package management operations. Through this UI, you can import FHIR packages from external registries, view installed packages and their contents, and delete packages when no longer needed.
 
-<figure><img src="../.gitbook/assets/far.jpg" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/far.jpg" alt=""><figcaption></figcaption></figure>
 
 ### Registry Scope and Limitations
 
-The current implementation of the Artifact Registry focuses on five core types of canonical resources: CodeSystem, ValueSet, ConceptMap, StructureDefinition, and SearchParameter. These resource types cover the most common use cases for FHIR validation, profiling, and terminology operations. Aidbox doesn't currently store other FHIR canonical resource types like NamingSystem or ImplementationGuide in the registry but may add in future releases based on user requirements.
+The current implementation of the Artifact Registry focuses on five core types of canonical resources: CodeSystem, ValueSet, ConceptMap, StructureDefinition, and SearchParameter. These resource types cover the most common use cases for FHIR validation, profiling, and terminology operations. 
+Aidbox doesn't currently store other FHIR canonical resource types like NamingSystem or ImplementationGuide 
+in the registry but may add in future releases based on user requirements.
 
 See also:
 
@@ -120,7 +131,8 @@ See also:
 
 ## Versioning Strategy
 
-Canonical resources can reference each other using versioned URLs (e.g., `http://example.com/StructureDefinition/Patient|1.0.0`). If you specify a version, the registry uses it exactly. Otherwise, it automatically picks the latest version.
+Canonical resources can reference each other using versioned URLs (e.g., `http://example.com/StructureDefinition/Patient|1.0.0`).
+If you specify a version, the registry uses it exactly. Otherwise, it automatically picks the latest version.
 
 See also:
 
