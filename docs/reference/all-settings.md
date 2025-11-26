@@ -34,7 +34,7 @@ BOX_LICENSE: "<String>"
 
 License key obtained from the Aidbox user portal.
 
-<details><summary>Details</summary><table data-header-hidden="true"><thead><tr><th width="200"></th><th></th></tr></thead><tbody><tr><td>ID</td><td><code>license</code></td></tr><tr><td>Type</td><td>String</td></tr><tr><td>Default value</td><td>(no default)</td></tr><tr><td>Environment variable</td><td><code>BOX_LICENSE</code></td></tr><tr><td>Deprecated environment variables</td><td><code>AIDBOX_LICENSE</code></td></tr><tr><td>Available from</td><td><code>2401</code></td></tr><tr><td>Sensitive</td><td><code>false</code> — value will be visible in plaintext in Admin UI</td></tr><tr><td>Set via</td><td>Environment variables</td></tr><tr><td>Hot reload</td><td><code>false</code> — setting requires system restart</td></tr></tbody></table></details>
+<details><summary>Details</summary><table data-header-hidden="true"><thead><tr><th width="200"></th><th></th></tr></thead><tbody><tr><td>ID</td><td><code>license</code></td></tr><tr><td>Type</td><td>String</td></tr><tr><td>Default value</td><td>(no default)</td></tr><tr><td>Environment variable</td><td><code>BOX_LICENSE</code></td></tr><tr><td>Deprecated environment variables</td><td><code>AIDBOX_LICENSE</code></td></tr><tr><td>Available from</td><td><code>2401</code></td></tr><tr><td>Sensitive</td><td><code>false</code> — value will be visible in plaintext in Admin UI</td></tr><tr><td>Set via</td><td>Environment variables</td></tr><tr><td>Hot reload</td><td><code>true</code> — setting can be changed at runtime</td></tr></tbody></table></details>
 
 ### JAVA options<a href="#java-opts" id="java-opts"></a>
 
@@ -69,6 +69,16 @@ Format:
 `<name1>#<version1>:<name2>#<version2>...`
 
 <details><summary>Details</summary><table data-header-hidden="true"><thead><tr><th width="200"></th><th></th></tr></thead><tbody><tr><td>ID</td><td><code>bootstrap-fhir-packages</code></td></tr><tr><td>Type</td><td>String</td></tr><tr><td>Recommended value</td><td><code>hl7.fhir.r4.core#4.0.1</code></td></tr><tr><td>Default value</td><td>(no default)</td></tr><tr><td>Environment variable</td><td><code>BOX_BOOTSTRAP_FHIR_PACKAGES</code></td></tr><tr><td>Deprecated environment variables</td><td><code>AIDBOX_FHIR_PACKAGES</code></td></tr><tr><td>Sensitive</td><td><code>false</code> — value will be visible in plaintext in Admin UI</td></tr><tr><td>Set via</td><td>Admin UI → Settings<br />Environment variables</td></tr><tr><td>Hot reload</td><td><code>false</code> — setting requires system restart</td></tr></tbody></table></details>
+
+### FHIR NPM Package registry<a href="#fhir-npm-package-registry" id="fhir-npm-package-registry"></a>
+
+```yaml
+BOX_FHIR_NPM_PACKAGE_REGISTRY: "https://fs.get-ig.org/pkgs"
+```
+
+Aidbox will use the provided NPM registry URL to download or update FHIR NPM packages.
+
+<details><summary>Details</summary><table data-header-hidden="true"><thead><tr><th width="200"></th><th></th></tr></thead><tbody><tr><td>ID</td><td><code>fhir-npm-package-registry</code></td></tr><tr><td>Type</td><td>String</td></tr><tr><td>Default value</td><td><code>https://fs.get-ig.org/pkgs</code></td></tr><tr><td>Environment variable</td><td><code>BOX_FHIR_NPM_PACKAGE_REGISTRY</code></td></tr><tr><td>Available from</td><td><code>2511</code></td></tr><tr><td>Sensitive</td><td><code>false</code> — value will be visible in plaintext in Admin UI</td></tr><tr><td>Set via</td><td>Admin UI → Settings<br />Environment variables</td></tr><tr><td>Hot reload</td><td><code>true</code> — setting can be changed at runtime</td></tr></tbody></table></details>
 
 ### Init bundle<a href="#init-bundle" id="init-bundle"></a>
 
@@ -2099,60 +2109,60 @@ or time passed from previous log uploading exceeds `observability.datadog.batch-
 
 <details><summary>Details</summary><table data-header-hidden="true"><thead><tr><th width="200"></th><th></th></tr></thead><tbody><tr><td>ID</td><td><code>observability.datadog.batch-timeout</code></td></tr><tr><td>Type</td><td>Int</td></tr><tr><td>Default value</td><td>(no default)</td></tr><tr><td>Environment variable</td><td><code>BOX_OBSERVABILITY_DATADOG_BATCH_TIMEOUT</code></td></tr><tr><td>Deprecated environment variables</td><td><code>BOX_DD_BATCH_TIMEOUT</code></td></tr><tr><td>Sensitive</td><td><code>false</code> — value will be visible in plaintext in Admin UI</td></tr><tr><td>Set via</td><td>Admin UI → Settings<br />Environment variables</td></tr><tr><td>Hot reload</td><td><code>false</code> — setting requires system restart</td></tr></tbody></table></details>
 
-### Elastic
+### Elasticsearch
 
-Elastic settings
+Elasticsearch settings
 
-#### Elastic Search auth<a href="#observability.elastic.search-auth" id="observability.elastic.search-auth"></a>
+#### Elasticsearch auth<a href="#observability.elasticsearch.auth" id="observability.elasticsearch.auth"></a>
 
 ```yaml
-BOX_OBSERVABILITY_ELASTIC_SEARCH_AUTH: "<String>"
+BOX_OBSERVABILITY_ELASTICSEARCH_AUTH: "<String>"
 ```
 
 Format: `<user>:<password>`
-Basic auth credentials for ElasticSearch. API key is not supported.
+Basic auth credentials for Elasticsearch. API key is not supported.
 
-<details><summary>Details</summary><table data-header-hidden="true"><thead><tr><th width="200"></th><th></th></tr></thead><tbody><tr><td>ID</td><td><code>observability.elastic.search-auth</code></td></tr><tr><td>Type</td><td>String</td></tr><tr><td>Default value</td><td>(no default)</td></tr><tr><td>Environment variable</td><td><code>BOX_OBSERVABILITY_ELASTIC_SEARCH_AUTH</code></td></tr><tr><td>Deprecated environment variables</td><td><code>AIDBOX_ES_AUTH</code></td></tr><tr><td>Sensitive</td><td><code>true</code> — value will be masked in Admin UI</td></tr><tr><td>Set via</td><td>Environment variables</td></tr><tr><td>Hot reload</td><td><code>false</code> — setting requires system restart</td></tr></tbody></table></details>
+<details><summary>Details</summary><table data-header-hidden="true"><thead><tr><th width="200"></th><th></th></tr></thead><tbody><tr><td>ID</td><td><code>observability.elasticsearch.auth</code></td></tr><tr><td>Type</td><td>String</td></tr><tr><td>Default value</td><td>(no default)</td></tr><tr><td>Environment variable</td><td><code>BOX_OBSERVABILITY_ELASTICSEARCH_AUTH</code></td></tr><tr><td>Deprecated environment variables</td><td><code>BOX_OBSERVABILITY_ELASTIC_SEARCH_AUTH</code> , <br /><code>AIDBOX_ES_AUTH</code></td></tr><tr><td>Sensitive</td><td><code>true</code> — value will be masked in Admin UI</td></tr><tr><td>Set via</td><td>Environment variables</td></tr><tr><td>Hot reload</td><td><code>false</code> — setting requires system restart</td></tr></tbody></table></details>
 
-#### Elastic Search URL<a href="#observability.elastic.search-url" id="observability.elastic.search-url"></a>
+#### Elasticsearch URL<a href="#observability.elasticsearch.url" id="observability.elasticsearch.url"></a>
 
 ```yaml
-BOX_OBSERVABILITY_ELASTIC_SEARCH_URL: "<String>"
+BOX_OBSERVABILITY_ELASTICSEARCH_URL: "<String>"
 ```
 
-If provided, enables mode to push logs to ElasticSearch
+If provided, enables mode to push logs to Elasticsearch
 
-<details><summary>Details</summary><table data-header-hidden="true"><thead><tr><th width="200"></th><th></th></tr></thead><tbody><tr><td>ID</td><td><code>observability.elastic.search-url</code></td></tr><tr><td>Type</td><td>String</td></tr><tr><td>Default value</td><td>(no default)</td></tr><tr><td>Environment variable</td><td><code>BOX_OBSERVABILITY_ELASTIC_SEARCH_URL</code></td></tr><tr><td>Deprecated environment variables</td><td><code>AIDBOX_ES_URL</code></td></tr><tr><td>Sensitive</td><td><code>false</code> — value will be visible in plaintext in Admin UI</td></tr><tr><td>Set via</td><td>Admin UI → Settings<br />Environment variables</td></tr><tr><td>Hot reload</td><td><code>false</code> — setting requires system restart</td></tr></tbody></table></details>
+<details><summary>Details</summary><table data-header-hidden="true"><thead><tr><th width="200"></th><th></th></tr></thead><tbody><tr><td>ID</td><td><code>observability.elasticsearch.url</code></td></tr><tr><td>Type</td><td>String</td></tr><tr><td>Default value</td><td>(no default)</td></tr><tr><td>Environment variable</td><td><code>BOX_OBSERVABILITY_ELASTICSEARCH_URL</code></td></tr><tr><td>Deprecated environment variables</td><td><code>BOX_OBSERVABILITY_ELASTIC_SEARCH_URL</code> , <br /><code>AIDBOX_ES_URL</code></td></tr><tr><td>Sensitive</td><td><code>false</code> — value will be visible in plaintext in Admin UI</td></tr><tr><td>Set via</td><td>Admin UI → Settings<br />Environment variables</td></tr><tr><td>Hot reload</td><td><code>false</code> — setting requires system restart</td></tr></tbody></table></details>
 
-#### Elastic Search batch size<a href="#observability.elastic.batch-size" id="observability.elastic.batch-size"></a>
+#### Elasticsearch batch size<a href="#observability.elasticsearch.batch-size" id="observability.elasticsearch.batch-size"></a>
 
 ```yaml
-BOX_OBSERVABILITY_ELASTIC_BATCH_SIZE: "<Int>"
+BOX_OBSERVABILITY_ELASTICSEARCH_BATCH_SIZE: "<Int>"
 ```
 
 Log batch size used to optimize log shipping performance. The default value is 200
 
-<details><summary>Details</summary><table data-header-hidden="true"><thead><tr><th width="200"></th><th></th></tr></thead><tbody><tr><td>ID</td><td><code>observability.elastic.batch-size</code></td></tr><tr><td>Type</td><td>Int</td></tr><tr><td>Default value</td><td>(no default)</td></tr><tr><td>Environment variable</td><td><code>BOX_OBSERVABILITY_ELASTIC_BATCH_SIZE</code></td></tr><tr><td>Deprecated environment variables</td><td><code>AIDBOX_ES_BATCH_SIZE</code></td></tr><tr><td>Sensitive</td><td><code>false</code> — value will be visible in plaintext in Admin UI</td></tr><tr><td>Set via</td><td>Admin UI → Settings<br />Environment variables</td></tr><tr><td>Hot reload</td><td><code>false</code> — setting requires system restart</td></tr></tbody></table></details>
+<details><summary>Details</summary><table data-header-hidden="true"><thead><tr><th width="200"></th><th></th></tr></thead><tbody><tr><td>ID</td><td><code>observability.elasticsearch.batch-size</code></td></tr><tr><td>Type</td><td>Int</td></tr><tr><td>Default value</td><td>(no default)</td></tr><tr><td>Environment variable</td><td><code>BOX_OBSERVABILITY_ELASTICSEARCH_BATCH_SIZE</code></td></tr><tr><td>Deprecated environment variables</td><td><code>BOX_OBSERVABILITY_ELASTIC_BATCH_SIZE</code> , <br /><code>AIDBOX_ES_BATCH_SIZE</code></td></tr><tr><td>Sensitive</td><td><code>false</code> — value will be visible in plaintext in Admin UI</td></tr><tr><td>Set via</td><td>Admin UI → Settings<br />Environment variables</td></tr><tr><td>Hot reload</td><td><code>false</code> — setting requires system restart</td></tr></tbody></table></details>
 
-#### Elastic Search batch timeout<a href="#observability.elastic.batch-timeout" id="observability.elastic.batch-timeout"></a>
+#### Elasticsearch batch timeout<a href="#observability.elasticsearch.batch-timeout" id="observability.elasticsearch.batch-timeout"></a>
 
 ```yaml
-BOX_OBSERVABILITY_ELASTIC_BATCH_TIMEOUT: 60000
+BOX_OBSERVABILITY_ELASTICSEARCH_BATCH_TIMEOUT: 60000
 ```
 
-Timeout to post a batch to ElasticSearch. If there is not enough records to reach full batch size
+Timeout to post a batch to Elasticsearch. If there is not enough records to reach full batch size
 
-<details><summary>Details</summary><table data-header-hidden="true"><thead><tr><th width="200"></th><th></th></tr></thead><tbody><tr><td>ID</td><td><code>observability.elastic.batch-timeout</code></td></tr><tr><td>Type</td><td>Int</td></tr><tr><td>Default value</td><td><code>60000</code></td></tr><tr><td>Environment variable</td><td><code>BOX_OBSERVABILITY_ELASTIC_BATCH_TIMEOUT</code></td></tr><tr><td>Deprecated environment variables</td><td><code>AIDBOX_ES_BATCH_TIMEOUT</code></td></tr><tr><td>Sensitive</td><td><code>false</code> — value will be visible in plaintext in Admin UI</td></tr><tr><td>Set via</td><td>Environment variables</td></tr><tr><td>Hot reload</td><td><code>false</code> — setting requires system restart</td></tr></tbody></table></details>
+<details><summary>Details</summary><table data-header-hidden="true"><thead><tr><th width="200"></th><th></th></tr></thead><tbody><tr><td>ID</td><td><code>observability.elasticsearch.batch-timeout</code></td></tr><tr><td>Type</td><td>Int</td></tr><tr><td>Default value</td><td><code>60000</code></td></tr><tr><td>Environment variable</td><td><code>BOX_OBSERVABILITY_ELASTICSEARCH_BATCH_TIMEOUT</code></td></tr><tr><td>Deprecated environment variables</td><td><code>BOX_OBSERVABILITY_ELASTIC_BATCH_TIMEOUT</code> , <br /><code>AIDBOX_ES_BATCH_TIMEOUT</code></td></tr><tr><td>Sensitive</td><td><code>false</code> — value will be visible in plaintext in Admin UI</td></tr><tr><td>Set via</td><td>Admin UI → Settings<br />Environment variables</td></tr><tr><td>Hot reload</td><td><code>false</code> — setting requires system restart</td></tr></tbody></table></details>
 
-#### Elastic Search log format<a href="#observability.elastic.index-pattern" id="observability.elastic.index-pattern"></a>
+#### Elasticsearch log format<a href="#observability.elasticsearch.index-pattern" id="observability.elasticsearch.index-pattern"></a>
 
 ```yaml
-BOX_OBSERVABILITY_ELASTIC_INDEX_PATTERN: "'aidbox-logs'-yyyy-MM-dd"
+BOX_OBSERVABILITY_ELASTICSEARCH_INDEX_PATTERN: "'aidbox-logs'-yyyy-MM-dd"
 ```
 
 Custom index format string. The default value is 'aidbox-logs'-yyyy-MM-dd.
 
-<details><summary>Details</summary><table data-header-hidden="true"><thead><tr><th width="200"></th><th></th></tr></thead><tbody><tr><td>ID</td><td><code>observability.elastic.index-pattern</code></td></tr><tr><td>Type</td><td>String</td></tr><tr><td>Default value</td><td><code>&apos;aidbox-logs&apos;-yyyy-MM-dd</code></td></tr><tr><td>Environment variable</td><td><code>BOX_OBSERVABILITY_ELASTIC_INDEX_PATTERN</code></td></tr><tr><td>Deprecated environment variables</td><td><code>AIDBOX_ES_INDEX_PAT</code></td></tr><tr><td>Sensitive</td><td><code>false</code> — value will be visible in plaintext in Admin UI</td></tr><tr><td>Set via</td><td>Admin UI → Settings<br />Environment variables</td></tr><tr><td>Hot reload</td><td><code>false</code> — setting requires system restart</td></tr></tbody></table></details>
+<details><summary>Details</summary><table data-header-hidden="true"><thead><tr><th width="200"></th><th></th></tr></thead><tbody><tr><td>ID</td><td><code>observability.elasticsearch.index-pattern</code></td></tr><tr><td>Type</td><td>String</td></tr><tr><td>Default value</td><td><code>&apos;aidbox-logs&apos;-yyyy-MM-dd</code></td></tr><tr><td>Environment variable</td><td><code>BOX_OBSERVABILITY_ELASTICSEARCH_INDEX_PATTERN</code></td></tr><tr><td>Deprecated environment variables</td><td><code>BOX_OBSERVABILITY_ELASTIC_INDEX_PATTERN</code> , <br /><code>AIDBOX_ES_INDEX_PAT</code></td></tr><tr><td>Sensitive</td><td><code>false</code> — value will be visible in plaintext in Admin UI</td></tr><tr><td>Set via</td><td>Admin UI → Settings<br />Environment variables</td></tr><tr><td>Hot reload</td><td><code>false</code> — setting requires system restart</td></tr></tbody></table></details>
 
 ### Grafana
 
