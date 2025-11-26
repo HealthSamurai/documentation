@@ -45,6 +45,29 @@
          (map last)
          (filter string?))))
 
+(defn mock-context-with-deep-nesting []
+  (let [summary [{:href "/aidbox/section"
+                  :parsed {:title "Aidbox" :href "/aidbox/section"}
+                  :section-title "Aidbox"
+                  :children [{:href "/aidbox/deprecated"
+                              :parsed {:title "Deprecated" :href "/aidbox/deprecated"}
+                              :children [{:href "/aidbox/deprecated/deprecated2"
+                                          :parsed {:title "Deprecated2" :href "/aidbox/deprecated/deprecated2"}
+                                          :children [{:href "/aidbox/deprecated/deprecated2/zen-related"
+                                                      :parsed {:title "Zen Related" :href "/aidbox/deprecated/deprecated2/zen-related"}
+                                                      :children [{:href "/aidbox/deprecated/deprecated2/zen-related/topic-subscriptions"
+                                                                  :parsed {:title "Topic-based Subscriptions" :href "/aidbox/deprecated/deprecated2/zen-related/topic-subscriptions"}
+                                                                  :children [{:href "/aidbox/deprecated/deprecated2/zen-related/topic-subscriptions/r4b-api"
+                                                                              :parsed {:title "R4B API Reference" :href "/aidbox/deprecated/deprecated2/zen-related/topic-subscriptions/r4b-api"}
+                                                                              :children [{:href "/aidbox/deprecated/deprecated2/zen-related/topic-subscriptions/r4b-api/subscription-api"
+                                                                                          :parsed {:title "Subscription API" :href "/aidbox/deprecated/deprecated2/zen-related/topic-subscriptions/r4b-api/subscription-api"}}]}]}]}]}]}]}]
+        product {:id "aidbox" :path "/aidbox"}
+        context (th/create-test-context {:products {:config [product]
+                                                    :indices {"aidbox" {:summary-hiccup summary}}}})]
+    (assoc context
+           :current-product-id "aidbox"
+           :product product)))
+
 (deftest breadcrumb-test
   (testing "root pages have no breadcrumb"
     (is (nil? (breadcrumb/breadcrumb (mock-context) "")))
@@ -91,4 +114,18 @@
       (let [items (extract-breadcrumb-items result)]
         (is (= 2 (count items)))
         (is (= "Docs" (first items)))
-        (is (= "Getting Started" (second items)))))))
+        (is (= "Getting Started" (second items))))))
+
+  (testing "limits breadcrumbs to 4 elements with ellipsis for deeply nested pages"
+    (let [result (breadcrumb/breadcrumb (mock-context-with-deep-nesting) "deprecated/deprecated2/zen-related/topic-subscriptions/r4b-api/subscription-api")]
+      (is (some? result))
+      ;; Check that hiccup contains ellipsis
+      (let [hiccup-str (pr-str result)]
+        (is (str/includes? hiccup-str "...")))
+      (let [items (extract-breadcrumb-items result)]
+        ;; Should show: Aidbox / Deprecated / Deprecated2 / R4B API Reference (4 visible items, ellipsis in between)
+        (is (= 4 (count items)))
+        (is (= "Aidbox" (nth items 0)))
+        (is (= "Deprecated" (nth items 1)))
+        (is (= "Deprecated2" (nth items 2)))
+        (is (= "R4B API Reference" (nth items 3)))))))

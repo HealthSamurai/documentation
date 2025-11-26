@@ -49,17 +49,33 @@
                                 :title (get-in page [:parsed :title])
                                 :href (:href page)
                                 :relative-href (str/replace-first (get-in page [:parsed :href] "") #"^/" "")})
-                             parent-pages))))]
+                             parent-pages))))
+          ;; Limit to 4 elements: first 3 + ellipsis + last
+          limited-items (if (> (count items) 4)
+                          (vec (concat (take 3 items)
+                                       [{:type :ellipsis}]
+                                       [(last items)]))
+                          items)]
       (interpose
        [:span {:class "text-xs font-semibold leading-none text-breadcrumb-separator mx-2"} "/"]
        (map-indexed
         (fn [idx item]
-          (if (= :section (:type item))
+          (cond
+            (= :ellipsis (:type item))
+            ;; Ellipsis indicator
+            [:li {:key idx
+                  :class "flex items-center gap-2"}
+             [:span {:class "text-sm font-normal leading-6 text-breadcrumb-separator"}
+              "..."]]
+
+            (= :section (:type item))
             ;; Section title without link
             [:li {:key idx
                   :class "flex items-center gap-2 bg-breadcrumb-bg rounded-md px-2 py-0.5"}
              [:span {:class "text-sm font-normal leading-6 text-on-surface"}
               (:title item)]]
+
+            :else
             ;; Parent page with link
             [:li {:key idx
                   :class "flex items-center gap-2 bg-breadcrumb-bg rounded-md px-2 py-0.5"}
@@ -70,7 +86,7 @@
                   :hx-swap "outerHTML"
                   :class "text-sm font-normal leading-6 text-on-surface hover:text-on-surface-strong"}
               (:title item)]]))
-        items)))]])
+        limited-items)))]])
 
 (defn render-breadcrumb-container
   "Renders the container with breadcrumb and/or copy page dropdown"
