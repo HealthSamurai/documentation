@@ -1,4 +1,4 @@
-# (g)(10): Standardized API for Patient & Population Services
+# (g)(10): Standardized API for Patient and Population Services
 
 **Criterion (g)(10): Standardized API for Patient & Population Services**\
 Explains Aidbox’s implementation of SMART App Launch and FHIR APIs for patient and population access.\
