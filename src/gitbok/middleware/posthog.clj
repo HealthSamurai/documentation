@@ -17,7 +17,7 @@
                         "partial/"
                         "api/"]
         file-extensions ["js" "css" "svg" "jpg" "png" "ico" "woff" "woff2" "ttf" "eot"]
-        system-endpoints ["metrics" "healthcheck" "version" "debug" "service-worker\\.js"]
+        system-endpoints ["metrics" "healthcheck" "version" "debug" "service-worker\\.js" "\\.well-known"]
 
         prefix-pattern (when-not (str/blank? prefix-path)
                          (str "^" prefix-path "/(" (str/join "|" excluded-paths) "|.*\\.(" (str/join "|" file-extensions) ")$)"))
