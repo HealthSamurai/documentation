@@ -9,7 +9,7 @@ FHIR 6.0.0-ballot3 was published on **April 3, 2025**, introducing new resources
 ## Run in Sandbox
 
 1. Sign up or log in at [aidbox.app](https://aidbox.app)
-2. Go to your project&#x20;
+2. Go to your project
 3. Click "New Aidbox" to create a new instance
 4. Enter a name in the "License name" field
 5. Set hosting type to "Sandbox"
@@ -20,7 +20,7 @@ FHIR 6.0.0-ballot3 was published on **April 3, 2025**, introducing new resources
 ## Run locally
 
 {% hint style="warning" %}
-<img src="../../../.gitbook/assets/docker.png" alt="" data-size="original">
+<img src="../../.gitbook/assets/docker (1).png" alt="" data-size="original">
 
 Please **make sure** that both [Docker & Docker Compose](https://docs.docker.com/engine/install/) are installed.
 {% endhint %}
@@ -47,4 +47,4 @@ docker compose up
 
 All imported canonical resources are available in the FHIR Packages tab
 
-<figure><img src="../../../.gitbook/assets/0f985882-6f3a-4709-b05e-e2790647eb37.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/0f985882-6f3a-4709-b05e-e2790647eb37.png" alt=""><figcaption></figcaption></figure>

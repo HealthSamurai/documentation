@@ -469,7 +469,7 @@ accept: text/yaml
 
 ### 7. Post-Migration Verification
 
-the Now you can run Inferno G10 test kit on both Aidbox instances to verify compliance with G10 certification. See [Pass Inferno Tests with Aidbox](../../../smartbox/how-to-guides/pass-inferno-tests-with-aidbox.md) for step-by-step instructions.
+the Now you can run Inferno G10 test kit on both Aidbox instances to verify compliance with G10 certification. See [Pass Inferno Tests with Aidbox](../../providers-or-onc-health-it-certification-program/g-10-standardized-api-for-patient-and-population-services/pass-inferno-tests-with-aidbox.md) for step-by-step instructions.
 
 ## API Changes: Smartbox → Aidbox
 

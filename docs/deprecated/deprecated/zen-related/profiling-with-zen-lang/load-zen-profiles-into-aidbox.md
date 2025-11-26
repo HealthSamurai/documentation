@@ -9,7 +9,7 @@ description: >-
 {% hint style="warning" %}
 Since the 2405 release, using Aidbox in FHIRSchema mode is recommended, which is incompatible with zen or Entity/Attribute options.
 
-[Setup Aidbox with FHIR Schema validation engine](broken-reference)
+[Setup Aidbox with FHIR Schema validation engine](broken-reference/)
 {% endhint %}
 
 ## Prerequisites
@@ -83,7 +83,7 @@ Add `my-profiles` namespace to the entry file imports.
 ```
 
 {% hint style="info" %}
-Refer to [Aidbox Configuration project page](../aidbox-zen-lang-project/README.md) if you want to learn more about zen projects.
+Refer to [Aidbox Configuration project page](../aidbox-zen-lang-project/) if you want to learn more about zen projects.
 {% endhint %}
 
 ## Setup Aidbox for development with zen projects
@@ -108,11 +108,11 @@ docker compose up
 
 Open Aidbox in your browser and click `Profiles` tab in the left menu:
 
-![](../../../../../.gitbook/assets/933f22cc-01ba-4360-ad12-25740507c1d5.png)
+![](../../../../.gitbook/assets/933f22cc-01ba-4360-ad12-25740507c1d5.png)
 
 You should see the list of zen namespaces loaded.
 
-![](../../../../../.gitbook/assets/83831180-ea97-4757-8429-470369ff856e.png)
+![](../../../../.gitbook/assets/83831180-ea97-4757-8429-470369ff856e.png)
 
 {% hint style="info" %}
 On this page you see the namespaces that are explicitly included in the zen project or used by Aidbox
@@ -120,13 +120,11 @@ On this page you see the namespaces that are explicitly included in the zen proj
 
 Open your profile by clicking its name
 
-![](../../../../../.gitbook/assets/1cc50e54-b61a-4043-ab71-8351bd27244e.png)
+![](../../../../.gitbook/assets/1cc50e54-b61a-4043-ab71-8351bd27244e.png)
 
 ## Start validation
 
 Test the data against this profile using **validate** tab
-
-![](../../../../.gitbook/assets/ababb707-285c-41f4-8344-25779c02033a.png)
 
 If your profile is tagged `zen.fhir/profile-schema` it can be used to validate your data\
 On FHIR CRUD API requests a profile will be applied if data includes `:zen.fhir/profileUri` in the `meta.profile` attribute:

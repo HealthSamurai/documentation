@@ -5,7 +5,7 @@
 ## October 2025 _`latest, 2510`_
 
 * Aidbox FHIR server
-  * Published a [tutorial](../modules/smartbox/how-to-guides/pass-inferno-tests-with-aidbox.md) on how to pas **Inferno tests** (US Core 6.1.0 / USCDI v3 and SMART App Launch 2.0.0). You can run these tests on **Health Samurai-hosted Inferno instance** [here](https://www.health-samurai.io/inferno/onc_certification_g10).
+  * Published a [tutorial](../modules/compliance/providers-or-onc-health-it-certification-program/g-10-standardized-api-for-patient-and-population-services/pass-inferno-tests-with-aidbox.md) on how to pas **Inferno tests** (US Core 6.1.0 / USCDI v3 and SMART App Launch 2.0.0). You can run these tests on **Health Samurai-hosted Inferno instance** [here](https://www.health-samurai.io/inferno/onc_certification_g10).
   * Enhnanced **Smart App portals**:
     * **Developer Portal**: Enhanced app and backend services registration and extended documentation
     * **Administrator Portal**: Enhanced application review process, enhanced application activity dashboards
@@ -872,7 +872,7 @@ Minor updates:
 * Smartbox
   * Improved admin UI with configuration of [EHR-level logo](../modules/smartbox/how-to-guides/set-up-ehr-level-customization.md#with-smartbox-ui), [email provider](../modules/smartbox/how-to-guides/setup-email-provider.md) and bulk export.
   * Added documentation on deployment to Kubernetes
-  * Added guides on passing [Inferno tests](../modules/smartbox/how-to-guides/pass-inferno-tests-with-aidbox.md) and [Inferno Visual Inspection and Attestation](../modules/smartbox/how-to-guides/pass-inferno-visual-inspection-and-attestation.md)
+  * Added guides on passing [Inferno tests](../modules/compliance/providers-or-onc-health-it-certification-program/g-10-standardized-api-for-patient-and-population-services/pass-inferno-tests-with-aidbox.md) and [Inferno Visual Inspection and Attestation](../modules/compliance/providers-or-onc-health-it-certification-program/g-10-standardized-api-for-patient-and-population-services/pass-inferno-visual-inspection-and-attestation.md)
 * Aidbox Configuration Projects
   * Improved startup time for Aidbox instances [configured with zen FHIR IGs](../deprecated/deprecated/zen-related/aidbox-zen-lang-project/enable-igs.md)
   * Improved local development workflow
@@ -1111,7 +1111,7 @@ Starting from January 2022 we're switching to a new release cycle. We added`:lat
 
 * Released Aidbox Notebooks. Interactive notebooks for REST, SQL, RPC and Markdown. So now you can create your own notebooks or import community notebooks.
 
-![Aidbox notebooks](../../.gitbook/assets/2021-09-03_16-53-32.png)
+![Aidbox notebooks](../.gitbook/assets/2021-09-03_16-53-32.png)
 
 * Released a beta version of zen profiling. Advanced profiling with zen-lang to configure Aidboxes and validate data.
 * Added Asynchronous Batch Validation mode to validate data in Aidbox against new profiles

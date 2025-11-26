@@ -11,7 +11,7 @@ description: >-
 Provided by certification buddy `Tests steps` require demonstrating the process of application registration for single patients. You should switch to the `Yes` option.
 
 {% hint style="info" %}
-Smartbox supports [several ways](../background-information/adding-clients-for-inferno-tests.md) to register SMART applications
+Smartbox supports [several ways](../../../smartbox/background-information/adding-clients-for-inferno-tests.md) to register SMART applications
 {% endhint %}
 
 ## 9.10.02 Health IT Module demonstrated support for application registration for multiple patients
@@ -19,7 +19,7 @@ Smartbox supports [several ways](../background-information/adding-clients-for-in
 Provided by certification buddy `Tests steps` require demonstrating the process of application registration for multiple patients. You should switch to the `Yes` option.
 
 {% hint style="info" %}
-Smartbox supports [several ways](../background-information/adding-clients-for-inferno-tests.md) to register SMART applications
+Smartbox supports [several ways](../../../smartbox/background-information/adding-clients-for-inferno-tests.md) to register SMART applications
 {% endhint %}
 
 ## 9.10.03 Health IT Module demonstrated a graphical user interface for user to authorize FHIR resources
@@ -35,7 +35,7 @@ During the test sessions, Smartbox shows users the `Consent screen`. There is th
 Default `refresh_token` lifespan is unlimited.
 
 {% hint style="info" %}
-To reduce the refresh\_token lifespan use [refresh\_token\_expiration documentation](pass-inferno-visual-inspection-and-attestation.md#id-10.-use-refresh\_token-to-get-a-new-access\_token)
+To reduce the refresh\_token lifespan use [refresh\_token\_expiration documentation](pass-inferno-visual-inspection-and-attestation.md#id-10.-use-refresh_token-to-get-a-new-access_token)
 {% endhint %}
 
 ## 9.10.06 Health IT developer demonstrated the ability of the Health IT Module / authorization server to validate token it has issued

@@ -474,4 +474,4 @@ Open `http://localhost:9000/standalone/patient.html` it will redirect you to log
 
 Now you should be able to see a plot of Observations
 
-![Growth charts](../../../../../../.gitbook/assets/81abd7c7-942b-484a-879a-bd6ca781434f.png)
+![Growth charts](../../../../../.gitbook/assets/81abd7c7-942b-484a-879a-bd6ca781434f.png)

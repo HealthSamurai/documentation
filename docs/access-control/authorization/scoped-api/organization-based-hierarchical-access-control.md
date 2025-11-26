@@ -16,7 +16,7 @@ FHIR resources must be separated per organizations. Organizations can be nested.
 
 Let's consider the next organization structure. There are two independent organizations Org A & Org D, each of them has nested, dependent organizations. Org B & Org C are nested to Org A, and Org E is nested to Org D.
 
-<figure><img src="../../../../.gitbook/assets/d31fcf9c-4ae7-4932-87ac-0b725ce1c7a3.png" alt=""><figcaption><p>Organization hierarchy structure</p></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/d31fcf9c-4ae7-4932-87ac-0b725ce1c7a3.png" alt=""><figcaption><p>Organization hierarchy structure</p></figcaption></figure>
 
 To achieve such a behavior, you may consider an Aidbox feature called organization-based access control.
 
@@ -80,7 +80,7 @@ The Organization-based [Aidbox API](../../../api/rest-api/other/aidbox-and-fhir-
 <AIDBOX_BASE_URL>/Organization/<org-id>/aidbox
 ```
 
-<figure><img src="../../../../.gitbook/assets/4ec1a26c-d58c-4ff9-9d3b-87f4698f41d8.png" alt=""><figcaption><p>FHIR APIs reflection in organization-based access control</p></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/4ec1a26c-d58c-4ff9-9d3b-87f4698f41d8.png" alt=""><figcaption><p>FHIR APIs reflection in organization-based access control</p></figcaption></figure>
 
 ### Try Org-BAC
 
@@ -165,11 +165,13 @@ POST <AIDBOX_BASE_URL>/Organization/<org-id>/fhir/<resource-type>
 ```
 
 #### Conditional Create
+
 {% hint style="warning" %}
 Conditional operations are available starting from version 2509.
 {% endhint %}
 
 Create the resource only if no existing resource matches the given search criteria.
+
 ```
 POST /Organization/<org-id>/fhir/Observation
 If-None-Exist: identifier=http://acme.org/obs|12345
@@ -196,7 +198,9 @@ GET <AIDBOX_BASE_URL>/Organization/<org-id>/fhir/<resource-type>/<id>
 ```
 PUT <AIDBOX_BASE_URL>/Organization/<org-id>/fhir/<resource-type>/<id>
 ```
-#### Conditional Put 
+
+#### Conditional Put
+
 {% hint style="warning" %}
 Conditional operations are available starting from version 2509.
 {% endhint %}
@@ -223,11 +227,12 @@ Content-Type: application/fhir+json
 All PATCH methods are supported under org-scoped API. See also [patch](../../../api/rest-api/crud/patch.md)
 
 #### Conditional Patch
+
 {% hint style="warning" %}
 Conditional operations are available starting from version 2509.
 {% endhint %}
 
-Patch a resource matched by a search expression. 
+Patch a resource matched by a search expression.
 
 ```
 PATCH /Organization/<org-id>/fhir/Observation?identifier=http://acme.org/obs|12345&_method=merge-patch
@@ -243,6 +248,7 @@ DELETE <AIDBOX_BASE_URL>/Organization/<org-id>/fhir/<resource-type>/<id>
 ```
 
 #### Conditional Delete
+
 {% hint style="warning" %}
 Conditional operations are available starting from version 2509.
 {% endhint %}
@@ -365,6 +371,7 @@ entry:
 See also [Transactions page](../../../api/batch-transaction.md)
 
 #### Conditional Create with Bundle
+
 {% hint style="warning" %}
 Conditional operations are available starting from version 2509.
 {% endhint %}
@@ -395,6 +402,7 @@ Content-Type: application/fhir+json
 ```
 
 #### Conditional Update with Bundle
+
 {% hint style="warning" %}
 Conditional operations are available starting from version 2509.
 {% endhint %}
@@ -424,6 +432,7 @@ Content-Type: application/fhir+json
 ```
 
 #### Conditional Delete with Bundle
+
 {% hint style="warning" %}
 Conditional operations are available starting from version 2509.
 {% endhint %}
@@ -495,7 +504,7 @@ See also: [graphql-api.md](../../../api/graphql-api.md)
 GET <AIDBOX_BASE_URL>/Organization/<org-id>/fhir/Group/<group-id>/$export
 ```
 
-Starts a group-level export for the specified organization and group. 
+Starts a group-level export for the specified organization and group.
 
 #### Check Export Status
 
@@ -514,7 +523,6 @@ DELETE <AIDBOX_BASE_URL>/Organization/<org-id>/fhir/$export-status/<export-id>
 Cancels an active export job for the specified organization.
 
 See also [$export](../../../api/bulk-api/export.md#group-level-export)
-
 
 ## Authentication
 

@@ -53,10 +53,6 @@ To enable a database instance hosted with [AWS RDS](https://aws.amazon.com/rds/p
 5. Search for `rds.logical_replication` and set its value to `1`.
 6. Navigate to the database instance, click **Modify**, and in the `DB parameter group` menu select the parameter group created in Step 3.
 
-<figure><img src="../../../../.gitbook/assets/03aac5c9-1960-4559-816d-936bb84863e1.png" alt=""><figcaption></figcaption></figure>
-
-<figure><img src="../../../../.gitbook/assets/9d5b080e-8eab-49f3-8724-21049377c1ed.png" alt=""><figcaption></figcaption></figure>
-
 To check that the setting is applied run query `SHOW wal_level;` he result should be `logical`.
 
 #### Azure Database for PostgreSQL - Flexible Server <a href="#logical-replication-and-logical-decoding-in-azure-database-for-postgresql---flexible-server" id="logical-replication-and-logical-decoding-in-azure-database-for-postgresql---flexible-server"></a>
@@ -72,8 +68,6 @@ Setup your database instance according to [the official guide ](https://learn.mi
     ```sql
     ALTER ROLE <username> WITH REPLICATION;
     ```
-
-<figure><img src="../../../../.gitbook/assets/f15a65b2-e654-46f0-942e-c8c8064b345f.png" alt=""><figcaption><p>Server Parameters</p></figcaption></figure>
 
 \\
 
@@ -476,5 +470,3 @@ accept: application/json
 {% endtabs %}
 
 * Open Aidbox UI -> Subscription Topics to check the topic status
-
-<figure><img src="../../../../.gitbook/assets/9d86ee66-d0af-49c3-bb9d-c8d105a86bbc.png" alt=""><figcaption></figcaption></figure>

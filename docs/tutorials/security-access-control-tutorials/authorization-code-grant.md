@@ -10,7 +10,7 @@ The Authorization Code Grant is an OAuth 2.0 flow that regular web apps use in o
 
 In this flow the application receives authorization from the user. Once the user has authorized the application, they get redirected back to it with a temporary access code in the URL. The application exchanges that code for an access token. For more detailed information read [OAuth 2.0 specification](https://tools.ietf.org/html/rfc6749#section-4.1).
 
-![Basic scheme](<../../../.gitbook/assets/authorization-code-gant (1).svg>)
+![Basic scheme](<../../.gitbook/assets/authorization-code-gant (1).svg>)
 
 For applications that are able to securely store a secret it is recommended to supply the secret in the token request due to security considerations. Otherwise, if the application is unable to securely store a secret (i.e. a frontend-only app), we suggest using [PKCE](https://datatracker.ietf.org/doc/html/rfc7636). Both methods are supported by Aidbox.
 
@@ -118,11 +118,9 @@ To keep your client stateless, you can send a `state` parameter with arbitrary c
 
 If users are not logged in, they will see the default login screen.
 
-![](../../.gitbook/assets/login-screen-with-id-field.png)
-
 If a client is not **first\_party** or the user has not yet granted permissions to the client, the user will see the grant page:
 
-![](../../../.gitbook/assets/abd8c933-5bfa-4df8-a252-27d2918b8ec9.png)
+![](../../.gitbook/assets/abd8c933-5bfa-4df8-a252-27d2918b8ec9.png)
 
 If the client was granted permission, the user agent will be redirected to the url configured in **Client.auth.authorization\_code.redirect\_uri** with the authorization code parameter.
 

@@ -23,7 +23,7 @@ To create application group for Aidbox:
    3. Chose the `Server application` type
 5. Press the Next button
 
-<figure><img src="../../../../.gitbook/assets/ad-fs-wizard-page-1.png" alt=""><figcaption><p>Add Application Group Wizard welcome page</p></figcaption></figure>
+<figure><img src="../../.gitbook/assets/ad-fs-wizard-page-1.png" alt=""><figcaption><p>Add Application Group Wizard welcome page</p></figcaption></figure>
 
 ### Server application page
 
@@ -31,7 +31,7 @@ To create application group for Aidbox:
 7. Add the `redirect_uri` and press the Add button. Redirect uri should look like this `https://aidbox.example.com/auth/callback/adfs`
 8. Press the Next button
 
-<figure><img src="../../../../.gitbook/assets/ad-fs-wizard-page-2.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/ad-fs-wizard-page-2.png" alt=""><figcaption></figcaption></figure>
 
 ### Configure Application credentials
 
@@ -39,20 +39,20 @@ To create application group for Aidbox:
 10. Copy generated secret. We will use it later during the IdentityProvider resource creation
 11. Press the Next button
 
-<figure><img src="../../../../.gitbook/assets/ad-fs-wizard-page-3.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/ad-fs-wizard-page-3.png" alt=""><figcaption></figcaption></figure>
 
 ### Summary
 
 12. Review the summary
 13. Press the Next button
 
-<figure><img src="../../../../.gitbook/assets/ad-fs-wizard-page-4.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/ad-fs-wizard-page-4.png" alt=""><figcaption></figcaption></figure>
 
 ### Complete
 
 14. Press the Close button
 
-<figure><img src="../../../../.gitbook/assets/ad-fs-wizard-page-5.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/ad-fs-wizard-page-5.png" alt=""><figcaption></figcaption></figure>
 
 ## Create IdentityProvider in Aidbox
 

@@ -19,11 +19,11 @@ This setup has been tested using the next test suite
 
 ## Prerequisites
 
-#### 1.  Aidbox is publicly available on the Internet
+#### 1. Aidbox is publicly available on the Internet
 
 * Run Aidbox in the cloud [Sandbox](https://aidbox.app/) or
-* Run [Aidbox on Kubernetes](../../../deployment-and-maintenance/deploy-aidbox/run-aidbox-in-kubernetes/) or
-* Run [Aidbox locally](../../../getting-started/run-aidbox-locally.md)  and proxy it with tools like ngrok/cloudflared tunnel
+* Run [Aidbox on Kubernetes](../../../../deployment-and-maintenance/deploy-aidbox/run-aidbox-in-kubernetes/) or
+* Run [Aidbox locally](../../../../getting-started/run-aidbox-locally.md) and proxy it with tools like ngrok/cloudflared tunnel
 
 #### 2. Aidbox settings
 
@@ -34,7 +34,7 @@ From the Aidbox UI left sidebar menu, go to Settings and check these two:
 
 #### 3. Set up bucket for Bulk Export test
 
-You need to [set up](../../../api/bulk-api/export.md#setup-storage) S3 Bucket for `Multi-Patient Authorization and API STU2` test step.  &#x20;
+You need to [set up](../../../../api/bulk-api/export.md#setup-storage) S3 Bucket for `Multi-Patient Authorization and API STU2` test step.
 
 #### 4. Load US Core Package
 
@@ -42,7 +42,7 @@ From the Aidbox UI left sidebar menu, go to FAR -> Import Package -> find hl7.fh
 
 #### 5. Load fixtures (read below)
 
-Once you have your Aidbox instance up and running you need to&#x20;
+Once you have your Aidbox instance up and running you need to
 
 * Patient record with all USCDIv3 data elements in us-core format,
 * User resource, associated with the patient record
@@ -93,7 +93,7 @@ accept: application/json
 }
 ```
 
-Now you can login to Aidbox  with `patient@mail.com / password`. 
+Now you can login to Aidbox with `patient@mail.com / password`.
 
 ### Create client resources for Inferno
 
@@ -233,7 +233,7 @@ accept: application/json
 
 Create Inferno test session:
 
-* Offitial TestKit - [https://inferno.healthit.gov/onc-certification-g10-test-kit](https://inferno.healthit.gov/onc-certification-g10-test-kit) 
+* Offitial TestKit - [https://inferno.healthit.gov/onc-certification-g10-test-kit](https://inferno.healthit.gov/onc-certification-g10-test-kit)
 * Run Inferno TestKit locally - [https://github.com/onc-healthit/onc-certification-g10-test-kit](https://github.com/onc-healthit/onc-certification-g10-test-kit)
 
 ### Run Inferno tests one by one
@@ -244,7 +244,7 @@ Create Inferno test session:
 2. Click the `Run tests` button
 3.  Provide require parameters for tests
 
-    * FHIR Endpoint: `[aidbox-url]/fhir`&#x20;
+    * FHIR Endpoint: `[aidbox-url]/fhir`
     * Scopes. Make sure that scopes text area contains all these scopes:
 
     `launch/patient openid fhirUser offline_access patient/Medication.rs patient/AllergyIntolerance.rs patient/CarePlan.rs patient/CareTeam.rs patient/Condition.rs patient/Device.rs patient/DiagnosticReport.rs patient/DocumentReference.rs patient/Encounter.rs patient/Goal.rs patient/Immunization.rs patient/Location.rs patient/MedicationRequest.rs patient/Observation.rs patient/Organization.rs patient/Patient.rs patient/Practitioner.rs patient/Procedure.rs patient/Provenance.rs patient/PractitionerRole.rs patient/ServiceRequest.rs patient/Coverage.rs patient/MedicationDispense.rs patient/Specimen.rs patient/RelatedPerson.rs`
@@ -374,7 +374,7 @@ Before you launch the test you should:
 
 #### 9.4 Invalid AUD Parameter
 
-1. Click the `9.4  Invalid AUD Launch` link in the left sidebar
+1. Click the `9.4 Invalid AUD Launch` link in the left sidebar
 2. Click the `Run tests` button
 3. Provide require parameters for tests
    * FHIR Endpoint:\
@@ -386,7 +386,7 @@ Before you launch the test you should:
 
 #### 9.17 Invalid Access Token Request
 
-1. Click the `9.5  Invalid Token Request` link in the left sidebar
+1. Click the `9.5 Invalid Token Request` link in the left sidebar
 2. Click the `Run tests` button
 3. Provide require parameters for tests
    * FHIR Endpoint:\
@@ -440,8 +440,6 @@ Before you launch the test you should:
       }
     }
     ```
-
-
 6. Copy URI from response and open it in the same broser you have Inferno TestKit runnning.
 7. Click the `Follow this link to authorize with the SMART server` link
 8. Press the `Allow` button on the consent screen
@@ -472,7 +470,7 @@ Before you launch the test you should:
 
 #### 9.22 App Launch with SMART v1 scopes
 
-1. Click the `9.20 App Launch with  v1 scopes` link in the left sidebar
+1. Click the `9.20 App Launch with v1 scopes` link in the left sidebar
 2. Click the `Run tests` button
 3. Provide require parameters for tests
    * FHIR Endpoint:\

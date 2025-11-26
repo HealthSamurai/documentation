@@ -3,7 +3,7 @@
 {% hint style="warning" %}
 Since the 2405 release, using Aidbox in FHIR schema validation engine is recommended, which is incompatible with zen or Entity/Attribute options.
 
-[Setup Aidbox with FHIR Schema validation engine](broken-reference)
+[Setup Aidbox with FHIR Schema validation engine](broken-reference/)
 {% endhint %}
 
 ## Intro
@@ -17,7 +17,7 @@ It introduces you to:
 * Aidbox UI features that make the Aidbox instance transparent for you.
 
 {% hint style="warning" %}
-<img src="../../../../../.gitbook/assets/docker.png" alt="" data-size="original">
+<img src="../../../../.gitbook/assets/docker (1).png" alt="" data-size="original">
 
 Please **make sure** that both [Docker & Docker Compose](https://docs.docker.com/engine/install/) are installed.
 {% endhint %}
@@ -95,7 +95,7 @@ Everything in Aidbox can be configured with a dedicated Aidbox Configuration Pro
 
 This approach helps you keep configurations under a version control system and share them between Aidbox Instances.
 
-[Learn more.](./README.md)
+[Learn more.](./)
 {% endhint %}
 
 #### Add the license key to your configuration project.
@@ -124,20 +124,20 @@ Navigate to [http://localhost:8888/](http://localhost:8888/) and Sign In to the 
 
 ### 4. Discover Aidbox features with Notebooks
 
-Go to the Notebooks section within [the Aidbox UI](../../../../overview/aidbox-ui/README.md) and open Getting Started Notebooks.
+Go to the Notebooks section within [the Aidbox UI](../../../../overview/aidbox-ui/) and open Getting Started Notebooks.
 
 Use the pre-defined Getting Started Notebooks to explore the basic features of Aidbox through interactive steps with API queries:
 
-<figure><img src="../../../../../.gitbook/assets/notebooks.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../../.gitbook/assets/notebooks.png" alt=""><figcaption></figcaption></figure>
 
 {% hint style="info" %}
 **Aidbox Notebooks**
 
-Notebooks are interactive tutorials within the Aidbox UI with built-in REST, RPC, and SQL editors and the ability to execute requests and queries on the fly and see the result. You can use pre-built or create your own Notebooks. [Learn more.](broken-reference)
+Notebooks are interactive tutorials within the Aidbox UI with built-in REST, RPC, and SQL editors and the ability to execute requests and queries on the fly and see the result. You can use pre-built or create your own Notebooks. [Learn more.](broken-reference/)
 {% endhint %}
 
 ## Next Steps
 
-* Learn more about [Aidbox Configuration](./README.md)
-* Unlock additional capabilities of [Aidbox UI](../../../../overview/aidbox-ui/README.md)
-* Dive into the built-in [Aidbox Notebooks](broken-reference)
+* Learn more about [Aidbox Configuration](./)
+* Unlock additional capabilities of [Aidbox UI](../../../../overview/aidbox-ui/)
+* Dive into the built-in [Aidbox Notebooks](broken-reference/)

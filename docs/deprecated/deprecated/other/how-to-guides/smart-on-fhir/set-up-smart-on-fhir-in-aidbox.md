@@ -57,7 +57,7 @@ The `launch_uri` parameter here specifies the launch URI for the EHR-based SMART
 
 ### Access Policies
 
-You likely want to add some [Access Policies](broken-reference) to allow users see their data. Here we provide some examples for reference:
+You likely want to add some [Access Policies](broken-reference/) to allow users see their data. Here we provide some examples for reference:
 
 ```yaml
 PUT /
@@ -109,8 +109,6 @@ To generate SMART App launch URI use [RPC API](../../../../../api/other/rpc-api.
 
 ## Standalone Launch
 
-![Standalone launch sequence](../../../../../.gitbook/assets/ba6f8059-a548-4dcc-8f02-880c4bc6447b.png)
-
 Authorization code flow with SMART on FHIR Standalone Launch:
 
 * App requests SMART configuration from `base-url/.well-known/smart-configuration`
@@ -124,7 +122,7 @@ Authorization code flow with SMART on FHIR Standalone Launch:
 
 ## EHR Launch
 
-![EHR Launch Sequence](../../../../../../.gitbook/assets/b4d72fbe-c6c3-4d75-a955-24a790510a47.png)
+![EHR Launch Sequence](../../../../../.gitbook/assets/b4d72fbe-c6c3-4d75-a955-24a790510a47.png)
 
 Authorization code flow with SMART on FHIR EHR Launch:
 

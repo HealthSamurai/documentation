@@ -24,8 +24,7 @@ To enable audit logging in Aidbox, use the following setting: [security.audit-lo
 
 ### Install the BALP Package
 
-The Basic Audit Log Patterns (BALP) Implementation Guide is a Content Profile that defines some basic and reusable AuditEvent patterns. This includes basic audit log profiles for FHIR RESTful operations to be used when no more specific audit event is determined.\
-
+The Basic Audit Log Patterns (BALP) Implementation Guide is a Content Profile that defines some basic and reusable AuditEvent patterns. This includes basic audit log profiles for FHIR RESTful operations to be used when no more specific audit event is determined.\\
 
 1. Navigate to the **FAR** in Aidbox UI.
 2. Click the **Import FHIR Package** button.
@@ -59,7 +58,7 @@ To see audit logs with the Audit event viewer app, navigate to the **IAM -> Audi
 
 And find the audit event, produced by the patient create operation.
 
-<figure><img src="../../../.gitbook/assets/01d17537-0703-43a2-a5c5-8c1c7baa0536.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/01d17537-0703-43a2-a5c5-8c1c7baa0536.png" alt=""><figcaption></figcaption></figure>
 
 ## External Audit Repository Configuration
 

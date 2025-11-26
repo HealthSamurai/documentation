@@ -14,7 +14,7 @@ We recommend using Access Policy Dev Tool.
 
 Access policy dev tool simplifies development and debugging AccessPolicies. It was introduced in March v2303 release of Aidbox.
 
-<figure><img src="../../../.gitbook/assets/43825a0a-ff36-48f3-9a37-c84e3dc5a49e.png" alt=""><figcaption><p>Access policy dev tool UI</p></figcaption></figure>
+<figure><img src="../../.gitbook/assets/43825a0a-ff36-48f3-9a37-c84e3dc5a49e.png" alt=""><figcaption><p>Access policy dev tool UI</p></figcaption></figure>
 
 The dev tool is a part of Aidbox UI Console, which aims
 
@@ -35,7 +35,7 @@ To use the Access policy dev tool, [Aidbox Development mode](../../reference/all
 
 ### Sending the request as a user
 
-By default, Aidbox sends requests with your current session (your identity and permissions). To authenticate with another session, add an  `Authorization` header to the request, e.g.
+By default, Aidbox sends requests with your current session (your identity and permissions). To authenticate with another session, add an `Authorization` header to the request, e.g.
 
 ```
 GET /fhir/Patient
@@ -44,7 +44,7 @@ Authorization: Bearer eyJ...w5c
 
 ## `__debug` query-string parameter
 
-There is a special query-string parameter `__debug=policy` you can pass to every Aidbox request. It will toggle debug mode for Request Authorization Layer, and in this mode, instead of the actual response client will get an object containing:of the&#x20;
+There is a special query-string parameter `__debug=policy` you can pass to every Aidbox request. It will toggle debug mode for Request Authorization Layer, and in this mode, instead of the actual response client will get an object containing:of the
 
 * full request object;
 * an array of existing AccessPolicies;
@@ -86,7 +86,7 @@ GET /fhir/Patient
 Status: 200
 ```
 
-Request on behalf of User `myid`  who has no access to the Patient search:
+Request on behalf of User `myid` who has no access to the Patient search:
 
 ```http
 GET /fhir/Patient
@@ -102,12 +102,12 @@ You can use a special operation `POST /auth/test-policy` to design AccessPolicy 
 
 Post on the `/auth/test-policy` with:
 
-* &#x20;a simulated **request** (you can provide existing `user-id` and `client-id`),
-* policy code in the **policy** attribute.&#x20;
+* a simulated **request** (you can provide existing `user-id` and `client-id`),
+* policy code in the **policy** attribute.
 
-If you want to test JWT auth, put your token in the `headers.authorization` with the `Bearer` prefix. In this case, the token will be parsed, and its claims appear in the `request.jwt`.&#x20;
+If you want to test JWT auth, put your token in the `headers.authorization` with the `Bearer` prefix. In this case, the token will be parsed, and its claims appear in the `request.jwt`.
 
-JWT in a header is parsed but not validated.&#x20;
+JWT in a header is parsed but not validated.
 
 This allows you to test JWT policy without **TokenIntrospector** registration.
 

@@ -8,7 +8,7 @@ This functionality is available in Aidbox versions 2409 and later and requires [
 
 This feature enables dynamic subscriptions to changes in FHIR resources, allowing users/systems to receive notifications through multiple channels, including Kafka.
 
-<figure><img src="../../../.gitbook/assets/eb0e6bfe-79a6-4f5e-bb16-1913eb0106d0.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/eb0e6bfe-79a6-4f5e-bb16-1913eb0106d0.png" alt=""><figcaption></figcaption></figure>
 
 For an application example, refer to [Aidbox Subscriptions & Kafka AidboxTopicDestination](https://github.com/Aidbox/examples/tree/main/aidbox-features/aidbox-subscriptions-to-kafka)
 
@@ -80,20 +80,16 @@ Both `AidboxSubscriptionTopic` and `AidboxTopicDestination` support [organizatio
 
 The filtering mechanism uses organization extensions and works as consecutive filters:
 
-1. **Use organization extension**: 
-   
-   In organizational-based access control, both events (resources) and subscription resources (`AidboxSubscriptionTopic` and `AidboxTopicDestination`) are automatically marked with [organization extensions](../../access-control/authorization/scoped-api/organization-based-hierarchical-access-control.md#try-org-bac) when created through organization-specific APIs (`/Organization/<org-id>/fhir/...`). 
+1.  **Use organization extension**:
 
+    In organizational-based access control, both events (resources) and subscription resources (`AidboxSubscriptionTopic` and `AidboxTopicDestination`) are automatically marked with [organization extensions](../../access-control/authorization/scoped-api/organization-based-hierarchical-access-control.md#try-org-bac) when created through organization-specific APIs (`/Organization/<org-id>/fhir/...`).
 2. **Consecutive filtering**: The filters work in sequence - first the topic filter is applied, then the destination filter.
-
 3. **Resources without organization extension**: If topic/destination resources are created without organization extension, they completely ignore organization information and work as before. All events will be caught by the topic if triggered (regardless of whether the event has organization extension or not).
-
 4. **Resources with organization extension**:
-   - **Events without organization extension**: Will always be skipped
-   - **Events with organization extension**:
-     - ✅ **Caught**: If the event organization is under or equal to the topic/destination organization in the hierarchy
-     - ❌ **Skipped**: If the event organization is above or unrelated to the topic/destination organization
-
+   * **Events without organization extension**: Will always be skipped
+   * **Events with organization extension**:
+     * ✅ **Caught**: If the event organization is under or equal to the topic/destination organization in the hierarchy
+     * ❌ **Skipped**: If the event organization is above or unrelated to the topic/destination organization
 
 ### Examples
 
@@ -147,9 +143,10 @@ graph TD
 ```
 
 **Filtering behavior:**
-- ✅ **Event from Org A**: Processed by the topic (same organization) but filtered out at the aidbox topic destination level
-- ✅ **Event from Org B**: Processed by the topic (child organization) and forwarded to destination at the aidbox topic destination level
-- ❌ **Event from unrelated organization**: Would be filtered out at the subscription topic level
+
+* ✅ **Event from Org A**: Processed by the topic (same organization) but filtered out at the aidbox topic destination level
+* ✅ **Event from Org B**: Processed by the topic (child organization) and forwarded to destination at the aidbox topic destination level
+* ❌ **Event from unrelated organization**: Would be filtered out at the subscription topic level
 
 #### Example 2: Filtering at the destination level only
 
@@ -199,10 +196,12 @@ graph TD
     linkStyle 6,7 opacity:0;
 
 ```
+
 **Filtering behavior:**
-- ✅ **Event from Org A**: Processed by the topic (no filtering) and forwarded to aidbox topic destination
-- ✅ **Event from Org B**: Processed by the topic (no filtering) but filtered out at the aidbox topic destination level
-- ❌ **Event from unrelated organization**: Would be filtered out at the aidbox topic destination level
+
+* ✅ **Event from Org A**: Processed by the topic (no filtering) and forwarded to aidbox topic destination
+* ✅ **Event from Org B**: Processed by the topic (no filtering) but filtered out at the aidbox topic destination level
+* ❌ **Event from unrelated organization**: Would be filtered out at the aidbox topic destination level
 
 ## Currently supported channels
 
