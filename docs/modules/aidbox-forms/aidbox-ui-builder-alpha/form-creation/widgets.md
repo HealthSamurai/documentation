@@ -280,7 +280,9 @@ it is displayed on the form as a drop-down list.
     * **FHIRPath:** Allows create logic with answers depends on other items. You can filter options with your conditions.
     * **FHIRQuery:** Allows dynamically fetch answer options via FHIRQuery from your Aidbox instance resources.
 
-    \{% hint style="info" %\} How to use Answer Expression see our [example](how-to-guides/how-to-use-answer-expression-into-forms.md) \{% endhint %\}
+{% hint style="info" %} 
+See our [How to use Answer Expression example](how-to-guides/how-to-use-answer-expression-into-forms.md)
+{% endhint %}
 
 ### Checkbox
 
