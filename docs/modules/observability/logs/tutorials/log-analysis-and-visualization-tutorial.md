@@ -16,7 +16,7 @@ To begin using pre-configured Kibana and Grafana please clone [this repository](
 
 ## **Explore logs with Kibana**
 
-To use Kibana you need to understand Aidbox log formatting first. Go to Aidbox [log documentation](../README.md) to find logs schema available here with a brief attribute description.
+To use Kibana you need to understand Aidbox log formatting first. Go to Aidbox [log documentation](../) to find logs schema available here with a brief attribute description.
 
 ```bash
 git clone https://github.com/Aidbox/devbox.git
@@ -26,7 +26,7 @@ make up
 
 ## **Explore logs with Kibana**
 
-To get a deeper understanding of Aidbox logs please go to the [log documentation](../README.md) and explore logs schema available there.
+To get a deeper understanding of Aidbox logs please go to the [log documentation](../) and explore logs schema available there.
 
 {% hint style="info" %}
 Aidbox Elastic appender sends logs as bundles of multiple records so if there's not enough data **you won't see any logs in Kibana**. For testing purposes reduce bundle size to 1 record by setting environment variable:
@@ -44,11 +44,11 @@ The example below will help you read REST API logs:
 
 Please put + to toggle `Time`, `w_m`, `w_r`_,_`w_url`, `d`, `w_st`, `w_uid` fields into the document table:
 
-![](../../../../../.gitbook/assets/5027d2cd-2a95-4b43-9201-33d0cc38fbef.png)
+![](../../../../.gitbook/assets/5027d2cd-2a95-4b43-9201-33d0cc38fbef.png)
 
 Now you can browse and explore REST API logs
 
-![](../../../../../.gitbook/assets/d729a589-5d2a-4e95-82c5-e3bbfa80f3d0.png)
+![](../../../../.gitbook/assets/d729a589-5d2a-4e95-82c5-e3bbfa80f3d0.png)
 
 _Kibana's **Discover** enables you to quickly search and filter your data, get information about the structure of the fields, and visualize your data with **Lens** and **Maps**. You can customize and save your searches and place them on a dashboard._
 

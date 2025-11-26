@@ -4,9 +4,9 @@ description: Learn how to use REST Console to work with your Aidbox via REST API
 
 # REST Console
 
-![REST Console UI](../../../.gitbook/assets/ui-rest-console.jpg)
+![REST Console UI](../../.gitbook/assets/ui-rest-console.jpg)
 
-REST Console is designed to work with your Aidbox via [REST API](../../api/rest-api/README.md). To make a request type an HTTP method (`GET`, `POST`, `PUT`, `PATCH`, `DELETE`) and an operation endpoint (for example`/Patient` — _please pay attention to the capital letter in the resource name_).
+REST Console is designed to work with your Aidbox via [REST API](../../api/rest-api/). To make a request type an HTTP method (`GET`, `POST`, `PUT`, `PATCH`, `DELETE`) and an operation endpoint (for example`/Patient` — _please pay attention to the capital letter in the resource name_).
 
 Right after the first line you can put HTTP headers. E.g. to use YAML format you can put the following header:
 
@@ -166,13 +166,13 @@ meta:
 
 To get pretty-formatted response add `_pretty=true` query string parameter:
 
-![](../../../../.gitbook/assets/9509a2a9-23ef-417c-98d7-340282df4e01.png)
+![](../../.gitbook/assets/9509a2a9-23ef-417c-98d7-340282df4e01.png)
 
 ### Get Patient
 
 After sending the request, we receive a response with `Status - 201` and the sent data, which means that our patient has been created. Use the request `GET /Patient/<id>` to see the newly created patient. Also the request `GET /Patient` could be used to get the complete list of patients.
 
-![GET /Patient](../../../.gitbook/assets/rest-console-get-patient.png)
+![GET /Patient](../../.gitbook/assets/rest-console-get-patient.png)
 
 {% tabs %}
 {% tab title="Request" %}
@@ -692,7 +692,7 @@ Status: 200
 {% endtabs %}
 
 {% hint style="info" %}
-Please check [Search API](../../api/rest-api/fhir-search/README.md) for more details.
+Please check [Search API](../../api/rest-api/fhir-search/) for more details.
 {% endhint %}
 
 ### Delete Patient

@@ -7,7 +7,7 @@ The [FHIR Schema Validator Engine](../../../modules/profiling-and-validation/fhi
 
 Aidbox fully supports [version 1 ](https://www.hl7.org/fhir/smart-app-launch/1.0.0/scopes-and-launch-context/index.html)of SMART on FHIR scopes:
 
-<figure><img src="../../../../.gitbook/assets/smart-scopes-v1.png" alt=""><figcaption><p>SMART scopes V1</p></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/smart-scopes-v1.png" alt=""><figcaption><p>SMART scopes V1</p></figcaption></figure>
 
 And [version 2](https://build.fhir.org/ig/HL7/smart-app-launch/scopes-and-launch-context.html) of SMART on FHIR scopes with partial support of [search parameters](smart-scopes-for-limiting-access.md#scopes-with-search-parameters) in scopes:
 
@@ -25,11 +25,11 @@ SMART on FHIR v2 supports [finer-grained access control](https://build.fhir.org/
 
 ### Example
 
-`patient/Observation.rs?status=final`  - Grants read & search access only to `Observation` resources whose `status` is `final`. Any request such as `GET /fhir/Observation` (or other Observation searches) will be automatically filtered to include only `status=final` results.
+`patient/Observation.rs?status=final` - Grants read & search access only to `Observation` resources whose `status` is `final`. Any request such as `GET /fhir/Observation` (or other Observation searches) will be automatically filtered to include only `status=final` results.
 
 You can combine as many search parameters and scopes as you want using FHIR search syntax, except for complex search parameters like `_include`, `_revinclude`, `_has`, `_assoc`, `_with`.
 
-Also, Aidbox **forbids** using search parameters in scopes with `create/update/delete` (cud) permissions.&#x20;
+Also, Aidbox **forbids** using search parameters in scopes with `create/update/delete` (cud) permissions.
 
 ## Access Token
 

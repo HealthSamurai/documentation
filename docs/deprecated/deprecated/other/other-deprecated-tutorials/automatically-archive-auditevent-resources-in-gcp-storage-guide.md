@@ -46,7 +46,7 @@ Follow step-by-step guide to configure scheduled archive operation:
 5. Restart Aidbox.
 6.  Check if new scheduler rules created in Scheduler UI:
 
-    <figure><img src="../../../../../.gitbook/assets/fd5b8327-1e90-4069-8626-cf1486dee875.png" alt=""><figcaption></figcaption></figure>
+    <figure><img src="../../../../.gitbook/assets/fd5b8327-1e90-4069-8626-cf1486dee875.png" alt=""><figcaption></figcaption></figure>
 
 Full configuration for this guide:
 

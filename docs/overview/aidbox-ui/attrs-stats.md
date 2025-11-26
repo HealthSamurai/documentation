@@ -12,7 +12,7 @@ Please start [a discussion](https://github.com/Aidbox/Issues/discussions) or [co
 
 This UI tab helps get detailed info about attribute values for a selected dataset.
 
-![Attrs Stats](../../../.gitbook/assets/406229d0-4acc-4864-956f-a75b8da555ba.png)
+![Attrs Stats](../../.gitbook/assets/406229d0-4acc-4864-956f-a75b8da555ba.png)
 
 This page gives a convenient way to overview and analyze data loaded to the system\
 \

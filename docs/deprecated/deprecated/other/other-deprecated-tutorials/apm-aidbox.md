@@ -35,8 +35,8 @@ JAVA_OPTS='-javaagent:/app/elastic-apm-agent.jar
 
 ```
 
-![](../../../../../.gitbook/assets/8319e3ff-e93b-4806-a883-bb28fea8d46c.png)
+![](../../../../.gitbook/assets/8319e3ff-e93b-4806-a883-bb28fea8d46c.png)
 
-![](../../../../../.gitbook/assets/562b2f9f-e2a8-4f89-bd94-5e90134f6daf.png)
+![](../../../../.gitbook/assets/562b2f9f-e2a8-4f89-bd94-5e90134f6daf.png)
 
-![](../../../../../.gitbook/assets/dd9a45f1-a6ca-43aa-b66b-3633073928d4.png)
+![](../../../../.gitbook/assets/dd9a45f1-a6ca-43aa-b66b-3633073928d4.png)

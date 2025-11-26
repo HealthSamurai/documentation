@@ -17,7 +17,7 @@ Aidbox MCP server works through Server-Sent Events (SSE) protocol and provides t
 
 Aidbox provides a set of MCP tools to cover FHIR CRUDS operations.
 
-<table><thead><tr><th width="198.7421875">Tool Name</th><th>Properties</th><th>Description</th></tr></thead><tbody><tr><td>read-fhir-resource</td><td>- resourceType (string, required)<br>- id (string, required)</td><td>Read an individual FHIR resource</td></tr><tr><td>create-fhir-resource</td><td>- resourceType (string, required)<br>- resource (JSON object, required)<br>- headers (JSON object)</td><td>Create a new FHIR resource</td></tr><tr><td>update-fhir-resource</td><td>- resourceType (string, required)<br>- id (string, required)<br>- resource (JSON object, required)</td><td>Update an existing FHIR resource</td></tr><tr><td>conditional-update-fhir-resource</td><td>- resourceType (string, required)<br>- resource (JSON object, required)<br>- query (string)<br>- headers (JSON object)</td><td>Conditional update an existing FHIR resource</td></tr><tr><td>conditional-patch-fhir-resource</td><td>- resourceType (string, required)<br>- resource (JSON object, required)<br>- query (string)<br>- headers (JSON object)</td><td>Conditional patch an existing FHIR resource</td></tr><tr><td>patch-fhir-resource</td><td>- resourceType (string, required)<br>- id (string, required)<br>- resource (JSON object, required)</td><td>Patch an existing FHIR resource</td></tr><tr><td>delete-fhir-resource</td><td>- resourceType (string, required)<br>- id (string, required)</td><td>Delete an existing FHIR resource</td></tr><tr><td>search-fhir-resources</td><td>- resourceType (string, required)<br>- query (string, required)</td><td>Search an existing FHIR resources</td></tr><tr><td>validate-fhir-resource<br><small><em>* available since 2509</em></small></td><td>- resourceType (string, required)<br>- resource (JSON object, required)<br>- mode (string - create|update|delete|patch, required)</td><td>Validate FHIR resource</td></tr></tbody></table>
+<table><thead><tr><th width="198.7421875">Tool Name</th><th>Properties</th><th>Description</th></tr></thead><tbody><tr><td>read-fhir-resource</td><td>- resourceType (string, required)<br>- id (string, required)</td><td>Read an individual FHIR resource</td></tr><tr><td>create-fhir-resource</td><td>- resourceType (string, required)<br>- resource (JSON object, required)<br>- headers (JSON object)</td><td>Create a new FHIR resource</td></tr><tr><td>update-fhir-resource</td><td>- resourceType (string, required)<br>- id (string, required)<br>- resource (JSON object, required)</td><td>Update an existing FHIR resource</td></tr><tr><td>conditional-update-fhir-resource</td><td>- resourceType (string, required)<br>- resource (JSON object, required)<br>- query (string)<br>- headers (JSON object)</td><td>Conditional update an existing FHIR resource</td></tr><tr><td>conditional-patch-fhir-resource</td><td>- resourceType (string, required)<br>- resource (JSON object, required)<br>- query (string)<br>- headers (JSON object)</td><td>Conditional patch an existing FHIR resource</td></tr><tr><td>patch-fhir-resource</td><td>- resourceType (string, required)<br>- id (string, required)<br>- resource (JSON object, required)</td><td>Patch an existing FHIR resource</td></tr><tr><td>delete-fhir-resource</td><td>- resourceType (string, required)<br>- id (string, required)</td><td>Delete an existing FHIR resource</td></tr><tr><td>search-fhir-resources</td><td>- resourceType (string, required)<br>- query (string, required)</td><td>Search an existing FHIR resources</td></tr><tr><td>validate-fhir-resource<br><em>* available since 2509</em></td><td>- resourceType (string, required)<br>- resource (JSON object, required)<br>- mode (string - create|update|delete|patch, required)</td><td>Validate FHIR resource</td></tr></tbody></table>
 
 ## Configure Aidbox MCP server
 
@@ -171,18 +171,18 @@ $ npx -y supergateway --sse <your-box-base-url>/sse
 }
 ```
 
-* For Claude Code, run: 
-  ```
-  claude mcp add aidbox-mcp -- npx -y supergateway --sse http://localhost:8080/sse
-  ```
+*   For Claude Code, run:
+
+    ```
+    claude mcp add aidbox-mcp -- npx -y supergateway --sse http://localhost:8080/sse
+    ```
 * For the `Cursor` editor add this config to your project folder `.cursor/mcp.json` and make sure that `Settings` -> `Cursor Settings` -> `MCP` is enabled.
 * For the LLM Desktop applications, such `Claude Desktop`, `ChatGPT` etc. go to the `Settings` and set the config. For example, in `Claude` desktop app go to `Settings` -> `Developer` -> `Edit Config`.
 
 Now you can ask your LLM agent to Create, Read, Update or Delete FHIR resources in Aidbox.
 
 {% hint style="warning" %}
-You need to uninstall all node versions below 18 if you use Claude Desktop. \
-
+You need to uninstall all node versions below 18 if you use Claude Desktop. \\
 
 ```
 nvm uninstall v16
@@ -216,4 +216,4 @@ Select `SSE` in `Transport Type` dropdown. And set URL to `<your-aidbox-base-url
 
 Now you can discover tools and use them.
 
-<figure><img src="../../../.gitbook/assets/2a76abd4-8667-4151-a6d4-59abdd785c1f.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/2a76abd4-8667-4151-a6d4-59abdd785c1f.png" alt=""><figcaption></figcaption></figure>
