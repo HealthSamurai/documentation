@@ -504,7 +504,7 @@
     * [Developer sandbox](modules/compliance/aidbox-+-fhir-app-portal/developer-sandbox.md)
     * [FHIR Admin portal](modules/compliance/aidbox-+-fhir-app-portal/fhir-admin-portal.md)
   * [Providers | ONC Health IT Certification Program](modules/compliance/providers-or-onc-health-it-certification-program/README.md)
-    * [(g)(10): Standardized API for Patient & Population Services](modules/compliance/providers-or-onc-health-it-certification-program/g-10-standardized-api-for-patient-and-population-services/README.md)
+    * [(g)(10): Standardized API for Patient and Population Services](modules/compliance/providers-or-onc-health-it-certification-program/g-10-standardized-api-for-patient-and-population-services/README.md)
       * [Pass Inferno Tests with Aidbox](modules/compliance/providers-or-onc-health-it-certification-program/g-10-standardized-api-for-patient-and-population-services/pass-inferno-tests-with-aidbox.md)
       * [Pass Inferno Visual Inspection and Attestation](modules/compliance/providers-or-onc-health-it-certification-program/g-10-standardized-api-for-patient-and-population-services/pass-inferno-visual-inspection-and-attestation.md)
     * [g7](modules/compliance/providers-or-onc-health-it-certification-program/g7.md)
