@@ -65,15 +65,11 @@ down:
 # Run the docs scraper to reindex content in Meilisearch
 reindex-search:
 	@echo "Starting Meilisearch reindexing..."
-	docker-compose run --rm docs-scraper
+	@bash scripts/reindex-with-swap.sh docs k8s/meilisearch/config.json docs-scraper
 
 # Reindex after build (can be called after uberjar/build)
 post-build-reindex: reindex-search
 	@echo "Documentation has been reindexed in Meilisearch"
-
-# Zero-downtime reindex using index swapping for docs
-reindex-search-swap:
-	@bash scripts/reindex-with-swap.sh docs k8s/meilisearch/config.json docs-scraper
 
 # Zero-downtime reindex using index swapping for fhirbase
 reindex-search-fhirbase-swap:
