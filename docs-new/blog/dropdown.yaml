@@ -1,0 +1,188 @@
+# Featured article slug (will be shown first in blog listing)
+featured-article: what-is-a-viewdefinition
+
+nav-items:
+  - id: products
+    label: Products
+    type: dropdown
+    columns:
+      - title: null
+        type: extended
+        items:
+          - title: FHIR Server
+            desc: Powerful backend for digital health developers
+            href: https://www.health-samurai.io/fhir-server
+          - title: Fhirbase
+            desc: Open source FHIR-native database
+            href: https://www.health-samurai.io/fhir-database
+          - title: Auditbox
+            desc: FHIR-native Audit Record Repository for compliance and security
+            href: https://www.health-samurai.io/auditbox
+
+      - title: Converters
+        type: simple
+        items:
+          - title: HL7v2 to FHIR converter
+            href: https://www.health-samurai.io/docs/aidbox/modules/integration-toolkit/hl7-v2-integration
+          - title: C-CDA to FHIR converter
+            href: https://www.health-samurai.io/c-cda-to-fhir-converter
+
+      - title: Modules
+        type: simple
+        items:
+          - title: Aidbox Forms
+            href: https://www.health-samurai.io/medical-form
+          - title: Aidbox Terminology
+            href: https://www.health-samurai.io/docs/aidbox/terminology-module/overview
+          - title: Aidbox MPI
+            href: https://www.health-samurai.io/docs/aidbox/modules/other-modules/mpi
+          - title: Auth Server
+            href: https://www.health-samurai.io/docs/aidbox/security-and-access-control-1/overview
+          - title: Aidbox E-Prescription
+            href: https://www.health-samurai.io/e-prescription-module
+
+    banner:
+      title: Managed Aidbox
+      desc: Get started in minutes with a fully managed Aidbox FHIR platform in the cloud
+      href: https://aidbox.app/ui/portal#/signup
+      icon: https://cdn.prod.website-files.com/57441aa5da71fdf07a0a2e19/633ac72418675342e0eb95ee_aidbox_logo_mini.svg
+
+  - id: solutions
+    label: Solutions
+    type: dropdown
+    columns:
+      - title: Development
+        type: simple
+        items:
+          - title: Aidbox for Startups
+            href: https://www.health-samurai.io/startups
+          - title: Aidbox for Data Platforms
+            href: https://www.health-samurai.io/healthcare-data-platform-toolkit-aidbox
+          - title: Telemed development toolkit
+            href: https://www.health-samurai.io/telemedicine
+          - title: EHR development toolkit
+            href: https://www.health-samurai.io/ehr-toolkit
+
+      - title: Compliance
+        type: simple
+        items:
+          - title: ONC-certified API tools for EHRs
+            href: https://www.health-samurai.io/fhir-api
+          - title: FHIR API for Payers - CMS
+            href: https://www.health-samurai.io/payers
+          - title: Audit Record Repository
+            href: https://www.health-samurai.io/auditbox
+
+      - title: Others
+        type: simple
+        items:
+          - title: Aidbox for IoMT vendors
+            href: https://www.health-samurai.io/articles/aidbox-for-wearable-and-medical-devices
+
+    banner:
+      title: Aidbox on AWS
+      desc: Get FHIR backend on AWS in one click
+      href: https://aws.amazon.com/marketplace/pp/prodview-l5djlpvsd6o5g
+      icon: https://cdn.prod.website-files.com/57441aa5da71fdf07a0a2e19/633ac72418675342e0eb95ee_aidbox_logo_mini.svg
+
+  - id: services
+    label: Services
+    type: link
+    href: https://www.health-samurai.io/services
+
+  - type: divider
+
+  - id: docs
+    label: Docs & Resources
+    type: dropdown
+    columns:
+      - title: Resources
+        type: simple
+        items:
+          - title: Blog
+            href: /blog
+            internal: true
+          - title: Downloads
+            href: https://www.health-samurai.io/downloads
+          - title: Case Studies
+            href: https://www.health-samurai.io/casestudies
+          - title: Events and Webinars
+            href: https://www.health-samurai.io/events
+          - title: Release Notes
+            href: https://www.health-samurai.io/docs/aidbox/overview/release-notes
+
+      - title: Docs
+        type: simple
+        items:
+          - title: Aidbox Docs
+            href: /aidbox
+            internal: true
+          - title: Fhirbase Docs
+            href: https://fhirbase.aidbox.app/
+          - title: Aidbox Forms Docs
+            href: https://www.health-samurai.io/docs/aidbox/modules/aidbox-forms
+          - title: Aidbox MPI Docs
+            href: https://www.health-samurai.io/docs/aidbox/modules/other-modules/mpi
+          - title: Aidbox Terminology
+            href: https://www.health-samurai.io/docs/aidbox/terminology-module/overview
+
+      - title: Community
+        type: simple
+        items:
+          - title: User Community
+            href: https://connect.health-samurai.io/
+
+    banner:
+      title: Getting Started
+      desc: Step-by-step guide on how to start with the Aidbox FHIR platform
+      href: https://www.health-samurai.io/docs/aidbox/getting-started/run-aidbox-in-sandbox
+      icon: https://cdn.prod.website-files.com/57441aa5da71fdf07a0a2e19/633ac72418675342e0eb95ee_aidbox_logo_mini.svg
+
+  - id: company
+    label: Company
+    type: dropdown
+    columns:
+      - title: Company
+        type: simple
+        items:
+          - title: About us
+            href: https://www.health-samurai.io/company
+          - title: Careers
+            href: https://www.health-samurai.io/careers
+          - title: News
+            href: https://www.health-samurai.io/news
+          - title: Advisory Board
+            href: https://www.health-samurai.io/company
+          - title: Contact us
+            href: https://www.health-samurai.io/contacts
+          - title: Aidbox Partner Network
+            href: https://www.health-samurai.io/partners
+
+      - title: Follow Us
+        type: simple
+        items:
+          - title: GitHub
+            href: https://github.com/Aidbox
+          - title: LinkedIn
+            href: https://www.linkedin.com/company/6653460
+          - title: Twitter
+            href: https://twitter.com/health_samurai
+          - title: Facebook
+            href: https://www.facebook.com/healthsamurai/
+          - title: Crunchbase
+            href: https://www.crunchbase.com/organization/health-samurai
+
+    banners:
+      - title: FHIR API for EHRs
+        desc: Enrich your EHR with a pluggable Aidbox FHIR® API module
+        href: https://www.health-samurai.io/fhir-api
+        icon: null
+      - title: FHIR API for Payers
+        desc: Aidbox helps health plans to comply with the CMS Interoperability rule
+        href: https://www.health-samurai.io/payers
+        icon: null
+
+  - id: pricing
+    label: Pricing
+    type: link
+    href: https://www.health-samurai.io/price
