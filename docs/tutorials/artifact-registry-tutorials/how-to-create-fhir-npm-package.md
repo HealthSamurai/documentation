@@ -8,11 +8,20 @@ description: >-
 
 A FHIR package groups a coherent collection of conformance resources, like StructureDefinitions, SearchParameters, etc., into an easily distributed NPM package.
 
-## 1. Prepare the package manifest file
+## 1. Create a new package folder
+
+Create a new folder for the package.
+
+```bash
+mkdir -p package
+```
+
+
+## 2. Prepare the package manifest file
 
 To start, we need to describe the package manifest file for our NPM package. A package manifest is a JSON file called `package.json`.
 
-{% code title="package.json" %}
+{% code title="package/package.json" %}
 ```json
 {
     // The globally unique identifier of the package.
@@ -42,15 +51,15 @@ To start, we need to describe the package manifest file for our NPM package. A p
 
 The list of packages that can be specified in dependencies can be found in the [Aidbox FHIR IGs Registry](../../modules/profiling-and-validation/fhir-schema-validator/aidbox-fhir-igs-registry.md).
 
-## 2. Write Package Content
+## 3. Write Package Content
 
 A package contains a set of FHIR resources in the JSON format. Let's describe a few resources for the package.
 
-### 2.1 StructureDefinition resource
+### 3.1 StructureDefinition resource
 
 Let's describe a profile of the US Core Patient in the file `my-patient-profile.json`.
 
-{% code title="my-patient-profile.json" %}
+{% code title="package/my-patient-profile.json" %}
 ```json
 {
     // Type of the FHIR resource.
@@ -100,11 +109,11 @@ Let's describe a profile of the US Core Patient in the file `my-patient-profile.
 
 We have described a profile that inherits from the US Core Patient and adds a required field for address.
 
-### 2.2 SearchParameter resource
+### 3.2 SearchParameter resource
 
 Let's describe a custom search parameter on the Patient resource in the file `my-patient-search.json`.
 
-{% code title="my-patient-search.json" %}
+{% code title="package/my-patient-search.json" %}
 ```json
 {
     // Type of the FHIR resource.
@@ -143,12 +152,38 @@ Let's describe a custom search parameter on the Patient resource in the file `my
 ```
 {% endcode %}
 
-## 3. Build NPM package
+### 3.3 Create .index.json file
+
+The [.index.json](https://build.fhir.org/packages.html#2.1.10.5) contains information from the resources in the package folder.
+
+```package/index.json
+{
+  "index-version": 2,
+  "files": [
+    {
+      "filename": "my-patient-profile.json",
+      "resourceType": "StructureDefinition",
+      "url": "http://custom-url/my-patient-profile",
+      "kind": "resource",
+      "type": "Patient",
+      "derivation": "constraint"
+    },
+    {
+      "filename": "my-patient-search.json",
+      "resourceType": "SearchParameter",
+      "url": "http://hl7.org/fhir/SearchParameter/Patient-myname"
+    }
+  ]
+}
+```
+
+## 4. Build NPM package
 
 The resulting npm package has the following structure:
 
 ```
 package
+├── .index.json
 ├── my-patient-profile.json
 ├── my-patient-search.json
 └── package.json
