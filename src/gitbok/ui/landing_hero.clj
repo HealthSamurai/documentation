@@ -424,7 +424,8 @@
       (tags/render-tags
        [{:text "OAuth 2.0" :href (http/get-product-prefixed-url context "/access-control/authentication/oauth-2-0")}
         {:text "SMART" :href "https://www.health-samurai.io/docs/aidbox/access-control/authorization/smart-on-fhir"}
-        {:text "RBAC/ABAC" :href (http/get-product-prefixed-url context "/access-control/authorization#role-based-access-control")}]
+        {:text "RBAC/ABAC" :href (http/get-product-prefixed-url context "/access-control/authorization#role-based-access-control")}
+        {:text "Access Policies" :href (http/get-product-prefixed-url context "/access-control/authorization/access-policies")}]
        :default)]
      [:p {:class "text-sm leading-[22.75px] font-normal text-on-surface-secondary font-content"}
       "Enterprise-grade security with OAuth 2.0, multitenancy, flexible user management, granular access policies, and complete audit trails."]]
