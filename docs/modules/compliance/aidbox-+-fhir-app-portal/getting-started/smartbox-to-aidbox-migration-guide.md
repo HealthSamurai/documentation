@@ -311,11 +311,11 @@ accept: text/yaml
           UPDATE %I
           SET resource =
             jsonb_set(
-              CASE
-                WHEN resource->'meta' IS NULL THEN jsonb_set(resource, '{meta}', '{}'::jsonb)
+              (CASE
+                WHEN resource->'meta' IS NULL
+                  THEN jsonb_set(resource, '{meta}', '{}'::jsonb)
                 ELSE resource
-              END,
-              '{meta,extension}',
+              END #- '{meta,tenant}'),
               COALESCE(resource->'meta'->'extension','[]'::jsonb)
               || jsonb_build_array(
                    jsonb_build_object(
