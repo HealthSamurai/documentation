@@ -143,7 +143,7 @@
     (main-content/content-div context uri body filepath false hide-breadcrumb)]
    (site-footer context)])
 
-(defn document [context body {:keys [title description canonical-url og-preview lastmod favicon-url section]}]
+(defn document [context body {:keys [title description canonical-url og-preview lastmod favicon-url section json-ld]}]
   (let [version (state/get-config context :version)
         version-param (when version (str "?v=" version))]
     [:html {:lang "en"
@@ -197,13 +197,16 @@
 
       [:script {:type "application/ld+json"}
        (hiccup2.core/raw
-        (json/generate-string
-         {"@context" "https://schema.org"
-
-          "@type" "TechArticle"
-          "headline" title
-          "description" description
-          "author" {"@type" "Organization", "name" "HealthSamurai"}}))]
+        (if json-ld
+          ;; Custom JSON-LD (e.g., for blog articles)
+          (str/join "\n\n" (map json/generate-string json-ld))
+          ;; Default JSON-LD for documentation pages
+          (json/generate-string
+           {"@context" "https://schema.org"
+            "@type" "TechArticle"
+            "headline" title
+            "description" description
+            "author" {"@type" "Organization", "name" "HealthSamurai"}})))]
       [:title (str title " | " (or (:name (products/get-current-product context)) "Documentation"))]
 
       [:link {:rel "stylesheet", :href (str (http/get-prefixed-url context "/static/app.min.css") version-param)}]

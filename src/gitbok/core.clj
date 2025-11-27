@@ -3,6 +3,7 @@
   (:require
    [clojure.tools.logging :as log]
    [gitbok.analytics.posthog :as posthog]
+   [gitbok.blog.core :as blog]
    [gitbok.handlers :as handlers]
    [gitbok.initialization :as initialization]
    [gitbok.metrics :as metrics]
@@ -48,6 +49,10 @@
      (initialization/init-all-products!
       context
       :read-markdown-fn handlers/read-markdown-file)
+
+     ;; Initialize blog cache
+     (log/info "Initializing blog cache...")
+     (blog/initialize-blog-cache! context)
 
 ;; Create and start HTTP server
      (let [;; Create initial router and save to state

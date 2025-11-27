@@ -49,29 +49,33 @@
   ([context filepath url]
    (render-big-link context filepath nil {:text url}))
   ([context filepath _ctx node]
-   (let [uri (href context (:text node) filepath)
-         ;; Get the relative URI for file lookup
-         relative-uri
-         (utils/uri-to-relative
-          uri
-          (state/get-config context :prefix "")
-          (products/path context))
+   ;; Skip link resolution - render simple link without index lookup
+   (if (:skip-link-resolution context)
+     (big-link-view (:text node) (:text node))
+     ;; Normal rendering with index
+     (let [uri (href context (:text node) filepath)
+           ;; Get the relative URI for file lookup
+           relative-uri
+           (utils/uri-to-relative
+            uri
+            (state/get-config context :prefix "")
+            (products/path context))
 
-         relative-uri (if (and relative-uri (str/starts-with? relative-uri "/"))
-                        (subs relative-uri 1)
-                        relative-uri)
-         file (indexing/uri->filepath context relative-uri)
-         file (if (and file (str/starts-with? file "/docs"))
-                (subs file 6)
-                file)
-         title
-         (or (:title (get (state/get-file-to-uri-idx context) file))
-             (:text node))
-         ;; Build the final href with prefix and product path
-         prefix (state/get-config context :prefix "")
-         product-path (products/path context)
-         final-href (str prefix product-path "/" relative-uri)]
-     (big-link-view final-href title))))
+           relative-uri (if (and relative-uri (str/starts-with? relative-uri "/"))
+                          (subs relative-uri 1)
+                          relative-uri)
+           file (indexing/uri->filepath context relative-uri)
+           file (if (and file (str/starts-with? file "/docs"))
+                  (subs file 6)
+                  file)
+           title
+           (or (:title (get (state/get-file-to-uri-idx context) file))
+               (:text node))
+           ;; Build the final href with prefix and product path
+           prefix (state/get-config context :prefix "")
+           product-path (products/path context)
+           final-href (str prefix product-path "/" relative-uri)]
+       (big-link-view final-href title)))))
 
 (defn hack-content-ref [md-file]
   (str/replace md-file

@@ -168,8 +168,13 @@ function updatePageTitle() {
       const productMeta = document.querySelector('meta[property="og:site_name"]');
       const productName = productMeta ? productMeta.getAttribute('content') : 'Documentation';
 
+      // Add fire emoji for article pages
+      const path = window.location.pathname;
+      const isArticle = path.startsWith('/articles/');
+      const prefix = isArticle ? '🔥 ' : '';
+
       // Update the title
-      document.title = `${h1Text.trim()} | ${productName}`;
+      document.title = `${prefix}${h1Text.trim()} | ${productName}`;
     }
   }
 }

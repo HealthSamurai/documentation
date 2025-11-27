@@ -6,6 +6,7 @@
    [clojure.tools.logging :as log]
    [clojure.java.shell :as shell]
    [clojure.stacktrace]
+   [gitbok.blog.core :as blog]
    [gitbok.initialization :as initialization]
    [gitbok.state :as state]))
 
@@ -49,6 +50,8 @@
   (log/info "🔄 Rebuild start" {:action "re-initializing-products"})
   (let [start-time (System/currentTimeMillis)
         products-config (initialization/init-all-products! context :read-markdown-fn read-markdown-fn)
+        _ (log/info "Reloading blog cache...")
+        _ (blog/reload-blog-cache! context)
         duration (- (System/currentTimeMillis) start-time)]
     (log/info "Rebuild complete" {:product-count (count products-config)
                                   :duration-ms duration})

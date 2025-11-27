@@ -17,6 +17,7 @@
     
     <!-- Debug level for development -->
     <logger name="gitbok.development" level="DEBUG"/>
+    <logger name="gitbok.blog" level="DEBUG"/>
 
     <!-- Root logger configuration - only stdout -->
     <root level="INFO">

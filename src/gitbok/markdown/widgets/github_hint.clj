@@ -39,7 +39,7 @@
 (defn github-hint-renderer
   [ctx node]
   (let [start (:text (find-by-type node :text))
-        typ1 (second (re-matches #"\[(.*)\].*" start))
+        typ1 (when start (second (re-matches #"\[(.*)\].*" start)))
         typ (or typ1 "!NOTE")
         colors (get hint-colors typ
                     {:bg "bg-info-2" :text "text-info-12"})

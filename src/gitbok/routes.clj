@@ -8,6 +8,7 @@
             [ring.middleware.gzip :refer [wrap-gzip]]
             [gitbok.state :as state]
             [gitbok.handlers :as handlers]
+            [gitbok.blog.handlers :as blog-handlers]
             [gitbok.metrics :as metrics]
             [gitbok.middleware.session :as session]
             [gitbok.middleware.posthog :as posthog-middleware]
@@ -258,6 +259,19 @@
      ;; Root llms.txt
      [(utils/concat-urls prefix "/llms.txt")
       {:get {:handler #'handlers/serve-root-llms-txt}}]
+
+     ;; Blog routes
+     ["/blog"
+      {:get {:handler #'blog-handlers/list-handler}}]
+     ["/blog/search"
+      {:get {:handler #'blog-handlers/search-handler}}]
+     ;; Blog static images
+     ["/blog/static/img/:folder/:file"
+      {:get {:handler #'blog-handlers/blog-image-handler}}]
+     ["/articles/:slug"
+      {:get {:handler #'blog-handlers/article-handler}}]
+     ["/article-categories/:tag"
+      {:get {:handler #'blog-handlers/category-handler}}]
 
      ;; Root handlers - handle both with and without trailing slash
      [prefix {:get {:handler #'handlers/root-redirect-handler}}]

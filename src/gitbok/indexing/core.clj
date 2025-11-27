@@ -20,9 +20,11 @@
 (def lastmod-key :gitbok.indexing.core/lastmod)
 
 (defn uri->filepath [context ^String uri]
-  (let [idx (state/get-uri-to-file-idx context)
-        filepath (gitbok.indexing.impl.uri-to-file/uri->filepath idx uri)]
-    filepath))
+  (if (:skip-link-resolution context)
+    nil
+    (let [idx (state/get-uri-to-file-idx context)
+          filepath (gitbok.indexing.impl.uri-to-file/uri->filepath idx uri)]
+      filepath)))
 
 (defn get-redirect [context ^String uri]
   (let [redirects-idx (state/get-redirects-idx context)
@@ -46,50 +48,46 @@
 (defn page-link->uri [context
                       ^String current-page-filepath
                       ^String relative-page-link]
-  (let [current-page-filepath (str/replace
-                               current-page-filepath
-                               #"#.*$" "")
+  ;; Early return if skip-link-resolution or nil input
+  (if (or (nil? relative-page-link) (:skip-link-resolution context))
+    relative-page-link
+    (let [current-page-filepath (str/replace
+                                 current-page-filepath
+                                 #"#.*$" "")
 
-        section
-        (last (re-matches #".*#(.*)" relative-page-link))
+          section
+          (last (re-matches #".*#(.*)" relative-page-link))
 
-        relative-page-link
-        (str/replace relative-page-link #"#.*$" "")
+          relative-page-link
+          (str/replace relative-page-link #"#.*$" "")
 
-        relative-page-link
-        (if (str/ends-with? (str/lower-case relative-page-link) "/")
-          (str relative-page-link "README.md")
-          relative-page-link)
+          relative-page-link
+          (if (str/ends-with? (str/lower-case relative-page-link) "/")
+            (str relative-page-link "README.md")
+            relative-page-link)
 
-        current-page-filename
-        (last (str/split current-page-filepath #"/"))
+          current-page-filename
+          (last (str/split current-page-filepath #"/"))
 
-        same-page? (= current-page-filename relative-page-link)]
-    (if same-page?
-      (str "#" section)
-      (let [file->uri-idx (state/get-file-to-uri-idx context)
-            _ (when-not file->uri-idx (throw (Exception. "no idx")))
-            ;; Convert absolute filepath to relative filepath that matches the index
-            current-page-filepath (absolute-filepath->relative context current-page-filepath)
-            path
-            (utils/safe-subs
-             (get-filepath
-              current-page-filepath
-              relative-page-link)
-             (count
-              (System/getProperty
-               "user.dir")))
-
-            path (if (str/starts-with? path "/")
-                   (utils/safe-subs path 1)
-                   path)
-            path (http/get-product-prefixed-url
-                  context
-                  (str "/" (:uri (get file->uri-idx path))))]
-
-        (if section
-          (str path "#" section)
-          path)))))
+          same-page? (= current-page-filename relative-page-link)]
+      (if same-page?
+        (str "#" section)
+        (let [file->uri-idx (state/get-file-to-uri-idx context)
+              _ (when-not file->uri-idx
+                  (throw (Exception. (str "no idx for file: " current-page-filepath ", link: " relative-page-link))))
+              current-page-filepath (absolute-filepath->relative context current-page-filepath)
+              path (utils/safe-subs
+                    (get-filepath current-page-filepath relative-page-link)
+                    (count (System/getProperty "user.dir")))
+              path (if (str/starts-with? path "/")
+                     (utils/safe-subs path 1)
+                     path)
+              path (http/get-product-prefixed-url
+                    context
+                    (str "/" (:uri (get file->uri-idx path))))]
+          (if section
+            (str path "#" section)
+            path))))))
 
 (defn read-content [context filepath]
   (state/slurp-resource context filepath))
@@ -128,12 +126,11 @@
   (state/get-md-files-idx context))
 
 (defn filepath->href [context filepath href]
-  (if (str/starts-with? href "http")
-    href
-    (-> (page-link->uri
-         context
-         filepath
-         href))))
+  (cond
+    (nil? href) nil
+    (:skip-link-resolution context) href
+    (str/starts-with? href "http") href
+    :else (page-link->uri context filepath href)))
 
 (defn get-lastmod [context filepath]
   (when filepath

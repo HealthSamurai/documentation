@@ -1,5 +1,6 @@
 (ns gitbok.markdown.widgets.image
   (:require
+   [clojure.java.io]
    [clojure.string :as str]
    [gitbok.indexing.core :as indexing]
    [gitbok.http :as http]
@@ -23,6 +24,10 @@
                         ;; .gitbook/assets - return with simple prefix
                         (str/starts-with? normalized-src ".gitbook/assets")
                         (http/get-prefixed-url context (str "/" normalized-src))
+
+                        ;; Skip link resolution - return original src
+                        (:skip-link-resolution context)
+                        normalized-src
 
                         ;; Other relative paths - use the standard link resolution
                         :else (let [href (indexing/filepath->href context filepath normalized-src)]
@@ -58,6 +63,10 @@
                                              (not (nil? (clojure.java.io/resource (str "assets/" (last (str/split base-src #"\.gitbook/assets/")))))))]
                            (when webp-exists?
                              (http/get-prefixed-url context webp-path)))
+
+                         ;; Skip link resolution - no WebP
+                         (:skip-link-resolution context)
+                         nil
 
                          ;; Other paths - check resource existence
                          :else
