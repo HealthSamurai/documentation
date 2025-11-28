@@ -390,7 +390,8 @@
       (tags/render-tags
        [{:text "FHIR" :href (http/get-product-prefixed-url context "/api/api-overview")}
         {:text "SQL" :href (http/get-product-prefixed-url context "/api/rest-api/other/sql-endpoints")}
-        {:text "GraphQL" :href (http/get-product-prefixed-url context "/api/graphql-api")}]
+        {:text "GraphQL" :href (http/get-product-prefixed-url context "/api/graphql-api")}
+        {:text "Subscriptions" :href (http/get-product-prefixed-url context "/modules/topic-based-subscriptions")}]
        :default)]
      [:p {:class "text-sm leading-[22.75px] font-normal text-on-surface-secondary font-content"}
       "Multiple APIs — FHIR, SQL, GraphQL, Bulk, and Subscription — to work efficiently with FHIR data for maximum flexibility and performance."]]
