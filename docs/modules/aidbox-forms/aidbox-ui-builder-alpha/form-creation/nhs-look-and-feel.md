@@ -28,7 +28,7 @@ Choosing the `NHS` design system applies NHS-compliant styles and components acr
 
 - The NHS design system currently supports only the following [entry modes](./entry-mode.md):
   - `sequential`
-  - `period-edit` (note: update spelling if needed)
+  - `prior-edit` 
 
 Support for additional entry modes may be added in the future.
 
