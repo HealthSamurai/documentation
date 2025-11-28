@@ -2,6 +2,14 @@
 
 ## November 2025 _`edge`_
 
+* Aidbox FHIR server
+  * Improvements in **Implementation Guide (IG) Management**:
+    * Added support for [integration with external NPM package registries](../artifact-registry/artifact-registry-overview.md#integration-with-package-registries) for IG loading.
+    * Introduced [pinning and tree shaking](../artifact-registry/artifact-registry-overview.md#pinning-and-tree-shaking) for optimizing IG dependency resolution.
+    * Released the new [FAR package management API](../reference/package-registry-api.md) for managing published IG artifacts.
+    * Published a tutorial on [loading FHIR IGs via Init Bundle](../tutorials/artifact-registry-tutorials/upload-fhir-implementation-guide/how-to-load-fhir-ig-with-init-bundle.md).
+  
+
 ## October 2025 _`latest, 2510`_
 
 * Aidbox FHIR server
