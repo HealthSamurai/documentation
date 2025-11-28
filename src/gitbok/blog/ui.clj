@@ -6,9 +6,6 @@
 
 ;; Font family from health-samurai.io
 (def font-family "'Gotham Pro', Arial, sans-serif")
-(def text-color "rgb(53, 59, 80)")
-(def text-muted "rgba(53, 59, 80, 0.8)")
-(def primary-red "#EA4A35")
 
 (defn format-date
   "Format date from YYYY-MM-DD to 'Month day, year'"
@@ -43,7 +40,7 @@
   [:div {:class "mb-8"}
    [:div {:class "flex flex-wrap gap-2"}
     ;; All filter
-    [:a {:href "/blog"
+    [:a {:href (str blog/url-prefix "/blog")
          :class (str "px-4 py-2 rounded-lg transition-colors no-underline "
                      (if (nil? tag)
                        "bg-brand text-white"
@@ -52,7 +49,7 @@
 
     ;; Tag filters
     (for [t (sort all-tags)]
-      [:a {:href (str "/article-categories/" (blog/category-to-slug t))
+      [:a {:href (str blog/url-prefix "/article-categories/" (blog/category-to-slug t))
            :class (str "px-4 py-2 rounded-lg transition-colors no-underline "
                        (if (= t tag)
                          "bg-brand text-white"
@@ -62,26 +59,19 @@
 (defn date-with-symbol
   "Render date with // symbol prefix like production"
   [published]
-  [:div {:class "flex items-center"
-         :style {:font-size "16px"
-                 :color text-color}}
-   [:span {:style {:color primary-red
-                   :margin-right "8px"
-                   :font-weight "400"}}
-    "//"]
+  [:div {:class "flex items-center text-on-surface text-base"}
+   [:span {:class "text-brand mr-2 font-normal"} "//"]
    [:span (format-date published)]])
 
 (defn article-featured
   "Render featured article (horizontal layout like bg-article-1)"
   [{:keys [slug title teaser published image author category]}]
-  [:a {:href (str "/articles/" slug)
-       :class "flex flex-row gap-8 mb-12 no-underline group"
+  [:a {:href (str blog/url-prefix "/articles/" slug)
+       :class "flex flex-col md:flex-row gap-4 md:gap-8 mb-8 md:mb-12 no-underline group"
        :style {:font-family font-family}}
-   ;; Image (larger for featured)
+   ;; Image (larger for featured, responsive with preserved aspect ratio)
    (when image
-     [:div {:class "overflow-hidden rounded-xl flex-shrink-0"
-            :style {:width "400px"
-                    :height "260px"}}
+     [:div {:class "overflow-hidden rounded-xl flex-shrink-0 w-full md:w-[400px] aspect-[20/13]"}
       [:img {:src image
              :alt title
              :class "w-full h-full object-cover transition-transform group-hover:scale-105"
@@ -93,27 +83,16 @@
     (date-with-symbol published)
 
     ;; Title
-    [:h3 {:class "transition-colors text-[rgb(53,59,80)] group-hover:text-[#EA4A35]"
-          :style {:font-size "28px"
-                  :font-weight "700"
-                  :line-height "36px"
-                  :margin "12px 0"}}
+    [:h3 {:class "transition-colors text-on-surface-strong group-hover:text-brand text-[28px] font-bold leading-9 my-3"}
      title]
 
     ;; Teaser
     (when teaser
-      [:p {:style {:font-size "16px"
-                   :color text-muted
-                   :line-height "24px"
-                   :margin-top "8px"}}
+      [:p {:class "text-on-surface-muted text-base leading-6 mt-2"}
        teaser])
 
     ;; Author + Tags
-    [:div {:class "flex items-center flex-wrap gap-2"
-           :style {:font-size "16px"
-                   :color text-muted
-                   :font-weight "500"
-                   :margin-top "12px"}}
+    [:div {:class "flex items-center flex-wrap gap-2 text-on-surface-muted text-base font-medium mt-3"}
      (when author
        [:span author])
      (when category
@@ -122,15 +101,12 @@
 (defn article-card
   "Render a single article card (for 2 side-by-side after featured)"
   [{:keys [slug title teaser published image author category]}]
-  [:a {:href (str "/articles/" slug)
-       :class "flex flex-col no-underline group"
-       :style {:padding "32px 0"
-               :font-family font-family}}
-   ;; Image (with fixed aspect ratio container ~220x170 like production)
+  [:a {:href (str blog/url-prefix "/articles/" slug)
+       :class "flex flex-col no-underline group py-6 md:py-8"
+       :style {:font-family font-family}}
+   ;; Image (responsive with preserved aspect ratio 220:170 ≈ 22:17)
    (when image
-     [:div {:class "mb-4 overflow-hidden rounded-xl"
-            :style {:height "170px"
-                    :max-width "220px"}}
+     [:div {:class "mb-4 overflow-hidden rounded-xl w-full md:max-w-[220px] aspect-[22/17]"}
       [:img {:src image
              :alt title
              :class "w-full h-full object-cover transition-transform group-hover:scale-105"
@@ -141,27 +117,16 @@
     (date-with-symbol published)]
 
    ;; Title
-   [:h3 {:class "transition-colors text-[rgb(53,59,80)] group-hover:text-[#EA4A35]"
-         :style {:font-size "22px"
-                 :font-weight "700"
-                 :line-height "28px"
-                 :margin "10px 0"}}
+   [:h3 {:class "transition-colors text-on-surface-strong group-hover:text-brand text-[22px] font-bold leading-7 my-2.5"}
     title]
 
    ;; Teaser (optional)
    (when teaser
-     [:p {:style {:font-size "16px"
-                  :color text-muted
-                  :line-height "24px"
-                  :margin-top "8px"}}
+     [:p {:class "text-on-surface-muted text-base leading-6 mt-2"}
       teaser])
 
    ;; Author + Tags
-   [:div {:class "flex items-center flex-wrap gap-2"
-          :style {:font-size "16px"
-                  :color text-muted
-                  :font-weight "500"
-                  :margin-top "12px"}}
+   [:div {:class "flex items-center flex-wrap gap-2 text-on-surface-muted text-base font-medium mt-3"}
     (when author
       [:span author])
     (when category
@@ -170,8 +135,8 @@
 (defn article-card-list
   "Render article as a simple list item with image on the right"
   [{:keys [slug title teaser published author image category]}]
-  [:a {:href (str "/articles/" slug)
-       :class "flex gap-6 py-6 border-b border-outline last:border-0 no-underline group"
+  [:a {:href (str blog/url-prefix "/articles/" slug)
+       :class "flex flex-col-reverse sm:flex-row gap-4 sm:gap-6 py-6 border-b border-outline last:border-0 no-underline group"
        :style {:font-family font-family}}
    ;; Content (left)
    [:div {:class "flex-1"}
@@ -180,37 +145,24 @@
      (date-with-symbol published)]
 
     ;; Title
-    [:h3 {:class "transition-colors text-[rgb(53,59,80)] group-hover:text-[#EA4A35]"
-          :style {:font-size "20px"
-                  :font-weight "700"
-                  :line-height "26px"
-                  :margin "4px 0"}}
+    [:h3 {:class "transition-colors text-on-surface-strong group-hover:text-brand text-xl font-bold leading-[26px] my-1"}
      title]
 
     ;; Teaser (optional)
     (when teaser
-      [:p {:style {:font-size "16px"
-                   :color text-muted
-                   :line-height "24px"
-                   :margin-top "8px"}}
+      [:p {:class "text-on-surface-muted text-base leading-6 mt-2"}
        teaser])
 
     ;; Author + Tags
-    [:div {:class "flex items-center flex-wrap gap-2"
-           :style {:font-size "16px"
-                   :color text-muted
-                   :font-weight "500"
-                   :margin-top "8px"}}
+    [:div {:class "flex items-center flex-wrap gap-2 text-on-surface-muted text-base font-medium mt-2"}
      (when author
        [:span author])
      (when category
        (tags/render-tags [category] :default))]]
 
-   ;; Image (right)
+   ;; Image (top on mobile with full width, right on sm+ with fixed width)
    (when image
-     [:div {:class "overflow-hidden rounded-xl flex-shrink-0"
-            :style {:width "150px"
-                    :height "100px"}}
+     [:div {:class "overflow-hidden rounded-xl w-full sm:w-[120px] md:w-[150px] sm:flex-shrink-0 aspect-[3/2]"}
       [:img {:src image
              :alt title
              :class "w-full h-full object-cover transition-transform group-hover:scale-105"
@@ -224,18 +176,18 @@
            :style {:font-family font-family}}
      ;; Previous button
      (if has-prev
-       [:a {:href (str "/blog?page=" (dec page) (when tag (str "&tag=" (java.net.URLEncoder/encode tag "UTF-8"))))
+       [:a {:href (str blog/url-prefix "/blog?page=" (dec page) (when tag (str "&tag=" (java.net.URLEncoder/encode tag "UTF-8"))))
             :class "px-4 py-2 rounded-lg bg-surface-subtle text-on-surface-strong hover:bg-surface-hover transition-colors no-underline"}
         "← Previous"]
        [:span {:class "px-4 py-2 text-on-surface-muted"} "← Previous"])
 
      ;; Page indicator
-     [:span {:style {:color text-color}}
+     [:span {:class "text-on-surface"}
       (str "Page " page " of " (int total-pages))]
 
      ;; Next button
      (if has-next
-       [:a {:href (str "/blog?page=" (inc page) (when tag (str "&tag=" (java.net.URLEncoder/encode tag "UTF-8"))))
+       [:a {:href (str blog/url-prefix "/blog?page=" (inc page) (when tag (str "&tag=" (java.net.URLEncoder/encode tag "UTF-8"))))
             :class "px-4 py-2 rounded-lg bg-surface-subtle text-on-surface-strong hover:bg-surface-hover transition-colors no-underline"}
         "Next →"]
        [:span {:class "px-4 py-2 text-on-surface-muted"} "Next →"])]))
@@ -249,18 +201,15 @@
                      :flex-shrink "0"
                      :margin-left "48px"}}
      ;; Topics heading
-     [:h4 {:style {:font-size "18px"
-                   :font-weight "700"
-                   :color "rgb(51, 51, 51)"
-                   :margin-bottom "16px"
-                   :font-family font-family}}
+     [:h4 {:class "text-on-surface-strong text-lg font-bold mb-4"
+           :style {:font-family font-family}}
       "Topics"]
      ;; Topics list using tags component
      [:div {:class "flex flex-wrap gap-2"}
       (for [tag (sort all-tags)]
         ^{:key tag}
         (tags/render-tag {:text tag
-                          :href (str "/article-categories/" (blog/category-to-slug tag))
+                          :href (str blog/url-prefix "/article-categories/" (blog/category-to-slug tag))
                           :variant :default}))]]))
 
 (defn blog-listing-page
@@ -269,11 +218,8 @@
   (let [{:keys [articles all-tags tag page total-pages has-prev has-next]} listing-data]
     [:div {:class "min-h-screen flex flex-col"
            :style {:font-family font-family}}
-     ;; Main content - full width with padding (wider than header)
-     [:main {:class "flex-1 w-full"
-             :style {:padding-top "48px"
-                     :padding-left "32px"
-                     :padding-right "32px"}}
+     ;; Main content - full width with responsive padding
+     [:main {:class "flex-1 w-full pt-8 md:pt-12 px-4 md:px-8"}
       ;; Two-column layout: articles + sidebar (max-width slightly larger than header's 1200px)
       [:div {:class "flex mx-auto"
              :style {:max-width "1280px"}}
@@ -301,7 +247,7 @@
                   (article-card-list article))])])
           ;; No articles message
           [:div {:class "text-center py-12"}
-           [:p {:style {:color text-muted :font-size "18px"}}
+           [:p {:class "text-on-surface-muted text-lg"}
             "No articles found."]])]
        ;; Topics sidebar
        (topics-sidebar {:current-tag tag :all-tags all-tags})]]]))
@@ -311,32 +257,21 @@
   [context {:keys [articles all-tags tag category-slug]}]
   [:div {:class "min-h-screen flex flex-col"
          :style {:font-family font-family}}
-   [:main {:class "flex-1 w-full"
-           :style {:padding-top "48px"
-                   :padding-left "32px"
-                   :padding-right "32px"}}
+   [:main {:class "flex-1 w-full pt-8 md:pt-12 px-4 md:px-8"}
     [:div {:class "flex mx-auto"
            :style {:max-width "1280px"}}
      ;; Articles column
      [:div {:class "flex-1 min-w-0"}
       ;; Breadcrumbs
-      [:div {:class "flex items-center gap-2 mb-4"
-             :style {:font-size "16px"
-                     :color "rgba(53, 59, 80, 0.6)"}}
-       [:a {:href "/blog"
-            :class "no-underline hover:underline"
-            :style {:color primary-red}}
+      [:div {:class "flex items-center gap-2 mb-4 text-on-surface-muted text-base"}
+       [:a {:href (str blog/url-prefix "/blog")
+            :class "text-brand no-underline hover:underline"}
         "Articles"]
        [:span "/"]
-       [:span {:style {:color "rgba(53, 59, 80, 0.6)"}}
-        tag]]
+       [:span tag]]
 
-      ;; Large category title
-      [:h1 {:style {:font-size "48px"
-                    :font-weight "900"
-                    :line-height "60px"
-                    :color "rgb(53, 59, 80)"
-                    :margin "0 0 32px 0"}}
+      ;; Large category title (responsive)
+      [:h1 {:class "text-3xl md:text-5xl font-black mb-6 md:mb-8 text-on-surface-strong leading-tight"}
        tag]
 
       ;; All articles as vertical list (no featured)
@@ -346,7 +281,7 @@
            ^{:key (:slug article)}
            (article-card-list article))]
         [:div {:class "text-center py-12"}
-         [:p {:style {:color text-muted :font-size "18px"}}
+         [:p {:class "text-on-surface-muted text-lg"}
           "No articles found."]])]
 
      ;; Topics sidebar
@@ -355,43 +290,30 @@
 (defn article-hero
   "Full-width hero section for article page (like production)"
   [{:keys [category title published author reading-time]}]
-  ;; Full-width background
-  [:div {:class "w-full"
-         :style {:background-color "rgba(53, 59, 80, 0.05)"
-                 :padding "48px 20px"
-                 :font-family font-family}}
+  ;; Full-width background with responsive padding
+  [:div {:class "w-full py-8 md:py-12 px-4 md:px-5 bg-surface-alt"
+         :style {:font-family font-family}}
    ;; Inner container (centered, max-width)
-   [:div {:class "mx-auto"
-          :style {:max-width "800px"}}
+   [:div {:class "mx-auto max-w-[800px]"}
     ;; Breadcrumb: Articles / Category
-    [:div {:class "flex items-center gap-2"
-           :style {:font-size "16px"
-                   :color "rgba(53, 59, 80, 0.6)"}}
-     [:a {:href "/blog"
-          :class "no-underline hover:underline"
-          :style {:color primary-red}}
+    [:div {:class "flex items-center gap-2 text-on-surface-muted text-base"}
+     [:a {:href (str blog/url-prefix "/blog")
+          :class "text-brand no-underline hover:underline"}
       "Articles"]
      [:span "/"]
      (when category
-       [:a {:href (str "/article-categories/" (blog/category-to-slug category))
-            :class "no-underline hover:underline"
-            :style {:color "rgba(53, 59, 80, 0.6)"}}
+       [:a {:href (str blog/url-prefix "/article-categories/" (blog/category-to-slug category))
+            :class "text-on-surface-muted no-underline hover:underline"}
         category])]
 
-    ;; Title - big and bold
-    [:h1 {:style {:font-size "48px"
-                  :font-weight "900"
-                  :line-height "60px"
-                  :color "rgb(53, 59, 80)"
-                  :margin "24px 0"}}
+    ;; Title - big and bold (responsive)
+    [:h1 {:class "text-3xl md:text-5xl font-black my-4 md:my-6 text-on-surface-strong leading-tight"}
      title]
 
     ;; Author, date, reading time
-    [:div {:class "flex items-center gap-3"
-           :style {:font-size "16px"
-                   :color "rgba(53, 59, 80, 0.6)"}}
+    [:div {:class "flex items-center gap-3 text-on-surface-muted text-base"}
      (when author
-       [:span {:style {:font-weight "500"}} author])
+       [:span {:class "font-medium"} author])
      (when published
        [:span (format-date published)])
      (when reading-time
@@ -406,9 +328,8 @@
      ;; Hero section (full-width with background)
      (article-hero metadata)
 
-     ;; Article content (centered, narrower)
-     [:main {:class "flex-1 w-full mx-auto py-12"
-             :style {:max-width "800px"}}
+     ;; Article content (centered, narrower, responsive padding)
+     [:main {:class "flex-1 w-full mx-auto py-8 md:py-12 px-4 md:px-0 max-w-[800px]"}
       ;; Article content
       [:article {:class "prose prose-lg max-w-none
                          prose-headings:text-on-surface-strong
@@ -424,7 +345,7 @@
 
       ;; Back to blog link
       [:div {:class "mt-12 pt-8 border-t border-outline"}
-       [:a {:href "/blog"
+       [:a {:href (str blog/url-prefix "/blog")
             :class "text-brand hover:underline"}
         "← Back to blog"]]]]))
 
@@ -439,14 +360,17 @@
                     "itemListElement" [{"@type" "ListItem"
                                         "position" 1
                                         "name" "Articles"
-                                        "item" (str base-url "/articles")}
+                                        "item" (str base-url blog/url-prefix "/articles")}
                                        {"@type" "ListItem"
                                         "position" 2
                                         "name" title}]}
       "mainEntity" {"@type" "Article"
                     "name" title
                     "headline" title
-                    "image" image
+                    "image" (when image
+                              (if (str/starts-with? image "http")
+                                image
+                                (str base-url image)))
                     "genre" category
                     "keywords" (when (seq tags) (str/join ", " tags))
                     "url" article-url

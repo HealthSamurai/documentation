@@ -9,6 +9,9 @@
 
 (def articles-per-page 15)
 
+;; URL prefix for all blog routes
+(def url-prefix "/docs/futureblog")
+
 (defn get-blog-dir
   "Get blog directory path from docs-volume-path."
   [context]
@@ -16,10 +19,10 @@
     (str vol-path "/blog")))
 
 (defn load-nav-config
-  "Load navigation dropdown config from blog/dropdown.yaml"
+  "Load blog config from blog/blog.yaml"
   [context]
   (let [blog-path (get-blog-dir context)
-        file (io/file blog-path "dropdown.yaml")]
+        file (io/file blog-path "blog.yaml")]
     (when (.exists file)
       (try
         (yaml/parse-string (slurp file))
@@ -56,7 +59,7 @@
 
 (defn- resolve-image-paths
   "Convert relative image paths to absolute paths with blog folder prefix.
-   Example: ![alt](image.jpeg) -> ![alt](/blog/static/img/folder-name/image.jpeg)"
+   Example: ![alt](image.jpeg) -> ![alt](/docs/futureblog/blog/static/img/folder-name/image.jpeg)"
   [content folder-name]
   ;; Match ![alt](path) where path doesn't start with http or /
   (str/replace content
@@ -65,7 +68,7 @@
                  (if (or (str/starts-with? path "http")
                          (str/starts-with? path "/"))
                    (str "![" alt "](" path ")")
-                   (str "![" alt "](/blog/static/img/" folder-name "/" path ")")))))
+                   (str "![" alt "](" url-prefix "/blog/static/img/" folder-name "/" path ")")))))
 
 (defn- parse-article
   "Parse article markdown file into metadata and rendered content."
@@ -91,7 +94,7 @@
           image (when-let [img (:image metadata)]
                   (if (str/starts-with? img "http")
                     img
-                    (str "/blog/static/img/" folder-name "/" img)))
+                    (str url-prefix "/blog/static/img/" folder-name "/" img)))
           _ (log/debug "Starting markdown parse" {:slug slug})
           parsed (markdown/parse-markdown-content ctx [filepath content-with-images])
           _ (log/debug "Markdown parsed, starting render" {:slug slug})
