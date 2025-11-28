@@ -8,6 +8,8 @@
     * Introduced [pinning and tree shaking](../artifact-registry/artifact-registry-overview.md#pinning-and-tree-shaking) for optimizing IG dependency resolution.
     * Released the new [FAR package management API](../reference/package-registry-api.md) for managing published IG artifacts.
     * Published a tutorial on [loading FHIR IGs via Init Bundle](../tutorials/artifact-registry-tutorials/upload-fhir-implementation-guide/how-to-load-fhir-ig-with-init-bundle.md).
+  * Support for **GCP Workload Identity** for the [$export](../api/bulk-api/export.md) in both GCP and Azure environments.
+  * Added a tenant-aware [login API](../access-control/authorization/scoped-api/organization-based-hierarchical-access-control.md#authentication) for organization-based hierarchical access control.
   
 
 ## October 2025 _`latest, 2510`_
@@ -19,7 +21,7 @@
     * **Administrator Portal**: Enhanced application review process, enhanced application activity dashboards
   * Added support for the [`$meta`](../api/rest-api/other/meta.md), [`$meta-add`](../api/rest-api/other/meta-add.md), [`$meta-delete`](../api/rest-api/other/meta-delete.md) operations
   * Upgraded the `aidboxone` runtime base image to **Java 25 LTS**.
-  * Added support for **GCP Workload Identity** for file storage operations ([recommended since 25.10](../file-storage/gcp-cloud-storage.md#workload-identity-recommended-since-2510))
+  * Added support for **GCP Workload Identity** for file storage operations ([recommended since 2510](../file-storage/gcp-cloud-storage.md#workload-identity-recommended-since-2510))
   * Added support for **searching by contained resources** in `SearchParameter` definitions.
   * Improved **FHIR compatibility**, including:
     * Correct handling of `OperationOutcome.text.div` XHTML format
