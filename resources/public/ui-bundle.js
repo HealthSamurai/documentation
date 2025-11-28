@@ -160,7 +160,7 @@ window.switchTab = switchTab;
 
 function updatePageTitle() {
   // Find the first h1 in the content
-  const contentH1 = document.querySelector('#content h1, main h1, article h1');
+  const contentH1 = document.querySelector('#content h1, main h1, article h1, #blog-body h1');
   if (contentH1) {
     const h1Text = contentH1.textContent || contentH1.innerText;
     if (h1Text) {
