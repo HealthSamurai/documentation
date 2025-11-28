@@ -386,6 +386,14 @@ System resources that do not belong to any specific module.
   "type" : "string",
   "desc" : "Module that this migration belongs to."
 }, {
+  "path" : "params",
+  "name" : "params",
+  "lvl" : 0,
+  "min" : 0,
+  "max" : 1,
+  "type" : "Object",
+  "desc" : "Params for the migration."
+}, {
   "path" : "result",
   "name" : "result",
   "lvl" : 0,
@@ -400,7 +408,7 @@ System resources that do not belong to any specific module.
   "min" : 0,
   "max" : 1,
   "type" : "string",
-  "desc" : "Current status of the migration. \n\n**Allowed values**: `pending` | `done` | `error`"
+  "desc" : "Current status of the migration. \n\n**Allowed values**: `pending` | `done` | `error` | `to-run`"
 }, {
   "path" : "text",
   "name" : "text",
@@ -2632,6 +2640,36 @@ System resources that do not belong to any specific module.
   "max" : 1,
   "type" : "string",
   "desc" : "Current status of the bundle file processing. \n\n**Allowed values**: `pending` | `in-progress` | `fail` | `success`"
+} ]
+```
+
+
+## fhir-package-install-parameters
+
+```fhir-structure
+[ {
+  "path" : "parameter",
+  "name" : "parameter",
+  "lvl" : 0,
+  "min" : 0,
+  "max" : 1,
+  "type" : "",
+  "desc" : ""
+} ]
+```
+
+
+## fhir-package-uninstall-parameters
+
+```fhir-structure
+[ {
+  "path" : "parameter",
+  "name" : "parameter",
+  "lvl" : 0,
+  "min" : 0,
+  "max" : 1,
+  "type" : "",
+  "desc" : ""
 } ]
 ```
 
