@@ -101,6 +101,7 @@
         * [Migrate custom resources defined with Entity and Attributes to FHIR Schema](tutorials/artifact-registry-tutorials/custom-resources/migrate-to-fhirschema/migrate-custom-resources-defined-with-entity-and-attributes-to-fhir-schema.md)
         * [Migrate custom resources defined with Zen to FHIR Schema](tutorials/artifact-registry-tutorials/custom-resources/migrate-to-fhirschema/migrate-custom-resources-defined-with-zen-to-fhir-schema.md)
     * [Upload FHIR Implementation Guide](tutorials/artifact-registry-tutorials/upload-fhir-implementation-guide/README.md)
+      * [How to load FHIR IG with Init Bundle](tutorials/artifact-registry-tutorials/how-to-load-fhir-ig-with-init-bundle.md)
       * [Environment Variable](tutorials/artifact-registry-tutorials/upload-fhir-implementation-guide/environment-variable.md)
       * [Aidbox UI](tutorials/artifact-registry-tutorials/upload-fhir-implementation-guide/aidbox-ui/README.md)
         * [IG Package from Aidbox Registry](tutorials/artifact-registry-tutorials/upload-fhir-implementation-guide/aidbox-ui/ig-package-from-aidbox-registry.md)
