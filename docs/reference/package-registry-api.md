@@ -948,6 +948,6 @@ Accept: application/json
 ## See also
 
 
-{% content-ref url="../tutorials/artifact-registry-tutorials/how-to-load-fhir-ig-with-init-bundle.md" %}
-[how-to-load-fhir-ig-with-init-bundle.md](../tutorials/artifact-registry-tutorials/how-to-load-fhir-ig-with-init-bundle.md)
+{% content-ref url="../tutorials/artifact-registry-tutorials/upload-fhir-implementation-guide/how-to-load-fhir-ig-with-init-bundle.md" %}
+[how-to-load-fhir-ig-with-init-bundle.md](../tutorials/artifact-registry-tutorials/upload-fhir-implementation-guide/how-to-load-fhir-ig-with-init-bundle.md)
 {% endcontent-ref %}
