@@ -260,17 +260,17 @@
      [(utils/concat-urls prefix "/llms.txt")
       {:get {:handler #'handlers/serve-root-llms-txt}}]
 
-     ;; Blog routes
-     ["/blog"
+     ;; Blog routes (under /docs/futureblog)
+     ["/docs/futureblog/blog"
       {:get {:handler #'blog-handlers/list-handler}}]
-     ["/blog/search"
+     ["/docs/futureblog/blog/search"
       {:get {:handler #'blog-handlers/search-handler}}]
      ;; Blog static images
-     ["/blog/static/img/:folder/:file"
+     ["/docs/futureblog/blog/static/img/:folder/:file"
       {:get {:handler #'blog-handlers/blog-image-handler}}]
-     ["/articles/:slug"
+     ["/docs/futureblog/articles/:slug"
       {:get {:handler #'blog-handlers/article-handler}}]
-     ["/article-categories/:tag"
+     ["/docs/futureblog/article-categories/:tag"
       {:get {:handler #'blog-handlers/category-handler}}]
 
      ;; Root handlers - handle both with and without trailing slash
