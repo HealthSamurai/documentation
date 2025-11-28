@@ -225,6 +225,7 @@ GET /$sdc-config
   "base-font-size": "16px", // Base font size for the theme
   "font-family": "Arial, sans-serif", // Font family used in the theme
   "main-color": "#3498db", // Primary color of the theme
+  "design-system" : "aidbox-desktop" // Design system used in forms: 'aidbox-desktop', 'aidbox-mobile', 'NHS'
   "background": {
     "form-color": "#ffffff", // Background color of forms
     "main-color": "#f0f0f0", // Background color of the main page
@@ -258,6 +259,18 @@ GET /$sdc-config
 ```
 
 All of these properties are optional, and you can customize the theme to suit your application's design. By providing a theme object, you can create a consistent and branded experience for users interacting with forms in your application.
+
+## Design System
+
+The design system defines the overall look and feel of a form, including common styles, fonts, colors, widgets, and layout.  
+
+Currently, Aidbox Forms supports three design systems:
+
+- **aidbox-desktop** – The default Aidbox Forms design system. Widgets are adaptive and optimized for forms with many questions, suitable for both desktop and mobile devices.  
+- **aidbox-mobile** – Optimized for entry modes `sequential` and `prior-edit`, where only one question appears on screen at a time. Widgets are tailored for touch screens and mobile devices.  
+- **NHS** – Widgets and layouts fully follow the [NHS Design System](https://service-manual.nhs.uk/design-system/). Typically used for embedding forms into NHS applications. Supports only `sequential` and `prior-edit` entry modes.
+
+You can set the design system using the `design-system` property.
 
 ## Translations
 
