@@ -93,7 +93,7 @@ flowchart RL
 
 The Artifact Registry uses an NPM-compatible registry for package management. By default, Aidbox connects to `https://fs.get-ig.org/pkgs`, which synchronizes with the [official FHIR packages repository](https://packages2.fhir.org/).
 
-You can configure a custom registry using the `BOX_FHIR_NPM_PACKAGE_REGISTRY` environment variable (or `fhir-npm-package-registry` setting). This allows you to:
+You can configure a custom registry using the [FHIR NPM Package registry](../reference/all-settings.md#fhir-npm-package-registry) setting. This allows you to:
 
 * Use alternative public registries (e.g., Simplifier)
 * Set up a local registry using [Verdaccio](https://verdaccio.org/) or another NPM proxy/mirroring solution
@@ -116,6 +116,10 @@ See also:
 
 {% content-ref url="../tutorials/artifact-registry-tutorials/upload-fhir-implementation-guide/aidbox-ui/public-url-to-ig-package.md" %}
 [public-url-to-ig-package.md](../tutorials/artifact-registry-tutorials/upload-fhir-implementation-guide/aidbox-ui/public-url-to-ig-package.md)
+{% endcontent-ref %}
+
+{% content-ref url="../tutorials/artifact-registry-tutorials/upload-fhir-implementation-guide/how-to-load-fhir-ig-with-init-bundle.md" %}
+[how-to-load-fhir-ig-with-init-bundle.md](../tutorials/artifact-registry-tutorials/upload-fhir-implementation-guide/how-to-load-fhir-ig-with-init-bundle.md)
 {% endcontent-ref %}
 
 {% content-ref url="../tutorials/artifact-registry-tutorials/how-to-create-fhir-npm-package.md" %}
