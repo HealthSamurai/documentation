@@ -1,0 +1,27 @@
+apiVersion: autoscaling.k8s.io/v1
+kind: VerticalPodAutoscaler
+metadata:
+  name: gitbok
+  namespace: gitbok
+spec:
+  targetRef:
+    kind: StatefulSet
+    name: gitbok
+  updatePolicy:
+    updateMode: "Off"
+  resourcePolicy:
+    containerPolicies:
+    - containerName: main
+      controlledResources:
+      - memory
+      minAllowed:
+        memory: 1Gi
+      maxAllowed:
+        memory: 2.5Gi
+    - containerName: git-sync
+      controlledResources:
+      - memory
+      minAllowed:
+        memory: 256Mi
+      maxAllowed:
+        memory: 512Mi

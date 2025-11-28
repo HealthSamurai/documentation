@@ -2,12 +2,13 @@ apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 
 resources:
-- ns.yaml
 - configmap-git-sync-env.yaml
-- statefulset.yaml
-- service.yaml
-- ingress.yaml
-- ingress-fhirbase.yaml
 - ingress-docs-aidbox.yaml
+- ingress-fhirbase.yaml
+- ingress.yaml
 - meilisearch/
 - monitoring/
+- ns.yaml
+- service.yaml
+- statefulset.yaml
+- vpa.yaml
