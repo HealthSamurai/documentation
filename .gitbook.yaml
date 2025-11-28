@@ -409,7 +409,6 @@ redirects:
   modules-1/other-modules/mdm/find-duplicates-usdmatch: modules/mpi/find-duplicates-match.md
   modules-1/other-modules/mdm/mathematical-details: modules/mpi/mathematical-details.md
   modules-1/profiling-and-validation/asynchronous-resource-validation: modules/profiling-and-validation/asynchronous-resource-validation.md
-  modules-1/profiling-and-validation/fhir-schema-validator/aidbox-fhir-igs-registry: modules/profiling-and-validation/fhir-schema-validator/aidbox-fhir-igs-registry.md
   modules-1/profiling-and-validation/fhir-schema-validator/setup-aidbox-with-fhir-schema-validation-engine: modules/profiling-and-validation/fhir-schema-validator/setup-aidbox-with-fhir-schema-validation-engine.md
   modules-1/profiling-and-validation/fhir-schema-validator/tutorials/how-to-create-fhir-npm-package: tutorials/artifact-registry-tutorials/how-to-create-fhir-npm-package.md
   modules-1/profiling-and-validation/skip-validation-of-references-in-resource-using-request-header: modules/profiling-and-validation/skip-validation-of-references-in-resource-using-request-header.md

@@ -101,6 +101,7 @@
         * [Migrate custom resources defined with Entity and Attributes to FHIR Schema](tutorials/artifact-registry-tutorials/custom-resources/migrate-to-fhirschema/migrate-custom-resources-defined-with-entity-and-attributes-to-fhir-schema.md)
         * [Migrate custom resources defined with Zen to FHIR Schema](tutorials/artifact-registry-tutorials/custom-resources/migrate-to-fhirschema/migrate-custom-resources-defined-with-zen-to-fhir-schema.md)
     * [Upload FHIR Implementation Guide](tutorials/artifact-registry-tutorials/upload-fhir-implementation-guide/README.md)
+      * [How to load FHIR IG with Init Bundle](tutorials/artifact-registry-tutorials/upload-fhir-implementation-guide/how-to-load-fhir-ig-with-init-bundle.md)
       * [Environment Variable](tutorials/artifact-registry-tutorials/upload-fhir-implementation-guide/environment-variable.md)
       * [Aidbox UI](tutorials/artifact-registry-tutorials/upload-fhir-implementation-guide/aidbox-ui/README.md)
         * [IG Package from Aidbox Registry](tutorials/artifact-registry-tutorials/upload-fhir-implementation-guide/aidbox-ui/ig-package-from-aidbox-registry.md)
@@ -276,7 +277,6 @@
 
 * [Profiling and validation](modules/profiling-and-validation/README.md)
   * [FHIR Schema Validator](modules/profiling-and-validation/fhir-schema-validator/README.md)
-    * [Supported FHIR Implementation Guides (IGs)](modules/profiling-and-validation/fhir-schema-validator/aidbox-fhir-igs-registry.md)
     * [Setup Aidbox with FHIR Schema validation engine](modules/profiling-and-validation/fhir-schema-validator/setup-aidbox-with-fhir-schema-validation-engine.md)
   * [Skip validation of references in resource using request header](modules/profiling-and-validation/skip-validation-of-references-in-resource-using-request-header.md)
   * [Asynchronous resource validation](modules/profiling-and-validation/asynchronous-resource-validation.md)
@@ -605,6 +605,7 @@
   * [Generating Questionnaire from openEHR Template API](reference/aidbox-forms-reference/generating-questionnaire-from-openehr-template.md)
 * [Aidbox SQL Functions](reference/aidbox-sql-functions.md)
 * [Matcho DSL Reference](reference/matcho-dsl-reference.md)
+* [FAR Package Management API](reference/package-registry-api.md)
 
 ## Deprecated
 

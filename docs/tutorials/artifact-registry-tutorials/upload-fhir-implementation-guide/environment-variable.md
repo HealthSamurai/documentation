@@ -33,9 +33,6 @@ AIDBOX_FHIR_PACKAGES=hl7.fhir.us.core#5.0.1:hl7.fhir.us.davinci-pdex#2.0.0
 Aidbox will automatically resolve and load the dependencies of the specified IGs.
 
 
-
-The list of supported IGs for use in the environment variable here is located [here](../../../modules/profiling-and-validation/fhir-schema-validator/aidbox-fhir-igs-registry.md).
-
 Other methods for loading IGs:
 
 {% content-ref url="aidbox-ui/ig-package-from-aidbox-registry.md" %}

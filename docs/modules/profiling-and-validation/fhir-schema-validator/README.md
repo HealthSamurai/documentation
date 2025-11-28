@@ -46,5 +46,4 @@ When using Zen schema and JSON schema Aidbox automatically strips `null` values.
 ## Useful pages
 
 * [Setup ⚙️](setup-aidbox-with-fhir-schema-validation-engine.md)
-* [Supported IGs 📦](aidbox-fhir-igs-registry.md)
 * [Upload FHIR IG to Aidbox ⬆️](../../../tutorials/artifact-registry-tutorials/upload-fhir-implementation-guide/)

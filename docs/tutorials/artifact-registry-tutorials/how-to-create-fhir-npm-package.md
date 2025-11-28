@@ -49,8 +49,6 @@ To start, we need to describe the package manifest file for our NPM package. A p
 ```
 {% endcode %}
 
-The list of packages that can be specified in dependencies can be found in the [Aidbox FHIR IGs Registry](../../modules/profiling-and-validation/fhir-schema-validator/aidbox-fhir-igs-registry.md).
-
 ## 3. Write Package Content
 
 A package contains a set of FHIR resources in the JSON format. Let's describe a few resources for the package.
