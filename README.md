@@ -7,6 +7,15 @@ The source of https://www.health-samurai.io/docs.
 Run `make init` to set up the pre-push git hook. This hook will automatically run mandatory checks.
 
 ## Run locally
+
+```
+git clone git@github.com:HealthSamurai/documentation.git
+```
+
+```
+cd documentation
+```
+
 ```
 docker pull ghcr.io/healthsamurai/documentation:latest && docker run -p 8081:8081 \
   -e BASE_URL=http://localhost:8081 \
