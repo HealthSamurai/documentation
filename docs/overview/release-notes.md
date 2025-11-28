@@ -10,6 +10,7 @@
     * Published a tutorial on [loading FHIR IGs via Init Bundle](../tutorials/artifact-registry-tutorials/upload-fhir-implementation-guide/how-to-load-fhir-ig-with-init-bundle.md).
   * Support for **GCP Workload Identity** for the [$export](../api/bulk-api/export.md) in both GCP and Azure environments.
   * Added a tenant-aware [login API](../access-control/authorization/scoped-api/organization-based-hierarchical-access-control.md#authentication) for organization-based hierarchical access control.
+  * Contained resources are now supported in [GraphQL API](../api/graphql-api.md).
   
 
 ## October 2025 _`latest, 2510`_
