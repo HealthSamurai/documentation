@@ -8,10 +8,20 @@ Installs FHIR Implementation Guide packages from a registry or direct URL. Downl
 
 The default NPM registry URL can be changed via the [FHIR NPM Package registry](../reference/all-settings#fhir-npm-package-registry) setting.
 
-
 ```http
 POST /fhir/$fhir-package-install
 ```
+
+### Installation Behavior
+
+During installation, Aidbox performs **pinning** and **tree-shaking** on canonicals:
+
+* The **Core** package (e.g., `hl7.fhir.r4.core`) is automatically installed if missing.
+* The **Terminology (THO)** package must be provided explicitly if needed.
+* Only referenced canonicals from dependency packages are included (tree-shaking).
+* Each canonical `<url>|<version>` pair is unique in the final result.
+
+For details on the candidate selection algorithm and recursive pinning process, see [Pinning and Tree-Shaking](../artifact-registry/artifact-registry-overview.md#pinning-and-tree-shaking).
 
 ### Input Parameters
 

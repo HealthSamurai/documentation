@@ -91,18 +91,22 @@ flowchart RL
 
 ### Integration with Package Registries
 
-The Artifact Registry integrates with the Health Samurai FHIR package registry, which synchronizes with the [official FHIR packages repository](https://packages2.fhir.org/). This integration allows you to import packages from a curated collection stored in the public `fhir-schema-registry` bucket.
+The Artifact Registry uses an NPM-compatible registry for package management. By default, Aidbox connects to `https://fs.get-ig.org/pkgs`, which synchronizes with the [official FHIR packages repository](https://packages2.fhir.org/).
 
-The ability to load packages from a URL allows you to import packages from any FHIR package registry, e.g. Simplifier.
+You can configure a custom registry using the `BOX_FHIR_NPM_PACKAGE_REGISTRY` environment variable (or `fhir-npm-package-registry` setting). This allows you to:
+
+* Use alternative public registries (e.g., Simplifier)
+* Set up a local registry using [Verdaccio](https://verdaccio.org/) or another NPM proxy/mirroring solution
+* Host private packages in your own infrastructure
 
 ```mermaid
 flowchart RL
-    A(Health Samurai Registry<br/>fhir-schema-registry):::violet2
-    B(External Package Registries, e.g. Simplifier):::green1
+    A(Default NPM Registry<br/>fs.get-ig.org/pkgs):::violet2
+    B(Custom NPM Registry<br/>BOX_FHIR_NPM_PACKAGE_REGISTRY):::green1
     C(Local Filesystem):::yellow1
-    
+
     E(Aidbox Artifact Registry):::red2
-    
+
     A -->|Import| E
     B -->|Import| E
     C -->|Import| E
@@ -117,6 +121,59 @@ See also:
 {% content-ref url="../tutorials/artifact-registry-tutorials/how-to-create-fhir-npm-package.md" %}
 [how-to-create-fhir-npm-package.md](../tutorials/artifact-registry-tutorials/how-to-create-fhir-npm-package.md)
 {% endcontent-ref %}
+
+### Pinning and Tree-Shaking
+
+When you install FHIR Implementation Guide packages from a registry or direct URL, Aidbox downloads, validates, and installs the specified packages along with their dependencies. During this process, Aidbox performs **pinning** and **tree-shaking** on canonicals:
+
+- **Pinning**: References inside canonicals are pinned to exact dependency versions as described in the [FHIR IG Guidance on pinning](https://build.fhir.org/ig/FHIR/fhir-tools-ig/package.html#pinned-dependencies).
+- **Tree-shaking**: Only referenced canonical dependencies are installed from dependent packages, reducing redundancy.
+
+The goal is to achieve a system state where every canonical `<url>|<version>` pair is unique and present only once.
+
+#### Package Installation Flow
+
+1. Obtain all canonicals from the target packages.
+2. For each canonical, pin its outgoing canonical references using the selection [algorithm](#candidate-selection-algorithm).
+
+#### Outgoing Reference Collection
+
+References are collected using known paths for these resource types:
+
+* **StructureDefinition** (excluding `snapshot`)
+* **CodeSystem**
+* **ValueSet**
+* **SearchParameter**
+* **CapabilityStatement**
+
+For each canonical, Aidbox collects its outgoing canonical references. For each outgoing reference, a candidate list is constructed from all dependencies of the package (including transitive ones).
+
+#### Candidate Selection Algorithm
+
+When pinning canonical references, multiple versions or packages may provide the same canonical URL. The algorithm selects the best candidate using a multi-stage comparison chain.
+
+**Filtering**: Candidates are filtered out if they match exclusion patterns (expansions, examples, search, elements, corexml, core) or are CodeSystem resources whose `content` is not `"complete"`.
+
+**Comparison Chain**: A chained comparator is applied in this prioritized order:
+
+| Priority | Criterion | Description |
+|----------|-----------|-------------|
+| 1 | **Status** | `active` > `draft` > `retired` > `unknown` |
+| 2 | **Terminology Wins Core** | Terminology packages (e.g., `hl7.terminology`) override core packages |
+| 3 | **Version** | Compared using detected algorithm: semver, integer, date, or alpha |
+| 4 | **lastUpdated** | Final tiebreaker using `meta.lastUpdated` |
+
+**Version Algorithm Detection**: Aidbox first checks for `versionAlgorithmString` or `versionAlgorithmCoding`. If not defined, it infers the algorithm by inspecting the version string format (integer, semver, date, or alpha fallback).
+
+#### Recursive Pinning
+
+Once a reference is pinned:
+
+* It is added to the final canonical set.
+* The same process is repeated recursively for its outgoing references.
+* Each `<url>|<version>` pair is processed only once due to caching.
+
+This recursive collection results in a **tree-shaken** package: the system contains the full content of the target package, plus only the referenced canonicals (and their recursive dependencies) from dependency packages.
 
 ## Versioning Strategy
 
