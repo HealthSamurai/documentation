@@ -3,6 +3,7 @@ description: >-
   In this tutorial, you will learn how to use Aidbox Init Bundle to load a FHIR IG.
 ---
 
+# How to load FHIR IG with Init Bundle
 
 ## Objectives
 
