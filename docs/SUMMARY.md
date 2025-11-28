@@ -605,6 +605,7 @@
   * [Generating Questionnaire from openEHR Template API](reference/aidbox-forms-reference/generating-questionnaire-from-openehr-template.md)
 * [Aidbox SQL Functions](reference/aidbox-sql-functions.md)
 * [Matcho DSL Reference](reference/matcho-dsl-reference.md)
+* [FHIR Package Management API](reference/package-registry-api.md)
 
 ## Deprecated
 
