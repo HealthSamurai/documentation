@@ -277,7 +277,6 @@
 
 * [Profiling and validation](modules/profiling-and-validation/README.md)
   * [FHIR Schema Validator](modules/profiling-and-validation/fhir-schema-validator/README.md)
-    * [Supported FHIR Implementation Guides (IGs)](modules/profiling-and-validation/fhir-schema-validator/aidbox-fhir-igs-registry.md)
     * [Setup Aidbox with FHIR Schema validation engine](modules/profiling-and-validation/fhir-schema-validator/setup-aidbox-with-fhir-schema-validation-engine.md)
   * [Skip validation of references in resource using request header](modules/profiling-and-validation/skip-validation-of-references-in-resource-using-request-header.md)
   * [Asynchronous resource validation](modules/profiling-and-validation/asynchronous-resource-validation.md)

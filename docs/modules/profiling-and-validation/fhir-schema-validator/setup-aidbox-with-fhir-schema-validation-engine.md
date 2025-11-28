@@ -22,7 +22,7 @@ AIDBOX_FHIR_SCHEMA_VALIDATION=true
 
 #### Enable a Specific Implementation Guide (IG)
 
-To enable a specific IG, list it in the following environment variable. Separate different packages using a colon (`:`). You can visit the following page to get a complete [list of IGs](./aidbox-fhir-igs-registry.md) supported by the FHIR Schema validator. Package entry template: `<package_name>#<package_version>`.
+To enable a specific IG, list it in the following environment variable. Separate different packages using a colon (`:`). Package entry template: `<package_name>#<package_version>`.
 
 ```
 AIDBOX_FHIR_PACKAGES=hl7.fhir.r4.core#4.0.1
