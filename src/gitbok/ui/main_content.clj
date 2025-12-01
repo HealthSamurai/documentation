@@ -245,7 +245,8 @@
        ;; Breadcrumb wrapped in <aside> to exclude from Telegram Instant View
        [:aside breadcrumb-elem]
        [:div {:class "mx-auto max-w-full"} body]
-       (navigation-buttons context uri)
+       ;; Navigation buttons wrapped in <aside> to exclude from Telegram Instant View
+       [:aside (navigation-buttons context uri)]
        (let [lastupdated (indexing/get-lastmod context filepath)]
          (when lastupdated
            [:p {:class "mt-4 text-sm text-on-surface-muted"
