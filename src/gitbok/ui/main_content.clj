@@ -211,27 +211,6 @@
         ;; Generate breadcrumb (skip if hide-breadcrumb is true)
         breadcrumb-elem (when-not hide-breadcrumb
                           (breadcrumb/breadcrumb context uri-relative filepath))
-        ;; Handle breadcrumb insertion based on body type
-        body-with-breadcrumb (cond
-                               ;; No breadcrumb to add
-                               (nil? breadcrumb-elem) body
-
-                               ;; Body is a string (HTML)
-                               (string? body)
-                               (if (str/includes? body "id=\"page-header\"")
-                                 (str/replace body
-                                              #"<header[^>]*id=\"page-header\"[^>]*>"
-                                              (str "$0" (hiccup2.core/html breadcrumb-elem)))
-                                 (str (hiccup2.core/html breadcrumb-elem) body))
-
-                               ;; Body is Hiccup (vector)
-                               (vector? body)
-                               [:div
-                                breadcrumb-elem
-                                body]
-
-                               ;; Fallback
-                               :else body)
         toc (when filepath
               (if parsed
                 (let [toc-result (right-toc/render-right-toc parsed)]
@@ -263,7 +242,9 @@
              }
            }, 10);
          ")])
-       [:div {:class "mx-auto max-w-full"} body-with-breadcrumb]
+       ;; Breadcrumb wrapped in <aside> to exclude from Telegram Instant View
+       [:aside breadcrumb-elem]
+       [:div {:class "mx-auto max-w-full"} body]
        (navigation-buttons context uri)
        (let [lastupdated (indexing/get-lastmod context filepath)]
          (when lastupdated
