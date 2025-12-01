@@ -73,7 +73,7 @@
   [md-file]
   (str/replace
    md-file
-   #"(?s)\{% hint style=\"([^\"]+)\" %\}\n(.*?)\n\{% endhint %\}"
+   #"(?s)\{% hint style=\"([^\"]+)\" %\}\s*\n(.*?)\n\{% endhint %\}"
    (fn [[_ style content]]
      (str "> [!" (str/upper-case style) "] "
           (str/replace content #"\n" "\n> ")))))

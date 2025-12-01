@@ -252,7 +252,9 @@ The Choice widget allows users to select one or more options from a predefined l
     * **FHIRPath:** Allows create logic with answers depends on other items. You can filter options with your conditions.
     * **FHIRQuery:** Allows dynamically fetch answer options via FHIRQuery from your Aidbox instance resources.
 
-    \{% hint style="info" %\} How to use Answer Expression see our [example](how-to-guides/how-to-use-answer-expression-into-forms.md) \{% endhint %\}
+{% hint style="info" %}
+How to use Answer Expression see our [example](how-to-guides/how-to-use-answer-expression-into-forms.md)
+{% endhint %}
 
 ### Open Choice
 
@@ -322,7 +324,9 @@ The Radio Button widget allows users to select one option from a set of predefin
     * **FHIRPath:** Allows create logic with answers depends on other items. You can filter options with your conditions.
     * **FHIRQuery:** Allows dynamically fetch answer options via FHIRQuery from your Aidbox instance resources.
 
-    \{% hint style="info" %\} How to use Answer Expression see our [example](how-to-guides/how-to-use-answer-expression-into-forms.md) \{% endhint %\}
+{% hint style="info" %}
+How to use Answer Expression see our [example](how-to-guides/how-to-use-answer-expression-into-forms.md)
+{% endhint %}
 
 ### Checkbox List
 
@@ -350,7 +354,9 @@ The Checkbox List widget allows users to select multiple options from a predefin
     * **FHIRPath:** Allows create logic with answers depends on other items. You can filter options with your conditions.
     * **FHIRQuery:** Allows dynamically fetch answer options via FHIRQuery from your Aidbox instance resources.
 
-    \{% hint style="info" %\} How to use Answer Expression see our [example](how-to-guides/how-to-use-answer-expression-into-forms.md) \{% endhint %\}
+{% hint style="info" %}
+How to use Answer Expression see our [example](how-to-guides/how-to-use-answer-expression-into-forms.md)
+{% endhint %}
 
 ### Attachment
 
@@ -402,4 +408,6 @@ The Reference widget allows users to select a reference to another resource such
     * **FHIRPath:** Allows create logic with answers depends on other items. You can filter options with your conditions.
     * **FHIRQuery:** Allows dynamically fetch answer options via FHIRQuery from your Aidbox instance resources.
 
-    \{% hint style="info" %\} How to use Answer Expression see our [example](how-to-guides/how-to-use-answer-expression-into-forms.md) \{% endhint %\}
+{% hint style="info" %}
+How to use Answer Expression see our [example](how-to-guides/how-to-use-answer-expression-into-forms.md)
+{% endhint %}
