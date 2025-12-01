@@ -67,7 +67,27 @@ jobs:
         run: make minify-js
 
       - name: Build Tailwind CSS
-        run: make build-tailwind-min 
+        run: make build-tailwind-min
+
+      - name: Download OG preview images
+        id: download-og
+        uses: dawidd6/action-download-artifact@v6
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          workflow: og-previews.yaml
+          name: og-preview-images
+          path: /tmp/og-preview-artifact/
+          if_no_artifact_found: warn
+
+      - name: Replace OG previews if artifact downloaded
+        if: steps.download-og.outputs.found_artifact == 'true'
+        run: |
+          echo "Replacing OG previews from artifact..."
+          ls -la resources/public/og-preview/ | head -5
+          rm -rf resources/public/og-preview/*
+          cp -r /tmp/og-preview-artifact/* resources/public/og-preview/
+          echo "Done. New files:"
+          ls -la resources/public/og-preview/ | head -5
 
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v3

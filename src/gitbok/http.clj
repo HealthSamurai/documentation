@@ -31,9 +31,21 @@
    (response1 nil body 200 nil nil)))
 
 (defn get-absolute-url [context relative-url]
-  (utils/absolute-url (state/get-config context :base-url)
-                      (state/get-config context :prefix "")
-                      relative-url))
+  (let [prefix (state/get-config context :prefix "")
+        ;; Remove prefix from relative-url if it already starts with it
+        ;; to prevent duplication like /docs/docs/...
+        ;; Check that prefix is followed by / or end of string to avoid
+        ;; matching /docs-something when prefix is /docs
+        has-prefix? (and (not (str/blank? prefix))
+                         (str/starts-with? relative-url prefix)
+                         (or (= (count relative-url) (count prefix))
+                             (= (get relative-url (count prefix)) \/)))
+        clean-url (if has-prefix?
+                    (subs relative-url (count prefix))
+                    relative-url)]
+    (utils/absolute-url (state/get-config context :base-url)
+                        prefix
+                        clean-url)))
 
 (defn get-prefixed-url [context relative-url]
   (utils/concat-urls (state/get-config context :prefix "") relative-url))

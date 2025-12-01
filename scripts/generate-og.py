@@ -47,13 +47,24 @@ def generate_og_image(
     
     # Use default logo if the specified one doesn't exist
     if not logo_path.exists():
-        default_logo = Path('.gitbook/assets/aidbox-logo.svg')
+        default_logo = Path('.gitbook/assets/aidbox_logo.jpg')
         if default_logo.exists():
             logo_path = default_logo
         else:
             print(f"Warning: Logo not found: {logo_path}")
             return False
     
+    # Adaptive font size based on title length
+    if len(title) <= 40:
+        pointsize = '80'
+        text_height = '200'
+    elif len(title) <= 70:
+        pointsize = '56'
+        text_height = '320'
+    else:
+        pointsize = '48'
+        text_height = '350'
+
     cmd = [
         magick_cmd,
         '-size', '1200x630', 'xc:white',
@@ -61,12 +72,12 @@ def generate_og_image(
         '-gravity', 'northeast', '-geometry', '+30+30', '-composite',
         '-gravity', 'center', '-pointsize', '40',
         '-font', 'scripts/fonts/Roboto-Regular.ttf',
-        '-fill', '#555555', '-annotate', '+0+100', product_name,
-        '-gravity', 'center', '-pointsize', '80',
+        '-fill', '#555555', '-annotate', '+0+140', product_name,
+        '-gravity', 'center', '-pointsize', pointsize,
         '-font', 'scripts/fonts/Roboto-Regular.ttf',
-        '-fill', '#222222', '-size', '1000x200',
+        '-fill', '#222222', '-size', f'1100x{text_height}',
         '-background', 'none', f'caption:{title}',
-        '-gravity', 'center', '-geometry', '+0-40', '-composite',
+        '-gravity', 'center', '-geometry', '+0-50', '-composite',
         '-strip',  # Remove all metadata (timestamps, etc.) for deterministic output
         '-define', 'png:exclude-chunks=all',  # Exclude all PNG chunks except required ones
         str(output_path)

@@ -2,12 +2,15 @@ name: Build and Generate OG Previews
 
 on:
   schedule:
-    # Run once per day at 3:00 AM UTC
+    # Run once per day at 3:00 AM UTC (full regeneration with --force)
     - cron: '0 3 * * *'
   workflow_dispatch: # Allow manual trigger
   push:
+    branches: [master]
     paths:
-      - 'scripts/generate-og.py' # Only run on script changes, not doc changes
+      - 'scripts/generate-og.py'
+      - 'docs/**/*.md'
+      - 'docs-new/**/*.md'
 
 jobs:
   build-opengraph-previews:
@@ -30,20 +33,29 @@ jobs:
       - name: Install Python dependencies
         run: pip install pyyaml
 
+      - name: Download previous OG previews artifact
+        uses: dawidd6/action-download-artifact@v6
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          workflow: og-previews.yaml
+          name: og-preview-images
+          path: resources/public/og-preview/
+          if_no_artifact_found: warn
+
       - name: Generate OG images
-        run: python3 scripts/generate-og.py all
-
-      - name: Configure Git
         run: |
-          git config --local user.email "action@github.com"
-          git config --local user.name "GitHub Action"
-
-      - name: Commit and push changes
-        run: |
-          git add resources/public/og-preview/
-          if git diff --staged --quiet; then
-            echo "No changes to commit"
+          if [ "${{ github.event_name }}" = "schedule" ]; then
+            echo "Scheduled run - regenerating all images"
+            python3 scripts/generate-og.py --force all
           else
-            git commit -m "Update OG preview images [skip ci]"
-            git push
+            echo "Incremental run - generating only new images"
+            python3 scripts/generate-og.py all
           fi
+
+      - name: Upload OG previews artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: og-preview-images
+          path: resources/public/og-preview/*
+          retention-days: 90
+          overwrite: true
