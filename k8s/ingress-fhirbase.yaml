@@ -4,7 +4,9 @@ metadata:
   annotations:
     cert-manager.io/cluster-issuer: letsencrypt
     nginx.ingress.kubernetes.io/server-snippet: |
-      return 301 $scheme://www.health-samurai.io/docs/fhirbase$request_uri;
+      if ($request_uri !~ "^/.well-known/acme-challenge/") {
+        return 301 $scheme://www.health-samurai.io/docs/fhirbase$request_uri;
+      }
   name: fhirbase-aidbox
   namespace: gitbok
 spec:
