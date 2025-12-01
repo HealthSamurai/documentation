@@ -11,7 +11,11 @@
   * Support for **GCP Workload Identity** for the [$export](../api/bulk-api/export.md) in both GCP and Azure environments.
   * Added a tenant-aware [login API](../access-control/authorization/scoped-api/organization-based-hierarchical-access-control.md#authentication) for organization-based hierarchical access control.
   * Contained resources are now supported in [GraphQL API](../api/graphql-api.md).
-  
+* Aidbox Forms
+  * Added the ability to set up an [autosave interval](../modules/aidbox-forms/aidbox-ui-builder-alpha/configuration.md) in SDCConfig.
+  * Supported [multitenancy in Form UI](../modules/aidbox-forms/aidbox-ui-builder-alpha/forms-multitenancy.md) for creating and sharing forms between organizations.
+  * Added support for the [NHS design system](../modules/aidbox-forms/aidbox-ui-builder-alpha/form-creation/nhs-look-and-feel.md) to create forms according to the NHS style guide and embed them into the NHS app.
+  * Improved PDF/Questionnaire import with clearer error display and easy navigation between errors.
 
 ## October 2025 _`latest, 2510`_
 

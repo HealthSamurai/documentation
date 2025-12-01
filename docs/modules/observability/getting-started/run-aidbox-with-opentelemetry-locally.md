@@ -13,7 +13,7 @@ It introduces you to:
 * The Aidbox installation process with Docker & Docker Compose,
 * Logs & metrics & traces exporting to Elasticsearch & Prometheus & Zipkin using OpenTelemetry collector service.
 
-<figure><img src="../../../.gitbook/assets/f1142038-ab89-4ab2-93a7-5d7627bd088c.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/761c8fff-9d43-4743-abbf-466c55ed7707 (1).png" alt=""><figcaption></figcaption></figure>
 
 {% hint style="warning" %}
 <img src="../../../.gitbook/assets/docker (1).png" alt="" data-size="original">
