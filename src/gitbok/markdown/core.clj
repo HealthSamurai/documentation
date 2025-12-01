@@ -14,6 +14,7 @@
    [gitbok.markdown.widgets.stepper :as stepper]
    [gitbok.markdown.widgets.description :as description]
    [gitbok.markdown.widgets.gitbook-code :as gitbook-code]
+   [gitbok.markdown.widgets.file :as file]
    [gitbok.ui.fhir-structure-table :as fhir-table]
    [gitbok.http :as http]
    [cheshire.core :as json]
@@ -302,6 +303,7 @@
                                 (str/replace #"%%%NL%%%" "\n")
                                 (str/replace #"%%%TAB_NL%%%" "\n")
                                 (str/replace #"%%%STEPPER_NL%%%" "\n")
+                                (str/replace #"%%%FILE_NL%%%" "\n")
                                 (str/replace #"%%GITBOOK_EMPTY_LINE%%" "\n")
                                 (str/replace #"<!-- GITBOOK_NL -->" ""))
                  ;; Fix relative .gitbook/assets paths in img src
@@ -379,6 +381,7 @@
              (str/replace #"%%%NL%%%" "\n")
              (str/replace #"%%%TAB_NL%%%" "\n")
              (str/replace #"%%%STEPPER_NL%%%" "\n")
+             (str/replace #"%%%FILE_NL%%%" "\n")
              (str/replace #"%%GITBOOK_EMPTY_LINE%%" "\n")
              (str/replace #"<!-- GITBOOK_NL -->" ""))
          node))
@@ -392,6 +395,7 @@
          github-hint/hack-info
          image/hack-youtube
          image/hack-other-websites
+         (file/hack-file context-hack filepath)
          (tabs/hack-tabs
           context-hack
           filepath
