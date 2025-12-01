@@ -2,6 +2,7 @@
   (:require [hiccup2.core]
             [clojure.string :as str]
             [gitbok.ui.tags :as tags]
+            [gitbok.ui.llm-share :as llm-share]
             [gitbok.blog.core :as blog]))
 
 ;; Font family from health-samurai.io
@@ -322,7 +323,8 @@
 (defn article-page
   "Render individual article page"
   [context article]
-  (let [{:keys [metadata rendered]} article]
+  (let [{:keys [metadata rendered]} article
+        article-url (str "https://www.health-samurai.io" blog/url-prefix "/articles/" (:slug metadata))]
     [:div {:class "min-h-screen flex flex-col"
            :style {:font-family font-family}}
      ;; Hero section (full-width with background)
@@ -330,6 +332,9 @@
 
      ;; Article content (centered, narrower, responsive padding)
      [:main {:class "flex-1 w-full mx-auto py-8 md:py-12 px-4 md:px-0 max-w-[800px]"}
+      ;; LLM sharing block
+      (llm-share/share-block article-url)
+
       ;; Article content
       [:article {:class "prose prose-lg max-w-none
                          prose-headings:text-on-surface-strong
