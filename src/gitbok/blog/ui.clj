@@ -219,6 +219,8 @@
   (let [{:keys [articles all-tags tag page total-pages has-prev has-next]} listing-data]
     [:div {:class "min-h-screen flex flex-col"
            :style {:font-family font-family}}
+     ;; Hidden h1 for page title (used by JS updatePageTitle)
+     [:h1 {:class "sr-only"} "Health Samurai Blog"]
      ;; Main content - full width with responsive padding
      [:main {:class "flex-1 w-full pt-8 md:pt-12 px-4 md:px-8"}
       ;; Two-column layout: articles + sidebar (max-width slightly larger than header's 1200px)
