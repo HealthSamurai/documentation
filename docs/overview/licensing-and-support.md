@@ -6,7 +6,7 @@ description: This page covers types of Aidbox licenses and describes Aidbox Supp
 
 Aidbox offers developers a smooth path from a tiny digital health app prototype to a country-wide deployment of a global healthcare solution. [Health Samurai](https://www.health-samurai.io/) is always around to ensure developers get all the necessary support.
 
-## Aidbox license types:
+## Aidbox license types
 
 <table data-header-hidden><thead><tr><th width="447"></th><th></th></tr></thead><tbody><tr><td><strong>Aidbox Edition</strong></td><td><strong>Price</strong></td></tr><tr><td>Aidbox production license</td><td>$</td></tr><tr><td>Development license</td><td>free</td></tr></tbody></table>
 
