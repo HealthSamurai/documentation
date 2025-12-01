@@ -243,8 +243,11 @@
                     toc-result)
                   (catch Exception _
                     nil))))]
+    ;; Classes "article" and "article__content" are required for Telegram Instant View
+    ;; (Teletype template expects: div.article > article.article__content)
     [:main#content {:class "flex-1 items-start"}
-     [:div {:class "flex items-start"}
+     [:div {:class "article flex items-start"}
+      ;; article__content class is required for Telegram Instant View
       [:article {:class "article__content py-8 min-w-0 flex-1
                  max-w-5xl transform-3d"}
        (when htmx?

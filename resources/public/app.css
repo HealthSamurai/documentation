@@ -984,7 +984,6 @@ article .hint p {
     display: none!important;
   }
 
-  /* Article content - needed for Telegram instant view */
   .article__content {
     max-width: 100vw !important;
     overflow: clip !important;
