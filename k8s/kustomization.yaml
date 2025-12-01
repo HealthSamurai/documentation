@@ -9,6 +9,7 @@ resources:
 - meilisearch/
 - monitoring/
 - ns.yaml
+- pdb.yaml
 - service.yaml
 - statefulset.yaml
 - vpa.yaml
