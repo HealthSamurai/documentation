@@ -17,10 +17,15 @@ import os
 import re
 import sys
 from pathlib import Path
-import yaml
 
 sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
-from lib.output import check_start, check_success, check_error, print_issue
+from lib.output import check_start, check_success, check_error, print_issue, print_detail
+
+try:
+    import yaml
+    YAML_AVAILABLE = True
+except ImportError:
+    YAML_AVAILABLE = False
 
 BLOG_DIR = Path(__file__).parent.parent.parent / "docs-new" / "blog"
 
@@ -137,6 +142,11 @@ def validate_blog_yaml() -> list[str]:
 
 def main():
     check_start("Blog Articles")
+
+    if not YAML_AVAILABLE:
+        print_detail("Skipped (PyYAML not installed)")
+        print_detail("Install: pip install pyyaml | apt install python3-yaml | pacman -S python-yaml")
+        return 0
 
     if not BLOG_DIR.exists():
         check_error(f"Blog directory not found: {BLOG_DIR}")
