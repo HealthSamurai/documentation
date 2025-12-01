@@ -1,9 +1,14 @@
 #!/usr/bin/env python3
 
+import os
 import re
 import sys
 from pathlib import Path
 from typing import Set
+
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+from lib.output import check_start, check_success, check_error, print_issue
+
 
 def validate_redirects(file_content) -> Set[str]:
     errors = set()
@@ -13,23 +18,28 @@ def validate_redirects(file_content) -> Set[str]:
             errors.add(filepath)
     return errors
 
+
 def main():
-    print("Check that every file in redirect exists.")
+    check_start("Redirects")
+
     redirects_path = Path('.gitbook.yaml')
     if not redirects_path.exists():
-        print("Error: .gitbook.yaml not found")
-        sys.exit(1)
+        check_error(".gitbook.yaml not found")
+        return 1
 
     with open(redirects_path) as f:
         content = f.read()
         errors = validate_redirects(content)
+
         if errors:
-            print("Files from .gitbook.yaml not found:")
+            check_error(f"Found {len(errors)} missing redirect targets:")
             for e in errors:
-                print(e)
-            sys.exit(1)
-    print("ok")
+                print_issue(e)
+            return 1
+
+    check_success("All redirect targets exist")
+    return 0
 
 
 if __name__ == '__main__':
-    main()
+    sys.exit(main())

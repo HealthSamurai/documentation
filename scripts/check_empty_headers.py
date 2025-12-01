@@ -8,6 +8,9 @@ import os
 import re
 import sys
 
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+from lib.output import check_start, check_success, check_error, print_issue
+
 def check_empty_headers(file_path):
     """Check if file contains empty headers."""
     with open(file_path, 'r', encoding='utf-8') as f:
@@ -23,15 +26,17 @@ def check_empty_headers(file_path):
 
 def main():
     """Main function to check all markdown files."""
-    errors_found = False
     docs_dir = 'docs'
 
+    check_start("Empty Headers")
+
     if not os.path.exists(docs_dir):
-        print(f"ERROR: Directory '{docs_dir}' not found")
+        check_error(f"Directory '{docs_dir}' not found")
         return 1
 
+    all_errors = []
+
     for root, dirs, files in os.walk(docs_dir):
-        # Skip deprecated directories
         if 'deprecated' in root.split(os.sep):
             continue
 
@@ -41,19 +46,16 @@ def main():
                 empty_headers = check_empty_headers(file_path)
 
                 if empty_headers:
-                    if not errors_found:
-                        print("ERROR: Found empty headers in markdown files:")
-                        errors_found = True
-
-                    print(f"\n{file_path}:")
                     for line_num, header in empty_headers:
-                        print(f"  Line {line_num}: {header}")
+                        all_errors.append(f"{file_path}:{line_num}")
 
-    if errors_found:
-        print("\nPlease remove empty headers before pushing")
+    if all_errors:
+        check_error(f"Found {len(all_errors)} empty headers:")
+        for err in all_errors:
+            print_issue(err)
         return 1
 
-    print("✓ No empty headers found")
+    check_success("No empty headers found")
     return 0
 
 if __name__ == '__main__':

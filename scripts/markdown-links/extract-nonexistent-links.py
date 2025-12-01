@@ -8,6 +8,9 @@ from typing import List, Tuple, Dict, Optional
 from collections import defaultdict
 import urllib.parse
 
+sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+from lib.output import check_start, check_success, check_error, print_issue
+
 def extract_links_from_line(line: str) -> Optional[str]:
     # Markdown link:   [text](<path>) или   [text](path)
     if re.match(r'^  \[.*\]\([^)]+', line):
@@ -236,16 +239,15 @@ def extract_all_links() -> Dict[str, List[str]]:
                 f.write(f"  {link}\n")
             f.write("\n")
 
-    print('Generated out/all_links_by_file.txt')
     return file_links
 
 def main():
+    check_start("Broken Links")
+
     extract_all_links()
 
     output_dir = Path('out')
     output_file = output_dir / 'all_nonexistent_links_by_file.txt'
-
-    print("[extract-nonexistent-links] Checking all relative links...")
 
     current_file = ""
     broken_links: List[str] = []
@@ -285,8 +287,6 @@ def main():
                 out.write('\n'.join(broken_links) + '\n\n')
                 broken_links = []
 
-    print(f"Generated {output_file}")
-
     if output_file.stat().st_size > 0:
         with open(output_file, 'r') as f:
             content = f.read()
@@ -295,39 +295,14 @@ def main():
         non_deprecated_files = [f for f in files_with_links if not f.startswith('docs/deprecated/')]
 
         if non_deprecated_files:
-            print('\nERROR: Broken relative links found outside docs/deprecated directory:')
-            for file in non_deprecated_files[:5]:
-                print(file)
-
-            if len(non_deprecated_files) > 5:
-                print(f"... and more (total {len(non_deprecated_files)} files)")
-
-            print("See full details in out/all_nonexistent_links_by_file.txt")
-
-            print("\nExamples of broken links:")
-            with open(output_file, 'r') as f:
-                lines = f.readlines()
-                examples = []
-                i = 0
-                while i < len(lines) and len(examples) < 10:
-                    line = lines[i].rstrip()
-                    if line.endswith('links):') and not line.startswith('docs/deprecated/'):
-                        header = line
-                        # Find the first non-empty line after the header
-                        j = i + 1
-                        while j < len(lines):
-                            next_line = lines[j].rstrip()
-                            if next_line:
-                                examples.append(header)
-                                examples.append(next_line)
-                                break
-                            j += 1
-                    i += 1
-                print('\n'.join(examples[:10]))
-
+            check_error(f"Found {len(non_deprecated_files)} file(s) with broken links:")
+            for file in non_deprecated_files[:10]:
+                print_issue(file)
+            if len(non_deprecated_files) > 10:
+                print_issue(f"... and {len(non_deprecated_files) - 10} more")
             sys.exit(1)
-        else:
-            print('\nOnly deprecated files have broken relative links. Skipping error.')
+
+    check_success("No broken links found")
 
 if __name__ == '__main__':
     main()

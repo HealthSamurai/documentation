@@ -12,17 +12,14 @@ import urllib.parse
 from pathlib import Path
 import sys
 
-# Try to import yaml, but don't fail if it's not available
+sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+from lib.output import check_start, check_success, check_error, print_issue
+
 try:
     import yaml
     YAML_AVAILABLE = True
 except ImportError:
     YAML_AVAILABLE = False
-    print("=" * 60)
-    print("WARNING: PyYAML NOT INSTALLED!")
-    print("TO CHECK MULTI-PRODUCT DOCS (docs-new), RUN:")
-    print("    pip3 install pyyaml")
-    print("=" * 60)
 
 # Root directories for the docs
 DOCS_DIR = "docs"
@@ -205,55 +202,40 @@ def check_files():
     """
     Main function to check all markdown files and their image references
     """
+    check_start("Missing Images")
+
     missing_images = []
     processed_files = 0
     total_images = 0
-    
-    # Check main docs directory
-    print("Checking main docs directory...")
+
     if os.path.exists(DOCS_DIR):
         for root, _, files in os.walk(DOCS_DIR):
             for file in files:
                 if not file.endswith('.md'):
                     continue
-                    
+
                 file_path = os.path.join(root, file)
                 images_found, images_missing = process_file(file_path, missing_images)
                 total_images += images_found
                 processed_files += 1
-    
-    # Check multi-product docs-new directory
-    if not YAML_AVAILABLE:
-        print("\nSkipping multi-product documentation check (PyYAML not installed)")
-    else:
+
+    if YAML_AVAILABLE:
         products_config = load_products_config()
         if products_config and os.path.exists(DOCS_NEW_DIR):
-            print("\nChecking multi-product documentation...")
             for product in products_config.get('products', []):
                 product_id = product['id']
                 config_path = product.get('config')
 
                 if not config_path:
-                    print(f"Warning: No config specified for product: {product_id}")
                     continue
 
-                # Get actual docs path from product config
                 product_docs_dir = get_product_docs_path(product_id, config_path)
 
-                if not product_docs_dir:
-                    print(f"Warning: Could not determine docs path for product: {product_id}")
+                if not product_docs_dir or not os.path.exists(product_docs_dir):
                     continue
 
-                if not os.path.exists(product_docs_dir):
-                    print(f"Warning: Product docs directory not found: {product_docs_dir}")
-                    continue
-
-                print(f"  Checking product: {product_id} (docs at: {product_docs_dir})")
-
-                # Determine product base path for assets
                 product_path = os.path.join(DOCS_NEW_DIR, product_id)
                 if not os.path.exists(product_path):
-                    # For products like aidbox where config points outside docs-new
                     product_path = None
 
                 for root, _, files in os.walk(product_docs_dir):
@@ -267,20 +249,16 @@ def check_files():
                         )
                         total_images += images_found
                         processed_files += 1
-    
-    # Print summary
-    print("\n=== SUMMARY ===")
-    print(f"Files processed: {processed_files}")
-    print(f"Total images referenced: {total_images}")
-    print(f"Missing images found: {len(missing_images)}")
-    
+
     if missing_images:
-        print("\nMissing images:")
-        for entry in missing_images:
-            print(f"  {entry['image']} referenced in {entry['file']}")
+        check_error(f"Found {len(missing_images)} missing images:")
+        for entry in missing_images[:10]:
+            print_issue(f"{entry['file']} → {entry['image']}")
+        if len(missing_images) > 10:
+            print_issue(f"... and {len(missing_images) - 10} more")
         return False
-    
-    print("\nAll images found successfully!")
+
+    check_success(f"{total_images} images checked, all found")
     return True
 
 def process_file(file_path, missing_images, product_path=None):

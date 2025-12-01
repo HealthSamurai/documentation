@@ -1,13 +1,9 @@
 #!/bin/bash
 
-# This script runs various validation checks before code is pushed, ensuring:
-# - No absolute Aidbox links are present
-# - No broken links with "broken-reference" are present
-# - All relative links point to existing files
-# - Summary files are in sync with actual files
-# - Titles in SUMMARY.md match h1 headers in files
-# - No titles in SUMMARY.md contain " & " (should use " and " instead)
-# - Each markdown file has at most one H1 header
+# Pre-push validation script
+# Runs all documentation checks before pushing
+
+echo "=== Pre-push Validation ==="
 
 python3 ./scripts/check_h1_headers.py || exit 1
 python3 ./scripts/check_empty_headers.py || exit 1
@@ -17,20 +13,21 @@ python3 ./scripts/summary/check-summary-vs-files.py || exit 1
 python3 ./scripts/check-title-mismatch.py || exit 1
 python3 ./scripts/check-ampersand-in-summary.py || exit 1
 
-# Check for broken-reference links in markdown files
-echo "Checking for broken-reference links..."
-if grep -rn "\[.*\](broken-reference" docs/ --include="*.md" --exclude-dir="deprecated"; then
-    echo "ERROR: Found markdown links starting with 'broken-reference'"
-    echo "Please fix these broken references before pushing"
+# Check for broken-reference links (inline check)
+echo ""
+echo "[check] Broken References"
+if grep -rn "\[.*\](broken-reference" docs/ --include="*.md" --exclude-dir="deprecated" > /dev/null 2>&1; then
+    echo "        ✗ Found broken-reference links"
+    grep -rn "\[.*\](broken-reference" docs/ --include="*.md" --exclude-dir="deprecated" | head -5 | while read line; do
+        echo "          - $line"
+    done
     exit 1
 fi
+echo "        ✓ No broken-reference links found"
 
 python3 ./scripts/redirects.py || exit 1
-
-# Check for missing images in documentation
-echo "Checking for missing images in documentation..."
 python3 ./scripts/pictures/check_missing_images.py || exit 1
-
-# Validate blog articles
-echo "Validating blog articles..."
 python3 ./scripts/blog/validate_articles.py || exit 1
+
+echo ""
+echo "=== All checks passed ==="

@@ -4,6 +4,9 @@ import sys
 import re
 from pathlib import Path
 
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+from lib.output import check_start, check_success, check_error, print_issue
+
 def check_h1_headers(file_path):
     """Check if a markdown file has more than one H1 header."""
     with open(file_path, 'r', encoding='utf-8') as f:
@@ -39,19 +42,20 @@ def check_h1_headers(file_path):
 
 def main():
     docs_dir = Path('docs')
-    
+
+    check_start("H1 Headers")
+
     if not docs_dir.exists():
-        print(f"Error: '{docs_dir}' directory not found")
+        check_error(f"Directory '{docs_dir}' not found")
         return 1
-    
+
     errors = []
     total_files = 0
-    
-    # Walk through all markdown files in docs directory
+
     for md_file in docs_dir.rglob('*.md'):
         total_files += 1
         h1_headers = check_h1_headers(md_file)
-        
+
         if len(h1_headers) > 1:
             relative_path = md_file.relative_to('.')
             errors.append({
@@ -59,24 +63,14 @@ def main():
                 'count': len(h1_headers),
                 'headers': h1_headers
             })
-    
-    # Report results
+
     if errors:
-        print(f"❌ H1 Header Check Failed: Found {len(errors)} file(s) with multiple H1 headers\n")
-        
+        check_error(f"Found {len(errors)} file(s) with multiple H1 headers:")
         for error in errors:
-            print(f"  File: {error['file']}")
-            print(f"  Found {error['count']} H1 headers:")
-            for i, header in enumerate(error['headers'], 1):
-                print(f"    {i}. {header.strip()}")
-            print()
-        
-        print(f"✅ Checked {total_files} markdown files")
-        print(f"❌ {len(errors)} file(s) have multiple H1 headers")
-        print("\nEach markdown file should have exactly one H1 header (# Title)")
+            print_issue(f"{error['file']} ({error['count']} headers)")
         return 1
     else:
-        print(f"✅ H1 Header Check Passed: All {total_files} markdown files have at most one H1 header")
+        check_success(f"{total_files} files checked, no issues")
         return 0
 
 if __name__ == '__main__':

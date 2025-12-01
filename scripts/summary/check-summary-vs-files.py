@@ -6,6 +6,9 @@ import sys
 from pathlib import Path
 from typing import Set, List
 
+sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+from lib.output import check_start, check_success, check_error, print_issue
+
 def get_files_from_summary() -> Set[str]:
     """Extract all file paths referenced in SUMMARY.md."""
     summary_path = Path('docs/SUMMARY.md')
@@ -37,33 +40,29 @@ def get_files_on_disk() -> Set[str]:
     return paths
 
 def main():
-    print('\nChecking if summary.md file and filetree are synced')
+    check_start("Summary vs Files")
 
-    # Get files from both sources
     files_from_summary = get_files_from_summary()
     files_on_disk = get_files_on_disk()
 
-    # Find discrepancies
     files_not_in_summary = files_on_disk - files_from_summary
     paths_not_on_disk = files_from_summary - files_on_disk
 
-    if not files_not_in_summary and not paths_not_on_disk:
-        print('SUMMARY.md and docs/ are in sync.')
-        return
+    total_issues = len(files_not_in_summary) + len(paths_not_on_disk)
 
-    # Report discrepancies
-    if files_not_in_summary:
-        print('Files in docs/ not referenced in SUMMARY.md:')
-        for file in sorted(files_not_in_summary):
-            print(file)
+    if total_issues == 0:
+        check_success("SUMMARY.md and docs/ are in sync")
+        return 0
 
-    if paths_not_on_disk:
-        print('Paths in SUMMARY.md that do not exist on disk:')
-        for path in sorted(paths_not_on_disk):
-            print(path)
+    check_error(f"Found {total_issues} sync issues:")
+    for file in sorted(files_not_in_summary)[:5]:
+        print_issue(f"Not in SUMMARY: {file}")
+    for path in sorted(paths_not_on_disk)[:5]:
+        print_issue(f"Missing on disk: {path}")
+    if total_issues > 10:
+        print_issue(f"... and {total_issues - 10} more")
 
-    print("\nERROR: docs/SUMMARY.md and docs/ are out of sync. Fix the issues above before pushing.")
-    sys.exit(1)
+    return 1
 
 if __name__ == '__main__':
-    main() 
+    sys.exit(main())

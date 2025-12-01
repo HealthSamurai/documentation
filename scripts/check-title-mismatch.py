@@ -5,6 +5,9 @@ import re
 import sys
 from pathlib import Path
 
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+from lib.output import check_start, check_success, check_error, print_issue, print_detail
+
 def extract_summary_entries(summary_path):
     """Extract file paths and titles from SUMMARY.md"""
     entries = []
@@ -54,54 +57,51 @@ def normalize_title(title):
     return title
 
 def main():
+    check_start("Title Mismatch")
+
     docs_dir = Path("docs")
     summary_path = docs_dir / "SUMMARY.md"
-    
+
     if not summary_path.exists():
-        print("ERROR: SUMMARY.md not found in docs directory")
-        sys.exit(1)
-    
+        check_error("SUMMARY.md not found in docs directory")
+        return 1
+
     entries = extract_summary_entries(summary_path)
     mismatches = []
-    
+    warnings = []
+
     for title, file_path in entries:
         full_path = docs_dir / file_path
-        
+
         if not full_path.exists():
-            print(f"WARNING: File not found: {file_path}")
             continue
-        
+
         h1_header = extract_h1_header(full_path)
-        
+
         if h1_header is None:
-            print(f"WARNING: No h1 header found in {file_path}")
+            warnings.append(file_path)
             continue
-        
+
         normalized_title = normalize_title(title)
         normalized_h1 = normalize_title(h1_header)
-        
+
         if normalized_title != normalized_h1:
-            mismatches.append({
-                'file': file_path,
-                'summary_title': title,
-                'h1_header': h1_header
-            })
-    
+            mismatches.append(file_path)
+
+    for w in warnings:
+        print_detail(f"WARNING: No h1 header in {w}")
+
     if mismatches:
-        print("WARNING: Found title mismatches between SUMMARY.md and h1 headers:")
-        print()
-        for mismatch in mismatches:
-            print(f"File: {mismatch['file']}")
-            print(f"  Summary title: {mismatch['summary_title']}")
-            print(f"  H1 header:     {mismatch['h1_header']}")
-            print()
-        
-        print(f"Total mismatches found: {len(mismatches)}")
-        return False
-    else:
-        print("✓ All titles in SUMMARY.md match their corresponding h1 headers")
-        return True
+        check_error(f"Found {len(mismatches)} title mismatches:")
+        for m in mismatches[:10]:
+            print_issue(m)
+        if len(mismatches) > 10:
+            print_issue(f"... and {len(mismatches) - 10} more")
+        return 1
+
+    check_success("All titles match h1 headers")
+    return 0
+
 
 if __name__ == "__main__":
-    success = main()
-    sys.exit(0 if success else 1) 
+    sys.exit(main()) 

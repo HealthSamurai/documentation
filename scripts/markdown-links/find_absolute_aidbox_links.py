@@ -5,20 +5,15 @@ import re
 import sys
 from pathlib import Path
 
-# Try to import yaml, but don't fail if it's not available
+sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+from lib.output import check_start, check_success, check_error, print_issue
+
 try:
     import yaml
     YAML_AVAILABLE = True
 except ImportError:
     YAML_AVAILABLE = False
 
-print('Checking for absolute references to documentation')
-print('  - Checking for https://docs.aidbox.app/ links')
-print('  - Checking for https://www.health-samurai.io/docs/ links')
-
-# Create output directory
-os.makedirs('out', exist_ok=True)
-output_file = 'out/absolute_aidbox_links.txt'
 
 def load_products_config():
     """Load products configuration from docs-new/products.yaml"""
@@ -122,65 +117,53 @@ def check_directory_for_links(directory, prefix=""):
 
     return local_aidbox_results, local_health_samurai_results
 
-# Initialize results
-aidbox_results = []
-health_samurai_results = []
-checked_dirs = set()  # Track directories we've already checked to avoid duplicates
+def main():
+    check_start("Absolute Links")
 
-# Check main docs directory (for backward compatibility)
-if os.path.exists('docs'):
-    print("\nChecking main docs directory...")
-    main_aidbox, main_health = check_directory_for_links('docs')
-    aidbox_results.extend(main_aidbox)
-    health_samurai_results.extend(main_health)
-    checked_dirs.add(os.path.abspath('docs'))
+    aidbox_results = []
+    health_samurai_results = []
+    checked_dirs = set()
 
-# Check multi-product documentation
-if YAML_AVAILABLE:
-    products_config = load_products_config()
-    if products_config and os.path.exists('docs-new'):
-        print("Checking multi-product documentation...")
-        for product in products_config.get('products', []):
-            product_id = product['id']
-            config_path = product.get('config')
+    if os.path.exists('docs'):
+        main_aidbox, main_health = check_directory_for_links('docs')
+        aidbox_results.extend(main_aidbox)
+        health_samurai_results.extend(main_health)
+        checked_dirs.add(os.path.abspath('docs'))
 
-            if not config_path:
-                continue
+    if YAML_AVAILABLE:
+        products_config = load_products_config()
+        if products_config and os.path.exists('docs-new'):
+            for product in products_config.get('products', []):
+                product_id = product['id']
+                config_path = product.get('config')
 
-            product_docs_dir = get_product_docs_path(config_path)
-            if not product_docs_dir or not os.path.exists(product_docs_dir):
-                continue
+                if not config_path:
+                    continue
 
-            # Skip if we've already checked this directory (e.g., aidbox docs are in main docs/)
-            abs_docs_dir = os.path.abspath(product_docs_dir)
-            if abs_docs_dir in checked_dirs:
-                print(f"  Skipping product: {product_id} (already checked)")
-                continue
+                product_docs_dir = get_product_docs_path(config_path)
+                if not product_docs_dir or not os.path.exists(product_docs_dir):
+                    continue
 
-            print(f"  Checking product: {product_id}")
-            prod_aidbox, prod_health = check_directory_for_links(product_docs_dir, f"[{product_id}] ")
-            aidbox_results.extend(prod_aidbox)
-            health_samurai_results.extend(prod_health)
-            checked_dirs.add(abs_docs_dir)
+                abs_docs_dir = os.path.abspath(product_docs_dir)
+                if abs_docs_dir in checked_dirs:
+                    continue
 
-# Check if any links were found
-error_found = False
+                prod_aidbox, prod_health = check_directory_for_links(product_docs_dir, f"[{product_id}] ")
+                aidbox_results.extend(prod_aidbox)
+                health_samurai_results.extend(prod_health)
+                checked_dirs.add(abs_docs_dir)
 
-if aidbox_results:
-    print("\n❌ Absolute links to https://docs.aidbox.app found. Please fix them before pushing!")
-    for result in aidbox_results:
-        print(f"  {result['file']}: {result['count']} link(s) on line(s) {result['lines']}")
-    error_found = True
+    all_results = aidbox_results + health_samurai_results
 
-if health_samurai_results:
-    print("\n❌ Absolute links to https://www.health-samurai.io/docs found. Please fix them before pushing!")
-    print("   These should be replaced with relative links.")
-    for result in health_samurai_results:
-        print(f"  {result['file']}: {result['count']} link(s) on line(s) {result['lines']}")
-    error_found = True
+    if all_results:
+        check_error(f"Found {len(all_results)} file(s) with absolute links:")
+        for result in all_results:
+            print_issue(f"{result['file']}:{result['lines']}")
+        return 1
 
-if error_found:
-    sys.exit(42)
-else:
-    print("\n✅ No absolute documentation links found (except /reference directory and FAQ).")
-    sys.exit(0)
+    check_success("No absolute documentation links found")
+    return 0
+
+
+if __name__ == '__main__':
+    sys.exit(main())

@@ -13,10 +13,14 @@ Checks:
 - No empty content after frontmatter
 """
 
+import os
 import re
 import sys
 from pathlib import Path
 import yaml
+
+sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+from lib.output import check_start, check_success, check_error, print_issue
 
 BLOG_DIR = Path(__file__).parent.parent.parent / "docs-new" / "blog"
 
@@ -132,20 +136,18 @@ def validate_blog_yaml() -> list[str]:
 
 
 def main():
-    if not BLOG_DIR.exists():
-        print(f"Blog directory not found: {BLOG_DIR}")
-        sys.exit(1)
+    check_start("Blog Articles")
 
-    print(f"Validating blog articles in {BLOG_DIR}...")
+    if not BLOG_DIR.exists():
+        check_error(f"Blog directory not found: {BLOG_DIR}")
+        return 1
 
     all_errors = {}
 
-    # Validate blog.yaml
     yaml_errors = validate_blog_yaml()
     if yaml_errors:
         all_errors["blog.yaml"] = yaml_errors
 
-    # Validate each article
     article_dirs = [
         d for d in BLOG_DIR.iterdir()
         if d.is_dir() and (d / "index.md").exists()
@@ -156,18 +158,18 @@ def main():
         if errors:
             all_errors[article_dir.name] = errors
 
-    # Report results
     if all_errors:
-        print(f"\n✗ Found errors in {len(all_errors)} item(s):\n")
-        for name, errors in sorted(all_errors.items()):
-            print(f"{name}:")
-            for error in errors:
-                print(f"  - {error}")
-            print()
-        sys.exit(1)
-    else:
-        print(f"\n✓ All {len(article_dirs)} blog articles are valid!")
+        total_errors = sum(len(e) for e in all_errors.values())
+        check_error(f"Found {total_errors} errors in {len(all_errors)} item(s):")
+        for name, errors in sorted(all_errors.items())[:5]:
+            print_issue(f"{name}: {errors[0]}")
+        if len(all_errors) > 5:
+            print_issue(f"... and {len(all_errors) - 5} more items with errors")
+        return 1
+
+    check_success(f"{len(article_dirs)} blog articles valid")
+    return 0
 
 
 if __name__ == "__main__":
-    main()
+    sys.exit(main())
