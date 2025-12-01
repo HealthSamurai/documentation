@@ -233,9 +233,9 @@
                                     ;; In k8s with git-sync, paths may include worktree hashes
                                      rel-str (str rel)
                                     ;; If the path goes up (../) it means the file is outside our docs dir
-                                    ;; In that case, just use the filename
+                                    ;; In that case, use relativize from canonical path
                                      rel-str (if (str/starts-with? rel-str "..")
-                                               (.getName f)
+                                               (str (.relativize (.toPath canonical-docs-file) (.toPath f)))
                                                rel-str)
                                     ;; Find the last occurrence of /docs/ and take everything after it
                                     ;; This handles both regular and worktree paths
