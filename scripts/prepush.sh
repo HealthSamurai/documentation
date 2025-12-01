@@ -30,3 +30,7 @@ python3 ./scripts/redirects.py || exit 1
 # Check for missing images in documentation
 echo "Checking for missing images in documentation..."
 python3 ./scripts/pictures/check_missing_images.py || exit 1
+
+# Validate blog articles
+echo "Validating blog articles..."
+python3 ./scripts/blog/validate_articles.py || exit 1
