@@ -185,6 +185,6 @@ Canonical resources can reference each other using versioned URLs (e.g., `http:/
 
 See also:
 
-{% content-ref url="../tutorials/terminology-tutorials/local-terminlogy.md" %}
-[local-terminlogy.md](../tutorials/terminology-tutorials/local-terminlogy.md)
+{% content-ref url="../tutorials/terminology-tutorials/local-terminology.md" %}
+[local-terminology.md](../tutorials/terminology-tutorials/local-terminology.md)
 {% endcontent-ref %}

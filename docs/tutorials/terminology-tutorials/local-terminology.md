@@ -1,4 +1,4 @@
-# Local Terminlogy
+# Local Terminology
 
 ## Objectives
 

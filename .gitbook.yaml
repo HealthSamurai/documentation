@@ -552,5 +552,6 @@ redirects:
   terminology/aidbox-terminology-module/hybrid: terminology-module/aidbox-terminology-module/hybrid.md
   tools/aidbox-sdk/aidbox-apps: developer-experience/apps.md
   tutorials/security-and-access-control/basic-auth-tutorial: tutorials/security-access-control-tutorials/basic-auth.md
+  tutorials/terminology-tutorials/local-terminlogy: tutorials/terminology-tutorials/local-terminology.md
   tutorials/validation-tutorials/upload-fhir-implementation-guide/aidbox-ui/ig-package-from-aidbox-registry: tutorials/artifact-registry-tutorials/upload-fhir-implementation-guide/aidbox-ui/ig-package-from-aidbox-registry.md
   tutorials/validation-tutorials/upload-fhir-implementation-guide: tutorials/artifact-registry-tutorials/upload-fhir-implementation-guide/README.md
