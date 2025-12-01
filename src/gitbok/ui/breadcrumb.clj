@@ -37,7 +37,7 @@
   [context parent-pages section-title]
   [:nav {:aria-label "Breadcrumb"
          :class "flex-1"}
-   [:ol {:class "flex flex-wrap items-center"}
+   [:ol {:class "flex flex-nowrap items-center overflow-hidden"}
     (let [items (vec (concat
                       ;; Add section title as first item if available
                       (when (and section-title (not (str/blank? section-title)))
@@ -71,20 +71,20 @@
             (= :section (:type item))
             ;; Section title without link
             [:li {:key idx
-                  :class "flex items-center gap-2 bg-breadcrumb-bg rounded-md px-2 py-0.5"}
-             [:span {:class "text-sm font-normal leading-6 text-on-surface"}
+                  :class "flex items-center gap-2 bg-breadcrumb-bg rounded-md px-2 py-0.5 max-w-48 shrink-0"}
+             [:span {:class "text-sm font-normal leading-6 text-on-surface truncate"}
               (:title item)]]
 
             :else
             ;; Parent page with link
             [:li {:key idx
-                  :class "flex items-center gap-2 bg-breadcrumb-bg rounded-md px-2 py-0.5"}
+                  :class "flex items-center gap-2 bg-breadcrumb-bg rounded-md px-2 py-0.5 max-w-48"}
              [:a {:href (:href item)
                   :hx-get (http/get-partial-product-prefixed-url context (:relative-href item))
                   :hx-target "#content"
                   :hx-push-url (:href item)
                   :hx-swap "outerHTML"
-                  :class "text-sm font-normal leading-6 text-on-surface hover:text-on-surface-strong"}
+                  :class "text-sm font-normal leading-6 text-on-surface hover:text-on-surface-strong truncate"}
               (:title item)]]))
         limited-items)))]])
 
