@@ -58,36 +58,52 @@
           section
           (last (re-matches #".*#(.*)" relative-page-link))
 
-          relative-page-link
+          relative-page-link-without-section
           (str/replace relative-page-link #"#.*$" "")
 
-          relative-page-link
-          (if (str/ends-with? (str/lower-case relative-page-link) "/")
-            (str relative-page-link "README.md")
-            relative-page-link)
+          ;; Check if link ends with "/" - could be either dir/README.md or file.md
+          ends-with-slash?
+          (str/ends-with? (str/lower-case relative-page-link-without-section) "/")
+
+          ;; First try: if ends with "/", assume it's a directory with README.md
+          relative-page-link-primary
+          (if ends-with-slash?
+            (str relative-page-link-without-section "README.md")
+            relative-page-link-without-section)
+
+          ;; Fallback: if ends with "/", also try as file.md (without trailing slash)
+          relative-page-link-fallback
+          (when ends-with-slash?
+            (str (subs relative-page-link-without-section 0 (dec (count relative-page-link-without-section))) ".md"))
 
           current-page-filename
           (last (str/split current-page-filepath #"/"))
 
-          same-page? (= current-page-filename relative-page-link)]
+          same-page? (= current-page-filename relative-page-link-primary)]
       (if same-page?
         (str "#" section)
         (let [file->uri-idx (state/get-file-to-uri-idx context)
               _ (when-not file->uri-idx
                   (throw (Exception. (str "no idx for file: " current-page-filepath ", link: " relative-page-link))))
               current-page-filepath (absolute-filepath->relative context current-page-filepath)
-              path (utils/safe-subs
-                    (get-filepath current-page-filepath relative-page-link)
-                    (count (System/getProperty "user.dir")))
-              path (if (str/starts-with? path "/")
-                     (utils/safe-subs path 1)
-                     path)
-              path (http/get-product-prefixed-url
-                    context
-                    (str "/" (:uri (get file->uri-idx path))))]
+
+              resolve-path (fn [rel-link]
+                             (let [path (utils/safe-subs
+                                         (get-filepath current-page-filepath rel-link)
+                                         (count (System/getProperty "user.dir")))
+                                   path (if (str/starts-with? path "/")
+                                          (utils/safe-subs path 1)
+                                          path)]
+                               (when-let [uri (:uri (get file->uri-idx path))]
+                                 (http/get-product-prefixed-url context (str "/" uri)))))
+
+              ;; Try primary path first, then fallback
+              resolved-path (or (resolve-path relative-page-link-primary)
+                                (when relative-page-link-fallback
+                                  (resolve-path relative-page-link-fallback)))]
           (if section
-            (str path "#" section)
-            path))))))
+            (str resolved-path "#" section)
+            resolved-path))))))
 
 (defn read-content [context filepath]
   (state/slurp-resource context filepath))
