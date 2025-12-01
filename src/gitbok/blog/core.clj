@@ -85,10 +85,8 @@
                           (io/file)
                           (.getParentFile)
                           (.getName))
-          ;; Remove first h1 since title is shown in hero section
-          content-without-h1 (remove-first-h1 content)
           ;; Resolve relative image paths to absolute
-          content-with-images (resolve-image-paths content-without-h1 folder-name)
+          content-with-images (resolve-image-paths content folder-name)
           slug (or (:slug metadata) folder-name)
           ;; Resolve cover image path if it's a relative path
           image (when-let [img (:image metadata)]
