@@ -51,22 +51,8 @@ spec:
             summary: "Frequent 5xx errors in Gitbok"
             description: "Gitbok is generating {{ $value | humanize }} 5xx errors per minute across all pods"
 
-        # Alert when any pod is down
-        - alert: GitbokPodDown
-          expr: |
-            up{job="gitbok"} == 0
-            and on(pod, namespace)
-            kube_pod_status_ready{condition="true", namespace="gitbok"} == 1
-          for: 1m
-          labels:
-            severity: critical
-            team: backend
-            service: gitbok
-          annotations:
-            summary: "Gitbok pod is down"
-            description: "Gitbok pod {{ $labels.pod }} in namespace {{ $labels.namespace }} has been down for more than 1 minute"
-
         # Alert when less pods than expected are running
+        # This replaces GitbokPodDown - detects when any pod is missing without false positives during restarts
         - alert: GitbokInsufficientReplicas
           expr: count(up{job="gitbok"} == 1) < 2
           for: 5m
