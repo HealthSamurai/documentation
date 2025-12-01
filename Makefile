@@ -10,9 +10,8 @@ init-test:
 	mkdir -p .git/hooks
 
 init:
-	rm .git/hooks/pre-push || true
-	cp scripts/prepush.sh .git/hooks/pre-push
-	chmod +x .git/hooks/pre-push
+	rm -f .git/hooks/pre-push
+	ln -s ../../scripts/prepush.sh .git/hooks/pre-push
 	git submodule update --init --recursive
 
 repl: init-test
