@@ -51,7 +51,7 @@ def main():
     total_issues = len(files_not_in_summary) + len(paths_not_on_disk)
 
     if total_issues == 0:
-        check_success("SUMMARY.md and docs/ are in sync")
+        check_success(f"{len(files_on_disk)} files in sync with SUMMARY.md")
         return 0
 
     check_error(f"Found {total_issues} sync issues:")

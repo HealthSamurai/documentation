@@ -63,15 +63,17 @@ def get_product_docs_path(config_path):
     return docs_path
 
 def check_directory_for_links(directory, prefix=""):
-    """Check a directory for absolute documentation links"""
+    """Check a directory for absolute documentation links. Returns (aidbox_results, health_samurai_results, files_checked)"""
     local_aidbox_results = []
     local_health_samurai_results = []
+    files_checked = 0
 
     for file in Path(directory).rglob('*.md'):
         # Skip excluded paths
         if 'docs/reference' in str(file) or str(file) == 'docs/overview/faq.md':
             continue
 
+        files_checked += 1
         with open(file) as f:
             content = f.read()
 
@@ -115,7 +117,7 @@ def check_directory_for_links(directory, prefix=""):
                         'lines': ','.join(lines)
                     })
 
-    return local_aidbox_results, local_health_samurai_results
+    return local_aidbox_results, local_health_samurai_results, files_checked
 
 def main():
     check_start("Absolute Links")
@@ -123,11 +125,13 @@ def main():
     aidbox_results = []
     health_samurai_results = []
     checked_dirs = set()
+    total_files_checked = 0
 
     if os.path.exists('docs'):
-        main_aidbox, main_health = check_directory_for_links('docs')
+        main_aidbox, main_health, files_checked = check_directory_for_links('docs')
         aidbox_results.extend(main_aidbox)
         health_samurai_results.extend(main_health)
+        total_files_checked += files_checked
         checked_dirs.add(os.path.abspath('docs'))
 
     if YAML_AVAILABLE:
@@ -148,9 +152,10 @@ def main():
                 if abs_docs_dir in checked_dirs:
                     continue
 
-                prod_aidbox, prod_health = check_directory_for_links(product_docs_dir, f"[{product_id}] ")
+                prod_aidbox, prod_health, files_checked = check_directory_for_links(product_docs_dir, f"[{product_id}] ")
                 aidbox_results.extend(prod_aidbox)
                 health_samurai_results.extend(prod_health)
+                total_files_checked += files_checked
                 checked_dirs.add(abs_docs_dir)
 
     all_results = aidbox_results + health_samurai_results
@@ -161,7 +166,7 @@ def main():
             print_issue(f"{result['file']}:{result['lines']}")
         return 1
 
-    check_success("No absolute documentation links found")
+    check_success(f"{total_files_checked} files checked, no absolute links")
     return 0
 
 

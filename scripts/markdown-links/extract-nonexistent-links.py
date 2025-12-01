@@ -193,11 +193,15 @@ def validate_link_path(current_file: str, link: str, original_line: str) -> Tupl
 
     return False, f"{original_line} [BROKEN: target does not exist or path is invalid]"
 
-def extract_all_links() -> Dict[str, List[str]]:
+def extract_all_links() -> tuple[Dict[str, List[str]], int, int]:
+    """Returns (file_links, total_files, total_links)"""
     file_links = defaultdict(list)
     files_with_counts = []
+    total_files = 0
+    total_links = 0
 
     for file_path in Path('docs').rglob('*.md'):
+        total_files += 1
         file_str = str(file_path)
         links = []
 
@@ -214,6 +218,7 @@ def extract_all_links() -> Dict[str, List[str]]:
 
         links = sorted(set(links))
         count = len(links)
+        total_links += count
         if count > 0:
             file_links[file_str] = links
             files_with_counts.append((file_str, count))
@@ -239,12 +244,12 @@ def extract_all_links() -> Dict[str, List[str]]:
                 f.write(f"  {link}\n")
             f.write("\n")
 
-    return file_links
+    return file_links, total_files, total_links
 
 def main():
     check_start("Broken Links")
 
-    extract_all_links()
+    _, total_files, total_links = extract_all_links()
 
     output_dir = Path('out')
     output_file = output_dir / 'all_nonexistent_links_by_file.txt'
@@ -302,7 +307,7 @@ def main():
                 print_issue(f"... and {len(non_deprecated_files) - 10} more")
             sys.exit(1)
 
-    check_success("No broken links found")
+    check_success(f"{total_links} links in {total_files} files checked, no broken links")
 
 if __name__ == '__main__':
     main()

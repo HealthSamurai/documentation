@@ -20,6 +20,7 @@ def main():
     ]
 
     all_errors = []
+    titles_checked = 0
 
     for summary_file in summary_files:
         if not os.path.exists(summary_file):
@@ -29,10 +30,12 @@ def main():
             lines = f.readlines()
 
         for line_num, line in enumerate(lines, 1):
-            if re.search(r'\[.*?\]', line) and ' & ' in line:
-                title_match = re.search(r'\[(.*?)\]', line)
-                if title_match:
-                    all_errors.append(f"{summary_file}:{line_num}")
+            if re.search(r'\[.*?\]', line):
+                titles_checked += 1
+                if ' & ' in line:
+                    title_match = re.search(r'\[(.*?)\]', line)
+                    if title_match:
+                        all_errors.append(f"{summary_file}:{line_num}")
 
     if all_errors:
         check_error(f"Found {len(all_errors)} titles with ' & ':")
@@ -42,7 +45,7 @@ def main():
             print_issue(f"... and {len(all_errors) - 10} more")
         return 1
 
-    check_success("No titles with ' & ' found")
+    check_success(f"{titles_checked} titles checked, no ' & ' found")
     return 0
 
 

@@ -16,6 +16,7 @@ python3 ./scripts/check-ampersand-in-summary.py || exit 1
 # Check for broken-reference links (inline check)
 echo ""
 echo "[check] Broken References"
+FILES_COUNT=$(find docs/ -name "*.md" -not -path "*/deprecated/*" | wc -l | tr -d ' ')
 if grep -rn "\[.*\](broken-reference" docs/ --include="*.md" --exclude-dir="deprecated" > /dev/null 2>&1; then
     echo "        ✗ Found broken-reference links"
     grep -rn "\[.*\](broken-reference" docs/ --include="*.md" --exclude-dir="deprecated" | head -5 | while read line; do
@@ -23,7 +24,7 @@ if grep -rn "\[.*\](broken-reference" docs/ --include="*.md" --exclude-dir="depr
     done
     exit 1
 fi
-echo "        ✓ No broken-reference links found"
+echo "        ✓ ${FILES_COUNT} files checked, no broken-reference links"
 
 python3 ./scripts/redirects.py || exit 1
 python3 ./scripts/pictures/check_missing_images.py || exit 1

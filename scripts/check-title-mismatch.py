@@ -99,7 +99,7 @@ def main():
             print_issue(f"... and {len(mismatches) - 10} more")
         return 1
 
-    check_success("All titles match h1 headers")
+    check_success(f"{len(entries)} entries checked, all titles match")
     return 0
 
 

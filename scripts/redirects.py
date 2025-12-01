@@ -10,13 +10,16 @@ sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from lib.output import check_start, check_success, check_error, print_issue
 
 
-def validate_redirects(file_content) -> Set[str]:
+def validate_redirects(file_content) -> tuple[Set[str], int]:
+    """Returns (errors, total_redirects)"""
     errors = set()
+    total = 0
     for match in re.finditer(r':[ \t]+(.*).md', file_content):
+        total += 1
         filepath = "docs/" + str(match.group(1)) + ".md"
         if not Path(filepath).exists():
             errors.add(filepath)
-    return errors
+    return errors, total
 
 
 def main():
@@ -29,7 +32,7 @@ def main():
 
     with open(redirects_path) as f:
         content = f.read()
-        errors = validate_redirects(content)
+        errors, total = validate_redirects(content)
 
         if errors:
             check_error(f"Found {len(errors)} missing redirect targets:")
@@ -37,7 +40,7 @@ def main():
                 print_issue(e)
             return 1
 
-    check_success("All redirect targets exist")
+    check_success(f"{total} redirects checked, all targets exist")
     return 0
 
 

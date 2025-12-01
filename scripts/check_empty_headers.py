@@ -35,6 +35,7 @@ def main():
         return 1
 
     all_errors = []
+    files_checked = 0
 
     for root, dirs, files in os.walk(docs_dir):
         if 'deprecated' in root.split(os.sep):
@@ -43,6 +44,7 @@ def main():
         for file in files:
             if file.endswith('.md'):
                 file_path = os.path.join(root, file)
+                files_checked += 1
                 empty_headers = check_empty_headers(file_path)
 
                 if empty_headers:
@@ -55,7 +57,7 @@ def main():
             print_issue(err)
         return 1
 
-    check_success("No empty headers found")
+    check_success(f"{files_checked} files checked, no empty headers")
     return 0
 
 if __name__ == '__main__':
