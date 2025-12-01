@@ -28,9 +28,9 @@ Wait about 2 minutes for all services to load.
 
 Open **http://localhost:3000/** in your browser. You'll see the Auditbox login screen. 
 
-<img src="../../.gitbook/assets/auditbox/ui_login.png"
-     width="50%"
-     alt="AuditBox login screen">
+<figure class="flex justify-center">
+  <img src="../../.gitbook/assets/auditbox/ui_login.png" alt="AuditBox login screen" style="max-width: 400px;">
+</figure>
 
 {% hint style="info" %}
 Auditbox uses Keycloak as the identity provider, but you can configure any other IDP that supports OpenID Connect.
@@ -38,9 +38,9 @@ Auditbox uses Keycloak as the identity provider, but you can configure any other
 
 Click "Sign in with Keycloak" and you'll see the Keycloak login screen.
 
-<img src="../../.gitbook/assets/auditbox/kc-enter.png"
-     width="50%"
-     alt="Keycloak login screen">
+<figure class="flex justify-center">
+  <img src="../../.gitbook/assets/auditbox/kc-enter.png" alt="Keycloak login screen" style="max-width: 400px;">
+</figure>
 
 Use the following credentials to sign in:
 
@@ -49,9 +49,9 @@ Use the following credentials to sign in:
 
 Click "Sign In" and you will see the Auditbox UI.
 
-<img src="../../.gitbook/assets/auditbox/ui_main.png"
-     width="100%"
-     alt="AuditBox UI screen">
+<figure>
+  <img src="../../.gitbook/assets/auditbox/ui_main.png" alt="AuditBox UI screen">
+</figure>
 
 ### Step 3: Discover Auditbox features
 

@@ -174,6 +174,13 @@
                    uri-relative
                    (str/replace #"%20" " ")
                    (str/replace-first #".*.gitbook/assets/" ""))
+        ;; Extract product id from URI for product-specific assets
+        ;; URI (after prefix removal) looks like /auditbox/.gitbook/assets/auditbox/image.png
+        uri-without-prefix (if (and (not (str/blank? prefix))
+                                    (str/starts-with? uri prefix))
+                             (subs uri (count prefix))
+                             uri)
+        product-id (second (re-find #"^/?([^/]+)/\.gitbook/assets/" uri-without-prefix))
         dev-mode? (state/get-config ctx :dev-mode)
         volume-path (state/get-config ctx :docs-volume-path)
         repo-path (state/get-config ctx :docs-repo-path)
@@ -181,7 +188,10 @@
         response (if volume-path
                    ;; When volume path is available: try filesystem first
                    (or
-                    ;; Try repo path first (for assets in repo root)
+                    ;; Try product-specific assets first (docs-new/{product}/.gitbook/assets/)
+                    (when product-id
+                      (canonical-file-response (str volume-path "/docs-new/" product-id "/.gitbook/assets/" file-path)))
+                    ;; Try repo path (for assets in repo root)
                     (when repo-path
                       (or
                        (canonical-file-response (str repo-path "/.gitbook/assets/" file-path))
@@ -195,6 +205,8 @@
                     ;; Try docs/.gitbook/ (for compatibility)
                     (canonical-file-response (str volume-path "/docs/.gitbook/" file-path))
                     ;; Fallback to classpath resources
+                    (when product-id
+                      (resp/resource-response (str product-id "/.gitbook/assets/" file-path)))
                     (resp/resource-response file-path)
                     (resp/resource-response (str ".gitbook/" file-path))
                     (resp/resource-response (str ".gitbook/assets/" file-path))
@@ -203,6 +215,9 @@
                     (resp/resource-response (str "docs/.gitbook/assets/" file-path)))
                    ;; No volume path: use classpath only
                    (or
+                    ;; Try product-specific assets first
+                    (when product-id
+                      (resp/resource-response (str product-id "/.gitbook/assets/" file-path)))
                     (resp/resource-response (str "assets/" file-path))
                     (resp/resource-response file-path)
                     (resp/resource-response (str ".gitbook/" file-path))

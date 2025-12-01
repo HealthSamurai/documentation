@@ -18,6 +18,11 @@ try:
     YAML_AVAILABLE = True
 except ImportError:
     YAML_AVAILABLE = False
+    print("=" * 60)
+    print("WARNING: PyYAML NOT INSTALLED!")
+    print("TO CHECK MULTI-PRODUCT DOCS (docs-new), RUN:")
+    print("    pip3 install pyyaml")
+    print("=" * 60)
 
 # Root directories for the docs
 DOCS_DIR = "docs"

@@ -21,9 +21,9 @@
                         ;; External URLs - keep as is
                         (str/starts-with? normalized-src "http") normalized-src
 
-                        ;; .gitbook/assets - return with simple prefix
+                        ;; .gitbook/assets - return with product prefix
                         (str/starts-with? normalized-src ".gitbook/assets")
-                        (http/get-prefixed-url context (str "/" normalized-src))
+                        (http/get-product-prefixed-url context (str "/" normalized-src))
 
                         ;; Skip link resolution - return original src
                         (:skip-link-resolution context)
@@ -37,11 +37,11 @@
                 (:title (:attrs node))
                 (:text (first (:content node))) "")
 
-        ;; Generate WebP path and check if we should include it
-        ;; For simplicity, we'll only generate WebP source for files we know exist
-        ;; or for external URLs (assuming they have WebP versions)
+        ;; Generate WebP path only for local assets we control
+        ;; Don't generate WebP for external URLs - we can't know if they exist
         webp-src (when (and normalized-src
                             (not (str/blank? normalized-src))
+                            (not (str/starts-with? normalized-src "http"))
                             (not (str/ends-with? normalized-src ".svg"))
                             (not (str/ends-with? normalized-src ".gif")))
                    (let [last-dot-idx (clojure.string/last-index-of normalized-src ".")
@@ -50,9 +50,6 @@
                                     nil)]
                      (when base-src
                        (cond
-                         ;; External URLs - assume WebP exists
-                         (str/starts-with? base-src "http") base-src
-
                          ;; .gitbook/assets - check if WebP file exists
                          (str/starts-with? base-src ".gitbook/assets")
                          (let [webp-path (str "/" base-src)
@@ -62,7 +59,7 @@
                                              (not (nil? (clojure.java.io/resource base-src)))
                                              (not (nil? (clojure.java.io/resource (str "assets/" (last (str/split base-src #"\.gitbook/assets/")))))))]
                            (when webp-exists?
-                             (http/get-prefixed-url context webp-path)))
+                             (http/get-product-prefixed-url context webp-path)))
 
                          ;; Skip link resolution - no WebP
                          (:skip-link-resolution context)

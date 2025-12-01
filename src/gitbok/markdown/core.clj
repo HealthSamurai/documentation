@@ -15,6 +15,7 @@
    [gitbok.markdown.widgets.description :as description]
    [gitbok.markdown.widgets.gitbook-code :as gitbook-code]
    [gitbok.ui.fhir-structure-table :as fhir-table]
+   [gitbok.http :as http]
    [cheshire.core :as json]
    [nextjournal.markdown :as md]
    [nextjournal.markdown.transform :as transform]
@@ -303,6 +304,14 @@
                                 (str/replace #"%%%STEPPER_NL%%%" "\n")
                                 (str/replace #"%%GITBOOK_EMPTY_LINE%%" "\n")
                                 (str/replace #"<!-- GITBOOK_NL -->" ""))
+                 ;; Fix relative .gitbook/assets paths in img src
+                 fixed-html (str/replace fixed-html
+                                         #"src=\"([^\"]*\.gitbook/assets[^\"]*)\""
+                                         (fn [[_ src]]
+                                           (let [normalized (str ".gitbook/assets"
+                                                                 (last (str/split src #"\.gitbook/assets")))
+                                                 absolute-url (http/get-product-prefixed-url context (str "/" normalized))]
+                                             (str "src=\"" absolute-url "\""))))
                  c (first (parse-html fixed-html))]
              (cond
                (and c

@@ -300,6 +300,10 @@
         markdown-handler (handlers/make-serve-raw-markdown-handler context)
         routes [;; Specific routes first
 
+                ;; Product assets (must be before catch-all)
+                [(str product-path "/.gitbook/assets/*")
+                 {:get {:handler #'handlers/render-pictures}}]
+
                 ;; Meilisearch
                 [(str product-path "/meilisearch/dropdown")
                  {:get {:handler #'gitbok.ui.meilisearch/meilisearch-endpoint

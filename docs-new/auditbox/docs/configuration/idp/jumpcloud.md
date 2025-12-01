@@ -9,9 +9,9 @@ JumpCloud), but integrations with
 [Microsoft](https://jumpcloud.com/support/configure-azure-as-identity-provider)
 and other accounts is possible.
 
-<img src="../../.gitbook/assets/auditbox/jumpcloud-application-overview.png"
-     alt="JumpCloud Application Creation Interface"
-     data-size="original">
+<figure>
+  <img src="../../../.gitbook/assets/auditbox/jumpcloud-application-overview.png" alt="JumpCloud Application Creation Interface">
+</figure>
 
 Some key points:
 - Auditbox **does not support SAML** (Security Assertion Markup Language),
