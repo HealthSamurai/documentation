@@ -166,6 +166,12 @@ def validate_link_path(current_file: str, link: str, original_line: str) -> Tupl
         file_path.replace('%20', ' '),  # Space decoded
     ]
 
+    # Handle "page-name/" format - could be either dir/README.md or page-name.md
+    if file_path.endswith('/'):
+        # Try as file.md (without trailing slash)
+        base_without_slash = file_path.rstrip('/')
+        variants.append(f"{base_without_slash}.md")
+
     # Add variants with parentheses handled
     if '(' in file_path and ')' in file_path:
         base = file_path[:file_path.find('(')].strip()
