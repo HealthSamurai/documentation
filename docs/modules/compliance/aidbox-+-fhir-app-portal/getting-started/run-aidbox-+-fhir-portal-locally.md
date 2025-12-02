@@ -7,7 +7,7 @@ description: >-
 TODO reactivate details everywhere
 
 TODO add to each header link like this: ### Aidbox license<a href="#license" id="license"></a>
-# Set up Aidbox and FHIR App Portal locally
+# Run Aidbox + FHIR Portal locally
 
 ## Get licenses
 
@@ -25,12 +25,12 @@ Follow the [official Docker guide](https://docs.docker.com/compose/install) to i
 
 <!-- ## Configure cloud storage
 
-Aidbox bulk API supports [GCP](../../../file-storage/gcp-cloud-storage.md), [AWS](../../../file-storage/aws-s3.md) and [Azure](../../../file-storage/azure-blob-storage.md) cloud storages. To pass the Inferno tests cloud storage should be [properly set up](../../../api/bulk-api/export.md). -->
+Aidbox bulk API supports [GCP](../../../../file-storage/gcp-cloud-storage.md), [AWS](../../../../file-storage/aws-s3.md) and [Azure](../../../../file-storage/azure-blob-storage.md) cloud storages. To pass the Inferno tests cloud storage should be [properly set up](../../../../api/bulk-api/export.md). -->
 
 ## **Set up email provider**
 
 {% hint style="info" %}
-In this guide `mailgun` is used to send email. FHIR App Portal also supports [different email providers](../how-to-guides/setup-email-provider.md) and [SMTP](../how-to-guides/setup-email-provider.md#how-to-set-up-smtp)
+In this guide `mailgun` is used to send email. FHIR App Portal also supports [different email providers](../../../smartbox/how-to-guides/setup-email-provider.md) and [SMTP](../../../smartbox/how-to-guides/setup-email-provider.md#how-to-set-up-smtp)
 {% endhint %}
 
 Email provider is used to communicate with users (developers, patients). It sends emails for email verification, resetting of a password and etc.
@@ -337,7 +337,7 @@ By default Aidbox logs are turned off, you can enable them by setting:
 {% endhint %} -->
 
 {% hint style="success" %}
-To use alternative email provider see the [document](../how-to-guides/setup-email-provider.md)
+To use alternative email provider see the [document](../../../smartbox/how-to-guides/setup-email-provider.md)
 {% endhint %}
 
 ## Launch Aidbox
