@@ -49,17 +49,19 @@
                      (state/slurp-resource context full-filepath)))
         _ (when-not content*
             (log/error "No content found" {:filepath filepath :full-filepath full-filepath}))
-        {:keys [parsed description title]}
+        {:keys [parsed description title schema-type]}
         (if content*
           (markdown/parse-markdown-content
            context
            [full-filepath content*])
-          {:parsed [:div "No content"] :description "" :title "Error"})]
+          {:parsed [:div "No content"] :description "" :title "Error" :schema-type nil})]
     (try
       {:content
        (main-content/render-file* context full-filepath parsed title (or content* ""))
        :title title
        :description description
+       :schema-type schema-type
+       :raw-content content*
        :section section}
       (catch Exception e
         (log/info "cannot-render-file" {:filepath full-filepath})
@@ -106,7 +108,9 @@
        [:div result])
      :section (:section result)
      :description (:description result)
-     :title (:title result)}))
+     :title (:title result)
+     :schema-type (:schema-type result)
+     :raw-content (:raw-content result)}))
 
 (defn check-cache-lastmod [request last-mod]
   (let [if-modified-since (get-in request [:headers "if-modified-since"])
@@ -307,7 +311,7 @@
         (if filepath
           (handle-cached-response ctx filepath "full"
                                   (fn []
-                                    (let [{:keys [title description content section]}
+                                    (let [{:keys [title description content section schema-type raw-content]}
                                           (render-file ctx filepath)
                                           lastmod (indexing/get-lastmod ctx filepath)]
                                       (layout/layout
@@ -317,7 +321,9 @@
                                         :title title
                                         :description description
                                         :section section
-                                        :filepath filepath}))))
+                                        :filepath filepath
+                                        :schema-type schema-type
+                                        :raw-content raw-content}))))
           ;; No file - check for redirect
           (let [[redirect-target preserve-fragment?] (get-redirect-with-fragment ctx uri-relative)]
             (if redirect-target
@@ -460,7 +466,7 @@
     ;; to avoid redirect loops
     (handle-cached-response ctx filepath "full"
                             (fn []
-                              (let [{:keys [title description content section]}
+                              (let [{:keys [title description content section schema-type raw-content]}
                                     (render-file ctx filepath)
                                     lastmod (indexing/get-lastmod ctx filepath)]
                                 (layout/layout
@@ -470,7 +476,9 @@
                                   :title title
                                   :description description
                                   :section section
-                                  :filepath filepath}))))))
+                                  :filepath filepath
+                                  :schema-type schema-type
+                                  :raw-content raw-content}))))))
 
 (defn root-redirect-handler
   "Handles root path redirect based on configuration"

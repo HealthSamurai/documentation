@@ -42,6 +42,7 @@
    :description
    (description/parse-description content)
    :title (description/parse-title content filepath)
+   :schema-type (description/parse-schema-type content)
    :parsed
    (md/parse*
     custom-doc
@@ -421,7 +422,7 @@
   "Parse markdown files and return the parsed result without saving to state.
    Takes md-files-idx (map of filepath -> content) and returns vector of parsed files."
   [context md-files-idx]
-  (log/info "Parsing markdown files" {:count (count md-files-idx)})
+  (log/debug "Parsing markdown files" {:count (count md-files-idx)})
   (let [start-time (System/currentTimeMillis)
         ;; Process in batches to reduce future overhead
         batch-size 50
@@ -444,8 +445,8 @@
                           (mapcat identity)
                           vec)
         duration (- (System/currentTimeMillis) start-time)]
-    (log/info "files parsed" {:count (count parsed-files)
-                              :duration-ms duration})
+    (log/debug "files parsed" {:count (count parsed-files)
+                               :duration-ms duration})
     parsed-files))
 
 (defn set-parsed-markdown-index [context md-files-idx]
@@ -460,7 +461,7 @@
        filepath))
 
 (defn render-all! [context parsed-md-index read-markdown-file]
-  (log/info "Pre-rendering all pages" {:count (count parsed-md-index)})
+  (log/debug "Pre-rendering all pages" {:count (count parsed-md-index)})
   (let [start-time (System/currentTimeMillis)
         ;; Process in batches to reduce future overhead
         batch-size 50

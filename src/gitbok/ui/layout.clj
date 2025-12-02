@@ -1,18 +1,20 @@
 (ns gitbok.ui.layout
   (:require
+   [cheshire.core :as json]
+   [clojure.string :as str]
    [gitbok.http :as http]
+   [gitbok.indexing.core :as indexing]
+   [gitbok.products :as products]
+   [gitbok.reload :as reload]
+   [gitbok.schema.core :as schema]
+   [gitbok.schema.extract :as schema-extract]
    [gitbok.state :as state]
+   [gitbok.ui.cookie-banner :as cookie-banner]
+   [gitbok.ui.left-navigation :as left-navigation]
    [gitbok.ui.main-content :as main-content]
    [gitbok.ui.main-navigation :as main-navigation]
-   [gitbok.ui.left-navigation :as left-navigation]
-   [gitbok.ui.cookie-banner :as cookie-banner]
-   [gitbok.indexing.core :as indexing]
-   [gitbok.reload :as reload]
-   [gitbok.products :as products]
-   [cheshire.core :as json]
-   [hiccup2.core]
-   [clojure.string :as str]
-   [gitbok.utils :as utils]))
+   [gitbok.utils :as utils]
+   [hiccup2.core]))
 
 (defn site-footer
   "Site-wide footer component"
@@ -143,9 +145,28 @@
     (main-content/content-div context uri body filepath false hide-breadcrumb)]
    (site-footer context)])
 
-(defn document [context body {:keys [title description canonical-url og-preview lastmod favicon-url section json-ld]}]
+(defn document [context body {:keys [title description canonical-url og-preview lastmod favicon-url section json-ld
+                                      schema-type filepath raw-content]}]
   (let [version (state/get-config context :version)
-        version-param (when version (str "?v=" version))]
+        version-param (when version (str "?v=" version))
+        ;; Resolve schema type: frontmatter overrides auto-detection
+        resolved-schema-type (schema/resolve-schema-type filepath schema-type)
+        ;; Get product logo for JSON-LD
+        product (products/get-current-product context)
+        logo-path (:logo product)
+        logo-url (when logo-path
+                   (http/get-product-absolute-url context logo-path))
+        ;; Build schema data based on type
+        schema-data {:title title
+                     :description description
+                     :url canonical-url
+                     :lastmod lastmod
+                     :image og-preview
+                     :logo-url logo-url
+                     :steps (when (= resolved-schema-type :howto)
+                              (schema-extract/extract-howto-steps raw-content))
+                     :qa-pairs (when (= resolved-schema-type :faq)
+                                 (schema-extract/extract-faq-pairs raw-content))}]
     [:html {:lang "en"
             :class "antialiased"}
      [:head
@@ -164,7 +185,6 @@
       [:meta {:property "og:site_name" :content (or (:name (products/get-current-product context)) "Documentation")}]
       [:meta {:property "article:author" :content "Health Samurai"}]
       [:meta {:property "article:modified_time" :content lastmod}]
-      [:meta {:property "article:published_time" :content ""}]
       [:meta {:property "og:description" :content description}]
       [:meta {:property "og:url" :content canonical-url}]
       [:meta {:property "og:type" :content "article"}]
@@ -194,18 +214,12 @@
       [:link {:rel "stylesheet"
               :href "https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;600&display=swap"}]
 
-      [:script {:type "application/ld+json"}
-       (hiccup2.core/raw
-        (if json-ld
-          ;; Custom JSON-LD (e.g., for blog articles)
-          (str/join "\n\n" (map json/generate-string json-ld))
-          ;; Default JSON-LD for documentation pages
-          (json/generate-string
-           {"@context" "https://schema.org"
-            "@type" "TechArticle"
-            "headline" title
-            "description" description
-            "author" {"@type" "Organization", "name" "HealthSamurai"}})))]
+      (let [json-ld-str (if json-ld
+                          ;; Multiple objects -> wrap in array
+                          (json/generate-string json-ld)
+                          (schema/generate-json-ld resolved-schema-type schema-data))]
+        [:script {:type "application/ld+json"}
+         (hiccup2.core/raw json-ld-str)])
       [:title (str title " | " (or (:name (products/get-current-product context)) "Documentation"))]
 
       [:link {:rel "stylesheet", :href (str (http/get-prefixed-url context "/static/app.min.css") version-param)}]
@@ -306,7 +320,9 @@ gtag('consent', 'default', {
                       lastmod
                       section
                       status
-                      hide-breadcrumb]}]
+                      hide-breadcrumb
+                      schema-type
+                      raw-content]}]
   (let [request (:request ctx)
         status (or status 200)
         uri (:uri request)
@@ -324,6 +340,9 @@ gtag('consent', 'default', {
            {:title title
             :description description
             :section section
+            :schema-type schema-type
+            :filepath filepath
+            :raw-content raw-content
             :canonical-url
             ;; / and /readme is same
             (if (get request :/)

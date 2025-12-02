@@ -52,7 +52,9 @@
                               str/capitalize))]
      (or yaml-title h1-title h2-title filename-title "Untitled"))))
 
-(defn parse-description [content]
+(defn- parse-frontmatter-map
+  "Parses YAML frontmatter and returns the map"
+  [content]
   (let [lines (str/split-lines content)
         first-line (str/trim (first lines))
         start-idx (when (= "---" first-line) 0)
@@ -63,10 +65,19 @@
                         (range (inc start-idx) (count lines))))
         yaml-lines (when (and start-idx end-idx)
                      (subvec (vec lines)
-                             (inc start-idx) end-idx))
-        frontmatter (when yaml-lines (yaml/parse-string (str/join "\n" yaml-lines)))
-        description (:description frontmatter)]
-    description))
+                             (inc start-idx) end-idx))]
+    (when yaml-lines
+      (try
+        (yaml/parse-string (str/join "\n" yaml-lines))
+        (catch Exception _ nil)))))
+
+(defn parse-description [content]
+  (:description (parse-frontmatter-map content)))
+
+(defn parse-schema-type
+  "Parses schema type from frontmatter (e.g., 'howto', 'techarticle', 'faq')"
+  [content]
+  (:schema (parse-frontmatter-map content)))
 
 (defn hack-h1-and-description [context
                                filepath
