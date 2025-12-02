@@ -1,11 +1,9 @@
 # Run Aidbox in Sandbox
 
-This quickstart guide explains how to run **Aidbox** in the [Aidbox Cloud Sandbox](https://aidbox.app). It will help you set up a hosted Aidbox instance with a **Development license** You will learn to get a hosted Aidbox instance with a Development license.&#x20;
-
+This quickstart guide explains how to run **Aidbox** in the [Aidbox Cloud Sandbox](https://aidbox.app). It will help you set up a hosted Aidbox instance with a **Development license** You will learn to get a hosted Aidbox instance with a Development license.
 ## Sign up for the Aidbox portal
 
-* Go to the [Aidbox portal](https://aidbox.app).&#x20;
-* [Create an account](https://aidbox.app/ui/portal#/signup) or [log in](https://aidbox.app/ui/portal#/signin) if you already have one.
+* Go to the [Aidbox portal](https://aidbox.app).* [Create an account](https://aidbox.app/ui/portal#/signup) or [log in](https://aidbox.app/ui/portal#/signin) if you already have one.
 
 ## Create a managed Aidbox instance
 
@@ -19,6 +17,5 @@ This quickstart guide explains how to run **Aidbox** in the [Aidbox Cloud Sandbo
   * **FHIR Version**: Select the appropriate version for your use case.
 * Click **Create** button.
 
-## Access your Aidbox instance&#x20;
-
+## Access your Aidbox instance
 * You can open your **hosted Aidbox instance** in a browser by clicking the **Instance URL** link on the product summary page.
