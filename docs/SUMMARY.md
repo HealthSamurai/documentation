@@ -501,6 +501,7 @@
       * [Run Aidbox + FHIR Portal locally](modules/compliance/aidbox-+-fhir-app-portal/getting-started/run-aidbox-+-fhir-portal-locally.md)
       * [Run Aidbox + FHIR Portals on k8s](modules/compliance/aidbox-+-fhir-app-portal/getting-started/run-aidbox-+-fhir-portals-on-k8s.md)
       * [Migrate from Smartbox to Aidbox + FHIR App portal](modules/compliance/aidbox-+-fhir-app-portal/getting-started/smartbox-to-aidbox-migration-guide.md)
+      * [Flow Description](modules/compliance/aidbox-+-fhir-app-portal/getting-started/flow-description.md)
     * [App Gallery](modules/compliance/aidbox-+-fhir-app-portal/app-gallery.md)
     * [Developer sandbox](modules/compliance/aidbox-+-fhir-app-portal/developer-sandbox.md)
     * [FHIR Admin portal](modules/compliance/aidbox-+-fhir-app-portal/fhir-admin-portal.md)
