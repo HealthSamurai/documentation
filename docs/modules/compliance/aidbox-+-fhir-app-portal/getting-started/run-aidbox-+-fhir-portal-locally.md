@@ -36,11 +36,12 @@ In this guide `mailgun` is used to send email. FHIR App Portal also supports [di
 Email provider is used to communicate with users (developers, patients). It sends emails for email verification, resetting of a password and etc.
 
 ## **Create docker-compose.yaml**
-Create a `docker-compose.yaml` file and paste the following content (under Details button):
+Create a `docker-compose.yaml` file and paste the following content:
 
 <details>
+<summary>Click to view docker-compose.yaml</summary>
+
 ```yaml
-# docker-compose.yaml
 version: "3.7"
 
 volumes:
@@ -187,15 +188,15 @@ services:
       PORTAL_BACKEND_PORT: ${PORTAL_BACKEND_PORT:-8081}
       SESSION_SECRET: ${SESSION_SECRET:-changeme-secure-session-secret}
       DEPLOYMENT_MODE: prod
-      AIDBOX_DEV_URL: http://aidbox-dev:8090
-      AIDBOX_ADMIN_URL: http://aidbox-admin:8080
-      ADMIN_AIDBOX_PUBLIC_URL: http://localhost:8080
-      DEVELOPER_AIDBOX_PUBLIC_URL: http://localhost:8090
-      ADMIN_FRONTEND_URL: http://localhost:8095
-      DEVELOPER_FRONTEND_URL: http://localhost:8096
-      AIDBOX_DEV_PUBLIC_URL: http://localhost:8090
-      AIDBOX_ADMIN_PUBLIC_URL: http://localhost:8080
-      CORS_ORIGINS: http://localhost:8095,http://localhost:8096
+      AIDBOX_DEV_URL: ${AIDBOX_DEV_URL:-http://aidbox-dev:8090}
+      AIDBOX_ADMIN_URL: ${AIDBOX_ADMIN_URL:-http://aidbox-admin:8080}
+      ADMIN_AIDBOX_PUBLIC_URL: ${ADMIN_AIDBOX_PUBLIC_URL:-http://localhost:8080}
+      DEVELOPER_AIDBOX_PUBLIC_URL: ${DEVELOPER_AIDBOX_PUBLIC_URL:-http://localhost:8090}
+      ADMIN_FRONTEND_URL: ${ADMIN_FRONTEND_URL:-http://localhost:8095}
+      DEVELOPER_FRONTEND_URL: ${DEVELOPER_FRONTEND_URL:-http://localhost:8096}
+      AIDBOX_DEV_PUBLIC_URL: ${AIDBOX_DEV_PUBLIC_URL:-http://localhost:8090}
+      AIDBOX_ADMIN_PUBLIC_URL: ${AIDBOX_ADMIN_PUBLIC_URL:-http://localhost:8080}
+      CORS_ORIGINS: ${CORS_ORIGINS:-http://localhost:8095,http://localhost:8096}
     healthcheck:
       test:
         [
@@ -204,13 +205,14 @@ services:
           "--quiet",
           "--tries=1",
           "--spider",
-          "http://localhost:80/health",
+          "http://localhost:8095/health",
         ]
       interval: 10s
       timeout: 5s
       retries: 5
       start_period: 10s
 ```
+
 </details>
 
 ## **Create .env file**
@@ -218,8 +220,9 @@ services:
 Create .env file in the same folder alongside with docker-compose.yaml and set environment variables:
 
 <details>
-```shell
+<summary>Click to view .env file</summary>
 
+```shell
 # -----------------------------------------------------------------------------
 # Licenses
 # -----------------------------------------------------------------------------
@@ -328,6 +331,7 @@ DEV_MODE=true
 # BOX_BULK__STORAGE_AZURE_ACCOUNT__KEY=your-account-key
 # BOX_BULK__STORAGE_AZURE_CONTAINER=your-container-name
 ```
+
 </details>
 
 <!-- {% hint style="info" %}
