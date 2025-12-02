@@ -76,6 +76,12 @@
           (when ends-with-slash?
             (str (subs relative-page-link-without-section 0 (dec (count relative-page-link-without-section))) ".md"))
 
+          ;; Fallback: if link doesn't have .md extension, try adding it
+          relative-page-link-md-fallback
+          (when (and (not ends-with-slash?)
+                     (not (str/ends-with? relative-page-link-without-section ".md")))
+            (str relative-page-link-without-section ".md"))
+
           current-page-filename
           (last (str/split current-page-filepath #"/"))
 
@@ -97,10 +103,12 @@
                                (when-let [uri (:uri (get file->uri-idx path))]
                                  (http/get-product-prefixed-url context (str "/" uri)))))
 
-              ;; Try primary path first, then fallback
+              ;; Try primary path first, then fallbacks
               resolved-path (or (resolve-path relative-page-link-primary)
                                 (when relative-page-link-fallback
-                                  (resolve-path relative-page-link-fallback)))]
+                                  (resolve-path relative-page-link-fallback))
+                                (when relative-page-link-md-fallback
+                                  (resolve-path relative-page-link-md-fallback)))]
           (if section
             (str resolved-path "#" section)
             resolved-path))))))
