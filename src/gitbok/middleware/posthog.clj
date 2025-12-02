@@ -6,69 +6,53 @@
    [gitbok.products :as products]
    [gitbok.state :as state]))
 
-(defn- build-excluded-paths-regex
-  "Build regex pattern for paths that should not be tracked in PostHog.
-   Takes into account the DOCS_PREFIX."
-  [prefix]
-  (let [prefix-path (if (str/blank? prefix) "" prefix)
-        excluded-paths ["static/"
-                        "\\.gitbook/assets/"
-                        "public/og-preview/"
-                        "partial/"
-                        "api/"]
-        file-extensions ["js" "css" "svg" "jpg" "png" "ico" "woff" "woff2" "ttf" "eot"]
-        system-endpoints ["metrics" "healthcheck" "version" "debug" "service-worker\\.js" "\\.well-known"]
+(def ^:private special-path-filenames
+  "Set of special filenames that should be tracked (SEO, AI/LLM, RSS, security)."
+  #{"sitemap.xml" "llms.txt" "llms-full.txt" "robots.txt"
+    "openapi.json" "openapi.yaml" "ai-plugin.json"
+    "feed.xml" "rss.xml" "atom.xml" "security.txt"})
 
-        prefix-pattern (when-not (str/blank? prefix-path)
-                         (str "^" prefix-path "/(" (str/join "|" excluded-paths) "|.*\\.(" (str/join "|" file-extensions) ")$)"))
-        system-pattern (str "^/(" (str/join "|" system-endpoints) ")")
-
-        full-pattern (if prefix-pattern
-                       (str prefix-pattern "|" system-pattern)
-                       system-pattern)]
-    (re-pattern full-pattern)))
-
-(defn- should-track-path?
-  "Check if the path should be tracked in PostHog.
-   Filters out system endpoints, static assets, and partials."
-  [uri excluded-paths-regex]
-  (not (re-find excluded-paths-regex uri)))
+(defn- special-path?
+  "Check if the URI is a special path that should be tracked.
+   Tracks SEO files, AI/LLM files, RSS feeds, and security files."
+  [uri]
+  (when uri
+    (let [filename (last (str/split uri #"/"))]
+      (or (contains? special-path-filenames filename)
+          (str/ends-with? uri "/.well-known/ai-plugin.json")
+          (str/ends-with? uri "/.well-known/security.txt")))))
 
 (defn wrap-posthog-tracking
-  "Middleware to track page views in PostHog.
-   Sends docs_page_view event for each request."
+  "Middleware to track special paths in PostHog.
+   Sends docs_special_paths event for SEO, AI/LLM, RSS, and security files."
   [handler context]
-  (let [prefix (state/get-config context :prefix "/docs")
-        excluded-paths-regex (build-excluded-paths-regex prefix)]
-    (fn [request]
-      (let [response (handler request)
-            uri (:uri request)
-            session-id (:session-id request)]
-        (try
-          (when-let [session-id session-id]
-            (let [uri uri]
-              (when (should-track-path? uri excluded-paths-regex)
-                (let [current-product (products/get-current-product
-                                     (assoc context :request request))
-                    product-id (or (:id current-product) "unknown")
-                    user-agent (get-in request [:headers "user-agent"])
-                    base-url (state/get-config context :base-url)
-                    properties {"url" (str (or (:scheme request) "http") "://"
-                                           (or (get-in request [:headers "host"]) "")
-                                           (or uri ""))
-                                "base_url" (or base-url "")
-                                "path" (or uri "")
-                                "user_agent" (or user-agent "")
-                                "product" product-id
-                                "method" (if-let [method (:request-method request)]
-                                           (name method)
-                                           "unknown")
-                                "status" (or (:status response) 0)}]
-                ;; SDK uses internal queue - non-blocking
-                (posthog/capture-event! context
-                                        session-id
-                                        "docs_page_view"
-                                        properties)))))
-          (catch Exception e
-            (log/error e "Failed to track page view in PostHog")))
-        response))))
+  (fn [request]
+    (let [response (handler request)
+          uri (:uri request)
+          session-id (:session-id request)]
+      (try
+        (when (and session-id (special-path? uri))
+          (let [current-product (products/get-current-product
+                                  (assoc context :request request))
+                product-id (or (:id current-product) "unknown")
+                user-agent (get-in request [:headers "user-agent"])
+                base-url (state/get-config context :base-url)
+                scheme (if-let [s (:scheme request)] (name s) "https")
+                properties {"url" (str scheme "://"
+                                       (or (get-in request [:headers "host"]) "")
+                                       (or uri ""))
+                            "base_url" (or base-url "")
+                            "path" (or uri "")
+                            "user_agent" (or user-agent "")
+                            "product" product-id
+                            "method" (if-let [method (:request-method request)]
+                                       (name method)
+                                       "unknown")
+                            "status" (or (:status response) 0)}]
+            (posthog/capture-event! context
+                                    session-id
+                                    "docs_special_paths"
+                                    properties)))
+        (catch Exception e
+          (log/error e "Failed to track special path in PostHog")))
+      response)))
