@@ -16,7 +16,7 @@
     * Tenant-aware [group-level export](../access-control/authorization/scoped-api/organization-based-hierarchical-access-control.md#group-level-export) is now supported.
     * Added a tenant-aware AuditEvent generation.
   * Support for **GCP Workload Identity** for the [$export](../api/bulk-api/export.md) in both GCP and Azure environments.
-  * Support for **Azure Workload Identity** to access [Azure Blob Storage](../file-storage/azure-blob-storage#workload-identity).
+  * Support for **Azure Workload Identity** to access [Azure Blob Storage](../file-storage/azure-blob-storage.md#workload-identity).
   * Contained resources are now supported in [GraphQL API](../api/graphql-api.md).
   * Improved error handling on Bundle validation and processing.
 * Aidbox Forms
