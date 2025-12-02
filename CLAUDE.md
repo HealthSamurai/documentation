@@ -43,3 +43,6 @@ You can run all tests in one namespace, for example:
 make test-single TEST=proto.search.chained-int-test
 ```
 
+## Development Workflow
+
+Prefer rg for searching over find or grep
