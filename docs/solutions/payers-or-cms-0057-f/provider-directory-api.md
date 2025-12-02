@@ -1,2 +1,0 @@
-# Provider directory API
-

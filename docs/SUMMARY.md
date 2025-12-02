@@ -561,6 +561,7 @@
 
 ## Solutions
 
+* [Overview](solutions/overview.md)
 * [Aidbox + FHIR App portal](solutions/aidbox-+-fhir-app-portal/README.md)
   * [Getting started](solutions/aidbox-+-fhir-app-portal/getting-started/README.md)
     * [Run Aidbox + FHIR Portal locally](solutions/aidbox-+-fhir-app-portal/getting-started/run-aidbox-+-fhir-portal-locally.md)
@@ -570,12 +571,6 @@
   * [App Gallery](solutions/aidbox-+-fhir-app-portal/app-gallery.md)
   * [Developer sandbox](solutions/aidbox-+-fhir-app-portal/developer-sandbox.md)
   * [FHIR Admin portal](solutions/aidbox-+-fhir-app-portal/fhir-admin-portal.md)
-* [Payers | CMS-0057-F](solutions/payers-or-cms-0057-f/README.md)
-  * [Patient Access API](solutions/payers-or-cms-0057-f/patient-access-api.md)
-  * [Provider directory API](solutions/payers-or-cms-0057-f/provider-directory-api.md)
-  * [Prior Auth API](solutions/payers-or-cms-0057-f/prior-auth-api.md)
-  * [Payer-to-Payer API](solutions/payers-or-cms-0057-f/payer-to-payer-api.md)
-  * [Provider Access API](solutions/payers-or-cms-0057-f/provider-access-api.md)
 * [Providers | ONC Health IT Certification Program](solutions/providers-or-onc-health-it-certification-program/README.md)
   * [(g)(10): Standardized API for Patient and Population Services](solutions/providers-or-onc-health-it-certification-program/g-10-standardized-api-for-patient-and-population-services/README.md)
     * [Pass Inferno Tests with Aidbox](solutions/providers-or-onc-health-it-certification-program/g-10-standardized-api-for-patient-and-population-services/pass-inferno-tests-with-aidbox.md)
