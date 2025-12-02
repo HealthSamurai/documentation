@@ -23,7 +23,7 @@
         date-str))))
 
 (defn format-date-short
-  "Format date from YYYY-MM-DD to 'Mon DD, YYYY' (for JSON-LD)"
+  "Format date from YYYY-MM-DD to 'Mon DD, YYYY' (for display)"
   [date-str]
   (when date-str
     (try
@@ -34,6 +34,16 @@
         (str (nth month-names month-idx) " " day ", " year))
       (catch Exception _
         date-str))))
+
+(defn format-date-iso
+  "Convert date to full ISO 8601 format with timezone for JSON-LD.
+   YYYY-MM-DD -> YYYY-MM-DDT00:00:00Z
+   Already full ISO -> pass through"
+  [date-str]
+  (when date-str
+    (if (re-matches #"\d{4}-\d{2}-\d{2}" date-str)
+      (str date-str "T00:00:00Z")
+      date-str)))
 
 (defn filter-bar
   "Render category filter bar"
@@ -380,9 +390,9 @@
                     "genre" category
                     "keywords" (when (seq tags) (str/join ", " tags))
                     "url" article-url
-                    "datePublished" (format-date-short published)
-                    "dateCreated" (format-date-short published)
-                    "dateModified" (format-date-short published)
+                    "datePublished" (format-date-iso published)
+                    "dateCreated" (format-date-iso published)
+                    "dateModified" (format-date-iso published)
                     "description" teaser
                     "timeRequired" reading-time
                     "author" {"@type" "Person"

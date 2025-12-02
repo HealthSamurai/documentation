@@ -73,13 +73,10 @@
 (defn- parse-article
   "Parse article markdown file into metadata and rendered content."
   [context filepath]
-  (log/debug "Parsing article" {:filepath filepath})
   (when-let [content (load-article-content filepath)]
     (let [;; Skip link resolution for blog - no product index available
           ctx (assoc context :skip-link-resolution true)
-          _ (log/debug "Context prepared" {:skip-link-resolution true})
           {:keys [metadata content]} (frontmatter/parse-frontmatter content)
-          _ (log/debug "Frontmatter parsed" {:title (:title metadata)})
           ;; Get folder name as slug (e.g., blog/my-article/index.md -> my-article)
           folder-name (-> filepath
                           (io/file)
@@ -93,11 +90,8 @@
                   (if (str/starts-with? img "http")
                     img
                     (str url-prefix "/blog/static/img/" folder-name "/" img)))
-          _ (log/debug "Starting markdown parse" {:slug slug})
           parsed (markdown/parse-markdown-content ctx [filepath content-with-images])
-          _ (log/debug "Markdown parsed, starting render" {:slug slug})
-          rendered (markdown/render-md ctx filepath (:parsed parsed))
-          _ (log/debug "Article rendered" {:slug slug})]
+          rendered (markdown/render-md ctx filepath (:parsed parsed))]
       {:slug slug
        :filepath filepath
        :folder folder-name
@@ -143,24 +137,22 @@
 (defn- build-cache
   "Load and parse all blog articles, building cache structure."
   [context]
-  (log/info "Building blog cache..." {:blog-dir (get-blog-dir context)})
   (let [files (list-article-folders context)
-        _ (log/info "Found blog articles" {:count (count files)})
+        _ (log/debug "Found blog articles" {:count (count files)})
         articles (doall
                   (keep (fn [filepath]
                           (try
-                            (log/debug "Processing" {:file filepath})
                             (parse-article context filepath)
                             (catch Exception e
                               (log/error e "Failed to parse article" {:filepath filepath})
                               nil)))
                         files))
-        _ (log/info "Articles parsed" {:count (count articles)})
+        _ (log/debug "Articles parsed" {:count (count articles)})
         articles-map (into {} (map (juxt :slug identity) articles))
         index (build-article-index articles)
         tags (extract-all-categories articles)
         category-mappings (build-category-mappings tags)]
-    (log/info "Blog cache built" {:articles (count articles) :tags (count tags)})
+    (log/debug "Blog cache built" {:articles (count articles) :tags (count tags)})
     {:articles articles-map
      :index index
      :tags tags
@@ -173,7 +165,7 @@
         nav-config (load-nav-config context)]
     (state/set-cache! context :blog cache)
     (state/set-cache! context :blog-nav nav-config)
-    (log/info "Blog nav config loaded" {:items (count (:nav-items nav-config))})
+    (log/debug "Blog nav config loaded" {:items (count (:nav-items nav-config))})
     cache))
 
 (defn reload-blog-cache!
