@@ -84,11 +84,15 @@ function updateActiveNavItem(pathname) {
   if (bestMatch) {
     bestMatch.classList.add('active');
 
-    // Open all parent details elements
-    let parent = bestMatch.closest('details');
+    // Open all parent nav-item elements
+    let parent = bestMatch.closest('.nav-item');
     while (parent) {
-      parent.setAttribute('open', '');
-      parent = parent.parentElement ? parent.parentElement.closest('details') : null;
+      parent.classList.add('open');
+      const children = parent.querySelector('.nav-children');
+      if (children) children.hidden = false;
+      const button = parent.querySelector('.nav-summary');
+      if (button) button.setAttribute('aria-expanded', 'true');
+      parent = parent.parentElement ? parent.parentElement.closest('.nav-item') : null;
     }
   }
 
@@ -153,10 +157,41 @@ function scrollToActiveNavItem() {
   navigation.scrollTop = Math.max(0, targetScrollTop);
 }
 
+// Toggle navigation items on button click (chevron only, not links)
+function initializeNavToggle() {
+  document.addEventListener('click', function(e) {
+    const button = e.target.closest('.nav-summary');
+    if (!button) return;
+
+    // Don't toggle if clicking on the link (let HTMX handle navigation)
+    if (e.target.closest('a')) return;
+
+    e.preventDefault();
+    e.stopPropagation();
+
+    const navItem = button.closest('.nav-item');
+    const children = navItem.querySelector('.nav-children');
+    if (!children) return;
+
+    const isOpen = navItem.classList.contains('open');
+
+    if (isOpen) {
+      navItem.classList.remove('open');
+      children.hidden = true;
+      button.setAttribute('aria-expanded', 'false');
+    } else {
+      navItem.classList.add('open');
+      children.hidden = false;
+      button.setAttribute('aria-expanded', 'true');
+    }
+  });
+}
+
 // Make functions globally available
 window.updateActiveNavItem = updateActiveNavItem;
 window.scrollToActiveNavItem = scrollToActiveNavItem;
 window.switchTab = switchTab;
+window.initializeNavToggle = initializeNavToggle;
 
 function updatePageTitle() {
   // Find the first h1 in the content
@@ -439,14 +474,20 @@ function initializePageActionsDropdown() {
 
   if (!toggle || !dropdown) return;
 
-  // Remove existing event listeners by cloning and replacing
-  const newToggle = toggle.cloneNode(true);
-  toggle.parentNode.replaceChild(newToggle, toggle);
+  // Skip if already initialized (check for data attribute)
+  if (toggle.dataset.initialized) {
+    console.log('already initialized, skipping');
+    return;
+  }
+  toggle.dataset.initialized = 'true';
+  console.log('initializing toggle');
 
-  // Toggle dropdown on arrow button click
-  newToggle.addEventListener('click', function (e) {
+  // Click handler for toggle
+  toggle.addEventListener('click', function (e) {
+    console.log('click handler fired');
     e.stopPropagation();
     togglePageActionsDropdown();
+    console.log('dropdown toggled');
   });
 
   // Remove old document click handler if exists
@@ -454,12 +495,14 @@ function initializePageActionsDropdown() {
     document.removeEventListener('click', window._pageActionsClickHandler);
   }
 
-  // Create new click handler
+  // Create new click handler for closing when clicking outside
   window._pageActionsClickHandler = function (e) {
     const currentDropdown = document.getElementById('page-actions-dropdown');
     const currentToggle = document.getElementById('page-actions-toggle');
+    console.log('document click handler, target:', e.target, 'inDropdown:', currentDropdown?.contains(e.target), 'inToggle:', currentToggle?.contains(e.target));
     if (currentDropdown && currentToggle) {
       if (!currentDropdown.contains(e.target) && !currentToggle.contains(e.target)) {
+        console.log('closing from document handler');
         closePageActionsDropdown();
       }
     }
@@ -473,11 +516,15 @@ function togglePageActionsDropdown() {
   const dropdown = document.getElementById('page-actions-dropdown');
   if (dropdown) {
     const isOpen = !dropdown.classList.contains('hidden');
+    console.log('togglePageActionsDropdown: isOpen=', isOpen);
     if (isOpen) {
+      console.log('closing dropdown');
       closePageActionsDropdown();
     } else {
+      console.log('opening dropdown');
       openPageActionsDropdown();
     }
+    console.log('after toggle, hidden=', dropdown.classList.contains('hidden'));
   }
 }
 
@@ -1289,6 +1336,7 @@ function showCopySuccess(button) {
     initializePageActionsDropdown();
     initializeSearch();
     initializeCopyButtons();
+    initializeNavToggle();
 
     // Process content if HTMX not available
     if (typeof htmx === 'undefined') {

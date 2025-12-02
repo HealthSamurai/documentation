@@ -91,7 +91,7 @@
 (defn render-breadcrumb-container
   "Renders the container with breadcrumb and/or copy page dropdown"
   [breadcrumb-nav dropdown]
-  [:div {:class "flex items-center gap-2 mb-[11px]"}
+  [:div {:class "flex items-center gap-2 mb-[11px] overflow-visible"}
    (when breadcrumb-nav breadcrumb-nav)
    (when dropdown dropdown)])
 

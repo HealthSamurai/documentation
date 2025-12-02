@@ -68,7 +68,7 @@
     (let [current-url (http/get-product-prefixed-url context uri)
           md-url (str current-url ".md")
           github-url (build-github-edit-url context filepath)]
-      [:div {:class "relative inline-flex ml-auto"}
+      [:div {:class "relative inline-flex ml-auto overflow-visible"}
        ;; Split button group
        [:div {:class "inline-flex rounded-md shadow-sm"}
         ;; Left button: Copy Page action
@@ -87,7 +87,7 @@
          (ico/chevron-down "size-3")]]
        ;; Dropdown menu
        [:div {:id "page-actions-dropdown"
-              :class "hidden absolute right-0 top-full mt-2 w-64 rounded-md shadow-lg bg-surface z-[9999] border border-outline"}
+              :class "hidden absolute right-0 top-full mt-2 min-w-80 sm:min-w-64 sm:w-64 rounded-md shadow-lg bg-surface z-[9999] border border-outline"}
         [:div {:class "py-1"}
          (copy-page-item md-url)
          (view-markdown-item md-url)
