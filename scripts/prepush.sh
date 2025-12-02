@@ -3,6 +3,9 @@
 # Pre-push validation script
 # Runs all documentation checks before pushing
 
+# Show hint on error
+trap 'echo ""; echo "Tip: Run \"make init\" locally to install pre-push hook with these checks."' ERR
+
 echo "=== Pre-push Validation ==="
 
 python3 ./scripts/check_h1_headers.py || exit 1
