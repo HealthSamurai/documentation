@@ -1,6 +1,8 @@
 # Release Notes
 
-## November 2025 _`edge`_
+## December 2025 _`edge`_
+
+## November 2025 _`latest, 2511`_
 
 * Aidbox FHIR server
   * Improvements in **Implementation Guide (IG) Management**:
@@ -16,8 +18,10 @@
   * Supported [multitenancy in Form UI](../modules/aidbox-forms/aidbox-ui-builder-alpha/forms-multitenancy.md) for creating and sharing forms between organizations.
   * Added support for the [NHS design system](../modules/aidbox-forms/aidbox-ui-builder-alpha/form-creation/nhs-look-and-feel.md) to create forms according to the NHS style guide and embed them into the NHS app.
   * Improved PDF/Questionnaire import with clearer error display and easy navigation between errors.
+* Minor updates
+  * `2510.1` - Fix redirects after registration email confirmation
 
-## October 2025 _`latest, 2510`_
+## October 2025 _`stable, 2510`_
 
 * Aidbox FHIR server
   * Published a [tutorial](../modules/compliance/providers-or-onc-health-it-certification-program/g-10-standardized-api-for-patient-and-population-services/pass-inferno-tests-with-aidbox.md) on how to pas **Inferno tests** (US Core 6.1.0 / USCDI v3 and SMART App Launch 2.0.0). You can run these tests on **Health Samurai-hosted Inferno instance** [here](https://www.health-samurai.io/inferno/onc_certification_g10).
