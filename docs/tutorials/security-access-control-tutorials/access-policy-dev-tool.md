@@ -24,7 +24,7 @@ The dev tool is a part of Aidbox UI Console, which aims
 * to edit AccessPolicy resource, and
 * to give a nice view for AccessPolicy debug output for specific request in the same place.
 
-<figure><img src="../../.gitbook/assets/282099be-926f-4dc0-a525-0fec435c5e3b.png" alt="Access policy dev tool interface showing editor and results"><figcaption><p>Access policy dev tool</p></figcaption></figure>
+<figure><img src="../../.gitbook/assets/282099be-926f-4dc0-a525-0fec435c5e3b (1).png" alt="Access policy dev tool interface showing editor and results"><figcaption><p>Access policy dev tool</p></figcaption></figure>
 
 The dev tool is split on two sides, editor side and result side. On the left side you define
 

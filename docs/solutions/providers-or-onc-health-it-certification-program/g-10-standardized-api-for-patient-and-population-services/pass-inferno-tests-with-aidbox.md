@@ -22,8 +22,8 @@ This setup has been tested using the next test suite
 #### 1. Aidbox is publicly available on the Internet
 
 * Run Aidbox in the cloud [Sandbox](https://aidbox.app/) or
-* Run [Aidbox on Kubernetes](../../../../deployment-and-maintenance/deploy-aidbox/run-aidbox-in-kubernetes/) or
-* Run [Aidbox locally](../../../../getting-started/run-aidbox-locally.md) and proxy it with tools like ngrok/cloudflared tunnel
+* Run [Aidbox on Kubernetes](../../../deployment-and-maintenance/deploy-aidbox/run-aidbox-in-kubernetes/) or
+* Run [Aidbox locally](../../../getting-started/run-aidbox-locally.md) and proxy it with tools like ngrok/cloudflared tunnel
 
 #### 2. Aidbox settings
 
@@ -34,7 +34,7 @@ From the Aidbox UI left sidebar menu, go to Settings and check these two:
 
 #### 3. Set up bucket for Bulk Export test
 
-You need to [set up](../../../../api/bulk-api/export.md#setup-storage) S3 Bucket for `Multi-Patient Authorization and API STU2` test step.
+You need to [set up](../../../api/bulk-api/export.md#setup-storage) S3 Bucket for `Multi-Patient Authorization and API STU2` test step.
 
 #### 4. Load US Core Package
 

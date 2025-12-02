@@ -1,48 +1,56 @@
 ---
-description: >-
-  This tutorial will guide you through Aidbox + FHIR App Portal installation
+description: This tutorial will guide you through Aidbox + FHIR App Portal installation
 ---
 
-TODO add to each header link like this: ### Aidbox license<a href="#license" id="license"></a>
 # Run Aidbox + FHIR Portal locally
 
-## Prerequisites
+TODO add to each header link like this: ### Aidbox license
 
-### Required Software
-- **Docker** and **Docker Compose** - [Install Docker](https://docs.docker.com/get-docker/)
-- **Docker Compose** v2.0 or later
+## Run Aidbox + FHIR Portal locally
 
-### Required Licenses
+### Prerequisites
+
+#### Required Software
+
+* **Docker** and **Docker Compose** - [Install Docker](https://docs.docker.com/get-docker/)
+* **Docker Compose** v2.0 or later
+
+#### Required Licenses
+
 You need two Aidbox licenses you can get from the [Aidbox User Portal](https://aidbox.app):
+
 1. **Admin Aidbox License** - For the admin/patient management system
 2. **Developer Aidbox License** - For the developer sandbox environment
 
 It is a JWT token that looks like:
+
 ```
 eyJhbGciOiJ...
 ```
 
-## **Required: Email Provider Configuration**
+### **Required: Email Provider Configuration**
 
 {% hint style="info" %}
-In this guide `mailgun` is used to send email. FHIR App Portal also supports [different email providers](../../../smartbox/how-to-guides/setup-email-provider.md) and [SMTP](../../../smartbox/how-to-guides/setup-email-provider.md#how-to-set-up-smtp)
+In this guide `mailgun` is used to send email. FHIR App Portal also supports [different email providers](../../../modules/smartbox/how-to-guides/setup-email-provider.md) and [SMTP](../../../modules/smartbox/how-to-guides/setup-email-provider.md#how-to-set-up-smtp)
 {% endhint %}
 
 Email provider is used to communicate with users (developers, patients). It sends emails for email verification, resetting of a password and etc.
 
-## Quick Start
+### Quick Start
 
-### **Step 1: Create Project Directory**
+#### **Step 1: Create Project Directory**
 
 ```bash
 mkdir fhir-app-portal
 cd fhir-app-portal
 ```
 
-## **Step 2: Create docker-compose.yaml**
+### **Step 2: Create docker-compose.yaml**
+
 Create a `docker-compose.yaml` file and paste the following content:
 
 <details>
+
 <summary>Click to view docker-compose.yaml</summary>
 
 ```yaml
@@ -219,11 +227,12 @@ services:
 
 </details>
 
-## **Step 3: Create .env file**
+### **Step 3: Create .env file**
 
 Create `.env` file in the same folder alongside with `docker-compose.yaml` and copy environment variables:
 
 <details>
+
 <summary>Click to view .env file</summary>
 
 ```shell
@@ -340,15 +349,12 @@ DEV_MODE=true
 
 </details>
 
-<!-- {% hint style="success" %}
-To use alternative email provider see the [document](../../../smartbox/how-to-guides/setup-email-provider.md)
-{% endhint %} -->
-
-## **Step 4: Create initBundleDeveloper.json for Sandbox Aidbox**
+### **Step 4: Create initBundleDeveloper.json for Sandbox Aidbox**
 
 Create `initBundleDeveloper.json` file in the same folder alongside with `docker-compose.yaml` and copy the content:
 
 <details>
+
 <summary>Click to view Sandbox Init Bundle file</summary>
 
 ```json
@@ -937,11 +943,12 @@ Create `initBundleDeveloper.json` file in the same folder alongside with `docker
 
 </details>
 
-## **Step 5: Create Init Bundle for Admin Aidbox**
+### **Step 5: Create Init Bundle for Admin Aidbox**
 
 Create `initBundleAdmin.json` file in the same folder alongside with `docker-compose.yaml` and copy the content:
 
 <details>
+
 <summary>Click to view Admin Init Bundle file</summary>
 
 ```json
@@ -1359,33 +1366,23 @@ Create `initBundleAdmin.json` file in the same folder alongside with `docker-com
 
 </details>
 
-## **Step 6: Launch Aidbox**
+### **Step 6: Launch Aidbox**
 
 Run the following command:
 
 ```shell
 docker compose up
 ```
-<!-- docker compose pull && docker compose up -->
 
-## **Step 7: How to access services**
+### **Step 7: How to access services**
 
 Now Aidboxes and FHIR App Portal are ready. They're accessible by the following URLs:
 
-- **Admin/Patient Portal** ([http://localhost:8095](http://localhost:8095)) - Manage users, review apps, monitor the system as admin and also access App Gallery as patient
-- **Developer Sandbox Portal** ([http://localhost:8096](http://localhost:8096)) - Register and test SMART on FHIR applications
-- **Admin/Patient Aidbox Instance** - ([http://admin.localhost:8080](http://admin.localhost:8080)) - Separate FHIR server for Admin/Patient environment
-- **Sanbox Aidbox Instance** - ([http://localhost:8090](http://localhost:8090)) - Separate FHIR server for Sandbox (Developer) environment
+* **Admin/Patient Portal** ([http://localhost:8095](http://localhost:8095)) - Manage users, review apps, monitor the system as admin and also access App Gallery as patient
+* **Developer Sandbox Portal** ([http://localhost:8096](http://localhost:8096)) - Register and test SMART on FHIR applications
+* **Admin/Patient Aidbox Instance** - ([http://admin.localhost:8080](http://admin.localhost:8080)) - Separate FHIR server for Admin/Patient environment
+* **Sanbox Aidbox Instance** - ([http://localhost:8090](http://localhost:8090)) - Separate FHIR server for Sandbox (Developer) environment
 
+TODO add step when we create accesspolicy manually TODO check out product/04-documentation/CUSTOMER\_SETUP.md TODO apply envbust for Client secrets in init bundles https://github.com/Aidbox/examples/tree/main/aidbox-features/init-bundle-env-template TODO add step when user defines redirect\_to in email template or set it with envbust TODO orgbac BOX\_SECURITY\_ORGBAC\_ENABLED mode add step for data isolation (if you want isolation of data in aidobx and portal you should add the following envs:BOX\_SECURITY\_ORGBAC\_ENABLED)
 
-
-
-
-TODO add step when we create accesspolicy manually
-TODO check out product/04-documentation/CUSTOMER_SETUP.md
-TODO apply envbust for Client secrets in init bundles https://github.com/Aidbox/examples/tree/main/aidbox-features/init-bundle-env-template
-TODO add step when user defines redirect_to in email template or set it with envbust
-TODO orgbac BOX_SECURITY_ORGBAC_ENABLED mode add step for data isolation (if you want isolation of data in aidobx and portal you should add the following envs:BOX_SECURITY_ORGBAC_ENABLED)
-
-TODO flow description move to 3 files
-TODO move overview to the end
+TODO flow description move to 3 files TODO move overview to the end
