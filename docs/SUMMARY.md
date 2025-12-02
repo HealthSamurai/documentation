@@ -571,14 +571,10 @@
   * [App Gallery](solutions/aidbox-+-fhir-app-portal/app-gallery.md)
   * [Developer sandbox](solutions/aidbox-+-fhir-app-portal/developer-sandbox.md)
   * [FHIR Admin portal](solutions/aidbox-+-fhir-app-portal/fhir-admin-portal.md)
-* [Providers | ONC Health IT Certification Program](solutions/providers-or-onc-health-it-certification-program/README.md)
+* [ONC Health IT Certification Program](solutions/providers-or-onc-health-it-certification-program/README.md)
   * [(g)(10): Standardized API for Patient and Population Services](solutions/providers-or-onc-health-it-certification-program/g-10-standardized-api-for-patient-and-population-services/README.md)
     * [Pass Inferno Tests with Aidbox](solutions/providers-or-onc-health-it-certification-program/g-10-standardized-api-for-patient-and-population-services/pass-inferno-tests-with-aidbox.md)
     * [Pass Inferno Visual Inspection and Attestation](solutions/providers-or-onc-health-it-certification-program/g-10-standardized-api-for-patient-and-population-services/pass-inferno-visual-inspection-and-attestation.md)
-  * [g7](solutions/providers-or-onc-health-it-certification-program/g7.md)
-  * [g6](solutions/providers-or-onc-health-it-certification-program/g6.md)
-  * [b10](solutions/providers-or-onc-health-it-certification-program/b10.md)
-  * [g9](solutions/providers-or-onc-health-it-certification-program/g9.md)
 
 ## Reference
 
