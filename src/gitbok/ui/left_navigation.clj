@@ -15,15 +15,17 @@
 (defn render-left-navigation [url item]
   (let [;; For exact match - item is active only if URLs are exactly the same
         active? (= url (:href item))
-        ;; For opening details - check if current URL is under this item's path
+        ;; For opening - check if current URL is under this item's path
         open? (str/starts-with? url (:href item))]
     (if (:children item)
-      [:details.nav-item (when open? {:open ""})
-       [:summary
-        {:class "flex items-center justify-between
-                  text-small font-normal
-                  transition-colors duration-200 ease-in-out
-                  cursor-pointer"}
+      [:div.nav-item {:class (when open? "open")}
+       [:button.nav-summary
+        {:type "button"
+         :aria-expanded (if open? "true" "false")
+         :class "flex items-center justify-between w-full
+                 text-small font-normal
+                 transition-colors duration-200 ease-in-out
+                 cursor-pointer bg-transparent border-0 text-left"}
         [:div {:class "flex-1 clickable-summary"}
          (add-active-class
           (update item :title
@@ -32,7 +34,8 @@
         (ico/chevron-right "nav-chevron size-3 text-small font-normal
                             transition-all
                             duration-200 mr-9")]
-       [:div {:class "ml-6 border-l-1 border-outline"}
+       [:div.nav-children {:class "ml-6 border-l-1 border-outline"
+                           :hidden (not open?)}
         (for [c (:children item)]
           (render-left-navigation url c))]]
       (add-active-class item active?))))
