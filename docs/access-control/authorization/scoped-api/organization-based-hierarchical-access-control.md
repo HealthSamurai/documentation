@@ -16,7 +16,7 @@ FHIR resources must be separated per organizations. Organizations can be nested.
 
 Let's consider the next organization structure. There are two independent organizations Org A & Org D, each of them has nested, dependent organizations. Org B & Org C are nested to Org A, and Org E is nested to Org D.
 
-<figure><img src="../../../.gitbook/assets/d31fcf9c-4ae7-4932-87ac-0b725ce1c7a3.png" alt=""><figcaption><p>Organization hierarchy structure</p></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/d31fcf9c-4ae7-4932-87ac-0b725ce1c7a3.png" alt="Organization hierarchy diagram showing nested organizations: Org A with child Org B and Org C, Org D with child Org E"><figcaption><p>Organization hierarchy structure</p></figcaption></figure>
 
 To achieve such a behavior, you may consider an Aidbox feature called organization-based access control.
 
@@ -80,7 +80,7 @@ The Organization-based [Aidbox API](../../../api/rest-api/other/aidbox-and-fhir-
 <AIDBOX_BASE_URL>/Organization/<org-id>/aidbox
 ```
 
-<figure><img src="../../../.gitbook/assets/4ec1a26c-d58c-4ff9-9d3b-87f4698f41d8.png" alt=""><figcaption><p>FHIR APIs reflection in organization-based access control</p></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/4ec1a26c-d58c-4ff9-9d3b-87f4698f41d8.png" alt="Diagram showing FHIR API endpoints for each organization in the hierarchy"><figcaption><p>FHIR APIs reflection in organization-based access control</p></figcaption></figure>
 
 ### Try Org-BAC
 

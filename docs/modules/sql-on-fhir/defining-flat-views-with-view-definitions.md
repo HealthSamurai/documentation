@@ -51,7 +51,7 @@ For an in-depth overview of ViewDefinition's structure consult [reference](refer
 
 To create a flat view of the resource, you have to define it with a special resource called ViewDefinition. You can do it with a View Definitions editor in Aidbox UI.
 
-<figure><img src="../../.gitbook/assets/2023-09-25-151846.png" alt=""><figcaption><p>View Definitions editor</p></figcaption></figure>
+<figure><img src="../../.gitbook/assets/2023-09-25-151846.png" alt="View Definitions editor interface in Aidbox UI"><figcaption><p>View Definitions editor</p></figcaption></figure>
 
 View definitions you've created can be viewed in a menu in the right part of the screen. There also are several samples to get you started. Note that samples are presented as View Definitions only and have no corresponding views in the database by default.
 
@@ -118,9 +118,9 @@ Features:
 * Aidbox Portal integration: play with your data in the sandbox, interactively see the result of ViewDefinition;
 * Local Aidbox integration: pass URL and headers to send requests to local Aidbox
 
-<figure><img src="../../.gitbook/assets/1273849a-3cbc-4524-89af-555a3e9d4cd3.png" alt=""><figcaption><p>ViewDefinition Builder: VD form, resource page, flat view</p></figcaption></figure>
+<figure><img src="../../.gitbook/assets/1273849a-3cbc-4524-89af-555a3e9d4cd3.png" alt="ViewDefinition Builder showing form editor, resource page, and flat view preview"><figcaption><p>ViewDefinition Builder: VD form, resource page, flat view</p></figcaption></figure>
 
-<figure><img src="../../.gitbook/assets/8dabf57f-6e67-4251-ba03-3ae56a9f3847.png" alt=""><figcaption><p>ViewDefinition Builder: VD code, resource schema page</p></figcaption></figure>
+<figure><img src="../../.gitbook/assets/8dabf57f-6e67-4251-ba03-3ae56a9f3847.png" alt="ViewDefinition Builder code editor and resource schema view"><figcaption><p>ViewDefinition Builder: VD code, resource schema page</p></figcaption></figure>
 
 ## Additional options
 

@@ -7,11 +7,11 @@ The [FHIR Schema Validator Engine](../../../modules/profiling-and-validation/fhi
 
 Aidbox fully supports [version 1 ](https://www.hl7.org/fhir/smart-app-launch/1.0.0/scopes-and-launch-context/index.html)of SMART on FHIR scopes:
 
-<figure><img src="../../../.gitbook/assets/smart-scopes-v1.png" alt=""><figcaption><p>SMART scopes V1</p></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/smart-scopes-v1.png" alt="SMART scopes version 1 syntax showing scope patterns for user, patient, and system contexts"><figcaption><p>SMART scopes V1</p></figcaption></figure>
 
 And [version 2](https://build.fhir.org/ig/HL7/smart-app-launch/scopes-and-launch-context.html) of SMART on FHIR scopes with partial support of [search parameters](smart-scopes-for-limiting-access.md#scopes-with-search-parameters) in scopes:
 
-<figure><img src="../../../.gitbook/assets/scope_v2.jpg" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/scope_v2.jpg" alt="SMART scopes version 2 syntax showing enhanced scope patterns with granular permissions"><figcaption></figcaption></figure>
 
 If a requested operation is not permitted by the scopes, Aidbox will deny access. If access is granted, Aidbox will retrieve and return only the data allowed by the specified scopes and context.
 

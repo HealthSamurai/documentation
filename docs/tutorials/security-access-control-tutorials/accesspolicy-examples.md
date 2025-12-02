@@ -10,7 +10,7 @@ This guide provides examples of access policies for different use cases. Each ex
 * The policy itself
 * A sample request for testing in Dev Tool
 
-<figure><img src="../../.gitbook/assets/c6418f85-3843-4091-8510-f5797ef9f2b6.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/c6418f85-3843-4091-8510-f5797ef9f2b6.png" alt="Access Policy Dev Tool interface"><figcaption></figcaption></figure>
 
 See also:
 

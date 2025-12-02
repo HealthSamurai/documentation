@@ -166,7 +166,7 @@ meta:
 
 To get pretty-formatted response add `_pretty=true` query string parameter:
 
-![](../../.gitbook/assets/9509a2a9-23ef-417c-98d7-340282df4e01.png)
+![REST Console showing pretty-formatted response output](../../.gitbook/assets/9509a2a9-23ef-417c-98d7-340282df4e01.png)
 
 ### Get Patient
 

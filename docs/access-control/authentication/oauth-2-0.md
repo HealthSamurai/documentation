@@ -136,6 +136,6 @@ Instead of requiring the user to log in again, you can configure token exchange 
 
 ## Auth Sandbox
 
-<figure><img src="../../.gitbook/assets/sandbox-ro.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/sandbox-ro.png" alt="Aidbox Auth Sandbox interface showing OAuth 2.0 flow testing options"><figcaption></figcaption></figure>
 
 Aidbox provides a sandbox environment for testing OAuth 2.0 flows. You can use the sandbox to test each flow through the Aidbox Sandbox UI (_Auth -> Sandbox -> Basic Auth_).

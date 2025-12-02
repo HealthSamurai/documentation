@@ -13,7 +13,7 @@ Set of HTTP request steps:
 3. Authorization
 4. Request processing
 
-<figure><img src="../../.gitbook/assets/http-request-processing-pipeline.png" alt=""><figcaption><p>HTTP request processing pipeline</p></figcaption></figure>
+<figure><img src="../../.gitbook/assets/http-request-processing-pipeline.png" alt="HTTP request processing pipeline diagram"><figcaption><p>HTTP request processing pipeline</p></figcaption></figure>
 
 ### Authentication
 
@@ -121,11 +121,11 @@ Authorization decides if a request can be processed by the desired handler. By t
 
 Aidbox applies `AccessPolicy` resources the request one after the other. It does it until any policy grants the permission.
 
-<figure><img src="../../.gitbook/assets/if-policy-allowed-request-others-are-skipped.png" alt=""><figcaption><p>If a policy allowed the request, other policies may be skipped</p></figcaption></figure>
+<figure><img src="../../.gitbook/assets/if-policy-allowed-request-others-are-skipped.png" alt="Diagram showing policy evaluation stopping when one policy allows request"><figcaption><p>If a policy allowed the request, other policies may be skipped</p></figcaption></figure>
 
 Access policies work as `OR` logic gate. In the example below the third policy is skipped due to the second one granted the request in.
 
-<figure><img src="../../.gitbook/assets/no-access-policy-allowed-request.png" alt=""><figcaption><p>Request rejected if no access policy allowed it</p></figcaption></figure>
+<figure><img src="../../.gitbook/assets/no-access-policy-allowed-request.png" alt="Diagram showing request rejection when no policy allows it"><figcaption><p>Request rejected if no access policy allowed it</p></figcaption></figure>
 
 If there is no policy allowing the request, Aidbox rejects the request with the 401 (Unauthorized) response.
 

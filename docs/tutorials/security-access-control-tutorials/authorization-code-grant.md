@@ -120,7 +120,7 @@ If users are not logged in, they will see the default login screen.
 
 If a client is not **first\_party** or the user has not yet granted permissions to the client, the user will see the grant page:
 
-![](../../.gitbook/assets/abd8c933-5bfa-4df8-a252-27d2918b8ec9.png)
+![Permission grant page](../../.gitbook/assets/abd8c933-5bfa-4df8-a252-27d2918b8ec9.png)
 
 If the client was granted permission, the user agent will be redirected to the url configured in **Client.auth.authorization\_code.redirect\_uri** with the authorization code parameter.
 

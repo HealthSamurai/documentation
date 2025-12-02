@@ -54,7 +54,7 @@ FROM patient p
 
 In DB Console, we get results:
 
-<figure><img src="../../../.gitbook/assets/d50d4b50-48a9-46b8-9654-62695f3785d9.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/d50d4b50-48a9-46b8-9654-62695f3785d9.png" alt="DB Console query results showing patient records filtered by email domain"><figcaption></figcaption></figure>
 
 Then we can rewrite it like this:
 

@@ -35,7 +35,7 @@ derivation: constraint
 
 When the extension is created, you can inspect it in "FHIR Packages" Aidbox UI page.
 
-<figure><img src="../../../.gitbook/assets/d05df5a8-b47c-474b-bccc-287520d47f1f.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/d05df5a8-b47c-474b-bccc-287520d47f1f.png" alt="FHIR Packages page showing insurance-plan-reference extension"><figcaption></figcaption></figure>
 
 Usage of the extension:
 

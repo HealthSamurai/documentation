@@ -72,7 +72,7 @@ A request succeeds if at least one of the policies is valid for it.
 GET {{base}}/fhir/Patient
 ```
 
-![](../../.gitbook/assets/8b3d4386-b58d-4770-902f-766338dece92.png)
+![Postman request showing successful Patient resource retrieval](../../.gitbook/assets/8b3d4386-b58d-4770-902f-766338dece92.png)
 
 ### Negative Test
 

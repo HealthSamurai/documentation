@@ -58,7 +58,7 @@ To see audit logs with the Audit event viewer app, navigate to the **IAM -> Audi
 
 And find the audit event, produced by the patient create operation.
 
-<figure><img src="../../.gitbook/assets/01d17537-0703-43a2-a5c5-8c1c7baa0536.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/01d17537-0703-43a2-a5c5-8c1c7baa0536.png" alt="Audit Log viewer showing patient create event"><figcaption></figcaption></figure>
 
 ## External Audit Repository Configuration
 

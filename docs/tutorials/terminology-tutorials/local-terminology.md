@@ -188,12 +188,12 @@ We will create a FHIR Package that includes the following components:
 8. Open [Aidbox UI](http://localhost:8080/) and go to the _**FAR**_ tab. Click the "**Import package**" button, select the `tutorial-fhir-package-1.0.0.tgz` file, and then click **Import.**\
 
 
-<figure><img src="../../.gitbook/assets/image (4).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (4).png" alt="Import FHIR package dialog in Aidbox UI"><figcaption></figcaption></figure>
 
 At this point, you should be able to see the loaded package in the packages list. \
 
 
-<figure><img src="../../.gitbook/assets/image (5).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (5).png" alt="Imported packages list in Aidbox UI"><figcaption></figcaption></figure>
 
 ## Testing the local terminology
 

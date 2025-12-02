@@ -39,7 +39,7 @@ There are two way to define patient context in a request:
 
 Let's create two patients and Observations for a first patient.
 
-<figure><img src="../../../.gitbook/assets/37bb7e6d-517d-45cd-8d6c-5bbebaf1c31c.png" alt=""><figcaption><p>Two Patient resources and an Observation</p></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/37bb7e6d-517d-45cd-8d6c-5bbebaf1c31c.png" alt="Data model diagram showing two Patient resources and one Observation linked to the first Patient"><figcaption><p>Two Patient resources and an Observation</p></figcaption></figure>
 
 {% code title="status: 200 OK" %}
 ```yaml

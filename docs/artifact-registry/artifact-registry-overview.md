@@ -48,7 +48,7 @@ Canonical resources are accessible through standard FHIR REST endpoints followin
 
 Aidbox provides a web-based interface for package management operations. Through this UI, you can import FHIR packages from external registries, view installed packages and their contents, and delete packages when no longer needed.
 
-<figure><img src="../.gitbook/assets/far.jpg" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/far.jpg" alt="Artifact Registry web interface showing package management options"><figcaption></figcaption></figure>
 
 ### Registry Scope and Limitations
 

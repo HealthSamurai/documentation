@@ -16,7 +16,7 @@ DB Tables provides info on the existing tables in the database and the following
 * last autoanalyze
 * last analyze
 
-![](../../.gitbook/assets/d15a55b3-0182-4fd1-a5e6-76ca68891824.png)
+![DB Tables view showing table statistics and attributes](../../.gitbook/assets/d15a55b3-0182-4fd1-a5e6-76ca68891824.png)
 
 Table names are active links to extended info about the table:
 

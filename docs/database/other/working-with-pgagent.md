@@ -225,9 +225,9 @@ Now when pgagent is up and running we can define some jobs and see if they're ac
 
 ![Create pgAgent job](../../.gitbook/assets/screen-shot-2021-08-06-at-05-27-24.png)
 
-![](../../.gitbook/assets/screen-shot-2021-08-06-at-04-31-00.png)
+![pgAgent job general settings](../../.gitbook/assets/screen-shot-2021-08-06-at-04-31-00.png)
 
-![](../../.gitbook/assets/screen-shot-2021-08-06-at-04-27-19.png)
+![pgAgent job steps configuration](../../.gitbook/assets/screen-shot-2021-08-06-at-04-27-19.png)
 
 ![The job will be run every minute.](../../.gitbook/assets/screen-shot-2021-08-06-at-04-27-56.png)
 

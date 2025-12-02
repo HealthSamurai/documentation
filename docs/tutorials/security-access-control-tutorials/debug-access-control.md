@@ -14,7 +14,7 @@ We recommend using Access Policy Dev Tool.
 
 Access policy dev tool simplifies development and debugging AccessPolicies. It was introduced in March v2303 release of Aidbox.
 
-<figure><img src="../../.gitbook/assets/282099be-926f-4dc0-a525-0fec435c5e3b (1).png" alt=""><figcaption><p>Access policy dev tool UI</p></figcaption></figure>
+<figure><img src="../../.gitbook/assets/282099be-926f-4dc0-a525-0fec435c5e3b (1).png" alt="Access policy dev tool interface showing editor and results"><figcaption><p>Access policy dev tool UI</p></figcaption></figure>
 
 The dev tool is a part of Aidbox UI Console, which aims
 

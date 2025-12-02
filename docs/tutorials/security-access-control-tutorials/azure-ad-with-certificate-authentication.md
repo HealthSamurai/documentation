@@ -14,15 +14,15 @@ This guide explains how to set-up Azure AD identity provider in Aidbox with an a
 
 * Find **App Registration** in search bar
 
-![](../../.gitbook/assets/azure7.png)
+![Azure App Registration search](../../.gitbook/assets/azure7.png)
 
 * Click **New Registration**
 
-<figure><img src="../../.gitbook/assets/spaces_-LHqtKiuedlcKJLm337__uploads_git-blob-83834d5ed70499fcfd4585a9a56febbebaf46af8_azure0.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/spaces_-LHqtKiuedlcKJLm337__uploads_git-blob-83834d5ed70499fcfd4585a9a56febbebaf46af8_azure0.png" alt="Azure New Registration button"><figcaption></figcaption></figure>
 
 * Fill form. For Redirect URI choose `web` as a platform and input `https://<box-url>/auth/callback/azure`
 
-![](../../.gitbook/assets/azure4.png)
+![Azure app registration form](../../.gitbook/assets/azure4.png)
 
 ## Create IdentityProvider in Aidbox
 
@@ -49,11 +49,11 @@ client:
 
 You can find application (client) id on **App Overview** page
 
-<figure><img src="../../.gitbook/assets/spaces_-LHqtKiuedlcKJLm337__uploads_git-blob-4833cc9444c2a38a76f8edc0759fb36622368c90_azure5.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/spaces_-LHqtKiuedlcKJLm337__uploads_git-blob-4833cc9444c2a38a76f8edc0759fb36622368c90_azure5.png" alt="Azure app overview page showing client ID"><figcaption></figcaption></figure>
 
 and your endpoints by clicking on **Endpoints** and visiting `OpenID Connect metadata document`
 
-<figure><img src="../../.gitbook/assets/spaces_-LHqtKiuedlcKJLm337__uploads_git-blob-8f857e9e29de04af413036e10747e7eadf94bcad_azure2.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/spaces_-LHqtKiuedlcKJLm337__uploads_git-blob-8f857e9e29de04af413036e10747e7eadf94bcad_azure2.png" alt="Azure endpoints page with OpenID Connect metadata"><figcaption></figcaption></figure>
 
 ## Issue certificate
 
@@ -83,7 +83,7 @@ Than you may download the certificate in order to upload it to Azure AD by follo
 
 Upload the certificate into Azure AD
 
-<figure><img src="../../.gitbook/assets/19b0358b-f8d7-48d3-a710-1e1fa54ade08.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/19b0358b-f8d7-48d3-a710-1e1fa54ade08.png" alt="Azure certificate upload page"><figcaption></figcaption></figure>
 
 It may take few minutes when Azure starts processing the uploaded certificate.
 

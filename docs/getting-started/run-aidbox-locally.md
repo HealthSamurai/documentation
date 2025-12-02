@@ -7,7 +7,7 @@ description: Follow these steps to launch Aidbox locally using Docker
 ## Prerequisites
 
 {% hint style="warning" %}
-<img src="../.gitbook/assets/docker (1).png" alt="" data-size="original">
+<img src="../.gitbook/assets/docker (1).png" alt="Docker logo" data-size="original">
 
 Please **make sure** that both [Docker & Docker Compose](https://docs.docker.com/engine/install/) are installed.
 {% endhint %}
@@ -34,7 +34,7 @@ Open in browser [http://localhost:8080/](http://localhost:8080)
 
 ### 4. Activate your Aidbox instance
 
-<figure><img src="../.gitbook/assets/image.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/image.png" alt="Aidbox activation screen"><figcaption></figcaption></figure>
 
 Click "Continue with Aidbox account" and create a free Aidbox account in [Aidbox user portal](https://aidbox.app/).
 
