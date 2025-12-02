@@ -29,7 +29,7 @@ So now you can easily:
 
 When clicking the notebooks tab in Aidbox UI you will get to the notebooks page. This page consists of your personal notebooks and Aidbox community notebooks.
 
-![Notebooks page showing personal and community notebooks](../../.gitbook/assets/c75df5ad-6dc8-4925-9bf2-2a3d74a5542b (1).png)
+![Notebooks page showing personal and community notebooks](<../../.gitbook/assets/c75df5ad-6dc8-4925-9bf2-2a3d74a5542b (1).png>)
 
 ## Create a notebook
 
