@@ -6,14 +6,6 @@ description: >-
 TODO add to each header link like this: ### Aidbox license<a href="#license" id="license"></a>
 # Run Aidbox + FHIR Portal locally
 
-## Overview
-
-FHIR App Portal is a comprehensive FHIR Developer Portal system consisted of multiple services:
-- **Admin/Patient Portal** (http://localhost:8095) - Manage users, review apps, and monitor the system
-- **Developer Sandbox Portal** (http://localhost:8096) - Register and test SMART on FHIR applications
-- **Admin/Patient Aidbox Instance** - (http://admin.localhost:8080) - Separate FHIR server for Admin/Patient environment
-- **Sanbox Aidbox Instance** - (http://dev.localhost:8090) - Separate FHIR server for Sandbox (Developer) environment
-
 ## Prerequisites
 
 ### Required Software
@@ -43,17 +35,9 @@ Email provider is used to communicate with users (developers, patients). It send
 ### **Step 1: Create Project Directory**
 
 ```bash
-mkdir smartbox-local
-cd smartbox-local
+mkdir fhir-app-portal
+cd fhir-app-portal
 ```
-
-### Step 2: Create Configuration Files
-
-Create the following files in your `smartbox-local` directory with the content provided below:
-
-1. `docker-compose.yaml` - Docker Compose configuration
-2. `initBundleAdmin.json` - Admin Aidbox initialization
-3. `initBundleDeveloper.json` - Developer Aidbox initialization
 
 ## **Step 2: Create docker-compose.yaml**
 Create a `docker-compose.yaml` file and paste the following content:
@@ -235,9 +219,9 @@ services:
 
 </details>
 
-## **Create .env file**
+## **Step 3: Create .env file**
 
-Create .env file in the same folder alongside with docker-compose.yaml and set environment variables:
+Create `.env` file in the same folder alongside with `docker-compose.yaml` and copy environment variables:
 
 <details>
 <summary>Click to view .env file</summary>
@@ -246,8 +230,10 @@ Create .env file in the same folder alongside with docker-compose.yaml and set e
 # -----------------------------------------------------------------------------
 # Licenses
 # -----------------------------------------------------------------------------
-AIDBOX_ADMIN_LICENSE=<YOUR-ADMIN-LICENCE-JWT-TOKEN>
-AIDBOX_DEV_LICENSE=<YOUR-SANDBOX-LICENCE-JWT-TOKEN>
+# If license isn't provided then developer license will be applied automatically
+# If you want apply another licence simply uncomment variable and set it
+# AIDBOX_ADMIN_LICENSE=<YOUR-ADMIN-LICENCE-JWT-TOKEN>
+# AIDBOX_DEV_LICENSE=<YOUR-SANDBOX-LICENCE-JWT-TOKEN>
 
 # -----------------------------------------------------------------------------
 # PostgreSQL Database Configuration
@@ -256,7 +242,7 @@ POSTGRES_USER=aidbox
 POSTGRES_PASSWORD=password
 POSTGRES_DB=aidbox
 
-# Database names (automatically created)
+# Database names
 ADMIN_DB_NAME=aidbox-admin
 DEV_DB_NAME=aidbox-dev
 
@@ -354,17 +340,13 @@ DEV_MODE=true
 
 </details>
 
-<!-- {% hint style="info" %}
-By default Aidbox logs are turned off, you can enable them by setting:
-
-* `AIDBOX_STDOUT_JSON=true`
+<!-- {% hint style="success" %}
+To use alternative email provider see the [document](../../../smartbox/how-to-guides/setup-email-provider.md)
 {% endhint %} -->
 
-{% hint style="success" %}
-To use alternative email provider see the [document](../../../smartbox/how-to-guides/setup-email-provider.md)
-{% endhint %}
+## **Step 4: Create initBundleDeveloper.json for Sandbox Aidbox**
 
-## **Create Init Bundle for Sandbox Aidbox**
+Create `initBundleDeveloper.json` file in the same folder alongside with `docker-compose.yaml` and copy the content:
 
 <details>
 <summary>Click to view Sandbox Init Bundle file</summary>
@@ -955,7 +937,9 @@ To use alternative email provider see the [document](../../../smartbox/how-to-gu
 
 </details>
 
-## **Create Init Bundle for Admin Aidbox**
+## **Step 5: Create Init Bundle for Admin Aidbox**
+
+Create `initBundleAdmin.json` file in the same folder alongside with `docker-compose.yaml` and copy the content:
 
 <details>
 <summary>Click to view Admin Init Bundle file</summary>
@@ -1375,7 +1359,7 @@ To use alternative email provider see the [document](../../../smartbox/how-to-gu
 
 </details>
 
-## Launch Aidbox
+## **Step 6: Launch Aidbox**
 
 Run the following command:
 
@@ -1384,14 +1368,24 @@ docker compose up
 ```
 <!-- docker compose pull && docker compose up -->
 
-Now FHIR App Portal is ready.
+## **Step 7: How to access services**
+
+Now Aidboxes and FHIR App Portal are ready. They're accessible by the following URLs:
+
+- **Admin/Patient Portal** ([http://localhost:8095](http://localhost:8095)) - Manage users, review apps, monitor the system as admin and also access App Gallery as patient
+- **Developer Sandbox Portal** ([http://localhost:8096](http://localhost:8096)) - Register and test SMART on FHIR applications
+- **Admin/Patient Aidbox Instance** - ([http://admin.localhost:8080](http://admin.localhost:8080)) - Separate FHIR server for Admin/Patient environment
+- **Sanbox Aidbox Instance** - ([http://localhost:8090](http://localhost:8090)) - Separate FHIR server for Sandbox (Developer) environment
 
 
 
 
 
-
-TODO describe here ports of services
+TODO add step when we create accesspolicy manually
 TODO check out product/04-documentation/CUSTOMER_SETUP.md
 TODO apply envbust for Client secrets in init bundles https://github.com/Aidbox/examples/tree/main/aidbox-features/init-bundle-env-template
 TODO add step when user defines redirect_to in email template or set it with envbust
+TODO orgbac BOX_SECURITY_ORGBAC_ENABLED mode add step for data isolation (if you want isolation of data in aidobx and portal you should add the following envs:BOX_SECURITY_ORGBAC_ENABLED)
+
+TODO flow description move to 3 files
+TODO move overview to the end
