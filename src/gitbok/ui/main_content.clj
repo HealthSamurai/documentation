@@ -13,7 +13,19 @@
    [gitbok.utils :as utils]
    [gitbok.products :as products]
    [gitbok.http :as http]
-   [hiccup2.core]))
+   [hiccup2.core])
+  (:import [java.time LocalDate]
+           [java.time.format DateTimeFormatter]
+           [java.util Locale]))
+
+(defn- format-date-human
+  "Format ISO date (2024-07-26) to human-readable (July 26, 2024)."
+  [iso-date]
+  (try
+    (let [date (LocalDate/parse iso-date)
+          formatter (DateTimeFormatter/ofPattern "MMMM d, yyyy" Locale/ENGLISH)]
+      (.format date formatter))
+    (catch Exception _ iso-date)))
 
 (defn empty-content-after-h1?
   "Checks if the markdown content only has an H1 header with no meaningful content after it"
@@ -246,9 +258,10 @@
        [:nav (navigation-buttons context uri)]
        (let [lastupdated (indexing/get-lastmod context filepath)]
          (when lastupdated
-           [:p {:class "mt-4 text-sm text-on-surface-muted"
-                :id "lastupdated"
-                :data-updated-at lastupdated}
-            ;; Text will be updated by JavaScript
-            ""]))]
+           [:p {:class "mt-4 text-sm text-on-surface-muted"}
+            "Last updated: "
+            [:time {:id "lastupdated"
+                    :datetime lastupdated
+                    :data-updated-at lastupdated}
+             (format-date-human lastupdated)]]))]
       toc]]))

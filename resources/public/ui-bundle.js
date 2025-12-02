@@ -888,7 +888,7 @@ function showCopySuccess(button) {
           relativeTime = `${years} year${years === 1 ? '' : 's'} ago`;
         }
 
-        element.textContent = `Last updated: ${relativeTime}`;
+        element.textContent = relativeTime;
       }
     }
   }
