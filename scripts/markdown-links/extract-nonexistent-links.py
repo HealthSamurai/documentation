@@ -296,15 +296,36 @@ def main():
         with open(output_file, 'r') as f:
             content = f.read()
 
-        files_with_links = re.findall(r'^([^\n]+) \(.*links\):$', content, re.MULTILINE)
-        non_deprecated_files = [f for f in files_with_links if not f.startswith('docs/deprecated/')]
+        # Parse broken links by file
+        broken_by_file = {}
+        current_file = None
+        for line in content.split('\n'):
+            if re.match(r'^[^ ].*links\):$', line):
+                current_file = re.sub(r' \(.*', '', line)
+            elif line.startswith('  ') and current_file:
+                if current_file not in broken_by_file:
+                    broken_by_file[current_file] = []
+                broken_by_file[current_file].append(line.strip())
 
-        if non_deprecated_files:
-            check_error(f"Found {len(non_deprecated_files)} file(s) with broken links:")
-            for file in non_deprecated_files[:10]:
+        non_deprecated = {f: links for f, links in broken_by_file.items()
+                         if not f.startswith('docs/deprecated/')}
+
+        if non_deprecated:
+            total_broken = sum(len(links) for links in non_deprecated.values())
+            check_error(f"Found {total_broken} broken link(s) in {len(non_deprecated)} file(s):")
+            for file, links in list(non_deprecated.items())[:5]:
                 print_issue(file)
-            if len(non_deprecated_files) > 10:
-                print_issue(f"... and {len(non_deprecated_files) - 10} more")
+                for link in links[:3]:
+                    # Extract just the link part for cleaner output
+                    match = re.search(r'\[([^\]]*)\]\(([^)]*)\)', link)
+                    if match:
+                        print(f"              → [{match.group(1)[:30]}...]({match.group(2)[:50]})")
+                    else:
+                        print(f"              → {link[:80]}")
+                if len(links) > 3:
+                    print(f"              ... and {len(links) - 3} more in this file")
+            if len(non_deprecated) > 5:
+                print_issue(f"... and {len(non_deprecated) - 5} more file(s)")
             sys.exit(1)
 
     check_success(f"{total_links} links in {total_files} files checked, no broken links")
