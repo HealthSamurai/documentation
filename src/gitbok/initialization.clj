@@ -55,7 +55,7 @@
         (log/warn e "Failed to set lastmod data (git repo may not be available yet)"
                   {:product (:id product)})))
     (log/info "8. generate sitemap.xml for product" {:product (:id product)})
-    (let [lastmod-data (products/get-product-state ctx [::lastmod])
+    (let [lastmod-data (products/get-product-state ctx [indexing/lastmod-key])
           ;; Get primary navigation links (excluding cross-section references)
           primary-links (summary/get-primary-navigation-links ctx)
           ;; Extract just the hrefs, removing leading slashes

@@ -208,5 +208,6 @@
     (log/info "✅lastmod set"
               {:product product-id
                :docs-path docs-path
-               :entries (count lastmod-data)})
+               :entries (count lastmod-data)
+               :sample-keys (take 3 (keys lastmod-data))})
     (gitbok.state/set-product-state! context [lastmod-key] lastmod-data)))
