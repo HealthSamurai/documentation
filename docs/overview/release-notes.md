@@ -10,9 +10,14 @@
     * Introduced [pinning and tree shaking](../artifact-registry/artifact-registry-overview.md#pinning-and-tree-shaking) for optimizing IG dependency resolution.
     * Released the new [FAR package management API](../reference/package-registry-api.md) for managing published IG artifacts.
     * Published a tutorial on [loading FHIR IGs via Init Bundle](../tutorials/artifact-registry-tutorials/upload-fhir-implementation-guide/how-to-load-fhir-ig-with-init-bundle.md).
+    * Support multiple versions of the same IG in the same Aidbox instance.
+  * Organization-based hierarchical access control improvements:
+    * Added a tenant-aware [login API](../access-control/authorization/scoped-api/organization-based-hierarchical-access-control.md#authentication) for organization-based hierarchical access control.
+    * Tenant-aware [group-level export](../access-control/authorization/scoped-api/organization-based-hierarchical-access-control.md#group-level-export) is now supported.
+    * Added a tenant-aware AuditEvent generation.
   * Support for **GCP Workload Identity** for the [$export](../api/bulk-api/export.md) in both GCP and Azure environments.
-  * Added a tenant-aware [login API](../access-control/authorization/scoped-api/organization-based-hierarchical-access-control.md#authentication) for organization-based hierarchical access control.
   * Contained resources are now supported in [GraphQL API](../api/graphql-api.md).
+  * Improved error handling on Bundle validation and processing.
 * Aidbox Forms
   * Added the ability to set up an [autosave interval](../modules/aidbox-forms/aidbox-ui-builder-alpha/configuration.md) in SDCConfig.
   * Supported [multitenancy in Form UI](../modules/aidbox-forms/aidbox-ui-builder-alpha/forms-multitenancy.md) for creating and sharing forms between organizations.
