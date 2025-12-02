@@ -1,5 +1,6 @@
 (ns gitbok.blog.handlers
   (:require [gitbok.blog.core :as blog]
+            [gitbok.blog.sitemap :as blog-sitemap]
             [gitbok.blog.ui :as blog-ui]
             [gitbok.http :as http]
             [gitbok.ui.blog-header :as blog-header]
@@ -173,4 +174,12 @@
       {:status 404
        :headers {"Content-Type" "text/plain"}
        :body "Not found"})))
+
+(defn sitemap-handler
+  "Handler for /docs/futureblog/blog/sitemap.xml"
+  [context]
+  {:status 200
+   :headers {"Content-Type" "application/xml; charset=utf-8"
+             "Cache-Control" "public, max-age=3600"}
+   :body (blog-sitemap/generate-blog-sitemap context)})
 

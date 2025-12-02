@@ -261,6 +261,8 @@
       {:get {:handler #'handlers/serve-root-llms-txt}}]
 
      ;; Blog routes (under /docs/futureblog)
+     ["/docs/futureblog/blog/sitemap.xml"
+      {:get {:handler #'blog-handlers/sitemap-handler}}]
      ["/docs/futureblog/blog"
       {:get {:handler #'blog-handlers/list-handler}}]
      ["/docs/futureblog/blog/search"
