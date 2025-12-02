@@ -327,20 +327,17 @@
   [context article]
   (let [{:keys [metadata rendered]} article
         article-url (str "https://www.health-samurai.io" blog/url-prefix "/articles/" (:slug metadata))]
-    ;; Classes "article" and "article__content" are required for Telegram Instant View
-    ;; (Teletype template expects: div.article > article.article__content)
-    [:div {:class "article min-h-screen flex flex-col"
+    [:div {:class "min-h-screen flex flex-col"
            :style {:font-family font-family}}
      ;; Hero section (full-width with background)
      (article-hero metadata)
 
      ;; Article content (centered, narrower, responsive padding)
      [:main {:class "flex-1 w-full mx-auto py-8 md:py-12 px-4 md:px-0 max-w-[800px]"}
-      ;; Article content (article__content class is required for Telegram Instant View)
-      ;; LLM sharing block wrapped in <aside> to exclude from Telegram Instant View
-      [:aside (llm-share/share-block article-url)]
+      ;; LLM sharing block
+      (llm-share/share-block article-url)
 
-      [:article {:class "article__content prose prose-lg max-w-none
+      [:article {:class "prose prose-lg max-w-none
                          prose-headings:text-on-surface-strong
                          prose-p:text-on-surface-muted
                          prose-a:text-brand prose-a:no-underline hover:prose-a:underline

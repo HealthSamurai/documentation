@@ -222,11 +222,8 @@
                     toc-result)
                   (catch Exception _
                     nil))))]
-    ;; Classes "article" and "article__content" are required for Telegram Instant View
-    ;; (Teletype template expects: div.article > article.article__content)
     [:main#content {:class "flex-1 items-start"}
-     [:div {:class "article flex items-start"}
-      ;; article__content class is required for Telegram Instant View
+     [:div {:class "flex items-start"}
       [:article {:class "article__content py-8 min-w-0 flex-1
                  max-w-5xl transform-3d"}
        (when htmx?
@@ -242,11 +239,11 @@
              }
            }, 10);
          ")])
-       ;; Breadcrumb wrapped in <aside> to exclude from Telegram Instant View
-       [:aside breadcrumb-elem]
+       ;; Breadcrumb
+       [:nav breadcrumb-elem]
        [:div {:class "mx-auto max-w-full"} body]
-       ;; Navigation buttons wrapped in <aside> to exclude from Telegram Instant View
-       [:aside (navigation-buttons context uri)]
+       ;; Navigation buttons
+       [:nav (navigation-buttons context uri)]
        (let [lastupdated (indexing/get-lastmod context filepath)]
          (when lastupdated
            [:p {:class "mt-4 text-sm text-on-surface-muted"

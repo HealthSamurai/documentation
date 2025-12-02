@@ -171,7 +171,6 @@
       [:meta {:property "og:locale" :content "en_US"}]
       [:meta {:property "og:image" :content og-preview}]
       [:meta {:property "telegram:channel" :content ""}]
-      [:meta {:property "tg:site_verification" :content "g7j8/rPFXfhyrq5q0QQV7EsYWv4="}]
 
       [:meta {:name "twitter:card" :content "summary_large_image"}]
       [:meta {:name "twitter:title" :content title}]
