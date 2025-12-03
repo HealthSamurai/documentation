@@ -44,8 +44,7 @@ For details on the candidate selection algorithm and recursive pinning process, 
 
 ### Examples
 
-<details>
-<summary>Install package from default registry</summary>
+#### Install package from default registry
 
 {% tabs %}
 {% tab title="Request" %}
@@ -200,10 +199,7 @@ Accept: application/json
 {% endtab %}
 {% endtabs %}
 
-</details>
-
-<details>
-<summary>Install package from specific registry</summary>
+#### Install package from specific registry
 
 {% tabs %}
 {% tab title="Request" %}
@@ -362,10 +358,7 @@ Accept: application/json
 {% endtab %}
 {% endtabs %}
 
-</details>
-
-<details>
-<summary>Install latest version of package</summary>
+#### Install latest version of package
 
 {% tabs %}
 {% tab title="Request" %}
@@ -580,10 +573,7 @@ Accept: application/json
 {% endtab %}
 {% endtabs %}
 
-</details>
-
-<details>
-<summary>Install package from a local file</summary>
+##### Install package from a local file
 
 {% tabs %}
 {% tab title="Request" %}
@@ -866,9 +856,6 @@ Accept: application/json
 {% endtab %}
 {% endtabs %}
 
-</details>
-
-
 ## $fhir-package-uninstall
 
 Uninstalls FHIR Implementation Guide packages from the server. Removes the specified packages and their canonical resources.
@@ -894,8 +881,7 @@ POST /fhir/$fhir-package-uninstall
 
 ### Examples
 
-<details>
-<summary>Uninstall package</summary>
+#### Uninstall package
 
 {% tabs %}
 {% tab title="Request" %}
@@ -942,8 +928,6 @@ Accept: application/json
 ```
 {% endtab %}
 {% endtabs %}
-
-</details>
 
 ## See also
 
