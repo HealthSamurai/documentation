@@ -48,7 +48,153 @@ For details on the candidate selection algorithm and recursive pinning process, 
 
 <summary>Install package from default registry</summary>
 
-POST /fhir/$fhir-package-installContent-Type: application/jsonAccept: application/json{  "resourceType": "Parameters",  "parameter": \[    {      "name": "package",      "valueString": "hl7.fhir.us.core@5.0.0"    }  ]}{  "resourceType": "Parameters",  "parameter": \[    {      "name": "result",      "valueBoolean": true    },    {      "name": "package",      "part": \[        {          "name": "name",          "valueString": "hl7.fhir.us.core@5.0.0"        },        {          "name": "installedCanonicals",          "valueInteger": 194        },        {          "name": "intention",          "valueString": "direct"        },        {          "name": "source",          "part": \[            {              "name": "type",              "valueString": "npm"            },            {              "name": "registry",              "valueString": "https://fs.get-ig.org/pkgs"            }          ]        }      ]    },    {      "name": "package",      "part": \[        {          "name": "name",          "valueString": "us.nlm.vsac@0.3.0"        },        {          "name": "installedCanonicals",          "valueInteger": 20        },        {          "name": "intention",          "valueString": "transitive"        },        {          "name": "source",          "part": \[            {              "name": "type",              "valueString": "npm"            },            {              "name": "registry",              "valueString": "https://fs.get-ig.org/pkgs"            }          ]        }      ]    },    {      "name": "package",      "part": \[        {          "name": "name",          "valueString": "hl7.fhir.uv.sdc@3.0.0"        },        {          "name": "installedCanonicals",          "valueInteger": 11        },        {          "name": "intention",          "valueString": "transitive"        },        {          "name": "source",          "part": \[            {              "name": "type",              "valueString": "npm"            },            {              "name": "registry",              "valueString": "https://fs.get-ig.org/pkgs"            }          ]        }      ]    },    {      "name": "package",      "part": \[        {          "name": "name",          "valueString": "hl7.terminology.r4@3.1.0"        },        {          "name": "installedCanonicals",          "valueInteger": 7        },        {          "name": "intention",          "valueString": "transitive"        },        {          "name": "source",          "part": \[            {              "name": "type",              "valueString": "npm"            },            {              "name": "registry",              "valueString": "https://fs.get-ig.org/pkgs"            }          ]        }      ]    }  ]}
+```http
+POST /fhir/$fhir-package-install
+Content-Type: application/json
+Accept: application/json
+
+{
+  "resourceType": "Parameters",
+  "parameter": [
+    {
+      "name": "package",
+      "valueString": "hl7.fhir.us.core@5.0.0"
+    }
+  ]
+}
+```
+
+```json
+{
+  "resourceType": "Parameters",
+  "parameter": [
+    {
+      "name": "result",
+      "valueBoolean": true
+    },
+    {
+      "name": "package",
+      "part": [
+        {
+          "name": "name",
+          "valueString": "hl7.fhir.us.core@5.0.0"
+        },
+        {
+          "name": "installedCanonicals",
+          "valueInteger": 194
+        },
+        {
+          "name": "intention",
+          "valueString": "direct"
+        },
+        {
+          "name": "source",
+          "part": [
+            {
+              "name": "type",
+              "valueString": "npm"
+            },
+            {
+              "name": "registry",
+              "valueString": "https://fs.get-ig.org/pkgs"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "package",
+      "part": [
+        {
+          "name": "name",
+          "valueString": "us.nlm.vsac@0.3.0"
+        },
+        {
+          "name": "installedCanonicals",
+          "valueInteger": 20
+        },
+        {
+          "name": "intention",
+          "valueString": "transitive"
+        },
+        {
+          "name": "source",
+          "part": [
+            {
+              "name": "type",
+              "valueString": "npm"
+            },
+            {
+              "name": "registry",
+              "valueString": "https://fs.get-ig.org/pkgs"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "package",
+      "part": [
+        {
+          "name": "name",
+          "valueString": "hl7.fhir.uv.sdc@3.0.0"
+        },
+        {
+          "name": "installedCanonicals",
+          "valueInteger": 11
+        },
+        {
+          "name": "intention",
+          "valueString": "transitive"
+        },
+        {
+          "name": "source",
+          "part": [
+            {
+              "name": "type",
+              "valueString": "npm"
+            },
+            {
+              "name": "registry",
+              "valueString": "https://fs.get-ig.org/pkgs"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "package",
+      "part": [
+        {
+          "name": "name",
+          "valueString": "hl7.terminology.r4@3.1.0"
+        },
+        {
+          "name": "installedCanonicals",
+          "valueInteger": 7
+        },
+        {
+          "name": "intention",
+          "valueString": "transitive"
+        },
+        {
+          "name": "source",
+          "part": [
+            {
+              "name": "type",
+              "valueString": "npm"
+            },
+            {
+              "name": "registry",
+              "valueString": "https://fs.get-ig.org/pkgs"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
+```
 
 </details>
 
@@ -56,7 +202,157 @@ POST /fhir/$fhir-package-installContent-Type: application/jsonAccept: applicatio
 
 <summary>Install package from specific registry</summary>
 
-POST /fhir/$fhir-package-installContent-Type: application/jsonAccept: application/json{  "resourceType": "Parameters",  "parameter": \[    {      "name": "package",      "valueString": "hl7.fhir.us.core@5.0.0"    },    {      "name": "registry",      "valueString": "https://packages.simplifier.net"    }  ]}{  "resourceType": "Parameters",  "parameter": \[    {      "name": "result",      "valueBoolean": true    },    {      "name": "package",      "part": \[        {          "name": "name",          "valueString": "hl7.fhir.us.core@5.0.0"        },        {          "name": "installedCanonicals",          "valueInteger": 194        },        {          "name": "intention",          "valueString": "direct"        },        {          "name": "source",          "part": \[            {              "name": "type",              "valueString": "npm"            },            {              "name": "registry",              "valueString": "https://fs.get-ig.org/pkgs"            }          ]        }      ]    },    {      "name": "package",      "part": \[        {          "name": "name",          "valueString": "us.nlm.vsac@0.3.0"        },        {          "name": "installedCanonicals",          "valueInteger": 20        },        {          "name": "intention",          "valueString": "transitive"        },        {          "name": "source",          "part": \[            {              "name": "type",              "valueString": "npm"            },            {              "name": "registry",              "valueString": "https://fs.get-ig.org/pkgs"            }          ]        }      ]    },    {      "name": "package",      "part": \[        {          "name": "name",          "valueString": "hl7.fhir.uv.sdc@3.0.0"        },        {          "name": "installedCanonicals",          "valueInteger": 11        },        {          "name": "intention",          "valueString": "transitive"        },        {          "name": "source",          "part": \[            {              "name": "type",              "valueString": "npm"            },            {              "name": "registry",              "valueString": "https://fs.get-ig.org/pkgs"            }          ]        }      ]    },    {      "name": "package",      "part": \[        {          "name": "name",          "valueString": "hl7.terminology.r4@3.1.0"        },        {          "name": "installedCanonicals",          "valueInteger": 7        },        {          "name": "intention",          "valueString": "transitive"        },        {          "name": "source",          "part": \[            {              "name": "type",              "valueString": "npm"            },            {              "name": "registry",              "valueString": "https://fs.get-ig.org/pkgs"            }          ]        }      ]    }  ]}
+```http
+POST /fhir/$fhir-package-install
+Content-Type: application/json
+Accept: application/json
+
+{
+  "resourceType": "Parameters",
+  "parameter": [
+    {
+      "name": "package",
+      "valueString": "hl7.fhir.us.core@5.0.0"
+    },
+    {
+      "name": "registry",
+      "valueString": "https://packages.simplifier.net"
+    }
+  ]
+}
+```
+
+```json
+{
+  "resourceType": "Parameters",
+  "parameter": [
+    {
+      "name": "result",
+      "valueBoolean": true
+    },
+    {
+      "name": "package",
+      "part": [
+        {
+          "name": "name",
+          "valueString": "hl7.fhir.us.core@5.0.0"
+        },
+        {
+          "name": "installedCanonicals",
+          "valueInteger": 194
+        },
+        {
+          "name": "intention",
+          "valueString": "direct"
+        },
+        {
+          "name": "source",
+          "part": [
+            {
+              "name": "type",
+              "valueString": "npm"
+            },
+            {
+              "name": "registry",
+              "valueString": "https://fs.get-ig.org/pkgs"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "package",
+      "part": [
+        {
+          "name": "name",
+          "valueString": "us.nlm.vsac@0.3.0"
+        },
+        {
+          "name": "installedCanonicals",
+          "valueInteger": 20
+        },
+        {
+          "name": "intention",
+          "valueString": "transitive"
+        },
+        {
+          "name": "source",
+          "part": [
+            {
+              "name": "type",
+              "valueString": "npm"
+            },
+            {
+              "name": "registry",
+              "valueString": "https://fs.get-ig.org/pkgs"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "package",
+      "part": [
+        {
+          "name": "name",
+          "valueString": "hl7.fhir.uv.sdc@3.0.0"
+        },
+        {
+          "name": "installedCanonicals",
+          "valueInteger": 11
+        },
+        {
+          "name": "intention",
+          "valueString": "transitive"
+        },
+        {
+          "name": "source",
+          "part": [
+            {
+              "name": "type",
+              "valueString": "npm"
+            },
+            {
+              "name": "registry",
+              "valueString": "https://fs.get-ig.org/pkgs"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "package",
+      "part": [
+        {
+          "name": "name",
+          "valueString": "hl7.terminology.r4@3.1.0"
+        },
+        {
+          "name": "installedCanonicals",
+          "valueInteger": 7
+        },
+        {
+          "name": "intention",
+          "valueString": "transitive"
+        },
+        {
+          "name": "source",
+          "part": [
+            {
+              "name": "type",
+              "valueString": "npm"
+            },
+            {
+              "name": "registry",
+              "valueString": "https://fs.get-ig.org/pkgs"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
+```
 
 </details>
 
@@ -64,7 +360,213 @@ POST /fhir/$fhir-package-installContent-Type: application/jsonAccept: applicatio
 
 <summary>Install latest version of package</summary>
 
-POST /fhir/$fhir-package-installContent-Type: application/jsonAccept: application/json{  "resourceType": "Parameters",  "parameter": \[    {      "name": "package",      "valueString": "hl7.fhir.us.core"    }  ]}{  "resourceType": "Parameters",  "parameter": \[    {      "name": "result",      "valueBoolean": true    },    {      "name": "package",      "part": \[        {          "name": "name",          "valueString": "hl7.fhir.us.core@8.0.0"        },        {          "name": "installedCanonicals",          "valueInteger": 205        },        {          "name": "intention",          "valueString": "direct"        },        {          "name": "source",          "part": \[            {              "name": "type",              "valueString": "npm"            },            {              "name": "registry",              "valueString": "https://fs.get-ig.org/pkgs"            }          ]        }      ]    },    {      "name": "package",      "part": \[        {          "name": "name",          "valueString": "us.nlm.vsac@0.23.0"        },        {          "name": "installedCanonicals",          "valueInteger": 96        },        {          "name": "intention",          "valueString": "transitive"        },        {          "name": "source",          "part": \[            {              "name": "type",              "valueString": "npm"            },            {              "name": "registry",              "valueString": "https://fs.get-ig.org/pkgs"            }          ]        }      ]    },    {      "name": "package",      "part": \[        {          "name": "name",          "valueString": "hl7.terminology.r4@6.4.0"        },        {          "name": "installedCanonicals",          "valueInteger": 23        },        {          "name": "intention",          "valueString": "transitive"        },        {          "name": "source",          "part": \[            {              "name": "type",              "valueString": "npm"            },            {              "name": "registry",              "valueString": "https://fs.get-ig.org/pkgs"            }          ]        }      ]    },    {      "name": "package",      "part": \[        {          "name": "name",          "valueString": "hl7.fhir.uv.extensions.r4@5.2.0"        },        {          "name": "installedCanonicals",          "valueInteger": 2        },        {          "name": "intention",          "valueString": "transitive"        },        {          "name": "source",          "part": \[            {              "name": "type",              "valueString": "npm"            },            {              "name": "registry",              "valueString": "https://fs.get-ig.org/pkgs"            }          ]        }      ]    },    {      "name": "package",      "part": \[        {          "name": "name",          "valueString": "us.cdc.phinvads@0.12.0"        },        {          "name": "installedCanonicals",          "valueInteger": 2        },        {          "name": "intention",          "valueString": "transitive"        },        {          "name": "source",          "part": \[            {              "name": "type",              "valueString": "npm"            },            {              "name": "registry",              "valueString": "https://fs.get-ig.org/pkgs"            }          ]        }      ]    },    {      "name": "package",      "part": \[        {          "name": "name",          "valueString": "hl7.fhir.uv.sdc@3.0.0"        },        {          "name": "installedCanonicals",          "valueInteger": 11        },        {          "name": "intention",          "valueString": "transitive"        },        {          "name": "source",          "part": \[            {              "name": "type",              "valueString": "npm"            },            {              "name": "registry",              "valueString": "https://fs.get-ig.org/pkgs"            }          ]        }      ]    }  ]}
+```http
+POST /fhir/$fhir-package-install
+Content-Type: application/json
+Accept: application/json
+
+{
+  "resourceType": "Parameters",
+  "parameter": [
+    {
+      "name": "package",
+      "valueString": "hl7.fhir.us.core"
+    }
+  ]
+}
+```
+
+```json
+{
+  "resourceType": "Parameters",
+  "parameter": [
+    {
+      "name": "result",
+      "valueBoolean": true
+    },
+    {
+      "name": "package",
+      "part": [
+        {
+          "name": "name",
+          "valueString": "hl7.fhir.us.core@8.0.0"
+        },
+        {
+          "name": "installedCanonicals",
+          "valueInteger": 205
+        },
+        {
+          "name": "intention",
+          "valueString": "direct"
+        },
+        {
+          "name": "source",
+          "part": [
+            {
+              "name": "type",
+              "valueString": "npm"
+            },
+            {
+              "name": "registry",
+              "valueString": "https://fs.get-ig.org/pkgs"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "package",
+      "part": [
+        {
+          "name": "name",
+          "valueString": "us.nlm.vsac@0.23.0"
+        },
+        {
+          "name": "installedCanonicals",
+          "valueInteger": 96
+        },
+        {
+          "name": "intention",
+          "valueString": "transitive"
+        },
+        {
+          "name": "source",
+          "part": [
+            {
+              "name": "type",
+              "valueString": "npm"
+            },
+            {
+              "name": "registry",
+              "valueString": "https://fs.get-ig.org/pkgs"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "package",
+      "part": [
+        {
+          "name": "name",
+          "valueString": "hl7.terminology.r4@6.4.0"
+        },
+        {
+          "name": "installedCanonicals",
+          "valueInteger": 23
+        },
+        {
+          "name": "intention",
+          "valueString": "transitive"
+        },
+        {
+          "name": "source",
+          "part": [
+            {
+              "name": "type",
+              "valueString": "npm"
+            },
+            {
+              "name": "registry",
+              "valueString": "https://fs.get-ig.org/pkgs"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "package",
+      "part": [
+        {
+          "name": "name",
+          "valueString": "hl7.fhir.uv.extensions.r4@5.2.0"
+        },
+        {
+          "name": "installedCanonicals",
+          "valueInteger": 2
+        },
+        {
+          "name": "intention",
+          "valueString": "transitive"
+        },
+        {
+          "name": "source",
+          "part": [
+            {
+              "name": "type",
+              "valueString": "npm"
+            },
+            {
+              "name": "registry",
+              "valueString": "https://fs.get-ig.org/pkgs"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "package",
+      "part": [
+        {
+          "name": "name",
+          "valueString": "us.cdc.phinvads@0.12.0"
+        },
+        {
+          "name": "installedCanonicals",
+          "valueInteger": 2
+        },
+        {
+          "name": "intention",
+          "valueString": "transitive"
+        },
+        {
+          "name": "source",
+          "part": [
+            {
+              "name": "type",
+              "valueString": "npm"
+            },
+            {
+              "name": "registry",
+              "valueString": "https://fs.get-ig.org/pkgs"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "package",
+      "part": [
+        {
+          "name": "name",
+          "valueString": "hl7.fhir.uv.sdc@3.0.0"
+        },
+        {
+          "name": "installedCanonicals",
+          "valueInteger": 11
+        },
+        {
+          "name": "intention",
+          "valueString": "transitive"
+        },
+        {
+          "name": "source",
+          "part": [
+            {
+              "name": "type",
+              "valueString": "npm"
+            },
+            {
+              "name": "registry",
+              "valueString": "https://fs.get-ig.org/pkgs"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
+```
 
 </details>
 
@@ -72,7 +574,59 @@ POST /fhir/$fhir-package-installContent-Type: application/jsonAccept: applicatio
 
 <summary>Install package from a local file</summary>
 
-POST /fhir/$fhir-package-installContent-Type: application/jsonAccept: application/json{  "resourceType": "Parameters",  "parameter": \[    {      "name": "package",      "valueString": "file:///tmp/my-package.tgz"    }  ]}{  "resourceType": "Parameters",  "parameter": \[    {      "name": "result",      "valueBoolean": true    },    {      "name": "package",      "part": \[        {          "name": "name",          "valueString": "my.package@1.0.0"        },        {          "name": "installedCanonicals",          "valueInteger": 5        },        {          "name": "intention",          "valueString": "direct"        },        {          "name": "source",          "part": \[            {              "name": "type",              "valueString": "file"            }          ]        }      ]    },  ]}
+```http
+POST /fhir/$fhir-package-install
+Content-Type: application/json
+Accept: application/json
+
+{
+  "resourceType": "Parameters",
+  "parameter": [
+    {
+      "name": "package",
+      "valueString": "file:///tmp/my-package.tgz"
+    }
+  ]
+}
+```
+
+```json
+{
+  "resourceType": "Parameters",
+  "parameter": [
+    {
+      "name": "result",
+      "valueBoolean": true
+    },
+    {
+      "name": "package",
+      "part": [
+        {
+          "name": "name",
+          "valueString": "my.package@1.0.0"
+        },
+        {
+          "name": "installedCanonicals",
+          "valueInteger": 5
+        },
+        {
+          "name": "intention",
+          "valueString": "direct"
+        },
+        {
+          "name": "source",
+          "part": [
+            {
+              "name": "type",
+              "valueString": "file"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
+```
 
 </details>
 
@@ -80,7 +634,217 @@ POST /fhir/$fhir-package-installContent-Type: application/jsonAccept: applicatio
 
 <summary>Install multiple packages</summary>
 
-POST /fhir/$fhir-package-installContent-Type: application/jsonAccept: application/json{  "resourceType": "Parameters",  "parameter": \[    {      "name": "package",      "valueString": "hl7.fhir.us.core@5.0.0"    },    {      "name": "package",      "valueString": "hl7.fhir.us.mcode@2.0.0"    }  ]}{  "resourceType": "Parameters",  "parameter": \[    {      "name": "result",      "valueBoolean": true    },    {      "name": "package",      "part": \[        {          "name": "name",          "valueString": "hl7.fhir.us.core@5.0.0"        },        {          "name": "installedCanonicals",          "valueInteger": 194        },        {          "name": "intention",          "valueString": "direct"        },        {          "name": "source",          "part": \[            {              "name": "type",              "valueString": "npm"            },            {              "name": "registry",              "valueString": "https://fs.get-ig.org/pkgs"            }          ]        }      ]    },    {      "name": "package",      "part": \[        {          "name": "name",          "valueString": "hl7.fhir.us.mcode@2.0.0"        },        {          "name": "installedCanonicals",          "valueInteger": 153        },        {          "name": "intention",          "valueString": "direct"        },        {          "name": "source",          "part": \[            {              "name": "type",              "valueString": "npm"            },            {              "name": "registry",              "valueString": "https://fs.get-ig.org/pkgs"            }          ]        }      ]    },    {      "name": "package",      "part": \[        {          "name": "name",          "valueString": "us.nlm.vsac@0.3.0"        },        {          "name": "installedCanonicals",          "valueInteger": 20        },        {          "name": "intention",          "valueString": "transitive"        },        {          "name": "source",          "part": \[            {              "name": "type",              "valueString": "npm"            },            {              "name": "registry",              "valueString": "https://fs.get-ig.org/pkgs"            }          ]        }      ]    },    {      "name": "package",      "part": \[        {          "name": "name",          "valueString": "hl7.fhir.uv.sdc@3.0.0"        },        {          "name": "installedCanonicals",          "valueInteger": 11        },        {          "name": "intention",          "valueString": "transitive"        },        {          "name": "source",          "part": \[            {              "name": "type",              "valueString": "npm"            },            {              "name": "registry",              "valueString": "https://fs.get-ig.org/pkgs"            }          ]        }      ]    },    {      "name": "package",      "part": \[        {          "name": "name",          "valueString": "hl7.terminology.r4@3.1.0"        },        {          "name": "installedCanonicals",          "valueInteger": 7        },        {          "name": "intention",          "valueString": "transitive"        },        {          "name": "source",          "part": \[            {              "name": "type",              "valueString": "npm"            },            {              "name": "registry",              "valueString": "https://fs.get-ig.org/pkgs"            }          ]        }      ]    },    {      "name": "package",      "part": \[        {          "name": "name",          "valueString": "hl7.fhir.us.core@4.0.0"        },        {          "name": "installedCanonicals",          "valueInteger": 30        },        {          "name": "intention",          "valueString": "transitive"        },        {          "name": "source",          "part": \[            {              "name": "type",              "valueString": "npm"            },            {              "name": "registry",              "valueString": "https://fs.get-ig.org/pkgs"            }          ]        }      ]    }  ]}
+```http
+POST /fhir/$fhir-package-install
+Content-Type: application/json
+Accept: application/json
+
+{
+  "resourceType": "Parameters",
+  "parameter": [
+    {
+      "name": "package",
+      "valueString": "hl7.fhir.us.core@5.0.0"
+    },
+    {
+      "name": "package",
+      "valueString": "hl7.fhir.us.mcode@2.0.0"
+    }
+  ]
+}
+```
+
+```json
+{
+  "resourceType": "Parameters",
+  "parameter": [
+    {
+      "name": "result",
+      "valueBoolean": true
+    },
+    {
+      "name": "package",
+      "part": [
+        {
+          "name": "name",
+          "valueString": "hl7.fhir.us.core@5.0.0"
+        },
+        {
+          "name": "installedCanonicals",
+          "valueInteger": 194
+        },
+        {
+          "name": "intention",
+          "valueString": "direct"
+        },
+        {
+          "name": "source",
+          "part": [
+            {
+              "name": "type",
+              "valueString": "npm"
+            },
+            {
+              "name": "registry",
+              "valueString": "https://fs.get-ig.org/pkgs"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "package",
+      "part": [
+        {
+          "name": "name",
+          "valueString": "hl7.fhir.us.mcode@2.0.0"
+        },
+        {
+          "name": "installedCanonicals",
+          "valueInteger": 153
+        },
+        {
+          "name": "intention",
+          "valueString": "direct"
+        },
+        {
+          "name": "source",
+          "part": [
+            {
+              "name": "type",
+              "valueString": "npm"
+            },
+            {
+              "name": "registry",
+              "valueString": "https://fs.get-ig.org/pkgs"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "package",
+      "part": [
+        {
+          "name": "name",
+          "valueString": "us.nlm.vsac@0.3.0"
+        },
+        {
+          "name": "installedCanonicals",
+          "valueInteger": 20
+        },
+        {
+          "name": "intention",
+          "valueString": "transitive"
+        },
+        {
+          "name": "source",
+          "part": [
+            {
+              "name": "type",
+              "valueString": "npm"
+            },
+            {
+              "name": "registry",
+              "valueString": "https://fs.get-ig.org/pkgs"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "package",
+      "part": [
+        {
+          "name": "name",
+          "valueString": "hl7.fhir.uv.sdc@3.0.0"
+        },
+        {
+          "name": "installedCanonicals",
+          "valueInteger": 11
+        },
+        {
+          "name": "intention",
+          "valueString": "transitive"
+        },
+        {
+          "name": "source",
+          "part": [
+            {
+              "name": "type",
+              "valueString": "npm"
+            },
+            {
+              "name": "registry",
+              "valueString": "https://fs.get-ig.org/pkgs"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "package",
+      "part": [
+        {
+          "name": "name",
+          "valueString": "hl7.terminology.r4@3.1.0"
+        },
+        {
+          "name": "installedCanonicals",
+          "valueInteger": 7
+        },
+        {
+          "name": "intention",
+          "valueString": "transitive"
+        },
+        {
+          "name": "source",
+          "part": [
+            {
+              "name": "type",
+              "valueString": "npm"
+            },
+            {
+              "name": "registry",
+              "valueString": "https://fs.get-ig.org/pkgs"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "package",
+      "part": [
+        {
+          "name": "name",
+          "valueString": "hl7.fhir.us.core@4.0.0"
+        },
+        {
+          "name": "installedCanonicals",
+          "valueInteger": 30
+        },
+        {
+          "name": "intention",
+          "valueString": "transitive"
+        },
+        {
+          "name": "source",
+          "part": [
+            {
+              "name": "type",
+              "valueString": "npm"
+            },
+            {
+              "name": "registry",
+              "valueString": "https://fs.get-ig.org/pkgs"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
+```
 
 </details>
 
@@ -113,7 +877,46 @@ POST /fhir/$fhir-package-uninstall
 
 <summary>Uninstall package</summary>
 
-POST /fhir/$fhir-package-uninstallContent-Type: application/jsonAccept: application/json{  "resourceType": "Parameters",  "parameter": \[    {      "name": "package",      "valueString": "hl7.fhir.us.core@8.0.0"    }  ]}{  "resourceType": "Parameters",  "parameter": \[    {      "name": "result",      "valueBoolean": true    },    {      "name": "package",      "part": \[        {          "name": "name",          "valueString": "hl7.fhir.us.core@8.0.0"        },        {          "name": "status",          "valueString": "deleted"        }      ]    }  ]}
+```http
+POST /fhir/$fhir-package-uninstall
+Content-Type: application/json
+Accept: application/json
+
+{
+  "resourceType": "Parameters",
+  "parameter": [
+    {
+      "name": "package",
+      "valueString": "hl7.fhir.us.core@8.0.0"
+    }
+  ]
+}
+```
+
+```json
+{
+  "resourceType": "Parameters",
+  "parameter": [
+    {
+      "name": "result",
+      "valueBoolean": true
+    },
+    {
+      "name": "package",
+      "part": [
+        {
+          "name": "name",
+          "valueString": "hl7.fhir.us.core@8.0.0"
+        },
+        {
+          "name": "status",
+          "valueString": "deleted"
+        }
+      ]
+    }
+  ]
+}
+```
 
 </details>
 
