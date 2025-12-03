@@ -4,18 +4,14 @@ description: This tutorial will guide you through Aidbox + FHIR App Portal insta
 
 # Run Aidbox + FHIR Portal locally
 
-TODO add to each header link like this: ### Aidbox license
+### Prerequisites<a href="#prerequisites" id="prerequisites"></a>
 
-## Run Aidbox + FHIR Portal locally
-
-### Prerequisites
-
-#### Required Software
+#### Required Software<a href="#required-software" id="required-software"></a>
 
 * **Docker** and **Docker Compose** - [Install Docker](https://docs.docker.com/get-docker/)
 * **Docker Compose** v2.0 or later
 
-#### Required Licenses
+#### Required Licenses<a href="#required-licenses" id="required-licenses"></a>
 
 You need two Aidbox licenses you can get from the [Aidbox User Portal](https://aidbox.app):
 
@@ -28,7 +24,7 @@ It is a JWT token that looks like:
 eyJhbGciOiJ...
 ```
 
-### **Required: Email Provider Configuration**
+#### **Required: Email Provider Configuration**<a href="#required-email-provider-configuration" id="required-email-provider-configuration"></a>
 
 {% hint style="info" %}
 In this guide `mailgun` is used to send email. FHIR App Portal also supports [different email providers](../../../modules/smartbox/how-to-guides/setup-email-provider.md) and [SMTP](../../../modules/smartbox/how-to-guides/setup-email-provider.md#how-to-set-up-smtp)
@@ -36,16 +32,16 @@ In this guide `mailgun` is used to send email. FHIR App Portal also supports [di
 
 Email provider is used to communicate with users (developers, patients). It sends emails for email verification, resetting of a password and etc.
 
-### Quick Start
+### Quick Start<a href="#quick-start" id="quick-start"></a>
 
-#### **Step 1: Create Project Directory**
+#### **Step 1: Create Project Directory**<a href="#step-1-create-project-directory" id="step-1-create-project-directory"></a>
 
 ```bash
 mkdir fhir-app-portal
 cd fhir-app-portal
 ```
 
-### **Step 2: Create docker-compose.yaml**
+#### **Step 2: Create docker-compose.yaml**<a href="#step-2-create-docker-compose-yaml" id="step-2-create-docker-compose-yaml"></a>
 
 Create a `docker-compose.yaml` file and paste the following content:
 
@@ -227,7 +223,7 @@ services:
 
 </details>
 
-### **Step 3: Create .env file**
+#### **Step 3: Create .env file**<a href="#step-3-create-env-file" id="step-3-create-env-file"></a>
 
 Create `.env` file in the same folder alongside with `docker-compose.yaml` and copy environment variables:
 
@@ -349,7 +345,7 @@ DEV_MODE=true
 
 </details>
 
-### **Step 4: Create initBundleDeveloper.json for Sandbox Aidbox**
+#### **Step 4: Create initBundleDeveloper.json for Sandbox Aidbox**<a href="#step-4-create-initbundledeveloper-json-for-sandbox-aidbox" id="step-4-create-initbundledeveloper-json-for-sandbox-aidbox"></a>
 
 Create `initBundleDeveloper.json` file in the same folder alongside with `docker-compose.yaml` and copy the content:
 
@@ -943,7 +939,7 @@ Create `initBundleDeveloper.json` file in the same folder alongside with `docker
 
 </details>
 
-### **Step 5: Create Init Bundle for Admin Aidbox**
+#### **Step 5: Create Init Bundle for Admin Aidbox**<a href="#step-5-create-init-bundle-for-admin-aidbox" id="step-5-create-init-bundle-for-admin-aidbox"></a>
 
 Create `initBundleAdmin.json` file in the same folder alongside with `docker-compose.yaml` and copy the content:
 
@@ -1366,7 +1362,7 @@ Create `initBundleAdmin.json` file in the same folder alongside with `docker-com
 
 </details>
 
-### **Step 6: Launch Aidbox**
+#### **Step 6: Launch Aidbox**<a href="#step-6-launch-aidbox" id="step-6-launch-aidbox"></a>
 
 Run the following command:
 
@@ -1374,20 +1370,20 @@ Run the following command:
 docker compose up
 ```
 
-### **Step 7: How to access services**
+#### **Step 7: How to access services**<a href="#step-7-how-to-access-services" id="step-7-how-to-access-services"></a>
 
 Now Aidboxes and FHIR App Portal are ready. They're accessible by the following URLs:
 
 * **Admin/Patient Portal** ([http://localhost:8095](http://localhost:8095)) - Manage users, review apps, monitor the system as admin and also access App Gallery as patient
 * **Developer Sandbox Portal** ([http://localhost:8096](http://localhost:8096)) - Register and test SMART on FHIR applications
 * **Admin/Patient Aidbox Instance** - ([http://admin.localhost:8080](http://admin.localhost:8080)) - Separate FHIR server for Admin/Patient environment
+* **Sanbox Aidbox Instance** - ([http://localhost:8090](http://localhost:8090)) - Separate FHIR server for Developer Sandbox environment
 
-      For Sign in as admin use `admin` username and `AIDBOX_ADMIN_PASSWORD` password
-* **Sanbox Aidbox Instance** - ([http://localhost:8090](http://localhost:8090)) - Separate FHIR server for Sandbox (Developer) environment
+#### **Step 8: How To Sign In**<a href="#step-8-how-to-sign-in" id="step-8-how-to-sign-in"></a>
+* To sign in into **Admin/Patient Aidbox Instance** ([http://admin.localhost:8080](http://admin.localhost:8080)) as admin use `admin` username and `AIDBOX_ADMIN_PASSWORD` password
+* To sign in into **Sanbox Aidbox Instance** - ([http://localhost:8090](http://localhost:8090)) as admin use `admin` username and `AIDBOX_ADMIN_PASSWORD` password
 
-      For sign in as admin use `admin` username and `AIDBOX_ADMIN_PASSWORD` password
-
-### **Step 8: Manually upload Bundle**
+#### **Step 9: Manually upload Bundle**<a href="#step-9-manually-upload-bundle" id="step-9-manually-upload-bundle"></a>
 
 Open Sandbox Aidbox Instance at [http://localhost:8090/ui/console#/rest](http://localhost:8090/ui/console#/rest) and run the following command in REST Console:
 
