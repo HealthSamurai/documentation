@@ -7,7 +7,7 @@ description: Follow these steps to launch Aidbox locally using Docker
 ## Prerequisites
 
 {% hint style="warning" %}
-<img src="../.gitbook/assets/docker (1).png" alt="Docker logo" data-size="original">
+<img src="../.gitbook/assets/docker.png" alt="Docker logo" data-size="original">
 
 Please **make sure** that both [Docker & Docker Compose](https://docs.docker.com/engine/install/) are installed.
 {% endhint %}

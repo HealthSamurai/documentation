@@ -16,7 +16,7 @@ It introduces you to:
 <figure><img src="../../../.gitbook/assets/761c8fff-9d43-4743-abbf-466c55ed7707 (1).png" alt="Architecture diagram showing Aidbox with OpenTelemetry collector and observability tools"><figcaption></figcaption></figure>
 
 {% hint style="warning" %}
-<img src="../../../.gitbook/assets/docker (1).png" alt="Docker logo" data-size="original">
+<img src="../../../.gitbook/assets/docker.png" alt="Docker logo" data-size="original">
 
 Please **make sure** that both [Docker & Docker Compose](https://docs.docker.com/engine/install/) are installed.
 {% endhint %}
