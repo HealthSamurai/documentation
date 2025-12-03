@@ -6,7 +6,7 @@ Manage FHIR packages with npm-style operations exposed as FHIR operations.
 
 Installs FHIR Implementation Guide packages from a registry or direct URL. Downloads, validates, and installs packages along with their dependencies.
 
-The default NPM registry URL can be changed via the [FHIR NPM Package registry](all-settings/#fhir-npm-package-registry) setting.
+The default NPM registry URL can be changed via the [FHIR NPM Package registry](../reference/all-settings#fhir-npm-package-registry) setting.
 
 ```http
 POST /fhir/$fhir-package-install
@@ -25,29 +25,30 @@ For details on the candidate selection algorithm and recursive pinning process, 
 
 ### Input Parameters
 
-| Name     | Card. | Type   | Description                                                                                                                                                                                                                                                                                                                                                                                                                  |
-| -------- | ----- | ------ | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| package  | 1..\* | string | <p>Package specification in one of the following formats:</p><ul><li><code>&#x3C;name>@&#x3C;version></code> — identifier from the registry (e.g., <code>hl7.fhir.us.core@5.0.0</code>)</li><li><code>https://</code> — remote gzipped tarball URL (e.g., <code>https://example.org/package.tgz</code>)</li><li><code>file://</code> — local gzipped tarball path (e.g., <code>file:///path/to/package.tgz</code>)</li></ul> |
-| registry | 0..1  | url    | <p>Package registry URL used for resolving non-local packages.<br>Defaults to <code>https://fs.get-ig.org/pkgs</code>.</p>                                                                                                                                                                                                                                                                                                   |
+| Name | Card. | Type | Description |
+|------|-------------|------|-------------|
+| package | 1..* | string | Package specification in one of the following formats:<ul><li>`<name>@<version>` — identifier from the registry (e.g., `hl7.fhir.us.core@5.0.0`)</li><li>`https://` — remote gzipped tarball URL (e.g., `https://example.org/package.tgz`)</li><li>`file://` — local gzipped tarball path (e.g., `file:///path/to/package.tgz`)</li></ul> |
+| registry | 0..1 | url | Package registry URL used for resolving non-local packages.<br>Defaults to `https://fs.get-ig.org/pkgs`. |
 
 ### Output Parameters
 
-| Parameter                   | Cardinality | Type    | Example                      | Description                                      |
-| --------------------------- | ----------- | ------- | ---------------------------- | ------------------------------------------------ |
-| result                      | 1..1        | boolean | `true`                       | Whether the installation succeeded.              |
-| package                     | 1..\*       |         |                              | Installed package information.                   |
-| package.name                | 1..1        | string  | `hl7.fhir.us.core@5.0.0`     | Package identifier in `<name>@<version>` format. |
-| package.installedCanonicals | 1..1        | integer | `194`                        | Number of canonical resources installed.         |
-| package.intention           | 1..1        | string  | `direct` / `transitive`      | Whether installed directly or as a dependency.   |
-| package.source.type         | 1..1        | string  | `npm` / `file`               | Source type from which the package was fetched.  |
-| package.source.registry     | 0..1        | string  | `https://fs.get-ig.org/pkgs` | Package registry URL.                            |
+| Parameter | Cardinality | Type | Example | Description |
+|-----------|-------------|------|---------|-------------|
+| result | 1..1 | boolean | `true` | Whether the installation succeeded. |
+| package | 1..* | | | Installed package information. |
+| package.name | 1..1 | string | `hl7.fhir.us.core@5.0.0` | Package identifier in `<name>@<version>` format. |
+| package.installedCanonicals | 1..1 | integer | `194` | Number of canonical resources installed. |
+| package.intention | 1..1 | string | `direct` / `transitive` | Whether installed directly or as a dependency. |
+| package.source.type | 1..1 | string | `npm` / `file` | Source type from which the package was fetched. |
+| package.source.registry | 0..1 | string | `https://fs.get-ig.org/pkgs` | Package registry URL. |
 
 ### Examples
 
 <details>
-
 <summary>Install package from default registry</summary>
 
+{% tabs %}
+{% tab title="Request" %}
 ```http
 POST /fhir/$fhir-package-install
 Content-Type: application/json
@@ -63,7 +64,8 @@ Accept: application/json
   ]
 }
 ```
-
+{% endtab %}
+{% tab title="Response" %}
 ```json
 {
   "resourceType": "Parameters",
@@ -195,13 +197,16 @@ Accept: application/json
   ]
 }
 ```
+{% endtab %}
+{% endtabs %}
 
 </details>
 
 <details>
-
 <summary>Install package from specific registry</summary>
 
+{% tabs %}
+{% tab title="Request" %}
 ```http
 POST /fhir/$fhir-package-install
 Content-Type: application/json
@@ -221,7 +226,8 @@ Accept: application/json
   ]
 }
 ```
-
+{% endtab %}
+{% tab title="Response" %}
 ```json
 {
   "resourceType": "Parameters",
@@ -353,13 +359,16 @@ Accept: application/json
   ]
 }
 ```
+{% endtab %}
+{% endtabs %}
 
 </details>
 
 <details>
-
 <summary>Install latest version of package</summary>
 
+{% tabs %}
+{% tab title="Request" %}
 ```http
 POST /fhir/$fhir-package-install
 Content-Type: application/json
@@ -375,7 +384,8 @@ Accept: application/json
   ]
 }
 ```
-
+{% endtab %}
+{% tab title="Response" %}
 ```json
 {
   "resourceType": "Parameters",
@@ -567,13 +577,16 @@ Accept: application/json
   ]
 }
 ```
+{% endtab %}
+{% endtabs %}
 
 </details>
 
 <details>
-
 <summary>Install package from a local file</summary>
 
+{% tabs %}
+{% tab title="Request" %}
 ```http
 POST /fhir/$fhir-package-install
 Content-Type: application/json
@@ -589,7 +602,8 @@ Accept: application/json
   ]
 }
 ```
-
+{% endtab %}
+{% tab title="Response" %}
 ```json
 {
   "resourceType": "Parameters",
@@ -623,17 +637,20 @@ Accept: application/json
           ]
         }
       ]
-    }
+    },
   ]
 }
 ```
+{% endtab %}
+{% endtabs %}
 
 </details>
 
 <details>
-
 <summary>Install multiple packages</summary>
 
+{% tabs %}
+{% tab title="Request" %}
 ```http
 POST /fhir/$fhir-package-install
 Content-Type: application/json
@@ -653,7 +670,8 @@ Accept: application/json
   ]
 }
 ```
-
+{% endtab %}
+{% tab title="Response" %}
 ```json
 {
   "resourceType": "Parameters",
@@ -845,8 +863,11 @@ Accept: application/json
   ]
 }
 ```
+{% endtab %}
+{% endtabs %}
 
 </details>
+
 
 ## $fhir-package-uninstall
 
@@ -858,25 +879,26 @@ POST /fhir/$fhir-package-uninstall
 
 ### Input Parameters
 
-| Name    | Card. | Type   | Description                                                                       |
-| ------- | ----- | ------ | --------------------------------------------------------------------------------- |
-| package | 1..\* | string | Package identifier in `<name>@<version>` format (e.g., `hl7.fhir.us.core@5.0.0`). |
+| Name | Card. | Type | Description |
+|------|-------|------|-------------|
+| package | 1..* | string | Package identifier in `<name>@<version>` format (e.g., `hl7.fhir.us.core@5.0.0`). |
 
 ### Output Parameters
 
-| Parameter      | Cardinality | Type    | Example                  | Description                                      |
-| -------------- | ----------- | ------- | ------------------------ | ------------------------------------------------ |
-| result         | 1..1        | boolean | `true`                   | Whether the uninstallation succeeded.            |
-| package        | 1..\*       |         |                          | Uninstalled package information.                 |
-| package.name   | 1..1        | string  | `hl7.fhir.us.core@5.0.0` | Package identifier in `<name>@<version>` format. |
-| package.status | 1..1        | string  | `deleted`                | Status of the uninstallation.                    |
+| Parameter | Cardinality | Type | Example | Description |
+|-----------|-------------|------|---------|-------------|
+| result | 1..1 | boolean | `true` | Whether the uninstallation succeeded. |
+| package | 1..* | | | Uninstalled package information. |
+| package.name | 1..1 | string | `hl7.fhir.us.core@5.0.0` | Package identifier in `<name>@<version>` format. |
+| package.status | 1..1 | string | `deleted` | Status of the uninstallation. |
 
 ### Examples
 
 <details>
-
 <summary>Uninstall package</summary>
 
+{% tabs %}
+{% tab title="Request" %}
 ```http
 POST /fhir/$fhir-package-uninstall
 Content-Type: application/json
@@ -892,7 +914,8 @@ Accept: application/json
   ]
 }
 ```
-
+{% endtab %}
+{% tab title="Response" %}
 ```json
 {
   "resourceType": "Parameters",
@@ -917,10 +940,13 @@ Accept: application/json
   ]
 }
 ```
+{% endtab %}
+{% endtabs %}
 
 </details>
 
 ## See also
+
 
 {% content-ref url="../tutorials/artifact-registry-tutorials/upload-fhir-implementation-guide/how-to-load-fhir-ig-with-init-bundle.md" %}
 [how-to-load-fhir-ig-with-init-bundle.md](../tutorials/artifact-registry-tutorials/upload-fhir-implementation-guide/how-to-load-fhir-ig-with-init-bundle.md)
