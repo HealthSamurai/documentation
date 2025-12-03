@@ -401,7 +401,7 @@
       {:data {:muuntaja m/instance
               :middleware (vec (remove nil?
                                  [;; Session management (must be early to set session-id for all requests)
-                                  session/wrap-session
+                                  #(session/wrap-session % context)
                                   ;; PostHog tracking (skip in dev mode)
                                   (when-not (state/get-config context :dev-mode)
                                     #(posthog-middleware/wrap-posthog-tracking % context))
