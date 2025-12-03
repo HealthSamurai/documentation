@@ -1381,8 +1381,64 @@ Now Aidboxes and FHIR App Portal are ready. They're accessible by the following 
 * **Admin/Patient Portal** ([http://localhost:8095](http://localhost:8095)) - Manage users, review apps, monitor the system as admin and also access App Gallery as patient
 * **Developer Sandbox Portal** ([http://localhost:8096](http://localhost:8096)) - Register and test SMART on FHIR applications
 * **Admin/Patient Aidbox Instance** - ([http://admin.localhost:8080](http://admin.localhost:8080)) - Separate FHIR server for Admin/Patient environment
+
+      For Sign in as admin use `admin` username and `AIDBOX_ADMIN_PASSWORD` password
 * **Sanbox Aidbox Instance** - ([http://localhost:8090](http://localhost:8090)) - Separate FHIR server for Sandbox (Developer) environment
 
-TODO add step when we create accesspolicy manually TODO check out product/04-documentation/CUSTOMER\_SETUP.md TODO apply envbust for Client secrets in init bundles https://github.com/Aidbox/examples/tree/main/aidbox-features/init-bundle-env-template TODO add step when user defines redirect\_to in email template or set it with envbust TODO orgbac BOX\_SECURITY\_ORGBAC\_ENABLED mode add step for data isolation (if you want isolation of data in aidobx and portal you should add the following envs:BOX\_SECURITY\_ORGBAC\_ENABLED)
+      For sign in as admin use `admin` username and `AIDBOX_ADMIN_PASSWORD` password
 
-TODO flow description move to 3 files TODO move overview to the end
+### **Step 8: Manually upload Bundle**
+
+Open Sandbox Aidbox Instance at [http://localhost:8090/ui/console#/rest](http://localhost:8090/ui/console#/rest) and run the following command in REST Console:
+
+
+<details>
+
+<summary>Click to view Bundle</summary>
+
+```json
+POST /
+content-type: application/json
+accept: application/json
+
+{
+  "resourceType": "Bundle",
+  "type": "transaction",
+  "entry": [
+    {
+      "fullUrl": "AccessPolicy/dev-client-create-self-owned",
+      "resource": {
+        "resourceType": "AccessPolicy",
+        "id": "dev-client-create-self-owned",
+        "engine": "matcho",
+        "description": "Developers can create Client apps only when created-by points to themselves",
+        "matcho": {
+          "user": { "roles": { "$contains": { "type": "developer" } } },
+          "operation": { "id": "FhirCreate" },
+          "params": { "resource/type": "Client" },
+          "resource": {
+            "meta": {
+              "extension": {
+                "$contains": {
+                  "url": "http://aidbox.app/StructureDefinition/Client/created-by",
+                  "value": {
+                    "Reference": {
+                      "id": ".user.id"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "request": {
+        "method": "PUT",
+        "url": "AccessPolicy/dev-client-create-self-owned"
+      }
+    }
+  ]
+}
+```
+
+</details>
