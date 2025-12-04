@@ -225,7 +225,7 @@
   "Main site navigation bar - generated from YAML config"
   [context]
   (let [nav-items (blog/get-nav-items context)]
-    [:nav {:class "w-full bg-surface sticky top-0 z-50 h-[65px] px-4 md:px-8 border-b border-outline"
+    [:nav {:class "w-full bg-surface h-[65px] px-4 md:px-8 border-b border-outline"
            :style {:font-family font-family}
            :aria-label "Main navigation"}
      [:div {:class "flex items-center justify-between h-full mx-auto max-w-[1200px]"}
@@ -341,7 +341,7 @@
   "Blog header - main navbar + mobile menu"
   [context]
   (let [nav-items (blog/get-nav-items context)]
-    [:header
+    [:header {:class "sticky top-0 z-50"}
      [:style (hiccup/raw gotham-pro-font-css)]
      (main-navbar context)
      ;; Mobile menu (outside nav for proper z-index stacking)
