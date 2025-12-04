@@ -432,7 +432,7 @@
 
   /* On-Surface Colors (Text) */
   --color-on-surface: #e5e5e5;
-  --color-on-surface-strong: #ffffff;
+  --color-on-surface-strong: #f1f1f1;
   --color-on-surface-secondary: #b8b8b8;
   --color-on-surface-muted: #999999;
   --color-on-surface-placeholder: #7a7a7a;
