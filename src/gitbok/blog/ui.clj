@@ -359,6 +359,9 @@
                :style {:font-family font-family}}
        rendered]
 
+      ;; Social share buttons
+      [:div {:class "sharethis-inline-share-buttons mt-8"}]
+
       ;; Back to blog link
       [:div {:class "mt-12 pt-8 border-t border-outline"}
        [:a {:href (str blog/url-prefix "/blog")

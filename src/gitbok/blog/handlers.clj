@@ -55,7 +55,8 @@
          :canonical-url (http/get-absolute-url context (:uri request))
          :og-preview nil
          :lastmod nil
-         :favicon-url "https://cdn.prod.website-files.com/57441aa5da71fdf07a0a2e19/5a2ff62247c38400019e81f3_32.png"})))))
+         :favicon-url "https://cdn.prod.website-files.com/57441aa5da71fdf07a0a2e19/5a2ff62247c38400019e81f3_32.png"
+         :sharethis true})))))
 
 (defn article-handler
   "Handler for /articles/:slug page."
@@ -92,7 +93,8 @@
              :og-preview (:image metadata)
              :lastmod (:published metadata)
              :json-ld json-ld
-             :favicon-url "https://cdn.prod.website-files.com/57441aa5da71fdf07a0a2e19/5a2ff62247c38400019e81f3_32.png"}))))
+             :favicon-url "https://cdn.prod.website-files.com/57441aa5da71fdf07a0a2e19/5a2ff62247c38400019e81f3_32.png"
+             :sharethis true}))))
       ;; Article not found
       {:status 404
        :headers {"content-type" "text/html; charset=utf-8"}
@@ -130,7 +132,8 @@
              :canonical-url (http/get-absolute-url context (:uri request))
              :og-preview nil
              :lastmod nil
-             :favicon-url "https://cdn.prod.website-files.com/57441aa5da71fdf07a0a2e19/5a2ff62247c38400019e81f3_32.png"}))))
+             :favicon-url "https://cdn.prod.website-files.com/57441aa5da71fdf07a0a2e19/5a2ff62247c38400019e81f3_32.png"
+             :sharethis true}))))
       ;; Category not found - return 404
       {:status 404
        :headers {"content-type" "text/html; charset=utf-8"}

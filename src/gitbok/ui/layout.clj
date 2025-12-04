@@ -146,7 +146,7 @@
    (site-footer context)])
 
 (defn document [context body {:keys [title description canonical-url og-preview lastmod favicon-url section json-ld
-                                      schema-type filepath raw-content]}]
+                                      schema-type filepath raw-content sharethis]}]
   (let [version (state/get-config context :version)
         version-param (when version (str "?v=" version))
         ;; Resolve schema type: frontmatter overrides auto-detection
@@ -293,7 +293,13 @@ gtag('consent', 'default', {
   })(window,document,'script','dataLayer','GTM-PMS5LG2');
   console.log('[GTM] GTM loaded - Consent Mode:', consent === 'accepted' ? 'granted' : 'denied (anonymous pings only)');
 })();")]
-         (hiccup2.core/raw "<!-- End Google Tag Manager -->")))]
+         (hiccup2.core/raw "<!-- End Google Tag Manager -->")))
+
+      ;; ShareThis social sharing (blog only)
+      (when sharethis
+        [:script {:type "text/javascript"
+                  :src "https://platform-api.sharethis.com/js/sharethis.js#property=6930347c80244e10c6f19bd5&product=sop"
+                  :async "async"}])]
 
      [:body {:hx-on "htmx:afterSwap: window.scrollTo(0, 0);"}
       (hiccup2.core/raw "<!-- Google Tag Manager (noscript) -->")
