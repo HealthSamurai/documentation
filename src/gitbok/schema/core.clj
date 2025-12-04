@@ -10,9 +10,7 @@
    everything else -> :techarticle"
   [filepath]
   (cond
-    ;; Match getting-started/ anywhere in path
     (re-find #"(^|/)getting-started/" filepath) :howto
-    ;; Match overview/faq.md at end of path
     (re-find #"(^|/)overview/faq\.md$" filepath) :faq
     :else :techarticle))
 

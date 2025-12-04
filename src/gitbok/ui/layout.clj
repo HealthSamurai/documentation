@@ -176,7 +176,7 @@
                      :steps (when (= resolved-schema-type :howto)
                               (schema-extract/extract-howto-steps raw-content))
                      :qa-pairs (when (= resolved-schema-type :faq)
-                                 (schema-extract/extract-faq-pairs raw-content))}]
+                                 (schema-extract/extract-faq-pairs raw-content context filepath))}]
     [:html {:lang "en"
             :class "antialiased"}
      [:head
