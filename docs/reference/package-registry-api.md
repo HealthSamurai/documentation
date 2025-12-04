@@ -634,10 +634,7 @@ Accept: application/json
 {% endtab %}
 {% endtabs %}
 
-</details>
-
-<details>
-<summary>Install multiple packages</summary>
+#### Install multiple packages
 
 {% tabs %}
 {% tab title="Request" %}
