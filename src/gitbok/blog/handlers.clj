@@ -4,6 +4,8 @@
             [gitbok.blog.ui :as blog-ui]
             [gitbok.http :as http]
             [gitbok.ui.blog-header :as blog-header]
+            [gitbok.ui.blog-footer :as blog-footer]
+            [gitbok.ui.blog-subscribe :as blog-subscribe]
             [gitbok.ui.layout :as layout]
             [clojure.java.io :as io]
             [clojure.string :as str]
@@ -29,6 +31,7 @@
                (Integer/parseInt (or (get params "page") "1"))
                (catch Exception _ 1))
         listing-data (blog/get-articles-for-listing context {:tag tag :page page})
+        current-url (http/get-absolute-url context (:uri request))
         body [:div {:id "blog-body"
                     :class "min-h-screen flex flex-col"
                     :hx-boost "true"
@@ -37,7 +40,11 @@
                     :hx-push-url "true"}
               (blog-header/blog-nav context)
               (blog-ui/blog-listing-page context listing-data)
-              (layout/site-footer context)]]
+              ;; Subscribe section before footer (second one on /blog page)
+              (blog-subscribe/subscribe-section {:page-url current-url
+                                                  :email-id "EMAIL"
+                                                  :standalone? true})
+              (blog-footer/blog-footer context)]]
     (if (htmx-request? context)
       ;; HTMX request - return only body
       {:status 200
@@ -56,7 +63,8 @@
          :og-preview nil
          :lastmod nil
          :favicon-url "https://cdn.prod.website-files.com/57441aa5da71fdf07a0a2e19/5a2ff62247c38400019e81f3_32.png"
-         :sharethis true})))))
+         :sharethis true
+         :mailchimp true})))))
 
 (defn article-handler
   "Handler for /articles/:slug page."
@@ -76,7 +84,11 @@
                         :hx-push-url "true"}
                   (blog-header/blog-nav context)
                   (blog-ui/article-page context article)
-                  (layout/site-footer context)]]
+                  ;; Subscribe section before footer
+                  (blog-subscribe/subscribe-section {:page-url article-url
+                                                      :email-id "EMAIL"
+                                                      :standalone? true})
+                  (blog-footer/blog-footer context)]]
         (if (htmx-request? context)
           ;; HTMX request - return only body
           {:status 200
@@ -94,7 +106,8 @@
              :lastmod (:published metadata)
              :json-ld json-ld
              :favicon-url "https://cdn.prod.website-files.com/57441aa5da71fdf07a0a2e19/5a2ff62247c38400019e81f3_32.png"
-             :sharethis true}))))
+             :sharethis true
+             :mailchimp true}))))
       ;; Article not found
       {:status 404
        :headers {"content-type" "text/html; charset=utf-8"}
@@ -110,6 +123,7 @@
     (if tag
       (let [listing-data (-> (blog/get-articles-for-listing context {:tag tag})
                              (assoc :category-slug slug))
+            current-url (http/get-absolute-url context (:uri request))
             body [:div {:id "blog-body"
                         :class "min-h-screen flex flex-col"
                         :hx-boost "true"
@@ -118,7 +132,11 @@
                         :hx-push-url "true"}
                   (blog-header/blog-nav context)
                   (blog-ui/category-listing-page context listing-data)
-                  (layout/site-footer context)]]
+                  ;; Subscribe section before footer
+                  (blog-subscribe/subscribe-section {:page-url current-url
+                                                      :email-id "EMAIL"
+                                                      :standalone? true})
+                  (blog-footer/blog-footer context)]]
         (if (htmx-request? context)
           {:status 200
            :headers {"content-type" "text/html; charset=utf-8"}
@@ -133,7 +151,8 @@
              :og-preview nil
              :lastmod nil
              :favicon-url "https://cdn.prod.website-files.com/57441aa5da71fdf07a0a2e19/5a2ff62247c38400019e81f3_32.png"
-             :sharethis true}))))
+             :sharethis true
+             :mailchimp true}))))
       ;; Category not found - return 404
       {:status 404
        :headers {"content-type" "text/html; charset=utf-8"}

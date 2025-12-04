@@ -3,6 +3,7 @@
             [clojure.string :as str]
             [gitbok.ui.tags :as tags]
             [gitbok.ui.llm-share :as llm-share]
+            [gitbok.ui.blog-subscribe :as blog-subscribe]
             [gitbok.blog.core :as blog]))
 
 ;; Font family from health-samurai.io
@@ -226,7 +227,9 @@
 (defn blog-listing-page
   "Render the main blog listing page matching health-samurai.io/blog style"
   [context listing-data]
-  (let [{:keys [articles all-tags tag page total-pages has-prev has-next]} listing-data]
+  (let [{:keys [articles all-tags tag page total-pages has-prev has-next]} listing-data
+        page (or page 1)
+        first-page? (= page 1)]
     [:div {:class "min-h-screen flex flex-col"
            :style {:font-family font-family}}
      ;; Hidden h1 for page title (used by JS updatePageTitle)
@@ -239,25 +242,47 @@
        ;; Articles column
        [:div {:class "flex-1 min-w-0"}
         (if (seq articles)
-          (let [featured (first articles)
-                next-two (take 2 (rest articles))
-                rest-articles (drop 3 articles)]
+          (if first-page?
+            ;; Page 1: Featured layout
+            (let [featured (first articles)
+                  next-two (take 2 (rest articles))
+                  rest-articles (drop 3 articles)]
+              [:div
+               ;; Featured article (horizontal layout)
+               (when featured
+                 (article-featured featured))
+               ;; Next 2 articles side by side
+               (when (seq next-two)
+                 [:div {:class "grid grid-cols-1 md:grid-cols-2 gap-8 border-t border-outline"}
+                  (for [article next-two]
+                    ^{:key (:slug article)}
+                    (article-card article))])
+               ;; Subscribe section after first 3 articles (like health-samurai.io/blog)
+               (blog-subscribe/subscribe-section {:with-margin? true
+                                                  :email-id "EMAIL-2"})
+               ;; Rest of articles as vertical list
+               (when (seq rest-articles)
+                 [:div {:class "mt-4"}
+                  (for [article rest-articles]
+                    ^{:key (:slug article)}
+                    (article-card-list article))])
+               ;; Pagination controls
+               (pagination-controls {:page page
+                                     :total-pages total-pages
+                                     :has-prev has-prev
+                                     :has-next has-next
+                                     :tag tag})])
+            ;; Page 2+: Simple vertical list
             [:div
-             ;; Featured article (horizontal layout)
-             (when featured
-               (article-featured featured))
-             ;; Next 2 articles side by side
-             (when (seq next-two)
-               [:div {:class "grid grid-cols-1 md:grid-cols-2 gap-8 border-t border-outline"}
-                (for [article next-two]
-                  ^{:key (:slug article)}
-                  (article-card article))])
-             ;; Rest of articles as vertical list
-             (when (seq rest-articles)
-               [:div {:class "mt-4"}
-                (for [article rest-articles]
-                  ^{:key (:slug article)}
-                  (article-card-list article))])])
+             (for [article articles]
+               ^{:key (:slug article)}
+               (article-card-list article))
+             ;; Pagination controls
+             (pagination-controls {:page page
+                                   :total-pages total-pages
+                                   :has-prev has-prev
+                                   :has-next has-next
+                                   :tag tag})])
           ;; No articles message
           [:div {:class "text-center py-12"}
            [:p {:class "text-on-surface-muted text-lg"}

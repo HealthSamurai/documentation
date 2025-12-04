@@ -156,7 +156,7 @@
    (site-footer context)])
 
 (defn document [context body {:keys [title description canonical-url og-preview lastmod favicon-url section json-ld
-                                      schema-type filepath raw-content sharethis]}]
+                                      schema-type filepath raw-content sharethis mailchimp]}]
   (let [version (state/get-config context :version)
         version-param (when version (str "?v=" version))
         ;; Resolve schema type: frontmatter overrides auto-detection
@@ -313,6 +313,11 @@ gtag('consent', 'default', {
       (when sharethis
         [:script {:type "text/javascript"
                   :src "https://platform-api.sharethis.com/js/sharethis.js#property=6930347c80244e10c6f19bd5&product=sop"
+                  :async "async"}])
+
+      ;; Mailchimp connected script (blog subscription forms)
+      (when mailchimp
+        [:script {:src "https://chimpstatic.com/mcjs-connected/js/users/1c57d4d1b1aaffde230e81f34/8581bdbfa20a1f451faa6c376.js"
                   :async "async"}])]
 
      [:body {:hx-on "htmx:afterSwap: window.scrollTo(0, 0);"}
