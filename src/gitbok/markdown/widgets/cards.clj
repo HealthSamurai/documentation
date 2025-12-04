@@ -95,8 +95,13 @@
                                    (str/includes? img-href ".gitbook/assets")
                                    (str (state/get-config context :prefix "") "/.gitbook/assets"
                                         (last (str/split img-href #"\.gitbook/assets")))
-                                   :else img-href)]
-          [:img {:src processed-img-href :alt "card" :class "pointer-events-none"}]))
+                                   :else img-href)
+              ;; Check if there's a -dark variant for dark mode
+              dark-img-href (when-not (str/starts-with? img-href "http")
+                              (str/replace processed-img-href #"\.([^.]+)$" "-dark.$1"))]
+          [:div
+           [:img {:src processed-img-href :alt "card" :class "pointer-events-none dark:hidden"}]
+           [:img {:src dark-img-href :alt "card" :class "pointer-events-none hidden dark:block"}]]))
       [:div {:class (str "flex flex-col gap-0 p-4 flex-1 " (when-not img-href "justify-start"))}
        (when badge (into [:div {:class "mb-2"}] (if (seq? badge) badge [badge])))
        (when one
