@@ -36,14 +36,15 @@
                     :class "min-h-screen flex flex-col"
                     :hx-boost "true"
                     :hx-target "#blog-body"
-                    :hx-swap "outerHTML show:window:top"
+                    :hx-swap "outerHTML"
                     :hx-push-url "true"}
               (blog-header/blog-nav context)
               (blog-ui/blog-listing-page context listing-data)
               ;; Subscribe section before footer (second one on /blog page)
               (blog-subscribe/subscribe-section {:page-url current-url
                                                   :email-id "EMAIL"
-                                                  :standalone? true})
+                                                  :standalone? true
+                                                  :include-script? true})
               (blog-footer/blog-footer context)]]
     (if (htmx-request? context)
       ;; HTMX request - return only body
@@ -80,14 +81,15 @@
                         :class "min-h-screen flex flex-col"
                         :hx-boost "true"
                         :hx-target "#blog-body"
-                        :hx-swap "outerHTML show:window:top"
+                        :hx-swap "outerHTML"
                         :hx-push-url "true"}
                   (blog-header/blog-nav context)
                   (blog-ui/article-page context article)
                   ;; Subscribe section before footer
                   (blog-subscribe/subscribe-section {:page-url article-url
                                                       :email-id "EMAIL"
-                                                      :standalone? true})
+                                                      :standalone? true
+                                                      :include-script? true})
                   (blog-footer/blog-footer context)]]
         (if (htmx-request? context)
           ;; HTMX request - return only body
@@ -128,14 +130,15 @@
                         :class "min-h-screen flex flex-col"
                         :hx-boost "true"
                         :hx-target "#blog-body"
-                        :hx-swap "outerHTML show:window:top"
+                        :hx-swap "outerHTML"
                         :hx-push-url "true"}
                   (blog-header/blog-nav context)
                   (blog-ui/category-listing-page context listing-data)
                   ;; Subscribe section before footer
                   (blog-subscribe/subscribe-section {:page-url current-url
                                                       :email-id "EMAIL"
-                                                      :standalone? true})
+                                                      :standalone? true
+                                                      :include-script? true})
                   (blog-footer/blog-footer context)]]
         (if (htmx-request? context)
           {:status 200

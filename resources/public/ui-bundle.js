@@ -1357,6 +1357,11 @@ function showCopySuccess(button) {
       window.htmx.lastXHR = evt.detail.xhr;
     }
 
+    // Blog: instant scroll to top (no animation)
+    if (document.getElementById('blog-body')) {
+      window.scrollTo({ top: 0, behavior: 'instant' });
+    }
+
     // Small delay to ensure DOM is fully updated
     setTimeout(() => {
       updateActiveNavItem(window.location.pathname);
