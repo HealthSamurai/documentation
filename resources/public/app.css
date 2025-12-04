@@ -496,6 +496,12 @@
   /* Code Styles */
   --code-shadow: 0px 1px 0px 0px #000000;
   --color-code-inline-border: #333333;
+
+  /* Force dark scrollbars for code blocks */
+  & pre,
+  & .code-gitbook {
+    color-scheme: dark;
+  }
 }
 
 html {
