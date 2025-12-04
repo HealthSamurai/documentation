@@ -263,6 +263,8 @@
      ;; Blog routes (under /docs/futureblog)
      ["/docs/futureblog/blog/sitemap.xml"
       {:get {:handler #'blog-handlers/sitemap-handler}}]
+     ["/docs/futureblog/blog/"
+      {:get {:handler (fn [_] {:status 301 :headers {"Location" "/docs/futureblog/blog"}})}}]
      ["/docs/futureblog/blog"
       {:get {:handler #'blog-handlers/list-handler}}]
      ["/docs/futureblog/blog/search"
