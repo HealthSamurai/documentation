@@ -502,6 +502,28 @@
   & .code-gitbook {
     color-scheme: dark;
   }
+
+  /* Module card gradient */
+  & .module-card-gradient {
+    background: linear-gradient(90deg, var(--color-surface) 44.8%, var(--color-module-bg-end) 161.49%);
+  }
+
+  & .module-card-gradient:hover {
+    background: var(--color-surface);
+  }
+
+  /* Hero ellipse overlay */
+  & .hero-ellipse-overlay {
+    background: radial-gradient(ellipse at center, rgba(26, 26, 26, 0.8) 0%, rgba(26, 26, 26, 0.4) 40%, transparent 70%);
+  }
+
+  /* Copy code button */
+  & .copy-code-btn:hover,
+  & .copy-code-btn:focus,
+  & .copy-code-btn:active {
+    @apply bg-surface-hover text-on-surface-muted;
+    outline: none;
+  }
 }
 
 html {
@@ -537,19 +559,6 @@ article {
   background: var(--color-surface);
 }
 
-.dark .module-card-gradient {
-  background: linear-gradient(90deg, var(--color-surface) 44.8%, var(--color-module-bg-end) 161.49%);
-}
-
-.dark .module-card-gradient:hover {
-  background: var(--color-surface);
-}
-
-/* Reset browser default styles for mark element */
-/* mark { */
-/*   background-color: transparent; */
-/* } */
-
 /* Merge adjacent highlight marks - remove inner border-radius */
 mark + mark {
   border-top-left-radius: 0;
@@ -573,10 +582,6 @@ mark:has(+ mark) {
   transform: translate(-50%, -50%);
   z-index: 5;
   mix-blend-mode: screen;
-}
-
-.dark .hero-ellipse-overlay {
-  background: radial-gradient(ellipse at center, rgba(26, 26, 26, 0.8) 0%, rgba(26, 26, 26, 0.4) 40%, transparent 70%);
 }
 
 @media (max-width: 1024px) {
@@ -1257,4 +1262,14 @@ tbody.tree > tr > td > .element > span:last-child:before {
 /* Search dropdown - hide border of next sibling when hovering */
 .peer:hover + .peer {
   border-top-color: transparent !important;
+}
+
+/* Copy code button */
+.copy-code-btn {
+  @apply absolute top-1 right-2 px-2 py-1 text-xs font-medium;
+  @apply bg-surface-alt text-on-surface-placeholder;
+  @apply border border-outline rounded;
+  @apply cursor-pointer opacity-0 transition-opacity z-10;
+  font-family: "Inter", sans-serif;
+  display: none;
 }
