@@ -1,12 +1,72 @@
-(ns gitbok.ui.blog-subscribe)
+(ns gitbok.ui.blog-subscribe
+  (:require [hiccup2.core]))
 
 (def font-family "'Gotham Pro', Arial, sans-serif")
 
 ;; Mailchimp configuration (same as health-samurai.io)
 (def mailchimp-action
-  "https://health-samurai.us19.list-manage.com/subscribe/post?u=1c57d4d1b1aaffde230e81f34&id=0197cbafab")
+  "https://health-samurai.us19.list-manage.com/subscribe/post-json?u=1c57d4d1b1aaffde230e81f34&id=0197cbafab&c=handleMailchimpResponse")
 
 (def mailchimp-tags "6237144")
+
+;; JavaScript for handling form submission via JSONP (Mailchimp doesn't support CORS)
+(def subscribe-script
+  "
+function handleMailchimpResponse(response) {
+  var form = window._mcCurrentForm;
+  if (!form) return;
+  var successEl = document.getElementById(form.id + '-success');
+  var errorEl = document.getElementById(form.id + '-error');
+  var submitBtn = form.querySelector('input[type=submit]');
+
+  if (submitBtn) {
+    submitBtn.value = 'Subscribe';
+    submitBtn.disabled = false;
+  }
+
+  if (response.result === 'success') {
+    if (successEl) {
+      successEl.classList.remove('hidden');
+      successEl.textContent = response.msg || 'Thank you! Your submission has been received!';
+    }
+    if (errorEl) errorEl.classList.add('hidden');
+    form.reset();
+  } else {
+    if (errorEl) {
+      errorEl.classList.remove('hidden');
+      errorEl.textContent = response.msg || 'Oops! Something went wrong.';
+    }
+    if (successEl) successEl.classList.add('hidden');
+  }
+}
+
+function submitMailchimpForm(form) {
+  var email = form.querySelector('input[type=email]').value;
+  if (!email) return;
+
+  var submitBtn = form.querySelector('input[type=submit]');
+  if (submitBtn) {
+    submitBtn.value = 'Please wait...';
+    submitBtn.disabled = true;
+  }
+
+  window._mcCurrentForm = form;
+
+  var script = document.createElement('script');
+  script.src = form.action + '&EMAIL=' + encodeURIComponent(email) + '&tags=' + encodeURIComponent(form.querySelector('input[name=tags]')?.value || '');
+  document.body.appendChild(script);
+  setTimeout(function() { script.remove(); }, 5000);
+}
+
+document.addEventListener('DOMContentLoaded', function() {
+  document.querySelectorAll('form[id^=subscribe-form-]').forEach(function(form) {
+    form.addEventListener('submit', function(e) {
+      e.preventDefault();
+      submitMailchimpForm(form);
+    });
+  });
+});
+")
 
 (def samurai-image-url
   "https://cdn.prod.website-files.com/57441aa5da71fdf07a0a2e19/632207aa3b981e44e5fead6a_subs.webp")
@@ -97,16 +157,19 @@
    - :with-margin? - adds top margin (for placement after 3 articles)
    - :page-url - current page URL for tracking
    - :email-id - unique ID for email input (to avoid duplicate IDs on page)
-   - :standalone? - true when used outside of article list (before footer), wraps in container"
-  [{:keys [with-margin? page-url email-id standalone?]}]
-  (if standalone?
-    ;; Standalone: wrap in container with max-width (like before footer)
-    [:div {:class "w-full px-4 md:px-8 my-8"}
-     [:div {:class "mx-auto"
-            :style {:max-width "1280px"}}
-      (subscribe-box {:email-id email-id
-                      :page-url page-url})]]
-    ;; Inline: full width within article container
-    [:div {:class (str "my-8" (when with-margin? " mt-10"))}
-     (subscribe-box {:email-id email-id
-                     :page-url page-url})]))
+   - :standalone? - true when used outside of article list (before footer), wraps in container
+   - :include-script? - include the JS handler (only needed once per page)"
+  [{:keys [with-margin? page-url email-id standalone? include-script?]}]
+  (let [box (subscribe-box {:email-id email-id :page-url page-url})
+        content (if standalone?
+                  [:div {:class "w-full px-4 md:px-8 my-8"}
+                   [:div {:class "mx-auto"
+                          :style {:max-width "1280px"}}
+                    box]]
+                  [:div {:class (str "my-8" (when with-margin? " mt-10"))}
+                   box])]
+    (if include-script?
+      [:div
+       content
+       [:script (hiccup2.core/raw subscribe-script)]]
+      content)))
