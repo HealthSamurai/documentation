@@ -221,6 +221,7 @@
   * [OAuth 2.0](access-control/authentication/oauth-2-0.md)
   * [Token Introspector](access-control/authentication/token-introspector.md)
   * [SSO with External Identity Provider](access-control/authentication/sso-with-external-identity-provider.md)
+  * [Two Factor Authentication](access-control/authentication/two-factor-authentication.md)
 * [Authorization](access-control/authorization/README.md)
   * [Access Policies](access-control/authorization/access-policies.md)
   * [SMART on FHIR](access-control/authorization/smart-on-fhir/README.md)
