@@ -6,7 +6,7 @@
    Banner visibility is controlled by JavaScript based on PostHog consent status."
   []
   [:div {:id "cookie-consent-banner"
-         :class "fixed bottom-0 left-0 right-0 bg-surface border-t border-outline shadow-lg z-50 hidden"
+         :class "fixed bottom-0 left-0 right-0 bg-surface border-t border-outline shadow-lg z-[60] hidden"
          :style "display: none;"}
    [:div {:class "max-w-screen-xl mx-auto px-5 py-4 md:py-6"}
     [:div {:class "flex flex-col md:flex-row md:items-center md:justify-between gap-4"}
