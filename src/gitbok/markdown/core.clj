@@ -120,7 +120,7 @@
              (into
               [:ol
                (merge
-                {:class "min-w-0 w-full decoration-primary/6 page-full-width:ml-0 max-w-3xl page-api-block:ml-0 space-y-2 text-on-surface-secondary"}
+                {:class "mt-2 min-w-0 w-full decoration-primary/6 page-full-width:ml-0 max-w-3xl page-api-block:ml-0 space-y-2 text-on-surface-secondary"}
                 (when (not= start-num 1)
                   {:start start-num}))]
               (map-indexed
