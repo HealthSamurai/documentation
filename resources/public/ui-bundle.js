@@ -253,7 +253,7 @@ function scrollToIdFromHeader() {
 // HEADING LINKS FUNCTIONALITY
 // ============================================================================
 function initializeHeadingLinks() {
-  const headings = document.querySelectorAll('h1[id], h2[id], h3[id], h4[id], h5[id], h6[id]');
+  const headings = document.querySelectorAll('h2[id], h3[id], h4[id], h5[id], h6[id]');
 
   headings.forEach(heading => {
     // Remove existing button if present to ensure fresh event listeners
@@ -290,7 +290,7 @@ function initializeHeadingLinks() {
     button.style.cssText = `
       display: none;
       position: absolute;
-      left: -1.5rem;
+      left: -2rem;
       top: 50%;
       transform: translateY(-50%);
       padding: 0.25rem;
@@ -310,27 +310,36 @@ function initializeHeadingLinks() {
       </svg>
     `;
 
-    // Make heading relative positioned if not already
+    // Make heading relative positioned
     if (getComputedStyle(heading).position === 'static') {
       heading.style.position = 'relative';
     }
 
-    // Show button on heading hover
+    // Show/hide button with delay to allow reaching it
+    let hideTimeout;
+
     heading.addEventListener('mouseenter', function () {
+      clearTimeout(hideTimeout);
       button.style.display = 'block';
     });
 
     heading.addEventListener('mouseleave', function () {
-      button.style.display = 'none';
+      hideTimeout = setTimeout(() => {
+        button.style.display = 'none';
+      }, 300);
     });
 
     // Button hover effect
     button.addEventListener('mouseenter', function () {
-      this.style.color = '#3b82f6';
+      clearTimeout(hideTimeout);
+      this.style.color = '#D95640';
     });
 
     button.addEventListener('mouseleave', function () {
       this.style.color = '#9ca3af';
+      hideTimeout = setTimeout(() => {
+        button.style.display = 'none';
+      }, 300);
     });
 
     button.addEventListener('click', function (e) {
