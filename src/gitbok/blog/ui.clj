@@ -384,8 +384,37 @@
                :style {:font-family font-family}}
        rendered]
 
-      ;; Social share buttons
-      [:div {:class "sharethis-inline-share-buttons mt-8"}]
+      ;; Social share buttons (sticky on the right side)
+      [:script (hiccup2.core/raw
+                (str "
+(function() {
+  function initShareThis() {
+    if (window.__sharethis__ && window.__sharethis__.load) {
+      window.__sharethis__.load('sticky-share-buttons', {
+        alignment: 'right',
+        enabled: true,
+        labels: 'counts',
+        min_count: 0,
+        networks: ['facebook', 'twitter', 'email', 'sharethis', 'whatsapp', 'telegram', 'linkedin'],
+        show_total: true,
+        show_mobile: true,
+        radius: 4,
+        size: 48,
+        top: 200,
+        url: '" article-url "',
+        title: '" (str/escape (:title metadata) {\" "\\\"" \\ "\\\\"}) "'
+      });
+    } else {
+      setTimeout(initShareThis, 100);
+    }
+  }
+  if (document.readyState === 'complete') {
+    initShareThis();
+  } else {
+    window.addEventListener('load', initShareThis);
+  }
+})();
+"))]
 
       ;; Back to blog link
       [:div {:class "mt-12 pt-8 border-t border-outline"}

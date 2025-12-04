@@ -312,7 +312,7 @@ gtag('consent', 'default', {
       ;; ShareThis social sharing (blog only)
       (when sharethis
         [:script {:type "text/javascript"
-                  :src "https://platform-api.sharethis.com/js/sharethis.js#property=6930347c80244e10c6f19bd5&product=sop"
+                  :src "https://platform-api.sharethis.com/js/sharethis.js#property=6930347c80244e10c6f19bd5&product=sticky-share-buttons"
                   :async "async"}])
 
       ;; Mailchimp connected script (blog subscription forms)
@@ -323,7 +323,7 @@ gtag('consent', 'default', {
       ;; Extra head content (custom styles, scripts, etc.)
       extra-head]
 
-     [:body {:hx-on "htmx:afterSwap: window.scrollTo(0, 0);"}
+     [:body {:hx-on "htmx:afterSwap: window.scrollTo(0, 0); window.__sharethis__?.initialize();"}
       (hiccup2.core/raw "<!-- Google Tag Manager (noscript) -->")
       [:noscript
        [:iframe
