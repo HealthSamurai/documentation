@@ -56,7 +56,7 @@
                             (str/replace (str/trim line) #"\s*\*\s*" ""))]
     (let [href (nth match 2)
           href (file->href href)
-          title (nth match 1)]
+          title (str/replace (nth match 1) "\\_" "_")]
       {:title title :href href})))
 
 (defn collect-children [x ls]
