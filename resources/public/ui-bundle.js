@@ -1428,42 +1428,37 @@ function showCopySuccess(button) {
 })();
 
 // ============================================================================
-// THEME MANAGEMENT (DARK/LIGHT MODE)
+// THEME MANAGEMENT (LIGHT / SYSTEM / DARK)
 // ============================================================================
 (function() {
   'use strict';
 
-  function toggleTheme() {
-    const html = document.documentElement;
-    const isDark = html.classList.contains('dark');
+  // Set theme: 'light', 'system', or 'dark'
+  function setTheme(theme) {
+    localStorage.setItem('theme', theme);
+    applyTheme(theme);
+    updateThemeToggleUI(theme);
+  }
 
-    if (isDark) {
-      html.classList.remove('dark');
-      localStorage.setItem('theme', 'light');
-    } else {
-      html.classList.add('dark');
-      localStorage.setItem('theme', 'dark');
+  // Apply theme to document
+  function applyTheme(theme) {
+    const html = document.documentElement;
+    let isDark = theme === 'dark';
+
+    if (theme === 'system') {
+      isDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
     }
 
-    updateThemeIcon();
+    html.classList.toggle('dark', isDark);
     updatePrismTheme();
     updateMermaidTheme();
   }
 
-  function updateThemeIcon() {
-    const isDark = document.documentElement.classList.contains('dark');
-    const sunIcon = document.querySelector('#sun-icon');
-    const moonIcon = document.querySelector('#moon-icon');
-
-    if (sunIcon && moonIcon) {
-      if (isDark) {
-        sunIcon.style.display = 'block';
-        moonIcon.style.display = 'none';
-      } else {
-        sunIcon.style.display = 'none';
-        moonIcon.style.display = 'block';
-      }
-    }
+  // Update toggle button states
+  function updateThemeToggleUI(theme) {
+    document.querySelectorAll('[data-theme]').forEach(btn => {
+      btn.classList.toggle('active', btn.dataset.theme === theme);
+    });
   }
 
   function updatePrismTheme() {
@@ -1520,16 +1515,23 @@ function showCopySuccess(button) {
     }
   }
 
-  // Initialize on page load
-  document.addEventListener('DOMContentLoaded', function() {
-    updateThemeIcon();
-    updatePrismTheme();
-    // Don't call updateMermaidTheme on initial load - Mermaid will initialize
-    // with correct theme when it loads (see loadMermaid function)
+  // Listen for system theme changes
+  window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', function() {
+    const theme = localStorage.getItem('theme') || 'system';
+    if (theme === 'system') {
+      applyTheme('system');
+    }
   });
 
-  // Export toggleTheme to window for use in HTML onclick handlers
-  window.toggleTheme = toggleTheme;
+  // Initialize on page load
+  document.addEventListener('DOMContentLoaded', function() {
+    const theme = localStorage.getItem('theme') || 'system';
+    updateThemeToggleUI(theme);
+    updatePrismTheme();
+  });
+
+  // Export setTheme to window for use in HTML onclick handlers
+  window.setTheme = setTheme;
 })();
 
 // ============================================================================

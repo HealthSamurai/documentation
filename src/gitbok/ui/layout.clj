@@ -10,11 +10,51 @@
    [gitbok.schema.extract :as schema-extract]
    [gitbok.state :as state]
    [gitbok.ui.cookie-banner :as cookie-banner]
+   [gitbok.ui.heroicons :as heroicons]
    [gitbok.ui.left-navigation :as left-navigation]
    [gitbok.ui.main-content :as main-content]
    [gitbok.ui.main-navigation :as main-navigation]
    [gitbok.utils :as utils]
    [hiccup2.core]))
+
+(defn sun-bright-icon
+  "FontAwesome sun-bright icon (better for light theme toggle)"
+  [class]
+  (hiccup2.core/raw
+   (str "<svg class=\"" class "\" xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 512 512\" fill=\"currentColor\">"
+        "<path d=\"M256 0c8.8 0 16 7.2 16 16l0 80c0 8.8-7.2 16-16 16s-16-7.2-16-16l0-80c0-8.8 7.2-16 16-16zM0 256c0-8.8 7.2-16 16-16l80 0c8.8 0 16 7.2 16 16s-7.2 16-16 16l-80 0c-8.8 0-16-7.2-16-16zm400 0c0-8.8 7.2-16 16-16l80 0c8.8 0 16 7.2 16 16s-7.2 16-16 16l-80 0c-8.8 0-16-7.2-16-16zM256 400c8.8 0 16 7.2 16 16l0 80c0 8.8-7.2 16-16 16s-16-7.2-16-16l0-80c0-8.8 7.2-16 16-16zM75 75c6.2-6.2 16.4-6.2 22.6 0l56.6 56.6c6.2 6.2 6.2 16.4 0 22.6s-16.4 6.2-22.6 0L75 97.6c-6.2-6.2-6.2-16.4 0-22.6zm0 362c-6.2-6.2-6.2-16.4 0-22.6l56.6-56.6c6.2-6.2 16.4-6.2 22.6 0s6.2 16.4 0 22.6L97.6 437c-6.2 6.2-16.4 6.2-22.6 0zM357.8 154.2c-6.2-6.2-6.2-16.4 0-22.6L414.4 75c6.2-6.2 16.4-6.2 22.6 0s6.2 16.4 0 22.6l-56.6 56.6c-6.2 6.2-16.4 6.2-22.6 0zm0 203.6c6.2-6.2 16.4-6.2 22.6 0L437 414.4c6.2 6.2 6.2 16.4 0 22.6s-16.4 6.2-22.6 0l-56.6-56.6c-6.2-6.2-6.2-16.4 0-22.6zM336 256a80 80 0 1 0 -160 0 80 80 0 1 0 160 0zm-192 0a112 112 0 1 1 224 0 112 112 0 1 1 -224 0z\"/>"
+        "</svg>")))
+
+(defn moon-icon
+  "FontAwesome moon icon (for dark theme toggle)"
+  [class]
+  (hiccup2.core/raw
+   (str "<svg class=\"" class "\" xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 384 512\" fill=\"currentColor\">"
+        "<path d=\"M190.6 66.8c-38.8 37.8-62.9 90.7-62.9 149.2c0 108.9 83.5 198.3 189.9 207.3C289.8 439 257.7 448 223.5 448C117.7 448 32 362.1 32 256c0-94.8 68.5-173.5 158.6-189.2zm66.1-21.5c-1.5-6.9-7.3-11.9-14.3-12.5c-6.3-.5-12.6-.8-19-.8C100 32 0 132.3 0 256S100 480 223.5 480c60.6 0 115.5-24.2 155.8-63.4c5-4.9 6.3-12.5 3.1-18.7s-10.1-9.7-17-8.5c-9.8 1.7-19.8 2.6-30.1 2.6c-96.9 0-175.5-78.8-175.5-176c0-65.8 36-123.1 89.3-153.3c6.1-3.5 9.2-10.5 7.7-17.3z\"/>"
+        "</svg>")))
+
+(defn theme-toggle
+  "Theme toggle component with 3 states: light, system, dark"
+  [id]
+  [:div {:id id
+         :class "theme-toggle"
+         :role "radiogroup"
+         :aria-label "Select color theme"}
+   [:button {:onclick "setTheme('light')"
+             :data-theme "light"
+             :aria-label "Switch to light theme"}
+    [:span {:class "theme-tooltip"} "Light"]
+    (sun-bright-icon "w-4 h-4")]
+   [:button {:onclick "setTheme('system')"
+             :data-theme "system"
+             :aria-label "Switch to system theme"}
+    [:span {:class "theme-tooltip"} "System"]
+    (heroicons/computer-desktop "w-4 h-4")]
+   [:button {:onclick "setTheme('dark')"
+             :data-theme "dark"
+             :aria-label "Switch to dark theme"}
+    [:span {:class "theme-tooltip"} "Dark"]
+    (moon-icon "w-4 h-4")]])
 
 (defn site-footer
   "Site-wide footer component"
@@ -85,38 +125,8 @@
                   :class "text-on-surface-strong hover:text-brand transition-colors text-sm leading-5 cursor-pointer bg-transparent border-0 p-0"}
          "Cookie Settings"]]
 
-       ;; Theme toggle button
-       [:button {:onclick "toggleTheme()"
-                 :class "p-2 rounded hover:bg-surface-hover transition-colors"
-                 :aria-label "Toggle theme"
-                 :title "Toggle dark/light theme"}
-        ;; Moon icon (shown in light mode)
-        [:svg#moon-icon {:class "w-5 h-5"
-                         :viewBox "0 0 24 24"
-                         :fill "none"
-                         :stroke "currentColor"
-                         :stroke-width "2"
-                         :stroke-linecap "round"
-                         :stroke-linejoin "round"}
-         [:path {:d "M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"}]]
-        ;; Sun icon (shown in dark mode, hidden by default)
-        [:svg#sun-icon {:class "w-5 h-5"
-                        :style "display:none"
-                        :viewBox "0 0 24 24"
-                        :fill "none"
-                        :stroke "currentColor"
-                        :stroke-width "2"
-                        :stroke-linecap "round"
-                        :stroke-linejoin "round"}
-         [:circle {:cx "12" :cy "12" :r "5"}]
-         [:line {:x1 "12" :y1 "1" :x2 "12" :y2 "3"}]
-         [:line {:x1 "12" :y1 "21" :x2 "12" :y2 "23"}]
-         [:line {:x1 "4.22" :y1 "4.22" :x2 "5.64" :y2 "5.64"}]
-         [:line {:x1 "18.36" :y1 "18.36" :x2 "19.78" :y2 "19.78"}]
-         [:line {:x1 "1" :y1 "12" :x2 "3" :y2 "12"}]
-         [:line {:x1 "21" :y1 "12" :x2 "23" :y2 "12"}]
-         [:line {:x1 "4.22" :y1 "19.78" :x2 "5.64" :y2 "18.36"}]
-         [:line {:x1 "18.36" :y1 "5.64" :x2 "19.78" :y2 "4.22"}]]]]]]))
+       ;; Theme toggle (mobile only - desktop uses fixed position)
+       (theme-toggle "theme-toggle-footer")]]]))
 
 (defn page-wrapper
   "Wrapper for pages with header and footer but no left navigation"
@@ -173,8 +183,12 @@
       ;; Theme initialization - must run before render to prevent FOUC
       [:script (hiccup2.core/raw "
 (function() {
-  const theme = localStorage.getItem('theme') || 'light';
-  if (theme === 'dark') {
+  const theme = localStorage.getItem('theme') || 'system';
+  let isDark = theme === 'dark';
+  if (theme === 'system') {
+    isDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+  }
+  if (isDark) {
     document.documentElement.classList.add('dark');
   }
 })();")]
@@ -312,6 +326,9 @@ gtag('consent', 'default', {
 
       ;; Cookie consent banner (always show, needed for testing geo-targeting)
       (cookie-banner/cookie-banner)
+
+      ;; Theme toggle (fixed position for desktop)
+      (theme-toggle "theme-toggle-fixed")
 
       body]]))
 

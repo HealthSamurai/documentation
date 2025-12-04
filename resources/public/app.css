@@ -524,6 +524,20 @@
     @apply bg-surface-hover text-on-surface-muted;
     outline: none;
   }
+
+  /* Theme toggle dark mode */
+  & .theme-toggle button {
+    color: rgb(140, 155, 165);
+  }
+
+  & .theme-toggle button:hover {
+    color: rgb(220, 230, 235);
+  }
+
+  & .theme-toggle button.active {
+    background: rgb(45, 55, 65);
+    color: rgb(220, 230, 235);
+  }
 }
 
 html {
@@ -1272,4 +1286,45 @@ tbody.tree > tr > td > .element > span:last-child:before {
   @apply cursor-pointer opacity-0 transition-opacity z-10;
   font-family: "Inter", sans-serif;
   display: none;
+}
+
+/* Theme toggle */
+.theme-toggle {
+  @apply flex items-center gap-0.5 p-1 rounded-lg;
+}
+
+.theme-toggle button {
+  @apply relative p-2 rounded-md transition-colors cursor-pointer;
+  color: rgb(95, 114, 121);
+}
+
+.theme-toggle button:hover {
+  @apply bg-surface-hover;
+  color: rgb(24, 30, 33);
+}
+
+.theme-toggle button.active {
+  background: rgb(240, 249, 252);
+  color: rgb(24, 30, 33);
+}
+
+/* Theme toggle tooltip */
+.theme-toggle button .theme-tooltip {
+  @apply absolute bottom-full left-1/2 -translate-x-1/2 mb-2 px-2 py-1;
+  @apply bg-on-surface-strong text-surface text-xs rounded whitespace-nowrap;
+  @apply opacity-0 invisible transition-all duration-150 pointer-events-none z-50;
+}
+
+.theme-toggle button:hover .theme-tooltip {
+  @apply opacity-100 visible;
+}
+
+/* Desktop: show fixed toggle */
+#theme-toggle-fixed {
+  @apply hidden lg:flex fixed bottom-2 right-8 z-50;
+}
+
+/* Mobile: hide fixed, show in footer */
+#theme-toggle-footer {
+  @apply flex lg:hidden;
 }
