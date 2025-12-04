@@ -126,11 +126,10 @@
         ;; Right side with content
         ;; Use different negative margin based on title type for proper alignment
         [:div {:class (str "flex-1 "
-                           (if is-heading
-                             "-mt-[0.875rem]" ; For h1-h6 headings (14px)
-                             "-mt-[0.4375rem]") ; For bold text (7px)
-                           " " (if is-last "pb-0" "pb-6"))}
-         [:div {:class "text-lg font-bold text-on-surface-strong mb-3"}
+                           (when-not is-heading
+                             "-mt-[0.4375rem] ") ; For bold text (7px)
+                           (if is-last "pb-0" "pb-6"))}
+         [:div {:class "text-lg font-bold text-on-surface-strong mb-3 [&>h1]:mt-0 [&>h2]:mt-0 [&>h3]:mt-0 [&>h4]:mt-0 [&>h5]:mt-0 [&>h6]:mt-0"}
           ;; Title is already rendered HTML/hiccup
           ;; Extract content from div wrapper if present
           (if (and (vector? title)
