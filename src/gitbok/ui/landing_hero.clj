@@ -574,7 +574,8 @@
          [:script {:src (str (http/get-prefixed-url ctx "/static/glitch-bg-optimized.js") version-param) :defer true}]]
 
         title "Aidbox Documentation"
-        description "Aidbox - FHIR-first healthcare application platform"]
+        description "Complete documentation for Aidbox FHIR server: getting started guides, API reference, tutorials, deployment, and configuration."
+        og-image (http/get-absolute-url ctx (http/get-product-prefixed-url ctx "/.gitbook/assets/aidbox_logo.jpg"))]
 
     ;; Return custom response bypassing standard layout
     (http/response1
@@ -584,7 +585,7 @@
       {:title title
        :description description
        :canonical-url (http/get-absolute-url ctx (:uri request))
-       :og-preview nil
+       :og-preview og-image
        :lastmod nil
        :favicon-url (http/get-product-prefixed-url
                      ctx
