@@ -156,7 +156,7 @@
    (site-footer context)])
 
 (defn document [context body {:keys [title description canonical-url og-preview lastmod favicon-url section json-ld
-                                      schema-type filepath raw-content sharethis mailchimp]}]
+                                      schema-type filepath raw-content sharethis mailchimp extra-head]}]
   (let [version (state/get-config context :version)
         version-param (when version (str "?v=" version))
         ;; Resolve schema type: frontmatter overrides auto-detection
@@ -318,7 +318,10 @@ gtag('consent', 'default', {
       ;; Mailchimp connected script (blog subscription forms)
       (when mailchimp
         [:script {:src "https://chimpstatic.com/mcjs-connected/js/users/1c57d4d1b1aaffde230e81f34/8581bdbfa20a1f451faa6c376.js"
-                  :async "async"}])]
+                  :async "async"}])
+
+      ;; Extra head content (custom styles, scripts, etc.)
+      extra-head]
 
      [:body {:hx-on "htmx:afterSwap: window.scrollTo(0, 0);"}
       (hiccup2.core/raw "<!-- Google Tag Manager (noscript) -->")

@@ -7,7 +7,7 @@
             [clojure.tools.logging :as log]
             [clj-yaml.core :as yaml]))
 
-(def articles-per-page 15)
+(def articles-per-page 30)
 
 ;; URL prefix for all blog routes
 (def url-prefix "/docs/futureblog")
@@ -179,6 +179,12 @@
   (when-let [nav-config (state/get-cache context :blog-nav)]
     (:nav-items nav-config)))
 
+(defn get-footer-config
+  "Get footer configuration from cache."
+  [context]
+  (when-let [nav-config (state/get-cache context :blog-nav)]
+    (:footer nav-config)))
+
 (defn get-blog-cache
   "Get the entire blog cache."
   [context]
@@ -241,20 +247,23 @@
     (:featured-article nav-config)))
 
 (defn get-articles-for-listing
-  "Get filtered articles for blog listing page (no pagination).
-   Featured article (from config) is always shown first."
-  [context {:keys [tag]}]
-  (let [index (get-article-index context)
+  "Get filtered and paginated articles for blog listing page.
+   Featured article (from config) is shown first only on page 1."
+  [context {:keys [tag page]}]
+  (let [page (or page 1)
+        index (get-article-index context)
         filtered (filter-by-tag index tag)
         featured-slug (get-featured-slug context)
-        ;; Reorder: featured first, then rest sorted by date
-        articles (if featured-slug
-                   (let [featured (first (filter #(= (:slug %) featured-slug) filtered))
-                         rest-articles (remove #(= (:slug %) featured-slug) filtered)]
-                     (if featured
-                       (vec (cons featured rest-articles))
-                       (vec filtered)))
-                   (vec filtered))]
-    {:articles articles
-     :tag tag
-     :all-tags (get-all-tags context)}))
+        ;; Reorder: featured first (only matters for page 1), then rest sorted by date
+        ordered (if featured-slug
+                  (let [featured (first (filter #(= (:slug %) featured-slug) filtered))
+                        rest-articles (remove #(= (:slug %) featured-slug) filtered)]
+                    (if featured
+                      (vec (cons featured rest-articles))
+                      (vec filtered)))
+                  (vec filtered))
+        ;; Apply pagination
+        paginated (paginate ordered page)]
+    (merge paginated
+           {:tag tag
+            :all-tags (get-all-tags context)})))

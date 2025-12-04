@@ -186,3 +186,59 @@ nav-items:
     label: Pricing
     type: link
     href: https://www.health-samurai.io/price
+
+footer:
+  certifications:
+    - image: https://cdn.prod.website-files.com/57441aa5da71fdf07a0a2e19/67d0332ca0d91f84e893638b_hippa-logo.png
+      alt: HIPAA Certified
+    - image: https://cdn.prod.website-files.com/57441aa5da71fdf07a0a2e19/67d03378e6aff704b281d613_ISOMark_27001-2022%202.svg
+      alt: ISO/IEC 27001-2022 Certified
+      href: https://www.health-samurai.io/news/health-samurai-achieves-iso-27001-2022-certification
+
+  columns:
+    - title: Health Samurai
+      items:
+        - title: About Us
+          href: https://www.health-samurai.io/company
+        - title: Careers
+          href: https://www.health-samurai.io/careers
+        - title: News
+          href: https://www.health-samurai.io/news
+        - title: Blog
+          href: https://www.health-samurai.io/blog
+          active: true
+        - title: Contact Us
+          href: https://www.health-samurai.io/contacts
+
+    - title: null
+      items:
+        - title: FHIR Server
+          href: https://www.health-samurai.io/fhir-server
+        - title: Fhirbase
+          href: https://www.health-samurai.io/fhir-database
+        - title: For Developers
+          href: https://www.health-samurai.io/services
+        - title: For Health Plans
+          href: https://www.health-samurai.io/payers
+        - title: Case Studies
+          href: https://www.health-samurai.io/casestudies
+        - title: Open Source
+          href: https://www.health-samurai.io/opensource
+        - title: Meetups
+          href: https://www.health-samurai.io/fhir-meetups
+
+    - title: null
+      items:
+        - title: Privacy Policy
+          href: https://www.health-samurai.io/legal/privacy-policy
+        - title: Cookie Policy
+          href: https://www.health-samurai.io/legal/cookie-policy
+        - title: Cookie Settings
+          type: button
+
+  contact:
+    address: "1891 N Gaffey St Ste O, San Pedro, CA 90731"
+    phone: "+1 (818) 731-1279"
+    email: "hello@health-samurai.io"
+
+  logo: https://cdn.prod.website-files.com/57441aa5da71fdf07a0a2e19/5a3041c4d877230001fc7454_hslogo-footer.svg

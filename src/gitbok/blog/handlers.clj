@@ -11,6 +11,14 @@
             [clojure.string :as str]
             [hiccup2.core :as h]))
 
+(def gotham-pro-font-css
+  "@font-face{font-family:'Gotham Pro';src:url(https://cdn.prod.website-files.com/57441aa5da71fdf07a0a2e19/5a2ff11b47c38400019e7bb2_GothaProReg.otf)format('opentype');font-weight:400;font-style:normal;font-display:swap}
+@font-face{font-family:'Gotham Pro';src:url(https://cdn.prod.website-files.com/57441aa5da71fdf07a0a2e19/5a2ff11a5700e10001e0d55e_GothaProMed.otf)format('opentype');font-weight:500;font-style:normal;font-display:swap}
+@font-face{font-family:'Gotham Pro';src:url(https://cdn.prod.website-files.com/57441aa5da71fdf07a0a2e19/5a2ff11ac197b800013c065d_GothaProBol.otf)format('opentype');font-weight:700;font-style:normal;font-display:swap}")
+
+(defn- gotham-font-style []
+  [:style (h/raw gotham-pro-font-css)])
+
 (defn- htmx-request?
   "Check if this is an HTMX request."
   [context]
@@ -65,7 +73,8 @@
          :lastmod nil
          :favicon-url "https://cdn.prod.website-files.com/57441aa5da71fdf07a0a2e19/5a2ff62247c38400019e81f3_32.png"
          :sharethis true
-         :mailchimp true})))))
+         :mailchimp true
+         :extra-head (gotham-font-style)})))))
 
 (defn article-handler
   "Handler for /articles/:slug page."
@@ -109,7 +118,8 @@
              :json-ld json-ld
              :favicon-url "https://cdn.prod.website-files.com/57441aa5da71fdf07a0a2e19/5a2ff62247c38400019e81f3_32.png"
              :sharethis true
-             :mailchimp true}))))
+             :mailchimp true
+             :extra-head (gotham-font-style)}))))
       ;; Article not found
       {:status 404
        :headers {"content-type" "text/html; charset=utf-8"}
@@ -155,7 +165,8 @@
              :lastmod nil
              :favicon-url "https://cdn.prod.website-files.com/57441aa5da71fdf07a0a2e19/5a2ff62247c38400019e81f3_32.png"
              :sharethis true
-             :mailchimp true}))))
+             :mailchimp true
+             :extra-head (gotham-font-style)}))))
       ;; Category not found - return 404
       {:status 404
        :headers {"content-type" "text/html; charset=utf-8"}
