@@ -31,7 +31,7 @@ Aidbox is a commercial product (not open source). For open-source alternatives, 
 
 Learn more: [Licensing and Support](licensing-and-support.md)
 
-### How do I get a license?
+### How do I get an Aidbox license?
 
 Register at [aidbox.app](https://aidbox.app) to get a free development license. The license key is required to run Aidbox locally or in your own infrastructure.
 
@@ -64,7 +64,7 @@ Learn more: [Profiling and Validation](../modules/profiling-and-validation/READM
 
 Aidbox strives for **100% FHIR compliance**. We continuously test against the FHIR specification and fix any deviations. If you find a compliance issue, please report it on [Aidbox Zulip](https://chat.fhir.org/#narrow/channel/318985-aidbox) — we'll fix it.
 
-### What SDKs are available?
+### What Aidbox SDKs are available?
 
 Aidbox provides official SDKs for multiple languages:
 
@@ -81,7 +81,7 @@ Aidbox provides official SDKs for multiple languages:
 
 Learn more: [Licensing and Support](licensing-and-support.md)
 
-### What are Aidbox features?
+### What are the key Aidbox features?
 
 Aidbox provides comprehensive FHIR capabilities including:
 
@@ -96,7 +96,7 @@ Aidbox provides comprehensive FHIR capabilities including:
 
 Learn more: [Features](../features.md)
 
-### What is the difference between latest and edge versions?
+### What is the difference between Aidbox latest and edge versions?
 
 Aidbox provides several release channels:
 
@@ -1029,7 +1029,7 @@ Learn more: [Aidbox + FHIR App Portal](../solutions/aidbox-+-fhir-app-portal/REA
 
 ## Developer Experience
 
-### What SDKs are available?
+### What Aidbox SDKs are available?
 
 Aidbox provides type-safe SDKs generated from FHIR schemas:
 
