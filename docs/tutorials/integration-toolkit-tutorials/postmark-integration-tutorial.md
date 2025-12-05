@@ -1,5 +1,5 @@
 ---
-description: How to configure sending email using Postmark
+description: Integrate Postmark email service with Aidbox for sending notifications using NotificationTemplates and API keys.
 ---
 
 # Postmark integration tutorial

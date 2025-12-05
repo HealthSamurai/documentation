@@ -1,3 +1,7 @@
+---
+description: Recommended environment variables for Aidbox and Multibox configuration including database, FHIR, security, and terminology settings.
+---
+
 # Recommended environment variables
 
 {% tabs %}

@@ -1,3 +1,7 @@
+---
+description: Monitor running database queries in Aidbox, detect slow queries, and terminate them with the DB Queries interface.
+---
+
 # DB Queries
 
 {% hint style="info" %}

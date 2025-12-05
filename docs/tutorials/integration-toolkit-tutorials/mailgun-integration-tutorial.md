@@ -1,5 +1,5 @@
 ---
-description: How to configure sending email using Mailgun
+description: Integrate Mailgun email service with Aidbox for sending notifications using NotificationTemplates and environment config.
 ---
 
 # Mailgun integration tutorial

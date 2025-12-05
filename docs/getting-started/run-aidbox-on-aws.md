@@ -1,3 +1,7 @@
+---
+description: Deploy Aidbox FHIR platform on AWS Marketplace with step-by-step setup and license activation instructions.
+---
+
 # Run Aidbox on AWS
 
 Sign in to your AWS account.

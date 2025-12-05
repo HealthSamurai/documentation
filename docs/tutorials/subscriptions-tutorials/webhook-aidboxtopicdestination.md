@@ -1,3 +1,7 @@
+---
+description: Send FHIR resource events to HTTP webhooks using AidboxTopicDestination with retry logic and batch support.
+---
+
 # Webhook AidboxTopicDestination
 
 {% hint style="info" %}

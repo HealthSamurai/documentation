@@ -1,3 +1,7 @@
+---
+description: Bulk import FHIR resources asynchronously using $import operation with progress monitoring.
+---
+
 # $import and /fhir/$import
 
 `$import` is an implementation of the upcoming FHIR Bulk Import API. This is an asynchronous Operation, which returns url to monitor progress. There are two versions of this operation - `/fhir/$import` accepts data in FHIR format, `/$import` works with [Aidbox format](../rest-api/other/aidbox-and-fhir-formats.md).

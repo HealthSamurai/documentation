@@ -1,3 +1,7 @@
+---
+description: Connect Aidbox subscriptions to RabbitMQ message broker using AMQP protocol for real-time FHIR event processing.
+---
+
 # AidboxTopicSubscription RabbitMQ tutorial
 
 ## Objectives

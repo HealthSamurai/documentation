@@ -1,3 +1,7 @@
+---
+description: Manage user identities with Aidbox User resource or delegate to external identity providers like Okta, Google, Auth0.
+---
+
 # User management
 
 There are two ways to manage users in Aidbox:

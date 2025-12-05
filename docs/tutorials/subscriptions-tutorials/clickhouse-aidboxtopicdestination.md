@@ -1,3 +1,7 @@
+---
+description: Export FHIR resources to ClickHouse analytics database using SQL-on-FHIR ViewDefinitions for real-time reporting.
+---
+
 # ClickHouse AidboxTopicDestination
 
 {% hint style="info" %}

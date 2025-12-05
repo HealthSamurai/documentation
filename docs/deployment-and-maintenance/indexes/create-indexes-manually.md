@@ -1,3 +1,7 @@
+---
+description: Manual PostgreSQL index creation for FHIR resources in Aidbox. GIN and trigram indexes for search parameters across all resource types.
+---
+
 # Create Indexes Manually
 
 {% hint style="info" %}

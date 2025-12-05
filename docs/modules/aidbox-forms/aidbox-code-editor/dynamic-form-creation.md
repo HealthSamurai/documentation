@@ -1,3 +1,7 @@
+---
+description: Learn to create dynamic FHIR forms with conditional logic using Aidbox Forms, including PHQ-2/PHQ-9 depression screening examples.
+---
+
 # How to create a dynamic form
 
 In this tutorial, we will learn how to create a form with conditional logic. This means, that based on the patient's answers the result will be calculated differently and some form fields will be displayed conditionally.

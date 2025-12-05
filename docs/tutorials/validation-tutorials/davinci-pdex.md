@@ -1,3 +1,7 @@
+---
+description: Implement Da Vinci Payer Data Exchange (PDex) 2.0.0 FHIR Implementation Guide in Aidbox for payer data sharing.
+---
+
 # Davinci Pdex
 
 ## Setup Aidbox with Da Vinci Payer Data Exchange version 2.0.0 with prebuilt Aidbox config

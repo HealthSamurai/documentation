@@ -1,3 +1,7 @@
+---
+description: Configure Postman for Aidbox API testing with authentication, collections, and FHIR resource management.
+---
+
 # Set up Aidbox with Postman
 
 This tutorial will guide you through the process of setting up and using Postman with Aidbox for API testing and development.

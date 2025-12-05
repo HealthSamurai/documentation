@@ -1,3 +1,7 @@
+---
+description: C-CDA Operative Note Fluids Section conversion rules and FHIR resource mapping for clinical document transformation.
+---
+
 # Operative Note Fluids Section
 
 OID: 2.16.840.1.113883.10.20.7.12

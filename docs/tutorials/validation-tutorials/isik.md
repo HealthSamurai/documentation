@@ -1,3 +1,7 @@
+---
+description: Configure Aidbox with ISiK Stufe 2 German FHIR Implementation Guide for healthcare interoperability standards.
+---
+
 # ISiK
 
 In this tutorial we will guide you how to setup ISiK Stufe 2 FHIR Implementation Guide.&#x20;

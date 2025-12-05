@@ -1,8 +1,5 @@
 ---
-description: >-
-  Aidbox supports 3 options for data extraction: Observation-Based,
-  Definition-Based, and Template-Based. These options provide flexibility in how
-  form data is transformed into different FHIR resources
+description: Extract form data to FHIR resources using Observation-Based, Definition-Based, or Template-Based extraction methods.
 ---
 
 # Data Extraction

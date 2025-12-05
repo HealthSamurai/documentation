@@ -1,3 +1,7 @@
+---
+description: Retrieve the last N observations of each type for a patient using FHIR $lastn operation.
+---
+
 # Observation/$lastn
 
 ### Observation/$lastn

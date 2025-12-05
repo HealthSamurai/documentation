@@ -1,3 +1,7 @@
+---
+description: Retrieve profile, tag, and security labels from FHIR resource metadata using $meta operation.
+---
+
 # $meta
 
 ## Introduction

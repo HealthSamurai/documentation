@@ -1,3 +1,7 @@
+---
+description: Observability documentation and implementation guide.
+---
+
 # Observability
 
 Observability is a pivotal concept when it comes to Aidbox and its observability module. It empowers users to gain profound insights into the complex workings of the system. Observability equips Aidbox administrators with the tools they need to troubleshoot issues effectively and address unexpected challenges.

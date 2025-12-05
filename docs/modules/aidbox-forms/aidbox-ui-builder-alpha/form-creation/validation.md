@@ -1,5 +1,5 @@
 ---
-description: FHIR Questionnaire validation
+description: Validate FHIR Questionnaires against specifications and Implementation Guides using Form Builder's integrated checks.
 ---
 
 # Validation

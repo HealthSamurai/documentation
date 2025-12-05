@@ -1,3 +1,7 @@
+---
+description: Use AI assistant prompts to help create Aidbox Access Policies and other configurations more efficiently.
+---
+
 # AI Prompts
 
 ## How to use

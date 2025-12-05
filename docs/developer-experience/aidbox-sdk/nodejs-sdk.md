@@ -1,3 +1,7 @@
+---
+description: Build Node.js server applications with Aidbox SDK featuring TypeScript support, operations, subscriptions, and workflow engine.
+---
+
 # NodeJs SDK
 
 Source code with detailed examples can be found [here](https://github.com/Aidbox/node-server-sdk).

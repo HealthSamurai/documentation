@@ -1,5 +1,5 @@
 ---
-description: This page is under construction.
+description: Available form widgets in Aidbox Forms including input types, settings, terminology codes, and validation options.
 ---
 
 # Widgets

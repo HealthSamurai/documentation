@@ -1,3 +1,7 @@
+---
+description: Aidbox module: Message Lifecycle for extended FHIR functionality and integration.
+---
+
 # Message Lifecycle
 
 The entire message lifecycle is persisted in the HL7v2ModuleMessage resource. There are several statuses with own meanings:

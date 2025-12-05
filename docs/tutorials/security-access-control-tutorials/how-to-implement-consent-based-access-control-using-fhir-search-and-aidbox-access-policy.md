@@ -1,3 +1,7 @@
+---
+description: Implement consent-based access control allowing practitioners to view patient encounters based on FHIR Consent resources.
+---
+
 # How to implement consent-based access control using FHIR Search and Aidbox Access Policy
 
 ## Objectives

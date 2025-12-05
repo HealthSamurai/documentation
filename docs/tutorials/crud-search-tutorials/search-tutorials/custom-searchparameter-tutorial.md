@@ -1,3 +1,7 @@
+---
+description: Create and implement custom FHIR SearchParameters in Aidbox for enhanced resource search functionality.
+---
+
 # Custom SearchParameter tutorial
 
 {% hint style="info" %}

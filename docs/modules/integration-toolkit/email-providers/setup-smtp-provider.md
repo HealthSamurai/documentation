@@ -1,3 +1,7 @@
+---
+description: Set up SMTP email provider configuration for Aidbox notifications and messaging.
+---
+
 # Setup SMTP provider
 
 Aidbox allows you to configure SMTP email provider to manage your email communications.

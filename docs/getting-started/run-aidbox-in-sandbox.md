@@ -1,3 +1,7 @@
+---
+description: Get started with Aidbox Cloud Sandbox - create a free hosted FHIR server instance with development license.
+---
+
 # Run Aidbox in Sandbox
 
 This quickstart guide explains how to run **Aidbox** in the [Aidbox Cloud Sandbox](https://aidbox.app). It will help you set up a hosted Aidbox instance with a **Development license** You will learn to get a hosted Aidbox instance with a Development license.

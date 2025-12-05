@@ -1,3 +1,7 @@
+---
+description: Define and configure FHIR SearchParameter resources for string, token, reference, date, and other search types.
+---
+
 # SearchParameter
 
 [SearchParameter FHIR resource](https://www.hl7.org/fhir/searchparameter.html) defines how a specific resource property can be used in search operations. It specifies:

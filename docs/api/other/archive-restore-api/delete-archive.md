@@ -1,3 +1,7 @@
+---
+description: Delete archived FHIR resource data from AWS S3 or GCP Cloud Storage using delete-archive task.
+---
+
 # Delete-archive
 
 To delete archived data **from cloud** you should start deleting process with `/execution/aidbox.archive/delete-archive` task.

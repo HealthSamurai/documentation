@@ -1,3 +1,7 @@
+---
+description: Configure Client resources for programmatic API access with OAuth 2.0 flows, Basic Auth, and granular permissions.
+---
+
 # Application/Client Management
 
 To provide programmatic access to the Aidbox API, you have to use a [`Client`](../../reference/system-resources-reference/iam-module-resources.md#client) resource. The primary purpose of the `Client` resource is to facilitate authentication and access control within Aidbox.

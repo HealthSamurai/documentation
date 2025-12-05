@@ -1,5 +1,5 @@
 ---
-description: Dev endpoint to test matcho engine
+description: Debug and test Matcho DSL patterns used in AccessPolicy and Subscriptions with the $matcho REST endpoint.
 ---
 
 # $matcho

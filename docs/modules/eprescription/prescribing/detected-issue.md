@@ -1,3 +1,7 @@
+---
+description: Handle detected issues and clinical alerts in ePrescription workflow with FHIR DetectedIssue resource.
+---
+
 # DetectedIssue
 
 This guidance applies to inbound RxRenewalRequest and RxChangeRequest messages processed by the ePrescription module.

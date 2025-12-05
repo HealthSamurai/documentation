@@ -1,3 +1,7 @@
+---
+description: Advanced Aidbox search with SQL-based Search resources, AidboxQuery, dot expressions, and $lookup operations.
+---
+
 # Aidbox Search
 
 Sometimes, FHIR search is not enough. Aidbox provides more ways to search:

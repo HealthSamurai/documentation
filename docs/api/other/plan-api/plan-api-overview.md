@@ -1,6 +1,10 @@
+---
+description: Plan API for health plan member consent, SMART app registration, and provider directory integration using FHIR and OAuth 2.0.
+---
+
 # Plan API Overview
 
-Plan API enables a health plan organization’s members to consent to have their health data shared with third-party applications. It also allows third-party application owners to connect to provider and pharmacy directories, further referred to as “public non-member specific data”.
+Plan API enables a health plan organization's members to consent to have their health data shared with third-party applications. It also allows third-party application owners to connect to provider and pharmacy directories, further referred to as “public non-member specific data”.
 
 Aidbox Plan API:
 

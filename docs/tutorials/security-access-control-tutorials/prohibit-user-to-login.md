@@ -1,5 +1,5 @@
 ---
-description: This guide explains how to prohibit user login
+description: Block user authentication in Aidbox by setting the inactive property to prevent login access.
 ---
 
 # Prohibit user to login

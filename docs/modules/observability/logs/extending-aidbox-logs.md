@@ -1,3 +1,7 @@
+---
+description: Configure and manage Aidbox logging with Extending Aidbox Logs for observability and monitoring.
+---
+
 # Extending Aidbox Logs
 
 There few ways you may extend Aidbox logs:

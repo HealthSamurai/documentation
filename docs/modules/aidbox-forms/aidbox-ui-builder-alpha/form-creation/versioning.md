@@ -1,5 +1,5 @@
 ---
-description: FHIR Questionnaire versioning
+description: Manage FHIR Questionnaire versions using canonical URLs, version numbers, and status lifecycle (draft, active, retired).
 ---
 
 # Versioning

@@ -1,3 +1,7 @@
+---
+description: Define custom FHIR resources in Aidbox using StructureDefinition or FHIR Schema for non-standard healthcare data.
+---
+
 # Custom Resources
 
 During application development, you may encounter data that does not conform to FHIR standards or cannot be modeled with existing FHIR resources. Despite this, you may still actively use this data in your business logic layer. Naturally, you would want to have the same interface for interacting with these resources as you do with regular FHIR resources.

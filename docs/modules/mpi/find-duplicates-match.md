@@ -1,8 +1,5 @@
 ---
-description: >-
-  This page describes how to use the $match operation to search for potential
-  duplicate patient records, including request format, query parameters, and
-  response structure.
+description: Use $match operation to find potential duplicate patient records with configurable query parameters and scoring.
 ---
 
 # Find duplicates: $match

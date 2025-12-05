@@ -1,3 +1,7 @@
+---
+description: Simple username and password authentication using HTTP Basic Auth for development and internal services.
+---
+
 # Basic HTTP Authentication
 
 The simplest way to interact with Aidbox API from your application is to use [the 'Basic' HTTP Authentication](https://datatracker.ietf.org/doc/html/rfc7617). It requires the client to provide credentials in the request header `Authorization: Basic <credentials>`, where `<credentials>` is the base64 encoded Client.id and Client.secret joined by a colon:

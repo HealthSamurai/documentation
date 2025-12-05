@@ -1,5 +1,5 @@
 ---
-description: A single place to manage your Aidbox licenses
+description: Manage Aidbox licenses, projects, and team members in the centralized Aidbox User Portal at aidbox.app.
 ---
 
 # Aidbox User Portal

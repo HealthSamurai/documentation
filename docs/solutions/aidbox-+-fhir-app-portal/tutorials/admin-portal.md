@@ -1,3 +1,7 @@
+---
+description: Administrator guide to reviewing, approving, and managing SMART on FHIR applications in the Admin Portal.
+---
+
 # Admin Portal
 
 The Admin Portal is a private console where administrators review, approve, and manage SMART on FHIR applications.

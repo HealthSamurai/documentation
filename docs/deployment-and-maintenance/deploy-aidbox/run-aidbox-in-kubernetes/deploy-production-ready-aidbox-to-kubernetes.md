@@ -1,3 +1,7 @@
+---
+description: Production-ready Aidbox deployment on Kubernetes. Covers cluster setup, database, ingress, monitoring, logging, alerting, and security best practices.
+---
+
 # Deploy Production-ready Aidbox to Kubernetes
 
 ## Production-ready infrastructure

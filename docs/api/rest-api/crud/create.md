@@ -1,3 +1,7 @@
+---
+description: Create new FHIR resources using POST request with optional custom ID support in Aidbox API.
+---
+
 # Create
 
 ```javascript

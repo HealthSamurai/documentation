@@ -1,3 +1,7 @@
+---
+description: Manage Aidbox internal cache including drop cache operation for introspected tokens.
+---
+
 # Cache
 
 ### Drop cache operation

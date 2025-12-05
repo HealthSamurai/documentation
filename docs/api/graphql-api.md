@@ -1,3 +1,7 @@
+---
+description: Query FHIR resources using Aidbox GraphQL API with GraphiQL interface and $graphql endpoint.
+---
+
 # GraphQL API
 
 Aidbox supports default GraphQL implementation without any extensions ([specification](http://spec.graphql.org/June2018/))\

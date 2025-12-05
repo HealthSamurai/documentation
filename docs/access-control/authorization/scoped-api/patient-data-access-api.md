@@ -1,5 +1,5 @@
 ---
-description: Safe API for Patient and their resources
+description: Restrict API access to patient-related FHIR resources using patient context and compartment-based filtering.
 ---
 
 # Patient data access API

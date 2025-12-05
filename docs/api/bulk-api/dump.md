@@ -1,3 +1,7 @@
+---
+description: Export all FHIR resources of a type as ndjson stream using $dump operation with chunked transfer encoding.
+---
+
 # $dump
 
 You can dump all resources of a specified type. Aidbox will respond with [Chunked Transfer Encoding](https://en.wikipedia.org/wiki/Chunked_transfer_encoding) [ndjson](http://ndjson.org/) stream, optionally you can get the output in FHIR format or GZIPped.

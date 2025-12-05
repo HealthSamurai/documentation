@@ -1,5 +1,5 @@
 ---
-description: Make analytics easier
+description: Create flat SQL views from FHIR resources using ViewDefinitions for simplified analytics, reporting, and BI integration.
 ---
 
 # SQL on FHIR

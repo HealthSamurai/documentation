@@ -1,3 +1,7 @@
+---
+description: Implement SMART App Launch, backend services, scopes, and client authentication with OAuth 2.0 for FHIR applications.
+---
+
 # SMART on FHIR
 
 {% hint style="info" %}

@@ -1,3 +1,7 @@
+---
+description: Configure SMART App Launch with Smartbox, Keycloak identity provider, and Growth Chart application example.
+---
+
 # Example: SMART app launch using Smartbox and Keycloak
 
 This example showcases the Smart App EHR and Patient [launch flows](https://hl7.org/fhir/smart-app-launch/app-launch.html).

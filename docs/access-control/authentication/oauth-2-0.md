@@ -1,3 +1,7 @@
+---
+description: Secure FHIR API access with OAuth 2.0 flows including authorization code, client credentials, and resource owner grants.
+---
+
 # OAuth 2.0
 
 [Aidbox](https://www.health-samurai.io/aidbox) uses the OAuth 2.0 authorization framework to provide secure access to the FHIR API and support each authorization flow described in the [OAuth 2.0 Authorization Framework RFC](https://tools.ietf.org/html/rfc6749).

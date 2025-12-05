@@ -1,8 +1,5 @@
 ---
-description: >-
-  Aidbox supports 3 options for pre-filling the fields: Default Valie,
-  Observation-Based, and Expression-Based. These options provide flexibility in
-  how fields can be pre-filled with data.
+description: Pre-fill form fields using Default Value, Observation-Based, or Expression-Based population with FHIRPath queries.
 ---
 
 # Population

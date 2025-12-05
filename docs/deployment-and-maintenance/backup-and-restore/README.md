@@ -1,3 +1,7 @@
+---
+description: PostgreSQL backup and restore solutions for Aidbox including pgBackRest, pg_dump, pg_basebackup, and WAL-G for cloud storage.
+---
+
 # Backup and Restore
 
 - [pgBackRest](./crunchy-operator-docs-pgbackrest.md). Backup configuration for Crunchy operator

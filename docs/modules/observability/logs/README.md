@@ -1,3 +1,7 @@
+---
+description: Configure and manage Aidbox logging with Logs for observability and monitoring.
+---
+
 # Logs
 
 Aidbox produces structured logs on every significant event to the internal stream which you may direct to different ways:

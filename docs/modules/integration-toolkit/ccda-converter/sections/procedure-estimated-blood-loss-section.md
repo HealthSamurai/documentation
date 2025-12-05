@@ -1,3 +1,7 @@
+---
+description: C-CDA Procedure Estimated Blood Loss Section conversion rules and FHIR resource mapping for clinical document transformation.
+---
+
 # Procedure Estimated Blood Loss Section
 
 OID: 2.16.840.1.113883.10.20.18.2.9

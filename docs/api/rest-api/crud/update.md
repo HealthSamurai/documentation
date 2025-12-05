@@ -1,3 +1,7 @@
+---
+description: Replace or create FHIR resources using PUT request with conditional update support.
+---
+
 # Update
 
 This interaction allows for modifying an existing resource. If a resource with `id` (provided in the URL) doesn't exist, a new resource will be created.

@@ -1,3 +1,7 @@
+---
+description: Auto-create Aidbox users from Keycloak tokens using introspection with foreign identity provider integration.
+---
+
 # Auto-create User from foreign token tutorial
 
 This tutorial explains how to use [Auto-create users from foreign tokens](../../reference/all-settings#security.introspection-create-user) setting.

@@ -1,3 +1,7 @@
+---
+description: Debug and troubleshoot Aidbox access control using dev tools, headers, and test endpoints for policy validation.
+---
+
 # Debug Access Control
 
 There are 5 different ways to debug access control in Aidbox:

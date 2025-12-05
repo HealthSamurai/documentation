@@ -1,3 +1,7 @@
+---
+description: Restrict access to patient data using FHIR CompartmentDefinition and Aidbox access policies.
+---
+
 # Restricting Access to Patient Data
 
 Create a CompartmentDefinition instance from a [standard patient CompartmentDefinition](https://www.hl7.org/fhir/compartmentdefinition-patient.json):

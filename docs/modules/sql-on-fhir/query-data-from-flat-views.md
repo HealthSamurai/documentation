@@ -1,3 +1,7 @@
+---
+description: SQL on FHIR Query data from flat views for querying and analyzing FHIR data with SQL.
+---
+
 # Query data from flat views
 
 ## Using flat views

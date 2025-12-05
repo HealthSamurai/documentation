@@ -1,3 +1,7 @@
+---
+description: Integrate Aidbox Topic-Based Subscriptions with ActiveMQ using AMQP 1.0 protocol for event streaming.
+---
+
 # AidboxTopicSubscription ActiveMQ tutorial
 
 ## Objectives

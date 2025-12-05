@@ -1,3 +1,7 @@
+---
+description: Aidbox FHIR API overview covering CRUD operations, search, bulk data, and healthcare data management workflows.
+---
+
 # API Overview
 
 ## Data Management

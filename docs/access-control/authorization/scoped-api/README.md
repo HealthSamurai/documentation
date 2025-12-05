@@ -1,3 +1,7 @@
+---
+description: Access resources within FHIR compartments, patient data, or organization hierarchies using specialized scoped APIs.
+---
+
 # Scoped API
 
 Scoped APIs are special APIs limited to resources within a specific compartment. Such API do not require complicated access control logic, because this logic is built into the API definition.

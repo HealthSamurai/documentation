@@ -1,3 +1,7 @@
+---
+description: Retrieve all FHIR resources related to a patient using the $everything operation with filtering parameters.
+---
+
 # $everything on Patient
 
 This operation returns all the information related to one or more patients described in the resource or context on which this operation is invoked. The response is a bundle. Returns resources that the server has that are related to the patient\

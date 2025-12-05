@@ -1,3 +1,7 @@
+---
+description: Migrate Aidbox custom resources from deprecated Zen and Entity/Attributes to FHIR Schema validation engine.
+---
+
 # Migrate to FHIR Schema
 
 {% hint style="danger" %}

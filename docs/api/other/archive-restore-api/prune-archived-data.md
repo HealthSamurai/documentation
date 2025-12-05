@@ -1,3 +1,7 @@
+---
+description: Delete archived FHIR resource data from Aidbox database after successful cloud archival.
+---
+
 # Prune-archived-data
 
 To delete data that has been archived from your Aidbox database you can make `/execution/aidbox.archive/prune-archived-data` request. You also can make this automatically with `pruneArchivedData` parameter of [create-archive](create-archive.md) request.&#x20;

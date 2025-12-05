@@ -1,3 +1,7 @@
+---
+description: Search FHIR resources using parameters, modifiers, chaining, includes, and pagination in Aidbox.
+---
+
 # FHIR search
 
 Aidbox supports [FHIR Search API](https://www.hl7.org/fhir/search.html).\

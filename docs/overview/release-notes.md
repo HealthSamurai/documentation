@@ -1,3 +1,7 @@
+---
+description: Aidbox FHIR server release notes with latest features, improvements, and updates for edge, latest, and stable versions.
+---
+
 # Release Notes
 
 ## December 2025 _`edge`_

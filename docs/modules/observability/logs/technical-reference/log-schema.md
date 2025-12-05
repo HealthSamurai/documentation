@@ -1,3 +1,7 @@
+---
+description: Configure and manage Aidbox logging with Log Schema for observability and monitoring.
+---
+
 # Log Schema
 
 ## General attributes

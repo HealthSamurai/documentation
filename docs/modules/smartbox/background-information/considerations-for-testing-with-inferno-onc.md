@@ -1,3 +1,7 @@
+---
+description: SMART on FHIR Considerations for Testing with Inferno ONC implementation in Aidbox for healthcare app integration.
+---
+
 # Considerations for Testing with Inferno ONC
 
 ## Mandatory software components & configurations

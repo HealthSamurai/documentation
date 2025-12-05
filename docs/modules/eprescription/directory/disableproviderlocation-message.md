@@ -1,3 +1,7 @@
+---
+description: Disable provider locations in Surescripts directory using DisableProviderLocation message.
+---
+
 # DisableProviderLocation Message
 
 ### Overview

@@ -1,5 +1,5 @@
 ---
-description: HA AidboxDB installation with Crunchy Operator
+description: Deploy high-availability PostgreSQL for Aidbox using Crunchy Operator with automatic failover, backups, and scaling.
 ---
 
 # HA AidboxDB

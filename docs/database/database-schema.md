@@ -1,3 +1,7 @@
+---
+description: Aidbox database schema structure including FHIR resource tables, history tables, and system schemas in PostgreSQL.
+---
+
 # Database schema
 
 The database schema consists of many tables and schemas, organized into two groups:

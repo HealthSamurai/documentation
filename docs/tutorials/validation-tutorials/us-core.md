@@ -1,3 +1,7 @@
+---
+description: Configure Aidbox with US Core 6.1.0 FHIR Implementation Guide for compliant healthcare data validation.
+---
+
 # US Core
 
 In this tutorial we will guide you how to setup US Core FHIR Implementation Guide.&#x20;

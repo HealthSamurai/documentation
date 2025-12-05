@@ -1,3 +1,7 @@
+---
+description: Developer guide to registering, testing, and submitting SMART on FHIR applications in the Developer Sandbox Portal.
+---
+
 # Developer Sandbox Portal
 
 The Developer Sandbox Portal is a public-facing website where SMART on FHIR app developers can register, test, and manage their applications.

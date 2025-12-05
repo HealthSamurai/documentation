@@ -1,3 +1,7 @@
+---
+description: Upload FHIR Implementation Guides through Aidbox UI from registry, public URL, or local package files.
+---
+
 # Aidbox UI
 
 To upload a FHIR Implementation Guide (IG) using the Aidbox UI, follow these step-by-step instructions

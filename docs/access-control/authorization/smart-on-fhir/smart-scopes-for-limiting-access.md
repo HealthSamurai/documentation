@@ -1,3 +1,7 @@
+---
+description: Control FHIR resource access with SMART v1 and v2 scopes including patient, user, system contexts and search parameters.
+---
+
 # SMART: Scopes for Limiting Access
 
 {% hint style="info" %}

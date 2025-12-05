@@ -1,5 +1,5 @@
 ---
-description: Offline functionality for filling out forms
+description: Fill out Aidbox Forms offline with local caching, auto-save, and submission when internet connection is restored.
 ---
 
 # Offline forms

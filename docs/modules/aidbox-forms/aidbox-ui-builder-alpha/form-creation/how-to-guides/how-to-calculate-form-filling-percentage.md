@@ -1,3 +1,7 @@
+---
+description: Calculate FHIR Questionnaire completion percentage using FHIRPath expressions for form progress tracking in Aidbox.
+---
+
 # How to calculate form filling percentage
 
 ## What is form filling percentage

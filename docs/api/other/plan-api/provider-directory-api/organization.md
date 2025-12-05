@@ -1,8 +1,5 @@
 ---
-description: >-
-  An organization is a formal or informal grouping of people or organizations
-  with a common purpose, such as a company, institution, corporation, community
-  group, or healthcare practice.
+description: Query Organization resources representing companies, institutions, healthcare practices, and community groups.
 ---
 
 # Organization

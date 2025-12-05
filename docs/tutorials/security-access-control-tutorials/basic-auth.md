@@ -1,5 +1,5 @@
 ---
-description: Access Aidbox API from your Service
+description: Configure Basic Access Authentication in Aidbox to programmatically access FHIR API with client credentials.
 ---
 
 # How to configure Basic Auth flow

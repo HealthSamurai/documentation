@@ -1,3 +1,7 @@
+---
+description: Handle pharmacy-initiated ePrescription messages including refill requests and prescription changes.
+---
+
 # Pharmacy-initiated messages
 
 This includes **RxChangeRequest** and **RxRenewalRequest** types of messages.

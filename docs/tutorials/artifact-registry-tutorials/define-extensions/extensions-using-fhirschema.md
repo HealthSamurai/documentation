@@ -1,3 +1,7 @@
+---
+description: Define FHIR extensions in Aidbox using FHIRSchema format for extending resource capabilities.
+---
+
 # Extensions using FHIRSchema
 
 When Aidbox is configured with [FHIRSchema mode](../../../modules/profiling-and-validation/fhir-schema-validator/), it is possible to define Extension in [FHIRSchema format](https://fhir-schema.github.io/fhir-schema/).

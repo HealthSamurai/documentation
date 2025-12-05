@@ -1,5 +1,5 @@
 ---
-description: Collaborative work in projects
+description: Invite team members, assign roles, and manage collaborative access to Aidbox projects in the User Portal.
 ---
 
 # Members

@@ -1,5 +1,5 @@
 ---
-description: Achieve logical multi-tenancy with Aidbox
+description: Implement multi-tenancy with hierarchical organization-based access control to isolate FHIR data per tenant.
 ---
 
 # Organization-based hierarchical access control

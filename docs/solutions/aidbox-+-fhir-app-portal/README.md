@@ -1,3 +1,7 @@
+---
+description: Aidbox FHIR Server with App Portal including Developer Sandbox, Admin Portal, and patient-facing App Gallery.
+---
+
 # Aidbox + FHIR App portal
 
 The solution consists of two core components that work together to deliver a certified API solution:

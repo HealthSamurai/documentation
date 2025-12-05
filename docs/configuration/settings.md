@@ -1,3 +1,7 @@
+---
+description: Configure Aidbox behavior using settings through UI or environment variables, including FHIR, security, database, and observability options.
+---
+
 # Settings
 
 This page explains how to configure Aidbox using settings. Settings control how your Aidbox instance behaves and can be managed using Aidbox UI and environment variables.

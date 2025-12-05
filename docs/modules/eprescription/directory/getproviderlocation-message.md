@@ -1,3 +1,7 @@
+---
+description: Retrieve provider location details from Surescripts directory using GetProviderLocation message.
+---
+
 # GetProviderLocation Message
 
 ### Overview

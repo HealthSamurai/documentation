@@ -1,3 +1,7 @@
+---
+description: FHIR Subscriptions Aidbox Topic-Based Subscriptions for real-time notifications and event-driven workflows.
+---
+
 # Aidbox Topic-Based Subscriptions
 
 {% hint style="info" %}

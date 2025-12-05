@@ -1,3 +1,7 @@
+---
+description: Configure Aidbox ePrescribing module with environment variables for Surescripts integration.
+---
+
 # Environment Variables
 
 Here is a full list of environment variables used by the module:

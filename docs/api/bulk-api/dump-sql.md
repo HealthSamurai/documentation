@@ -1,3 +1,7 @@
+---
+description: Export SQL query results as CSV or ndjson stream using $dump-sql operation for analytics.
+---
+
 # $dump-sql
 
 ## Dump results of the sql query

@@ -1,5 +1,5 @@
 ---
-description: Simple API to react on resource changes
+description: Poll for FHIR resource changes using version-based Changes API with efficient resource tracking and event handling.
 ---
 
 # Changes API

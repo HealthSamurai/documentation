@@ -1,3 +1,7 @@
+---
+description: Patient guide to browsing and launching approved SMART on FHIR healthcare applications from the App Gallery.
+---
+
 # App Gallery
 
 The App Gallery is a public website where patients can discover and launch approved SMART on FHIR applications.

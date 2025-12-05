@@ -1,3 +1,7 @@
+---
+description: Update existing provider locations in Surescripts directory using UpdateProviderLocation message.
+---
+
 # UpdateProviderLocation Message
 
 ### Overview

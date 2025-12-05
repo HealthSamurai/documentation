@@ -1,8 +1,5 @@
 ---
-description: >-
-  Represents a role a practitioner performs at an organization. Contains
-  information about Practitioner, Network, Location, Organization and
-  HealthcareService resources associated with a practitioner.
+description: Query PractitionerRole resources linking practitioners with organizations, networks, locations, and healthcare services.
 ---
 
 # PractitionerRole

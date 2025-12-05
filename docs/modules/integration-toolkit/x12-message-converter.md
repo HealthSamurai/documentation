@@ -1,3 +1,7 @@
+---
+description: Convert X12 EDI healthcare transactions to FHIR format with Aidbox X12 converter.
+---
+
 # X12 message converter
 
 {% hint style="warning" %}

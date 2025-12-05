@@ -1,5 +1,5 @@
 ---
-description: Electronic prescriptions with Aidbox
+description: Send electronic prescriptions via Surescripts using Aidbox ePrescription module with FHIR-native NewRx and CancelRx.
 ---
 
 # ePrescription

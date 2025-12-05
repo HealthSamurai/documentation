@@ -1,3 +1,7 @@
+---
+description: FHIR resource validation and profiling with FHIR Schema Validator in Aidbox.
+---
+
 # FHIR Schema Validator
 
 {% hint style="info" %}

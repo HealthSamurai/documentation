@@ -1,3 +1,7 @@
+---
+description: Encrypt sensitive data attributes in Aidbox using the encryption API with secret type configuration.
+---
+
 # Encryption API
 
 Aidbox can encrypt attributes with the type `secret`.

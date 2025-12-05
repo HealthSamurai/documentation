@@ -1,3 +1,7 @@
+---
+description: Implement EHR and standalone launch flows with OAuth 2.0 authorization code grant, PKCE, and JWT access tokens.
+---
+
 # SMART App Launch
 
 {% hint style="info" %}

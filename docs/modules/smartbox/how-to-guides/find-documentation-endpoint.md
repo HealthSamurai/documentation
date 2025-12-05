@@ -1,3 +1,7 @@
+---
+description: SMART on FHIR Find Documentation Endpoint implementation in Aidbox for healthcare app integration.
+---
+
 # Find Documentation Endpoint
 
 ## To see Smartbox documentation

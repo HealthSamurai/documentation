@@ -1,3 +1,7 @@
+---
+description: Step-by-step guide to migrate Aidbox Entity and Attributes custom resources to FHIR Schema format.
+---
+
 # Migrate custom resources defined with Entity and Attributes to FHIR Schema
 
 ## Prerequisites

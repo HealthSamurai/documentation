@@ -1,3 +1,7 @@
+---
+description: Integrate FirstDataBank FDB medication database for drug information and clinical decision support.
+---
+
 # FDB
 
 ### DA & DDI checks: supported systems

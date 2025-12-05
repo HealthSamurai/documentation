@@ -1,5 +1,5 @@
 ---
-description: aidbox.bulk/* RPC operations
+description: Import FHIR data using aidbox.bulk RPC API with async validation, human-readable errors, and conflict resolution.
 ---
 
 # Aidbox.bulk data import

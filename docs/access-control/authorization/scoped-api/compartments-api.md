@@ -1,3 +1,7 @@
+---
+description: Search and access FHIR resources within Patient, Encounter, or other compartments using CompartmentDefinition.
+---
+
 # Compartments API
 
 ## Overview

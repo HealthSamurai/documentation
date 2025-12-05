@@ -1,3 +1,7 @@
+---
+description: Restore previously archived FHIR resources from cloud storage back to Aidbox database.
+---
+
 # Restore-archive
 
 To restore archived data you should start restoration process with `/execution/aidbox.archive/restore-archive` task.

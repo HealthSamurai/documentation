@@ -1,3 +1,7 @@
+---
+description: Aidbox module: MCP for extended FHIR functionality and integration.
+---
+
 # MCP
 
 {% hint style="warning" %}

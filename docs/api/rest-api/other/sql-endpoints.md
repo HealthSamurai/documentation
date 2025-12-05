@@ -1,3 +1,7 @@
+---
+description: Execute raw SQL queries directly in Aidbox using $sql endpoint with JDBC parameter support.
+---
+
 # SQL endpoints
 
 ## $sql

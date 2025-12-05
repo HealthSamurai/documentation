@@ -1,3 +1,7 @@
+---
+description: Pass Inferno SMART App Launch Test Kit STU1 with Aidbox using patient data, clients, and test configuration.
+---
+
 # Pass Inferno tests with Aidbox
 
 {% hint style="info" %}

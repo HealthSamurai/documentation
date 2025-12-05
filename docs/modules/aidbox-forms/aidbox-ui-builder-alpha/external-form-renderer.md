@@ -1,3 +1,7 @@
+---
+description: Build custom FHIR questionnaire renderers as web components for Aidbox Forms Builder with dynamic preview and integration.
+---
+
 # External Form Renderer in Builder Preview
 
 The Aidbox Forms Builder supports custom form renderers that allow you to create personalized questionnaire experiences while maintaining compatibility with FHIR standards. This feature enables developers to build custom rendering logic for questionnaires while leveraging the Forms Builder's preview and configuration capabilities.

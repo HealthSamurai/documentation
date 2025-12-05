@@ -1,3 +1,7 @@
+---
+description: Create custom FHIR forms in Aidbox using Document, Layout, Launch, and Finalize layers with SDC schemas and validation.
+---
+
 # Form creation
 
 To create new form you need to define Form-assembly and at least 1 layer (schemas from `aidbox.sdc`) :

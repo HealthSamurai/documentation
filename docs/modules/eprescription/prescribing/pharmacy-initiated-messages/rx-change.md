@@ -1,3 +1,7 @@
+---
+description: Process pharmacy RxChange requests for prescription modifications and therapeutic substitutions.
+---
+
 # RxChange Message
 
 ## Overview

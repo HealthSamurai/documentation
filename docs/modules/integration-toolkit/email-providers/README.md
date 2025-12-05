@@ -1,3 +1,7 @@
+---
+description: Configure email providers for sending notifications and alerts from Aidbox applications.
+---
+
 # Email providers integration
 
 Aidbox supports sending emails through using `Notification`, `NotificationTemplate`, and, optionally, `AidboxConfig` resources.

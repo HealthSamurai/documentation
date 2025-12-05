@@ -1,5 +1,5 @@
 ---
-description: How to print forms in their native look
+description: Print Aidbox Forms preserving exact browser appearance using $print API with Puppeteer or Playwright rendering.
 ---
 
 # Native look form printing

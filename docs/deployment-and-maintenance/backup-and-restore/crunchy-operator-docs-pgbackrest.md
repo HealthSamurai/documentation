@@ -1,3 +1,7 @@
+---
+description: Configure pgBackRest backups with Crunchy Operator for Aidbox PostgreSQL. Supports cloud storage, PITR, and automated backup schedules.
+---
+
 # Crunchy Operator (/pgbackrest)
 
 PGO Crunchy Operator uses pgBackRest for managing backups.&#x20;

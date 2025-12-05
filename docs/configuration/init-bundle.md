@@ -1,4 +1,5 @@
 ---
+description: Initialize Aidbox configuration resources at startup using Init Bundle with transaction or batch bundles via BOX_INIT_BUNDLE environment variable.
 coverY: 0
 ---
 

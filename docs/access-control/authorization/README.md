@@ -1,3 +1,7 @@
+---
+description: Control access with SMART scopes, Access Policies, RBAC, ABAC, patient compartments, and organization-based hierarchical access.
+---
+
 # Authorization
 
 Aidbox supports different authorization mechanisms.

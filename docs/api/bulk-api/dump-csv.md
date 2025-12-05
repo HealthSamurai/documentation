@@ -1,3 +1,7 @@
+---
+description: Export FHIR resources as CSV with $dump-csv operation, converting JSON paths to columns.
+---
+
 # $dump-csv
 
 Dump resource in CSV format

@@ -1,3 +1,7 @@
+---
+description: Get Aidbox version information including release channel and commit hash using $version endpoint.
+---
+
 # Aidbox version
 
 Aidbox version is available to obtain with the following `REST` method:&#x20;

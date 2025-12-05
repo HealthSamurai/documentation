@@ -1,3 +1,7 @@
+---
+description: Send new electronic prescriptions using NewRx NCPDP SCRIPT message to Surescripts network.
+---
+
 # NewRx Message
 
 ### Overview

@@ -1,5 +1,5 @@
 ---
-description: FHIR versions support
+description: Aidbox Forms supports FHIR 4.0.0 to 5.0.0 with automatic conversion for importing Questionnaires from FHIR 3.0.0+.
 ---
 
 # FHIR versions

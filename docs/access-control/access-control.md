@@ -1,3 +1,7 @@
+---
+description: Comprehensive access control for healthcare applications with identity management, authentication, authorization, and audit logging.
+---
+
 # Overview
 
 Aidbox offers everything you need for secure identity, authentication, and auditing.

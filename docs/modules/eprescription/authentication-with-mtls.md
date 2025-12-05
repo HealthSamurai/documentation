@@ -1,3 +1,7 @@
+---
+description: Configure mTLS mutual TLS authentication for Surescripts ePrescribing with certificates and private keys.
+---
+
 # Authentication with mTLS
 
 {% hint style="warning" %}

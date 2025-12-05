@@ -1,3 +1,7 @@
+---
+description: Build custom FHIR resources with StructureDefinition in Aidbox for healthcare data beyond standard FHIR resources.
+---
+
 # Custom resources using StructureDefinition
 
 {% hint style="warning" %}

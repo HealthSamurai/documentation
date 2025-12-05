@@ -1,3 +1,7 @@
+---
+description: C-CDA Default Section Rules conversion rules and FHIR resource mapping for clinical document transformation.
+---
+
 # Default Section Rules
 
 OID: N/A

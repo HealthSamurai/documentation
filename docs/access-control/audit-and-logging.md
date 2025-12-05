@@ -1,3 +1,7 @@
+---
+description: Track access to patient data with FHIR BALP audit events, resource versioning, and OpenTelemetry structured logging.
+---
+
 # Audit and Logging
 
 Audit logging is essential in healthcare systems because it:

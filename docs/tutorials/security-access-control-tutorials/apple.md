@@ -1,3 +1,7 @@
+---
+description: Set up Sign-in with Apple (SSO) integration for secure Aidbox UI authentication using Apple Developer credentials.
+---
+
 # How to configure sign-in with Apple for access to the Aidbox UI
 
 ## Objectives

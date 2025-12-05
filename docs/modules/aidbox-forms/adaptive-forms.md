@@ -1,5 +1,5 @@
 ---
-description: Adaptive Forms
+description: Build dynamic FHIR SDC forms that adapt questions based on user responses using the $next-question operation.
 ---
 
 # Adaptive Forms

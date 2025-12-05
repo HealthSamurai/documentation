@@ -1,3 +1,7 @@
+---
+description: Deploy Aidbox on Google Cloud Platform Cloud Run with Cloud SQL PostgreSQL database integration.
+---
+
 # How to run Aidbox in GCP Cloud Run
 
 ## Objectives <a href="#objectives" id="objectives"></a>

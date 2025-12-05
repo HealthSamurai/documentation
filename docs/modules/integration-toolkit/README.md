@@ -1,3 +1,7 @@
+---
+description: Aidbox Integration Toolkit for HL7 v2, C-CDA, X12, analytics, and healthcare data interoperability.
+---
+
 # Integration Toolkit
 
 The Aidbox Integration Toolkit is designed for seamless data transformation and ingestion.

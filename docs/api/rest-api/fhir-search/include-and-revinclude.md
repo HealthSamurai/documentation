@@ -1,3 +1,7 @@
+---
+description: Return related FHIR resources with search results using _include and _revinclude parameters.
+---
+
 # Include and Revinclude
 
 {% hint style="warning" %}

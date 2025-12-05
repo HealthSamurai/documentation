@@ -1,3 +1,7 @@
+---
+description: Remove FHIR resources using DELETE request with ETag support and conditional deletion.
+---
+
 # Delete
 
 ```

@@ -1,5 +1,5 @@
 ---
-description: This guide explains how to set up RBAC with ACL
+description: Implement role-based access control with ACL in Aidbox to restrict user access based on organization membership.
 ---
 
 # RBAC with ACL

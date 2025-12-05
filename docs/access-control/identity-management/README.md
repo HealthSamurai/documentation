@@ -1,3 +1,7 @@
+---
+description: Manage user and application identities with built-in or external providers, credentials, and access control integration.
+---
+
 # Identity Management
 
 Aidbox provides a comprehensive identity management system that handles both application (Client) and user identities. This system is fundamental for authentication, authorization, and access control within your Aidbox instance.

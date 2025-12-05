@@ -1,3 +1,7 @@
+---
+description: Complete guide to installing and using the Aidbox JavaScript SDK with TypeScript support for FHIR resource operations.
+---
+
 # Aidbox JavaScript SDK
 
 ### Installation

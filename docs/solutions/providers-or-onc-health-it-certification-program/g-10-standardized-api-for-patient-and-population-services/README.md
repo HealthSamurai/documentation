@@ -1,3 +1,7 @@
+---
+description: ONC (g)(10) certification implementation with SMART App Launch, US Core, Bulk FHIR APIs, and Inferno test suite compliance.
+---
+
 # (g)(10): Standardized API for Patient and Population Services
 
 **Criterion (g)(10): Standardized API for Patient & Population Services**\

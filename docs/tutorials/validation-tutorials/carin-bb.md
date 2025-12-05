@@ -1,3 +1,7 @@
+---
+description: Set up and validate FHIR resources against CARIN Blue Button 2.0.0 Implementation Guide in Aidbox.
+---
+
 # Carin BB
 
 ## Setup Aidbox with CARIN Consumer Directed Payer Data Exchange (CARIN IG for Blue Button®) version 2.0.0

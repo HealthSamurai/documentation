@@ -1,3 +1,7 @@
+---
+description: Implement multilingual search in Aidbox using FHIR translation extensions for multi-language resource searches.
+---
+
 # Multilingual search tutorial
 
 {% hint style="warning" %}

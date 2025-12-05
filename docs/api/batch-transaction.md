@@ -1,5 +1,5 @@
 ---
-description: Do multiple operations in one call
+description: Execute multiple FHIR operations atomically using batch or transaction bundles with rollback support on failure.
 ---
 
 # Batch/Transaction

@@ -1,3 +1,7 @@
+---
+description: Configure Okta SSO integration and manage Aidbox UI admin access through Okta group assignments.
+---
+
 # Managing Admin Access to the Aidbox UI Using Okta Groups
 
 ## Objectives

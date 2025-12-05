@@ -1,3 +1,7 @@
+---
+description: Stream FHIR resource events to Apache Kafka using AidboxTopicDestination with best-effort or at-least-once delivery.
+---
+
 # Kafka AidboxTopicDestination
 
 {% hint style="info" %}

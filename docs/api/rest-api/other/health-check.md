@@ -1,5 +1,5 @@
 ---
-description: Standard endpoint for health checks
+description: Configure Kubernetes liveness, readiness, and startup probes using Aidbox REST health check endpoint.
 ---
 
 # Health check

@@ -1,3 +1,7 @@
+---
+description: Filter FHIR resources by referenced resource properties using chained search parameters.
+---
+
 # Chaining
 
 Chained parameters allow filtering by the parameter of a resource linked via a reference.

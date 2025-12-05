@@ -1,5 +1,5 @@
 ---
-description: Difference between Aidbox and FHIR formats
+description: Understand Aidbox storage format differences from FHIR including parsed references, union types, and extensions.
 ---
 
 # Aidbox and FHIR formats

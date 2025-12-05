@@ -1,3 +1,7 @@
+---
+description: Enforce unique constraints on FHIR resources in Aidbox using PostgreSQL indexes and database triggers.
+---
+
 # Set up uniqueness in Resource
 
 Suppose we want to store the Patient resource only if a patient with such an email does not already exist in the database. Hence, we need to make `Patient.telecom.value` unique where `Patient.telecom.system = 'email'`.

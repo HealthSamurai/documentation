@@ -1,3 +1,7 @@
+---
+description: Configure Aidbox and Multibox Docker deployments with environment variables, JAVA options, and performance settings.
+---
+
 # Configure Aidbox and Multibox
 
 [Aidbox](https://hub.docker.com/r/healthsamurai/aidboxone) is a full-featured single instance of the Aidbox FHIR server. If you are interested in multi-tenant Aidbox, consider using [Multibox](https://hub.docker.com/r/healthsamurai/multibox) distribution.

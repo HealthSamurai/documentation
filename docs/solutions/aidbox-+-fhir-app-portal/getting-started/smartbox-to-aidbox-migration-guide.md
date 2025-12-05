@@ -1,3 +1,7 @@
+---
+description: Step-by-step migration guide from Smartbox to Aidbox with FHIR Portal running side by side on the same database.
+---
+
 # Migrate from Smartbox to Aidbox + FHIR App portal
 
 ## Overview

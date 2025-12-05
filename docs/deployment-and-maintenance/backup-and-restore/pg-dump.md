@@ -1,3 +1,7 @@
+---
+description: Use pg_dump for logical PostgreSQL backups. Best for small databases under 10 GB, schema migration, and database restoration.
+---
+
 # pg\_dump
 
 [**`pg_dump`**](https://www.postgresql.org/docs/15/app-pgdump.html) is a standard utility for backing up a PostgreSQL database.

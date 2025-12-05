@@ -1,5 +1,5 @@
 ---
-description: Learn how to share or embed the form with users.
+description: Share Aidbox Forms via links or embed in applications using iframe with RSA key configuration and $populatelink.
 ---
 
 # Form sharing

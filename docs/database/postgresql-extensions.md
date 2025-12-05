@@ -1,3 +1,7 @@
+---
+description: Required and optional PostgreSQL extensions for Aidbox including pg_trgm, pgcrypto, jsonknife, and PostGIS.
+---
+
 # PostgreSQL Extensions
 
 Aidbox requires specific PostgreSQL extensions to function properly.

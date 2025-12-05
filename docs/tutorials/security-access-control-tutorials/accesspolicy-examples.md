@@ -1,5 +1,5 @@
 ---
-description: Access policies examples
+description: Practical AccessPolicy examples for Aidbox including allow-all, resource-specific, role-based, and request filtering.
 ---
 
 # Access policies examples

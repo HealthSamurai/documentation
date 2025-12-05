@@ -1,3 +1,7 @@
+---
+description: FHIR resource validation and profiling with Skip validation of references in resource using request header in Aidbox.
+---
+
 # Skip validation of references in resource using request header
 
 ### Skip validation of references in resource using request header

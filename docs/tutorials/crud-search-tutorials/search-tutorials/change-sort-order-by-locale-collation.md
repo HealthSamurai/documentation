@@ -1,3 +1,7 @@
+---
+description: Configure PostgreSQL locale collation in Aidbox for locale-specific sorting of FHIR resources.
+---
+
 # Change sort order by locale collation
 
 Consider this example:

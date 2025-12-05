@@ -1,8 +1,5 @@
 ---
-description: >-
-  Learn how to easily upload, validate, and import questionnaires using JSON or
-  PDF files with the Import Questionnaire feature. Streamline your workflow with
-  AI-powered OCR and real-time validation.
+description: Import FHIR Questionnaires from JSON files or PDFs with AI-powered OCR, validation, and editing support.
 ---
 
 # Import Questionnaire

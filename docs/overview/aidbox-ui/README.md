@@ -1,3 +1,7 @@
+---
+description: Comprehensive user interface for Aidbox FHIR server with REST Console, Database Console, tables, queries, and notebooks for data management.
+---
+
 # Aidbox UI
 
 **Aidbox UI** is a comprehensive user interface designed to enhance the experience of working with Aidbox, a robust healthcare platform. This UI offers a variety of features and tools that facilitate efficient data management and interaction.

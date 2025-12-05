@@ -1,3 +1,7 @@
+---
+description: Create access policies to restrict client permissions to bulk API operations in Aidbox.
+---
+
 # Configure Access Policies for Bulk API
 
 Let's create a new client and an access policy that allows the client to use only bulk API

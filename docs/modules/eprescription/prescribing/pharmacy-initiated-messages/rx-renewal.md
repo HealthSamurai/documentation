@@ -1,3 +1,7 @@
+---
+description: Manage pharmacy-initiated prescription renewal requests using RxRenewalRequest NCPDP SCRIPT message.
+---
+
 # RxRenewal Message
 
 ## Overview

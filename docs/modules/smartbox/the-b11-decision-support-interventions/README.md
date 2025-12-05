@@ -1,3 +1,7 @@
+---
+description: SMART on FHIR The B11 decision support interventions implementation in Aidbox for healthcare app integration.
+---
+
 # The B11 decision support interventions
 
 The B11 criteria from the Office of the National Coordinator for Health Information Technology (ONC) replace the previous A9 criteria for clinical decision support in Electronic Health Record (EHR) systems.

@@ -1,3 +1,7 @@
+---
+description: Cancel electronic prescriptions using CancelRx NCPDP SCRIPT message in Surescripts workflow.
+---
+
 # CancelRx Message
 
 ### Overview

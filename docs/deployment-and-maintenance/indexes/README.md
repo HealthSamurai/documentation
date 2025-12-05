@@ -1,3 +1,7 @@
+---
+description: PostgreSQL database indexes for Aidbox. Learn to create, manage, and optimize indexes for faster FHIR search queries and better performance.
+---
+
 # Indexes
 
 Database indexes are essential for performance. In particular you will need indexes to speed up search requests.

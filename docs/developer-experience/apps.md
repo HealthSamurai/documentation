@@ -1,3 +1,7 @@
+---
+description: Create custom endpoints and extend Aidbox functionality with Apps for business logic, operations, and custom resource integration.
+---
+
 # Apps
 
 Apps allow you to create custom endpoints in [Aidbox](https://www.health-samurai.io/aidbox). When a request is made to a custom endpoint, Aidbox proxies it to your application service.

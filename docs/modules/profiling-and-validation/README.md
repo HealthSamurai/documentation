@@ -1,3 +1,7 @@
+---
+description: FHIR resource validation and profiling with Profiling and validation in Aidbox.
+---
+
 # Profiling and validation
 
 ## What is _Profiling_?

@@ -1,3 +1,7 @@
+---
+description: Contact Health Samurai for Aidbox support, license questions, partnerships, and technical help. Join our community or report issues.
+---
+
 # Contact us
 
 ## Where can I ask questions or get help?

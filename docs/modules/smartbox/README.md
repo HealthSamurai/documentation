@@ -1,3 +1,7 @@
+---
+description: SMART on FHIR SMARTbox | FHIR API for EHRs implementation in Aidbox for healthcare app integration.
+---
+
 # SMARTbox | FHIR API for EHRs
 
 Smartbox is a set of tools that help manage the registration and secure access of developers and their SMART on FHIR apps to health information.

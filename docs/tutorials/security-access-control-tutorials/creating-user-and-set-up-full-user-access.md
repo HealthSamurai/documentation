@@ -1,3 +1,7 @@
+---
+description: Create Aidbox users and configure access policies for full resource management permissions.
+---
+
 # Creating user and set up full user access
 
 ### Creating user resource

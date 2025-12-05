@@ -1,3 +1,7 @@
+---
+description: Master Patient Index Mathematical Details for patient matching and deduplication in FHIR.
+---
+
 # Mathematical Details
 
 See [fastlink](https://imai.fas.harvard.edu/research/files/linkage.pdf) paper for more details.

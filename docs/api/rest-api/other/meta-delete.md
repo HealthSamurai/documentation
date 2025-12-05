@@ -1,3 +1,7 @@
+---
+description: Remove profile, tag, and security labels from FHIR resource metadata using $meta-delete operation.
+---
+
 # $meta-delete
 
 ## Introduction

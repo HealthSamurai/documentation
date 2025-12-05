@@ -1,3 +1,7 @@
+---
+description: Automatic versioning for Aidbox Forms and Workflows with database snapshots based on essential field changes.
+---
+
 # Versioning
 
 When `:versioning` feature is enabled - all workflows and forms definitions will be snapshotted to DB.

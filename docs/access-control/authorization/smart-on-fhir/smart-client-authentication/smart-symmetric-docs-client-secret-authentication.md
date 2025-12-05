@@ -1,6 +1,10 @@
+---
+description: Authenticate confidential SMART clients using pre-shared client secrets with symmetric authentication method.
+---
+
 # SMART: Symmetric (/"client secret") authentication
 
-This page describes SMART’s `client-confidential-symmetric` authentication mechanism. It is intended for SMART App Launch clients that can maintain a secret but cannot manage asymmetric keypairs. For clients that can manage asymmetric keypairs, [Asymmetric Authentication](./smart-asymmetric-docs-private-key-jwt-authentication.md) is preferred. This profile is not intended for SMART Backend Services clients.
+This page describes SMART's `client-confidential-symmetric` authentication mechanism. It is intended for SMART App Launch clients that can maintain a secret but cannot manage asymmetric keypairs. For clients that can manage asymmetric keypairs, [Asymmetric Authentication](./smart-asymmetric-docs-private-key-jwt-authentication.md) is preferred. This profile is not intended for SMART Backend Services clients.
 
 ## Register Client
 

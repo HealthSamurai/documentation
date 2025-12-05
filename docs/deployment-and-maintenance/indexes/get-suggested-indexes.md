@@ -1,3 +1,7 @@
+---
+description: Get automatic index suggestions for Aidbox search queries. API supports FHIR search parameters, date ranges, tokens, and dot expressions.
+---
+
 # Get Suggested Indexes
 
 Since version 2211, Aidbox can suggest indexes for Search API.&#x20;

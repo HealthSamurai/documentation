@@ -1,3 +1,7 @@
+---
+description: Delete FHIR resources in Aidbox using REST API, transactions, SQL queries, and truncate operations.
+---
+
 # Delete data
 
 ## FHIR delete

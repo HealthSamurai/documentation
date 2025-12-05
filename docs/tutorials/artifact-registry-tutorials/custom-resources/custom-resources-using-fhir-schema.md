@@ -1,3 +1,7 @@
+---
+description: Create custom FHIR resources using FHIR Schema in Aidbox with validation, search parameters, and resource definitions.
+---
+
 # Custom resources using FHIR Schema
 
 {% hint style="warning" %}

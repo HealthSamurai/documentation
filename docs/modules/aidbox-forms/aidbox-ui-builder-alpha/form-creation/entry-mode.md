@@ -1,3 +1,7 @@
+---
+description: Configure FHIR SDC form entry modes - sequential, prior-edit, or random - to control question presentation and navigation.
+---
+
 # Entry Mode
 
 **Entry Mode in FHIR SDC Forms**

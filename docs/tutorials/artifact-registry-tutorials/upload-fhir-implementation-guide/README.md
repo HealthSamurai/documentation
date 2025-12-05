@@ -1,3 +1,7 @@
+---
+description: Upload FHIR Implementation Guides to Aidbox using environment variables, UI, API, or local packages.
+---
+
 # Upload FHIR Implementation Guide
 
 Uploading FHIR Implementation Guides (IGs) to Aidbox can be performed using various methods, each designed to suit different use cases and preferences.

@@ -1,5 +1,5 @@
 ---
-description: Debug conversion between Aidbox and FHIR formats
+description: Debug FHIR to Aidbox format transformations using $to-format endpoints to inspect conversion results and DSL.
 ---
 
 # $to-format

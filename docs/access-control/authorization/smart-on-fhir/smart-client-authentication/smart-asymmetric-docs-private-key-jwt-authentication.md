@@ -1,3 +1,7 @@
+---
+description: Secure client authentication with RSA or EC private key JWT using JWKS and asymmetric keypairs in SMART on FHIR.
+---
+
 # SMART: Asymmetric ("private key JWT") authentication
 
 Aidbox supports **SMART Asymmetric Private Key JWT Authentication** to securely manage client authentication.&#x20;

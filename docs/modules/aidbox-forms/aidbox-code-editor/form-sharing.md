@@ -1,5 +1,5 @@
 ---
-description: how to share a created form
+description: Share Aidbox Forms with patients via secure links or embed forms into web pages using access tokens.
 ---
 
 # Form sharing

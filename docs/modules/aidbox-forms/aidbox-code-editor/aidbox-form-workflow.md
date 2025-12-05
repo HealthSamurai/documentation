@@ -1,5 +1,5 @@
 ---
-description: Overview of workflow
+description: Compose multiple forms into complex workflows with sections, status tracking, and form grouping in Aidbox Forms.
 ---
 
 # Aidbox Form Workflow

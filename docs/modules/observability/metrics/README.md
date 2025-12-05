@@ -1,5 +1,5 @@
 ---
-description: Aidbox metrics export types
+description: Export Aidbox metrics using OpenTelemetry or Prometheus for monitoring, alerting, and performance analysis.
 ---
 
 # Metrics

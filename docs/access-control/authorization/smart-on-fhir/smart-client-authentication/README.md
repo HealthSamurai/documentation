@@ -1,3 +1,7 @@
+---
+description: Authenticate SMART clients using asymmetric private key JWT or symmetric client secret authentication methods.
+---
+
 # SMART Client Authentication
 
 When clients need to authenticate, SMART App Launch implementation guide defines two methods:

@@ -1,5 +1,5 @@
 ---
-description: Bulk export & import operations
+description: Aidbox Bulk API for importing and exporting large FHIR datasets including $dump, $export, and $import operations.
 ---
 
 # Bulk API

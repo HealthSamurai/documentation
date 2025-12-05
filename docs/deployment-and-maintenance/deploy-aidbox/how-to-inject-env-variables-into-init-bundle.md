@@ -1,3 +1,7 @@
+---
+description: Inject environment variables into Aidbox Init Bundle using envsubst or sed. Configure dynamic secrets and parameters in CI/CD pipelines.
+---
+
 # How to inject env variables into Init Bundle
 
 Aidbox provides [Init Bundle](../../configuration/init-bundle.md) functionality to create configuration resources on its start. However, Aidbox load Init Bundle content as is, so it is not possible to inject secrets or other environment variables in it.

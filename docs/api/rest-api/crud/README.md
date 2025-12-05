@@ -1,3 +1,7 @@
+---
+description: Create, read, update, and delete FHIR resources using REST API with /fhir and Aidbox endpoints.
+---
+
 # CRUD
 
 {% hint style="info" %}

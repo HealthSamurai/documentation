@@ -1,3 +1,7 @@
+---
+description: Verify identity of clients with Basic Auth, OAuth 2.0, JWT tokens, SSO, and token introspection in Aidbox.
+---
+
 # Authentication
 
 Authentication is verifying the identity of clients accessing Aidbox APIs and services. In healthcare systems, authentication is crucial as it ensures that only authorized users, applications, and services can access sensitive medical data. This includes healthcare providers accessing patient records, third-party applications integrating with your FHIR API, administrative staff using Aidbox Console, and automated system operations services.

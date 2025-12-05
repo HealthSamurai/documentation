@@ -1,5 +1,5 @@
 ---
-description: The article outlines the general form settings
+description: Configure Questionnaire properties in Aidbox Forms including title, canonical URL, version, status, and metadata.
 ---
 
 # Form Settings

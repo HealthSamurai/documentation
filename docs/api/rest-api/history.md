@@ -1,5 +1,5 @@
 ---
-description: History operation
+description: Track FHIR resource changes with the History API to retrieve previous versions for auditing and version control.
 ---
 
 # History

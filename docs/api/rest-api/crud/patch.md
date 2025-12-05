@@ -1,5 +1,5 @@
 ---
-description: Updating a part of your resource
+description: Partially update FHIR resources using Merge Patch, JSON Patch, or FHIRPath Patch operations in Aidbox.
 ---
 
 # Patch

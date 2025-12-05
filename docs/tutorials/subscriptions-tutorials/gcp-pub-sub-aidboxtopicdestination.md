@@ -1,3 +1,7 @@
+---
+description: Stream FHIR resource events to Google Cloud Pub/Sub using AidboxTopicDestination with guaranteed delivery.
+---
+
 # GCP Pub/Sub AidboxTopicDestination
 
 {% hint style="info" %}

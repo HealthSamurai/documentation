@@ -1,3 +1,7 @@
+---
+description: Configure Single Sign-On with Google, Okta, Auth0, or any OIDC provider using Aidbox IdentityProvider resource.
+---
+
 # SSO with External Identity Provider
 
 ## What is SSO?

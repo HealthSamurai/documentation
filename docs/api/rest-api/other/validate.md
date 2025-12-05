@@ -1,3 +1,7 @@
+---
+description: Validate FHIR resources before committing changes using $validate operation for create, update, and delete.
+---
+
 # $validate
 
 ## Introduction

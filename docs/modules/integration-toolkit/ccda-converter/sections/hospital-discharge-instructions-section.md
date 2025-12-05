@@ -1,3 +1,7 @@
+---
+description: C-CDA Hospital Discharge Instructions Section conversion rules and FHIR resource mapping for clinical document transformation.
+---
+
 # Hospital Discharge Instructions Section
 
 OID: 2.16.840.1.113883.10.20.22.2.41

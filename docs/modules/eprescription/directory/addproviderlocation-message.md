@@ -1,3 +1,7 @@
+---
+description: Add provider locations to Surescripts directory using AddProviderLocation message for ePrescribing setup.
+---
+
 # AddProviderLocation Message
 
 ### Overview

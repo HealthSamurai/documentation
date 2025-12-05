@@ -1,5 +1,5 @@
 ---
-description: Overview of addendum scenario
+description: Add amendments, addendum notes, and track change history after signing forms using SDCAddendum resources.
 ---
 
 # Changing data after form signing

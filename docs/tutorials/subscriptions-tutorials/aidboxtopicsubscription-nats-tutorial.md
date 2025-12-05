@@ -1,3 +1,7 @@
+---
+description: Integrate Aidbox topic-based subscriptions with NATS and NATS JetStream messaging broker.
+---
+
 # AidboxTopicSubscription NATS tutorial
 
 ## Objectives

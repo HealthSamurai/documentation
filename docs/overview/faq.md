@@ -1,8 +1,5 @@
 ---
-description: >-
-  Frequently asked questions about Aidbox FHIR server covering getting started,
-  FHIR basics, API operations, authentication, validation, terminology, SQL on FHIR,
-  bulk data, subscriptions, performance, and deployment.
+description: Frequently asked questions about Aidbox FHIR server covering API, authentication, validation, and deployment.
 ---
 
 # FAQ

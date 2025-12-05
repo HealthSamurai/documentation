@@ -1,8 +1,5 @@
 ---
-description: >-
-  FHIR-compliant settings for form building/rendering. Define language, themes,
-  URL prefixes, redirects, and audit logs. Supports system-wide and override
-  configurations.
+description: Configure Aidbox Forms builder and renderer with language, themes, URL prefixes, redirects, and audit logging.
 ---
 
 # Configuration

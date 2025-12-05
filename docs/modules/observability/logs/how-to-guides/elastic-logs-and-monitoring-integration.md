@@ -1,3 +1,7 @@
+---
+description: Configure and manage Aidbox logging with Elastic Logs and Monitoring Integration for observability and monitoring.
+---
+
 # Elastic Logs and Monitoring Integration
 
 ### ElasticSearch Logging&#x20;

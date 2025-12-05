@@ -1,3 +1,7 @@
+---
+description: Build custom Aidbox Search resources using SQL for advanced FHIR search capabilities beyond standard parameters.
+---
+
 # Create custom Aidbox Search resource
 
 ## Objectives <a href="#objectives" id="objectives"></a>

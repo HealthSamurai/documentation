@@ -1,3 +1,7 @@
+---
+description: Convert Zen-defined custom resources to FHIR Schema using automated or manual migration approaches in Aidbox.
+---
+
 # Migrate custom resources defined with Zen to FHIR Schema
 
 ## Prerequisites

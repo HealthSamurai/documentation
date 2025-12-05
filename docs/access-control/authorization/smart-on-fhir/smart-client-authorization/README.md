@@ -1,3 +1,7 @@
+---
+description: Authorize SMART clients using App Launch for user-facing apps or Backend Services for automated system access.
+---
+
 # SMART Client Authorization
 
 SMART Defines Two Patterns For Client Authorization:

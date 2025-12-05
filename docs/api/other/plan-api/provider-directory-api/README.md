@@ -1,3 +1,7 @@
+---
+description: Provider Directory API conforming to DaVinci PDEX Plan Net IG for practitioner, organization, and location data.
+---
+
 # Provider Directory API
 
 Welcome! This documentation is designed to help developers and integrators navigate the functionalities and features of the Plan API Provider Directory, which conforms to the [DaVinci PDEX Plan Net Implementation Guide](https://hl7.org/fhir/us/davinci-pdex-plan-net/STU1/profiles.html).

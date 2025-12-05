@@ -1,5 +1,5 @@
 ---
-description: Visual recognition for nested items
+description: Configure visual hierarchy padding for nested Questionnaire items including groups and question nesting in Aidbox Forms.
 ---
 
 # Nesting

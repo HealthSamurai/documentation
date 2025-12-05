@@ -1,5 +1,5 @@
 ---
-description: This page helps you get started with Aidbox MPI.
+description: Get started with Aidbox Master Patient Index (MPI) for patient matching, deduplication, and identity management.
 ---
 
 # Get started

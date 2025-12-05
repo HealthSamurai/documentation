@@ -1,3 +1,7 @@
+---
+description: Store and retrieve files from AWS S3 with Aidbox integration including setup, IAM permissions, and presigned URLs.
+---
+
 # AWS S3
 
 AWS S3 is used to store arbitrary unstructured data like images, files, backups, etc. Aidbox offers integration with S3 to simplify upload and retrieval of data. All examples from this tutorial are executable in Aidbox REST console.

@@ -1,3 +1,7 @@
+---
+description: Download complete Surescripts provider directory using DirectoryDownload message for local caching.
+---
+
 # DirectoryDownload Message
 
 ### Overview

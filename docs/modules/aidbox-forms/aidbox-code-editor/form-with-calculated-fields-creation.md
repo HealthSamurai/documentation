@@ -1,3 +1,7 @@
+---
+description: Build FHIR forms with calculated fields using Aidbox SDC rules and Lisp expressions, demonstrated with GAD-7 anxiety scoring.
+---
+
 # How to create a form with calculated fields
 
 In this tutorial we will learn how to work with calculated fields. The [GAD-7](https://loinc.org/69737-5/) form is taken as an example, because it contains [the "Generalized anxiety disorder 7 item total score" field](https://loinc.org/70274-6/), which can be declared as a sum of seven scored anwers.

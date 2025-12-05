@@ -1,3 +1,7 @@
+---
+description: Aidbox module: FHIR Resources for extended FHIR functionality and integration.
+---
+
 # FHIR Resources
 
 HL7v2 module is using Aidbox as data storage for custom resources defined via FHIRSchema and either for accessing FHIR resources. Important part here that you should setup an access policies for app Client resource to use it properly.

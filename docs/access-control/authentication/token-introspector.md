@@ -1,3 +1,7 @@
+---
+description: Validate OAuth 2.0 JWT and opaque tokens from external identity providers with TokenIntrospector resource.
+---
+
 # Token Introspector
 
 The `TokenIntrospector` resource in Aidbox is used to validate tokens issued by external authentication systems. It enables Aidbox to integrate with various identity providers and authentication servers by supporting different token validation methods.

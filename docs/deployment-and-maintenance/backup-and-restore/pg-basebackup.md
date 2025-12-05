@@ -1,3 +1,7 @@
+---
+description: Create physical backups of PostgreSQL databases using pg_basebackup utility. Ideal for archiving large databases with WAL logs.
+---
+
 # pg\_basebackup
 
 [`pg_basebackup`](https://www.postgresql.org/docs/15/app-pgbasebackup.html) is a utility that is used to create a backup of a PostgreSQL database cluster. This utility creates a copy of the entire database cluster, including all the data files, configuration files, and WAL (Write-Ahead Log) files.

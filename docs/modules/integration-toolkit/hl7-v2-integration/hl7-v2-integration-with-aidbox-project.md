@@ -1,3 +1,7 @@
+---
+description: Set up HL7 v2 integration in Aidbox project for ADT, ORM, ORU message processing.
+---
+
 # HL7 v2 integration with Aidbox project
 
 The HL7 v2 pipeline is the next step in [HL7v2 Aidbox integration](./README.md), which uses new versions of the HL7 v2 parser and mapper driven by zen/lang configurations. The HL7 v2 pipeline is fully configurable API and is robust against mismatches with HL7 v2 specification.

@@ -1,3 +1,7 @@
+---
+description: Aidbox module: Default Mappings for extended FHIR functionality and integration.
+---
+
 # Default Mappings
 
 In cases where the default mappings or search are not sufficient for your needs, you can use the `HL7v2ModuleMapping` resource.

@@ -1,3 +1,7 @@
+---
+description: C-CDA Procedure Specimens Taken Section conversion rules and FHIR resource mapping for clinical document transformation.
+---
+
 # Procedure Specimens Taken Section
 
 OID: 2.16.840.1.113883.10.20.22.2.31

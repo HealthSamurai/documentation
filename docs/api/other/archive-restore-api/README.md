@@ -1,3 +1,7 @@
+---
+description: Archive and restore FHIR resources to AWS S3 or GCP Cloud Storage for data lifecycle management.
+---
+
 # Archive/Restore API
 
 Archive/restore API was designed to upload unnecessary resources from Aidbox to AWS or GCP cloud and restore it back when it is needed.

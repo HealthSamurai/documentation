@@ -1,3 +1,7 @@
+---
+description: Aidbox module: Getting Started for extended FHIR functionality and integration.
+---
+
 # Getting Started
 
 The HL7v2 module is available as a Docker image with several versioning options:

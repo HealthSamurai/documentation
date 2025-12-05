@@ -1,3 +1,7 @@
+---
+description: FHIR Subscriptions Aidbox SubSubscriptions for real-time notifications and event-driven workflows.
+---
+
 # Aidbox SubSubscriptions
 
 {% hint style="warning" %}

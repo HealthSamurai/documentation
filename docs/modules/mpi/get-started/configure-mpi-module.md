@@ -1,8 +1,5 @@
 ---
-description: >-
-  This page explains how to configure the Aidbox MPI module by adding a matching
-  model. It includes an example model for testing, and notes on performance and
-  model tuning.
+description: Configure Aidbox MPI module with matching models for patient deduplication including examples and tuning notes.
 ---
 
 # Configure MPI module

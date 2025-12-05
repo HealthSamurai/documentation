@@ -1,8 +1,5 @@
 ---
-description: >-
-  Describes relationships between two or more organizations, including the
-  services one organization provides another, the location(s) where they provide
-  services etc.
+description: Query OrganizationAffiliation resources describing relationships and shared services between organizations.
 ---
 
 # OrganizationAffiliation

@@ -1,3 +1,7 @@
+---
+description: WAL-G PostgreSQL backup tool for continuous archiving and PITR. Supports S3, GCS, Azure cloud storage with incremental backups.
+---
+
 # WAL-G
 
 [**WAL-G**](https://github.com/wal-g/wal-g) is a simple and efficient archival restoration tool for PostgreSQL that simplifies [Continuous Archiving and Point-in-Time Recovery (PITR)](https://www.postgresql.org/docs/9.1/continuous-archiving.html) and can store backups in S3, Google Cloud Storage, Azure, Swift, remote host (via SSH), or local file system.

@@ -1,3 +1,7 @@
+---
+description: Configure highly available Aidbox on Kubernetes with multiple replicas, RSA keypair sharing, liveness probes, and pod topology constraints.
+---
+
 # Highly Available Aidbox
 
 {% hint style="info" %}

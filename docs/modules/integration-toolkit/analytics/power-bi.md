@@ -1,5 +1,5 @@
 ---
-description: Export Aidbox data to Power BI
+description: Connect Microsoft Power BI to Aidbox FHIR data using anonymous or basic authentication for healthcare analytics.
 ---
 
 # Power BI

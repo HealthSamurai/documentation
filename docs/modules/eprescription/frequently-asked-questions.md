@@ -1,3 +1,7 @@
+---
+description: Frequently asked questions about Aidbox ePrescribing module integration with Surescripts and NCPDP SCRIPT.
+---
+
 # Frequently Asked Questions
 
 * **What is NCPDP ID?**\

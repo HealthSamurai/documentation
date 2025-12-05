@@ -1,3 +1,7 @@
+---
+description: Step-by-step guide to implement SMART App Launch with Aidbox, Keycloak, and Growth Chart app using Docker.
+---
+
 # Example: SMART app launch using Aidbox and Keycloak
 
 This example showcases the Smart App EHR and Patient [launch flows](https://hl7.org/fhir/smart-app-launch/app-launch.html).

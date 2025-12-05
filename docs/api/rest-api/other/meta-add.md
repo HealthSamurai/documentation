@@ -1,3 +1,7 @@
+---
+description: Add profile, tag, and security labels to FHIR resource metadata using $meta-add operation.
+---
+
 # $meta-add
 
 ## Introduction

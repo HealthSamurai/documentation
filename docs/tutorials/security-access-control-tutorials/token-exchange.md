@@ -1,3 +1,7 @@
+---
+description: Configure OAuth Token Exchange in Aidbox for secure access delegation and external identity provider integration.
+---
+
 # How to configure Token Exchange
 
 Since version **2412** Aidbox supports [the OAuth Token Exchange extension](https://oauth.net/2/token-exchange/).

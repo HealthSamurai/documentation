@@ -1,3 +1,7 @@
+---
+description: C-CDA Chief Complaint Section conversion rules and FHIR resource mapping for clinical document transformation.
+---
+
 # Chief Complaint Section
 
 OID: 1.3.6.1.4.1.19376.1.5.3.1.1.13.2.1

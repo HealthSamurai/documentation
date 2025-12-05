@@ -1,3 +1,7 @@
+---
+description: PostgreSQL version compatibility, deployment options, and database management requirements for Aidbox FHIR server.
+---
+
 # PostgreSQL Requirements
 
 Aidbox uses PostgreSQL as its database engine, leveraging its robust JSON capabilities, reliability, and performance for healthcare data storage.

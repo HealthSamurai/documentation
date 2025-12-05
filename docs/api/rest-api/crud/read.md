@@ -1,3 +1,7 @@
+---
+description: Retrieve a single FHIR resource by ID using the read interaction with GET request.
+---
+
 # Read
 
 ```

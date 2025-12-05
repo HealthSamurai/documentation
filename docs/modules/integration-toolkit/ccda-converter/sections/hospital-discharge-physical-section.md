@@ -1,3 +1,7 @@
+---
+description: C-CDA Hospital Discharge Physical Section conversion rules and FHIR resource mapping for clinical document transformation.
+---
+
 # Hospital Discharge Physical Section
 
 OID: 1.3.6.1.4.1.19376.1.5.3.1.3.26

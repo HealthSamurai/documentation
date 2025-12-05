@@ -1,5 +1,5 @@
 ---
-description: The article explains, how email templating works
+description: Configure Smartbox email notifications using Notification and NotificationTemplate resources with dynamic values.
 ---
 
 # Email Templating

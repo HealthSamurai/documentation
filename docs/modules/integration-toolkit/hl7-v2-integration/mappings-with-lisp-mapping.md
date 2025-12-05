@@ -1,3 +1,7 @@
+---
+description: Create custom HL7 v2 to FHIR mappings using Lisp expressions in Aidbox.
+---
+
 # Mappings with lisp/mapping
 
 Aidbox provides the ability to **convert data dynamically** using `lisp/mapping` in your configuration. This is used in the [HL7 v2 pipeline](hl7-v2-integration-with-aidbox-project.md).&#x20;

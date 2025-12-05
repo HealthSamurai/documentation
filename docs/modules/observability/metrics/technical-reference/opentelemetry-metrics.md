@@ -1,3 +1,7 @@
+---
+description: Monitor Aidbox performance with OpenTelemetry Metrics metrics and telemetry data.
+---
+
 # OpenTelemetry Metrics
 
  ## Postgres 

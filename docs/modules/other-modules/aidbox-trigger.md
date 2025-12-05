@@ -1,3 +1,7 @@
+---
+description: Aidbox module: AidboxTrigger for extended FHIR functionality and integration.
+---
+
 # AidboxTrigger
 
 {% hint style="warning" %}

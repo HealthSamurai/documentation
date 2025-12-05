@@ -1,3 +1,7 @@
+---
+description: Run Aidbox on managed PostgreSQL services like AWS Aurora, Azure Database, and GCP Cloud SQL. Setup guide for extensions and user configuration.
+---
+
 # Run Aidbox on managed PostgreSQL
 
 This quickstart guide explains how to run Aidbox on managed PostgreSQL instance.

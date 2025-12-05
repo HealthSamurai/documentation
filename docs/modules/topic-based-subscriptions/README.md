@@ -1,3 +1,7 @@
+---
+description: FHIR Subscriptions Subscriptions for real-time notifications and event-driven workflows.
+---
+
 # Subscriptions
 
 Subscriptions enable real-time notifications and updates between servers and clients. This mechanism allows to respond dynamically to changes in patient data or resource states.\

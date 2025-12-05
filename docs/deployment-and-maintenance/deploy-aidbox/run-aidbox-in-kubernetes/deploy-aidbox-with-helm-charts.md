@@ -1,3 +1,7 @@
+---
+description: Deploy Aidbox and AidboxDB to Kubernetes using Helm charts. Simplified configuration for database, ingress, SSL certificates, and FHIR packages.
+---
+
 # Deploy Aidbox with Helm Charts
 
 Our Helm charts streamline the deployment process, enabling easy configuration and customization while ensuring a seamless deployment experience within Kubernetes clusters. Whether you're a healthcare institution, developer, or DevOps engineer, these Helm charts provide a straightforward path to deploying Aidbox in your Kubernetes environment.

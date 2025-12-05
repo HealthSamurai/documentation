@@ -1,3 +1,7 @@
+---
+description: Configure Single Sign-On (SSO) between Aidbox instances for unified authentication and UI access control.
+---
+
 # How to configure SSO with another Aidbox instance to access Aidbox UI
 
 To set up one Aidbox instance to authenticate users in another Aidbox instance follow these steps:

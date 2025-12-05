@@ -1,3 +1,7 @@
+---
+description: Get started with Aidbox ePrescribing module for NCPDP SCRIPT integration with Surescripts.
+---
+
 # Getting Started
 
 The ePrescription module is available as a Docker image with several versioning options:

@@ -1,3 +1,7 @@
+---
+description: SMART on FHIR Publish Terms of Use Link Onto the Documentation Page implementation in Aidbox for healthcare app integration.
+---
+
 # Publish Terms of Use Link Onto the Documentation Page
 
 ## How to add Terms of Use link with API

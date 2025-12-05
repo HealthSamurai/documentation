@@ -1,3 +1,7 @@
+---
+description: Define fine-grained access control with AccessPolicy using Allow, Matcho, SQL, JSON Schema, or Complex engines.
+---
+
 # Access Policies
 
 AccessPolicy is an Aidbox custom resource representing a set of checks for the request. AccessPolicy resources are used to check request objects against a set of rules. If there are no AccessPolicy resources defined in Aidbox, all requests will be denied.
