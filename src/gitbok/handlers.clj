@@ -1,6 +1,7 @@
 (ns gitbok.handlers
   "HTTP request handlers for the application"
   (:require
+   [cheshire.core :as json]
    [clojure.java.io :as io]
    [clojure.stacktrace]
    [clojure.string :as str]
@@ -8,6 +9,7 @@
    [gitbok.analytics.posthog :as posthog]
    [gitbok.http :as http]
    [gitbok.indexing.core :as indexing]
+   [gitbok.indexing.previews :as previews]
    [gitbok.state :as state]
    [gitbok.indexing.impl.sitemap-index :as sitemap-index]
    [gitbok.llms-txt :as llms-txt]
@@ -649,3 +651,29 @@
       {:status 500
        :headers {"Content-Type" "text/plain"}
        :body "Error generating llms.txt"})))
+
+;; Link preview handler
+
+(defn batch-previews-handler
+  "Returns preview data (title, description, breadcrumbs) for a batch of hrefs.
+   POST body: {\"hrefs\": [\"/docs/foo\", \"/docs/bar\"]}
+   Response: {\"/docs/foo\": {\"t\": \"Title\", \"d\": \"Desc\", \"b\": [\"Section\"]}}"
+  [ctx]
+  (try
+    (let [request (:request ctx)
+          body (:body-params request)
+          hrefs (or (:hrefs body) (get body "hrefs") [])]
+      (if (and (sequential? hrefs) (<= (count hrefs) 200))
+        (let [result (previews/get-previews-for-hrefs ctx hrefs)]
+          {:status 200
+           :headers {"Content-Type" "application/json"
+                     "Cache-Control" "public, max-age=3600"}
+           :body (json/generate-string (or result {}))})
+        {:status 400
+         :headers {"Content-Type" "application/json"}
+         :body (json/generate-string {:error "Invalid hrefs: must be array with max 200 items"})}))
+    (catch Exception e
+      (log/error e "Failed to get batch previews")
+      {:status 500
+       :headers {"Content-Type" "application/json"}
+       :body (json/generate-string {:error "Internal server error"})})))

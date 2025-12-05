@@ -313,6 +313,11 @@
                  {:get {:handler #'gitbok.ui.meilisearch/meilisearch-endpoint
                         :middleware [product-middleware]}}]
 
+                ;; Link previews batch endpoint
+                [(str product-path "/batch-previews")
+                 {:post {:handler #'handlers/batch-previews-handler
+                         :middleware [product-middleware]}}]
+
                 ;; Product sitemap
                 [(str product-path "/sitemap.xml")
                  {:get {:handler #'handlers/sitemap-xml

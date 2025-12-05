@@ -156,7 +156,8 @@
    (site-footer context)])
 
 (defn document [context body {:keys [title description canonical-url og-preview lastmod favicon-url section json-ld
-                                      schema-type filepath raw-content sharethis mailchimp extra-head]}]
+                                      schema-type filepath raw-content sharethis mailchimp extra-head link-previews]
+                               :or {link-previews true}}]
   (let [version (state/get-config context :version)
         version-param (when version (str "?v=" version))
         ;; Resolve schema type: frontmatter overrides auto-detection
@@ -254,6 +255,11 @@
 ;; Combined UI bundle (includes tabs, toc, scroll-to-id, heading-links, mobile-menu, mobile-search, lastupdated, copy-code)
       [:script {:src (str (http/get-prefixed-url context "/static/ui-bundle.js") version-param)
                 :defer true}]
+
+      ;; Link previews (docs only)
+      (when link-previews
+        [:script {:src (str (http/get-prefixed-url context "/static/link-previews.js") version-param)
+                  :defer true}])
 
       ;; Other UI scripts
       [:script {:src (str (http/get-prefixed-url context "/static/meilisearch-htmx-nav.js") version-param)

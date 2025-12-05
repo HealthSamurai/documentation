@@ -282,6 +282,12 @@
 (defn get-parsed-markdown-idx [context]
   (get-product-state context [:parsed-markdown-idx]))
 
+(defn set-previews-idx! [context idx]
+  (set-product-state! context [:previews-idx] idx))
+
+(defn get-previews-idx [context]
+  (get-product-state context [:previews-idx]))
+
 ;; Debug helper
 (defn get-full-state [context]
   @(:system context))

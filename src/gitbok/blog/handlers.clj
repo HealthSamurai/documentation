@@ -74,6 +74,7 @@
          :favicon-url "https://cdn.prod.website-files.com/57441aa5da71fdf07a0a2e19/5a2ff62247c38400019e81f3_32.png"
          :sharethis true
          :mailchimp true
+         :link-previews false
          :extra-head (gotham-font-style)})))))
 
 (defn article-handler
@@ -119,6 +120,7 @@
              :favicon-url "https://cdn.prod.website-files.com/57441aa5da71fdf07a0a2e19/5a2ff62247c38400019e81f3_32.png"
              :sharethis true
              :mailchimp true
+             :link-previews false
              :extra-head (gotham-font-style)}))))
       ;; Article not found
       {:status 404
@@ -166,6 +168,7 @@
              :favicon-url "https://cdn.prod.website-files.com/57441aa5da71fdf07a0a2e19/5a2ff62247c38400019e81f3_32.png"
              :sharethis true
              :mailchimp true
+             :link-previews false
              :extra-head (gotham-font-style)}))))
       ;; Category not found - return 404
       {:status 404

@@ -9,6 +9,7 @@
    [gitbok.indexing.impl.sitemap-index :as sitemap-index]
    [gitbok.indexing.impl.summary :as summary]
    [gitbok.indexing.impl.uri-to-file :as uri-to-file]
+   [gitbok.indexing.previews :as previews]
    [gitbok.markdown.core :as markdown]
    [gitbok.products :as products]
    [gitbok.state :as state]))
@@ -46,7 +47,10 @@
               (log/info "6. render all files" {:product (:id product)})
               (when read-markdown-fn
                 (markdown/render-all! ctx parsed-files read-markdown-fn))
-              (log/info "RENDER DONE" {:product (:id product)}))))))
+              (log/info "RENDER DONE" {:product (:id product)})
+              (log/info "6.1. build link previews index" {:product (:id product)})
+              (let [previews-idx (previews/build-previews-idx! ctx)]
+                (state/set-previews-idx! ctx previews-idx)))))))
     (log/info "7. set lastmod data in context for Last Modified metadata"
               {:product (:id product)})
     (try
