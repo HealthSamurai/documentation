@@ -10,8 +10,8 @@ Aidbox Forms supports two main scenarios for sharing forms with users:
 2. [Embed the Form via iframe into an application or website](form-sharing.md#embed-the-form-via-iframe-into-an-application-or-website)
 
 {% hint style="warning" %}
-To use **form sharing**, you must explicitly [configure RSA private/public keys and a secret](../../../reference/all-settings.md).
-{% endhint %}
+To use **form sharing**, you must explicitly [configure RSA private/public keys and a secret](../../../configuration/configure-aidbox-and-multibox#generate-rsa-keypair.md).
+{% endhint %} 
 
 ## Sharing a Form Link with the User
 
@@ -20,7 +20,7 @@ After creating a form, you can generate a link to the form and send it to the us
 1. **Select the Form:**
    * Choose the form you want to share from your list of forms.
 2. **Generate the Link:**
-   * Use the "Share" option within the Aidbox Forms interface.
+   * Use the "Share" option within the Aidbox Forms interface. 
    * Generate the link via[ $populatelink ](../../../reference/aidbox-forms-reference/fhir-sdc-api.md) FHIR SDC operation.
 3. **Copy the Link:**
    * Once the link is generated, copy it to your clipboard.
