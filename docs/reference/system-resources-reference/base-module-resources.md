@@ -1,3 +1,7 @@
+---
+description: Aidbox base system resources that do not belong to any specific module.
+---
+
 # Base Module Resources
 
 System resources that do not belong to any specific module.
