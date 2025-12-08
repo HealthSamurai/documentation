@@ -4,10 +4,10 @@ description: Configure email providers for sending notifications and alerts from
 
 # Email providers integration
 
-Aidbox supports sending emails through using `Notification`, `NotificationTemplate`, and, optionally, `AidboxConfig` resources.
+Aidbox supports sending emails through using `Notification`, `NotificationTemplate`.
 
-It is possible to setup any SMTP provider using `AidboxConfig` resource, also there's [Postmark](../../../tutorials/integration-toolkit-tutorials/postmark-integration-tutorial.md)\
-and [Mailgun](../../../tutorials/integration-toolkit-tutorials/postmark-integration-tutorial.md) configuration via environment variables.
+It is possible to setup any SMTP provider using Aidbox settings, also there's separate integration for [Postmark](../../../tutorials/integration-toolkit-tutorials/postmark-integration-tutorial.md)\
+and [Mailgun](../../../tutorials/integration-toolkit-tutorials/postmark-integration-tutorial.md).
 
 ## Sending email
 
