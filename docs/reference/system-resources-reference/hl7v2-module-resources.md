@@ -1,3 +1,7 @@
+---
+description: Aidbox HL7v2 module resources for HL7 v2.x message processing and mapping.
+---
+
 # HL7v2 Module Resources
 
 Resources for configuration Aidbox HL7v2 module.
