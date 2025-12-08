@@ -8,6 +8,7 @@ trap 'echo ""; echo "Tip: Run \"make init\" locally to install pre-push hook wit
 
 echo "=== Pre-push Validation ==="
 
+python3 ./scripts/check_frontmatter_yaml.py || exit 1
 python3 ./scripts/check_h1_headers.py || exit 1
 python3 ./scripts/check_empty_headers.py || exit 1
 python3 ./scripts/check_image_alt.py || exit 1
