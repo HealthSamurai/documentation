@@ -1,5 +1,11 @@
 # Release Notes
 
+## 0.3.0
+* Support multi-select in quick filters
+* Remove third sorting state in the table
+* Add session expiration verification
+* Mitigate Nextjs CVE 2025 66478
+
 ## 0.2.0
 * Add date sorting to frontend
 * Add support for multi-replica deployments
