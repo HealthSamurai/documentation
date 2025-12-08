@@ -1,3 +1,7 @@
+---
+description: Aidbox Workflow module resources for task orchestration and workflow management.
+---
+
 # AWF Module Resources
 
 Resources for configuration and management of Aidbox Workflows.
