@@ -1,3 +1,7 @@
+---
+description: Aidbox Bulk module resources for FHIR Bulk Data export and import operations.
+---
+
 # Bulk Module Resources
 
 Resources for configuration and management Aidbox Bulk operations.
