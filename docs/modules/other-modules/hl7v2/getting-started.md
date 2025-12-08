@@ -1,5 +1,5 @@
 ---
-description: Aidbox module: Getting Started for extended FHIR functionality and integration.
+description: "Aidbox module: Getting Started for extended FHIR functionality and integration."
 ---
 
 # Getting Started

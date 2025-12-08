@@ -1,5 +1,5 @@
 ---
-description: Aidbox module: HL7v2 for extended FHIR functionality and integration.
+description: "Aidbox module: HL7v2 for extended FHIR functionality and integration."
 ---
 
 # HL7v2

@@ -1,5 +1,5 @@
 ---
-description: Aidbox module: AidboxTrigger for extended FHIR functionality and integration.
+description: "Aidbox module: AidboxTrigger for extended FHIR functionality and integration."
 ---
 
 # AidboxTrigger

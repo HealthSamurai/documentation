@@ -1,5 +1,5 @@
 ---
-description: Aidbox module: FHIR Resources for extended FHIR functionality and integration.
+description: "Aidbox module: FHIR Resources for extended FHIR functionality and integration."
 ---
 
 # FHIR Resources

@@ -1,5 +1,5 @@
 ---
-description: Aidbox module: Module Limitations for extended FHIR functionality and integration.
+description: "Aidbox module: Module Limitations for extended FHIR functionality and integration."
 ---
 
 # Module Limitations

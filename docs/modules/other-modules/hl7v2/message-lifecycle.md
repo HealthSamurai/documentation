@@ -1,5 +1,5 @@
 ---
-description: Aidbox module: Message Lifecycle for extended FHIR functionality and integration.
+description: "Aidbox module: Message Lifecycle for extended FHIR functionality and integration."
 ---
 
 # Message Lifecycle

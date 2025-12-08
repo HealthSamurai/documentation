@@ -1,5 +1,5 @@
 ---
-description: Aidbox module: Other Modules for extended FHIR functionality and integration.
+description: "Aidbox module: Other Modules for extended FHIR functionality and integration."
 ---
 
 # Other Modules

@@ -1,5 +1,5 @@
 ---
-description: Aidbox module: Default Mappings for extended FHIR functionality and integration.
+description: "Aidbox module: Default Mappings for extended FHIR functionality and integration."
 ---
 
 # Default Mappings
