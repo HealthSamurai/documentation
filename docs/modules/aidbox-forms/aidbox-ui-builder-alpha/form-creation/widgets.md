@@ -1,5 +1,5 @@
 ---
-description: Available form widgets in Aidbox Forms including input types, settings, terminology codes, and validation options.
+description: This page is under construction.
 ---
 
 # Widgets
@@ -109,13 +109,13 @@ Each widget in Aidbox Forms has its own set of customisable attributes that defi
 
 #### EnableWhen rule
 
-EnableWhen option controls whether an item should be 'enabled' or not, but can handle more sophisticated circumstances. For example, it is possible to calculate a score based on the answer to several questions and then enable other questions based on the score. It's also possible to enable  questions based on data passed in as context or retrieved from queries.&#x20;
+EnableWhen option controls whether an item should be 'enabled' or not, but can handle more sophisticated circumstances. For example, it is possible to calculate a score based on the answer to several questions and then enable other questions based on the score. It's also possible to enable questions based on data passed in as context or retrieved from queries.
 
 Options for Setting EnableWhen Rules:
 
-`Condition constructor` - use the visual condition builder interface to create logical conditions with AND/OR operators and group conditions.&#x20;
+`Condition constructor` - use the visual condition builder interface to create logical conditions with AND/OR operators and group conditions.
 
-The condition builder automatically converts to FHIRPath when the Questionnaire.enableWhen DSL is not sufficient for complex scenarios.&#x20;
+The condition builder automatically converts to FHIRPath when the Questionnaire.enableWhen DSL is not sufficient for complex scenarios.
 
 `Expression` - use FHIRPath expressions or the FHIRPath Editor to describe the desired behavior with full FHIRPath capabilities.
 
@@ -186,8 +186,8 @@ Known extensions can not be added
 | Grid                                        | Child items of type='group' within the a 'grid' group are rows, and questions beneath the 'row' groups are organized as columns in the grid. The grid might be fully populated, but could be sparse. Questions may support different data types and/or different answer choices.          | FHIR          |
 | Group table                                 | Questions within the group are rows in the table with possible answers as columns.                                                                                                                                                                                                        | FHIR          |
 | Pages                                       | Indicates that the content within the group should appear as a logical "page" when rendering the form, such that all enabled items within the page are displayed at once, but items in subsequent groups are not displayed until the user indicates a desire to move to the 'next' group. | FHIR          |
-| Text                                        | Question with a short (few words to a short sentence) free-text entry answer                                                                                                                                                                                                              | FHIR          |
-| Textarea                                    | Question with a long (potentially multi-paragraph) free-text entry answer                                                                                                                                                                                                                 | FHIR          |
+| [Text](widgets.md#text-1)                   | Question with a short (few words to a short sentence) free-text entry answer                                                                                                                                                                                                              | FHIR          |
+| [Textarea](widgets.md#textarea)             | Question with a long (potentially multi-paragraph) free-text entry answer                                                                                                                                                                                                                 | FHIR          |
 | URL                                         | Question with a URL (website, FTP site, etc.) answer                                                                                                                                                                                                                                      | FHIR          |
 | Display                                     | Text for display that will not capture an answer or have child items.                                                                                                                                                                                                                     | FHIR          |
 | Integer                                     | Question with an integer answer                                                                                                                                                                                                                                                           | FHIR          |
@@ -207,6 +207,23 @@ Known extensions can not be added
 | [Reference](widgets.md#reference)           | Question with a reference to another resource (practitioner, organization, etc.) as an answer                                                                                                                                                                                             | FHIR          |
 | [Radio Button](widgets.md#radio-button)     | A control where choices are listed with a button beside them. The button can be toggled to select or de-select a given choice. Selecting one item deselects all others.                                                                                                                   | FHIR          |
 | [Checkbox List](widgets.md#checkbox-list)   | A control where choices are listed with a box beside them. The box can be toggled to select or de-select a given choice with multiple selections.                                                                                                                                         | FHIR          |
+
+### **Text**
+
+The Text widget is used for capturing short free-text answers, usually a few words or a brief sentence. It is ideal for concise inputs such as names, labels, or short descriptions.
+
+**Settings:**
+
+* **Min Length / Max Length:** Defines the allowed character range. Users receive a validation message if their input is too short or too long.
+* **Regex:** Allows enforcing a specific input format (e.g., patterns, codes, character rules). An error appears if the text does not match the pattern.
+
+### **Textarea**
+
+The Textarea widget is used for long free-text responses, including multi-sentence or multi-paragraph input. It is suitable for detailed notes and narrative descriptions.
+
+**Settings:**
+
+* **Min Length / Max Length:** Sets the required character range for the response. Validation alerts the user when the text is shorter or longer than allowed.
 
 ### Annotation Pad
 
@@ -247,10 +264,9 @@ The Choice widget allows users to select one or more options from a predefined l
 * **ValueSet**: Use predefined options in ValueSet
   * **Use external terminology server**: You can specify external terminology server which will be used to `$expand` ValueSet options
   * **Expansion parameters**: Optionally, you can set additional parameters for `$expand` operation. For example, you can choose what CodeSystem version need to use.
-*   **Expression:** Use a FHIRPath / FHIRQuery expression with conditions and logic.
-
-    * **FHIRPath:** Allows create logic with answers depends on other items. You can filter options with your conditions.
-    * **FHIRQuery:** Allows dynamically fetch answer options via FHIRQuery from your Aidbox instance resources.
+* **Expression:** Use a FHIRPath / FHIRQuery expression with conditions and logic.
+  * **FHIRPath:** Allows create logic with answers depends on other items. You can filter options with your conditions.
+  * **FHIRQuery:** Allows dynamically fetch answer options via FHIRQuery from your Aidbox instance resources.
 
 {% hint style="info" %}
 How to use Answer Expression see our [example](how-to-guides/how-to-use-answer-expression-into-forms.md)
@@ -277,12 +293,11 @@ it is displayed on the form as a drop-down list.
 * **ValueSet**: Use predefined options in ValueSet
   * **Use external terminology server**: You can specify external terminology server which will be used to `$expand` ValueSet options
   * **Expansion parameters**: Optionally, you can set additional parameters for `$expand` operation. For example, you can choose what CodeSystem version need to use.
-*   **Expression:** Use a FHIRPath / FHIRQuery expression with conditions and logic.
+* **Expression:** Use a FHIRPath / FHIRQuery expression with conditions and logic.
+  * **FHIRPath:** Allows create logic with answers depends on other items. You can filter options with your conditions.
+  * **FHIRQuery:** Allows dynamically fetch answer options via FHIRQuery from your Aidbox instance resources.
 
-    * **FHIRPath:** Allows create logic with answers depends on other items. You can filter options with your conditions.
-    * **FHIRQuery:** Allows dynamically fetch answer options via FHIRQuery from your Aidbox instance resources.
-
-{% hint style="info" %} 
+{% hint style="info" %}
 See our [How to use Answer Expression example](how-to-guides/how-to-use-answer-expression-into-forms.md)
 {% endhint %}
 
@@ -319,10 +334,9 @@ The Radio Button widget allows users to select one option from a set of predefin
 * **ValueSet**: Use predefined options in ValueSet
   * **Use external terminology server**: You can specify external terminology server which will be used to `$expand` ValueSet options
   * **Expansion parameters**: Optionally, you can set additional parameters for `$expand` operation. For example, you can choose what CodeSystem version need to use.
-*   **Expression:** Use a FHIRPath / FHIRQuery expression with conditions and logic.
-
-    * **FHIRPath:** Allows create logic with answers depends on other items. You can filter options with your conditions.
-    * **FHIRQuery:** Allows dynamically fetch answer options via FHIRQuery from your Aidbox instance resources.
+* **Expression:** Use a FHIRPath / FHIRQuery expression with conditions and logic.
+  * **FHIRPath:** Allows create logic with answers depends on other items. You can filter options with your conditions.
+  * **FHIRQuery:** Allows dynamically fetch answer options via FHIRQuery from your Aidbox instance resources.
 
 {% hint style="info" %}
 How to use Answer Expression see our [example](how-to-guides/how-to-use-answer-expression-into-forms.md)
@@ -349,10 +363,9 @@ The Checkbox List widget allows users to select multiple options from a predefin
 * **ValueSet**: Use predefined options in ValueSet
   * **Use external terminology server**: You can specify external terminology server which will be used to `$expand` ValueSet options
   * **Expansion parameters**: Optionally, you can set additional parameters for `$expand` operation. For example, you can choose what CodeSystem version need to use.
-*   **Expression:** Use a FHIRPath / FHIRQuery expression with conditions and logic.
-
-    * **FHIRPath:** Allows create logic with answers depends on other items. You can filter options with your conditions.
-    * **FHIRQuery:** Allows dynamically fetch answer options via FHIRQuery from your Aidbox instance resources.
+* **Expression:** Use a FHIRPath / FHIRQuery expression with conditions and logic.
+  * **FHIRPath:** Allows create logic with answers depends on other items. You can filter options with your conditions.
+  * **FHIRQuery:** Allows dynamically fetch answer options via FHIRQuery from your Aidbox instance resources.
 
 {% hint style="info" %}
 How to use Answer Expression see our [example](how-to-guides/how-to-use-answer-expression-into-forms.md)
@@ -403,10 +416,9 @@ The Reference widget allows users to select a reference to another resource such
 **Options**:
 
 * **Resource Type:** Used to determine the options for this widget.
-*   **Expression:** Use a FHIRPath / FHIRQuery expression with conditions and logic.
-
-    * **FHIRPath:** Allows create logic with answers depends on other items. You can filter options with your conditions.
-    * **FHIRQuery:** Allows dynamically fetch answer options via FHIRQuery from your Aidbox instance resources.
+* **Expression:** Use a FHIRPath / FHIRQuery expression with conditions and logic.
+  * **FHIRPath:** Allows create logic with answers depends on other items. You can filter options with your conditions.
+  * **FHIRQuery:** Allows dynamically fetch answer options via FHIRQuery from your Aidbox instance resources.
 
 {% hint style="info" %}
 How to use Answer Expression see our [example](how-to-guides/how-to-use-answer-expression-into-forms.md)
