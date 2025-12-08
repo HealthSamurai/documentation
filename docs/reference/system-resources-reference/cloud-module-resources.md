@@ -1,3 +1,7 @@
+---
+description: Aidbox Cloud module resources for integration with cloud providers like AWS, GCP, and Azure.
+---
+
 # Cloud Module Resources
 
 Resources for configuration and management Aidbox integration with cloud providers.
