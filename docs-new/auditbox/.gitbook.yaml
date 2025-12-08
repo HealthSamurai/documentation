@@ -3,4 +3,5 @@ structure:
   readme: getting-started/README.md
   summary: SUMMARY.md
 
-redirects: {}
+redirects:
+  getting-started/run-aidbox-locally: getting-started/README.md
