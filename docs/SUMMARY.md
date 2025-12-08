@@ -592,6 +592,7 @@
   * [Cloud Module Resources](reference/system-resources-reference/cloud-module-resources.md)
   * [HL7v2 Module Resources](reference/system-resources-reference/hl7v2-module-resources.md)
   * [SQL on FHIR Module Resources](reference/system-resources-reference/sql-on-fhir-module-resources.md)
+  * [Subscription Module Resources](reference/system-resources-reference/subscriptions-module-resources.md)
 * [FHIR Schema Reference](https://fhir-schema.github.io/fhir-schema/)
 * [Email Providers Reference](reference/email-providers-reference/README.md)
   * [Notification Resource Reference](reference/email-providers-reference/notification-resource-reference.md)
