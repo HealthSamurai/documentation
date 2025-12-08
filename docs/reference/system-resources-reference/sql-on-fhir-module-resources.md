@@ -1,3 +1,7 @@
+---
+description: Aidbox SQL on FHIR module resources for defining and executing SQL views over FHIR data.
+---
+
 # SQL on FHIR Module Resources
 
 ## ViewDefinition
