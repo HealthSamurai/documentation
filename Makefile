@@ -26,7 +26,7 @@ repl: init-test
 	POSTHOG_API_KEY=phc_uO4ImMUxOljaWPDRr7lWu9TYpBrpIs4R1RwLu8uLRmx \
 	POSTHOG_HOST=https://ph.aidbox.app \
 	RELOAD_CHECK_INTERVAL_SEC=10 \
-  EXAMPLES_UPDATE_INTERVAL=1 \
+  EXAMPLES_UPDATE_INTERVAL=60 \
 	clj -M:dev:nrepl:test:build
 
 mcp:
