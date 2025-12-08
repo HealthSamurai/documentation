@@ -1,3 +1,7 @@
+---
+description: Aidbox IAM module resources for managing user authentication, authorization, and access control.
+---
+
 # IAM Module Resources
 
 The Identity and Access Management (IAM) module provides a set of resources for managing user authentication, authorization, and access control within the Aidbox.
