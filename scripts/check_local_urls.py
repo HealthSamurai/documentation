@@ -34,7 +34,7 @@ def main():
             except IndexError:
                 continue
 
-            local_url = BASE_URL + path
+            local_url = BASE_URL + "/docs/aidbox" + path
             try:
                 resp = requests.get(local_url, timeout=10)
                 if resp.status_code == 404:
