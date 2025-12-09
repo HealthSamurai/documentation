@@ -130,7 +130,7 @@ See also:
 
 When you install FHIR Implementation Guide packages from a registry or direct URL, Aidbox downloads, validates, and installs the specified packages along with their dependencies. During this process, Aidbox performs **pinning** and **tree-shaking** on canonicals:
 
-- **Pinning**: References inside canonicals are pinned to exact dependency versions as described in the [FHIR IG Guidance on pinning](https://build.fhir.org/ig/FHIR/fhir-tools-ig/package.html#pinned-dependencies).
+- **Pinning**: References inside canonicals are pinned to exact dependency versions as described in the [FHIR IG Guidance on pinning](https://build.fhir.org/ig/FHIR/ig-guidance/pinning.html).
 - **Tree-shaking**: Only referenced canonical dependencies are installed from dependent packages, reducing redundancy.
 
 The goal is to achieve a system state where every canonical `<url>|<version>` pair is unique and present only once.

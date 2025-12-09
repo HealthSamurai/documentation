@@ -13,7 +13,7 @@ This functionality is available in Aidbox versions 2507 and later.
 
 SQL on FHIR provides the `$run` operation to run a given ViewDefinition. It can evaluate the provided or stored ViewDefinition on provided or stored resources.
 
-SQL on FHIR specification [defines $run operation](https://sql-on-fhir.org/ig/latest/operations-run.html).
+SQL on FHIR specification [defines $run operation](https://sql-on-fhir.org/ig/latest/operations.html).
 
 ## General syntax
 

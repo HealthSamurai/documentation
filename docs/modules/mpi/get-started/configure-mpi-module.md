@@ -307,7 +307,7 @@ MPI_AUDIT_LOCK_ID=54321
 
 ### Audit Repository Requirements
 
-The audit events are sent as FHIR AuditEvent resources following the [BALP (Basic Audit Log Patterns)](https://hl7.org/fhir/uv/balp/) specification. You can use any FHIR-compliant audit repository, but we recommend **Auditbox** for optimal integration and audit log management.
+The audit events are sent as FHIR AuditEvent resources following the [BALP (Basic Audit Log Patterns)](https://profiles.ihe.net/ITI/BALP/) specification. You can use any FHIR-compliant audit repository, but we recommend **Auditbox** for optimal integration and audit log management.
 
 {% hint style="success" %}
 **Recommended**: Use [Auditbox](https://www.health-samurai.io/auditbox) for comprehensive audit event storage, querying, and compliance reporting with built-in FHIR AuditEvent support.
