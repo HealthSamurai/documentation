@@ -1,5 +1,7 @@
 ---
-description: Aidbox FHIR Server with App Portal including Developer Sandbox, Admin Portal, and patient-facing App Gallery.
+description: >-
+  Aidbox FHIR Server with App Portal including Developer Sandbox, Admin Portal,
+  and patient-facing App Gallery.
 ---
 
 # Aidbox + FHIR App portal
@@ -18,6 +20,6 @@ The backend engine that provides:
 
 A unified UI suite managing the ecosystem workflow:
 
-* **Developer Sandbox (Public):** Self-service app registration & testing.
-* **Admin Portal (Internal):** App approval, portal configuration, metrics reporting
-* **App Gallery (Patient-facing):** App discovery, SMART Launch, & consent management.
+* [**Developer Sandbox**](developer-sandbox.md)**:** Self-service app registration & testing.
+* [**Admin Portal**](admin-portal.md) **:** App approval, portal configuration, metrics reporting
+* [**App Gallery (Patient-facing)**](admin-portal.md)**:** App discovery, SMART Launch, & consent management.
