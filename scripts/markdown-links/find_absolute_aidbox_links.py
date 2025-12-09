@@ -163,7 +163,9 @@ def main():
     if all_results:
         check_error(f"Found {len(all_results)} file(s) with absolute links:")
         for result in all_results:
-            print_issue(f"{result['file']}:{result['lines']}")
+            lines = result['lines']
+            line_label = "line" if "," not in lines else "lines"
+            print_issue(f"{result['file']} ({line_label} {lines})")
         return 1
 
     check_success(f"{total_files_checked} files checked, no absolute links")
