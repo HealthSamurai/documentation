@@ -20,6 +20,10 @@ def find_unparsed_widgets(html):
     soup = BeautifulSoup(html, 'html.parser')
     widgets = []
 
+    # Remove code blocks - they may contain legitimate template syntax
+    for code_block in soup.find_all(['pre', 'code']):
+        code_block.decompose()
+
     # Проверяем текстовые элементы в p, div, span, li, td
     for tag in soup.find_all(['p', 'div', 'span', 'li', 'td']):
         text = tag.get_text(strip=True)
