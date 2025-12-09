@@ -30,12 +30,12 @@ description: Aidbox FHIR server features including CRUD, search, validation, bul
 
 * [FHIR Package Registry](artifact-registry/artifact-registry-overview.md) including 500+ ready-to-use FHIR IGs
   * Load official IGs from FHIR Package registry (e.g., US Core, IPS, DE Basisprofil, ISIK, AU Core, CL Core, etc.)
-  * Load custom IGs as FHIR packages using UI
+  * Load custom IGs as FHIR packages using UI and [API](reference/package-registry-api)
   * [Integration with external NPM package registries](artifact-registry/artifact-registry-overview.md#integration-with-package-registries)
   * [Pinning and tree shaking](artifact-registry/artifact-registry-overview.md#pinning-and-tree-shaking) for optimizing IG dependency resolution
   * Support for multiple versions of the same IG
 * GUI and API support for loading FHIR IGs and canonicals
-* Support for [external terminology services](terminology-module/overview.md)
+* [Terminology engine](terminology-module/overview.md) with local and external server support
 * [Terminology supplements](terminology-module/aidbox-terminology-module/capabilities.md) for CodeSystems and ValueSets
 
 ### Customization & Extensibility
@@ -123,7 +123,7 @@ description: Aidbox FHIR server features including CRUD, search, validation, bul
   * FHIR resource browser with version history and resource diffs
 * Runtime-editable configuration
 * SDKs for TypeScript, Python
-* [FHIR Schema Code Generator](https://github.com/fhir-schema/fhir-schema-codegen) for TypeScript, C#, Python
+* [FHIR Schema Code Generator](https://github.com/atomic-ehr/codegen) for TypeScript, C#, Python
 * Template projects and [examples](https://github.com/Aidbox/examples) for quick start
 * [User community](https://connect.health-samurai.io/)
 
@@ -143,7 +143,6 @@ Load performance testing results [here](https://www.health-samurai.io/downloads/
 * Cloud-native: AWS, Azure, GCP, hybrid, and private
 * Zero-downtime updates
 * Support for Kubernetes-native HA deployments
-* Support for [HA PostgreSQL](database/aidboxdb-image/ha-aidboxdb.md) configurations with replication, automated failover, and point-in-time recovery
 
 ### Modules
 
@@ -168,7 +167,7 @@ Load performance testing results [here](https://www.health-samurai.io/downloads/
 
 ### Compliance & Certifications
 
-* SOC 2 and ISO 27001-certified
+* ISO 27001-certified
 * HIPAA, HITECH, and GDPR compliant
 * Secure SDLC: vulnerability scans, dependency SBOM, etc.
 * [Audit and traceability](access-control/audit-and-logging.md) for all access
