@@ -26,7 +26,7 @@ Before you begin, ensure you have:
 
 ## Deployment Guide
 
-The official Helm charts and comprehensive deployment guide are available in the HealthSamurai Helm Charts repository:
+The official Helm charts and comprehensive deployment guide are available in the Health Samurai Helm Charts repository:
 
 **📦 Repository:** [https://github.com/HealthSamurai/helm-charts/tree/main/smartbox](https://github.com/HealthSamurai/helm-charts/tree/main/smartbox)
 
