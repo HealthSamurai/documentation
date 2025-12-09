@@ -1,8 +1,10 @@
 ---
-description: Patient guide to browsing and launching approved SMART on FHIR healthcare applications from the App Gallery.
+description: >-
+  Patient guide to browsing and launching approved SMART on FHIR healthcare
+  applications from the App Gallery.
 ---
 
-# App Gallery
+# FHIR App Gallery
 
 The App Gallery is a public website where patients can discover and launch approved SMART on FHIR applications.
 
@@ -10,8 +12,8 @@ The App Gallery is a public website where patients can discover and launch appro
 
 Patients can:
 
-- **Browse Apps** — View all approved healthcare applications
-- **Launch Apps** — Connect apps to their health data
+* **Browse Apps** — View all approved healthcare applications
+* **Launch Apps** — Connect apps to their health data
 
 ## Browse Apps
 
@@ -21,17 +23,17 @@ The gallery displays all active apps in a grid layout.
 
 Use filters to find apps by:
 
-- **Platform** — Web, iOS, Android
-- **Category** — Health management, clinical apps, etc.
+* **Platform** — Web, iOS, Android
+* **Category** — Health management, clinical apps, etc.
 
 ### App Details
 
 Click on any app to see:
 
-- Description and features
-- Privacy policy and terms of service
-- Supported platforms
-- Developer information
+* Description and features
+* Privacy policy and terms of service
+* Supported platforms
+* Developer information
 
 ## Launch an App
 

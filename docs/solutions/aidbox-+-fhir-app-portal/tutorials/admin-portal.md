@@ -1,5 +1,7 @@
 ---
-description: Administrator guide to reviewing, approving, and managing SMART on FHIR applications in the Admin Portal.
+description: >-
+  Administrator guide to reviewing, approving, and managing SMART on FHIR
+  applications in the Admin Portal.
 ---
 
 # Admin Portal
@@ -10,9 +12,9 @@ The Admin Portal is a private console where administrators review, approve, and 
 
 Administrators can:
 
-- **Review Apps** — Evaluate submitted apps and approve or decline them
-- **Manage Active Apps** — Monitor apps, view feedback, check sessions, disable if needed
-- **Manage Organizations** — Create and configure organizations
+* **Review Apps** — Evaluate submitted apps and approve or decline them
+* **Manage Active Apps** — Monitor apps, view feedback, check sessions, disable if needed
+* **Manage Organizations** — Create and configure organizations
 
 ## Review Submitted Apps
 
@@ -22,10 +24,10 @@ When developers submit apps, they appear in the **Under Review** list.
 
 Before approving an app, verify:
 
-- **Scopes** — Are the requested scopes appropriate and safe?
-- **Redirect URLs** — Are all OAuth URLs valid?
-- **Required Links** — Privacy policy, terms of service, homepage
-- **App Details** — Description, icon, contact information
+* **Scopes** — Are the requested scopes appropriate and safe?
+* **Redirect URLs** — Are all OAuth URLs valid?
+* **Required Links** — Privacy policy, terms of service, homepage
+* **App Details** — Description, icon, contact information
 
 ### Approve or Decline
 
@@ -43,9 +45,9 @@ Active apps are available to patients in the App Gallery.
 
 For each active app you can:
 
-- **View Feedback** — See patient comments and issues
-- **Check Sessions** — Review session logs and usage
-- **Disable App** — Temporarily disable if there's a problem
+* **View Feedback** — See patient comments and issues
+* **Check Sessions** — Review session logs and usage
+* **Disable App** — Temporarily disable if there's a problem
 
 ### Disabling an App
 
@@ -70,9 +72,9 @@ Each organization gets its own FHIR endpoint and can have its own users and pati
 
 ## App Status
 
-| Status | Description |
-|--------|-------------|
+| Status           | Description                           |
+| ---------------- | ------------------------------------- |
 | **Under Review** | Submitted, waiting for admin decision |
-| **Active** | Approved and live in App Gallery |
-| **Declined** | Rejected with reason provided |
-| **Disabled** | Temporarily removed from gallery |
+| **Active**       | Approved and live in App Gallery      |
+| **Declined**     | Rejected with reason provided         |
+| **Disabled**     | Temporarily removed from gallery      |

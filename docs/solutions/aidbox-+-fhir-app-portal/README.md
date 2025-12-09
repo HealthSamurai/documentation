@@ -20,6 +20,6 @@ The backend engine that provides:
 
 A unified UI suite managing the ecosystem workflow:
 
-* [**Developer Sandbox**](developer-sandbox.md)**:** Self-service app registration & testing.
-* [**Admin Portal**](admin-portal.md) **:** App approval, portal configuration, metrics reporting
-* [**App Gallery (Patient-facing)**](admin-portal.md)**:** App discovery, SMART Launch, & consent management.
+* [**Developer Sandbox**](tutorials/developer-sandbox.md)**:** Self-service app registration & testing.
+* [**Admin Portal**](tutorials/admin-portal.md) **:** App approval, portal configuration, metrics reporting
+* [**App Gallery (Patient-facing)**](tutorials/admin-portal.md)**:** App discovery, SMART Launch, & consent management.
