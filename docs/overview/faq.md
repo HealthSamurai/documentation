@@ -18,19 +18,13 @@ Learn more: [Features](../features.md)
 
 ### Is Aidbox free?
 
-Aidbox offers multiple options:
-
-- **Free development license** — register at [aidbox.app](https://aidbox.app) for local development and testing
-- **Free cloud sandbox** — instant setup at [aidbox.app](https://aidbox.app) with 5 GB storage limit (no PHI)
-- **Enterprise pricing** — contact Health Samurai for production licensing
-
-Aidbox is a commercial product (not open source). For open-source alternatives, consider [HAPI FHIR](https://hapifhir.io/).
+Aidbox is a commercial product (not open source) but developer license is free. 
 
 Learn more: [Licensing and Support](licensing-and-support.md)
 
 ### How do I get an Aidbox license?
 
-Register at [aidbox.app](https://aidbox.app) to get a free development license. The license key is required to run Aidbox locally or in your own infrastructure.
+Register at [aidbox.app](https://aidbox.app) to get a free development license.
 
 ### How do I run Aidbox locally?
 
@@ -53,13 +47,13 @@ Learn more: [Start in the Cloud](../getting-started/run-aidbox-in-sandbox.md)
 
 ### What FHIR versions does Aidbox support?
 
-Aidbox supports all FHIR versions starting from **R3** (STU3), including R4, R4B, R5, and **R6** (ballot). You can configure the FHIR version when setting up your Aidbox instance.
+Aidbox supports all FHIR versions starting from **R3** (STU3), including **R4**, **R4B**, **R5**, and [**R6**](../tutorials/other-tutorials/run-aidbox-with-fhir-r6.md) (ballot). You can configure the FHIR version when setting up your Aidbox instance.
 
-Learn more: [Profiling and Validation](../modules/profiling-and-validation/README.md)
+Learn more: [Bootstrap FHIR package list](../reference/all-settings.md#bootstrap-fhir-packages)
 
 ### How FHIR compliant is Aidbox?
 
-Aidbox strives for **100% FHIR compliance**. We continuously test against the FHIR specification and fix any deviations. If you find a compliance issue, please report it on [Aidbox Zulip](https://chat.fhir.org/#narrow/channel/318985-aidbox) — we'll fix it.
+Aidbox strives for **100% FHIR compliance**. We continuously test against the FHIR specification and fix any deviations. If you find a compliance issue, please report it on [Aidbox Zulip](https://connect.health-samurai.io) — we'll fix it.
 
 ### What Aidbox SDKs are available?
 
@@ -67,13 +61,11 @@ Aidbox provides official SDKs for multiple languages:
 
 - [TypeScript SDK](../getting-started/typescript.md)
 - [Python SDK](../getting-started/python.md)
-- [Java SDK](../getting-started/java.md)
 - [C# SDK](../getting-started/csharp.md)
 
 ### How do I get support?
 
-- **Community support** — free via [Aidbox Zulip](https://chat.fhir.org/#narrow/channel/318985-aidbox)
-- **Professional support** — Basic, Professional, Enterprise, and Ultimate tiers with SLA
+- **Professional support** — Basic, Professional, Enterprise tiers with SLA
 - **Professional services** — deployment, migration, training, and custom development
 
 Learn more: [Licensing and Support](licensing-and-support.md)
@@ -89,6 +81,7 @@ Aidbox provides comprehensive FHIR capabilities including:
 - Topic-based subscriptions
 - Profiling and validation with 500+ IGs
 - SMART on FHIR authorization
+- Hybrid terminology engine
 - and more
 
 Learn more: [Features](../features.md)
@@ -116,7 +109,7 @@ Learn more: [Versioning](versioning.md)
 | R5 | 2023 | Trial Use | New features, but breaking changes and limited adoption |
 | R6 | ~2026 | Upcoming | Most resources will become normative, long-term stability |
 
-Learn more: [FHIR R4 vs R5: Choosing the Right Version](https://www.health-samurai.io/blog/fhir-r4-vs-fhir-r5-choosing-the-right-version-for-your-implementation)
+Learn more: [FHIR R4 vs R5: Choosing the Right Version](https://www.health-samurai.io/articles/fhir-r4-vs-fhir-r5-choosing-the-right-version-for-your-implementation)
 
 ### Which FHIR version should I choose?
 
@@ -129,34 +122,35 @@ Learn more: [FHIR R4 vs R5: Choosing the Right Version](https://www.health-samur
 Consider **waiting for R6** rather than adopting R5 — R6 will lock most resources as normative (no breaking changes) and provide long-term stability. Many organizations plan to migrate directly from R4 to R6.
 
 Learn more:
-- [Getting Ready for FHIR R6 (blog)](https://www.health-samurai.io/blog/getting-ready-for-fhir-r6-what-you-need-to-know)
-- [FHIR: What's Great and What Isn't (blog)](https://www.health-samurai.io/blog/fhir-what-is-great-what-isnt-so-good-and-what-it-is-not)
+- [Getting Ready for FHIR R6 (blog)](https://www.health-samurai.io/articles/getting-ready-for-fhir-r6-what-you-need-to-know)
+- [FHIR: What's Great and What Isn't (blog)](https://www.health-samurai.io/articles/fhir-what-is-great-what-isnt-so-good-and-what-it-is-not)
 
 ### What FHIR versions does Aidbox support?
 
-Aidbox supports all FHIR versions starting from **R3** (STU3), including R4, R4B, R5, and **R6** (ballot). You can configure the FHIR version when setting up your Aidbox instance.
+Aidbox supports all FHIR versions starting from **R3** (STU3), including **R4**, **R4B**, **R5**, and [**R6**](../tutorials/other-tutorials/run-aidbox-with-fhir-r6.md) (ballot). You can configure the FHIR version when setting up your Aidbox instance.
 
-Learn more: [Profiling and Validation](../modules/profiling-and-validation/README.md)
+Learn more: [Bootstrap FHIR package list](../reference/all-settings.md#bootstrap-fhir-packages)
 
 ### What is an Implementation Guide (IG)?
 
 An Implementation Guide (IG) is a package of FHIR conformance resources (profiles, value sets, code systems, search parameters) published together for a specific use case or jurisdiction. Examples:
 
-- **US Core** — US healthcare interoperability baseline
-- **IPA** (International Patient Access) — cross-border patient data access
-- **mCODE** — oncology data exchange
-- **C-CDA on FHIR** — mapping C-CDA to FHIR
-- **SMART App Launch** — app authorization
+- [**US Core**](https://hl7.org/fhir/us/core/index.html) — US healthcare interoperability baseline
+- [**IPA**](https://build.fhir.org/ig/HL7/fhir-ipa/index.html) (International Patient Access) — cross-border patient data access
+- [**mCODE**](https://build.fhir.org/ig/HL7/fhir-mCODE-ig/index.html) — oncology data exchange
+- [**C-CDA on FHIR**](https://build.fhir.org/ig/HL7/ccda-on-fhir/index.html) — mapping C-CDA to FHIR
+- [**SMART App Launch**](https://build.fhir.org/ig/HL7/smart-app-launch/app-launch.html) — app authorization
 
 ### What is a FHIR Profile?
 
-A Profile is a set of constraints on a FHIR resource for a specific use case. Profiles are defined as `StructureDefinition` resources with `derivation: constraint`. For example, [US Core Patient](https://hl7.org/fhir/us/core/StructureDefinition-us-core-patient.html) profile requires specific elements like race and ethnicity extensions.
+A FHIR Profile is a set of rules that narrows down or extends the base FHIR specification to fit a specific use case. Profiles are defined as `StructureDefinition` resources with `derivation: constraint`. For example, [US Core Patient](https://hl7.org/fhir/us/core/StructureDefinition-us-core-patient.html) profile defines specific elements like race and ethnicity extensions.
 
 Learn more:
+- [HL7 FHIR Profiling](https://hl7.org/fhir/R4/profiling.html)
 - [Profiling and Validation](../modules/profiling-and-validation/README.md)
-- [FHIR Profiling (blog)](https://www.health-samurai.io/blog/fhir-profiling)
-- [FHIR Profiling: Extensions (blog)](https://www.health-samurai.io/blog/fhir-profiling-extensions)
-- [FHIR Profiling: Slicing (blog)](https://www.health-samurai.io/blog/fhir-profiling-slicing)
+- [FHIR Profiling (blog)](https://www.health-samurai.io/articles/fhir-profiling)
+- [FHIR Profiling: Extensions (blog)](https://www.health-samurai.io/articles/fhir-profiling-extensions)
+- [FHIR Profiling: Slicing (blog)](https://www.health-samurai.io/articles/fhir-profiling-slicing)
 
 ### How are Implementation Guides and Profiles related?
 
@@ -187,13 +181,13 @@ Aidbox also supports **custom resources** — you can define entirely new resour
 Learn more:
 - [Artifact Registry Overview](../artifact-registry/artifact-registry-overview.md)
 - [Custom Resources](../tutorials/artifact-registry-tutorials/custom-resources/README.md)
-- [How to Create Custom Resources (blog)](https://www.health-samurai.io/blog/how-to-create-custom-resources-in-your-fhir-server)
+- [How to Create Custom Resources (blog)](https://www.health-samurai.io/articles/how-to-create-custom-resources-in-your-fhir-server)
 
 ### How do I create my own Implementation Guide?
 
 Use [FHIR Shorthand (FSH)](https://build.fhir.org/ig/HL7/fhir-shorthand/) and [SUSHI](https://github.com/FHIR/sushi) to author profiles in a developer-friendly syntax, then compile to standard FHIR artifacts with the [IG Publisher](https://confluence.hl7.org/display/FHIR/IG+Publisher+Documentation).
 
-Learn more: [How to Create a FHIR Implementation Guide](https://www.health-samurai.io/blog/how-to-create-a-fhir-implementation-guide)
+Learn more: [How to Create a FHIR Implementation Guide](https://www.health-samurai.io/articles/how-to-create-a-fhir-implementation-guide)
 
 ### How do I load an Implementation Guide into Aidbox?
 
@@ -224,7 +218,7 @@ Learn more:
 
 ### How FHIR compliant is Aidbox?
 
-Aidbox strives for **100% FHIR compliance**. We continuously test against the FHIR specification and fix any deviations. If you find a compliance issue, please report it on [Aidbox Zulip](https://chat.fhir.org/#narrow/channel/318985-aidbox) — we'll fix it.
+Aidbox strives for **100% FHIR compliance**. We continuously test against the FHIR specification and fix any deviations. If you find a compliance issue, please report it on [Aidbox Zulip](https://connect.health-samurai.io) — we'll fix it.
 
 ### How do I create a resource?
 
@@ -385,24 +379,25 @@ Aidbox supports **all** FHIR Search features:
 - `_sort`, `_count`, `_total`, `_elements`
 - `_filter` for advanced search expressions
 
-If you find a compliance issue, please report it on [Aidbox Zulip](https://chat.fhir.org/#narrow/channel/318985-aidbox).
+If you find a compliance issue, please report it on [Aidbox Zulip](https://connect.health-samurai.io).
 
 Learn more:
 - [FHIR Search Specification](https://www.hl7.org/fhir/search.html)
 - [Aidbox FHIR Search](../api/rest-api/fhir-search/README.md)
-- [Resolving SearchParameter Conflicts (blog)](https://www.health-samurai.io/blog/resolve-fhir-searchparameters-conflicting)
+- [Resolving SearchParameter Conflicts (blog)](https://www.health-samurai.io/articles/resolve-fhir-searchparameters-conflicting)
 
 ### What if FHIR Search isn't enough?
 
 Aidbox provides several alternatives when FHIR Search limitations are hit:
 
 - **Aidbox Search** — extended syntax with dot expressions and custom parameters
-- **$sql operation** — direct SQL access to FHIR data
+- **SQL API** — direct SQL access to FHIR data
 - **GraphQL API** — flexible queries with nested resource fetching
 
 Learn more:
 - [Aidbox Search](../api/rest-api/aidbox-search.md)
 - [GraphQL API](../api/graphql-api.md)
+- [SQL API](../api/rest-api/other/sql-endpoints.md)
 
 ## Access Control
 
@@ -448,24 +443,33 @@ Configure Token Introspection to validate tokens from external IdPs, or set up S
 
 Learn more:
 - [SSO with External Identity Provider](../access-control/authentication/sso-with-external-identity-provider.md)
-- [Token Introspection Guide (blog)](https://www.health-samurai.io/blog/token-introspection-in-fhir)
+- [Token Introspection Guide (blog)](https://www.health-samurai.io/articles/token-introspection-in-fhir)
 
 ### What are Access Policies?
 
 AccessPolicy resources define authorization rules. Aidbox evaluates policies against incoming requests — if no policy matches, the request is denied (403 Forbidden).
 
-```yaml
-resourceType: AccessPolicy
-id: allow-patient-read
-engine: matcho
-matcho:
-  uri: "#/fhir/Patient.*"
-  request-method: get
+```json
+{
+  "resourceType": "AccessPolicy",
+  "link": [
+    {
+      "reference": "Client/myclient"
+    }
+  ],
+  "engine": "matcho",
+  "matcho": {
+    "operation": {
+      "id": "FhirRead"
+    }
+  }
+}
 ```
 
 Learn more:
 - [Access Policies](../access-control/authorization/access-policies.md)
-- [Fine-Grained Access Control with Security Labels (blog)](https://www.health-samurai.io/blog/fhir-native-fine-grained-access-control-fhir-security-labels-in-the-real-world)
+- [AccessPolicy Examples](../tutorials/security-access-control-tutorials/accesspolicy-examples.md)
+- [Fine-Grained Access Control with Security Labels (blog)](https://www.health-samurai.io/articles/fhir-native-fine-grained-access-control-fhir-security-labels-in-the-real-world)
 
 ### What are Access Policy best practices?
 
@@ -481,7 +485,7 @@ Learn more: [AccessPolicy Best Practices](../tutorials/security-access-control-t
 
 ### Where can I find Access Policy examples?
 
-Aidbox documentation includes 17+ ready-to-use examples:
+Aidbox documentation includes ready-to-use examples:
 
 - Patient sees only their own data
 - Practitioner sees their patients
@@ -489,7 +493,8 @@ Aidbox documentation includes 17+ ready-to-use examples:
 - GraphQL access control
 - JWT validation policies
 
-Learn more: [AccessPolicy Examples](../tutorials/security-access-control-tutorials/accesspolicy-examples.md)
+Learn more: 
+-[AccessPolicy Examples](../tutorials/security-access-control-tutorials/accesspolicy-examples.md)
 
 ### Why use SMART on FHIR?
 
@@ -502,8 +507,8 @@ SMART on FHIR is the industry standard for healthcare app authorization. Use it 
 
 Learn more:
 - [SMART on FHIR](../access-control/authorization/smart-on-fhir/README.md)
-- [Extending EMR with SMART on FHIR Apps (blog)](https://www.health-samurai.io/blog/a-practical-guide-for-extending-emr-capabilities-with-smart-on-fhir-applications)
-- [RBAC with Keycloak and SMART on FHIR (blog)](https://www.health-samurai.io/blog/implementing-role-based-access-control-for-fhir-resources-with-keycloak-and-smart-on-fhir-v2)
+- [Extending EMR with SMART on FHIR Apps (blog)](https://www.health-samurai.io/articles/a-practical-guide-for-extending-emr-capabilities-with-smart-on-fhir-applications)
+- [RBAC with Keycloak and SMART on FHIR (blog)](https://www.health-samurai.io/articles/implementing-role-based-access-control-for-fhir-resources-with-keycloak-and-smart-on-fhir-v2)
 
 ### How do I pass Inferno tests?
 
@@ -571,7 +576,7 @@ Learn more:
 - [External Audit Repository Configuration](../tutorials/security-access-control-tutorials/how-to-configure-audit-log.md#external-audit-repository-configuration)
 - [Auditbox Documentation](https://www.health-samurai.io/docs/auditbox)
 - [Auditbox Product Page](https://www.health-samurai.io/auditbox)
-- [FHIR-Native Audit Log (blog)](https://www.health-samurai.io/blog/early-access-fhir-native-audit-log-for-modern-healthcare-solutions)
+- [FHIR-Native Audit Log (blog)](https://www.health-samurai.io/articles/early-access-fhir-native-audit-log-for-modern-healthcare-solutions)
 
 ## Data Validation & Profiles
 
@@ -579,7 +584,7 @@ Learn more:
 
 Aidbox validates resources using FHIR Schema engine. Validation happens automatically on create/update, or explicitly via `$validate` operation.
 
-- **Automatic validation** — prevents invalid data from being saved
+- **Automatic validation** — prevents invalid data from being saved. Aidbox automatically validates incoming resources against the profiles listed in  `meta.profile`.
 - **Explicit validation** — `POST /fhir/Patient/$validate` checks without saving
 
 Learn more: [Profiling and Validation](../modules/profiling-and-validation/README.md)
@@ -609,7 +614,7 @@ Upload IGs through the FHIR Package API or Aidbox UI. Once loaded, resources mar
 
 Learn more:
 - [Upload FHIR Implementation Guide](../tutorials/artifact-registry-tutorials/upload-fhir-implementation-guide/README.md)
-- [4 Ways to Upload IGs to Aidbox (blog)](https://www.health-samurai.io/blog/4-ways-to-upload-igs-to-aidbox-pros-and-cons)
+- [4 Ways to Upload IGs to Aidbox (blog)](https://www.health-samurai.io/articles/4-ways-to-upload-igs-to-aidbox-pros-and-cons)
 
 ### How do I enable asynchronous validation?
 
@@ -647,8 +652,8 @@ Configure via `BOX_FHIR_TERMINOLOGY_ENGINE` environment variable (`local`, `hybr
 
 Learn more:
 - [Aidbox Terminology Module](../terminology-module/aidbox-terminology-module/README.md)
-- [Introducing Hybrid Terminology Engine (blog)](https://www.health-samurai.io/blog/introducing-hybrid-terminology-engine)
-- [State of FHIR Terminology 2024 (blog)](https://www.health-samurai.io/blog/state-of-fhir-terminology-2024)
+- [Introducing Hybrid Terminology Engine (blog)](https://www.health-samurai.io/articles/introducing-hybrid-terminology-engine)
+- [State of FHIR Terminology 2024 (blog)](https://www.health-samurai.io/articles/state-of-fhir-terminology-2024)
 
 ### What is the $expand operation?
 
@@ -680,8 +685,8 @@ Aidbox is **fully compliant** with the SQL on FHIR specification. See [implement
 
 Learn more:
 - [SQL on FHIR in Aidbox](../modules/sql-on-fhir/README.md)
-- [SQL on FHIR in PostgreSQL (blog)](https://www.health-samurai.io/blog/sql-on-fhir-in-postgresql)
-- [SQL on FHIR: An Inside Look (blog)](https://www.health-samurai.io/blog/sql-on-fhir-an-inside-look)
+- [SQL on FHIR in PostgreSQL (blog)](https://www.health-samurai.io/articles/sql-on-fhir-in-postgresql)
+- [SQL on FHIR: An Inside Look (blog)](https://www.health-samurai.io/articles/sql-on-fhir-an-inside-look)
 
 ### What is the SQL on FHIR workflow?
 
@@ -707,7 +712,7 @@ select:
 
 Learn more:
 - [Defining Flat Views](../modules/sql-on-fhir/defining-flat-views-with-view-definitions.md)
-- [What is a ViewDefinition (blog)](https://www.health-samurai.io/blog/what-is-a-viewdefinition)
+- [What is a ViewDefinition (blog)](https://www.health-samurai.io/articles/what-is-a-viewdefinition)
 
 ### How do I query flat views?
 
@@ -734,17 +739,15 @@ Learn more: [$run Operation](../modules/sql-on-fhir/operation-run.md)
 
 ### How do I materialize ViewDefinitions for better performance?
 
-Use the `$materialize` operation to persist ViewDefinition results as database tables:
+Use the `$materialize` operation to persist ViewDefinition results as database tables or views:
 
 ```http
 POST /fhir/ViewDefinition/patient-view/$materialize
 ```
 
-Materialized views are automatically refreshed when data changes, providing faster query performance for analytics and BI tools.
-
 Learn more:
 - [Materialize ViewDefinitions](../modules/sql-on-fhir/operation-materialize.md)
-- [Introducing $materialize (blog)](https://www.health-samurai.io/blog/introducing-materialize-sql-interface-for-fhir-data)
+- [Introducing $materialize (blog)](https://www.health-samurai.io/articles/introducing-materialize-sql-interface-for-fhir-data)
 
 ### Does ViewDefinition support JOINs?
 
@@ -779,8 +782,8 @@ Learn more: [Upload Sample Data](../getting-started/upload-sample-data.md)
 | `$export` | Export | Yes | FHIR-compliant bulk export to cloud storage (GCP, AWS, Azure) |
 | `$dump` | Export | No | Real-time streaming export, memory-efficient for data pipelines |
 | `$dump-csv` | Export | No | CSV export for spreadsheets and simple analytics |
-| `$import` | Import | Yes | High-performance import from URLs (S3, GCS, HTTP) |
-| `/fhir` POST | Import | No | Standard FHIR transactions for small datasets |
+| `$import` | Import | Yes | High-performance import from URLs (S3, GCS, HTTP) without validation|
+| `/fhir` POST | Import | No | Standard FHIR transactions for small datasets with validation|
 
 **Choose `$export`** for FHIR Bulk Data spec compliance and cloud storage integration.
 **Choose `$dump`** for real-time streaming to your own pipeline.
@@ -853,8 +856,8 @@ Subscriptions enable real-time notifications when resources change. Aidbox uses 
 
 Learn more:
 - [Subscriptions](../modules/topic-based-subscriptions/README.md)
-- [Topic-based Subscriptions: Top 5 Use Cases (blog)](https://www.health-samurai.io/blog/topic-based-subscriptions-top-5-use-cases-for-digital-health)
-- [Subscriptions on FHIR Overview (blog)](https://www.health-samurai.io/blog/subscriptions-on-fhir-overview-of-data-integration-challenges-and-solutions)
+- [Topic-based Subscriptions: Top 5 Use Cases (blog)](https://www.health-samurai.io/articles/topic-based-subscriptions-top-5-use-cases-for-digital-health)
+- [Subscriptions on FHIR Overview (blog)](https://www.health-samurai.io/articles/subscriptions-on-fhir-overview-of-data-integration-challenges-and-solutions)
 
 ### What subscription destinations are supported?
 
@@ -885,7 +888,7 @@ Aidbox provides an HL7 v2 integration toolkit for converting HL7 v2 messages to 
 
 Learn more:
 - [HL7 v2 Integration](../modules/integration-toolkit/hl7-v2-integration/README.md)
-- [Tackling Legacy System Integration with FHIR (blog)](https://www.health-samurai.io/blog/tackling-legacy-system-integration-with-fhir)
+- [Tackling Legacy System Integration with FHIR (blog)](https://www.health-samurai.io/articles/tackling-legacy-system-integration-with-fhir)
 
 ### How do I convert C-CDA to FHIR?
 
@@ -930,9 +933,9 @@ Aidbox Forms is a module for building digital medical forms and capturing data i
 
 Learn more:
 - [Aidbox Forms](../modules/aidbox-forms/README.md)
-- [Why Building Healthcare Forms is Challenging (blog)](https://www.health-samurai.io/blog/why-building-healthcare-forms-is-so-challenging--and-how-to-fix-it)
-- [AI Assistant in Aidbox Forms (blog)](https://www.health-samurai.io/blog/closing-the-loop-from-forms-to-insights-introducing-the-ai-assistant-in-aidbox-forms)
-- [Top 10 Medical Forms (blog)](https://www.health-samurai.io/blog/top-10-medical-forms)
+- [Why Building Healthcare Forms is Challenging (blog)](https://www.health-samurai.io/articles/why-building-healthcare-forms-is-so-challenging--and-how-to-fix-it)
+- [AI Assistant in Aidbox Forms (blog)](https://www.health-samurai.io/articles/closing-the-loop-from-forms-to-insights-introducing-the-ai-assistant-in-aidbox-forms)
+- [Top 10 Medical Forms (blog)](https://www.health-samurai.io/articles/top-10-medical-forms)
 
 ### What is the ePrescription module?
 
@@ -956,7 +959,7 @@ Master Patient Index (MPI) ensures accurate patient identification by detecting 
 
 Learn more:
 - [MPI — Master Patient Index](../modules/mpi/README.md)
-- [Master Patient Index and Record Linkage (blog)](https://www.health-samurai.io/blog/master-patient-index-and-record-linkage)
+- [Master Patient Index and Record Linkage (blog)](https://www.health-samurai.io/articles/master-patient-index-and-record-linkage)
 
 ### Does Aidbox support file storage with signed URLs?
 
@@ -970,7 +973,7 @@ Learn more:
 - [AWS S3](../file-storage/aws-s3.md)
 - [GCP Cloud Storage](../file-storage/gcp-cloud-storage.md)
 - [Azure Blob Storage](../file-storage/azure-blob-storage.md)
-- [Wearables and Medical IoT Devices to FHIR (blog)](https://www.health-samurai.io/blog/aidbox-for-wearable-and-medical-devices)
+- [Wearables and Medical IoT Devices to FHIR (blog)](https://www.health-samurai.io/articles/aidbox-for-wearable-and-medical-devices)
 
 ### How do I execute custom SQL on resource changes?
 
@@ -1040,7 +1043,7 @@ Learn more:
 - [Python SDK](../getting-started/python.md)
 - [Java SDK](../getting-started/java.md)
 - [C# SDK](../getting-started/csharp.md)
-- [Free FHIR Tools (blog)](https://www.health-samurai.io/blog/free-fhir-tools)
+- [Free FHIR Tools (blog)](https://www.health-samurai.io/articles/free-fhir-tools)
 
 ### How do I test the API?
 
@@ -1075,8 +1078,8 @@ Yes, Aidbox supports AI integration:
 
 Learn more:
 - [Working with AI](../developer-experience/ai.md)
-- [MCP FHIR Server (blog)](https://www.health-samurai.io/blog/mcp-fhir-server)
-- [AI Assistant for FHIR SDC and Analytics (blog)](https://www.health-samurai.io/blog/ai-assistant-for-fhir-sdc-and-analytics)
+- [MCP FHIR Server (blog)](https://www.health-samurai.io/articles/mcp-fhir-server)
+- [AI Assistant for FHIR SDC and Analytics (blog)](https://www.health-samurai.io/articles/ai-assistant-for-fhir-sdc-and-analytics)
 
 ### Where can I find code examples?
 
@@ -1106,8 +1109,8 @@ operations:
 
 Learn more:
 - [Apps Framework](../developer-experience/apps.md)
-- [Building Healthcare Microservices (blog)](https://www.health-samurai.io/blog/building-healthcare-microservices-a-fhir-native-approach)
-- [Using API Gateway with FHIR API (blog)](https://www.health-samurai.io/blog/using-api-gateway-with-fhir-api)
+- [Building Healthcare Microservices (blog)](https://www.health-samurai.io/articles/building-healthcare-microservices-a-fhir-native-approach)
+- [Using API Gateway with FHIR API (blog)](https://www.health-samurai.io/articles/using-api-gateway-with-fhir-api)
 
 ## Configuration & Deployment
 
@@ -1227,7 +1230,7 @@ Aidbox supports two multi-tenancy approaches:
 Learn more:
 - [Organization-based Access Control](../access-control/authorization/scoped-api/organization-based-hierarchical-access-control.md)
 - [Run Multibox Locally](../tutorials/security-access-control-tutorials/run-multibox-locally.md)
-- [Multi-tenant FHIR API Design (blog)](https://www.health-samurai.io/blog/how-to-design-a-multi-tenant-fhir-api-for-an-existing-ehr-system)
+- [Multi-tenant FHIR API Design (blog)](https://www.health-samurai.io/articles/how-to-design-a-multi-tenant-fhir-api-for-an-existing-ehr-system)
 
 ### What network access does Aidbox require?
 
@@ -1237,7 +1240,8 @@ Aidbox requires outbound HTTPS (port 443) to:
 |-----------------------------|------------------------------------------------|
 | License portal              | `https://aidbox.app`, `https://*.aidbox.app`   |
 | Terminology server          | `https://tx.health-samurai.io/fhir`            |
-| IG Package fetch            | `https://storage.googleapis.com/fhir-schema-registry/` |
+| IG Package list fetch            | `https://storage.googleapis.com/fhir-schema-registry/` |
+| IG Package download from NPM registry            | `https://fs.get-ig.org/pkgs` |
 
 ### What data is transmitted during license verification?
 
@@ -1264,16 +1268,10 @@ Learn more: [Highly Available Aidbox](../deployment-and-maintenance/deploy-aidbo
 
 ### How do I backup and restore?
 
-Multiple backup strategies supported:
-
-- **pg_dump** — logical backups for migrations
-- **pg_basebackup** — physical backups for large databases
-- **WAL-G** — cloud-native backups to S3, GCS, Azure Blob
-- **pgBackRest** — via Crunchy operator
-
+Only PostgreSQL database backup rs required. All standard PostgreSQL backup tools are supported. Managed PostgreSQL services typically provide backup and restore functionality.
 Learn more:
 - [Backup and Restore](../deployment-and-maintenance/backup-and-restore/README.md)
-- [HIPAA-Compliant Instance Synchronization (blog)](https://www.health-samurai.io/blog/hipaa-compliant-aidbox-instance-synchronization)
+- [HIPAA-Compliant Instance Synchronization (blog)](https://www.health-samurai.io/articles/hipaa-compliant-aidbox-instance-synchronization)
 
 ### Can I use a read-only database replica?
 
@@ -1295,7 +1293,7 @@ Create database indexes for frequently searched fields. Aidbox can suggest index
 
 Learn more:
 - [Indexes](../deployment-and-maintenance/indexes/README.md)
-- [Load 1 Billion FHIR Resources in 5 Hours (blog)](https://www.health-samurai.io/blog/how-to-load-1-billion-fhir-resources-into-aidbox-in-5-hours)
+- [Load 1 Billion FHIR Resources in 5 Hours (blog)](https://www.health-samurai.io/articles/how-to-load-1-billion-fhir-resources-into-aidbox-in-5-hours)
 
 ### How do I debug slow queries?
 
@@ -1333,6 +1331,6 @@ Learn more: [Observability](../modules/observability/README.md)
 
 ### What are PostgreSQL requirements?
 
-Aidbox requires PostgreSQL 12+ with specific extensions. Actively supports the three most recent versions (currently 17, 16, 15).
+Aidbox requires PostgreSQL 12+ with specific extensions. Actively supports the three most recent versions (currently 18, 17, 16).
 
 Learn more: [PostgreSQL Requirements](../database/postgresql-requirements.md)

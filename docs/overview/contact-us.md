@@ -13,4 +13,4 @@ description: Contact Health Samurai for Aidbox support, license questions, partn
 
 ## How do I report an issue?
 
-You are welcome to create issues here [https://github.com/Aidbox/Issues](https://github.com/Aidbox/Issues)
+You are welcome to create issues here [aidbox-users channel](https://connect.health-samurai.io/#narrow/stream/4-aidbox-users)

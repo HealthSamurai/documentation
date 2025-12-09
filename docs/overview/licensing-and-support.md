@@ -22,20 +22,17 @@ The Aidbox development license is intended exclusively for development, testing,
 \
 \- **Storage Limit**: The Development license permits storage of up to 5 GB of data in your database.
 
-When you reach your database size limit, you’ll receive 3 types of messages - warning, error message, and blocking message:
+When you reach your database size limit, you’ll receive 2 types of warnings:
 
 {% tabs %}
-{% tab title="Warning" %}
-`Your database (name of your database) size 4.9 GiB is about to exceed the license limit 5.0 GiB, in that case your process is going to shutdown. Please review database size or contact us for further information.`
+{% tab title="About to exceed the license limit" %}
+`Your database (name of your database) size 4.9 GiB is about to exceed the license limit 5.0 GiB. Please review database size or contact us for further information.`
 {% endtab %}
 
-{% tab title="Error" %}
+{% tab title="Above license limit" %}
 `Your database (name of your database) size is 5.7 GiB and it's above license limit 5.0 GiB. Please review database size or contact us for further information.`
 {% endtab %}
 
-{% tab title="Blocking" %}
-`Your database (name of your database) size is 33.7 GiB and it's above license limit 5.0 GiB, your process is going to shutdown in 60 minutes. Please review database size or contact us for further information.`
-{% endtab %}
 {% endtabs %}
 
 ### Production-ready Aidbox as a SaaS
@@ -54,14 +51,13 @@ For non-profit educational institutions, the Health Samurai provides Aidbox lice
 
 We know that starting with new technology is a challenge. That's why we are inviting Aidbox users to subscribe to one of Aidbox Support tiers from their first days with Aidbox. It might be the time when you need Aidbox Support the most.
 
-Health Samurai offers four support tiers: Basic, Professional, Enterprise, and Ultimate. Below is what you need to know about each of them:
+Health Samurai offers three support tiers: Basic, Professional, and Enterprise. Below is what you need to know about each of them:
 
 | **Aidbox Support**   | **What is included**                                                                                                                                                                                                                                       | **Price** |
 | -------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------- |
 | Basic Support        | <ul><li>Account manager</li><li>Basic Aidbox consulting</li></ul>                                                                                                                                                                                          | \$         |
 | Professional Support | <ul><li>Chat with Aidbox engineers</li><li>Monthly video conferences with Aidbox engineers</li><li>Priority fixing of non-blocking issues**</li><li>Priority release of new Aidbox features**</li><li>Aidbox performance optimization consulting</li></ul> | \$\$       |
 | Enterprise Support   | <ul><li>Chat with Aidbox engineers</li><li>Weekly conferences with Aidbox engineers</li><li>Aidbox product enhancement or feature release**</li><li>FHIR and Aidbox consultative review and guidance</li></ul>                                             | \$\$\$      |
-| Ultimate Support     | <ul><li>Custom Aidbox build</li><li>Dedicated Engineers</li><li>Aidbox development for the Client</li><li>Participation in the Client’s project launch</li></ul>                                                                                           | \$\$\$\$    |
 
 \*\* - during the next three releases
 
@@ -86,6 +82,6 @@ Aidbox license can be received for a trial period at no cost with the purchase o
 
 * 1 month with Basic support
 * 2 months with Professional support
-* 3 months with Enterprise or Ultimate support
+* 3 months with Enterprise
 
 To learn about **pricing**, please get in touch [with us](contact-us.md).
