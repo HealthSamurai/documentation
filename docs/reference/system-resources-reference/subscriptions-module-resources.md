@@ -506,7 +506,7 @@ Defines the data sources and events that clients can subscribe to. Acts as a con
 
 ## AidboxTopicDestination
 
-Configures where and how notifications triggered by a subscription topic should be routed. Connects topics to external systems like Kafka, Webhook, or GCP Pub/Sub.
+Configures where and how notifications triggered by a subscription topic should be routed. Connects topics to external systems like Kafka, RabbitMQ, Webhook and others.
 
 ```fhir-structure
 [ {
