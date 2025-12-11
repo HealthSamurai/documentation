@@ -8,7 +8,7 @@ Aidbox provides pre-configured solution profiles to meet specific regulatory req
 
 #### Available Profiles
 
-| Solution                    | Target Audience | Key Regulations                            |
-| --------------------------- | --------------- | ------------------------------------------ |
-| **ONC Certified API (EHR)** | EHR Vendors     | ONC Health IT Certification (Cures Update) |
-| _\[CMS Interoperability]_   | _Health Plans_  | _CMS-0057-F (Coming soon)_                 |
+| Solution                                                                                    | Target Audience | Key Regulations                            |
+| ------------------------------------------------------------------------------------------- | --------------- | ------------------------------------------ |
+| [**ONC Certified API (EHR)**](providers-or-onc-health-it-certification-program/README.md)   | EHR Vendors     | ONC Health IT Certification (Cures Update) |
+| [**CMS 0057 F**](CMS-0057-F/README.md)                                                      | Health Plans    | CMS 0057 F                                 |
