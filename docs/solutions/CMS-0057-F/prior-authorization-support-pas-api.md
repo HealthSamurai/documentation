@@ -573,7 +573,7 @@ Accept: application/json
 
 Checks the status of a previously submitted prior authorization request.
 
-**Endpoint:** `POST [base]/Claim/$inquire`
+**Endpoint:** `POST [base]/fhir/Claim/$inquire`
 
 **Request:** A FHIR Bundle containing a PAS Claim Inquiry Request.
 
