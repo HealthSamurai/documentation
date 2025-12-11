@@ -20,7 +20,7 @@ The easiest way to test Client Credentials Grant flow is to run through the [Aid
 
 ### Configure Client
 
-To start using this flow you have to create and configure Client. The only required parameters is `secret` and you also have to enable this flow for client by `grant_types: ['client_credentials']`
+To start using this flow, you have to create and configure a Client. The only required parameter is `secret` and you also have to enable this flow for the client by `grant_types: ['client_credentials']`
 
 <pre class="language-yaml"><code class="lang-yaml"><strong>PUT /Client/api-client
 </strong>Accept: text/yaml
@@ -41,7 +41,7 @@ You can also configure token's format and expiration, as well refresh the token:
 | _auth.client\_credentials_**.refresh\_token\_expiration** | int (seconds) | refresh token expiration time from issued or last usage |
 
 ```yaml
-PUT /fhir/Client/api-client
+PUT /Client/api-client
 Accept: text/yaml
 Content-Type: text/yaml
 
@@ -59,7 +59,7 @@ auth:
 Since by default new client has no access to any resources, you probably want to configure AccessPolicy for this specific client:
 
 ```yaml
-PUT /fhir/AccessPolicy/api-client
+PUT /AccessPolicy/api-client
 Accept: text/yaml
 Content-Type: text/yaml
 
@@ -71,14 +71,14 @@ link:
 
 ### Get Access Token
 
-The next step is to exchange client id and secret for Access Token.
+The next step is to exchange client ID and secret for an Access Token.
 
-Using Authorization header `{base64(Client.id + ':' + Client.secret)}` or by JSON request with `client_id` and `client_secret` in body:
+Using the Authorization header `{base64(Client.id + ':' + Client.secret)}` or by JSON request with `client_id` and `client_secret` in body:
 
 {% tabs %}
 {% tab title="Request with Authorization header " %}
 ```yaml
-POST /fhir/auth/token
+POST /auth/token
 Authorization: Basic YXBpLWNsaWVudDp2ZXJ5c2VjcmV0
 Content-Type: application/x-www-form-urlencoded
 
@@ -88,7 +88,7 @@ grant_type=client_credentials
 
 {% tab title="Request with credentials in body" %}
 ```yaml
-POST /fhir/auth/token
+POST /auth/token
 Content-Type: application/json
 
 {
@@ -102,7 +102,7 @@ Content-Type: application/json
 
 {% tabs %}
 {% tab title="Response with simple client" %}
-For simple client configuration you will get JSON with access\_token in response:
+For simple client configuration, you will get JSON with access\_token in response:
 
 <pre class="language-yaml"><code class="lang-yaml"><strong>status: 200
 </strong>
@@ -131,7 +131,7 @@ status: 200
 
 #### Audience
 
-If you use JWT token format and provide in token request additional parameter `audience`, resulting token will set `aud` claim into value you've sent.
+If you use the JWT token format and provide in the token request additional parameter `audience`, resulting token will set `aud` claim into the value you've sent.
 
 > ```
 > The "aud" (audience) claim identifies the recipients that the JWT is
@@ -148,7 +148,7 @@ If you use JWT token format and provide in token request additional parameter `a
 
 ### Using Access Token
 
-You can use access token in `Authorization` header for Aidbox API calls:
+You can use an access token in `Authorization` header for Aidbox API calls:
 
 ```yaml
 GET /fhir/Patient
@@ -163,12 +163,12 @@ curl -H 'Authorization: Bearer ZjQyNGFhY2EtNTY2MS00NjVjLWEzYmEtMjIwYjFkNDI5Yjhi'
 
 ### Refresh Access Token
 
-To get new access token using refresh token
+To get a new access token using a refresh token
 
 {% tabs %}
 {% tab title="Request" %}
 ```yaml
-POST /fhir/auth/token
+POST /auth/token
 Content-Type: application/json
 
 {
@@ -193,7 +193,7 @@ status: 200
 
 ### Revoke Access Token (Close Session)
 
-Aidbox create Session (resource) for each Access Token that can be closed with the special endpoint `DELETE /Session` with the token in the Authorization header:
+Aidbox createsa  Session (resource) for each Access Token that can be closed with the special endpoint `DELETE /Session` with the token in the Authorization header:
 
 {% code title="close-session" %}
 ```yaml
@@ -202,4 +202,4 @@ Authorization: Bearer ZjQyNGFhY2EtNTY2MS00NjVjLWEzYmEtMjIwYjFkNDI5Yjhi
 ```
 {% endcode %}
 
-Session is just Resource and you can inspect and manipulate with sessions by standard Search & CRUD API for example get all sessions - `GET /Session`
+Session is just a Resource, and you can inspect and manipulate sessions by standard Search & CRUD API, for exampl,e get all sessions - `GET /Session`
