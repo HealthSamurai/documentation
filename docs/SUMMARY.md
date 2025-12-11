@@ -575,6 +575,10 @@
   * [(g)(10): Standardized API for Patient and Population Services](solutions/providers-or-onc-health-it-certification-program/g-10-standardized-api-for-patient-and-population-services/README.md)
     * [Pass Inferno Tests with Aidbox](solutions/providers-or-onc-health-it-certification-program/g-10-standardized-api-for-patient-and-population-services/pass-inferno-tests-with-aidbox.md)
     * [Pass Inferno Visual Inspection and Attestation](solutions/providers-or-onc-health-it-certification-program/g-10-standardized-api-for-patient-and-population-services/pass-inferno-visual-inspection-and-attestation.md)
+* [CMS-0057-F](solutions/CMS-0057-F/README.md)
+  * [Getting Started](solutions/CMS-0057-F/getting-started/README.md)
+    * [Run Aidbox + CMS App locally](solutions/CMS-0057-F/getting-started/run-aidbox-+-cms-app-locally.md)
+  * [Prior Authorization Support (PAS) API](solutions/CMS-0057-F/prior-authorization-support-pas-api.md)
 
 ## Reference
 
