@@ -13,7 +13,7 @@ description: >-
 
 ## Before you begin
 
-* Make sure your Aidbox version is newer than 2511
+* Make sure your Aidbox version is 2511 or newer
 * Setup the local Aidbox instance using getting started [guide](../../../getting-started/run-aidbox-locally.md)
 
 ## Using init bundle to load a FHIR IG
