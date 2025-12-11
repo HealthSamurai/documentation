@@ -308,8 +308,6 @@ Observation examples
 
 Body Weight
 
-P
-
 ```yaml
 resourceType: Observation
 subject:
