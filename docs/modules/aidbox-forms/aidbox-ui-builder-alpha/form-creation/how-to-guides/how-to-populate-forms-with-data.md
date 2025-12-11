@@ -43,6 +43,32 @@ Assume that we already have:
 * form with 5 items(data: patient name, DOB, MRN, address, phone)
 * Patient resource in the Aidbox DB
 
+Questionnaire example:
+
+```
+---
+resourceType: Questionnaire
+title: Patient demographics
+status: draft
+url: http://forms.aidbox.io/questionnaire/patient-demographics
+item:
+- linkId: patient-name
+  type: string
+  text: Patient Name
+- linkId: dob
+  type: date
+  text: Date of Birth
+- linkId: mrn
+  type: string
+  text: MRN
+- linkId: address
+  type: text
+  text: Address
+- linkId: phone
+  type: string
+  text: Phone Number
+```
+
 Patient resource example:
 
 ```yaml
@@ -125,6 +151,58 @@ phone (Text widget)
 %subject.telecom.value
 ```
 
+At the end you should get Questionnaire like this:
+
+```yaml
+---
+resourceType: Questionnaire
+title: Patient Demographics
+status: draft
+url: http://forms.aidbox.io/questionnaire/patient-demographics
+item:
+- linkId: patient-name
+  type: string
+  text: Patient Name
+  extension:
+  - url: http://hl7.org/fhir/uv/sdc/StructureDefinition/sdc-questionnaire-initialExpression
+    valueExpression:
+      language: text/fhirpath
+      expression: "%subject.name.family + ' ' + %subject.name.given.first()"
+- linkId: dob
+  type: date
+  text: Date of Birth
+  extension:
+  - url: http://hl7.org/fhir/uv/sdc/StructureDefinition/sdc-questionnaire-initialExpression
+    valueExpression:
+      language: text/fhirpath
+      expression: "%subject.birthDate"
+- linkId: mrn
+  type: string
+  text: MRN
+  extension:
+  - url: http://hl7.org/fhir/uv/sdc/StructureDefinition/sdc-questionnaire-initialExpression
+    valueExpression:
+      language: text/fhirpath
+      expression: "%subject.identifier.where(type.coding.system='http://terminology.hl7.org/CodeSystem/v2-0203',
+        type.coding.code='MR').value"
+- linkId: address
+  type: text
+  text: Address
+  extension:
+  - url: http://hl7.org/fhir/uv/sdc/StructureDefinition/sdc-questionnaire-initialExpression
+    valueExpression:
+      language: text/fhirpath
+      expression: "%subject.address.text"
+- linkId: phone
+  type: string
+  text: Phone Number
+  extension:
+  - url: http://hl7.org/fhir/uv/sdc/StructureDefinition/sdc-questionnaire-initialExpression
+    valueExpression:
+      language: text/fhirpath
+      expression: "%subject.telecom.value"
+
+```
 ### Populate Parameters (usage time)
 
 To make `%subject` resource available we should call `$populate` operation with specific parameters
@@ -144,6 +222,36 @@ parameter:
     reference: Patient/example
 - name: local
   valueBoolean: true
+```
+
+You should get a link to a new QuestionnaireResponse, that will look like this
+
+```yaml
+resourceType: QuestionnaireResponse
+questionnaire: http://forms.aidbox.io/questionnaire/patient-demographics
+status: in-progress
+subject: {reference: Patient/example}
+item:
+- linkId: patient-name
+  text: Patient Name
+  answer:
+  - {valueString: Chalmers Peter}
+- linkId: dob
+  text: Date of Birth
+  answer:
+  - {valueDate: '1974-12-25'}
+- linkId: mrn
+  text: MRN
+  answer:
+  - {valueString: '12345'}
+- linkId: address
+  text: Address
+  answer:
+  - {valueString: '534 Erewhon St PeasantVille, Rainbow, Vic  3999'}
+- linkId: phone
+  text: Phone Number
+  answer:
+  - {valueString: (03) 5555 6473}
 ```
 
 ## How to populate form with patient weight, height
@@ -170,9 +278,37 @@ LOINC coding for body measurements:
 * Body Height: `{ system: http://loinc.org, code: 8302-2 }`
 * Body Weight: `{ system: http://loinc.org, code: 29463-7 }`
 
+
+Questionnaire example 
+
+```yaml
+resourceType: Questionnaire
+title: Body Measurements
+status: draft
+url: http://forms.aidbox.io/questionnaire/body-measurements
+item:
+- linkId: body-height
+  type: quantity
+  text: Body Height
+  extension:
+  - url: http://hl7.org/fhir/StructureDefinition/questionnaire-unitOption
+    valueCoding:
+      display: cm
+- linkId: body-weight
+  text: Body Weight
+  type: quantity
+  extension:
+  - url: http://hl7.org/fhir/StructureDefinition/questionnaire-unitOption
+    valueCoding:
+      display: kg
+```
+
+
 Observation examples
 
 Body Weight
+
+P
 
 ```yaml
 resourceType: Observation
@@ -183,6 +319,7 @@ code:
   coding:
   - code: 29463-7
     system: http://loinc.org
+effectiveDateTime: 2025-12-10T00:00:00   --- Put here dateTime curresponding to current month. This date will be used for quering period.
 valueQuantity:
   unit: kg
   value: 80
@@ -199,10 +336,10 @@ code:
   coding:
   - code: 8302-2
     system: http://loinc.org
+effectiveDateTime: 2025-12-10T00:00:00   --- Put here dateTime curresponding to current month. This date will be used for quering period.
 valueQuantity:
   unit: cm
   value: 180
-
 ```
 
 We should configure items with Observation based population
@@ -210,6 +347,46 @@ We should configure items with Observation based population
 1. Select item in outline
 2. Press `include code?` section and type corresponding code/system (from Observations)
 3. Enable `Populate` section (`Observation` population should be opened by default) and choose period to search for Observations. (For example `1 Month`)
+
+You should get next questionnaire:
+
+```yaml
+resourceType: Questionnaire
+title: Body Measurements
+status: draft
+url: http://forms.aidbox.io/questionnaire/body-measurements
+item:
+- linkId: body-height
+  text: Body Height
+  type: quantity
+  code:
+  - code: 8302-2
+    system: http://loinc.org
+  extension:
+  - url: http://hl7.org/fhir/StructureDefinition/questionnaire-unitOption
+    valueCoding:
+      display: cm
+  - url: http://hl7.org/fhir/uv/sdc/StructureDefinition/sdc-questionnaire-observationLinkPeriod
+    valueDuration:
+      code: mo
+      system: http://unitsofmeasure.org
+      value: 1
+- linkId: body-weight
+  type: quantity
+  text: Body Weight
+  code:
+  - code: 29463-7
+    system: http://loinc.org
+  extension:
+  - url: http://hl7.org/fhir/StructureDefinition/questionnaire-unitOption
+    valueCoding:
+      display: kg
+  - url: http://hl7.org/fhir/uv/sdc/StructureDefinition/sdc-questionnaire-observationLinkPeriod
+    valueDuration:
+      code: mo
+      system: http://unitsofmeasure.org
+      value: 1
+```
 
 ### Populate parameters (usage time)
 
@@ -225,6 +402,28 @@ parameter:
 - name: subject
   valueReference:
     reference: Patient/example
+```
+
+In a result you will get a link to QuestionnaireResponse with pre-populated data:
+
+```yaml
+resourceType: Parameters
+parameter:
+- name: response
+  resource:
+    resourceType: QuestionnaireResponse
+    questionnaire: http://forms.aidbox.io/questionnaire/body-measurements
+    status: in-progress
+    subject: {reference: Patient/example}
+    item:
+    - linkId: body-height
+      text: Body Height
+      answer:
+      - valueQuantity: {unit: cm, value: 180}
+    - linkId: body-weight
+      text: Body Weight
+      answer:
+      - valueQuantity: {unit: kg, value: 80}
 ```
 
 ## How to populate form with patient allergies
