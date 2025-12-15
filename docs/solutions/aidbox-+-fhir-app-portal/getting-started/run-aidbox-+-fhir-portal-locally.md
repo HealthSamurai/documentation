@@ -932,6 +932,40 @@ Create `initBundleDeveloper.json` file in the same folder alongside with `docker
           }
         }
       }
+    },
+    {
+      "resource": {
+        "engine": "matcho",
+        "matcho": {
+          "user": {
+            "roles": [
+              {
+                "type": "developer"
+              }
+            ]
+          },
+          "params": {
+            "resource/type": "Client"
+          }
+        },
+        "description": "Admin access to Client resources",
+        "id": "developer-role-client",
+        "resourceType": "AccessPolicy",
+        "meta": {
+          "lastUpdated": "2025-12-11T17:05:59.203507Z",
+          "versionId": "2895",
+          "extension": [
+            {
+              "url": "https://aidbox.app/ex/createdAt",
+              "valueInstant": "2025-12-11T17:05:59.203507Z"
+            }
+          ]
+        }
+      },
+      "request": {
+        "method": "PUT",
+        "url": "AccessPolicy/developer-role-client"
+      }
     }
   ]
 }
@@ -1354,6 +1388,369 @@ Create `initBundleAdmin.json` file in the same folder alongside with `docker-com
       "request": {
         "method": "PUT",
         "url": "FHIRSchema/GcpServiceAccount"
+      }
+    },
+    {
+      "resource": {
+        "resourceType": "AuthConfig",
+        "id": "smartbox",
+        "theme": {
+          "styleUrl": "http://localhost:3001/auth.css"
+        }
+      },
+      "request": {
+        "method": "PUT",
+        "url": "AuthConfig/smartbox"
+      }
+    },
+    {
+      "resource": {
+        "engine": "matcho",
+        "description": "Admin access to Client resources",
+        "matcho": {
+          "user": {
+            "roles": [
+              {
+                "type": "admin"
+              }
+            ]
+          },
+          "params": {
+            "resource/type": "Client"
+          }
+        },
+        "id": "admin-role-client",
+        "resourceType": "AccessPolicy"
+      },
+      "request": {
+        "method": "PUT",
+        "url": "AccessPolicy/admin-role-client"
+      }
+    },
+    {
+      "resource": {
+        "engine": "matcho",
+        "description": "Admin search and read Session resources",
+        "matcho": {
+          "user": {
+            "roles": [
+              {
+                "type": "admin"
+              }
+            ]
+          },
+          "params": {
+            "resource/type": "Session"
+          },
+          "operation": {
+            "id": {
+              "$one-of": ["FhirSearch", "FhirRead"]
+            }
+          }
+        },
+        "id": "admin-role-session",
+        "resourceType": "AccessPolicy"
+      },
+      "request": {
+        "method": "PUT",
+        "url": "AccessPolicy/admin-role-session"
+      }
+    },
+    {
+      "resource": {
+        "engine": "matcho",
+        "description": "Admin access to Organization resources",
+        "matcho": {
+          "user": {
+            "roles": [
+              {
+                "type": "admin"
+              }
+            ]
+          },
+          "params": {
+            "resource/type": "Organization"
+          }
+        },
+        "id": "admin-role-organization",
+        "resourceType": "AccessPolicy"
+      },
+      "request": {
+        "method": "PUT",
+        "url": "AccessPolicy/admin-role-organization"
+      }
+    },
+    {
+      "resource": {
+        "engine": "matcho",
+        "description": "Admin read Patient with ORGBAC",
+        "matcho": {
+          "user": {
+            "roles": [
+              {
+                "type": "admin"
+              }
+            ]
+          },
+          "params": {
+            "resource/type": "Patient"
+          },
+          "operation": {
+            "id": {
+              "$one-of": [
+                "FhirSearch",
+                "FhirRead",
+                "orgbac-fhir-search",
+                "orgbac-fhir-read"
+              ]
+            }
+          }
+        },
+        "id": "admin-role-patient",
+        "resourceType": "AccessPolicy"
+      },
+      "request": {
+        "method": "PUT",
+        "url": "AccessPolicy/admin-role-patient"
+      }
+    },
+    {
+      "resource": {
+        "engine": "matcho",
+        "description": "Admin read User with ORGBAC",
+        "matcho": {
+          "user": {
+            "roles": [
+              {
+                "type": "admin"
+              }
+            ]
+          },
+          "params": {
+            "resource/type": "User"
+          },
+          "operation": {
+            "id": {
+              "$one-of": [
+                "FhirSearch",
+                "FhirRead",
+                "orgbac-fhir-search",
+                "orgbac-fhir-read"
+              ]
+            }
+          }
+        },
+        "id": "admin-role-user",
+        "resourceType": "AccessPolicy"
+      },
+      "request": {
+        "method": "PUT",
+        "url": "AccessPolicy/admin-role-user"
+      }
+    },
+    {
+      "resource": {
+        "engine": "matcho",
+        "description": "Admin read Group with ORGBAC",
+        "matcho": {
+          "user": {
+            "roles": [
+              {
+                "type": "admin"
+              }
+            ]
+          },
+          "params": {
+            "resource/type": "Group"
+          },
+          "operation": {
+            "id": {
+              "$one-of": [
+                "FhirSearch",
+                "FhirRead",
+                "orgbac-fhir-search",
+                "orgbac-fhir-read"
+              ]
+            }
+          }
+        },
+        "id": "admin-role-group",
+        "resourceType": "AccessPolicy"
+      },
+      "request": {
+        "method": "PUT",
+        "url": "AccessPolicy/admin-role-group"
+      }
+    },
+    {
+      "resource": {
+        "engine": "matcho",
+        "description": "Admin manage DocumentReference",
+        "matcho": {
+          "user": {
+            "roles": [
+              {
+                "type": "admin"
+              }
+            ]
+          },
+          "params": {
+            "resource/type": "DocumentReference"
+          },
+          "operation": {
+            "id": {
+              "$one-of": ["FhirSearch", "FhirRead", "FhirUpdate"]
+            }
+          }
+        },
+        "id": "admin-role-document-reference",
+        "resourceType": "AccessPolicy"
+      },
+      "request": {
+        "method": "PUT",
+        "url": "AccessPolicy/admin-role-document-reference"
+      }
+    },
+    {
+      "resource": {
+        "engine": "matcho",
+        "description": "Admin access to settings endpoints",
+        "matcho": {
+          "user": {
+            "roles": [
+              {
+                "type": "admin"
+              }
+            ]
+          },
+          "request": {
+            "uri": {
+              "$one-of": ["/api/v1/settings/introspect", "^/api/v1/settings/.*"]
+            }
+          },
+          "operation": {
+            "id": {
+              "$one-of": ["FhirSearch", "FhirRead", "FhirUpdate"]
+            }
+          }
+        },
+        "id": "admin-role-settings-introspect",
+        "resourceType": "AccessPolicy"
+      },
+      "request": {
+        "method": "PUT",
+        "url": "AccessPolicy/admin-role-settings-introspect"
+      }
+    },
+    {
+      "resource": {
+        "engine": "matcho",
+        "description": "Admin access to AwsAccount resources",
+        "matcho": {
+          "user": {
+            "roles": [
+              {
+                "type": "admin"
+              }
+            ]
+          },
+          "params": {
+            "resource/type": "AwsAccount"
+          }
+        },
+        "id": "admin-role-aws-account",
+        "resourceType": "AccessPolicy"
+      },
+      "request": {
+        "method": "PUT",
+        "url": "AccessPolicy/admin-role-aws-account"
+      }
+    },
+    {
+      "resource": {
+        "engine": "matcho",
+        "description": "Admin access to GcpServiceAccount resources",
+        "matcho": {
+          "user": {
+            "roles": [
+              {
+                "type": "admin"
+              }
+            ]
+          },
+          "params": {
+            "resource/type": "GcpServiceAccount"
+          }
+        },
+        "id": "admin-role-gcp-service-account",
+        "resourceType": "AccessPolicy"
+      },
+      "request": {
+        "method": "PUT",
+        "url": "AccessPolicy/admin-role-gcp-service-account"
+      }
+    },
+    {
+      "resource": {
+        "engine": "matcho",
+        "description": "Admin search and read AuditEvent resources",
+        "matcho": {
+          "user": {
+            "roles": [
+              {
+                "type": "admin"
+              }
+            ]
+          },
+          "params": {
+            "resource/type": "AuditEvent"
+          },
+          "operation": {
+            "id": {
+              "$one-of": ["FhirSearch", "FhirRead"]
+            }
+          }
+        },
+        "id": "admin-role-audit-event",
+        "resourceType": "AccessPolicy"
+      },
+      "request": {
+        "method": "PUT",
+        "url": "AccessPolicy/admin-role-audit-event"
+      }
+    },
+    {
+      "resource": {
+        "roles": [
+          {
+            "type": "admin"
+          }
+        ],
+        "password": "$s0$f0801$B3jOpXU2PUyd3iHLOi1qnw==$AJkfwK1Xu+dYkXWS5dRtrJK2CR3ztWos7NuNDIdtVAU=",
+        "id": "portal-admin",
+        "resourceType": "User"
+      },
+      "request": {
+        "method": "PUT",
+        "url": "User/portal-admin"
+      }
+    },
+    {
+      "resource": {
+        "url": "http://aidbox.app/StructureDefinition/AuditEvent/client",
+        "id": "AuditEvent.client",
+        "base": ["AuditEvent"],
+        "expression": "AuditEvent.agent.who.identifier.value",
+        "name": "client",
+        "status": "active",
+        "type": "token",
+        "resourceType": "SearchParameter",
+        "code": "client",
+        "description": "Filter AuditEvent by client identifier (agent.who.identifier.value)"
+      },
+      "request": {
+        "method": "PUT",
+        "url": "SearchParameter/AuditEvent.client"
       }
     }
   ]
