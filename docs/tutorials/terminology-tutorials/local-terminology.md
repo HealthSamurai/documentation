@@ -12,7 +12,7 @@ description: Create local CodeSystems and ValueSets for FHIR resource validation
 ## Before you begin
 
 * Set up your local Aidbox instance by following the Getting Started [guide](../../getting-started/run-aidbox-locally.md). It will make sure that the Aidbox version is  `2507`  or higher.
-*   The following settings in the  `docker-compose.yaml` enable the hybrid terminology engine.\
+*   The following settings in the  `docker-compose.yaml` enable the hybrid terminology engine.
 
 
     ```yaml
@@ -34,19 +34,19 @@ We will create a FHIR Package that includes the following components:
 
 * A **CodeSystem** containing three custom codes
 * A **ValueSet** that includes all conceps from the **CodeSystem**
-* A **profile** for the **ServiceRequest** resource that binds the _ServiceRequest.code_ element to the **ValueSet** and enforces this binding as **required**.\
+* A **profile** for the **ServiceRequest** resource that binds the _ServiceRequest.code_ element to the **ValueSet** and enforces this binding as **required**.
 
 
-1. Create the folder structure for your FHIR package using the following command:\
-   `mkdir -p mypackage/input/resources`
-2.  Create  the JSON file with the **CodeSystem** FHIR resource at the path: `mypackage/input/resources/CodeSystem-tutorial-service-codes.json`\
-    Add the following content to the file:\
+1. Create the folder structure for your FHIR package using the following command:
+   `mkdir -p package`
+2.  Create  the JSON file with the **CodeSystem** FHIR resource at the path: `package/CodeSystem-tutorial-service-codes.json`
+    Add the following content to the file:
 
 
     ```json
     {
       "resourceType": "CodeSystem",
-      "id": "tutorial-service-codes",
+      "id": "tutorial-service-codes-cs",
       "url": "http://example.com/fhir/CodeSystem/tutorial-service-codes",
       "version": "1.0.0",
       "name": "TutorialServiceCodes",
@@ -78,15 +78,15 @@ We will create a FHIR Package that includes the following components:
       ]
     }
     ```
-3.  Create the JSON file with the **ValueSet** FHIR resource at the path: \
-    `mypackage/input/resources/ValueSet-tutorial-service-codes.json`\
-    Add the following content to the file:\
+3.  Create the JSON file with the **ValueSet** FHIR resource at the path: 
+    `package/ValueSet-tutorial-service-codes.json`
+    Add the following content to the file:
 
 
     ```json
     {
       "resourceType": "ValueSet",
-      "id": "tutorial-service-codes",
+      "id": "tutorial-service-codes-vs",
       "url": "http://example.com/fhir/ValueSet/tutorial-service-codes",
       "version": "1.0.0",
       "name": "TutorialServiceCodes",
@@ -105,9 +105,9 @@ We will create a FHIR Package that includes the following components:
       }
     }
     ```
-4.  Create the JSON file with the FHIR profile at the path:\
-    `mypackage/input/resources/StructureDefinition-tutorial-service-request.json`\
-    Add the following content to the file:\
+4.  Create the JSON file with the FHIR profile at the path:
+    `package/StructureDefinition-tutorial-service-request.json`
+    Add the following content to the file:
 
 
     ```json
@@ -153,9 +153,9 @@ We will create a FHIR Package that includes the following components:
     }
     ```
 
-    \
+    
 
-5.  Create the `mypackage/package.json` file:\
+5.  Create the `package/package.json` file:
 
 
     ```json
@@ -171,37 +171,66 @@ We will create a FHIR Package that includes the following components:
       "license": "MIT"
     }
     ```
-6.  At this point, the `mypackage` directory structure should look like this:\
+6.  Create the `package/.index.json` file:
+
+
+    ```json
+    {
+      "index-version": 2,
+      "files": [
+        {
+          "filename": "StructureDefinition-tutorial-service-request.json",
+          "resourceType": "StructureDefinition",
+          "url": "http://example.com/fhir/StructureDefinition/tutorial-service-request",
+          "kind": "resource",
+          "type": "ServiceRequest",
+          "derivation": "constraint"
+        },
+        },
+        {
+          "filename": "CodeSystem-tutorial-service-codes.json",
+          "resourceType": "CodeSystem",
+          "url": "http://example.com/fhir/CodeSystem/tutorial-service-codes"
+        },
+        {
+          "filename": "ValueSet-tutorial-service-codes.json",
+          "resourceType": "ValueSet",
+          "url": "http://example.com/fhir/ValueSet/tutorial-service-codes"
+        }
+      ]
+    }
+    ```
+
+6.  At this point, the `package` directory structure should look like this:
 
 
     ```
-    mypackage
-    ├── input
-    │   └── resources
-    │       ├── CodeSystem-tutorial-service-codes.json
-    │       ├── StructureDefinition-tutorial-service-request.json
-    │       └── ValueSet-tutorial-service-codes.json
-    └── package.json
+    package
+    ├── .index.json
+    ├── CodeSystem-tutorial-service-codes.json
+    ├── package.json
+    ├── StructureDefinition-tutorial-service-request.json
+    └── ValueSet-tutorial-service-codes.json
     ```
-7.  Create `tar.gz` file for FHIR package using the following command:\
+7.  Create `tar.gz` file for FHIR package using the following command:
 
 
     ```bash
-    cd mypackage && tar -czf ../tutorial-fhir-package-1.0.0.tgz .
+    tar -czvf tutorial-fhir-package-1.0.0.tgz package
     ```
-8. Open [Aidbox UI](http://localhost:8080/) and go to the _**FAR**_ tab. Click the "**Import package**" button, select the `tutorial-fhir-package-1.0.0.tgz` file, and then click **Import.**\
+8. Open [Aidbox UI](http://localhost:8080/) and go to the _**FAR**_ tab. Click the "**Import package**" button, select the `tutorial-fhir-package-1.0.0.tgz` file, and then click **Import.**
 
 
 <figure><img src="../../.gitbook/assets/image (4).png" alt="Import FHIR package dialog in Aidbox UI"><figcaption></figcaption></figure>
 
-At this point, you should be able to see the loaded package in the packages list. \
+At this point, you should be able to see the loaded package in the packages list. 
 
 
 <figure><img src="../../.gitbook/assets/image (5).png" alt="Imported packages list in Aidbox UI"><figcaption></figcaption></figure>
 
 ## Testing the local terminology
 
-1.  Navigate to **Aidbox UI -> REST Console** and create a patient with id `pt-1`\
+1.  Navigate to **Aidbox UI -> REST Console** and create a patient with id `pt-1`
 
 
     ```json
@@ -214,7 +243,7 @@ At this point, you should be able to see the loaded package in the packages list
       "id": "pt-1"
     }
     ```
-2.  Create a **ServiceRequest** that conforms to the profile included in the imported package.\
+2.  Create a **ServiceRequest** that conforms to the profile included in the imported package.
 
 
     ```json
@@ -253,8 +282,8 @@ At this point, you should be able to see the loaded package in the packages list
     }
     ```
 
-    \
-    **Note:**   `meta.profile` property references the imported profile:\
+    
+    **Note:**   `meta.profile` property references the imported profile:
 
 
     ```json
@@ -265,9 +294,9 @@ At this point, you should be able to see the loaded package in the packages list
       }
     ```
 
-    This informs the FHIR server to validate the resource against the specified profile when it is created.\
-    \
-    **Note:** `code.coding` contains a valid code from the imported code system:\
+    This informs the FHIR server to validate the resource against the specified profile when it is created.
+    
+    **Note:** `code.coding` contains a valid code from the imported code system:
 
 
     ```json
@@ -280,7 +309,7 @@ At this point, you should be able to see the loaded package in the packages list
         ]
       }
     ```
-3.  Create an invalid Service Request by executing the following request:\
+3.  Create an invalid Service Request by executing the following request:
 
 
     ```json
@@ -329,7 +358,7 @@ This is expected, as the CodeSystem `http://example.com/fhir/CodeSystem/tutorial
 
 ## Adding new code to the CodeSystem
 
-Suppose we want to add a new code to the CodeSystem that was previously imported as part of a FHIR package. We can do this without creating a new version of the package or reloading it into the FHIR server.\
+Suppose we want to add a new code to the CodeSystem that was previously imported as part of a FHIR package. We can do this without creating a new version of the package or reloading it into the FHIR server.
 The ValueSet references the CodeSystem without specifying an exact version:
 
 ```json
@@ -342,11 +371,11 @@ The ValueSet references the CodeSystem without specifying an exact version:
   }
 ```
 
-This means Aidbox will use the latest available version of the CodeSystem in the system when validating codes. You can read more about versioning of canonical resources [here](../../artifact-registry/artifact-registry-overview.md#versioning-strategy).\
+This means Aidbox will use the latest available version of the CodeSystem in the system when validating codes. You can read more about versioning of canonical resources [here](../../artifact-registry/artifact-registry-overview.md#versioning-strategy).
 
 
-1. Create a new version of the **CodeSystem** by executing the request below.\
-   **Note:** The version has been incremented to `1.0.1` and a new code `follow-up` has been added.\
+1. Create a new version of the **CodeSystem** by executing the request below.
+   **Note:** The version has been incremented to `1.0.1` and a new code `follow-up` has been added.
 
 
 ```json
@@ -394,10 +423,10 @@ accept: application/json
 }
 ```
 
-\
+
 **Note:**  it's not possible to update the content of an already loaded package in Aidbox. The new version of the CodeSystem was created in the default `app.aidbox.main` package.
 
-2. Verify that the request to create  a follow-up ServiceRequest can now be executed successfully:\
+2. Verify that the request to create  a follow-up ServiceRequest can now be executed successfully:
 
 
 ```json
@@ -435,8 +464,3 @@ accept: application/json
   "authoredOn": "2024-01-01"
 }
 ```
-
-\
-
-
-&#x20;
