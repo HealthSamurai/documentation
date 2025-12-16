@@ -8,7 +8,7 @@ spec:
     kind: StatefulSet
     name: gitbok
   updatePolicy:
-    updateMode: "Off"
+    updateMode: Recreate
   resourcePolicy:
     containerPolicies:
     - containerName: main
