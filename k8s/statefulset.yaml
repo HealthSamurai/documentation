@@ -8,6 +8,7 @@ metadata:
   namespace: gitbok
   annotations: {}
 spec:
+  podManagementPolicy: Parallel
   serviceName: gitbok
   replicas: 2
   updateStrategy:
@@ -22,6 +23,13 @@ spec:
       labels:
         app.kubernetes.io/name: gitbok
     spec:
+      affinity:
+        podAntiAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+          - labelSelector:
+              matchLabels:
+                app.kubernetes.io/name: gitbok
+            topologyKey: kubernetes.io/hostname
       initContainers:
       - name: git-sync-init
         image: registry.k8s.io/git-sync/git-sync:v3.6.9
