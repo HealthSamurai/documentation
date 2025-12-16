@@ -317,6 +317,14 @@ Defines the data sources and events that clients can subscribe to. Acts as a con
   "type" : "string",
   "desc" : "Human-readable and computation-friendly name for a filter parameter usable by subscriptions on this topic."
 }, {
+  "path" : "trigger.canFilterBy.filterDefinitionFhirPathExpression",
+  "name" : "filterDefinitionFhirPathExpression",
+  "lvl" : 2,
+  "min" : 1,
+  "max" : 1,
+  "type" : "string",
+  "desc" : ""
+}, {
   "path" : "trigger.canFilterBy.filterDefinition",
   "name" : "filterDefinition",
   "lvl" : 2,
