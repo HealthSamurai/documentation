@@ -4,7 +4,7 @@ metadata:
   name: gitbok-pdb
   namespace: gitbok
 spec:
-  minAvailable: 1
+  maxUnavailable: 1
   selector:
     matchLabels:
       app.kubernetes.io/name: gitbok
