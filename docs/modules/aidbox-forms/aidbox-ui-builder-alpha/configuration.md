@@ -277,172 +277,211 @@ The example provided below represents a comprehensive translations object for En
 
 ```json
 {
-  "widget": {
-    "drawing-pad": {
-      "close": { "en": "Close annotation editor" },
-      "alt": { "en": "Annotation pad background" },
-      "clear": { "en": "Clear canvas" },
-      "open": { "en": "Edit annotation" }
+  "alert" : {
+    "questionnaire-response-not-found" : {
+      "message" : {"en" : "Cannot load the questionnaire response"},
+      "details" : {"en" : "Response with id %s does not exists."}
     },
-    "speech-to-text": {
-      "tooltip": {
-        "recording": { "en": "Recording your speech" },
-        "unsupported": { "en": "Speech to text is disabled because neither GPU is available nor cross-origin isolation is enabled" },
-        "initializing": { "en": "Initializing speech to text engine" },
-        "record": { "en": "Click to record your speech" },
-        "converting": { "en": "Converting your speech to text" }
+    "provide-url" : {
+      "message" : {"en" : "Please provide a URL for your link."}},
+    "next-question-response-error" : {
+      "message" : {"en" : "Errors while get next question"}
+    },
+    "next-question-invalid-q-reference" : {
+      "details" : {"en" : "QuestionnaireResponse does not reference contained Questionnaire (reference: '%s')"},
+      "message" : {"en" : "Next question error"}
+    },
+    "next-question-missing-contained-q" : {
+      "details" : {"en" : "QuestionnaireResponse does not have a contained Questionnaire"},
+      "message" : {"en" : "Next question error"}
+    },
+    "next-questions-service-does-not-return-new-items" : {
+      "details" : {"en" : "Next Question service does not return new items"},
+      "message" : {"en" : "No new items"}
+    },
+    "questionnaire-response-cannot-repopulate" : {
+      "message" : {"en" : "Repopulate process encountered errors"}
+    },
+    "questionnaire-response-cannot-save" : {
+      "message" : {"en" : "Cannot save QuestionnaireResponse"}
+    },
+    "file-too-large" : {
+      "message" : {"en" : "Max allowed file size is: %d"}
+    },
+    "network" : {
+      "message" : {"en" : "Network error"},
+      "close" : {"en" : "Close"},
+      "details" : {"en" : "Network issues detected, please try again later."},
+      "refresh" : {"en" : "Refresh"}
+    },
+    "questionnaire-not-found" : {
+      "message" : {"en" : "Cannot load the questionnaire"},
+      "details" : {"en" : "Questionnaire with url '%s' does not exists"}
+    },
+    "next-question-id-mismatch" : {
+      "message" : {"en" : "Next question error"},
+      "details" : {"en" : "QuestionnaireResponse ID mismatch: sent '%s', received '%s'"}
+    },
+    "questionnaire-response-save-issues" : {
+      "message" : {"en" : "Warnings"}
+    },
+    "unauthorized" : {
+      "message" : {"en" : "Authorization required"},
+      "details" : {"en" : "Your token is invalid or expired"}
+    }
+  },
+  "widget" : {
+    "repeats" : {
+      "add" : {"en" : "Add item"}
+    },
+    "drawing-pad" : {
+      "close" : {"en" : "Close annotation editor"},
+      "alt" : {"en" : "Annotation pad background"},
+      "clear" : {"en" : "Clear canvas"},
+      "open" : {"en" : "Edit annotation"}
+    },
+    "speech-to-text" : {
+      "tooltip" : {
+        "recording" : {"en" : "Recording your speech"},
+        "unsupported" : {"en" : "Speech to text is disabled because neither GPU is available nor cross-origin isolation is enabled"},
+        "initializing" : {"en" : "Initializing speech to text engine"},
+        "record" : {"en" : "Click to record your speech"},
+        "converting" : {"en" : "Converting your speech to text"}
       },
-      "record": { "en": "Record" }
+      "record" : {"en" : "Record"}
     },
-    "choice": {
-      "no-options": { "en": "No options" },
-      "specify-other": { "en": "Specify other..." },
-      "select": { "en": "Select" },
-      "search": { "en": "Search" },
-      "loading-more": { "en": "Loading options..." },
-      "load-more": { "en": "Load more options" }
+    "signature" : {
+      "alt" : {"en" : "Sign here"},
+      "clear" : {"en" : "Clear signature"},
+      "open" : {"en" : "Expand sign pad"},
+      "close" : {"en" : "Close sign pad"}
     },
-    "file": {
-      "browse": { "en": "Browse" },
-      "preview": {
-        "title": { "en": "File Preview" },
-        "alt": { "en": "Unable to show image" },
-        "content-type": { "en": "Content Type: Unknown" }
+    "time" : {
+      "now" : {"en" : "Now"},
+      "clear" : {"en" : "Clear"},
+      "minutes" : {"en" : "Minutes"},
+      "select" : {"en" : "Select"},
+      "pick" : {"en" : "Pick time"},
+      "hours" : {"en" : "Hours"},
+      "cancel" : {"en" : "Cancel"}
+    },
+    "date" : {
+      "today" : {"en" : "Today"},
+      "select" : {"en" : "Select"},
+      "pick" : {"en" : "Pick date"},
+      "clear" : {"en" : "Clear"},
+      "cancel" : {"en" : "Cancel"}
+    },
+    "file" : {
+      "browse" : {"en" : "Browse"},
+      "preview" : {
+        "title" : {"en" : "File Preview"},
+        "alt" : {"en" : "Unable to show image"},
+        "content-type" : {"en" : "Content Type: Unknown"}
       },
-      "placeholder": { "en": "Choose file" }
+      "placeholder" : {"en" : "Choose file"}
     },
-    "signature": {
-      "alt": { "en": "Sign here" },
-      "clear": { "en": "Clear signature" },
-      "open": { "en": "Expand sign pad" },
-      "close": { "en": "Close sign pad" }
+    "page" : {
+      "current-page" : {"en" : "Page %d of %d"},
+      "next-page" : {"en" : "Next Page"},
+      "previous-page" : {"en" : "Previous Page"}
     },
-    "page": {
-      "current-page": { "en": "Page %d of %d" },
-      "next-page": { "en": "Next Page" },
-      "previous-page": { "en": "Previous Page" }
-    },
-    "repeats": {
-      "add": { "en": "Add item" }
+    "choice" : {
+      "no-options" : {"en" : "No options"},
+      "specify-other" : {"en" : "Specify other..."},
+      "your-custom-answer" : {"en" : "Your custom answer:"},
+      "select" : {"en" : "Select"},
+      "search" : {"en" : "Search"},
+      "pick-from-a-list" : {"en" : "Pick from a list"},
+      "loading-more" : {"en" : "Loading options..."},
+      "load-more" : {"en" : "Load more options"}
     }
   },
-  "form": {
-    "status": {
-      "ready": { "en": "Ready to go" },
-      "saved-time": { "en": "Saved " },
-      "offline-ready": { "en": "Changes will be saved locally" },
-      "submitting": { "en": "Submitting changes..." },
-      "offline-saved": { "en": "Changes saved locally" },
-      "saved": { "en": "Changes saved" },
-      "offline": { "en": "Offline" },
-      "error": {
-        "validation": { "en": "Validation error" },
-        "other": { "en": "Not submitted yet" }
+  "form" : {
+    "status" : {
+      "ready" : {"en" : "Ready to go"},
+      "saved-time" : {"en" : "Saved "},
+      "offline-ready" : {"en" : "Changes will be saved locally"},
+      "submitting" : {"en" : "Submitting changes..."},
+      "offline-saved" : {"en" : "Changes saved locally"},
+      "saved" : {"en" : "Changes saved"},
+      "offline" : {"en" : "Offline"},
+      "error" : {
+        "validation" : {"en" : "Validation error"},
+        "other" : {"en" : "Not submitted yet"}
       },
-      "amended": { "en": "Form amended" },
-      "recording": { "en": "Recording input..." },
-      "saving": { "en": "Saving changes..." },
-      "submitted": { "en": "Form submitted" },
-      "amending": { "en": "Amending changes..." }
+      "amended" : {"en" : "Form amended"},
+      "populating" : {"en" : "Populating form..."},
+      "recording" : {"en" : "Recording input..."},
+      "saving" : {"en" : "Saving changes..."},
+      "calling-next-question" : {"en" : "Getting next question..."},
+      "submitted" : {"en" : "Form submitted"},
+      "amending" : {"en" : "Amending changes..."}
     },
-    "button": {
-      "amend": { "en": "Amend" },
-      "offline-amend": { "en": "You are offline and cannot amend" },
-      "repopulate": { "en": "Repopulate" },
-      "offline-submit": { "en": "You are offline and cannot submit" },
-      "print": { "en": "Print" },
-      "skip-item": { "en": "Skip Question" },
-      "saved": { "en": "Saved" },
-      "next-item": { "en": "Next" },
-      "submit": { "en": "Submit" },
-      "save-and-close": { "en": "Save" }
+    "button" : {
+      "offline-amend" : {"en" : "You are offline and cannot amend"},
+      "amend" : {"en" : "Saved"},
+      "skip-item" : {"en" : "Skip Question"},
+      "saved" : {"en" : "Saved"},
+      "offline-submit" : {"en" : "You are offline and cannot submit"},
+      "save-and-close" : {"en" : "Save"},
+      "next-question" : {"en" : "Next Question"},
+      "offline-next-question" : {"en" : "You are offline and cannot call Next Question"},
+      "next-item" : {"en" : "Next"}, 
+      "submit" : {"en" : "Submit"}, 
+      "repopulate" : {"en" : "Repopulate"},
+      "print" : {"en" : "Print"}
     },
-    "label": {
-      "last-one-question": { "en": "That's the last one" }
+    "label" : {"last-one-question" : {"en" : "That's the last one"}},
+    "outline" : {"title" : {"en" : "Contents"}}
+  },
+  "error" : {
+    "validation" : {
+      "signature-author-required" : {"en" : "Signature author is required"},
+      "type-mismatch" : {"en" : "Expected answer of type: '%s', got: '%s'"},
+      "invalid-answer" : {"en" : "Invalid answer"},
+      "file-too-large" : {"en" : "File is too large (allowed max size: %s)"},
+      "signature-required" : {"en" : "Signature is required"},
+      "value-length-less-than-min" : {"en" : "Answer length can't be less than %s"},
+      "answer-required" : {"en" : "Answer is required"},
+      "value-greater-than-max" : {"en" : "Value can't be greater than %s"},
+      "group-answer-required" : {"en" : "At least one child item must be answered"},
+      "value-less-than-min" : {"en" : "Value can't be less than %s"},
+      "value-length-greater-than-max" : {"en" : "Answer length can't be greater than %s"}
     },
-    "outline": {
-      "title": { "en": "Contents" }
+    "invalid-jwt" : {"en" : "Invalid JWT"},
+    "fhir" : {
+      "version-conversion" : {"en" : "Unable to convert the provided resource to the required format."},
+      "resource-not-questionnaire" : {"en" : "The provided resource does not match the format of a questionnaire."},
+      "empty-resource" : {"en" : "The provided resource contains no data."},
+      "version-incompatible" : {"en" : "The questionnaire contains properties from multiple incompatible FHIR versions."}
+    },
+    "validate" : {
+      "value-decimal-places" : {"en" : "Answer exceeds maximum decimal places: %s"}
     }
   },
-  "error": {
-    "validation": {
-      "invalid-answer": { "en": "Invalid answer" },
-      "value-less-than-min": { "en": "Value can't be less than %s" },
-      "file-too-large": { "en": "File is too large (allowed max size: %s)" },
-      "type-mismatch": { "en": "Expected answer of type: '%s', got: '%s'" },
-      "signature-author-required": { "en": "Signature author is required" },
-      "signature-required": { "en": "Signature is required" },
-      "group-answer-required": { "en": "At least one child item must be answered" },
-      "answer-required": { "en": "Answer is required" },
-      "value-greater-than-max": { "en": "Value can't be greater than %s" }
+  "builder" : {
+    "warning" : {
+      "questionnaire-changed-version-when-in-production-status" : {"en" : "Changing Questionnaire version while in production status (%s) may cause data inconsistencies and affect existing form submissions"},
+      "questionnaire-in-production-status-changed" : {"en" : "This Questionnaire was generated from an openEHR template. Modifying it may prevent reverse conversion into an openEHR Composition."},
+      "questionnaire-is-used-as-component" : {"en" : "This Questionnaire is used as a component in other Questionnaires - changes will propagate to all forms using this component"},
+      "questionnaire-changed-url-when-in-production-status" : {"en" : "Changing Questionnaire.url while in production status (%s) may break existing integrations and references to this Questionnaire"},
+      "questionnaire-belongs-to-other-organization" : {"en" : "This Questionnaire belongs to another organization. You don’t have permission to modify it."},
+      "questionnaire-moved-from-production-status" : {"en" : "Moving Questionnaire from production status (%s) may invalidate existing form submissions and break dependent integrations"}
     },
-    "invalid-jwt": { "en": "Invalid JWT" },
-    "fhir": {
-      "version-conversion": { "en": "Unable to convert the provided resource to the required format." },
-      "resource-not-questionnaire": { "en": "The provided resource does not match the format of a questionnaire." },
-      "empty-resource": { "en": "The provided resource contains no data." },
-      "version-incompatible": { "en": "The questionnaire contains properties from multiple incompatible FHIR versions." }
-    },
-    "validate": {
-      "value-decimal-places": { "en": "Answer exceeds maximum decimal places: %s" }
+    "error" : {
+      "questionnaire-with-same-url-and-version-exists" : {"en" : "A Questionnaire with the same URL and version already exists (ID: %s)"},
+      "questionnaire-move-to-production-status-when-no-url" : {"en" : "A Questionnaire URL is required for production use to ensure stable references and proper versioning"}
     }
   },
-  "alert": {
-    "questionnaire-response-not-found": {
-      "message": { "en": "Cannot load the questionnaire response" },
-      "details": { "en": "Response with id %s does not exists." }
-    },
-    "provide-url": {
-      "message": { "en": "Please provide a URL for your link." }
-    },
-    "questionnaire-response-cannot-repopulate": {
-      "message": { "en": "Repopulate process encountered errors" }
-    },
-    "questionnaire-response-cannot-save": {
-      "message": { "en": "Cannot save QuestionnaireResponse" }
-    },
-    "file-too-large": {
-      "message": { "en": "Max allowed file size is: %d" }
-    },
-    "network": {
-      "message": { "en": "Network error" },
-      "close": { "en": "Close" },
-      "details": { "en": "Network issues detected, please try again later." },
-      "refresh": { "en": "Refresh" }
-    },
-    "questionnaire-not-found": {
-      "message": { "en": "Cannot load the questionnaire" },
-      "details": { "en": "Questionnaire with url '%s' does not exists" }
-    },
-    "questionnaire-response-save-issues": {
-      "message": { "en": "Warnings" }
-    },
-    "unauthorized": {
-      "message": { "en": "Authorization required" },
-      "details": { "en": "Your token is invalid or expired" }
-    }
+  "offline" : {
+    "new-version-available" : {"en" : "New version of this page is available. Please refresh the page to get the latest version."},
+    "reloading" : {"en" : "Reloading..."},
+    "reload" : {"en" : "Reload"}
   },
-  "builder": {
-    "warning": {
-      "questionnaire-changed-version-when-in-production-status": { "en": "Changing Questionnaire version while in production status (%s) may cause data inconsistencies and affect existing form submissions" },
-      "questionnaire-in-production-status-changed": { "en": "Changes to Questionnaire in production status may affect existing form submissions and data collection processes" },
-      "questionnaire-is-used-as-component": { "en": "This Questionnaire is used as a component in other Questionnaires - changes will propagate to all forms using this component" },
-      "questionnaire-changed-url-when-in-production-status": { "en": "Changing Questionnaire.url while in production status (%s) may break existing integrations and references to this Questionnaire" },
-      "questionnaire-moved-from-production-status": { "en": "Moving Questionnaire from production status (%s) may invalidate existing form submissions and break dependent integrations" }
-    },
-    "error": {
-      "questionnaire-with-same-url-and-version-exists": { "en": "A Questionnaire with the same URL and version already exists (ID: %s)" },
-      "questionnaire-move-to-production-status-when-no-url": { "en": "A Questionnaire URL is required for production use to ensure stable references and proper versioning" }
-    }
-  },
-  "offline": {
-    "new-version-available": { "en": "New version of this page is available. Please refresh the page to get the latest version." },
-    "reloading": { "en": "Reloading..." },
-    "reload": { "en": "Reload" }
-  },
-  "warning": {
-    "fhir": {
-      "version-indeterminate": { "en": "Cannot determine version; the questionnaire contains fields common to multiple known versions." }
+  "warning" : {
+    "fhir" : {
+      "version-indeterminate" : {"en" : "Cannot determine version; the questionnaire contains fields common to multiple known versions."}
     }
   }
 }
