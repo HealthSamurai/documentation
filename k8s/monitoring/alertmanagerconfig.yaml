@@ -13,6 +13,13 @@ spec:
     groupInterval: 5m
     repeatInterval: 1h
     routes:
+      # Null route for InfoInhibitor alerts - these are noise suppressors, not actionable alerts
+      - receiver: null-receiver
+        matchers:
+          - name: alertname
+            matchType: "="
+            value: InfoInhibitor
+
       # Watchdog heartbeat route - must be processed quickly
       - receiver: grafana-oncall-heartbeat
         matchers:
@@ -76,3 +83,6 @@ spec:
       webhookConfigs:
         - url: https://oncall.aidbox.io/integrations/v1/alertmanager/slGWB0G7OkKeanLgCM1Jb7I8y/heartbeat/
           sendResolved: false
+
+    # Null receiver for silencing non-actionable alerts (InfoInhibitor, etc)
+    - name: null-receiver
