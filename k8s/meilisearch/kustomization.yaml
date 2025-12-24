@@ -6,12 +6,7 @@ namespace: gitbok
 resources:
   - configmap-grafana-dashboard.yaml
   - configmap.yaml
-  - configmap-reindex-env.yaml
-  - configmap-reindex-script.yaml
   - cronjob-cleanup-tasks.yaml
-  - cronjob-reindex-auditbox.yaml
-  - cronjob-reindex-fhirbase.yaml
-  - cronjob-reindex.yaml
   - cronjob-reindex-v2.yaml
   - service.yaml
   - serviceaccount.yaml

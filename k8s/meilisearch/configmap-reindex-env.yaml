@@ -1,7 +1,0 @@
-apiVersion: v1
-kind: ConfigMap
-metadata:
-  name: meilisearch-reindex-env
-  namespace: gitbok
-data:
-  MEILISEARCH_HOST_URL: "http://meilisearch.gitbok.svc.cluster.local:7700"
