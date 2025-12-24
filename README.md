@@ -300,74 +300,73 @@ Go to [run locally](#run-locally) section, run locally as described, then go to 
 
 ## Set up search
 
-We use [Meilisearch](https://www.meilisearch.com/) as a search engine. 
+We use [Meilisearch](https://www.meilisearch.com/) as a search engine.
 It is deployed in k8s (see **k8s/meilisearch** directory).
 
 Every product has its own [meilisearch **index**](https://www.meilisearch.com/docs/learn/getting_started/indexes).
-To index the product documentation, we use [Meilisearch docs-scraper](https://github.com/meilisearch/docs-scraper]). 
+To index the product documentation, we use [meilisearch-docs-scraper](https://github.com/HealthSamurai/meilisearch-docs-scraper).
 
-Every hour (depends on a product) we scrap the html from `<domain>/<DOCS_PREFIX>/<product>/sitemap.xml` and recreate the index.
-See **k8s/meilisearch/cronjob-reindex.yaml** cronjob.
+Every 2 hours we scrape the HTML from `<domain>/<DOCS_PREFIX>/<product>/sitemap.xml` and recreate all indexes.
+See **k8s/meilisearch/cronjob-reindex-v2.yaml** — a single CronJob that indexes all products.
 
 ### How to set up search for a new product
 
 You need a deployed documentation website to set up a search, because we create search index through parsing the HTML of a product documentation.
-Setting up search means to create Meilisearch index using [Meilisearch docs-scraper](https://github.com/meilisearch/docs-scraper]).
 
-Here's the instruction how to add meilisearch docs-scraper config and set k8s cronjob.
-
-1. Add scraper config.
+1. Add scraper config:
 ```
 cp k8s/meilisearch/config.json k8s/meilisearch/config-<your-product>.json
 ```
-2. Make sure that `index_uid` is the same as `meilisearch-index` from the **products.yaml** file.
-3. Change `start_urls` and `sitemap_urls`.
-4. Add reindex cronjob
-```
-cp k8s/meilisearch/cronjob-reindex.yaml k8s/meilisearch/cronjob-reindex-<your-product>.yaml
-```
 
-Update the following fields:
-- `metadata.name`: `meilisearch-reindex-<your-product>`
-- `spec.schedule`: adjust if you want
-- `env[].INDEX_NAME`: set to your index name (same as `index_uid` in config)
-- `volumes[].config.configMap.name`: `meilisearch-scraper-config-<your-product>`
+2. Edit `config-<your-product>.json`:
+   - Set `index_uid` to match `meilisearch-index` from **products.yaml**
+   - Change `start_urls` and `sitemap_urls`
 
-Example:
-```yaml
-metadata:
-  name: meilisearch-reindex-<your-product>
-spec:
-  schedule: "45 * * * *"  # Adjust timing
-  # ...
-  env:
-    - name: INDEX_NAME
-      value: "<your-index-name>"
-  # ...
-  volumes:
-    - name: config
-      configMap:
-        name: meilisearch-scraper-config-<your-product>
-```
-
-Note: The cronjob uses shared resources:
-- `configmap-reindex-env.yaml`: common Meilisearch URL
-- `configmap-reindex-script.yaml`: reindex script that ensures the update is atomic
-- `meilisearch-secret`: API key
-
-3. Add scraper config to `k8s/meilisearch/kustomization.yaml`
-
-Update `configMapGenerator` section:
+3. Add config to `k8s/meilisearch/kustomization.yaml`:
 ```yaml
 configMapGenerator:
   - name: meilisearch-scraper-config-<your-product>
     files:
-      - config.json=config-<your-product>.json
+      - config.json=./config-<your-product>.json
 ```
 
-4. Commit and push, wait until FluxCD applies it
+4. Add config to `k8s/meilisearch/cronjob-reindex-v2.yaml`:
+```yaml
+args:
+  - /configs/docs.json
+  - /configs/fhirbase.json
+  - /configs/auditbox.json
+  - /configs/<your-product>.json  # Add this
+volumeMounts:
+  - name: config-<your-product>
+    mountPath: /configs/<your-product>.json
+    subPath: config.json
+volumes:
+  - name: config-<your-product>
+    configMap:
+      name: meilisearch-scraper-config-<your-product>
+```
 
-You can also try it locally:
-1. Run `make up` to run meilisearch from `docker-compose.yaml`
-2. `docker-compose run -v ./k8s/meilisearch/config-<your-product>.json:/docs-scraper/config.json --rm docs-scraper`
-3. GET http://localhost:7700/indexes/<index-name> (Authorization: Bearer 60DBZGy6zoDL6Q--s1-dHBWptiVKvK-XRsaacdvkOSM)
+5. Commit and push, wait until FluxCD applies it
+
+### Test locally
+
+1. Run meilisearch:
+```
+make up
+```
+
+2. Run scraper:
+```
+docker run --rm \
+  -e MEILISEARCH_HOST_URL=http://host.docker.internal:7700 \
+  -e MEILISEARCH_API_KEY=-60DBZGy6zoDL6Q--s1-dHBWptiVKvK-XRsaacdvkOSM \
+  -v $(pwd)/k8s/meilisearch/config-<your-product>.json:/app/config.json \
+  ghcr.io/healthsamurai/meilisearch-docs-scraper:latest
+```
+
+3. Verify index:
+```
+curl http://localhost:7700/indexes/<index-name> \
+  -H "Authorization: Bearer -60DBZGy6zoDL6Q--s1-dHBWptiVKvK-XRsaacdvkOSM"
+```
