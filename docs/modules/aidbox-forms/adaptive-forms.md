@@ -156,7 +156,7 @@ Supported modes include:
 
 ### Sample Project: External Assessment Center
 
-This [sample project](https://github.com/Aidbox/examples/tree/main/aidbox-adaptive-forms) demonstrates how to implement an external assessment center for Adaptive Forms. It provides a reference implementation of a NestJS-based FHIR SDC Adaptive Questionnaire server, showcasing how to handle dynamic questionnaire flows and responses in compliance with the FHIR Structured Data Capture (SDC) Implementation Guide.
+This [sample project](https://github.com/Aidbox/examples/tree/main/aidbox-forms/aidbox-adaptive-forms) demonstrates how to implement an external assessment center for Adaptive Forms. It provides a reference implementation of a NestJS-based FHIR SDC Adaptive Questionnaire server, showcasing how to handle dynamic questionnaire flows and responses in compliance with the FHIR Structured Data Capture (SDC) Implementation Guide.
 
 The example focuses on the PHQ-2/PHQ-9 depression screening workflow, a commonly used clinical assessment for detecting and measuring the severity of depression.
 

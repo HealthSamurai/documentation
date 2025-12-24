@@ -52,7 +52,7 @@ description: Aidbox FHIR server release notes with latest features, improvements
 * Aidbox Forms
   * Supported [Adaptive forms](../modules/aidbox-forms/adaptive-forms.md) in both the Builder and the Renderer.
   * Implemented the [`$next-question`](../modules/aidbox-forms/adaptive-forms.md) operation for Adaptive forms.
-  * Provided a [sample project](https://github.com/Aidbox/examples/tree/main/aidbox-adaptive-forms) demonstrating how to implement an external assessment center for Adaptive forms.
+  * Provided a [sample project](https://github.com/Aidbox/examples/tree/main/aidbox-forms/aidbox-adaptive-forms) demonstrating how to implement an external assessment center for Adaptive forms.
   * Supported the [`optionPrefix`](../modules/aidbox-forms/aidbox-ui-builder-alpha/form-creation/widgets.md#choice) extension to display a prefix in front of a code when presenting a list of possible values in a questionnaire.
 * Minor updates
   * `2509.3` - Fixed vulnerabilities and issues with concurrent startup of multiple instances
