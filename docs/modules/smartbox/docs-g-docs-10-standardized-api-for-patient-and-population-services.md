@@ -50,7 +50,5 @@ Aidbox supports the ONC requirement for publishing service base URLs:
 
 * URLs are published in FHIR Endpoint resource format
 
-### Documentation
 
-{% embed url="https://cmpl.aidbox.app/documentation" %}
 
