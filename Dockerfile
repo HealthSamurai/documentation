@@ -7,8 +7,8 @@ RUN --mount=target=/root/.m2,type=cache,sharing=locked \
 
 FROM bellsoft/liberica-openjre-alpine-musl:24 AS final
 
-# Install git for lastmod generation
-RUN apk add --no-cache git
+# Install git for lastmod generation (with security updates)
+RUN apk update && apk upgrade --no-cache && apk add --no-cache git
 
 COPY --from=builder /srv/target/gitbok.jar /gitbok.jar
 
