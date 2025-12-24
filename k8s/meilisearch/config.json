@@ -25,7 +25,7 @@
     "lvl4": "article h4",
     "lvl5": "article h5",
     "lvl6": "article h2 ~ table tr:nth-child(4) td, article h2 ~ table tr:nth-child(5) td, article h3 ~ table tr:nth-child(4) td, article h3 ~ table tr:nth-child(5) td",
-    "text": "article .real-content p, article .real-content li, article .real-content td, article .real-content blockquote"
+    "text": "article .real-content p, article .real-content li, article .real-content td, article .real-content blockquote, article .real-content pre"
   },
   "custom_settings": {
     "filterableAttributes": [
