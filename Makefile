@@ -58,6 +58,16 @@ minify-js:
 up:
 	docker-compose up -d meilisearch
 
+clean-meilisearch:
+	@echo "Deleting all Meilisearch indexes..."
+	@curl -s "http://localhost:7700/indexes" -H "Authorization: Bearer -60DBZGy6zoDL6Q--s1-dHBWptiVKvK-XRsaacdvkOSM" | \
+		grep -o '"uid":"[^"]*"' | sed 's/"uid":"//;s/"//' | \
+		while read uid; do \
+			echo "Deleting index: $$uid"; \
+			curl -s -X DELETE "http://localhost:7700/indexes/$$uid" -H "Authorization: Bearer -60DBZGy6zoDL6Q--s1-dHBWptiVKvK-XRsaacdvkOSM"; \
+		done
+	@echo "Done"
+
 down:
 	docker-compose down
 
