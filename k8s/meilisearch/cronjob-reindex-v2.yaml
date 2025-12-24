@@ -1,0 +1,51 @@
+apiVersion: batch/v1
+kind: CronJob
+metadata:
+  name: meilisearch-reindex-v2
+  namespace: gitbok
+spec:
+  schedule: "0 */2 * * *"
+  concurrencyPolicy: Forbid
+  successfulJobsHistoryLimit: 1
+  failedJobsHistoryLimit: 2
+  jobTemplate:
+    spec:
+      ttlSecondsAfterFinished: 86400
+      template:
+        spec:
+          restartPolicy: OnFailure
+          containers:
+            - name: scraper
+              image: ghcr.io/healthsamurai/meilisearch-docs-scraper:latest
+              args:
+                - /configs/docs.json
+                - /configs/fhirbase.json
+                - /configs/auditbox.json
+              env:
+                - name: MEILISEARCH_HOST_URL
+                  value: "http://meilisearch.gitbok.svc.cluster.local:7700"
+                - name: MEILISEARCH_API_KEY
+                  valueFrom:
+                    secretKeyRef:
+                      name: meilisearch-secret
+                      key: master-key
+              volumeMounts:
+                - name: config-docs
+                  mountPath: /configs/docs.json
+                  subPath: config.json
+                - name: config-fhirbase
+                  mountPath: /configs/fhirbase.json
+                  subPath: config.json
+                - name: config-auditbox
+                  mountPath: /configs/auditbox.json
+                  subPath: config.json
+          volumes:
+            - name: config-docs
+              configMap:
+                name: meilisearch-scraper-config
+            - name: config-fhirbase
+              configMap:
+                name: meilisearch-scraper-config-fhirbase
+            - name: config-auditbox
+              configMap:
+                name: meilisearch-scraper-config-auditbox

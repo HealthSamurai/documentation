@@ -12,6 +12,7 @@ resources:
   - cronjob-reindex-auditbox.yaml
   - cronjob-reindex-fhirbase.yaml
   - cronjob-reindex.yaml
+  - cronjob-reindex-v2.yaml
   - service.yaml
   - serviceaccount.yaml
   - servicemonitor.yaml
