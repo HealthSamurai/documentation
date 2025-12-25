@@ -64,14 +64,14 @@ Service URLs:
 ### 1. Create Realm
 
 1. Login to Keycloak: http://localhost:8180 (admin/admin)
-2. Create new realm: hover over "Master" → "Create Realm"
-3. Name: `myrealm`
+2. Create new realm: "Manage Realms" → "Create Realm"
+3. Realm name: `myrealm`
 4. Create
 
 ### 2. Create Client
 
 1. Clients → Create client
-2. Settings:
+2. General Settings:
    - Client type: `OpenID Connect`
    - Client ID: `my-client`
 3. Next → Capability config:
@@ -80,9 +80,6 @@ Service URLs:
    - Direct access grants: `ON`
    - Service accounts roles: `ON` (important for client_credentials)
 4. Next, Save
-5. After creation, go to Client scopes tab:
-   - Add `openid` to Default Client Scopes if not already there
-   - This ensures service account gets openid scope
 
 ### 3. Get Client secret
 
