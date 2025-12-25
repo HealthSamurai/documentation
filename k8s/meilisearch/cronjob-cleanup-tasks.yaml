@@ -17,10 +17,9 @@ spec:
           containers:
             - name: cleanup
               image: python:3.10-slim
-              envFrom:
-                - configMapRef:
-                    name: meilisearch-reindex-env
               env:
+                - name: MEILISEARCH_HOST_URL
+                  value: "http://meilisearch.gitbok.svc.cluster.local:7700"
                 - name: MEILISEARCH_API_KEY
                   valueFrom:
                     secretKeyRef:
