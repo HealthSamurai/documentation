@@ -1,7 +1,7 @@
 (ns gitbok.webhooks.remark42
   (:require
    [cheshire.core :as json]
-   [clj-http.client :as http]
+   [org.httpkit.client :as http-client]
    [clojure.tools.logging :as log]))
 
 (defn format-comment-message
@@ -21,19 +21,14 @@
   [message zulip-config]
   (let [{:keys [url bot-email bot-token stream-id]} zulip-config
         auth (str bot-email ":" bot-token)
-        encoded-auth (-> auth
-                         (.getBytes "UTF-8")
-                         (java.util.Base64/getEncoder)
-                         (.encodeToString))]
+        encoded-auth (.encodeToString (java.util.Base64/getEncoder)
+                                       (.getBytes auth "UTF-8"))
+        form-data (str "type=stream&to=" stream-id "&topic=blog+comments&content=" (java.net.URLEncoder/encode message "UTF-8"))]
     (try
-      (http/post (str url "/api/v1/messages")
-                 {:headers {"Authorization" (str "Basic " encoded-auth)
-                            "Content-Type" "application/x-www-form-urlencoded"}
-                  :form-params {:to stream-id
-                                :type "stream"
-                                :topic "blog comments"
-                                :content message}
-                  :as :json})
+      @(http-client/post (str url "/api/v1/messages")
+                         {:headers {"Authorization" (str "Basic " encoded-auth)
+                                    "Content-Type" "application/x-www-form-urlencoded"}
+                          :body form-data})
       (log/info "Sent remark42 comment notification to Zulip")
       {:status :success}
       (catch Exception e
