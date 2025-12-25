@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: remark42-pvc
+  namespace: gitbok
+  labels:
+    app.kubernetes.io/name: remark42
+    app.kubernetes.io/component: comments
+spec:
+  accessModes:
+  - ReadWriteOnce
+  resources:
+    requests:
+      storage: 1Gi
+  storageClassName: standard-rwo

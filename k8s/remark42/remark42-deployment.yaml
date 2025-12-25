@@ -1,0 +1,112 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: remark42
+  namespace: gitbok
+  labels:
+    app.kubernetes.io/name: remark42
+    app.kubernetes.io/component: comments
+spec:
+  replicas: 1
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxUnavailable: 0
+      maxSurge: 1
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: remark42
+  template:
+    metadata:
+      labels:
+        app.kubernetes.io/name: remark42
+    spec:
+      containers:
+      - name: remark42
+        image: ghcr.io/umputun/remark42:v1.15.0
+        imagePullPolicy: IfNotPresent
+        ports:
+        - containerPort: 8080
+          name: http
+          protocol: TCP
+
+        env:
+        - name: REMARK_URL
+          value: "https://www.health-samurai.io/docs/futureblog/remark42"
+        - name: SITE
+          value: "health-samurai-docs"
+        - name: STORE_BOLT_PATH
+          value: "/srv/var/db"
+        - name: BACKUP_PATH
+          value: "/srv/var/backup"
+        - name: AUTH_ANON
+          value: "false"
+        - name: ALLOWED_HOSTS
+          value: "'self'"
+        - name: AUTH_SAME_SITE
+          value: "strict"
+        - name: AUTH_GOOGLE_CID
+          valueFrom:
+            secretKeyRef:
+              name: remark42-oauth
+              key: google-client-id
+        - name: AUTH_GOOGLE_CSEC
+          valueFrom:
+            secretKeyRef:
+              name: remark42-oauth
+              key: google-client-secret
+        - name: SECRET
+          valueFrom:
+            secretKeyRef:
+              name: remark42-oauth
+              key: remark42-secret
+        - name: ADMIN_SHARED_ID
+          value: "google_c02c99fa6c4bee74ee26b1249237a8fff5b13801"
+        - name: ADMIN_SHARED_EMAIL
+          value: "svyatoslav.krivosheev@health-samurai.io"
+
+        resources:
+          requests:
+            memory: "256Mi"
+          limits:
+            memory: "512Mi"
+
+        volumeMounts:
+        - name: remark42-data
+          mountPath: /srv/var
+
+        livenessProbe:
+          httpGet:
+            path: /api/v1/config
+            port: 8080
+          initialDelaySeconds: 30
+          periodSeconds: 30
+          timeoutSeconds: 5
+          failureThreshold: 3
+
+        readinessProbe:
+          httpGet:
+            path: /api/v1/config
+            port: 8080
+          initialDelaySeconds: 10
+          periodSeconds: 10
+          timeoutSeconds: 5
+          failureThreshold: 3
+
+        securityContext:
+          allowPrivilegeEscalation: false
+          capabilities:
+            drop:
+            - ALL
+          readOnlyRootFilesystem: false
+
+      volumes:
+      - name: remark42-data
+        persistentVolumeClaim:
+          claimName: remark42-pvc
+
+      restartPolicy: Always
+      securityContext:
+        runAsNonRoot: true
+        runAsUser: 1001
+        fsGroup: 1001

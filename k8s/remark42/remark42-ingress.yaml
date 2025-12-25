@@ -1,0 +1,21 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: remark42
+  namespace: gitbok
+  annotations:
+    nginx.ingress.kubernetes.io/rewrite-target: /$2
+    nginx.ingress.kubernetes.io/proxy-body-size: 10m
+spec:
+  ingressClassName: nginx
+  rules:
+  - host: www.health-samurai.io
+    http:
+      paths:
+      - backend:
+          service:
+            name: remark42
+            port:
+              number: 80
+        path: /docs/futureblog/remark42(/|$)(.*)
+        pathType: ImplementationSpecific

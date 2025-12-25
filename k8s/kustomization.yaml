@@ -10,6 +10,7 @@ resources:
 - monitoring/
 - ns.yaml
 - pdb.yaml
+- remark42/
 - service.yaml
 - statefulset.yaml
 - vpa.yaml

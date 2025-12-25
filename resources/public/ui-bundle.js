@@ -1457,6 +1457,7 @@ function showCopySuccess(button) {
     html.classList.toggle('dark', isDark);
     updatePrismTheme();
     updateMermaidTheme();
+    updateRemark42Theme();
   }
 
   // Update toggle button states
@@ -1517,6 +1518,14 @@ function showCopySuccess(button) {
     // Re-render
     if (typeof window.renderMermaid === 'function') {
       window.renderMermaid();
+    }
+  }
+
+  // Update Remark42 theme if loaded
+  function updateRemark42Theme() {
+    if (window.REMARK42 && typeof window.REMARK42.changeTheme === 'function') {
+      const isDark = document.documentElement.classList.contains('dark');
+      window.REMARK42.changeTheme(isDark ? 'dark' : 'light');
     }
   }
 

@@ -1,0 +1,17 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: remark42
+  namespace: gitbok
+  labels:
+    app.kubernetes.io/name: remark42
+    app.kubernetes.io/component: comments
+spec:
+  type: ClusterIP
+  ports:
+  - name: http
+    port: 80
+    protocol: TCP
+    targetPort: 8080
+  selector:
+    app.kubernetes.io/name: remark42

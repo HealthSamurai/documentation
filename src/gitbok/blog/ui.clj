@@ -416,6 +416,41 @@
 })();
 "))]
 
+      ;; Remark42 comments section
+      [:div {:class "mt-12 pt-8 border-t border-outline"}
+       [:h2 {:class "text-2xl font-bold mb-6 text-on-surface-strong"} "Comments"]
+       [:div {:id "remark42"}]]
+
+      ;; Remark42 configuration and loader script
+      [:script (hiccup2.core/raw
+                (str "
+// Auto-detect Remark42 host based on environment
+var remark42Host = window.location.hostname === 'localhost'
+  ? 'http://localhost:8090'
+  : window.location.origin + '/docs/futureblog/remark42';
+
+var remark_config = {
+  host: remark42Host,
+  site_id: 'health-samurai-docs',
+  components: ['embed'],
+  max_shown_comments: 50,
+  theme: document.documentElement.classList.contains('dark') ? 'dark' : 'light',
+  page_title: '" (str/escape (:title metadata) {\" "\\\"" \\ "\\\\"}) "',
+  locale: 'en',
+  show_email_subscription: false,
+  no_footer: true
+};
+
+(function(c) {
+  for(var i = 0; i < c.length; i++){
+    var d = document, s = d.createElement('script');
+    s.src = remark_config.host + '/web/' + c[i] + '.js';
+    s.defer = true;
+    (d.head || d.body).appendChild(s);
+  }
+})(remark_config.components || ['embed']);
+"))]
+
       ;; Back to blog link
       [:div {:class "mt-12 pt-8 border-t border-outline"}
        [:a {:href (str blog/url-prefix "/blog")
