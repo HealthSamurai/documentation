@@ -7,13 +7,15 @@
 (defn format-comment-message
   "Format remark42 comment data into Zulip message"
   [comment]
-  (let [{:keys [text user locator timestamp]} comment
-        author (get user "name" "Anonymous")
-        url (get locator "url" "")
-        time (or timestamp "")]
-    (str "**New blog comment** (" time ")\n\n"
-         "**Author**: " author "\n\n"
-         "**Page**: " url "\n\n"
+  (let [{:keys [text user locator time title]} comment
+        author (get user :name "Anonymous")
+        url (get locator :url "")
+        page-title (or title "")]
+    (str "**New blog comment**\n\n"
+         "**Page**: " page-title "\n"
+         "**URL**: " url "\n"
+         "**Author**: " author "\n"
+         "**Time**: " time "\n\n"
          "**Comment**:\n" text)))
 
 (defn send-to-zulip
@@ -40,12 +42,13 @@
   [request zulip-config]
   (try
     (let [body (slurp (:body request))
-          comment (json/parse-string body true)
-          message (format-comment-message comment)
-          result (send-to-zulip message zulip-config)]
-      {:status 200
-       :headers {"Content-Type" "application/json"}
-       :body (json/generate-string result)})
+          comment (json/parse-string body true)]
+      (log/info "Received remark42 webhook" {:comment comment})
+      (let [message (format-comment-message comment)
+            result (send-to-zulip message zulip-config)]
+        {:status 200
+         :headers {"Content-Type" "application/json"}
+         :body (json/generate-string result)}))
     (catch Exception e
       (log/error e "Failed to process remark42 webhook")
       {:status 500
