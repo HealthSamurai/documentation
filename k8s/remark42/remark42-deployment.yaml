@@ -42,6 +42,10 @@ spec:
           value: "'self'"
         - name: AUTH_SAME_SITE
           value: "lax"
+        - name: NOTIFY_ADMINS
+          value: "webhook"
+        - name: NOTIFY_WEBHOOK_URL
+          value: "https://www.health-samurai.io/docs/webhooks/remark42"
         - name: AUTH_GOOGLE_CID
           valueFrom:
             secretKeyRef:

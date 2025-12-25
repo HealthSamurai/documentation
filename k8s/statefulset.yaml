@@ -103,6 +103,23 @@ spec:
             value: "phc_uO4ImMUxOljaWPDRr7lWu9TYpBrpIs4R1RwLu8uLRmx"
           - name: POSTHOG_HOST
             value: "https://ph.aidbox.app"
+          - name: ZULIP_URL
+            valueFrom:
+              secretKeyRef:
+                name: remark42-oauth
+                key: zulip-url
+          - name: ZULIP_BOT_EMAIL
+            valueFrom:
+              secretKeyRef:
+                name: remark42-oauth
+                key: zulip-bot-email
+          - name: ZULIP_BOT_TOKEN
+            valueFrom:
+              secretKeyRef:
+                name: remark42-oauth
+                key: zulip-bot-token
+          - name: ZULIP_STREAM_ID
+            value: "43"
         command: ["java"]
         args:
           - "-XX:MaxRAMPercentage=75"

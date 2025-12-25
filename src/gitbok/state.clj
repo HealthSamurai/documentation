@@ -42,7 +42,11 @@
               posthog-host
               prefix
               reload-check-interval
-              version]}]]
+              version
+              zulip-url
+              zulip-bot-email
+              zulip-bot-token
+              zulip-stream-id]}]]
   (let [config {:port (or port
                           (when-let [env-port (System/getenv "PORT")]
                             (Integer/parseInt env-port))
@@ -80,7 +84,15 @@
                 :posthog-api-key (or posthog-api-key
                                      (System/getenv "POSTHOG_API_KEY"))
                 :posthog-host (or posthog-host
-                                  (System/getenv "POSTHOG_HOST"))}
+                                  (System/getenv "POSTHOG_HOST"))
+                :zulip-url (or zulip-url
+                               (System/getenv "ZULIP_URL"))
+                :zulip-bot-email (or zulip-bot-email
+                                     (System/getenv "ZULIP_BOT_EMAIL"))
+                :zulip-bot-token (or zulip-bot-token
+                                     (System/getenv "ZULIP_BOT_TOKEN"))
+                :zulip-stream-id (or zulip-stream-id
+                                     (System/getenv "ZULIP_STREAM_ID"))}
         initial-state {:config config
                        :products {:config []
                                   :indices {}}
