@@ -44,7 +44,7 @@ spec:
         - name: ALLOWED_HOSTS
           value: "'self'"
         - name: AUTH_SAME_SITE
-          value: "strict"
+          value: "lax"
         - name: AUTH_GOOGLE_CID
           valueFrom:
             secretKeyRef:

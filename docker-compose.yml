@@ -106,6 +106,7 @@ services:
       - STORE_BOLT_PATH=/srv/var/db
       - BACKUP_PATH=/srv/var/backup
       - AUTH_ANON=false
+      - AUTH_SAME_SITE=lax
       - AUTH_GOOGLE_CID=${GOOGLE_CID}
       - AUTH_GOOGLE_CSEC=${GOOGLE_CSEC}
       - ADMIN_SHARED_ID=${REMARK42_ADMIN_ID}
