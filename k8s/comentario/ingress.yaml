@@ -8,6 +8,10 @@ metadata:
     app.kubernetes.io/component: comment-system
   annotations:
     nginx.ingress.kubernetes.io/proxy-body-size: 10m
+    nginx.ingress.kubernetes.io/configuration-snippet: |
+      sub_filter '<base href="docs/futureblog/comentario/' '<base href="/docs/futureblog/comentario/';
+      sub_filter_once on;
+      sub_filter_types text/html;
 spec:
   ingressClassName: nginx
   rules:
