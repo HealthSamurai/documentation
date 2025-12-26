@@ -12,7 +12,6 @@
             [gitbok.metrics :as metrics]
             [gitbok.middleware.session :as session]
             [gitbok.middleware.posthog :as posthog-middleware]
-            [gitbok.webhooks.remark42 :as remark42-webhook]
             [ring.util.response]
             [gitbok.ui.meilisearch]
             [gitbok.ui.examples]
@@ -247,15 +246,6 @@
      ;; Metrics endpoint for Prometheus (without prefix)
      ["/metrics"
       {:get {:handler #'metrics/metrics-handler}}]
-
-     ;; Webhook endpoint for remark42 comments
-     [(utils/concat-urls prefix "/webhooks/remark42")
-      {:post {:handler (fn [ctx]
-                         (let [zulip-config {:url (state/get-config ctx :zulip-url)
-                                             :bot-email (state/get-config ctx :zulip-bot-email)
-                                             :bot-token (state/get-config ctx :zulip-bot-token)
-                                             :stream-id (state/get-config ctx :zulip-stream-id)}]
-                           (remark42-webhook/handle-webhook (:request ctx) zulip-config)))}}]
 
      [(utils/concat-urls prefix "/version")
       {:get {:handler #'version-endpoint}}]
