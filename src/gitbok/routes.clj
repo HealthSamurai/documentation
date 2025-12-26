@@ -286,6 +286,8 @@
       {:get {:handler #'blog-handlers/article-handler}}]
      ["/docs/futureblog/article-categories/:tag"
       {:get {:handler #'blog-handlers/category-handler}}]
+     ["/docs/futureblog/authors/:slug"
+      {:get {:handler #'blog-handlers/author-handler}}]
 
      ;; Root handlers - handle both with and without trailing slash
      [prefix {:get {:handler #'handlers/root-redirect-handler}}]

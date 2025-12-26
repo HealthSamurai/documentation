@@ -175,6 +175,52 @@
        :headers {"content-type" "text/html; charset=utf-8"}
        :body "Category not found"})))
 
+(defn author-handler
+  "Handler for /authors/:slug page."
+  [context]
+  (let [request (:request context)
+        slug (get-in context [:request :path-params :slug])
+        author (blog/get-author-by-slug context slug)]
+    (if author
+      (let [listing-data (-> (blog/get-articles-by-author context (:name author))
+                             (assoc :author author))
+            current-url (http/get-absolute-url context (:uri request))
+            body [:div {:id "blog-body"
+                        :class "min-h-screen flex flex-col"
+                        :hx-boost "true"
+                        :hx-target "#blog-body"
+                        :hx-swap "outerHTML"
+                        :hx-push-url "true"}
+                  (blog-header/blog-nav context)
+                  (blog-ui/author-listing-page context listing-data)
+                  (blog-subscribe/subscribe-section {:page-url current-url
+                                                      :email-id "EMAIL"
+                                                      :standalone? true
+                                                      :include-script? true})
+                  (blog-footer/blog-footer context)]]
+        (if (htmx-request? context)
+          {:status 200
+           :headers {"content-type" "text/html; charset=utf-8"}
+           :body (render-body body)}
+          (http/response1
+           (layout/document
+            context
+            body
+            {:title (str (:name author) " - Health Samurai Blog")
+             :description (str "Articles by " (:name author) " - Health Samurai Blog")
+             :canonical-url (http/get-absolute-url context (:uri request))
+             :og-preview (:image author)
+             :lastmod nil
+             :favicon-url "https://cdn.prod.website-files.com/57441aa5da71fdf07a0a2e19/5a2ff62247c38400019e81f3_32.png"
+             :sharethis true
+             :mailchimp true
+             :link-previews false
+             :extra-head (gotham-font-style)}))))
+      ;; Author not found - return 404
+      {:status 404
+       :headers {"content-type" "text/html; charset=utf-8"}
+       :body "Author not found"})))
+
 (defn search-handler
   "Handler for /blog/search endpoint."
   [context]

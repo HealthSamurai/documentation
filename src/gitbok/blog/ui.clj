@@ -75,12 +75,37 @@
    [:span {:class "text-brand mr-2 font-normal"} "//"]
    [:span (format-date published)]])
 
+(defn author-link
+  "Render clickable author name"
+  [author]
+  (when author
+    (let [slug (blog/author-to-slug author)]
+      [:a {:href (str blog/url-prefix "/authors/" slug)
+           :class "hover:underline hover:text-brand transition-colors"}
+       author])))
+
+(defn author-badge
+  "Render author with small photo and clickable name.
+   Stops event propagation to allow clicking inside card."
+  [context author-name]
+  (when author-name
+    (let [author-info (blog/get-author-by-name context author-name)
+          slug (blog/author-to-slug author-name)]
+      [:a {:href (str blog/url-prefix "/authors/" slug)
+           :class "flex items-center gap-2 hover:text-brand transition-colors"
+           :onclick "event.stopPropagation()"}
+       (when (:image author-info)
+         [:img {:src (:image author-info)
+                :alt author-name
+                :class "w-6 h-6 rounded-full object-cover flex-shrink-0"}])
+       [:span author-name]])))
+
 (defn article-featured
   "Render featured article (horizontal layout like bg-article-1)"
-  [{:keys [slug title teaser published image author category]}]
-  [:a {:href (str blog/url-prefix "/articles/" slug)
-       :class "flex flex-col md:flex-row gap-4 md:gap-8 mb-8 md:mb-12 no-underline group"
-       :style {:font-family font-family}}
+  [context {:keys [slug title teaser published image author category]}]
+  [:div {:class "flex flex-col md:flex-row gap-4 md:gap-8 mb-8 md:mb-12 cursor-pointer group"
+         :style {:font-family font-family}
+         :onclick (str "window.location.href='" blog/url-prefix "/articles/" slug "'")}
    ;; Image (larger for featured, responsive with preserved aspect ratio)
    (when image
      [:div {:class "overflow-hidden rounded-xl flex-shrink-0 w-full md:w-[400px] aspect-[20/13]"}
@@ -106,16 +131,16 @@
     ;; Author + Tags
     [:div {:class "flex items-center flex-wrap gap-2 text-on-surface-muted text-base font-medium mt-3"}
      (when author
-       [:span author])
+       (author-badge context author))
      (when category
        (tags/render-tags [category] :default))]]])
 
 (defn article-card
   "Render a single article card (for 2 side-by-side after featured)"
-  [{:keys [slug title teaser published image author category]}]
-  [:a {:href (str blog/url-prefix "/articles/" slug)
-       :class "flex flex-col no-underline group py-6 md:py-8"
-       :style {:font-family font-family}}
+  [context {:keys [slug title teaser published image author category]}]
+  [:div {:class "flex flex-col cursor-pointer group py-6 md:py-8"
+         :style {:font-family font-family}
+         :onclick (str "window.location.href='" blog/url-prefix "/articles/" slug "'")}
    ;; Image (responsive with preserved aspect ratio 220:170 ≈ 22:17)
    (when image
      [:div {:class "mb-4 overflow-hidden rounded-xl w-full md:max-w-[220px] aspect-[22/17]"}
@@ -140,16 +165,16 @@
    ;; Author + Tags
    [:div {:class "flex items-center flex-wrap gap-2 text-on-surface-muted text-base font-medium mt-3"}
     (when author
-      [:span author])
+      (author-badge context author))
     (when category
       (tags/render-tags [category] :default))]])
 
 (defn article-card-list
   "Render article as a simple list item with image on the right"
-  [{:keys [slug title teaser published author image category]}]
-  [:a {:href (str blog/url-prefix "/articles/" slug)
-       :class "flex flex-col-reverse sm:flex-row gap-4 sm:gap-6 py-6 border-b border-outline last:border-0 no-underline group"
-       :style {:font-family font-family}}
+  [context {:keys [slug title teaser published author image category]}]
+  [:div {:class "flex flex-col-reverse sm:flex-row gap-4 sm:gap-6 py-6 border-b border-outline last:border-0 cursor-pointer group"
+         :style {:font-family font-family}
+         :onclick (str "window.location.href='" blog/url-prefix "/articles/" slug "'")}
    ;; Content (left)
    [:div {:class "flex-1"}
     ;; Date with symbol
@@ -168,7 +193,7 @@
     ;; Author + Tags
     [:div {:class "flex items-center flex-wrap gap-2 text-on-surface-muted text-base font-medium mt-2"}
      (when author
-       [:span author])
+       (author-badge context author))
      (when category
        (tags/render-tags [category] :default))]]
 
@@ -250,13 +275,13 @@
               [:div
                ;; Featured article (horizontal layout)
                (when featured
-                 (article-featured featured))
+                 (article-featured context featured))
                ;; Next 2 articles side by side
                (when (seq next-two)
                  [:div {:class "grid grid-cols-1 md:grid-cols-2 gap-8 border-t border-outline"}
                   (for [article next-two]
                     ^{:key (:slug article)}
-                    (article-card article))])
+                    (article-card context article))])
                ;; Subscribe section after first 3 articles (like health-samurai.io/blog)
                (blog-subscribe/subscribe-section {:with-margin? true
                                                   :email-id "EMAIL-2"})
@@ -265,7 +290,7 @@
                  [:div {:class "mt-4"}
                   (for [article rest-articles]
                     ^{:key (:slug article)}
-                    (article-card-list article))])
+                    (article-card-list context article))])
                ;; Pagination controls
                (pagination-controls {:page page
                                      :total-pages total-pages
@@ -276,7 +301,7 @@
             [:div
              (for [article articles]
                ^{:key (:slug article)}
-               (article-card-list article))
+               (article-card-list context article))
              ;; Pagination controls
              (pagination-controls {:page page
                                    :total-pages total-pages
@@ -317,7 +342,7 @@
         [:div
          (for [article articles]
            ^{:key (:slug article)}
-           (article-card-list article))]
+           (article-card-list context article))]
         [:div {:class "text-center py-12"}
          [:p {:class "text-on-surface-muted text-lg"}
           "No articles found."]])]
@@ -325,9 +350,49 @@
      ;; Topics sidebar
      (topics-sidebar {:current-tag tag :all-tags all-tags})]]])
 
+(defn author-listing-page
+  "Render author page with photo, name and their articles"
+  [context {:keys [articles all-tags author]}]
+  [:div {:class "min-h-screen flex flex-col"
+         :style {:font-family font-family}}
+   [:main {:class "flex-1 w-full pt-8 md:pt-12 px-4 md:px-8"}
+    [:div {:class "flex mx-auto"
+           :style {:max-width "1280px"}}
+     ;; Articles column
+     [:div {:class "flex-1 min-w-0"}
+      ;; Breadcrumbs
+      [:div {:class "flex items-center gap-2 mb-4 text-on-surface-muted text-base"}
+       [:a {:href (str blog/url-prefix "/blog")
+            :class "text-brand no-underline hover:underline"}
+        "Articles"]
+       [:span "/"]
+       [:span (:name author)]]
+
+      ;; Author header with photo
+      [:div {:class "flex items-center gap-6 mb-8"}
+       (when (:image author)
+         [:img {:src (:image author)
+                :alt (:name author)
+                :class "w-24 h-24 rounded-full object-cover flex-shrink-0"}])
+       [:h1 {:class "text-3xl md:text-5xl font-black text-on-surface-strong leading-tight"}
+        (:name author)]]
+
+      ;; All articles as vertical list
+      (if (seq articles)
+        [:div
+         (for [article articles]
+           ^{:key (:slug article)}
+           (article-card-list context article))]
+        [:div {:class "text-center py-12"}
+         [:p {:class "text-on-surface-muted text-lg"}
+          "No articles found."]])]
+
+     ;; Topics sidebar
+     (topics-sidebar {:all-tags all-tags})]]])
+
 (defn article-hero
   "Full-width hero section for article page (like production)"
-  [{:keys [category title published author reading-time]}]
+  [context {:keys [category title published author reading-time]}]
   ;; Full-width background with responsive padding
   [:div {:class "w-full py-8 md:py-12 px-4 md:px-5 bg-surface-alt"
          :style {:font-family font-family}}
@@ -351,7 +416,8 @@
     ;; Author, date, reading time
     [:div {:class "flex items-center gap-3 text-on-surface-muted text-base"}
      (when author
-       [:span {:class "font-medium"} author])
+       [:span {:class "font-medium"}
+        (author-badge context author)])
      (when published
        [:span (format-date published)])
      (when reading-time
@@ -365,7 +431,7 @@
     [:div {:class "min-h-screen flex flex-col"
            :style {:font-family font-family}}
      ;; Hero section (full-width with background)
-     (article-hero metadata)
+     (article-hero context metadata)
 
      ;; Article content (centered, narrower, responsive padding)
      [:main {:class "flex-1 w-full mx-auto py-8 md:py-12 px-4 md:px-0 max-w-[800px]"}

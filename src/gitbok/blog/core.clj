@@ -267,3 +267,88 @@
     (merge paginated
            {:tag tag
             :all-tags (get-all-tags context)})))
+
+;; === Author functions ===
+
+(def author-image-base-url "https://storage.googleapis.com/samurai-public/Photo%20for%20KB/")
+
+(defn- url-encode-path
+  "URL encode a path segment, using %20 for spaces (not +).
+   Also normalizes to NFD form to match GCS storage."
+  [s]
+  (-> (java.text.Normalizer/normalize s java.text.Normalizer$Form/NFD)
+      (java.net.URLEncoder/encode "UTF-8")
+      (str/replace "+" "%20")))
+
+(defn author-to-slug
+  "Convert author name to URL slug (lowercase, spaces to hyphens)."
+  [author]
+  (when author
+    (-> author
+        str/lower-case
+        (str/replace #"\s+" "-")
+        (str/replace #"[^a-z0-9-]" ""))))
+
+(defn get-authors-config
+  "Get authors mapping from blog nav config."
+  [context]
+  (when-let [nav-config (state/get-cache context :blog-nav)]
+    (:authors nav-config)))
+
+(defn get-author-by-name
+  "Get author info by name from config.
+   Returns {:name 'Author Name' :image 'full-url' :slug 'author-slug'}"
+  [context author-name]
+  (when-let [authors (get-authors-config context)]
+    ;; YAML parses keys as keywords, so convert author-name to keyword
+    (when-let [author-data (get authors (keyword author-name))]
+      {:name author-name
+       :slug (author-to-slug author-name)
+       :image (when-let [img (:image author-data)]
+                (str author-image-base-url (url-encode-path img)))})))
+
+(defn- find-author-name-from-articles
+  "Find author name by slug from articles index."
+  [context slug]
+  (when-let [index (get-article-index context)]
+    (->> index
+         (map :author)
+         (remove str/blank?)
+         (filter #(= (author-to-slug %) slug))
+         first)))
+
+(defn get-author-by-slug
+  "Find author by slug. Returns {:name 'Author Name' :image 'full-url' :slug 'slug'}.
+   Works even if author is not in config (just won't have photo)."
+  [context slug]
+  (let [authors (get-authors-config context)
+        ;; Try to find in config first (for photo)
+        from-config (when authors
+                      (first (filter (fn [[kw-name _]]
+                                       (= (author-to-slug (name kw-name)) slug))
+                                     authors)))
+        ;; If not in config, find from articles
+        author-name (if from-config
+                      (name (first from-config))
+                      (find-author-name-from-articles context slug))]
+    (when author-name
+      {:name author-name
+       :slug slug
+       :image (when-let [author-data (second from-config)]
+                (when-let [img (:image author-data)]
+                  (str author-image-base-url (url-encode-path img))))})))
+
+(defn filter-by-author
+  "Filter articles by author name."
+  [articles author-name]
+  (if (str/blank? author-name)
+    articles
+    (filter #(= author-name (:author %)) articles)))
+
+(defn get-articles-by-author
+  "Get articles for a specific author."
+  [context author-name]
+  (let [index (get-article-index context)
+        filtered (filter-by-author index author-name)]
+    {:articles (vec filtered)
+     :all-tags (get-all-tags context)}))

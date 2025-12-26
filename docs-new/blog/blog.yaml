@@ -242,3 +242,45 @@ footer:
     email: "hello@health-samurai.io"
 
   logo: https://cdn.prod.website-files.com/57441aa5da71fdf07a0a2e19/5a3041c4d877230001fc7454_hslogo-footer.svg
+
+# Author photos mapping (English name -> Russian photo filename in bucket)
+# Base URL: https://storage.googleapis.com/samurai-public/Photo%20for%20KB/
+authors:
+  Aleksandr Kislitsyn:
+    image: "Александр Кислицын.jpg"
+  Aleksandr Penskoi:
+    image: "Александр Пенской.jpg"
+  Alexandr Penskoi:
+    image: "Александр Пенской.jpg"
+  Alexandr Penskoy:
+    image: "Александр Пенской.jpg"
+  Andrey Listopadov:
+    image: "Андрей Листопадов.jpg"
+  Artem Alekseev:
+    image: "Артем Алексеев.jpeg"
+  Artyom Bologov:
+    image: "Артем Бологов.jpg"
+  Daniil Chistoforov:
+    image: "Даниил Чистофоров.png"
+  Gennady Razmakhnin:
+    image: "Гена Алемский.jpeg"
+  Ivan Bagrov:
+    image: "Ваня Багров.png"
+  Mike Ryzhikov:
+    image: "Миша Рыжиков.jpg"
+  Nikolai Ryzhikov:
+    image: "Николай Рыжиков.jpg"
+  Nikolay Rizhikov:
+    image: "Николай Рыжиков.jpg"
+  Niquola Ryzhikov:
+    image: "Николай Рыжиков.jpg"
+  Olim Saidov:
+    image: "Олим Саидов.jpg"
+  Rostislav Antonov:
+    image: "Ростик Антонов.jpg"
+  Stas Buldakov:
+    image: "Стас Булдаков.jpeg"
+  Svetlana Golubeva:
+    image: "Света Голубева.jpeg"
+  Vlad Zholnerchuk:
+    image: "Владислав Жолнерчук.jpeg"
