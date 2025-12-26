@@ -40,14 +40,12 @@ spec:
         - name: data-volume
           mountPath: /comentario-data
         livenessProbe:
-          httpGet:
-            path: /
+          tcpSocket:
             port: http
           initialDelaySeconds: 10
           periodSeconds: 30
         readinessProbe:
-          httpGet:
-            path: /
+          tcpSocket:
             port: http
           initialDelaySeconds: 5
           periodSeconds: 10
