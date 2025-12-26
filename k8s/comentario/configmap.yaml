@@ -12,7 +12,7 @@ data:
     port: 80
     baseUrl: 'https://www.health-samurai.io/docs/futureblog/comentario/'
     secrets: '/comentario-secrets/secrets.yaml'
-    superuser: svyatoslav.krivosheev@health-samurai.io
+    # superuser: svyatoslav.krivosheev@health-samurai.io  # Uncomment after first login
 
     log:
       level: info
