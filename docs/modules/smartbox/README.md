@@ -13,7 +13,3 @@ Key components are:
 2. FHIR portal. An internal website to manage SMART on FHIR Apps that can be integrated with the patient portal.\
 
 3. App Gallery. A website that shows SMART on FHIR apps available for patients.&#x20;
-
-## Standardized API for patient and population services
-
-{% embed url="https://cmpl.aidbox.app/documentation" %}
