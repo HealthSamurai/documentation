@@ -27,7 +27,7 @@ spec:
             - name: COMENTARIO_URL
               value: "http://comentario.gitbok.svc.cluster.local"
             - name: COMENTARIO_DOMAIN_ID
-              value: ""
+              value: "8b8989c9-07de-4b9a-b870-ce6d3ce586c3"
             - name: ZULIP_URL
               valueFrom:
                 secretKeyRef:
