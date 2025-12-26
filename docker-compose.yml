@@ -109,10 +109,27 @@ services:
       - AUTH_SAME_SITE=lax
       - AUTH_GOOGLE_CID=${GOOGLE_CID}
       - AUTH_GOOGLE_CSEC=${GOOGLE_CSEC}
+      - AUTH_GITHUB_CID=${GITHUB_CID}
+      - AUTH_GITHUB_CSEC=${GITHUB_CSEC}
       - ADMIN_SHARED_ID=${REMARK42_ADMIN_ID}
       - ADMIN_SHARED_EMAIL=${REMARK42_ADMIN_EMAIL}
     volumes:
       - remark42_data:/srv/var
+    networks:
+      - app-network
+    restart: unless-stopped
+
+  comentario:
+    image: registry.gitlab.com/comentario/comentario:latest
+    container_name: comentario
+    ports:
+      - "8091:80"
+    environment:
+      - CONFIG_FILE=/config.yaml
+    volumes:
+      - ./config.yaml:/config.yaml:ro
+      - ./secrets.yaml:/secrets.yaml:ro
+      - comentario_data:/comentario-data
     networks:
       - app-network
     restart: unless-stopped
@@ -127,4 +144,6 @@ volumes:
   meili_data:
     driver: local
   remark42_data:
+    driver: local
+  comentario_data:
     driver: local

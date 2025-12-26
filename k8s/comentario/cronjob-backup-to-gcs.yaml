@@ -1,0 +1,80 @@
+apiVersion: batch/v1
+kind: CronJob
+metadata:
+  name: comentario-backup-to-gcs
+  namespace: gitbok
+  labels:
+    app.kubernetes.io/name: comentario
+    app.kubernetes.io/component: backup
+spec:
+  schedule: "0 3 * * *" # Daily at 3 AM
+  concurrencyPolicy: Forbid
+  successfulJobsHistoryLimit: 3
+  failedJobsHistoryLimit: 3
+  jobTemplate:
+    spec:
+      ttlSecondsAfterFinished: 86400 # Delete jobs after 24 hours
+      template:
+        spec:
+          serviceAccountName: comentario-backup
+          restartPolicy: OnFailure
+          containers:
+            - name: backup
+              image: google/cloud-sdk:alpine
+              env:
+                - name: GCS_BUCKET
+                  value: "comentario-backup"
+                - name: BACKUP_PREFIX
+                  value: "comentario-db"
+              command:
+                - /bin/sh
+                - -c
+                - |
+                  set -e
+
+                  echo "Starting Comentario SQLite backup to GCS..."
+
+                  # Update packages and install sqlite3
+                  echo "Updating packages and installing sqlite3..."
+                  apk upgrade --no-cache
+                  apk add --no-cache sqlite
+
+                  # Generate timestamp for backup filename
+                  TIMESTAMP=$(date +%Y%m%d-%H%M%S)
+                  BACKUP_FILE="${BACKUP_PREFIX}-${TIMESTAMP}.db"
+
+                  # Create backup using SQLite .backup command
+                  echo "Creating SQLite backup..."
+                  sqlite3 /comentario-data/comentario.db ".backup /tmp/${BACKUP_FILE}"
+
+                  # Compress the backup
+                  echo "Compressing backup..."
+                  gzip /tmp/${BACKUP_FILE}
+
+                  # Upload to GCS
+                  echo "Uploading to gs://${GCS_BUCKET}/${BACKUP_FILE}.gz"
+                  gsutil cp /tmp/${BACKUP_FILE}.gz gs://${GCS_BUCKET}/${BACKUP_FILE}.gz
+
+                  # Cleanup local file
+                  rm /tmp/${BACKUP_FILE}.gz
+
+                  echo "Backup completed successfully: ${BACKUP_FILE}.gz"
+
+                  # List recent backups
+                  echo "Recent backups:"
+                  gsutil ls -lh gs://${GCS_BUCKET}/ | tail -10
+              volumeMounts:
+                - name: comentario-data
+                  mountPath: /comentario-data
+                  readOnly: true
+              resources:
+                requests:
+                  memory: "128Mi"
+                  cpu: "100m"
+                limits:
+                  memory: "256Mi"
+                  cpu: "200m"
+          volumes:
+            - name: comentario-data
+              persistentVolumeClaim:
+                claimName: comentario-data

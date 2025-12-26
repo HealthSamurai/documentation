@@ -18,3 +18,5 @@ meili_data/
 .envrc
 .tool-versions
 resources/public/app.min.css
+secrets.yaml
+config.yaml

@@ -49,7 +49,7 @@
 (defn find-children-files [context filepath]
   (when
    (and filepath
-        (str/ends-with? (str/lower-case filepath) "readme.md"))
+        (str/ends-with? (str/lower-case filepath) "readme.md")
     (let [index (state/get-file-to-uri-idx context)
           ;; Get DOCS_PREFIX and product path dynamically
           docs-prefix (gitbok.state/get-config context)
@@ -111,7 +111,7 @@
                                        (or same-parent readme-in-subdir))]
                       matches))
                   index)]
-      result)))
+      result))))
 
 (defn find-children-from-summary
   "Get children sorted by SUMMARY.md order"

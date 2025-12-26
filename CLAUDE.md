@@ -45,4 +45,5 @@ make test-single TEST=proto.search.chained-int-test
 
 ## Development Workflow
 
-Prefer rg for searching over find or grep
+- Prefer `rg` for searching over `find` or `grep`
+- NEVER write markdown files unless asked!

@@ -1,0 +1,78 @@
+apiVersion: batch/v1
+kind: CronJob
+metadata:
+  name: comentario-to-zulip
+  namespace: gitbok
+  labels:
+    app.kubernetes.io/name: comentario-poller
+spec:
+  # Run every 5 minutes
+  schedule: "*/5 * * * *"
+  concurrencyPolicy: Forbid
+  successfulJobsHistoryLimit: 3
+  failedJobsHistoryLimit: 3
+  jobTemplate:
+    spec:
+      ttlSecondsAfterFinished: 3600
+      template:
+        spec:
+          restartPolicy: OnFailure
+          containers:
+          - name: poller
+            image: python:3.11-slim
+            command:
+            - python3
+            - /scripts/poll-comentario.py
+            env:
+            - name: COMENTARIO_URL
+              value: "http://comentario.gitbok.svc.cluster.local"
+            - name: COMENTARIO_DOMAIN_ID
+              value: ""
+            - name: ZULIP_URL
+              valueFrom:
+                secretKeyRef:
+                  name: comentario-oauth
+                  key: zulip-url
+            - name: ZULIP_BOT_EMAIL
+              valueFrom:
+                secretKeyRef:
+                  name: comentario-oauth
+                  key: zulip-bot-email
+            - name: ZULIP_BOT_TOKEN
+              valueFrom:
+                secretKeyRef:
+                  name: comentario-oauth
+                  key: zulip-bot-token
+            - name: STATE_FILE
+              value: /data/last_check.txt
+            volumeMounts:
+            - name: script
+              mountPath: /scripts
+              readOnly: true
+            - name: state
+              mountPath: /data
+            resources:
+              requests:
+                memory: "128Mi"
+                cpu: "100m"
+              limits:
+                memory: "256Mi"
+                cpu: "200m"
+            securityContext:
+              allowPrivilegeEscalation: false
+              capabilities:
+                drop:
+                - ALL
+              runAsUser: 1000
+              runAsGroup: 1000
+          volumes:
+          - name: script
+            configMap:
+              name: comentario-poller-script
+              defaultMode: 0555
+          - name: state
+            persistentVolumeClaim:
+              claimName: comentario-poller-state
+          securityContext:
+            runAsNonRoot: true
+            fsGroup: 1000

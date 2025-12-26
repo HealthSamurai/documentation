@@ -1,0 +1,29 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+
+namespace: gitbok
+
+resources:
+# Comentario deployment (Nginx Ingress compatible)
+- deployment.yaml
+- service.yaml
+- ingress.yaml
+- configmap.yaml
+- pvc-comentario-data.yaml
+- serviceaccount-backup.yaml
+
+# External Secrets
+- external-secret.yaml
+
+# CronJob polling resources (polls Comentario API and sends to Zulip)
+- cronjob-comentario-to-zulip.yaml
+- pvc-poller-state.yaml
+
+# CronJob backup resources (backs up SQLite to GCS)
+- cronjob-backup-to-gcs.yaml
+
+# ConfigMap generator from Python script file
+configMapGenerator:
+- name: comentario-poller-script
+  files:
+  - poll-comentario.py

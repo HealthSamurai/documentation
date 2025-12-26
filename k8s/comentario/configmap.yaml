@@ -1,0 +1,49 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: comentario-config
+  namespace: gitbok
+  labels:
+    app.kubernetes.io/name: comentario
+    app.kubernetes.io/component: comment-system
+data:
+  config.yaml: |
+    host: '0.0.0.0'
+    port: 80
+    baseUrl: 'https://www.health-samurai.io/docs/futureblog/comentario/'
+    secrets: '/comentario-secrets/secrets.yaml'
+    superuser: svyatoslav.krivosheev@health-samurai.io
+
+    log:
+      level: info
+      noColor: false
+
+    db:
+      maxIdleConns: 10
+
+    stats:
+      disablePageViews: false
+      maxDays: 30
+
+    liveUpdate:
+      disable: false
+      maxClients: 10000
+
+    dynamicConfigDefaults:
+      domain.defaults:
+        signup:
+          enableFederated: true
+          enableLocal: false
+        embed:
+          origins:
+            allowed: "$,localhost:8081,www.health-samurai.io"
+        comments:
+          text:
+            maxLength: 5000
+          enableVoting: true
+          editing:
+            author: true
+            moderator: true
+          deletion:
+            author: true
+            moderator: true

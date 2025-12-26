@@ -482,40 +482,60 @@
 })();
 "))]
 
-      ;; Remark42 comments section
+      ;; Comentario script loader
+      [:script (hiccup2.core/raw "
+(function() {
+  var comentarioUrl = window.location.hostname === 'localhost'
+    ? 'http://localhost:8091/comentario.js'
+    : window.location.origin + '/docs/futureblog/comentario/comentario.js';
+  var script = document.createElement('script');
+  script.src = comentarioUrl;
+  script.defer = true;
+  document.head.appendChild(script);
+})();")]
+
+      ;; Comentario comments section
       [:div {:class "mt-12 pt-8 border-t border-outline"}
        [:h2 {:class "text-2xl font-bold mb-6 text-on-surface-strong"} "Comments"]
-       [:div {:id "remark42"}]]
+       [:div {:id "comentario-container"}]]
 
-      ;; Remark42 configuration and loader script
-      [:script (hiccup2.core/raw
-                (str "
-// Auto-detect Remark42 host based on environment
-var remark42Host = window.location.hostname === 'localhost'
-  ? 'http://localhost:8090'
-  : window.location.origin + '/docs/futureblog/remark42';
+      ;; Create Comentario widget with correct initial theme
+      [:script (hiccup2.core/raw "
+(function() {
+  var isDark = document.documentElement.classList.contains('dark');
+  var container = document.getElementById('comentario-container');
+  var widget = document.createElement('comentario-comments');
+  widget.id = 'comentario-widget';
+  widget.setAttribute('theme', isDark ? 'dark' : 'light');
+  container.appendChild(widget);
+})();")]
 
-var remark_config = {
-  host: remark42Host,
-  site_id: 'health-samurai-docs',
-  components: ['embed'],
-  max_shown_comments: 50,
-  theme: document.documentElement.classList.contains('dark') ? 'dark' : 'light',
-  page_title: '" (str/escape (:title metadata) {\" "\\\"" \\ "\\\\"}) "',
-  locale: 'en',
-  show_email_subscription: false,
-  no_footer: true
-};
+      ;; Comentario theme sync - watch for theme changes
+      [:script (hiccup2.core/raw "
+(function() {
+  function updateComentarioTheme() {
+    var widget = document.getElementById('comentario-widget');
+    if (!widget) return;
 
-(function(c) {
-  for(var i = 0; i < c.length; i++){
-    var d = document, s = d.createElement('script');
-    s.src = remark_config.host + '/web/' + c[i] + '.js';
-    s.defer = true;
-    (d.head || d.body).appendChild(s);
+    var isDark = document.documentElement.classList.contains('dark');
+    var newTheme = isDark ? 'dark' : 'light';
+
+    // Only update if theme changed
+    if (widget.getAttribute('theme') !== newTheme) {
+      widget.setAttribute('theme', newTheme);
+    }
   }
-})(remark_config.components || ['embed']);
-"))]
+
+  // Watch for theme changes
+  var observer = new MutationObserver(function(mutations) {
+    mutations.forEach(function(mutation) {
+      if (mutation.attributeName === 'class') {
+        updateComentarioTheme();
+      }
+    });
+  });
+  observer.observe(document.documentElement, { attributes: true });
+})();")]
 
       ;; Back to blog link
       [:div {:class "mt-12 pt-8 border-t border-outline"}

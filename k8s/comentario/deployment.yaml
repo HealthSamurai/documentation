@@ -1,0 +1,77 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: comentario
+  namespace: gitbok
+  labels:
+    app.kubernetes.io/name: comentario
+    app.kubernetes.io/component: comment-system
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: comentario
+  template:
+    metadata:
+      labels:
+        app.kubernetes.io/name: comentario
+    spec:
+      securityContext:
+        runAsNonRoot: true
+        fsGroup: 1000
+      containers:
+      - name: comentario
+        image: registry.gitlab.com/comentario/comentario:latest
+        imagePullPolicy: Always
+        ports:
+        - name: http
+          containerPort: 80
+          protocol: TCP
+        env:
+        - name: CONFIG_FILE
+          value: /comentario-config/config.yaml
+        volumeMounts:
+        - name: config-volume
+          mountPath: /comentario-config
+          readOnly: true
+        - name: secrets-volume
+          mountPath: /comentario-secrets
+          readOnly: true
+        - name: data-volume
+          mountPath: /comentario-data
+        livenessProbe:
+          httpGet:
+            path: /
+            port: http
+          initialDelaySeconds: 10
+          periodSeconds: 30
+        readinessProbe:
+          httpGet:
+            path: /
+            port: http
+          initialDelaySeconds: 5
+          periodSeconds: 10
+        resources:
+          requests:
+            memory: 256Mi
+            cpu: 100m
+          limits:
+            memory: 512Mi
+            cpu: 500m
+        securityContext:
+          allowPrivilegeEscalation: false
+          capabilities:
+            drop:
+            - ALL
+          runAsUser: 1000
+          runAsGroup: 1000
+      volumes:
+      - name: config-volume
+        configMap:
+          name: comentario-config
+      - name: secrets-volume
+        secret:
+          secretName: comentario-oauth
+      - name: data-volume
+        persistentVolumeClaim:
+          claimName: comentario-data
