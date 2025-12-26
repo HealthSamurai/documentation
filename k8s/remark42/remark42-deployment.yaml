@@ -47,7 +47,7 @@ spec:
         - name: NOTIFY_WEBHOOK_URL
           value: "https://www.health-samurai.io/docs/webhooks/remark42"
         - name: NOTIFY_WEBHOOK_TEMPLATE
-          value: '{"text":{{.Text | escapeJSONString}},"user":{"name":"{{.User.Name}}"},"locator":{"url":"{{.Locator.URL}}"},"time":"{{.Timestamp}}","title":"{{.PostTitle}}"}'
+          value: '{"id":"{{.ID}}","text":{{.Text | escapeJSONString}},"user":{"name":"{{.User.Name}}","id":"{{.User.ID}}"},"locator":{"url":"{{.Locator.URL}}"},"time":"{{.Timestamp}}","title":"{{.PostTitle}}"}'
         - name: AUTH_GOOGLE_CID
           valueFrom:
             secretKeyRef:
@@ -58,13 +58,23 @@ spec:
             secretKeyRef:
               name: remark42-oauth
               key: google-client-secret
+        - name: AUTH_GITHUB_CID
+          valueFrom:
+            secretKeyRef:
+              name: remark42-oauth
+              key: github-client-id
+        - name: AUTH_GITHUB_CSEC
+          valueFrom:
+            secretKeyRef:
+              name: remark42-oauth
+              key: github-client-secret
         - name: SECRET
           valueFrom:
             secretKeyRef:
               name: remark42-oauth
               key: remark42-secret
         - name: ADMIN_SHARED_ID
-          value: "google_c02c99fa6c4bee74ee26b1249237a8fff5b13801"
+          value: "google_c02c99fa6c4bee74ee26b1249237a8fff5b13801,github_328a4a3ddfe32d0a189ca2ee27026a8fec048d9f"
         - name: ADMIN_SHARED_EMAIL
           value: "svyatoslav.krivosheev@health-samurai.io"
 
