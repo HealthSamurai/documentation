@@ -6,8 +6,8 @@ metadata:
   labels:
     app.kubernetes.io/name: comentario-poller
 spec:
-  # Run every 5 minutes
-  schedule: "*/5 * * * *"
+  # Run every 20 minutes
+  schedule: "*/20 * * * *"
   concurrencyPolicy: Forbid
   successfulJobsHistoryLimit: 3
   failedJobsHistoryLimit: 3
@@ -24,10 +24,12 @@ spec:
             - python3
             - /scripts/poll-comentario.py
             env:
-            - name: COMENTARIO_URL
-              value: "http://comentario.gitbok.svc.cluster.local"
+            - name: DB_PATH
+              value: "/comentario-data/comentario.db"
             - name: COMENTARIO_DOMAIN_ID
               value: "8b8989c9-07de-4b9a-b870-ce6d3ce586c3"
+            - name: COMENTARIO_BASE_URL
+              value: "https://www.health-samurai.io/docs/futureblog/comentario"
             - name: ZULIP_URL
               valueFrom:
                 secretKeyRef:
@@ -43,14 +45,13 @@ spec:
                 secretKeyRef:
                   name: comentario-oauth
                   key: zulip-bot-token
-            - name: STATE_FILE
-              value: /data/last_check.txt
             volumeMounts:
             - name: script
               mountPath: /scripts
               readOnly: true
-            - name: state
-              mountPath: /data
+            - name: comentario-data
+              mountPath: /comentario-data
+              readOnly: true
             resources:
               requests:
                 memory: "128Mi"
@@ -70,9 +71,10 @@ spec:
             configMap:
               name: comentario-poller-script
               defaultMode: 0555
-          - name: state
+          - name: comentario-data
             persistentVolumeClaim:
-              claimName: comentario-poller-state
+              claimName: comentario-data
+              readOnly: true
           securityContext:
             runAsNonRoot: true
             fsGroup: 1000

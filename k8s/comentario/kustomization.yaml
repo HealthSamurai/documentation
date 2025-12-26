@@ -15,9 +15,8 @@ resources:
 # External Secrets
 - external-secret.yaml
 
-# CronJob polling resources (polls Comentario API and sends to Zulip)
+# CronJob polling resources (polls Comentario SQLite DB and sends to Zulip)
 - cronjob-comentario-to-zulip.yaml
-- pvc-poller-state.yaml
 
 # CronJob backup resources (backs up SQLite to GCS)
 - cronjob-backup-to-gcs.yaml

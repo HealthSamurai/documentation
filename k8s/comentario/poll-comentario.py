@@ -1,164 +1,157 @@
 #!/usr/bin/env python3
 """
-Poll Comentario API for new comments and send notifications to Zulip.
+Poll Comentario SQLite database for new comments and send notifications to Zulip.
 
 This script:
-1. Reads the last check timestamp from a state file
-2. Polls the Comentario API for all comments
-3. Filters comments created since the last check
-4. Sends new comments to Zulip via REST API
-5. Updates the state file with the new timestamp
+1. Queries the Comentario SQLite database for recent comments (last 20 minutes)
+2. Sends new comments to Zulip via REST API
 """
 
 import os
 import sys
-import json
+import sqlite3
 import urllib.parse
 import urllib.request
 import base64
-from datetime import datetime, timezone
+from datetime import datetime, timezone, timedelta
 from pathlib import Path
 
 
 # Configuration from environment variables
-COMENTARIO_URL = os.getenv("COMENTARIO_URL", "http://comentario.gitbok.svc.cluster.local")
+DB_PATH = os.getenv("DB_PATH", "/comentario-data/comentario.db")
 COMENTARIO_DOMAIN_ID = os.getenv("COMENTARIO_DOMAIN_ID", "")
+COMENTARIO_BASE_URL = os.getenv("COMENTARIO_BASE_URL", "https://www.health-samurai.io/docs/futureblog/comentario")
 ZULIP_URL = os.getenv("ZULIP_URL", "")
 ZULIP_BOT_EMAIL = os.getenv("ZULIP_BOT_EMAIL", "")
 ZULIP_BOT_TOKEN = os.getenv("ZULIP_BOT_TOKEN", "")
 ZULIP_STREAM_ID = "43"  # Hardcoded stream ID for blog comments
-STATE_FILE = Path(os.getenv("STATE_FILE", "/data/last_check.txt"))
+LOOKBACK_MINUTES = int(os.getenv("LOOKBACK_MINUTES", "20"))  # Check last 20 minutes by default
 
 
-def read_last_check_time():
-    """Read the last check timestamp from state file."""
-    if STATE_FILE.exists():
-        try:
-            content = STATE_FILE.read_text().strip()
-            return datetime.fromisoformat(content.replace("Z", "+00:00"))
-        except Exception as e:
-            print(f"Warning: Failed to read last check time: {e}", file=sys.stderr)
-            return datetime.now(timezone.utc).replace(hour=0, minute=0, second=0, microsecond=0)
-    else:
-        return datetime.now(timezone.utc).replace(hour=0, minute=0, second=0, microsecond=0)
-
-
-def write_last_check_time(timestamp):
-    """Write the last check timestamp to state file."""
-    try:
-        STATE_FILE.parent.mkdir(parents=True, exist_ok=True)
-        STATE_FILE.write_text(timestamp.isoformat())
-        print(f"Updated last check time to: {timestamp.isoformat()}")
-    except Exception as e:
-        print(f"Error: Failed to write last check time: {e}", file=sys.stderr)
-        sys.exit(1)
-
-
-def fetch_comments():
-    """Fetch all comments from Comentario API."""
+def fetch_recent_comments():
+    """Fetch recent comments from SQLite database."""
     if not COMENTARIO_DOMAIN_ID:
         print("Error: COMENTARIO_DOMAIN_ID not set", file=sys.stderr)
         sys.exit(1)
 
-    # Build API URL with query parameters
-    params = {
-        "domainId": COMENTARIO_DOMAIN_ID,
-        "sortBy": "created",
-        "sortDesc": "true",
-        "pageNumber": "1"
-    }
-    url = f"{COMENTARIO_URL}/api/comments?{urllib.parse.urlencode(params)}"
+    if not Path(DB_PATH).exists():
+        print(f"Error: Database not found at {DB_PATH}", file=sys.stderr)
+        sys.exit(1)
 
-    print(f"Fetching comments from: {url}")
+    print(f"Connecting to database: {DB_PATH}")
+
+    # Calculate lookback time
+    lookback_time = datetime.now(timezone.utc) - timedelta(minutes=LOOKBACK_MINUTES)
+    print(f"Looking for comments since: {lookback_time.isoformat()}")
 
     try:
-        req = urllib.request.Request(url)
-        req.add_header("Content-Type", "application/json")
+        conn = sqlite3.connect(f"file:{DB_PATH}?mode=ro", uri=True)
+        conn.row_factory = sqlite3.Row
+        cursor = conn.cursor()
 
-        with urllib.request.urlopen(req, timeout=30) as response:
-            data = json.loads(response.read().decode())
-            comments = data.get("comments", [])
-            print(f"Retrieved {len(comments)} comments from Comentario")
-            return comments
-    except urllib.error.HTTPError as e:
-        print(f"Error: HTTP {e.code} fetching comments: {e.reason}", file=sys.stderr)
+        # Query recent comments with user and page info
+        # Join cm_comments + cm_users + cm_domain_pages
+        query = """
+            SELECT
+                c.id as comment_id,
+                c.markdown,
+                c.html,
+                c.ts_created,
+                c.page_id,
+                u.email as author_email,
+                u.name as author_name,
+                u.federated_idp as provider,
+                u.signup_country as country,
+                u.website_url as author_link,
+                u.id as user_id,
+                p.path as page_path,
+                p.title as page_title,
+                p.domain_id
+            FROM cm_comments c
+            LEFT JOIN cm_users u ON c.user_created = u.id
+            LEFT JOIN cm_domain_pages p ON c.page_id = p.id
+            WHERE p.domain_id = ?
+              AND c.ts_created > ?
+              AND c.is_approved = 1
+            ORDER BY c.ts_created ASC
+        """
+
+        # Convert lookback_time to SQLite timestamp format
+        lookback_str = lookback_time.strftime('%Y-%m-%d %H:%M:%S')
+
+        cursor.execute(query, (COMENTARIO_DOMAIN_ID, lookback_str))
+        rows = cursor.fetchall()
+
+        comments = []
+        for row in rows:
+            comment = {
+                'comment_id': row['comment_id'],
+                'markdown': row['markdown'],
+                'html': row['html'],
+                'ts_created': row['ts_created'],
+                'page_path': row['page_path'] or '',
+                'page_title': row['page_title'] or 'Unknown page',
+                'author_email': row['author_email'] or '',
+                'author_name': row['author_name'] or 'Anonymous',
+                'provider': row['provider'] or '',
+                'country': row['country'] or '',
+                'author_link': row['author_link'] or '',
+                'user_id': row['user_id'] or ''
+            }
+            comments.append(comment)
+
+        cursor.close()
+        conn.close()
+
+        print(f"Retrieved {len(comments)} new comments from database")
+        return comments
+
+    except sqlite3.Error as e:
+        print(f"Error: SQLite error: {e}", file=sys.stderr)
         sys.exit(1)
     except Exception as e:
         print(f"Error: Failed to fetch comments: {e}", file=sys.stderr)
         sys.exit(1)
 
 
-def filter_new_comments(comments, last_check_time):
-    """Filter comments created after last check time."""
-    new_comments = []
-
-    for comment in comments:
-        # Parse comment creation time (ISO 8601 format)
-        created_at_str = comment.get("createdAt", "")
-        if not created_at_str:
-            continue
-
-        try:
-            created_at = datetime.fromisoformat(created_at_str.replace("Z", "+00:00"))
-
-            if created_at > last_check_time:
-                new_comments.append(comment)
-        except Exception as e:
-            print(f"Warning: Failed to parse timestamp '{created_at_str}': {e}", file=sys.stderr)
-            continue
-
-    print(f"Found {len(new_comments)} new comments since {last_check_time.isoformat()}")
-    return new_comments
-
-
-def get_profile_link(provider, author_id, author_link):
+def get_profile_link(provider, user_id, author_link):
     """Generate profile link based on OAuth provider."""
     if author_link:
         return author_link
 
-    if not author_id:
+    if not user_id:
         return None
 
-    # Generate profile link from provider and ID
-    if provider == "github":
-        return f"https://github.com/{author_id}"
-    elif provider == "google":
-        # Google doesn't have public profile URLs by user ID
-        return None
-    elif provider == "linkedin":
-        # LinkedIn profile links are in the author_link field
-        return None
+    # For federated OAuth, user_id in Comentario is typically the OAuth subject ID
+    # which isn't directly usable for profile links
+    # GitHub might store username, but Google/LinkedIn don't have predictable profile URLs
 
+    # We can only generate GitHub profile links if we have the username
+    # For now, just return the author_link if provided
     return None
 
 
 def format_zulip_message(comment):
     """Format a Comentario comment for Zulip notification."""
-    comment_id = comment.get("commentId", "")
-    text = comment.get("markdown", "") or comment.get("html", "") or ""
-    created_at = comment.get("createdAt", "")
+    comment_id = comment['comment_id']
+    text = comment['markdown'] or comment['html'] or ''
+    created_at = comment['ts_created']
 
     # Author info
-    author = comment.get("commenterName", "Anonymous")
-    author_email = comment.get("commenterEmail", "")
-
-    # OAuth provider info (can be: github, google, linkedin, oidc, etc)
-    provider = comment.get("commenterProvider", comment.get("provider", ""))
-    author_link = comment.get("commenterLink", comment.get("link", ""))
-    author_id = comment.get("commenterId", comment.get("authorId", ""))
-
-    # Location info
-    country = comment.get("country", comment.get("location", ""))
+    author = comment['author_name']
+    author_email = comment['author_email']
+    provider = comment['provider']
+    author_link = comment['author_link']
+    user_id = comment['user_id']
+    country = comment['country']
 
     # Page info
-    page = comment.get("page", {})
-    page_title = page.get("title", "Unknown page")
-    page_path = page.get("path", "")
+    page_title = comment['page_title']
+    page_path = comment['page_path']
 
     # Construct comment URL
-    # Note: Comentario doesn't provide direct comment links in API
-    # We construct it based on domain origin and page path
-    comment_url = f"{COMENTARIO_URL}{page_path}#comment-{comment_id}"
+    # Comentario uses #comment-{uuid} anchors
+    comment_url = f"{COMENTARIO_BASE_URL}{page_path}#comment-{comment_id}"
 
     # Normalize provider name for display
     provider_display = {
@@ -167,10 +160,10 @@ def format_zulip_message(comment):
         "linkedin": "LinkedIn",
         "oidc": "OIDC",
         "facebook": "Facebook"
-    }.get(provider.lower() if provider else "", provider or "Email")
+    }.get(provider.lower() if provider else "", provider or "Local")
 
     # Get profile link
-    profile_link = get_profile_link(provider.lower() if provider else "", author_id, author_link)
+    profile_link = get_profile_link(provider.lower() if provider else "", user_id, author_link)
 
     # Format message in Markdown (Zulip supports markdown)
     message_parts = [
@@ -185,7 +178,8 @@ def format_zulip_message(comment):
         message_parts.append(f"**Profile**: {profile_link}")
 
     # Add email
-    message_parts.append(f"**Email**: {author_email}")
+    if author_email:
+        message_parts.append(f"**Email**: {author_email}")
 
     # Add country if available
     if country:
@@ -250,36 +244,28 @@ def send_to_zulip(message):
 def main():
     """Main polling logic."""
     print("=" * 60)
-    print("Comentario to Zulip Poller")
+    print("Comentario to Zulip Poller (SQLite)")
     print("=" * 60)
 
-    # Read last check time
-    last_check_time = read_last_check_time()
-    print(f"Last check time: {last_check_time.isoformat()}")
+    print(f"Domain ID: {COMENTARIO_DOMAIN_ID}")
+    print(f"Lookback window: {LOOKBACK_MINUTES} minutes")
 
-    # Fetch all comments
-    all_comments = fetch_comments()
-
-    # Filter new comments
-    new_comments = filter_new_comments(all_comments, last_check_time)
+    # Fetch recent comments from database
+    recent_comments = fetch_recent_comments()
 
     # Send notifications for new comments
-    if new_comments:
-        print(f"Processing {len(new_comments)} new comments...")
+    if recent_comments:
+        print(f"Processing {len(recent_comments)} recent comments...")
         success_count = 0
 
-        for comment in reversed(new_comments):  # Send oldest first
+        for comment in recent_comments:
             message = format_zulip_message(comment)
             if send_to_zulip(message):
                 success_count += 1
 
-        print(f"Successfully sent {success_count}/{len(new_comments)} notifications")
+        print(f"Successfully sent {success_count}/{len(recent_comments)} notifications")
     else:
         print("No new comments to process")
-
-    # Update last check time to now
-    current_time = datetime.now(timezone.utc)
-    write_last_check_time(current_time)
 
     print("=" * 60)
     print("Polling complete")
