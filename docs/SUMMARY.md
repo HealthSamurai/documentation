@@ -373,7 +373,7 @@
   * [Adaptive Forms](modules/aidbox-forms/adaptive-forms.md)
   * [Audit logging in forms](modules/aidbox-forms/audit-logging-in-forms.md)
   * [Aidbox Form Gallery](modules/aidbox-forms/aidbox-form-gallery.md)
-  * [Da Vinci DTR - $questionnaire-package Operation](modules/aidbox-forms/davinci.md)
+  * [Da Vinci DTR](modules/aidbox-forms/davinci.md)
 * [SQL on FHIR](modules/sql-on-fhir/README.md)
   * [$run operation](modules/sql-on-fhir/operation-run.md)
   * [$materialize operation](modules/sql-on-fhir/operation-materialize.md)

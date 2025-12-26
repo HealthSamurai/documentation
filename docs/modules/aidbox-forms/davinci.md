@@ -2,7 +2,7 @@
 description: Build Prior Authorization flows (DTR) with `$questionnaire-package`  operation support
 ---
 
-# Da Vinci DTR - $questionnaire-package Operation
+# Da Vinci DTR
 
 Aidbox Forms supports `$questionnaire-package` operation from the [Da Vinci Documentation Templates and Rules (DTR) Implementation Guide](https://build.fhir.org/ig/HL7/davinci-dtr/). 
 
