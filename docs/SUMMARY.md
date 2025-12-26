@@ -358,6 +358,7 @@
     * [External Form Renderer in Builder Preview](modules/aidbox-forms/aidbox-ui-builder-alpha/external-form-renderer.md)
     * [External FHIR servers as a data backend](modules/aidbox-forms/aidbox-ui-builder-alpha/external-fhir-servers-as-a-data-backend.md)
     * [Store attachments in S3-like storages](modules/aidbox-forms/aidbox-ui-builder-alpha/store-attachments-in-s3-like-storages.md)
+    * [Da Vinci DTR - $questionnaire-package Operation](modules/aidbox-forms/davinci.md)
   * [Aidbox Code Editor (/Deprecated)](modules/aidbox-forms/aidbox-code-editor/README.md)
     * [Form creation](modules/aidbox-forms/aidbox-code-editor/form-creation.md)
     * [How to create a dynamic form](modules/aidbox-forms/aidbox-code-editor/dynamic-form-creation.md)
