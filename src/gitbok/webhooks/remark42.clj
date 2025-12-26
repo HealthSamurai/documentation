@@ -1,20 +1,34 @@
 (ns gitbok.webhooks.remark42
   (:require
    [cheshire.core :as json]
+   [clojure.string :as str]
    [org.httpkit.client :as http-client]
    [clojure.tools.logging :as log]))
 
 (defn format-comment-message
   "Format remark42 comment data into Zulip message"
   [comment]
-  (let [{:keys [text user locator time title]} comment
-        author (get user :name "Anonymous")
+  (let [{:keys [id text user locator time title]} comment
+        author-name (get user :name "Anonymous")
+        user-id (get user :id "")
         url (get locator :url "")
-        page-title (or title "")]
+        page-title (or title "")
+        is-github (str/starts-with? user-id "github_")
+        is-google (str/starts-with? user-id "google_")
+        author-link (cond
+                      is-github (str "https://github.com/" author-name)
+                      :else author-name)
+        provider (cond
+                   is-github "GitHub"
+                   is-google "Google"
+                   :else "Unknown")
+        comment-link (str url "#remark42__comment-" id)]
     (str "**New blog comment**\n\n"
          "**Page**: " page-title "\n"
-         "**URL**: " url "\n"
-         "**Author**: " author "\n"
+         "**Author**: " (if is-github
+                          (str "[" author-name "](https://github.com/" author-name ")")
+                          (str author-name " (" provider ")")) "\n"
+         "**Comment link**: " comment-link "\n"
          "**Time**: " time "\n\n"
          "**Comment**:\n" text)))
 
