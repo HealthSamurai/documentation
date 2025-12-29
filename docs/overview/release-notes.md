@@ -12,11 +12,12 @@ description: >-
   * ..
 * Aidbox Forms
   * Supported the ability to create dynamic [parameterized valueSets](../modules/aidbox-forms/aidbox-ui-builder-alpha/parameterised-valueset.md) that filter answer options based on other form fields using FHIRPath expressions.
+  * Created an [open-source React renderer](https://github.com/HealthSamurai/aidbox-forms-renderer/tree/master) for custom form rendering, now available in alpha stage.
+  * Supported [`$questionnaire-package`](../modules/aidbox-forms/davinci.md) operation for the Da Vinci DTR flow.
+  * Implemented the [`tab-container`](../modules/aidbox-forms/aidbox-ui-builder-alpha/form-creation/widgets.md) widget to display groups as form tabs.
   * Redesigned the form outline with item search support.
   * Implemented all widgets for [`entryMode`](../modules/aidbox-forms/aidbox-ui-builder-alpha/form-creation/entry-mode.md).
   * Supported theme usage for [`entryMode`](../modules/aidbox-forms/aidbox-ui-builder-alpha/form-creation/entry-mode.md).
-  * Implemented the [`tab-container`](../modules/aidbox-forms/aidbox-ui-builder-alpha/form-creation/widgets.md) widget to display groups as form tabs.
-  * Created an [open-source React renderer](https://github.com/HealthSamurai/aidbox-forms-renderer/tree/master) for custom form rendering, now available in alpha stage.
 
 ## November 2025 _`latest, 2511`_
 
