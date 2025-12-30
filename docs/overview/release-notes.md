@@ -8,14 +8,16 @@ description: >-
 
 ## January 2026 _`edge`_
 
-## December 2025 _`latest, 2512`_
+## December 2025 _`latest, 2512, LTS`_
 
 * Aidbox FHIR server 
   * FHIR native Subscriptions are now supported.
   * Updated documentation for configuring [Two Factor Authentication](../access-control/authentication/two-factor-authentication.md) with the Aidbox security provider.
-	•	Significant performance improvements.
-	•	Multiple bug fixes in the validator.
-	•	Security-related bug fixes.
+	* Significant performance improvements.
+	* Multiple bug fixes in the validator.
+	* Security-related bug fixes.
+  * Minor updates
+    * `2507.4` - Fixed vulnerabilities
 * Aidbox Forms
   * Supported the ability to create dynamic [parameterized valueSets](../modules/aidbox-forms/aidbox-ui-builder-alpha/parameterised-valueset.md) that filter answer options based on other form fields using FHIRPath expressions.
   * Created an [open-source React renderer](https://github.com/HealthSamurai/aidbox-forms-renderer/tree/master) for custom form rendering, now available in alpha stage.
