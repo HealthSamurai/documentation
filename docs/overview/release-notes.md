@@ -6,10 +6,16 @@ description: >-
 
 # Release Notes
 
-## December 2025 _`edge`_&#x20;
+## January 2026 _`edge`_
 
-* Aidbox FHIR server (in progress)
-  * ..
+## December 2025 _`latest, 2512`_
+
+* Aidbox FHIR server 
+  * FHIR native Subscriptions are now supported.
+  * Updated documentation for configuring [Two Factor Authentication](../access-control/authentication/two-factor-authentication.md) with the Aidbox security provider.
+	•	Significant performance improvements.
+	•	Multiple bug fixes in the validator.
+	•	Security-related bug fixes.
 * Aidbox Forms
   * Supported the ability to create dynamic [parameterized valueSets](../modules/aidbox-forms/aidbox-ui-builder-alpha/parameterised-valueset.md) that filter answer options based on other form fields using FHIRPath expressions.
   * Created an [open-source React renderer](https://github.com/HealthSamurai/aidbox-forms-renderer/tree/master) for custom form rendering, now available in alpha stage.
@@ -19,7 +25,7 @@ description: >-
   * Implemented all widgets for [`entryMode`](../modules/aidbox-forms/aidbox-ui-builder-alpha/form-creation/entry-mode.md).
   * Supported theme usage for [`entryMode`](../modules/aidbox-forms/aidbox-ui-builder-alpha/form-creation/entry-mode.md).
 
-## November 2025 _`latest, 2511`_
+## November 2025 _`stable, 2511`_
 
 * Aidbox FHIR server
   * Improvements in **Implementation Guide (IG) Management**:
@@ -44,7 +50,7 @@ description: >-
 * Minor updates
   * `2510.1` - Fix redirects after registration email confirmation
 
-## October 2025 _`stable, 2510`_
+## October 2025 _`2510`_
 
 * Aidbox FHIR server
   * Published a [tutorial](../solutions/providers-or-onc-health-it-certification-program/g-10-standardized-api-for-patient-and-population-services/pass-inferno-tests-with-aidbox.md) on how to pas **Inferno tests** (US Core 6.1.0 / USCDI v3 and SMART App Launch 2.0.0). You can run these tests on **Health Samurai-hosted Inferno instance** [here](https://www.health-samurai.io/inferno/onc_certification_g10).
@@ -76,7 +82,7 @@ description: >-
   * `2504.3` - Fixed vulnerabilities
   * `2503.6` - Fixed vulnerabilities
 
-## September 2025 _`stable, 2509`_
+## September 2025 _`2509`_
 
 * Aidbox FHIR server
   * Added the [`validate-fhir-resource`](../modules/other-modules/mcp.md#tools) MCP tool to validate FHIR resources.
