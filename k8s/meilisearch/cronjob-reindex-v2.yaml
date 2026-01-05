@@ -4,7 +4,7 @@ metadata:
   name: meilisearch-reindex-v2
   namespace: gitbok
 spec:
-  schedule: "0 */2 * * *"
+  schedule: "0 */1 * * *"
   concurrencyPolicy: Forbid
   successfulJobsHistoryLimit: 1
   failedJobsHistoryLimit: 2
