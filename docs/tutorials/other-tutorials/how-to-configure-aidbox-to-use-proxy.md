@@ -14,7 +14,7 @@ description: Configure Aidbox to use a proxy for outgoing requests.
 
 ## Configure Aidbox to use a proxy for outgoing requests
 
-To configure Aidbox to use a proxy for outgoing requests, you need to set the following environment variabl:
+To configure Aidbox to use a proxy for outgoing requests, you need to set the following environment variable:
 
 ```yaml
 JAVA_OPTS: -Dhttps.proxyHost=proxyhost -Dhttps.proxyPort=proxyPort
