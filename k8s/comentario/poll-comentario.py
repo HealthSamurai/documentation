@@ -114,21 +114,11 @@ def fetch_recent_comments():
         sys.exit(1)
 
 
-def get_profile_link(provider, user_id, author_link):
-    """Generate profile link based on OAuth provider."""
-    if author_link:
-        return author_link
-
-    if not user_id:
-        return None
-
-    # For federated OAuth, user_id in Comentario is typically the OAuth subject ID
-    # which isn't directly usable for profile links
-    # GitHub might store username, but Google/LinkedIn don't have predictable profile URLs
-
-    # We can only generate GitHub profile links if we have the username
-    # For now, just return the author_link if provided
-    return None
+def get_profile_link(author_link):
+    """Return profile link if user provided website_url."""
+    # Only use website_url if provided by user
+    # OAuth providers (Google, GitHub, LinkedIn) don't expose public profile URLs
+    return author_link if author_link else None
 
 
 def format_zulip_message(comment):
@@ -142,7 +132,6 @@ def format_zulip_message(comment):
     author_email = comment['author_email']
     provider = comment['provider']
     author_link = comment['author_link']
-    user_id = comment['user_id']
     country = comment['country']
 
     # Page info
@@ -163,7 +152,7 @@ def format_zulip_message(comment):
     }.get(provider.lower() if provider else "", provider or "Local")
 
     # Get profile link
-    profile_link = get_profile_link(provider.lower() if provider else "", user_id, author_link)
+    profile_link = get_profile_link(author_link)
 
     # Format message in Markdown (Zulip supports markdown)
     message_parts = [
