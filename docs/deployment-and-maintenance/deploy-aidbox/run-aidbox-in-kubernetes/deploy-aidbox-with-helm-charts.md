@@ -12,13 +12,13 @@ Before deployment please read about infrastructure prerequisites.
 
 [AidboxDB](../../../deprecated/deprecated/other/aidboxdb-environment-variables.md) is a specialized version of the open-source PostgreSQL database, tailored for use as the data storage backend for Aidbox.
 
-1. #### **Add aidbox helm repo**
+### **1. Add aidbox helm repo**
 
 ```bash
 helm repo add aidbox https://aidbox.github.io/helm-charts
 ```
 
-2. #### Prepare database config
+### 2. Prepare database config
 
 ```yaml
 config: |-
@@ -50,7 +50,7 @@ storage:
 
 All AidboxDB helm config values are [here](https://github.com/Aidbox/helm-charts/tree/main/aidboxdb#values).
 
-3. #### Apply config
+### 3. Apply config
 
 ```bash
 helm upgrade --install aidboxdb aidbox/aidboxdb \
@@ -62,7 +62,7 @@ helm upgrade --install aidboxdb aidbox/aidboxdb \
 
 First, you must get an Aidbox license on the [Aidbox user portal.](https://aidbox.app/)
 
-1. #### Prepare Aidbox config
+### 1. Prepare Aidbox config
 
 ```yaml
 host: <your-aidbox-host>
@@ -94,7 +94,7 @@ ingress:
 
 All AidboxDB helm config values are [here](https://github.com/Aidbox/helm-charts/tree/main/aidbox#values).
 
-2. #### Apply config
+### 2. Apply config
 
 ```bash
 helm upgrade --install aidbox aidbox/aidbox \
