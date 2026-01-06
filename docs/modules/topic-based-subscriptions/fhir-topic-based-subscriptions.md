@@ -222,6 +222,39 @@ The notification bundle format depends on the `subscription-specification-versio
 |---------|---------------|
 | `R4-backported` | [Notification Bundle Example](https://build.fhir.org/ig/HL7/fhir-subscription-backport-ig/Bundle-r4-notification-full-resource.json.html), [All Artifacts](https://build.fhir.org/ig/HL7/fhir-subscription-backport-ig/artifacts.html) |
 
+## Internals
+
+This section describes internal implementation details useful for debugging and operations.
+
+### Database Tables
+
+Events and delivery statuses are stored in the `tds` schema:
+
+| Table | Description |
+|-------|-------------|
+| `tds.fhir_subscription_topic_event` | Stores triggered events. Events are inserted within the same database transaction that processes the FHIR request, ensuring consistency. |
+| `tds.fhir_subscription_delivery_status` | Stores delivery facts for each event-subscription pair. A record is created after delivery attempt with `error_code` set to NULL on success or error type on failure. |
+
+### Event Processing
+
+1. When a FHIR resource is created/updated/deleted and matches a topic's trigger criteria, an event is inserted into `fhir_subscription_topic_event` within the same transaction.
+
+2. A background enqueuer process dispatches undelivered events to subscription processors.
+
+3. Each subscription has a lightweight processor that batches events according to `max-count` and `heartbeat-period` settings.
+
+4. Deliverer workers (controlled by `number-of-deliverer`) perform the actual HTTP delivery to subscription endpoints.
+
+### Event Cleanup
+
+If `keep-events-for-period` is specified, a periodic cleanup process deletes events older than the retention period from both `fhir_subscription_topic_event` and `fhir_subscription_delivery_status` tables.
+
+### Multi-Instance Coordination
+
+In multi-instance deployments, PostgreSQL advisory locks ensure only one Aidbox instance runs the delivery process for each `AidboxTopicDestination`. Other instances wait and take over if the lock becomes available.
+
 ## Setup Tutorial
 
-See [FHIR R4 Backport Subscription Setup](../../tutorials/subscriptions-tutorials/fhir-subscription-r4-backport.md) for a step-by-step guide.
+| Version | Tutorial |
+|---------|----------|
+| `R4-backported` | [FHIR R4 Backport Subscription Setup](../../tutorials/subscriptions-tutorials/fhir-subscription-r4-backport.md) |
