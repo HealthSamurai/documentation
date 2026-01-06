@@ -22,7 +22,7 @@ Use FHIR Topic-Based Subscriptions when you:
 
 ### When to use Aidbox Destinations instead
 
-For simple subscriptions used for internal integrations, [Aidbox Topic Destinations](aidbox-topic-based-subscriptions.md) (Kafka, Webhook, GCP Pub/Sub, etc.) may work better as they require less setup and are managed server-side.
+For simple subscriptions used for internal integrations, [Aidbox Topic Destinations](aidbox-topic-based-subscriptions.md#currently-supported-channels) (Kafka, Webhook, GCP Pub/Sub, etc.) may work better as they require less setup and are managed server-side.
 
 ## Key Components
 
@@ -83,7 +83,7 @@ The `canFilterBy` element in `AidboxSubscriptionTopic` defines what filter param
 | `filterParameter` | Name of the filter parameter that subscribers will use |
 | `filterDefinitionFhirPathExpression` | FHIRPath expression to extract the filter value from the resource |
 | `resource` | Resource type this filter applies to |
-| `comparator` | Supported comparators (e.g., `["eq"]`) |
+| `comparator` | Comparison operators allowed for this filter. Currently only `eq` (equals) is supported. |
 | `description` | Human-readable description of the filter |
 
 ```json
@@ -115,14 +115,10 @@ For FHIR Subscriptions, use the `fhir-native-topic-based-subscription` kind with
 
 | Parameter | Type | Description |
 |-----------|------|-------------|
-| `fhir-topic` | valueCanonical | Canonical URL of the FHIR SubscriptionTopic this destination implements |
-| `subscription-specification-version` | valueString | FHIR version of the Subscription spec to support (see note below) |
-| `keep-events-for-period` | valueUnsignedInt | How long events remain available for the `$events` operation (in seconds) |
-| `number-of-deliverer` | valueUnsignedInt | Number of parallel delivery workers |
-
-{% hint style="info" %}
-Currently only `R4-backported` specification version is supported. [Contact us](https://www.health-samurai.io/contacts) if you need support for other versions (R5, R6).
-{% endhint %}
+| `fhir-topic` | valueCanonical | Canonical URL of the FHIR SubscriptionTopic this destination implements. |
+| `subscription-specification-version` | valueString | FHIR version of the Subscription spec to support. This value determines the format of notification bundles, `$status` and `$events` operation responses. Currently only `R4-backported` is supported. [Contact us](https://www.health-samurai.io/contacts) if you need other versions (R5, R6). |
+| `keep-events-for-period` | valueUnsignedInt | How long events remain available for the `$events` operation (in seconds). If not specified, events are stored indefinitely. |
+| `number-of-deliverer` | valueUnsignedInt | Number of parallel delivery workers (default: 4). |
 
 ```json
 {
@@ -161,8 +157,6 @@ Once the topic and destination are configured, clients can create standard FHIR 
 Only `rest-hook` channel type is supported. Other channel types (`websocket`, `email`, `message`) are not available.
 {% endhint %}
 
-For the R4 Backport profile structure and parameters, see the [Backport Subscription Profile](https://build.fhir.org/ig/HL7/fhir-subscription-backport-ig/StructureDefinition-backport-subscription.html).
-
 ## Subscription Lifecycle
 
 1. **Requested**: Client creates a Subscription resource with `status: requested`. The subscription is not yet active.
@@ -185,7 +179,7 @@ Only instance-level operations are supported (not the batch/server-level variant
 
 ### $status
 
-Returns the current status of a subscription including event counts.
+Returns the current status of a subscription including event counts. Response format depends on the `subscription-specification-version` configured in `AidboxTopicDestination`.
 
 **URL:** `GET|POST [base]/Subscription/[id]/$status`
 
@@ -196,11 +190,13 @@ Returns the current status of a subscription including event counts.
 - `events-since-subscription-start` - total event count
 - `error` - error details if delivery failed
 
-See: [Subscription Status Operation](https://build.fhir.org/ig/HL7/fhir-subscription-backport-ig/OperationDefinition-backport-subscription-status.html)
+| Version | Specification |
+|---------|---------------|
+| `R4-backported` | [Subscription Status Operation](https://build.fhir.org/ig/HL7/fhir-subscription-backport-ig/OperationDefinition-backport-subscription-status.html) |
 
 ### $events
 
-Allows clients to query past events for recovery purposes.
+Allows clients to query past events for recovery purposes. Response format depends on the `subscription-specification-version` configured in `AidboxTopicDestination`.
 
 **URL:** `POST [base]/Subscription/[id]/$events`
 
@@ -214,15 +210,17 @@ Allows clients to query past events for recovery purposes.
 
 **Defaults:** If no parameters provided, returns up to 100 most recent events.
 
-See: [Subscription Events Operation](https://build.fhir.org/ig/HL7/fhir-subscription-backport-ig/OperationDefinition-backport-subscription-events.html)
+| Version | Specification |
+|---------|---------------|
+| `R4-backported` | [Subscription Events Operation](https://build.fhir.org/ig/HL7/fhir-subscription-backport-ig/OperationDefinition-backport-subscription-events.html) |
 
 ## Notification Bundle
 
-The notification bundle format follows the selected `subscription-specification-version`.
+The notification bundle format depends on the `subscription-specification-version` configured in `AidboxTopicDestination`.
 
-For R4-backported subscriptions, see:
-- [Notification Bundle Example](https://build.fhir.org/ig/HL7/fhir-subscription-backport-ig/Bundle-r4-notification-full-resource.json.html)
-- [All Backport IG Artifacts](https://build.fhir.org/ig/HL7/fhir-subscription-backport-ig/artifacts.html)
+| Version | Specification |
+|---------|---------------|
+| `R4-backported` | [Notification Bundle Example](https://build.fhir.org/ig/HL7/fhir-subscription-backport-ig/Bundle-r4-notification-full-resource.json.html), [All Artifacts](https://build.fhir.org/ig/HL7/fhir-subscription-backport-ig/artifacts.html) |
 
 ## Setup Tutorial
 
