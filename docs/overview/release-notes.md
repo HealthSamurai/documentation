@@ -11,7 +11,7 @@ description: >-
 ## December 2025 _`latest, 2512, LTS`_
 
 * Aidbox FHIR server 
-  * FHIR native Subscriptions are now supported.
+  * [FHIR Topic-based Subscriptions](../modules/topic-based-subscriptions/fhir-topic-based-subscriptions.md) are now supported.
   * Updated documentation for configuring [Two Factor Authentication](../access-control/authentication/two-factor-authentication.md) with the Aidbox security provider.
   * Significant performance improvements.
   * Multiple bug fixes in the validator.
