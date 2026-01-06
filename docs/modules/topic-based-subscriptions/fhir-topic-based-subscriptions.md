@@ -153,9 +153,21 @@ For FHIR Subscriptions, use the `fhir-native-topic-based-subscription` kind with
 
 Once the topic and destination are configured, clients can create standard FHIR `Subscription` resources to subscribe to events.
 
-{% hint style="warning" %}
-Only `rest-hook` channel type is supported. Other channel types (`websocket`, `email`, `message`) are not available.
-{% endhint %}
+#### Supported Fields
+
+| Field | R4 Backport | R5 | Description |
+|-------|-------------|-----|-------------|
+| Topic | [`criteria`](https://build.fhir.org/ig/HL7/fhir-subscription-backport-ig/StructureDefinition-backport-subscription-definitions.html#diff_Subscription.criteria) | [`topic`](https://hl7.org/fhir/R5/subscription-definitions.html#Subscription.topic) | Canonical URL of the SubscriptionTopic |
+| Filter criteria | [`backport-filter-criteria`](https://build.fhir.org/ig/HL7/fhir-subscription-backport-ig/StructureDefinition-backport-subscription-definitions.html#diff_Subscription.criteria.extension:filterCriteria) | [`filterBy`](https://hl7.org/fhir/R5/subscription-definitions.html#Subscription.filterBy) | Filter events using parameters defined in `canFilterBy` |
+| Expiration | [`end`](https://hl7.org/fhir/R4/subscription-definitions.html#Subscription.end) | [`end`](https://hl7.org/fhir/R5/subscription-definitions.html#Subscription.end) | DateTime when subscription expires and stops receiving events |
+| Channel type | [`channel.type`](https://hl7.org/fhir/R4/subscription-definitions.html#Subscription.channel.type) | [`channelType`](https://hl7.org/fhir/R5/subscription-definitions.html#Subscription.channelType) | Only `rest-hook` is supported |
+| Endpoint | [`channel.endpoint`](https://hl7.org/fhir/R4/subscription-definitions.html#Subscription.channel.endpoint) | [`endpoint`](https://hl7.org/fhir/R5/subscription-definitions.html#Subscription.endpoint) | URL to receive notifications |
+| Content type | [`channel.payload`](https://hl7.org/fhir/R4/subscription-definitions.html#Subscription.channel.payload) | [`contentType`](https://hl7.org/fhir/R5/subscription-definitions.html#Subscription.contentType) | MIME type for notification payload (e.g., `application/fhir+json`) |
+| Content level | [`backport-payload-content`](https://build.fhir.org/ig/HL7/fhir-subscription-backport-ig/StructureDefinition-backport-subscription-definitions.html#diff_Subscription.channel.payload.extension:content) | [`content`](https://hl7.org/fhir/R5/subscription-definitions.html#Subscription.content) | Payload detail: `empty`, `id-only`, or `full-resource` |
+| Headers | [`channel.header`](https://hl7.org/fhir/R4/subscription-definitions.html#Subscription.channel.header) | [`parameter`](https://hl7.org/fhir/R5/subscription-definitions.html#Subscription.parameter) | Custom HTTP headers sent with notifications |
+| Heartbeat | [`backport-heartbeat-period`](https://build.fhir.org/ig/HL7/fhir-subscription-backport-ig/StructureDefinition-backport-subscription-definitions.html#diff_Subscription.channel.extension:heartbeatPeriod) | [`heartbeatPeriod`](https://hl7.org/fhir/R5/subscription-definitions.html#Subscription.heartbeatPeriod) | Interval in seconds for keep-alive notifications during inactivity |
+| Max count | [`backport-max-count`](https://build.fhir.org/ig/HL7/fhir-subscription-backport-ig/StructureDefinition-backport-subscription-definitions.html#diff_Subscription.channel.extension:maxCount) | [`maxCount`](https://hl7.org/fhir/R5/subscription-definitions.html#Subscription.maxCount) | Max events per notification bundle before sending |
+| Timeout | [`backport-timeout`](https://build.fhir.org/ig/HL7/fhir-subscription-backport-ig/StructureDefinition-backport-subscription-definitions.html#diff_Subscription.channel.extension:timeout) | [`timeout`](https://hl7.org/fhir/R5/subscription-definitions.html#Subscription.timeout) | Max seconds to wait for endpoint response before failing delivery |
 
 ## Subscription Lifecycle
 
@@ -239,7 +251,7 @@ Events and delivery statuses are stored in the `tds` schema:
 
 1. When a FHIR resource is created/updated/deleted and matches a topic's trigger criteria, an event is inserted into `fhir_subscription_topic_event` within the same transaction.
 
-2. A background enqueuer process dispatches undelivered events to subscription processors.
+2. A background enqueuer process dispatches undelivered events to subscription processors. Events are filtered by each subscription's `filterBy` criteria — only matching events are delivered to that subscription.
 
 3. Each subscription has a lightweight processor that batches events according to `max-count` and `heartbeat-period` settings.
 

@@ -12,6 +12,10 @@ This functionality is available in Aidbox versions 2409 and later and requires [
 
 This feature enables dynamic subscriptions to changes in FHIR resources, allowing users/systems to receive notifications through multiple channels, including Kafka.
 
+{% hint style="info" %}
+**Looking for FHIR-standard Subscriptions?** If you need external systems or clients to create their own subscriptions using standard FHIR `Subscription` resources, see [FHIR Topic-Based Subscriptions](fhir-topic-based-subscriptions.md). FHIR Topic-Based Subscriptions are built on top of the mechanism described on this page. Aidbox Topic Destinations are best for server-side integrations managed by administrators.
+{% endhint %}
+
 <figure><img src="../../.gitbook/assets/eb0e6bfe-79a6-4f5e-bb16-1913eb0106d0.png" alt="Architecture diagram showing topic-based subscriptions flow"><figcaption></figcaption></figure>
 
 For an application example, refer to [Aidbox Subscriptions & Kafka AidboxTopicDestination](https://github.com/Aidbox/examples/tree/main/aidbox-features/aidbox-subscriptions-to-kafka)
