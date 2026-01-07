@@ -53,3 +53,182 @@ Accept: application/json
 | services[].description | string | Description of what this service does |
 | services[].prefetch | object | Key/value pairs of FHIR queries for prefetch data |
 | services[].usageRequirements | string | Human-readable description of any preconditions for using this service |
+
+### order-sign
+
+The `order-sign` hook fires when a clinician is ready to sign one or more orders for a patient (including orders for medications, procedures, labs, and other orders). This hook is among the last workflow events before an order is promoted out of a draft status. The context contains all order details, such as dose, quantity, route, etc., although the order has not yet been signed and therefore still exists in a draft status.
+
+For more details, see the official [order-sign hook specification](https://cds-hooks.hl7.org/hooks/STU1/order-sign.html).
+
+**Endpoint:** `POST [base]/cds-services/order-sign-crd`
+
+**Request:** A CDS Hooks request containing the hook context with draft orders and optional prefetch data.
+
+**Response:** A CDS Hooks response containing Cards with coverage requirements, prior authorization information, or suggestions.
+
+#### Context
+
+| Field | Optionality | Prefetch Token | Type | Description |
+|-------|-------------|----------------|------|-------------|
+| userId | REQUIRED | Yes | string | The id of the current user (e.g., `PractitionerRole/123` or `Practitioner/abc`) |
+| patientId | REQUIRED | Yes | string | The FHIR Patient.id of the current patient in context |
+| encounterId | OPTIONAL | Yes | string | The FHIR Encounter.id of the current encounter in context |
+| draftOrders | REQUIRED | No | Bundle | A Bundle of FHIR request resources with a draft status, representing orders that aren't yet signed |
+
+#### Request Parameters
+
+| Field | Optionality | Type | Description |
+|-------|-------------|------|-------------|
+| hook | REQUIRED | string | Must be `order-sign` |
+| hookInstance | REQUIRED | string | A universally unique identifier for this particular hook call |
+| context | REQUIRED | object | Hook-specific contextual data (see Context table above) |
+| fhirServer | OPTIONAL | URL | The base URL of the CDS Client's FHIR server |
+| fhirAuthorization | OPTIONAL | object | OAuth 2.0 bearer access token for FHIR server access |
+| prefetch | OPTIONAL | object | FHIR data that was prefetched by the CDS Client |
+
+**Example:**
+
+{% tabs %}
+{% tab title="Request" %}
+```http
+POST /cds-services/order-sign-crd
+Content-Type: application/json
+Accept: application/json
+
+{
+  "hook": "order-sign",
+  "hookInstance": "d1577c69-dfbe-44ad-ba6d-3e05e953b2ea",
+  "fhirServer": "https://ehr.example.com/fhir",
+  "fhirAuthorization": {
+    "access_token": "some-opaque-fhir-access-token",
+    "token_type": "Bearer",
+    "expires_in": 300,
+    "scope": "user/Patient.read user/Observation.read",
+    "subject": "cds-service"
+  },
+  "context": {
+    "userId": "PractitionerRole/123",
+    "patientId": "1288992",
+    "encounterId": "89284",
+    "draftOrders": {
+      "resourceType": "Bundle",
+      "entry": [
+        {
+          "resource": {
+            "resourceType": "MedicationRequest",
+            "id": "smart-MedicationRequest-103",
+            "status": "draft",
+            "intent": "order",
+            "medicationCodeableConcept": {
+              "coding": [
+                {
+                  "system": "http://www.nlm.nih.gov/research/umls/rxnorm",
+                  "code": "617993",
+                  "display": "Amoxicillin 120 MG/ML / clavulanate potassium 8.58 MG/ML Oral Suspension"
+                }
+              ]
+            },
+            "subject": {
+              "reference": "Patient/1288992"
+            },
+            "dosageInstruction": [
+              {
+                "text": "5 mL bid x 10 days",
+                "timing": {
+                  "repeat": {
+                    "frequency": 2,
+                    "period": 1,
+                    "periodUnit": "d"
+                  }
+                },
+                "doseAndRate": [
+                  {
+                    "doseQuantity": {
+                      "value": 5,
+                      "unit": "mL",
+                      "system": "http://unitsofmeasure.org",
+                      "code": "mL"
+                    }
+                  }
+                ]
+              }
+            ]
+          }
+        }
+      ]
+    }
+  },
+  "prefetch": {
+    "patient": {
+      "resourceType": "Patient",
+      "id": "1288992",
+      "name": [
+        {
+          "given": ["John"],
+          "family": "Doe"
+        }
+      ],
+      "birthDate": "1970-01-01",
+      "gender": "male"
+    }
+  }
+}
+```
+{% endtab %}
+
+{% tab title="Response" %}
+```json
+{
+  "cards": [
+    {
+      "uuid": "7b0b3f7a-8d2b-4d8b-a6e4-8cb4d3f2a6c1",
+      "summary": "Complete anticoagulation questionnaire before signing",
+      "detail": "This order requires documentation of anticoagulation risk.\nQuestionnaire canonical: http://example.org/fhir/Questionnaire/anticoag-assess|1.0.0",
+      "indicator": "warning",
+      "source": {
+        "label": "Example CDS Service",
+        "url": "https://cds.example.org",
+        "icon": "https://cds.example.org/icon.png"
+      },
+      "links": [
+        {
+          "label": "Open Questionnaire (canonical)",
+          "url": "http://example.org/fhir/Questionnaire/anticoag-assess|1.0.0",
+          "type": "absolute"
+        },
+        {
+          "label": "Launch SMART app to fill Questionnaire",
+          "url": "https://smart.example.org/launch?questionnaireCanonical=http%3A%2F%2Fexample.org%2Ffhir%2FQuestionnaire%2Fanticoag-assess%7C1.0.0",
+          "type": "smart"
+        }
+      ],
+      "suggestions": [
+        {
+          "uuid": "a2f2dfd8-3fb4-4a2e-84da-0d2d2a8b8f2a",
+          "label": "Create an in-progress QuestionnaireResponse",
+          "actions": [
+            {
+              "type": "create",
+              "description": "Create QuestionnaireResponse stub linked to the Questionnaire canonical",
+              "resource": {
+                "resourceType": "QuestionnaireResponse",
+                "status": "in-progress",
+                "questionnaire": "http://example.org/fhir/Questionnaire/anticoag-assess|1.0.0",
+                "subject": { "reference": "Patient/1288992" },
+                "encounter": { "reference": "Encounter/89284" },
+                "authored": "2026-01-07T10:30:00Z"
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
+```
+{% endtab %}
+{% endtabs %}
+
+{% hint style="info" %}
+The response content depends on the external decision-making service configured via `CDS_DECISION_SERVICE_URL`. The example above shows a typical response structure, but actual Cards, suggestions, and links are generated by your decision service based on coverage requirements and prior authorization rules.
+{% endhint %}
