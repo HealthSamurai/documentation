@@ -186,42 +186,71 @@ Accept: application/json
   "cards": [
     {
       "uuid": "7b0b3f7a-8d2b-4d8b-a6e4-8cb4d3f2a6c1",
-      "summary": "Complete anticoagulation questionnaire before signing",
-      "detail": "This order requires documentation of anticoagulation risk.\nQuestionnaire canonical: http://example.org/fhir/Questionnaire/anticoag-assess|1.0.0",
+      "summary": "Prior Authorization required for this medication",
+      "detail": "Prior Authorization required, follow the attached link for documentation.",
       "indicator": "warning",
       "source": {
-        "label": "Example CDS Service",
+        "label": "CRD Decision Service",
         "url": "https://cds.example.org",
-        "icon": "https://cds.example.org/icon.png"
+        "topic": {
+          "code": "prior-auth",
+          "system": "http://hl7.org/fhir/us/davinci-crd/CodeSystem/cardType",
+          "display": "Prior Authorization"
+        }
       },
       "links": [
         {
-          "label": "Open Questionnaire (canonical)",
-          "url": "http://example.org/fhir/Questionnaire/anticoag-assess|1.0.0",
+          "label": "Documentation Requirements",
+          "url": "https://example.org/documentation-requirements",
           "type": "absolute"
         },
         {
-          "label": "Launch SMART app to fill Questionnaire",
-          "url": "https://smart.example.org/launch?questionnaireCanonical=http%3A%2F%2Fexample.org%2Ffhir%2FQuestionnaire%2Fanticoag-assess%7C1.0.0",
-          "type": "smart"
+          "label": "Launch DTR to complete Questionnaire",
+          "url": "https://dtr.example.org/launch",
+          "type": "smart",
+          "fhirContext": "questionnaire=https://example.org/fhir/Questionnaire/medication-pa"
         }
       ],
       "suggestions": [
         {
           "uuid": "a2f2dfd8-3fb4-4a2e-84da-0d2d2a8b8f2a",
-          "label": "Create an in-progress QuestionnaireResponse",
+          "label": "Save Update To EHR",
+          "isRecommended": true,
           "actions": [
             {
-              "type": "create",
-              "description": "Create QuestionnaireResponse stub linked to the Questionnaire canonical",
+              "type": "update",
+              "description": "Update MedicationRequest to add coverage information extension",
               "resource": {
-                "resourceType": "QuestionnaireResponse",
-                "status": "in-progress",
-                "questionnaire": "http://example.org/fhir/Questionnaire/anticoag-assess|1.0.0",
+                "resourceType": "MedicationRequest",
+                "id": "smart-MedicationRequest-103",
+                "status": "draft",
+                "intent": "order",
                 "subject": { "reference": "Patient/1288992" },
-                "encounter": { "reference": "Encounter/89284" },
-                "authored": "2026-01-07T10:30:00Z"
-              }
+                "extension": [
+                  {
+                    "url": "http://hl7.org/fhir/us/davinci-crd/StructureDefinition/ext-coverage-information",
+                    "extension": [
+                      {
+                        "url": "coverage",
+                        "valueReference": { "reference": "Coverage/cov001" }
+                      },
+                      {
+                        "url": "date",
+                        "valueDate": "2026-01-07"
+                      },
+                      {
+                        "url": "doc-needed",
+                        "valueCode": "clinical"
+                      },
+                      {
+                        "url": "questionnaire",
+                        "valueCanonical": "https://example.org/fhir/Questionnaire/medication-pa"
+                      }
+                    ]
+                  }
+                ]
+              },
+              "resourceId": "MedicationRequest/smart-MedicationRequest-103"
             }
           ]
         }
