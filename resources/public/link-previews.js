@@ -59,10 +59,10 @@
       .replace(/\b\w/g, c => c.toUpperCase());
   }
 
-  // Collect all internal hrefs from #content that are not yet cached
+  // Collect all internal hrefs from .real-content (main document text) that are not yet cached
   // For anchor links (/page#section), we cache by base URL
   function collectInternalHrefs() {
-    const content = document.getElementById('content');
+    const content = document.querySelector('.real-content');
     if (!content) return [];
 
     const links = content.querySelectorAll('a[href]');
@@ -287,9 +287,10 @@
 
   // Initialize link preview functionality
   function initializeLinkPreviews() {
-    // Event delegation for hover
+    // Event delegation for hover - only on links inside .real-content (document text)
+    // Excludes right TOC and next/prev navigation buttons
     document.addEventListener('mouseover', function(e) {
-      const link = e.target.closest('#content a[href]');
+      const link = e.target.closest('.real-content a[href]');
       if (!link || link === currentLink) return;
 
       currentLink = link;
@@ -301,7 +302,7 @@
     });
 
     document.addEventListener('mouseout', function(e) {
-      const link = e.target.closest('#content a[href]');
+      const link = e.target.closest('.real-content a[href]');
       if (link === currentLink) {
         clearTimeout(hoverTimeout);
         currentLink = null;
