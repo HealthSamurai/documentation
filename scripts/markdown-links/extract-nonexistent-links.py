@@ -71,8 +71,6 @@ def should_skip_link(link: str) -> bool:
 
     external_patterns = [
         r'^(http|https|ftp|mailto|#)',
-        r'^https://docs\.aidbox\.app/reference',
-        r'(^|/)reference([/.]|$)',
         r'^broken-reference'
     ]
 
