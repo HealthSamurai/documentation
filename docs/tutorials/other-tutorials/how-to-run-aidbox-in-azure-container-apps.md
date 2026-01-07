@@ -6,12 +6,12 @@ description: Deploy Aidbox on Azure Container Apps with Azure Database for Postg
 
 ## Objectives
 
-* Run the Aidbox container in [Azure Container Apps](https://learn.microsoft.com/en-us/azure/container-apps/) using [Azure Database for PostgreSQL Flexible Server](https://learn.microsoft.com/en-us/azure/postgresql/flexible-server/) as a database.
+- Run the Aidbox container in [Azure Container Apps](https://learn.microsoft.com/en-us/azure/container-apps/) using [Azure Database for PostgreSQL Flexible Server](https://learn.microsoft.com/en-us/azure/postgresql/flexible-server/) as a database.
 
 ## Before you begin
 
-* You must have an active Azure subscription.
-* Install [Azure CLI](https://learn.microsoft.com/en-us/cli/azure/install-azure-cli) and sign in with `az login`.
+- You must have an active Azure subscription.
+- Install [Azure CLI](https://learn.microsoft.com/en-us/cli/azure/install-azure-cli) and sign in with `az login`.
 
 ## Set up environment variables
 
@@ -241,18 +241,9 @@ az containerapp show \
 
 3. Open the URL in your browser and [activate](../../getting-started/run-aidbox-locally.md#id-4.-activate-your-aidbox-instance) your Aidbox instance.
 
-## Clean up resources
-
-To delete all resources created in this tutorial:
-
-```bash
-az group delete --name $RESOURCE_GROUP --yes --no-wait
-```
-
 ## What's next
 
 See more about different options for running Aidbox:
 
-* [Deploy Aidbox with Helm charts](../../deployment-and-maintenance/deploy-aidbox/run-aidbox-in-kubernetes/deploy-aidbox-with-helm-charts.md)
-* [Run Aidbox locally](../../getting-started/run-aidbox-locally.md)
-* [How to run Aidbox in GCP Cloud Run](how-to-run-aidbox-in-gcp-cloud-run.md)
+- [Deploy Aidbox with Helm charts](../../deployment-and-maintenance/deploy-aidbox/run-aidbox-in-kubernetes/deploy-aidbox-with-helm-charts.md)
+- [Run Aidbox locally](../../getting-started/run-aidbox-locally.md)
