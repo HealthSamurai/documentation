@@ -154,6 +154,8 @@
     (nil? href) nil
     (:skip-link-resolution context) href
     (str/starts-with? href "http") href
+    ;; Absolute paths (starting with /) - strip slash, resolve from docs root
+    (str/starts-with? href "/") (page-link->uri context "ROOT.md" (subs href 1))
     :else (page-link->uri context filepath href)))
 
 (defn get-lastmod [context filepath]
