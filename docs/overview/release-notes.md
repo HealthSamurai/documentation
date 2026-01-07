@@ -13,7 +13,7 @@ description: >-
 * Aidbox FHIR server 
   * [FHIR Topic-based Subscriptions](../modules/topic-based-subscriptions/fhir-topic-based-subscriptions.md) are now supported.
   * Updated documentation for configuring [Two Factor Authentication](../access-control/authentication/two-factor-authentication.md) with the Aidbox security provider.
-  * Significant performance improvements.
+  * CRUD operation performance improved by 30% through internal optimizations.
   * Multiple bug fixes in the validator.
   * Security-related bug fixes.
 
