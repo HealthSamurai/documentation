@@ -34,6 +34,6 @@ For a complete setup example, see [Run Aidbox + CMS App locally](../getting-star
 
 It is the responsibility of the decision-making service to analyze the clinical data and build a valid CDS Hooks response containing appropriate Cards with coverage requirements, prior authorization information, or links to SMART apps for additional documentation gathering.
 
-{% content-ref url="crd-api.md" %}
-[CRD API](crd-api.md)
+{% content-ref url="cds-hooks-api.md" %}
+[CDS Hooks API](cds-hooks-api.md)
 {% endcontent-ref %}

@@ -584,7 +584,7 @@
   * [Getting Started](solutions/CMS-0057-F/getting-started/README.md)
     * [Run Aidbox + CMS App locally](solutions/CMS-0057-F/getting-started/run-aidbox-+-cms-app-locally.md)
   * [Coverage Requirements Discovery (CRD)](solutions/CMS-0057-F/coverage-requirements-discovery-crd/README.md)
-    * [CRD API](solutions/CMS-0057-F/coverage-requirements-discovery-crd/crd-api.md)
+    * [CDS Hooks API](solutions/CMS-0057-F/coverage-requirements-discovery-crd/cds-hooks-api.md)
   * [Prior Authorization Support (PAS) API](solutions/CMS-0057-F/prior-authorization-support-pas-api.md)
 
 ## Reference
