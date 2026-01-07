@@ -21,6 +21,8 @@ Create an [AwsAccount](../reference/system-resources-reference/cloud-module-reso
 
 **Default credentials mode** (recommended for AWS):
 
+> **Note**: Available since Aidbox version 2601.
+
 ```http
 PUT /AwsAccount/my-aws
 
