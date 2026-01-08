@@ -129,7 +129,9 @@ When the `AzureContainer` has an `account` field, Aidbox uses the account key to
 
 Start by [creating an S3 bucket](https://docs.aws.amazon.com/AmazonS3/latest/userguide/create-bucket-overview.html) where Aidbox will write export files. Configure appropriate bucket policies and lifecycle rules for your use case.
 
-[Create an IAM user](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_users_create.html) with the following permissions on the bucket:
+#### IAM permissions
+
+The IAM role or user needs the following permissions on the bucket:
 
 ```json
 {
@@ -156,7 +158,44 @@ Required actions:
 - `s3:GetObject` - Generate signed URLs for downloading export results
 - `s3:ListBucket` - List bucket contents for export operations
 
-Once you have created the IAM user and attached the policy, create an `AwsAccount` resource in Aidbox:
+#### Using default credentials
+
+{% hint style="info" %}
+Available since version 2601.
+{% endhint %}
+
+This is the recommended approach for AWS deployments. When running Aidbox on AWS compute (EKS, ECS, EC2, Lambda), you can use the [default credentials provider chain](https://docs.aws.amazon.com/sdk-for-java/latest/developer-guide/credentials-chain.html) instead of storing credentials in Aidbox.
+
+Before configuring bulk export, set up credentials for your compute environment:
+- **EKS**: [Pod Identity](https://docs.aws.amazon.com/eks/latest/userguide/pod-identities.html) or [IRSA](https://docs.aws.amazon.com/eks/latest/userguide/iam-roles-for-service-accounts.html)
+- **ECS/Fargate**: [Task IAM Role](https://docs.aws.amazon.com/AmazonECS/latest/developerguide/task-iam-roles.html)
+- **EC2**: [Instance Profile](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/iam-roles-for-amazon-ec2.html)
+
+See [File storage: AWS S3 — EKS Pod Identity](../../file-storage/aws-s3.md#eks-pod-identity) for detailed setup instructions.
+
+Create an `AwsAccount` resource without credentials:
+
+```yaml
+resourceType: AwsAccount
+id: aws-account
+region: us-east-1
+```
+
+Configure environment variables:
+
+```bash
+BOX_FHIR_BULK_STORAGE_PROVIDER=aws
+BOX_FHIR_BULK_STORAGE_AWS_ACCOUNT=aws-account
+BOX_FHIR_BULK_STORAGE_AWS_BUCKET=your-bucket-name
+```
+
+When `access-key-id` is omitted, Aidbox uses the default credentials provider to authenticate with S3.
+
+#### Using access keys
+
+For S3-compatible services (MinIO, Garage) or legacy setups, use explicit credentials.
+
+[Create an IAM user](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_users_create.html) with the [IAM permissions](#iam-permissions) and create an `AwsAccount` resource with credentials:
 
 ```yaml
 resourceType: AwsAccount
