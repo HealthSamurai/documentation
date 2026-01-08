@@ -304,11 +304,113 @@ The response content depends on the external decision-making service configured 
 {% tabs %}
 {% tab title="Request" %}
 ```http
+POST /cds-services/order-select-crd
+Content-Type: application/json
+Accept: application/json
+
+{
+  "hook": "order-select",
+  "hookInstance": "a1b2c3d4-e5f6-7890-abcd-ef1234567890",
+  "fhirServer": "https://ehr.example.com/fhir",
+  "fhirAuthorization": {
+    "access_token": "some-opaque-fhir-access-token",
+    "token_type": "Bearer",
+    "expires_in": 300,
+    "scope": "user/Patient.read user/Observation.read",
+    "subject": "cds-service"
+  },
+  "context": {
+    "userId": "PractitionerRole/123",
+    "patientId": "1288992",
+    "encounterId": "89284",
+    "selections": [
+      "MedicationRequest/smart-MedicationRequest-103"
+    ],
+    "draftOrders": {
+      "resourceType": "Bundle",
+      "entry": [
+        {
+          "resource": {
+            "resourceType": "MedicationRequest",
+            "id": "smart-MedicationRequest-103",
+            "status": "draft",
+            "intent": "order",
+            "medicationCodeableConcept": {
+              "coding": [
+                {
+                  "system": "http://www.nlm.nih.gov/research/umls/rxnorm",
+                  "code": "617993",
+                  "display": "Amoxicillin 120 MG/ML / clavulanate potassium 8.58 MG/ML Oral Suspension"
+                }
+              ]
+            },
+            "subject": {
+              "reference": "Patient/1288992"
+            }
+          }
+        },
+        {
+          "resource": {
+            "resourceType": "ServiceRequest",
+            "id": "smart-ServiceRequest-456",
+            "status": "draft",
+            "intent": "order",
+            "code": {
+              "coding": [
+                {
+                  "system": "http://snomed.info/sct",
+                  "code": "73761001",
+                  "display": "Colonoscopy"
+                }
+              ]
+            },
+            "subject": {
+              "reference": "Patient/1288992"
+            }
+          }
+        }
+      ]
+    }
+  },
+  "prefetch": {
+    "patient": {
+      "resourceType": "Patient",
+      "id": "1288992",
+      "name": [
+        {
+          "given": ["John"],
+          "family": "Doe"
+        }
+      ],
+      "birthDate": "1970-01-01",
+      "gender": "male"
+    }
+  }
+}
 ```
 {% endtab %}
 
 {% tab title="Response" %}
 ```json
+{
+  "cards": [
+    {
+      "uuid": "c3d4e5f6-a7b8-9012-cdef-345678901234",
+      "summary": "Coverage information for selected medication",
+      "detail": "The selected medication is covered under the patient's plan with a $25 copay.",
+      "indicator": "info",
+      "source": {
+        "label": "CRD Decision Service",
+        "url": "https://cds.example.org",
+        "topic": {
+          "code": "coverage-info",
+          "system": "http://hl7.org/fhir/us/davinci-crd/CodeSystem/cardType",
+          "display": "Coverage Information"
+        }
+      }
+    }
+  ]
+}
 ```
 {% endtab %}
 {% endtabs %}
