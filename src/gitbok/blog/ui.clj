@@ -507,6 +507,7 @@
   var widget = document.createElement('comentario-comments');
   widget.id = 'comentario-widget';
   widget.setAttribute('theme', isDark ? 'dark' : 'light');
+  widget.setAttribute('css-override', 'data:text/css,.comentario-footer{display:none!important}');
   container.appendChild(widget);
 })();")]
 
