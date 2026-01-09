@@ -1,23 +1,27 @@
 ---
-description: Step-by-step guide to setting up FHIR R4 Backport Topic-Based Subscriptions in Aidbox.
+description: Step-by-step guide to setting up FHIR R4B Backport Topic-Based Subscriptions in Aidbox.
 ---
 
-# FHIR R4 Backport Subscription Setup
+# FHIR R4B Backport Subscription Setup
 
 {% hint style="info" %}
-This functionality is available in Aidbox versions 2512 and later and requires [FHIR Schema](../../modules/profiling-and-validation/fhir-schema-validator/) validation engine to be enabled. If you started Aidbox using the [Run Aidbox Locally](../../getting-started/run-aidbox-locally.md) guide, FHIR Schema is already enabled.
+This functionality is available in Aidbox versions 2512 and later and requires [FHIR Schema](../../modules/profiling-and-validation/fhir-schema-validator/) validation engine to be enabled and FHIR R4B core package (`hl7.fhir.r4b.core#4.3.0`) to be installed.
 {% endhint %}
 
 For concepts, supported fields, and configuration details, see [FHIR Topic-Based Subscriptions](../../modules/topic-based-subscriptions/fhir-topic-based-subscriptions.md).
 
 In this tutorial, we will set up Aidbox to implement the [DaVinci PAS SubscriptionTopic](https://build.fhir.org/ig/HL7/davinci-pas/SubscriptionTopic-PASSubscriptionTopic.json.html) (`http://hl7.org/fhir/us/davinci-pas/SubscriptionTopic/PASSubscriptionTopic`). This topic notifies subscribers when a Prior Authorization response (ClaimResponse) becomes available.
 
+R4B Backport combines the R4 Backport subscription format (with extensions) with R5-style notification bundles (using `SubscriptionStatus` resource).
+
 ## Prerequisites
+
+- Aidbox configured with FHIR R4B core package
 - An HTTP endpoint to receive notifications (for testing, you can use services like [RequestCatcher](https://requestcatcher.com/) or [Webhook.site](https://webhook.site/))
 
 ## Step 1: Install the Subscriptions Backport Package
 
-Install the FHIR Subscriptions Backport IG package. This package contains the Subscription profile that Aidbox uses to validate Subscription resources created by clients:
+Install the FHIR Subscriptions Backport IG package for R4B:
 
 {% tabs %}
 {% tab title="Request" %}
@@ -30,7 +34,7 @@ Content-Type: application/json
   "parameter": [
     {
       "name": "package",
-      "valueString": "hl7.fhir.uv.subscriptions-backport.r4@1.1.0"
+      "valueString": "hl7.fhir.uv.subscriptions-backport.r4b@1.1.0"
     }
   ]
 }
@@ -43,7 +47,7 @@ Content-Type: application/json
   "parameter": [
     {"name": "result", "valueBoolean": true},
     {"name": "package", "part": [
-      {"name": "name", "valueString": "hl7.fhir.uv.subscriptions-backport.r4@1.1.0"},
+      {"name": "name", "valueString": "hl7.fhir.uv.subscriptions-backport.r4b@1.1.0"},
       {"name": "installedCanonicals", "valueInteger": 23}
     ]}
   ]
@@ -102,17 +106,11 @@ Content-Type: application/json
       "fhirPathCriteria": "status = 'active'"
     }
   ],
-  "id": "d9c47c9f-c215-4192-80ed-0ee792598445",
+  "id": "c01fb7db-a306-402b-8234-cee3bb1e4cb5",
   "resourceType": "AidboxSubscriptionTopic",
   "meta": {
-    "lastUpdated": "2025-01-05T14:17:39.601439Z",
-    "versionId": "4",
-    "extension": [
-      {
-        "url": "ex:createdAt",
-        "valueInstant": "2025-01-05T14:17:39.601439Z"
-      }
-    ]
+    "lastUpdated": "2026-01-09T13:15:31.201049Z",
+    "versionId": "7"
   }
 }
 ```
@@ -153,7 +151,7 @@ Content-Type: application/json
   "parameter": [
     {
       "name": "subscription-specification-version",
-      "valueString": "R4-backported"
+      "valueString": "R4B-backported"
     },
     {
       "name": "fhir-topic",
@@ -174,14 +172,23 @@ Content-Type: application/json
 {% tab title="Response" %}
 ```json
 {
-  "topic": "http://example.org/SubscriptionTopic/pas-claim-response",
-  "kind": "fhir-native-topic-based-subscription",
-  "status": "active",
+  "meta": {
+    "profile": [
+      "http://aidbox.app/StructureDefinition/aidboxtopicdestination-fhir-native-topic-based-subscription"
+    ],
+    "lastUpdated": "2026-01-09T13:15:58.234943Z",
+    "versionId": "8"
+  },
   "content": "full-resource",
+  "topic": "http://example.org/SubscriptionTopic/pas-claim-response",
+  "resourceType": "AidboxTopicDestination",
+  "status": "active",
+  "id": "18a7068f-97e4-4d68-8014-82be3479b998",
+  "kind": "fhir-native-topic-based-subscription",
   "parameter": [
     {
       "name": "subscription-specification-version",
-      "valueString": "R4-backported"
+      "valueString": "R4B-backported"
     },
     {
       "name": "fhir-topic",
@@ -195,22 +202,7 @@ Content-Type: application/json
       "name": "keep-events-for-period",
       "valueUnsignedInt": 86400
     }
-  ],
-  "id": "b5f1b2a3-c4d5-4e6f-8a9b-0c1d2e3f4a5b",
-  "resourceType": "AidboxTopicDestination",
-  "meta": {
-    "profile": [
-      "http://aidbox.app/StructureDefinition/aidboxtopicdestination-fhir-native-topic-based-subscription"
-    ],
-    "lastUpdated": "2025-01-05T14:18:12.345678Z",
-    "versionId": "1",
-    "extension": [
-      {
-        "url": "ex:createdAt",
-        "valueInstant": "2025-01-05T14:18:12.345678Z"
-      }
-    ]
-  }
+  ]
 }
 ```
 {% endtab %}
@@ -222,7 +214,7 @@ Content-Type: application/json
 |-----------|------|-------------|
 | `topic` | - | URL of your `AidboxSubscriptionTopic` from Step 2. |
 | `fhir-topic` * | valueCanonical | The canonical FHIR SubscriptionTopic URL that clients will use in their Subscription resources. |
-| `subscription-specification-version` * | valueString | FHIR version of the Subscription spec. Determines the format of notification bundles and operation responses. Currently only `R4-backported` is supported. |
+| `subscription-specification-version` * | valueString | Set to `R4B-backported` for R4B Backport format. Uses R4 Backport subscription format with R5-style notification bundles. |
 | `keep-events-for-period` | valueUnsignedInt | Event retention period in seconds for `$events` operation. If not specified, events are stored indefinitely. |
 | `number-of-deliverer` | valueUnsignedInt | Number of parallel delivery workers (default: 4). |
 
@@ -252,14 +244,8 @@ Content-Type: application/json
   "id": "org-1",
   "resourceType": "Organization",
   "meta": {
-    "lastUpdated": "2025-01-05T14:19:00.123456Z",
-    "versionId": "1",
-    "extension": [
-      {
-        "url": "ex:createdAt",
-        "valueInstant": "2025-01-05T14:19:00.123456Z"
-      }
-    ]
+    "lastUpdated": "2026-01-09T13:16:07.616907Z",
+    "versionId": "9"
   }
 }
 ```
@@ -286,14 +272,8 @@ Content-Type: application/json
   "id": "example",
   "resourceType": "Patient",
   "meta": {
-    "lastUpdated": "2025-01-05T14:19:05.234567Z",
-    "versionId": "1",
-    "extension": [
-      {
-        "url": "ex:createdAt",
-        "valueInstant": "2025-01-05T14:19:05.234567Z"
-      }
-    ]
+    "lastUpdated": "2026-01-09T13:16:13.419968Z",
+    "versionId": "11"
   }
 }
 ```
@@ -302,7 +282,7 @@ Content-Type: application/json
 
 ## Step 5: Create a FHIR Subscription
 
-Now clients can create standard FHIR Subscription resources:
+R4B Backport uses the same subscription format as R4 Backport (with extensions):
 
 {% tabs %}
 {% tab title="Request" %}
@@ -312,7 +292,6 @@ Content-Type: application/json
 
 {
   "resourceType": "Subscription",
-  "id": "pas-subscription-1",
   "meta": {
     "profile": [
       "http://hl7.org/fhir/uv/subscriptions-backport/StructureDefinition/backport-subscription"
@@ -369,21 +348,14 @@ Content-Type: application/json
     "profile": [
       "http://hl7.org/fhir/uv/subscriptions-backport/StructureDefinition/backport-subscription"
     ],
-    "lastUpdated": "2025-01-05T14:20:00.567890Z",
-    "versionId": "1",
-    "extension": [
-      {
-        "url": "ex:createdAt",
-        "valueInstant": "2025-01-05T14:20:00.567890Z"
-      }
-    ]
+    "lastUpdated": "2026-01-09T13:16:32.332542Z",
+    "versionId": "12"
   },
-  "reason": "Receive notifications about claim responses for my organization.",
+  "criteria": "http://hl7.org/fhir/us/davinci-pas/SubscriptionTopic/PASSubscriptionTopic",
   "channel": {
     "type": "rest-hook",
     "header": ["Authorization: Bearer your-token"],
     "payload": "application/fhir+json",
-    "endpoint": "https://your-endpoint.example.com/webhook",
     "_payload": {
       "extension": [
         {
@@ -392,6 +364,7 @@ Content-Type: application/json
         }
       ]
     },
+    "endpoint": "https://your-endpoint.example.com/webhook",
     "extension": [
       {
         "url": "http://hl7.org/fhir/uv/subscriptions-backport/StructureDefinition/backport-heartbeat-period",
@@ -407,8 +380,6 @@ Content-Type: application/json
       }
     ]
   },
-  "status": "requested",
-  "criteria": "http://hl7.org/fhir/us/davinci-pas/SubscriptionTopic/PASSubscriptionTopic",
   "_criteria": {
     "extension": [
       {
@@ -417,8 +388,10 @@ Content-Type: application/json
       }
     ]
   },
-  "id": "pas-subscription-1",
-  "resourceType": "Subscription"
+  "resourceType": "Subscription",
+  "reason": "Receive notifications about claim responses for my organization.",
+  "status": "requested",
+  "id": "pas-subscription-r4b"
 }
 ```
 {% endtab %}
@@ -435,9 +408,9 @@ Content-Type: application/json
 | `channel.payload` | MIME type for notifications |
 | `channel._payload.extension` | Payload content: `full-resource`, `id-only`, or `empty` |
 | `channel.header` | Custom HTTP headers for notifications |
-| `backport-heartbeat-period` | Interval in seconds for sending keep-alive notifications during inactivity. Helps maintain active connection. |
+| `backport-heartbeat-period` | Interval in seconds for sending keep-alive notifications during inactivity. |
 | `backport-timeout` | Maximum time in seconds the server will wait before failing a notification delivery attempt. |
-| `backport-max-count` | Maximum number of events to include in a single notification bundle. Events are batched up to this limit before sending. |
+| `backport-max-count` | Maximum number of events to include in a single notification bundle. |
 
 ## Step 6: Verify Handshake
 
@@ -448,7 +421,7 @@ Check subscription status:
 {% tabs %}
 {% tab title="Request" %}
 ```http
-GET /fhir/Subscription/pas-subscription-1
+GET /fhir/Subscription/pas-subscription-r4b
 ```
 {% endtab %}
 {% tab title="Response" %}
@@ -458,21 +431,14 @@ GET /fhir/Subscription/pas-subscription-1
     "profile": [
       "http://hl7.org/fhir/uv/subscriptions-backport/StructureDefinition/backport-subscription"
     ],
-    "lastUpdated": "2025-01-05T14:20:01.234567Z",
-    "versionId": "2",
-    "extension": [
-      {
-        "url": "ex:createdAt",
-        "valueInstant": "2025-01-05T14:20:00.567890Z"
-      }
-    ]
+    "lastUpdated": "2026-01-09T13:16:32.457685Z",
+    "versionId": "13"
   },
-  "reason": "Receive notifications about claim responses for my organization.",
+  "criteria": "http://hl7.org/fhir/us/davinci-pas/SubscriptionTopic/PASSubscriptionTopic",
   "channel": {
     "type": "rest-hook",
     "header": ["Authorization: Bearer your-token"],
     "payload": "application/fhir+json",
-    "endpoint": "https://your-endpoint.example.com/webhook",
     "_payload": {
       "extension": [
         {
@@ -481,6 +447,7 @@ GET /fhir/Subscription/pas-subscription-1
         }
       ]
     },
+    "endpoint": "https://your-endpoint.example.com/webhook",
     "extension": [
       {
         "url": "http://hl7.org/fhir/uv/subscriptions-backport/StructureDefinition/backport-heartbeat-period",
@@ -496,8 +463,6 @@ GET /fhir/Subscription/pas-subscription-1
       }
     ]
   },
-  "status": "active",
-  "criteria": "http://hl7.org/fhir/us/davinci-pas/SubscriptionTopic/PASSubscriptionTopic",
   "_criteria": {
     "extension": [
       {
@@ -506,8 +471,10 @@ GET /fhir/Subscription/pas-subscription-1
       }
     ]
   },
-  "id": "pas-subscription-1",
-  "resourceType": "Subscription"
+  "resourceType": "Subscription",
+  "reason": "Receive notifications about claim responses for my organization.",
+  "status": "active",
+  "id": "pas-subscription-r4b"
 }
 ```
 {% endtab %}
@@ -569,17 +536,11 @@ Content-Type: application/json
   "patient": {
     "reference": "Patient/example"
   },
-  "id": "a1b2c3d4-e5f6-7890-abcd-ef1234567890",
+  "id": "4e455dd8-133c-4c5a-9cc4-b32c6abfba29",
   "resourceType": "ClaimResponse",
   "meta": {
-    "lastUpdated": "2025-01-05T14:21:00.123456Z",
-    "versionId": "1",
-    "extension": [
-      {
-        "url": "ex:createdAt",
-        "valueInstant": "2025-01-05T14:21:00.123456Z"
-      }
-    ]
+    "lastUpdated": "2026-01-09T13:17:00.191070Z",
+    "versionId": "13"
   }
 }
 ```
@@ -595,7 +556,7 @@ Check subscription status and event counts:
 {% tabs %}
 {% tab title="Request" %}
 ```http
-GET /fhir/Subscription/pas-subscription-1/$status
+GET /fhir/Subscription/pas-subscription-r4b/$status
 ```
 {% endtab %}
 {% tab title="Response" %}
@@ -603,30 +564,27 @@ GET /fhir/Subscription/pas-subscription-1/$status
 {
   "resourceType": "Bundle",
   "type": "history",
+  "timestamp": "2026-01-09T13:17:15.305948Z",
   "entry": [
     {
+      "fullUrl": "urn:uuid:22dc7587-2557-4113-a199-945da867a7f4",
+      "request": {
+        "method": "GET",
+        "url": "http://localhost:8765/Subscription/pas-subscription-r4b/$status"
+      },
+      "response": {
+        "status": "200"
+      },
       "resource": {
-        "resourceType": "Parameters",
-        "parameter": [
-          {
-            "name": "subscription",
-            "valueReference": {
-              "reference": "Subscription/pas-subscription-1"
-            }
-          },
-          {
-            "name": "status",
-            "valueCode": "active"
-          },
-          {
-            "name": "type",
-            "valueCode": "query-status"
-          },
-          {
-            "name": "events-since-subscription-start",
-            "valueString": "5"
-          }
-        ]
+        "resourceType": "SubscriptionStatus",
+        "id": "22dc7587-2557-4113-a199-945da867a7f4",
+        "type": "query-status",
+        "topic": "http://hl7.org/fhir/us/davinci-pas/SubscriptionTopic/PASSubscriptionTopic",
+        "status": "active",
+        "subscription": {
+          "reference": "http://localhost:8765/Subscription/pas-subscription-r4b"
+        },
+        "eventsSinceSubscriptionStart": "1"
       }
     }
   ]
@@ -642,7 +600,7 @@ Query past events for recovery:
 {% tabs %}
 {% tab title="Request" %}
 ```http
-POST /fhir/Subscription/pas-subscription-1/$events
+POST /fhir/Subscription/pas-subscription-r4b/$events
 Content-Type: application/json
 
 {
@@ -669,34 +627,48 @@ Content-Type: application/json
 {
   "resourceType": "Bundle",
   "type": "history",
+  "timestamp": "2026-01-09T13:17:22.805048Z",
   "entry": [
     {
+      "fullUrl": "urn:uuid:e266f73c-365c-48e7-8a4d-5553304fd46d",
+      "request": {
+        "method": "GET",
+        "url": "http://localhost:8765/Subscription/pas-subscription-r4b/$status"
+      },
+      "response": {
+        "status": "200"
+      },
       "resource": {
-        "resourceType": "Parameters",
-        "parameter": [
+        "resourceType": "SubscriptionStatus",
+        "id": "e266f73c-365c-48e7-8a4d-5553304fd46d",
+        "type": "query-event",
+        "topic": "http://hl7.org/fhir/us/davinci-pas/SubscriptionTopic/PASSubscriptionTopic",
+        "status": "active",
+        "subscription": {
+          "reference": "http://localhost:8765/Subscription/pas-subscription-r4b"
+        },
+        "notificationEvent": [
           {
-            "name": "subscription",
-            "valueReference": {
-              "reference": "Subscription/pas-subscription-1"
-            }
-          },
-          {
-            "name": "status",
-            "valueCode": "active"
-          },
-          {
-            "name": "type",
-            "valueCode": "query-event"
-          },
-          {
-            "name": "events-since-subscription-start",
-            "valueString": "1"
+            "eventNumber": "1",
+            "focus": {
+              "reference": "http://localhost:8765/fhir/ClaimResponse/4e455dd8-133c-4c5a-9cc4-b32c6abfba29"
+            },
+            "timestamp": "2026-01-09T13:17:00.191070Z"
           }
-        ]
+        ],
+        "eventsSinceSubscriptionStart": "1"
       }
     },
     {
+      "fullUrl": "http://localhost:8765/fhir/ClaimResponse/4e455dd8-133c-4c5a-9cc4-b32c6abfba29",
       "resource": {
+        "patient": {
+          "reference": "Patient/example"
+        },
+        "meta": {
+          "versionId": "13",
+          "lastUpdated": "2026-01-09T13:17:00.191070Z"
+        },
         "use": "preauthorization",
         "type": {
           "coding": [
@@ -706,21 +678,21 @@ Content-Type: application/json
             }
           ]
         },
-        "status": "active",
         "created": "2024-01-01T00:00:00Z",
+        "outcome": "complete",
+        "resourceType": "ClaimResponse",
         "insurer": {
           "reference": "Organization/org-1"
         },
-        "outcome": "complete",
-        "patient": {
-          "reference": "Patient/example"
-        },
-        "id": "a1b2c3d4-e5f6-7890-abcd-ef1234567890",
-        "resourceType": "ClaimResponse",
-        "meta": {
-          "lastUpdated": "2025-01-05T14:21:00.123456Z",
-          "versionId": "1"
-        }
+        "status": "active",
+        "id": "4e455dd8-133c-4c5a-9cc4-b32c6abfba29"
+      },
+      "request": {
+        "method": "POST",
+        "url": "http://localhost:8765/fhir/ClaimResponse"
+      },
+      "response": {
+        "status": "201"
       }
     }
   ]
@@ -728,6 +700,160 @@ Content-Type: application/json
 ```
 {% endtab %}
 {% endtabs %}
+
+## Notification Bundle Examples
+
+R4B Backport notification bundles use `SubscriptionStatus` resource (like R5) but with Bundle type `history`.
+
+### Handshake Notification
+
+Sent immediately after subscription creation to verify the endpoint:
+
+```json
+{
+  "resourceType": "Bundle",
+  "type": "history",
+  "timestamp": "2026-01-09T13:16:32.457685Z",
+  "entry": [
+    {
+      "fullUrl": "urn:uuid:9cfe9aa4-a49b-4a96-b434-25879eaaff47",
+      "request": {
+        "method": "GET",
+        "url": "http://localhost:8765/Subscription/pas-subscription-r4b/$status"
+      },
+      "response": {
+        "status": "200"
+      },
+      "resource": {
+        "resourceType": "SubscriptionStatus",
+        "id": "9cfe9aa4-a49b-4a96-b434-25879eaaff47",
+        "type": "handshake",
+        "topic": "http://hl7.org/fhir/us/davinci-pas/SubscriptionTopic/PASSubscriptionTopic",
+        "status": "requested",
+        "subscription": {
+          "reference": "http://localhost:8765/Subscription/pas-subscription-r4b"
+        },
+        "eventsSinceSubscriptionStart": "0"
+      }
+    }
+  ]
+}
+```
+
+### Event Notification
+
+Sent when a resource matches the topic trigger criteria:
+
+```json
+{
+  "resourceType": "Bundle",
+  "type": "history",
+  "timestamp": "2026-01-09T13:17:00.691233Z",
+  "entry": [
+    {
+      "fullUrl": "urn:uuid:31d18835-c7f3-4e2f-920a-6654ea2ea0f6",
+      "request": {
+        "method": "GET",
+        "url": "http://localhost:8765/Subscription/pas-subscription-r4b/$status"
+      },
+      "response": {
+        "status": "200"
+      },
+      "resource": {
+        "resourceType": "SubscriptionStatus",
+        "id": "31d18835-c7f3-4e2f-920a-6654ea2ea0f6",
+        "type": "event-notification",
+        "topic": "http://hl7.org/fhir/us/davinci-pas/SubscriptionTopic/PASSubscriptionTopic",
+        "status": "active",
+        "subscription": {
+          "reference": "http://localhost:8765/Subscription/pas-subscription-r4b"
+        },
+        "notificationEvent": [
+          {
+            "eventNumber": "1",
+            "focus": {
+              "reference": "http://localhost:8765/fhir/ClaimResponse/4e455dd8-133c-4c5a-9cc4-b32c6abfba29"
+            },
+            "timestamp": "2026-01-09T13:17:00.191070Z"
+          }
+        ],
+        "eventsSinceSubscriptionStart": "1"
+      }
+    },
+    {
+      "fullUrl": "http://localhost:8765/fhir/ClaimResponse/4e455dd8-133c-4c5a-9cc4-b32c6abfba29",
+      "resource": {
+        "patient": {
+          "reference": "Patient/example"
+        },
+        "meta": {
+          "versionId": "13",
+          "lastUpdated": "2026-01-09T13:17:00.191070Z"
+        },
+        "use": "preauthorization",
+        "type": {
+          "coding": [
+            {
+              "code": "professional",
+              "system": "http://terminology.hl7.org/CodeSystem/claim-type"
+            }
+          ]
+        },
+        "created": "2024-01-01T00:00:00Z",
+        "outcome": "complete",
+        "resourceType": "ClaimResponse",
+        "insurer": {
+          "reference": "Organization/org-1"
+        },
+        "status": "active",
+        "id": "4e455dd8-133c-4c5a-9cc4-b32c6abfba29"
+      },
+      "request": {
+        "method": "POST",
+        "url": "http://localhost:8765/fhir/ClaimResponse"
+      },
+      "response": {
+        "status": "201"
+      }
+    }
+  ]
+}
+```
+
+### Heartbeat Notification
+
+Sent periodically during inactivity based on `backport-heartbeat-period`:
+
+```json
+{
+  "resourceType": "Bundle",
+  "type": "history",
+  "timestamp": "2026-01-09T13:18:00.697371Z",
+  "entry": [
+    {
+      "fullUrl": "urn:uuid:5174f13e-6845-4fa0-b509-21a1c75b96b0",
+      "request": {
+        "method": "GET",
+        "url": "http://localhost:8765/Subscription/pas-subscription-r4b/$status"
+      },
+      "response": {
+        "status": "200"
+      },
+      "resource": {
+        "resourceType": "SubscriptionStatus",
+        "id": "5174f13e-6845-4fa0-b509-21a1c75b96b0",
+        "type": "heartbeat",
+        "topic": "http://hl7.org/fhir/us/davinci-pas/SubscriptionTopic/PASSubscriptionTopic",
+        "status": "active",
+        "subscription": {
+          "reference": "http://localhost:8765/Subscription/pas-subscription-r4b"
+        },
+        "eventsSinceSubscriptionStart": "1"
+      }
+    }
+  ]
+}
+```
 
 ## Limitations
 
@@ -739,5 +865,5 @@ Content-Type: application/json
 
 - [FHIR Topic-Based Subscriptions](../../modules/topic-based-subscriptions/fhir-topic-based-subscriptions.md) - Overview and concepts
 - [FHIR R5 Subscription Setup](fhir-subscription-r5.md) - Tutorial for native R5 format
-- [FHIR R4B Backport Subscription Setup](fhir-subscription-r4b-backport.md) - Tutorial for R4B Backport format
+- [FHIR R4 Backport Subscription Setup](fhir-subscription-r4-backport.md) - Tutorial for R4 Backport format
 - [Subscriptions Backport IG](https://build.fhir.org/ig/HL7/fhir-subscription-backport-ig/) - Official specification

@@ -81,6 +81,8 @@
     * [Postmark integration tutorial](tutorials/integration-toolkit-tutorials/postmark-integration-tutorial.md)
     * [Mailgun integration tutorial](tutorials/integration-toolkit-tutorials/mailgun-integration-tutorial.md)
   * [Subscriptions Tutorials](tutorials/subscriptions-tutorials/README.md)
+    * [FHIR R5 Subscription Setup](tutorials/subscriptions-tutorials/fhir-subscription-r5.md)
+    * [FHIR R4B Backport Subscription Setup](tutorials/subscriptions-tutorials/fhir-subscription-r4b-backport.md)
     * [FHIR R4 Backport Subscription Setup](tutorials/subscriptions-tutorials/fhir-subscription-r4-backport.md)
     * [Kafka AidboxTopicDestination](tutorials/subscriptions-tutorials/kafka-aidboxtopicdestination.md)
     * [ClickHouse AidboxTopicDestination](tutorials/subscriptions-tutorials/clickhouse-aidboxtopicdestination.md)

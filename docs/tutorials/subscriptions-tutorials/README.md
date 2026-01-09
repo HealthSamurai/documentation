@@ -4,6 +4,14 @@ description: Learn to configure Aidbox subscriptions with FHIR Subscriptions, Ka
 
 # Subscriptions Tutorials
 
+{% content-ref url="fhir-subscription-r5.md" %}
+[fhir-subscription-r5.md](fhir-subscription-r5.md)
+{% endcontent-ref %}
+
+{% content-ref url="fhir-subscription-r4b-backport.md" %}
+[fhir-subscription-r4b-backport.md](fhir-subscription-r4b-backport.md)
+{% endcontent-ref %}
+
 {% content-ref url="fhir-subscription-r4-backport.md" %}
 [fhir-subscription-r4-backport.md](fhir-subscription-r4-backport.md)
 {% endcontent-ref %}

@@ -24,6 +24,16 @@ Use FHIR Topic-Based Subscriptions when you:
 
 For simple subscriptions used for internal integrations, [Aidbox Topic Destinations](aidbox-topic-based-subscriptions.md#currently-supported-channels) (Kafka, Webhook, GCP Pub/Sub, etc.) may work better as they require less setup and are managed server-side.
 
+## Setup Tutorial
+
+For a step-by-step guide to setting up FHIR Topic-Based Subscriptions, follow one of the tutorials below based on your FHIR version:
+
+| Version          | Tutorial                                                                                                          |
+|------------------|-------------------------------------------------------------------------------------------------------------------|
+| `R5`             | [FHIR R5 Subscription Setup](../../tutorials/subscriptions-tutorials/fhir-subscription-r5.md)                     |
+| `R4B-backported` | [FHIR R4B Backport Subscription Setup](../../tutorials/subscriptions-tutorials/fhir-subscription-r4b-backport.md) |
+| `R4-backported`  | [FHIR R4 Backport Subscription Setup](../../tutorials/subscriptions-tutorials/fhir-subscription-r4-backport.md)   |
+
 ## Key Components
 
 FHIR Topic-Based Subscriptions build on the [Aidbox Topic-Based Subscriptions](aidbox-topic-based-subscriptions.md) infrastructure, using the same core resources with additional configuration for FHIR-standard subscription support.
@@ -116,7 +126,7 @@ For FHIR Subscriptions, use the `fhir-native-topic-based-subscription` kind with
 | Parameter | Type | Description |
 |-----------|------|-------------|
 | `fhir-topic` | valueCanonical | Canonical URL of the FHIR SubscriptionTopic this destination implements. |
-| `subscription-specification-version` | valueString | FHIR version of the Subscription spec to support. This value determines the format of notification bundles, `$status` and `$events` operation responses. Currently only `R4-backported` is supported. [Contact us](https://www.health-samurai.io/contacts) if you need other versions (R5, R6). |
+| `subscription-specification-version` | valueString | FHIR version of the Subscription spec to support. This value determines the format of notification bundles, `$status` and `$events` operation responses. Supported values: `R5`, `R4-backported`, `R4B-backported`. |
 | `keep-events-for-period` | valueUnsignedInt | How long events remain available for the `$events` operation (in seconds). If not specified, events are stored indefinitely. |
 | `number-of-deliverer` | valueUnsignedInt | Number of parallel delivery workers (default: 4). |
 
@@ -204,6 +214,7 @@ Returns the current status of a subscription including event counts. Response fo
 
 | Version | Specification |
 |---------|---------------|
+| `R5` | [Subscription $status](https://hl7.org/fhir/R5/subscription-operation-status.html) |
 | `R4-backported` | [Subscription Status Operation](https://build.fhir.org/ig/HL7/fhir-subscription-backport-ig/OperationDefinition-backport-subscription-status.html) |
 
 ### $events
@@ -224,6 +235,7 @@ Allows clients to query past events for recovery purposes. Response format depen
 
 | Version | Specification |
 |---------|---------------|
+| `R5` | [Subscription $events](https://hl7.org/fhir/R5/subscription-operation-events.html) |
 | `R4-backported` | [Subscription Events Operation](https://build.fhir.org/ig/HL7/fhir-subscription-backport-ig/OperationDefinition-backport-subscription-events.html) |
 
 ## Notification Bundle
@@ -232,6 +244,8 @@ The notification bundle format depends on the `subscription-specification-versio
 
 | Version | Specification |
 |---------|---------------|
+| `R5` | [SubscriptionStatus](https://hl7.org/fhir/R5/subscriptionstatus.html), [Notification Bundle](https://hl7.org/fhir/R5/bundle.html#subscription-notification) |
+| `R4B-backported` | [SubscriptionStatus](https://hl7.org/fhir/R4B/subscriptionstatus.html) |
 | `R4-backported` | [Notification Bundle Example](https://build.fhir.org/ig/HL7/fhir-subscription-backport-ig/Bundle-r4-notification-full-resource.json.html), [All Artifacts](https://build.fhir.org/ig/HL7/fhir-subscription-backport-ig/artifacts.html) |
 
 ## Internals
@@ -264,9 +278,3 @@ If `keep-events-for-period` is specified, a periodic cleanup process deletes eve
 ### Multi-Instance Coordination
 
 In multi-instance deployments, PostgreSQL advisory locks ensure only one Aidbox instance runs the delivery process for each `AidboxTopicDestination`. Other instances wait and take over if the lock becomes available.
-
-## Setup Tutorial
-
-| Version | Tutorial |
-|---------|----------|
-| `R4-backported` | [FHIR R4 Backport Subscription Setup](../../tutorials/subscriptions-tutorials/fhir-subscription-r4-backport.md) |
