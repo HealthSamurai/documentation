@@ -5,7 +5,9 @@ description: FHIR Topic-Based Subscriptions support for standard FHIR R4/R5 subs
 # FHIR Topic-Based Subscriptions
 
 {% hint style="info" %}
-This functionality is available in Aidbox versions 2512 and later and requires [FHIR Schema](../profiling-and-validation/fhir-schema-validator/) validation engine to be [enabled](../profiling-and-validation/fhir-schema-validator/).
+This functionality requires [FHIR Schema](../profiling-and-validation/fhir-schema-validator/) validation engine to be [enabled](../profiling-and-validation/fhir-schema-validator/).
+`R4-backported` subscriptions are available in Aidbox version 2512 or later.
+`R5` and `R4B-backported` subscriptions require Aidbox version 2601 or later.
 {% endhint %}
 
 ## Overview

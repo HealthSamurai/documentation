@@ -5,7 +5,7 @@ description: Step-by-step guide to setting up FHIR R5 Topic-Based Subscriptions 
 # FHIR R5 Subscription Setup
 
 {% hint style="info" %}
-This functionality is available in Aidbox versions 2512 and later and requires [FHIR Schema](../../modules/profiling-and-validation/fhir-schema-validator/) validation engine to be enabled and FHIR R5 core package (`hl7.fhir.r5.core#5.0.0`) to be installed.
+This functionality is available in Aidbox versions 2601 and later and requires [FHIR Schema](../../modules/profiling-and-validation/fhir-schema-validator/) validation engine to be enabled and FHIR R5 core package (`hl7.fhir.r5.core#5.0.0`) to be installed.
 {% endhint %}
 
 For concepts, supported fields, and configuration details, see [FHIR Topic-Based Subscriptions](../../modules/topic-based-subscriptions/fhir-topic-based-subscriptions.md).

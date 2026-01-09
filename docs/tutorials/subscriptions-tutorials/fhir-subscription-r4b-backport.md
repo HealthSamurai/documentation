@@ -5,7 +5,7 @@ description: Step-by-step guide to setting up FHIR R4B Backport Topic-Based Subs
 # FHIR R4B Backport Subscription Setup
 
 {% hint style="info" %}
-This functionality is available in Aidbox versions 2512 and later and requires [FHIR Schema](../../modules/profiling-and-validation/fhir-schema-validator/) validation engine to be enabled and FHIR R4B core package (`hl7.fhir.r4b.core#4.3.0`) to be installed.
+This functionality is available in Aidbox versions 2601 and later and requires [FHIR Schema](../../modules/profiling-and-validation/fhir-schema-validator/) validation engine to be enabled and FHIR R4B core package (`hl7.fhir.r4b.core#4.3.0`) to be installed.
 {% endhint %}
 
 For concepts, supported fields, and configuration details, see [FHIR Topic-Based Subscriptions](../../modules/topic-based-subscriptions/fhir-topic-based-subscriptions.md).
