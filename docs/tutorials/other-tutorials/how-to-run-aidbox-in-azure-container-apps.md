@@ -11,6 +11,7 @@ description: Deploy Aidbox on Azure Container Apps with Azure Database for Postg
 ## Before you begin
 
 - You must have an active Azure subscription.
+- Your account must have permissions to create Resource Groups, Virtual Networks, Private DNS Zones, PostgreSQL Flexible Servers, and Container Apps. The [Contributor](https://learn.microsoft.com/en-us/azure/role-based-access-control/built-in-roles#contributor) role includes all required permissions.
 - Install [Azure CLI](https://learn.microsoft.com/en-us/cli/azure/install-azure-cli) and sign in with `az login`.
 
 ## Set up environment variables
@@ -18,17 +19,17 @@ description: Deploy Aidbox on Azure Container Apps with Azure Database for Postg
 First, define the variables that will be used throughout this tutorial:
 
 ```bash
-RESOURCE_GROUP="aidbox-rg"
-LOCATION="westeurope"
-VNET_NAME="aidbox-vnet"
-PG_SUBNET="pg-subnet"
-CONTAINER_SUBNET="container-subnet"
-PG_SERVER="aidbox-pg-server"
-PG_USER="aidbox"
-PG_PASSWORD="<your-secure-password>"
-PG_DATABASE="aidbox"
-CONTAINER_ENV="aidbox-env"
-CONTAINER_APP="aidbox-app"
+export RESOURCE_GROUP="aidbox-rg"
+export LOCATION="westeurope"
+export VNET_NAME="aidbox-vnet"
+export PG_SUBNET="pg-subnet"
+export CONTAINER_SUBNET="container-subnet"
+export PG_SERVER="aidbox-pg-server"
+export PG_USER="aidbox"
+export PG_PASSWORD="<your-secure-password>"
+export PG_DATABASE="aidbox"
+export CONTAINER_ENV="aidbox-env"
+export CONTAINER_APP="aidbox-app"
 ```
 
 {% hint style="warning" %}
@@ -71,7 +72,7 @@ az network vnet subnet create \
 ```
 
 {% hint style="info" %}
-Container Apps requires a subnet with at least /23 CIDR block.
+Container Apps requires a subnet with at least /23 CIDR block (512 IP addresses). This is an [Azure policy requirement](https://learn.microsoft.com/en-us/azure/container-apps/vnet-custom).
 {% endhint %}
 
 ## Create a private DNS zone for PostgreSQL
@@ -140,18 +141,7 @@ az postgres flexible-server parameter set \
   --value "PG_STAT_STATEMENTS,UNACCENT,PG_TRGM"
 ```
 
-Create the extensions. Since the database is in a private network, use [Azure Cloud Shell](https://shell.azure.com) which has network access to Azure resources:
-
-```bash
-az postgres flexible-server execute \
-  --name $PG_SERVER \
-  --admin-user $PG_USER \
-  --admin-password "$PG_PASSWORD" \
-  --database-name $PG_DATABASE \
-  --querytext "CREATE EXTENSION IF NOT EXISTS pg_stat_statements; \
-               CREATE EXTENSION IF NOT EXISTS unaccent; \
-               CREATE EXTENSION IF NOT EXISTS pg_trgm;"
-```
+Aidbox will automatically create these extensions on startup.
 
 ## Create a Container Apps Environment
 
@@ -188,32 +178,37 @@ az containerapp create \
   --min-replicas 1 \
   --max-replicas 1 \
   --env-vars \
-    BOX_WEB_PORT=8888 \
-    BOX_DB_HOST=${PG_SERVER}.postgres.database.azure.com \
-    BOX_DB_PORT=5432 \
-    BOX_DB_DATABASE=$PG_DATABASE \
-    BOX_DB_USER=$PG_USER \
-    BOX_DB_PASSWORD=$PG_PASSWORD \
-    BOX_DB_INSTALL_PG_EXTENSIONS=false \
     BOX_ADMIN_PASSWORD=<your-admin-password> \
-    BOX_ROOT_CLIENT_SECRET=<your-client-secret> \
-    BOX_SECURITY_DEV_MODE=true \
-    BOX_SECURITY_AUDIT_LOG_ENABLED=true \
-    BOX_SETTINGS_MODE=read-write \
     BOX_BOOTSTRAP_FHIR_PACKAGES=hl7.fhir.r4.core#4.0.1 \
-    BOX_FHIR_SCHEMA_VALIDATION=true \
+    "BOX_COMPATIBILITY_VALIDATION_JSON__SCHEMA_REGEX=#{:fhir-datetime}" \
+    BOX_DB_DATABASE=$PG_DATABASE \
+    BOX_DB_HOST=${PG_SERVER}.postgres.database.azure.com \
+    BOX_DB_PASSWORD=$PG_PASSWORD \
+    BOX_DB_PORT=5432 \
+    BOX_DB_USER=$PG_USER \
+    BOX_FHIR_BUNDLE_EXECUTION_VALIDATION_MODE=limited \
     BOX_FHIR_COMPLIANT_MODE=true \
     BOX_FHIR_CORRECT_AIDBOX_FORMAT=true \
     BOX_FHIR_CREATEDAT_URL=https://aidbox.app/ex/createdAt \
-    BOX_FHIR_SEARCH_COMPARISONS=true \
+    BOX_FHIR_SCHEMA_VALIDATION=true \
     BOX_FHIR_SEARCH_AUTHORIZE_INLINE_REQUESTS=true \
-    BOX_SEARCH_INCLUDE_CONFORMANT=true \
+    BOX_FHIR_SEARCH_CHAIN_SUBSELECT=true \
+    BOX_FHIR_SEARCH_COMPARISONS=true \
+    BOX_FHIR_TERMINOLOGY_ENGINE=hybrid \
+    BOX_FHIR_TERMINOLOGY_ENGINE_HYBRID_EXTERNAL_TX_SERVER=https://tx.health-samurai.io/fhir \
     BOX_FHIR_TERMINOLOGY_SERVICE_BASE_URL=https://tx.health-samurai.io/fhir \
-    "BOX_COMPATIBILITY_VALIDATION_JSON__SCHEMA_REGEX=#{:fhir-datetime}"
+    BOX_MODULE_SDC_STRICT_ACCESS_CONTROL=true \
+    BOX_ROOT_CLIENT_SECRET=<your-client-secret> \
+    BOX_SEARCH_INCLUDE_CONFORMANT=true \
+    BOX_SECURITY_AUDIT_LOG_ENABLED=true \
+    BOX_SECURITY_DEV_MODE=true \
+    BOX_SETTINGS_MODE=read-write \
+    BOX_WEB_BASE_URL=<your-base-url> \
+    BOX_WEB_PORT=8888
 ```
 
 {% hint style="warning" %}
-Replace `<your-admin-password>` and `<your-client-secret>` with secure values. These credentials will be used to access Aidbox.
+Replace `<your-admin-password>`, `<your-client-secret>`, and `<your-base-url>` with your values. The base URL will be available after deployment (see "Verify deployment" section).
 {% endhint %}
 
 See more about [recommended Aidbox environment variables](../../configuration/recommended-envs.md).
