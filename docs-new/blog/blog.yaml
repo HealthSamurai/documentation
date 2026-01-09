@@ -115,7 +115,7 @@ nav-items:
         type: simple
         items:
           - title: Aidbox Docs
-            href: /aidbox
+            href: /docs/aidbox
             internal: true
           - title: Fhirbase Docs
             href: https://fhirbase.aidbox.app/
