@@ -265,6 +265,8 @@
   function handleLinkHover(link) {
     // Skip big-link cards - they already show preview info
     if (link.closest('.big-link')) return;
+    // Skip cards in tables (data-view="cards")
+    if (link.closest('table[data-view="cards"]')) return;
 
     const href = link.getAttribute('href');
 
