@@ -20,7 +20,7 @@ Aidbox doesn't delete **SubsNotification** resources by itself. The simple way t
 {% endhint %}
 
 {% hint style="info" %}
-See tutorial ["Subscribe to new Patient resource"](../../deprecated/deprecated/other/subscribe-to-new-patient-resource.md)
+See tutorial ["Subscribe to new Patient resource"](../../tutorials/subscriptions-tutorials/subscribe-to-new-patient-resource.md)
 {% endhint %}
 
 Your service can register subscription by POST **SubsSubscription** resource:

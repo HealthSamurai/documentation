@@ -32,6 +32,10 @@ When ngrok starts it shows the domain name which is linked to the 8888 port. The
 
 ## Create Aidbox project
 
+{% hint style="warning" %}
+The Zen configuration approach used in this tutorial is deprecated. For new projects, consider using FHIRSchema mode with environment variables.
+{% endhint %}
+
 Aidbox is configured by the [Aidbox Configuration Projects](../../deprecated/deprecated/zen-related/aidbox-zen-lang-project/README.md). To create sample project run command below&#x20;
 
 <pre class="language-sh"><code class="lang-sh"><strong>git clone \

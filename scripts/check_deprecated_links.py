@@ -43,7 +43,11 @@ def main():
                  and "release-notes" not in f.name
                  and "aidbox-forms" not in str(f)
                  and "hl7" not in str(f)
-
+                 and "migrate-to-fhirschema" not in str(f)
+                 and "how-to-enable-hierarchical-access-control" not in str(f)
+                 and "how-to-enable-patient-data-access-api" not in str(f)
+                 and "how-to-enable-smart-on-fhir" not in str(f)
+                 and "relationship-based-access-control" not in str(f)
     ]
 
     all_issues = []

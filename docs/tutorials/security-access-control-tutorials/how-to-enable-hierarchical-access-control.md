@@ -12,6 +12,10 @@ Since Aidbox version 2412, to enable OrgBAC in [FHIRSchema mode](../../modules/p
 BOX_SECURITY_ORGBAC_ENABLED=true
 ```
 
+{% hint style="warning" %}
+The Zen configuration approach below is deprecated. For new projects, use the environment variable above.
+{% endhint %}
+
 If your Aidbox version is lower or you do not use FHIRSchema mode, use [the Aidbox Configuration project](../../deprecated/deprecated/zen-related/aidbox-zen-lang-project/) and import `aidbox.multitenancy.v1.fhir-r4`or `aidbox.multitenancy.v1.fhir-r5`namespace.
 
 {% tabs %}

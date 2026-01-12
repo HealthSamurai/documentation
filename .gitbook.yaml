@@ -645,7 +645,7 @@ redirects:
   modules/security-and-access-control/technical-reference/acesspolicy-resource: reference/system-resources-reference/iam-module-resources.md
   modules/smartbox/g-10-standardized-api-for-patient-and-population-services: solutions/providers-or-onc-health-it-certification-program/g-10-standardized-api-for-patient-and-population-services/README.md
   readme-1/fhir-conformance/touchstone-fhir-4.0.1-basic-server: deprecated/deprecated/zen-related/fhir-conformance/touchstone-fhir-4-0-1-basic-server.md
-  readme-1/readme-1-1/rbac/role-based-access-control-with-acl: tutorials/security-access-control-tutorials/rbac/rbac-with-acl.md
+  readme-1/readme-1-1/rbac/role-based-access-control-with-acl: deprecated/deprecated/zen-related/rbac-with-acl.md
   readme-1/readme-1-1/sample-patient-can-see-its-own-data: tutorials/security-access-control-tutorials/accesspolicy-examples.md
   readme-1/validation-tutorials/davinci-pdex: tutorials/validation-tutorials/davinci-pdex.md
   reference/aidbox-forms/aidbox-sdc-api: reference/aidbox-forms-reference/aidbox-sdc-api.md
@@ -663,3 +663,5 @@ redirects:
   database/aidboxdb-image/ha-aidboxdb: deprecated/deprecated/aidboxdb/ha-aidboxdb.md
   database/other/working-with-pgagent: deprecated/deprecated/aidboxdb/working-with-pgagent.md
   database/other/migrate-to-aidboxdb-16: deprecated/deprecated/aidboxdb/migrate-to-aidboxdb-16.md
+  deprecated/deprecated/other/subscribe-to-new-patient-resource: tutorials/subscriptions-tutorials/subscribe-to-new-patient-resource.md
+  tutorials/security-access-control-tutorials/rbac/rbac-with-acl: deprecated/deprecated/zen-related/rbac-with-acl.md
