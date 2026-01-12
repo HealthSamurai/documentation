@@ -6,7 +6,7 @@ description: Configure and manage Aidbox logging with Logs for observability and
 
 Aidbox produces structured logs on every significant event to the internal stream which you may direct to different ways:
 
-* [stdout in json or pretty string formats](./#stdour-log)
+* [stdout in json or pretty string formats](./#stdout-log)
 * [file](./#log-to-file)
 * [Elasticsearch](how-to-guides/elastic-logs-and-monitoring-integration.md)
 * [Datadog](how-to-guides/datadog-log-management-integration.md)
