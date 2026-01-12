@@ -40,8 +40,9 @@ image: healthsamurai/multibox:edge
 
 ## Create .env file
 
-To start Multibox needs additional environment variables. Pass the following:
+To start Multibox needs additional environment variables.
 
+**Add** the following environment variables:
 {% code title="docker-compose.yaml" %}
 ```shell
     environment:
@@ -49,9 +50,13 @@ To start Multibox needs additional environment variables. Pass the following:
       AIDBOX_CLUSTER_SECRET: 'secret'
       AIDBOX_CLUSTER_DOMAIN: '127.0.0.1.nip.io'
       AIDBOX_SUPERUSER: 'admin:secret'
-      AIDBOX_BASE_URL: 'http://127.0.0.1.nip.io:8080'
 ```
 {% endcode %}
+
+**Update** the following environment variable value:
+```shell
+      BOX_WEB_BASE_URL: 'http://127.0.0.1.nip.io:8080'
+```
 
 Insert your license key into the environment file. Change the line
 
