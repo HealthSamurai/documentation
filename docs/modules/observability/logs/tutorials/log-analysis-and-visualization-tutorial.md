@@ -52,7 +52,7 @@ Now you can browse and explore REST API logs
 
 _Kibana's **Discover** enables you to quickly search and filter your data, get information about the structure of the fields, and visualize your data with **Lens** and **Maps**. You can customize and save your searches and place them on a dashboard._
 
-Check [Kibana documentation](https://www.elastic.co/guide/en/kibana/current/discover.html) for additional info or [let us know](https://t.me/aidbox) if you need help.
+Check [Kibana documentation](https://www.elastic.co/guide/en/kibana/current/discover.html) for additional info or [let us know](../../../../overview/contact-us.md) if you need help.
 
 ## **Visualize logs with Grafana**
 

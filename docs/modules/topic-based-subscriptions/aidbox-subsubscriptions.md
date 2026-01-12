@@ -16,7 +16,7 @@ This module introduces two new resources into Aidbox:
 * SubsNotification — resource which represents notification with its status (sent or not).
 
 {% hint style="warning" %}
-Aidbox doesn't delete **SubsNotification** resources by itself. The simple way to implement a retention policy is to create a cron job. [Let us know](https://t.me/aidbox) if there is a more clear way.
+Aidbox doesn't delete **SubsNotification** resources by itself. The simple way to implement a retention policy is to create a cron job. [Let us know](../../overview/contact-us.md) if there is a more clear way.
 {% endhint %}
 
 {% hint style="info" %}
