@@ -20,12 +20,19 @@ To enable multi-tenancy for Forms, it is necessary to enable Organization-based 
 
 ## Getting Started
 
-### Accessing the Builder for an Organization
+### Accessing Forms UI for an Organization
 
-1. **Standard Builder Access**:
-   * Typically, to access the form builder, the URL fragment path used is `#/forms/builder`.
-2. **Organization-Specific Builder Access**:
-   * To navigate to the builder for a specific organization, modify the URL as follows: `#/org/[organization-id]/forms/builder`. Replace `[organization-id]` with the actual ID of the Organization resource.
+{% hint style="info" %}
+**Note:** If the user is managed externally, automatic rerouting will not work.
+{% endhint %}
+
+1. **Automatic Rerouting**:
+   * If a user is attached to any organization, they will be automatically rerouted to the organization-based route.
+2. **Standard Forms UI Access**:
+   * Typically, to access the Forms UI, the URL fragment path used is `#/`.
+   * Note: The organization dropdown selector will be shown if multitenancy is enabled.
+3. **Organization-Specific Forms UI Access**:
+   * To navigate to the Forms UI for a specific organization, modify the URL as follows: `#/org/[organization-id]/`. Replace `[organization-id]` with the actual ID of the Organization resource.
 
 ### Performing Back-End Operations in Multi-Tenant Mode
 
