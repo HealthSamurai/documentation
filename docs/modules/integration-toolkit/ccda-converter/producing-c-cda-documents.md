@@ -251,7 +251,7 @@ C-CDA / FHIR module provides ready-to-use Document Definitions for most frequent
 | ------------------ | ----------- | ---------------------------------------------------------------------------------------- |
 | continuity-of-care | CCD         | <p><code>pid</code> - Patient ID<br><code>start-date</code><br><code>end-date</code></p> |
 
-Additionally to this list, you can put your own predefined Document Definitions via [Aidbox Configuration Project](../../../deprecated/deprecated/zen-related/aidbox-zen-lang-project/README.md).
+Additionally to this list, you can put your own predefined Document Definitions via Aidbox Configuration Project.
 
 ### /ccda/prepare-doc endpoint
 

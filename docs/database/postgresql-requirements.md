@@ -28,17 +28,10 @@ Compatible with all PostgreSQL deployments
 * **Backup/Restore**: Use standard PostgreSQL methods:
   * Native PostgreSQL backup tools
   * Cloud provider solutions
-  * [Kubernetes operators](aidboxdb-image/ha-aidboxdb.md)
+  * Kubernetes operators
   * Custom scripts
-
-## AidboxDB Distribution
-
-* [AidboxDB](aidboxdb-image/) is a PostgreSQL distribution based on the official PostgreSQL release&#x20;
-* Includes Aidbox-specific extensions and the WAL-G backup tool
-* Standard PostgreSQL installations remain fully supported
 
 ## What's next
 
 1. Check [Database Schema](database-schema.md) for technical details on schema and query capabilities.
 2. Required and optional [PostgreSQL Extensions](postgresql-extensions.md)
-3. [AidboxDB](aidboxdb-image/)

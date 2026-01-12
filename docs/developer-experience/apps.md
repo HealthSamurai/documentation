@@ -29,7 +29,7 @@ operations: &#x3C;Operations-definitions>
 
 Here's the manifest structure:
 
-<table><thead><tr><th width="207">Key</th><th width="149">Type</th><th>Description</th></tr></thead><tbody><tr><td><strong>id</strong></td><td>string</td><td>Id of the App resource</td></tr><tr><td><strong>apiVersion (required)</strong></td><td>integer</td><td>App API version. Currently, the only option is <code>1</code></td></tr><tr><td><strong>type (required)</strong></td><td>enum</td><td>Type of application. Currently, the only option is <code>app</code></td></tr><tr><td><strong>endpoint</strong></td><td>object</td><td>Information about endpoint: url to redirect the request, protocol, and secret</td></tr><tr><td><strong>operations</strong></td><td>array of operations</td><td>Custom endpoints</td></tr><tr><td><strong>resources</strong></td><td>array of resources in Aidbox format</td><td>Deprecated. Related resources that should be also created</td></tr><tr><td><strong>subscriptions</strong></td><td>array of subscriptions</td><td>Deprecated subscriptions support. Consider using <a href="../../modules/topic-based-subscriptions/aidbox-topic-based-subscriptions">Aidbox topic-based subscriptions</a> or <a href="../../app-development/aidbox-sdk/broken-reference/">SubsSubscriptions</a> instead</td></tr><tr><td><strong>entities</strong></td><td>array of entities</td><td>Deprecated <a href="../../deprecated/deprecated/entity-attribute/entities-and-attributes.md">Entities/Attributes</a> approach to create custom resources</td></tr></tbody></table>
+<table><thead><tr><th width="207">Key</th><th width="149">Type</th><th>Description</th></tr></thead><tbody><tr><td><strong>id</strong></td><td>string</td><td>Id of the App resource</td></tr><tr><td><strong>apiVersion (required)</strong></td><td>integer</td><td>App API version. Currently, the only option is <code>1</code></td></tr><tr><td><strong>type (required)</strong></td><td>enum</td><td>Type of application. Currently, the only option is <code>app</code></td></tr><tr><td><strong>endpoint</strong></td><td>object</td><td>Information about endpoint: url to redirect the request, protocol, and secret</td></tr><tr><td><strong>operations</strong></td><td>array of operations</td><td>Custom endpoints</td></tr><tr><td><strong>resources</strong></td><td>array of resources in Aidbox format</td><td>Deprecated. Related resources that should be also created</td></tr><tr><td><strong>subscriptions</strong></td><td>array of subscriptions</td><td>Deprecated subscriptions support. Consider using <a href="../../modules/topic-based-subscriptions/aidbox-topic-based-subscriptions">Aidbox topic-based subscriptions</a> or <a href="../../app-development/aidbox-sdk/broken-reference/">SubsSubscriptions</a> instead</td></tr></tbody></table>
 
 ### endpoint
 
@@ -84,73 +84,3 @@ resources:
 </code></pre>
 
 In this example, the AccessPolicy resource will be created as well as the App resource.
-
-### entities
-
-{% hint style="warning" %}
-It is a deprecated option to create custom resources via [Entity/Attribute](../deprecated/deprecated/entity-attribute/entities-and-attributes.md) approach.
-{% endhint %}
-
-In the `entities` section of the App manifest, you can extend existing resources, define custom profiles, or hook into the lifecycle:
-
-{% code title="entities:" %}
-```yaml
-Patient: # existing resource type
-  attrs:
-     # here we define extension `race` for patient
-     race: { extensionUrl: 'https://myapp/race', type: 'code' }
-  hooks: # resource life cycle hooks
-    before_create: # map of hooks <hook-id>: { config-map }
-       notify_on_patient: { emails: ['admin@hs.io'] }
-```
-{% endcode %}
-
-As well as define custom resources:
-
-{% code title="entities:" %}
-```yaml
-User: # custom resource type
-  attrs:
-     email:    { type: 'email', isRequired: true }
-     password: { type: 'password' }
-     active:   { type: 'boolean' }
-     patient:  { type: 'Reference', refers: ['Patient'] }
-     settings:  
-        attrs:
-           theme: { type: 'string', enum: ['black', 'white'] }
-  hooks:
-     before_create:
-        check_ldap: {}
-     after_create:
-        save_to_third_paty: {}
-  profiles:
-     user-uniq-email: 
-       type: sql 
-       query: SELECT true FROM "User" WHERE resource->>'email' == {{ .email }}
-       message: Email is already taken
-```
-{% endcode %}
-
-In the `entities` section, resources are defined in the format `<resourceType> : <structure>` :
-
-```yaml
-entities:
-  Patient: <structure>
-  User: <structure>
-  Payment: <structure>
-```
-
-Resource structure is defined by `attrs` keywor&#x64;**:**
-
-{% code title="entities:" %}
-```yaml
-User:
-  attrs:
-    email: <element-definition>
-    password: <element-definition>
-  profiles: <profiles-definition>
-  hooks: <hooks-definition>
-```
-{% endcode %}
-
-At the root of resource definition, you can also define **hooks** and **profiles** for this resource.

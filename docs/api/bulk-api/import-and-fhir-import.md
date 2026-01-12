@@ -176,11 +176,9 @@ With this flag, Aidbox will update the history for updated resources. For each r
 * if the resource was not present in DB before the import, the import time will be the same.
 * if the resource was present in DB before and it's updated during the import, it will double the time importing this resource because of the additional insert operation into the `_history` table.
 
-## /v2/$import on top of the Workflow Engine
+## /v2/$import
 
-Improved version of the $import operation, to enhance its reliability and performance. By implementing this operation on top of the [workflow-engine](../../deprecated/deprecated/zen-related/workflow-engine/README.md), it allows the $import operation to be more reliable, continue work after restarts, and handle errors correctly. The Task API also enables the operation to accept multiple requests and execute them from a queue while simultaneously processing multiple items from the "inputs" field (with a default of two items processed simultaneously). Users can monitor the status of the operation through the [monitoring.md](../../deprecated/deprecated/zen-related/workflow-engine/monitoring.md).
-
-In the future, the ability to list and cancel $import operations will be added, as well as detailed progress info on the operation.
+Improved version of the $import operation with enhanced reliability and performance. This version continues work after restarts, handles errors correctly, accepts multiple requests executing them from a queue, and simultaneously processes multiple items from the "inputs" field (with a default of two items processed simultaneously).
 
 **Changes in the new $import API:**
 
@@ -232,8 +230,6 @@ Content-Location:  /v2/$import/synthea
 <table><thead><tr><th width="226">Parameter</th><th>Description</th></tr></thead><tbody><tr><td><code>id</code></td><td>Identifier of the import.<br>If you don't provide this, the id will be auto-generated. You can check it on <code>Content-Location</code> header in the response</td></tr><tr><td><code>contentEncoding</code></td><td>Supports <code>gzip</code> or <code>plain</code> (non-gzipped .ndjson files)</td></tr><tr><td><code>inputs</code> (required)</td><td><p>Resources to import</p><ul><li><code>url</code> - URL from which load resources</li><li><code>resourceType</code> - Resource type to be loaded</li></ul></td></tr><tr><td><code>update</code></td><td>Update history for updated resources (false by default)</td></tr><tr><td><code>allowedRetryCount</code></td><td>Set the maximum number of import retries for each input (2 by default)</td></tr></tbody></table>
 
 To check the status of the import make a GET request to `/v2/$import/<id>`:
-
-As the operation is built on top of our workflow engine, the statuses and outcomes of the files and import as a whole are inherited from [#task-statuses-and-outcomes](../../deprecated/deprecated/zen-related/workflow-engine/task/README.md#task-statuses-and-outcomes)
 
 {% tabs %}
 {% tab title="Request" %}

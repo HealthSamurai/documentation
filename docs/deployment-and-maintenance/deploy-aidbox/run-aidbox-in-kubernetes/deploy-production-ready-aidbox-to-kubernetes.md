@@ -48,194 +48,84 @@ Aidbox supports all popular managed Postgresql databases. Supported versions - 1
 
 ### Self-managed solution
 
-For a self-managed solution, we recommend using the [AidboxDB image](https://hub.docker.com/r/healthsamurai/aidboxdb). This image contains all required extensions, backup tools, and pre-build replication support. Read more information in the documentation — [AidboxDB](../../../database/aidboxdb-image/README.md).
+For a self-managed solution in Kubernetes, we recommend using the [CloudNativePG operator](https://cloudnative-pg.io/). It provides high availability, automated failover, backups, and seamless PostgreSQL cluster management.
 
-{% hint style="info" %}
-To streamline the deployment process, our DevOps engineers have prepared [Helm charts](https://github.com/Aidbox/helm-charts/tree/main/aidboxdb) that you may find helpful.
-{% endhint %}
+#### Install CloudNativePG operator
 
-First step — create volume
-
-{% code title="Persistent Volume" lineNumbers="true" %}
-```yaml
-apiVersion: v1
-kind: PersistentVolumeClaim
-metadata:
-  name: db-master-data
-  namespace: prod
-spec:
-  accessModes:
-    - ReadWriteOnce
-  resources:
-    requests:
-      storage: 300Gi
-  # depend on your cloud provider. Use SSD volumes
-  storageClassName: managed-premium
+```bash
+kubectl apply --server-side -f \
+  https://raw.githubusercontent.com/cloudnative-pg/cloudnative-pg/main/releases/cnpg-1.28.0.yaml
 ```
-{% endcode %}
 
-Next - create all required configs, like `postgresql.conf`, required container parameters and credentials.
+#### Create PostgreSQL cluster
 
-{% code title="postgresql.conf" lineNumbers="true" %}
-```yaml
-apiVersion: v1
-kind: ConfigMap
-metadata:
-  name: db-pg-config
-  namespace: prod
-data:
-  postgres.conf: |-
-    listen_addresses = '*'
-    shared_buffers = '2GB'
-    max_wal_size = '4GB'
-    pg_stat_statements.max = 500
-    pg_stat_statements.save = false
-    pg_stat_statements.track = top
-    pg_stat_statements.track_utility = true
-    shared_preload_libraries = 'pg_stat_statements'
-    track_io_timing = on
-    wal_level = logical
-    wal_log_hints = on
-    archive_command = 'wal-g wal-push %p'
-    restore_command = 'wal-g wal-fetch %f %p'
-```
-{% endcode %}
-
-{% code title="db-config Configmap" lineNumbers="true" %}
-```yaml
-apiVersion: v1
-kind: ConfigMap
-metadata:
-  name: db-config
-  namespace: prod
-data:
-  PGDATA: /data/pg
-  POSTGRES_DB: postgres
-```
-{% endcode %}
-
-{% code title="db-secret Secret" lineNumbers="true" %}
+{% code title="postgres-secret.yaml" lineNumbers="true" %}
 ```yaml
 apiVersion: v1
 kind: Secret
 metadata:
-  name: db-secret
+  name: postgres
   namespace: prod
-type: Opaque
-data:
-  POSTGRES_PASSWORD: cG9zdGdyZXM=
-  POSTGRES_USER: cG9zdGdyZXM=
+stringData:
+  password: <your-password>
+  username: postgres
+type: kubernetes.io/basic-auth
 ```
 {% endcode %}
 
-Now we can create a database `StatefulSet`
-
-{% code title="Db Master StatefulSet" lineNumbers="true" %}
+{% code title="postgres-cluster.yaml" lineNumbers="true" %}
 ```yaml
-apiVersion: apps/v1
-kind: StatefulSet
+apiVersion: postgresql.cnpg.io/v1
+kind: Cluster
 metadata:
-  name: prod-db-master
+  name: aidbox-db
   namespace: prod
 spec:
-  replicas: 1
-  serviceName: db
-  selector:
-    matchLabels:
-      service: db
-  template:
-    metadata:
-      labels:
-        service: db
-    spec:
-      volumes:
-        - name: db-pg-config
-          configMap:
-            name: db-pg-config
-            defaultMode: 420
-        - name: db-dshm
-          emptyDir:
-            medium: Memory
-        - name: db-data
-          persistentVolumeClaim:
-            claimName: db-master-data
-      containers:
-        - name: main
-          image: healthsamurai/aidboxdb:14.2
-          ports:
-            - containerPort: 5432
-              protocol: TCP
-          envFrom:
-            - configMapRef:
-                name: db-config
-            - secretRef:
-                name: db-secret
-          volumeMounts:
-            - name: db-pg-config
-              mountPath: /etc/configs
-            - name: db-dshm
-              mountPath: /dev/shm
-            - name: db-data
-              mountPath: /data
-              subPath: pg
+  instances: 3
+  bootstrap:
+    initdb:
+      database: aidbox
+      owner: postgres
+      secret:
+        name: postgres
+  postgresql:
+    parameters:
+      shared_buffers: '2GB'
+      max_wal_size: '4GB'
+      pg_stat_statements.max: '500'
+      pg_stat_statements.track: 'all'
+      shared_preload_libraries: 'pg_stat_statements'
+  resources:
+    requests:
+      memory: 4Gi
+      cpu: '2'
+    limits:
+      memory: 8Gi
+  storage:
+    size: 100Gi
+    storageClass: managed-premium
 ```
 {% endcode %}
 
-Create a master database service
+CloudNativePG automatically creates services for connecting to the database:
+- `aidbox-db-rw` — read-write service (primary)
+- `aidbox-db-ro` — read-only service (replicas)
+- `aidbox-db-r` — any instance
 
-{% code title="Database Service" lineNumbers="true" %}
-```yaml
-apiVersion: v1
-kind: Service
-metadata:
-  name: db
-  namespace: prod
-spec:
-  ports:
-    - protocol: TCP
-      port: 5432
-      targetPort: 5432
-  selector:
-    service: db
-```
-{% endcode %}
+#### Configure backups
 
-Replica installation contains all the same steps but requires additional configuration
-
-{% code title="Replica DB config" lineNumbers="true" %}
-```yaml
-apiVersion: v1
-kind: ConfigMap
-metadata:
-  name: db-replica
-  namespace: prod
-data:
-  PG_ROLE: replica
-  PG_MASTER_HOST: db-master
-  PG_REPLICA: streaming_replica_streaming
-  PGDATA: /data/pg
-  POSTGRES_DB: postgres
-```
-{% endcode %}
-
-For backups and WAL archiving we recommend a cloud-native solution [WAL-G](https://github.com/wal-g/wal-g). Full information about its configuration and usage is on this [documentation page](https://github.com/wal-g/wal-g/blob/master/docs/PostgreSQL.md).
-
-* [Configure storage access](https://github.com/wal-g/wal-g/blob/6ec7680ef5cb66c938faf180c97b3378b701d685/docs/STORAGES.md) — WAL-G can store backups in S3, Google Cloud Storage, Azure, or a local file system.
-* Recommended backup policy — Full backup every week, incremental backup every day.
+CloudNativePG supports backups to S3, Azure Blob Storage, and Google Cloud Storage. See [CloudNativePG backup documentation](https://cloudnative-pg.io/documentation/current/backup/) for details.
 
 ### Alternative solutions
 
-A set of tools to perform HA PostgreSQL with fail and switchover, automated backups.
-
-* [Patroni](https://github.com/zalando/patroni) — A Template for PostgreSQL HA with ZooKeeper, ETCD or Consul.
-* [Postgres operator](https://github.com/zalando/postgres-operator) — The Postgres Operator delivers an easy-to-run HA PostgreSQL clusters on Kubernetes.
+* [Crunchy Postgres Operator](https://github.com/CrunchyData/postgres-operator) — Production-ready PostgreSQL on Kubernetes.
 
 ## Aidbox
 
 First, you must get an Aidbox license on the [Aidbox user portal](https://aidbox.app).
 
 {% hint style="info" %}
-You might want to use the [Helm charts](https://github.com/Aidbox/helm-charts/tree/main/aidbox) prepared by our DevOps engineers to make the deployment experience smoother.
+You might want to use the [Helm charts](https://github.com/HealthSamurai/helm-charts/tree/main/aidbox) prepared by our DevOps engineers to make the deployment experience smoother.
 {% endhint %}
 
 Create ConfigMap with all required config and database connection
@@ -356,7 +246,7 @@ spec:
 
 When Aidbox starts for the first time, resolving all the dependencies takes longer. If you encounter startupProbe failure, you might want to consider increasing the initialDelaySeconds and failureThreshold under the startupProbe spec in the config above.
 
-All additional information about HA Aidbox configuration can be found in this article — [HA Aidbox](../../../database/aidboxdb-image/ha-aidboxdb.md).
+For running multiple Aidbox replicas, ensure all instances share the same RSA keys and secrets. See [Configure Aidbox](../../../configuration/configure-aidbox-and-multibox.md#set-up-rsa-private-public-keys-and-secret) for details.
 
 To verify that Aidbox started correctly you can check the logs:
 

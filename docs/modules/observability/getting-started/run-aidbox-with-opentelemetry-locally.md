@@ -83,7 +83,3 @@ Zipkin should be available on [http://localhost:9411/](http://localhost:9411/zip
 Click the `Show` button to see all spans of a certain request.
 
 <figure><img src="../../../.gitbook/assets/870cbd14-7055-400d-8f6b-17460bf492a4.png" alt="Zipkin trace detail view showing request spans"><figcaption><p>Trace view in Zipkin</p></figcaption></figure>
-
-## Next Steps
-
-* Learn more about [Aidbox Configuration](../../../deprecated/deprecated/zen-related/aidbox-zen-lang-project/)

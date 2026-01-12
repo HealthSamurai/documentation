@@ -676,9 +676,7 @@ Refer to our sample to learn more:
 
 Aidbox requires [PostgreSQL](https://www.postgresql.org/) version 12 or higher to leverage advanced JSONB features including JSON path support.
 
-Aidbox actively supports the three most recent PostgreSQL versions (currently 17, 16, and 15) and is compatible with all deployment options including cloud-managed services like AWS RDS, Google Cloud SQL, and Azure Database, as well as self-hosted and on-premises installations.
-
-Aidbox automatically handles database initialization, schema migrations, and provides optional [AidboxDB](aidboxdb-image/) - a PostgreSQL distribution with Aidbox-specific extensions.
+Aidbox actively supports the most recent PostgreSQL versions (currently 18, 17, 16, and 15) and is compatible with all deployment options including cloud-managed services like AWS RDS, Google Cloud SQL, and Azure Database, as well as self-hosted and on-premises installations.
 
 See also: 
 

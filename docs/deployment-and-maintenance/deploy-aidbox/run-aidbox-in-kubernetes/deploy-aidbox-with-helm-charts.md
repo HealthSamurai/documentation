@@ -1,5 +1,5 @@
 ---
-description: Deploy Aidbox and AidboxDB to Kubernetes using Helm charts. Simplified configuration for database, ingress, SSL certificates, and FHIR packages.
+description: Deploy Aidbox and PostgreSQL to Kubernetes using Helm charts. Simplified configuration for database, ingress, SSL certificates, and FHIR packages.
 ---
 
 # Deploy Aidbox with Helm Charts
@@ -10,67 +10,88 @@ Before deployment please read about infrastructure prerequisites.
 
 ## Database
 
-[AidboxDB](../../../deprecated/deprecated/other/aidboxdb-environment-variables.md) is a specialized version of the open-source PostgreSQL database, tailored for use as the data storage backend for Aidbox.
+Aidbox requires PostgreSQL as its data storage backend. See [PostgreSQL Requirements](../../../database/postgresql-requirements.md) for detailed requirements.
 
-### **1. Add aidbox helm repo**
+For self-managed PostgreSQL in Kubernetes, we recommend using the [CloudNativePG operator](https://cloudnative-pg.io/).
+
+### 1. Install CloudNativePG operator
 
 ```bash
-helm repo add aidbox https://aidbox.github.io/helm-charts
+kubectl apply --server-side -f \
+  https://raw.githubusercontent.com/cloudnative-pg/cloudnative-pg/main/releases/cnpg-1.28.0.yaml
 ```
 
-### 2. Prepare database config
+### 2. Create PostgreSQL cluster
 
 ```yaml
-config: |-
-  listen_addresses = '*'
-  shared_buffers = '2GB'
-  max_wal_size = '4GB'
-  pg_stat_statements.max = 500
-  pg_stat_statements.save = false
-  pg_stat_statements.track = top
-  pg_stat_statements.track_utility = true
-  shared_preload_libraries = 'pg_stat_statements'
-  track_io_timing = on
-  wal_level = logical
-  wal_log_hints = on
-  archive_command = 'wal-g wal-push %p'
-  restore_command = 'wal-g wal-fetch %f %p'
-
-env:
-  PGDATA: /data/pg
-  POSTGRES_DB: postgres
-  POSTGRES_PASSWORD: <your-postgres-password>
-
-image.repository: healthsamurai/aidboxdb
-image.tag: "16.1"
-storage:
-  size: "10Gi"
-  className: <your-storage-className>
+# postgres-secret.yaml
+apiVersion: v1
+kind: Secret
+metadata:
+  name: postgres
+  namespace: aidbox
+stringData:
+  password: <your-postgres-password>
+  username: postgres
+type: kubernetes.io/basic-auth
+---
+# postgres-cluster.yaml
+apiVersion: postgresql.cnpg.io/v1
+kind: Cluster
+metadata:
+  name: aidbox-db
+  namespace: aidbox
+spec:
+  instances: 1
+  bootstrap:
+    initdb:
+      database: aidbox
+      owner: postgres
+      secret:
+        name: postgres
+  postgresql:
+    parameters:
+      pg_stat_statements.max: "10000"
+      pg_stat_statements.track: all
+  resources:
+    limits:
+      memory: 2Gi
+    requests:
+      cpu: 100m
+      memory: 1Gi
+  storage:
+    size: 10Gi
 ```
-
-All AidboxDB helm config values are [here](https://github.com/Aidbox/helm-charts/tree/main/aidboxdb#values).
 
 ### 3. Apply config
 
 ```bash
-helm upgrade --install aidboxdb aidbox/aidboxdb \
-  --namespace postgres --create-namespace \
-  --values /path/to/db-config.yaml
+kubectl create namespace aidbox
+kubectl apply -f postgres-secret.yaml
+kubectl apply -f postgres-cluster.yaml
 ```
+
+CloudNativePG creates a service `aidbox-db-rw` for connecting to the primary instance.
 
 ## Aidbox
 
 First, you must get an Aidbox license on the [Aidbox user portal.](https://aidbox.app/)
 
-### 1. Prepare Aidbox config
+### 1. Add helm repo
+
+```bash
+helm repo add healthsamurai https://healthsamurai.github.io/helm-charts
+```
+
+### 2. Prepare Aidbox config
 
 ```yaml
 host: <your-aidbox-host>
 protocol: https
 
 config:
-  BOX_DB_HOST: aidboxdb.ips.svc.cluster.local
-  BOX_DB_DATABASE: postgres
+  PGHOST: aidbox-db-rw.aidbox.svc.cluster.local
+  PGDATABASE: aidbox
   PGUSER: postgres
   PGPASSWORD: <your-postgres-password>
   AIDBOX_CLIENT_ID: <your-aidbox-client-id>
@@ -92,12 +113,12 @@ ingress:
     cert-manager.io/cluster-issuer: letsencrypt
 ```
 
-All AidboxDB helm config values are [here](https://github.com/Aidbox/helm-charts/tree/main/aidbox#values).
+All Aidbox helm config values are [here](https://github.com/HealthSamurai/helm-charts/tree/main/aidbox).
 
-### 2. Apply config
+### 3. Apply config
 
 ```bash
-helm upgrade --install aidbox aidbox/aidbox \
+helm upgrade --install aidbox healthsamurai/aidbox \
   --namespace aidbox --create-namespace \
   --values /path/to/aidbox-config.yaml
 ```

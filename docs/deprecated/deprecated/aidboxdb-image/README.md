@@ -41,7 +41,7 @@ List of available extensions:
 * [plpgsql](https://www.postgresql.org/docs/17/plpgsql.html) — Some PostgreSQL functions are written in plpgsql language.
 * [pg\_stat\_statements](https://www.postgresql.org/docs/current/pgstatstatements.html) — Track statistics.
 * [postgis](https://github.com/postgis/postgis) — Support storing, indexing, and querying geographic data. Used by Location.near search parameter only.
-* [fuzzystrmatch](https://www.postgresql.org/docs/current/fuzzystrmatch.html) — String similarities functions. Used by [MPI module](../../modules/mpi/) only.
+* [fuzzystrmatch](https://www.postgresql.org/docs/current/fuzzystrmatch.html) — String similarities functions. Used by [MPI module](../../../modules/mpi/) only.
 * [pg\_trgm](https://www.postgresql.org/docs/current/pgtrgm.html) — Support for similarity of text using trigram matching. Useful for some indexes.
 * [unaccent](https://www.postgresql.org/docs/current/unaccent.html) — A text search dictionary that removes diacritics. Used in some searches.
 * [pg\_repack](https://github.com/reorg/pg_repack) — Reorganize tables in PostgreSQL databases with minimal locks.
@@ -55,17 +55,17 @@ Extensions **unavailable** since AidboxDB version 16:
 * [jsonknife](https://github.com/niquola/jsonknife) — Jsonb extraction tool for optimizing FHIR search
 {% endhint %}
 
-See also [PostgreSQL extensions](../postgresql-extensions.md).
+See also [PostgreSQL extensions](../../../database/postgresql-extensions.md).
 
 ### Configuration
 
 The image is configured by supplying environment variables and command line arguments on startup. Keep in mind that you should not change the environment variables once you have initialized the database. The image expects them to be immutable.
 
-{% content-ref url="../../deprecated/deprecated/other/aidboxdb-environment-variables.md" %}
-[aidboxdb-environment-variables.md](../../deprecated/deprecated/other/aidboxdb-environment-variables.md)
+{% content-ref url="../other/aidboxdb-environment-variables.md" %}
+[aidboxdb-environment-variables.md](../other/aidboxdb-environment-variables.md)
 {% endcontent-ref %}
 
 ### Archiving
 
 An open-source tool [wal-g](https://github.com/wal-g/wal-g) is used by AidboxDB for continuous archival, backups, and restoration.\
-See also [WAL-G](../../deployment-and-maintenance/backup-and-restore/wal-g.md).
+See also [WAL-G](../../../deployment-and-maintenance/backup-and-restore/wal-g.md).

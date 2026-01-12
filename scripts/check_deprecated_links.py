@@ -41,7 +41,10 @@ def main():
                  if "deprecated" not in str(f).lower()
                  and f.name != "SUMMARY.md"
                  and "release-notes" not in f.name
-                 and "aidbox-forms" not in str(f)]
+                 and "aidbox-forms" not in str(f)
+                 and "hl7" not in str(f)
+
+    ]
 
     all_issues = []
 

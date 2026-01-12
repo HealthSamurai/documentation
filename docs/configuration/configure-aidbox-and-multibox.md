@@ -6,11 +6,11 @@ description: Configure Aidbox and Multibox Docker deployments with environment v
 
 [Aidbox](https://hub.docker.com/r/healthsamurai/aidboxone) is a full-featured single instance of the Aidbox FHIR server. If you are interested in multi-tenant Aidbox, consider using [Multibox](https://hub.docker.com/r/healthsamurai/multibox) distribution.
 
-All distributions can be used both on [healthsamurai/aidboxdb](https://hub.docker.com/r/healthsamurai/aidboxdb) PostgreSQL distribution or managed PostgreSQLs.\
-\
+All distributions can be used with standard PostgreSQL or managed PostgreSQL services.
+
 Basic Aidbox installation consists of two components: the backend and the database. Both are released as docker images and can be pulled from HealthSamurai [docker hub](https://hub.docker.com/u/healthsamurai). For each type of Aidbox license an individual backend image is available — either [Aidbox](https://hub.docker.com/r/healthsamurai/aidboxone) or [Multibox](https://hub.docker.com/r/healthsamurai/multibox).
 
-[The database AidboxDB image](https://hub.docker.com/r/healthsamurai/aidboxdb) is the custom build of the open source PostgreSQL database. It contains a number of extensions that are primarily used for search performance optimization. AidboxDB officially supports the latest minor releases of all major PostgreSQL versions starting from 11. Note that the database image is the same for all Aidbox backend license types.
+Aidbox works with standard PostgreSQL 13 and higher. See [PostgreSQL Requirements](../database/postgresql-requirements.md) for details.
 
 ## Recommended environment variables
 
@@ -148,8 +148,8 @@ BOX_SECURITY_AUTH_KEYS_SECRET=<rand_string>
 
 Refer to the following pages for the specific image description and the list of available configuration options.
 
-{% content-ref url="../database/aidboxdb-image/" %}
-[aidboxdb-image](../database/aidboxdb-image/)
+{% content-ref url="../database/postgresql-requirements.md" %}
+[postgresql-requirements.md](../database/postgresql-requirements.md)
 {% endcontent-ref %}
 
 {% content-ref url="../reference/all-settings.md" %}

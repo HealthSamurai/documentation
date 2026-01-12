@@ -6,7 +6,7 @@ description: >-
 
 # Subscribe to New Patient Resource
 
-Aidbox [subscriptions module](broken-reference/) is a way to subscribe and get notifications about updating resources on server. It introduces two new resourceTypes into Aidbox:
+Aidbox subscriptions module is a way to subscribe and get notifications about updating resources on server. It introduces two new resourceTypes into Aidbox:
 
 * SubsSubscription — a meta-resource, which binds events (create/update/delete resource) with communication channel through which a subscriber will be notified about.
 * SubsNotification — a resource, which represents the notification with its status (sent or not).
