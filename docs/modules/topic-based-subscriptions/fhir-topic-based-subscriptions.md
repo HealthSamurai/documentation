@@ -6,8 +6,9 @@ description: FHIR Topic-Based Subscriptions support for standard FHIR R4/R5 subs
 
 {% hint style="info" %}
 This functionality requires [FHIR Schema](../profiling-and-validation/fhir-schema-validator/) validation engine to be [enabled](../profiling-and-validation/fhir-schema-validator/).
-`R4-backported` subscriptions are available in Aidbox version 2512 or later.
-`R5` and `R4B-backported` subscriptions require Aidbox version 2601 or later.
+[R4-backported](https://hl7.org/fhir/uv/subscriptions-backport/STU1.1/#topic-based-subscriptions---fhir-r4) subscriptions are available in Aidbox version 2512 or later.
+
+[R5](https://hl7.org/fhir/uv/subscriptions-backport/STU1.1/#topic-based-subscriptions---fhir-r5-and-later) and [R4B-backported](https://hl7.org/fhir/uv/subscriptions-backport/STU1.1/#topic-based-subscriptions---fhir-r4b-and-later) subscriptions require Aidbox version 2601 or later.
 {% endhint %}
 
 ## Overview
@@ -22,34 +23,25 @@ Use FHIR Topic-Based Subscriptions when you:
 - Need to provide the ability for external systems or customers to create their own subscriptions
 - Expect many subscribers (tens to thousands) with different filters to the same topic
 
-### When to use Aidbox Destinations instead
+### When to use Aidbox Topic-Based Subscriptions instead
 
-For simple subscriptions used for internal integrations, [Aidbox Topic Destinations](aidbox-topic-based-subscriptions.md#currently-supported-channels) (Kafka, Webhook, GCP Pub/Sub, etc.) may work better as they require less setup and are managed server-side.
+For simple subscriptions used for internal integrations, [Aidbox Topic-Based Subscriptions](aidbox-topic-based-subscriptions.md#currently-supported-channels) (Kafka, Webhook, GCP Pub/Sub, etc.) may work better as they require less setup and are managed server-side.               |
 
-## Setup Tutorial
-
-For a step-by-step guide to setting up FHIR Topic-Based Subscriptions, follow one of the tutorials below based on your FHIR version:
-
-| Version          | Tutorial                                                                                                          |
-|------------------|-------------------------------------------------------------------------------------------------------------------|
-| `R5`             | [FHIR R5 Subscription Setup](../../tutorials/subscriptions-tutorials/fhir-subscription-r5.md)                     |
-| `R4B-backported` | [FHIR R4B Backport Subscription Setup](../../tutorials/subscriptions-tutorials/fhir-subscription-r4b-backport.md) |
-| `R4-backported`  | [FHIR R4 Backport Subscription Setup](../../tutorials/subscriptions-tutorials/fhir-subscription-r4-backport.md)   |
 
 ## Key Components
 
 FHIR Topic-Based Subscriptions build on the [Aidbox Topic-Based Subscriptions](aidbox-topic-based-subscriptions.md) infrastructure, using the same core resources with additional configuration for FHIR-standard subscription support.
 
-When you need to support a specific FHIR SubscriptionTopic in your installation (e.g., `http://hl7.org/fhir/us/davinci-pas/SubscriptionTopic/PASSubscriptionTopic`):
+[`SubscriptionTopic`](https://build.fhir.org/subscriptiontopic.html) resource is modeled as two Aidbox resources: `AidboxSubscriptionTopic` and `AidboxTopicDestination`.
 
-1. **Create an `AidboxSubscriptionTopic`** that implements the topic's triggers and filters
-2. **Create an `AidboxTopicDestination`** that binds it to the canonical FHIR SubscriptionTopic URL
+1. **`AidboxSubscriptionTopic`** - implements the topic's triggers and filters
+2. **`AidboxTopicDestination`** - binds it to the canonical FHIR SubscriptionTopic URL
 
-Once configured, clients can create standard FHIR `Subscription` resources referencing the topic URL.
+Once configured, clients can create standard FHIR [`Subscription`](https://build.fhir.org/subscription.html) resource instances referencing the topic URL.
 
 ### AidboxSubscriptionTopic
 
-[`AidboxSubscriptionTopic`](aidbox-topic-based-subscriptions.md#aidboxsubscriptiontopic) is a custom Aidbox resource that models the FHIR [SubscriptionTopic](https://build.fhir.org/subscriptiontopic.html) resource.
+[`AidboxSubscriptionTopic`](aidbox-topic-based-subscriptions.md#aidboxsubscriptiontopic) is a custom Aidbox resource that models the FHIR [`SubscriptionTopic`](https://build.fhir.org/subscriptiontopic.html) resource.
 
 **Why a custom resource?** FHIR SubscriptionTopic is not always fully computable — it often uses codes to describe event triggers that require human interpretation. Aidbox uses FHIRPath expressions to make triggers computable.
 
@@ -280,3 +272,13 @@ If `keep-events-for-period` is specified, a periodic cleanup process deletes eve
 ### Multi-Instance Coordination
 
 In multi-instance deployments, PostgreSQL advisory locks ensure only one Aidbox instance runs the delivery process for each `AidboxTopicDestination`. Other instances wait and take over if the lock becomes available.
+
+## Tutorials
+
+For a step-by-step guide to setting up FHIR Topic-Based Subscriptions, follow one of the tutorials below based on your FHIR version:
+
+| Version          | Tutorial                                                                                                          |
+|------------------|-------------------------------------------------------------------------------------------------------------------|
+| `R4`  | [FHIR R4 Backport Subscription Setup](../../tutorials/subscriptions-tutorials/fhir-subscription-r4-backport.md)   |
+| `R4B` | [FHIR R4B Backport Subscription Setup](../../tutorials/subscriptions-tutorials/fhir-subscription-r4b-backport.md) |
+| `R5`             | [FHIR R5 Subscription Setup](../../tutorials/subscriptions-tutorials/fhir-subscription-r5.md)      

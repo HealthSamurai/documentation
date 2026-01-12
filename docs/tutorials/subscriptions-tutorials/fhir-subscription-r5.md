@@ -21,8 +21,8 @@ In this tutorial, we will set up Aidbox to implement the [DaVinci PAS Subscripti
 
 Create an `AidboxSubscriptionTopic` that implements the PAS SubscriptionTopic logic:
 
-{% tabs %}
-{% tab title="Request" %}
+Request:
+
 ```http
 POST /fhir/AidboxSubscriptionTopic
 Content-Type: application/json
@@ -47,8 +47,9 @@ Content-Type: application/json
   ]
 }
 ```
-{% endtab %}
-{% tab title="Response" %}
+
+Response:
+
 ```json
 {
   "url": "http://example.org/SubscriptionTopic/pas-claim-response",
@@ -75,8 +76,6 @@ Content-Type: application/json
   }
 }
 ```
-{% endtab %}
-{% endtabs %}
 
 ### Key Elements
 
@@ -92,8 +91,8 @@ Content-Type: application/json
 
 Create an `AidboxTopicDestination` that binds your `AidboxSubscriptionTopic` to the FHIR SubscriptionTopic URL and enables FHIR Subscription support:
 
-{% tabs %}
-{% tab title="Request" %}
+Request:
+
 ```http
 POST /fhir/AidboxTopicDestination
 Content-Type: application/json
@@ -129,8 +128,9 @@ Content-Type: application/json
   ]
 }
 ```
-{% endtab %}
-{% tab title="Response" %}
+
+Response:
+
 ```json
 {
   "meta": {
@@ -166,8 +166,6 @@ Content-Type: application/json
   ]
 }
 ```
-{% endtab %}
-{% endtabs %}
 
 ### Key Parameters
 
@@ -185,8 +183,8 @@ Content-Type: application/json
 
 Create the Organization and Patient resources that will be referenced:
 
-{% tabs %}
-{% tab title="Request" %}
+Request:
+
 ```http
 PUT /fhir/Organization/org-1
 Content-Type: application/json
@@ -197,8 +195,9 @@ Content-Type: application/json
   "name": "Example Insurance Company"
 }
 ```
-{% endtab %}
-{% tab title="Response" %}
+
+Response:
+
 ```json
 {
   "name": "Example Insurance Company",
@@ -210,11 +209,9 @@ Content-Type: application/json
   }
 }
 ```
-{% endtab %}
-{% endtabs %}
 
-{% tabs %}
-{% tab title="Request" %}
+Request:
+
 ```http
 PUT /fhir/Patient/example
 Content-Type: application/json
@@ -225,8 +222,9 @@ Content-Type: application/json
   "name": [{"family": "Test", "given": ["Patient"]}]
 }
 ```
-{% endtab %}
-{% tab title="Response" %}
+
+Response:
+
 ```json
 {
   "name": [{"family": "Test", "given": ["Patient"]}],
@@ -238,15 +236,13 @@ Content-Type: application/json
   }
 }
 ```
-{% endtab %}
-{% endtabs %}
 
 ## Step 4: Create a FHIR R5 Subscription
 
 Now clients can create standard FHIR R5 Subscription resources. Unlike R4 Backport subscriptions, R5 uses native fields instead of extensions:
 
-{% tabs %}
-{% tab title="Request" %}
+Request:
+
 ```http
 POST /fhir/Subscription
 Content-Type: application/json
@@ -281,8 +277,9 @@ Content-Type: application/json
   ]
 }
 ```
-{% endtab %}
-{% tab title="Response" %}
+
+Response:
+
 ```json
 {
   "maxCount": 10,
@@ -319,8 +316,6 @@ Content-Type: application/json
   }
 }
 ```
-{% endtab %}
-{% endtabs %}
 
 ### Subscription Elements
 
@@ -343,13 +338,14 @@ After creating the subscription, Aidbox sends a handshake notification to your e
 
 Check subscription status:
 
-{% tabs %}
-{% tab title="Request" %}
+Request:
+
 ```http
 GET /fhir/Subscription/pas-subscription-r5
 ```
-{% endtab %}
-{% tab title="Response" %}
+
+Response:
+
 ```json
 {
   "maxCount": 10,
@@ -386,8 +382,6 @@ GET /fhir/Subscription/pas-subscription-r5
   }
 }
 ```
-{% endtab %}
-{% endtabs %}
 
 If handshake fails, the subscription status will be `error`.
 
@@ -395,8 +389,8 @@ If handshake fails, the subscription status will be `error`.
 
 Create or update resources matching your topic criteria:
 
-{% tabs %}
-{% tab title="Request" %}
+Request:
+
 ```http
 POST /fhir/ClaimResponse
 Content-Type: application/json
@@ -423,8 +417,9 @@ Content-Type: application/json
   "outcome": "complete"
 }
 ```
-{% endtab %}
-{% tab title="Response" %}
+
+Response:
+
 ```json
 {
   "use": "preauthorization",
@@ -453,8 +448,6 @@ Content-Type: application/json
   }
 }
 ```
-{% endtab %}
-{% endtabs %}
 
 Your endpoint will receive a notification bundle containing the ClaimResponse.
 
@@ -462,13 +455,14 @@ Your endpoint will receive a notification bundle containing the ClaimResponse.
 
 Check subscription status and event counts:
 
-{% tabs %}
-{% tab title="Request" %}
+Request:
+
 ```http
 GET /fhir/Subscription/pas-subscription-r5/$status
 ```
-{% endtab %}
-{% tab title="Response" %}
+
+Response:
+
 ```json
 {
   "resourceType": "Bundle",
@@ -499,15 +493,13 @@ GET /fhir/Subscription/pas-subscription-r5/$status
   ]
 }
 ```
-{% endtab %}
-{% endtabs %}
 
 ## Using $events Operation
 
 Query past events for recovery:
 
-{% tabs %}
-{% tab title="Request" %}
+Request:
+
 ```http
 POST /fhir/Subscription/pas-subscription-r5/$events
 Content-Type: application/json
@@ -530,8 +522,9 @@ Content-Type: application/json
   ]
 }
 ```
-{% endtab %}
-{% tab title="Response" %}
+
+Response:
+
 ```json
 {
   "resourceType": "Bundle",
@@ -607,8 +600,6 @@ Content-Type: application/json
   ]
 }
 ```
-{% endtab %}
-{% endtabs %}
 
 ## Notification Bundle Examples
 
@@ -765,7 +756,7 @@ Sent periodically during inactivity based on `heartbeatPeriod`:
 ## Limitations
 
 - **No subscription updates**: Once created, subscriptions cannot be modified. Delete and recreate if changes are needed.
-- **REST-hook only**: Currently only the `rest-hook` channel type is supported.
+- **REST-hook only**: Currently only the [`rest-hook`](https://hl7.org/fhir/R5/valueset-subscription-channel-type.html) channel type is supported.
 - **Content level**: Subscription's payload content cannot exceed the AidboxTopicDestination's `content` setting.
 
 ## See Also
