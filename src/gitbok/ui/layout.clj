@@ -288,9 +288,6 @@ gtag('consent', 'default', {
         [:script {:defer true
                   :src (str (http/get-prefixed-url context "/static/posthog.js") version-param)}])
 
-      ;; PushEngage - loaded automatically by ui-bundle.js when consent is 'accepted'
-      ;; No script needed here - ui-bundle.js handles PushEngage loading
-
       ;; Google Tag Manager - always load for anonymous tracking (skip in dev mode)
       (when-not (state/get-config context :dev-mode)
         (list

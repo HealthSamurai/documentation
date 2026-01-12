@@ -1596,9 +1596,6 @@ function showCopySuccess(button) {
 
       hideCookieBanner();
 
-      // Dynamically load PushEngage using centralized function
-      loadPushEngage();
-
       // No reload needed - changes applied immediately
     } catch (error) {
       console.error('[Cookie Banner] Error accepting cookies:', error);
@@ -1672,9 +1669,6 @@ function showCopySuccess(button) {
       // Hide banner
       hideCookieBanner();
 
-      // Load PushEngage
-      loadPushEngage();
-
     } else {
       // EU user or unknown - show banner
       console.log('[Cookie Banner] EU user (' + (country || 'unknown') + ') - showing banner');
@@ -1687,12 +1681,9 @@ function showCopySuccess(button) {
       // Check if user already made a choice
       var existingChoice = localStorage.getItem('cookie_consent');
       if (existingChoice === 'accepted' || existingChoice === 'rejected') {
-        // User already decided - hide banner and load PushEngage if accepted
+        // User already decided - hide banner
         console.log('[Cookie Banner] User already made choice:', existingChoice);
         hideCookieBanner();
-        if (existingChoice === 'accepted') {
-          loadPushEngage();
-        }
         return;
       }
 
@@ -1726,31 +1717,6 @@ function showCopySuccess(button) {
     checkGeoAndConsent();
   }
 
-  function loadPushEngage() {
-    // Only load if not already loaded
-    if (window.PushEngage) {
-      console.log('[PushEngage] Already loaded, skipping');
-      return;
-    }
-
-    try {
-      console.log('[PushEngage] Loading PushEngage SDK...');
-      (function(w, d) {
-        w.PushEngage = w.PushEngage || [];
-        w._peq = w._peq || [];
-        PushEngage.push(['init', { appId: '795c4eea-7a69-42d7-bff3-882774303fcf' }]);
-        var e = d.createElement('script');
-        e.src = 'https://clientcdn.pushengage.com/sdks/pushengage-web-sdk.js';
-        e.async = true;
-        e.type = 'text/javascript';
-        d.head.appendChild(e);
-        console.log('[PushEngage] SDK script tag inserted');
-      })(window, document);
-    } catch (error) {
-      console.error('[PushEngage] Error loading SDK:', error);
-    }
-  }
-
   function showCookieSettings() {
     // Clear consent choice and show banner again
     localStorage.removeItem('cookie_consent');
@@ -1761,6 +1727,5 @@ function showCopySuccess(button) {
   window.handleAcceptCookies = handleAcceptCookies;
   window.handleRejectCookies = handleRejectCookies;
   window.showCookieSettings = showCookieSettings;
-  window.loadPushEngage = loadPushEngage;
 })();
 

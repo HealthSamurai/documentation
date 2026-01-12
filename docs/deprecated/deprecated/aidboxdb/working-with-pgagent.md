@@ -42,7 +42,7 @@ To create the extension run `CREATE EXTENSION pgagent;`
 There are some more options available to configure PgAgent:\
 You can specify log level with `PGAGENT_LOG_LEVEL` and you can specify a file where PgAagent logs are written in `PGAGENT_LOG_FILE_PATH`.
 
-You can see more info on [configuring aidboxdb](../../deprecated/deprecated/aidboxdb-image/README.md).
+You can see more info on [configuring aidboxdb](README.md).
 
 ## Step-by-step example with docker
 
@@ -219,17 +219,17 @@ Refer to [https://www.pgadmin.org/](https://www.pgadmin.org/) for pgAdmin and pg
 
 Now when pgagent is up and running we can define some jobs and see if they're actually scheduled.
 
-![Create server connection](../../.gitbook/assets/screen-shot-2021-08-06-at-04-24-22.png)
+![Create server connection](../../../.gitbook/assets/screen-shot-2021-08-06-at-04-24-22.png)
 
-![It's important that Maintenance database is the same database where pgagent data is stored.](../../.gitbook/assets/screen-shot-2021-08-06-at-04-25-08.png)
+![It's important that Maintenance database is the same database where pgagent data is stored.](../../../.gitbook/assets/screen-shot-2021-08-06-at-04-25-08.png)
 
-![Create pgAgent job](../../.gitbook/assets/screen-shot-2021-08-06-at-05-27-24.png)
+![Create pgAgent job](../../../.gitbook/assets/screen-shot-2021-08-06-at-05-27-24.png)
 
-![pgAgent job general settings](../../.gitbook/assets/screen-shot-2021-08-06-at-04-31-00.png)
+![pgAgent job general settings](../../../.gitbook/assets/screen-shot-2021-08-06-at-04-31-00.png)
 
-![pgAgent job steps configuration](../../.gitbook/assets/screen-shot-2021-08-06-at-04-27-19.png)
+![pgAgent job steps configuration](../../../.gitbook/assets/screen-shot-2021-08-06-at-04-27-19.png)
 
-![The job will be run every minute.](../../.gitbook/assets/screen-shot-2021-08-06-at-04-27-56.png)
+![The job will be run every minute.](../../../.gitbook/assets/screen-shot-2021-08-06-at-04-27-56.png)
 
 #### Test if jobs are running
 
@@ -292,6 +292,6 @@ If everything was successfull you will see new records in the table.
 
 * `pgagent` is a tool to run various jobs on your postgres database.
 * `pgagent` runs only if `PGAGENT_ENABLED` variable is present.
-* You can configure `pgagent` using several variables described in the [AidboxDB environment variables](../../deprecated/deprecated/other/aidboxdb-environment-variables.md).
+* You can configure `pgagent` using several variables described in the [AidboxDB environment variables](../other/aidboxdb-environment-variables.md).
 
-If you have any questions on how to configure `pgagent` feel free to [contact us](../../overview/contact-us.md).
+If you have any questions on how to configure `pgagent` feel free to [contact us](../../../overview/contact-us.md).

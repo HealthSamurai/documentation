@@ -584,7 +584,7 @@ redirects:
   modules/profiling-and-validation/profiling: modules/profiling-and-validation/README.md
   modules/security-and-access-control/auth/external-oauth-2-0-providers: access-control/authentication/sso-with-external-identity-provider.md
   modules/terminology/codesystem-and-concept: deprecated/deprecated/other/terminology/codesystem-and-concept/README.md
-  storage-1/aidboxdb-image/ha-aidboxdb: deprecated/deprecated/aidboxdb-image/ha-aidboxdb.md
+  storage-1/aidboxdb-image/ha-aidboxdb: deprecated/deprecated/aidboxdb/ha-aidboxdb.md
   access-control: access-control/access-control.md
   aidbox-configuration/aidbox-zen-lang-project/aidbox-configuration-project-structure: deprecated/deprecated/zen-related/aidbox-zen-lang-project/aidbox-configuration-project-structure.md
   api-1/api/search-1/other/searchquery: deprecated/deprecated/other/searchquery.md
@@ -650,8 +650,8 @@ redirects:
   readme-1/validation-tutorials/davinci-pdex: tutorials/validation-tutorials/davinci-pdex.md
   reference/aidbox-forms/aidbox-sdc-api: reference/aidbox-forms-reference/aidbox-sdc-api.md
   reference/zen-schema-reference/aidbox/mdm/model: modules/mpi/README.md
-  storage-1/aidboxdb-image: deprecated/deprecated/aidboxdb-image/README.md
-  storage-1/aidboxdb-image/migration-to-aidboxdb-16.1-handling-the-removal-of-jsonknife-extension: database/other/migrate-to-aidboxdb-16.md
+  storage-1/aidboxdb-image: deprecated/deprecated/aidboxdb/README.md
+  storage-1/aidboxdb-image/migration-to-aidboxdb-16.1-handling-the-removal-of-jsonknife-extension: deprecated/deprecated/aidboxdb/migrate-to-aidboxdb-16.md
   storage-1/custom-resources/migrate-to-fhirschema/migrate-custom-resources-defined-with-zen-to-fhir-schema: tutorials/artifact-registry-tutorials/custom-resources/migrate-to-fhirschema/migrate-custom-resources-defined-with-zen-to-fhir-schema.md
   storage-1/sql-on-fhir/view-definition: modules/sql-on-fhir/defining-flat-views-with-view-definitions.md
   tutorials/validation-tutorials/upload-fhir-implementation-guide/aidbox-ui/local-ig-package: tutorials/artifact-registry-tutorials/upload-fhir-implementation-guide/aidbox-ui/local-ig-package.md
@@ -659,5 +659,7 @@ redirects:
   modules-1/workflow-engine/task/aidbox-predefined-tasks: deprecated/deprecated/zen-related/workflow-engine/task/aidbox-built-in-tasks.md
   modules/security-and-access-control/set-up-external-identity-provider/azure-ad-1: tutorials/security-access-control-tutorials/azure-ad-with-certificate-authentication.md
   modules/terminology/translate-on-conceptmap: deprecated/deprecated/other/terminology/translate-on-conceptmap.md
-  database/aidboxdb-image: deprecated/deprecated/aidboxdb-image/README.md
-  database/aidboxdb-image/ha-aidboxdb: deprecated/deprecated/aidboxdb-image/ha-aidboxdb.md
+  database/aidboxdb-image: deprecated/deprecated/aidboxdb/README.md
+  database/aidboxdb-image/ha-aidboxdb: deprecated/deprecated/aidboxdb/ha-aidboxdb.md
+  database/other/working-with-pgagent: deprecated/deprecated/aidboxdb/working-with-pgagent.md
+  database/other/migrate-to-aidboxdb-16: deprecated/deprecated/aidboxdb/migrate-to-aidboxdb-16.md

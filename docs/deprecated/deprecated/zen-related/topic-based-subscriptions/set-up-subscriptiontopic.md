@@ -30,7 +30,7 @@ SubscriptionTopic-based services rely on [PostgreSQL Logical Replication](https:
 
 ### Self Hosted Database
 
-If you use [aidboxdb-image](../../../../database/aidboxdb-image/) then it's already configured to work properly with SubscriptionTopic.
+If you use [aidboxdb](../../../../deprecated/deprecated/aidboxdb/) then it's already configured to work properly with SubscriptionTopic.
 
 Otherwise, check that `wal_level` is set to `logical` in `postgresql.conf` file:
 

@@ -274,8 +274,6 @@
 * [Database schema](database/database-schema.md)
 * [PostgreSQL Extensions](database/postgresql-extensions.md)
 * [Tutorials](database/other/README.md)
-  * [Migrate to AidboxDB 16](database/other/migrate-to-aidboxdb-16.md)
-  * [Working with pgAgent](database/other/working-with-pgagent.md)
 
 ## Modules
 
@@ -706,8 +704,10 @@
     * [Form API (docs deprecased)](deprecated/deprecated/forms/form-api-docs-deprecated.md)
     * [Workflow API (docs deprecased)](deprecated/deprecated/forms/workflow-api-docs-deprecated.md)
     * [Addendum API (docs deprecased)](deprecated/deprecated/forms/addendum-api-docs-deprecated.md)
-  * [AidboxDB](deprecated/deprecated/aidboxdb-image/README.md)
-    * [HA AidboxDB](deprecated/deprecated/aidboxdb-image/ha-aidboxdb.md)
+  * [AidboxDB](deprecated/deprecated/aidboxdb/README.md)
+    * [HA AidboxDB](deprecated/deprecated/aidboxdb/ha-aidboxdb.md)
+    * [Migrate to AidboxDB 16](deprecated/deprecated/aidboxdb/migrate-to-aidboxdb-16.md)
+    * [Working with pgAgent](deprecated/deprecated/aidboxdb/working-with-pgagent.md)
   * [Other](deprecated/deprecated/other/README.md)
     * [AidboxDB Environment Variables](deprecated/deprecated/other/aidboxdb-environment-variables.md)
     * [Custom Search](deprecated/deprecated/other/custom-search.md)

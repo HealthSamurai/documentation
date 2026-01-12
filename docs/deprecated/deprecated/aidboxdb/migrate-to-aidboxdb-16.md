@@ -35,7 +35,7 @@ pg_dump -U [username] [dbname] > [backupfile].sql
 
 To create necessary `jsonknife` functions run the following SQL with-in your PG cluster.
 
-{% file src="../../.gitbook/assets/jsonknife-function-shims.sql" %}
+{% file src="../../../.gitbook/assets/jsonknife-function-shims.sql" %}
 jsonknife function shims
 {% endfile %}
 

@@ -554,7 +554,7 @@ Minor updates:
   * Administered Medications mapping to/from MedicationAdministration FHIR resource
 * DevOps
   * Documented 'How to make Aidbox Docker image work with [self-signed SSL certificates](../deployment-and-maintenance/deploy-aidbox/run-aidbox-in-kubernetes/self-signed-ssl-certificates.md)'
-  * Released AidboxDB 16.1. Updated [the list of the extensions](../deprecated/deprecated/aidboxdb-image/README.md) for Postgres. Documented the migration steps from the previous PG versions
+  * Released AidboxDB 16.1. Updated [the list of the extensions](../deprecated/deprecated/aidboxdb/README.md) for Postgres. Documented the migration steps from the previous PG versions
   * Removed apk-tools from our Docker images
 * [Aidbox Forms](../modules/aidbox-forms/)
   * Questionnaire-based forms updates:
@@ -722,7 +722,7 @@ Minor updates:
   * Added [hierarchical organization-based access control](../access-control/authorization/scoped-api/organization-based-hierarchical-access-control.md) (multi-tenancy on organization-level resources)
   * Added [How to enable hierarchical access control](../tutorials/security-access-control-tutorials/how-to-enable-hierarchical-access-control.md) tutorial
 * Ops
-  * Released new [PostgreSQL Aidboxdb images 15.3, 14.8, 13.11](../deprecated/deprecated/aidboxdb-image/README.md)
+  * Released new [PostgreSQL Aidboxdb images 15.3, 14.8, 13.11](../deprecated/deprecated/aidboxdb/README.md)
   * Added PostGis Extension
   * Enabled the [/health](../api/rest-api/other/health-check.md) endpoint metrics and logs by default
   * Added [How to disable logging](../api/rest-api/other/health-check.md#logging-health-endpoint-request) tutorial
@@ -782,7 +782,7 @@ Minor updates:
 * Aidbox user portal
   * Added option to specify [FHIR R5 configuration project](https://aidbox.app/ui/portal#/signin)
 * Ops
-  * Added [AidboxDB automation with Crunchy Operator](../deprecated/deprecated/aidboxdb-image/ha-aidboxdb.md)
+  * Added [AidboxDB automation with Crunchy Operator](../deprecated/deprecated/aidboxdb/ha-aidboxdb.md)
 * Aidbox Forms
   * Added new field type for storing attachments
     * Supported cloud storages: AidboxDB, GCP Storage, AWS S3
@@ -989,7 +989,7 @@ Minor updates:
 * Supported [`/health` endpoint](../api/rest-api/other/health-check.md) for Multibox
 * Updated documentation on how to configure Aidbox with [Aidbox configuration project](../deprecated/deprecated/zen-related/aidbox-zen-lang-project/)
 * Updated documentation on how to configure highly available Aidbox.
-* Added support for [PostgreSQL 15](../deprecated/deprecated/aidboxdb-image/README.md) (beta)
+* Added support for [PostgreSQL 15](../deprecated/deprecated/aidboxdb/README.md) (beta)
 * Added documentation on how to create [most common indexes](../deployment-and-maintenance/indexes/create-indexes-manually.md)
 * Added `aidbox` format support for [bulk import](../api/bulk-api/aidbox-bulk-data-import.md)
 * Added `enable-links` parameter for AidboxQuery
@@ -1050,7 +1050,7 @@ Minor updates:
 * Added CapabilityStatement configuration options.
 * Improved setting PostgreSQL schema for Aidbox tables.
 * Added option to set JWT private/public keys and secret via env.
-* Added [aidboxdb PostgreSQL 14.2 version](../deprecated/deprecated/aidboxdb-image/README.md). Supported versions are 14.2 and 13.6.
+* Added [aidboxdb PostgreSQL 14.2 version](../deprecated/deprecated/aidboxdb/README.md). Supported versions are 14.2 and 13.6.
 * Added tutorial [how to fix broken dates](../tutorials/other-tutorials/).
 * Released Infrabox preview. Infrabox is a simple and efficient tool to deploy and manage production-ready Aidbox infrastructure on k8s.
 
@@ -1230,7 +1230,7 @@ Starting from January 2022 we're switching to a new release cycle. We added`:lat
 
 ## February 2021 - v:20210319
 
-* Builds of [aidboxdb](../deprecated/deprecated/aidboxdb-image/README.md) for PostgreSQL 11.11, 12.6, 13.2 are [released](https://hub.docker.com/r/healthsamurai/aidboxdb/tags?page=1\&ordering=last_updated).
+* Builds of [aidboxdb](../deprecated/deprecated/aidboxdb/README.md) for PostgreSQL 11.11, 12.6, 13.2 are [released](https://hub.docker.com/r/healthsamurai/aidboxdb/tags?page=1\&ordering=last_updated).
 * Aidbox now supports deployment on top of Azure PostgreSQL.
 * Improvements of $changes API: FHIR support, pagination, upper version limit. $changes is now available at the resource level.
 * Enhancement of Transaction Bundle API that allows to populate both resource and history tables in one transaction.
