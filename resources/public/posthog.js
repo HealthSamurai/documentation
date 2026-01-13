@@ -62,7 +62,30 @@ var TRACKED_DOMAINS = [
             } catch(e) {return;}
         };
 
+        // Track header anchor clicks
+        var handleHeaderAnchorClick = function(e) {
+            var target = e.target.closest('a');
+            if(!target || !target.href) return;
+            try {
+                var url = new URL(target.href);
+                // Only track same-page anchor links
+                if(url.hostname !== window.location.hostname) return;
+                if(!url.hash) return;
+                // Check if clicking on a header anchor (link inside h1-h6)
+                var heading = target.closest('h1, h2, h3, h4, h5, h6');
+                if(!heading) return;
+
+                posthog.capture('header_anchor_clicked', {
+                    heading_text: heading.textContent.trim(),
+                    heading_id: url.hash.substring(1),
+                    heading_level: heading.tagName.toLowerCase(),
+                    page_path: window.location.pathname
+                });
+            } catch(e) {return;}
+        };
+
         document.addEventListener('click', handleClick);
+        document.addEventListener('click', handleHeaderAnchorClick);
     };
 
     // Initialize both tracking features
