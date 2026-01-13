@@ -34,12 +34,38 @@
     });
   }
 
+  function trackSearchClick(resultElement, inputElement) {
+    if (typeof posthog === 'undefined' || !resultElement) return;
+    try {
+      const query = inputElement ? inputElement.value : '';
+      const position = parseInt(resultElement.getAttribute('data-result-index'), 10);
+      const targetUrl = resultElement.href || '';
+      posthog.capture('docs_search_click', {
+        'query': query,
+        'position': position,
+        'target_url': targetUrl
+      });
+    } catch (e) {
+      console.error('Failed to track search click:', e);
+    }
+  }
+
+  function setupClickTracking(dropdown, input) {
+    dropdown.addEventListener('click', function (e) {
+      const result = e.target.closest('[data-result-index]');
+      if (result) {
+        trackSearchClick(result, input);
+      }
+    });
+  }
+
   function setupHtmxHandlers() {
     // Setup for desktop
     const desktopInput = document.getElementById('meilisearch-input');
     const desktopDropdown = document.getElementById('meilisearch-dropdown');
     if (desktopInput && desktopDropdown) {
       setupInputHandlers(desktopInput, desktopDropdown);
+      setupClickTracking(desktopDropdown, desktopInput);
     }
 
     // Setup for mobile
@@ -47,6 +73,7 @@
     const mobileDropdown = document.getElementById('mobile-meilisearch-dropdown');
     if (mobileInput && mobileDropdown) {
       setupInputHandlers(mobileInput, mobileDropdown);
+      setupClickTracking(mobileDropdown, mobileInput);
     }
 
     // Handle close on click outside
@@ -89,7 +116,10 @@
             const input = document.getElementById(inputId);
             const query = input ? input.value : '';
 
-            if (query && query.length > 0) {
+            // Only track if query is non-empty and contains only ASCII characters (no Cyrillic, Chinese, etc.)
+            const isValidQuery = query && query.length > 0 && /^[\x20-\x7E]+$/.test(query);
+
+            if (isValidQuery) {
               const dropdown = evt.detail.target;
               const results = dropdown.querySelectorAll('[data-result-index]');
               const resultsCount = results.length;
@@ -149,6 +179,7 @@
           if (currentSelectedIndex >= 0 && currentSelectedIndex < results.length) {
             const selected = results[currentSelectedIndex];
             if (selected && selected.href) {
+              trackSearchClick(selected, input);
               window.location.href = selected.href;
             }
           }
