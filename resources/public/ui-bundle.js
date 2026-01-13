@@ -508,10 +508,8 @@ function initializePageActionsDropdown() {
   window._pageActionsClickHandler = function (e) {
     const currentDropdown = document.getElementById('page-actions-dropdown');
     const currentToggle = document.getElementById('page-actions-toggle');
-    console.log('document click handler, target:', e.target, 'inDropdown:', currentDropdown?.contains(e.target), 'inToggle:', currentToggle?.contains(e.target));
     if (currentDropdown && currentToggle) {
       if (!currentDropdown.contains(e.target) && !currentToggle.contains(e.target)) {
-        console.log('closing from document handler');
         closePageActionsDropdown();
       }
     }

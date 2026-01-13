@@ -43,7 +43,8 @@
       posthog.capture('docs_search_click', {
         'query': query,
         'position': position,
-        'target_url': targetUrl
+        'target_url': targetUrl,
+        'url': targetUrl
       });
     } catch (e) {
       console.error('Failed to track search click:', e);
@@ -256,4 +257,29 @@
       }
     });
   }
+  // Global function for no-results feedback form
+  window.submitNoResultsFeedback = function(query, event) {
+    if (event) {
+      event.stopPropagation();
+      event.preventDefault();
+    }
+    var input = document.getElementById('no-results-feedback-input');
+    var feedback = input ? input.value.trim() : '';
+    if (!feedback) return;
+
+    // Send to PostHog if available (production)
+    if (typeof posthog !== 'undefined') {
+      posthog.capture('survey sent', {
+        '$survey_id': '019bb7b8-e453-0000-b3b7-8149745b99cc',
+        '$survey_response': feedback,
+        'search_query': query
+      });
+    }
+
+    // Always show thank you message
+    var form = document.getElementById('no-results-feedback-form');
+    if (form) {
+      form.innerHTML = '<div class="text-on-surface-strong font-medium">Thanks for letting us know!</div><div class="text-on-surface-placeholder text-xs mt-1">We will do our best to add this soon.</div>';
+    }
+  };
 })();
