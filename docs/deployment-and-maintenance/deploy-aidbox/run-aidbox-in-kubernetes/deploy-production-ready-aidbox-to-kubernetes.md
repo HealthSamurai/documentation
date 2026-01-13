@@ -11,8 +11,8 @@ Key infrastructure elements:
 * [Cluster configuration](deploy-production-ready-aidbox-to-kubernetes.md#cluster-configuration-and-tooling) — Node pool and tooling
 * [Database](deploy-production-ready-aidbox-to-kubernetes.md#database) — Cloud or self-managed database
 * [Aidbox](deploy-production-ready-aidbox-to-kubernetes.md#aidbox) — Aidbox installation
-* [Logging](deploy-production-ready-aidbox-to-kubernetes.md#logging) — Сollect application and cluster logs
-* [Monitoring](deploy-production-ready-aidbox-to-kubernetes.md#monitoring) — Сollect, alert, and visualize cluster and application metrics
+* [Logging](deploy-production-ready-aidbox-to-kubernetes.md#logging) — Collect application and cluster logs
+* [Monitoring](deploy-production-ready-aidbox-to-kubernetes.md#monitoring) — Collect, alert, and visualize cluster and application metrics
 * [Security](deploy-production-ready-aidbox-to-kubernetes.md#extra) — Vulnerability scanning and policy management
 
 ## Cluster configuration and tooling
@@ -114,7 +114,7 @@ CloudNativePG automatically creates services for connecting to the database:
 
 #### Configure backups
 
-CloudNativePG supports backups to S3, Azure Blob Storage, and Google Cloud Storage. See [CloudNativePG backup documentation](https://cloudnative-pg.io/documentation/current/backup/) for details.
+CloudNativePG supports backups to S3, Azure Blob Storage, and Google Cloud Storage. See [CloudNativePG backup documentation](https://cloudnative-pg.io/docs/1.28/backup/) for details.
 
 ### Alternative solutions
 
@@ -277,7 +277,7 @@ spec:
 
 A Cluster must have an [ingress controller](https://kubernetes.io/docs/concepts/services-networking/ingress-controllers/) Installed.
 
-Our recommendation is to use the [Kubernetes Ingress NGINX Controller](https://github.com/kubernetes/ingress-nginx). As an alternative, you can use [Traefic](https://github.com/traefik/traefik/).
+Our recommendation is to use the [Kubernetes Ingress NGINX Controller](https://github.com/kubernetes/ingress-nginx). As an alternative, you can use [Traefik](https://github.com/traefik/traefik/).
 
 More additional information about Ingress in k8s can be found in this documentation — [Kubernetes Service Networking](https://kubernetes.io/docs/concepts/services-networking/ingress/)
 
@@ -306,8 +306,7 @@ helm install \
   cert-manager jetstack/cert-manager \
   --namespace cert-manager \
   --create-namespace \
-  --version v1.10.0 \       # Or latest available version
-  --set installCRDs=true
+  --set crds.enabled=true
 ```
 {% endcode %}
 
