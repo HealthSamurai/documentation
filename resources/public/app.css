@@ -705,6 +705,12 @@ article td {
   @apply px-4 py-1.5 text-sm leading-relaxed border-r border-outline last:border-r-0 text-on-surface-secondary text-left;
 }
 
+/* Links inside tables (HTML tables with <a> tags) */
+article table a {
+  @apply text-brand underline underline-offset-2 hover:text-on-surface-strong hover:decoration-brand transition-all duration-200;
+  text-decoration-thickness: max(0.07em, 1px);
+}
+
 /* Figure and Images */
 article figure {
   @apply flex flex-col items-center justify-center my-8;
