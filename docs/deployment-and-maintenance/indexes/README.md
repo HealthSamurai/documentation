@@ -152,3 +152,7 @@ params:
   resource-type: Observation
   query: date=gt2022-01-01&_id=myid
 ```
+
+## See also
+
+* [Set up uniqueness in Resource](../../tutorials/crud-search-tutorials/set-up-uniqueness-in-resource.md) - Enforce unique constraints on FHIR resources using PostgreSQL indexes

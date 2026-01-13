@@ -1,5 +1,7 @@
 _book
 .aider*
+__pycache__/
+*.pyc
 check_summary_report.txt
 out/
 .clj-kondo/

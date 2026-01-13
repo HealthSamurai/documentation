@@ -13,3 +13,7 @@ description: >-
 {% content-ref url="run-aidbox-+-fhir-portals-on-k8s.md" %}
 [run-aidbox-+-fhir-portals-on-k8s.md](run-aidbox-+-fhir-portals-on-k8s.md)
 {% endcontent-ref %}
+
+{% content-ref url="smartbox-to-aidbox-migration-guide.md" %}
+[smartbox-to-aidbox-migration-guide.md](smartbox-to-aidbox-migration-guide.md)
+{% endcontent-ref %}

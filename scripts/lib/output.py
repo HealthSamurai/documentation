@@ -40,6 +40,14 @@ def check_error(message: str):
     print(f"        ✗ {message}")
 
 
+def check_warning(message: str):
+    """Print warning result with warning sign.
+
+    Output:         ⚠ Warning message
+    """
+    print(f"        ⚠ {message}")
+
+
 def print_issue(message: str):
     """Print single issue detail.
 

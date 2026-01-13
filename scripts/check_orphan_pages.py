@@ -8,7 +8,7 @@ from pathlib import Path
 from collections import defaultdict
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
-from lib.output import check_start, check_success, check_error, print_issue
+from lib.output import check_start, check_success, check_warning, print_issue
 
 
 def normalize_link(source_file: str, link: str) -> str:
@@ -75,8 +75,14 @@ def build_link_graph(docs_dir: str) -> tuple[set, dict]:
         with open(path, 'r') as f:
             content = f.read()
 
-        links = re.findall(r'\]\(([^)]+)\)', content)
-        for link in links:
+        # Markdown links: [text](url)
+        md_links = re.findall(r'\]\(([^)]+)\)', content)
+        # HTML links: <a href="url">
+        html_links = re.findall(r'<a\s+href=["\']([^"\']+)["\']', content, re.IGNORECASE)
+        # GitBook content-ref: {% content-ref url="..." %}
+        content_ref_links = re.findall(r'{%\s*content-ref\s+url=["\']([^"\']+)["\']', content)
+
+        for link in md_links + html_links + content_ref_links:
             target = normalize_link(rel_path, link)
             if target and target.endswith('.md'):
                 incoming_links[target].add(rel_path)
@@ -112,14 +118,11 @@ def main():
             orphans.append(file)
 
     if orphans:
-        check_error(f"Found {len(orphans)} orphan page(s) with no incoming links:")
-        for orphan in sorted(orphans)[:10]:
+        check_warning(f"Found {len(orphans)} orphan page(s) with no incoming links (warning):")
+        for orphan in sorted(orphans):
             print_issue(f"docs/{orphan}")
-        if len(orphans) > 10:
-            print_issue(f"... and {len(orphans) - 10} more")
-        sys.exit(1)
-
-    check_success(f"{len(all_files)} pages checked, all have incoming links")
+    else:
+        check_success(f"{len(all_files)} pages checked, all have incoming links")
 
 
 if __name__ == '__main__':

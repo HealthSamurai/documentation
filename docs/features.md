@@ -168,6 +168,7 @@ Load performance testing results [here](https://www.health-samurai.io/downloads/
 
 ### Compliance & Certifications
 
+* [ONC Health IT Certification and CMS Interoperability solutions](solutions/overview.md)
 * ISO 27001-certified
 * HIPAA, HITECH, and GDPR compliant
 * Secure SDLC: vulnerability scans, dependency SBOM, etc.

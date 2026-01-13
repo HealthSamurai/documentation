@@ -1060,7 +1060,7 @@ Minor updates:
 * Released [`seed service`](../deprecated/deprecated/zen-related/aidbox-zen-lang-project/seed-import.md) for Aidbox project. Declare a set of resources in Aidbox project and get them loaded in one or many Aidboxes on start.
 * Added option to set PostgreSQL schema.
 * Added `content-type: application/json` as default if `content-type` and `accept` headers are missing.
-* Added $drop-cache operation and and `multibox/drop-box-caches` RPC.
+* Added [$drop-cache operation](../api/other/cache.md) and `multibox/drop-box-caches` RPC.
 * Added [GET /$version operation](../api/rest-api/other/aidbox-version.md) to get Aidbox version.
 * Enhanced `POST /` operation error handling and added [FHIR bundle resource documentation](../api/rest-api/bundle.md).
 * Enhanced GraphQL with ConceptMap.group property support
