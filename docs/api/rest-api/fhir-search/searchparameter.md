@@ -734,6 +734,8 @@ See tutorials:
 
 * [Custom SearchParameter](../../../tutorials/crud-search-tutorials/search-tutorials/custom-searchparameter-tutorial.md)
 * [Create Custom Aidbox Search resource](../../../tutorials/crud-search-tutorials/search-tutorials/create-custom-aidbox-search-resource.md)
+* [Multilingual search](../../../tutorials/crud-search-tutorials/search-tutorials/multilingual-search-tutorial.md)
+* [Change sort order by locale collation](../../../tutorials/crud-search-tutorials/search-tutorials/change-sort-order-by-locale-collation.md)
 
 See also [Aidbox Search page](../aidbox-search.md):
 

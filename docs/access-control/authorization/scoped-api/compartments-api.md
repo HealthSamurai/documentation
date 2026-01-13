@@ -543,3 +543,5 @@ GET [base]/Communication?subject=[id]
 GET [base]/Communication?sender=[id]
 GET [base]/Communication?recipient=[id]
 ```
+
+See also: [Restricting access to patient data](../../../tutorials/security-access-control-tutorials/restricting-access-to-patient-data.md) - Tutorial on using CompartmentDefinition for patient data access

@@ -278,3 +278,7 @@ extensions:
 id: cfg-1
 resourceType: Hl7v2Config
 ```
+
+## Advanced mappings
+
+* [Mappings with Lisp](mappings-with-lisp-mapping.md)

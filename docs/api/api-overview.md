@@ -20,7 +20,7 @@ These actions happen every time someone in healthcare works with a digital syste
 
 Aidbox implements these operations following the FHIR RESTful API specification, where each resource type gets its own endpoint and standard HTTP methods provide predictable behavior across all resource types. When a nurse creates a new patient record, updates vital signs, or a physician reviews medical history, they're using these CRUD APIs behind the scenes, with Aidbox ensuring each operation maintains data consistency through PostgreSQL's [ACID](https://en.wikipedia.org/wiki/ACID) transactions.
 
-The RESTful design means developers work with familiar HTTP patterns: POST to create resources, GET to retrieve them, PUT to update, and DELETE to remove. Each operation returns appropriate HTTP status codes and follows FHIR's versioning strategy through ETags and the `\_history` endpoint. For instance, creating a Patient resource returns [a 201 status](./rest-api/crud/create.md) with the Location header pointing to the newly created resource.
+The RESTful design means developers work with familiar HTTP patterns: POST to create resources, GET to retrieve them, PUT to update, and DELETE to remove. Each operation returns appropriate HTTP status codes and follows FHIR's versioning strategy through [ETags](other/etag-support.md) and the `\_history` endpoint. For instance, creating a Patient resource returns [a 201 status](./rest-api/crud/create.md) with the Location header pointing to the newly created resource.
 
 See also:
 

@@ -55,3 +55,17 @@ Additionally, you can easily create a `StructureDefinition` in a running Aidbox 
 {% content-ref url="fhir-schema-validator/" %}
 [fhir-schema-validator](fhir-schema-validator/)
 {% endcontent-ref %}
+
+## Validation tutorials
+
+Step-by-step guides for validating resources against popular Implementation Guides:
+
+* [US Core](../../tutorials/validation-tutorials/us-core.md)
+* [CARIN BB](../../tutorials/validation-tutorials/carin-bb.md)
+* [Da Vinci PDex](../../tutorials/validation-tutorials/davinci-pdex.md)
+* [mCODE](../../tutorials/validation-tutorials/mcode.md)
+* [ISiK](../../tutorials/validation-tutorials/isik.md)
+
+## Advanced topics
+
+* [Skip validation of references using request header](skip-validation-of-references-in-resource-using-request-header.md)

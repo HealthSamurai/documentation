@@ -201,7 +201,6 @@
       * [PractitionerRole](api/other/plan-api/provider-directory-api/practitionerrole.md)
       * [Organization](api/other/plan-api/provider-directory-api/organization.md)
       * [OrganizationAffiliation](api/other/plan-api/provider-directory-api/organizationaffiliation.md)
-    * [Plan API Overview](api/other/plan-api/plan-api-overview.md)
   * [Archive/Restore API](api/other/archive-restore-api/README.md)
     * [Create-archive](api/other/archive-restore-api/create-archive.md)
     * [Restore-archive](api/other/archive-restore-api/restore-archive.md)
@@ -558,9 +557,6 @@
 * [Apps](developer-experience/apps.md)
 * [Use Aidbox with React](developer-experience/use-aidbox-with-react.md)
 * [Aidbox SDK](developer-experience/aidbox-sdk/README.md)
-  * [Aidbox JavaScript SDK](developer-experience/aidbox-sdk/aidbox-javascript-sdk.md)
-  * [NodeJs SDK](developer-experience/aidbox-sdk/nodejs-sdk.md)
-  * [Python SDK](developer-experience/aidbox-sdk/python-sdk.md)
 * [Examples](https://github.com/Aidbox/examples)
 
 ## Solutions
@@ -750,4 +746,8 @@
         * [$import operation (deprecated)](deprecated/deprecated/other/terminology/terminology-api/import-operation.md)
         * [Ready-to-use terminologies (deprecated)](deprecated/deprecated/other/terminology/terminology-api/ready-to-use-terminologies.md)
       * [$translate on ConceptMap (deprecated)](deprecated/deprecated/other/terminology/translate-on-conceptmap.md)
+    * [Aidbox SDK (deprecated)](deprecated/deprecated/other/aidbox-sdk/README.md)
+      * [Aidbox JavaScript SDK](deprecated/deprecated/other/aidbox-sdk/aidbox-javascript-sdk.md)
+      * [NodeJs SDK](deprecated/deprecated/other/aidbox-sdk/nodejs-sdk.md)
+      * [Python SDK](deprecated/deprecated/other/aidbox-sdk/python-sdk.md)
     * [Developer Sandbox Portal Flow Description](solutions/aidbox-+-fhir-app-portal/developer-sandbox.md)

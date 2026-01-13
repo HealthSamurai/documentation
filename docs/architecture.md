@@ -11,7 +11,7 @@ description: >-
 Aidbox uses [FHIR](https://www.hl7.org/fhir/overview.html) as a foundation and provides developers with many components that different medical records applications can reuse:
 
 * FHIR-aware PostgreSQL storage with SQL on FHIR support
-* FHIR REST API with GraphQL, reactive API & subscriptions
+* [FHIR REST API](api/api-overview.md) with GraphQL, reactive API & subscriptions
 * User management, access control, and audit log
 * Built-in FHIR, ICD-10, SNOMED, RxNorm, LOINC, and US NPI terminologies with the ability to load your terminologies and value sets
 * Custom resources & operations; first-class extensions

@@ -10,6 +10,10 @@ Aidbox emits three types of signals such as traces, metrics, and logs. All in Op
 See:
 
 * [Getting started](getting-started/)
+  * [Run Aidbox with OpenTelemetry locally](getting-started/run-aidbox-with-opentelemetry-locally.md)
 * [Logs](logs/)
+  * [Log schema](logs/technical-reference/log-schema.md)
+  * [Export logs to Datadog](logs/tutorials/export-logs-to-datadog-tutorial.md)
+  * [Log analysis and visualization](logs/tutorials/log-analysis-and-visualization-tutorial.md)
 * [Metrics](metrics/)
 * [Traces](traces/)

@@ -5,6 +5,10 @@ structure:
 
 redirects:
   access-control/authentication/access-to-aidboxui: access-control/authentication/README.md
+  api/other/plan-api/plan-api-overview: api/other/plan-api/README.md
+  developer-experience/aidbox-sdk/aidbox-javascript-sdk: deprecated/deprecated/other/aidbox-sdk/aidbox-javascript-sdk.md
+  developer-experience/aidbox-sdk/nodejs-sdk: deprecated/deprecated/other/aidbox-sdk/nodejs-sdk.md
+  developer-experience/aidbox-sdk/python-sdk: deprecated/deprecated/other/aidbox-sdk/python-sdk.md
   access-control/how-to-guides/smart-app: deprecated/deprecated/other/how-to-guides/smart-on-fhir/get-a-smart-app-launched.md
   access-control/how-to-guides/smart-on-fhir/smart-on-fhir-app-launch: deprecated/deprecated/other/how-to-guides/smart-on-fhir/get-a-smart-app-launched.md
   access-control/patient-data-access-api/smart-on-fhir: access-control/authorization/smart-on-fhir/README.md
@@ -88,12 +92,12 @@ redirects:
   api-1/other/compartments: access-control/authorization/scoped-api/compartments-api.md
   api-1/other/encryption-api: api/other/encryption-api.md
   api-1/other/etag-support: api/other/etag-support.md
-  api-1/other/plan-api-1/plan-api-overview: api/other/plan-api/plan-api-overview.md
+  api-1/other/plan-api-1/plan-api-overview: api/other/plan-api/README.md
   api-1/other/plan-api-1/provider-directory-api/organization: api/other/plan-api/provider-directory-api/organization.md
   api-1/other/plan-api-1/provider-directory-api/organizationaffiliation: api/other/plan-api/provider-directory-api/organizationaffiliation.md
   api-1/other/plan-api-1/provider-directory-api/practitioner: api/other/plan-api/provider-directory-api/practitioner.md
   api-1/other/plan-api-1/provider-directory-api/practitionerrole: api/other/plan-api/provider-directory-api/practitionerrole.md
-  api-1/other/plan-api/plan-api-overview: api/other/plan-api/plan-api-overview.md
+  api-1/other/plan-api/plan-api-overview: api/other/plan-api/README.md
   api-1/other/plan-api/provider-directory-api/organization: api/other/plan-api/provider-directory-api/organization.md
   api-1/other/plan-api/provider-directory-api/organizationaffiliation: api/other/plan-api/provider-directory-api/organizationaffiliation.md
   api-1/other/plan-api/provider-directory-api/practitioner: api/other/plan-api/provider-directory-api/practitioner.md
@@ -166,7 +170,7 @@ redirects:
   api/bulk-api-1/import-and-fhir-import: api/bulk-api/import-and-fhir-import.md
   api/bulk-api-1/load-and-fhir-load: api/bulk-api/load-and-fhir-load.md
   api/crud: api/rest-api/crud/README.md
-  api/other/plan-api-1/plan-api-overview: api/other/plan-api/plan-api-overview.md
+  api/other/plan-api-1/plan-api-overview: api/other/plan-api/README.md
   api/other/plan-api-1/provider-directory-api/organization: api/other/plan-api/provider-directory-api/organization.md
   api/other/plan-api-1/provider-directory-api/organizationaffiliation: api/other/plan-api/provider-directory-api/organizationaffiliation.md
   api/other/plan-api-1/provider-directory-api/practitioner: api/other/plan-api/provider-directory-api/practitioner.md
@@ -212,9 +216,9 @@ redirects:
   app-development-guides/tutorials/authentication-and-authorization: access-control/access-control.md
   app-development-guides/tutorials/patient-encounter-notification-application: deprecated/deprecated/other/app-development-deprecated-tutorials/patient-encounter-notification-application.md
   app-development/aidbox-sdk/aidbox-apps: developer-experience/apps.md
-  app-development/aidbox-sdk/aidbox-javascript-sdk: developer-experience/aidbox-sdk/aidbox-javascript-sdk.md
+  app-development/aidbox-sdk/aidbox-javascript-sdk: deprecated/deprecated/other/aidbox-sdk/aidbox-javascript-sdk.md
   app-development/aidbox-sdk/apps: developer-experience/apps.md
-  app-development/aidbox-sdk/python-sdk: developer-experience/aidbox-sdk/python-sdk.md
+  app-development/aidbox-sdk/python-sdk: deprecated/deprecated/other/aidbox-sdk/python-sdk.md
   app-development/aidbox-sdk: developer-experience/aidbox-sdk/README.md
   apple-app-site-association: tutorials/security-access-control-tutorials/apple.md
   auth-betta/basic-auth: tutorials/security-access-control-tutorials/basic-auth.md
@@ -511,7 +515,7 @@ redirects:
   overview/aidbox-ui/notebooks: overview/aidbox-ui/aidbox-notebooks.md
   overview/aidbox-ui/rest-console-1: overview/aidbox-ui/rest-console.md
   plan-api/patient-access-api: access-control/authorization/scoped-api/patient-data-access-api.md
-  plan-api/plan-api-overview: api/other/plan-api/plan-api-overview.md
+  plan-api/plan-api-overview: api/other/plan-api/README.md
   plan-api: api/other/plan-api/README.md
   readme-1/architecture: architecture.md
   readme-1/features: features.md
@@ -567,7 +571,7 @@ redirects:
   api: api/api-overview.md
   api-1/bulk-api-1/aidbox.bulk-data-import: api/bulk-api/aidbox-bulk-data-import.md
   api-1/fhir-api/search-1/search-parameters-list/_total-or-_countmethod: api/rest-api/fhir-search/searchparameter.md
-  api-1/plan-api/plan-api-overview: api/other/plan-api/plan-api-overview.md
+  api-1/plan-api/plan-api-overview: api/other/plan-api/README.md
   modules-1/integration-toolkit/ccda-converter/sections/medicationsadministeredsectionv2: modules/integration-toolkit/ccda-converter/sections/medications-administered-section-docs-v2.md
   modules-1/security-and-access-control/how-to-guides/token-introspection: tutorials/security-access-control-tutorials/set-up-token-introspection.md
   modules/compliance/aidbox-+-fhir-app-portal/getting-started/run-aidbox-+-fhir-portal-locally: solutions/aidbox-+-fhir-app-portal/getting-started/run-aidbox-+-fhir-portal-locally.md

@@ -39,3 +39,13 @@ Discover how to start with Aidbox in just a few minutes.
 {% content-ref url="upload-sample-data.md" %}
 [upload-sample-data.md](upload-sample-data.md)
 {% endcontent-ref %}
+
+{% content-ref url="../tutorials/other-tutorials/set-up-aidbox-with-postman.md" %}
+[set-up-aidbox-with-postman.md](../tutorials/other-tutorials/set-up-aidbox-with-postman.md)
+{% endcontent-ref %}
+
+## Need help?
+
+{% content-ref url="../overview/faq.md" %}
+[faq.md](../overview/faq.md)
+{% endcontent-ref %}

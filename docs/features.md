@@ -113,6 +113,7 @@ description: Aidbox FHIR server features including CRUD, search, validation, bul
 * [GCP Cloud Storage](file-storage/gcp-cloud-storage.md) with [Workload Identity](file-storage/gcp-cloud-storage.md#workload-identity-recommended-since-2510)
 * [Azure Blob Storage](file-storage/azure-blob-storage.md) with [Workload Identity](file-storage/azure-blob-storage.md#workload-identity)
 * [AWS S3](file-storage/aws-s3.md)
+* [Oracle Cloud Storage](file-storage/oracle-cloud-storage.md)
 
 ### Developer experience and tools
 

@@ -50,3 +50,15 @@ Controlled substances currently not supported, but we are working on it.
   **We provide an API-based solution. A user interface is required to obtain Surescripts certification**
 
 Before using the ePrescription module in production, your implementation must be certified by Surescripts. We will gladly support you through this certification process.
+
+## References
+
+* [Frequently Asked Questions](frequently-asked-questions.md)
+* [FDB Medications](medications/fdb.md)
+* [List of metrics](reference/list-of-metrics.md)
+
+### Directory management
+
+* [DirectoryDownload message](directory/directorydownload-message.md)
+* [DisableProviderLocation message](directory/disableproviderlocation-message.md)
+* [GetProviderLocation message](directory/getproviderlocation-message.md)

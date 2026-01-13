@@ -30,3 +30,5 @@ See [Supported SMART Scopes page](smart-scopes-for-limiting-access.md) page.
 ## Pass Inferno SMART App Launch Test Kit using Aidbox.
 
 [See here](pass-inferno-tests-with-aidbox.md).
+
+See also: [How to enable SMART on FHIR on Patient Access API](../../../tutorials/security-access-control-tutorials/how-to-enable-smart-on-fhir-on-patient-access-api.md)

@@ -28,3 +28,4 @@ The list of available Bulk API endpoints:
 
 * Load Synthea with Bulk API [tutorial](../../tutorials/bulk-api-tutorials/synthea-by-bulk-api.md)
 * $dump-sql for analytics [tutorial](../../tutorials/bulk-api-tutorials/dump-sql-tutorial.md)
+* [Configure access policies for Bulk API](configure-access-policies-for-bulk-api.md)

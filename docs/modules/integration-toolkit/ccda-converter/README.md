@@ -404,3 +404,7 @@ Options are passed as query-string parameters, i.e. `/ccda/validate?option1=valu
 | Option   | Values | Description |
 | -------- | ------ | ----------- |
 | `method` | `xsd`  | schematron  |
+
+## Deployment
+
+* [How to deploy the service](how-to-deploy-the-service.md)

@@ -31,3 +31,5 @@ Invite your team to the project and manage licenses in a single place
 {% content-ref url="members.md" %}
 [members.md](members.md)
 {% endcontent-ref %}
+
+See also: [Migrate from legacy licence portal to Aidbox portal](../../tutorials/other-tutorials/migrate-from-legacy-licence-portal-to-aidbox-portal.md)

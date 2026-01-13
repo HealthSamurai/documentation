@@ -15,7 +15,7 @@ The guide helps you to explore the following Aidbox features:
 * [REST Console](../overview/aidbox-ui/rest-console.md): execute and debug HTTP requests directly within Aidbox.
 * [Access Control](../access-control/access-control.md): manage fine-grained data access through the API.
 * [Data Import endpoint](../api/bulk-api/import-and-fhir-import.md): Efficiently load FHIR data into Aidbox.
-* [JavaScript SDK](aidbox-sdk/aidbox-javascript-sdk.md): Streamline JS app development on Aidbox effortlessly.
+* [JavaScript SDK](developer-experience-overview.md#language-and-project-specific-sdks): Streamline JS app development on Aidbox effortlessly.
 
 ## 1. Run Aidbox and set up Access Control
 
@@ -115,7 +115,7 @@ npm run dev
 
 ## Next Steps
 
-* Explore the [Aidbox JavaScript SDK](aidbox-sdk/aidbox-javascript-sdk.md) for advanced features.
+* Explore the [Aidbox JavaScript SDK](developer-experience-overview.md#language-and-project-specific-sdks) for advanced features.
 * Unlock additional capabilities of [Aidbox UI](../overview/aidbox-ui/).
 * Dive into the built-in [Access Control module](../access-control/access-control.md).
 * Play around with the [$import endpoint](../api/bulk-api/import-and-fhir-import.md) to load FHIR data.

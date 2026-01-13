@@ -31,6 +31,8 @@ Configure general JAVA options. For example - request and max heap size configur
 JAVA_OPTS="-Xms1024m -Xmx1024m"
 ```
 
+See also: [How to configure Aidbox to use a proxy](../tutorials/other-tutorials/how-to-configure-aidbox-to-use-proxy.md)
+
 ## Configure performance
 
 By default, Aidbox and Multibox runs with 8 web workers and 8 DB connection pool size. That means that Aidbox can process at the same time 8 concurrent connections.
