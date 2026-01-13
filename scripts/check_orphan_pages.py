@@ -57,6 +57,18 @@ def build_link_graph(docs_dir: str) -> tuple[set, dict]:
         if rel_path.startswith('deprecated/'):
             continue
 
+        # Skip aidbox-forms (auto-generated)
+        if rel_path.startswith('modules/aidbox-forms/'):
+            continue
+
+        # Skip reference (auto-generated)
+        if rel_path.startswith('reference/'):
+            continue
+
+        # Skip SUMMARY.md from file list (it's navigation, not content)
+        if rel_path == 'SUMMARY.md':
+            continue
+
         all_files.add(rel_path)
 
         # Extract links from this file
@@ -85,6 +97,17 @@ def main():
     for file in all_files:
         if file in entry_points:
             continue
+        # Skip README.md files - they are auto-generated index pages
+        if file.endswith('README.md'):
+            continue
+        # Skip hidden/deprecated pages
+        try:
+            with open(f'{docs_dir}/{file}', 'r') as f:
+                header = f.read(500)
+                if 'hidden: true' in header:
+                    continue
+        except:
+            pass
         if file not in incoming_links:
             orphans.append(file)
 
