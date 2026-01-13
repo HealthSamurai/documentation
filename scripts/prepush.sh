@@ -18,6 +18,8 @@ python3 ./scripts/summary/check-summary-vs-files.py || exit 1
 python3 ./scripts/check-title-mismatch.py || exit 1
 python3 ./scripts/check-ampersand-in-summary.py || exit 1
 python3 ./scripts/check_deprecated_links.py || exit 1
+python3 ./scripts/check_orphan_pages.py || exit 1
+python3 ./scripts/check_dead_end_pages.py || exit 1
 
 # Check for broken-reference links (inline check)
 echo ""
