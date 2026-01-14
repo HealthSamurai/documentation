@@ -7,6 +7,7 @@ resources:
   - configmap-grafana-dashboard.yaml
   - configmap.yaml
   - cronjob-cleanup-tasks.yaml
+  - cronjob-index-examples.yaml
   - cronjob-reindex-v2.yaml
   - service.yaml
   - serviceaccount.yaml
@@ -27,6 +28,9 @@ configMapGenerator:
   - name: meilisearch-scraper-config-auditbox
     files:
       - config.json=./config-auditbox.json
+  - name: meilisearch-examples-indexer-script
+    files:
+      - index-examples.py=./index-examples.py
 
 generatorOptions:
   disableNameSuffixHash: false
