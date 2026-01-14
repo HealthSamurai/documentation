@@ -369,23 +369,30 @@
         [:path {:fill-rule "evenodd" :clip-rule "evenodd"
                 :d "M4.38065 3.85065C4.45087 3.92096 4.49032 4.01627 4.49032 4.11565C4.49032 4.21502 4.45087 4.31033 4.38065 4.38065L0.630646 8.13065C0.559558 8.19689 0.465535 8.23295 0.368385 8.23123C0.271234 8.22952 0.178541 8.19016 0.109835 8.12146C0.0411284 8.05275 0.00177253 7.96006 5.84237e-05 7.86291C-0.00165568 7.76576 0.0344058 7.67173 0.100646 7.60065L3.58565 4.11565L0.100646 0.630646C0.0344058 0.559559 -0.00165568 0.465535 5.84237e-05 0.368385C0.00177253 0.271234 0.0411284 0.178542 0.109835 0.109835C0.178541 0.0411285 0.271234 0.00177253 0.368385 5.84235e-05C0.465535 -0.00165568 0.559558 0.0344059 0.630646 0.100646L4.38065 3.85065Z"}]]]])))
 
+(def login-button-class
+  "Shared button style matching the login button in main-navigation"
+  "inline-flex items-center justify-center px-4 py-2 text-sm font-semibold leading-5 bg-surface text-on-surface hover:bg-button-hover-bg border border-outline rounded-md transition-colors cursor-pointer")
+
+(def dropdown-class
+  "Shared dropdown container style for search results"
+  "w-[555px] rounded-lg p-6 pr-8 bg-surface border border-outline shadow-dropdown")
+
 (defn render-no-results
   "Renders the no results message with feedback form."
   [query]
-  [:div {:class "bg-surface border border-outline md:shadow-lg md:ring-1 md:ring-outline-subtle p-4 text-sm md:w-[32rem]"}
-   [:div {:class "text-on-surface-placeholder mb-3"}
-    (str "No results found for \"" query "\"")]
+  [:div {:class dropdown-class}
    [:div {:id "no-results-feedback-form"}
-    [:div {:class "text-on-surface-strong font-medium mb-1"} "Couldn't find what you needed?"]
-    [:div {:class "text-on-surface-placeholder text-xs mb-2"} "Tell us what you were looking for — we'd love to add it!"]
+    [:div {:class "text-sm leading-[22.75px] tracking-[-0.02em] text-on-surface-strong mb-3"}
+     (str "No results found for \"" query "\"")]
     [:textarea {:id "no-results-feedback-input"
-                :class "w-full border border-outline rounded-md p-2 text-sm text-on-surface bg-surface-subtle focus:outline-none focus:ring-1 focus:ring-primary mb-2"
+                :class "w-full px-3 py-2 text-sm border border-outline-subtle rounded-md text-on-surface-strong bg-surface hover:border-outline-input-focus focus:outline-none focus:border-outline-input-focus transition-all resize-none"
                 :rows "2"
-                :placeholder "I was looking for..."}]
-    [:button {:type "button"
-              :class "inline-flex items-center justify-center px-4 py-2 text-sm font-semibold leading-5 bg-surface text-on-surface hover:bg-button-hover-bg border border-outline rounded-md transition-colors cursor-pointer"
-              :onclick (str "submitNoResultsFeedback('" (str/escape query {\' "\\'" \\ "\\\\"}) "', event)")}
-     "Send"]]])
+                :placeholder "Tell us what you were looking for..."}]
+    [:div {:class "flex justify-end mt-3"}
+     [:button {:type "button"
+               :class login-button-class
+               :onclick (str "submitNoResultsFeedback('" (str/escape query {\' "\\'" \\ "\\\\"}) "', event)")}
+      "Send"]]]])
 
 (defn render-group-header
   "Renders a group header for grouped results."
@@ -506,7 +513,7 @@
         ;; Results found - group and render
         (let [groups (group-results-by-hierarchy results)]
           [:div {:id "meilisearch-dropdown"
-                 :class "w-[555px] max-h-[767px] overflow-y-auto rounded-lg p-6 pr-8 bg-surface border border-outline shadow-dropdown"}
+                 :class (str dropdown-class " max-h-[767px] overflow-y-auto")}
            [:div {:class "space-y-4"}
             ;; Render grouped results
             (render-search-results groups)]])))))
