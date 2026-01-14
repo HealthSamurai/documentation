@@ -22,10 +22,6 @@ spec:
             app.kubernetes.io/component: examples-indexer
         spec:
           restartPolicy: OnFailure
-          securityContext:
-            runAsNonRoot: true
-            runAsUser: 1000
-            fsGroup: 1000
           containers:
             - name: indexer
               image: python:3.10-slim
