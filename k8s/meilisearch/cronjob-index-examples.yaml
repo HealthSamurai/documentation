@@ -48,8 +48,8 @@ spec:
                 - name: GITHUB_TOKEN
                   valueFrom:
                     secretKeyRef:
-                      name: github-token-secret
-                      key: token
+                      name: github-secret
+                      key: pat
               resources:
                 requests:
                   memory: "128Mi"
