@@ -5,6 +5,8 @@
 
   let currentSelectedIndex = -1;
   let isHtmxMode = false;
+  let searchEventDebounceTimer = null;
+  let pendingSearchEvent = null; // Store pending search event data
 
   // Initialize when DOM is ready
   if (document.readyState === 'loading') {
@@ -40,6 +42,18 @@
       const query = inputElement ? inputElement.value : '';
       const position = parseInt(resultElement.getAttribute('data-result-index'), 10);
       const targetUrl = resultElement.href || '';
+
+      // If there's a pending search event (debounce hasn't fired yet), send it immediately
+      if (searchEventDebounceTimer !== null && pendingSearchEvent !== null) {
+        clearTimeout(searchEventDebounceTimer);
+        searchEventDebounceTimer = null;
+
+        // Send the pending search event first
+        posthog.capture('docs_search', pendingSearchEvent);
+        pendingSearchEvent = null;
+      }
+
+      // Then send the click event
       posthog.capture('docs_search_click', {
         'query': query,
         'position': position,
@@ -121,6 +135,12 @@
             const isValidQuery = query && query.length > 0 && /^[\x20-\x7E]+$/.test(query);
 
             if (isValidQuery) {
+              // Clear previous debounce timer
+              if (searchEventDebounceTimer) {
+                clearTimeout(searchEventDebounceTimer);
+              }
+
+              // Capture dropdown and results for the setTimeout closure
               const dropdown = evt.detail.target;
               const results = dropdown.querySelectorAll('[data-result-index]');
               const resultsCount = results.length;
@@ -129,11 +149,19 @@
               const productMatch = window.location.pathname.match(/^\/([^\/]+)/);
               const product = productMatch ? productMatch[1] : 'unknown';
 
-              posthog.capture('docs_search', {
+              // Store pending search event data
+              pendingSearchEvent = {
                 'query': query,
                 'results_count': resultsCount,
                 'product': product
-              });
+              };
+
+              // Set new debounce timer (1.5 seconds)
+              searchEventDebounceTimer = setTimeout(() => {
+                posthog.capture('docs_search', pendingSearchEvent);
+                pendingSearchEvent = null;
+                searchEventDebounceTimer = null;
+              }, 1500);
             }
           } catch (e) {
             console.error('Failed to track search in PostHog:', e);
