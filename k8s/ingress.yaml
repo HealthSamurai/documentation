@@ -4,6 +4,10 @@ metadata:
   annotations:
     nginx.ingress.kubernetes.io/proxy-body-size: 1024m
     nginx.ingress.kubernetes.io/from-to-www-redirect: "true"
+    nginx.ingress.kubernetes.io/server-snippet: |
+      if ($request_uri ~ "^/docs/docs/(.*)$") {
+        return 301 /docs/$1;
+      }
   name: gitbok
   namespace: gitbok
 spec:
