@@ -8,8 +8,10 @@
    [gitbok.indexing.impl.summary :as summary]
    [gitbok.markdown.widgets.big-links :as big-links]
    [gitbok.markdown.widgets.headers :as headers]
+   [gitbok.markdown.widgets.description :as description]
    [gitbok.ui.right-toc :as right-toc]
    [gitbok.ui.breadcrumb :as breadcrumb]
+   [gitbok.ui.tags :as tags]
    [gitbok.utils :as utils]
    [gitbok.products :as products]
    [gitbok.http :as http]
@@ -204,15 +206,18 @@
                   :d "M9 5l7 7-7 7"}]]]])]))
 
 (defn render-file* [context filepath parsed title raw-content]
-  (let [is-empty-page (empty-content-after-h1? raw-content)]
+  (let [is-empty-page (empty-content-after-h1? raw-content)
+        page-tags (description/parse-tags raw-content)]
     {:content [:div {:class "real-content flex-1 min-w-0 max-w-full"}
                (if is-empty-page
                  (render-empty-page context filepath title)
                  (markdown/render-md context filepath parsed))]
-     :parsed parsed}))
+     :parsed parsed
+     :tags page-tags}))
 
 (defn content-div [context uri content filepath & [htmx? hide-breadcrumb]]
   (let [parsed (when (map? content) (:parsed content))
+        page-tags (when (map? content) (:tags content))
         body (if (map? content) (:content content) content)
         ;; Extract relative URI for breadcrumb
         uri-relative (utils/uri-to-relative
@@ -253,6 +258,12 @@
        ;; Breadcrumb
        [:nav breadcrumb-elem]
        [:div {:class "mx-auto max-w-full"} body]
+       ;; Tags section
+       (when (seq page-tags)
+         [:div {:class "mt-8 pt-6 border-t border-outline"}
+          [:div {:id "doc-tags" :class "flex flex-wrap gap-2"}
+           (for [tag page-tags]
+             (tags/render-tag {:text tag :key tag :variant :default}))]])
        ;; Navigation buttons
        [:nav (navigation-buttons context uri)]
        (let [lastupdated (indexing/get-lastmod context filepath)]

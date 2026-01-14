@@ -79,6 +79,11 @@
   [content]
   (:schema (parse-frontmatter-map content)))
 
+(defn parse-tags
+  "Parses tags from YAML frontmatter"
+  [content]
+  (:tags (parse-frontmatter-map content)))
+
 (defn hack-h1-and-description [context
                                filepath
                                parse-markdown-content
