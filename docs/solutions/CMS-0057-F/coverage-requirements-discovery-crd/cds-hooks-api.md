@@ -208,7 +208,7 @@ Accept: application/json
           "label": "Launch DTR to complete Questionnaire",
           "url": "https://dtr.example.org/launch",
           "type": "smart",
-          "fhirContext": "questionnaire=https://example.org/fhir/Questionnaire/medication-pa"
+          "appContext": "questionnaire=https://example.org/fhir/Questionnaire/medication-pa"
         }
       ],
       "suggestions": [
