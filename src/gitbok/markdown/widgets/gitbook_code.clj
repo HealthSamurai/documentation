@@ -101,7 +101,7 @@
              ;; Replace newlines with a placeholder that we'll restore later
              single-line-content (str/replace escaped-content #"\n" "%%%NL%%%")
              ;; Create the HTML all in one line
-             html (str "<div class=\"code-gitbook group/codeblock grid grid-flow-col w-full decoration-primary/6 page-full-width:ml-0 max-w-3xl page-api-block:ml-0\">"
+             html (str "<div class=\"code-gitbook group/codeblock grid grid-flow-col w-full decoration-primary/6 page-full-width:ml-0 max-w-3xl page-api-block:ml-0 mt-6\">"
                        (when title
                          (str "<div class=\"flex items-center justify-start gap-2 text-sm [grid-area:1/1] -mb-px\">"
                               "<div class=\"relative top-px z-20 inline-flex items-center justify-center rounded-t straight-corners:rounded-t-s border border-outline border-b-0 bg-surface-subtle theme-muted:bg-surface px-3 py-2 text-on-surface-muted text-xs leading-none tracking-wide [html.theme-bold.sidebar-filled_&]:bg-surface\">"
