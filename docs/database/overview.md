@@ -2,6 +2,11 @@
 description: >-
   Complete guide to Aidbox database architecture using PostgreSQL and JSONB for
   FHIR resource storage, CRUD operations, and querying methods.
+tags:
+  - PostgreSQL
+  - Database
+  - FHIR
+  - JSONB
 ---
 
 # Database overview
