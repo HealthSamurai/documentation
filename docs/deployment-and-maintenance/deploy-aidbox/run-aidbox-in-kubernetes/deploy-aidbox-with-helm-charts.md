@@ -125,6 +125,7 @@ ingress:
     acme.cert-manager.io/http01-ingress-class: nginx
     cert-manager.io/cluster-issuer: letsencrypt
 ```
+You can find recomended variables [here](https://www.health-samurai.io/docs/aidbox/configuration/recommended-envs)
 
 All Aidbox helm config values are [here](https://github.com/HealthSamurai/helm-charts/tree/main/aidbox).
 
