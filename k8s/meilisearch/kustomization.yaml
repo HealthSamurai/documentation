@@ -28,6 +28,9 @@ configMapGenerator:
   - name: meilisearch-scraper-config-auditbox
     files:
       - config.json=./config-auditbox.json
+  - name: meilisearch-scraper-config-blog
+    files:
+      - config.json=./config-blog.json
   - name: meilisearch-examples-indexer-script
     files:
       - index-examples.ts=./index-examples.ts

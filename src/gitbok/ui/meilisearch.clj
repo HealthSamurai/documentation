@@ -24,6 +24,20 @@
   [:svg {:class "size-4 shrink-0" :fill "currentColor" :viewBox "0 0 24 24"}
    [:path {:d "M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"}]])
 
+(defn blog-icon
+  "Blog logo icon for blog article results (ungrouped items)"
+  []
+  [:img {:class "size-5 shrink-0 rounded-sm object-cover"
+         :src "https://cdn.prod.website-files.com/57441aa5da71fdf07a0a2e19/5a2ff50e669ec50001a59b5d_health-samurai.webp"
+         :alt "Blog"}])
+
+(defn blog-icon-small
+  "Blog logo icon for blog article results (grouped items)"
+  []
+  [:img {:class "size-4 shrink-0 rounded-sm object-cover"
+         :src "https://cdn.prod.website-files.com/57441aa5da71fdf07a0a2e19/5a2ff50e669ec50001a59b5d_health-samurai.webp"
+         :alt "Blog"}])
+
 (defn arrow-icon
   "Arrow icon for documentation results"
   []
@@ -86,6 +100,13 @@
                                    :q query
                                    :federationOptions {:weight 1.2}
                                    :attributesToHighlight ["title" "description" "category"]
+                                   :highlightPreTag "<mark class=\"!bg-highlight text-on-surface-strong px-0.5 py-0.5 -mx-0.5 rounded-sm\">"
+                                   :highlightPostTag "</mark>"}
+                                  {:indexUid "blog"
+                                   :q query
+                                   :federationOptions {:weight 0.8}
+                                   :attributesToHighlight ["content" "hierarchy_lvl0" "hierarchy_lvl1"
+                                                           "hierarchy_lvl2" "hierarchy_lvl3"]
                                    :highlightPreTag "<mark class=\"!bg-highlight text-on-surface-strong px-0.5 py-0.5 -mx-0.5 rounded-sm\">"
                                    :highlightPostTag "</mark>"}]}
           response @(http-client/post search-url
@@ -275,13 +296,17 @@
          groups)))
 
 (defn build-final-url
-  "Builds the final URL with anchor if needed."
-  [url anchor]
-  (cond
-    ;; If anchor exists and URL doesn't already have one, add it
-    (and anchor (not (str/includes? url "#"))) (str url "#" anchor)
-    ;; Otherwise use URL as is
-    :else url))
+  "Builds the final URL with anchor if needed. Transforms blog URLs temporarily."
+  [url anchor is-blog?]
+  (let [;; Transform blog URLs: remove /docs/futureblog prefix temporarily
+        transformed-url (if (and is-blog? url)
+                          (str/replace url "/docs/futureblog" "")
+                          url)]
+    (cond
+      ;; If anchor exists and URL doesn't already have one, add it
+      (and anchor (not (str/includes? transformed-url "#"))) (str transformed-url "#" anchor)
+      ;; Otherwise use URL as is
+      :else transformed-url)))
 
 (defn render-result-item
   ([item index is-grouped? is-last?]
@@ -299,9 +324,11 @@
          anchor (get item "anchor")
          formatted (get item "_formatted")
          is-example? (boolean (get item "github_url"))
+         is-blog? (and url (or (str/includes? url "/blog")
+                               (str/includes? url "/articles/")))
 
-         ;; Build final URL with anchor
-         final-url (build-final-url url anchor)
+         ;; Build final URL with anchor (transform blog URLs)
+         final-url (build-final-url url anchor is-blog?)
 
          ;; Get highlighted versions if available
          get-highlighted (fn [level-key level-value]
@@ -326,14 +353,12 @@
       [:div {:class "flex-1 min-w-0"}
 
        (if is-grouped?
-        ;; Grouped item - simpler display
+        ;; Grouped item - simpler display (no icon - icon is on group header)
         [:div
          ;; For grouped items, show the deepest level as title
          (let [title (or lvl5 lvl4 lvl3 lvl2 lvl1)]
            (when title
-             [:div {:class "flex items-center gap-1.5 text-sm font-normal leading-5 tracking-tight text-on-surface-secondary"}
-              (when is-example?
-                (github-icon-small))
+             [:div {:class "text-sm font-normal leading-5 tracking-tight text-on-surface-secondary"}
               [:span
                (if-let [highlighted (get-highlighted
                                      (cond
@@ -367,8 +392,9 @@
          ;; lvl1 - semibold, main title
          (when lvl1
            [:div {:class "flex items-center gap-1.5 text-base font-semibold leading-5 tracking-tight text-on-surface-strong"}
-            (when is-example?
-              (github-icon))
+            (cond
+              is-example? (github-icon)
+              is-blog? (blog-icon))
             [:span
              (let [highlighted (get-highlighted "hierarchy_lvl1" lvl1)]
                (if (string? highlighted)
@@ -466,8 +492,12 @@
   "Renders a group header for grouped results."
   [first-item group-info start-index]
   (let [group-level (:level group-info)
-        clean-url (when-let [url (get first-item "url")]
-                    (first (str/split url #"#")))
+        raw-url (get first-item "url")
+        is-blog? (and raw-url (or (str/includes? raw-url "/blog")
+                                  (str/includes? raw-url "/articles/")))
+        ;; Use build-final-url to transform blog URLs and remove anchor
+        clean-url (when raw-url
+                    (build-final-url (first (str/split raw-url #"#")) nil is-blog?))
         ;; Create header item based on group level
         header-item (case group-level
                       1 (-> first-item
