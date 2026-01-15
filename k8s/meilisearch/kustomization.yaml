@@ -30,7 +30,7 @@ configMapGenerator:
       - config.json=./config-auditbox.json
   - name: meilisearch-examples-indexer-script
     files:
-      - index-examples.py=./index-examples.py
+      - index-examples.ts=./index-examples.ts
 
 generatorOptions:
   disableNameSuffixHash: false

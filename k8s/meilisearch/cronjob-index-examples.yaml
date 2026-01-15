@@ -24,15 +24,15 @@ spec:
           restartPolicy: OnFailure
           containers:
             - name: indexer
-              image: python:3.10-slim
-              command: ["/bin/bash", "-c"]
+              image: oven/bun:1-alpine
+              command: ["/bin/sh", "-c"]
               args:
                 - |
                   set -e
-                  echo "Installing requests package..."
-                  pip install --quiet requests
+                  echo "Installing meilisearch package..."
+                  bun add --no-save meilisearch@^0.41.0
                   echo "Running indexer..."
-                  python /scripts/index-examples.py
+                  bun run /scripts/index-examples.ts
               env:
                 - name: MEILISEARCH_HOST_URL
                   value: "http://meilisearch.gitbok.svc.cluster.local:7700"
