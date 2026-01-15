@@ -54,7 +54,7 @@ JAVA_OPTS="-Xms4096m -Xmx4096m"
 
 ### Configuring SSL connection with PostgreSQL
 
-Parameters prefixed with AIDBOX\_DB\_PARAM is passed to JDBC PostgreSQL connection string.
+Since 2405, parameters prefixed with AIDBOX\_DB\_PARAM is passed to JDBC PostgreSQL connection string.
 
 For an instance:
 
