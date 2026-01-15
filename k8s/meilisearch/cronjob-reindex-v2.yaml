@@ -21,6 +21,7 @@ spec:
                 - /configs/docs.json
                 - /configs/fhirbase.json
                 - /configs/auditbox.json
+                - /configs/blog.json
               env:
                 - name: MEILISEARCH_HOST_URL
                   value: "http://meilisearch.gitbok.svc.cluster.local:7700"
@@ -39,6 +40,9 @@ spec:
                 - name: config-auditbox
                   mountPath: /configs/auditbox.json
                   subPath: config.json
+                - name: config-blog
+                  mountPath: /configs/blog.json
+                  subPath: config.json
           volumes:
             - name: config-docs
               configMap:
@@ -49,3 +53,6 @@ spec:
             - name: config-auditbox
               configMap:
                 name: meilisearch-scraper-config-auditbox
+            - name: config-blog
+              configMap:
+                name: meilisearch-scraper-config-blog
