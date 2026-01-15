@@ -127,7 +127,7 @@ ingress:
 ```
 You can find recomended variables [here](https://www.health-samurai.io/docs/aidbox/configuration/recommended-envs)
 
-All Aidbox helm config values are [here](https://github.com/HealthSamurai/helm-charts/tree/main/aidbox).
+All Aidbox helm config values are [here](../../../configuration/recommended-envs.md).
 
 ### 3. Apply config
 
