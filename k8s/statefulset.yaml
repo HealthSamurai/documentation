@@ -65,7 +65,7 @@ spec:
           mountPath: /git-data
       containers:
       - name: main
-        image: ghcr.io/healthsamurai/documentation:1.8.2
+        image: ghcr.io/healthsamurai/documentation:1.8.6
         imagePullPolicy: Always
         resources:
           requests:
