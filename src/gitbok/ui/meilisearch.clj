@@ -66,7 +66,7 @@
           ;; Filter to exclude deprecated pages using STARTS WITH
           ;; This operator is available by default (no experimental features needed)
           deprecated-filter "NOT url STARTS WITH \"https://www.health-samurai.io/docs/aidbox/deprecated\""
-          request-body {:federation {:limit 100} ; Increased limit to get more diverse results
+          request-body {:federation {:limit 300} ; Increased limit to ensure examples appear even with many doc results
                         :queries [{:indexUid index-name
                                    :q query
                                    :filter (str deprecated-filter " AND hierarchy_lvl6 = \"" query "\"")
@@ -84,7 +84,7 @@
                                    :highlightPostTag "</mark>"}
                                   {:indexUid "examples"
                                    :q query
-                                   :federationOptions {:weight 0.6}
+                                   :federationOptions {:weight 1.2}
                                    :attributesToHighlight ["title" "description" "category"]
                                    :highlightPreTag "<mark class=\"!bg-highlight text-on-surface-strong px-0.5 py-0.5 -mx-0.5 rounded-sm\">"
                                    :highlightPostTag "</mark>"}]}
