@@ -18,13 +18,13 @@ Two Factor Authentication is not supported for external OAuth 2.0 providers
 {% step %}
 #### Login
 
-Request `GET /auth/login`. User enters credentials and logs in.
+Request `GET /auth/login` (go to http://localhost:8080/auth/login) . User enters credentials (e.g. `admin` / `password`) and logs in.
 {% endstep %}
 
 {% step %}
 #### Enable 2FA
 
-Request `GET /auth/two-factor`. User receives a form with an "Enable" button. After clicking the button, they receive the OTPAuth URL encoded as a QR code.
+Request `GET /auth/two-factor` (http://localhost:8080/auth/two-factor) . User receives a form with an "Enable" button. After clicking the button, they receive the OTPAuth URL encoded as a QR code.
 {% endstep %}
 
 {% step %}
@@ -102,6 +102,8 @@ User enters a TOTP code from their authenticator app to confirm disabling. If su
 | -------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------- |
 | `twoFactor.issuerName`           | Name of the TOTP token issuer that is shown in authenticator                                                                              |
 | `twoFactor.validPastTokensCount` | Number of previous tokens that are considered valid. Used to improve user experience if standard 30 seconds token lifetime is not enough. |
+
+See [AuthConfig](../../reference/system-resources-reference/iam-module-resources.md#authconfig) resource reference for more details.
 
 ## See also
 
