@@ -37,7 +37,7 @@ BOX_WEB_PORT: 8888
 {% tab title="Aidbox with MCP" %}
 ```yaml
 BOX_ADMIN_PASSWORD: <admin-password>
-BOX_BOOTSTRAP_FHIR_PACKAGES: hl7.fhir.r4.core#4.0.1
+BOX_BOOTSTRAP_FHIR_PACKAGES: 'hl7.fhir.r4.core#4.0.1'
 BOX_COMPATIBILITY_VALIDATION_JSON__SCHEMA_REGEX: '#{:fhir-datetime}'
 BOX_DB_DATABASE: aidbox
 BOX_DB_HOST: postgres
@@ -71,7 +71,7 @@ BOX_WEB_PORT: 8888
 {% tab title="Aidbox R6" %}
 ```yaml
 BOX_ADMIN_PASSWORD: <admin-password>
-BOX_BOOTSTRAP_FHIR_PACKAGES: hl7.fhir.r6.core#6.0.0-ballot3
+BOX_BOOTSTRAP_FHIR_PACKAGES: 'hl7.fhir.r6.core#6.0.0-ballot3'
 BOX_COMPATIBILITY_VALIDATION_JSON__SCHEMA_REGEX: '#{:fhir-datetime}'
 BOX_DB_DATABASE: aidbox
 BOX_DB_HOST: postgres
