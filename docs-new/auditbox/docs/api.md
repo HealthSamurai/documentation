@@ -12,20 +12,25 @@ http://localhost:3002
 
 ## Authentication
 
-Auditbox uses **Keycloak** for authentication and authorization. To access the FHIR API programmatically, you need to obtain a JWT access token from your Keycloak instance.
+Auditbox uses **Keycloak** for authentication and authorization,
+although any compliant OAuth2 identity provider (IDP) will work with
+proper setup. To access the FHIR API programmatically, you need to
+obtain a JWT access token from your IDP instance.
 
 ### Getting a Token from Keycloak
 
-All FHIR API requests must include an `Authorization` header with a Bearer token issued by Keycloak:
+All FHIR API requests must include an `Authorization` header
+with a Bearer token issued by Keycloak:
 
 ```http
 Authorization: Bearer <your-jwt-token>
 ```
 
-To obtain a token from Keycloak, use the OAuth 2.0 client credentials or password grant flow. For example:
+To obtain a token from Keycloak, use the OAuth 2.0 client credentials
+or password grant flow. For example:
 
 ```bash
-curl -X POST http://localhost:8888/realms/auditbox/protocol/openid-connect/token \
+curl http://localhost:8888/realms/auditbox/protocol/openid-connect/token \
   -H "Content-Type: application/x-www-form-urlencoded" \
   -d "grant_type=password" \
   -d "client_id=auditbox" \
@@ -49,7 +54,10 @@ AUDITBOX_API_AUTH_ENABLED=false
 
 ### Metadata / Capability Statement
 
-Get the server's capability statement describing supported operations and search parameters.
+Get the server's capability statement describing supported operations
+and search parameters. While AuditBox is a FHIR server, it specializes
+on AuditLogs, thus not implementing features you may expect from
+Aidbox.
 
 ```http
 GET /metadata
@@ -81,33 +89,32 @@ Authorization: Bearer <token>
 
 **Example:**
 ```bash
-curl -X POST http://localhost:3002/AuditEvent \
+curl http://localhost:3002/AuditEvent \
   -H "Content-Type: application/fhir+json" \
   -H "Authorization: Bearer <token>" \
-  -d '{
-    "resourceType": "AuditEvent",
-    "type": {
-      "system": "http://dicom.nema.org/resources/ontology/DCM",
-      "code": "110100",
-      "display": "Application Activity"
-    },
-    "action": "E",
-    "recorded": "2025-01-31T16:03:16Z",
-    "outcome": "0",
-    "agent": [{
-      "requestor": true,
-      "who": {
-        "identifier": {
-          "value": "user@example.com"
-        }
-      }
-    }],
-    "source": {
-      "observer": {
-        "display": "My System"
-      }
-    }
-  }'
+  -d \
+  '{
+     "resourceType": "AuditEvent",
+     "type": {
+       "system": "http://dicom.nema.org/resources/ontology/DCM",
+       "code": "110100",
+       "display": "Application Activity"
+     },
+     "action": "E",
+     "recorded": "2026-01-16T16:03:16Z",
+     "outcome": "0",
+     "agent": [
+       {
+         "requestor": true,
+         "altId": "user@example.com"
+       }
+     ],
+     "source": {
+       "observer": {
+         "display": "My System"
+       }
+     }
+   }'
 ```
 
 ### Create Bundle
@@ -129,32 +136,33 @@ Authorization: Bearer <token>
 
 **Example:**
 ```bash
-curl -X POST http://localhost:3002/ \
+curl http://localhost:3002/ \
   -H "Content-Type: application/fhir+json" \
   -H "Authorization: Bearer <token>" \
   -d '{
     "resourceType": "Bundle",
-    "type": "transaction",
+    "type": "collection",
     "entry": [
       {
         "resource": {
           "resourceType": "AuditEvent",
           "type": {
             "system": "http://dicom.nema.org/resources/ontology/DCM",
-            "code": "110100"
+            "code": "110100",
+            "display": "Application Activity"
           },
-          "action": "C",
-          "recorded": "2025-01-31T16:03:16Z",
+          "action": "E",
+          "recorded": "2026-01-16T16:03:16Z",
           "outcome": "0",
-          "agent": [{
-            "requestor": true,
-            "who": {
-              "reference": "Practitioner/123"
+          "agent": [
+            {
+              "requestor": true,
+              "altId": "user@example.com"
             }
-          }],
+          ],
           "source": {
             "observer": {
-              "display": "System A"
+              "display": "My System"
             }
           }
         }
@@ -177,10 +185,15 @@ Authorization: Bearer <token>
 
 **Response:** FHIR AuditEvent resource
 
+**Response:**
+- **200 OK** - Returns the FHIR AuditEvent resource or nothing
+- **500 Internal Server Error** - Server error occurred
+
 **Example:**
 ```bash
-curl http://localhost:3002/AuditEvent/123 \
-  -H "Authorization: Bearer <token>"
+curl \
+  -H "Authorization: Bearer <token>" \
+  http://localhost:3002/AuditEvent/23d0f0ad-3af1-4dab-93d9-9c40a01a58ec
 ```
 
 ### Search AuditEvents
