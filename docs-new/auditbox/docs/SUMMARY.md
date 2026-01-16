@@ -5,6 +5,7 @@
 * [Getting Started](getting-started/README.md)
 * [Run Auditbox Locally](getting-started/run-with-oneliner.md)
 * [Run Auditbox On Kubernetes](getting-started/run-k8s.md)
+* [Using Auditbox Programmatically](getting-started/using-backend.md)
 
 ## Configuration
 

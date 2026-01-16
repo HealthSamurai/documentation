@@ -10,46 +10,6 @@ All API endpoints are relative to your Auditbox server base URL:
 http://localhost:3002
 ```
 
-## Authentication
-
-Auditbox uses **Keycloak** for authentication and authorization,
-although any compliant OAuth2 identity provider (IDP) will work with
-proper setup. To access the FHIR API programmatically, you need to
-obtain a JWT access token from your IDP instance.
-
-### Getting a Token from Keycloak
-
-All FHIR API requests must include an `Authorization` header
-with a Bearer token issued by Keycloak:
-
-```http
-Authorization: Bearer <your-jwt-token>
-```
-
-To obtain a token from Keycloak, use the OAuth 2.0 client credentials
-or password grant flow. For example:
-
-```bash
-curl http://localhost:8888/realms/auditbox/protocol/openid-connect/token \
-  -H "Content-Type: application/x-www-form-urlencoded" \
-  -d "grant_type=password" \
-  -d "client_id=auditbox" \
-  -d "client_secret=super-secret" \
-  -d "username=user@example.com" \
-  -d "password=password"
-```
-
-The response will contain an `access_token` that you can use for API requests.
-
-### Disabling Authentication (Testing Only)
-
-For testing purposes only, you can disable API authentication by setting:
-```bash
-AUDITBOX_API_AUTH_ENABLED=false
-```
-
-**Warning:** Never disable authentication in production environments.
-
 ## FHIR API Endpoints
 
 ### Metadata / Capability Statement
@@ -64,11 +24,6 @@ GET /metadata
 ```
 
 **Response:** FHIR CapabilityStatement resource
-
-**Example:**
-```bash
-curl http://localhost:3002/metadata
-```
 
 ### Create AuditEvent
 
@@ -87,36 +42,6 @@ Authorization: Bearer <token>
 - **400 Bad Request** - Validation errors in the request body
 - **500 Internal Server Error** - Server error occurred
 
-**Example:**
-```bash
-curl http://localhost:3002/AuditEvent \
-  -H "Content-Type: application/fhir+json" \
-  -H "Authorization: Bearer <token>" \
-  -d \
-  '{
-     "resourceType": "AuditEvent",
-     "type": {
-       "system": "http://dicom.nema.org/resources/ontology/DCM",
-       "code": "110100",
-       "display": "Application Activity"
-     },
-     "action": "E",
-     "recorded": "2026-01-16T16:03:16Z",
-     "outcome": "0",
-     "agent": [
-       {
-         "requestor": true,
-         "altId": "user@example.com"
-       }
-     ],
-     "source": {
-       "observer": {
-         "display": "My System"
-       }
-     }
-   }'
-```
-
 ### Upload Bundle
 
 Create multiple AuditEvent resources in a single transaction.
@@ -133,43 +58,6 @@ Authorization: Bearer <token>
 - **201 Created** - Returns a Bundle with created resources
 - **400 Bad Request** - Validation errors
 - **500 Internal Server Error** - Server error occurred
-
-**Example:**
-```bash
-curl http://localhost:3002/ \
-  -H "Content-Type: application/fhir+json" \
-  -H "Authorization: Bearer <token>" \
-  -d '{
-    "resourceType": "Bundle",
-    "type": "collection",
-    "entry": [
-      {
-        "resource": {
-          "resourceType": "AuditEvent",
-          "type": {
-            "system": "http://dicom.nema.org/resources/ontology/DCM",
-            "code": "110100",
-            "display": "Application Activity"
-          },
-          "action": "E",
-          "recorded": "2026-01-16T16:03:16Z",
-          "outcome": "0",
-          "agent": [
-            {
-              "requestor": true,
-              "altId": "user@example.com"
-            }
-          ],
-          "source": {
-            "observer": {
-              "display": "My System"
-            }
-          }
-        }
-      }
-    ]
-  }'
-```
 
 ### Read AuditEvent
 
@@ -188,13 +76,6 @@ Authorization: Bearer <token>
 **Response:**
 - **200 OK** - Returns the FHIR AuditEvent resource or nothing
 - **500 Internal Server Error** - Server error occurred
-
-**Example:**
-```bash
-curl \
-  -H "Authorization: Bearer <token>" \
-  http://localhost:3002/AuditEvent/23d0f0ad-3af1-4dab-93d9-9c40a01a58ec
-```
 
 ### Search AuditEvents
 
@@ -373,11 +254,6 @@ GET /healthcheck
 **Response:**
 - **200 OK** - Service is healthy
 - **500 Internal Server Error** - Service is unhealthy
-
-**Example:**
-```bash
-curl http://localhost:3002/healthcheck
-```
 
 ## Response Format
 
