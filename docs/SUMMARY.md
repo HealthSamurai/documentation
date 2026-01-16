@@ -63,7 +63,6 @@
     * [How to configure Implicit Grant](tutorials/security-access-control-tutorials/implicit-grant.md)
     * [How to configure Token Exchange](tutorials/security-access-control-tutorials/token-exchange.md)
     * [How to configure Resource Owner Grant flow](tutorials/security-access-control-tutorials/resource-owner-grant.md)
-    * [Two Factor Authentication](access-control/authentication/two-factor-authentication.md)
     * [SSO with External OAuth Identity Provider](tutorials/security-access-control-tutorials/set-up-external-identity-provider.md)
     * [Access policies examples](tutorials/security-access-control-tutorials/accesspolicy-examples.md)
   * [Terminology Tutorials](tutorials/terminology-tutorials/README.md)
