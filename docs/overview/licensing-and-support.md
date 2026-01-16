@@ -55,7 +55,7 @@ Health Samurai offers three support tiers: Basic, Professional, and Enterprise. 
 
 | **Aidbox Support**   | **What is included**                                                                                                                                                                                                                                       | **Price** |
 | -------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------- |
-| Basic Support        | <ul><li>Account manager</li><li>Basic Aidbox consulting</li></ul>                                                                                                                                                                                          | \$         |
+| Basic Support        | <ul><li>Account manager</li><li>Basic Aidbox consulting</li></ul>                                                                                                                                                                                          | \included         |
 | Professional Support | <ul><li>Chat with Aidbox engineers</li><li>Monthly video conferences with Aidbox engineers</li><li>Priority fixing of non-blocking issues**</li><li>Priority release of new Aidbox features**</li><li>Aidbox performance optimization consulting</li></ul> | \$\$       |
 | Enterprise Support   | <ul><li>Chat with Aidbox engineers</li><li>Weekly conferences with Aidbox engineers</li><li>Aidbox product enhancement or feature release**</li><li>FHIR and Aidbox consultative review and guidance</li></ul>                                             | \$\$\$      |
 
@@ -75,6 +75,53 @@ If you have a development team ready to start, but need that extra expertise to 
 * Major version upgrade
 
 We can also work with you to build a custom engagement that suits your needs. Please [contact us](contact-us.md) for more info.
+
+### Aidbox deployment services
+
+Health Samurai handles the complete setup of Aidbox in your cloud infrastructure — you provide the environment, we deliver a production-ready, secure, and scalable FHIR platform.
+
+**What we deploy:**
+
+| Component | Description |
+|-----------|-------------|
+| Multi-environment setup | Staging and Production environments configured to your specifications |
+| CI/CD pipeline | Automated deployment workflows for seamless updates |
+| HIPAA technical safeguards | Full compliance setup ([learn more](https://www.health-samurai.io/articles/aidbox-hipaa-book-technical-safeguards)) |
+| Audit logging | Complete event tracking with built-in log viewer |
+| Monitoring & alerting | Dashboards with Aidbox and Kubernetes metrics |
+| Disaster recovery | Automated backups, database replicas, and point-in-time recovery |
+| SSL management | Automated certificate provisioning and renewal |
+
+See [infrastructure examples](https://www.health-samurai.io/aidbox#Infrastructure) for reference architectures.
+
+### Aidbox maintenance services
+
+After deployment, Health Samurai can take ownership of Aidbox operations — keeping your platform updated, secure, and performing optimally while your team focuses on building your application.
+
+**What's included:**
+
+| Category | Activities |
+|----------|------------|
+| Updates | Aidbox, PostgreSQL, and Kubernetes version upgrades |
+| Security | Vulnerability scans and patch management |
+| Monitoring | Cluster health monitoring, error tracking (5xx), real-time alerts |
+| Communication | Monthly status meetings, tickets digest, shared dashboards with your DevOps team |
+| Optimization | Database and query performance tuning recommendations |
+
+**What remains your responsibility:**
+
+* Your application code and business logic
+* Network infrastructure (VPN, VPC, firewalls)
+
+### Performance optimization
+
+For teams requiring peak performance, Health Samurai offers dedicated optimization services that include everything in maintenance plus:
+
+* Continuous performance monitoring and analysis
+* Proactive index optimization and query tuning
+* Custom recommendations based on your usage patterns
+
+Please [contact us](contact-us.md) to discuss deployment, maintenance, or performance optimization services.
 
 ### Aidbox Trial
 
