@@ -424,7 +424,7 @@ redirects:
   modules-1/security-and-access-control/auth/implicit-grant: tutorials/security-access-control-tutorials/implicit-grant.md
   modules-1/security-and-access-control/auth/resource-owner-grant: tutorials/security-access-control-tutorials/resource-owner-grant.md
   modules-1/security-and-access-control/auth/token-exchange: tutorials/security-access-control-tutorials/token-exchange.md
-  modules-1/security-and-access-control/auth/two-factor-authentication: tutorials/security-access-control-tutorials/two-factor-authentication.md
+  modules-1/security-and-access-control/auth/two-factor-authentication: access-control/authentication/two-factor-authentication.md
   modules-1/security-and-access-control/security/access-control-lists-docs-acl: deprecated/deprecated/zen-related/access-control-lists-docs-acl.md
   modules-1/security-and-access-control/security/access-policy-dev-tool: tutorials/security-access-control-tutorials/access-policy-dev-tool.md
   modules-1/security-and-access-control/security/accesspolicy-best-practices: tutorials/security-access-control-tutorials/accesspolicy-best-practices.md
@@ -544,7 +544,7 @@ redirects:
   reference/settings/web-server: reference/all-settings.md
   reference/settings/zen-project: reference/all-settings.md
   security-and-access-control-1/auth/external-oauth-2.0-providers/configure-okta: tutorials/security-access-control-tutorials/okta.md
-  security-and-access-control-1/auth/two-factor-authentication: tutorials/security-access-control-tutorials/two-factor-authentication.md
+  security-and-access-control-1/auth/two-factor-authentication: access-control/authentication/two-factor-authentication.md
   security-and-access-control-1/overview: access-control/access-control.md
   security-and-access-control-1/security/access-control: access-control/authorization/access-policies.md
   security-and-access-control-1/security/access-policy-dev-tool: tutorials/security-access-control-tutorials/access-policy-dev-tool.md
@@ -556,6 +556,7 @@ redirects:
   terminology/aidbox-terminology-module/hybrid: terminology-module/aidbox-terminology-module/hybrid.md
   tools/aidbox-sdk/aidbox-apps: developer-experience/apps.md
   tutorials/security-and-access-control/basic-auth-tutorial: tutorials/security-access-control-tutorials/basic-auth.md
+  tutorials/security-access-control-tutorials/two-factor-authentication: access-control/authentication/two-factor-authentication.md
   tutorials/terminology-tutorials/local-terminlogy: tutorials/terminology-tutorials/local-terminology.md
   tutorials/validation-tutorials/upload-fhir-implementation-guide/aidbox-ui/ig-package-from-aidbox-registry: tutorials/artifact-registry-tutorials/upload-fhir-implementation-guide/aidbox-ui/ig-package-from-aidbox-registry.md
   tutorials/validation-tutorials/upload-fhir-implementation-guide: tutorials/artifact-registry-tutorials/upload-fhir-implementation-guide/README.md

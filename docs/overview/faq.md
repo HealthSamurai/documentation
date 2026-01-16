@@ -537,7 +537,7 @@ Learn more:
 
 Yes, Aidbox supports 2FA using TOTP (Time-based One-Time Password) compatible with authenticator apps like Google Authenticator and Authy.
 
-Learn more: [Two-Factor Authentication](../tutorials/security-access-control-tutorials/two-factor-authentication.md)
+Learn more: [Two-Factor Authentication](../access-control/authentication/two-factor-authentication.md)
 
 ### How do I implement relationship-based access control?
 
