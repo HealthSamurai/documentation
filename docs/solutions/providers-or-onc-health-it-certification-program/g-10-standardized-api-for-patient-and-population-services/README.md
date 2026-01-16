@@ -54,7 +54,7 @@ Aidbox supports the following OAuth 2.0 client authentication methods:
 
 1. **Public Client** (no client secret): Patient-facing apps using PKCE for authorization code flow
    * Reference: [SMART App Launch - Public Client](http://hl7.org/fhir/smart-app-launch/)
-2. **Confidential Client - Symmetric** (client secret): Server-side apps using `client_secret_basic` or `client_secret_post`
+2. **Confidential Client - Symmetric** (client secret): Server-side apps using `client_secret_basic`
    * Reference: [SMART App Launch - Symmetric Auth](http://hl7.org/fhir/smart-app-launch/)
 3. **Confidential Client - Asymmetric** (private key JWT): Backend services using signed JWT assertions
    * Reference: [SMART App Launch - Asymmetric Auth](http://hl7.org/fhir/smart-app-launch/)
