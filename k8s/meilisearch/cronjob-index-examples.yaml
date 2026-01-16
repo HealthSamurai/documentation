@@ -31,8 +31,10 @@ spec:
                   set -e
                   echo "Installing meilisearch package..."
                   bun add --no-save meilisearch@^0.41.0
+                  echo "Copying script to working directory..."
+                  cp /scripts/index-examples.ts .
                   echo "Running indexer..."
-                  bun run /scripts/index-examples.ts
+                  bun run ./index-examples.ts
               env:
                 - name: MEILISEARCH_HOST_URL
                   value: "http://meilisearch.gitbok.svc.cluster.local:7700"
