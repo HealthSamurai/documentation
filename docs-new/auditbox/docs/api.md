@@ -117,7 +117,7 @@ curl http://localhost:3002/AuditEvent \
    }'
 ```
 
-### Create Bundle
+### Upload Bundle
 
 Create multiple AuditEvent resources in a single transaction.
 
