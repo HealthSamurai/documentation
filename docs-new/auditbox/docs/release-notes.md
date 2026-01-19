@@ -1,5 +1,11 @@
 # Release Notes
 
+## 0.5.0
+* Add support for a custom "user" search parameter
+
+## 0.4.0
+* Remove references to Keycloak
+
 ## 0.3.0
 * Support multi-select in quick filters
 * Remove third sorting state in the table
