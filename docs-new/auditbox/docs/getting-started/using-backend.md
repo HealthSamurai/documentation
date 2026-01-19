@@ -25,7 +25,7 @@ client credentials or password grant flow. For example:
 curl "${keycloak_url}/realms/auditbox/protocol/openid-connect/token" \
   -X POST \
   -H "Content-Type: application/x-www-form-urlencoded" \
-  -d "grant_type=password" \
+  -d "grant_type=client_credentials" \
   -d "client_id=${client_id}" \
   -d "client_secret=${client_secret}" \
   -d "username=${username}" \
