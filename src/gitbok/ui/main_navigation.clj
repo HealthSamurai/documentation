@@ -243,7 +243,7 @@
              [:kbd {:class "inline-flex h-5 w-[39px] items-center justify-center rounded border border-outline bg-surface-hover px-[5px] py-[1px] text-xs leading-4 text-on-surface-placeholder font-normal text-center"} "Ctrl"]
              [:kbd {:class "inline-flex h-5 w-5 min-w-[20px] items-center justify-center rounded border border-outline bg-surface-hover px-[5px] py-[1px] text-xs leading-4 text-on-surface-placeholder font-normal text-center"} "K"]]
             [:div {:id "meilisearch-indicator"
-                   :class "htmx-indicator"}
+                   :class "htmx-indicator mr-1.5"}
              [:svg {:class "animate-spin size-4 text-on-surface-placeholder"
                     :fill "none"
                     :viewBox "0 0 24 24"}
