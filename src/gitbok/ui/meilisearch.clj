@@ -375,23 +375,23 @@
         ;; Grouped item - simpler display (no icon - icon is on group header)
         [:div
          ;; For grouped items, show the deepest level as title
-         (let [title (or lvl5 lvl4 lvl3 lvl2 lvl1)]
+         (let [title (or (not-empty lvl5) (not-empty lvl4) (not-empty lvl3) (not-empty lvl2) (not-empty lvl1))]
            (when title
              [:div {:class "text-sm font-normal leading-5 tracking-tight text-on-surface-secondary"}
               [:span
                (if-let [highlighted (get-highlighted
                                      (cond
-                                       lvl5 "hierarchy_lvl5"
-                                       lvl4 "hierarchy_lvl4"
-                                       lvl3 "hierarchy_lvl3"
-                                       lvl2 "hierarchy_lvl2"
+                                       (seq lvl5) "hierarchy_lvl5"
+                                       (seq lvl4) "hierarchy_lvl4"
+                                       (seq lvl3) "hierarchy_lvl3"
+                                       (seq lvl2) "hierarchy_lvl2"
                                        :else "hierarchy_lvl1")
                                      title)]
                  (hiccup2.core/raw highlighted)
                  title)]]))
 
          ;; Show content for grouped items
-         (when content
+         (when (seq content)
            [:div {:class "text-xs text-text-muted leading-5 tracking-tight mt-1 line-clamp-2"}
             (let [highlighted-content (get-highlighted "content" content)]
               (if (string? highlighted-content)
@@ -401,7 +401,7 @@
         ;; Ungrouped item - show all levels
         [:div
          ;; lvl0 - uppercase brand color
-         (when lvl0
+         (when (seq lvl0)
            [:div {:class "text-xs font-medium uppercase text-brand tracking-wider leading-4 mb-0.5"}
             (let [highlighted (get-highlighted "hierarchy_lvl0" lvl0)]
               (if (string? highlighted)
@@ -409,7 +409,7 @@
                 highlighted))])
 
          ;; lvl1 - semibold, main title
-         (when lvl1
+         (when (seq lvl1)
            [:div {:class "flex items-center gap-1.5 text-base font-semibold leading-5 tracking-tight text-on-surface-strong"}
             (cond
               is-example? (github-icon)
@@ -421,7 +421,7 @@
                  highlighted))]])
 
          ;; lvl2 - semibold
-         (when lvl2
+         (when (seq lvl2)
            [:div {:class "text-sm font-semibold leading-5 tracking-tight text-on-surface-strong mt-0.5"}
             (let [highlighted (get-highlighted "hierarchy_lvl2" lvl2)]
               (if (string? highlighted)
@@ -429,7 +429,7 @@
                 highlighted))])
 
          ;; lvl3 - medium weight
-         (when lvl3
+         (when (seq lvl3)
            [:div {:class "text-sm font-medium leading-5 tracking-tight text-on-surface-strong mt-0.5"}
             (let [highlighted (get-highlighted "hierarchy_lvl3" lvl3)]
               (if (string? highlighted)
@@ -437,7 +437,7 @@
                 highlighted))])
 
          ;; lvl4 - normal weight
-         (when lvl4
+         (when (seq lvl4)
            [:div {:class "text-sm font-normal leading-5 tracking-tight text-on-surface-strong mt-0.5"}
             (let [highlighted (get-highlighted "hierarchy_lvl4" lvl4)]
               (if (string? highlighted)
@@ -445,7 +445,7 @@
                 highlighted))])
 
          ;; lvl5 - normal weight, slightly muted
-         (when lvl5
+         (when (seq lvl5)
            [:div {:class "text-sm font-normal leading-5 tracking-tight text-on-surface-muted mt-0.5"}
             (let [highlighted (get-highlighted "hierarchy_lvl5" lvl5)]
               (if (string? highlighted)
@@ -453,7 +453,7 @@
                 highlighted))])
 
          ;; lvl6 - monospace with background
-         (when lvl6
+         (when (seq lvl6)
            [:div {:class "mt-1"}
             [:span {:class "text-xs font-mono bg-surface-alt text-on-surface-muted px-1.5 py-0.5 rounded inline-block"}
              (let [highlighted (get-highlighted "hierarchy_lvl6" lvl6)]
@@ -462,7 +462,7 @@
                  highlighted))]])
 
          ;; content - description text
-         (when content
+         (when (seq content)
            [:div {:class "text-xs text-text-muted leading-5 tracking-tight mt-1 line-clamp-2"}
             (let [highlighted-content (get-highlighted "content" content)
                   truncated (if (> (count content) 150)
