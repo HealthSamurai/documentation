@@ -463,24 +463,15 @@
 (defn redirect-to-readme
   [ctx]
   (let [readme-path (products/readme-relative-path ctx)
-        filepath (or readme-path "readme/README.md")]
-    ;; Directly render the readme file without going through URI resolution
-    ;; to avoid redirect loops
-    (handle-cached-response ctx filepath "full"
-                            (fn []
-                              (let [{:keys [title description content section schema-type raw-content]}
-                                    (render-file ctx filepath)
-                                    lastmod (indexing/get-lastmod ctx filepath)]
-                                (layout/layout
-                                 ctx
-                                 {:content content
-                                  :lastmod lastmod
-                                  :title title
-                                  :description description
-                                  :section section
-                                  :filepath filepath
-                                  :schema-type schema-type
-                                  :raw-content raw-content}))))))
+        ;; Convert file path to URL path (remove .md and README)
+        url-path (when readme-path
+                   (-> readme-path
+                       (str/replace #"\.md$" "")
+                       (str/replace #"README$" "")
+                       (str/replace #"/$" "")))
+        redirect-url (http/get-product-prefixed-url ctx (or url-path ""))]
+    {:status 301
+     :headers {"Location" redirect-url}}))
 
 (defn root-redirect-handler
   "Handles root path redirect based on configuration"
