@@ -55,13 +55,17 @@ Based on status code, there are a few options:
 ## Creating AuditEvents
 
 One of the main operations you'll do on Auditbox is storing
-AuditEvents. There are two options to upload events - single resource
+AuditEvents. There are two options to upload events - single event
 and bulk.
+
+Both endpoints in the end return your request, but with some changes:
+- Event's meta.lastUpdated gets bumped.
+- Event's id field is replaced with a new value.
 
 ### Single event upload
 
-As the title suggests, */AuditEvent* endpoint is used for uploading
-a single AuditEvent to Auditbox.
+*/AuditEvent* endpoint is used for uploading a single AuditEvent to
+Auditbox.
 
 ```bash
 curl "${auditbox_url}/AuditEvent" \
