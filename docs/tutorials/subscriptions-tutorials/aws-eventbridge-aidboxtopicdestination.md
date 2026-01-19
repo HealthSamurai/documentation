@@ -28,13 +28,13 @@ For detailed information, see the [official EventBridge documentation](https://d
 **[Event Bus](https://docs.aws.amazon.com/eventbridge/latest/userguide/eb-event-bus.html)** is a router that receives events and delivers them to targets based on rules. EventBridge provides:
 
 - **Default event bus**: Receives events from AWS services
-- **Custom event buses**: For your application events (recommended for Aidbox integration)
+- **Custom event buses**: For your application events
 - **Partner event buses**: For SaaS integrations
 
 **[Events](https://docs.aws.amazon.com/eventbridge/latest/userguide/eb-events.html)** are JSON objects with standard fields:
 
-- `source`: Identifies the event producer (e.g., `aidbox.mycompany.com`)
-- `detail-type`: Categorizes events for filtering (e.g., `FHIR Patient Notification`)
+- `source`: Identifies the event producer (for example, `aidbox.mycompany.com`)
+- `detail-type`: Categorizes events for filtering (for example, `FHIR Patient Notification`)
 - `detail`: The actual payload (FHIR Bundle with subscription notification)
 
 ### Best Effort vs At-Least-Once Delivery
@@ -81,6 +81,8 @@ services:
 ```
 
 ### 3. Download the EventBridge module
+
+Download **.jar** EventBridge module file from [our bucket](https://console.cloud.google.com/storage/browser/aidbox-modules/topic-destination-aws-eventbridge) and place it next to **docker-compose.yaml**.
 
 ```sh
 curl -O https://storage.googleapis.com/aidbox-modules/topic-destination-aws-eventbridge/topic-destination-aws-eventbridge-2601.1.jar
@@ -225,22 +227,24 @@ Response:
 To verify events are actually delivered to EventBridge, create an SQS queue as a target:
 
 ```sh
-# Create rule to capture all events
 aws --endpoint-url=http://localhost:4566 events put-rule \
   --name "log-all" \
   --event-bus-name "test-bus" \
   --event-pattern '{"source": [{"prefix": ""}]}'
+```
 
-# Create SQS queue
+```sh
 aws --endpoint-url=http://localhost:4566 sqs create-queue --queue-name test-queue
+```
 
-# Add SQS as target
+```sh
 aws --endpoint-url=http://localhost:4566 events put-targets \
   --rule "log-all" \
   --event-bus-name "test-bus" \
   --targets "Id"="1","Arn"="arn:aws:sqs:us-east-1:000000000000:test-queue"
+```
 
-# Receive messages
+```sh
 aws --endpoint-url=http://localhost:4566 sqs receive-message \
   --queue-url http://localhost:4566/000000000000/test-queue
 ```
@@ -407,7 +411,9 @@ aws events put-rule \
     "source": ["aidbox.mycompany.com"],
     "detail-type": ["FHIR Patient Notification"]
   }'
+```
 
+```sh
 aws events put-targets \
   --rule "patient-notifications" \
   --event-bus-name "test-bus" \
@@ -473,22 +479,23 @@ aws sqs create-queue --queue-name aidbox-test-queue --region us-east-1
 Route events to the SQS queue:
 
 ```sh
-# Create rule
 aws events put-rule \
   --name "aidbox-to-sqs" \
   --event-bus-name "aidbox-events" \
   --event-pattern '{"source": ["aidbox.mycompany.com"]}' \
   --region us-east-1
+```
 
-# Get SQS ARN
+```sh
 SQS_ARN=$(aws sqs get-queue-attributes \
   --queue-url https://sqs.us-east-1.amazonaws.com/YOUR_ACCOUNT_ID/aidbox-test-queue \
   --attribute-names QueueArn \
   --query 'Attributes.QueueArn' \
   --output text \
   --region us-east-1)
+```
 
-# Add SQS as target (requires SQS policy to allow EventBridge)
+```sh
 aws events put-targets \
   --rule "aidbox-to-sqs" \
   --event-bus-name "aidbox-events" \
@@ -511,7 +518,9 @@ aws sqs set-queue-attributes \
 
 ### Step 5: Create AidboxTopicDestination
 
-```json
+When running on AWS infrastructure (EC2, ECS, EKS), use IAM roles instead of access keys. See [AWS Authentication](#aws-authentication) for details.
+
+```
 POST /fhir/AidboxTopicDestination
 content-type: application/json
 
@@ -529,9 +538,7 @@ content-type: application/json
     {"name": "eventBusName", "valueString": "aidbox-events"},
     {"name": "region", "valueString": "us-east-1"},
     {"name": "source", "valueString": "aidbox.mycompany.com"},
-    {"name": "detailType", "valueString": "FHIR Patient Notification"},
-    {"name": "accessKeyId", "valueString": "AKIA..."},
-    {"name": "secretAccessKey", "valueString": "..."}
+    {"name": "detailType", "valueString": "FHIR Patient Notification"}
   ]
 }
 ```
