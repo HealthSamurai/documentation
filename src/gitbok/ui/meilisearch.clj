@@ -492,37 +492,26 @@
   "Renders a group header for grouped results."
   [first-item group-info start-index]
   (let [group-level (:level group-info)
-        raw-url (get first-item "url")
-        is-blog? (and raw-url (or (str/includes? raw-url "/blog")
-                                  (str/includes? raw-url "/articles/")))
-        ;; Use build-final-url to transform blog URLs and remove anchor
-        clean-url (when raw-url
-                    (build-final-url (first (str/split raw-url #"#")) nil is-blog?))
-        ;; Create header item based on group level
+        ;; Create header item based on group level, preserving anchor for scroll-to-section
         header-item (case group-level
                       1 (-> first-item
                             (assoc "hierarchy_lvl2" nil
                                    "hierarchy_lvl3" nil
                                    "hierarchy_lvl4" nil
                                    "hierarchy_lvl5" nil
-                                   "hierarchy_lvl6" nil
-                                   "anchor" nil
-                                   "url" clean-url))
+                                   "hierarchy_lvl6" nil))
                       2 (-> first-item
                             (assoc "hierarchy_lvl3" nil
                                    "hierarchy_lvl4" nil
                                    "hierarchy_lvl5" nil
-                                   "hierarchy_lvl6" nil
-                                   "anchor" nil))
+                                   "hierarchy_lvl6" nil))
                       3 (-> first-item
                             (assoc "hierarchy_lvl4" nil
                                    "hierarchy_lvl5" nil
-                                   "hierarchy_lvl6" nil
-                                   "anchor" nil))
+                                   "hierarchy_lvl6" nil))
                       4 (-> first-item
                             (assoc "hierarchy_lvl5" nil
-                                   "hierarchy_lvl6" nil
-                                   "anchor" nil))
+                                   "hierarchy_lvl6" nil))
                       first-item)]
     (render-result-item header-item start-index false false)))
 
