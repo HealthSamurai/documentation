@@ -7,6 +7,7 @@
   let isHtmxMode = false;
   let searchEventDebounceTimer = null;
   let pendingSearchEvent = null; // Store pending search event data
+  let lastSearchResultsTimestamp = null; // Track when results were shown
 
   // Initialize when DOM is ready
   if (document.readyState === 'loading') {
@@ -53,12 +54,18 @@
         pendingSearchEvent = null;
       }
 
+      // Calculate time to click
+      const timeToClickMs = lastSearchResultsTimestamp
+        ? Date.now() - lastSearchResultsTimestamp
+        : null;
+
       // Then send the click event
       posthog.capture('docs_search_click', {
         'query': query,
         'position': position,
         'target_url': targetUrl,
-        'url': targetUrl
+        'url': targetUrl,
+        'time_to_click_ms': timeToClickMs
       });
     } catch (e) {
       console.error('Failed to track search click:', e);
@@ -121,6 +128,7 @@
       if (evt.detail.target.id === 'meilisearch-dropdown' ||
         evt.detail.target.id === 'mobile-meilisearch-dropdown') {
         currentSelectedIndex = -1;
+        lastSearchResultsTimestamp = Date.now(); // Track when results were shown
 
         // Track search in PostHog (frontend)
         if (typeof posthog !== 'undefined') {
