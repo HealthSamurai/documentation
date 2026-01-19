@@ -220,6 +220,31 @@ Response:
 }
 ```
 
+#### View events in LocalStack
+
+To verify events are actually delivered to EventBridge, create an SQS queue as a target:
+
+```sh
+# Create rule to capture all events
+aws --endpoint-url=http://localhost:4566 events put-rule \
+  --name "log-all" \
+  --event-bus-name "test-bus" \
+  --event-pattern '{"source": [{"prefix": ""}]}'
+
+# Create SQS queue
+aws --endpoint-url=http://localhost:4566 sqs create-queue --queue-name test-queue
+
+# Add SQS as target
+aws --endpoint-url=http://localhost:4566 events put-targets \
+  --rule "log-all" \
+  --event-bus-name "test-bus" \
+  --targets "Id"="1","Arn"="arn:aws:sqs:us-east-1:000000000000:test-queue"
+
+# Receive messages
+aws --endpoint-url=http://localhost:4566 sqs receive-message \
+  --queue-url http://localhost:4566/000000000000/test-queue
+```
+
 ## At-Least-Once with Batching
 
 For guaranteed delivery with batch processing, use the at-least-once profile:
@@ -277,8 +302,6 @@ accept: application/json
 ```
 
 The `batchSize` parameter (1-10) controls how many events are sent in a single [PutEvents API](https://docs.aws.amazon.com/eventbridge/latest/userguide/eb-putevents.html) call. EventBridge allows [maximum 10 entries per request](https://docs.aws.amazon.com/eventbridge/latest/userguide/eb-quota.html).
-
-**Note:** `batchSize` is not a buffer — events are sent immediately. It only limits how many events can be combined when multiple are ready at once.
 
 ## Configuration Reference
 
@@ -423,7 +446,7 @@ Metrics include:
 - `aidbox_topic_destination_messages_queued`
 - `aidbox_topic_destination_messages_in_process`
 
-## Testing with AWS
+## Set up with AWS
 
 ### Prerequisites
 
@@ -522,63 +545,6 @@ content-type: application/json
 aws sqs receive-message \
   --queue-url https://sqs.us-east-1.amazonaws.com/YOUR_ACCOUNT_ID/aidbox-test-queue \
   --region us-east-1
-```
-
-### Cleanup
-
-```sh
-aws events remove-targets --rule aidbox-to-sqs --event-bus-name aidbox-events --ids 1 --region us-east-1
-aws events delete-rule --name aidbox-to-sqs --event-bus-name aidbox-events --region us-east-1
-aws events delete-event-bus --name aidbox-events --region us-east-1
-aws sqs delete-queue --queue-url https://sqs.us-east-1.amazonaws.com/YOUR_ACCOUNT_ID/aidbox-test-queue --region us-east-1
-```
-
-## Local Testing with LocalStack
-
-LocalStack provides a fully functional local AWS environment:
-
-### Start LocalStack
-
-```sh
-docker run -d --name localstack \
-  -p 4566:4566 \
-  -e SERVICES=events \
-  localstack/localstack
-```
-
-### Create resources
-
-```sh
-# Create Event Bus
-aws --endpoint-url=http://localhost:4566 events create-event-bus --name test-bus
-
-# Create rule to log all events
-aws --endpoint-url=http://localhost:4566 events put-rule \
-  --name "log-all" \
-  --event-bus-name "test-bus" \
-  --event-pattern '{"source": [{"prefix": ""}]}'
-
-# List rules
-aws --endpoint-url=http://localhost:4566 events list-rules --event-bus-name test-bus
-```
-
-### View CloudWatch logs
-
-LocalStack stores events but doesn't have full CloudWatch Logs integration. For testing, you can create an SQS queue as target and poll it:
-
-```sh
-# Create SQS queue
-aws --endpoint-url=http://localhost:4566 sqs create-queue --queue-name test-queue
-
-# Add as target
-aws --endpoint-url=http://localhost:4566 events put-targets \
-  --rule "log-all" \
-  --event-bus-name "test-bus" \
-  --targets "Id"="1","Arn"="arn:aws:sqs:us-east-1:000000000000:test-queue"
-
-# Receive messages
-aws --endpoint-url=http://localhost:4566 sqs receive-message \
-  --queue-url http://localhost:4566/000000000000/test-queue
 ```
 
 ## Related Documentation
