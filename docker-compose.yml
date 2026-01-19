@@ -94,6 +94,25 @@ services:
       - scraper
     command: pipenv run ./docs_scraper config-fhirbase.json
 
+  docs-scraper-auditbox:
+    image: getmeili/docs-scraper:latest
+    container_name: docs-scraper
+    depends_on:
+      meilisearch:
+        condition: service_healthy
+    environment:
+      - MEILISEARCH_HOST_URL=http://meilisearch:7700
+      - MEILISEARCH_API_KEY=-60DBZGy6zoDL6Q--s1-dHBWptiVKvK-XRsaacdvkOSM
+    volumes:
+      - ./k8s/meilisearch/config-auditbox.json:/docs-scraper/config-auditbox.json:ro
+    networks:
+      - meilisearch-network
+    extra_hosts:
+    - "host.docker.internal:host-gateway"
+    profiles:
+      - scraper
+    command: pipenv run ./docs_scraper config-auditbox.json
+
   remark42:
     image: ghcr.io/umputun/remark42:latest
     container_name: remark42

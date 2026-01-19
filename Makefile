@@ -84,6 +84,10 @@ post-build-reindex: reindex-search
 reindex-search-fhirbase-swap:
 	@bash scripts/reindex-with-swap.sh fhirbase k8s/meilisearch/config-fhirbase.json docs-scraper-fhirbase
 
+# Zero-downtime reindex using index swapping for auditbox
+reindex-search-auditbox:
+	@bash scripts/reindex-with-swap.sh auditbox k8s/meilisearch/config-auditbox.json docs-scraper-auditbox
+
 
 # Test reload by touching files
 test-reload:
