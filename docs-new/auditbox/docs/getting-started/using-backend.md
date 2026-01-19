@@ -25,6 +25,7 @@ client credentials or password grant flow. For example:
 
 ```bash
 curl "${keycloak_url}/realms/auditbox/protocol/openid-connect/token" \
+  -X POST \
   -H "Content-Type: application/x-www-form-urlencoded" \
   -d "grant_type=password" \
   -d "client_id=${client_id}" \
@@ -64,6 +65,7 @@ a single AuditEvent to Auditbox.
 
 ```bash
 curl "${auditbox_url}/AuditEvent" \
+  -X POST \
   -H "Content-Type: application/fhir+json" \
   -H "Authorization: Bearer ${token}" \
   -d \
@@ -112,6 +114,7 @@ compute resources.
 
 ```bash
 curl "${auditbox-url}/" \
+  -X POST \
   -H "Content-Type: application/fhir+json" \
   -H "Authorization: Bearer ${token}" \
   -d '{
