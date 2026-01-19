@@ -69,6 +69,25 @@
     ;; It's a doc - return as is (will have tags if scraper added them)
     item))
 
+(defn transform-url-for-dev
+  "Transform production URL to relative URL for dev mode"
+  [url]
+  (when url
+    (-> url
+        (str/replace "https://docs.aidbox.app" "")
+        (str/replace "https://www.health-samurai.io" ""))))
+
+(defn transform-results-for-dev
+  "Transform all URLs in search results for dev mode"
+  [results dev-mode?]
+  (if dev-mode?
+    (mapv (fn [item]
+            (if-let [url (get item "url")]
+              (assoc item "url" (transform-url-for-dev url))
+              item))
+          results)
+    results))
+
 (defn search-meilisearch [context query index-name]
   (try
     (let [search-url (str (state/get-config context :meilisearch-url) "/multi-search")
@@ -587,8 +606,10 @@
                   "")
         current-product (products/get-current-product ctx)
         product-index (get current-product :meilisearch-index "docs")
-        results (when (and query (pos? (count query)))
-                  (search-meilisearch ctx query product-index))]
+        dev-mode? (state/get-config ctx :dev-mode)
+        raw-results (when (and query (pos? (count query)))
+                      (search-meilisearch ctx query product-index))
+        results (transform-results-for-dev raw-results dev-mode?)]
 
     (if (empty? query)
       [:div] ;; Empty div when no query
