@@ -20,7 +20,7 @@ on AuditLogs, thus not implementing features you may expect from
 Aidbox.
 
 ```http
-GET /metadata
+GET [base]/metadata
 ```
 
 **Response:** FHIR CapabilityStatement resource
@@ -30,7 +30,7 @@ GET /metadata
 Create a new AuditEvent resource.
 
 ```http
-POST /AuditEvent
+POST [base]/AuditEvent
 Content-Type: application/fhir+json
 Authorization: Bearer <token>
 ```
@@ -47,7 +47,7 @@ Authorization: Bearer <token>
 Create multiple AuditEvent resources in a single transaction.
 
 ```http
-POST /
+POST [base]/
 Content-Type: application/fhir+json
 Authorization: Bearer <token>
 ```
@@ -64,7 +64,7 @@ Authorization: Bearer <token>
 Retrieve a specific AuditEvent by ID.
 
 ```http
-GET /AuditEvent/{id}
+GET [base]/AuditEvent/[id]
 Authorization: Bearer <token>
 ```
 
@@ -82,14 +82,14 @@ Authorization: Bearer <token>
 Search for AuditEvent resources using FHIR search parameters.
 
 ```http
-GET /AuditEvent?[parameters]
+GET [base]/AuditEvent?[parameters]
 Authorization: Bearer <token>
 ```
 
 Or using POST:
 
 ```http
-POST /AuditEvent/_search
+POST [base]/AuditEvent/_search
 Content-Type: application/x-www-form-urlencoded
 Authorization: Bearer <token>
 

@@ -1,8 +1,6 @@
-# Intro
+# Using Auditbox Programmatically
 
 This guide describes using an Auditbox server programmatically.
-Whenever you see *${...}* in this page, replace it mentally with
-a value that applies to you.
 
 ## Authentication
 
@@ -17,7 +15,7 @@ All FHIR API requests must include an `Authorization` header
 with a Bearer token issued by the identity provider:
 
 ```http
-Authorization: Bearer ${your-jwt-token}
+Authorization: Bearer [your-jwt-token]
 ```
 
 To obtain a token from Keycloak, our default IDP, use the OAuth 2.0
