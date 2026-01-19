@@ -130,6 +130,12 @@ Auditbox supports the following FHIR search parameters for AuditEvent:
 | `_text` | string | Full-text search | `?_text=login` |
 | `_content` | string | Content search | `?_content=patient` |
 
+### Pagination Parameters
+
+| Parameter | Type | Description | Example |
+|-----------|------|-------------|---------|
+| `_offset` | number | How many entries to skip displaying | `?_offset=10` |
+| `_count` | number | How many entries to displaying | `?_count=10` |
 ### Search Modifiers
 
 Auditbox supports standard FHIR search modifiers and prefixes:
@@ -142,23 +148,9 @@ Auditbox supports standard FHIR search modifiers and prefixes:
 - `gt` - Greater than
 - `ge` - Greater than or equal
 
-**Example:**
-```bash
-# Events recorded after January 1, 2025
-curl "http://localhost:3002/AuditEvent?date=ge2025-01-01" \
-  -H "Authorization: Bearer <token>"
-```
-
 #### Token Modifiers
 - `:not` - Negation
 - `:text` - Text search in display/description
-
-**Example:**
-```bash
-# Events that are NOT create actions
-curl "http://localhost:3002/AuditEvent?action:not=C" \
-  -H "Authorization: Bearer <token>"
-```
 
 ### Combining Parameters
 
@@ -170,69 +162,12 @@ curl "http://localhost:3002/AuditEvent?action=C&patient=Patient/456&date=ge2025-
   -H "Authorization: Bearer <token>"
 ```
 
-### Search Examples
-
-#### Example 1: Search by Action
-```bash
-curl "http://localhost:3002/AuditEvent?action=C" \
-  -H "Authorization: Bearer <token>"
-```
-
-#### Example 2: Search by Date Range
-```bash
-curl "http://localhost:3002/AuditEvent?date=ge2025-01-01&date=le2025-01-31" \
-  -H "Authorization: Bearer <token>"
-```
-
-#### Example 3: Search by Patient
-```bash
-curl "http://localhost:3002/AuditEvent?patient=Patient/456" \
-  -H "Authorization: Bearer <token>"
-```
-
-#### Example 4: Search by Type and Outcome
-```bash
-curl "http://localhost:3002/AuditEvent?type=110100&outcome=0" \
-  -H "Authorization: Bearer <token>"
-```
-
-#### Example 5: Full-Text Search
-```bash
-curl "http://localhost:3002/AuditEvent?_text=login" \
-  -H "Authorization: Bearer <token>"
-```
-
-#### Example 6: Complex Query
-```bash
-curl "http://localhost:3002/AuditEvent?type=110100&action=E&date=ge2025-01-01&outcome=0&_count=50" \
-  -H "Authorization: Bearer <token>"
-```
-
-## Pagination
-
-Search results support pagination using the `_count` and `_offset` parameters:
-
-```bash
-# Get first 10 results
-curl "http://localhost:3002/AuditEvent?_count=10" \
-  -H "Authorization: Bearer <token>"
-
-# Get next 10 results
-curl "http://localhost:3002/AuditEvent?_count=10&_offset=10" \
-  -H "Authorization: Bearer <token>"
-```
-
 ## Search Parameters Endpoint
 
 Get a list of all supported search parameters:
 
 ```http
 GET /SearchParameter
-```
-
-**Example:**
-```bash
-curl http://localhost:3002/SearchParameter
 ```
 
 ## Health Check
