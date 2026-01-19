@@ -2,14 +2,6 @@
 
 Auditbox provides a FHIR-compliant REST API for managing AuditEvent resources.
 
-## Base URL
-
-All API endpoints are relative to your Auditbox server base URL:
-
-```
-http://localhost:3002
-```
-
 ## FHIR API Endpoints
 
 ### Metadata / Capability Statement
