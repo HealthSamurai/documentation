@@ -68,9 +68,6 @@ Authorization: Bearer <token>
 [parameters]
 ```
 
-You can read about all supported search parameters in the
-[API reference](../api.md).
-
 **Examples:**
 ```bash
 # Events which have an agent with altId field "john.doe".
@@ -103,3 +100,6 @@ curl "http://localhost:3002/AuditEvent?_count=10" \
 curl "http://localhost:3002/AuditEvent?_count=10&_offset=10" \
   -H "Authorization: Bearer <token>"
 ```
+
+You can read about all supported search parameters in the
+[API reference](../api.md).
