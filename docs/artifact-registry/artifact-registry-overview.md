@@ -126,6 +126,24 @@ See also:
 [how-to-create-fhir-npm-package.md](../tutorials/artifact-registry-tutorials/how-to-create-fhir-npm-package.md)
 {% endcontent-ref %}
 
+
+### Loading packages from local filesystem
+
+{% hint style="info" %}
+This functionality is available in Aidbox versions 2601 and later.
+{% endhint %}
+
+To load FHIR packages from the local filesystem instead of fetching them from a remote NPM registry, mount a directory containing the packages to `/srv/aidbox-fhir-packages` in the Aidbox container. 
+Packages must be in `.tgz` format (gzipped tarball) and follow the naming convention {package-name}#{version}.tgz. For example, the package hl7.fhir.r4.core version 4.0.1 should be named hl7.fhir.r4.core#4.0.1.tgz. 
+
+When Aidbox loads a package, it will first check this local directory before attempting to download from the configured registry. This is useful for air-gapped environments, faster startup times, or when the remote registry is unavailable.
+
+
+{% hint style="warning" %}
+Make sure to put all the **dependent packages** in the same directory.
+{% endhint %}
+
+
 ### Pinning and Tree-Shaking
 
 When you install FHIR Implementation Guide packages from a registry or direct URL, Aidbox downloads, validates, and installs the specified packages along with their dependencies. During this process, Aidbox performs **pinning** and **tree-shaking** on canonicals:
