@@ -1,6 +1,6 @@
-# Using Auditbox Programmatically
+# Send AuditEvents to Auditbox
 
-This guide describes using an Auditbox server programmatically.
+This guide describes sending your AuditEvents to Auditbox.
 
 ## Authentication
 
@@ -35,21 +35,6 @@ curl "${keycloak_url}/realms/auditbox/protocol/openid-connect/token" \
 The JSON response will contain an `access_token` key that
 you need to use for API requests.
 
-## Checking if server is up
-
-In order to use Auditbox, you need to make sure it's healthy.
-For that you can use /healthcheck endpoint:
-```bash
-curl -v "${auditbox_url}/healthcheck"
-```
-
-Based on status code, there are a few options:
-
-| Code | Meaning                                        |
-|------|------------------------------------------------|
-|  200 | Server and related infrastructure are healthy  |
-|  500 | Server is unhealthy                            |
-
 ## Creating AuditEvents
 
 One of the main operations you'll do on Auditbox is storing
@@ -62,7 +47,7 @@ Both endpoints in the end return your request, but with some changes:
 
 ### Single event upload
 
-*/AuditEvent* endpoint is used for uploading a single AuditEvent to
+The `/AuditEvent` endpoint accepts a single AuditEvent for upload to
 Auditbox.
 
 ```bash
@@ -151,63 +136,8 @@ curl "${auditbox-url}/" \
   }'
 ```
 
-## Reading AuditEvents by ID
-
-**Example:**
-```bash
-curl \
-  -H "Authorization: Bearer ${token}" \
-  "${auditbox_url}/AuditEvent/${id}"
-```
-Unless there's an error raised from the server, you'll get a
-status code 200. If there exists an event with provided ID, then
-it shall be returned, or response body will be empty.
-
-## Response Format
-
-All FHIR API responses use the `application/fhir+json` content type and follow FHIR JSON formatting conventions.
-
-### Success Response
-
-```json
-{
-  "resourceType": "AuditEvent",
-  "id": "example-123",
-  "meta": {
-    "lastUpdated": "2025-01-31T16:03:16Z"
-  },
-  "type": {
-    "system": "http://dicom.nema.org/resources/ontology/DCM",
-    "code": "110100"
-  },
-  "action": "E",
-  "recorded": "2025-01-31T16:03:16Z",
-  "outcome": "0",
-  "agent": [{
-    "requestor": true,
-    "who": {
-      "identifier": {
-        "value": "user@example.com"
-      }
-    }
-  }],
-  "source": {
-    "observer": {
-      "display": "My System"
-    }
-  }
-}
-```
-
-### Error Response
-
-```json
-{
-  "resourceType": "OperationOutcome",
-  "issue": [{
-    "severity": "error",
-    "code": "invalid",
-    "diagnostics": "Validation error details here"
-  }]
-}
-```
+| Code | Meaning                              |
+|------|--------------------------------------|
+|  201 | Events had been created successfully |
+|  400 | Request body is invalid              |
+|  500 | An internal server error has occured |
