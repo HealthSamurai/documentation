@@ -70,7 +70,8 @@ Authorization: Bearer <token>
 [parameters]
 ```
 
-You can read about all supported search parameters in the API reference.
+You can read about all supported search parameters in the
+[API reference](../api.md).
 
 **Examples:**
 ```bash
