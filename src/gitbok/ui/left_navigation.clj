@@ -41,18 +41,26 @@
       (add-active-class item active?))))
 
 (defn left-navigation [summary url]
-  [:nav#navigation
-   {:class "w-80 flex-shrink-0 sticky top-16 h-[calc(100vh-4rem)]
-    overflow-y-auto py-6 bg-surface border-r border-outline-subtle
-    font-content lg:mr-20 space-y-4
-    lg:-ms-4"
-    :aria-label "Documentation menu"}
-   (for [item summary]
-     [:div {:class "break-words mt-4 border-t border-outline-subtle pt-4 first:mt-0 first:border-t-0 first:pt-0"}
-      (when-not
-       (str/blank? (:title item))
-        [:div {:class "mb-1 first:mt-2 ml-4"}
-         [:span {:class "text-xs font-medium leading-4 text-brand uppercase tracking-wider"}
-          (:title item)]])
-      (for [ch (:children item)]
-        (render-left-navigation url ch))])])
+  (let [;; Filter out empty sections (no title and no children)
+        non-empty-sections (filter #(or (not (str/blank? (:title %)))
+                                        (seq (:children %)))
+                                   summary)]
+    [:nav#navigation
+     {:class "w-80 flex-shrink-0 sticky top-16 h-[calc(100vh-4rem)]
+      overflow-y-auto py-6 bg-surface border-r border-outline-subtle
+      font-content lg:mr-20 space-y-4
+      lg:-ms-4"
+      :aria-label "Documentation menu"}
+     (map-indexed
+      (fn [idx item]
+        (let [first? (zero? idx)]
+          [:div {:class (if first?
+                          "break-words"
+                          "break-words mt-4 border-t border-outline-subtle pt-4")}
+           (when-not (str/blank? (:title item))
+             [:div {:class "mb-1 mt-2 ml-4"}
+              [:span {:class "text-xs font-medium leading-4 text-brand uppercase tracking-wider"}
+               (:title item)]])
+           (for [ch (:children item)]
+             (render-left-navigation url ch))]))
+      non-empty-sections)]))

@@ -44,6 +44,10 @@ description: Learn to configure Aidbox subscriptions with FHIR Subscriptions, Ka
 [activemq-tutorial.md](activemq-tutorial.md)
 {% endcontent-ref %}
 
+{% content-ref url="aws-eventbridge-aidboxtopicdestination.md" %}
+[aws-eventbridge-aidboxtopicdestination.md](aws-eventbridge-aidboxtopicdestination.md)
+{% endcontent-ref %}
+
 {% content-ref url="tutorial-produce-questionnaireresponse-to-kafka-topic.md" %}
 [tutorial-produce-questionnaireresponse-to-kafka-topic.md](tutorial-produce-questionnaireresponse-to-kafka-topic.md)
 {% endcontent-ref %}

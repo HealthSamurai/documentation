@@ -199,7 +199,7 @@
                                              :j (:j x)
                                              :parsed parsed
                                              :href href
-                                             :is-cross-section is-cross-section ;; Store the flag in the data structure
+                                             :is-cross-section is-cross-section
                                              :section-title current-section
                                              :title (when href (render-markdown-link-in-toc context (:title parsed) href
                                                                                             :is-cross-section is-cross-section))}))))

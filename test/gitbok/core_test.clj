@@ -6,6 +6,7 @@
    [gitbok.handlers :as handlers]
    [gitbok.ui.layout :as layout]
    [gitbok.products :as products]
+   [gitbok.http :as http]
    [gitbok.initialization :as initialization]
    [gitbok.analytics.posthog :as posthog]))
 
@@ -43,22 +44,17 @@
           (is (= "404 page" (:body response))))))))
 
 (deftest test-redirect-to-readme
-  (testing "redirect-to-readme renders readme view"
+  (testing "redirect-to-readme returns 301 redirect"
     (let [context {:system (atom {})}
           request {:uri "/test"}
           ctx (assoc context :request request)]
-      ;; Mock current product and rendering functions
-      (with-redefs [products/get-current-product
-                    (fn [_ctx] {:id "test" :path "/test"})
-                    products/readme-relative-path
+      (with-redefs [products/readme-relative-path
                     (fn [_ctx] "readme/README.md")
-                    handlers/handle-cached-response
-                    (fn [_ctx _filepath _type render-fn]
-                      {:status 200
-                       :body "Readme content rendered"})]
+                    http/get-product-prefixed-url
+                    (fn [_ctx path] (str "/test/" path))]
         (let [response (handlers/redirect-to-readme ctx)]
-          (is (= 200 (:status response)))
-          (is (= "Readme content rendered" (:body response))))))))
+          (is (= 301 (:status response)))
+          (is (= "/test/readme" (get-in response [:headers "Location"]))))))))
 
 (deftest test-process-redirect-target
   (testing "process-redirect-target removes .md extension and preserves fragments"

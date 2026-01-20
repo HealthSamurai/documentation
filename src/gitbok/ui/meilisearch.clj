@@ -88,7 +88,7 @@
           results)
     results))
 
-(defn search-meilisearch [context query index-name]
+(defn search-meilisearch [context query index-name product-id]
   (try
     (let [search-url (str (state/get-config context :meilisearch-url) "/multi-search")
           meilisearch-api-key (state/get-config context :meilisearch-api-key)
@@ -97,37 +97,44 @@
                      "Content-Type" "application/json"}
                     {"Content-Type" "application/json"})
           ;; Filter to exclude deprecated pages using STARTS WITH
-          ;; This operator is available by default (no experimental features needed)
           deprecated-filter "NOT url STARTS WITH \"https://www.health-samurai.io/docs/aidbox/deprecated\""
-          request-body {:federation {:limit 300} ; Increased limit to ensure examples appear even with many doc results
-                        :queries [{:indexUid index-name
-                                   :q query
-                                   :filter (str deprecated-filter " AND hierarchy_lvl6 = \"" query "\"")
-                                   :federationOptions {:weight 1.2}
-                                   :attributesToHighlight ["content" "hierarchy_lvl0" "hierarchy_lvl1"
-                                                           "hierarchy_lvl2" "hierarchy_lvl3" "hierarchy_lvl6"]
-                                   :highlightPreTag "<mark class=\"!bg-highlight text-on-surface-strong px-0.5 py-0.5 -mx-0.5 rounded-sm\">"
-                                   :highlightPostTag "</mark>"}
-                                  {:indexUid index-name
-                                   :q query
-                                   :filter deprecated-filter
-                                   :attributesToHighlight ["content" "hierarchy_lvl0" "hierarchy_lvl1"
-                                                           "hierarchy_lvl2" "hierarchy_lvl3" "hierarchy_lvl6"]
-                                   :highlightPreTag "<mark class=\"!bg-highlight text-on-surface-strong px-0.5 py-0.5 -mx-0.5 rounded-sm\">"
-                                   :highlightPostTag "</mark>"}
-                                  {:indexUid "examples"
-                                   :q query
-                                   :federationOptions {:weight 1.2}
-                                   :attributesToHighlight ["title" "description" "category"]
-                                   :highlightPreTag "<mark class=\"!bg-highlight text-on-surface-strong px-0.5 py-0.5 -mx-0.5 rounded-sm\">"
-                                   :highlightPostTag "</mark>"}
-                                  {:indexUid "blog"
-                                   :q query
-                                   :federationOptions {:weight 0.8}
-                                   :attributesToHighlight ["content" "hierarchy_lvl0" "hierarchy_lvl1"
-                                                           "hierarchy_lvl2" "hierarchy_lvl3"]
-                                   :highlightPreTag "<mark class=\"!bg-highlight text-on-surface-strong px-0.5 py-0.5 -mx-0.5 rounded-sm\">"
-                                   :highlightPostTag "</mark>"}]}
+          highlight-pre "<mark class=\"!bg-highlight text-on-surface-strong px-0.5 py-0.5 -mx-0.5 rounded-sm\">"
+          highlight-post "</mark>"
+          ;; Base queries for the product's main index
+          base-queries [{:indexUid index-name
+                         :q query
+                         :filter (str deprecated-filter " AND hierarchy_lvl6 = \"" query "\"")
+                         :federationOptions {:weight 1.2}
+                         :attributesToHighlight ["content" "hierarchy_lvl0" "hierarchy_lvl1"
+                                                 "hierarchy_lvl2" "hierarchy_lvl3" "hierarchy_lvl6"]
+                         :highlightPreTag highlight-pre
+                         :highlightPostTag highlight-post}
+                        {:indexUid index-name
+                         :q query
+                         :filter deprecated-filter
+                         :attributesToHighlight ["content" "hierarchy_lvl0" "hierarchy_lvl1"
+                                                 "hierarchy_lvl2" "hierarchy_lvl3" "hierarchy_lvl6"]
+                         :highlightPreTag highlight-pre
+                         :highlightPostTag highlight-post}]
+          ;; Additional indexes only for aidbox
+          aidbox-extra-queries [{:indexUid "examples"
+                                 :q query
+                                 :federationOptions {:weight 1.2}
+                                 :attributesToHighlight ["title" "description" "category"]
+                                 :highlightPreTag highlight-pre
+                                 :highlightPostTag highlight-post}
+                                {:indexUid "blog"
+                                 :q query
+                                 :federationOptions {:weight 0.8}
+                                 :attributesToHighlight ["content" "hierarchy_lvl0" "hierarchy_lvl1"
+                                                         "hierarchy_lvl2" "hierarchy_lvl3"]
+                                 :highlightPreTag highlight-pre
+                                 :highlightPostTag highlight-post}]
+          queries (if (= product-id "aidbox")
+                    (into base-queries aidbox-extra-queries)
+                    base-queries)
+          request-body {:federation {:limit 300}
+                        :queries queries}
           response @(http-client/post search-url
                                       {:headers headers
                                        :body (json/generate-string request-body)})]
@@ -605,10 +612,11 @@
                   (get-in request [:params :q])
                   "")
         current-product (products/get-current-product ctx)
+        product-id (get current-product :id)
         product-index (get current-product :meilisearch-index "docs")
         dev-mode? (state/get-config ctx :dev-mode)
         raw-results (when (and query (pos? (count query)))
-                      (search-meilisearch ctx query product-index))
+                      (search-meilisearch ctx query product-index product-id))
         results (transform-results-for-dev raw-results dev-mode?)]
 
     (if (empty? query)
