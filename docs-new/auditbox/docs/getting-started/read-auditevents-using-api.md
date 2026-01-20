@@ -47,9 +47,9 @@ curl "${auditbox_url}/AuditEvent/${id}" \
   -H "Authorization: Bearer ${token}"
 ```
 
-Unless there's an error raised from the server, you'll get a
-status code 200. If there exists an event with provided ID, then
-it shall be returned, or response body will be empty.
+A successful request returns a 200 status code.
+The response body contains the event data if an event with the
+specified ID exists, or remains empty if no matching event is found.
 
 ## Search AuditEvents
 

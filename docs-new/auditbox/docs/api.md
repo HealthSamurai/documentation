@@ -157,8 +157,16 @@ Auditbox supports standard FHIR search modifiers and prefixes:
 Multiple parameters can be combined using `&`:
 
 ```bash
-# Find all create actions for a specific patient after a date
-curl "http://localhost:3002/AuditEvent?action=C&patient=Patient/456&date=ge2025-01-01" \
+# Find all events that create a resource for Patient/456:
+curl "http://localhost:3002/AuditEvent?action=C&patient=Patient/456" \
+  -H "Authorization: Bearer <token>"
+```
+
+You can search for one of the values by separating them with `,`:
+
+```bash
+# Find either Create or Update events:
+curl "${url}/AuditEvent?action=C,U" \
   -H "Authorization: Bearer <token>"
 ```
 
