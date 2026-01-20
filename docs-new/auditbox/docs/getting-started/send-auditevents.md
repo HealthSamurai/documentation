@@ -47,7 +47,7 @@ Both endpoints in the end return your request, but with some changes:
 
 ### Single event upload
 
-`/AuditEvent` endpoint is used for uploading a single AuditEvent to
+The `/AuditEvent` endpoint accepts a single AuditEvent for upload to
 Auditbox.
 
 ```bash

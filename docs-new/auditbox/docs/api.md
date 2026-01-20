@@ -134,8 +134,8 @@ Auditbox supports the following FHIR search parameters for AuditEvent:
 
 | Parameter | Type | Description | Example |
 |-----------|------|-------------|---------|
-| `_offset` | number | How many entries to skip displaying | `?_offset=10` |
-| `_count` | number | How many entries to displaying | `?_count=10` |
+| `_offset` | number | Number of entries to skip | `?_offset=10` |
+| `_count` | number | Number of entries to return | `?_count=10` |
 ### Search Modifiers
 
 Auditbox supports standard FHIR search modifiers and prefixes:
