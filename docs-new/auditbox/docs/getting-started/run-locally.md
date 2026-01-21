@@ -1,242 +1,216 @@
-# Run Auditbox Locally (Manual Setup)
+# Run Auditbox Locally
 
-This guide will help you set up and run Auditbox on your local machine using Docker with manual configuration.
+Get Auditbox running on your local machine in a few minutes using our pre-configured one-liner script.
 
-> **Quick alternative**: For faster setup with pre-configured services, see [Run with Oneliner](run-with-oneliner.md)
+## Prerequisites
 
-## Requirements
+{% hint style="warning" %}
+<img src="../../.gitbook/assets/docker.png" 
+     alt="docker whale image" 
+     data-size="original">
 
-- **Docker Desktop** (includes Docker Compose)
-- 2 GB free memory
-- Ports: 3002, 9204, 8888
+Please **make sure** that both [Docker & Docker Compose](https://docs.docker.com/engine/install/) are installed.
+{% endhint %}
 
 ## Quick Start
 
-### Step 1: Create project folder
+### Step 1: Create a directory and run
 
 ```bash
-mkdir auditbox
-cd auditbox
+mkdir auditbox && cd auditbox
+curl -JO https://aidbox.app/runme/auditbox && docker compose up
 ```
 
-### Step 2: Create docker-compose.yml file
+This command downloads the Auditbox configuration file and starts all services using Docker Compose.
+Wait about 2 minutes for all services to load.
 
-Create a `docker-compose.yml` file with the following content:
+### Step 2: Sign in to Auditbox
+
+Open **http://localhost:3000/** in your browser. You'll see the Auditbox login screen. 
+
+<figure class="flex justify-center">
+  <img src="../../.gitbook/assets/auditbox/ui_login.png" alt="AuditBox login screen" style="max-width: 400px;">
+</figure>
+
+{% hint style="info" %}
+Auditbox uses Keycloak as the identity provider, but you can configure any other IDP that supports OpenID Connect.
+{% endhint %}
+
+Click "Sign in with Keycloak" and you'll see the Keycloak login screen.
+
+<figure class="flex justify-center">
+  <img src="../../.gitbook/assets/auditbox/kc-enter.png" alt="Keycloak login screen" style="max-width: 400px;">
+</figure>
+
+Use the following credentials to sign in:
+
+- **Username or email**: `user`
+- **Password**: `password`
+
+Click "Sign In" and you will see the Auditbox UI.
+
+<figure>
+  <img src="../../.gitbook/assets/auditbox/ui_main.png" alt="AuditBox UI screen">
+</figure>
+
+### Step 3: Discover Auditbox features
+
+Use the Auditbox interface to explore audit event management and search capabilities. Test data is automatically loaded.
+
+## What gets installed
+
+The one-liner automatically sets up and runs four Docker services:
+
+| Service | URL | Description |
+|---------|-----|-------------|
+| Auditbox | http://localhost:3000/ | Auditbox User Interface |
+| API | http://localhost:3000/AuditEvent | FHIR REST API |
+| Elasticsearch 8.17.0 | http://localhost:9204/ | Elasticsearch |
+| Keycloak 26.0.6 | http://localhost:8888/ | Authorization admin |
+
+<details>
+<summary>Docker services configuration</summary>
 
 ```yaml
 services:
   auditbox:
-    image: healthsamurai/auditbox:alpha
+    image: healthsamurai/auditbox:edge
     pull_policy: always
-    ports:
-      - 3002:3000
-    environment:
-      BINDING: 0.0.0.0
-      ELASTIC_URI: http://elasticsearch:9200
-      AUDITBOX_BASE_URL: http://localhost:3002
-      IDP_AUTHORIZE_ENDPOINT: http://localhost:8888/realms/auditbox/protocol/openid-connect/auth
-      IDP_TOKEN_ENDPOINT: http://keycloak:8888/realms/auditbox/protocol/openid-connect/token
-      IDP_CLIENT_ID: auditbox
-      IDP_CLIENT_SECRET: super-secret
     depends_on:
       elasticsearch:
         condition: service_healthy
+    environment:
+      IDP_AUTHORIZE_ENDPOINT: http://localhost:8888/realms/auditbox/protocol/openid-connect/auth
+      AUDITBOX_LOG_LEVEL: debug
+      BINDING: 0.0.0.0
+      ELASTIC_URI: http://elasticsearch:9200
+      AUDITBOX_API_AUTH_ENABLED: 'false'
+      IDP_CLIENT_SECRET: super-secret
+      IDP_TOKEN_ENDPOINT: http://keycloak:8888/realms/auditbox/protocol/openid-connect/token
+      IDP_CLIENT_ID: auditbox
+      AUDITBOX_BASE_URL: http://localhost:3000
+    extra_hosts:
+    - id.local.test:host-gateway
+    ports:
+    - 3000:3000
 
   elasticsearch:
     image: docker.elastic.co/elasticsearch/elasticsearch:8.17.0
     environment:
-      - node.name=elasticsearch
-      - cluster.name=es-docker-cluster
-      - discovery.type=single-node
-      - xpack.security.enabled=false
-      - bootstrap.memory_lock=true
-      - ES_JAVA_OPTS=-Xms1g -Xmx1g
+    - node.name=elasticsearch
+    - cluster.name=es-docker-cluster
+    - discovery.type=single-node
+    - xpack.security.enabled=false
+    - xpack.security.enrollment.enabled=false
+    - action.destructive_requires_name=false
+    - bootstrap.memory_lock=true
+    - ES_JAVA_OPTS=-Xms2g -Xmx2g
+    - path.repo=/usr/share/elasticsearch/snapshots
     healthcheck:
-      test: "curl http://localhost:9200"
+      test: curl http://localhost:9200
       interval: 1s
       timeout: 3s
-      start_period: 60s
       retries: 20
+      start_period: 120s
     ports:
-      - 9204:9200
+    - 9204:9200
     volumes:
-      - elasticsearch-data:/usr/share/elasticsearch/data
+    - elasticsearch-demo-data:/usr/share/elasticsearch/data
+
+  kibana:
+    image: docker.elastic.co/kibana/kibana:8.17.0
+    depends_on:
+      elasticsearch:
+        condition: service_healthy
+    ports:
+    - 5602:5601
+    environment:
+      ELASTICSEARCH_URL: http://elasticsearch:9200
+      ELASTICSEARCH_HOSTS: '["http://elasticsearch:9200"]'
+
+  seed:
+    image: curlimages/curl:8.10.1
+    depends_on:
+      auditbox:
+        condition: service_started
+    entrypoint:
+    - /bin/sh
+    - -c
+    command: |-
+      'until curl -fsS http://auditbox:3000/ >/dev/null 2>&1; do
+            echo "waiting for auditbox..."; sleep 2;
+          done;
+          echo "auditbox is up, seeding...";
+          curl -fsSL https://storage.googleapis.com/aidbox-public/auditbox/auditbox-test-seed.json |
+          curl -fsS -X POST -H "Content-Type: application/json" --data-binary @- http://auditbox:3000/ &&
+          echo "seed complete."'
+    restart: 'no'
 
   keycloak:
     image: quay.io/keycloak/keycloak:26.0.6
     ports:
-      - 8888:8888
+    - 8888:8888
     environment:
-      KC_HTTP_PORT: 8888
+      KC_HTTP_PORT: '8888'
       KC_BOOTSTRAP_ADMIN_USERNAME: admin
       KC_BOOTSTRAP_ADMIN_PASSWORD: admin
-    volumes:
-      - ./keycloak.json:/opt/keycloak/data/import/keycloak.json
     command: start-dev --import-realm --http-port 8888
+    configs:
+    - source: keycloak_realm_json
+      target: /opt/keycloak/data/import/keycloak.json
 
 volumes:
-  elasticsearch-data:
-```
+  elasticsearch-demo-data:
+    driver: local
 
-### Step 3: Create keycloak.json file
-
-Create a `keycloak.json` file with the following content:
-
-```json
-{
-  "id": "auditbox",
-  "realm": "auditbox",
-  "enabled": true,
-  "clients": [
-    {
-      "clientId": "auditbox",
+configs:
+  keycloak_realm_json:
+    content: |-
+      {
+      "id": "auditbox",
+      "realm": "auditbox",
       "enabled": true,
+      "clients": [
+      {
+      "clientId": "auditbox",
+      "name": "Auditbox",
+      "description": "Auditbox",
       "clientAuthenticatorType": "client-secret",
       "secret": "super-secret",
       "redirectUris": [
-        "http://localhost:3002/auth/callback/keycloak",
-        "http://auditbox:3002/auth/callback/keycloak"
+      "http://localhost:3000/auth/callback/keycloak",
+      "http://auditbox:3000/auth/callback/keycloak"
       ],
       "webOrigins": [
-        "http://localhost:3002",
-        "http://auditbox:3002"
+      "http://localhost:3000",
+      "http://auditbox:3000",
+      "http://127.0.0.1:3000"
       ],
       "standardFlowEnabled": true,
       "directAccessGrantsEnabled": true,
       "publicClient": false,
-      "protocol": "openid-connect"
-    }
-  ],
-  "users": [
-    {
+      "protocol": "openid-connect",
+      "fullScopeAllowed": true,
+      "defaultClientScopes": ["web-origins","acr","profile","roles","basic","email"],
+      "optionalClientScopes": ["address","phone","offline_access","organization","microprofile-jwt"],
+      "access": {"view": true, "configure": true, "manage": true}
+      }
+      ],
+      "users": [
+      {
       "username": "user",
       "email": "user@example.com",
       "enabled": true,
       "emailVerified": true,
-      "firstName": "User",
-      "lastName": "Demo",
-      "credentials": [
-        {
-          "type": "password",
-          "value": "password",
-          "temporary": false
-        }
+      "firstName": "John",
+      "lastName": "Doe",
+      "credentials": [{ "type": "password", "value": "password", "temporary": false }]
+      }
       ]
-    }
-  ]
-}
-```
-
-### Step 4: Launch Auditbox
-
-```bash
-docker compose up
-```
-
-Wait 2-3 minutes for all services to load.
-
-### Step 5: Open Auditbox
-
-- **Main page**: http://localhost:3002/
-- **Login**: `user@example.com`
-- **Password**: `password`
-
-## How to use
-
-### Sending audit events
-
-```bash
-curl -X POST \
-  -H "Content-Type: application/json" \
-  -d '{
-    "resourceType": "AuditEvent",
-    "type": {
-      "code": "110100",
-      "system": "http://dicom.nema.org/resources/ontology/DCM"
-    },
-    "outcome": "0",
-    "recorded": "2025-01-31T16:03:16Z",
-    "source": {
-      "observer": {
-        "display": "My System",
-        "type": "Device"
       }
-    },
-    "agent": [{
-      "requestor": true,
-      "who": {
-        "reference": "Practitioner/123"
-      }
-    }],
-    "action": "C",
-    "entity": [{
-      "type": {
-        "system": "http://hl7.org/fhir/resource-types",
-        "code": "Patient"
-      },
-      "what": {
-        "reference": "Patient/456"
-      }
-    }]
-  }' \
-  http://localhost:3002/AuditEvent
 ```
 
-### Using pre-generated seed data
-
-If you want to use the same 1000 audit events that are used in the official demo, you can use the provided `seed.json` file. In your `auditbox` folder, create a `use-seed-data.sh` file:
-
-```bash
-#!/bin/bash
-echo "Loading seed data..."
-
-# Check if seed.json exists
-if [ ! -f seed.json ]; then
-    echo "❌ seed.json file not found. Please make sure it's in the same directory as this script."
-    exit 1
-fi
-
-echo "Extracting and loading 1000 audit events from seed data..."
-
-# Extract each audit event from the bundle and POST it to Auditbox
-jq -c '.entry[].resource' seed.json | while read -r event; do
-    curl -s -X POST \
-        -H "Content-Type: application/json" \
-        -d "$event" \
-        http://localhost:3002/AuditEvent
-done
-
-echo "✅ Done! Loaded 1000 audit events from seed data."
-echo "You can now explore them in the Auditbox interface at http://localhost:3002/"
-```
-
-### Load test data
-
-After Auditbox is running, you can load test data. Open a new terminal window and navigate to your `auditbox` folder:
-
-```bash
-cd auditbox
-```
-
-Load 1000 pre-generated events:
-```bash
-chmod +x use-seed-data.sh
-./use-seed-data.sh
-```
-
-**Note**: The seed data script requires `jq` to be installed. If you don't have it, install it with:
-- **macOS**: `brew install jq`
-- **Ubuntu/Debian**: `sudo apt-get install jq`
-- **CentOS/RHEL**: `sudo yum install jq`
-
-The seed data contains realistic audit events with varied:
-- Event types (DICOM codes and lifecycle events)
-- Actions (Create, Read, Update, Delete)
-- Outcomes (0, 4, 8, 12)
-- Sources (different sites and observers)
-- Agents (practitioners, devices, organizations)
-- Entities (patients, conditions, observations)
-- Timestamps (from 2011)
+</details>
 
 ## Stopping
 
@@ -247,12 +221,3 @@ docker compose down
 # Stop and remove all data
 docker compose down -v
 ```
-
-## Available services
-
-| Service | URL | Description |
-|---------|-----|-------------|
-| Auditbox | http://localhost:3002/ | Main interface |
-| API | http://localhost:3002/AuditEvent | REST API |
-| Elasticsearch | http://localhost:9204/ | Search engine |
-| Keycloak | http://localhost:8888/ | Authorization admin |
