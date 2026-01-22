@@ -1,15 +1,15 @@
-# Read AuditEvents using UI
+# Using Auditbox UI
 
 This guide describes using Auditbox UI.
 
-<!-- ## TODO ? Signing in -->
-
 ## Logging in
 Before you start using Auditbox, you need to log in.
+
+
+First thing you see when opening Auditbox is the login screen.
 ![Login page](../../../../.gitbook/assets/auditbox/using-ui/login-page.png)
 
-Image showed above is the first thing you see when logging into
-Auditbox. Upon clicking "Sign In" page, you'll be redirected to your
+Upon clicking "Sign In" page, you'll be redirected to your
 identity provider of choice. By default, it's Keycloak.
 
 ## Overview
