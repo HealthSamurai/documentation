@@ -4,3 +4,7 @@ description: Learn how to manage FHIR artifacts in Aidbox with tutorials on cust
 
 # Artifact Registry Tutorials
 
+
+See also:
+
+- [Initialize from Local Filesystem](upload-fhir-implementation-guide/initialize-aidbox-from-local-filesystem.md)
