@@ -112,7 +112,7 @@
         * [Local IG Package](tutorials/artifact-registry-tutorials/upload-fhir-implementation-guide/aidbox-ui/local-ig-package.md)
       * [Aidbox FHIR API](tutorials/artifact-registry-tutorials/upload-fhir-implementation-guide/aidbox-fhir-api.md)
       * [UploadFIG Tool](tutorials/artifact-registry-tutorials/upload-fhir-implementation-guide/uploadfig-tool.md)
-      * [How to configure Aidbox to use local filesystem as artifact registry for initialization](tutorials/artifact-registry-tutorials/initialize-aidbox-from-local-filesystem.md)
+      * [How to configure Aidbox to use local filesystem as artifact registry for initialization](tutorials/artifact-registry-tutorials/upload-fhir-implementation-guide/initialize-aidbox-from-local-filesystem.md)
   * [Other Tutorials](tutorials/other-tutorials/README.md)
     * [Run Aidbox with FHIR R6](tutorials/other-tutorials/run-aidbox-with-fhir-r6.md)
     * [Migrate from Multibox to Aidbox](tutorials/other-tutorials/migrate-from-multibox-to-aidbox.md)
