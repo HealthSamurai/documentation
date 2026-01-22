@@ -88,15 +88,27 @@ jobs:
         echo "=== Documentation structure ===" >> /tmp/prompt1.txt
         grep -v '/deprecated/' docs/SUMMARY.md | head -300 >> /tmp/prompt1.txt
 
+        # Debug: show prompt size
+        echo "Prompt size: $(wc -c < /tmp/prompt1.txt) bytes"
+
         # Call Gemini
         echo "Calling Gemini (Step 1)..."
-        RESPONSE=$(curl -s -X POST "https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=${GEMINI_API_KEY}" -H "Content-Type: application/json" -d "$(jq -n --rawfile prompt /tmp/prompt1.txt '{contents: [{parts: [{text: $prompt}]}], generationConfig: {responseMimeType: "application/json"}}')")
+        HTTP_CODE=$(curl -s -w "%{http_code}" -o /tmp/gemini_response.json -X POST "https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=${GEMINI_API_KEY}" -H "Content-Type: application/json" -d "$(jq -n --rawfile prompt /tmp/prompt1.txt '{contents: [{parts: [{text: $prompt}]}], generationConfig: {responseMimeType: "application/json"}}')")
 
+        echo "HTTP status: $HTTP_CODE"
+
+        if [ "$HTTP_CODE" != "200" ]; then
+          echo "Gemini API error:"
+          cat /tmp/gemini_response.json
+          exit 1
+        fi
+
+        RESPONSE=$(cat /tmp/gemini_response.json)
         RESULT=$(echo "$RESPONSE" | python3 -c "import sys,json; d=json.loads(sys.stdin.read(),strict=False); print(d.get('candidates',[{}])[0].get('content',{}).get('parts',[{}])[0].get('text',''))" 2>/dev/null)
 
         if [ -z "$RESULT" ] || [ "$RESULT" = "null" ]; then
-          echo "Error in Step 1"
-          echo "$RESPONSE"
+          echo "Error parsing Gemini response:"
+          cat /tmp/gemini_response.json | head -50
           exit 1
         fi
 
@@ -140,15 +152,27 @@ jobs:
         cat /tmp/changed_info.txt >> /tmp/prompt2.txt
         cat /tmp/targets_content.txt >> /tmp/prompt2.txt
 
+        # Debug: show prompt size
+        echo "Prompt size: $(wc -c < /tmp/prompt2.txt) bytes"
+
         # Call Gemini
         echo "Calling Gemini (Step 2)..."
-        RESPONSE=$(curl -s -X POST "https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=${GEMINI_API_KEY}" -H "Content-Type: application/json" -d "$(jq -n --rawfile prompt /tmp/prompt2.txt '{contents: [{parts: [{text: $prompt}]}], generationConfig: {responseMimeType: "application/json"}}')")
+        HTTP_CODE=$(curl -s -w "%{http_code}" -o /tmp/gemini_response2.json -X POST "https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=${GEMINI_API_KEY}" -H "Content-Type: application/json" -d "$(jq -n --rawfile prompt /tmp/prompt2.txt '{contents: [{parts: [{text: $prompt}]}], generationConfig: {responseMimeType: "application/json"}}')")
 
+        echo "HTTP status: $HTTP_CODE"
+
+        if [ "$HTTP_CODE" != "200" ]; then
+          echo "Gemini API error:"
+          cat /tmp/gemini_response2.json
+          exit 1
+        fi
+
+        RESPONSE=$(cat /tmp/gemini_response2.json)
         SUGGESTIONS=$(echo "$RESPONSE" | python3 -c "import sys,json; d=json.loads(sys.stdin.read(),strict=False); print(d.get('candidates',[{}])[0].get('content',{}).get('parts',[{}])[0].get('text',''))" 2>/dev/null)
 
         if [ -z "$SUGGESTIONS" ] || [ "$SUGGESTIONS" = "null" ]; then
-          echo "Error in Step 2"
-          echo "$RESPONSE"
+          echo "Error parsing Gemini response:"
+          cat /tmp/gemini_response2.json | head -50
           exit 1
         fi
 
