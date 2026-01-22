@@ -67,23 +67,11 @@ jobs:
           fi
         done < /tmp/changed_files.txt
 
-        # Find parent READMEs
-        PARENT_READMES=""
-        while read -r file; do
-          DIR=$(dirname "$file")
-          if [ -f "$DIR/README.md" ]; then
-            PARENT_READMES="$PARENT_READMES $DIR/README.md"
-          fi
-        done < /tmp/changed_files.txt
-
         # Build prompt
         cat .github/prompts/cross-links-step1.txt > /tmp/prompt1.txt
         echo "" >> /tmp/prompt1.txt
         echo "=== Changed files ===" >> /tmp/prompt1.txt
         cat /tmp/changed_info.txt >> /tmp/prompt1.txt
-        echo "" >> /tmp/prompt1.txt
-        echo "=== Parent READMEs (high priority) ===" >> /tmp/prompt1.txt
-        echo "$PARENT_READMES" >> /tmp/prompt1.txt
         echo "" >> /tmp/prompt1.txt
         echo "=== Documentation structure ===" >> /tmp/prompt1.txt
         grep -v '/deprecated/' docs/SUMMARY.md | head -300 >> /tmp/prompt1.txt
