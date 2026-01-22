@@ -3,10 +3,11 @@
 ## Guides
 
 * [Getting Started](getting-started/README.md)
-* [Run Auditbox Locally](getting-started/run-with-oneliner.md)
+* [Run Auditbox Locally](getting-started/run-locally.md)
 * [Run Auditbox On Kubernetes](getting-started/run-k8s.md)
 * [Send AuditEvents to Auditbox](getting-started/send-auditevents.md)
 * [Read AuditEvents Using API](getting-started/read-auditevents-using-api.md)
+* [Read AuditEvents Using UI](getting-started/read-auditevents-using-ui.md)
 
 ## Configuration
 

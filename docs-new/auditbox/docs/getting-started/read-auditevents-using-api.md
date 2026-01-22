@@ -26,11 +26,9 @@ client credentials or password grant flow. For example:
 curl "${keycloak_url}/realms/auditbox/protocol/openid-connect/token" \
   -X POST \
   -H "Content-Type: application/x-www-form-urlencoded" \
-  -d "grant_type=client_credentials" \
   -d "client_id=${client_id}" \
   -d "client_secret=${client_secret}" \
-  -d "username=${username}" \
-  -d "password=${password}"
+  -d "grant_type=client_credentials"
 ```
 
 The JSON response will contain an `access_token` key that
@@ -70,9 +68,6 @@ Authorization: Bearer <token>
 [parameters]
 ```
 
-You can read about all supported search parameters in the
-[API reference](../api.md).
-
 **Examples:**
 ```bash
 # Events which have an agent with altId field "john.doe".
@@ -105,3 +100,6 @@ curl "http://localhost:3002/AuditEvent?_count=10" \
 curl "http://localhost:3002/AuditEvent?_count=10&_offset=10" \
   -H "Authorization: Bearer <token>"
 ```
+
+You can read about all supported search parameters in the
+[API reference](../api.md).
