@@ -77,21 +77,7 @@ jobs:
         done < /tmp/changed_files.txt
 
         # Build prompt
-        {
-          echo "You are a documentation cross-linking assistant. Identify which EXISTING files should link to the changed files."
-          echo ""
-          echo "PRIORITY (in order):"
-          echo "1. Direct parent README.md in the same directory"
-          echo "2. Overview/concept pages in the SAME section (e.g., if new file is in tutorials/artifact-registry-tutorials/, look for docs/artifact-registry/artifact-registry-overview.md)"
-          echo "3. Related feature pages in the same subsection"
-          echo ""
-          echo "DO NOT include:"
-          echo "- General index pages (docs/README.md, docs/tutorials/README.md)"
-          echo "- Files from completely different sections"
-          echo "- Files already listed in Parent READMEs"
-          echo ""
-          echo "Return max 3 files. Return JSON: {\"files_to_check\": [\"docs/path/file.md\"], \"reasoning\": \"explanation\"}"
-        } > /tmp/prompt1.txt
+        cat .github/prompts/cross-links-step1.txt > /tmp/prompt1.txt
         echo "" >> /tmp/prompt1.txt
         echo "=== Changed files ===" >> /tmp/prompt1.txt
         cat /tmp/changed_info.txt >> /tmp/prompt1.txt
@@ -178,28 +164,7 @@ jobs:
         done < /tmp/files_to_check.txt
 
         # Build prompt
-        {
-          echo "You are a documentation editor. Add MINIMAL cross-reference links to new documentation."
-          echo ""
-          echo "STRICT RULES:"
-          echo "1. Add ONLY a link to the new file - do NOT rewrite sections, add descriptions, or create indexes"
-          echo "2. Find existing bullet lists or \"See also\" sections and add ONE line with a link"
-          echo "3. If no list exists, create a minimal \"See also:\" section at the end"
-          echo "4. Use operation \"replace\" to add to existing lists, \"append\" only for new sections"
-          echo "5. DO NOT duplicate content or create summaries"
-          echo ""
-          echo "EXAMPLES OF GOOD suggestions:"
-          echo "{\"operation\": \"replace\", \"find\": \"- [Existing link](path.md)\", \"replace\": \"- [Existing link](path.md)\\n- [New tutorial](new-path.md)\", \"reason\": \"Add link to existing list\"}"
-          echo "{\"operation\": \"append\", \"find\": \"\", \"replace\": \"\\nSee also:\\n- [New tutorial](path.md)\", \"reason\": \"No existing links section\"}"
-          echo ""
-          echo "EXAMPLES OF BAD suggestions (DO NOT DO THIS):"
-          echo "- Creating large content blocks or indexes"
-          echo "- Rewriting entire sections"
-          echo "- Adding descriptions or summaries"
-          echo "- Modifying unrelated text"
-          echo ""
-          echo "Return JSON: {\"suggestions\": [{\"target_file\": \"path\", \"operation\": \"replace or append\", \"line_number\": N, \"find\": \"exact text to find\", \"replace\": \"new text\", \"reason\": \"why\"}]}"
-        } > /tmp/prompt2.txt
+        cat .github/prompts/cross-links-step2.txt > /tmp/prompt2.txt
         echo "" >> /tmp/prompt2.txt
         echo "=== NEW FILES ===" >> /tmp/prompt2.txt
         cat /tmp/changed_info.txt >> /tmp/prompt2.txt
