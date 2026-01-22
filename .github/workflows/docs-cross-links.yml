@@ -77,7 +77,19 @@ jobs:
         done < /tmp/changed_files.txt
 
         # Build prompt
-        echo 'You are a documentation cross-linking assistant. Identify which EXISTING files should link to the changed files. Think about: Parent README files (MOST IMPORTANT), concept/overview pages, related features. Rules: Return max 5 files, ignore docs/reference/ and docs/deprecated/, files must be different from changed files. Return JSON: {"files_to_check": ["docs/path/file.md"], "reasoning": "explanation"}' > /tmp/prompt1.txt
+        echo 'You are a documentation cross-linking assistant. Identify which EXISTING files should link to the changed files.
+
+PRIORITY (in order):
+1. Direct parent README.md in the same directory
+2. Overview/concept pages in the SAME section (e.g., if new file is in tutorials/artifact-registry-tutorials/, look for docs/artifact-registry/artifact-registry-overview.md)
+3. Related feature pages in the same subsection
+
+DO NOT include:
+- General index pages (docs/README.md, docs/tutorials/README.md)
+- Files from completely different sections
+- Files already listed in Parent READMEs
+
+Return max 3 files. Return JSON: {"files_to_check": ["docs/path/file.md"], "reasoning": "explanation"}' > /tmp/prompt1.txt
         echo "" >> /tmp/prompt1.txt
         echo "=== Changed files ===" >> /tmp/prompt1.txt
         cat /tmp/changed_info.txt >> /tmp/prompt1.txt
@@ -164,7 +176,26 @@ jobs:
         done < /tmp/files_to_check.txt
 
         # Build prompt
-        echo 'You are a documentation editor. Integrate links to new docs. You have full freedom: add new sections, extend lists, modify sentences. Rules: match document style, use relative paths, do not duplicate links. Return JSON: {"suggestions": [{"target_file": "path", "operation": "replace or append", "line_number": N, "find": "exact text", "replace": "new text", "reason": "why"}]}' > /tmp/prompt2.txt
+        echo 'You are a documentation editor. Add MINIMAL cross-reference links to new documentation.
+
+STRICT RULES:
+1. Add ONLY a link to the new file - do NOT rewrite sections, add descriptions, or create indexes
+2. Find existing bullet lists or "See also" sections and add ONE line with a link
+3. If no list exists, create a minimal "See also:" section at the end
+4. Use operation "replace" to add to existing lists, "append" only for new sections
+5. DO NOT duplicate content or create summaries
+
+EXAMPLES OF GOOD suggestions:
+{"operation": "replace", "find": "- [Existing link](path.md)", "replace": "- [Existing link](path.md)\n- [New tutorial](new-path.md)", "reason": "Add link to existing list"}
+{"operation": "append", "find": "", "replace": "\nSee also:\n- [New tutorial](path.md)", "reason": "No existing links section"}
+
+EXAMPLES OF BAD suggestions (DO NOT DO THIS):
+- Creating large content blocks or indexes
+- Rewriting entire sections
+- Adding descriptions or summaries
+- Modifying unrelated text
+
+Return JSON: {"suggestions": [{"target_file": "path", "operation": "replace or append", "line_number": N, "find": "exact text to find", "replace": "new text", "reason": "why"}]}' > /tmp/prompt2.txt
         echo "" >> /tmp/prompt2.txt
         echo "=== NEW FILES ===" >> /tmp/prompt2.txt
         cat /tmp/changed_info.txt >> /tmp/prompt2.txt
