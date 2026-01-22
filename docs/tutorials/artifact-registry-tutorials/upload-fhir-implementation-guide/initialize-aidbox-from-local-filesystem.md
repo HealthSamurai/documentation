@@ -51,10 +51,10 @@ Start Aidbox with the following command:
 docker compose up -d
 ```
 
-Navigate to the [Aidbox UI](http://localhost:8080/), initialize Aidbox by following the instructions in the [Getting Started](../../getting-started/run-aidbox-locally.md) guide and navigate to the "FAR" tab and check that the fhir r4 core package is loaded.
+Navigate to the [Aidbox UI](http://localhost:8080/), initialize Aidbox by following the instructions in the [Getting Started](../../../getting-started/run-aidbox-locally.md) guide and navigate to the "FAR" tab and check that the fhir r4 core package is loaded.
 
 ## See also:
 
 {% content-ref url="../../artifact-registry/artifact-registry-overview.md#loading-packages-from-local-filesystem" %}
-[Loading packages from local filesystem](../../artifact-registry/artifact-registry-overview.md#loading-packages-from-local-filesystem)
+[Loading packages from local filesystem](../../../artifact-registry/artifact-registry-overview.md#loading-packages-from-local-filesystem)
 {% endcontent-ref %}
