@@ -1,5 +1,6 @@
 (ns gitbok.ui.meilisearch-test
   (:require [clojure.test :refer [deftest testing is]]
+            [clojure.string :as str]
             [gitbok.ui.meilisearch :as m]
             [hiccup2.core :as h]))
 
@@ -361,5 +362,41 @@
       ;; Both h2 items should be present
       (is (re-find #"SearchParameter fields" (str html-str)))
       (is (re-find #"Search Parameter Types" (str html-str))))))
+
+(deftest test-h1-only-results-no-anchor
+  (testing "H1-only results should not include anchor in URL"
+    (let [item {"hierarchy_lvl0" "API Reference"
+                "hierarchy_lvl1" "SearchParameter"
+                "hierarchy_lvl2" nil
+                "hierarchy_lvl3" nil
+                "hierarchy_lvl4" nil
+                "hierarchy_lvl5" nil
+                "content" "SearchParameter is a FHIR resource..."
+                "url" "https://example.com/searchparameter"
+                "anchor" "searchparameter"}
+          rendered (m/render-result-item item 0 false false)
+          html-str (str (h/html rendered))]
+      ;; URL should NOT include the anchor for h1-only results
+      ;; More precise check: href should end with the URL and closing quote, no anchor
+      (is (re-find #"href=\"https://example\.com/searchparameter\"" html-str)
+          "href should be exactly the URL without anchor")
+      (is (not (re-find #"href=\"[^\"]*#searchparameter" html-str))
+          "href should not contain #searchparameter anchor")))
+
+  (testing "H2 results should include anchor in URL"
+    (let [item {"hierarchy_lvl0" "API Reference"
+                "hierarchy_lvl1" "SearchParameter"
+                "hierarchy_lvl2" "SearchParameter fields"
+                "hierarchy_lvl3" nil
+                "hierarchy_lvl4" nil
+                "hierarchy_lvl5" nil
+                "content" "Field definitions..."
+                "url" "https://example.com/searchparameter"
+                "anchor" "searchparameter-fields"}
+          rendered (m/render-result-item item 0 false false)
+          html-str (str (h/html rendered))]
+      ;; URL SHOULD include the anchor for h2 results
+      (is (re-find #"href=\"https://example\.com/searchparameter#searchparameter-fields\"" html-str)
+          "href should include the anchor for subsection results"))))
 
 ;; Run tests with: clojure -M:test

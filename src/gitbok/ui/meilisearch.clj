@@ -322,15 +322,17 @@
          groups)))
 
 (defn build-final-url
-  "Builds the final URL with anchor if needed. Transforms blog URLs temporarily."
-  [url anchor is-blog?]
+  "Builds the final URL with anchor if needed. Transforms blog URLs temporarily.
+   Only adds anchor for subsections (when lvl2+ exists)."
+  [url anchor is-blog? has-subsections?]
   (let [;; Transform blog URLs: remove /docs/futureblog prefix temporarily
         transformed-url (if (and is-blog? url)
                           (str/replace url "/docs/futureblog" "")
                           url)]
     (cond
-      ;; If anchor exists and URL doesn't already have one, add it
-      (and anchor (not (str/includes? transformed-url "#"))) (str transformed-url "#" anchor)
+      ;; If anchor exists, URL doesn't have one, and item has subsections, add it
+      (and anchor has-subsections? (not (str/includes? transformed-url "#")))
+      (str transformed-url "#" anchor)
       ;; Otherwise use URL as is
       :else transformed-url)))
 
@@ -352,9 +354,11 @@
          is-example? (boolean (get item "github_url"))
          is-blog? (and url (or (str/includes? url "/blog")
                                (str/includes? url "/articles/")))
+         ;; Check if item has subsections (h1-only results shouldn't have anchors)
+         has-subsections? (or (seq lvl2) (seq lvl3) (seq lvl4) (seq lvl5))
 
          ;; Build final URL with anchor (transform blog URLs)
-         final-url (build-final-url url anchor is-blog?)
+         final-url (build-final-url url anchor is-blog? has-subsections?)
 
          ;; Get highlighted versions if available
          get-highlighted (fn [level-key level-value]
