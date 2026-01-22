@@ -102,18 +102,29 @@ jobs:
 
         # Call Gemini
         echo "Calling Gemini (Step 1)..."
-        echo "API key length: ${#GEMINI_API_KEY}"
-        API_URL="https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=${GEMINI_API_KEY}"
-        echo "URL length: ${#API_URL}"
 
-        HTTP_CODE=$(curl -s -w "%{http_code}" -o /tmp/gemini_response.json -X POST "$API_URL" -H "Content-Type: application/json" --data-binary @/tmp/payload1.json 2>&1 || echo "curl_failed")
+        # Verify payload file exists
+        ls -la /tmp/payload1.json
 
-        if [ "$HTTP_CODE" = "curl_failed" ]; then
-          echo "curl command failed"
-          echo "Trying with verbose..."
-          curl -v -X POST "$API_URL" -H "Content-Type: application/json" --data-binary @/tmp/payload1.json 2>&1 | head -50
+        # Make request
+        curl -v -X POST \
+          "https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=${GEMINI_API_KEY}" \
+          -H "Content-Type: application/json" \
+          -d @/tmp/payload1.json \
+          -o /tmp/gemini_response.json \
+          2>&1 | tee /tmp/curl_debug.log
+
+        CURL_EXIT=${PIPESTATUS[0]}
+        echo "curl exit code: $CURL_EXIT"
+
+        if [ $CURL_EXIT -ne 0 ]; then
+          echo "curl failed"
+          cat /tmp/curl_debug.log
           exit 1
         fi
+
+        HTTP_CODE=$(grep "< HTTP" /tmp/curl_debug.log | tail -1 | awk '{print $3}')
+        echo "HTTP code: $HTTP_CODE"
 
         echo "HTTP status: $HTTP_CODE"
 
