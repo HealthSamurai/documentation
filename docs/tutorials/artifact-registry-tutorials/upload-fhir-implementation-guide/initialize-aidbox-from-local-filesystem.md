@@ -39,7 +39,6 @@ aidbox:
   volumes:
     - ./fhir-packages:/srv/fhir-packages
   environment:
-    BOX_INIT_BUNDLE: file:///tmp/init-bundle.json
     # Uncomment the following line if you need to make sure external registry is not used
     # BOX_FHIR_NPM_PACKAGE_REGISTRY: https://broken.org
 ```
