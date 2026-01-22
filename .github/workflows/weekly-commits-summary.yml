@@ -1,0 +1,57 @@
+name: Weekly Commits Summary
+
+on:
+  schedule:
+    # Run every Monday at 9 AM UTC
+    - cron: '0 9 * * 1'
+  workflow_dispatch: # Allow manual trigger
+
+jobs:
+  summarize:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+      with:
+        fetch-depth: 0 # Full history for git log
+
+    - name: Generate summary with Gemini
+      id: commits
+      env:
+        GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+      run: |
+        python3 .github/scripts/generate_weekly_summary.py
+
+        if [ -f /tmp/summary.md ] && [ -s /tmp/summary.md ]; then
+          echo "has_commits=true" >> $GITHUB_OUTPUT
+        else
+          echo "has_commits=false" >> $GITHUB_OUTPUT
+        fi
+
+    - name: Send to Telegram
+      if: steps.commits.outputs.has_commits == 'true'
+      env:
+        TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+        TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
+      run: |
+        WEEK_START=$(date -d "7 days ago" +%Y-%m-%d)
+        WEEK_END=$(date +%Y-%m-%d)
+
+        # Prepare message
+        {
+          echo "📝 Weekly Summary: ${WEEK_START} - ${WEEK_END}"
+          echo ""
+          cat /tmp/summary.md
+        } > /tmp/message.txt
+
+        # Telegram has 4096 char limit, truncate if needed
+        head -c 4000 /tmp/message.txt > /tmp/message_truncated.txt
+
+        # Send using JSON payload for proper encoding
+        jq -n --arg chat_id "$TELEGRAM_CHAT_ID" \
+              --arg text "$(cat /tmp/message_truncated.txt)" \
+              '{chat_id: $chat_id, text: $text}' | \
+        curl -s -X POST "https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/sendMessage" \
+          -H "Content-Type: application/json" \
+          -d @-

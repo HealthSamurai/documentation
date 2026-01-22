@@ -34,8 +34,11 @@ jobs:
         if [ -n "${{ inputs.test_commit }}" ]; then
           COMMIT="${{ inputs.test_commit }}"
           echo "Testing on commit: $COMMIT"
+          echo "commit_sha=$COMMIT" >> $GITHUB_OUTPUT
           CHANGED=$(git diff --name-only --diff-filter=AM ${COMMIT}~1 ${COMMIT} -- 'docs/**/*.md' | grep -v 'docs/reference/' | grep -v 'docs/deprecated/' | grep -v 'assets/' | grep -v 'images/' | head -5)
         else
+          COMMIT="HEAD"
+          echo "commit_sha=HEAD" >> $GITHUB_OUTPUT
           CHANGED=$(git diff --name-only --diff-filter=AM HEAD~1 HEAD -- 'docs/**/*.md' | grep -v 'docs/reference/' | grep -v 'docs/deprecated/' | grep -v 'assets/' | grep -v 'images/' | head -5)
         fi
         if [ -z "$CHANGED" ]; then
@@ -54,83 +57,13 @@ jobs:
       env:
         GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
       run: |
-        # Collect changed files info
-        echo "=== Changed/new documentation files ===" > /tmp/changed_info.txt
-        while read -r file; do
-          if [ -f "$file" ]; then
-            echo "" >> /tmp/changed_info.txt
-            echo "FILE: $file" >> /tmp/changed_info.txt
-            TITLE=$(grep -m1 '^#' "$file" | sed 's/^#* //')
-            echo "TITLE: $TITLE" >> /tmp/changed_info.txt
-            echo "FIRST 50 LINES:" >> /tmp/changed_info.txt
-            head -50 "$file" >> /tmp/changed_info.txt
-          fi
-        done < /tmp/changed_files.txt
+        python3 .github/scripts/step1_find_files.py ${{ steps.changes.outputs.commit_sha }}
 
-        # Build prompt
-        cat .github/prompts/cross-links-step1.txt > /tmp/prompt1.txt
-        echo "" >> /tmp/prompt1.txt
-        echo "=== Changed files ===" >> /tmp/prompt1.txt
-        cat /tmp/changed_info.txt >> /tmp/prompt1.txt
-        echo "" >> /tmp/prompt1.txt
-        echo "=== Documentation structure ===" >> /tmp/prompt1.txt
-        grep -v '/deprecated/' docs/SUMMARY.md | head -300 >> /tmp/prompt1.txt
-
-        # Debug: show prompt size
-        echo "Prompt size: $(wc -c < /tmp/prompt1.txt) bytes"
-
-        # Build JSON payload first
-        echo "Building JSON payload..."
-        if ! jq -n --rawfile prompt /tmp/prompt1.txt '{contents: [{parts: [{text: $prompt}]}], generationConfig: {responseMimeType: "application/json"}}' > /tmp/payload1.json 2>&1; then
-          echo "jq failed to build payload:"
-          cat /tmp/payload1.json
-          exit 1
-        fi
-        echo "Payload size: $(wc -c < /tmp/payload1.json) bytes"
-
-        # Call Gemini
-        echo "Calling Gemini (Step 1)..."
-
-        # Trim API key (remove any whitespace/newlines)
-        API_KEY=$(echo "$GEMINI_API_KEY" | tr -d '[:space:]')
-        echo "API key length after trim: ${#API_KEY}"
-
-        # Make request
-        HTTP_CODE=$(curl -s -w "%{http_code}" -o /tmp/gemini_response.json \
-          -X POST "https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=${API_KEY}" \
-          -H "Content-Type: application/json" \
-          -d @/tmp/payload1.json)
-
-        echo "HTTP status: $HTTP_CODE"
-
-        if [ "$HTTP_CODE" != "200" ]; then
-          echo "Gemini API error:"
-          cat /tmp/gemini_response.json
-          exit 1
-        fi
-
-        RESPONSE=$(cat /tmp/gemini_response.json)
-        RESULT=$(echo "$RESPONSE" | python3 -c "import sys,json; d=json.loads(sys.stdin.read(),strict=False); print(d.get('candidates',[{}])[0].get('content',{}).get('parts',[{}])[0].get('text',''))" 2>/dev/null)
-
-        if [ -z "$RESULT" ] || [ "$RESULT" = "null" ]; then
-          echo "Error parsing Gemini response:"
-          cat /tmp/gemini_response.json | head -50
-          exit 1
-        fi
-
-        echo "Step 1 result: $RESULT"
-        FILES_TO_CHECK=$(echo "$RESULT" | python3 -c "import sys,json; d=json.loads(sys.stdin.read(),strict=False); print('\n'.join(d.get('files_to_check',[])[:5]))" 2>/dev/null)
-
-        if [ -z "$FILES_TO_CHECK" ]; then
-          echo "No files to check"
+        if [ -f /tmp/files_to_check.txt ] && [ -s /tmp/files_to_check.txt ]; then
+          echo "has_files=true" >> $GITHUB_OUTPUT
+        else
           echo "has_files=false" >> $GITHUB_OUTPUT
-          exit 0
         fi
-
-        echo "$FILES_TO_CHECK" > /tmp/files_to_check.txt
-        echo "Files to check:"
-        cat /tmp/files_to_check.txt
-        echo "has_files=true" >> $GITHUB_OUTPUT
 
     - name: "Step 2: Generate suggestions"
       if: steps.find_files.outputs.has_files == 'true'
@@ -138,76 +71,18 @@ jobs:
       env:
         GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
       run: |
-        # Read target files
-        echo "=== Target files ===" > /tmp/targets_content.txt
-        while read -r file; do
-          [[ ! "$file" =~ ^docs/ ]] && file="docs/$file"
-          if [ -f "$file" ]; then
-            echo "" >> /tmp/targets_content.txt
-            echo "TARGET FILE: $file" >> /tmp/targets_content.txt
-            echo "CONTENT (with line numbers):" >> /tmp/targets_content.txt
-            head -500 "$file" | nl -ba >> /tmp/targets_content.txt
-            echo "---END---" >> /tmp/targets_content.txt
+        python3 .github/scripts/step2_generate_suggestions.py ${{ steps.changes.outputs.commit_sha }}
+
+        if [ -f /tmp/suggestions.json ]; then
+          COUNT=$(python3 -c "import sys,json; d=json.load(open('/tmp/suggestions.json')); print(len(d.get('suggestions',[])))" 2>/dev/null || echo "0")
+          if [ "$COUNT" = "0" ]; then
+            echo "has_suggestions=false" >> $GITHUB_OUTPUT
+          else
+            echo "has_suggestions=true" >> $GITHUB_OUTPUT
           fi
-        done < /tmp/files_to_check.txt
-
-        # Build prompt
-        cat .github/prompts/cross-links-step2.txt > /tmp/prompt2.txt
-        echo "" >> /tmp/prompt2.txt
-        echo "=== NEW FILES ===" >> /tmp/prompt2.txt
-        cat /tmp/changed_info.txt >> /tmp/prompt2.txt
-        cat /tmp/targets_content.txt >> /tmp/prompt2.txt
-
-        # Debug: show prompt size
-        echo "Prompt size: $(wc -c < /tmp/prompt2.txt) bytes"
-
-        # Build JSON payload first
-        echo "Building JSON payload..."
-        if ! jq -n --rawfile prompt /tmp/prompt2.txt '{contents: [{parts: [{text: $prompt}]}], generationConfig: {responseMimeType: "application/json"}}' > /tmp/payload2.json 2>&1; then
-          echo "jq failed to build payload:"
-          cat /tmp/payload2.json
-          exit 1
-        fi
-        echo "Payload size: $(wc -c < /tmp/payload2.json) bytes"
-
-        # Call Gemini
-        echo "Calling Gemini (Step 2)..."
-        API_KEY=$(echo "$GEMINI_API_KEY" | tr -d '[:space:]')
-
-        HTTP_CODE=$(curl -s -w "%{http_code}" -o /tmp/gemini_response2.json \
-          -X POST "https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=${API_KEY}" \
-          -H "Content-Type: application/json" \
-          -d @/tmp/payload2.json)
-
-        echo "HTTP status: $HTTP_CODE"
-
-        if [ "$HTTP_CODE" != "200" ]; then
-          echo "Gemini API error:"
-          cat /tmp/gemini_response2.json
-          exit 1
-        fi
-
-        RESPONSE=$(cat /tmp/gemini_response2.json)
-        SUGGESTIONS=$(echo "$RESPONSE" | python3 -c "import sys,json; d=json.loads(sys.stdin.read(),strict=False); print(d.get('candidates',[{}])[0].get('content',{}).get('parts',[{}])[0].get('text',''))" 2>/dev/null)
-
-        if [ -z "$SUGGESTIONS" ] || [ "$SUGGESTIONS" = "null" ]; then
-          echo "Error parsing Gemini response:"
-          cat /tmp/gemini_response2.json | head -50
-          exit 1
-        fi
-
-        echo "Step 2 result: $SUGGESTIONS"
-        echo "$SUGGESTIONS" > /tmp/suggestions.json
-
-        COUNT=$(echo "$SUGGESTIONS" | python3 -c "import sys,json; d=json.loads(sys.stdin.read(),strict=False); print(len(d.get('suggestions',[])))" 2>/dev/null || echo "0")
-        if [ "$COUNT" = "0" ]; then
-          echo "No suggestions"
+        else
           echo "has_suggestions=false" >> $GITHUB_OUTPUT
-          exit 0
         fi
-
-        echo "has_suggestions=true" >> $GITHUB_OUTPUT
-        echo "Found $COUNT suggestions"
 
     - name: Apply suggestions
       if: steps.suggestions.outputs.has_suggestions == 'true'

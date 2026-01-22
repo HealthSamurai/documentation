@@ -1,0 +1,10 @@
+Here is detailed commit information for the last week in the documentation repository:
+
+{{COMMITS_INFO}}
+
+Analyze this data and create a concise summary:
+1. **Key changes** - what was done, grouped by topic
+2. **Main areas** - which parts of documentation were affected the most
+3. **Stats** - brief overview of the scope of changes
+
+Format: markdown, concise and informative. Don't repeat raw data, extract the essence.
