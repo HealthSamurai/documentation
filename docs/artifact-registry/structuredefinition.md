@@ -156,3 +156,7 @@ Once a StructureDefinition is loaded into the Artifact Registry, Aidbox can auto
 Aidbox resolves profile references using the canonical URLs defined in StructureDefinition resources. When a resource declares conformance to a profile using the `meta.profile` element, the validation system automatically applies the corresponding constraints.
 
 
+
+
+See also:
+- [Artifact Registry Overview](artifact-registry-overview.md)

@@ -75,3 +75,7 @@ BOX_INIT_BUNDLE=file:///tmp/bundle.json
 ## How to inject env variables into Init Bundle
 
 See [tutorial](../deployment-and-maintenance/deploy-aidbox/how-to-inject-env-variables-into-init-bundle.md).
+
+
+See also:
+- [Artifact Registry Overview](../artifact-registry/artifact-registry-overview.md)
