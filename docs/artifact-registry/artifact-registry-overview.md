@@ -6,7 +6,8 @@ description: >-
 
 # Artifact Registry overview
 
-FHIR Artifact Registry (FAR) is Aidbox's centralized system for storing, managing, and resolving FHIR canonical resources and packages. It serves as the foundation for FHIR validation, profiling, and terminology operations by providing a unified repository for **CodeSystems**, **ValueSets**, **ConceptMaps**, **StructureDefinitions**, and **SearchParameters**. This overview explains how the registry works, its integration with external FHIR package sources, and the versioning strategies used to ensure consistent canonical resource resolution across your FHIR implementation.
+FHIR Artifact Registry (FAR) is Aidbox's centralized system for storing, managing, and resolving FHIR canonical resources and packages. It serves as the foundation for FHIR validation, profiling, and terminology operations by providing a unified repository for **CodeSystems**, **ValueSets**, **ConceptMaps**, **StructureDefinitions** (for profiles, extensions, and custom resources), and **SearchParameters**. This overview explains how the registry works, its integration with external FHIR package sources, and the versioning strategies used to ensure consistent canonical resource resolution across your FHIR implementation.
+FHIR Artifact Registry (FAR) is Aidbox's centralized system for storing, managing, and resolving FHIR canonical resources and packages. It serves as the foundation for FHIR validation, profiling, and terminology operations by providing a unified repository for **CodeSystems**, **ValueSets**, **ConceptMaps**, **StructureDefinitions** (for profiles, extensions, and custom resources), and **SearchParameters**. This overview explains how the registry works, its integration with external FHIR package sources, and the versioning strategies used to ensure consistent canonical resource resolution across your FHIR implementation.
 
 ## What's the Artifact Registry
 
