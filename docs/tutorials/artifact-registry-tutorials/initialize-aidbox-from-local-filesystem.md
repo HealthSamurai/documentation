@@ -21,63 +21,23 @@ curl -JO https://aidbox.app/runme
 ```
 
 
-## 2. Prepare the local folder and put tar archives with FHIR packages there
-
-Please note that it's not mandatory to download terminology package, but it's recommended. Learn more about HL7 Terminology packages [here](https://terminology.hl7.org/index.html).
+## 2. Prepare the local folder and put tar archive with FHIR package `hl7.fhir.r4.core` there
 
 
 ```bash
 mkdir -p fhir-packages
 curl -L "https://fs.get-ig.org/-/hl7.fhir.r4.core-4.0.1.tgz" -o "./fhir-packages/hl7.fhir.r4.core#4.0.1.tgz"
-# It's not mandatory to download terminology package, but it's recommended
-curl -L "https://fs.get-ig.org/-/hl7.terminology.r4-7.0.1.tgz" -o "./fhir-packages/hl7.terminology.r4#7.0.1.tgz"
-# dependency package for terminology package
-curl -L "https://fs.get-ig.org/-/hl7.fhir.uv.extensions.r4-5.2.0.tgz" -o "./fhir-packages/hl7.fhir.uv.extensions.r4#5.2.0.tgz"
 ```
 
 ## 3. Configure docker compose and init bundle
 
-Create init-bundle.json file for loading terminology package (note that loading fhir core package is already configured in docker compose file using `BOX_BOOTSTRAP_FHIR_PACKAGES` environment variable).
-
-```json
-{
-  "type": "transaction",
-  "resourceType": "Bundle",
-  "entry": [
-    {
-      "request": {
-        "method": "POST",
-        "url": "AidboxMigration",
-        "ifNoneExist": "id=hl7-terminology-7.0.1"
-      },
-      "resource": {
-        "action": "far-migration-fhir-package-install",
-        "status": "to-run",
-        "params": {
-          "parameter": [
-            {
-              "name": "package",
-              "valueString": "hl7.terminology.r4@7.0.1"
-            }
-          ],
-          "resourceType": "Parameters"
-        },
-        "resourceType": "AidboxMigration",
-        "id": "hl7-terminology-7.0.1"
-      }
-    }
-  ]
-}
-```
-
-Add the following volumes and environment variables to the docker compose file:
+Add the following volume and environment variable to the docker compose file:
 
 ```yaml
 aidbox:
   image: docker.io/healthsamurai/aidboxone:edge
   volumes:
     - ./fhir-packages:/srv/fhir-packages
-    - ./init-bundle.json:/tmp/init-bundle.json
   environment:
     BOX_INIT_BUNDLE: file:///tmp/init-bundle.json
     # Uncomment the following line if you need to make sure external registry is not used
@@ -92,4 +52,10 @@ Start Aidbox with the following command:
 docker compose up -d
 ```
 
-Navigate to the [Aidbox UI](http://localhost:8080/), initialize Aidbox by following the instructions in the [Getting Started](../../getting-started/run-aidbox-locally.md) guide and navigate to the "FAR" tab and check that the packages are loaded.
+Navigate to the [Aidbox UI](http://localhost:8080/), initialize Aidbox by following the instructions in the [Getting Started](../../getting-started/run-aidbox-locally.md) guide and navigate to the "FAR" tab and check that the fhir r4 core package is loaded.
+
+## See also:
+
+{% content-ref url="../../artifact-registry/artifact-registry-overview.md#loading-packages-from-local-filesystem" %}
+[Loading packages from local filesystem](../../artifact-registry/artifact-registry-overview.md#loading-packages-from-local-filesystem)
+{% endcontent-ref %}
