@@ -17,7 +17,7 @@ The `$questionnaire-package` operation retrieves a Questionnaire along with all 
 
 The current implementation supports a subset of the full Da Vinci DTR specification:
 
-- **Single Questionnaire flow only** - The `canonical` parameter is used to request a specific Questionnaire
+- **Single Questionnaire flow only** - The `questionnaire` parameter is used to request a specific Questionnaire
 - **No CQL Library support** - CQL libraries referenced by the Questionnaire are not included in the bundle
 - **No `context` parameter** - The CRD context ID parameter is not yet supported
 - **No `changedsince` parameter** - Incremental updates based on timestamp are not supported
@@ -38,7 +38,7 @@ The operation accepts a FHIR Parameters resource with the following parameters:
 
 | Parameter | Type | Cardinality | Description |
 |-----------|------|-------------|-------------|
-| `canonical` | canonical | 1..1 | The canonical URL of the Questionnaire to retrieve (optionally with version, e.g., `http://example.org/Questionnaire/my-form\|1.0`) |
+| `questionnaire` | canonical | 1..1 | The canonical URL of the Questionnaire to retrieve (optionally with version, e.g., `http://example.org/Questionnaire/my-form\|1.0`) |
 | `coverage` | Coverage | 0..1 | Coverage resource that establishes the member and coverage context. The `beneficiary` reference is used to set `QuestionnaireResponse.subject` |
 | `order` | Resource | 0..1 | Order resource (e.g., ServiceRequest, MedicationRequest) that establishes the context for documentation collection |
 
@@ -86,7 +86,7 @@ accept: text/yaml
 
 resourceType: Parameters
 parameter:
-- name: canonical
+- name: questionnaire
   valueCanonical: http://example.org/Questionnaire/prior-auth-form|1.0
 ```
 
@@ -101,7 +101,7 @@ accept: text/yaml
 
 resourceType: Parameters
 parameter:
-- name: canonical
+- name: questionnaire
   valueCanonical: http://example.org/Questionnaire/prior-auth-form|1.0
 - name: coverage
   resource:
@@ -125,7 +125,7 @@ accept: text/yaml
 
 resourceType: Parameters
 parameter:
-- name: canonical
+- name: questionnaire
   valueCanonical: http://example.org/Questionnaire/prior-auth-form|1.0
 - name: coverage
   resource:
@@ -227,7 +227,7 @@ resourceType: OperationOutcome
 issue:
 - severity: error
   code: required
-  diagnostics: 'Missing required parameter: canonical'
+  diagnostics: "Missing required parameter: 'questionnaire'"
 ```
 
 ### Error Response - Questionnaire Not Found

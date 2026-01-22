@@ -69,6 +69,7 @@
       "proximity",
       "sort",
       "exactness"
-    ]
+    ],
+    "nonSeparatorTokens": ["_"]
   }
 }
