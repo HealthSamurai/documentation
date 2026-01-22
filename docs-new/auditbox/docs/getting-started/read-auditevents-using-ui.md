@@ -6,7 +6,7 @@ This guide describes using Auditbox UI.
 
 ## Logging in
 Before you start using Auditbox, you need to log in.
-![Login page](.gitbook/assets/auditbox/using-ui/login-page.png)
+![Login page](../../../../.gitbook/assets/auditbox/using-ui/login-page.png)
 
 Image showed above is the first thing you see when logging into
 Auditbox. Upon clicking "Sign In" page, you'll be redirected to your
@@ -15,7 +15,7 @@ identity provider of choice. By default, it's Keycloak.
 ## Overview
 
 Upon logging in, you'll be redirected to the main page.
-![Main page](.gitbook/assets/auditbox/using-ui/ui.png)
+![Main page](../../../../.gitbook/assets/auditbox/using-ui/ui.png)
 Following sections describe components of the main page.
 
 ## Search bar
@@ -27,7 +27,7 @@ the "FHIR" toggle at the right side of the bar.
 
 ### Full text search
 
-![Full text search](.gitbook/assets/auditbox/using-ui/fts.png)
+![Full text search](../../../../.gitbook/assets/auditbox/using-ui/fts.png)
 
 Full text search allows you to search entries by inputting some
 text, that then gets looked up in these fields on each event:
@@ -45,7 +45,7 @@ For example, if you have an entry where agent.who.display is
 
 ### FHIR search
 
-![Chip search](.gitbook/assets/auditbox/using-ui/chips.png)
+![Chip search](../../../../.gitbook/assets/auditbox/using-ui/chips.png)
 
 In general, you'll be using filter sidebar instead of FHIR search,
 but it's still there if you need it.
@@ -58,7 +58,7 @@ Notice, that it takes in valid FHIR search parameters. For example,
 `action=Create` will fail, but `action=C` will pass.
 
 ## Bar chart
-![Charts](.gitbook/assets/auditbox/using-ui/charts.png)
+![Charts](../../../../.gitbook/assets/auditbox/using-ui/charts.png)
 
 Bar charts show distribution of events over some time.
 
@@ -77,7 +77,7 @@ Auditbox UI supports these time ranges:
 - minute
 
 ## Grid
-![Grid](.gitbook/assets/auditbox/using-ui/grid.png)
+![Grid](../../../../.gitbook/assets/auditbox/using-ui/grid.png)
 
 Grid is what displays AuditEvents.
 
@@ -92,7 +92,7 @@ By default, each row shows these fields:
 
 ### Summary
 You can click on any row to show summary view for it.
-![Grid Summary](.gitbook/assets/auditbox/using-ui/grid-summary.png)
+![Grid Summary](../../../../.gitbook/assets/auditbox/using-ui/grid-summary.png)
 
 Here, other than fields on the row itself, you can see
 all `agents` - objects involved, and `entities` - subjects involved.
@@ -101,7 +101,7 @@ patients.
 
 ### JSON view
 
-![JSON view](.gitbook/assets/auditbox/using-ui/json-view.png)
+![JSON view](../../../../.gitbook/assets/auditbox/using-ui/json-view.png)
 Upon clicking "JSON" button at the top, instead of usual overview of
 the event you can see the whole AuditEvent as it is stored, in JSON
 format.
@@ -110,7 +110,7 @@ You may copy the whole event resource using "Copy JSON" button at the
 top.
 
 ### Pagination
-![Pagination](.gitbook/assets/auditbox/using-ui/pagination.png)
+![Pagination](../../../../.gitbook/assets/auditbox/using-ui/pagination.png)
 
 At the bottom of the page, you may adjust pagination of results -
 make each page display 10, 30 or 100 entries at once and select
@@ -118,7 +118,7 @@ particular page you want to see.
 
 ### Export
 
-![Export button](.gitbook/assets/auditbox/using-ui/export.png)
+![Export button](../../../../.gitbook/assets/auditbox/using-ui/export.png)
 
 At the top of the grid, there's an export button, that lets you
 download all the events you have queried for into a single FHIR
@@ -133,7 +133,7 @@ the results will be exported.
 
 ## Filter sidebar
 
-![All Filters](.gitbook/assets/auditbox/using-ui/filters-all.png)
+![All Filters](../../../../.gitbook/assets/auditbox/using-ui/filters-all.png)
 
 Filter sidebar lets you quickly search for particular events.
 Fields are the same as ones displayed in the grid, but with an extra
@@ -144,7 +144,7 @@ action equal to either Create, Update or Delete.
 Once you clicked on a filter, you'll see a few options you may select,
 which get updated as you type in what you want to find.
 
-![Selected Filter](.gitbook/assets/auditbox/using-ui/filters-selected.png)
+![Selected Filter](../../../../.gitbook/assets/auditbox/using-ui/filters-selected.png)
 
 For a single field, you may choose many options, for example
 "john doe" and "jane doe", which will show you all entries with either
