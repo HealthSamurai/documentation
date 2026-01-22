@@ -91,9 +91,18 @@ jobs:
         # Debug: show prompt size
         echo "Prompt size: $(wc -c < /tmp/prompt1.txt) bytes"
 
+        # Build JSON payload first
+        echo "Building JSON payload..."
+        if ! jq -n --rawfile prompt /tmp/prompt1.txt '{contents: [{parts: [{text: $prompt}]}], generationConfig: {responseMimeType: "application/json"}}' > /tmp/payload1.json 2>&1; then
+          echo "jq failed to build payload:"
+          cat /tmp/payload1.json
+          exit 1
+        fi
+        echo "Payload size: $(wc -c < /tmp/payload1.json) bytes"
+
         # Call Gemini
         echo "Calling Gemini (Step 1)..."
-        HTTP_CODE=$(curl -s -w "%{http_code}" -o /tmp/gemini_response.json -X POST "https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=${GEMINI_API_KEY}" -H "Content-Type: application/json" -d "$(jq -n --rawfile prompt /tmp/prompt1.txt '{contents: [{parts: [{text: $prompt}]}], generationConfig: {responseMimeType: "application/json"}}')")
+        HTTP_CODE=$(curl -s -w "%{http_code}" -o /tmp/gemini_response.json -X POST "https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=${GEMINI_API_KEY}" -H "Content-Type: application/json" -d @/tmp/payload1.json)
 
         echo "HTTP status: $HTTP_CODE"
 
@@ -155,9 +164,18 @@ jobs:
         # Debug: show prompt size
         echo "Prompt size: $(wc -c < /tmp/prompt2.txt) bytes"
 
+        # Build JSON payload first
+        echo "Building JSON payload..."
+        if ! jq -n --rawfile prompt /tmp/prompt2.txt '{contents: [{parts: [{text: $prompt}]}], generationConfig: {responseMimeType: "application/json"}}' > /tmp/payload2.json 2>&1; then
+          echo "jq failed to build payload:"
+          cat /tmp/payload2.json
+          exit 1
+        fi
+        echo "Payload size: $(wc -c < /tmp/payload2.json) bytes"
+
         # Call Gemini
         echo "Calling Gemini (Step 2)..."
-        HTTP_CODE=$(curl -s -w "%{http_code}" -o /tmp/gemini_response2.json -X POST "https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=${GEMINI_API_KEY}" -H "Content-Type: application/json" -d "$(jq -n --rawfile prompt /tmp/prompt2.txt '{contents: [{parts: [{text: $prompt}]}], generationConfig: {responseMimeType: "application/json"}}')")
+        HTTP_CODE=$(curl -s -w "%{http_code}" -o /tmp/gemini_response2.json -X POST "https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=${GEMINI_API_KEY}" -H "Content-Type: application/json" -d @/tmp/payload2.json)
 
         echo "HTTP status: $HTTP_CODE"
 
