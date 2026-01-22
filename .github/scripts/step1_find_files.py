@@ -13,12 +13,13 @@ def get_changed_files(commit_sha):
     """Get changed .md files from commit"""
     cmd = [
         'git', 'diff', '--name-only', '--diff-filter=AM',
-        f'{commit_sha}~1', commit_sha, '--', 'docs/**/*.md'
+        f'{commit_sha}~1', commit_sha, '--', 'docs/'
     ]
     result = subprocess.run(cmd, capture_output=True, text=True)
     files = [
         f for f in result.stdout.strip().split('\n')
-        if f and 'docs/reference/' not in f and 'docs/deprecated/' not in f
+        if f and f.endswith('.md')
+        and 'docs/reference/' not in f and 'docs/deprecated/' not in f
         and '/assets/' not in f and '/images/' not in f
     ]
     return files[:5]  # Max 5 files

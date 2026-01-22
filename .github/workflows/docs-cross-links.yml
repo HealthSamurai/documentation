@@ -1,16 +1,13 @@
 name: Documentation Cross-Links
 
 on:
-  push:
-    branches: [master]
-    paths:
-      - 'docs/**/*.md'
-      - '!docs/reference/**'
-      - '!docs/deprecated/**'
+  schedule:
+    # Run daily at 8 AM UTC
+    - cron: '0 8 * * *'
   workflow_dispatch:
     inputs:
       test_commit:
-        description: 'Test on specific commit SHA (e.g., 84d62e02)'
+        description: 'Test on specific commit SHA (e.g., e62d42d4)'
         required: false
         type: string
 
@@ -28,89 +25,13 @@ jobs:
       with:
         fetch-depth: 0
 
-    - name: Get changed files
-      id: changes
-      run: |
-        if [ -n "${{ inputs.test_commit }}" ]; then
-          COMMIT="${{ inputs.test_commit }}"
-          echo "Testing on commit: $COMMIT"
-          echo "commit_sha=$COMMIT" >> $GITHUB_OUTPUT
-          CHANGED=$(git diff --name-only --diff-filter=AM ${COMMIT}~1 ${COMMIT} -- 'docs/**/*.md' | grep -v 'docs/reference/' | grep -v 'docs/deprecated/' | grep -v 'assets/' | grep -v 'images/' | head -5)
-        else
-          COMMIT="HEAD"
-          echo "commit_sha=HEAD" >> $GITHUB_OUTPUT
-          CHANGED=$(git diff --name-only --diff-filter=AM HEAD~1 HEAD -- 'docs/**/*.md' | grep -v 'docs/reference/' | grep -v 'docs/deprecated/' | grep -v 'assets/' | grep -v 'images/' | head -5)
-        fi
-        if [ -z "$CHANGED" ]; then
-          echo "No relevant changes"
-          echo "has_changes=false" >> $GITHUB_OUTPUT
-          exit 0
-        fi
-        echo "Changed files:"
-        echo "$CHANGED"
-        echo "has_changes=true" >> $GITHUB_OUTPUT
-        echo "$CHANGED" > /tmp/changed_files.txt
-
-    - name: "Step 1: Find related files"
-      if: steps.changes.outputs.has_changes == 'true'
-      id: find_files
+    - name: Process all changed files and create PRs
       env:
         GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
-      run: |
-        python3 .github/scripts/step1_find_files.py ${{ steps.changes.outputs.commit_sha }}
-
-        if [ -f /tmp/files_to_check.txt ] && [ -s /tmp/files_to_check.txt ]; then
-          echo "has_files=true" >> $GITHUB_OUTPUT
-        else
-          echo "has_files=false" >> $GITHUB_OUTPUT
-        fi
-
-    - name: "Step 2: Generate suggestions"
-      if: steps.find_files.outputs.has_files == 'true'
-      id: suggestions
-      env:
-        GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
-      run: |
-        python3 .github/scripts/step2_generate_suggestions.py ${{ steps.changes.outputs.commit_sha }}
-
-        if [ -f /tmp/suggestions.json ]; then
-          COUNT=$(python3 -c "import sys,json; d=json.load(open('/tmp/suggestions.json')); print(len(d.get('suggestions',[])))" 2>/dev/null || echo "0")
-          if [ "$COUNT" = "0" ]; then
-            echo "has_suggestions=false" >> $GITHUB_OUTPUT
-          else
-            echo "has_suggestions=true" >> $GITHUB_OUTPUT
-          fi
-        else
-          echo "has_suggestions=false" >> $GITHUB_OUTPUT
-        fi
-
-    - name: Apply suggestions
-      if: steps.suggestions.outputs.has_suggestions == 'true'
-      id: apply
-      run: |
-        # Write apply script
-        base64 -d > /tmp/apply.py << 'B64'
-        aW1wb3J0IGpzb24sIHJlLCBvcwp3aXRoIG9wZW4oJy90bXAvc3VnZ2VzdGlvbnMuanNvbicsICdyJykgYXMgZjoKICAgIGRhdGEgPSBqc29uLmxvYWRzKGYucmVhZCgpLCBzdHJpY3Q9RmFsc2UpCnN1Z2dlc3Rpb25zID0gZGF0YS5nZXQoJ3N1Z2dlc3Rpb25zJywgW10pCmlmIG5vdCBzdWdnZXN0aW9uczoKICAgIHByaW50KCdObyBzdWdnZXN0aW9ucycpCiAgICBleGl0KDApCnByaW50KGYnQXBwbHlpbmcge2xlbihzdWdnZXN0aW9ucyl9IHN1Z2dlc3Rpb25zLi4uJykKZGVmIG5vcm1hbGl6ZShzKToKICAgIHJldHVybiByZS5zdWIocidccysnLCAnICcsIHMuc3RyaXAoKSkKZm9yIHMgaW4gc3VnZ2VzdGlvbnM6CiAgICB0YXJnZXQgPSBzLmdldCgndGFyZ2V0X2ZpbGUnLCAnJykKICAgIG9wID0gcy5nZXQoJ29wZXJhdGlvbicsICcnKQogICAgZmluZCA9IHMuZ2V0KCdmaW5kJywgJycpCiAgICByZXBsYWNlID0gcy5nZXQoJ3JlcGxhY2UnLCAnJykKICAgIGxuID0gcy5nZXQoJ2xpbmVfbnVtYmVyJykKICAgIHByaW50KGYnLS0tIHt0YXJnZXR9ICh7b3B9KScpCiAgICBpZiBub3Qgb3MucGF0aC5leGlzdHModGFyZ2V0KToKICAgICAgICBwcmludCgnU0tJUDogbm90IGZvdW5kJykKICAgICAgICBjb250aW51ZQogICAgbGlua3MgPSByZS5maW5kYWxsKHInXF1cKChbXildK1wubWQpXCknLCByZXBsYWNlKQogICAgd2l0aCBvcGVuKHRhcmdldCwgJ3InKSBhcyBmOgogICAgICAgIGNvbnRlbnQgPSBmLnJlYWQoKQogICAgaWYgYW55KGwgaW4gY29udGVudCBmb3IgbCBpbiBsaW5rcyk6CiAgICAgICAgcHJpbnQoJ1NLSVA6IGxpbmsgZXhpc3RzJykKICAgICAgICBjb250aW51ZQogICAgaWYgb3AgPT0gJ2FwcGVuZCc6CiAgICAgICAgd2l0aCBvcGVuKHRhcmdldCwgJ2EnKSBhcyBmOgogICAgICAgICAgICBmLndyaXRlKHJlcGxhY2UgKyAnXG4nKQogICAgICAgIHByaW50KCdET05FOiBhcHBlbmRlZCcpCiAgICBlbGlmIG9wID09ICdyZXBsYWNlJzoKICAgICAgICBpZiBmaW5kIGFuZCBmaW5kIGluIGNvbnRlbnQ6CiAgICAgICAgICAgIGNvbnRlbnQgPSBjb250ZW50LnJlcGxhY2UoZmluZCwgcmVwbGFjZSwgMSkKICAgICAgICAgICAgd2l0aCBvcGVuKHRhcmdldCwgJ3cnKSBhcyBmOgogICAgICAgICAgICAgICAgZi53cml0ZShjb250ZW50KQogICAgICAgICAgICBwcmludCgnRE9ORTogZXhhY3QgbWF0Y2gnKQogICAgICAgIGVsaWYgZmluZDoKICAgICAgICAgICAgbm9ybSA9IG5vcm1hbGl6ZShmaW5kKQogICAgICAgICAgICBsaW5lcyA9IGNvbnRlbnQuc3BsaXQoJ1xuJykKICAgICAgICAgICAgZG9uZSA9IEZhbHNlCiAgICAgICAgICAgIGZvciBpIGluIHJhbmdlKGxlbihsaW5lcykpOgogICAgICAgICAgICAgICAgZm9yIHcgaW4gcmFuZ2UoMSwgbWluKDYsIGxlbihsaW5lcyktaSsxKSk6CiAgICAgICAgICAgICAgICAgICAgaWYgbm9ybWFsaXplKCdcbicuam9pbihsaW5lc1tpOmkrd10pKSA9PSBub3JtOgogICAgICAgICAgICAgICAgICAgICAgICB3aXRoIG9wZW4odGFyZ2V0LCAndycpIGFzIGY6CiAgICAgICAgICAgICAgICAgICAgICAgICAgICBmLndyaXRlKCdcbicuam9pbihsaW5lc1s6aV0gKyBbcmVwbGFjZV0gKyBsaW5lc1tpK3c6XSkpCiAgICAgICAgICAgICAgICAgICAgICAgIHByaW50KGYnRE9ORTogZnV6enkgYXQgbGluZSB7aSsxfScpCiAgICAgICAgICAgICAgICAgICAgICAgIGRvbmUgPSBUcnVlCiAgICAgICAgICAgICAgICAgICAgICAgIGJyZWFrCiAgICAgICAgICAgICAgICBpZiBkb25lOgogICAgICAgICAgICAgICAgICAgIGJyZWFrCiAgICAgICAgICAgIGlmIGRvbmU6CiAgICAgICAgICAgICAgICBjb250aW51ZQogICAgICAgIGlmIGxuOgogICAgICAgICAgICB0cnk6CiAgICAgICAgICAgICAgICBpZHggPSBpbnQobG4pIC0gMQogICAgICAgICAgICAgICAgbGluZXMgPSBjb250ZW50LnNwbGl0KCdcbicpCiAgICAgICAgICAgICAgICBpZiAwIDw9IGlkeCA8IGxlbihsaW5lcyk6CiAgICAgICAgICAgICAgICAgICAgd2l0aCBvcGVuKHRhcmdldCwgJ3cnKSBhcyBmOgogICAgICAgICAgICAgICAgICAgICAgICBmLndyaXRlKCdcbicuam9pbihsaW5lc1s6aWR4KzFdICsgW3JlcGxhY2VdICsgbGluZXNbaWR4KzE6XSkpCiAgICAgICAgICAgICAgICAgICAgcHJpbnQoZidET05FOiBsaW5lIHtsbn0gZmFsbGJhY2snKQogICAgICAgICAgICAgICAgICAgIGNvbnRpbnVlCiAgICAgICAgICAgIGV4Y2VwdDoKICAgICAgICAgICAgICAgIHBhc3MKICAgICAgICBwcmludCgnU0tJUDogbm90IGZvdW5kJyk=
-        B64
-        python3 /tmp/apply.py
-        if git diff --quiet docs/; then
-          echo "No changes made"
-          echo "applied=false" >> $GITHUB_OUTPUT
-        else
-          echo "Changes applied"
-          echo "applied=true" >> $GITHUB_OUTPUT
-        fi
-
-    - name: Create Pull Request
-      if: steps.apply.outputs.applied == 'true'
-      env:
         GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       run: |
-        BRANCH="auto/cross-links-$(date +%Y%m%d-%H%M%S)"
-        git config user.name "github-actions[bot]"
-        git config user.email "github-actions[bot]@users.noreply.github.com"
-        git checkout -b "$BRANCH"
-        git add docs/
-        git commit -m "docs: add cross-links to related documentation"
-        git push origin "$BRANCH"
-        gh pr create --title "docs: add cross-links for recent changes" --body "Auto-generated cross-links. Please review." --head "$BRANCH" --base master
+        if [ -n "${{ inputs.test_commit }}" ]; then
+          python3 .github/scripts/daily_cross_links.py "${{ inputs.test_commit }}"
+        else
+          python3 .github/scripts/daily_cross_links.py
+        fi
