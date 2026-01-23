@@ -134,7 +134,7 @@ This functionality is available in Aidbox versions 2601 and later.
 {% endhint %}
 
 To load FHIR packages from the local filesystem instead of fetching them from a remote NPM registry, mount a directory containing the packages to `/srv/aidbox-fhir-packages` in the Aidbox container. 
-Packages must be in `.tgz` format (gzipped tarball) and follow the naming convention {package-name}#{version}.tgz. For example, the package hl7.fhir.r4.core version 4.0.1 should be named hl7.fhir.r4.core#4.0.1.tgz. 
+Packages must be in `.tgz` format (gzipped tarball) and follow the naming convention `{package-name}#{version}.tgz`. For example, the package `hl7.fhir.r4.core` version `4.0.1` should be named `hl7.fhir.r4.core#4.0.1.tgz`. 
 
 When Aidbox loads a package, it will first check this local directory before attempting to download from the configured registry. This is useful for air-gapped environments, faster startup times, or when the remote registry is unavailable.
 
