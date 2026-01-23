@@ -143,6 +143,12 @@ When Aidbox loads a package, it will first check this local directory before att
 Make sure to put all the **dependent packages** in the same directory.
 {% endhint %}
 
+See also:
+
+{% content-ref url="../tutorials/artifact-registry-tutorials/upload-fhir-implementation-guide/initialize-aidbox-from-local-filesystem.md" %}
+[initialize-aidbox-from-local-filesystem.md](../tutorials/artifact-registry-tutorials/upload-fhir-implementation-guide/initialize-aidbox-from-local-filesystem.md)
+{% endcontent-ref %}
+
 
 ### Pinning and Tree-Shaking
 
