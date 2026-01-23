@@ -138,6 +138,12 @@ Packages must be in `.tgz` format (gzipped tarball) and follow the naming conven
 
 When Aidbox loads a package, it will first check this local directory before attempting to download from the configured registry. This is useful for air-gapped environments, faster startup times, or when the remote registry is unavailable.
 
+See also:
+
+{% content-ref url="../tutorials/artifact-registry-tutorials/initialize-aidbox-from-local-filesystem.md" %}
+[How to configure Aidbox to use local filesystem as artifact registry for initialization](../tutorials/artifact-registry-tutorials/initialize-aidbox-from-local-filesystem.md)
+{% endcontent-ref %}
+
 
 {% hint style="warning" %}
 Make sure to put all the **dependent packages** in the same directory.
