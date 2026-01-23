@@ -155,6 +155,36 @@ Newly created messages should have `received` status, otherwise they won't be pr
 
 **outcome** — Transaction Bundle returned by the mapping or error information if the status is `error`.
 
+### Testing Messages Without Persistence
+
+Use the `$execute-only` operation to test HL7 v2 message parsing and mapping without persisting any data. This is useful for:
+
+- Validating message structure before processing
+- Testing and debugging mappings
+- Dry-run scenarios where you want to see the result without side effects
+
+```yaml
+POST /Hl7v2Message/$execute-only
+Content-Type: text/yaml
+
+resourceType: Hl7v2Message
+src: |-
+  MSH|^~\&|AccMgr|1|||20151015200643||ADT^A01|599102|P|2.3|foo||
+  EVN|A01|20151010045502|||||
+  PID|1|010107111^^^MS4^PN^|1609220^^^MS4^MR^001|1609220^^^MS4^MR^001|BARRETT^JEAN^SANDY^^||19420923|F||C|STRAWBERRY AVE^FOUR OAKS LODGE^NEWTOWN^CA^99774^USA^^||(111)222-3333||ENG|W|CHR|111155555550^^^MS4001^AN^001|123-22-1111||||OKLAHOMA|||||||N
+status: received
+config:
+  resourceType: Hl7v2Config
+  id: default
+```
+
+The response contains parsed message and mapping result, but:
+- No `Hl7v2Message` resource is created
+- No FHIR resources from the mapping are persisted
+- The `outcome.response` field is `null` (since no transaction was executed)
+
+A FHIR-prefixed endpoint is also available: `POST /fhir/Hl7v2Message/$execute-only`
+
 You can try to submit malformed message (truncated) to see what the result will be:
 
 ```yaml
