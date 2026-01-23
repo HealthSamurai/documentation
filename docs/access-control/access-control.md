@@ -14,6 +14,10 @@ Aidbox offers everything you need for secure identity, authentication, and audit
 * [**Audit & Logging**](audit-and-logging.md) - Track activity with FHIR BALP (Basic Audit Logging Profile) for Audit Events\
   and OpenTelemetry for structured logging.
 
+See also:
+
+- [Table of contents](../SUMMARY.md)
+
 Want to try it out? Check out our tutorials:
 
 * [Managing Admin Access to the Aidbox UI Using Okta Groups](../tutorials/security-access-control-tutorials/managing-admin-access-to-the-aidbox-ui-using-okta-groups.md)
