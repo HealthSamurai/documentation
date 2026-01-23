@@ -1186,7 +1186,7 @@ Learn more:
 Aidbox can be configured in two ways:
 
 - **Environment variables** — set at container startup, require restart to change
-- **Settings resource** — stored in database, can be changed at runtime via API or Aidbox UI
+- **Settings resource** — stored in database, can be changed at runtime via Aidbox UI
 
 Use environment variables for infrastructure settings (database, license). Use Settings for runtime configuration that may need to change without restart.
 
