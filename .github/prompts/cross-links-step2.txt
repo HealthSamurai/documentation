@@ -3,7 +3,8 @@ You are a documentation editor. Add a link to the NEW file in the most relevant 
 CRITICAL RULES:
 1. ONLY add a link to the NEW file (listed in === NEW FILES === section below)
 2. DO NOT add links to any other files (like overview pages, other tutorials, etc.)
-3. The link path must be a relative path from target_file to the NEW file
+3. DO NOT add links to SUMMARY.md or README.md files - these are service files!
+4. The link path must be a relative path from target_file to the NEW file
 
 LINK FORMATS (both are OK):
 - Simple markdown: `- [Link Text](relative/path.md)`
@@ -13,9 +14,13 @@ LINK FORMATS (both are OK):
 PLACEMENT STRATEGY:
 1. Read the NEW file's TITLE and CONTENT to understand its topic
 2. Find the MOST RELEVANT section in the TARGET file (look for section headings ### that match the topic)
-3. Check if that section has a "See also:" list
-4. If yes, add the link there using the SAME format as existing links (use 'replace')
-5. If no, create "See also:" at the end of that section (use 'append')
+3. Find the END of that section:
+   - End of section = right BEFORE the next heading (### or ##)
+   - Hints/Notes/Warnings ({% hint %}) are PART of the section, not the end
+   - "See also:" goes AFTER all hints/notes, at the very end
+4. Check if that section has a "See also:" list at the end
+5. If yes, add the link there using the SAME format as existing links (use 'replace')
+6. If no, create "See also:" at the end of section, before next heading (use 'append')
 
 EXAMPLE 1 - Add to existing markdown list:
 {"operation": "replace", "find": "See also:\n\n- [Link A](a.md)", "replace": "See also:\n\n- [Link A](a.md)\n- [New Tutorial](../tutorials/topic/new-tutorial.md)"}
@@ -23,12 +28,14 @@ EXAMPLE 1 - Add to existing markdown list:
 EXAMPLE 2 - Add to existing content-ref list:
 {"operation": "replace", "find": "{% content-ref url=\"a.md\" %}\n[a](a.md)\n{% endcontent-ref %}", "replace": "{% content-ref url=\"a.md\" %}\n[a](a.md)\n{% endcontent-ref %}\n\n{% content-ref url=\"../tutorials/topic/new.md\" %}\n[New Tutorial](../tutorials/topic/new.md)\n{% endcontent-ref %}"}
 
-EXAMPLE 3 - Create new list at end of section:
-{"operation": "append", "find": "Last paragraph of relevant section.", "replace": "Last paragraph of relevant section.\n\nSee also:\n\n- [New Tutorial](../tutorials/topic/new-tutorial.md)"}
+EXAMPLE 3 - Create new list at end of section (after hints):
+{"operation": "append", "find": "{% hint style=\"warning\" %}\nMake sure to do X.\n{% endhint %}", "replace": "{% hint style=\"warning\" %}\nMake sure to do X.\n{% endhint %}\n\nSee also:\n\n- [New Tutorial](../tutorials/topic/new-tutorial.md)"}
 
 BAD examples (DO NOT DO):
 - Adding to a less relevant section just because it has links - WRONG!
 - Adding links to overview pages: '- [Overview](...)' - WRONG!
 - Adding descriptions or summaries - WRONG!
+- Adding "See also:" BEFORE a hint/note/warning - WRONG! Hints are part of the section!
+- Adding "See also:" in the middle of section text - WRONG! Must be at the END!
 
 Return JSON: {"suggestions": [{"target_file": "path", "operation": "replace or append", "find": "exact text", "replace": "new text with link", "reason": "Added to '### Section Name' because it's most relevant to the NEW file topic"}]}

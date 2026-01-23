@@ -23,7 +23,8 @@ def get_changed_files_last_24h():
         f = line.strip()
         if (f and f.endswith('.md') and f not in seen
             and 'docs/reference/' not in f and 'docs/deprecated/' not in f
-            and '/assets/' not in f and '/images/' not in f):
+            and '/assets/' not in f and '/images/' not in f
+            and not f.endswith('/SUMMARY.md') and not f.endswith('/README.md')):
             files.append(f)
             seen.add(f)
 
@@ -42,6 +43,7 @@ def get_changed_files_from_commit(commit_sha):
         if f.strip() and f.strip().endswith('.md')
         and 'docs/reference/' not in f and 'docs/deprecated/' not in f
         and '/assets/' not in f and '/images/' not in f
+        and not f.strip().endswith('/SUMMARY.md') and not f.strip().endswith('/README.md')
     ]
 
     return files

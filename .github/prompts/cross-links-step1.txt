@@ -14,6 +14,7 @@ PATH-TO-CONCEPT MAPPING (STRICT):
 STRICT RULES:
 - ONLY suggest files from the SAME topic area (use PATH to determine topic)
 - DO NOT suggest README.md files (forbidden!)
+- DO NOT suggest SUMMARY.md files (forbidden!)
 - DO NOT suggest init-bundle.md, deployment files, or configuration files
 - Return ONLY 1 file - the main concept/overview page for the topic
 
