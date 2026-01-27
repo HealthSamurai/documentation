@@ -45,16 +45,14 @@ def extract_links_from_line(line: str) -> Optional[str]:
         match = re.search(r'src="([^"]*)"', line)
         if match:
             link = match.group(1).strip()
-            if link.startswith('<') and link.endswith('>'):
-                link = link[1:-1].strip()
+            # Don't remove angle brackets - they're needed for placeholder detection
             return link.strip('"\'')
     elif re.match(r'^\s+<a.*href=', line):
         # Handle HTML anchor tags: <a href="...">
         match = re.search(r'<a[^>]*href=["\']([^"\']*)["\']', line)
         if match:
             link = match.group(1).strip()
-            if link.startswith('<') and link.endswith('>'):
-                link = link[1:-1].strip()
+            # Don't remove angle brackets - they're needed for placeholder detection
             return link.strip('"\'')
     return ''
 
@@ -62,11 +60,13 @@ def should_skip_link(link: str) -> bool:
     if not link:
         return True
 
-    # Skip placeholder links like <container-id>, <blob-path>, your-generated-link, etc.
+    # Skip placeholder links like <container-id>, <blob-path>, your-generated-link, {{ }}, etc.
     if (re.match(r'^<[^/]+>$', link) or
         '/<' in link or
         ('<' in link and '>' in link) or
-        link == 'your-generated-link'):
+        link == 'your-generated-link' or
+        '{{' in link or
+        '}}' in link):
         return True
 
     # First normalize the link by removing any escaped characters
