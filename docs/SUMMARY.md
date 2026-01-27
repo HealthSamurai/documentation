@@ -305,7 +305,6 @@
     * [How-to guides](modules/observability/metrics/monitoring/README.md)
       * [How to export metrics to the OTEL collector](modules/observability/metrics/monitoring/how-to-export-metrics-to-the-otel-collector.md)
       * [Use Aidbox Metrics Server](modules/observability/metrics/monitoring/use-aidbox-metrics-server.md)
-      * [Set-up Grafana integration](modules/observability/metrics/monitoring/set-up-grafana-integration.md)
     * [Technical reference](modules/observability/metrics/technical-reference/README.md)
       * [OpenTelemetry Metrics](modules/observability/metrics/technical-reference/opentelemetry-metrics.md)
       * [OTEL metrics exporter parameters](modules/observability/metrics/technical-reference/otel-metrics-exporter-parameters.md)
