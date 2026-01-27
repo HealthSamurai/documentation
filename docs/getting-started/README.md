@@ -16,8 +16,8 @@ Discover how to start with Aidbox in just a few minutes.
 [run-aidbox-locally.md](run-aidbox-locally.md)
 {% endcontent-ref %}
 
-{% content-ref url="getting-started/use-aidbox-with-react.md" %}
-[getting-started/use-aidbox-with-react.md](getting-started/use-aidbox-with-react.md)
+{% content-ref url="../developer-experience/use-aidbox-with-react.md" %}
+[use-aidbox-with-react.md](../developer-experience/use-aidbox-with-react.md)
 {% endcontent-ref %}
 
 ## Tutorials
