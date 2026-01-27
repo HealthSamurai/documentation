@@ -13,7 +13,7 @@ from lib.output import check_start, check_success, check_error, print_issue
 
 def extract_links_from_line(line: str) -> Optional[str]:
     # Markdown link:   [text](<path>) или   [text](path)
-    if re.match(r'^  \[.*\]\([^)]+', line):
+    if re.match(r'^\s+\[.*\]\([^)]+', line):
         start = line.find('](')
         if start != -1:
             start += 2
@@ -41,8 +41,16 @@ def extract_links_from_line(line: str) -> Optional[str]:
                             return link[:i].strip(' "\'')
                         depth -= 1
                 return None
-    elif re.match(r'^  <img.*src="[^"]+', line) or re.match(r'^  src="[^"]+', line):
+    elif re.match(r'^\s+<img.*src="[^"]+', line) or re.match(r'^\s+src="[^"]+', line):
         match = re.search(r'src="([^"]*)"', line)
+        if match:
+            link = match.group(1).strip()
+            if link.startswith('<') and link.endswith('>'):
+                link = link[1:-1].strip()
+            return link.strip('"\'')
+    elif re.match(r'^\s+<a.*href=', line):
+        # Handle HTML anchor tags: <a href="...">
+        match = re.search(r'<a[^>]*href=["\']([^"\']*)["\']', line)
         if match:
             link = match.group(1).strip()
             if link.startswith('<') and link.endswith('>'):
@@ -52,6 +60,13 @@ def extract_links_from_line(line: str) -> Optional[str]:
 
 def should_skip_link(link: str) -> bool:
     if not link:
+        return True
+
+    # Skip placeholder links like <container-id>, <blob-path>, your-generated-link, etc.
+    if (re.match(r'^<[^/]+>$', link) or
+        '/<' in link or
+        ('<' in link and '>' in link) or
+        link == 'your-generated-link'):
         return True
 
     # First normalize the link by removing any escaped characters
@@ -70,8 +85,7 @@ def should_skip_link(link: str) -> bool:
         pass
 
     external_patterns = [
-        r'^(http|https|ftp|mailto|#)',
-        r'^broken-reference'
+        r'^(http|https|ftp|mailto|#)'
     ]
 
     return any(re.match(pattern, normalized_link) for pattern in external_patterns)
@@ -208,11 +222,14 @@ def extract_all_links() -> tuple[Dict[str, List[str]], int, int]:
 
             markdown_links = re.finditer(r'\[[^\]]+\]\([^\)]+\)', content)
             html_src = re.finditer(r'src="[^"]+"', content)
+            html_anchors = re.finditer(r'<a[^>]*href=["\']([^"\']*)["\'][^>]*>', content)
 
             for match in markdown_links:
                 links.append(match.group(0))
             for match in html_src:
                 links.append(f'  src="{match.group(0)[5:-1]}"')
+            for match in html_anchors:
+                links.append(f'  <a href="{match.group(1)}">')
 
         links = sorted(set(links))
         count = len(links)
@@ -271,9 +288,10 @@ def main():
                 file_header = line
                 broken_links = []
 
-            elif re.match(r'^  \[.*\]\([^)]+\)', line) or \
-                 re.match(r'^  <img.*src="[^"]+', line) or \
-                 re.match(r'^  src="[^"]+', line):
+            elif re.match(r'^\s+\[.*\]\([^)]+\)', line) or \
+                 re.match(r'^\s+<img.*src="[^"]+', line) or \
+                 re.match(r'^\s+src="[^"]+', line) or \
+                 re.match(r'^\s+<a.*href=', line):
 
                 link = extract_links_from_line(line)
                 if link is None:
