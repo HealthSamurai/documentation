@@ -55,7 +55,7 @@ POST /$validate?mode=<mode>&profile=<StructureDefinition.url>
 | `id`           | Optional for `mode`=`create`. Can either be passed in the resource body or be specified in the route params                                                                                                         |
 | `resource`     | Optional for `mode`=`delete`, required otherwise. Resource to be validated                                                                                                                                          |
 | `mode`         | Optional. Default is `create`. Possible values are `create, update, delete, patch`                                                                                                                                  |
-| `profile`      | <p>Optional. Can be passed multiple times. Used to validate with specific profiles.<br>Value should be <code>StructureDefinition.url</code> of the profile defined as <a href="broken-reference">zen schema</a></p> |
+| `profile`      | <p>Optional. Can be passed multiple times. Used to validate with specific profiles.<br>Value should be <code>StructureDefinition.url</code> of the profile</p> |
 
 | `mode`        | Description                                                                                                                                                                                                      |
 | ------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
