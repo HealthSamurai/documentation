@@ -84,3 +84,38 @@ resources:
 </code></pre>
 
 In this example, the AccessPolicy resource will be created as well as the App resource.
+
+## Request Format
+
+When Aidbox proxies a request to your service, it sends a POST request to the configured endpoint URL.
+
+### Request
+
+```yaml
+type: operation
+request:
+  resource:                 # request body, can be anything (null for GET)
+    resourceType: Parameters
+    parameter:
+      - name: patientNHSNumber
+        valueIdentifier:
+          system: https://fhir.nhs.uk/Id/nhs-number
+          value: "9876543210"
+  params: {}                # Query parameters
+  route-params:             # Path parameters from operation path
+    date: "2026-01-01"
+  headers:
+    content-type: application/fhir+json
+    authorization: Bearer <user-token>
+box:
+  base-url: http://localhost:8080
+operation:
+  id: getstructuredrecord
+  app:
+    id: myapp
+    resourceType: App
+```
+
+### Response
+
+Your service can return any HTTP status code and response body. Aidbox passes the response as-is to the client.
