@@ -4,7 +4,7 @@ description: >-
   upload them to Grafana
 ---
 
-# Set-up Grafana integration
+# Set-up Grafana integration (deprecated)
 
 {% hint style="warning" %}
 Grafana integration is deprecated since 2601.
