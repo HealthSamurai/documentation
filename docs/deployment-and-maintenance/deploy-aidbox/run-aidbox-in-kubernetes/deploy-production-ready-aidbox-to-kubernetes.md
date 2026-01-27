@@ -518,10 +518,6 @@ scrape_configs:
 * [Thanos](https://thanos.io/) — highly available Prometheus setup with long-term storage capabilities.
 * [Grafana Mimir](https://grafana.com/oss/mimir/) — highly available, multi-tenant, long-term storage for Prometheus.
 
-### Export the Aidbox Grafana dashboard
-
-Aidbox metrics has integration with Grafana, which can generate dashboards and upload them to Grafana — [Grafana Integration](../../../modules/observability/metrics/monitoring/set-up-grafana-integration.md)
-
 ### Additional monitoring
 
 System monitoring:
