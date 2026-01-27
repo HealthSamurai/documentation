@@ -232,7 +232,7 @@
   * [SMART on FHIR](access-control/authorization/smart-on-fhir/README.md)
     * [SMART Client Authorization](access-control/authorization/smart-on-fhir/smart-client-authorization/README.md)
       * [SMART App Launch](access-control/authorization/smart-on-fhir/smart-client-authorization/smart-app-launch.md)
-      * [SMART Backend Services](access-control/authorization/smart-on-fhir/smart-client-authorization/smart-backend-services.md)
+      * [SMART backend services](access-control/authorization/smart-on-fhir/smart-client-authorization/smart-backend-services.md)
     * [SMART Client Authentication](access-control/authorization/smart-on-fhir/smart-client-authentication/README.md)
       * [SMART: Asymmetric ("private key JWT") authentication](access-control/authorization/smart-on-fhir/smart-client-authentication/smart-asymmetric-docs-private-key-jwt-authentication.md)
       * [SMART: Symmetric (/"client secret") authentication](access-control/authorization/smart-on-fhir/smart-client-authentication/smart-symmetric-docs-client-secret-authentication.md)
