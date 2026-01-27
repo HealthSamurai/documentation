@@ -402,7 +402,7 @@ redirects:
   modules-1/observability/logs/tutorials/set-up-logs-with-aidbox-project: modules/observability/logs/tutorials/set-up-logs-with-aidbox-project.md
   modules-1/observability/metrics/monitoring/aidbox-metrics-server: modules/observability/metrics/monitoring/use-aidbox-metrics-server.md
   modules-1/observability/metrics/monitoring/how-to-export-metrics-to-the-otel-collector: modules/observability/metrics/monitoring/how-to-export-metrics-to-the-otel-collector.md
-  modules-1/observability/metrics/monitoring/set-up-grafana-integration: modules/observability/metrics/monitoring/set-up-grafana-integration.md
+  modules-1/observability/metrics/monitoring/set-up-grafana-integration: deprecated/deprecated/other/monitoring/set-up-grafana-integration.md
   modules-1/observability/metrics/monitoring/use-aidbox-metrics-server: modules/observability/metrics/monitoring/use-aidbox-metrics-server.md
   modules-1/observability/metrics/technical-reference/opentelemetry-metrics: modules/observability/metrics/technical-reference/opentelemetry-metrics.md
   modules-1/observability/metrics/technical-reference/otel-metrics-exporter-parameters: modules/observability/metrics/technical-reference/otel-metrics-exporter-parameters.md
