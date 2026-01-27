@@ -66,13 +66,9 @@ Then go to [Discover](http://localhost:5602/app/discover) page (Menu → Discove
 
 ### 4. Discover Aidbox metrics with Grafana
 
-Grafana should be available on [http://localhost:3001](http://localhost:3001) address, login with `admin`/`password` credentials.
+To visualize Aidbox metrics, import the [Aidbox Metrics Dashboard](https://grafana.com/grafana/dashboards/$id) from Grafana Dashboards. Navigate to `Dashboards` and click `New` -> `Import`. Enter the dashboard ID `$id` and click `Load`. Then select the Prometheus data source and click `Import`.
 
-<figure><img src="../../../.gitbook/assets/grafana-login.png" alt="Grafana login page"><figcaption><p>Grafana LogIn</p></figcaption></figure>
-
-Navigate to `Dashboards->Aidbox Dashboards->Aidbox Dashboard` to see the dashboard. You probably need to wait for a while until the data is collected.
-
-<figure><img src="../../../.gitbook/assets/grafana-dashboard.png" alt="Grafana dashboard showing Aidbox metrics and performance data"><figcaption><p>Grafana Dashboard</p></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/AidBoxMetricsDashboard.png" alt="Grafana dashboard showing Aidbox metrics and performance data"><figcaption><p>Aidbox Metrics Dashboard</p></figcaption></figure>
 
 ### 5. Discover Aidbox traces with Zipkin
 
