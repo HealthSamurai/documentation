@@ -108,7 +108,7 @@ content-type: application/json
 
 To obtain an access token use `/auth/token`endpoint with following parameters:
 
-<table><thead><tr><th width="293">Parametr</th><th>Description</th></tr></thead><tbody><tr><td><code>scope</code> *</td><td>String with scopes separated by space.</td></tr><tr><td><code>grant_type</code> *</td><td>Fixed value - <code>client_credentials</code></td></tr><tr><td><code>client_assertion_type</code> *</td><td>Fixed value - <code>urn:ietf:params:oauth:client-assertion-type:jwt-bearer</code></td></tr><tr><td><code>client_assertion</code> *</td><td>Signed authentication <a href="broken-reference">JWT value</a>.</td></tr></tbody></table>
+<table><thead><tr><th width="293">Parametr</th><th>Description</th></tr></thead><tbody><tr><td><code>scope</code> *</td><td>String with scopes separated by space.</td></tr><tr><td><code>grant_type</code> *</td><td>Fixed value - <code>client_credentials</code></td></tr><tr><td><code>client_assertion_type</code> *</td><td>Fixed value - <code>urn:ietf:params:oauth:client-assertion-type:jwt-bearer</code></td></tr><tr><td><code>client_assertion</code> *</td><td>Signed authentication JWT value.</td></tr></tbody></table>
 
 \*- required parameter
 
