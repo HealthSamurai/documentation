@@ -10,10 +10,11 @@ This specification is designed to work with FHIR Bulk Data Access, but is not re
 
 Before a SMART client can run against a FHIR server, the client SHALL generate or obtain an asymmetric key pair and register its public key set as `jsks_uri` in Client resource. Aidbox provides  `.well-known/jwks.json` endpoint so you can use it.
 
-{% tabs %}
-{% tab title="Request example" %}
-<pre class="language-json"><code class="lang-json"><strong>PUT /Client/inferno-my-clinic-bulk-client
-</strong>content-type: application/json
+**Request:**
+
+```json
+PUT /Client/inferno-my-clinic-bulk-client
+content-type: application/json
 accept: application/json
 
 {
@@ -31,17 +32,17 @@ accept: application/json
   "scope": [
     "system/*.read"
   ],
-  "jwks_uri": "&#x3C;AIDBOX_BASE_URL>/.well-known/jwks.json",
+  "jwks_uri": "<AIDBOX_BASE_URL>/.well-known/jwks.json",
   "grant_types": [
     "client_credentials"
   ]
 }
-</code></pre>
-{% endtab %}
+```
 
-{% tab title="Response" %}
+**Response:**
+
 ```json
-// 201 OK 
+// 201 OK
 
 {
  "type": "bulk-api-client",
@@ -66,16 +67,14 @@ accept: application/json
  "jwks_uri": "https://releasetest.edge.aidbox.app/.well-known/jwks.json"
 }
 ```
-{% endtab %}
-{% endtabs %}
 
 ## Create AccessPolicy for the Client
 
-{% tabs %}
-{% tab title="Request" %}
+**Request:**
+
 ```json
-PUT /AccessPolicy/inferno-my-clinic-bulk-client 
-accept: application/json 
+PUT /AccessPolicy/inferno-my-clinic-bulk-client
+accept: application/json
 content-type: application/json
 
 {
@@ -89,10 +88,8 @@ content-type: application/json
 }
 ```
 
+**Response:**
 
-{% endtab %}
-
-{% tab title="Response" %}
 ```json
 {
  "id": "inferno-my-clinic-bulk-client",
@@ -107,10 +104,6 @@ content-type: application/json
 }
 ```
 
-
-{% endtab %}
-{% endtabs %}
-
 ## Obtain access token
 
 To obtain an access token use `/auth/token`endpoint with following parameters:
@@ -119,11 +112,11 @@ To obtain an access token use `/auth/token`endpoint with following parameters:
 
 \*- required parameter
 
-{% tabs %}
-{% tab title="Request" %}
+**Request:**
+
 ```json
 POST /auth/token
-accept: application/json 
+accept: application/json
 content-type: application/json
 
 {
@@ -133,9 +126,9 @@ content-type: application/json
   "scope": "system/*.read"
 }
 ```
-{% endtab %}
 
-{% tab title="Response" %}
+**Response:**
+
 ```json
 {
   "token_type": "Bearer",
@@ -146,22 +139,20 @@ content-type: application/json
   "refresh_token": null
 }
 ```
-{% endtab %}
-{% endtabs %}
 
 ## Access FHIR API
 
-{% tabs %}
-{% tab title="Request" %}
+**Request:**
+
 ```http
 GET /fhir/Observation?code=4548-4&_count=2
 content-type: application/json
 accept: application/json
 authorization: "Bearer eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJodHRwczovL2cxMHRlc3QuZWRnZS5haWRib3guYXBwIiwic3ViIjoiaW5mZXJuby1teS1jbGluaWMtYnVsay1jbGllbnQiLCJpYXQiOjE3MzQwMTAyNDMsImp0aSI6IjEzMzZhNmIyLTZiNGMtNDE0Yy04Mjk0LWJkYjA2OWE5OTE5MSIsImV4cCI6MTczNDAxMDU0M30.glqegvLKAoF5y2cJ7rUODTz6Ro0Lhu7vUr86vvvyrhKU0ADHVDkHbue-SMyy2HhHl0ZF4LMC_Vlu4Q_yv2WWUn4htQ3INYIeBuJ_pyFOonJ2mQNa82j6ZmqLrjZyGr_PlqAOdZGPfmDyudD_jbBVABf3wnAcvLxP5fIPZrAGL_AlHKA843LgKTqIbmRbugl_QvdBwRfQj2fIN4HZNIkfcOeQclw6yCrNSIZ5qSG0O_GDmfIjU942qhiJPppk1kI8G700BLJtLvTVDuC0fjqyobRlLetuAwbGuztBSD8EROsumU-I1tPdUP-LlAHhlY8oe9rFa0VZNi5V1mth_Yw0-A"
 ```
-{% endtab %}
 
-{% tab title="Response" %}
+**Response:**
+
 ```json
 // 200 OK
 
@@ -296,8 +287,4 @@ authorization: "Bearer eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJodHRwczov
  ]
 }
 ```
-
-
-{% endtab %}
-{% endtabs %}
 
