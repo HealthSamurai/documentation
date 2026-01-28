@@ -1,5 +1,7 @@
 ---
-description: Complete guide to installing and using the Aidbox JavaScript SDK with TypeScript support for FHIR resource operations.
+description: >-
+  Complete guide to installing and using the Aidbox JavaScript SDK with
+  TypeScript support for FHIR resource operations.
 ---
 
 # Aidbox JavaScript SDK
@@ -65,7 +67,7 @@ npm install
 
 ### How to use
 
-**Important:** Before we start we have to make sure that aidbox client [is configured](../../access-control/authentication/basic-http-authentication.md) and your [access policies](../../access-control/authorization/access-policies.md) provide granular access to resources you're trying to reach.
+**Important:** Before we start we have to make sure that aidbox client [is configured](../../../../access-control/authentication/basic-http-authentication.md) and your [access policies](../../../../access-control/authorization/access-policies.md) provide granular access to resources you're trying to reach.
 
 ```javascript
 import { Client } from "aidbox-sdk"
@@ -249,7 +251,7 @@ client.transformToBundle(
 );
 ```
 
-Bundle requests could be a [transaction or batch](../../api/batch-transaction.md) type. SDK uses the "transaction" type by default but you can change it by providing it in the second parameter.
+Bundle requests could be a [transaction or batch](../../../../api/batch-transaction.md) type. SDK uses the "transaction" type by default but you can change it by providing it in the second parameter.
 
 ```javascript
 const data = ArrayOfPatients.map(client.bundleEntryPost);

@@ -1,5 +1,7 @@
 ---
-description: Customize Aidbox Forms appearance with themes, colors, fonts, brand images, and form-specific styling options.
+description: >-
+  Customize Aidbox Forms appearance with themes, colors, fonts, brand images,
+  and form-specific styling options.
 ---
 
 # Form Customisation
@@ -40,7 +42,7 @@ For filled buttons accent color will be used as background color, for outlined b
 
 Also you can change text of `Save & Close` and `Submit` buttons.
 
-> Read more about [`Save & Close button`](../../../deprecated/deprecated/forms/form-api-docs-deprecated.md#aidbox.sdc-generate-form-link)
+> Read more about [`Save & Close button`](../form-api-docs-deprecated.md#aidbox.sdc-generate-form-link)
 
 ```clojure
 buttons-sdc-theme
@@ -85,7 +87,7 @@ background-sdc-theme
 
 To understand what each color is look at the image below:
 
-<figure><img src="../../../.gitbook/assets/0a0cc319-a1b7-4114-8f7d-b087fa9cc29c.png" alt="Form theme color mapping showing main, form, and toolbar background areas"><figcaption></figcaption></figure>
+<figure><img src="../../../../.gitbook/assets/0a0cc319-a1b7-4114-8f7d-b087fa9cc29c.png" alt="Form theme color mapping showing main, form, and toolbar background areas"><figcaption></figcaption></figure>
 
 ### Font
 

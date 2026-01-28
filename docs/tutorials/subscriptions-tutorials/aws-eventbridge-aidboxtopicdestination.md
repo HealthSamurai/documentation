@@ -1,5 +1,7 @@
 ---
-description: Stream FHIR resource events to AWS EventBridge for serverless event-driven architectures and cross-account integrations.
+description: >-
+  Stream FHIR resource events to AWS EventBridge for serverless event-driven
+  architectures and cross-account integrations.
 ---
 
 # AidboxTopicSubscription AWS EventBridge tutorial
@@ -10,12 +12,12 @@ This functionality is available starting from Aidbox version **2601**.
 
 ## Objectives
 
-- Learn how to integrate [AidboxTopicSubscriptions](../../modules/topic-based-subscriptions/aidbox-topic-based-subscriptions.md) with AWS EventBridge
+* Learn how to integrate [AidboxTopicSubscriptions](../../modules/topic-based-subscriptions/aidbox-topic-based-subscriptions.md) with AWS EventBridge
 
 ## Before you begin
 
-- Make sure your Aidbox version is **2601** or newer
-- Setup the local Aidbox instance using getting started [guide](../../getting-started/run-aidbox-locally.md)
+* Make sure your Aidbox version is **2601** or newer
+* Setup the local Aidbox instance using getting started [guide](../../getting-started/run-aidbox-locally.md)
 
 ## What is AWS EventBridge?
 
@@ -25,24 +27,24 @@ For detailed information, see the [official EventBridge documentation](https://d
 
 ### Key Concepts
 
-**[Event Bus](https://docs.aws.amazon.com/eventbridge/latest/userguide/eb-event-bus.html)** is a router that receives events and delivers them to targets based on rules. EventBridge provides:
+[**Event Bus**](https://docs.aws.amazon.com/eventbridge/latest/userguide/eb-event-bus.html) is a router that receives events and delivers them to targets based on rules. EventBridge provides:
 
-- **Default event bus**: Receives events from AWS services
-- **Custom event buses**: For your application events
-- **Partner event buses**: For SaaS integrations
+* **Default event bus**: Receives events from AWS services
+* **Custom event buses**: For your application events
+* **Partner event buses**: For SaaS integrations
 
-**[Events](https://docs.aws.amazon.com/eventbridge/latest/userguide/eb-events.html)** are JSON objects with standard fields:
+[**Events**](https://docs.aws.amazon.com/eventbridge/latest/userguide/eb-events.html) are JSON objects with standard fields:
 
-- `source`: Identifies the event producer (for example, `aidbox.mycompany.com`)
-- `detail-type`: Categorizes events for filtering (for example, `FHIR Patient Notification`)
-- `detail`: The actual payload (FHIR Bundle with subscription notification)
+* `source`: Identifies the event producer (for example, `aidbox.mycompany.com`)
+* `detail-type`: Categorizes events for filtering (for example, `FHIR Patient Notification`)
+* `detail`: The actual payload (FHIR Bundle with subscription notification)
 
 ### Best Effort vs At-Least-Once Delivery
 
 In Aidbox, two [AidboxTopicDestination](../../modules/topic-based-subscriptions/aidbox-topic-based-subscriptions.md#aidboxtopicdestination) profiles are supported:
 
-- `http://aidbox.app/StructureDefinition/aidboxtopicdestination-aws-eventbridge-best-effort` — Events are sent immediately. If EventBridge returns an error, the event is lost. Low latency, suitable for non-critical notifications.
-- `http://aidbox.app/StructureDefinition/aidboxtopicdestination-aws-eventbridge-at-least-once` — Events are persisted to database before sending. If EventBridge is unavailable, events remain in queue and are retried automatically. Supports batching up to 10 events. Guaranteed delivery for critical integrations.
+* `http://aidbox.app/StructureDefinition/aidboxtopicdestination-aws-eventbridge-best-effort` — Events are sent immediately. If EventBridge returns an error, the event is lost. Low latency, suitable for non-critical notifications.
+* `http://aidbox.app/StructureDefinition/aidboxtopicdestination-aws-eventbridge-at-least-once` — Events are persisted to database before sending. If EventBridge is unavailable, events remain in queue and are retried automatically. Supports batching up to 10 events. Guaranteed delivery for critical integrations.
 
 ## Setting up locally
 
@@ -98,10 +100,10 @@ docker compose up -d
 
 In AidboxUI, go to **FHIR Packages -> io.healthsamurai.topic** and make sure that EventBridge profiles are present:
 
-- `aidboxtopicdestination-aws-eventbridge-best-effort`
-- `aidboxtopicdestination-aws-eventbridge-at-least-once`
+* `aidboxtopicdestination-aws-eventbridge-best-effort`
+* `aidboxtopicdestination-aws-eventbridge-at-least-once`
 
-![aidbox fhir packages ui](../../../.gitbook/assets/eventbridge.png)
+![aidbox fhir packages ui](../../.gitbook/assets/eventbridge.png)
 
 ### 6. Create Event Bus in LocalStack
 
@@ -448,9 +450,9 @@ GET /metrics
 
 Metrics include:
 
-- `aidbox_topic_destination_messages_delivered`
-- `aidbox_topic_destination_messages_queued`
-- `aidbox_topic_destination_messages_in_process`
+* `aidbox_topic_destination_messages_delivered`
+* `aidbox_topic_destination_messages_queued`
+* `aidbox_topic_destination_messages_in_process`
 
 ## Set up with AWS
 
@@ -518,7 +520,7 @@ aws sqs set-queue-attributes \
 
 ### Step 5: Create AidboxTopicDestination
 
-When running on AWS infrastructure (EC2, ECS, EKS), use IAM roles instead of access keys. See [AWS Authentication](#aws-authentication) for details.
+When running on AWS infrastructure (EC2, ECS, EKS), use IAM roles instead of access keys. See [AWS Authentication](aws-eventbridge-aidboxtopicdestination.md#aws-authentication) for details.
 
 ```
 POST /fhir/AidboxTopicDestination
@@ -558,16 +560,16 @@ aws sqs receive-message \
 
 ### Aidbox
 
-- [Topic-based Subscriptions](../../modules/topic-based-subscriptions/aidbox-topic-based-subscriptions.md)
-- [AidboxTopicDestination](../../modules/topic-based-subscriptions/aidbox-topic-based-subscriptions.md#aidboxtopicdestination)
+* [Topic-based Subscriptions](../../modules/topic-based-subscriptions/aidbox-topic-based-subscriptions.md)
+* [AidboxTopicDestination](../../modules/topic-based-subscriptions/aidbox-topic-based-subscriptions.md#aidboxtopicdestination)
 
 ### AWS EventBridge
 
-- [What is Amazon EventBridge?](https://docs.aws.amazon.com/eventbridge/latest/userguide/eb-what-is.html)
-- [Amazon EventBridge Event Buses](https://docs.aws.amazon.com/eventbridge/latest/userguide/eb-event-bus.html)
-- [Amazon EventBridge Events](https://docs.aws.amazon.com/eventbridge/latest/userguide/eb-events.html)
-- [Sending Events with PutEvents](https://docs.aws.amazon.com/eventbridge/latest/userguide/eb-putevents.html)
-- [Amazon EventBridge Rules](https://docs.aws.amazon.com/eventbridge/latest/userguide/eb-rules.html)
-- [Amazon EventBridge Targets](https://docs.aws.amazon.com/eventbridge/latest/userguide/eb-targets.html)
-- [Amazon EventBridge Quotas](https://docs.aws.amazon.com/eventbridge/latest/userguide/eb-quota.html)
-- [PutEvents API Reference](https://docs.aws.amazon.com/eventbridge/latest/APIReference/API_PutEvents.html)
+* [What is Amazon EventBridge?](https://docs.aws.amazon.com/eventbridge/latest/userguide/eb-what-is.html)
+* [Amazon EventBridge Event Buses](https://docs.aws.amazon.com/eventbridge/latest/userguide/eb-event-bus.html)
+* [Amazon EventBridge Events](https://docs.aws.amazon.com/eventbridge/latest/userguide/eb-events.html)
+* [Sending Events with PutEvents](https://docs.aws.amazon.com/eventbridge/latest/userguide/eb-putevents.html)
+* [Amazon EventBridge Rules](https://docs.aws.amazon.com/eventbridge/latest/userguide/eb-rules.html)
+* [Amazon EventBridge Targets](https://docs.aws.amazon.com/eventbridge/latest/userguide/eb-targets.html)
+* [Amazon EventBridge Quotas](https://docs.aws.amazon.com/eventbridge/latest/userguide/eb-quota.html)
+* [PutEvents API Reference](https://docs.aws.amazon.com/eventbridge/latest/APIReference/API_PutEvents.html)
