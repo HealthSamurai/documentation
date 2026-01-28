@@ -33,6 +33,7 @@ A global Configuration resource can be instantiated to serve as the system-wide 
     * `id`: id
     * `resourceType`: One of (GcpServiceAccount, AwsAccount, AzureContainer)
   * `bucket`: Bucket to store attachment files (required for GcpServiceAccount and AwsAccount)
+  * `store-absolute-url`: Store absolute url to QuestionnaireResponse attachments
 * `builder`: Configuration settings for the form builder.
   * `form-url-prefix`: The URL prefix used in URL generation for new forms.
   * `hide-back-button`: A boolean value that specifies whether the back button should be hidden.
@@ -122,7 +123,8 @@ Content-Type: application/json
       "id": "aws-test-account",
       "resourceType": "AwsAccount"
     },
-    "bucket": "attachments-bucket"
+    "bucket": "attachments-bucket",
+    "store-absolute-url" : false
   },
   "builder": {
     "form-url-prefix": "https://example.com/forms/",

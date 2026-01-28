@@ -857,6 +857,14 @@ Addednum Resource. Contains additional information abount SDCDocument/SDCWorkflo
   "type" : "string",
   "desc" : "Storage bucket (required for GCP and S3)"
 }, {
+  "path" : "storage.store-absolute-url",
+  "name" : "store-absolute-url",
+  "lvl" : 1,
+  "min" : 0,
+  "max" : 1,
+  "type" : "boolean",
+  "desc" : "Store absolute url to QuestionnaireResponse attachments"
+}, {
   "path" : "term-server",
   "name" : "term-server",
   "lvl" : 0,

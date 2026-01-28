@@ -78,3 +78,37 @@ Supported `resourceType` values:
 - `AzureContainer` - for Azure Blob Storage with SAS
 
 Now all files from attachment items will be stored in cloud storage.
+
+
+## Absolute URL in attachments
+
+Typically, stored attachments in `QuestionnaireResponse` have relative path to our own operation `$sdc-file` and does not expose storage details. 
+Relative path follows this template `/$sdc-file/[questionnaire-response-id]/[random 8 chars (nano-id)].[file-extension]`
+
+Example:
+
+```
+/$sdc-file/qr-1/Ljkm3BMJ.jpg
+```
+
+But sometimes it's useful to have absolute URLs to S3 storage in attachments, for example when you want to share `Questionnaire Response` with third party system.
+For this situation we have a `SDCConfig` option  - `store-absolute-url`.
+
+```
+{
+  "resourceType": "SDCConfig",
+  "default": true,
+  "storage": {
+    "account": {
+      "id": "test-account",
+      "resourceType": "AwsAccount"
+    },
+    "bucket": "sdc-files",
+    "store-absolute-url" : true
+  }
+}
+```
+
+After specifying `store-absolute-url = true` all attachements URL will have shape `https://[s3-provider-server]/[other-url-parts*]/[bucket-name]/[questionnaire-response-id]/[random 8 chars (nano-id)].[file-extension]`
+
+> NOTE: To resolve these links in Aidbox you still need storage `account` and `bucket` configured.
