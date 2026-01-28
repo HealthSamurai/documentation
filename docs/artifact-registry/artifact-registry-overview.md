@@ -207,6 +207,80 @@ This recursive collection results in a **tree-shaken** package: the system conta
 
 Canonical resources can reference each other using versioned URLs (e.g., `http://example.com/StructureDefinition/Patient|1.0.0`). If you specify a version, the registry uses it exactly. Otherwise, it automatically picks the latest version.
 
+## $current-canonical Operation
+
+The `$current-canonical` operation returns the most current version of a canonical resource with the specified URL. This operation implements the [FHIR $current-canonical specification](https://build.fhir.org/canonicalresource-operation-current-canonical.html).
+
+### Usage
+
+The operation supports both type-level and system-level invocation:
+
+**Type-level** (when you know the resource type):
+
+```
+GET /fhir/StructureDefinition/$current-canonical?url=http://hl7.org/fhir/StructureDefinition/Patient
+```
+
+**System-level** (searches across all canonical resource types):
+
+```
+GET /fhir/$current-canonical?url=http://hl7.org/fhir/StructureDefinition/Patient
+```
+
+### Parameters
+
+| Parameter | Cardinality | Type | Description |
+|-----------|-------------|------|-------------|
+| url | 1..1 | uri | The canonical URL (with no version declared) |
+| status | 0..* | code | Optional filter for specific statuses. When omitted, any status is acceptable |
+
+### POST Request
+
+You can also invoke the operation using POST with a Parameters resource:
+
+```http
+POST /fhir/StructureDefinition/$current-canonical
+Content-Type: application/fhir+json
+
+{
+  "resourceType": "Parameters",
+  "parameter": [
+    {
+      "name": "url",
+      "valueUri": "http://hl7.org/fhir/StructureDefinition/Patient"
+    }
+  ]
+}
+```
+
+### Response
+
+On success, the operation returns a Parameters resource containing the resolved canonical:
+
+```json
+{
+  "resourceType": "Parameters",
+  "parameter": [
+    {
+      "name": "result",
+      "resource": {
+        "resourceType": "StructureDefinition",
+        "id": "Patient",
+        "url": "http://hl7.org/fhir/StructureDefinition/Patient",
+        "version": "4.0.1",
+        "status": "active"
+      }
+    }
+  ]
+}
+```
+
+If no matching resource is found, the operation returns a 404 status with an OperationOutcome.
+
+### Version Selection
+
+When multiple versions of a canonical exist, the operation uses the [candidate selection algorithm](#candidate-selection-algorithm) to determine the current version.
+
 See also:
 
 {% content-ref url="../tutorials/terminology-tutorials/local-terminology.md" %}
