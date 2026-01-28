@@ -22,3 +22,4 @@ meili_data/
 resources/public/app.min.css
 secrets.yaml
 config.yaml
+scripts/venv/
