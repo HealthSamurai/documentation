@@ -7,7 +7,7 @@ from pathlib import Path
 from typing import Set
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
-from lib.output import check_start, check_success, check_error, print_issue
+from lib.output import check_start, check_success, check_error, print_issue, print_detail
 
 
 def validate_redirects(file_content) -> tuple[Set[str], int]:
@@ -36,12 +36,15 @@ def main():
 
         if errors:
             check_error(f"Found {len(errors)} missing redirect targets")
-            print("\n⚠️  WHAT TO FIX:")
-            print(f"   Open '.gitbook.yaml' and find the redirects for these missing files:")
-            print(f"   Each redirect line looks like:  'old/path: new/path.md'\n")
-            print("   WHY: Redirects point to pages that don't exist.")
-            print("   FIX: Update the redirect target to an existing page or remove the redirect.\n")
-            print("Missing files:")
+            print_detail("")
+            print_detail("WHAT TO FIX:")
+            print_detail("  Open '.gitbook.yaml' and find the redirects for these missing files")
+            print_detail("  Each redirect line looks like: 'old/path: new/path.md'")
+            print_detail("")
+            print_detail("WHY: Redirects point to pages that don't exist")
+            print_detail("FIX: Update the redirect target to an existing page or remove the redirect")
+            print_detail("")
+            print_detail("Missing files:")
             for e in errors:
                 print_issue(e)
             return 1
