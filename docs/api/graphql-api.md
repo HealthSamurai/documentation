@@ -585,6 +585,17 @@ Response
 }
 ```
 
+## GraphQL Federation support
+
+Start from version 2601, Aidbox supports GraphQL Federation. This feature are available throw enabling setting [`module.graphql.federation-support`](../reference/all-settings.md#module.graphql.federation-support) with value `true` or via environment variable:
+
+```
+BOX_MODULE_GRAPHQL_FEDERATION_SUPPORT=true
+```
+
+See full example of [GraphQL Federation with apollo router and Aidbox FHIR server](https://github.com/Aidbox/examples/tree/main/aidbox-integrations/apollo-graphql-federation)
+
+
 ## Configuration
 
 ### Set timeout
