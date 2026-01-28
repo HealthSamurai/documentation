@@ -2164,6 +2164,10 @@ Custom index format string. The default value is 'aidbox-logs'-yyyy-MM-dd.
 
 ### Grafana
 
+{% hint style="warning" %}
+Grafana integration is deprecated since 2601.
+{% endhint %}
+
 Grafana settings
 
 #### Grafana URL for metrics dashboards<a href="#observability.grafana.url" id="observability.grafana.url"></a>
