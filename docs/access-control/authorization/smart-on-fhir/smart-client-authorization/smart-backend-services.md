@@ -2,289 +2,348 @@
 description: Enable backend services to access FHIR APIs using client credentials grant with JWT bearer authentication.
 ---
 
-# SMART backend services
+# SMART Backend Services
 
-This specification is designed to work with FHIR Bulk Data Access, but is not restricted to use for retrieving bulk data; it may be used to connect to any FHIR API endpoint.
+SMART Backend Services enables **server-to-server authentication** without user interaction. It's designed for automated systems like:
 
-## Register a Client
+- Data pipelines and ETL jobs
+- Backend microservices
+- Bulk data export clients
+- Integration engines
 
-Before a SMART client can run against a FHIR server, the client SHALL generate or obtain an asymmetric key pair and register its public key set as `jsks_uri` in Client resource. Aidbox provides  `.well-known/jwks.json` endpoint so you can use it.
+This flow uses OAuth 2.0 **client credentials grant** combined with **JWT bearer client authentication** ([RFC 7523](https://tools.ietf.org/html/rfc7523)). Instead of a shared secret, the client proves its identity by signing a JWT with its private key.
 
-**Request:**
+## How it works
+
+```mermaid
+sequenceDiagram
+    participant S as Your Backend Service
+    participant A as Aidbox
+
+    Note over S: Has Private Key
+    Note over A: Has Public Key<br/>(in Client resource)
+
+    S->>S: Create JWT and sign with Private Key
+    S->>A: POST /auth/token<br/>client_assertion=<signed JWT>
+    A->>A: Verify JWT signature with Public Key
+    A-->>S: access_token
+
+    S->>A: GET /fhir/Patient<br/>Authorization: Bearer <token>
+    A-->>S: FHIR resources
+```
+
+**Key principle:** The private key never leaves your service. Aidbox only stores the public key and uses it to verify JWT signatures.
+
+## Step 1: Generate a key pair
+
+Generate an RSA key pair. The private key stays in your service, the public key goes to Aidbox.
+
+### Option A: Using OpenSSL
+
+```bash
+# Generate private key (keep this secret!)
+openssl genrsa -out private-key.pem 2048
+
+# Extract public key
+openssl rsa -in private-key.pem -pubout -out public-key.pem
+```
+
+To convert the public key to JWK format, use an online tool like [https://jwkconvert.vercel.app](https://jwkconvert.vercel.app) or a library.
+
+### Option B: Using Node.js / JavaScript
+
+```javascript
+const crypto = require('crypto');
+
+// Generate key pair
+const { publicKey, privateKey } = crypto.generateKeyPairSync('rsa', {
+  modulusLength: 2048,
+});
+
+// Export private key as PEM (store securely!)
+const privateKeyPem = privateKey.export({ type: 'pkcs8', format: 'pem' });
+
+// Export public key as JWK (for Aidbox Client resource)
+const publicKeyJwk = publicKey.export({ format: 'jwk' });
+
+// Generate a key ID
+const keyId = crypto.randomUUID();
+
+console.log('Private Key (PEM):', privateKeyPem);
+console.log('Public Key (JWK):', { ...publicKeyJwk, kid: keyId, use: 'sig' });
+console.log('Key ID:', keyId);
+```
+
+You'll get something like:
 
 ```json
-PUT /Client/inferno-my-clinic-bulk-client
-content-type: application/json
-accept: application/json
+{
+  "kty": "RSA",
+  "n": "0vx7agoebGcQSuu...",
+  "e": "AQAB",
+  "kid": "a1b2c3d4-e5f6-7890-abcd-ef1234567890",
+  "use": "sig"
+}
+```
+
+## Step 2: Register a Client in Aidbox
+
+Create a Client resource with your **public key** in the `jwks` field.
+
+```http
+PUT /Client/my-backend-service
+Content-Type: application/json
 
 {
-  "type": "bulk-api-client",
-  "active": true,
+  "id": "my-backend-service",
+  "grant_types": ["client_credentials"],
+  "scope": ["system/*.read"],
   "auth": {
     "client_credentials": {
       "client_assertion_types": [
         "urn:ietf:params:oauth:client-assertion-type:jwt-bearer"
       ],
-      "access_token_expiration": 300,
-      "token_format": "jwt"
+      "access_token_expiration": 300
     }
   },
-  "scope": [
-    "system/*.read"
-  ],
-  "jwks_uri": "<AIDBOX_BASE_URL>/.well-known/jwks.json",
-  "grant_types": [
-    "client_credentials"
+  "jwks": [
+    {
+      "kty": "RSA",
+      "n": "0vx7agoebGcQSuu...",
+      "e": "AQAB",
+      "kid": "a1b2c3d4-e5f6-7890-abcd-ef1234567890",
+      "use": "sig"
+    }
   ]
 }
 ```
 
-**Response:**
+| Field | Description |
+|-------|-------------|
+| `id` | Your client identifier (used as `iss` and `sub` in JWT) |
+| `grant_types` | Must include `client_credentials` |
+| `scope` | Allowed scopes (e.g., `system/*.read`, `system/Patient.write`) |
+| `jwks` | Array of public keys in JWK format |
+| `jwks[].kid` | Key ID — must match `kid` in your JWT header |
+| `jwks[].use` | Must be `sig` (signing) |
+
+### Alternative: Use `jwks_uri`
+
+If you prefer to host your public keys at a URL:
 
 ```json
-// 201 OK
-
 {
- "type": "bulk-api-client",
- "grant_types": [
-  "client_credentials"
- ],
- "resourceType": "Client",
- "scope": [
-  "system/*.read"
- ],
- "auth": {
-  "client_credentials": {
-   "client_assertion_types": [
-    "urn:ietf:params:oauth:client-assertion-type:jwt-bearer"
-   ],
-   "access_token_expiration": 300,
-   "token_format": "jwt"
-  }
- },
- "active": true,
- "id": "",
- "jwks_uri": "https://releasetest.edge.aidbox.app/.well-known/jwks.json"
+  "id": "my-backend-service",
+  "jwks_uri": "https://your-service.com/.well-known/jwks.json"
 }
 ```
 
-## Create AccessPolicy for the Client
-
-**Request:**
+Your endpoint must return a JWKS (note the `keys` wrapper — different from inline `jwks`):
 
 ```json
-PUT /AccessPolicy/inferno-my-clinic-bulk-client
-accept: application/json
-content-type: application/json
+{
+  "keys": [
+    { "kty": "RSA", "n": "...", "e": "AQAB", "kid": "...", "use": "sig" }
+  ]
+}
+```
+
+{% hint style="info" %}
+**Inline `jwks`** is a direct array: `"jwks": [{ ... }]`
+
+**Remote `jwks_uri`** returns an object with `keys`: `{ "keys": [{ ... }] }`
+{% endhint %}
+
+## Step 3: Create an AccessPolicy
+
+Grant the client access to FHIR resources:
+
+```http
+PUT /AccessPolicy/my-backend-service-policy
+Content-Type: application/json
 
 {
   "engine": "allow",
   "link": [
     {
-      "id": "inferno-my-clinic-bulk-client",
+      "id": "my-backend-service",
       "resourceType": "Client"
     }
   ]
 }
 ```
 
-**Response:**
+## Step 4: Create a JWT (client_assertion)
+
+Your service must create a signed JWT to authenticate. The JWT has three parts: header, payload, and signature.
+
+### JWT Header
 
 ```json
 {
- "id": "inferno-my-clinic-bulk-client",
- "link": [
-  {
-   "id": "inferno-my-clinic-bulk-client",
-   "resourceType": "Client"
-  }
- ],
- "engine": "allow",
- "resourceType": "AccessPolicy"
+  "alg": "RS384",
+  "typ": "JWT",
+  "kid": "a1b2c3d4-e5f6-7890-abcd-ef1234567890"
 }
 ```
 
-## Obtain access token
+| Field | Description |
+|-------|-------------|
+| `alg` | Signing algorithm: `RS384` (required) |
+| `typ` | Must be `JWT` |
+| `kid` | Key ID — must match a key in your Client's `jwks` |
 
-To obtain an access token use `/auth/token`endpoint with following parameters:
-
-<table><thead><tr><th width="293">Parametr</th><th>Description</th></tr></thead><tbody><tr><td><code>scope</code> *</td><td>String with scopes separated by space.</td></tr><tr><td><code>grant_type</code> *</td><td>Fixed value - <code>client_credentials</code></td></tr><tr><td><code>client_assertion_type</code> *</td><td>Fixed value - <code>urn:ietf:params:oauth:client-assertion-type:jwt-bearer</code></td></tr><tr><td><code>client_assertion</code> *</td><td>Signed authentication JWT value.</td></tr></tbody></table>
-
-\*- required parameter
-
-**Request:**
-
-```json
-POST /auth/token
-accept: application/json
-content-type: application/json
-
-{
-  "client_assertion": "eyJhbGciOiJSUzM4NCIsImtpZCI6ImI0MTUyOGI2ZjM3YTk1MDBlZGI4YTkwNWE1OTViZGQ3IiwidHlwIjoiSldUIn0.eyJpc3MiOiJpbmZlcm5vLW15LWNsaW5pYy1idWxrLWNsaWVudCIsInN1YiI6ImluZmVybm8tbXktY2xpbmljLWJ1bGstY2xpZW50IiwiYXVkIjoiaHR0cHM6Ly9nMTB0ZXN0LmVkZ2UuYWlkYm94LmFwcC9hdXRoL3Rva2VuIiwiZXhwIjoxNzM0MDA5NjI2LCJqdGkiOiJkZGI4NzQ5OTk1YjFkNWRiNDVkNTQ2NDVmZmU0ZmExZTkxODRhODI3YjlmOWM5MDY5ZDQxYzRmYjJhNjBjYTY3In0.hxKAec655NTH7Gs6qy2Cz2CXvETWnxF0jydjEdXNKYyrQvecBWct_ITc92eFiDnZ5jubhExqojeE2HUDn3lmS89Q9qFfGEsByLWXy4nJqSHa2y5mWxD5aI3LF3c4oSOZXSj-jFxAlSmxhV7MxumnJ2XP-6e81QQT-QQ9mDomWhgrIjqaHhv5yPQzI6CqDad9XBInMcE7S_TZ9QTpq3WtzC520-8SH3KdVF9dILO6pBGOOrlZ8468Vwfl5WL6XuhhwjbIIp8B5F0qAOGIGiA8V_-eE6PM1CNZtKQfrZNvVh0VwSu4T2k3gL4ZfI_8nhpUt8EEusOsu_6EvK3sP1yv7w",
-  "client_assertion_type": "urn:ietf:params:oauth:client-assertion-type:jwt-bearer",
-  "grant_type": "client_credentials",
-  "scope": "system/*.read"
-}
-```
-
-**Response:**
+### JWT Payload (Claims)
 
 ```json
 {
-  "token_type": "Bearer",
-  "scope": "system/AllergyIntolerance.read system/CarePlan.read system/CareTeam.read system/Condition.read system/Device.read system/DiagnosticReport.read system/DocumentReference.read system/Encounter.read system/Goal.read system/Group.read system/Immunization.read system/Location.read system/MedicationRequest.read system/Observation.read system/Organization.read system/Patient.read system/Practitioner.read system/Procedure.read system/Provenance.read",
-  "need_patient_banner": true,
-  "expires_in": 300,
-  "access_token": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJodHRwczovL2cxMHRlc3QuZWRnZS5haWRib3guYXBwIiwic3ViIjoiaW5mZXJuby1teS1jbGluaWMtYnVsay1jbGllbnQiLCJpYXQiOjE3MzQwMTAyNDMsImp0aSI6IjEzMzZhNmIyLTZiNGMtNDE0Yy04Mjk0LWJkYjA2OWE5OTE5MSIsImV4cCI6MTczNDAxMDU0M30.glqegvLKAoF5y2cJ7rUODTz6Ro0Lhu7vUr86vvvyrhKU0ADHVDkHbue-SMyy2HhHl0ZF4LMC_Vlu4Q_yv2WWUn4htQ3INYIeBuJ_pyFOonJ2mQNa82j6ZmqLrjZyGr_PlqAOdZGPfmDyudD_jbBVABf3wnAcvLxP5fIPZrAGL_AlHKA843LgKTqIbmRbugl_QvdBwRfQj2fIN4HZNIkfcOeQclw6yCrNSIZ5qSG0O_GDmfIjU942qhiJPppk1kI8G700BLJtLvTVDuC0fjqyobRlLetuAwbGuztBSD8EROsumU-I1tPdUP-LlAHhlY8oe9rFa0VZNi5V1mth_Yw0-A",
-  "refresh_token": null
+  "iss": "my-backend-service",
+  "sub": "my-backend-service",
+  "aud": "https://your-aidbox.com/auth/token",
+  "exp": 1734009926,
+  "iat": 1734009626,
+  "jti": "unique-id-12345"
 }
 ```
 
-## Access FHIR API
+| Claim | Description |
+|-------|-------------|
+| `iss` | Issuer — your Client ID (required, validated) |
+| `sub` | Subject — your Client ID, same as `iss` (required, validated) |
+| `aud` | Audience — token endpoint URL (recommended by spec, not validated by Aidbox) |
+| `exp` | Expiration time, Unix timestamp, max 5 minutes from now (required, validated) |
+| `iat` | Issued at, Unix timestamp (recommended) |
+| `jti` | JWT ID — unique identifier, prevents replay attacks (required, validated) |
 
-**Request:**
+### Signature
+
+Sign the JWT with your **private key** using the algorithm specified in the header.
+
+```
+base64url(header) + "." + base64url(payload)
+  → sign with private key
+  → base64url(signature)
+
+Final JWT: header.payload.signature
+```
+
+### Example: Creating JWT in JavaScript
+
+```javascript
+async function createClientAssertion(privateKeyPem, clientId, tokenEndpoint, keyId) {
+  // Header
+  const header = {
+    alg: 'RS384',
+    typ: 'JWT',
+    kid: keyId
+  };
+
+  // Payload
+  const now = Math.floor(Date.now() / 1000);
+  const payload = {
+    iss: clientId,
+    sub: clientId,
+    aud: tokenEndpoint,
+    exp: now + 300,  // 5 minutes
+    iat: now,
+    jti: crypto.randomUUID()
+  };
+
+  // Encode
+  const encodedHeader = btoa(JSON.stringify(header))
+    .replace(/\+/g, '-').replace(/\//g, '_').replace(/=+$/, '');
+  const encodedPayload = btoa(JSON.stringify(payload))
+    .replace(/\+/g, '-').replace(/\//g, '_').replace(/=+$/, '');
+
+  // Sign
+  const signingInput = `${encodedHeader}.${encodedPayload}`;
+  const signature = await signWithPrivateKey(signingInput, privateKeyPem);
+
+  return `${signingInput}.${signature}`;
+}
+```
+
+## Step 5: Request an access token
+
+Send a POST request to the token endpoint:
 
 ```http
-GET /fhir/Observation?code=4548-4&_count=2
-content-type: application/json
-accept: application/json
-authorization: "Bearer eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJodHRwczovL2cxMHRlc3QuZWRnZS5haWRib3guYXBwIiwic3ViIjoiaW5mZXJuby1teS1jbGluaWMtYnVsay1jbGllbnQiLCJpYXQiOjE3MzQwMTAyNDMsImp0aSI6IjEzMzZhNmIyLTZiNGMtNDE0Yy04Mjk0LWJkYjA2OWE5OTE5MSIsImV4cCI6MTczNDAxMDU0M30.glqegvLKAoF5y2cJ7rUODTz6Ro0Lhu7vUr86vvvyrhKU0ADHVDkHbue-SMyy2HhHl0ZF4LMC_Vlu4Q_yv2WWUn4htQ3INYIeBuJ_pyFOonJ2mQNa82j6ZmqLrjZyGr_PlqAOdZGPfmDyudD_jbBVABf3wnAcvLxP5fIPZrAGL_AlHKA843LgKTqIbmRbugl_QvdBwRfQj2fIN4HZNIkfcOeQclw6yCrNSIZ5qSG0O_GDmfIjU942qhiJPppk1kI8G700BLJtLvTVDuC0fjqyobRlLetuAwbGuztBSD8EROsumU-I1tPdUP-LlAHhlY8oe9rFa0VZNi5V1mth_Yw0-A"
+POST /auth/token
+Content-Type: application/x-www-form-urlencoded
+
+grant_type=client_credentials
+&scope=system/*.read
+&client_assertion_type=urn:ietf:params:oauth:client-assertion-type:jwt-bearer
+&client_assertion=eyJhbGciOiJSUzM4NCIsInR5cCI6IkpXVCIsImtpZCI6ImExYjJjM2Q0LSJ9...
 ```
 
-**Response:**
+| Parameter | Value |
+|-----------|-------|
+| `grant_type` | `client_credentials` |
+| `scope` | Requested scopes (must be subset of Client's allowed scopes) |
+| `client_assertion_type` | `urn:ietf:params:oauth:client-assertion-type:jwt-bearer` |
+| `client_assertion` | Your signed JWT |
+
+### Response
 
 ```json
-// 200 OK
-
 {
- "resourceType": "Bundle",
- "type": "searchset",
- "entry": [
-  {
-   "resource": {
-    "category": [
-     {
-      "coding": [
-       {
-        "code": "laboratory",
-        "system": "http://terminology.hl7.org/CodeSystem/observation-category",
-        "display": "laboratory"
-       }
-      ]
-     }
-    ],
-    "meta": {
-     "lastUpdated": "2024-08-29T15:51:05.117806Z",
-     "versionId": "74",
-     "extension": [
-      {
-       "url": "https://fhir.aidbox.app/fhir/StructureDefinition/created-at",
-       "valueInstant": "2024-08-29T15:51:05.117806Z"
-      }
-     ]
-    },
-    "encounter": {
-     "reference": "Encounter/67b8fa04-6e1b-4074-8b8c-3ec44bfec48f"
-    },
-    "valueQuantity": {
-     "code": "%",
-     "unit": "%",
-     "value": 2.856519918445372,
-     "system": "http://unitsofmeasure.org"
-    },
-    "resourceType": "Observation",
-    "effectiveDateTime": "2014-05-11T12:39:55+04:00",
-    "status": "final",
-    "id": "00592410-ec4a-4d64-a674-f0bfb244a978",
-    "code": {
-     "text": "Hemoglobin A1c/Hemoglobin.total in Blood",
-     "coding": [
-      {
-       "code": "4548-4",
-       "system": "http://loinc.org",
-       "display": "Hemoglobin A1c/Hemoglobin.total in Blood"
-      }
-     ]
-    },
-    "issued": "2014-05-11T12:39:55.513+04:00",
-    "subject": {
-     "reference": "Patient/a6a91d7e-7ded-4325-9dbe-42a088e7e039"
-    }
-   },
-   "search": {
-    "mode": "match"
-   },
-   "fullUrl": "https://releasetest.edge.aidbox.app/Observation/00592410-ec4a-4d64-a674-f0bfb244a978",
-   "link": [
-    {
-     "relation": "self",
-     "url": "https://releasetest.edge.aidbox.app/Observation/00592410-ec4a-4d64-a674-f0bfb244a978"
-    }
-   ]
-  },
-  {
-   "resource": {
-    "category": [
-     {
-      "coding": [
-       {
-        "code": "laboratory",
-        "system": "http://terminology.hl7.org/CodeSystem/observation-category",
-        "display": "laboratory"
-       }
-      ]
-     }
-    ],
-    "meta": {
-     "lastUpdated": "2024-08-29T15:51:05.117806Z",
-     "versionId": "74",
-     "extension": [
-      {
-       "url": "https://fhir.aidbox.app/fhir/StructureDefinition/created-at",
-       "valueInstant": "2024-08-29T15:51:05.117806Z"
-      }
-     ]
-    },
-    "encounter": {
-     "reference": "Encounter/f1c8a70d-0dfa-47a6-b940-d441fdfd1323"
-    },
-    "valueQuantity": {
-     "code": "%",
-     "unit": "%",
-     "value": 3.1257055258079536,
-     "system": "http://unitsofmeasure.org"
-    },
-    "resourceType": "Observation",
-    "effectiveDateTime": "2018-01-14T11:39:55+03:00",
-    "status": "final",
-    "id": "01e57d19-35b7-47d0-9c3b-29d14d16d3f5",
-    "code": {
-     "text": "Hemoglobin A1c/Hemoglobin.total in Blood",
-     "coding": [
-      {
-       "code": "4548-4",
-       "system": "http://loinc.org",
-       "display": "Hemoglobin A1c/Hemoglobin.total in Blood"
-      }
-     ]
-    },
-    "issued": "2018-01-14T11:39:55.513+03:00",
-    "subject": {
-     "reference": "Patient/a6a91d7e-7ded-4325-9dbe-42a088e7e039"
-    }
-   },
-   "search": {
-    "mode": "match"
-   },
-   "fullUrl": "https://releasetest.edge.aidbox.app/Observation/01e57d19-35b7-47d0-9c3b-29d14d16d3f5",
-   "link": [
-    {
-     "relation": "self",
-     "url": "https://releasetest.edge.aidbox.app/Observation/01e57d19-35b7-47d0-9c3b-29d14d16d3f5"
-    }
-   ]
-  }
- ]
+  "access_token": "eyJhbGciOiJSUzI1NiIs...",
+  "token_type": "Bearer",
+  "expires_in": 300
 }
 ```
 
+## Step 6: Access FHIR API
+
+Use the access token in the `Authorization` header:
+
+```http
+GET /fhir/Patient
+Authorization: Bearer eyJhbGciOiJSUzI1NiIs...
+```
+
+## Validation rules
+
+Aidbox validates the JWT as follows:
+
+1. **Parse JWT** — extract header, payload, signature
+2. **Check `typ`** — must be `JWT`
+3. **Check `iss`** — must equal the Client ID
+4. **Check `sub`** — must equal the Client ID
+5. **Check `exp`** — must be present and valid (between now and now + 10 minutes)
+6. **Check `jti`** — must be present and unique (prevents replay attacks)
+7. **Find public key** — lookup by `kid` in Client's `jwks` or `jwks_uri`
+8. **Verify signature** — using the RSA public key
+
+{% hint style="warning" %}
+**Note:** Aidbox does not validate the `aud` claim. However, including it is recommended per the SMART specification.
+{% endhint %}
+
+If any check fails, Aidbox returns `400 invalid_client`.
+
+## Scopes
+
+Backend services use **system scopes** (not user scopes):
+
+| Scope | Description |
+|-------|-------------|
+| `system/*.read` | Read all resource types |
+| `system/*.write` | Write all resource types |
+| `system/Patient.read` | Read Patient resources |
+| `system/Observation.write` | Write Observation resources |
+
+## Security considerations
+
+- **Never expose your private key** — it should only exist in your backend service
+- **Use short JWT expiration** — max 5 minutes as per spec
+- **Generate unique `jti`** — prevents replay attacks
+- **Use RS384** — Aidbox requires RS384 algorithm for signing
+- **Rotate keys periodically** — update `jwks` and your service together
+
+## References
+
+- [SMART Backend Services (HL7)](https://hl7.org/fhir/smart-app-launch/backend-services.html)
+- [Client Authentication: Asymmetric Keys (HL7)](https://hl7.org/fhir/smart-app-launch/client-confidential-asymmetric.html)
+- [RFC 7523: JWT Bearer Client Authentication](https://tools.ietf.org/html/rfc7523)
+- [RFC 6749: OAuth 2.0](https://tools.ietf.org/html/rfc6749)
