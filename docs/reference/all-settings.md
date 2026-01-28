@@ -362,7 +362,7 @@ In Aidbox mode, it is possible to search without specifying source type: GET /Pa
 BOX_FHIR_SEARCH_AUTHORIZE_INLINE_REQUESTS: true
 ```
 
-Authorize inline requests (`_revinclude` and `_include`) with access policies. [Learn more](https://docs.aidbox.app/api/rest-api/fhir-search/include-and-revinclude#authorize-inline-requests-mode)
+Authorize inline requests (`_revinclude` and `_include`) with access policies. [Learn more](https://www.health-samurai.io/docs/aidbox/api/rest-api/fhir-search/include-and-revinclude#authorize-inline-requests-mode)
 
 <details><summary>Details</summary><table data-header-hidden="true"><thead><tr><th width="200"></th><th></th></tr></thead><tbody><tr><td>ID</td><td><code>fhir.search.authorize-inline-requests</code></td></tr><tr><td>Type</td><td>Bool</td></tr><tr><td>Recommended value</td><td><code>true</code></td></tr><tr><td>Default value</td><td><code>false</code></td></tr><tr><td>Environment variable</td><td><code>BOX_FHIR_SEARCH_AUTHORIZE_INLINE_REQUESTS</code></td></tr><tr><td>Deprecated environment variables</td><td><code>BOX_SEARCH_AUTHORIZE_INLINE_REQUESTS</code></td></tr><tr><td>Sensitive</td><td><code>false</code> — value will be visible in plaintext in Admin UI</td></tr><tr><td>Set via</td><td>Admin UI → Settings<br />Environment variables</td></tr><tr><td>Hot reload</td><td><code>true</code> — setting can be changed at runtime</td></tr></tbody></table></details>
 
@@ -718,7 +718,7 @@ If disabled, only access to $apply endpoints are verified.
 BOX_SECURITY_ENCRYPT_SECRET: "<String>"
 ```
 
-Secret key for encryption API. [Learn more](https://docs.aidbox.app/api/other/encryption-api)
+Secret key for encryption API. [Learn more](https://www.health-samurai.io/docs/aidbox/api/other/encryption-api)
 
 <details><summary>Details</summary><table data-header-hidden="true"><thead><tr><th width="200"></th><th></th></tr></thead><tbody><tr><td>ID</td><td><code>security.encrypt-secret</code></td></tr><tr><td>Type</td><td>String</td></tr><tr><td>Default value</td><td>(no default)</td></tr><tr><td>Environment variable</td><td><code>BOX_SECURITY_ENCRYPT_SECRET</code></td></tr><tr><td>Deprecated environment variables</td><td><code>AIDBOX_ENCRYPT_KEY</code></td></tr><tr><td>Sensitive</td><td><code>true</code> — value will be masked in Admin UI</td></tr><tr><td>Set via</td><td>Environment variables</td></tr><tr><td>Hot reload</td><td><code>true</code> — setting can be changed at runtime</td></tr></tbody></table></details>
 
@@ -1453,21 +1453,6 @@ Access control in GraphQL API
 
 <details><summary>Details</summary><table data-header-hidden="true"><thead><tr><th width="200"></th><th></th></tr></thead><tbody><tr><td>ID</td><td><code>module.graphql.access-control</code></td></tr><tr><td>Type</td><td>Enum</td></tr><tr><td>Values</td><td><code>rest-search</code> — Additionally authorization checks access to corresponding search queries<br /><code>disabled</code> — Only access to GraphQL endpoint is verified</td></tr><tr><td>Default value</td><td><code>disabled</code></td></tr><tr><td>Environment variable</td><td><code>BOX_MODULE_GRAPHQL_ACCESS_CONTROL</code></td></tr><tr><td>Deprecated environment variables</td><td><code>BOX_FEATURES_GRAPHQL_ACCESS__CONTROL</code></td></tr><tr><td>Sensitive</td><td><code>false</code> — value will be visible in plaintext in Admin UI</td></tr><tr><td>Set via</td><td>Admin UI → Settings<br />Environment variables</td></tr><tr><td>Hot reload</td><td><code>true</code> — setting can be changed at runtime</td></tr></tbody></table></details>
 
-#### Switch to old GraphQL engine (will be removed soon)<a href="#module.graphql.old-lacinia-engine" id="module.graphql.old-lacinia-engine"></a>
-
-```yaml
-BOX_MODULE_GRAPHQL_OLD_LACINIA_ENGINE: false
-```
-
-Enable only if you have compatibility issues.
-
-The new engine should be a drop-in replacement for the old one.
-If you encounter any issues with it, please report us.
-
-The old engine will be removed soon.
-
-<details><summary>Details</summary><table data-header-hidden="true"><thead><tr><th width="200"></th><th></th></tr></thead><tbody><tr><td>ID</td><td><code>module.graphql.old-lacinia-engine</code></td></tr><tr><td>Type</td><td>Bool</td></tr><tr><td>Default value</td><td><code>false</code></td></tr><tr><td>Environment variable</td><td><code>BOX_MODULE_GRAPHQL_OLD_LACINIA_ENGINE</code></td></tr><tr><td>Available from</td><td><code>2510</code></td></tr><tr><td>Sensitive</td><td><code>false</code> — value will be visible in plaintext in Admin UI</td></tr><tr><td>Set via</td><td>Admin UI → Settings<br />Environment variables</td></tr><tr><td>Hot reload</td><td><code>true</code> — setting can be changed at runtime</td></tr></tbody></table></details>
-
 #### Inject resource creation timestamp at meta.createdAt<a href="#module.graphql.inject-meta-created-at" id="module.graphql.inject-meta-created-at"></a>
 
 ```yaml
@@ -1486,6 +1471,19 @@ and non FHIR Schema GraphQL implementation in Aidbox.
 This setting has no effect when FHIR Schema mode is not enabled.
 
 <details><summary>Details</summary><table data-header-hidden="true"><thead><tr><th width="200"></th><th></th></tr></thead><tbody><tr><td>ID</td><td><code>module.graphql.inject-meta-created-at</code></td></tr><tr><td>Type</td><td>Bool</td></tr><tr><td>Default value</td><td><code>false</code></td></tr><tr><td>Environment variable</td><td><code>BOX_MODULE_GRAPHQL_INJECT_META_CREATED_AT</code></td></tr><tr><td>Available from</td><td><code>2511</code></td></tr><tr><td>Sensitive</td><td><code>false</code> — value will be visible in plaintext in Admin UI</td></tr><tr><td>Set via</td><td>Environment variables</td></tr><tr><td>Hot reload</td><td><code>true</code> — setting can be changed at runtime</td></tr></tbody></table></details>
+
+#### Enable Apollo Federation support<a href="#module.graphql.federation-support" id="module.graphql.federation-support"></a>
+
+```yaml
+BOX_MODULE_GRAPHQL_FEDERATION_SUPPORT: false
+```
+
+Enable Apollo Federation support for the GraphQL API.
+
+When enabled, Aidbox exposes federation-specific fields and directives
+that allow it to participate as a subgraph in a federated GraphQL architecture.
+
+<details><summary>Details</summary><table data-header-hidden="true"><thead><tr><th width="200"></th><th></th></tr></thead><tbody><tr><td>ID</td><td><code>module.graphql.federation-support</code></td></tr><tr><td>Type</td><td>Bool</td></tr><tr><td>Default value</td><td><code>false</code></td></tr><tr><td>Environment variable</td><td><code>BOX_MODULE_GRAPHQL_FEDERATION_SUPPORT</code></td></tr><tr><td>Available from</td><td><code>2601</code></td></tr><tr><td>Sensitive</td><td><code>false</code> — value will be visible in plaintext in Admin UI</td></tr><tr><td>Set via</td><td>Environment variables</td></tr><tr><td>Hot reload</td><td><code>true</code> — setting can be changed at runtime</td></tr></tbody></table></details>
 
 ### Webpush
 
