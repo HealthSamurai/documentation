@@ -35,7 +35,13 @@ def main():
         errors, total = validate_redirects(content)
 
         if errors:
-            check_error(f"Found {len(errors)} missing redirect targets:")
+            check_error(f"Found {len(errors)} missing redirect targets")
+            print("\n⚠️  WHAT TO FIX:")
+            print(f"   Open '.gitbook.yaml' and find the redirects for these missing files:")
+            print(f"   Each redirect line looks like:  'old/path: new/path.md'\n")
+            print("   WHY: Redirects point to pages that don't exist.")
+            print("   FIX: Update the redirect target to an existing page or remove the redirect.\n")
+            print("Missing files:")
             for e in errors:
                 print_issue(e)
             return 1
