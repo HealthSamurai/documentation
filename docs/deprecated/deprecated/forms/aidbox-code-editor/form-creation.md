@@ -1,5 +1,7 @@
 ---
-description: Create custom FHIR forms in Aidbox using Document, Layout, Launch, and Finalize layers with SDC schemas and validation.
+description: >-
+  Create custom FHIR forms in Aidbox using Document, Layout, Launch, and
+  Finalize layers with SDC schemas and validation.
 ---
 
 # Form creation
@@ -69,7 +71,7 @@ DepressionDocument
  }
 ```
 
-More on SDCDocument:[ Document DSL](../../../deprecated/deprecated/forms/document-dsl-docs-deprecated.md) Reference
+More on SDCDocument:[ Document DSL](../document-dsl-docs-deprecated.md) Reference
 
 ### Form Layout
 
@@ -98,7 +100,7 @@ Default Layout engine is `aidbox.sdc/Hiccup` uses DSL in shape of nested objects
     {:bind [:loinc-39156-5]}]}}
 ```
 
-More on form layout: [Layout DSL](../../../deprecated/deprecated/forms/layout-dsl-docs-deprecated.md) Reference
+More on form layout: [Layout DSL](../layout-dsl-docs-deprecated.md) Reference
 
 ### Form Launch
 
@@ -141,14 +143,14 @@ For that you can use:
                               :where [:= :id (get-in [:params :encounter-id])]})}}
 ```
 
-More on launch: [Launch DSL](../../../deprecated/deprecated/forms/launch-dsl-docs-deprecated.md) Reference
+More on launch: [Launch DSL](../launch-dsl-docs-deprecated.md) Reference
 
 ### Form Finalize
 
 Form `Finalize` defines extractions that should be done after document `sign` and optionally binds to custom constraint schema for validations.
 
 {% hint style="info" %}
-Default export-engine - `aidbox.sdc/LispExport` (see available commands: [LISP](../../../deprecated/deprecated/forms/lisp-docs-deprecated.md) Reference)
+Default export-engine - `aidbox.sdc/LispExport` (see available commands: [LISP](../lisp-docs-deprecated.md) Reference)
 {% endhint %}
 
 ```clojure
@@ -242,4 +244,4 @@ Form used just to bind all DSLs to one item.
 
 ```
 
-For now you can already try to use created document via `aidbox.sdc` [API](../../../deprecated/deprecated/forms/form-api-docs-deprecated.md)
+For now you can already try to use created document via `aidbox.sdc` [API](../form-api-docs-deprecated.md)

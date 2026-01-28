@@ -1,5 +1,7 @@
 ---
-description: Share Aidbox Forms via links or embed in applications using iframe with RSA key configuration and $populatelink.
+description: >-
+  Share Aidbox Forms via links or embed in applications using iframe with RSA
+  key configuration and $populatelink.
 ---
 
 # Form sharing
@@ -10,8 +12,8 @@ Aidbox Forms supports two main scenarios for sharing forms with users:
 2. [Embed the Form via iframe into an application or website](form-sharing.md#embed-the-form-via-iframe-into-an-application-or-website)
 
 {% hint style="warning" %}
-To use **form sharing**, you must explicitly [configure RSA private/public keys and a secret](../../../configuration/configure-aidbox-and-multibox#generate-rsa-keypair.md).
-{% endhint %} 
+To use **form sharing**, you must explicitly [configure RSA private/public keys and a secret](../../../configuration/configure-aidbox-and-multibox/#generate-rsa-keypair.md).
+{% endhint %}
 
 ## Sharing a Form Link with the User
 
@@ -20,8 +22,8 @@ After creating a form, you can generate a link to the form and send it to the us
 1. **Select the Form:**
    * Choose the form you want to share from your list of forms.
 2. **Generate the Link:**
-   * Use the "Share" option within the Aidbox Forms interface. 
-   * Generate the link via[ $populatelink ](../../../reference/aidbox-forms-reference/fhir-sdc-api.md) FHIR SDC operation.
+   * Use the "Share" option within the Aidbox Forms interface.
+   * Generate the link via[ $populatelink ](../../../reference/aidbox-forms-reference/fhir-sdc-api.md)FHIR SDC operation.
 3. **Copy the Link:**
    * Once the link is generated, copy it to your clipboard.
 4. **Send the Link:**
@@ -47,7 +49,7 @@ After creating a form, you can generate an iframe code for this form and embed i
    * Choose the form you want to embed from your list of forms.
 2. **Generate the iframe Code:**
    * Use the "Share" option within the Aidbox Forms interface.
-   * Generate the link via[ $populatelink ](../../../reference/aidbox-forms-reference/fhir-sdc-api.md) FHIR SDC operation and use it with iframe.
+   * Generate the link via[ $populatelink ](../../../reference/aidbox-forms-reference/fhir-sdc-api.md)FHIR SDC operation and use it with iframe.
 
 ```
 <iframe src="your-generated-link"></iframe>

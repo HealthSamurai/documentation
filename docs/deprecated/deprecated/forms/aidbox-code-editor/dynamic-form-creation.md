@@ -1,5 +1,7 @@
 ---
-description: Learn to create dynamic FHIR forms with conditional logic using Aidbox Forms, including PHQ-2/PHQ-9 depression screening examples.
+description: >-
+  Learn to create dynamic FHIR forms with conditional logic using Aidbox Forms,
+  including PHQ-2/PHQ-9 depression screening examples.
 ---
 
 # How to create a dynamic form
@@ -14,7 +16,7 @@ We'll omit some form fields to keep this example short.
 
 ## Prerequisites
 
-To accomplish the goal we assume the SDC Forms project is already configured as described in ["Getting Started"](../getting-started.md).
+To accomplish the goal we assume the SDC Forms project is already configured as described in ["Getting Started"](../../../../modules/aidbox-forms/getting-started.md).
 
 Next, we need an example namespace to put the form we are about to create into. Let's create a file `zrc/tutorial/phq2phq9.edn` and declare the desired namespace:
 

@@ -43,12 +43,12 @@ Example
 
 ## To design the form, it is necessary to describe some schemes
 
-* [Form DSL](../../deprecated/deprecated/forms/form-dsl-docs-deprecated.md)
-* [Document DSL](../../deprecated/deprecated/forms/document-dsl-docs-deprecated.md)
-* [Layout DSL](../../deprecated/deprecated/forms/layout-dsl-docs-deprecated.md)
-* [Launch DSL](../../deprecated/deprecated/forms/launch-dsl-docs-deprecated.md)
-* [Finalize DSL](../../deprecated/deprecated/forms/finalize-dsl-docs-deprecated.md)
-* [FinalizeConstrains DSL](../../deprecated/deprecated/forms/finalizeconstraints-dsl-docs-deprecated.md)
+* [Form DSL](form-dsl-docs-deprecated.md)
+* [Document DSL](document-dsl-docs-deprecated.md)
+* [Layout DSL](layout-dsl-docs-deprecated.md)
+* [Launch DSL](launch-dsl-docs-deprecated.md)
+* [Finalize DSL](finalize-dsl-docs-deprecated.md)
+* [FinalizeConstrains DSL](finalizeconstraints-dsl-docs-deprecated.md)
 
 Go to [this page](aidbox-code-editor/form-creation.md) to start designing a form.
 

@@ -1,5 +1,7 @@
 ---
-description: Add amendments, addendum notes, and track change history after signing forms using SDCAddendum resources.
+description: >-
+  Add amendments, addendum notes, and track change history after signing forms
+  using SDCAddendum resources.
 ---
 
 # Changing data after form signing
@@ -42,10 +44,10 @@ changed: false
 snapshot: {...}
 ```
 
-You can use [Addendum API](../../../deprecated/deprecated/forms/addendum-api-docs-deprecated.md)
+You can use [Addendum API](../addendum-api-docs-deprecated.md)
 
-* [create-addendum](../../../deprecated/deprecated/forms/addendum-api-docs-deprecated.md#create-addendum-wip) - creates custom addendum resource for given source (SDCDocument/SDCWorkflow)
-* [add-note](../../../deprecated/deprecated/forms/addendum-api-docs-deprecated.md#add-note) - creates addendum Note for SDCDocument/SDCWorkflow
-* [add-to-history](../../../deprecated/deprecated/forms/addendum-api-docs-deprecated.md#add-to-history) - add history addendum for resource for given status. When resource in status `completed/amended` - snapshot can be saved (if resource is differs)
-* [create-amendment](../../../deprecated/deprecated/forms/addendum-api-docs-deprecated.md#create-amendment)
-* [add-comment ](../../../deprecated/deprecated/forms/addendum-api-docs-deprecated.md#add-comment)- add comment for document/workflow with optional path to commented value in resource
+* [create-addendum](../addendum-api-docs-deprecated.md#create-addendum-wip) - creates custom addendum resource for given source (SDCDocument/SDCWorkflow)
+* [add-note](../addendum-api-docs-deprecated.md#add-note) - creates addendum Note for SDCDocument/SDCWorkflow
+* [add-to-history](../addendum-api-docs-deprecated.md#add-to-history) - add history addendum for resource for given status. When resource in status `completed/amended` - snapshot can be saved (if resource is differs)
+* [create-amendment](../addendum-api-docs-deprecated.md#create-amendment)
+* [add-comment ](../addendum-api-docs-deprecated.md#add-comment)- add comment for document/workflow with optional path to commented value in resource

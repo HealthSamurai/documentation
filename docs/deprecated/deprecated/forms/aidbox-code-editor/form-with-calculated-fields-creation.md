@@ -1,5 +1,7 @@
 ---
-description: Build FHIR forms with calculated fields using Aidbox SDC rules and Lisp expressions, demonstrated with GAD-7 anxiety scoring.
+description: >-
+  Build FHIR forms with calculated fields using Aidbox SDC rules and Lisp
+  expressions, demonstrated with GAD-7 anxiety scoring.
 ---
 
 # How to create a form with calculated fields
@@ -8,7 +10,7 @@ In this tutorial we will learn how to work with calculated fields. The [GAD-7](h
 
 ## Prerequisites
 
-To accomplish the goal we assume the SDC Forms project is already configured as described in ["Getting Started"](../getting-started.md).
+To accomplish the goal we assume the SDC Forms project is already configured as described in ["Getting Started"](../../../../modules/aidbox-forms/getting-started.md).
 
 Next we need an example namespace to put the form we are about to create into. Let's create a file `zrc/tutorial/gad-7.edn` and declare the desired namespace:
 
