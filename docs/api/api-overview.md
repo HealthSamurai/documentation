@@ -568,3 +568,8 @@ Utility and system endpoints for health checks, versioning, and data transformat
 *   #### [$meta](rest-api/other/meta.md) [$meta-add](rest-api/other/meta-add.md) [$meta-delete](rest-api/other/meta-delete.md)
 
     Retrieve and edit resource metadata.
+Aidbox's dump APIs provide efficient streaming access to FHIR data without the overhead of bulk export job management, making them ideal for real-time data processing and custom analytics workflows.
+
+See also:
+
+- [OTEL traces exporter parameters](../modules/observability/traces/otel-traces-exporter-parameters.md)
