@@ -568,3 +568,8 @@ Utility and system endpoints for health checks, versioning, and data transformat
 *   #### [$meta](rest-api/other/meta.md) [$meta-add](rest-api/other/meta-add.md) [$meta-delete](rest-api/other/meta-delete.md)
 
     Retrieve and edit resource metadata.
+streaming data formats.
+
+See also:
+
+- [OTEL metrics exporter parameters](../../modules/observability/metrics/technical-reference/otel-metrics-exporter-parameters.md)
