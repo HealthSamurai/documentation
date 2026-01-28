@@ -83,6 +83,7 @@ See also:
 
 * [Profiling and Validation](../modules/profiling-and-validation/)
 * [FHIR Schema Validator](../modules/profiling-and-validation/fhir-schema-validator/)
+* [`$validate`](rest-api/other/validate.md)
 
 ### History
 
