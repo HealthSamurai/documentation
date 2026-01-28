@@ -610,6 +610,7 @@
 * [Aidbox SQL Functions](reference/aidbox-sql-functions.md)
 * [Matcho DSL Reference](reference/matcho-dsl-reference.md)
 * [FAR Package Management API](reference/package-registry-api.md)
+* [OAuth Operation Scopes](reference/oauth-operation-scopes.md)
 
 ## Deprecated
 
