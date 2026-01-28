@@ -9,6 +9,17 @@ init-test:
 	echo 'dev' > resources/version
 	mkdir -p .git/hooks
 
+# Install Python dependencies (optional - only if needed)
+install-deps:
+	@if [ ! -d "scripts/venv" ]; then \
+		echo "Creating virtual environment in scripts/venv..."; \
+		python3 -m venv scripts/venv; \
+		./scripts/venv/bin/pip install -q -r scripts/requirements.txt; \
+		echo "✓ Dependencies installed"; \
+	else \
+		echo "✓ Virtual environment already exists at scripts/venv/"; \
+	fi
+
 init:
 	rm -f .git/hooks/pre-push
 	ln -s ../../scripts/prepush.sh .git/hooks/pre-push
