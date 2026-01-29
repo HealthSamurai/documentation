@@ -20,6 +20,10 @@ This feature enables dynamic subscriptions to changes in FHIR resources, allowin
 
 For an application example, refer to [Aidbox Subscriptions & Kafka AidboxTopicDestination](https://github.com/Aidbox/examples/tree/main/aidbox-features/aidbox-subscriptions-to-kafka)
 
+See also:
+
+- [API Overview](../../api/api-overview.md)
+
 ## Key Components
 
 * **`AidboxSubscriptionTopic`** is a custom Aidbox resource modeled after the [FHIR R6 SubscriptionTopic](https://build.fhir.org/subscriptiontopic.html) resource. The resource allows defining a set of events that clients can subscribe to, such as changes in specific resources.
