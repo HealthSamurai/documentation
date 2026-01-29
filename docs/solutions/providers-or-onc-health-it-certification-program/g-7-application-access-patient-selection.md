@@ -17,7 +17,7 @@ Aidbox provides FHIR R4 Patient search with US Core STU 6.1 required search para
 
 **FHIR Search Capabilities:**
 
-Aidbox supports comprehensive [FHIR Search API capabilities](https://www.health-samurai.io/docs/aidbox/api/rest-api/fhir-search):
+Aidbox supports comprehensive [FHIR Search API capabilities](../../api/rest-api/fhir-search):
 
 * **Multiple criteria:** Combine parameters (`?family=Smith&birthdate=1980-05-15`)
 * **OR logic:** Use comma-separated values (`?name=John,Jane`)
