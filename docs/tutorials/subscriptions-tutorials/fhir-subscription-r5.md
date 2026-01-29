@@ -17,6 +17,10 @@ In this tutorial, we will set up Aidbox to implement the [DaVinci PAS Subscripti
 - Aidbox configured with FHIR R5 core package
 - An HTTP endpoint to receive notifications (for testing, you can use services like [RequestCatcher](https://requestcatcher.com/) or [Webhook.site](https://webhook.site/))
 
+## Full sample
+
+Try full sample of [FHIR R5 Subscription Setup](https://github.com/Aidbox/examples/tree/main/aidbox-integrations/r5-subscriptions) in Aidbox Examples repository.
+
 ## Step 1: Create AidboxSubscriptionTopic
 
 Create an `AidboxSubscriptionTopic` that implements the PAS SubscriptionTopic logic:
