@@ -2162,44 +2162,6 @@ Custom index format string. The default value is 'aidbox-logs'-yyyy-MM-dd.
 
 <details><summary>Details</summary><table data-header-hidden="true"><thead><tr><th width="200"></th><th></th></tr></thead><tbody><tr><td>ID</td><td><code>observability.elasticsearch.index-pattern</code></td></tr><tr><td>Type</td><td>String</td></tr><tr><td>Default value</td><td><code>&apos;aidbox-logs&apos;-yyyy-MM-dd</code></td></tr><tr><td>Environment variable</td><td><code>BOX_OBSERVABILITY_ELASTICSEARCH_INDEX_PATTERN</code></td></tr><tr><td>Deprecated environment variables</td><td><code>BOX_OBSERVABILITY_ELASTIC_INDEX_PATTERN</code> , <br /><code>AIDBOX_ES_INDEX_PAT</code></td></tr><tr><td>Sensitive</td><td><code>false</code> — value will be visible in plaintext in Admin UI</td></tr><tr><td>Set via</td><td>Admin UI → Settings<br />Environment variables</td></tr><tr><td>Hot reload</td><td><code>false</code> — setting requires system restart</td></tr></tbody></table></details>
 
-### Grafana
-
-{% hint style="warning" %}
-Grafana integration is deprecated since 2601.
-{% endhint %}
-
-Grafana settings
-
-#### Grafana URL for metrics dashboards<a href="#observability.grafana.url" id="observability.grafana.url"></a>
-
-```yaml
-BOX_OBSERVABILITY_GRAFANA_URL: "<String>"
-```
-
-Grafana URL to update the metrics dashboards.
-
-<details><summary>Details</summary><table data-header-hidden="true"><thead><tr><th width="200"></th><th></th></tr></thead><tbody><tr><td>ID</td><td><code>observability.grafana.url</code></td></tr><tr><td>Type</td><td>String</td></tr><tr><td>Default value</td><td>(no default)</td></tr><tr><td>Environment variable</td><td><code>BOX_OBSERVABILITY_GRAFANA_URL</code></td></tr><tr><td>Deprecated environment variables</td><td><code>BOX_METRICS_GRAFANA_URL</code></td></tr><tr><td>Sensitive</td><td><code>false</code> — value will be visible in plaintext in Admin UI</td></tr><tr><td>Set via</td><td>Admin UI → Settings<br />Environment variables</td></tr><tr><td>Hot reload</td><td><code>false</code> — setting requires system restart</td></tr></tbody></table></details>
-
-#### Grafana user for metrics dashboards<a href="#observability.grafana.user" id="observability.grafana.user"></a>
-
-```yaml
-BOX_OBSERVABILITY_GRAFANA_USER: "<String>"
-```
-
-Grafana user to update the metrics dashboards.
-
-<details><summary>Details</summary><table data-header-hidden="true"><thead><tr><th width="200"></th><th></th></tr></thead><tbody><tr><td>ID</td><td><code>observability.grafana.user</code></td></tr><tr><td>Type</td><td>String</td></tr><tr><td>Default value</td><td>(no default)</td></tr><tr><td>Environment variable</td><td><code>BOX_OBSERVABILITY_GRAFANA_USER</code></td></tr><tr><td>Deprecated environment variables</td><td><code>BOX_METRICS_GRAFANA_USER</code></td></tr><tr><td>Sensitive</td><td><code>false</code> — value will be visible in plaintext in Admin UI</td></tr><tr><td>Set via</td><td>Admin UI → Settings<br />Environment variables</td></tr><tr><td>Hot reload</td><td><code>false</code> — setting requires system restart</td></tr></tbody></table></details>
-
-#### Grafana password for metrics dashboards<a href="#observability.grafana.password" id="observability.grafana.password"></a>
-
-```yaml
-BOX_OBSERVABILITY_GRAFANA_PASSWORD: "<String>"
-```
-
-Grafana password to update the metrics dashboards.
-
-<details><summary>Details</summary><table data-header-hidden="true"><thead><tr><th width="200"></th><th></th></tr></thead><tbody><tr><td>ID</td><td><code>observability.grafana.password</code></td></tr><tr><td>Type</td><td>String</td></tr><tr><td>Default value</td><td>(no default)</td></tr><tr><td>Environment variable</td><td><code>BOX_OBSERVABILITY_GRAFANA_PASSWORD</code></td></tr><tr><td>Deprecated environment variables</td><td><code>BOX_METRICS_GRAFANA_PASSWORD</code></td></tr><tr><td>Sensitive</td><td><code>true</code> — value will be masked in Admin UI</td></tr><tr><td>Set via</td><td>Environment variables</td></tr><tr><td>Hot reload</td><td><code>false</code> — setting requires system restart</td></tr></tbody></table></details>
-
 ### OTEL
 
 OpenTelemetry settings
