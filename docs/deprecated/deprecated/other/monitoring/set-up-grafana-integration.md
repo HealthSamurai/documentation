@@ -4,7 +4,11 @@ description: >-
   upload them to Grafana
 ---
 
-# Set-up Grafana integration
+# Set-up Grafana integration (deprecated)
+
+{% hint style="warning" %}
+Grafana integration is deprecated since 2601.
+{% endhint %}
 
 Before setting up Grafana integration, ensure you have set up the Aidbox Metrics Server. Check the guide below on how to do it.
 
