@@ -66,7 +66,7 @@ Then go to [Discover](http://localhost:5602/app/discover) page (Menu → Discove
 
 ### 4. Discover Aidbox metrics with Grafana
 
-To visualize Aidbox metrics, import the [Aidbox Metrics Dashboard](https://grafana.com/grafana/dashboards/$id) from Grafana Dashboards. Navigate to `Dashboards` and click `New` -> `Import`. Enter the dashboard ID `$id` and click `Load`. Then select the Prometheus data source and click `Import`.
+To visualize Aidbox metrics, import the [Aidbox Metrics Dashboard](https://grafana.com/grafana/dashboards/24752-aidbox/) from Grafana Dashboards. Navigate to `Dashboards` and click `New` -> `Import`. Enter the dashboard ID `24752` and click `Load`. Then select the Prometheus data source and click `Import`.
 
 <figure><img src="../../../.gitbook/assets/AidBoxMetricsDashboard.png" alt="Grafana dashboard showing Aidbox metrics and performance data"><figcaption><p>Aidbox Metrics Dashboard</p></figcaption></figure>
 
