@@ -25,8 +25,8 @@ API constructor requires knowledge of [zen language](https://github.com/zen-lang
 [access-control-lists-docs-acl.md](access-control-lists-docs-acl.md)
 {% endcontent-ref %}
 
-{% content-ref url="../../../modules/smartbox/background-information/multitenancy-approach.md" %}
-[multitenancy-approach.md](../../../modules/smartbox/background-information/multitenancy-approach.md)
+{% content-ref url="../smartbox/background-information/multitenancy-approach.md" %}
+[multitenancy-approach.md](../smartbox/background-information/multitenancy-approach.md)
 {% endcontent-ref %}
 
 {% content-ref url="../other/how-to-guides/smart-on-fhir.md" %}

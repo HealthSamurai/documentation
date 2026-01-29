@@ -295,13 +295,13 @@ If the `create-docref` option is provided, this endpoint will also create a [Doc
 
 Options are passed as query-string parameters, i.e. `/ccda/v2/persist?create-docref=true&option2=value2`. `sections` are passed separated by commas, i.e. `/ccda/v2/persist?section=dicom,goals,findings`.
 
-| Option          | Values                                                                                                                               | Description                                                                                |
-| --------------- | ------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------ |
-| `create-docref` | `true`                                                                                                                               | <p>false<br>Default: <code>false</code></p>                                                |
-| `tenant-id`     | <p>ID of Tenant resource<br>Default: none</p>                                                                                        | For [Smartbox](../../smartbox/) users only. Assigns Tenant to all populated resources.     |
-| `sections`      | <p>Proceed to the <a href="./#list-of-supported-sections">Section Aliases</a> table to find all possible values.<br>Default: all</p> | Comma-separated list of section aliases to process. By default all sections are processed. |
-| `patient-id`    | `id` that will be inserted and propagated as `uri` , `id` or `fullURl` in persisted FHIR Bundle.                                     | Arbitrary string that corresponds to id.                                                   |
-| `post-process`  | Different useful utils that are applied after conversion                                                                             | `single-entry-organizer` - will remove organizers with single Observation entry            |
+| Option          | Values                                                                                                                               | Description                                                                                                     |
+| --------------- | ------------------------------------------------------------------------------------------------------------------------------------ | --------------------------------------------------------------------------------------------------------------- |
+| `create-docref` | `true`                                                                                                                               | <p>false<br>Default: <code>false</code></p>                                                                     |
+| `tenant-id`     | <p>ID of Tenant resource<br>Default: none</p>                                                                                        | For [Smartbox](../../../deprecated/deprecated/smartbox/) users only. Assigns Tenant to all populated resources. |
+| `sections`      | <p>Proceed to the <a href="./#list-of-supported-sections">Section Aliases</a> table to find all possible values.<br>Default: all</p> | Comma-separated list of section aliases to process. By default all sections are processed.                      |
+| `patient-id`    | `id` that will be inserted and propagated as `uri` , `id` or `fullURl` in persisted FHIR Bundle.                                     | Arbitrary string that corresponds to id.                                                                        |
+| `post-process`  | Different useful utils that are applied after conversion                                                                             | `single-entry-organizer` - will remove organizers with single Observation entry                                 |
 
 ### Validating a C-CDA document
 

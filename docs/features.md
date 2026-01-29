@@ -1,5 +1,7 @@
 ---
-description: Aidbox FHIR server features including CRUD, search, validation, bulk operations, terminology, security, and analytics.
+description: >-
+  Aidbox FHIR server features including CRUD, search, validation, bulk
+  operations, terminology, security, and analytics.
 ---
 
 # Features
@@ -7,10 +9,10 @@ description: Aidbox FHIR server features including CRUD, search, validation, bul
 ### Core FHIR Capabilities
 
 * Supports STU3, R4, R4B, R5, [R6 ballot3](tutorials/other-tutorials/run-aidbox-with-fhir-r6.md)
-* Full [CRUD](api/rest-api/crud/README.md), [history/versioning](api/rest-api/history.md), conditional operations, [transactions](api/rest-api/bundle.md)
-* High-performance rich-featured [validation](modules/profiling-and-validation/fhir-schema-validator/README.md)
+* Full [CRUD](api/rest-api/crud/), [history/versioning](api/rest-api/history.md), conditional operations, [transactions](api/rest-api/bundle.md)
+* High-performance rich-featured [validation](modules/profiling-and-validation/fhir-schema-validator/)
 * [FHIRPath](api/rest-api/crud/patch.md#fhirpath-patch) support for updating, filtering, derived values, and expressions
-* Advanced [Search](api/rest-api/fhir-search/README.md):
+* Advanced [Search](api/rest-api/fhir-search/):
   * [\_include, \_revinclude](api/rest-api/fhir-search/include-and-revinclude.md), [\_has, chained parameters](api/rest-api/fhir-search/chaining.md), \_filter, \_list
   * Custom SearchParameters
   * Full-text search with optimized indexing
@@ -23,14 +25,14 @@ description: Aidbox FHIR server features including CRUD, search, validation, bul
 * Advanced data access
 * Analytics and reporting on FHIR data
 * Deployable on self-hosted and [managed PostgreSQL services](deployment-and-maintenance/deploy-aidbox/run-aidbox-on-managed-postgresql.md) (AWS, GCP, Azure)
-* Rich [Indexing](deployment-and-maintenance/indexes/README.md)
+* Rich [Indexing](deployment-and-maintenance/indexes/)
 * Support for [read-only replica](database/overview.md#postgresql-with-read-only-replica) for delegating read-only workload
 
 ### FHIR Configuration
 
 * [FHIR Package Registry](artifact-registry/artifact-registry-overview.md) including 500+ ready-to-use FHIR IGs
   * Load official IGs from FHIR Package registry (e.g., US Core, IPS, DE Basisprofil, ISIK, AU Core, CL Core, etc.)
-  * Load custom IGs as FHIR packages using UI and [API](reference/package-registry-api)
+  * Load custom IGs as FHIR packages using UI and [API](reference/package-registry-api/)
   * [Integration with external NPM package registries](artifact-registry/artifact-registry-overview.md#integration-with-package-registries)
   * [Pinning and tree shaking](artifact-registry/artifact-registry-overview.md#pinning-and-tree-shaking) for optimizing IG dependency resolution
   * Support for multiple versions of the same IG
@@ -48,7 +50,7 @@ description: Aidbox FHIR server features including CRUD, search, validation, bul
 ### Advanced Data Access
 
 * [SQL API](api/rest-api/other/sql-endpoints.md)
-* [SQL-on-FHIR](modules/sql-on-fhir/README.md) for analytics and reporting
+* [SQL-on-FHIR](modules/sql-on-fhir/) for analytics and reporting
   * [$run operation](modules/sql-on-fhir/operation-run.md) for direct querying through ViewDefinition
   * [$materialize operation](modules/sql-on-fhir/operation-materialize.md) for creating database tables/views
   * [AI-assisted ViewDefinition generation](modules/aidbox-forms/aidbox-ui-builder-alpha/ai-assistant.md)
@@ -70,14 +72,14 @@ description: Aidbox FHIR server features including CRUD, search, validation, bul
 
 ### Security, Identity & Access Control
 
-* [OAuth 2.0, OpenID Connect](access-control/authentication/README.md), Basic Auth, [SSO](access-control/authentication/sso-with-external-identity-provider.md), SCIM
+* [OAuth 2.0, OpenID Connect](access-control/authentication/), Basic Auth, [SSO](access-control/authentication/sso-with-external-identity-provider.md), SCIM
 * [External identity providers](tutorials/security-access-control-tutorials/set-up-external-identity-provider.md): [GitHub](tutorials/security-access-control-tutorials/github.md), [Apple](tutorials/security-access-control-tutorials/apple.md), [Okta](tutorials/security-access-control-tutorials/okta.md), [Azure AD](tutorials/security-access-control-tutorials/azure-ad.md), [Keycloak](tutorials/security-access-control-tutorials/keycloak.md)
-* [SMART App Launch](modules/smartbox/README.md) (EHR and standalone)
+* [SMART App Launch](deprecated/deprecated/smartbox/) (EHR and standalone)
   * SMART-on-FHIR v1 and v2 scopes
   * [SMART scopes with search parameters](access-control/authorization/smart-on-fhir/smart-scopes-for-limiting-access.md#scopes-with-search-parameters)
 * Access control: [RBAC, ABAC](access-control/authorization/access-policies.md)
 * [Label-based Access Control](access-control/authorization/label-based-access-control.md) with [Security Labels](access-control/authorization/label-based-access-control.md#what-are-security-labels)
-* [Scoped APIs](access-control/authorization/scoped-api/README.md)
+* [Scoped APIs](access-control/authorization/scoped-api/)
 * Multitenancy: physical isolation (Multibox), [Organization-based hierarchical access control](access-control/authorization/scoped-api/organization-based-hierarchical-access-control.md)
 * [AuditEvent logging](access-control/audit-and-logging.md) with support for [external FHIR AuditRecord Repository](access-control/audit-and-logging.md#external-audit-record-repository-support)
 
@@ -91,7 +93,7 @@ description: Aidbox FHIR server features including CRUD, search, validation, bul
 ### Integrations
 
 * HL7 v2 inbound module
-* [C-CDA bidirectional converter](modules/integration-toolkit/ccda-converter/README.md)
+* [C-CDA bidirectional converter](modules/integration-toolkit/ccda-converter/)
 * X12 support (e.g., 270/271, 837)
 * [MCP Server](modules/other-modules/mcp.md) for AI-assisted FHIR development
 
@@ -103,7 +105,7 @@ description: Aidbox FHIR server features including CRUD, search, validation, bul
 * Horizontal scaling
 * [Helm charts](https://github.com/Aidbox/helm-charts)
 * HIPAA-compliant architecture
-* [OpenTelemetry](modules/observability/README.md) protocol for metrics, traces, and structured logs
+* [OpenTelemetry](modules/observability/) protocol for metrics, traces, and structured logs
 * Performance monitoring tools
 * [Init Bundle](configuration/init-bundle.md) for simple and effective configuration
 * [Settings API](configuration/settings.md) for runtime configuration
@@ -147,9 +149,9 @@ Load performance testing results [here](https://www.health-samurai.io/downloads/
 
 ### Modules
 
-* [Aidbox Forms](modules/aidbox-forms/README.md):
+* [Aidbox Forms](modules/aidbox-forms/):
   * Ready-made medical form repository ([Aidbox Form Gallery](modules/aidbox-forms/aidbox-form-gallery.md))
-  * [UI Builder](modules/aidbox-forms/aidbox-ui-builder-alpha/README.md) for creating forms without code (based on [FHIR SDC Implementation Guide](https://build.fhir.org/ig/HL7/sdc/index.html))
+  * [UI Builder](modules/aidbox-forms/aidbox-ui-builder-alpha/) for creating forms without code (based on [FHIR SDC Implementation Guide](https://build.fhir.org/ig/HL7/sdc/index.html))
   * [AI assistance](modules/aidbox-forms/aidbox-ui-builder-alpha/ai-assistant.md) for creating and editing forms from text descriptions
   * [Adaptive forms](modules/aidbox-forms/adaptive-forms.md) with $next-question operation
   * [Template-based extraction](modules/aidbox-forms/aidbox-ui-builder-alpha/form-creation/form-settings.md#template-based-extraction)
@@ -161,9 +163,9 @@ Load performance testing results [here](https://www.health-samurai.io/downloads/
   * [External FHIR servers](modules/aidbox-forms/aidbox-ui-builder-alpha/external-fhir-servers-as-a-data-backend.md) as data backend
   * [Multitenancy](modules/aidbox-forms/aidbox-ui-builder-alpha/forms-multitenancy.md) support
   * [Web component embedding](modules/aidbox-forms/aidbox-ui-builder-alpha/embedding.md)
-* [ePrescriptions](modules/eprescription/README.md)
-* [MPI](modules/mpi/README.md) (Master Patient Index)
-* [Smartbox FHIR API](modules/smartbox/README.md) for health plans and EHRs
+* [ePrescriptions](modules/eprescription/)
+* [MPI](modules/mpi/) (Master Patient Index)
+* [Smartbox FHIR API](deprecated/deprecated/smartbox/) for health plans and EHRs
 * [Audit record repository](access-control/audit-and-logging.md#aidbox-as-an-audit-record-repository)
 
 ### Compliance & Certifications

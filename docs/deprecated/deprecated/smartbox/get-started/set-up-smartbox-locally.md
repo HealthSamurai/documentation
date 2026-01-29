@@ -6,6 +6,12 @@ description: >-
 
 # Set up Smartbox locally
 
+{% hint style="warning" %}
+2512 Smartbox Docker container is published in LTS mode. No further updates or new features will be released.
+
+For new deployments, please migrate to [Aidbox + FHIR App Portal](../../../../solutions/aidbox-+-fhir-app-portal/)
+{% endhint %}
+
 ## Get licenses
 
 Go to the [Aidbox user portal](https://aidbox.app) and request 2 "self-hosted" Aidbox licenses for Portal and Develop Sandbox. It is a long string like
@@ -22,7 +28,7 @@ Follow the [official Docker guide](https://docs.docker.com/compose/install/#inst
 
 ## Configure cloud storage
 
-Aidbox bulk API supports [GCP](../../../file-storage/gcp-cloud-storage.md), [AWS](../../../file-storage/aws-s3.md) and [Azure](../../../file-storage/azure-blob-storage.md) cloud storages. To pass the Inferno tests cloud storage should be [properly set up](../../../api/bulk-api/export.md).
+Aidbox bulk API supports [GCP](../../../../file-storage/gcp-cloud-storage.md), [AWS](../../../../file-storage/aws-s3.md) and [Azure](../../../../file-storage/azure-blob-storage.md) cloud storages. To pass the Inferno tests cloud storage should be [properly set up](../../../../api/bulk-api/export.md).
 
 ## **Set up email provider**
 

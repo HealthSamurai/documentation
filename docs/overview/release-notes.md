@@ -10,13 +10,12 @@ description: >-
 
 ## December 2025 _`latest, 2512, LTS`_
 
-* Aidbox FHIR server 
+* Aidbox FHIR server
   * [FHIR Topic-based Subscriptions](../modules/topic-based-subscriptions/fhir-topic-based-subscriptions.md) are now supported.
   * Updated documentation for configuring [Two Factor Authentication](../access-control/authentication/two-factor-authentication.md) with the Aidbox security provider.
   * CRUD operation performance improved by 30% through internal optimizations.
   * Multiple bug fixes in the validator.
   * Security-related bug fixes.
-
 * Aidbox Forms
   * Supported the ability to create dynamic [parameterized valueSets](../modules/aidbox-forms/aidbox-ui-builder-alpha/parameterised-valueset.md) that filter answer options based on other form fields using FHIRPath expressions.
   * Created an [open-source React renderer](https://github.com/HealthSamurai/aidbox-forms-renderer/tree/master) for custom form rendering, now available in alpha stage.
@@ -318,7 +317,7 @@ Minor updates:
 ## December 2024 _`2412`_
 
 * Aidbox
-  * Supported [SMART App Launch scopes v1 and v2](../modules/smartbox/) for Aidbox on FHIR Schema validation engine and reworked [SMART on FHIR](../modules/smartbox/) documentation
+  * Supported [SMART App Launch scopes v1 and v2](../deprecated/deprecated/smartbox/) for Aidbox on FHIR Schema validation engine and reworked [SMART on FHIR](../deprecated/deprecated/smartbox/) documentation
   * Added example of [SMART App Launch using Aidbox and Keycloak](https://github.com/Aidbox/examples/tree/main/aidbox-features/smart-app-launch)
   * Supported enabling [OrgBAC (Organization-based hierarchical access control)](../access-control/authorization/scoped-api/organization-based-hierarchical-access-control.md) using an [environment variable](../tutorials/security-access-control-tutorials/how-to-enable-hierarchical-access-control.md) if an Aidox instance uses FHIR Schema validator
   * Fixed security issues and bugs
@@ -388,8 +387,8 @@ Minor updates:
   * Enabled new Aidbox UI by default
   * Fixed critical vulnerabilities and bugs
 * Smartbox | FHIR API for EHRs
-  * Added [source attributes for evidence-based and predictive DSIs (b)(11)](../modules/smartbox/the-b11-decision-support-interventions/source-attributes.md)
-  * Introduced [user feedback capability for DSIs (b)(11)](../modules/smartbox/the-b11-decision-support-interventions/feedback-sections.md)
+  * Added [source attributes for evidence-based and predictive DSIs (b)(11)](../deprecated/deprecated/smartbox/the-b11-decision-support-interventions/source-attributes.md)
+  * Introduced [user feedback capability for DSIs (b)(11)](../deprecated/deprecated/smartbox/the-b11-decision-support-interventions/feedback-sections.md)
   * Implemented “service base URLs” in compliance with (g)(10)
 * Aidbox Forms
   * Implemented basic conversion of paper and fillable PDF forms to digital forms
@@ -554,7 +553,7 @@ Minor updates:
   * Administered Medications mapping to/from MedicationAdministration FHIR resource
 * DevOps
   * Documented 'How to make Aidbox Docker image work with [self-signed SSL certificates](../deployment-and-maintenance/deploy-aidbox/run-aidbox-in-kubernetes/self-signed-ssl-certificates.md)'
-  * Released AidboxDB 16.1. Updated [the list of the extensions](../deprecated/deprecated/aidboxdb/README.md) for Postgres. Documented the migration steps from the previous PG versions
+  * Released AidboxDB 16.1. Updated [the list of the extensions](../deprecated/deprecated/aidboxdb/) for Postgres. Documented the migration steps from the previous PG versions
   * Removed apk-tools from our Docker images
 * [Aidbox Forms](../modules/aidbox-forms/)
   * Questionnaire-based forms updates:
@@ -722,7 +721,7 @@ Minor updates:
   * Added [hierarchical organization-based access control](../access-control/authorization/scoped-api/organization-based-hierarchical-access-control.md) (multi-tenancy on organization-level resources)
   * Added [How to enable hierarchical access control](../tutorials/security-access-control-tutorials/how-to-enable-hierarchical-access-control.md) tutorial
 * Ops
-  * Released new [PostgreSQL Aidboxdb images 15.3, 14.8, 13.11](../deprecated/deprecated/aidboxdb/README.md)
+  * Released new [PostgreSQL Aidboxdb images 15.3, 14.8, 13.11](../deprecated/deprecated/aidboxdb/)
   * Added PostGis Extension
   * Enabled the [/health](../api/rest-api/other/health-check.md) endpoint metrics and logs by default
   * Added [How to disable logging](../api/rest-api/other/health-check.md#logging-health-endpoint-request) tutorial
@@ -921,7 +920,7 @@ Minor updates:
   * Updated documentation on highly available Aidbox
   * Updated documentation on production-ready deployment to Kubernetes
 * Smartbox
-  * Improved admin UI with configuration of [EHR-level logo](../modules/smartbox/how-to-guides/set-up-ehr-level-customization.md#with-smartbox-ui), [email provider](../modules/smartbox/how-to-guides/setup-email-provider.md) and bulk export.
+  * Improved admin UI with configuration of [EHR-level logo](../deprecated/deprecated/smartbox/how-to-guides/set-up-ehr-level-customization.md#with-smartbox-ui), [email provider](../deprecated/deprecated/smartbox/how-to-guides/setup-email-provider.md) and bulk export.
   * Added documentation on deployment to Kubernetes
   * Added guides on passing [Inferno tests](../solutions/providers-or-onc-health-it-certification-program/g-10-standardized-api-for-patient-and-population-services/pass-inferno-tests-with-aidbox.md) and [Inferno Visual Inspection and Attestation](../solutions/providers-or-onc-health-it-certification-program/g-10-standardized-api-for-patient-and-population-services/pass-inferno-visual-inspection-and-attestation.md)
 * Aidbox Configuration Projects
@@ -962,8 +961,8 @@ Minor updates:
   * Added 180-second timeout for [(rev)include queries](../api/rest-api/fhir-search/include-and-revinclude.md)
   * **Breaking change:** removed limit of 1000 in [\_count](../api/rest-api/fhir-search/searchparameter.md#count) queries
 * FHIR API for EHRs
-  * Supported [multitenancy](../modules/smartbox/background-information/multitenancy-approach.md)
-  * Added an option set up [EHR-level customization](../modules/smartbox/how-to-guides/set-up-ehr-level-customization.md) (logos and templates)
+  * Supported [multitenancy](../deprecated/deprecated/smartbox/background-information/multitenancy-approach.md)
+  * Added an option set up [EHR-level customization](../deprecated/deprecated/smartbox/how-to-guides/set-up-ehr-level-customization.md) (logos and templates)
 * Aidbox forms
   * Supported rules, text type and display type conversion on FHIR Questionnaire -> SDCDocument converter
   * Supported amendments and addendums of forms
@@ -989,7 +988,7 @@ Minor updates:
 * Supported [`/health` endpoint](../api/rest-api/other/health-check.md) for Multibox
 * Updated documentation on how to configure Aidbox with [Aidbox configuration project](../deprecated/deprecated/zen-related/aidbox-zen-lang-project/)
 * Updated documentation on how to configure highly available Aidbox.
-* Added support for [PostgreSQL 15](../deprecated/deprecated/aidboxdb/README.md) (beta)
+* Added support for [PostgreSQL 15](../deprecated/deprecated/aidboxdb/) (beta)
 * Added documentation on how to create [most common indexes](../deployment-and-maintenance/indexes/create-indexes-manually.md)
 * Added `aidbox` format support for [bulk import](../api/bulk-api/aidbox-bulk-data-import.md)
 * Added `enable-links` parameter for AidboxQuery
@@ -1050,7 +1049,7 @@ Minor updates:
 * Added CapabilityStatement configuration options.
 * Improved setting PostgreSQL schema for Aidbox tables.
 * Added option to set JWT private/public keys and secret via env.
-* Added [aidboxdb PostgreSQL 14.2 version](../deprecated/deprecated/aidboxdb/README.md). Supported versions are 14.2 and 13.6.
+* Added [aidboxdb PostgreSQL 14.2 version](../deprecated/deprecated/aidboxdb/). Supported versions are 14.2 and 13.6.
 * Added tutorial [how to fix broken dates](../tutorials/other-tutorials/).
 * Released Infrabox preview. Infrabox is a simple and efficient tool to deploy and manage production-ready Aidbox infrastructure on k8s.
 
@@ -1230,7 +1229,7 @@ Starting from January 2022 we're switching to a new release cycle. We added`:lat
 
 ## February 2021 - v:20210319
 
-* Builds of [aidboxdb](../deprecated/deprecated/aidboxdb/README.md) for PostgreSQL 11.11, 12.6, 13.2 are [released](https://hub.docker.com/r/healthsamurai/aidboxdb/tags?page=1\&ordering=last_updated).
+* Builds of [aidboxdb](../deprecated/deprecated/aidboxdb/) for PostgreSQL 11.11, 12.6, 13.2 are [released](https://hub.docker.com/r/healthsamurai/aidboxdb/tags?page=1\&ordering=last_updated).
 * Aidbox now supports deployment on top of Azure PostgreSQL.
 * Improvements of $changes API: FHIR support, pagination, upper version limit. $changes is now available at the resource level.
 * Enhancement of Transaction Bundle API that allows to populate both resource and history tables in one transaction.

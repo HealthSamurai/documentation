@@ -4,6 +4,12 @@ description: The guide covers only Smartbox mandatory components deployment in k
 
 # Deploy Smartbox with Kubernetes
 
+{% hint style="warning" %}
+2512 Smartbox Docker container is published in LTS mode. No further updates or new features will be released.
+
+For new deployments, please migrate to [Aidbox + FHIR App Portal](../../../../solutions/aidbox-+-fhir-app-portal/)
+{% endhint %}
+
 This guide shows how to deploy Smartbox in minimal configuration. One instance of PostgreSQL and a two instances of Aidbox (Sandbox and Portal).
 
 To have a production-ready deployment there also should be:
@@ -23,9 +29,9 @@ This guide does not define exposing Smartbox to the Internet
 
 * [Kubernetes](https://kubernetes.io/) cluster is set up and running
 * `kubectl` utility is installed
-* Two Aidbox [licenses](../../../overview/aidbox-user-portal/licenses.md) are obtained
-* Email provider [credentials](../../integration-toolkit/email-providers/README.md) are obtained
-* GCP connect [credentials](../../../file-storage/gcp-cloud-storage.md) are obtained
+* Two Aidbox [licenses](../../../../overview/aidbox-user-portal/licenses.md) are obtained
+* Email provider [credentials](../../../../modules/integration-toolkit/email-providers/) are obtained
+* GCP connect [credentials](../../../../file-storage/gcp-cloud-storage.md) are obtained
 
 ## Prebuilt k8s configuration
 
@@ -68,14 +74,14 @@ The `smartbox.yaml` is the k8s compiled templates configuration. The configurati
 * AIDBOX\_CLIENT\_SECRET: portal-secret
 * BOX\_SMARTBOX\_SANDBOX\_\_URL: http://sandbox
 * BOX\_SMARTBOX\_SANDBOX\_\_ADMIN: admin
-* BOX\_BULK\_\_STORAGE\_GCP\_\* values. See the [documentation](../../../file-storage/gcp-cloud-storage.md)
+* BOX\_BULK\_\_STORAGE\_GCP\_\* values. See the [documentation](../../../../file-storage/gcp-cloud-storage.md)
 
 {% hint style="warning" %}
 BOX\_SMARTBOX\_SANDBOX\_\_BASIC is deprecated. Use BOX\_SMARTBOX\_SANDBOX\_\_ADMIN instead
 {% endhint %}
 
 {% hint style="info" %}
-All the available environment variables are defined [here](../../../reference/all-settings.md)
+All the available environment variables are defined [here](../../../../reference/all-settings.md)
 {% endhint %}
 
 ## Components templates

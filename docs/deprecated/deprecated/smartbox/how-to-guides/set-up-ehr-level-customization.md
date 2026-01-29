@@ -34,8 +34,8 @@ smartbox:
 
 To understand how Aidbox sends emails, please read this page first:
 
-{% content-ref url="../../integration-toolkit/email-providers/" %}
-[email-providers](../../integration-toolkit/email-providers/README.md)
+{% content-ref url="../../../../modules/integration-toolkit/email-providers/" %}
+[email-providers](../../../../modules/integration-toolkit/email-providers/)
 {% endcontent-ref %}
 
 ### Reset user password
@@ -61,7 +61,7 @@ template: |-
 * `user`
   * `email` address of the developer
   * `name`
-    * `givenName`  of the developer
+    * `givenName` of the developer
     * `familyName` of the developer
 * `tenant`
   * `id` of the tenant
@@ -73,8 +73,8 @@ template: |-
 
 To understand how Aidbox sends emails, please read this page first:
 
-{% content-ref url="../../integration-toolkit/email-providers/" %}
-[email-providers](../../integration-toolkit/email-providers/README.md)
+{% content-ref url="../../../../modules/integration-toolkit/email-providers/" %}
+[email-providers](../../../../modules/integration-toolkit/email-providers/)
 {% endcontent-ref %}
 
 ### Confirm email address
@@ -99,7 +99,7 @@ template: |-
 * `user`
   * `email` address of the developer
   * `name`
-    * `givenName`  of the developer
+    * `givenName` of the developer
     * `familyName` of the developer
 * `confirm-address` is the link new user open to confirm the email exist
 
@@ -123,7 +123,7 @@ template: |-
 * `user`
   * `email` address of the developer
   * `name`
-    * `givenName`  of the developer
+    * `givenName` of the developer
     * `familyName` of the developer
 * `client`
   * `id` of the application
@@ -150,7 +150,7 @@ template: |-
 * `user`
   * `email` address of the developer
   * `name`
-    * `givenName`  of the developer
+    * `givenName` of the developer
     * `familyName` of the developer
 * `client`
   * `id` of the application
@@ -177,7 +177,7 @@ template: |-
 * `user`
   * `email` address of the developer
   * `name`
-    * `givenName`  of the developer
+    * `givenName` of the developer
     * `familyName` of the developer
 * `client`
   * `id` of the application
@@ -204,7 +204,7 @@ template: |-
 * `user`
   * `email` address of the developer
   * `name`
-    * `givenName`  of the developer
+    * `givenName` of the developer
     * `familyName` of the developer
 * `client`
   * `id` of the application
