@@ -138,3 +138,10 @@ body:
 ```
 {% endtab %}
 {% endtabs %}
+{% endtabs %}
+
+See also:
+
+{% content-ref url="../../../solutions/providers-or-onc-health-it-certification-program/g-7-application-access-patient-selection.md" %}
+[(g)(7): Application Access - Patient Selection](../../../solutions/providers-or-onc-health-it-certification-program/g-7-application-access-patient-selection.md)
+{% endcontent-ref %}
