@@ -10,6 +10,8 @@ description: >-
 Grafana integration is deprecated since 2601.
 {% endhint %}
 
+Use the new official Aidbox dashboard: [24752-aidbox](https://grafana.com/grafana/dashboards/24752-aidbox/).
+
 Before setting up Grafana integration, ensure you have set up the Aidbox Metrics Server. Check the guide below on how to do it.
 
 {% content-ref url="use-aidbox-metrics-server.md" %}
