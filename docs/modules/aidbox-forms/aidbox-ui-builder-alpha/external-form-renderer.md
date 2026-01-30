@@ -1,92 +1,118 @@
 ---
-description: Build custom FHIR questionnaire renderers as web components for Aidbox Forms Builder with dynamic preview and integration.
+description: Build custom FHIR questionnaire renderers as standalone pages for Aidbox Forms Builder preview using SDC SMART Web Messaging.
 ---
 
 # External Form Renderer in Builder Preview
 
-The Aidbox Forms Builder supports custom form renderers that allow you to create personalized questionnaire experiences while maintaining compatibility with FHIR standards. This feature enables developers to build custom rendering logic for questionnaires while leveraging the Forms Builder's preview and configuration capabilities.
+The Forms Builder can load a custom renderer inside its preview iframe. You provide a URL to a page that implements [SDC SMART Web Messaging](https://github.com/brianpos/sdc-smart-web-messaging). The Builder sends messages to the page; the page renders the questionnaire and replies with updates.
 
-## Renderer Implementation
+## How it works
 
-Custom renderers must be implemented as web components that extend `HTMLElement` and provide specific methods for Forms Builder integration. The renderer component needs to handle questionnaire data rendering and response collection through defined callback interfaces.
+1) The Builder opens your renderer page in an iframe.
+2) The Builder appends `messaging_handle` and `messaging_origin` to the URL.
+3) The Builder and renderer exchange `postMessage` requests and responses.
 
-```javascript
-class QuestionnaireCustomRenderer extends HTMLElement {
-  constructor() {
-    super();
-    this.attachShadow({ mode: 'open' });
-    this._questionnaire = null;
-    this._questionnaireResponse = null;
-    this._onQuestionnaireResponseChange = null;
-  }
+The protocol is defined here: [SDC SMART Web Messaging](https://github.com/brianpos/sdc-smart-web-messaging)
 
-  static get observedAttributes() {
-    return ['questionnaire', 'questionnaire-response'];
-  }
+## Requirements
 
-  connectedCallback() {
-    try {
-      this._questionnaire = JSON.parse(this.getAttribute('questionnaire'));
-      this._questionnaireResponse = JSON.parse(this.getAttribute('questionnaire-response'));
-    } catch (e) {
-      console.error('Error parsing attributes:', e);
-    }
-    this.render();
-  }
+Your renderer must be a normal web page (HTML + JS). It must:
 
-  attributeChangedCallback(name, oldValue, newValue) {
-    if (!this.shadowRoot || oldValue === newValue) return;
-    
-    switch (name) {
-      case 'questionnaire':
-        this._questionnaire = newValue ? JSON.parse(newValue) : null;
-        break;
-      case 'questionnaire-response':
-        this._questionnaireResponse = newValue ? JSON.parse(newValue) : null;
-        break;
-    }
-    this.render();
-  }
+- Read `messaging_handle` and `messaging_origin` from the URL.
+- Send and receive SWM messages via `postMessage`.
+- Reply to all request messages with the same `messageType` and `responseToMessageId`.
+- Allow embedding in an iframe. Configure `Content-Security-Policy: frame-ancestors` and avoid `X-Frame-Options: DENY` or `SAMEORIGIN`.
 
-  set onQuestionnaireResponseChange(callback) {
-    this._onQuestionnaireResponseChange = callback;
-  }
+## Minimal implementation
 
-  render() {
-    // Custom rendering logic implementation
-  }
+This is the smallest useful SWM renderer loop. It performs the handshake, accepts a Questionnaire, and returns a QuestionnaireResponse when asked. Replace the `renderForm` and `getCurrentResponse` stubs with your renderer logic.
+
+```js
+const params = new URLSearchParams(window.location.search);
+const messagingHandle = params.get("messaging_handle");
+const messagingOrigin = params.get("messaging_origin");
+const hostWindow = window.opener || window.parent;
+
+function postToHost(message) {
+  hostWindow.postMessage(message, messagingOrigin);
 }
+
+function sendEvent(messageType, payload) {
+  postToHost({
+    messagingHandle,
+    messageId: crypto.randomUUID(),
+    messageType,
+    payload,
+  });
+}
+
+function sendResponse(messageType, responseToMessageId, payload) {
+  postToHost({
+    messagingHandle,
+    messageId: crypto.randomUUID(),
+    messageType,
+    responseToMessageId,
+    payload,
+  });
+}
+
+function renderForm(questionnaire, questionnaireResponse) {
+  // Render your form here
+}
+
+function getCurrentResponse() {
+  // Return the current QuestionnaireResponse here
+  return null;
+}
+
+sendEvent("status.handshake", { protocolVersion: "1.0", fhirVersion: "R4" });
+
+window.addEventListener("message", (event) => {
+  if (event.origin !== messagingOrigin) return;
+  if (event.source !== hostWindow) return;
+
+  const message = event.data || {};
+  if (message.messagingHandle && message.messagingHandle !== messagingHandle) {
+    return;
+  }
+  if (!message.messageType) return;
+
+  switch (message.messageType) {
+    case "status.handshake":
+      sendResponse("status.handshake", message.messageId, {
+        application: { name: "My Renderer" },
+      });
+      return;
+
+    case "sdc.displayQuestionnaire":
+      renderForm(message.payload.questionnaire, message.payload.questionnaireResponse);
+      sendResponse("sdc.displayQuestionnaire", message.messageId, { status: "success" });
+      return;
+
+    case "sdc.requestCurrentQuestionnaireResponse":
+      sendResponse("sdc.requestCurrentQuestionnaireResponse", message.messageId, {
+        questionnaireResponse: getCurrentResponse(),
+      });
+      return;
+
+    default:
+      sendResponse(message.messageType, message.messageId, {
+        status: "error",
+        statusDetail: { message: "Unsupported message type" },
+      });
+  }
+});
 ```
 
-## Hosting Configuration
+## Add the renderer in Forms Builder
 
-Custom renderers require hosting through web-accessible endpoints that the Forms Builder can load dynamically
+1) Open Forms Builder.
+2) Click the renderer switcher (eye icon near the theme selector).
+3) Click **Add custom renderer**.
+4) Provide a name and a renderer URL.
+5) Save and select the renderer in the preview.
 
-## Forms Builder Integration
+## Example project
 
-Integration with the Forms Builder occurs through SDC (Structured Data Capture) configuration resources that register custom renderers with the system. These configurations specify renderer metadata including source URLs, display names, and loading parameters.
-
-```json
-{
-  "resourceType": "SDCConfig",
-  "name": "custom-renderers-config",
-  "builder": {
-    "custom-renderers": [{
-      "name": "simple-questionnaire-renderer",
-      "source": "http://localhost:8081/simple-questionnaire-renderer.js",
-      "title": "Simple Questionnaire Renderer"
-    }]
-  }
-}
-```
-
-## Preview and Testing
-
-The Forms Builder preview system loads custom renderers dynamically when users select them from the available options. This preview functionality enables real-time testing of custom rendering logic without requiring separate deployment or testing environments.
-
-Testing custom renderers involves verifying proper component loading, data binding functionality, and response capture mechanisms. The preview system provides immediate feedback on renderer behavior and helps identify integration issues before deployment to production environments.
-
-## Example Project
-
-A complete working example of custom renderer implementation is available in the [Aidbox Forms Builder Custom Renderer repository](https://github.com/Aidbox/examples/tree/main/aidbox-forms/aidbox-forms-builder-custom-renderer). This example demonstrates the full setup process including Docker configuration, renderer implementation, and Forms Builder integration.
-
+A working example renderer is available here:
+https://github.com/Aidbox/examples/tree/main/aidbox-forms/aidbox-forms-builder-custom-renderer

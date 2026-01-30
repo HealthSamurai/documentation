@@ -9,6 +9,11 @@ description: >-
 ## Embedding Aidbox Form Builder and Renderer
 
 You can embed the **Builder** and **Renderer** into your application or website using web components.
+The Renderer can also be embedded directly as an iframe using SDC SMART Web Messaging (SWM).
+
+### Renderer in an iframe (SDC SWM)
+
+The Aidbox Forms renderer also supports [SDC SMART Web Messaging](https://github.com/brianpos/sdc-smart-web-messaging). You can embed it directly in an iframe and communicate via `postMessage`, without the web component wrapper.
 
 * **Builder** allows users to create and manage forms directly within your application.
 * **Renderer** enables users to fill out forms within your application without leaving your platform.
