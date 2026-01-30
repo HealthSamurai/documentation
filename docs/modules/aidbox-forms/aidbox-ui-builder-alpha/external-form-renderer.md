@@ -14,6 +14,13 @@ The Forms Builder can load a custom renderer inside its preview iframe. You prov
 
 The protocol is defined here: [SDC SMART Web Messaging](https://github.com/brianpos/sdc-smart-web-messaging)
 
+## Hosted renderers
+
+You can use these ready-to-use renderer pages:
+
+- Smart Forms: https://aidbox.github.io/examples/renderers/smart-forms/
+- LHC Forms: https://aidbox.github.io/examples/renderers/lhc-forms/
+
 ## Requirements
 
 Your renderer must be a normal web page (HTML + JS). It must:
