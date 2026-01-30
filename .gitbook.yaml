@@ -438,7 +438,6 @@ redirects:
   modules-1/security-and-access-control/set-up-external-identity-provider/keycloak: tutorials/security-access-control-tutorials/keycloak.md
   modules-1/security-and-access-control/set-up-external-identity-provider/microsoft-ad-fs: tutorials/security-access-control-tutorials/microsoft-ad-fs.md
   modules-1/security-and-access-control/set-up-external-identity-provider/okta: tutorials/security-access-control-tutorials/okta.md
-  modules-1/smartbox/how-to-guides/find-out-what-resources-were-exported-during-the-usdexport-operation: modules/smartbox/how-to-guides/find-out-what-resources-were-exported-during-the-export-operation.md
   modules-1/smartbox/how-to-guides/pass-inferno-tests-with-smartbox/~/comments: solutions/providers-or-onc-health-it-certification-program/g-10-standardized-api-for-patient-and-population-services/pass-inferno-tests-with-aidbox.md
   modules-1/smartbox/how-to-guides/pass-inferno-tests-with-smartbox: solutions/providers-or-onc-health-it-certification-program/g-10-standardized-api-for-patient-and-population-services/pass-inferno-tests-with-aidbox.md
   modules-1/smartbox/how-to-guides/pass-inferno-visual-inspection-and-attestation: solutions/providers-or-onc-health-it-certification-program/g-10-standardized-api-for-patient-and-population-services/pass-inferno-visual-inspection-and-attestation.md
