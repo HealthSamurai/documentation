@@ -6,9 +6,31 @@ description: >-
 
 # Release Notes
 
-## January 2026 _`edge`_
+## February 2026 _`edge`_
 
-## December 2025 _`latest, 2512, LTS`_
+## January 2026 _`latest, 2601`_
+
+* Aidbox FHIR server
+  * FHIR topic-based subscriptions support. [Documentation](../modules/topic-based-subscriptions/fhir-topic-based-subscriptions.md)
+  * Local IG support [TODO: documentation]()
+  * Support AWS EventBridge as a AidboxTopicDestination destination. See [full tutorial](../tutorials/subscriptions-tutorials/aws-eventbridge-aidboxtopicdestination.md)
+  * Implement AWS Default credentials authorization. See [full tutorial](../file-storage/aws-s3)
+  * Another performance improvement + 25% on CRUD operations and +80% on FHIR bundle import operations.
+  * Optimize memory usage on initialization.
+  * Improvements for HL7V2 incoming mapper
+  * Support Aidbox behind HTTP(S) proxy. See [full proxy example](https://github.com/Aidbox/examples/tree/main/aidbox-features/aidbox-outbound-proxy).
+  * GraphQL Federation support. See [full example](https://github.com/Aidbox/examples/tree/main/aidbox-integrations/apollo-graphql-federation).
+  * GraphQL `_filter` support
+  * Add support for new SMART scopes for `graphql` and `ViewDefinition` operations [documentation](../reference/oauth-operation-scopes.md)
+  * Improve SearchParameters UI in Resource Browser.
+  * Impove FAR UI, imporove performance on terminology operations.
+  * Publish official Aidbox grafana dashboard  https://grafana.com/grafana/dashboards/24752-aidbox/
+  * Stop supporting of `smartbox` image, need to migrate to [Aidbox + FHIR App Portal](../solutions/aidbox-+-fhir-app-portal/getting-started/smartbox-to-aidbox-migration-guide.md)
+* Minor updates
+  * `2512.1` - Optimize memory usage and improve performance.
+  * `2512.2` - Fix FHIR validation issues.
+
+## December 2025 _`stable, 2512, LTS`_
 
 * Aidbox FHIR server
   * [FHIR Topic-based Subscriptions](../modules/topic-based-subscriptions/fhir-topic-based-subscriptions.md) are now supported.
