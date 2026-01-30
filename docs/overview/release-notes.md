@@ -11,21 +11,24 @@ description: >-
 ## January 2026 _`latest, 2601`_
 
 * Aidbox FHIR server
-  * FHIR topic-based subscriptions support. [Documentation](../modules/topic-based-subscriptions/fhir-topic-based-subscriptions.md)
-  * Local IG support [TODO: documentation]()
-  * Support AWS EventBridge as a AidboxTopicDestination destination. See [full tutorial](../tutorials/subscriptions-tutorials/aws-eventbridge-aidboxtopicdestination.md)
-  * Implement AWS Default credentials authorization. See [full tutorial](../file-storage/aws-s3)
-  * Another performance improvement + 25% on CRUD operations and +80% on FHIR bundle import operations.
-  * Optimize memory usage on initialization.
-  * Improvements for HL7V2 incoming mapper
-  * Support Aidbox behind HTTP(S) proxy. See [full proxy example](https://github.com/Aidbox/examples/tree/main/aidbox-features/aidbox-outbound-proxy).
-  * GraphQL Federation support. See [full example](https://github.com/Aidbox/examples/tree/main/aidbox-integrations/apollo-graphql-federation).
-  * GraphQL `_filter` support
-  * Add support for new SMART scopes for `graphql` and `ViewDefinition` operations [documentation](../reference/oauth-operation-scopes.md)
-  * Improve SearchParameters UI in Resource Browser.
-  * Impove FAR UI, imporove performance on terminology operations.
-  * Publish official Aidbox grafana dashboard  https://grafana.com/grafana/dashboards/24752-aidbox/
-  * Stop supporting of `smartbox` image, need to migrate to [Aidbox + FHIR App Portal](../solutions/aidbox-+-fhir-app-portal/getting-started/smartbox-to-aidbox-migration-guide.md)
+  * Improved support for [FHIR Topic-based subscriptions](../modules/topic-based-subscriptions/fhir-topic-based-subscriptions.md).
+  * Loading FHIR packages from [local filesystem](../artifact-registry/artifact-registry-overview.md#loading-packages-from-local-filesystem) is now supported.
+  * Added support for `[$current-canonical`](../artifact-registry/artifact-registry-overview.md#current-canonical-operation ) operation.
+  * Added **AWS EventBridge** as an AidboxTopicDestination. See [full tutorial](../tutorials/subscriptions-tutorials/aws-eventbridge-aidboxtopicdestination.md)
+  * Implemented **AWS Default credentials authorization**. See [full tutorial](../file-storage/aws-s3)
+  * Performance improvemens:
+    * +25% on CRUD operations
+    * +80% on FHIR bundle import operations.
+  * Optimized memory usage on server initialization.
+  * Enhancements to HL7V2 incoming [mapper](../modules/integration-toolkit/hl7-v2-integration/README.md#testing-messages-without-persistence).
+  * Support for **Aidbox behind HTTP(S) proxies**. See [full proxy example](https://github.com/Aidbox/examples/tree/main/aidbox-features/aidbox-outbound-proxy).
+  * Added **GraphQL Federation** support. See [full example](https://github.com/Aidbox/examples/tree/main/aidbox-integrations/apollo-graphql-federation).
+  * Added **GraphQL `_filter`** support.
+  * Add support for new **OAuth scopes** for `graphql` and `ViewDefinition` operations [documentation](../reference/oauth-operation-scopes.md)
+  * Improve **SearchParameters UI** in Resource Browser.
+  * Improved **FAR UI** and performance on terminology operations.
+  * Published **official Aidbox grafana dashboard**  [Dashboard](https://grafana.com/grafana/dashboards/24752-aidbox/)
+  * Deprecated the `smartbox` image, migration to [Aidbox + FHIR App Portal](../solutions/aidbox-+-fhir-app-portal/getting-started/smartbox-to-aidbox-migration-guide.md) is required.
 * Minor updates
   * `2512.1` - Optimize memory usage and improve performance.
   * `2512.2` - Fix FHIR validation issues.
