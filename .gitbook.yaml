@@ -438,30 +438,9 @@ redirects:
   modules-1/security-and-access-control/set-up-external-identity-provider/keycloak: tutorials/security-access-control-tutorials/keycloak.md
   modules-1/security-and-access-control/set-up-external-identity-provider/microsoft-ad-fs: tutorials/security-access-control-tutorials/microsoft-ad-fs.md
   modules-1/security-and-access-control/set-up-external-identity-provider/okta: tutorials/security-access-control-tutorials/okta.md
-  modules-1/smartbox/background-information/adding-clients-for-inferno-tests: modules/smartbox/background-information/adding-clients-for-inferno-tests.md
-  modules-1/smartbox/background-information/considerations-for-testing-with-inferno-onc: modules/smartbox/background-information/considerations-for-testing-with-inferno-onc.md
-  modules-1/smartbox/background-information/email-templating: modules/smartbox/background-information/email-templating.md
-  modules-1/smartbox/background-information/multitenancy-approach: modules/smartbox/background-information/multitenancy-approach.md
-  modules-1/smartbox/background-information/what-is-tenant: modules/smartbox/background-information/what-is-tenant.md
-  modules-1/smartbox/docs-g-docs-10-standardized-api-for-patient-and-population-services: modules/smartbox/docs-g-docs-10-standardized-api-for-patient-and-population-services.md
-  modules-1/smartbox/get-started/deploy-smartbox-with-kubernetes: modules/smartbox/get-started/deploy-smartbox-with-kubernetes.md
-  modules-1/smartbox/get-started/set-up-smartbox-locally: modules/smartbox/get-started/set-up-smartbox-locally.md
-  modules-1/smartbox/how-to-guides/check-email-templates: modules/smartbox/how-to-guides/check-email-templates.md
-  modules-1/smartbox/how-to-guides/find-documentation-endpoint: modules/smartbox/how-to-guides/find-documentation-endpoint.md
-  modules-1/smartbox/how-to-guides/find-out-what-resources-were-exported-during-the-usdexport-operation: modules/smartbox/how-to-guides/find-out-what-resources-were-exported-during-the-export-operation.md
   modules-1/smartbox/how-to-guides/pass-inferno-tests-with-smartbox/~/comments: solutions/providers-or-onc-health-it-certification-program/g-10-standardized-api-for-patient-and-population-services/pass-inferno-tests-with-aidbox.md
   modules-1/smartbox/how-to-guides/pass-inferno-tests-with-smartbox: solutions/providers-or-onc-health-it-certification-program/g-10-standardized-api-for-patient-and-population-services/pass-inferno-tests-with-aidbox.md
   modules-1/smartbox/how-to-guides/pass-inferno-visual-inspection-and-attestation: solutions/providers-or-onc-health-it-certification-program/g-10-standardized-api-for-patient-and-population-services/pass-inferno-visual-inspection-and-attestation.md
-  modules-1/smartbox/how-to-guides/perform-ehr-launch: modules/smartbox/how-to-guides/perform-ehr-launch.md
-  modules-1/smartbox/how-to-guides/publish-terms-of-use-link-onto-the-documentation-page: modules/smartbox/how-to-guides/publish-terms-of-use-link-onto-the-documentation-page.md
-  modules-1/smartbox/how-to-guides/register-users: modules/smartbox/how-to-guides/register-users.md
-  modules-1/smartbox/how-to-guides/revoke-granted-access: modules/smartbox/how-to-guides/revoke-granted-access.md
-  modules-1/smartbox/how-to-guides/set-up-ehr-level-customization: modules/smartbox/how-to-guides/set-up-ehr-level-customization.md
-  modules-1/smartbox/how-to-guides/set-up-sso-with-auth0: modules/smartbox/how-to-guides/set-up-sso-with-auth0.md
-  modules-1/smartbox/how-to-guides/setup-email-provider: modules/smartbox/how-to-guides/setup-email-provider.md
-  modules-1/smartbox/the-b11-decision-support-interventions/feedback-sections: modules/smartbox/the-b11-decision-support-interventions/feedback-sections.md
-  modules-1/smartbox/the-b11-decision-support-interventions/source-attributes: modules/smartbox/the-b11-decision-support-interventions/source-attributes.md
-  modules-1/smartbox: modules/smartbox/README.md
   modules-1/sql-on-fhir/defining-flat-views-with-view-definitions: modules/sql-on-fhir/defining-flat-views-with-view-definitions.md
   modules-1/sql-on-fhir/migrate-to-the-spec-compliant-viewdefinition-format: modules/sql-on-fhir/migrate-to-the-spec-compliant-viewdefinition-format.md
   modules-1/sql-on-fhir/query-data-from-flat-views: modules/sql-on-fhir/query-data-from-flat-views.md
@@ -503,7 +482,6 @@ redirects:
   modules/security-and-access-control/overview: access-control/access-control.md
   modules/security-and-access-control/patient-data-access-api/how-to-enable-patient-data-access-api: tutorials/security-access-control-tutorials/how-to-enable-patient-data-access-api.md
   modules/security-and-access-control/security/attribute-based-access-control-docs-abac: access-control/authorization/README.md
-  modules/smartbox/how-to-guides/find-out-what-resources-were-exported-during-the-usdexport-operation.md: modules/smartbox/how-to-guides/find-out-what-resources-were-exported-during-the-export-operation.md
   modules/smartbox/how-to-guides/pass-inferno-tests-with-smartbox: solutions/providers-or-onc-health-it-certification-program/g-10-standardized-api-for-patient-and-population-services/pass-inferno-tests-with-aidbox.md
   modules/terminology/concept/usdtranslate-concepts.md: deprecated/deprecated/other/terminology/concept/translate-concepts.md
   modules/terminology/usdtranslate-on-conceptmap.md: deprecated/deprecated/other/terminology/concept/translate-concepts.md
