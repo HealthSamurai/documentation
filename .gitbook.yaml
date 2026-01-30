@@ -483,7 +483,6 @@ redirects:
   modules/security-and-access-control/overview: access-control/access-control.md
   modules/security-and-access-control/patient-data-access-api/how-to-enable-patient-data-access-api: tutorials/security-access-control-tutorials/how-to-enable-patient-data-access-api.md
   modules/security-and-access-control/security/attribute-based-access-control-docs-abac: access-control/authorization/README.md
-  modules/smartbox/how-to-guides/find-out-what-resources-were-exported-during-the-usdexport-operation.md: modules/smartbox/how-to-guides/find-out-what-resources-were-exported-during-the-export-operation.md
   modules/smartbox/how-to-guides/pass-inferno-tests-with-smartbox: solutions/providers-or-onc-health-it-certification-program/g-10-standardized-api-for-patient-and-population-services/pass-inferno-tests-with-aidbox.md
   modules/terminology/concept/usdtranslate-concepts.md: deprecated/deprecated/other/terminology/concept/translate-concepts.md
   modules/terminology/usdtranslate-on-conceptmap.md: deprecated/deprecated/other/terminology/concept/translate-concepts.md
