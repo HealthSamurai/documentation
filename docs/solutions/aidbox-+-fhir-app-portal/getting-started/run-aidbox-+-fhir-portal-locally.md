@@ -524,6 +524,27 @@ Create `initBundleDeveloper.json` file in the same folder alongside with `docker
       }
     },
     {
+      "resource": {
+        "resourceType": "AccessPolicy",
+        "id": "allow-license-activation",
+        "engine": "matcho",
+        "description": "Allow unauthenticated access to license activation endpoints",
+        "matcho": {
+          "uri": {
+            "$one-of": [
+              "/api/v1/license/activate",
+              "/api/v1/license/status",
+              "/"
+            ]
+          }
+        }
+      },
+      "request": {
+        "method": "PUT",
+        "url": "AccessPolicy/allow-license-activation"
+      }
+    },
+    {
       "request": {
         "method": "PUT",
         "url": "AccessPolicy/dev-smart-app-read"
@@ -1174,6 +1195,27 @@ Create `initBundleAdmin.json` file in the same folder alongside with `docker-com
       "request": {
         "method": "PUT",
         "url": "AccessPolicy/admin-api"
+      }
+    },
+    {
+      "resource": {
+        "resourceType": "AccessPolicy",
+        "id": "allow-license-activation",
+        "engine": "matcho",
+        "description": "Allow unauthenticated access to license activation endpoints",
+        "matcho": {
+          "uri": {
+            "$one-of": [
+              "/api/v1/license/activate",
+              "/api/v1/license/status",
+              "/"
+            ]
+          }
+        }
+      },
+      "request": {
+        "method": "PUT",
+        "url": "AccessPolicy/allow-license-activation"
       }
     },
     {
