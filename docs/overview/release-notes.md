@@ -13,7 +13,7 @@ description: >-
 * Aidbox FHIR server
   * Improved support for [FHIR Topic-based subscriptions](../modules/topic-based-subscriptions/fhir-topic-based-subscriptions.md).
   * Loading FHIR packages from [local filesystem](../artifact-registry/artifact-registry-overview.md#loading-packages-from-local-filesystem) is now supported.
-  * Added support for `[$current-canonical`](../artifact-registry/artifact-registry-overview.md#current-canonical-operation ) operation.
+  * Added support for [`$current-canonical`](../artifact-registry/artifact-registry-overview.md#current-canonical-operation ) operation.
   * Added **AWS EventBridge** as an AidboxTopicDestination. See [full tutorial](../tutorials/subscriptions-tutorials/aws-eventbridge-aidboxtopicdestination.md)
   * Implemented **AWS Default credentials authorization**. See [full tutorial](../file-storage/aws-s3)
   * Performance improvemens:
