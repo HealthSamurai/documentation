@@ -13,22 +13,28 @@ description: >-
 * Aidbox FHIR server
   * Improved support for [FHIR Topic-based subscriptions](../modules/topic-based-subscriptions/fhir-topic-based-subscriptions.md).
   * Loading FHIR packages from [local filesystem](../artifact-registry/artifact-registry-overview.md#loading-packages-from-local-filesystem) is now supported.
-  * Added support for [`$current-canonical`](../artifact-registry/artifact-registry-overview.md#current-canonical-operation ) operation.
+  * Added support for [`$current-canonical`](../artifact-registry/artifact-registry-overview.md#current-canonical-operation) operation.
   * Added **AWS EventBridge** as an AidboxTopicDestination. See [full tutorial](../tutorials/subscriptions-tutorials/aws-eventbridge-aidboxtopicdestination.md)
-  * Implemented **AWS Default credentials authorization**. See [full tutorial](../file-storage/aws-s3)
+  * Implemented **AWS Default credentials authorization**. See [full tutorial](../file-storage/aws-s3/)
   * Performance improvemens:
     * +25% on CRUD operations
     * +80% on FHIR bundle import operations.
   * Optimized memory usage on server initialization.
-  * Enhancements to HL7V2 incoming [mapper](../modules/integration-toolkit/hl7-v2-integration/README.md#testing-messages-without-persistence).
+  * Enhancements to HL7V2 incoming [mapper](../modules/integration-toolkit/hl7-v2-integration/#testing-messages-without-persistence).
   * Support for **Aidbox behind HTTP(S) proxies**. See [full proxy example](https://github.com/Aidbox/examples/tree/main/aidbox-features/aidbox-outbound-proxy).
   * Added **GraphQL Federation** support. See [full example](https://github.com/Aidbox/examples/tree/main/aidbox-integrations/apollo-graphql-federation).
   * Added **GraphQL `_filter`** support.
   * Add support for new **OAuth scopes** for `graphql` and `ViewDefinition` operations [documentation](../reference/oauth-operation-scopes.md)
   * Improve **SearchParameters UI** in Resource Browser.
   * Improved **FAR UI** and performance on terminology operations.
-  * Published **official Aidbox grafana dashboard**  [Dashboard](https://grafana.com/grafana/dashboards/24752-aidbox/)
+  * Published **official Aidbox grafana dashboard** [Dashboard](https://grafana.com/grafana/dashboards/24752-aidbox/)
   * Deprecated the `smartbox` image, migration to [Aidbox + FHIR App Portal](../solutions/aidbox-+-fhir-app-portal/getting-started/smartbox-to-aidbox-migration-guide.md) is required.
+* Aidbox Forms
+  * Added [direct attachment links](../modules/aidbox-forms/aidbox-ui-builder-alpha/store-attachments-in-s3-like-storages.md#absolute-url-in-attachments) from QuestionnaireResponse to an S3 bucket.
+  * Supported the [SMART Web Messaging protocol for embedding custom renderers](../modules/aidbox-forms/aidbox-ui-builder-alpha/external-form-renderer.md).
+  * Updated the [open-source Formbox renderer](https://github.com/HealthSamurai/aidbox-forms-renderer/tree/master) with support for all itemControl types and advanced rendering aligned with the FHIR SDC specification.
+  * Added the ability to use `valueCodeableConcept` for custom extensions in the Form Builder.
+  * Provided a Smart App sample for the [DTR flow](../modules/aidbox-forms/davinci.md) (available upon request).
 * Minor updates
   * `2512.1` - Optimize memory usage and improve performance.
   * `2512.2` - Fix FHIR validation issues.
