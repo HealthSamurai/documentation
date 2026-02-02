@@ -173,10 +173,6 @@ Extensions editor represents three fields for adding your own custom extension. 
 2. `Type` — choose type of extension's value. Also you can write custom FHIRPath / FHIRQuery valueExpression just choose `Expression` type;
 3. `Value` — pick a value.
 
-{% hint style="info" %}
-Known extensions can not be added
-{% endhint %}
-
 ## Description of widgets
 
 | Widget                                      | Description                                                                                                                                                                                                                                                                               | FHIR / Custom |

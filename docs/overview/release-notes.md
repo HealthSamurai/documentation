@@ -33,7 +33,7 @@ description: >-
   * Added [direct attachment links](../modules/aidbox-forms/aidbox-ui-builder-alpha/store-attachments-in-s3-like-storages.md#absolute-url-in-attachments) from QuestionnaireResponse to an S3 bucket.
   * Supported the [SMART Web Messaging protocol for embedding custom renderers](../modules/aidbox-forms/aidbox-ui-builder-alpha/external-form-renderer.md).
   * Updated the [open-source Formbox renderer](https://github.com/HealthSamurai/aidbox-forms-renderer/tree/master) with support for all itemControl types and advanced rendering aligned with the FHIR SDC specification.
-  * Added the ability to use `valueCodeableConcept` for custom extensions in the Form Builder.
+  * Added the ability to use `valueCodeableConcept` for [custom extensions](../modules/aidbox-forms/aidbox-ui-builder-alpha/form-creation/widgets.md#extensions) in the Form Builder.
   * Provided a Smart App sample for the [DTR flow](../modules/aidbox-forms/davinci.md) (available upon request).
 * Minor updates
   * `2512.1` - Optimize memory usage and improve performance.
