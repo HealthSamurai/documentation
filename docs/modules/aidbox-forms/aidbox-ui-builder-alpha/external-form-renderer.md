@@ -9,17 +9,10 @@ The Forms Builder can load a custom renderer inside its preview iframe. You prov
 ## How it works
 
 1) The Builder opens your renderer page in an iframe.
-2) The Builder appends `messaging_handle` and `messaging_origin` to the URL.
+2) The Builder appends `embedded_mode=true`, `messaging_handle`, and `messaging_origin` to the URL.
 3) The Builder and renderer exchange `postMessage` requests and responses.
 
 The protocol is defined here: [SDC SMART Web Messaging](https://github.com/brianpos/sdc-smart-web-messaging)
-
-## Hosted renderers
-
-You can use these ready-to-use renderer pages:
-
-- Smart Forms: https://aidbox.github.io/examples/renderers/smart-forms/
-- LHC Forms: https://aidbox.github.io/examples/renderers/lhc-forms/
 
 ## Requirements
 
@@ -111,13 +104,63 @@ window.addEventListener("message", (event) => {
 });
 ```
 
+## Supported messages (minimum)
+
+For Builder preview, implement at least these message types and respond with the same `messageType` and `responseToMessageId`:
+
+- [status.handshake](https://github.com/brianpos/sdc-smart-web-messaging/blob/main/docs/sdc-swm-protocol.md#statushandshake)
+- [sdc.configure](https://github.com/brianpos/sdc-smart-web-messaging/blob/main/docs/sdc-swm-protocol.md#sdcconfigure) (respond with `{ status: "success" }`)
+- [sdc.configureContext](https://github.com/brianpos/sdc-smart-web-messaging/blob/main/docs/sdc-swm-protocol.md#sdcconfigurecontext) (respond with `{ status: "success" }`)
+- [sdc.displayQuestionnaire](https://github.com/brianpos/sdc-smart-web-messaging/blob/main/docs/sdc-swm-protocol.md#sdcdisplayquestionnaire) (respond with `{ status: "success" }`)
+- [sdc.requestCurrentQuestionnaireResponse](https://github.com/brianpos/sdc-smart-web-messaging/blob/main/docs/sdc-swm-protocol.md#sdcrequestcurrentquestionnaireresponse) (respond with `{ questionnaireResponse: ... }`)
+
+If your renderer emits updates, send [sdc.ui.changedQuestionnaireResponse](https://github.com/brianpos/sdc-smart-web-messaging/blob/main/docs/sdc-swm-protocol.md#sdcuichangedquestionnaireresponse) events when the response changes.
+
 ## Add the renderer in Forms Builder
+
+### Local renderer (per user)
 
 1) Open Forms Builder.
 2) Click the renderer switcher (eye icon near the theme selector).
 3) Click **Add custom renderer**.
 4) Provide a name and a renderer URL.
 5) Save and select the renderer in the preview.
+
+Local renderers are saved in your browser and are editable/removable. Do not use the **Aidbox Forms** name.
+
+### Managed renderer (via SDCConfig)
+
+You can expose renderers to all users via SDCConfig. These entries are read-only in the Builder and appear with a **Managed** badge.
+
+```json
+{
+  "resourceType": "SDCConfig",
+  "name": "custom-renderers-config",
+  "builder": {
+    "custom-renderers": [
+      {
+        "name": "external-renderer",
+        "url": "https://example.com/renderer",
+        "default": true
+      }
+    ]
+  }
+}
+```
+
+If a managed renderer has the same name as a local renderer, the managed one wins.
+
+## Troubleshooting
+
+- **Preview is blank / iframe doesn’t load**
+  - If your server sets `Content-Security-Policy`, allow embedding with `frame-ancestors` (optional if you don’t set CSP).
+  - If your server sets `X-Frame-Options`, remove `DENY` or `SAMEORIGIN` (optional if you don’t set this header).
+- **No messages received**
+  - Ensure your page reads `messaging_handle` and `messaging_origin` from the URL and filters by them.
+  - Verify you reply to `status.handshake`, `sdc.configure`, and `sdc.configureContext` before expecting `sdc.displayQuestionnaire`.
+- **Messages received but no updates**
+  - Confirm you respond with the same `messageType` and `responseToMessageId` for every request.
+  - Emit `sdc.ui.changedQuestionnaireResponse` if you want live preview updates.
 
 ## Example project
 
