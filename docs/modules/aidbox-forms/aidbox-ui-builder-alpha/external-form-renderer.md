@@ -150,6 +150,16 @@ You can expose renderers to all users via SDCConfig. These entries are read-only
 
 If a managed renderer has the same name as a local renderer, the managed one wins.
 
+## Hosted renderers
+
+You can use these ready-to-use renderer pages:
+
+- Smart Forms: https://aidbox.github.io/examples/renderers/smart-forms/
+- LHC Forms: https://aidbox.github.io/examples/renderers/lhc-forms/
+
+Their source code is available in the examples repository and can serve as a reference implementation if you are building your own renderer:
+https://github.com/Aidbox/examples/tree/main/aidbox-forms/aidbox-forms-builder-custom-renderer
+
 ## Troubleshooting
 
 - **Preview is blank / iframe doesn’t load**
