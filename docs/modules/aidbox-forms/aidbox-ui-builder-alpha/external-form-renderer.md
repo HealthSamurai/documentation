@@ -156,6 +156,8 @@ You can use these ready-to-use renderer pages:
 
 - Smart Forms: https://aidbox.github.io/examples/renderers/smart-forms/
 - LHC Forms: https://aidbox.github.io/examples/renderers/lhc-forms/
+- Beda: https://aidbox.github.io/examples/renderers/beda/
+- Refero: https://aidbox.github.io/examples/renderers/refero/
 
 Their source code is available in the examples repository and can serve as a reference implementation if you are building your own renderer:
 https://github.com/Aidbox/examples/tree/main/aidbox-forms/aidbox-forms-builder-custom-renderer
