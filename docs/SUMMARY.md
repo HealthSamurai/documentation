@@ -308,6 +308,7 @@
       * [Set-up Grafana integration (deprecated)](deprecated/deprecated/other/monitoring/set-up-grafana-integration.md)
     * [Technical reference](modules/observability/metrics/technical-reference/README.md)
       * [OpenTelemetry Metrics](modules/observability/metrics/technical-reference/opentelemetry-metrics.md)
+      * [Prometheus metrics](modules/observability/metrics/technical-reference/prometheus-metrics.md)
       * [OTEL metrics exporter parameters](modules/observability/metrics/technical-reference/otel-metrics-exporter-parameters.md)
   * [Traces](modules/observability/traces/README.md)
     * [How to use tracing](modules/observability/traces/how-to-use-tracing.md)
