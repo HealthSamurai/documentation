@@ -74,7 +74,7 @@ Configure your workload to use the GCP service account identity:
 After configuration, Aidbox will automatically use the ambient credentials. Test by making a request to generate a signed URL:
 
 ```
-POST /gcp/storage/<bucket-name>
+POST /gcp/workload-identity/storage/<bucket-name>
 
 filename: test.txt
 ```
@@ -91,7 +91,7 @@ See also:
 Request a signed URL for uploading a file to Cloud Storage.
 
 ```
-POST /gcp/storage/<bucket-id>
+POST /gcp/workload-identity/storage/<bucket-id>
 
 filename: documents/consent.txt
 ```
@@ -110,7 +110,7 @@ Example workflow:
 1. Request upload URL from Aidbox:
 
 ```
-POST /gcp/storage/my-bucket
+POST /gcp/workload-identity/storage/my-bucket
 Body: {"filename": "reports/results.txt"}
 ```
 
@@ -126,13 +126,13 @@ Body: <file-content>
 Request a signed URL for downloading a file from Cloud Storage.
 
 ```
-GET /gcp/storage/<bucket-id>/<file-path>
+GET /gcp/workload-identity/storage/<bucket-id>/<file-path>
 ```
 
 Example:
 
 ```
-GET /gcp/storage/my-bucket/documents/consent.txt
+GET /gcp/workload-identity/storage/my-bucket/documents/consent.txt
 ```
 
 Response:
@@ -149,13 +149,13 @@ The file path can include multiple directory levels (e.g., `documents/2024/janua
 Request a signed URL for deleting a file from Cloud Storage.
 
 ```
-DELETE /gcp/storage/<bucket-id>/<file-path>
+DELETE /gcp/workload-identity/storage/<bucket-id>/<file-path>
 ```
 
 Example:
 
 ```
-DELETE /gcp/storage/my-bucket/temp/backup.txt
+DELETE /gcp/workload-identity/storage/my-bucket/temp/backup.txt
 ```
 
 Response:
@@ -170,7 +170,7 @@ url: https://storage.googleapis.com/my-bucket/temp/backup.txt?X-Goog-Algorithm=.
 All Workload Identity endpoints accept an optional `expiration` query parameter that sets the signed URL lifetime in seconds. If not specified, URLs expire after 7 days (604800 seconds).
 
 ```
-POST /gcp/storage/my-bucket?expiration=3600
+POST /gcp/workload-identity/storage/my-bucket?expiration=3600
 
 filename: data.txt
 ```
