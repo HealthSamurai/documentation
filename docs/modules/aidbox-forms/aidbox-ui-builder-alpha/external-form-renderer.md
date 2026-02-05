@@ -154,6 +154,7 @@ If a managed renderer has the same name as a local renderer, the managed one win
 
 You can use these ready-to-use renderer pages:
 
+- Formbox: https://healthsamurai.github.io/formbox-renderer/swm/
 - Smart Forms: https://aidbox.github.io/examples/renderers/smart-forms/
 - LHC Forms: https://aidbox.github.io/examples/renderers/lhc-forms/
 - Beda: https://aidbox.github.io/examples/renderers/beda/
