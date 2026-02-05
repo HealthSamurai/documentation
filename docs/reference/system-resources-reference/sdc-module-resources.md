@@ -8,6 +8,8 @@ Resources for configuration and management Aidbox SDC module.
 
  ## OpenEHRTemplate
 
+Template for SDC print functionality using OpenEHR format.
+
 ```fhir-structure
 [ {
   "path" : "content",
@@ -23,6 +25,8 @@ Resources for configuration and management Aidbox SDC module.
 
 ## QuestionnaireTheme
 
+Theme styling for SDC questionnaire forms including colors, fonts, and component styles.
+
 ```fhir-structure
 [ {
   "path" : "background",
@@ -30,16 +34,8 @@ Resources for configuration and management Aidbox SDC module.
   "lvl" : 0,
   "min" : 0,
   "max" : 1,
-  "type" : "",
+  "type" : "BackboneElement",
   "desc" : "Background styles"
-}, {
-  "path" : "background.main-color",
-  "name" : "main-color",
-  "lvl" : 1,
-  "min" : 0,
-  "max" : 1,
-  "type" : "string",
-  "desc" : "Main background color (RBG hex)"
 }, {
   "path" : "background.form-color",
   "name" : "form-color",
@@ -47,7 +43,15 @@ Resources for configuration and management Aidbox SDC module.
   "min" : 0,
   "max" : 1,
   "type" : "string",
-  "desc" : "Background color for form (RBG hex)"
+  "desc" : "Background color for form (RGB hex)"
+}, {
+  "path" : "background.main-color",
+  "name" : "main-color",
+  "lvl" : 1,
+  "min" : 0,
+  "max" : 1,
+  "type" : "string",
+  "desc" : "Main background color (RGB hex)"
 }, {
   "path" : "background.toolbar-color",
   "name" : "toolbar-color",
@@ -62,7 +66,7 @@ Resources for configuration and management Aidbox SDC module.
   "lvl" : 0,
   "min" : 0,
   "max" : 1,
-  "type" : "number",
+  "type" : "decimal",
   "desc" : "Minimal text size (px)"
 }, {
   "path" : "brand-image",
@@ -70,31 +74,15 @@ Resources for configuration and management Aidbox SDC module.
   "lvl" : 0,
   "min" : 0,
   "max" : 1,
-  "type" : "",
+  "type" : "BackboneElement",
   "desc" : "Brand images"
-}, {
-  "path" : "brand-image.top-right",
-  "name" : "top-right",
-  "lvl" : 1,
-  "min" : 0,
-  "max" : 1,
-  "type" : "",
-  "desc" : ""
-}, {
-  "path" : "brand-image.top-right.url",
-  "name" : "url",
-  "lvl" : 2,
-  "min" : 0,
-  "max" : 1,
-  "type" : "string",
-  "desc" : "Web link to top-right image"
 }, {
   "path" : "brand-image.bottom-left",
   "name" : "bottom-left",
   "lvl" : 1,
   "min" : 0,
   "max" : 1,
-  "type" : "",
+  "type" : "BackboneElement",
   "desc" : ""
 }, {
   "path" : "brand-image.bottom-left.url",
@@ -105,13 +93,85 @@ Resources for configuration and management Aidbox SDC module.
   "type" : "string",
   "desc" : "Web link to bottom-left image"
 }, {
+  "path" : "brand-image.top-right",
+  "name" : "top-right",
+  "lvl" : 1,
+  "min" : 0,
+  "max" : 1,
+  "type" : "BackboneElement",
+  "desc" : ""
+}, {
+  "path" : "brand-image.top-right.url",
+  "name" : "url",
+  "lvl" : 2,
+  "min" : 0,
+  "max" : 1,
+  "type" : "string",
+  "desc" : "Web link to top-right image"
+}, {
   "path" : "button",
   "name" : "button",
   "lvl" : 0,
   "min" : 0,
   "max" : 1,
-  "type" : "",
+  "type" : "BackboneElement",
   "desc" : "Button styles"
+}, {
+  "path" : "button._amend-text",
+  "name" : "_amend-text",
+  "lvl" : 1,
+  "min" : 0,
+  "max" : 1,
+  "type" : "Object",
+  "desc" : ""
+}, {
+  "path" : "button._print-text",
+  "name" : "_print-text",
+  "lvl" : 1,
+  "min" : 0,
+  "max" : 1,
+  "type" : "Object",
+  "desc" : ""
+}, {
+  "path" : "button._redirect-text",
+  "name" : "_redirect-text",
+  "lvl" : 1,
+  "min" : 0,
+  "max" : 1,
+  "type" : "Object",
+  "desc" : ""
+}, {
+  "path" : "button._submit-text",
+  "name" : "_submit-text",
+  "lvl" : 1,
+  "min" : 0,
+  "max" : 1,
+  "type" : "Object",
+  "desc" : ""
+}, {
+  "path" : "button.accent-color",
+  "name" : "accent-color",
+  "lvl" : 1,
+  "min" : 0,
+  "max" : 1,
+  "type" : "string",
+  "desc" : "Background color for filled buttons, border color for outlined buttons. Deprecated."
+}, {
+  "path" : "button.amend-color",
+  "name" : "amend-color",
+  "lvl" : 1,
+  "min" : 0,
+  "max" : 1,
+  "type" : "string",
+  "desc" : ""
+}, {
+  "path" : "button.amend-text",
+  "name" : "amend-text",
+  "lvl" : 1,
+  "min" : 0,
+  "max" : 1,
+  "type" : "string",
+  "desc" : ""
 }, {
   "path" : "button.amend-text-color",
   "name" : "amend-text-color",
@@ -127,42 +187,10 @@ Resources for configuration and management Aidbox SDC module.
   "min" : 0,
   "max" : 1,
   "type" : "string",
-  "desc" : "Background color for \"Print\" button"
+  "desc" : "Background color for Print button"
 }, {
-  "path" : "button._amend-text",
-  "name" : "_amend-text",
-  "lvl" : 1,
-  "min" : 0,
-  "max" : 1,
-  "type" : "Object",
-  "desc" : ""
-}, {
-  "path" : "button._submit-text",
-  "name" : "_submit-text",
-  "lvl" : 1,
-  "min" : 0,
-  "max" : 1,
-  "type" : "Object",
-  "desc" : ""
-}, {
-  "path" : "button.redirect-color",
-  "name" : "redirect-color",
-  "lvl" : 1,
-  "min" : 0,
-  "max" : 1,
-  "type" : "string",
-  "desc" : "Background color for \"Save & Close\" button"
-}, {
-  "path" : "button._redirect-text",
-  "name" : "_redirect-text",
-  "lvl" : 1,
-  "min" : 0,
-  "max" : 1,
-  "type" : "Object",
-  "desc" : ""
-}, {
-  "path" : "button.submit-text",
-  "name" : "submit-text",
+  "path" : "button.print-text",
+  "name" : "print-text",
   "lvl" : 1,
   "min" : 0,
   "max" : 1,
@@ -175,10 +203,18 @@ Resources for configuration and management Aidbox SDC module.
   "min" : 0,
   "max" : 1,
   "type" : "string",
-  "desc" : "Text color for \"Print\" button"
+  "desc" : "Text color for Print button"
 }, {
-  "path" : "button.print-text",
-  "name" : "print-text",
+  "path" : "button.redirect-color",
+  "name" : "redirect-color",
+  "lvl" : 1,
+  "min" : 0,
+  "max" : 1,
+  "type" : "string",
+  "desc" : "Background color for Save & Close button"
+}, {
+  "path" : "button.redirect-text",
+  "name" : "redirect-text",
   "lvl" : 1,
   "min" : 0,
   "max" : 1,
@@ -191,31 +227,7 @@ Resources for configuration and management Aidbox SDC module.
   "min" : 0,
   "max" : 1,
   "type" : "string",
-  "desc" : "Text color for \"Save & Close\" button"
-}, {
-  "path" : "button._print-text",
-  "name" : "_print-text",
-  "lvl" : 1,
-  "min" : 0,
-  "max" : 1,
-  "type" : "Object",
-  "desc" : ""
-}, {
-  "path" : "button.amend-color",
-  "name" : "amend-color",
-  "lvl" : 1,
-  "min" : 0,
-  "max" : 1,
-  "type" : "string",
-  "desc" : ""
-}, {
-  "path" : "button.text-color",
-  "name" : "text-color",
-  "lvl" : 1,
-  "min" : 0,
-  "max" : 1,
-  "type" : "string",
-  "desc" : ""
+  "desc" : "Text color for Save & Close button"
 }, {
   "path" : "button.submit-color",
   "name" : "submit-color",
@@ -223,18 +235,10 @@ Resources for configuration and management Aidbox SDC module.
   "min" : 0,
   "max" : 1,
   "type" : "string",
-  "desc" : "Background color for \"Submit\" button"
+  "desc" : "Background color for Submit button"
 }, {
-  "path" : "button.redirect-text",
-  "name" : "redirect-text",
-  "lvl" : 1,
-  "min" : 0,
-  "max" : 1,
-  "type" : "string",
-  "desc" : ""
-}, {
-  "path" : "button.amend-text",
-  "name" : "amend-text",
+  "path" : "button.submit-text",
+  "name" : "submit-text",
   "lvl" : 1,
   "min" : 0,
   "max" : 1,
@@ -247,15 +251,15 @@ Resources for configuration and management Aidbox SDC module.
   "min" : 0,
   "max" : 1,
   "type" : "string",
-  "desc" : "Text color for \"Submit\" button"
+  "desc" : "Text color for Submit button"
 }, {
-  "path" : "button.accent-color",
-  "name" : "accent-color",
+  "path" : "button.text-color",
+  "name" : "text-color",
   "lvl" : 1,
   "min" : 0,
   "max" : 1,
   "type" : "string",
-  "desc" : "Background color for filled buttons border color for outlined buttons (deprecated)"
+  "desc" : ""
 }, {
   "path" : "design-system",
   "name" : "design-system",
@@ -278,7 +282,7 @@ Resources for configuration and management Aidbox SDC module.
   "lvl" : 0,
   "min" : 0,
   "max" : 1,
-  "type" : "",
+  "type" : "BackboneElement",
   "desc" : "Input styles"
 }, {
   "path" : "input.accent-color",
@@ -287,15 +291,7 @@ Resources for configuration and management Aidbox SDC module.
   "min" : 0,
   "max" : 1,
   "type" : "string",
-  "desc" : "Main color for inputs (border color for text inputs background for checkbox etc in RGB hex)"
-}, {
-  "path" : "input.text-color",
-  "name" : "text-color",
-  "lvl" : 1,
-  "min" : 0,
-  "max" : 1,
-  "type" : "string",
-  "desc" : "text color (RGB hex)"
+  "desc" : "Main color for inputs (border color for text inputs, background for checkbox, etc.) (RGB hex)"
 }, {
   "path" : "input.background-color",
   "name" : "background-color",
@@ -310,8 +306,24 @@ Resources for configuration and management Aidbox SDC module.
   "lvl" : 1,
   "min" : 0,
   "max" : 1,
-  "type" : "number",
+  "type" : "decimal",
   "desc" : "Input font size (px)"
+}, {
+  "path" : "input.hierarchy-padding",
+  "name" : "hierarchy-padding",
+  "lvl" : 1,
+  "min" : 0,
+  "max" : 1,
+  "type" : "decimal",
+  "desc" : "Left padding showing hierarchy of nested items (rem)"
+}, {
+  "path" : "input.text-color",
+  "name" : "text-color",
+  "lvl" : 1,
+  "min" : 0,
+  "max" : 1,
+  "type" : "string",
+  "desc" : "Text color (RGB hex)"
 }, {
   "path" : "language",
   "name" : "language",
@@ -327,7 +339,7 @@ Resources for configuration and management Aidbox SDC module.
   "min" : 0,
   "max" : 1,
   "type" : "string",
-  "desc" : "Main Accent color (RBG hex)"
+  "desc" : "Main accent color (RGB hex)"
 }, {
   "path" : "theme-name",
   "name" : "theme-name",
@@ -342,7 +354,7 @@ Resources for configuration and management Aidbox SDC module.
 
 ## SDCAddendum
 
-Addednum Resource. Contains additional information abount SDCDocument/SDCWorkflow
+Addendum resource. Contains additional information about an SDCDocument or SDCWorkflow.
 
 ```fhir-structure
 [ {
@@ -352,14 +364,22 @@ Addednum Resource. Contains additional information abount SDCDocument/SDCWorkflo
   "min" : 1,
   "max" : 1,
   "type" : "dateTime",
-  "desc" : ""
+  "desc" : "Date of addendum creation"
 }, {
   "path" : "target",
   "name" : "target",
   "lvl" : 0,
   "min" : 1,
   "max" : 1,
-  "type" : "",
+  "type" : "BackboneElement",
+  "desc" : "Reference to target resource"
+}, {
+  "path" : "target.display",
+  "name" : "display",
+  "lvl" : 1,
+  "min" : 0,
+  "max" : 1,
+  "type" : "string",
   "desc" : ""
 }, {
   "path" : "target.id",
@@ -378,28 +398,28 @@ Addednum Resource. Contains additional information abount SDCDocument/SDCWorkflo
   "type" : "string",
   "desc" : ""
 }, {
-  "path" : "target.display",
-  "name" : "display",
-  "lvl" : 1,
-  "min" : 0,
-  "max" : 1,
-  "type" : "string",
-  "desc" : ""
-}, {
   "path" : "type",
   "name" : "type",
   "lvl" : 0,
   "min" : 1,
   "max" : 1,
   "type" : "string",
-  "desc" : ""
+  "desc" : "Type of addendum"
 }, {
   "path" : "user",
   "name" : "user",
   "lvl" : 0,
   "min" : 1,
   "max" : 1,
-  "type" : "",
+  "type" : "BackboneElement",
+  "desc" : "Reference to user who created the addendum"
+}, {
+  "path" : "user.display",
+  "name" : "display",
+  "lvl" : 1,
+  "min" : 0,
+  "max" : 1,
+  "type" : "string",
   "desc" : ""
 }, {
   "path" : "user.id",
@@ -417,19 +437,13 @@ Addednum Resource. Contains additional information abount SDCDocument/SDCWorkflo
   "max" : 1,
   "type" : "string",
   "desc" : ""
-}, {
-  "path" : "user.display",
-  "name" : "display",
-  "lvl" : 1,
-  "min" : 0,
-  "max" : 1,
-  "type" : "string",
-  "desc" : ""
 } ]
 ```
 
 
 ## SDCConfig
+
+Configuration resource for SDC system settings including language, theme, storage, form settings, and builder options.
 
 ```fhir-structure
 [ {
@@ -438,56 +452,8 @@ Addednum Resource. Contains additional information abount SDCDocument/SDCWorkflo
   "lvl" : 0,
   "min" : 0,
   "max" : 1,
-  "type" : "",
+  "type" : "BackboneElement",
   "desc" : ""
-}, {
-  "path" : "builder.hide-extraction",
-  "name" : "hide-extraction",
-  "lvl" : 1,
-  "min" : 0,
-  "max" : 1,
-  "type" : "boolean",
-  "desc" : "Hide extraction tab in debug instruments"
-}, {
-  "path" : "builder.highlight-download-button",
-  "name" : "highlight-download-button",
-  "lvl" : 1,
-  "min" : 0,
-  "max" : 1,
-  "type" : "boolean",
-  "desc" : "Highlight download button in the builder's debugger panel"
-}, {
-  "path" : "builder.translation-languages",
-  "name" : "translation-languages",
-  "lvl" : 1,
-  "min" : 0,
-  "max" : "*",
-  "type" : "string",
-  "desc" : "List of languages that will be used for translation"
-}, {
-  "path" : "builder.hide-back-button",
-  "name" : "hide-back-button",
-  "lvl" : 1,
-  "min" : 0,
-  "max" : 1,
-  "type" : "boolean",
-  "desc" : "Hide back button in builder"
-}, {
-  "path" : "builder.hide-save",
-  "name" : "hide-save",
-  "lvl" : 1,
-  "min" : 0,
-  "max" : 1,
-  "type" : "boolean",
-  "desc" : "Hide save button"
-}, {
-  "path" : "builder.hide-publish",
-  "name" : "hide-publish",
-  "lvl" : 1,
-  "min" : 0,
-  "max" : 1,
-  "type" : "boolean",
-  "desc" : "Hide Publish button in builder"
 }, {
   "path" : "builder.collapse-debugger",
   "name" : "collapse-debugger",
@@ -497,6 +463,78 @@ Addednum Resource. Contains additional information abount SDCDocument/SDCWorkflo
   "type" : "boolean",
   "desc" : "Collapse debugger by default in builder"
 }, {
+  "path" : "builder.custom-renderers",
+  "name" : "custom-renderers",
+  "lvl" : 1,
+  "min" : 0,
+  "max" : "*",
+  "type" : "BackboneElement",
+  "desc" : "Custom renderers that can be used to preview form in Form Builder"
+}, {
+  "path" : "builder.custom-renderers.default",
+  "name" : "default",
+  "lvl" : 2,
+  "min" : 0,
+  "max" : 1,
+  "type" : "boolean",
+  "desc" : "Whether this is the default renderer for form preview"
+}, {
+  "path" : "builder.custom-renderers.name",
+  "name" : "name",
+  "lvl" : 2,
+  "min" : 0,
+  "max" : 1,
+  "type" : "string",
+  "desc" : "Renderer name"
+}, {
+  "path" : "builder.custom-renderers.source",
+  "name" : "source",
+  "lvl" : 2,
+  "min" : 0,
+  "max" : 1,
+  "type" : "url",
+  "desc" : "Web component source URL"
+}, {
+  "path" : "builder.custom-renderers.title",
+  "name" : "title",
+  "lvl" : 2,
+  "min" : 0,
+  "max" : 1,
+  "type" : "string",
+  "desc" : "Title in Builder"
+}, {
+  "path" : "builder.custom-renderers.url",
+  "name" : "url",
+  "lvl" : 2,
+  "min" : 0,
+  "max" : 1,
+  "type" : "url",
+  "desc" : "Web component URL"
+}, {
+  "path" : "builder.disable-load-fhir-version",
+  "name" : "disable-load-fhir-version",
+  "lvl" : 1,
+  "min" : 0,
+  "max" : 1,
+  "type" : "boolean",
+  "desc" : "Deprecated. Has no effect."
+}, {
+  "path" : "builder.disable-publish",
+  "name" : "disable-publish",
+  "lvl" : 1,
+  "min" : 0,
+  "max" : 1,
+  "type" : "boolean",
+  "desc" : "Disable publish button"
+}, {
+  "path" : "builder.disable-save",
+  "name" : "disable-save",
+  "lvl" : 1,
+  "min" : 0,
+  "max" : 1,
+  "type" : "boolean",
+  "desc" : "Disable save button"
+}, {
   "path" : "builder.disable-submit-button",
   "name" : "disable-submit-button",
   "lvl" : 1,
@@ -504,14 +542,6 @@ Addednum Resource. Contains additional information abount SDCDocument/SDCWorkflo
   "max" : 1,
   "type" : "boolean",
   "desc" : "Disable submit button in the builder's form preview footer"
-}, {
-  "path" : "builder.hide-add-theme",
-  "name" : "hide-add-theme",
-  "lvl" : 1,
-  "min" : 0,
-  "max" : 1,
-  "type" : "boolean",
-  "desc" : "Hide add theme button"
 }, {
   "path" : "builder.disable-use-blank-form",
   "name" : "disable-use-blank-form",
@@ -529,93 +559,29 @@ Addednum Resource. Contains additional information abount SDCDocument/SDCWorkflo
   "type" : "boolean",
   "desc" : "Make share button visible in the builder and enable accepting a serialized questionnaire from query param"
 }, {
-  "path" : "builder.hide-population",
-  "name" : "hide-population",
-  "lvl" : 1,
-  "min" : 0,
-  "max" : 1,
-  "type" : "boolean",
-  "desc" : "Hide population tab in debug instruments"
-}, {
-  "path" : "builder.custom-renderers",
-  "name" : "custom-renderers",
-  "lvl" : 1,
-  "min" : 0,
-  "max" : "*",
-  "type" : "Map",
-  "desc" : "Custom renderers that can be used to preview form in Form Builder"
-}, {
-  "path" : "builder.custom-renderers.name",
-  "name" : "name",
-  "lvl" : 2,
-  "min" : 0,
-  "max" : 1,
-  "type" : "string",
-  "desc" : "Webcomponent tag name"
-}, {
-  "path" : "builder.custom-renderers.source",
-  "name" : "source",
-  "lvl" : 2,
-  "min" : 0,
-  "max" : 1,
-  "type" : "url",
-  "desc" : "Webcomponent source url"
-}, {
-  "path" : "builder.custom-renderers.title",
-  "name" : "title",
-  "lvl" : 2,
-  "min" : 0,
-  "max" : 1,
-  "type" : "string",
-  "desc" : "Title in Builder"
-}, {
-  "path" : "builder.custom-renderers.default",
-  "name" : "default",
-  "lvl" : 2,
-  "min" : 0,
-  "max" : 1,
-  "type" : "boolean",
-  "desc" : "If this default renderer for form preview"
-}, {
-  "path" : "builder.hide-save-theme",
-  "name" : "hide-save-theme",
-  "lvl" : 1,
-  "min" : 0,
-  "max" : 1,
-  "type" : "boolean",
-  "desc" : "Hide save theme"
-}, {
-  "path" : "builder.disable-save",
-  "name" : "disable-save",
-  "lvl" : 1,
-  "min" : 0,
-  "max" : 1,
-  "type" : "boolean",
-  "desc" : "Disable save"
-}, {
-  "path" : "builder.disable-publish",
-  "name" : "disable-publish",
-  "lvl" : 1,
-  "min" : 0,
-  "max" : 1,
-  "type" : "boolean",
-  "desc" : "Disable publish button"
-}, {
   "path" : "builder.form-url-prefix",
   "name" : "form-url-prefix",
   "lvl" : 1,
   "min" : 0,
   "max" : 1,
   "type" : "url",
-  "desc" : "URL prefix that used in url generation of new forms"
+  "desc" : "URL prefix used in URL generation of new forms"
 }, {
-  "path" : "builder.disable-load-fhir-version",
-  "name" : "disable-load-fhir-version",
+  "path" : "builder.hide-add-theme",
+  "name" : "hide-add-theme",
   "lvl" : 1,
   "min" : 0,
   "max" : 1,
   "type" : "boolean",
-  "desc" : "Disable loading of FHIR version from the server. Deprecated: not used anymore and has no effect"
+  "desc" : "Hide add theme button"
+}, {
+  "path" : "builder.hide-back-button",
+  "name" : "hide-back-button",
+  "lvl" : 1,
+  "min" : 0,
+  "max" : 1,
+  "type" : "boolean",
+  "desc" : "Hide back button in builder"
 }, {
   "path" : "builder.hide-edit-theme",
   "name" : "hide-edit-theme",
@@ -625,12 +591,68 @@ Addednum Resource. Contains additional information abount SDCDocument/SDCWorkflo
   "type" : "boolean",
   "desc" : "Hide edit theme button"
 }, {
+  "path" : "builder.hide-extraction",
+  "name" : "hide-extraction",
+  "lvl" : 1,
+  "min" : 0,
+  "max" : 1,
+  "type" : "boolean",
+  "desc" : "Hide extraction tab in debug instruments"
+}, {
+  "path" : "builder.hide-population",
+  "name" : "hide-population",
+  "lvl" : 1,
+  "min" : 0,
+  "max" : 1,
+  "type" : "boolean",
+  "desc" : "Hide population tab in debug instruments"
+}, {
+  "path" : "builder.hide-publish",
+  "name" : "hide-publish",
+  "lvl" : 1,
+  "min" : 0,
+  "max" : 1,
+  "type" : "boolean",
+  "desc" : "Hide Publish button in builder"
+}, {
+  "path" : "builder.hide-save",
+  "name" : "hide-save",
+  "lvl" : 1,
+  "min" : 0,
+  "max" : 1,
+  "type" : "boolean",
+  "desc" : "Hide save button"
+}, {
+  "path" : "builder.hide-save-theme",
+  "name" : "hide-save-theme",
+  "lvl" : 1,
+  "min" : 0,
+  "max" : 1,
+  "type" : "boolean",
+  "desc" : "Hide save theme button"
+}, {
+  "path" : "builder.highlight-download-button",
+  "name" : "highlight-download-button",
+  "lvl" : 1,
+  "min" : 0,
+  "max" : 1,
+  "type" : "boolean",
+  "desc" : "Highlight download button in the builder's debugger panel"
+}, {
+  "path" : "builder.translation-languages",
+  "name" : "translation-languages",
+  "lvl" : 1,
+  "min" : 0,
+  "max" : "*",
+  "type" : "string",
+  "desc" : "List of languages that will be used for translation"
+}, {
   "path" : "data-store",
   "name" : "data-store",
   "lvl" : 0,
   "min" : 0,
   "max" : 1,
-  "type" : "",
+  "type" : "BackboneElement",
   "desc" : ""
 }, {
   "path" : "data-store.endpoint",
@@ -639,7 +661,7 @@ Addednum Resource. Contains additional information abount SDCDocument/SDCWorkflo
   "min" : 0,
   "max" : 1,
   "type" : "url",
-  "desc" : "FHIR Server that will be used for storing/getting reponses populate data from and extract to (if not set - use Aidbox)"
+  "desc" : "FHIR Server for storing responses, populating data, and extraction (defaults to Aidbox)"
 }, {
   "path" : "data-store.headers",
   "name" : "headers",
@@ -655,7 +677,7 @@ Addednum Resource. Contains additional information abount SDCDocument/SDCWorkflo
   "min" : 0,
   "max" : 1,
   "type" : "boolean",
-  "desc" : "Set's config as default for system/tenant"
+  "desc" : "Sets config as default for system/tenant"
 }, {
   "path" : "description",
   "name" : "description",
@@ -670,136 +692,16 @@ Addednum Resource. Contains additional information abount SDCDocument/SDCWorkflo
   "lvl" : 0,
   "min" : 0,
   "max" : 1,
-  "type" : "",
+  "type" : "BackboneElement",
   "desc" : ""
-}, {
-  "path" : "form.app-name",
-  "name" : "app-name",
-  "lvl" : 1,
-  "min" : 0,
-  "max" : 1,
-  "type" : "string",
-  "desc" : "App name that will be mentioned in AuditEvent logs"
-}, {
-  "path" : "form.hide-print-button",
-  "name" : "hide-print-button",
-  "lvl" : 1,
-  "min" : 0,
-  "max" : 1,
-  "type" : "boolean",
-  "desc" : "Hide print button from the form"
-}, {
-  "path" : "form.enable-amend-button",
-  "name" : "enable-amend-button",
-  "lvl" : 1,
-  "min" : 0,
-  "max" : 1,
-  "type" : "boolean",
-  "desc" : "Enable amend button"
-}, {
-  "path" : "form.read-only",
-  "name" : "read-only",
-  "lvl" : 1,
-  "min" : 0,
-  "max" : 1,
-  "type" : "boolean",
-  "desc" : "Should form be read-only"
-}, {
-  "path" : "form.hide-language-selector",
-  "name" : "hide-language-selector",
-  "lvl" : 1,
-  "min" : 0,
-  "max" : 1,
-  "type" : "boolean",
-  "desc" : "Hide language selector in the builder"
-}, {
-  "path" : "form.allow-repopulate",
-  "name" : "allow-repopulate",
-  "lvl" : 1,
-  "min" : 0,
-  "max" : 1,
-  "type" : "boolean",
-  "desc" : "Allow repopulate for all forms"
-}, {
-  "path" : "form.hide-footer",
-  "name" : "hide-footer",
-  "lvl" : 1,
-  "min" : 0,
-  "max" : 1,
-  "type" : "boolean",
-  "desc" : "Hide the footer in the renderer altogether"
-}, {
-  "path" : "form.default-max-width",
-  "name" : "default-max-width",
-  "lvl" : 1,
-  "min" : 0,
-  "max" : 1,
-  "type" : "string",
-  "desc" : "Default max width of the form"
-}, {
-  "path" : "form.auto-save-interval",
-  "name" : "auto-save-interval",
-  "lvl" : 1,
-  "min" : 0,
-  "max" : 1,
-  "type" : "integer",
-  "desc" : "Form auto save interval (in milliseconds)"
-}, {
-  "path" : "form.hide-download-attachment-button",
-  "name" : "hide-download-attachment-button",
-  "lvl" : 1,
-  "min" : 0,
-  "max" : 1,
-  "type" : "boolean",
-  "desc" : "Hide download button in attachment widget"
-}, {
-  "path" : "form.non-sticky-footer",
-  "name" : "non-sticky-footer",
-  "lvl" : 1,
-  "min" : 0,
-  "max" : 1,
-  "type" : "boolean",
-  "desc" : "Non-sticky footer in the form"
-}, {
-  "path" : "form.redirect-on-save",
-  "name" : "redirect-on-save",
-  "lvl" : 1,
-  "min" : 0,
-  "max" : 1,
-  "type" : "url",
-  "desc" : "Redirect URI that used on form save/close button"
-}, {
-  "path" : "form.redirect-on-submit",
-  "name" : "redirect-on-submit",
-  "lvl" : 1,
-  "min" : 0,
-  "max" : 1,
-  "type" : "url",
-  "desc" : "Redirect URI that used on form sign/amend"
-}, {
-  "path" : "form.enable-save-button",
-  "name" : "enable-save-button",
-  "lvl" : 1,
-  "min" : 0,
-  "max" : 1,
-  "type" : "boolean",
-  "desc" : "Enable close button"
-}, {
-  "path" : "form.hide-title",
-  "name" : "hide-title",
-  "lvl" : 1,
-  "min" : 0,
-  "max" : 1,
-  "type" : "boolean",
-  "desc" : "Hide title in the form"
 }, {
   "path" : "form-store",
   "name" : "form-store",
   "lvl" : 0,
   "min" : 0,
   "max" : 1,
-  "type" : "",
-  "desc" : ""
+  "type" : "BackboneElement",
+  "desc" : "FHIR Server settings for storing/getting Questionnaire"
 }, {
   "path" : "form-store.endpoint",
   "name" : "endpoint",
@@ -816,6 +718,126 @@ Addednum Resource. Contains additional information abount SDCDocument/SDCWorkflo
   "max" : 1,
   "type" : "Object",
   "desc" : "Headers with credentials (optional)"
+}, {
+  "path" : "form.allow-repopulate",
+  "name" : "allow-repopulate",
+  "lvl" : 1,
+  "min" : 0,
+  "max" : 1,
+  "type" : "boolean",
+  "desc" : "Allow repopulate for all forms"
+}, {
+  "path" : "form.app-name",
+  "name" : "app-name",
+  "lvl" : 1,
+  "min" : 0,
+  "max" : 1,
+  "type" : "string",
+  "desc" : "App name that will be mentioned in AuditEvent logs"
+}, {
+  "path" : "form.auto-save-interval",
+  "name" : "auto-save-interval",
+  "lvl" : 1,
+  "min" : 0,
+  "max" : 1,
+  "type" : "integer",
+  "desc" : "Form auto-save interval in milliseconds"
+}, {
+  "path" : "form.default-max-width",
+  "name" : "default-max-width",
+  "lvl" : 1,
+  "min" : 0,
+  "max" : 1,
+  "type" : "string",
+  "desc" : "Default max width of the form"
+}, {
+  "path" : "form.enable-amend-button",
+  "name" : "enable-amend-button",
+  "lvl" : 1,
+  "min" : 0,
+  "max" : 1,
+  "type" : "boolean",
+  "desc" : "Enable amend button"
+}, {
+  "path" : "form.enable-save-button",
+  "name" : "enable-save-button",
+  "lvl" : 1,
+  "min" : 0,
+  "max" : 1,
+  "type" : "boolean",
+  "desc" : "Enable save button"
+}, {
+  "path" : "form.hide-download-attachment-button",
+  "name" : "hide-download-attachment-button",
+  "lvl" : 1,
+  "min" : 0,
+  "max" : 1,
+  "type" : "boolean",
+  "desc" : "Hide download button in attachment widget"
+}, {
+  "path" : "form.hide-footer",
+  "name" : "hide-footer",
+  "lvl" : 1,
+  "min" : 0,
+  "max" : 1,
+  "type" : "boolean",
+  "desc" : "Hide the footer in the renderer altogether"
+}, {
+  "path" : "form.hide-language-selector",
+  "name" : "hide-language-selector",
+  "lvl" : 1,
+  "min" : 0,
+  "max" : 1,
+  "type" : "boolean",
+  "desc" : "Hide language selector in the form"
+}, {
+  "path" : "form.hide-print-button",
+  "name" : "hide-print-button",
+  "lvl" : 1,
+  "min" : 0,
+  "max" : 1,
+  "type" : "boolean",
+  "desc" : "Hide print button from the form"
+}, {
+  "path" : "form.hide-title",
+  "name" : "hide-title",
+  "lvl" : 1,
+  "min" : 0,
+  "max" : 1,
+  "type" : "boolean",
+  "desc" : "Hide title in the form"
+}, {
+  "path" : "form.non-sticky-footer",
+  "name" : "non-sticky-footer",
+  "lvl" : 1,
+  "min" : 0,
+  "max" : 1,
+  "type" : "boolean",
+  "desc" : "Non-sticky footer in the form"
+}, {
+  "path" : "form.read-only",
+  "name" : "read-only",
+  "lvl" : 1,
+  "min" : 0,
+  "max" : 1,
+  "type" : "boolean",
+  "desc" : "Whether the form should be read-only"
+}, {
+  "path" : "form.redirect-on-save",
+  "name" : "redirect-on-save",
+  "lvl" : 1,
+  "min" : 0,
+  "max" : 1,
+  "type" : "url",
+  "desc" : "Redirect URI used on form save/close button"
+}, {
+  "path" : "form.redirect-on-submit",
+  "name" : "redirect-on-submit",
+  "lvl" : 1,
+  "min" : 0,
+  "max" : 1,
+  "type" : "url",
+  "desc" : "Redirect URI used on form sign/amend"
 }, {
   "path" : "language",
   "name" : "language",
@@ -838,8 +860,8 @@ Addednum Resource. Contains additional information abount SDCDocument/SDCWorkflo
   "lvl" : 0,
   "min" : 0,
   "max" : 1,
-  "type" : "",
-  "desc" : "Link to storage to store attachments"
+  "type" : "BackboneElement",
+  "desc" : "Storage configuration for attachments"
 }, {
   "path" : "storage.account",
   "name" : "account",
@@ -870,7 +892,7 @@ Addednum Resource. Contains additional information abount SDCDocument/SDCWorkflo
   "lvl" : 0,
   "min" : 0,
   "max" : 1,
-  "type" : "",
+  "type" : "BackboneElement",
   "desc" : ""
 }, {
   "path" : "term-server.endpoint",
@@ -903,14 +925,14 @@ Addednum Resource. Contains additional information abount SDCDocument/SDCWorkflo
   "min" : 0,
   "max" : 1,
   "type" : "Object",
-  "desc" : "Custom translations strings for UI"
+  "desc" : "Custom translation strings for UI"
 } ]
 ```
 
 
 ## SDCDocument
 
-Base schema for questionnaire(document) definition. Also a resource in DB - SDCDocument
+Questionnaire document resource. Stores captured form responses with status tracking, patient and encounter references.
 
 ```fhir-structure
 [ {
@@ -919,8 +941,16 @@ Base schema for questionnaire(document) definition. Also a resource in DB - SDCD
   "lvl" : 0,
   "min" : 0,
   "max" : 1,
-  "type" : "",
-  "desc" : "Reference to user which create document"
+  "type" : "BackboneElement",
+  "desc" : "Reference to the user who created the document"
+}, {
+  "path" : "author.display",
+  "name" : "display",
+  "lvl" : 1,
+  "min" : 0,
+  "max" : 1,
+  "type" : "string",
+  "desc" : ""
 }, {
   "path" : "author.id",
   "name" : "id",
@@ -938,21 +968,21 @@ Base schema for questionnaire(document) definition. Also a resource in DB - SDCD
   "type" : "string",
   "desc" : ""
 }, {
-  "path" : "author.display",
+  "path" : "based-on",
+  "name" : "based-on",
+  "lvl" : 0,
+  "min" : 0,
+  "max" : 1,
+  "type" : "BackboneElement",
+  "desc" : "Request that led to creation of this document"
+}, {
+  "path" : "based-on.display",
   "name" : "display",
   "lvl" : 1,
   "min" : 0,
   "max" : 1,
   "type" : "string",
   "desc" : ""
-}, {
-  "path" : "based-on",
-  "name" : "based-on",
-  "lvl" : 0,
-  "min" : 0,
-  "max" : 1,
-  "type" : "",
-  "desc" : "Request led to creation of this Document"
 }, {
   "path" : "based-on.id",
   "name" : "id",
@@ -970,21 +1000,21 @@ Base schema for questionnaire(document) definition. Also a resource in DB - SDCD
   "type" : "string",
   "desc" : ""
 }, {
-  "path" : "based-on.display",
+  "path" : "encounter",
+  "name" : "encounter",
+  "lvl" : 0,
+  "min" : 0,
+  "max" : 1,
+  "type" : "BackboneElement",
+  "desc" : "Reference to the associated encounter"
+}, {
+  "path" : "encounter.display",
   "name" : "display",
   "lvl" : 1,
   "min" : 0,
   "max" : 1,
   "type" : "string",
   "desc" : ""
-}, {
-  "path" : "encounter",
-  "name" : "encounter",
-  "lvl" : 0,
-  "min" : 0,
-  "max" : 1,
-  "type" : "",
-  "desc" : "Reference to encounter"
 }, {
   "path" : "encounter.id",
   "name" : "id",
@@ -1002,20 +1032,12 @@ Base schema for questionnaire(document) definition. Also a resource in DB - SDCD
   "type" : "string",
   "desc" : ""
 }, {
-  "path" : "encounter.display",
-  "name" : "display",
-  "lvl" : 1,
-  "min" : 0,
-  "max" : 1,
-  "type" : "string",
-  "desc" : ""
-}, {
   "path" : "form",
   "name" : "form",
   "lvl" : 0,
   "min" : 1,
   "max" : 1,
-  "type" : "",
+  "type" : "BackboneElement",
   "desc" : ""
 }, {
   "path" : "form.form",
@@ -1024,23 +1046,31 @@ Base schema for questionnaire(document) definition. Also a resource in DB - SDCD
   "min" : 0,
   "max" : 1,
   "type" : "string",
-  "desc" : "Full name of form, with which document was captured"
+  "desc" : "Full name of the form used to capture the document"
 }, {
   "path" : "form.version",
   "name" : "version",
   "lvl" : 1,
   "min" : 0,
   "max" : 1,
-  "type" : "number",
-  "desc" : "Used Form version"
+  "type" : "decimal",
+  "desc" : "Form version used to capture the document"
 }, {
   "path" : "patient",
   "name" : "patient",
   "lvl" : 0,
   "min" : 0,
   "max" : 1,
-  "type" : "",
-  "desc" : "The subject of the question"
+  "type" : "BackboneElement",
+  "desc" : "The patient who is the subject of the document"
+}, {
+  "path" : "patient.display",
+  "name" : "display",
+  "lvl" : 1,
+  "min" : 0,
+  "max" : 1,
+  "type" : "string",
+  "desc" : ""
 }, {
   "path" : "patient.id",
   "name" : "id",
@@ -1058,21 +1088,21 @@ Base schema for questionnaire(document) definition. Also a resource in DB - SDCD
   "type" : "string",
   "desc" : ""
 }, {
-  "path" : "patient.display",
+  "path" : "source",
+  "name" : "source",
+  "lvl" : 0,
+  "min" : 0,
+  "max" : 1,
+  "type" : "BackboneElement",
+  "desc" : "The person who answered the questions"
+}, {
+  "path" : "source.display",
   "name" : "display",
   "lvl" : 1,
   "min" : 0,
   "max" : 1,
   "type" : "string",
   "desc" : ""
-}, {
-  "path" : "source",
-  "name" : "source",
-  "lvl" : 0,
-  "min" : 0,
-  "max" : 1,
-  "type" : "",
-  "desc" : "The person who answered the questions"
 }, {
   "path" : "source.id",
   "name" : "id",
@@ -1090,21 +1120,13 @@ Base schema for questionnaire(document) definition. Also a resource in DB - SDCD
   "type" : "string",
   "desc" : ""
 }, {
-  "path" : "source.display",
-  "name" : "display",
-  "lvl" : 1,
-  "min" : 0,
-  "max" : 1,
-  "type" : "string",
-  "desc" : ""
-}, {
   "path" : "status",
   "name" : "status",
   "lvl" : 0,
   "min" : 0,
   "max" : 1,
   "type" : "string",
-  "desc" : "Status of the document  \n\n**Allowed values**: `draft` | `in-progress` | `canceled` | `completed` | `in-amendment` | `amended`"
+  "desc" : "Status of the document \n\n**Allowed values**: `draft` | `in-progress` | `canceled` | `completed` | `in-amendment` | `amended`"
 }, {
   "path" : "type",
   "name" : "type",
@@ -1112,7 +1134,7 @@ Base schema for questionnaire(document) definition. Also a resource in DB - SDCD
   "min" : 0,
   "max" : 1,
   "type" : "string",
-  "desc" : "Name/version of form, with which document was captured"
+  "desc" : "Name and version of the form used to capture the document"
 }, {
   "path" : "unit-system",
   "name" : "unit-system",
@@ -1120,12 +1142,14 @@ Base schema for questionnaire(document) definition. Also a resource in DB - SDCD
   "min" : 0,
   "max" : 1,
   "type" : "string",
-  "desc" : "What unit system was used in this document at launch"
+  "desc" : "Unit system used in this document at launch"
 } ]
 ```
 
 
 ## SDCFormMetadata
+
+Form metadata with custom properties.
 
 ```fhir-structure
 [ {
@@ -1135,14 +1159,14 @@ Base schema for questionnaire(document) definition. Also a resource in DB - SDCD
   "min" : 0,
   "max" : 1,
   "type" : "Object",
-  "desc" : ""
+  "desc" : "Custom properties for the form."
 } ]
 ```
 
 
 ## SDCFormVersion
 
-Form Metadata that can be used for Dynamic updates
+Form metadata for dynamic updates with incremental versioning and hash.
 
 ```fhir-structure
 [ {
@@ -1152,14 +1176,14 @@ Form Metadata that can be used for Dynamic updates
   "min" : 0,
   "max" : 1,
   "type" : "string",
-  "desc" : ""
+  "desc" : "Form identifier"
 }, {
   "path" : "hash",
   "name" : "hash",
   "lvl" : 0,
   "min" : 0,
   "max" : 1,
-  "type" : "number",
+  "type" : "decimal",
   "desc" : "Hash of snapshot with injected document/layout/rules"
 }, {
   "path" : "snapshot",
@@ -1168,20 +1192,22 @@ Form Metadata that can be used for Dynamic updates
   "min" : 0,
   "max" : 1,
   "type" : "string",
-  "desc" : ""
+  "desc" : "Serialized form snapshot"
 }, {
   "path" : "version",
   "name" : "version",
   "lvl" : 0,
   "min" : 0,
   "max" : 1,
-  "type" : "number",
+  "type" : "decimal",
   "desc" : "Incremental number of form version."
 } ]
 ```
 
 
 ## SDCPrintTemplate
+
+Template content for SDC print functionality.
 
 ```fhir-structure
 [ {
@@ -1198,6 +1224,8 @@ Form Metadata that can be used for Dynamic updates
 
 ## SDCWorkflow
 
+Workflow definition with status, params, and context for SDC forms.
+
 ```fhir-structure
 [ {
   "path" : "cancel-reason",
@@ -1206,22 +1234,30 @@ Form Metadata that can be used for Dynamic updates
   "min" : 0,
   "max" : 1,
   "type" : "string",
-  "desc" : "Define why workfow is canceled"
+  "desc" : "Reason why the workflow was canceled"
 }, {
   "path" : "ctx",
   "name" : "ctx",
   "lvl" : 0,
   "min" : 0,
   "max" : 1,
-  "type" : "",
-  "desc" : "Workflow context, which can be used from tasks as well"
+  "type" : "BackboneElement",
+  "desc" : "Workflow context, also accessible from tasks"
 }, {
   "path" : "ctx.encounter",
   "name" : "encounter",
   "lvl" : 1,
   "min" : 0,
   "max" : 1,
-  "type" : "",
+  "type" : "BackboneElement",
+  "desc" : ""
+}, {
+  "path" : "ctx.encounter.display",
+  "name" : "display",
+  "lvl" : 2,
+  "min" : 0,
+  "max" : 1,
+  "type" : "string",
   "desc" : ""
 }, {
   "path" : "ctx.encounter.id",
@@ -1240,20 +1276,20 @@ Form Metadata that can be used for Dynamic updates
   "type" : "string",
   "desc" : ""
 }, {
-  "path" : "ctx.encounter.display",
-  "name" : "display",
-  "lvl" : 2,
-  "min" : 0,
-  "max" : 1,
-  "type" : "string",
-  "desc" : ""
-}, {
   "path" : "ctx.patient",
   "name" : "patient",
   "lvl" : 1,
   "min" : 0,
   "max" : 1,
-  "type" : "",
+  "type" : "BackboneElement",
+  "desc" : ""
+}, {
+  "path" : "ctx.patient.display",
+  "name" : "display",
+  "lvl" : 2,
+  "min" : 0,
+  "max" : 1,
+  "type" : "string",
   "desc" : ""
 }, {
   "path" : "ctx.patient.id",
@@ -1272,20 +1308,20 @@ Form Metadata that can be used for Dynamic updates
   "type" : "string",
   "desc" : ""
 }, {
-  "path" : "ctx.patient.display",
-  "name" : "display",
-  "lvl" : 2,
-  "min" : 0,
-  "max" : 1,
-  "type" : "string",
-  "desc" : ""
-}, {
   "path" : "ctx.user",
   "name" : "user",
   "lvl" : 1,
   "min" : 0,
   "max" : 1,
-  "type" : "",
+  "type" : "BackboneElement",
+  "desc" : ""
+}, {
+  "path" : "ctx.user.display",
+  "name" : "display",
+  "lvl" : 2,
+  "min" : 0,
+  "max" : 1,
+  "type" : "string",
   "desc" : ""
 }, {
   "path" : "ctx.user.id",
@@ -1298,14 +1334,6 @@ Form Metadata that can be used for Dynamic updates
 }, {
   "path" : "ctx.user.resourceType",
   "name" : "resourceType",
-  "lvl" : 2,
-  "min" : 0,
-  "max" : 1,
-  "type" : "string",
-  "desc" : ""
-}, {
-  "path" : "ctx.user.display",
-  "name" : "display",
   "lvl" : 2,
   "min" : 0,
   "max" : 1,
@@ -1334,7 +1362,7 @@ Form Metadata that can be used for Dynamic updates
   "min" : 0,
   "max" : 1,
   "type" : "Object",
-  "desc" : "Workflow params schema definition"
+  "desc" : "Workflow parameters schema definition"
 }, {
   "path" : "status",
   "name" : "status",
@@ -1342,7 +1370,7 @@ Form Metadata that can be used for Dynamic updates
   "min" : 0,
   "max" : 1,
   "type" : "string",
-  "desc" : "Status of WF lifecycle. Should be changed via rpc: `cancel-wf`, `complete-wf` `cancel-task`, `complete-task` \n\n**Allowed values**: `new` | `in-progress` | `canceled` | `completed` | `in-amendment` | `amended`"
+  "desc" : "Workflow lifecycle status. Change via RPC: cancel-wf, complete-wf, cancel-task, complete-task. \n\n**Allowed values**: `new` | `in-progress` | `canceled` | `completed` | `in-amendment` | `amended`"
 }, {
   "path" : "title",
   "name" : "title",
@@ -1357,7 +1385,7 @@ Form Metadata that can be used for Dynamic updates
   "lvl" : 0,
   "min" : 0,
   "max" : 1,
-  "type" : "number",
+  "type" : "decimal",
   "desc" : "Workflow version"
 }, {
   "path" : "workflow",
@@ -1366,7 +1394,7 @@ Form Metadata that can be used for Dynamic updates
   "min" : 0,
   "max" : 1,
   "type" : "string",
-  "desc" : "Workflow symbolic name for storing in DB"
+  "desc" : "Workflow symbolic name"
 } ]
 ```
 
@@ -1382,7 +1410,7 @@ Snapshotted workflow template with incremental versioning.
   "lvl" : 0,
   "min" : 1,
   "max" : 1,
-  "type" : "number",
+  "type" : "decimal",
   "desc" : "Hash of snapshot with injected document/layout/rules"
 }, {
   "path" : "snapshot",
@@ -1391,14 +1419,14 @@ Snapshotted workflow template with incremental versioning.
   "min" : 1,
   "max" : 1,
   "type" : "string",
-  "desc" : ""
+  "desc" : "Serialized workflow snapshot."
 }, {
   "path" : "version",
   "name" : "version",
   "lvl" : 0,
   "min" : 1,
   "max" : 1,
-  "type" : "number",
+  "type" : "decimal",
   "desc" : "Incremental number of workflow version."
 }, {
   "path" : "workflow",
@@ -1407,7 +1435,7 @@ Snapshotted workflow template with incremental versioning.
   "min" : 1,
   "max" : 1,
   "type" : "string",
-  "desc" : ""
+  "desc" : "Workflow identifier."
 } ]
 ```
 
