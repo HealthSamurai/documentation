@@ -43,6 +43,8 @@ EXCLUDE_PATTERNS = [
 # Known problematic links that should be skipped
 SKIP_DOMAINS = [
     # Add domains that require authentication or are known to block bots
+    "www.terraform.io",
+    "terraform.io",
 ]
 
 # Domains that require special handling (use GET instead of HEAD)

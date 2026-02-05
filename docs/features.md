@@ -74,7 +74,7 @@ description: >-
 
 * [OAuth 2.0, OpenID Connect](access-control/authentication/), Basic Auth, [SSO](access-control/authentication/sso-with-external-identity-provider.md), SCIM
 * [External identity providers](tutorials/security-access-control-tutorials/set-up-external-identity-provider.md): [GitHub](tutorials/security-access-control-tutorials/github.md), [Apple](tutorials/security-access-control-tutorials/apple.md), [Okta](tutorials/security-access-control-tutorials/okta.md), [Azure AD](tutorials/security-access-control-tutorials/azure-ad.md), [Keycloak](tutorials/security-access-control-tutorials/keycloak.md)
-* [SMART App Launch](deprecated/deprecated/smartbox/) (EHR and standalone)
+* [SMART App Launch](access-control/authorization/smart-on-fhir/smart-client-authorization/smart-app-launch.md) (EHR and standalone)
   * SMART-on-FHIR v1 and v2 scopes
   * [SMART scopes with search parameters](access-control/authorization/smart-on-fhir/smart-scopes-for-limiting-access.md#scopes-with-search-parameters)
 * Access control: [RBAC, ABAC](access-control/authorization/access-policies.md)
@@ -165,7 +165,7 @@ Load performance testing results [here](https://www.health-samurai.io/downloads/
   * [Web component embedding](modules/aidbox-forms/aidbox-ui-builder-alpha/embedding.md)
 * [ePrescriptions](modules/eprescription/)
 * [MPI](modules/mpi/) (Master Patient Index)
-* [Smartbox FHIR API](deprecated/deprecated/smartbox/) for health plans and EHRs
+* SMART on FHIR API for health plans and EHRs
 * [Audit record repository](access-control/audit-and-logging.md#aidbox-as-an-audit-record-repository)
 
 ### Compliance & Certifications

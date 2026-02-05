@@ -27,7 +27,7 @@ eyJhbGciOiJ...
 #### **Required: Email Provider Configuration** <a href="#required-email-provider-configuration" id="required-email-provider-configuration"></a>
 
 {% hint style="info" %}
-In this guide `mailgun` is used to send email. FHIR App Portal also supports [different email providers](../../../deprecated/deprecated/smartbox/how-to-guides/setup-email-provider.md) and [SMTP](../../../deprecated/deprecated/smartbox/how-to-guides/setup-email-provider.md#how-to-set-up-smtp)
+In this guide `mailgun` is used to send email. FHIR App Portal also supports different email providers and SMTP
 {% endhint %}
 
 Email provider is used to communicate with users (developers, patients). It sends emails for email verification, resetting of a password and etc.
