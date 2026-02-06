@@ -16,7 +16,7 @@ spec:
           restartPolicy: OnFailure
           containers:
             - name: scraper
-              image: ghcr.io/healthsamurai/meilisearch-docs-scraper@sha256:76d7e49ce58a4867c40632cdc36e60e043d1331a00caf6b6bbea9c314bd2b39e
+              image: ghcr.io/healthsamurai/meilisearch-docs-scraper@sha256:2aa7157a60655e86f22286483fa67cb59aecf8a34b704914ab41c9ffba350cc8
               args:
                 - /configs/docs.json
                 - /configs/fhirbase.json
