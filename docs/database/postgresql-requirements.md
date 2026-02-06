@@ -15,7 +15,7 @@ Aidbox uses PostgreSQL as its database engine, leveraging its robust JSON capabi
 
 Compatible with all PostgreSQL deployments
 
-* cloud-managed services (such as [AWS RDS](../deployment-and-maintenance/deploy-aidbox/run-aidbox-on-managed-postgresql.md#aurora-postgresql), [Google Cloud SQL](https://cloud.google.com/sql/postgresql), [Azure Database](../deployment-and-maintenance/deploy-aidbox/run-aidbox-on-managed-postgresql.md#azure-database-for-postgresql-flexible-server), etc)
+* cloud-managed services (such as [AWS RDS](../deployment-and-maintenance/deploy-aidbox/run-aidbox-on-managed-postgresql.md#aurora-postgresql), [Google Cloud SQL](https://cloud.google.com/sql/postgresql), [Azure Database](../deployment-and-maintenance/deploy-aidbox/run-aidbox-on-managed-postgresql.md#azure-database-for-postgresql-flexible-server), [Databricks Lakebase](https://www.databricks.com/product/lakebase), etc)
 * self-hosted installations&#x20;
 * on-premises deployments
 
