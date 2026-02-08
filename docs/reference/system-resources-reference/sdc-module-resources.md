@@ -879,6 +879,22 @@ Configuration resource for SDC system settings including language, theme, storag
   "type" : "string",
   "desc" : "Storage bucket (required for GCP and S3)"
 }, {
+  "path" : "storage.container",
+  "name" : "container",
+  "lvl" : 1,
+  "min" : 0,
+  "max" : 1,
+  "type" : "string",
+  "desc" : "Azure container name (for Azure Workload Identity)"
+}, {
+  "path" : "storage.storageAccount",
+  "name" : "storageAccount",
+  "lvl" : 1,
+  "min" : 0,
+  "max" : 1,
+  "type" : "string",
+  "desc" : "Azure storage account name (for Azure Workload Identity)"
+}, {
   "path" : "storage.store-absolute-url",
   "name" : "store-absolute-url",
   "lvl" : 1,
