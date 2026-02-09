@@ -385,7 +385,7 @@ redirects:
   modules-1/integration-toolkit/hl7-v2-integration/mappings-with-lisp-mapping: modules/integration-toolkit/hl7-v2-integration/mappings-with-lisp-mapping.md
   modules-1/integration-toolkit/mappings: modules/integration-toolkit/mappings.md
   modules-1/integration-toolkit/x12-message-converter: modules/integration-toolkit/x12-message-converter.md
-  modules-1/mdm: modules/mpi/README.md
+  modules-1/mdm: modules/mdm/README.md
   modules-1/observability/getting-started/how-to-export-telemetry-to-the-otel-collector: modules/observability/getting-started/how-to-export-telemetry-to-the-otel-collector.md
   modules-1/observability/getting-started/run-aidbox-with-opentelemetry-locally: modules/observability/getting-started/run-aidbox-with-opentelemetry-locally.md
   modules-1/observability/logs/extending-aidbox-logs: modules/observability/logs/extending-aidbox-logs.md
@@ -409,9 +409,9 @@ redirects:
   modules-1/observability/traces/how-to-use-tracing: modules/observability/traces/how-to-use-tracing.md
   modules-1/observability/traces/otel-traces-exporter-parameters: modules/observability/traces/otel-traces-exporter-parameters.md
   modules-1/other-modules/mcp: modules/other-modules/mcp.md
-  modules-1/other-modules/mdm/configure-mdm-module: modules/mpi/get-started/configure-mpi-module.md
-  modules-1/other-modules/mdm/find-duplicates-usdmatch: modules/mpi/find-duplicates-match.md
-  modules-1/other-modules/mdm/mathematical-details: modules/mpi/mathematical-details.md
+  modules-1/other-modules/mdm/configure-mdm-module: modules/mdm/configure-mdm-module.md
+  modules-1/other-modules/mdm/find-duplicates-usdmatch: modules/mdm/find-duplicates-match.md
+  modules-1/other-modules/mdm/mathematical-details: modules/mdm/mathematical-details.md
   modules-1/profiling-and-validation/asynchronous-resource-validation: modules/profiling-and-validation/asynchronous-resource-validation.md
   modules-1/profiling-and-validation/fhir-schema-validator/setup-aidbox-with-fhir-schema-validation-engine: modules/profiling-and-validation/fhir-schema-validator/setup-aidbox-with-fhir-schema-validation-engine.md
   modules-1/profiling-and-validation/fhir-schema-validator/tutorials/how-to-create-fhir-npm-package: tutorials/artifact-registry-tutorials/how-to-create-fhir-npm-package.md
@@ -469,15 +469,15 @@ redirects:
   modules/observability/logging-and-audit/readme-1/how-to-explore-and-visualize-aidbox-logs-with-kibana-and-grafana: modules/observability/logs/tutorials/log-analysis-and-visualization-tutorial.md
   modules/observability/logging-and-audit/technical-reference: modules/observability/logs/technical-reference/README.md
   modules/observability/logging-and-audit: access-control/audit-and-logging.md
-  modules/other-modules/mdm/find-duplicates-usdmatch.md: modules/mpi/find-duplicates-match.md
-  modules/other-modules/mdm: modules/mpi/README.md
-  modules/other-modules/mpi/find-duplicates-match: modules/mpi/find-duplicates-match.md
-  modules/other-modules/mpi/get-started/configure-mpi-module: modules/mpi/get-started/configure-mpi-module.md
-  modules/other-modules/mpi/get-started: modules/mpi/get-started/README.md
-  modules/other-modules/mpi/matching-model-explanation: modules/mpi/matching-model-explanation.md
-  modules/other-modules/mpi/mathematical-details: modules/mpi/mathematical-details.md
-  modules/other-modules/mpi/merging-and-unmerging-records-usdmerge-and-usdunmerge: modules/mpi/merging-and-unmerging-records-usdmerge-and-usdunmerge.md
-  modules/other-modules/mpi: modules/mpi/README.md
+  modules/other-modules/mdm/find-duplicates-usdmatch.md: modules/mdm/find-duplicates-match.md
+  modules/other-modules/mdm: modules/mdm/README.md
+  modules/other-modules/mpi/find-duplicates-match: modules/mdm/find-duplicates-match.md
+  modules/other-modules/mpi/get-started/configure-mpi-module: modules/mdm/configure-mdm-module.md
+  modules/other-modules/mpi/get-started: modules/mdm/README.md
+  modules/other-modules/mpi/matching-model-explanation: modules/mdm/matching-model-explanation.md
+  modules/other-modules/mpi/mathematical-details: modules/mdm/mathematical-details.md
+  modules/other-modules/mpi/merging-and-unmerging-records-usdmerge-and-usdunmerge: modules/mdm/merging-and-unmerging-records-usdmerge-and-usdunmerge.md
+  modules/other-modules/mpi: modules/mdm/README.md
   modules/profiling-and-validation/fhir-schema-validator/upload-fhir-implementation-guide/environment-variable: tutorials/artifact-registry-tutorials/upload-fhir-implementation-guide/environment-variable.md
   modules/security-and-access-control/overview: access-control/access-control.md
   modules/security-and-access-control/patient-data-access-api/how-to-enable-patient-data-access-api: tutorials/security-access-control-tutorials/how-to-enable-patient-data-access-api.md
@@ -544,7 +544,7 @@ redirects:
   aidbox-configuration/aidbox-zen-lang-project: deprecated/deprecated/zen-related/aidbox-zen-lang-project/README.md
   modules-1/custom-resources/getting-started-with-custom-resources: tutorials/artifact-registry-tutorials/custom-resources/README.md
   modules-1/topic-based-subscriptions/topic-based-subscriptions: modules/topic-based-subscriptions/README.md
-  modules/other-modules/mdm/find-duplicates-match: modules/mpi/find-duplicates-match.md
+  modules/other-modules/mdm/find-duplicates-match: modules/mdm/find-duplicates-match.md
   modules/profiling-and-validation/fhir-schema-validator/upload-fhir-implementation-guide: tutorials/artifact-registry-tutorials/upload-fhir-implementation-guide/README.md
   modules/security-and-access-control/set-up-external-identity-provider: access-control/authentication/sso-with-external-identity-provider.md
   api: api/api-overview.md
@@ -555,7 +555,7 @@ redirects:
   modules-1/security-and-access-control/how-to-guides/token-introspection: tutorials/security-access-control-tutorials/set-up-token-introspection.md
   modules/compliance/aidbox-+-fhir-app-portal/getting-started/run-aidbox-+-fhir-portal-locally: solutions/aidbox-+-fhir-app-portal/getting-started/run-aidbox-+-fhir-portal-locally.md
   modules/integration-toolkit/ccda-converter/sections/planoftreatmentsectionv2: modules/integration-toolkit/ccda-converter/sections/plan-of-treatment-section-docs-v2.md
-  modules/mdm: modules/mpi/README.md
+  modules/mdm: modules/mdm/README.md
   modules/profiling-and-validation/fhir-schema-validator/tutorials: tutorials/artifact-registry-tutorials/how-to-create-fhir-npm-package.md
   modules/security-and-access-control/multitenancy/organization-based-hierarchical-access-control: access-control/authorization/scoped-api/organization-based-hierarchical-access-control.md
   modules/security-and-access-control/security: access-control/authorization/access-policies.md
@@ -632,7 +632,7 @@ redirects:
   readme-1/readme-1-1/sample-patient-can-see-its-own-data: tutorials/security-access-control-tutorials/accesspolicy-examples.md
   readme-1/validation-tutorials/davinci-pdex: tutorials/validation-tutorials/davinci-pdex.md
   reference/aidbox-forms/aidbox-sdc-api: reference/aidbox-forms-reference/aidbox-sdc-api.md
-  reference/zen-schema-reference/aidbox/mdm/model: modules/mpi/README.md
+  reference/zen-schema-reference/aidbox/mdm/model: modules/mdm/README.md
   storage-1/aidboxdb-image: deprecated/deprecated/aidboxdb/README.md
   storage-1/aidboxdb-image/migration-to-aidboxdb-16.1-handling-the-removal-of-jsonknife-extension: deprecated/deprecated/aidboxdb/migrate-to-aidboxdb-16.md
   storage-1/custom-resources/migrate-to-fhirschema/migrate-custom-resources-defined-with-zen-to-fhir-schema: tutorials/artifact-registry-tutorials/custom-resources/migrate-to-fhirschema/migrate-custom-resources-defined-with-zen-to-fhir-schema.md
