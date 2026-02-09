@@ -948,11 +948,12 @@ Aidbox ePrescription enables sending electronic prescriptions via Surescripts in
 
 Learn more: [ePrescription](../modules/eprescription/README.md)
 
-### What is the MPI module?
+### What is the MDM module?
 
-Master Patient Index (MPI) ensures accurate patient identification by detecting and managing duplicate records:
+Master Data Management (MDM) ensures accurate entity identification by detecting and managing duplicate records:
 
-- Probabilistic patient matching with configurable algorithms
+- Probabilistic matching with configurable algorithms
+- Real-time match on create/update and bulk match across existing data
 - Merge and unmerge operations
 - Handles typos and incomplete data
 - Audit trail for all operations

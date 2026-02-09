@@ -100,44 +100,44 @@ Create the following indexes to optimize matching performance and resource refer
 
 ```sql
 -- Patient indexes for matching and search
-CREATE INDEX IF NOT EXISTS patient_full_name_idx_mpi ON public.patient USING btree ((((immutable_unaccent_upper((resource #>> '{name,0,family}'::text[])) || ' '::text) || immutable_unaccent_upper((resource #>> '{name,0,given,0}'::text[]))))); -- match blocks
-CREATE INDEX IF NOT EXISTS patient_given_gin_idx_mpi ON public.patient USING gin (((resource #>> '{name,0,given,0}'::text[])) gin_trgm_ops); -- search by partial given
-CREATE INDEX IF NOT EXISTS patient_family_gin_idx_mpi ON public.patient USING gin (((resource #>> '{name,0,family}'::text[])) gin_trgm_ops); -- search by partial family
-CREATE INDEX IF NOT EXISTS patient_given_btree_idx_mpi ON public.patient USING btree (immutable_unaccent_upper((resource #>> '{name,0,given,0}'::text[]))); -- search by exact given
-CREATE INDEX IF NOT EXISTS patient_family_btree_idx_mpi ON public.patient USING btree (immutable_unaccent_upper((resource #>> '{name,0,family}'::text[]))); -- search by exact family
-CREATE INDEX IF NOT EXISTS patient_email_idx_mpi ON public.patient USING gin (jsonb_path_query_array(resource, '$."telecom"[*]?(@."system" == "email")."value"'::jsonpath) jsonb_path_ops); -- search by email
-CREATE INDEX IF NOT EXISTS patient_identifier_idx_mpi ON public.patient USING gin (jsonb_path_query_array(resource, '$."identifier"[*]."value"'::jsonpath) jsonb_path_ops); -- search by identifier
-CREATE INDEX IF NOT EXISTS patient_phone_idx_mpi ON public.patient USING gin (jsonb_path_query_array(resource, '$."telecom"[*]?(@."system" == "phone")."value"'::jsonpath) jsonb_path_ops); -- search by phone
-CREATE INDEX IF NOT EXISTS patient_address_line_btree_idx_mpi ON public.patient USING btree (immutable_remove_spaces_unaccent_upper((resource #>> '{address,0,line,0}'::text[]))); -- match blocks
-CREATE INDEX IF NOT EXISTS patient_identifier_idx2_mpi ON public.patient USING gin (((resource #> '{identifier}'::text[]))); -- for second model, review needed
-CREATE INDEX IF NOT EXISTS patient_birthdate_idx_mpi ON public.patient USING btree (((resource #>> '{birthDate}'::text[]))); -- match blocks
+CREATE INDEX IF NOT EXISTS patient_full_name_idx_mdm ON public.patient USING btree ((((immutable_unaccent_upper((resource #>> '{name,0,family}'::text[])) || ' '::text) || immutable_unaccent_upper((resource #>> '{name,0,given,0}'::text[]))))); -- match blocks
+CREATE INDEX IF NOT EXISTS patient_given_gin_idx_mdm ON public.patient USING gin (((resource #>> '{name,0,given,0}'::text[])) gin_trgm_ops); -- search by partial given
+CREATE INDEX IF NOT EXISTS patient_family_gin_idx_mdm ON public.patient USING gin (((resource #>> '{name,0,family}'::text[])) gin_trgm_ops); -- search by partial family
+CREATE INDEX IF NOT EXISTS patient_given_btree_idx_mdm ON public.patient USING btree (immutable_unaccent_upper((resource #>> '{name,0,given,0}'::text[]))); -- search by exact given
+CREATE INDEX IF NOT EXISTS patient_family_btree_idx_mdm ON public.patient USING btree (immutable_unaccent_upper((resource #>> '{name,0,family}'::text[]))); -- search by exact family
+CREATE INDEX IF NOT EXISTS patient_email_idx_mdm ON public.patient USING gin (jsonb_path_query_array(resource, '$."telecom"[*]?(@."system" == "email")."value"'::jsonpath) jsonb_path_ops); -- search by email
+CREATE INDEX IF NOT EXISTS patient_identifier_idx_mdm ON public.patient USING gin (jsonb_path_query_array(resource, '$."identifier"[*]."value"'::jsonpath) jsonb_path_ops); -- search by identifier
+CREATE INDEX IF NOT EXISTS patient_phone_idx_mdm ON public.patient USING gin (jsonb_path_query_array(resource, '$."telecom"[*]?(@."system" == "phone")."value"'::jsonpath) jsonb_path_ops); -- search by phone
+CREATE INDEX IF NOT EXISTS patient_address_line_btree_idx_mdm ON public.patient USING btree (immutable_remove_spaces_unaccent_upper((resource #>> '{address,0,line,0}'::text[]))); -- match blocks
+CREATE INDEX IF NOT EXISTS patient_identifier_idx2_mdm ON public.patient USING gin (((resource #> '{identifier}'::text[]))); -- for second model, review needed
+CREATE INDEX IF NOT EXISTS patient_birthdate_idx_mdm ON public.patient USING btree (((resource #>> '{birthDate}'::text[]))); -- match blocks
 
 -- Observation indexes for merge/unmerge operations
-CREATE INDEX IF NOT EXISTS observation_encounter_references_idx_mpi ON public.observation USING gin (jsonb_path_query_array(resource, '$.**?(@."resourceType" == "Encounter")."id"'::jsonpath)); -- unmerge
-CREATE INDEX IF NOT EXISTS observation_patient_references_idx_mpi ON public.observation USING gin (jsonb_path_query_array(resource, '$.**?(@."resourceType" == "Patient")."id"'::jsonpath)); -- merge
+CREATE INDEX IF NOT EXISTS observation_encounter_references_idx_mdm ON public.observation USING gin (jsonb_path_query_array(resource, '$.**?(@."resourceType" == "Encounter")."id"'::jsonpath)); -- unmerge
+CREATE INDEX IF NOT EXISTS observation_patient_references_idx_mdm ON public.observation USING gin (jsonb_path_query_array(resource, '$.**?(@."resourceType" == "Patient")."id"'::jsonpath)); -- merge
 
 -- Specimen indexes for merge operations
-CREATE INDEX IF NOT EXISTS specimen_patient_references_idx_mpi ON public.specimen USING gin (jsonb_path_query_array(resource, '$.**?(@."resourceType" == "Patient")."id"'::jsonpath)); -- merge
+CREATE INDEX IF NOT EXISTS specimen_patient_references_idx_mdm ON public.specimen USING gin (jsonb_path_query_array(resource, '$.**?(@."resourceType" == "Patient")."id"'::jsonpath)); -- merge
 
 -- DiagnosticReport indexes for merge/unmerge operations
-CREATE INDEX IF NOT EXISTS diagnosticreport_patient_references_idx_mpi ON public.diagnosticreport USING gin (jsonb_path_query_array(resource, '$.**?(@."resourceType" == "Patient")."id"'::jsonpath)); -- merge
-CREATE INDEX IF NOT EXISTS diagnosticreport_encounter_references_idx_mpi ON public.diagnosticreport USING gin (jsonb_path_query_array(resource, '$.**?(@."resourceType" == "Encounter")."id"'::jsonpath)); -- unmerge
+CREATE INDEX IF NOT EXISTS diagnosticreport_patient_references_idx_mdm ON public.diagnosticreport USING gin (jsonb_path_query_array(resource, '$.**?(@."resourceType" == "Patient")."id"'::jsonpath)); -- merge
+CREATE INDEX IF NOT EXISTS diagnosticreport_encounter_references_idx_mdm ON public.diagnosticreport USING gin (jsonb_path_query_array(resource, '$.**?(@."resourceType" == "Encounter")."id"'::jsonpath)); -- unmerge
 
 -- Encounter indexes for merge operations
-CREATE INDEX IF NOT EXISTS encounter_patient_references_idx_mpi ON public.encounter USING gin (jsonb_path_query_array(resource, '$.**?(@."resourceType" == "Patient")."id"'::jsonpath)); -- merge
-CREATE INDEX IF NOT EXISTS encounter_identifier_idx_mpi ON public.encounter USING gin ((jsonb_path_query_array(resource, '$."identifier".**."value"')) jsonb_path_ops);
+CREATE INDEX IF NOT EXISTS encounter_patient_references_idx_mdm ON public.encounter USING gin (jsonb_path_query_array(resource, '$.**?(@."resourceType" == "Patient")."id"'::jsonpath)); -- merge
+CREATE INDEX IF NOT EXISTS encounter_identifier_idx_mdm ON public.encounter USING gin ((jsonb_path_query_array(resource, '$."identifier".**."value"')) jsonb_path_ops);
 
 -- Condition indexes for merge/unmerge operations
-CREATE INDEX IF NOT EXISTS condition_patient_references_idx_mpi ON public.condition USING gin (jsonb_path_query_array(resource, '$.**?(@."resourceType" == "Patient")."id"'::jsonpath)); -- merge
-CREATE INDEX IF NOT EXISTS condition_encounter_references_idx_mpi ON public.condition USING gin (jsonb_path_query_array(resource, '$.**?(@."resourceType" == "Encounter")."id"'::jsonpath)); -- unmerge
+CREATE INDEX IF NOT EXISTS condition_patient_references_idx_mdm ON public.condition USING gin (jsonb_path_query_array(resource, '$.**?(@."resourceType" == "Patient")."id"'::jsonpath)); -- merge
+CREATE INDEX IF NOT EXISTS condition_encounter_references_idx_mdm ON public.condition USING gin (jsonb_path_query_array(resource, '$.**?(@."resourceType" == "Encounter")."id"'::jsonpath)); -- unmerge
 
 -- Media indexes for merge/unmerge operations
-CREATE INDEX IF NOT EXISTS media_patient_references_idx_mpi ON public.media USING gin (jsonb_path_query_array(resource, '$.**?(@."resourceType" == "Patient")."id"'::jsonpath)); -- merge
-CREATE INDEX IF NOT EXISTS media_encounter_references_idx_mpi ON public.media USING gin (jsonb_path_query_array(resource, '$.**?(@."resourceType" == "Encounter")."id"'::jsonpath)); -- unmerge
+CREATE INDEX IF NOT EXISTS media_patient_references_idx_mdm ON public.media USING gin (jsonb_path_query_array(resource, '$.**?(@."resourceType" == "Patient")."id"'::jsonpath)); -- merge
+CREATE INDEX IF NOT EXISTS media_encounter_references_idx_mdm ON public.media USING gin (jsonb_path_query_array(resource, '$.**?(@."resourceType" == "Encounter")."id"'::jsonpath)); -- unmerge
 
 -- SourceMessage indexes for merge/unmerge operations
-CREATE INDEX IF NOT EXISTS sourcemessage_patient_references_idx_mpi ON public.sourcemessage USING gin (jsonb_path_query_array(resource, '$.**?(@."resourceType" == "Patient")."id"'::jsonpath));
-CREATE INDEX IF NOT EXISTS sourcemessage_encounter_references_idx_mpi ON public.sourcemessage USING gin (jsonb_path_query_array(resource, '$.**?(@."resourceType" == "Encounter")."id"'::jsonpath));
+CREATE INDEX IF NOT EXISTS sourcemessage_patient_references_idx_mdm ON public.sourcemessage USING gin (jsonb_path_query_array(resource, '$.**?(@."resourceType" == "Patient")."id"'::jsonpath));
+CREATE INDEX IF NOT EXISTS sourcemessage_encounter_references_idx_mdm ON public.sourcemessage USING gin (jsonb_path_query_array(resource, '$.**?(@."resourceType" == "Encounter")."id"'::jsonpath));
 ```
 
 ## Add model to MDM backend

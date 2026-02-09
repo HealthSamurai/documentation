@@ -617,7 +617,7 @@
       "Intuitive UI to work with FHIR data, manage users, clients, access policies, and configure system settings."]]]])
 
 (defn modules-section
-  "Modules section with MPI, ePrescription, and Forms cards"
+  "Modules section with MDM, ePrescription, and Forms cards"
   [context]
   [:div {:class "mt-16 mb-12"}
    ;; Modules header - matching Main concepts styling
@@ -627,12 +627,12 @@
    ;; Three cards in horizontal layout - responsive grid
    [:div {:class "grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4"}
 
-    ;; Card 1: Master Patient Index (MPI)
+    ;; Card 1: Master Data Management (MDM)
     [:a {:class "module-card-gradient rounded-lg p-6 flex flex-col border border-module-border min-h-[171px] no-underline transition-all duration-300"
-         :href (http/get-product-prefixed-url context "/modules/mpi")}
-     [:div {:class "text-xs font-medium uppercase tracking-[0.05em] text-module-label leading-[14px]"} "MPI"]
-     [:h3 {:class "text-base font-medium leading-8 tracking-[-0.03em] text-on-surface-strong m-0"} "Master Patient Index"]
-     [:p {:class "text-sm font-normal text-on-surface-secondary m-0 mt-2 leading-[22.75px]"} "A module in Aidbox that ensures accurate patient identification by detecting and removing duplicate records"]]
+         :href (http/get-product-prefixed-url context "/modules/mdm")}
+     [:div {:class "text-xs font-medium uppercase tracking-[0.05em] text-module-label leading-[14px]"} "MDM"]
+     [:h3 {:class "text-base font-medium leading-8 tracking-[-0.03em] text-on-surface-strong m-0"} "Master Data Management"]
+     [:p {:class "text-sm font-normal text-on-surface-secondary m-0 mt-2 leading-[22.75px]"} "A module in Aidbox that ensures accurate entity identification by detecting and removing duplicate records"]]
 
     ;; Card 2: Electronic prescriptions (ePrescription)
     [:a {:class "module-card-gradient rounded-lg p-6 flex flex-col border border-module-border min-h-[171px] no-underline transition-all duration-300"
