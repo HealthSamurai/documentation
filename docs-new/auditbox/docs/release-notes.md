@@ -1,5 +1,10 @@
 # Release Notes
 
+## 0.5.2
+* Fix audit event created when exporting missing data on what is getting exported
+* Fix OperationOutcome format
+* Add package lock for UI
+
 ## 0.5.0
 * Add support for a custom "user" search parameter
 
