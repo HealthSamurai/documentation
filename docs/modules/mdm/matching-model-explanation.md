@@ -1,6 +1,6 @@
 ---
 description: >-
-  This page explains how the MPI matching model works, describing its structure,
+  This page explains how the MDM matching model works, describing its structure,
   scoring logic, and configurable elements with an example.
 ---
 
@@ -11,12 +11,16 @@ This page provides the **matching model code** and explains its elements.\
 For an overview of probabilistic matching concepts and match score calculation, see our article [Master Patient Index and Record Linkage](https://www.health-samurai.io/articles/master-patient-index-and-record-linkage).
 {% endhint %}
 
-This model is used for **patient record matching**, but the same approach can be adapted to detect duplicates for any type of resource.\
-If you are interested in applying this approach to your use case, please, [contact us](../../overview/contact-us.md).
+This model is used for **record matching**, but the same approach can be adapted to detect duplicates for any type of resource.\
+If you are interested in applying this approach to your use case, please [contact us](../../overview/contact-us.md).
+
+Matching models are stored in the **MDM server (backend)** and managed via the `/MatchingModel` API or the `/admin` UI.
+
+Below we use **Patient** as an example to illustrate the model structure.
 
 ## Core Idea
 
-The model compares selected fields from patient records and evaluates predefined comparison rules.\
+The model compares selected fields from records and evaluates predefined comparison rules.\
 Each rule in the **features** section contains an expression `expr` and an associated weight `bf` (Bayes Factor), indicating how strongly a match or mismatch on that field affects the total score.
 
 All weights are summed into a **total score**. If the score is above the defined threshold, the record pair is included in the match results; if it is below, it is excluded.
@@ -139,7 +143,7 @@ All weights are summed into a **total score**. If the score is above the defined
         "auto": 25,
         "manual": 16
     },
-    "resourceType": "AidboxLinkageModel"
+    "resourceType": "MatchingModel"
 }
 </code></pre>
 
@@ -147,7 +151,7 @@ All weights are summed into a **total score**. If the score is above the defined
 
 **Variables** defined in the model can **reference resource fields** directly or be composed from them using expressions (e.g., concatenating values, applying normalization, or calculating derived values). These variables are used in feature expressions and blocking rules.
 
-* `dob` – patient birth date
+* `dob` – birth date (if applicable)
 * `name` – concatenation of family and given names
 * `given` – normalized first name (accents removed, uppercase)
 * `family` – normalized last name (accents removed, uppercase)
@@ -160,7 +164,7 @@ All weights are summed into a **total score**. If the score is above the defined
 Blocking rules **limit** the number of candidate record pairs by selecting only those that **share key characteristics** (e.g., similar names, matching birth dates, or addresses).\
 This **reduces** the number of comparisons, which significantly **speeds up processing**, while still preserving potential matches for scoring.
 
-* `fn`: blocks by patient name
+* `fn`: blocks by name
 * `dob`: blocks by date of birth
 * `addr`: blocks by address
 

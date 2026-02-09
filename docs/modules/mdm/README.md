@@ -1,25 +1,25 @@
 ---
 description: >-
-  This page introduces the Aidbox MPI module, its core capabilities, and guides
+  This page introduces the Aidbox MDM module, its core capabilities, and guides
   for deployment, configuration, matching, and merge/unmerge operations.
 ---
 
-# MPI — Master Patient Index
+# MDM — Master Data Management
 
-**Master Patient Index (MPI)** is a module in Aidbox that ensures **accurate patient identification** by detecting and removing duplicate records. It helps maintain consistent and reliable data across healthcare systems.
+**Master Data Management (MDM)** is a module in Aidbox that ensures **accurate entity identification** by detecting and removing duplicate records. It helps maintain consistent and reliable data across healthcare systems.
 
-**MPI enables:**
+**MDM enables:**
 
-* accurate [**matching**](find-duplicates-match.md) of patient records across different systems and facilities,
+* accurate [**matching**](find-duplicates-match.md) of records across different systems and facilities,
 * [**merging**](merging-and-unmerging-records-usdmerge-and-usdunmerge.md#merge-operation) of duplicate records into a single record,
 * [**unmerging**](merging-and-unmerging-records-usdmerge-and-usdunmerge.md#unmerge-operation) of incorrectly linked records,
 * maintaining the **integrity** of clinical data and treatment history.
 
-Using MPI **reduces the risk** of lost or duplicated medical data, treatment errors, and issues with data exchange. This is especially critical in complex ecosystems with many sources — such as clinics, labs, and telemedicine platforms.
+Using MDM **reduces the risk** of lost or duplicated data, errors, and issues with data exchange. This is especially critical in complex ecosystems with many sources — such as clinics, labs, and telemedicine platforms.
 
-The MPI module utilizes **probabilistic** (score-based or Fellegi-Sunter) method. It is more flexible and can provide better results than rule-based approaches, but at the cost of simplicity.
+The MDM module utilizes a **probabilistic** (score-based or Fellegi-Sunter) method. It is more flexible and can provide better results than rule-based approaches, but at the cost of simplicity.
 
-## MPI Capabilities Overview
+## MDM Capabilities Overview
 
 ### Technical Capabilities
 
@@ -27,37 +27,37 @@ The MPI module utilizes **probabilistic** (score-based or Fellegi-Sunter) method
 * Seamless integration with the Aidbox platform
 * API-first architecture with a user-friendly web-based UI
 * Notifications for external systems via webhooks (non-FHIR format)
-* Unlimited scalability — supports any number of patient records
+* Unlimited scalability — supports any number of records
 * Can be deployed in the cloud or on-premises
 
 ### Data Safety, Transparency and Consistency
 
 * Role-based access control
 * Full traceability of all operations, user actions and API calls
-* Supports complience with security and regulatory standarts
+* Supports compliance with security and regulatory standards
 
 ### Core Feature set
 
-* Search for patients
-* Flexible patient matching using a probabilistic algorithm
-  * Fully configurable for specific data and use-cases
+* Search for records
+* Flexible matching using a probabilistic algorithm
+  * Fully configurable for specific data and use cases
   * Handles typos and incomplete data
 * Manual record merging with unique merge strategy combining golden record and survivor record approaches
 * Unmerge capability
 * Ability to mark record pairs as non-duplicates to exclude them from future match results
 
-## Run MPI with Kubernetes
+## Run MDM locally
 
-{% content-ref url="get-started/run-mdm-locally.md" %}
-[run-mdm-locally.md](get-started/run-mdm-locally.md)
+{% content-ref url="run-mdm-locally.md" %}
+[run-mdm-locally.md](run-mdm-locally.md)
 {% endcontent-ref %}
 
-## Configure MPI module
+## Configure MDM module
 
-Configure Aidbox MPI module to use your matching model
+Configure the MDM module to use a matching model stored in the MDM server (backend)
 
-{% content-ref url="get-started/configure-mpi-module.md" %}
-[configure-mpi-module.md](get-started/configure-mpi-module.md)
+{% content-ref url="configure-mdm-module.md" %}
+[configure-mdm-module.md](configure-mdm-module.md)
 {% endcontent-ref %}
 
 ## Find Duplicates
@@ -67,7 +67,7 @@ Use `$match` operation to find duplicates
 
 ## Merge and Unmerge Records
 
-Use `$merge` and `$unmerge` operations to manage duplicate patient records
+Use `$merge` and `$unmerge` operations to manage duplicate records
 
 {% content-ref url="merging-and-unmerging-records-usdmerge-and-usdunmerge.md" %}
 [merging-and-unmerging-records-usdmerge-and-usdunmerge.md](merging-and-unmerging-records-usdmerge-and-usdunmerge.md)

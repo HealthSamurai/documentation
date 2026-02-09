@@ -958,7 +958,7 @@ Master Patient Index (MPI) ensures accurate patient identification by detecting 
 - Audit trail for all operations
 
 Learn more:
-- [MPI — Master Patient Index](../modules/mpi/README.md)
+- [MDM — Master Data Management](../modules/mdm/README.md)
 - [Master Patient Index and Record Linkage (blog)](https://www.health-samurai.io/articles/master-patient-index-and-record-linkage)
 
 ### Does Aidbox support file storage with signed URLs?

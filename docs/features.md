@@ -164,7 +164,7 @@ Load performance testing results [here](https://www.health-samurai.io/downloads/
   * [Multitenancy](modules/aidbox-forms/aidbox-ui-builder-alpha/forms-multitenancy.md) support
   * [Web component embedding](modules/aidbox-forms/aidbox-ui-builder-alpha/embedding.md)
 * [ePrescriptions](modules/eprescription/)
-* [MPI](modules/mpi/) (Master Patient Index)
+* [MDM](modules/mdm/) (Master Data Management)
 * SMART on FHIR API for health plans and EHRs
 * [Audit record repository](access-control/audit-and-logging.md#aidbox-as-an-audit-record-repository)
 

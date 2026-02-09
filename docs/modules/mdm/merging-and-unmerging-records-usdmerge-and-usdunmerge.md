@@ -1,6 +1,6 @@
 ---
 description: >-
-  This page explains how to use merge and unmerge operations in MPI and how they
+  This page explains how to use merge and unmerge operations in MDM and how they
   work, with practical examples.
 ---
 
@@ -17,19 +17,19 @@ Currently, only **manual merging** is supported. However, the system is designed
 
 The **unmerge** operation allows reversing a previous merge by restoring the original source record and its relationships based on audit data, ensuring no permanent data loss if a merge was done by mistake.
 
-This page provides key information about using `$merge` and `$unmerge` . For full API details, refer to our [Swagger documentation](https://mdm.aidbox.io/backend/static/swagger.html).
+This page provides key information about using `$merge` and `$unmerge`. For full API details, refer to our [Swagger documentation](https://dev.mdm.health-samurai.io/backend/static/swagger.html).
 
 {% hint style="success" %}
-If you need **alternative merge and unmerge approaches** to adjust MPI to your specific workflows and requirements, please [contact us](../../overview/contact-us.md).
+If you need **alternative merge and unmerge approaches** to adjust MDM to your specific workflows and requirements, please [contact us](../../overview/contact-us.md).
 {% endhint %}
 
 ## Merge Operation
 
 ### **$merge**
 
-The merge operation can be initiated either through the **MPI user interface** or by using the **API**.
+The merge operation can be initiated either through the **MDM user interface** or by using the **API**.
 
-To perform it via the API, send the `$merge` request, for example:
+To perform it via the API, send the `$merge` request, for example (Patient example):
 
 ```http
 POST /fhir/Patient/$merge
@@ -55,8 +55,8 @@ Content-Type: application/json
 
 Where:
 
-* `targetPatient` – the patient record selected as the **survivor**. After the merge, this record remains active and contains the resulting data.
-* `sourcePatient` – the patient record being merged into the survivor. After the merge, this record will be removed.
+* `targetPatient` – the resource record selected as the **survivor**. After the merge, this record remains active and contains the resulting data.
+* `sourcePatient` – the resource record being merged into the survivor. After the merge, this record will be removed.
 * `resultPatient` – optional. Provides updated data for the survivor (for example, if you want to correct a name, address, or any other field during the merge). If omitted, the survivor record remains unchanged, except for linked resources and identifiers that are merged automatically.
 
 The **response** returns a `merge-id` used for audit and tracking:
@@ -75,8 +75,8 @@ When a merge request is processed, the system performs several steps to ensure d
 2. All related resources are found and updated
 3. A merge record is created with status and match weight
 4. All changes are logged for audit purposes
-5. The target patient is updated with merged data
-6. The source patient is deleted
+5. The target record is updated with merged data
+6. The source record is deleted
 7. The merge ID is returned to the client
 
 The diagram below shows the full process flow:
@@ -84,36 +84,35 @@ The diagram below shows the full process flow:
 ```mermaid
 sequenceDiagram
     participant Client
-    participant MPI as MPI Service
+    participant MDM as MDM Service
     participant DB as Database
-    participant MPIDB as MPI DB
 
-    Client->>MPI: merge-patient(source, target, result)
-    MPI->>DB: find-match-weight(source, target)
+    Client->>MDM: merge-record(source, target, result)
+    MDM->>DB: find-match-weight(source, target)
     alt No match weight found
-        MPI-->>Client: Error: No match weight
+        MDM-->>Client: Error: No match weight
     else Match weight exists
-        MPI->>DB: find-resources-by-patient-id(source)
-        Note over MPI,DB: Find all related resources<br/>(Encounters, Specimens, etc.)
+        MDM->>DB: find-resources-by-record-id(source)
+        Note over MDM,DB: Find all related resources<br/>(Encounters, Specimens, etc.)
         
-        MPI->>MPIDB: create patient_merge record
-        Note over MPI,DB: Generate merge_id<br/>Set status=COMPLETED<br/>Store match_weight
+        MDM->>DB: create merge record
+        Note over MDM,DB: Generate merge_id<br/>Set status=COMPLETED<br/>Store match_weight
         
         loop For each related resource
-            MPI->>MPIDB: log resource update
-            MPI->>DB: update resource patient reference
+            MDM->>DB: log resource update
+            MDM->>DB: update resource reference
         end
         
-        MPI->>MPIDB: log target patient update
-        MPI->>MPIDB: log source patient deletion
+        MDM->>DB: log target record update
+        MDM->>DB: log source record deletion
         
-        MPI->>DB: update target patient
-        Note over MPI,DB: Update with merged identifiers<br/>and result resource
+        MDM->>DB: update target record
+        Note over MDM,DB: Update with merged identifiers<br/>and result resource
         
-        MPI->>DB: delete source patient
-        MPI->>DB: delete non-duplicate record
+        MDM->>DB: delete source record
+        MDM->>DB: delete non-duplicate record
         
-        MPI-->>Client: Return merge_id
+        MDM-->>Client: Return merge_id
     end
 ```
 
@@ -123,15 +122,15 @@ sequenceDiagram
 
 If a merge was performed incorrectly, it can be reversed using the **unmerge** operation.
 
-This operation **restores** the original **source patient** and **re‑links all related resources** based on audit information collected during the merge.&#x20;
+This operation **restores** the original **source record** and **re‑links all related resources** based on audit information collected during the merge.&#x20;
 
-If any **linked resources were created after the merge**, the operation also provides a way to **manually reassign them** to the appropriate patient.
+If any **linked resources were created after the merge**, the operation also provides a way to **manually reassign them** to the appropriate record.
 
 ### $unmerge-preview/{id}
 
 Before performing an unmerge, you should preview what will be changed using the **Unmerge Review** endpoint. This endpoint returns a list of **encounters created after the merge**, which may need to be manually reassigned during the unmerge process.
 
-To get the list of after-merge linked resources via API, send the `$unmerge-preview` request, for example:
+To get the list of after-merge linked resources via API, send the `$unmerge-preview` request, for example (Patient example):
 
 ```http
 POST /fhir/Patient/$unmerge_preview/1
@@ -165,15 +164,15 @@ Where `1` is the **merge ID** returned by the `$merge` operation you want to und
 
 Where:
 
-* `target-id` – the patient ID of the **survivor** record after the merge.
-* `source-id` – the patient ID of the **merged (source)** record that will be restored.
+* `target-id` – the ID of the **survivor** record after the merge.
+* `source-id` – the ID of the **merged (source)** record that will be restored.
 * `new-encounters` – list of encounters created **after the merge** that may need to be manually reassigned when performing an unmerge.
 
 ### $unmerge&#x20;
 
-As well as the merge operation, the unmerge operation can be initiated either through the **MPI user interface** or by using the **API**.
+Like the merge operation, the unmerge operation can be initiated either through the **MDM user interface** or by using the **API**.
 
-To perform the unmerge via the API, send the `$unmerge` request, for example:
+To perform the unmerge via the API, send the `$unmerge` request, for example (Patient example):
 
 ```http
 POST /fhir/Patient/$unmerge
@@ -196,22 +195,22 @@ Where:
 
 * `merge-id` – the unique identifier of the merge operation to be reversed.
 * `encounters-and-patient-ids` – optional mapping of **encounters created after the merge** that need to be manually reassigned:
-  * `patient-id` – the patient to whom encounters should be linked after the unmerge.
-  * **`encounter-ids`** – list of encounters that should be re‑linked to this patient.\
-    This ensures that any encounters created post‑merge are correctly redirected when restoring the original patient records. You can get the list of post-merge encounters via **$unmerge-preview/{id}** request.
+  * `patient-id` – the record to whom encounters should be linked after the unmerge.
+  * **`encounter-ids`** – list of encounters that should be re‑linked to this record.\
+    This ensures that any encounters created post‑merge are correctly redirected when restoring the original records. You can get the list of post-merge encounters via **$unmerge-preview/{id}** request.
 
 ### How Unmerging Works
 
 Processing an unmerge request follows a specific workflow designed to safely restore previously merged data:
 
 1. The system retrieves the original merge logs
-2. Source and target patient information is extracted
-3. Encounters are grouped by patient ID
+2. Source and target record information is extracted
+3. Encounters are grouped by record ID
 4. Resources that need to be reverted are identified
-5. Patient references are updated for selected encounters and other linked resources
+5. Resource references are updated for selected encounters and other linked resources
 6. Original resources are restored from merge logs
 7. The merge record is removed
-8. Patients are marked as non-duplicates
+8. Records are marked as non-duplicates
 9. The operation is completed
 
 The diagram below shows the full process flow:
@@ -219,33 +218,32 @@ The diagram below shows the full process flow:
 ```mermaid
 sequenceDiagram
     participant Client
-    participant MPI as MPI Service
+    participant MDM as MDM Service
     participant DB as Database
-    participant MPIDB as MPI DB
 
-    Client->>MPI: unmerge(merge_id, encounters_and_patient_ids)
-    MPI->>MPIDB: find-merge-log(merge_id)
-    Note over MPI,MPIDB: Get source and target patient logs
+    Client->>MDM: unmerge(merge_id, encounters_and_record_ids)
+    MDM->>DB: find-merge-log(merge_id)
+    Note over MDM,DB: Get source and target record logs
     
-    MPI->>MPIDB: get-source-and-target-logs(merge_logs)
-    MPI->>MPIDB: group-by-patient-id(encounters_and_patient_ids)
-    Note over MPI,MPIDB: Group encounters by patient ID
+    MDM->>DB: get-source-and-target-logs(merge_logs)
+    MDM->>DB: group-by-record-id(encounters_and_record_ids)
+    Note over MDM,DB: Group encounters by record ID
     
-    MPI->>MPIDB: get-resources-logs-to-revert(merge_logs)
-    Note over MPI,MPIDB: Get all resources that need to be reverted
+    MDM->>DB: get-resources-logs-to-revert(merge_logs)
+    Note over MDM,DB: Get all resources that need to be reverted
     
-    MPI->>DB: update-encounters-and-related-resources
-    Note over MPI,DB: Update patient references<br/>for selected encounters
+    MDM->>DB: update-encounters-and-related-resources
+    Note over MDM,DB: Update resource references<br/>for selected encounters
     
-    MPI->>DB: revert-old-resources
-    Note over MPI,DB: Restore original resources<br/>from merge logs
+    MDM->>DB: revert-old-resources
+    Note over MDM,DB: Restore original resources<br/>from merge logs
     
-    MPI->>MPIDB: remove-merge(merge_id)
-    Note over MPI,MPIDB: Delete merge record
+    MDM->>DB: remove-merge(merge_id)
+    Note over MDM,DB: Delete merge record
     
-    MPI->>MPIDB: mark-as-non-duplicate
-    Note over MPI,MPIDB: Prevent future matches<br/>between these patients
+    MDM->>DB: mark-as-non-duplicate
+    Note over MDM,DB: Prevent future matches<br/>between these records
     
-    MPI-->>Client: Unmerge completed
+    MDM-->>Client: Unmerge completed
 
 ```

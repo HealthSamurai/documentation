@@ -7,9 +7,11 @@ description: Follow these steps to launch Aidbox MDM module locally using Docker
 ## Prerequisites
 
 {% hint style="warning" %}
-
-
 Please **make sure** that both [Docker & Docker Compose](https://docs.docker.com/engine/install/) are installed.
+{% endhint %}
+
+{% hint style="info" %}
+Replace example hosts like `mdm.example.com` and `aidbox.example.com` with your actual domains.
 {% endhint %}
 
 ## Steps
@@ -81,10 +83,10 @@ services:
       BOX_SECURITY_AUDIT_LOG_ENABLED: true
       BOX_SECURITY_DEV_MODE: true
       BOX_SETTINGS_MODE: read-write
-      BOX_WEB_BASE_URL: http://localhost:8888
+      BOX_WEB_BASE_URL: https://aidbox.example.com
       BOX_WEB_PORT: 8080
     healthcheck:
-      test: curl -f http://localhost:8080/health || exit 1
+      test: curl -f https://aidbox.example.com/health || exit 1
       interval: 5s
       timeout: 5s
       retries: "90"
@@ -94,7 +96,7 @@ services:
     pull_policy: always
     image: healthsamurai/mpi-backend:edge
     environment:
-      - MPI_URI=http://localhost:3000
+      - MPI_URI=https://mdm.example.com
       - MPI_PG_HOST=aidbox-db
       - MPI_PG_PORT=5432
       - MPI_PG_USER=postgres
@@ -109,12 +111,12 @@ services:
       - MPI_PG_TRGM_SIMILARITY_THRESHOLD=0.9
       - MPI_PG_TRGM_STRICT_WORD_SIMILARITY_THRESHOLD=0.9
       - MPI_NOTIFICATION_WORKER_ENABLE=false
-      - MPI_NOTIFICATION_CONSUMER_URL=http://localhost:9876
+      - MPI_NOTIFICATION_CONSUMER_URL=https://notifications.example.com
       - MPI_NOTIFICATION_INTERVAL=1000
       - MPI_NOTIFICATION_BATCH_SIZE=10
       - MPI_NOTIFICATION_LOCK_ID=12345
       - MPI_AUDIT_WORKER_ENABLE=false
-      - MPI_AUDIT_CONSUMER_URL=http://localhost:9877
+      - MPI_AUDIT_CONSUMER_URL=https://audit.example.com
       - MPI_AUDIT_INTERVAL=1000
       - MPI_AUDIT_BATCH_SIZE=10
       - MPI_AUDIT_LOCK_ID=54321
@@ -127,7 +129,7 @@ services:
         condition: service_healthy
     restart: unless-stopped
     healthcheck:
-      test: curl -f http://localhost:3003/health || exit 1
+      test: curl -f https://mdm.example.com/health || exit 1
       interval: 5s
       timeout: 5s
       retries: "90"
@@ -139,12 +141,12 @@ services:
     environment:
       - NEXT_PUBLIC_API_BASE_URL=http://backend:3003
       - NEXTAUTH_SECRET=your-very-strong-random-secret-here
-      - BASE_URL=http://localhost:3000
-      - AIDBOX_BASE_URL_EXTERNAL=http://localhost:8888
+      - BASE_URL=https://mdm.example.com
+      - AIDBOX_BASE_URL_EXTERNAL=https://aidbox.example.com
       - AIDBOX_BASE_URL_INTERNAL=http://aidbox:8080
       - AIDBOX_CLIENT_ID=mpi-dev
       - AIDBOX_CLIENT_SECRET=pass
-      - NEXTAUTH_URL=http://localhost:3000
+      - NEXTAUTH_URL=https://mdm.example.com
       - MPI_BASIC_ROLE=SIT_EMPI_USER_DEV
       - MPI_ADMIN_ROLE=SIT_EMPI_ADMIN_DEV
       - PATIENT_PORTAL_IDENTIFIER_TYPE_CODE=LUMID.PROD
@@ -172,26 +174,26 @@ This command starts all required services:
 
 * **aidbox-db**: PostgreSQL database
 * **aidbox**: Aidbox FHIR server
-* **backend**: MPI backend service
-* **frontend**: MPI frontend interface
+* **backend**: MDM backend service
+* **frontend**: MDM frontend interface
 
 ### 4. Access Aidbox
 
-Open in browser [http://localhost:8888/](http://localhost:8888)
+Open in your browser [https://aidbox.example.com/](https://aidbox.example.com)
 
 ### 5. Activate your Aidbox instance
 
 Click "Continue with Aidbox account" and create a free Aidbox account in [Aidbox user portal](https://aidbox.app/).
 
-More about Aidbox licenses [here](../../../overview/aidbox-user-portal/licenses.md)
+More about Aidbox licenses [here](../../overview/aidbox-user-portal/licenses.md).
 
 ### 6. Configure the MDM module
 
-Follow the [configuration guide](configure-mpi-module.md) to set up OAuth authentication, user privileges, SQL functions, and the matching model.
+Follow the [configuration guide](configure-mdm-module.md) to set up OAuth authentication, user privileges, SQL functions, and **create the matching model in the MDM backend** via `/MatchingModel` or `https://mdm.example.com/admin`.
 
 ### 7. Access the MDM Frontend
 
-Once all services are running and configured, access the MPI frontend at [http://localhost:3000](http://localhost:3000)
+Once all services are running and configured, access the MDM frontend at [https://mdm.example.com](https://mdm.example.com)
 
 You can now log in using OAuth authentication through Aidbox.
 
@@ -201,12 +203,12 @@ After successful startup, the following services will be available:
 
 | Service      | URL                   | Description                         |
 | ------------ | --------------------- | ----------------------------------- |
-| Aidbox UI    | http://localhost:8888 | FHIR server and admin interface     |
-| MPI Frontend | http://localhost:3000 | Master Patient Index user interface |
-| MPI Backend  | http://localhost:3003 | MPI REST API                        |
+| Aidbox UI    | https://aidbox.example.com | FHIR server and admin interface     |
+| MDM Frontend | https://mdm.example.com | MDM user interface |
+| MDM Backend  | https://mdm.example.com | MDM REST API                        |
 
 ## Next steps
 
-* [Configure the MPI matching model](configure-mpi-module.md) to start matching patients
-* Learn about [patient matching algorithms](../matching-model-explanation.md)
-* Explore the [MPI API documentation](https://mdm.aidbox.io/backend/static/swagger.html) for integration
+* [Configure the MDM matching model](configure-mdm-module.md) to start matching records
+* Learn about [matching algorithms](matching-model-explanation.md)
+* Explore the [MDM API documentation](https://dev.mdm.health-samurai.io/backend/static/swagger.html) for integration

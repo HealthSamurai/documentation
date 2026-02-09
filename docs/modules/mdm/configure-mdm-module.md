@@ -1,16 +1,16 @@
 ---
-description: Configure Aidbox MPI module with matching models for patient deduplication including examples and tuning notes.
+description: Configure MDM module with matching models for deduplication including examples and tuning notes.
 ---
 
-# Configure MPI module
+# Configure MDM module
 
 {% hint style="info" %}
-The current implementation only supports the Patient resource. If you need support for additional resources, please [contact us](../../../overview/contact-us.md).
+The matching model defines the target resource type via the `resource` field (for example, `Patient`, `Practitioner`, `Organization`, or any custom FHIR resource).
 {% endhint %}
 
-The example in the next section provides a **basic model** that allows you to **start the MPI module** and **test** its functionality. For a detailed explanation of all model elements and matching logic, see [Matching Model Explanation](../matching-model-explanation.md).
+The example in the next section provides a **basic model** that allows you to **start the MDM module** and **test** its functionality. For a detailed explanation of all model elements and matching logic, see [Matching Model Explanation](matching-model-explanation.md).
 
-## Create OAuth Client for MDM Frontend
+## Create OAuth Client for MDM frontend
 
 To enable authentication for the MDM frontend, create an OAuth client in Aidbox:
 
@@ -22,7 +22,7 @@ accept: text/yaml
 id: mpi-dev
 auth:
   authorization_code:
-    redirect_uri: http://localhost:3000/api/auth/callback/aidbox
+    redirect_uri: https://mdm.example.com/api/auth/callback/aidbox
     token_format: jwt
     refresh_token: true
     secret_required: true
@@ -40,7 +40,7 @@ Navigate to: **Aidbox → IAM → Users → Your Admin**
 
 1. Open the Aidbox dashboard.
 2. Go to the IAM (Identity and Access Management) section.
-3. Select Users field.
+3. Select Users.
 4. Find and open your Admin user profile.
 
 Add the following section to the user configuration JSON:
@@ -93,7 +93,7 @@ $function$;
 ## Create database indexes
 
 {% hint style="info" %}
-The indexes below are **recommendations** that work well with the example model from the "Add model to Aidbox" section. Since the matching model is customizable, you may need to adjust these indexes based on your specific model configuration and data requirements.
+The indexes below are **recommendations** that work well with the example **Patient** model from the "Add model to MDM backend" section. If your model targets a different resource, adapt table names and expressions accordingly.
 {% endhint %}
 
 Create the following indexes to optimize matching performance and resource reference lookups:
@@ -140,102 +140,153 @@ CREATE INDEX IF NOT EXISTS sourcemessage_patient_references_idx_mpi ON public.so
 CREATE INDEX IF NOT EXISTS sourcemessage_encounter_references_idx_mpi ON public.sourcemessage USING gin (jsonb_path_query_array(resource, '$.**?(@."resourceType" == "Encounter")."id"'::jsonpath));
 ```
 
-## Add model to Aidbox
+## Add model to MDM backend
 
-To add a matching model, you need to create a custom resource named `AidboxLinkageModel`.&#x20;
+Matching models are stored in the **MDM server (backend)**, not in Aidbox. You can manage them via:
 
-Example of creating an **AidboxLinkageModel**:
+* **Admin UI**: `https://mdm.example.com/admin`
+* **API**: `POST /MatchingModel`, `PUT /MatchingModel`, `GET /MatchingModel`
 
-```yaml
-POST /fhir/AidboxLinkageModel
-content-type: text/yaml
-accept: text/yaml
+Authentication is **optional**. If it is enabled, MDM uses **Aidbox OAuth** for access control.
 
-features:
-  fn:
-    - bf: 0
-      expr: ' ( l.resource->''name'' IS NULL OR r.resource->''name'' IS NULL )'
-    - bf: 13.336495228175629
-      expr: l.#name = r.#name
-    - bf: 13.104401641242227
-      expr: r.#given = l.#family AND l.#given = r.#family
-    - bf: 5.36329167966839
-      expr: >-
-        r.#family = l.#family AND
-        length(l.#given) <= 5 AND
-        length(r.#given) <= 5 AND
-        levenshtein(l.#given, r.#given) <= 2
-    - bf: 9.288385498954133
-      expr: levenshtein(l.#name, r.#name) <= 2
-    - bf: 10.36329167966839
-      expr: >-
-        r.#given = l.#given AND string_to_array(l.#family, ' ') &&
-        string_to_array(r.#family, ' ')
-    - bf: 10.36329167966839
-      expr: >-
-        r.#family = l.#family AND string_to_array(l.#given, ' ') &&
-        string_to_array(r.#given, ' ')
-    - bf: 2.402276401131933
-      expr: r.#given = l.#given
-    - else: -12.37233293924643
-  dob:
-    - bf: 0
-      expr: ' ( l.#dob  IS NULL OR r.#dob IS NULL )'
-    - bf: 10.59415069916466
-      expr: l.#dob = r.#dob
-    - bf: 3.9911610470417744
-      expr: levenshtein(l.#dob, r.#dob) <= 1
-    - bf: 0.5164298695732575
-      expr: levenshtein(l.#dob, r.#dob) <= 2
-    - else: -10.322063538772698
-  telecom:
-    - bf: 0
-      expr: ' ( l.#telecomArray IS NULL OR r.#telecomArray IS NULL OR array_length(l.#telecomArray, 1) IS NULL OR array_length(r.#telecomArray, 1) IS NULL )'
-    - bf: 6.465648574292063
-      expr: l.#telecomArray && r.#telecomArray
-    - else: -10.517360697819983
-  address:
-    - bf: 0
-      expr: ' ( l.#address IS NULL OR r.#address IS NULL )'
-    - bf: 9.236771286242664
-      expr: >-
-        ((l.#addressLength > r.#addressLength) and (l.#address %>> r.#address))
-        or ((l.#addressLength <= r.#addressLength) and (l.#address <<% r.#address))
-    - bf: 7.465648574292063
-      expr: >-
-        (l.#addressLength = r.#addressLength) and (l.#address = r.#address)
-    - else: -10.517360697819983
-  sex:
-    - bf: 0
-      expr: ' ( l.#gender IS NULL OR r.#gender IS NULL )'
-    - bf: 1.8504082299552485
-      expr: ' l.#gender = r.#gender'
-    - else: -4.842034404727677
-resourceType: AidboxLinkageModel
-id: >-
-  model
-resource: Patient
-thresholds:
-  auto: 25
-  manual: 16
-blocks:
-  fn:
-    var: name
-  dob:
-    var: dob
-  addr:
-    sql: (l.#address = r.#address)
-vars:
-  dob: (#.resource#>>'{birthDate}')
-  name: ((#.#family) || ' ' || (#.#given))
-  given: (immutable_unaccent_upper(#.resource#>>'{name,0,given,0}'))
-  family: (immutable_unaccent_upper(#.resource#>>'{name,0,family}'))
-  gender: (#.resource#>>'{gender}')
-  address: (immutable_remove_spaces_unaccent_upper(#.resource#>>'{address,0,line,0}'))
-  telecomArray: >-
-    array(select jsonb_array_elements_text(jsonb_path_query_array( #.resource,
-    '$.telecom[*] ? (@.value != "").value')))
-  addressLength: (length(#.resource#>>'{address,0,line,0}'))
+Example of creating a **MatchingModel** via the MDM backend API:
+
+```http
+POST /MatchingModel
+Content-Type: application/json
+
+{
+  "id": "model",
+  "resource": "Patient",
+  "thresholds": {
+    "auto": 25,
+    "manual": 16
+  },
+  "blocks": {
+    "fn": {
+      "var": "name"
+    },
+    "dob": {
+      "var": "dob"
+    },
+    "addr": {
+      "sql": "(l.#address = r.#address)"
+    }
+  },
+  "vars": {
+    "dob": "(#.resource#>>'{birthDate}')",
+    "name": "((#.#family) || ' ' || (#.#given))",
+    "given": "(immutable_unaccent_upper(#.resource#>>'{name,0,given,0}'))",
+    "family": "(immutable_unaccent_upper(#.resource#>>'{name,0,family}'))",
+    "gender": "(#.resource#>>'{gender}')",
+    "address": "(immutable_remove_spaces_unaccent_upper(#.resource#>>'{address,0,line,0}'))",
+    "telecomArray": "array(select jsonb_array_elements_text(jsonb_path_query_array( #.resource, '$.telecom[*] ? (@.value != \"\").value')))",
+    "addressLength": "(length(#.resource#>>'{address,0,line,0}'))"
+  },
+  "features": {
+    "fn": [
+      {
+        "bf": 0,
+        "expr": "( l.resource->'name' IS NULL OR r.resource->'name' IS NULL )"
+      },
+      {
+        "bf": 13.336495228175629,
+        "expr": "l.#name = r.#name"
+      },
+      {
+        "bf": 13.104401641242227,
+        "expr": "r.#given = l.#family AND l.#given = r.#family"
+      },
+      {
+        "bf": 5.36329167966839,
+        "expr": "r.#family = l.#family AND length(l.#given) <= 5 AND length(r.#given) <= 5 AND levenshtein(l.#given, r.#given) <= 2"
+      },
+      {
+        "bf": 9.288385498954133,
+        "expr": "levenshtein(l.#name, r.#name) <= 2"
+      },
+      {
+        "bf": 10.36329167966839,
+        "expr": "r.#given = l.#given AND string_to_array(l.#family, ' ') && string_to_array(r.#family, ' ')"
+      },
+      {
+        "bf": 10.36329167966839,
+        "expr": "r.#family = l.#family AND string_to_array(l.#given, ' ') && string_to_array(r.#given, ' ')"
+      },
+      {
+        "bf": 2.402276401131933,
+        "expr": "r.#given = l.#given"
+      },
+      {
+        "else": -12.37233293924643
+      }
+    ],
+    "dob": [
+      {
+        "bf": 0,
+        "expr": "( l.#dob  IS NULL OR r.#dob IS NULL )"
+      },
+      {
+        "bf": 10.59415069916466,
+        "expr": "l.#dob = r.#dob"
+      },
+      {
+        "bf": 3.9911610470417744,
+        "expr": "levenshtein(l.#dob, r.#dob) <= 1"
+      },
+      {
+        "bf": 0.5164298695732575,
+        "expr": "levenshtein(l.#dob, r.#dob) <= 2"
+      },
+      {
+        "else": -10.322063538772698
+      }
+    ],
+    "telecom": [
+      {
+        "bf": 0,
+        "expr": "( l.#telecomArray IS NULL OR r.#telecomArray IS NULL OR array_length(l.#telecomArray, 1) IS NULL OR array_length(r.#telecomArray, 1) IS NULL )"
+      },
+      {
+        "bf": 6.465648574292063,
+        "expr": "l.#telecomArray && r.#telecomArray"
+      },
+      {
+        "else": -10.517360697819983
+      }
+    ],
+    "address": [
+      {
+        "bf": 0,
+        "expr": "( l.#address IS NULL OR r.#address IS NULL )"
+      },
+      {
+        "bf": 9.236771286242664,
+        "expr": "((l.#addressLength > r.#addressLength) and (l.#address %>> r.#address)) or ((l.#addressLength <= r.#addressLength) and (l.#address <<% r.#address))"
+      },
+      {
+        "bf": 7.465648574292063,
+        "expr": "(l.#addressLength = r.#addressLength) and (l.#address = r.#address)"
+      },
+      {
+        "else": -10.517360697819983
+      }
+    ],
+    "sex": [
+      {
+        "bf": 0,
+        "expr": "( l.#gender IS NULL OR r.#gender IS NULL )"
+      },
+      {
+        "bf": 1.8504082299552485,
+        "expr": "l.#gender = r.#gender"
+      },
+      {
+        "else": -4.842034404727677
+      }
+    ]
+  }
+}
 ```
 
 ### Matching Model Tuning
@@ -249,24 +300,24 @@ For production use and reliable, accurate matching on your data, you should:
 
 {% hint style="success" %}
 We offer a **professional service** for model training and expert tuning.\
-If you need assistance, please [contact us](../../../overview/contact-us.md).
+If you need assistance, please [contact us](../../overview/contact-us.md).
 {% endhint %}
 
 ### Performance considerations
 
 For fast and accurate matching, consider the following:
 
-* **Database indexes:** If you are working with large volumes of patient records, ensure proper database indexes are created to keep matching fast and scalable.
+* **Database indexes:** If you are working with large volumes of records, ensure proper database indexes are created to keep matching fast and scalable.
 * **Data normalization:** Matching quality depends heavily on well‑normalized input data. Avoid using placeholders like `"UNKNOWN"` or `"not provided"` for names, addresses, or birthdates, as they negatively impact results.
 
 ## Configure Audit Events (Optional)
 
 The MDM module can track and export audit events for compliance and monitoring purposes. When enabled, the system generates FHIR AuditEvent resources for operations like:
 
-* Patient merge/unmerge operations
-* Patient search and matching
+* Merge/unmerge operations
+* Search and matching
 * Marking/unmarking duplicates
-* Patient record creation and viewing
+* Record creation and viewing
 
 ### Enable Audit Worker
 
@@ -302,7 +353,7 @@ MPI_AUDIT_LOCK_ID=54321
 3. **Event Format**: Each audit event includes:
    - Operation type and outcome (success/failure)
    - User information (from Aidbox IAM)
-   - Affected resources (patients, related resources)
+   - Affected resources (primary resources, related resources)
    - Timestamp and source system details
 
 ### Audit Repository Requirements
@@ -323,7 +374,7 @@ Your audit consumer endpoint should:
 
 ## Configure Merge/Unmerge Notifications (Optional)
 
-The notification worker sends real-time alerts when patient merge or unmerge operations occur, allowing external systems to react to patient record changes.
+The notification worker sends real-time alerts when merge or unmerge operations occur, allowing external systems to react to record changes.
 
 ### Enable Notification Worker
 
@@ -355,7 +406,7 @@ MPI_NOTIFICATION_LOCK_ID=12345
    - POSTs them to the configured `consumer-url`
    - Marks as `delivered` on successful response (HTTP 2xx)
 
-3. **Notification Payload**: The worker sends a JSON payload containing:
+3. **Notification Payload**: The worker sends a JSON payload containing (Patient example):
 
 ```json
 {
