@@ -1,8 +1,4 @@
----
-description: §170.315(g)(9) (G9) Application access — all data request (CCD/C-CDA)
----
-
-# (g)(9): Application access — all data request
+# (g)(9): Application access - all data request
 
 Aidbox supports the **§170.315(g)(9)** "all data request" capability by providing an API that returns a **CCD (C-CDA R2.1) summary record** for a requested patient, optionally constrained to a **specific date** or **date range**.
 
@@ -20,16 +16,6 @@ The CCD is formatted in accordance with the **C-CDA version 2.1** specification 
 ## Base URL
 
 `https://[your-aidbox]`
-
-## Authentication and authorization
-
-The endpoint is protected by the same SMART on FHIR scopes as the FHIR API. One of the following scopes is required:
-
-- `patient/*.read` / `patient/*.rs`
-- `user/*.read` / `user/*.rs`
-- `system/*.read` / `system/*.rs`
-
-Requests must include `Authorization: Bearer <access_token>`. Use TLS for data in transit.
 
 ## API endpoint
 
