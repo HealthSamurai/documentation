@@ -1,4 +1,4 @@
-# (g)(9): Application access - all data request
+# (g)(9): Application access — all data request
 
 Aidbox supports the **§170.315(g)(9)** "all data request" capability by providing an API that returns a **CCD (C-CDA R2.1) summary record** for a requested patient, optionally constrained to a **specific date** or **date range**.
 
