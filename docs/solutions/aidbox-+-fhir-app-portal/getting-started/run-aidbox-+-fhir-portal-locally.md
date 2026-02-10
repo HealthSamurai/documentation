@@ -859,7 +859,7 @@ Create `initBundleDeveloper.json` file in the same folder alongside with `docker
       },
       "resource": {
         "resourceType": "NotificationTemplate",
-        "template": "\n<h3>Confirm your email address </h3>\n<p>Hello {{params.data.name}}{{params.email}}{{params.username}}!</p>\n<p>We just need to verify that {{params.email}} {{params.username}} is your email address.</p>\n<p><a target=\"_blank\" href=\"{{params.base-url}}/auth/signup/confirm/{{id}}?redirect_to=aHR0cDovL2xvY2FsaG9zdDo4MDgxL2RldmVsb3Blci9hdXRoL3NpZ251cD9jb25maXJtUGFzc3dvcmQ9dHJ1ZQ==\">Confirm Email Address</a></p> \n<b>Didn't request this email?</b>\n<p>No worries! Your address may have been entered by mistake. If you ignore or delete this email, nothing further will happen.</p>\n<p>If you're having problems, please feel free to write to us at hello@health-samurai.io. We'll be glad to help.</p> "
+        "template": "\n<h3>Confirm your email address </h3>\n<p>Hello {{params.data.name}}{{params.email}}{{params.username}}!</p>\n<p>We just need to verify that {{params.email}} {{params.username}} is your email address.</p>\n<p><a target=\"_blank\" href=\"{{params.base-url}}/auth/signup/confirm/{{id}}?redirect_to=aHR0cDovL2xvY2FsaG9zdDo4MDk2L2RldmVsb3Blci9hdXRoL3NpZ251cD9jb25maXJtUGFzc3dvcmQ9dHJ1ZQ==\">Confirm Email Address</a></p> \n<b>Didn't request this email?</b>\n<p>No worries! Your address may have been entered by mistake. If you ignore or delete this email, nothing further will happen.</p>\n<p>If you're having problems, please feel free to write to us at hello@health-samurai.io. We'll be glad to help.</p> "
       }
     },
     {
