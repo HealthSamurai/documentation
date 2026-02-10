@@ -90,7 +90,7 @@
   - Aidbox Apps
 * Plugins & Integrations (Addons)
   - Aidbox Forms (FHIR SDC)
-  - Master Patient Index
+  - Master Data Management
   - Audit Logs
   - Termbox
   - Integration
