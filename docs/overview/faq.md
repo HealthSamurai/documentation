@@ -1351,39 +1351,3 @@ Learn more: [Observability](../modules/observability/README.md)
 Aidbox requires PostgreSQL 12+ with specific extensions. Actively supports the three most recent versions (currently 18, 17, 16).
 
 Learn more: [PostgreSQL Requirements](../database/postgresql-requirements.md)
-
-### "Found more than one FHIRSchema..." error
-The issue is related to migrations Aidbox runs at startup. We had a problem in one of the older Aidbox versions that was addressed in the version 2511. Usually, you can encounter such a problem jumping between the versions up and down and again up. Now you have some resource profile duplicates in your Aidbox.
-
-Please run the following query in PostgreSQL, and then restart Aidbox with the environment variable BOX_FHIR_SCHEMA_VALIDATION=true enabled.
-```
-delete from aidboxmigration
-where id in (
-  'far.migration/remove-old-far-proprietary-samurai-packages',
-  'far.migration/clean-up-proprietary-samurai-resources-in-aidbox-main-package'
-);
-```
-This will remove all the system packages and restart will run the proper migration again.
-
-If this doesn't help. Please run these ones:
-```
-delete from far.canonicalresource
-where not (resource #>> '{ package }' = 'app.aidbox.main' or resource #>> '{ package }' ilike 'io.healthsamurai.%');
-
-delete from far.package
-where not (resource #>> '{ name }' = 'app.aidbox.main' or resource #>> '{ name }' ilike 'io.healthsamurai.%');
-
-truncate far.codesystem;
-truncate far.valueset;
-truncate far.conceptmap;
-truncate far.conceptmapelement;
-```
-and then repeat the first step again and restart:
-```
-delete from aidboxmigration
-where id in (
-  'far.migration/remove-old-far-proprietary-samurai-packages',
-  'far.migration/clean-up-proprietary-samurai-resources-in-aidbox-main-package'
-);
-```
-It's supposed to resolve the issue and won't cause any troubles. 
