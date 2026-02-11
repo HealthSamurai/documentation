@@ -7,6 +7,7 @@ description: Custom SDC operations supported by Aidbox Forms.
 * [$generate-link](aidbox-sdc-api.md#generate-a-link-to-a-questionnaireresponse-generate-link)
 * [$save](aidbox-sdc-api.md#save-a-questionnaireresponse-save)
 * [$submit](aidbox-sdc-api.md#submit-a-questionnaireresponse-submit)
+* [$notify-patient](aidbox-sdc-api.md#notify-a-patient-notify-patient)
 
 ## Generate a link to a QuestionnaireResponse - $generate-link
 
@@ -227,164 +228,79 @@ The operation returns:
 {% tab title="Request" %}
 ```http
 POST [base]/fhir/QuestionnaireResponse/$save
-content-type: application/json
-accept: application/json
+content-type: text/yaml
 
-{
-  "resourceType": "Parameters",
-  "parameter": [
-    {
-      "name": "response",
-      "resource": {
-        "resourceType": "QuestionnaireResponse",
-        "questionnaire": "Questionnaire/patient-registration",
-        "status": "in-progress",
-        "item": [
-          {
-            "linkId": "name",
-            "text": "Patient Name",
-            "item": [
-              {
-                "linkId": "name.given",
-                "text": "Given Name",
-                "answer": [
-                  {
-                    "valueString": "John"
-                  }
-                ]
-              },
-              {
-                "linkId": "name.family",
-                "text": "Family Name",
-                "answer": [
-                  {
-                    "valueString": "Smith"
-                  }
-                ]
-              }
-            ]
-          }
-        ]
-      }
-    }
-  ]
-}
+resourceType: Parameters
+parameter:
+- name: response
+  resource:
+    resourceType: QuestionnaireResponse
+    questionnaire: Questionnaire/patient-registration
+    status: in-progress
+    item:
+    - linkId: name
+      text: Patient Name
+      item:
+      - linkId: name.given
+        text: Given Name
+        answer:
+        - valueString: John
+      - linkId: name.family
+        text: Family Name
+        answer:
+        - valueString: Smith
 ```
 {% endtab %}
 
 {% tab title="Success Response" %}
 HTTP status: 200
 
-```json
-{
-  "resourceType": "Parameters",
-  "parameter": [
-    {
-      "name": "response",
-      "resource": {
-        "resourceType": "QuestionnaireResponse",
-        "id": "12c1178c-70a9-4e02-a53d-65b13373926e",
-        "questionnaire": "Questionnaire/patient-registration",
-        "status": "in-progress",
-        "item": [
-          {
-            "linkId": "name",
-            "text": "Patient Name",
-            "item": [
-              {
-                "linkId": "name.given",
-                "text": "Given Name",
-                "answer": [
-                  {
-                    "valueString": "John"
-                  }
-                ]
-              },
-              {
-                "linkId": "name.family",
-                "text": "Family Name",
-                "answer": [
-                  {
-                    "valueString": "Smith"
-                  }
-                ]
-              }
-            ]
-          }
-        ]
-      }
-    }
-  ]
-}
+```yml
+resourceType: Parameters
+parameter:
+- name: response
+  resource:
+    resourceType: QuestionnaireResponse
+    id: 12c1178c-70a9-4e02-a53d-65b13373926e
+    questionnaire: Questionnaire/patient-registration
+    status: in-progress
+    item:
+    - linkId: name
+      text: Patient Name
+      item:
+      - linkId: name.given
+        text: Given Name
+        answer:
+        - valueString: John
+      - linkId: name.family
+        text: Family Name
+        answer:
+        - valueString: Smith
 ```
 {% endtab %}
 
 {% tab title="Validation Failure Response" %}
 HTTP status: 422
 
-```json
-{
-  "resourceType": "Parameters",
-  "parameter": [
-    {
-      "name": "response",
-      "resource": {
-        "resourceType": "QuestionnaireResponse",
-        "id": "12c1178c-70a9-4e02-a53d-65b13373926e",
-        "questionnaire": "Questionnaire/patient-registration",
-        "status": "in-progress",
-        "item": [
-          {
-            "linkId": "name",
-            "text": "Patient Name",
-            "item": [
-              {
-                "linkId": "name.given",
-                "text": "Given Name",
-                "answer": [
-                  {
-                    "valueString": "John"
-                  }
-                ]
-              },
-              {
-                "linkId": "name.family",
-                "text": "Family Name",
-                "answer": [
-                  {
-                    "valueDecimal": "1,324"
-                  }
-                ]
-              }
-            ]
-          }
-        ]
-      }
-    },
-    "issue": [
-     {
-      "severity": "fatal",
-      "code": "invalid",
-      "expression": [
-       "QuestionnaireResponse.item[0].item[1].answer[0].valueDecimal"
-      ],
-      "details": {
-       "coding": [
-        {
-         "system": "http://aidbox.app/CodeSystem/operation-outcome-type",
-         "code": "invalid-type"
-        },
-        {
-         "system": "http://aidbox.app/CodeSystem/schema-id",
-         "code": "QuestionnaireResponse"
-        }
-       ]
-      },
-      "diagnostics": "Invalid type for the field. Expected 'string', but got 'decimal'"
-     }
-    }
-  ]
-}
+```yml
+resourceType: Parameters
+parameter:
+- name: issue
+  resource:
+    resourceType: OperationOutcome
+    issue:
+    - severity: fatal
+      code: invalid
+      expression:
+      - QuestionnaireResponse.item[0].item[1].answer[0].valueDecimal
+      details:
+        coding:
+        - system: http://aidbox.app/CodeSystem/operation-outcome-type
+          code: invalid-type
+        - system: http://aidbox.app/CodeSystem/schema-id
+          code: QuestionnaireResponse
+      diagnostics: Invalid type for the field. Expected 'string', but got 'decimal'
+
 ```
 {% endtab %}
 {% endtabs %}
@@ -404,7 +320,7 @@ POST [base]/fhir/QuestionnaireResponse/$submit
 {% hint style="warning" %}
 NOTE: All parameters wrapped with `Parameters object`
 
-```yaml
+```yml
 resourceType: Parameters
 parameter:
 - name: response
@@ -428,164 +344,224 @@ The operation returns:
 {% tab title="Request" %}
 ```http
 POST [base]/fhir/QuestionnaireResponse/$submit
-content-type: application/fhir+json
+content-type: text/yaml
 
-{
-  "resourceType": "Parameters",
-  "parameter": [
-    {
-      "name": "response",
-      "resource": {
-        "resourceType": "QuestionnaireResponse",
-        "questionnaire": "Questionnaire/patient-registration",
-        "status": "in-progress",
-        "item": [
-          {
-            "linkId": "name",
-            "text": "Patient Name",
-            "item": [
-              {
-                "linkId": "name.given",
-                "text": "Given Name",
-                "answer": [
-                  {
-                    "valueString": "John"
-                  }
-                ]
-              },
-              {
-                "linkId": "name.family",
-                "text": "Family Name",
-                "answer": [
-                  {
-                    "valueString": "Smith"
-                  }
-                ]
-              }
-            ]
-          },
-          {
-            "linkId": "birthDate",
-            "text": "Date of Birth",
-            "answer": [
-              {
-                "valueDate": "1970-01-01"
-              }
-            ]
-          },
-          {
-            "linkId": "gender",
-            "text": "Gender",
-            "answer": [
-              {
-                "valueCoding": {
-                  "system": "http://hl7.org/fhir/administrative-gender",
-                  "code": "male",
-                  "display": "Male"
-                }
-              }
-            ]
-          }
-        ]
-      }
-    }
-  ]
-}
+resourceType: Parameters
+parameter:
+- name: response
+  resource:
+    resourceType: QuestionnaireResponse
+    questionnaire: Questionnaire/patient-registration
+    status: in-progress
+    item:
+    - linkId: name
+      text: Patient Name
+      item:
+      - linkId: name.given
+        text: Given Name
+        answer:
+        - valueString: John
+      - linkId: name.family
+        text: Family Name
+        answer:
+        - valueString: Smith
+    - linkId: birthDate
+      text: Date of Birth
+      answer:
+      - valueDate: '1970-01-01'
+    - linkId: gender
+      text: Gender
+      answer:
+      - valueCoding:
+          system: http://hl7.org/fhir/administrative-gender
+          code: male
+          display: Male
 ```
 {% endtab %}
 
 {% tab title="Success Response" %}
 HTTP status: 200
 
-```json
-{
-  "resourceType": "Parameters",
-  "parameter": [
-    {
-      "name": "response",
-      "resource": {
-        "resourceType": "QuestionnaireResponse",
-        "id": "12c1178c-70a9-4e02-a53d-65b13373926e",
-        "questionnaire": "Questionnaire/patient-registration",
-        "status": "completed",
-        "item": [
-          {
-            "linkId": "name",
-            "text": "Patient Name",
-            "item": [
-              {
-                "linkId": "name.given",
-                "text": "Given Name",
-                "answer": [
-                  {
-                    "valueString": "John"
-                  }
-                ]
-              },
-              {
-                "linkId": "name.family",
-                "text": "Family Name",
-                "answer": [
-                  {
-                    "valueString": "Smith"
-                  }
-                ]
-              }
-            ]
-          },
-          {
-            "linkId": "birthDate",
-            "text": "Date of Birth",
-            "answer": [
-              {
-                "valueDate": "1970-01-01"
-              }
-            ]
-          },
-          {
-            "linkId": "gender",
-            "text": "Gender",
-            "answer": [
-              {
-                "valueCoding": {
-                  "system": "http://hl7.org/fhir/administrative-gender",
-                  "code": "male",
-                  "display": "Male"
-                }
-              }
-            ]
-          }
-        ]
-      }
-    }
-  ]
-}
+```yml
+resourceType: Parameters
+parameter:
+- name: response
+  resource:
+    resourceType: QuestionnaireResponse
+    id: 12c1178c-70a9-4e02-a53d-65b13373926e
+    questionnaire: Questionnaire/patient-registration
+    status: completed
+    item:
+    - linkId: name
+      text: Patient Name
+      item:
+      - linkId: name.given
+        text: Given Name
+        answer:
+        - valueString: John
+      - linkId: name.family
+        text: Family Name
+        answer:
+        - valueString: Smith
+    - linkId: birthDate
+      text: Date of Birth
+      answer:
+      - valueDate: '1970-01-01'
+    - linkId: gender
+      text: Gender
+      answer:
+      - valueCoding:
+          system: http://hl7.org/fhir/administrative-gender
+          code: male
+          display: Male
 ```
 {% endtab %}
 
 {% tab title="Validation Failure Response" %}
 HTTP status: 422
 
-```json
-{
-  "resourceType": "Parameters",
-  "parameter": [
-    {
-      "name": "issues",
-      "resource": {
-        "resourceType": "OperationOutcome",
-        "issue": [
-          {
-            "severity": "error",
-            "code": "required",
-            "expression": ["QuestionnaireResponse.item[3]"],
-            "diagnostics": "Missing required field: Contact Information"
-          }
-        ]
-      }
-    }
-  ]
-}
+```yml
+resourceType: Parameters
+parameter:
+- name: issues
+  resource:
+    resourceType: OperationOutcome
+    issue:
+    - severity: error
+      code: required
+      expression:
+      - QuestionnaireResponse.item[3]
+      diagnostics: 'Missing required field: Contact Information'
+```
+{% endtab %}
+{% endtabs %}
+
+## Notify a Patient - $notify-patient
+
+This operation sends an email notification to a patient (or to a provided email) with a generated form link for a QuestionnaireResponse. It can send multiple notifications in one request by providing multiple `context` parameters.
+
+If `email` is not provided in a context, the operation tries to resolve the patient email from `QuestionnaireResponse.subject`.
+
+### URLs
+
+```
+POST [base]/fhir/QuestionnaireResponse/$notify-patient
+```
+
+### Parameters
+
+{% hint style="warning" %}
+NOTE: All parameters wrapped with `Parameters` object
+
+```yml
+resourceType: Parameters
+parameter:
+- name: provider
+  valueString: smtp
+- name: template
+  valueReference:
+    reference: NotificationTemplate/my-template
+- name: context
+  part:
+  - name: response
+    valueReference:
+      reference: QuestionnaireResponse/qr1
+  - name: email
+    valueString: joe@mail.com
+  - name: any-other-field
+    valueString: foo
+```
+{% endhint %}
+
+The operation takes:
+
+* **provider** (required): Email provider name. Must be one of `smtp`, `postmark`, `mailgun`, `sendgrid`.
+* **template** (optional): NotificationTemplate reference. If not provided, the default template `sdc-form-link-email` is used.
+* **context** (repeatable): A context object that includes:
+  * **response** (required): QuestionnaireResponse reference.
+  * **email** (optional): Direct recipient email. If missing, patient email from `QuestionnaireResponse.subject` is used.
+  * **any other fields**: Passed to the email template payload along with the generated `link`.
+
+### Output Parameters
+
+The operation returns `Parameters` with one `context` item per input context. Each `context` includes:
+
+* **response**: QuestionnaireResponse reference
+* **email**: Resolved recipient email
+* **status**: `"sent"` or `"failed"`
+* **message**: Error message if status is `"failed"`
+
+### Usage Example
+
+{% tabs %}
+{% tab title="Request" %}
+
+```http
+POST [base]/fhir/QuestionnaireResponse/$notify-patient
+content-type: text/yaml
+
+resourceType: Parameters
+parameter:
+- name: provider
+  valueString: smtp
+- name: context
+  part:
+  - name: response
+    valueReference:
+      reference: QuestionnaireResponse/qr-direct
+  - name: email
+    valueString: direct@mail.com
+  - name: foo
+    valueString: bar
+- name: context
+  part:
+  - name: response
+    valueReference:
+      reference: QuestionnaireResponse/qr-another
+  - name: email
+    valueString: second@mail.com
+```
+{% endtab %}
+
+{% tab title="Success Response" %}
+HTTP status: 200
+
+```yml
+resourceType: Parameters
+parameter:
+- name: context
+  part:
+  - name: response
+    valueReference:
+      reference: QuestionnaireResponse/qr-direct
+  - name: email
+    valueString: direct@mail.com
+  - name: status
+    valueString: sent
+- name: context
+  part:
+  - name: response
+    valueReference:
+      reference: QuestionnaireResponse/qr-another
+  - name: email
+    valueString: second@mail.com
+  - name: status
+    valueString: sent
+```
+{% endtab %}
+
+{% tab title="Failure Response" %}
+HTTP status: 422
+
+```yml
+resourceType: OperationOutcome
+text:
+  status: generated
+  div: '<div xmlns="http://www.w3.org/1999/xhtml"><p>''provider'' parameter id is not provided. Should be one of: smtp, postmark, mailgun, sendgrid</p></div>'
+issue:
+- severity: fatal
+  code: invalid
+  diagnostics: '''provider'' parameter id is not provided. Should be one of: smtp, postmark, mailgun, sendgrid'
 ```
 {% endtab %}
 {% endtabs %}
