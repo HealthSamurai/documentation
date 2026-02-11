@@ -8,6 +8,10 @@ description: Create custom FHIR resources using FHIR Schema in Aidbox with valid
 Custom resources are defined by individual organizations or projects to meet specific needs not covered by the FHIR standard. While these resources can be useful within a particular ecosystem, they may not be interoperable with other systems that do not recognize or support those custom resources.
 {% endhint %}
 
+{% hint style="info" %}
+**Recommended alternative.** The recommended way to define custom resources in Aidbox is by using [StructureDefinition](custom-resources-using-structuredefinition.md). StructureDefinition is a standard FHIR resource, making your definitions portable and compatible with the broader FHIR ecosystem and tooling (e.g. FSH/SUSHI). Consider using StructureDefinition unless you have a specific reason to use FHIR Schema.
+{% endhint %}
+
 FHIR Schema is a community project that aims to simplify the implementation and validation of FHIR (Fast Healthcare Interoperability Resources) resources across different programming languages. It also provides the ability to define custom resources. You can read more about the syntax and validation algorithms in the [FHIR Schema documentation](https://fhir-schema.github.io/fhir-schema/).
 
 ## Configure Aidbox

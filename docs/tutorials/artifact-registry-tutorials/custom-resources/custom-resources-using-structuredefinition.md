@@ -8,6 +8,10 @@ description: Build custom FHIR resources with StructureDefinition in Aidbox for 
 Custom resources are defined by individual organizations or projects to meet specific needs not covered by the FHIR standard. While these resources can be useful within a particular ecosystem, they may not be interoperable with other systems that do not recognize or support those custom resources.
 {% endhint %}
 
+{% hint style="success" %}
+**Recommended approach.** Using StructureDefinition is the recommended way to define custom resources in Aidbox. StructureDefinition is a standard FHIR resource, which makes your custom resource definitions portable and compatible with the broader FHIR ecosystem and tooling (e.g. FSH/SUSHI).
+{% endhint %}
+
 FHIR uses StructureDefinition resources to model data structures. Aidbox allows you to model data in the same way by expressing your custom resource using a FHIR StructureDefinition resource.
 
 ## Configure Aidbox
