@@ -22,4 +22,4 @@ BOX_MODULE_PROVIDER_SENDGRID_FROM=<string>
 BOX_MODULE_PROVIDER_SENDGRID_DATARESIDENCY=<region>
 ```
 
-`<region>` specifies the data residency region for the SendGrid API. Set to `eu` to use the European region. When not set, the global (US) region is used.
+`<region>` specifies the data residency region for the SendGrid API. Set to `eu` to use the European region. When not set, the default region is used.

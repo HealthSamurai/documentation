@@ -18,7 +18,7 @@ BOX_MODULE_PROVIDER_SENDGRID_FROM: Sender's Name <noreply@{{YOUR_DOMAIN}}>
 BOX_MODULE_PROVIDER_SENDGRID_DATARESIDENCY: eu
 ```
 
-`BOX_MODULE_PROVIDER_SENDGRID_DATARESIDENCY` specifies the data residency region for the SendGrid API. Set to `eu` to use the European region. When not set, the global (US) region is used.
+`BOX_MODULE_PROVIDER_SENDGRID_DATARESIDENCY` specifies the data residency region for the SendGrid API. Set to `eu` to use the European region. When not set, the default region is used.
 
 You can find more about SendGrid environment variables [here.](../../reference/email-providers-reference/sendgrid-environment-variables.md)
 
