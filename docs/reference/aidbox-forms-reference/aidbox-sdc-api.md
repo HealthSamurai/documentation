@@ -436,11 +436,13 @@ parameter:
 {% endtab %}
 {% endtabs %}
 
+
 ## Notify a Patient - $notify-patient
 
-This operation sends an email notification to a patient (or to a provided email) with a generated form link for a QuestionnaireResponse. It can send multiple notifications in one request by providing multiple `context` parameters.
+This operation sends an email notification to a patient (or to a provided email) with a generated form link for a QuestionnaireResponse. It sends a single email per request.
 
-If `email` is not provided in a context, the operation tries to resolve the patient email from `QuestionnaireResponse.subject`.
+If `email` is not provided in a context, the operation tries to resolve the patient email from `QuestionnaireResponse.subject` -> `Patient.telecom.where(system = 'email')`.
+
 
 ### URLs
 
@@ -453,38 +455,49 @@ POST [base]/fhir/QuestionnaireResponse/$notify-patient
 {% hint style="warning" %}
 NOTE: All parameters wrapped with `Parameters` object
 
-```yml
+```yaml
 resourceType: Parameters
 parameter:
 - name: provider
-  valueString: smtp
+  valueString: smtp # required. One of: smtp, postmark, mailgun, sendgrid
+- name: response
+  valueReference:
+    reference: QuestionnaireResponse/qr1 # required
+- name: email
+  valueString: joe@mail.com # optional
 - name: template
   valueReference:
-    reference: NotificationTemplate/my-template
+    reference: NotificationTemplate/my-template # optional
 - name: context
   part:
-  - name: response
-    valueReference:
-      reference: QuestionnaireResponse/qr1
-  - name: email
-    valueString: joe@mail.com
   - name: any-other-field
-    valueString: foo
+    valueString: foo # optional, passed to email template payload
 ```
 {% endhint %}
 
 The operation takes:
 
 * **provider** (required): Email provider name. Must be one of `smtp`, `postmark`, `mailgun`, `sendgrid`.
+* **response** (required): QuestionnaireResponse reference.
+* **email** (optional): Direct recipient email. If missing, patient email from `QuestionnaireResponse.subject` is used.
 * **template** (optional): NotificationTemplate reference. If not provided, the default template `sdc-form-link-email` is used.
-* **context** (repeatable): A context object that includes:
-  * **response** (required): QuestionnaireResponse reference.
-  * **email** (optional): Direct recipient email. If missing, patient email from `QuestionnaireResponse.subject` is used.
-  * **any other fields**: Passed to the email template payload along with the generated `link`.
+* **context** (optional): Custom payload fields for template rendering. All fields are passed to the email template payload along with the generated `link`
+
+
+System takes by default preexisted `NotificationTemplate`, that looks like this.
+
+```
+resourceType: NotificationTemplate
+id: sdc-form-link-email
+subject: New form available
+template: 'A new form is ready for you. Open: {{link}}'
+```
+
+It's possible to create other templates [see docs](../../../docs/modules/integration-toolkit/email-providers/README.md)
 
 ### Output Parameters
 
-The operation returns `Parameters` with one `context` item per input context. Each `context` includes:
+The operation returns `Parameters` that includes:
 
 * **response**: QuestionnaireResponse reference
 * **email**: Resolved recipient email
@@ -495,8 +508,7 @@ The operation returns `Parameters` with one `context` item per input context. Ea
 
 {% tabs %}
 {% tab title="Request" %}
-
-```http
+```yaml
 POST [base]/fhir/QuestionnaireResponse/$notify-patient
 content-type: text/yaml
 
@@ -504,64 +516,46 @@ resourceType: Parameters
 parameter:
 - name: provider
   valueString: smtp
+- name: response
+  valueReference:
+    reference: QuestionnaireResponse/qr-direct
+- name: email
+  valueString: direct@mail.com
 - name: context
   part:
-  - name: response
-    valueReference:
-      reference: QuestionnaireResponse/qr-direct
-  - name: email
-    valueString: direct@mail.com
   - name: foo
     valueString: bar
-- name: context
-  part:
-  - name: response
-    valueReference:
-      reference: QuestionnaireResponse/qr-another
-  - name: email
-    valueString: second@mail.com
 ```
 {% endtab %}
 
 {% tab title="Success Response" %}
 HTTP status: 200
 
-```yml
+```yaml
 resourceType: Parameters
 parameter:
-- name: context
-  part:
-  - name: response
-    valueReference:
-      reference: QuestionnaireResponse/qr-direct
-  - name: email
-    valueString: direct@mail.com
-  - name: status
-    valueString: sent
-- name: context
-  part:
-  - name: response
-    valueReference:
-      reference: QuestionnaireResponse/qr-another
-  - name: email
-    valueString: second@mail.com
-  - name: status
-    valueString: sent
+- name: response
+  valueReference:
+    reference: QuestionnaireResponse/qr-direct
+- name: email
+  valueString: direct@mail.com
+- name: status
+  valueString: sent
 ```
 {% endtab %}
 
 {% tab title="Failure Response" %}
 HTTP status: 422
 
-```yml
+```yaml
 resourceType: OperationOutcome
 text:
   status: generated
-  div: '<div xmlns="http://www.w3.org/1999/xhtml"><p>''provider'' parameter id is not provided. Should be one of: smtp, postmark, mailgun, sendgrid</p></div>'
+  div: <div xmlns="http://www.w3.org/1999/xhtml"><p>'provider' parameter id is not provided. Should be one of: smtp, postmark, mailgun, sendgrid</p></div>
 issue:
 - severity: fatal
   code: invalid
-  diagnostics: '''provider'' parameter id is not provided. Should be one of: smtp, postmark, mailgun, sendgrid'
+  diagnostics: "'provider' parameter id is not provided. Should be one of: smtp, postmark, mailgun, sendgrid"
 ```
 {% endtab %}
 {% endtabs %}
