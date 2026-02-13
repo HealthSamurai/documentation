@@ -184,4 +184,4 @@ matcho:
 resourceType: AccessPolicy
 ```
 
-See all available [TokenIntrospector properties](../../reference/system-resources-reference/iam-module-resources.md).
+See all available [TokenIntrospector properties](../../reference/system-resources-reference/core-module-resources.md).

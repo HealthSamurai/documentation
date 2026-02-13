@@ -1,7 +1,3 @@
----
-description: Aidbox SDC module resources for Structured Data Capture and FHIR Questionnaire management.
----
-
 # SDC Module Resources
 
 Resources for configuration and management Aidbox SDC module.

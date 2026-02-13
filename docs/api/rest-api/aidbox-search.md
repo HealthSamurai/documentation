@@ -35,7 +35,7 @@ order-by: "{{table}}.resource#>>'{name,0,family}'" # sql for ordering (using _so
 
 ### Search resource structure <a href="#search-resource-structure" id="search-resource-structure"></a>
 
-See [Search resource structure](../../reference/system-resources-reference/base-module-resources.md#search).
+See [Search resource structure](../../reference/system-resources-reference/core-module-resources.md#search).
 
 ### Value parsing
 

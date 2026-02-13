@@ -4,7 +4,7 @@ description: Configure Client resources for programmatic API access with OAuth 2
 
 # Application/Client Management
 
-To provide programmatic access to the Aidbox API, you have to use a [`Client`](../../reference/system-resources-reference/iam-module-resources.md#client) resource. The primary purpose of the `Client` resource is to facilitate authentication and access control within Aidbox.
+To provide programmatic access to the Aidbox API, you have to use a [`Client`](../../reference/system-resources-reference/core-module-resources.md#client) resource. The primary purpose of the `Client` resource is to facilitate authentication and access control within Aidbox.
 
 In Aidbox, a `Client` resource represents an application or service that needs programmatic access to the FHIR server. Clients authenticate using Basic authentication or OAuth2 flows.
 

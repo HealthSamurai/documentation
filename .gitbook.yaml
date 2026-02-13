@@ -14,7 +14,7 @@ redirects:
   access-control/patient-data-access-api/smart-on-fhir: access-control/authorization/smart-on-fhir/README.md
   access-control/security/accesspolicy: access-control/authorization/access-policies.md
   access-control/smart-on-fhir/smart-scopes: access-control/authorization/smart-on-fhir/smart-scopes-for-limiting-access.md
-  access-control/technical-reference/overview: reference/system-resources-reference/iam-module-resources.md
+  access-control/technical-reference/overview: reference/system-resources-reference/core-module-resources.md
   ai-prompts/access-policies: tutorials/other-tutorials/ai-prompts.md
   aidbox-configuration/init-bundle: configuration/init-bundle.md
   api-1/api/crud-1/fhir-and-aidbox-crud: api/rest-api/crud/README.md
@@ -625,7 +625,7 @@ redirects:
   modules/security-and-access-control/security/attribute-based-access-control-abac: access-control/authorization/README.md
   modules/security-and-access-control/security/attribute-based-access-control-abac/security-labels: access-control/authorization/label-based-access-control.md
   modules/security-and-access-control/set-up-external-identity-provider/okta: tutorials/security-access-control-tutorials/okta.md
-  modules/security-and-access-control/technical-reference/acesspolicy-resource: reference/system-resources-reference/iam-module-resources.md
+  modules/security-and-access-control/technical-reference/acesspolicy-resource: reference/system-resources-reference/core-module-resources.md
   modules/smartbox/g-10-standardized-api-for-patient-and-population-services: solutions/providers-or-onc-health-it-certification-program/g-10-standardized-api-for-patient-and-population-services/README.md
   readme-1/fhir-conformance/touchstone-fhir-4.0.1-basic-server: deprecated/deprecated/zen-related/fhir-conformance/touchstone-fhir-4-0-1-basic-server.md
   readme-1/readme-1-1/rbac/role-based-access-control-with-acl: deprecated/deprecated/zen-related/rbac-with-acl.md

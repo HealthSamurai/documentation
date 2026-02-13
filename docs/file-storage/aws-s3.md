@@ -17,7 +17,7 @@ When `access-key-id` is present in AwsAccount, Aidbox uses explicit credentials.
 
 ## AwsAccount configuration
 
-Create an [AwsAccount](../reference/system-resources-reference/cloud-module-resources#awsaccount) resource to configure S3 access. The `region` field is required. When `access-key-id` is omitted, Aidbox uses the default credentials provider.
+Create an [AwsAccount](../reference/system-resources-reference/core-module-resources#awsaccount) resource to configure S3 access. The `region` field is required. When `access-key-id` is omitted, Aidbox uses the default credentials provider.
 
 **Default credentials mode** (recommended for AWS):
 

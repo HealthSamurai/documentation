@@ -11,14 +11,14 @@ There are two ways to manage users in Aidbox:
 
 ## Manage Users in Aidbox
 
-Aidbox user management is based on the [`User`](../../reference/system-resources-reference/iam-module-resources.md#user) resource.\
-A `User` represents an application‑level identity and is completely stored and controlled inside the Aidbox database. Each user record contains the login name, a hashed password, an active flag, and a link to FHIR user (Practitioner or Patient), and some additional fields that determine the user's effective permissions through [`AccessPolicy`](../../reference/system-resources-reference/iam-module-resources.md#accesspolicy) rules.
+Aidbox user management is based on the [`User`](../../reference/system-resources-reference/core-module-resources.md#user) resource.\
+A `User` represents an application‑level identity and is completely stored and controlled inside the Aidbox database. Each user record contains the login name, a hashed password, an active flag, and a link to FHIR user (Practitioner or Patient), and some additional fields that determine the user's effective permissions through [`AccessPolicy`](../../reference/system-resources-reference/core-module-resources.md#accesspolicy) rules.
 
 Because everything is a resource, you can manage users the same way you manage clinical data: create [profiles](../../modules/profiling-and-validation/#what-is-profiling) to apply validation, versioned history, transactions, \_history, etc.
 
 See also:
 
-* [User resource reference](../../reference/system-resources-reference/iam-module-resources.md#user)
+* [User resource reference](../../reference/system-resources-reference/core-module-resources.md#user)
 * [Creating user tutorial](../../tutorials/security-access-control-tutorials/creating-user-and-set-up-full-user-access.md)
 * [How to prohibit user to login](../../tutorials/security-access-control-tutorials/prohibit-user-to-login.md)
 

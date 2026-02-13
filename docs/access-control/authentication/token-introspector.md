@@ -20,7 +20,7 @@ Aidbox TokenIntrospector supports two main types of tokens:
 
 ## TokenIntrospector Schema
 
-See [TokenIntrospector schema](../../reference/system-resources-reference/iam-module-resources.md#tokenintrospector).
+See [TokenIntrospector schema](../../reference/system-resources-reference/core-module-resources.md#tokenintrospector).
 
 ## Token Validation Process
 

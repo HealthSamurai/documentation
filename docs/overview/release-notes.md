@@ -193,7 +193,7 @@ description: >-
   * Added the ability to use [FHIR Factory API](https://build.fhir.org/fhirpath.html#factory) in the FHIRPath engine.
   * Changes in the building of the `aidboxone` image: the latest LTS version of Java (21) is used for building the application jar, and the latest version of Java (24) is used for running the application. Check the following [tutorial](../tutorials/other-tutorials/how-to-run-aidbox-using-different-java.md) to see how you can leverage this.
   * Improvements in the [AidboxSubscriptionTopics](../modules/topic-based-subscriptions/aidbox-topic-based-subscriptions.md) resource - removed unnecessary ValueSet bindings.
-  * Supported multiple key types for the [TokenIntrospector resource](../reference/system-resources-reference/iam-module-resources.md#tokenintrospector).
+  * Supported multiple key types for the [TokenIntrospector resource](../reference/system-resources-reference/core-module-resources.md#tokenintrospector).
   * Increased the maximum length for `base64Binary` type to handle large files stored in the Aidbox database.
   * Multiple bug fixes and optimizations in the Resource Browser in Aidbox UI.
   * Fixed bug in generating Trace ID within integration with [OTEL collector](../modules/observability/).
@@ -228,7 +228,7 @@ description: >-
 * Aidbox FHIR server
   * Introduced [Aidbox MCP Server](../modules/other-modules/mcp.md) (early-access)
   * Supported FHIRPath `resolve()` function in [AidboxSubscriptionTopics](../modules/topic-based-subscriptions/aidbox-topic-based-subscriptions.md) `fhirPathCriteria` to specify triggers based on linked resources. For example, get only Encounters for specific patients in subscriptions.
-  * Added an option to specify the default IdentityProvider in the Aidbox [Client resource](../reference/system-resources-reference/iam-module-resources.md#client) that will be used instead of the Aidbox login screen.
+  * Added an option to specify the default IdentityProvider in the Aidbox [Client resource](../reference/system-resources-reference/core-module-resources.md#client) that will be used instead of the Aidbox login screen.
   * Introduced [AidboxTrigger](../modules/other-modules/aidbox-trigger.md) that enables automatic execution of SQL statements in response to FHIR resource operations.
   * Supported conditional references in [transaction bundles](../api/rest-api/bundle.md)
   * Optimized Aidbox startup time

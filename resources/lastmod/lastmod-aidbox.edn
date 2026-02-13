@@ -950,24 +950,12 @@
  "2025-08-05T16:35:10Z",
  "reference/settings/web-server.md" "2025-07-15T00:23:16Z",
  "reference/settings/zen-project.md" "2025-07-15T00:23:17Z",
- "reference/system-resources-reference/README.md"
- "2025-08-05T16:21:53Z",
- "reference/system-resources-reference/awf-module-resources.md"
- "2025-05-06T09:17:20Z",
- "reference/system-resources-reference/base-module-resources.md"
- "2025-07-10T00:23:16Z",
- "reference/system-resources-reference/bulk-module-resources.md"
- "2025-05-06T09:17:20Z",
- "reference/system-resources-reference/cloud-module-resources.md"
- "2025-08-16T00:21:08Z",
- "reference/system-resources-reference/hl7v2-module-resources.md"
- "2025-05-06T09:17:20Z",
- "reference/system-resources-reference/iam-module-resources.md"
- "2025-07-22T00:23:18Z",
+ "reference/system-resources-reference/core-module-resources.md"
+ "2025-08-19T13:51:26Z",
  "reference/system-resources-reference/sdc-module-resources.md"
  "2025-08-19T13:51:26Z",
- "reference/system-resources-reference/sql-on-fhir-module-resources.md"
- "2025-07-01T00:23:09Z",
+ "reference/system-resources-reference/mdm-module-resources.md"
+ "2025-08-19T13:51:26Z",
  "terminology-module/aidbox-terminology-module/README.md"
  "2025-08-19T15:41:18Z",
  "terminology-module/aidbox-terminology-module/capabilities.md"

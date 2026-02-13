@@ -137,7 +137,7 @@ Configure Azure AD application and Aidbox resources:
 
 2. **Register application in Azure AD** to get tenant ID, client ID, and client secret. See [Register an application in Microsoft Entra ID](https://learn.microsoft.com/en-us/entra/identity-platform/quickstart-register-app).
 
-3. **Create [AzureAccount](../reference/system-resources-reference/cloud-module-resources.md#azureaccount) resource** in Aidbox with application credentials:
+3. **Create [AzureAccount](../reference/system-resources-reference/core-module-resources.md#azureaccount) resource** in Aidbox with application credentials:
 
 ```http
 POST /AzureAccount
@@ -152,7 +152,7 @@ Content-Type: application/json
 }
 ```
 
-4. **Create [AzureContainer](../reference/system-resources-reference/cloud-module-resources.md#azurecontainer) resource** to link Aidbox to your storage container:
+4. **Create [AzureContainer](../reference/system-resources-reference/core-module-resources.md#azurecontainer) resource** to link Aidbox to your storage container:
 
 ```http
 POST /AzureContainer
@@ -215,9 +215,9 @@ DELETE /azure/storage/<container-id>/<blob-path>
 
 | Parameter | Type | Required | Description |
 |-----------|------|----------|-------------|
-| `blob` | string | No | Blob name. If not specified, random UUID with optional extension from [AzureContainer](../reference/system-resources-reference/cloud-module-resources#azurecontainer) is generated |
+| `blob` | string | No | Blob name. If not specified, random UUID with optional extension from [AzureContainer](../reference/system-resources-reference/core-module-resources#azurecontainer) is generated |
 
-See [AzureAccount](../reference/system-resources-reference/cloud-module-resources#azureaccount) and [AzureContainer](../reference/system-resources-reference/cloud-module-resources#azurecontainer) resource reference for configuration details.
+See [AzureAccount](../reference/system-resources-reference/core-module-resources#azureaccount) and [AzureContainer](../reference/system-resources-reference/core-module-resources#azurecontainer) resource reference for configuration details.
 
 ## Account SAS
 
@@ -231,7 +231,7 @@ Configure storage account keys and Aidbox resources:
 
 2. **Get storage account key** from Azure Portal under "Access keys" section. See [Manage storage account access keys](https://learn.microsoft.com/en-us/azure/storage/common/storage-account-keys-manage).
 
-3. **Create [AzureAccount](../reference/system-resources-reference/cloud-module-resources#azureaccount) resource** with account name and key:
+3. **Create [AzureAccount](../reference/system-resources-reference/core-module-resources#azureaccount) resource** with account name and key:
 
 ```http
 POST /AzureAccount
@@ -243,7 +243,7 @@ Content-Type: application/json
 }
 ```
 
-4. **Create [AzureContainer](../reference/system-resources-reference/cloud-module-resources#azurecontainer) resource** to link Aidbox to your storage container:
+4. **Create [AzureContainer](../reference/system-resources-reference/core-module-resources#azurecontainer) resource** to link Aidbox to your storage container:
 
 ```http
 POST /AzureContainer
@@ -300,9 +300,9 @@ DELETE /azure/storage/<container-id>/<blob-path>
 
 | Parameter | Type | Required | Description |
 |-----------|------|----------|-------------|
-| `blob` | string | No | Blob name. If not specified, random UUID with optional extension from [AzureContainer](../reference/system-resources-reference/cloud-module-resources#azurecontainer) is generated |
+| `blob` | string | No | Blob name. If not specified, random UUID with optional extension from [AzureContainer](../reference/system-resources-reference/core-module-resources#azurecontainer) is generated |
 
-See [AzureAccount](../reference/system-resources-reference/cloud-module-resources#azureaccount) and [AzureContainer](../reference/system-resources-reference/cloud-module-resources#azurecontainer) resource reference for configuration details.
+See [AzureAccount](../reference/system-resources-reference/core-module-resources#azureaccount) and [AzureContainer](../reference/system-resources-reference/core-module-resources#azurecontainer) resource reference for configuration details.
 
 ## Using SAS URLs
 

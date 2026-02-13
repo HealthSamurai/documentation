@@ -103,10 +103,10 @@ User enters a TOTP code from their authenticator app to confirm disabling. If su
 | `twoFactor.issuerName`           | Name of the TOTP token issuer that is shown in authenticator                                                                              |
 | `twoFactor.validPastTokensCount` | Number of previous tokens that are considered valid. Used to improve user experience if standard 30 seconds token lifetime is not enough. |
 
-See [AuthConfig](../../reference/system-resources-reference/iam-module-resources.md#authconfig) resource reference for more details.
+See [AuthConfig](../../reference/system-resources-reference/core-module-resources.md#authconfig) resource reference for more details.
 
 ## See also
 
-{% content-ref url="../../reference/system-resources-reference/iam-module-resources.md#authconfig" %}
-[#authconfig](../../reference/system-resources-reference/iam-module-resources.md#authconfig)
+{% content-ref url="../../reference/system-resources-reference/core-module-resources.md#authconfig" %}
+[#authconfig](../../reference/system-resources-reference/core-module-resources.md#authconfig)
 {% endcontent-ref %}

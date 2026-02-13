@@ -6,7 +6,7 @@ description: Create Aidbox users and configure access policies for full resource
 
 ### Creating user resource
 
-Aidbox `user` resources conforms to following [schema](../../reference/system-resources-reference/iam-module-resources.md). You can [create](../../api/rest-api/crud/create.md) new `user` as a regular resource.
+Aidbox `user` resources conforms to following [schema](../../reference/system-resources-reference/core-module-resources.md). You can [create](../../api/rest-api/crud/create.md) new `user` as a regular resource.
 
 #### User resource example
 

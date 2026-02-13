@@ -359,7 +359,7 @@ and:
 
 ## See also
 
-* [AccessPolicy resource schema](../../reference/system-resources-reference/iam-module-resources.md#accesspolicy)
+* [AccessPolicy resource schema](../../reference/system-resources-reference/core-module-resources.md#accesspolicy)
 * [AccessPolicy best practices](../../tutorials/security-access-control-tutorials/accesspolicy-best-practices.md)
 * [AccessPolicy examples](../../tutorials/security-access-control-tutorials/accesspolicy-examples.md)
 * [Debug access control](../../tutorials/security-access-control-tutorials/debug-access-control.md)
