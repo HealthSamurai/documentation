@@ -7,14 +7,14 @@ description: >-
 
 ## Objectives
 
-* Run SQL statements via [Init Bundle](../../../configuration/init-bundle.md)
+* Run SQL statements via [Init Bundle](../../configuration/init-bundle.md)
 * Make it sage - don't run it on each Aidbox startup but instead do it **exactly once**.
 
 
 ## Before you begin
 
 * Make sure your Aidbox version is 2602 or newer
-* Setup the local Aidbox instance using getting started [guide](../../../getting-started/run-aidbox-locally.md)
+* Setup the local Aidbox instance using getting started [guide](../../getting-started/run-aidbox-locally.md)
 
 ## Using init bundle to run SQL statements
 
