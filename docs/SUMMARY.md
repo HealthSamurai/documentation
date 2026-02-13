@@ -125,6 +125,7 @@
     * [How to run Aidbox using different Java](tutorials/other-tutorials/how-to-run-aidbox-using-different-java.md)
     * [AI Prompts](tutorials/other-tutorials/ai-prompts.md)
     * [How to configure Aidbox to use a proxy for outgoing requests](tutorials/other-tutorials/how-to-configure-aidbox-to-use-proxy.md)
+    * [How to run SQL statements via Init Bundle](tutorials/other-tutorials/how-to-run-sql-via-init-bundle.md)
 
 ## Overview
 
