@@ -72,6 +72,15 @@ BOX_INIT_BUNDLE=file:///tmp/bundle.json
 2. Note that the [Aidbox format](../api/rest-api/other/aidbox-and-fhir-formats.md) is not supported.
 3. Aidbox handles an `id` in the body of the POST request. That's why posting the resource with an id twice will cause an `duplicate key` error. Use [conditional create](../api/rest-api/crud/create.md) or [update](../api/rest-api/crud/update.md) for that.
 
-## How to inject env variables into Init Bundle
+## See also
 
-See [tutorial](../deployment-and-maintenance/deploy-aidbox/how-to-inject-env-variables-into-init-bundle.md).
+
+{% content-ref url="../deployment-and-maintenance/deploy-aidbox/how-to-inject-env-variables-into-init-bundle.md" %}
+[how-to-inject-env-variables-into-init-bundle.md](../deployment-and-maintenance/deploy-aidbox/how-to-inject-env-variables-into-init-bundle.md)
+{% endcontent-ref %}
+{% content-ref url="../tutorials/other-tutorials/how-to-run-sql-via-init-bundle.md" %}
+[how-to-run-sql-via-init-bundle.md](../tutorials/other-tutorials/how-to-run-sql-via-init-bundle.md)
+{% endcontent-ref %}
+{% content-ref url="../tutorials/artifact-registry-tutorials/upload-fhir-implementation-guide/how-to-load-fhir-ig-with-init-bundle.md" %}
+[how-to-load-fhir-ig-with-init-bundle](../tutorials/artifact-registry-tutorials/upload-fhir-implementation-guide/how-to-load-fhir-ig-with-init-bundle.md)
+{% endcontent-ref %}
