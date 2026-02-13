@@ -60,7 +60,7 @@ To send an email notification, create a Notification resource:
 ```yaml
 PUT /Notification/notification-1
 
-provider: smtp
+provider: smtp-provider
 providerData:
   to: recipient@example.com
   subject: My subject of the message

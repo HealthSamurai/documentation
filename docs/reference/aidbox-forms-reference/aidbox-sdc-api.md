@@ -459,7 +459,7 @@ NOTE: All parameters wrapped with `Parameters` object
 resourceType: Parameters
 parameter:
 - name: provider
-  valueString: smtp # required. One of: smtp, postmark, mailgun, sendgrid
+  valueString: smtp-provider # required. One of: smtp-provider, postmark-provider, mailgun-provider, sendgrid-provider
 - name: response
   valueReference:
     reference: QuestionnaireResponse/qr1 # required
@@ -477,7 +477,7 @@ parameter:
 
 The operation takes:
 
-* **provider** (required): Email provider name. Must be one of `smtp`, `postmark`, `mailgun`, `sendgrid`.
+* **provider** (required): Email provider name. Must be one of `smtp-provider`, `postmark-provider`, `mailgun-provider`, `sendgrid-provider`.
 * **response** (required): QuestionnaireResponse reference.
 * **email** (optional): Direct recipient email. If missing, patient email from `QuestionnaireResponse.subject` is used.
 * **template** (optional): NotificationTemplate reference. If not provided, the default template `sdc-form-link-email` is used.
@@ -515,7 +515,7 @@ content-type: text/yaml
 resourceType: Parameters
 parameter:
 - name: provider
-  valueString: smtp
+  valueString: smtp-provider
 - name: response
   valueReference:
     reference: QuestionnaireResponse/qr-direct
@@ -551,11 +551,11 @@ HTTP status: 422
 resourceType: OperationOutcome
 text:
   status: generated
-  div: <div xmlns="http://www.w3.org/1999/xhtml"><p>'provider' parameter id is not provided. Should be one of: smtp, postmark, mailgun, sendgrid</p></div>
+  div: <div xmlns="http://www.w3.org/1999/xhtml"><p>'provider' parameter id is not provided. Should be one of: smtp-provider, postmark-provider, mailgun-provider, sendgrid-provider</p></div>
 issue:
 - severity: fatal
   code: invalid
-  diagnostics: "'provider' parameter id is not provided. Should be one of: smtp, postmark, mailgun, sendgrid"
+  diagnostics: "'provider' parameter id is not provided. Should be one of: smtp-provider, postmark-provider, mailgun-provider, sendgrid-provider"
 ```
 {% endtab %}
 {% endtabs %}

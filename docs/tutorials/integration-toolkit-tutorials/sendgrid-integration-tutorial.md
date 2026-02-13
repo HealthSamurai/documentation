@@ -41,7 +41,7 @@ PUT /Notification/notification-1
 content-type: text/yaml
 accept: text/yaml
 
-provider: 'sendgrid'                    # Provider id
+provider: 'sendgrid-provider'            # Provider id
 providerData:
   to: recipient@example.com             # Email of recipient
   subject: My subject of the message    # subject of email
