@@ -1,3 +1,7 @@
+---
+description: Aidbox MDM module resources for master data management and record linkage.
+---
+
 # MDM Module Resources
 
 Resources for MDM module.
