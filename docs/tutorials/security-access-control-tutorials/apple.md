@@ -120,7 +120,7 @@ Make sure you have selected **"Share my email"** option.
 
 Since no access policy has been assigned to your user yet, you won’t see much in Aidbox.
 
-Log in again as an admin, then navigate to **IAM -> User** to check the iser created in Aidbox for your Apple account. Click on the user ID to view details.
+Log in again as an admin, then navigate to **IAM -> User** to check the user created in Aidbox for your Apple account. Click on the user ID to view details.
 
 <figure><img src="../../.gitbook/assets/44910356-d93a-44cd-b0fd-9a87fbe3769c.png" alt="Apple user in Aidbox IAM Users list"><figcaption></figcaption></figure>
 
