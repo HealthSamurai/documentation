@@ -150,6 +150,7 @@
 * [Recommended environment variables](configuration/recommended-envs.md)
 * [Settings](configuration/settings.md)
 * [Configure Aidbox and Multibox](configuration/configure-aidbox-and-multibox.md)
+* [External Secrets](configuration/secret-files.md)
 * [Init Bundle](configuration/init-bundle.md)
 
 ## API
@@ -507,6 +508,9 @@
     * [Deploy Aidbox with Helm Charts](deployment-and-maintenance/deploy-aidbox/run-aidbox-in-kubernetes/deploy-aidbox-with-helm-charts.md)
     * [Highly Available Aidbox](deployment-and-maintenance/deploy-aidbox/run-aidbox-in-kubernetes/highly-available-aidbox.md)
     * [Self-signed SSL Certificates](deployment-and-maintenance/deploy-aidbox/run-aidbox-in-kubernetes/self-signed-ssl-certificates.md)
+    * [External Secret Stores](deployment-and-maintenance/deploy-aidbox/run-aidbox-in-kubernetes/external-secret-stores/README.md)
+      * [HashiCorp Vault](deployment-and-maintenance/deploy-aidbox/run-aidbox-in-kubernetes/external-secret-stores/hashicorp-vault.md)
+      * [Azure Key Vault](deployment-and-maintenance/deploy-aidbox/run-aidbox-in-kubernetes/external-secret-stores/azure-key-vault.md)
   * [Run Aidbox on managed PostgreSQL](deployment-and-maintenance/deploy-aidbox/run-aidbox-on-managed-postgresql.md)
   * [How to inject env variables into Init Bundle](deployment-and-maintenance/deploy-aidbox/how-to-inject-env-variables-into-init-bundle.md)
 * [Backup and Restore](deployment-and-maintenance/backup-and-restore/README.md)
