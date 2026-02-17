@@ -32,6 +32,18 @@ See [TokenIntrospector schema](../../reference/system-resources-reference/core-m
 4. If valid, Aidbox applies the relevant AccessPolicy
 5. If the policy allows access, the request proceeds
 
+## Caching
+
+TokenIntrospector supports configurable caching via the `cache_ttl` property (in seconds):
+
+- **JWT with JWKS URI**: Caches public keys fetched from the JWKS endpoint (default: 300 seconds)
+- **Opaque tokens**: Caches introspection results for each specific token (default: 300 seconds)
+- **ASPXAUTH tokens**: Caches introspection results for each specific cookie (default: 300 seconds)
+
+Valid range: 1-86400 seconds (1 second to 24 hours)
+
+Caching improves resilience when external endpoints are temporarily unavailable. See the tutorial for detailed configuration examples and security considerations.
+
 ## See also
 
 [Set up token introspection tutorial](../../tutorials/security-access-control-tutorials/set-up-token-introspection.md)
