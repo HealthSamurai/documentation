@@ -43,9 +43,41 @@ AIDBOX_SECRET_FILES_ENABLED=true
 AIDBOX_SECRET_FILES_DIRS=/run/secrets,/mnt/secrets
 ```
 
+## The `secret-backed` extension
+
+Aidbox uses the `secret-backed` extension to mark which fields can accept `@secret:file:` references. This is a FHIR extension defined at:
+
+```
+http://health-samurai.io/fhir/core/StructureDefinition/secret-backed
+```
+
+When this extension is present on an element definition with `valueBoolean: true`, the field accepts both literal values and `@secret:file:/path` references. The reference is stored as-is in the database, and the actual secret is resolved at runtime by reading the file.
+
+### Example: using the extension in a StructureDefinition
+
+To mark a field as secret-backed, add the extension to the element definition:
+
+```json
+{
+  "id": "Client.secret",
+  "path": "Client.secret",
+  "short": "Hashed client secret for authentication.",
+  "min": 0,
+  "max": "1",
+  "extension": [
+    {
+      "url": "http://health-samurai.io/fhir/core/StructureDefinition/secret-backed",
+      "valueBoolean": true
+    }
+  ]
+}
+```
+
+This tells Aidbox that the `Client.secret` field accepts `@secret:file:` references in addition to literal values.
+
 ## Supported resources
 
-The `@secret:file:` prefix is supported on fields marked with the `secret-backed` extension:
+The following fields have the `secret-backed` extension and support `@secret:file:` references:
 
 | Resource | Field | Description |
 | --- | --- | --- |
