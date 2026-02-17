@@ -576,3 +576,55 @@ and:
 ```http
 GET /fhir/Patient/<patient-id>/Observation
 ```
+
+## 18. Policy that allows using FHIR transactions for the application
+
+**Description:** We have an application that is registered as a Client resource with id `client-id` in Aidbox. We want to allow this application to use [FHIR transactions](../../api/batch-transaction.md).
+
+{% hint style="warning" %}
+Note that this policy only allows access to the `/fhir` endpoint itself. You still need to configure access for individual requests within the transaction bundle — for example, the `/fhir/Patient` endpoint.
+{% endhint %}
+
+**Policy:**
+
+```yaml
+engine: matcho
+description: Allow client-id to use FHIR transactions
+id: as-client-id-allowed-to-use-fhir-transactions
+link:
+  - reference: Client/client-id
+matcho:
+  operation: 
+    id: FhirTransaction
+```
+
+**Request to test the policy:**
+
+```http
+POST /fhir
+Authorization: Basic <base64(client-id:client-secret)> # Base64 encoded client-id and client-secret
+Content-Type: application/json
+Accept: application/json
+
+{
+  "resourceType": "Bundle",
+  "type": "transaction",
+  "entry": [
+    {
+      "request": {
+        "method": "POST",
+        "url": "/Patient"
+      },
+      "resource": {
+        "resourceType": "Patient",
+        "name": [
+          {
+            "given": ["John"]
+          }
+        ]
+      }
+    }
+  ]
+}
+```
+
