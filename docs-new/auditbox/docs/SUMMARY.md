@@ -17,6 +17,8 @@
 * [Identity providers](configuration/idp/README.md)
   * [How to Set Up Keycloak as IDP](configuration/idp/keycloak.md)
   * [How to Set Up JumpCloud as IDP](configuration/idp/jumpcloud.md)
+* [Security](configuration/security/README.md)
+  * [Securing ElasticSearch](configuration/security/elastic.md)
 
 ## Reference
 * [Environment variables](configuration/envs.md)
