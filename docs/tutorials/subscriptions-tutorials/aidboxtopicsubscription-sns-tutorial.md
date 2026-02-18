@@ -7,7 +7,7 @@ description: >-
 # AidboxTopicSubscription AWS SNS tutorial
 
 {% hint style="info" %}
-This functionality is available starting from Aidbox version **2602**.
+This functionality is available starting from Aidbox version **2512**.
 {% endhint %}
 
 ## Objectives
