@@ -491,11 +491,11 @@ content-type: application/json
 2. Open the **Amazon SQS** console, select your queue, and click **Send and receive messages**
 3. In the **Receive messages** section, click **Poll for messages**
 
-<figure><img src="../../.gitbook/assets/sns-sqs-poll-messages.webp" alt="SQS console showing a received SNS notification after polling"><figcaption><p>Polling for messages in the SQS queue subscribed to the SNS topic</p></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/sns-sqs-poll-messages.webp" alt="SQS console showing a received SNS notification after polling"><figcaption><p>Polling for messages in the SQS queue subscribed to the SNS topic</p></figcaption></figure>
 
 4. Click on a message to view its contents — the Body contains the SNS notification envelope with the FHIR Bundle:
 
-<figure><img src="../../.gitbook/assets/sns-sqs-message-body.webp" alt="SQS message body showing the FHIR notification Bundle delivered via SNS"><figcaption><p>SNS notification containing the FHIR event Bundle with Patient resource</p></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/sns-sqs-message-body.webp" alt="SQS message body showing the FHIR notification Bundle delivered via SNS"><figcaption><p>SNS notification containing the FHIR event Bundle with Patient resource</p></figcaption></figure>
 
 You can also verify via CLI:
 
