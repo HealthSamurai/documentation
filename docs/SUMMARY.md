@@ -92,6 +92,7 @@
     * [AidboxTopicSubscription RabbitMQ tutorial](tutorials/subscriptions-tutorials/rabbitmq-tutorial.md)
     * [AidboxTopicSubscription ActiveMQ tutorial](tutorials/subscriptions-tutorials/activemq-tutorial.md)
     * [AidboxTopicSubscription AWS EventBridge tutorial](tutorials/subscriptions-tutorials/aws-eventbridge-aidboxtopicdestination.md)
+    * [AidboxTopicSubscription AWS SNS tutorial](tutorials/subscriptions-tutorials/aidboxtopicsubscription-sns-tutorial.md)
     * [Subscribe to New Patient Resource](tutorials/subscriptions-tutorials/subscribe-to-new-patient-resource.md)
   * [Artifact Registry Tutorials](tutorials/artifact-registry-tutorials/README.md)
     * [How to create FHIR npm package](tutorials/artifact-registry-tutorials/how-to-create-fhir-npm-package.md)
