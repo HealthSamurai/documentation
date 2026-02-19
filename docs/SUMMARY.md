@@ -92,6 +92,7 @@
     * [AidboxTopicSubscription RabbitMQ tutorial](tutorials/subscriptions-tutorials/rabbitmq-tutorial.md)
     * [AidboxTopicSubscription ActiveMQ tutorial](tutorials/subscriptions-tutorials/activemq-tutorial.md)
     * [AidboxTopicSubscription AWS EventBridge tutorial](tutorials/subscriptions-tutorials/aws-eventbridge-aidboxtopicdestination.md)
+    * [AidboxTopicSubscription AWS SNS tutorial](tutorials/subscriptions-tutorials/aidboxtopicsubscription-sns-tutorial.md)
     * [Subscribe to New Patient Resource](tutorials/subscriptions-tutorials/subscribe-to-new-patient-resource.md)
   * [Artifact Registry Tutorials](tutorials/artifact-registry-tutorials/README.md)
     * [How to create FHIR npm package](tutorials/artifact-registry-tutorials/how-to-create-fhir-npm-package.md)
@@ -125,6 +126,7 @@
     * [How to run Aidbox using different Java](tutorials/other-tutorials/how-to-run-aidbox-using-different-java.md)
     * [AI Prompts](tutorials/other-tutorials/ai-prompts.md)
     * [How to configure Aidbox to use a proxy for outgoing requests](tutorials/other-tutorials/how-to-configure-aidbox-to-use-proxy.md)
+    * [How to run SQL statements via Init Bundle](tutorials/other-tutorials/how-to-run-sql-via-init-bundle.md)
     * [Azure Key Vault external secrets](tutorials/other-tutorials/azure-key-vault-external-secrets.md)
     * [HashiCorp Vault external secrets](tutorials/other-tutorials/hashicorp-vault-external-secrets.md)
 

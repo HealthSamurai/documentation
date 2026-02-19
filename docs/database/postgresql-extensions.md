@@ -12,13 +12,13 @@ If any **required** extensions are missing, Aidbox won’t start.
 
 * [unaccent](https://www.postgresql.org/docs/current/unaccent.html) — A text search dictionary that removes diacritics. Used in some searches.
 * [pg\_trgm](https://www.postgresql.org/docs/current/pgtrgm.html) — Provides trigram matching support for text similarity.  Useful for some indexes.
-* [fuzzystrmatch](https://www.postgresql.org/docs/current/fuzzystrmatch.html) — Implements string similarity functions such as Levenshtein. Used by the [MDM module](../modules/mdm/) only.
-* [pgcrypto](https://www.postgresql.org/docs/current/pgcrypto.html) — Provides cryptographic functions for data encryption and hashing
 
 ## Optional PostgreSQL extensions
 
 **Optional** extensions enhance functionality but are not critical. Missing optional extensions will trigger a warning at startup.
 
+* [fuzzystrmatch](https://www.postgresql.org/docs/current/fuzzystrmatch.html) — Implements string similarity functions such as Levenshtein. Used by the [MDM module](../modules/mdm/) only.
+* [pgcrypto](https://www.postgresql.org/docs/current/pgcrypto.html) — Provides cryptographic functions for data encryption and hashing
 * [jsonknife](https://github.com/niquola/jsonknife) — Provides useful functions for jsonb operations. Particularly important for complex search queries in older PostgreSQL versions (pre-12) without native [jsonpath support](https://www.postgresql.org/docs/current/functions-json.html).
 * [pg\_similarity](https://github.com/eulerto/pg_similarity) — Support similarity queries. Used by the [MDM module](../modules/mdm/) only.
 * [pgagent](https://github.com/pgadmin-org/pgagent) — A job scheduling system that allows automating database maintenance tasks

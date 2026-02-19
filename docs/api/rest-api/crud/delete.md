@@ -15,8 +15,8 @@ Supports `If-Match` header, with `versionId` as ETAG.
 To get `204 No Content` instead of `200 OK`, use the `_no-content=true` query parameter.
 
 * **`200` OK** - resource successfully deleted
-* **`204` No Content** - resource already deleted
-* **`404` Not Found** - resource not found
+* **`204` No Content** - resource already deleted / non-existing resource
+* **`404` Not Found** - resource type not found
 * **`412`** **Precondition Failed** - requested ETAG doesn't match actual
 
 {% hint style="info" %}

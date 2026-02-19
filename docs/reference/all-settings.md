@@ -1163,6 +1163,36 @@ API key for the Postmark provider
 
 <details><summary>Details</summary><table data-header-hidden="true"><thead><tr><th width="200"></th><th></th></tr></thead><tbody><tr><td>ID</td><td><code>provider.postmark.api-key</code></td></tr><tr><td>Type</td><td>String</td></tr><tr><td>Default value</td><td>(no default)</td></tr><tr><td>Environment variable</td><td><code>BOX_MODULE_PROVIDER_POSTMARK_API_KEY</code></td></tr><tr><td>Deprecated environment variables</td><td><code>BOX_PROVIDER_POSTMARK__PROVIDER_API__KEY</code></td></tr><tr><td>Sensitive</td><td><code>false</code> — value will be visible in plaintext in Admin UI</td></tr><tr><td>Set via</td><td>Environment variables</td></tr><tr><td>Hot reload</td><td><code>true</code> — setting can be changed at runtime</td></tr></tbody></table></details>
 
+#### Sendgrid provider from address<a href="#provider.sendgrid.from" id="provider.sendgrid.from"></a>
+
+```yaml
+BOX_MODULE_PROVIDER_SENDGRID_FROM: "<String>"
+```
+
+From address for the Sendgrid provider
+
+<details><summary>Details</summary><table data-header-hidden="true"><thead><tr><th width="200"></th><th></th></tr></thead><tbody><tr><td>ID</td><td><code>provider.sendgrid.from</code></td></tr><tr><td>Type</td><td>String</td></tr><tr><td>Default value</td><td>(no default)</td></tr><tr><td>Environment variable</td><td><code>BOX_MODULE_PROVIDER_SENDGRID_FROM</code></td></tr><tr><td>Sensitive</td><td><code>false</code> — value will be visible in plaintext in Admin UI</td></tr><tr><td>Set via</td><td>Admin UI → Settings<br />Environment variables</td></tr><tr><td>Hot reload</td><td><code>true</code> — setting can be changed at runtime</td></tr></tbody></table></details>
+
+#### Sendgrid provider API key<a href="#provider.sendgrid.api-key" id="provider.sendgrid.api-key"></a>
+
+```yaml
+BOX_MODULE_PROVIDER_SENDGRID_API_KEY: "<String>"
+```
+
+API key for the Sendgrid provider
+
+<details><summary>Details</summary><table data-header-hidden="true"><thead><tr><th width="200"></th><th></th></tr></thead><tbody><tr><td>ID</td><td><code>provider.sendgrid.api-key</code></td></tr><tr><td>Type</td><td>String</td></tr><tr><td>Default value</td><td>(no default)</td></tr><tr><td>Environment variable</td><td><code>BOX_MODULE_PROVIDER_SENDGRID_API_KEY</code></td></tr><tr><td>Sensitive</td><td><code>false</code> — value will be visible in plaintext in Admin UI</td></tr><tr><td>Set via</td><td>Environment variables</td></tr><tr><td>Hot reload</td><td><code>true</code> — setting can be changed at runtime</td></tr></tbody></table></details>
+
+#### EU Data Residency<a href="#provider.sendgrid.dataresidency" id="provider.sendgrid.dataresidency"></a>
+
+```yaml
+BOX_MODULE_PROVIDER_SENDGRID_DATARESIDENCY: "<String>"
+```
+
+EU Data Resident sending (via an EU-pinned subuser)
+
+<details><summary>Details</summary><table data-header-hidden="true"><thead><tr><th width="200"></th><th></th></tr></thead><tbody><tr><td>ID</td><td><code>provider.sendgrid.dataresidency</code></td></tr><tr><td>Type</td><td>String</td></tr><tr><td>Default value</td><td>(no default)</td></tr><tr><td>Environment variable</td><td><code>BOX_MODULE_PROVIDER_SENDGRID_DATARESIDENCY</code></td></tr><tr><td>Sensitive</td><td><code>false</code> — value will be visible in plaintext in Admin UI</td></tr><tr><td>Set via</td><td>Environment variables</td></tr><tr><td>Hot reload</td><td><code>true</code> — setting can be changed at runtime</td></tr></tbody></table></details>
+
 #### SMTP provider from address<a href="#provider.smtp.from" id="provider.smtp.from"></a>
 
 ```yaml
@@ -1339,7 +1369,7 @@ API key for OpenAI service
 
 <details><summary>Details</summary><table data-header-hidden="true"><thead><tr><th width="200"></th><th></th></tr></thead><tbody><tr><td>ID</td><td><code>module.sdc.openai-api-key</code></td></tr><tr><td>Type</td><td>String</td></tr><tr><td>Default value</td><td>(no default)</td></tr><tr><td>Environment variable</td><td><code>BOX_MODULE_SDC_OPENAI_API_KEY</code></td></tr><tr><td>Deprecated environment variables</td><td><code>BOX_SDC_OPENAI_API_KEY</code></td></tr><tr><td>Sensitive</td><td><code>true</code> — value will be masked in Admin UI</td></tr><tr><td>Set via</td><td>Environment variables</td></tr><tr><td>Hot reload</td><td><code>true</code> — setting can be changed at runtime</td></tr></tbody></table></details>
 
-#### Gemini API key<a href="#aidbox.modules.sdc.gemini-api-key" id="aidbox.modules.sdc.gemini-api-key"></a>
+#### Gemini API key<a href="#modules.sdc.gemini-api-key" id="modules.sdc.gemini-api-key"></a>
 
 ```yaml
 BOX_SDC_GEMINI_API_KEY: "<String>"
@@ -1347,7 +1377,7 @@ BOX_SDC_GEMINI_API_KEY: "<String>"
 
 API key for Gemini service
 
-<details><summary>Details</summary><table data-header-hidden="true"><thead><tr><th width="200"></th><th></th></tr></thead><tbody><tr><td>ID</td><td><code>aidbox.modules.sdc.gemini-api-key</code></td></tr><tr><td>Type</td><td>String</td></tr><tr><td>Default value</td><td>(no default)</td></tr><tr><td>Environment variable</td><td><code>BOX_SDC_GEMINI_API_KEY</code></td></tr><tr><td>Sensitive</td><td><code>true</code> — value will be masked in Admin UI</td></tr><tr><td>Set via</td><td>Environment variables</td></tr><tr><td>Hot reload</td><td><code>true</code> — setting can be changed at runtime</td></tr></tbody></table></details>
+<details><summary>Details</summary><table data-header-hidden="true"><thead><tr><th width="200"></th><th></th></tr></thead><tbody><tr><td>ID</td><td><code>modules.sdc.gemini-api-key</code></td></tr><tr><td>Type</td><td>String</td></tr><tr><td>Default value</td><td>(no default)</td></tr><tr><td>Environment variable</td><td><code>BOX_SDC_GEMINI_API_KEY</code></td></tr><tr><td>Sensitive</td><td><code>true</code> — value will be masked in Admin UI</td></tr><tr><td>Set via</td><td>Environment variables</td></tr><tr><td>Hot reload</td><td><code>true</code> — setting can be changed at runtime</td></tr></tbody></table></details>
 
 #### Default language for UI<a href="#module.sdc.language" id="module.sdc.language"></a>
 

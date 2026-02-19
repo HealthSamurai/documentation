@@ -1,3 +1,7 @@
+---
+description: Aidbox core system resources.
+---
+
 # Core Module Resources
 
 Core system resources.
