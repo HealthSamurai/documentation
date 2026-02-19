@@ -47,7 +47,7 @@
   :restarted)
 
 (comment
-  ;; Start server
+  ;; Start server (http://localhost:8081/docs)
   (start true)
 
   ;; not dev
