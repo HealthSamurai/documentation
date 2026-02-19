@@ -109,9 +109,32 @@ spec:
 
 The `objects` section lists what to fetch from Vault and mount as files.
 
+### Vault config file
+
+Create a ConfigMap with the vault config that maps secret names to file paths and resource scopes:
+
+{% code title="vault-config.yaml" lineNumbers="true" %}
+```yaml
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: aidbox-vault-config
+data:
+  vault-config.json: |
+    {
+      "secret": {
+        "client-secret": {
+          "path": "/run/vault-secrets/client-secret",
+          "scope": ["Client/my-client"]
+        }
+      }
+    }
+```
+{% endcode %}
+
 ### Aidbox Deployment
 
-Add the CSI volume and configure Aidbox to read secrets from mounted files:
+Add the CSI volume, the vault config ConfigMap, and configure Aidbox:
 
 {% code title="aidbox.yaml (volume fragment)" lineNumbers="true" %}
 ```yaml
@@ -122,13 +145,14 @@ spec:
       containers:
         - name: aidbox
           env:
-            - name: AIDBOX_SECRET_FILES_ENABLED
-              value: "true"
-            - name: AIDBOX_SECRET_FILES_DIRS
-              value: "/run/vault-secrets"
+            - name: AIDBOX_VAULT_CONFIG
+              value: "/etc/aidbox/vault-config.json"
           volumeMounts:
             - name: vault-secrets
               mountPath: "/run/vault-secrets"
+              readOnly: true
+            - name: vault-config
+              mountPath: "/etc/aidbox"
               readOnly: true
       volumes:
         - name: vault-secrets
@@ -137,6 +161,9 @@ spec:
             readOnly: true
             volumeAttributes:
               secretProviderClass: "aidbox-vault-secrets"
+        - name: vault-config
+          configMap:
+            name: aidbox-vault-config
 ```
 {% endcode %}
 

@@ -6,7 +6,7 @@ description: >-
 
 # External secret stores
 
-The [Secrets Store CSI Driver](https://secrets-store-csi-driver.sigs.k8s.io/) mounts secrets from external vaults as files inside Kubernetes pods. Combined with Aidbox [secret files](../../../../configuration/secret-files.md), this allows sensitive values to live exclusively in the vault — they are never stored in the Aidbox database.
+The [Secrets Store CSI Driver](https://secrets-store-csi-driver.sigs.k8s.io/) mounts secrets from external vaults as files inside Kubernetes pods. Combined with Aidbox [external secrets](../../../../configuration/secret-files.md) and a vault config file, this allows sensitive values to live exclusively in the vault — they are never stored in the Aidbox database.
 
 ## How it works
 
@@ -16,11 +16,13 @@ The [Secrets Store CSI Driver](https://secrets-store-csi-driver.sigs.k8s.io/) mo
 flowchart TD
     Vault[External Vault] -->|fetches secret| CSI[CSI Provider]
     CSI -->|mounts as file| Pod["/run/secrets/client-secret"]
-    Pod -->|reads at runtime| Aidbox["Aidbox (@secret:file:/run/secrets/client-secret)"]
+    Config["vault-config.json"] -->|maps name → path + scope| Aidbox
+    Pod -->|reads at runtime| Aidbox
 
     style Vault fill:#0078D4,stroke:#0078D4,color:#fff
     style CSI fill:#326CE5,stroke:#326CE5,color:#fff
     style Pod fill:#326CE5,stroke:#326CE5,color:#fff
+    style Config fill:#326CE5,stroke:#326CE5,color:#fff
     style Aidbox fill:#1D4ED8,stroke:#1D4ED8,color:#fff
 ```
 
@@ -29,7 +31,8 @@ flowchart TD
 1. Secrets are stored in the external vault
 2. The vault-specific CSI Provider retrieves them using configured credentials
 3. The CSI Driver mounts them as read-only files inside the pod
-4. Aidbox reads the files via `@secret:file:` references
+4. A vault config JSON file maps named secrets to file paths and resource scopes
+5. Aidbox resolves secret references by looking up the name in the vault config and reading the file
 
 When a secret is updated in the vault, the CSI Driver refreshes the mounted file. Aidbox detects the change on the next access — no pod restart required.
 
