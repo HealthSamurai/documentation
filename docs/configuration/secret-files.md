@@ -16,14 +16,9 @@ Aidbox can reference secrets stored as files on the filesystem instead of keepin
 
 ```mermaid
 flowchart LR
-    File["/run/secrets/client-secret"] -->|read at runtime| Aidbox
-    Config["vault-config.json"] -->|maps name → path + scope| Aidbox
-    Aidbox -->|stores reference name| DB["_secret extension"]
-
-    style File fill:#326CE5,stroke:#326CE5,color:#fff
-    style Config fill:#326CE5,stroke:#326CE5,color:#fff
-    style Aidbox fill:#1D4ED8,stroke:#1D4ED8,color:#fff
-    style DB fill:#374151,stroke:#374151,color:#fff
+    File(/run/secrets/client-secret):::blue2 -->|read at runtime| Aidbox(Aidbox):::violet2
+    Config(vault-config.json):::blue2 -->|maps name → path + scope| Aidbox
+    Aidbox -->|stores reference name| DB(_secret extension):::neutral2
 ```
 
 1. A secret value is placed as a file on the filesystem (via Kubernetes Secrets, CSI Driver, Docker volumes, or any other mechanism)
@@ -37,6 +32,8 @@ flowchart LR
 | Environment variable | Description | Default |
 | --- | --- | --- |
 | `AIDBOX_VAULT_CONFIG` | Path to the vault config JSON file that maps named secrets to file paths and resource scopes. | empty (feature disabled) |
+
+See [Aidbox Settings Reference](../reference/all-settings.md) for the full list of environment variables.
 
 {% hint style="warning" %}
 This setting requires a restart to take effect. The config file itself is re-read automatically when modified — no restart needed for config changes.

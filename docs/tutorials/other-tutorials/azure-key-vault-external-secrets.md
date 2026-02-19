@@ -22,18 +22,11 @@ This tutorial walks through setting up Azure Key Vault as an external secret sto
 
 ```mermaid
 flowchart LR
-    AKV["Azure Key Vault"] -->|fetches secret| CSI["CSI Provider"]
-    CSI -->|mounts as file| Pod["/run/azure-secrets/client-secret"]
-    Config["vault-config.json"] -->|maps name → path + scope| Aidbox
+    AKV(Azure Key Vault):::blue2 -->|fetches secret| CSI(CSI Provider):::neutral2
+    CSI -->|mounts as file| Pod(/run/azure-secrets/client-secret):::blue2
+    Config(vault-config.json):::blue2 -->|maps name → path + scope| Aidbox(Aidbox):::violet2
     Pod -->|reads at runtime| Aidbox
-    Aidbox -->|stores reference| DB["_secret extension"]
-
-    style AKV fill:#0078D4,stroke:#0078D4,color:#fff
-    style CSI fill:#326CE5,stroke:#326CE5,color:#fff
-    style Pod fill:#326CE5,stroke:#326CE5,color:#fff
-    style Config fill:#326CE5,stroke:#326CE5,color:#fff
-    style Aidbox fill:#1D4ED8,stroke:#1D4ED8,color:#fff
-    style DB fill:#374151,stroke:#374151,color:#fff
+    Aidbox -->|stores reference| DB(_secret extension):::neutral2
 ```
 
 ## Prerequisites
