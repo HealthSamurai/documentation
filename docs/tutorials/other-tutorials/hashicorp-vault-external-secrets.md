@@ -1,11 +1,11 @@
 ---
 description: >-
-  Use Azure Key Vault to deliver secrets to Aidbox on Kubernetes —
-  from creating the infrastructure to configuring a Client
+  Use HashiCorp Vault to deliver secrets to Aidbox on Kubernetes —
+  from deploying Vault to configuring a Client
   with a vault-backed secret.
 ---
 
-# Azure Key Vault external secrets
+# HashiCorp Vault external secrets
 
 {% hint style="info" %}
 This functionality is available starting from version 2602.
@@ -13,17 +13,17 @@ This functionality is available starting from version 2602.
 
 ## Overview
 
-This tutorial walks through setting up Azure Key Vault as an external secret store for Aidbox running on AKS. By the end you will have:
+This tutorial walks through setting up HashiCorp Vault as an external secret store for Aidbox running on Kubernetes. By the end you will have:
 
-* An Azure Key Vault holding a client secret
+* A HashiCorp Vault instance holding a client secret
 * The Secrets Store CSI Driver mounting that secret as a file inside the Aidbox pod
 * A vault config mapping the file to a named secret with resource scope
 * A `Client` that references the secret via a FHIR extension — the actual value is never stored in the database
 
 ```mermaid
 flowchart LR
-    AKV(Azure Key Vault):::blue2 -->|fetches secret| CSI(CSI Provider):::neutral2
-    CSI -->|mounts as file| Pod(/run/azure-secrets/client-secret):::blue2
+    V(HashiCorp Vault):::blue2 -->|fetches secret| CSI(Vault CSI Provider):::neutral2
+    CSI -->|mounts as file| Pod(/run/vault-secrets/client-secret):::blue2
     Config(vault-config.json):::blue2 -->|maps name → path + scope| Aidbox(Aidbox):::violet2
     Pod -->|reads at runtime| Aidbox
     Aidbox -->|stores reference| DB(_secret extension):::neutral2
@@ -31,48 +31,11 @@ flowchart LR
 
 ## Prerequisites
 
-* Azure subscription with permissions to create resource groups, AKS clusters, and Key Vaults
-* [Azure CLI](https://learn.microsoft.com/en-us/cli/azure/install-azure-cli) (`az`) installed
+* A running Kubernetes cluster (this guide uses [minikube](https://minikube.sigs.k8s.io/) for local testing)
 * `kubectl` and `helm` installed
 * Setup the local Aidbox instance using [Getting Started](../../getting-started/run-aidbox-locally.md) guide
 
-## Step 1. Create Azure infrastructure
-
-Create a resource group, a Key Vault, and store a client secret:
-
-{% hint style="info" %}
-Key Vault names are globally unique. Replace `<your-keyvault-name>` with a unique name throughout this tutorial.
-{% endhint %}
-
-```bash
-az group create --name aidbox-rg --location eastus
-
-az keyvault create \
-  --name <your-keyvault-name> \
-  --resource-group aidbox-rg \
-  --location eastus
-
-az keyvault secret set \
-  --vault-name <your-keyvault-name> \
-  --name client-secret \
-  --value 'super-secret-value'
-```
-
-## Step 2. Create AKS cluster
-
-```bash
-az aks create \
-  --resource-group aidbox-rg \
-  --name aidbox-aks \
-  --node-count 1 \
-  --generate-ssh-keys
-
-az aks get-credentials \
-  --resource-group aidbox-rg \
-  --name aidbox-aks
-```
-
-## Step 3. Install Secrets Store CSI Driver
+## Step 1. Install Secrets Store CSI Driver
 
 ```bash
 helm repo add secrets-store-csi-driver \
@@ -86,93 +49,109 @@ helm install csi secrets-store-csi-driver/secrets-store-csi-driver \
 ```
 
 {% hint style="info" %}
-`enableSecretRotation` and `rotationPollInterval` control how often the driver checks for updated secrets. Set the interval based on your rotation requirements.
+`enableSecretRotation` and `rotationPollInterval` control how often the driver checks Vault for updated secrets. Set the interval based on your rotation requirements.
 {% endhint %}
 
-## Step 4. Install Azure Key Vault Provider
+## Step 2. Install HashiCorp Vault
+
+Deploy Vault with the CSI Provider enabled:
 
 ```bash
-helm repo add csi-secrets-store-provider-azure \
-  https://azure.github.io/secrets-store-csi-driver-provider-azure/charts
+helm repo add hashicorp https://helm.releases.hashicorp.com
 
-helm install azure-kv csi-secrets-store-provider-azure/csi-secrets-store-provider-azure \
-  --namespace kube-system \
-  --set secrets-store-csi-driver.install=false
+helm install vault hashicorp/vault \
+  --set "server.dev.enabled=true" \
+  --set "csi.enabled=true"
 ```
 
 Wait for pods to be ready:
 
 ```bash
 kubectl wait --for=condition=ready pod \
-  -l app=csi-secrets-store-provider-azure \
-  --namespace kube-system \
+  -l app.kubernetes.io/name=vault \
+  --timeout=120s
+
+kubectl wait --for=condition=ready pod \
+  -l app.kubernetes.io/name=vault-csi-provider \
   --timeout=120s
 ```
 
-## Step 5. Grant AKS access to Key Vault
+{% hint style="warning" %}
+This guide uses Vault in dev mode for simplicity. In production, deploy Vault with proper storage backend, TLS, and auto-unseal. See the [Vault documentation](https://developer.hashicorp.com/vault/docs) for production deployment guidance.
+{% endhint %}
 
-Get the kubelet managed identity and assign the `Key Vault Secrets User` role:
+## Step 3. Configure Vault
+
+### Store a secret
 
 ```bash
-IDENTITY_ID=$(az aks show \
-  --resource-group aidbox-rg \
-  --name aidbox-aks \
-  --query "identityProfile.kubeletidentity.objectId" \
-  --output tsv)
-
-IDENTITY_CLIENT_ID=$(az aks show \
-  --resource-group aidbox-rg \
-  --name aidbox-aks \
-  --query "identityProfile.kubeletidentity.clientId" \
-  --output tsv)
-
-KV_ID=$(az keyvault show \
-  --name <your-keyvault-name> \
-  --resource-group aidbox-rg \
-  --query id --output tsv)
-
-az role assignment create \
-  --assignee "$IDENTITY_ID" \
-  --role "Key Vault Secrets User" \
-  --scope "$KV_ID"
+kubectl exec vault-0 -- vault kv put secret/aidbox/client \
+  client-secret='super-secret-value'
 ```
 
-Save `IDENTITY_CLIENT_ID` — you will need it in the next step.
+### Enable Kubernetes authentication
 
-## Step 6. Create SecretProviderClass
+```bash
+kubectl exec vault-0 -- vault auth enable kubernetes
 
-This tells the CSI Driver which secrets to fetch from Azure Key Vault and how to authenticate using the kubelet managed identity:
+kubectl exec vault-0 -- sh -c 'vault write auth/kubernetes/config \
+  kubernetes_host="https://$KUBERNETES_PORT_443_TCP_ADDR:443"'
+```
+
+### Create a policy and role
+
+The policy grants read-only access to secrets under `secret/data/aidbox/*`. The role binds this policy to the `aidbox` ServiceAccount in the `default` namespace.
+
+```bash
+kubectl exec -i vault-0 -- vault policy write aidbox /dev/stdin <<'EOF'
+path "secret/data/aidbox/*" {
+  capabilities = ["read"]
+}
+EOF
+
+kubectl exec vault-0 -- vault write auth/kubernetes/role/aidbox \
+  bound_service_account_names=aidbox \
+  bound_service_account_namespaces=default \
+  policies=aidbox \
+  ttl=1h
+```
+
+## Step 4. Create ServiceAccount
+
+The Vault CSI Provider uses this ServiceAccount to authenticate with Vault via Kubernetes auth:
+
+{% code title="service-account.yaml" %}
+```yaml
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: aidbox
+```
+{% endcode %}
+
+## Step 5. Create SecretProviderClass
+
+Defines which Vault secrets to mount and where to find them:
 
 {% code title="secret-provider-class.yaml" %}
 ```yaml
 apiVersion: secrets-store.csi.x-k8s.io/v1
 kind: SecretProviderClass
 metadata:
-  name: aidbox-azure-secrets
+  name: aidbox-vault-secrets
 spec:
-  provider: azure
+  provider: vault
   parameters:
-    usePodIdentity: "false"
-    useVMManagedIdentity: "true"
-    userAssignedIdentityID: "<IDENTITY_CLIENT_ID>"
-    keyvaultName: "<your-keyvault-name>"
-    tenantId: "<your-tenant-id>"
-    cloudName: "AzurePublicCloud"
+    vaultAddress: "http://vault.default:8200"
+    roleName: "aidbox"
     objects: |
-      array:
-        - |
-          objectName: client-secret
-          objectType: secret
+      - objectName: "client-secret"
+        secretPath: "secret/data/aidbox/client"
+        secretKey: "client-secret"
 ```
 {% endcode %}
 
-Replace the placeholders:
-
-* `<IDENTITY_CLIENT_ID>` — kubelet identity client ID from the previous step
-* `<your-keyvault-name>` — your Key Vault name
-* `<your-tenant-id>` — your Azure AD tenant ID (get it with `az account show --query tenantId --output tsv`)
-
-## Step 7. Create vault config
+## Step 6. Create vault config
 
 The vault config JSON maps named secrets to file paths and declares which resources may access them:
 
@@ -187,7 +166,7 @@ data:
     {
       "secret": {
         "client-secret": {
-          "path": "/run/azure-secrets/client-secret",
+          "path": "/run/vault-secrets/client-secret",
           "scope": ["Client/basic"]
         }
       }
@@ -199,7 +178,7 @@ Each entry under `"secret"` maps a secret name to:
 
 <table><thead><tr><th width="100">Field</th><th>Description</th></tr></thead><tbody><tr><td><code>path</code></td><td>Absolute path to the file containing the secret value</td></tr><tr><td><code>scope</code></td><td>Array of resource references allowed to access this secret. Entries can be <code>"ResourceType/id"</code> (specific instance, e.g. <code>"Client/basic"</code>) or <code>"ResourceType"</code> (any instance of that type, e.g. <code>"Client"</code>)</td></tr></tbody></table>
 
-## Step 8. Deploy Aidbox
+## Step 7. Deploy Aidbox
 
 {% code title="aidbox.yaml" %}
 ```yaml
@@ -217,6 +196,7 @@ spec:
       labels:
         app: aidbox
     spec:
+      serviceAccountName: aidbox
       containers:
         - name: aidbox
           image: healthsamurai/aidboxone:latest
@@ -225,19 +205,19 @@ spec:
               value: "/etc/aidbox/vault-config.json"
             # Add other required env vars
           volumeMounts:
-            - name: azure-secrets
-              mountPath: "/run/azure-secrets"
+            - name: vault-secrets
+              mountPath: "/run/vault-secrets"
               readOnly: true
             - name: vault-config
               mountPath: "/etc/aidbox"
               readOnly: true
       volumes:
-        - name: azure-secrets
+        - name: vault-secrets
           csi:
             driver: secrets-store.csi.k8s.io
             readOnly: true
             volumeAttributes:
-              secretProviderClass: "aidbox-azure-secrets"
+              secretProviderClass: "aidbox-vault-secrets"
         - name: vault-config
           configMap:
             name: aidbox-vault-config
@@ -246,12 +226,12 @@ spec:
 
 See [Recommended environment variables](../../configuration/recommended-envs.md) for the full list of required Aidbox settings.
 
-## Step 9. Verify secret mount
+## Step 8. Verify secret mount
 
 Confirm that the CSI Driver has mounted the secret file:
 
 ```bash
-kubectl exec deploy/aidbox -- ls /run/azure-secrets/
+kubectl exec deploy/aidbox -- ls /run/vault-secrets/
 ```
 
 Expected output:
@@ -263,10 +243,10 @@ client-secret
 Verify the content:
 
 ```bash
-kubectl exec deploy/aidbox -- cat /run/azure-secrets/client-secret
+kubectl exec deploy/aidbox -- cat /run/vault-secrets/client-secret
 ```
 
-## Step 10. Create Client with vault-backed secret
+## Step 9. Create Client with vault-backed secret
 
 Create a Client that references the secret by name using the FHIR primitive extension pattern. The `_secret` element carries two extensions: `data-absent-reason` with value `masked` (indicating the field is intentionally absent) and `secret-reference` with the secret name from the vault config.
 
@@ -316,25 +296,26 @@ Reading the Client back returns the extension with the secret name, never the ac
 ```
 {% endcode %}
 
-At runtime, Aidbox resolves `client-secret` through the vault config, verifies that `Client/basic` is in scope, and reads the file content. You can verify this by authenticating as the client — the vault-backed secret value is used for authentication:
+At runtime, Aidbox resolves `client-secret` through the vault config, verifies that `Client/basic` is in scope, and reads the file content. You can verify this by authenticating as the client:
 
 ```bash
+# Forward the Aidbox port
+kubectl port-forward svc/aidbox 8888:8080
+
 # Succeeds (returns 200 OK)
-curl -u basic:super-secret-value http://<aidbox-url>/fhir/Patient
+curl -u basic:super-secret-value http://localhost:8888/fhir/Patient
 
 # Fails (returns 401 Unauthorized)
-curl -u basic:wrong-password http://<aidbox-url>/fhir/Patient
+curl -u basic:wrong-password http://localhost:8888/fhir/Patient
 ```
 
 ## Secret rotation
 
-Update the secret in Azure Key Vault:
+Update the secret in Vault:
 
 ```bash
-az keyvault secret set \
-  --vault-name <your-keyvault-name> \
-  --name client-secret \
-  --value 'new-secret-value'
+kubectl exec vault-0 -- vault kv put secret/aidbox/client \
+  client-secret='new-secret-value'
 ```
 
 The CSI Driver picks up the change based on `rotationPollInterval` (30s in this tutorial). Aidbox detects the file modification and invalidates its cache — the new value is used on the next access. No pod restart required.

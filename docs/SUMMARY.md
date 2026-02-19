@@ -126,6 +126,7 @@
     * [AI Prompts](tutorials/other-tutorials/ai-prompts.md)
     * [How to configure Aidbox to use a proxy for outgoing requests](tutorials/other-tutorials/how-to-configure-aidbox-to-use-proxy.md)
     * [Azure Key Vault external secrets](tutorials/other-tutorials/azure-key-vault-external-secrets.md)
+    * [HashiCorp Vault external secrets](tutorials/other-tutorials/hashicorp-vault-external-secrets.md)
 
 ## Overview
 

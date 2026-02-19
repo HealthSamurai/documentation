@@ -64,10 +64,7 @@ This setting requires a restart to take effect. The config file itself is re-rea
 
 Each entry under `"secret"` maps a secret name to:
 
-| Field | Description |
-| --- | --- |
-| `path` | Absolute path to the file containing the secret value |
-| `scope` | Array of resource references that are allowed to access this secret. Entries can be `"ResourceType/id"` (specific instance, e.g. `"Client/my-client"`) or `"ResourceType"` (any instance of that type, e.g. `"Client"`) |
+<table><thead><tr><th width="100">Field</th><th>Description</th></tr></thead><tbody><tr><td><code>path</code></td><td>Absolute path to the file containing the secret value</td></tr><tr><td><code>scope</code></td><td>Array of resource references that are allowed to access this secret. Entries can be <code>"ResourceType/id"</code> (specific instance, e.g. <code>"Client/my-client"</code>) or <code>"ResourceType"</code> (any instance of that type, e.g. <code>"Client"</code>)</td></tr></tbody></table>
 
 ## Extension pattern
 
@@ -157,6 +154,6 @@ The external secrets feature is agnostic to how files are placed on the filesyst
 | Method | Description |
 | --- | --- |
 | [Kubernetes Secrets](https://kubernetes.io/docs/concepts/configuration/secret/) | Mounted as volumes in pods |
-| [Secrets Store CSI Driver](https://secrets-store-csi-driver.sigs.k8s.io/) | Mounts secrets from external vaults (Azure Key Vault, HashiCorp Vault) with automatic rotation. See the [Azure Key Vault tutorial](../tutorials/other-tutorials/azure-key-vault-external-secrets.md) for a step-by-step guide |
+| [Secrets Store CSI Driver](https://secrets-store-csi-driver.sigs.k8s.io/) | Mounts secrets from external vaults with automatic rotation. See the [Azure Key Vault](../tutorials/other-tutorials/azure-key-vault-external-secrets.md) and [HashiCorp Vault](../tutorials/other-tutorials/hashicorp-vault-external-secrets.md) tutorials |
 | [Docker Secrets](https://docs.docker.com/engine/swarm/secrets/) | Available at `/run/secrets/` in swarm mode |
 | Docker volumes | Bind-mount a host directory containing secret files |
