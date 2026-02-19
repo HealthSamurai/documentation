@@ -4,7 +4,11 @@ description: >-
   with named secret references and automatic rotation support.
 ---
 
-# External secrets
+# External Secrets
+
+{% hint style="info" %}
+This functionality is available starting from version 2602.
+{% endhint %}
 
 Aidbox can reference secrets stored as files on the filesystem instead of keeping them in the database. A JSON vault config file maps named secrets to file paths and controls which resources can access each secret. The actual values are never persisted or returned through the API.
 
@@ -22,7 +26,7 @@ flowchart LR
     style DB fill:#374151,stroke:#374151,color:#fff
 ```
 
-1. A secret value is placed as a file on the filesystem (via Kubernetes Secrets, Docker volumes, or any other mechanism)
+1. A secret value is placed as a file on the filesystem (via Kubernetes Secrets, CSI Driver, Docker volumes, or any other mechanism)
 2. A vault config JSON file maps named secrets to file paths and declares which resources may access them
 3. A resource field uses the FHIR `data-absent-reason` / `secret-reference` extension pattern to reference a named secret
 4. At runtime, Aidbox looks up the secret name in the vault config, verifies the requesting resource is in scope, and reads the file
@@ -66,60 +70,18 @@ Each entry under `"secret"` maps a secret name to:
 | Field | Description |
 | --- | --- |
 | `path` | Absolute path to the file containing the secret value |
-| `scope` | Array of resource references that are allowed to access this secret. Entries can be `"ResourceType/id"` (specific instance) or `"ResourceType"` (any instance of that type) |
+| `scope` | Array of resource references that are allowed to access this secret. Entries can be `"ResourceType/id"` (specific instance, e.g. `"Client/my-client"`) or `"ResourceType"` (any instance of that type, e.g. `"Client"`) |
 
-### Example
+## Extension pattern
 
-```bash
-AIDBOX_VAULT_CONFIG=/etc/aidbox/vault-config.json
-```
+The resource uses FHIR primitive extensions on the secret field. The extension element carries two entries:
 
-## Supported resources
+* `data-absent-reason` with value `masked` — indicates the field value is intentionally absent
+* `secret-reference` with the secret name from the vault config — tells Aidbox which secret to resolve at runtime
 
-The following fields support secret references via the extension pattern:
+### Example: Client secret
 
-| Resource | Field | Description |
-| --- | --- | --- |
-| **Client** | `secret` | Client secret for authentication |
-| **IdentityProvider** | `client.secret` | Client secret for symmetric authentication |
-| **IdentityProvider** | `client.private-key` | Private key for asymmetric authentication |
-| **IdentityProvider** | `client.certificate` | Certificate for asymmetric authentication |
-| **TokenIntrospector** | `jwt.secret` | Shared secret key for JWT verification |
-| **TokenIntrospector** | `jwt.keys.k` | Symmetric key for validation |
-| **TokenIntrospector** | `introspection_endpoint.authorization` | Authorization header value |
-| **AidboxTopicDestination** | `parameter.saslJaasConfig` | SASL JAAS configuration for Kafka authentication |
-| **AidboxTopicDestination** | `parameter.sslKeystoreKey` | SSL keystore private key for Kafka connection |
-
-## Usage
-
-### Create a secret file
-
-Place a file containing the secret value:
-
-```bash
-echo -n 'my-secret-value' > /run/secrets/client-secret
-```
-
-### Add it to the vault config
-
-{% code title="vault-config.json" %}
-```json
-{
-  "secret": {
-    "client-secret": {
-      "path": "/run/secrets/client-secret",
-      "scope": ["Client/my-client"]
-    }
-  }
-}
-```
-{% endcode %}
-
-### Reference it in a resource
-
-The resource uses FHIR primitive extensions on the field. The `_secret` element carries two extensions: `data-absent-reason` with value `masked` (indicating the field is intentionally absent) and `secret-reference` with the secret name from the vault config.
-
-{% code title="PUT /Client/my-client" %}
+{% code title="PUT /fhir/Client/my-client" %}
 ```json
 {
   "resourceType": "Client",
@@ -143,7 +105,7 @@ The resource uses FHIR primitive extensions on the field. The `_secret` element 
 
 Reading the Client back returns the extension, not the resolved value:
 
-{% code title="GET /Client/my-client" %}
+{% code title="GET /fhir/Client/my-client" %}
 ```json
 {
   "resourceType": "Client",
@@ -167,12 +129,7 @@ Reading the Client back returns the extension, not the resolved value:
 
 ## Scope enforcement
 
-Aidbox verifies that the resource requesting a secret is listed in the secret's `scope` array. Scope entries support two formats:
-
-* **`"ResourceType/id"`** — matches a specific resource instance only
-* **`"ResourceType"`** — matches any resource of that type
-
-If the requesting resource is not in scope, Aidbox returns an error.
+Aidbox verifies that the resource requesting a secret is listed in the secret's `scope` array. If the requesting resource is not in scope, Aidbox returns an error.
 
 ## Secret rotation
 
@@ -180,9 +137,21 @@ Aidbox caches file contents with a short TTL and validates against file modifica
 
 This works with any mechanism that updates files in place — Kubernetes Secrets, CSI drivers, configuration management tools, or manual updates.
 
-## Security
+## Supported resources
 
-Scope enforcement ensures each secret can only be accessed by the resources declared in its `scope` array.
+The following fields support secret references via the extension pattern:
+
+| Resource | Field | Description |
+| --- | --- | --- |
+| **Client** | `secret` | Client secret for authentication |
+| **IdentityProvider** | `client.secret` | Client secret for symmetric authentication |
+| **IdentityProvider** | `client.private-key` | Private key for asymmetric authentication |
+| **IdentityProvider** | `client.certificate` | Certificate for asymmetric authentication |
+| **TokenIntrospector** | `jwt.secret` | Shared secret key for JWT verification |
+| **TokenIntrospector** | `jwt.keys.k` | Symmetric key for validation |
+| **TokenIntrospector** | `introspection_endpoint.authorization` | Authorization header value |
+| **AidboxTopicDestination** | `parameter.saslJaasConfig` | SASL JAAS configuration for Kafka authentication |
+| **AidboxTopicDestination** | `parameter.sslKeystoreKey` | SSL keystore private key for Kafka connection |
 
 ## Delivering secrets to the filesystem
 
@@ -191,6 +160,6 @@ The external secrets feature is agnostic to how files are placed on the filesyst
 | Method | Description |
 | --- | --- |
 | [Kubernetes Secrets](https://kubernetes.io/docs/concepts/configuration/secret/) | Mounted as volumes in pods |
-| [Secrets Store CSI Driver](../deployment-and-maintenance/deploy-aidbox/run-aidbox-in-kubernetes/external-secret-stores/) | Mounts secrets from external vaults (HashiCorp Vault, Azure Key Vault) with automatic rotation |
+| [Secrets Store CSI Driver](https://secrets-store-csi-driver.sigs.k8s.io/) | Mounts secrets from external vaults (Azure Key Vault, HashiCorp Vault) with automatic rotation. See the [Azure Key Vault tutorial](../tutorials/other-tutorials/azure-key-vault-external-secrets.md) for a step-by-step guide |
 | [Docker Secrets](https://docs.docker.com/engine/swarm/secrets/) | Available at `/run/secrets/` in swarm mode |
 | Docker volumes | Bind-mount a host directory containing secret files |
