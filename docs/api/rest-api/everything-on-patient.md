@@ -63,7 +63,7 @@ GET /fhir/Observation?_filter=(subject eq Patient/pt1) or (performer eq Patient/
 To debug this, we can query using [\_explain](aidbox-search.md#explain) search parameter:
 
 ```
-GET /fhir/Observation?_filter=(subject eq Patient/pt1) or (performer eq Patient/pt1)&_explain=1
+GET /fhir/Observation?_filter=(subject eq Patient/pt1) or (performer eq Patient/pt1)&_explain=plan
 ```
 
 And now we see the SQL and the PostgreSQL plan:

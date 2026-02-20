@@ -163,7 +163,7 @@ docker compose up --force-recreate
 Test if new `Patient.brthdt` search parameter work:
 
 ```
-GET /fhir/Patient?brthdt=2000-01-01&_explain=1
+GET /fhir/Patient?brthdt=2000-01-01&_explain=plan
 ```
 
 Test that no indexes are created:

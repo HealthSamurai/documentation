@@ -97,7 +97,7 @@ GET /fhir/Patient?email-domain=somecompany.com
 This returned both patients. See the SQL:
 
 ```
-GET /fhir/Patient?email-domain=somecompany.com&_explain=1
+GET /fhir/Patient?email-domain=somecompany.com&_explain=plan
 ```
 
 ```
