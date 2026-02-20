@@ -22,5 +22,6 @@
 
 ## Reference
 * [Environment variables](configuration/envs.md)
+* [Performance](performance.md)
 * [API](api.md)
 * [Release notes](release-notes.md)
