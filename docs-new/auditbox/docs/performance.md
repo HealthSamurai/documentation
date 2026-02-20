@@ -8,6 +8,7 @@ Auditbox.
 
 How many bytes are handled per unit of time (5 seconds, 10 seconds, etc?)
 Get average latency.
+<!-- TODO set memory limits and cpu requests, document -->
 
 ### Test method
 
@@ -272,6 +273,6 @@ Simple field query vs FTS
 Map time against event storage size
 Cold vs cached
 
-****** Methodology
-****** Results
+### Methodology
+### Results
 
