@@ -1706,6 +1706,30 @@ If enabled, the health status of the database will be reflected in the overall h
 
 Read-only database replica settings
 
+#### JDBC Application name<a href="#db.application-name" id="db.application-name"></a>
+
+```yaml
+BOX_DB_APPLICATION_NAME: "HealthSamurai Aidbox"
+```
+
+Controls the application name of the connection.
+
+This name is visible for example in pg_stat_activity view.
+
+<details><summary>Details</summary><table data-header-hidden="true"><thead><tr><th width="200"></th><th></th></tr></thead><tbody><tr><td>ID</td><td><code>db.application-name</code></td></tr><tr><td>Type</td><td>String</td></tr><tr><td>Default value</td><td><code>HealthSamurai Aidbox</code></td></tr><tr><td>Environment variable</td><td><code>BOX_DB_APPLICATION_NAME</code></td></tr><tr><td>Available from</td><td><code>2603</code></td></tr><tr><td>Sensitive</td><td><code>false</code> — value will be visible in plaintext in Admin UI</td></tr><tr><td>Set via</td><td>Environment variables</td></tr><tr><td>Hot reload</td><td><code>false</code> — setting requires system restart</td></tr></tbody></table></details>
+
+#### JDBC Application name<a href="#db.maintenance.application-name" id="db.maintenance.application-name"></a>
+
+```yaml
+BOX_DB_MAINTENANCE_APPLICATION_NAME: "HealthSamurai Aidbox"
+```
+
+Controls the application name of the connection.
+
+This name is visible for example in pg_stat_activity view.
+
+<details><summary>Details</summary><table data-header-hidden="true"><thead><tr><th width="200"></th><th></th></tr></thead><tbody><tr><td>ID</td><td><code>db.maintenance.application-name</code></td></tr><tr><td>Type</td><td>String</td></tr><tr><td>Default value</td><td><code>HealthSamurai Aidbox</code></td></tr><tr><td>Environment variable</td><td><code>BOX_DB_MAINTENANCE_APPLICATION_NAME</code></td></tr><tr><td>Available from</td><td><code>2603</code></td></tr><tr><td>Sensitive</td><td><code>false</code> — value will be visible in plaintext in Admin UI</td></tr><tr><td>Set via</td><td>Environment variables</td></tr><tr><td>Hot reload</td><td><code>false</code> — setting requires system restart</td></tr></tbody></table></details>
+
 #### Read-only replica enable<a href="#db.ro-replica.enabled" id="db.ro-replica.enabled"></a>
 
 ```yaml
@@ -1777,6 +1801,18 @@ AIDBOX_EXTENSION_SCHEMA: "<String>"
 The database extension schema.
 
 <details><summary>Details</summary><table data-header-hidden="true"><thead><tr><th width="200"></th><th></th></tr></thead><tbody><tr><td>ID</td><td><code>db.ro-replica.extension-schema</code></td></tr><tr><td>Type</td><td>String</td></tr><tr><td>Default value</td><td>(no default)</td></tr><tr><td>Environment variable</td><td><code>AIDBOX_EXTENSION_SCHEMA</code></td></tr><tr><td>Deprecated environment variables</td><td><code>AIDBOX_DB_PARAM_CURRENT_SCHEMA</code></td></tr><tr><td>Available from</td><td><code>2507</code></td></tr><tr><td>Sensitive</td><td><code>false</code> — value will be visible in plaintext in Admin UI</td></tr><tr><td>Set via</td><td>Admin UI → Settings<br />Environment variables</td></tr><tr><td>Hot reload</td><td><code>false</code> — setting requires system restart</td></tr></tbody></table></details>
+
+#### JDBC Application name<a href="#db.ro-replica.application-name" id="db.ro-replica.application-name"></a>
+
+```yaml
+AIDBOX_DB_RO_REPLICA_APPLICATION_NAME: "HealthSamurai Aidbox"
+```
+
+Controls the application name of the connection.
+
+This name is visible for example in pg_stat_activity view.
+
+<details><summary>Details</summary><table data-header-hidden="true"><thead><tr><th width="200"></th><th></th></tr></thead><tbody><tr><td>ID</td><td><code>db.ro-replica.application-name</code></td></tr><tr><td>Type</td><td>String</td></tr><tr><td>Default value</td><td><code>HealthSamurai Aidbox</code></td></tr><tr><td>Environment variable</td><td><code>AIDBOX_DB_RO_REPLICA_APPLICATION_NAME</code></td></tr><tr><td>Available from</td><td><code>2603</code></td></tr><tr><td>Sensitive</td><td><code>false</code> — value will be visible in plaintext in Admin UI</td></tr><tr><td>Set via</td><td>Environment variables</td></tr><tr><td>Hot reload</td><td><code>false</code> — setting requires system restart</td></tr></tbody></table></details>
 
 #### Maximum wait time<a href="#db.ro-replica.pool.connection-timeout" id="db.ro-replica.pool.connection-timeout"></a>
 
