@@ -6454,6 +6454,14 @@ Terminology bundle file tracking resource.
   "type" : "string",
   "desc" : "System Property. DO NOT USE IT."
 }, {
+  "path" : "cache_ttl",
+  "name" : "cache_ttl",
+  "lvl" : 0,
+  "min" : 0,
+  "max" : 1,
+  "type" : "integer",
+  "desc" : "Cache TTL for token introspection results in seconds."
+}, {
   "path" : "identity_provider",
   "name" : "identity_provider",
   "lvl" : 0,
@@ -7634,6 +7642,2959 @@ Terminology bundle file tracking resource.
   "max" : 1,
   "type" : "string",
   "desc" : "Fixed value indicating this is a reference to a User resource."
+} ]
+```
+
+
+## aidboxtopicdestination-amqp-1-0-at-least-once
+
+AMQP 1.0 at-least-once delivery profile for AidboxTopicDestination.
+
+```fhir-structure
+[ {
+  "path" : "eter",
+  "name" : "parameter",
+  "lvl" : 0,
+  "min" : 0,
+  "max" : 1,
+  "type" : "",
+  "desc" : ""
+}, {
+  "path" : "eter",
+  "name" : "parameter",
+  "lvl" : 0,
+  "min" : 1,
+  "max" : 1,
+  "type" : "",
+  "desc" : ""
+}, {
+  "path" : "eter",
+  "name" : "parameter",
+  "lvl" : 0,
+  "min" : 0,
+  "max" : 1,
+  "type" : "",
+  "desc" : ""
+}, {
+  "path" : "eter",
+  "name" : "parameter",
+  "lvl" : 0,
+  "min" : 1,
+  "max" : 1,
+  "type" : "",
+  "desc" : ""
+}, {
+  "path" : "eter",
+  "name" : "parameter",
+  "lvl" : 0,
+  "min" : 0,
+  "max" : 1,
+  "type" : "",
+  "desc" : ""
+}, {
+  "path" : "eter",
+  "name" : "parameter",
+  "lvl" : 0,
+  "min" : 0,
+  "max" : 1,
+  "type" : "",
+  "desc" : ""
+}, {
+  "path" : "eter",
+  "name" : "parameter",
+  "lvl" : 0,
+  "min" : 0,
+  "max" : 1,
+  "type" : "",
+  "desc" : ""
+}, {
+  "path" : "eter",
+  "name" : "parameter",
+  "lvl" : 0,
+  "min" : 0,
+  "max" : 1,
+  "type" : "",
+  "desc" : ""
+}, {
+  "path" : "eter",
+  "name" : "parameter",
+  "lvl" : 0,
+  "min" : 0,
+  "max" : 1,
+  "type" : "",
+  "desc" : ""
+}, {
+  "path" : "eter.name",
+  "name" : "name",
+  "lvl" : 1,
+  "min" : 0,
+  "max" : 1,
+  "type" : "",
+  "desc" : ""
+}, {
+  "path" : "eter.name",
+  "name" : "name",
+  "lvl" : 1,
+  "min" : 0,
+  "max" : 1,
+  "type" : "",
+  "desc" : ""
+}, {
+  "path" : "eter.name",
+  "name" : "name",
+  "lvl" : 1,
+  "min" : 0,
+  "max" : 1,
+  "type" : "",
+  "desc" : ""
+}, {
+  "path" : "eter.name",
+  "name" : "name",
+  "lvl" : 1,
+  "min" : 0,
+  "max" : 1,
+  "type" : "",
+  "desc" : ""
+}, {
+  "path" : "eter.name",
+  "name" : "name",
+  "lvl" : 1,
+  "min" : 0,
+  "max" : 1,
+  "type" : "",
+  "desc" : ""
+}, {
+  "path" : "eter.name",
+  "name" : "name",
+  "lvl" : 1,
+  "min" : 0,
+  "max" : 1,
+  "type" : "",
+  "desc" : ""
+}, {
+  "path" : "eter.name",
+  "name" : "name",
+  "lvl" : 1,
+  "min" : 0,
+  "max" : 1,
+  "type" : "",
+  "desc" : ""
+}, {
+  "path" : "eter.name",
+  "name" : "name",
+  "lvl" : 1,
+  "min" : 0,
+  "max" : 1,
+  "type" : "",
+  "desc" : ""
+}, {
+  "path" : "eter.part",
+  "name" : "part",
+  "lvl" : 1,
+  "min" : 0,
+  "max" : 1,
+  "type" : "",
+  "desc" : ""
+}, {
+  "path" : "eter.part",
+  "name" : "part",
+  "lvl" : 1,
+  "min" : 0,
+  "max" : 1,
+  "type" : "",
+  "desc" : ""
+}, {
+  "path" : "eter.part",
+  "name" : "part",
+  "lvl" : 1,
+  "min" : 0,
+  "max" : 1,
+  "type" : "",
+  "desc" : ""
+}, {
+  "path" : "eter.part",
+  "name" : "part",
+  "lvl" : 1,
+  "min" : 0,
+  "max" : 1,
+  "type" : "",
+  "desc" : ""
+}, {
+  "path" : "eter.part",
+  "name" : "part",
+  "lvl" : 1,
+  "min" : 0,
+  "max" : 1,
+  "type" : "",
+  "desc" : ""
+}, {
+  "path" : "eter.part",
+  "name" : "part",
+  "lvl" : 1,
+  "min" : 0,
+  "max" : 1,
+  "type" : "",
+  "desc" : ""
+}, {
+  "path" : "eter.part",
+  "name" : "part",
+  "lvl" : 1,
+  "min" : 0,
+  "max" : 1,
+  "type" : "",
+  "desc" : ""
+}, {
+  "path" : "eter.part",
+  "name" : "part",
+  "lvl" : 1,
+  "min" : 0,
+  "max" : 1,
+  "type" : "",
+  "desc" : ""
+}, {
+  "path" : "eter.resource",
+  "name" : "resource",
+  "lvl" : 1,
+  "min" : 0,
+  "max" : 1,
+  "type" : "",
+  "desc" : ""
+}, {
+  "path" : "eter.resource",
+  "name" : "resource",
+  "lvl" : 1,
+  "min" : 0,
+  "max" : 1,
+  "type" : "",
+  "desc" : ""
+}, {
+  "path" : "eter.resource",
+  "name" : "resource",
+  "lvl" : 1,
+  "min" : 0,
+  "max" : 1,
+  "type" : "",
+  "desc" : ""
+}, {
+  "path" : "eter.resource",
+  "name" : "resource",
+  "lvl" : 1,
+  "min" : 0,
+  "max" : 1,
+  "type" : "",
+  "desc" : ""
+}, {
+  "path" : "eter.resource",
+  "name" : "resource",
+  "lvl" : 1,
+  "min" : 0,
+  "max" : 1,
+  "type" : "",
+  "desc" : ""
+}, {
+  "path" : "eter.resource",
+  "name" : "resource",
+  "lvl" : 1,
+  "min" : 0,
+  "max" : 1,
+  "type" : "",
+  "desc" : ""
+}, {
+  "path" : "eter.resource",
+  "name" : "resource",
+  "lvl" : 1,
+  "min" : 0,
+  "max" : 1,
+  "type" : "",
+  "desc" : ""
+}, {
+  "path" : "eter.resource",
+  "name" : "resource",
+  "lvl" : 1,
+  "min" : 0,
+  "max" : 1,
+  "type" : "",
+  "desc" : ""
+}, {
+  "path" : "eter.value[x]",
+  "name" : "value[x]",
+  "lvl" : 1,
+  "min" : 1,
+  "max" : 1,
+  "type" : "string",
+  "desc" : ""
+}, {
+  "path" : "eter.value[x]",
+  "name" : "value[x]",
+  "lvl" : 1,
+  "min" : 1,
+  "max" : 1,
+  "type" : "integer",
+  "desc" : ""
+}, {
+  "path" : "eter.value[x]",
+  "name" : "value[x]",
+  "lvl" : 1,
+  "min" : 1,
+  "max" : 1,
+  "type" : "string",
+  "desc" : ""
+}, {
+  "path" : "eter.value[x]",
+  "name" : "value[x]",
+  "lvl" : 1,
+  "min" : 1,
+  "max" : 1,
+  "type" : "string",
+  "desc" : ""
+}, {
+  "path" : "eter.value[x]",
+  "name" : "value[x]",
+  "lvl" : 1,
+  "min" : 1,
+  "max" : 1,
+  "type" : "string",
+  "desc" : ""
+}, {
+  "path" : "eter.value[x]",
+  "name" : "value[x]",
+  "lvl" : 1,
+  "min" : 1,
+  "max" : 1,
+  "type" : "string",
+  "desc" : ""
+}, {
+  "path" : "eter.value[x]",
+  "name" : "value[x]",
+  "lvl" : 1,
+  "min" : 1,
+  "max" : 1,
+  "type" : "boolean",
+  "desc" : ""
+}, {
+  "path" : "eter.value[x]",
+  "name" : "value[x]",
+  "lvl" : 1,
+  "min" : 1,
+  "max" : 1,
+  "type" : "integer",
+  "desc" : ""
+} ]
+```
+
+
+## aidboxtopicdestination-amqp-rabbitmq-0-9-1
+
+RabbitMQ AMQP 0-9-1 best-effort delivery profile for AidboxTopicDestination.
+
+```fhir-structure
+[ {
+  "path" : "eter",
+  "name" : "parameter",
+  "lvl" : 0,
+  "min" : 0,
+  "max" : 1,
+  "type" : "",
+  "desc" : ""
+}, {
+  "path" : "eter",
+  "name" : "parameter",
+  "lvl" : 0,
+  "min" : 1,
+  "max" : 1,
+  "type" : "",
+  "desc" : ""
+}, {
+  "path" : "eter",
+  "name" : "parameter",
+  "lvl" : 0,
+  "min" : 0,
+  "max" : 1,
+  "type" : "",
+  "desc" : ""
+}, {
+  "path" : "eter",
+  "name" : "parameter",
+  "lvl" : 0,
+  "min" : 0,
+  "max" : 1,
+  "type" : "",
+  "desc" : ""
+}, {
+  "path" : "eter",
+  "name" : "parameter",
+  "lvl" : 0,
+  "min" : 0,
+  "max" : 1,
+  "type" : "",
+  "desc" : ""
+}, {
+  "path" : "eter",
+  "name" : "parameter",
+  "lvl" : 0,
+  "min" : 1,
+  "max" : 1,
+  "type" : "",
+  "desc" : ""
+}, {
+  "path" : "eter",
+  "name" : "parameter",
+  "lvl" : 0,
+  "min" : 0,
+  "max" : 1,
+  "type" : "",
+  "desc" : ""
+}, {
+  "path" : "eter",
+  "name" : "parameter",
+  "lvl" : 0,
+  "min" : 0,
+  "max" : 1,
+  "type" : "",
+  "desc" : ""
+}, {
+  "path" : "eter",
+  "name" : "parameter",
+  "lvl" : 0,
+  "min" : 0,
+  "max" : 1,
+  "type" : "",
+  "desc" : ""
+}, {
+  "path" : "eter",
+  "name" : "parameter",
+  "lvl" : 0,
+  "min" : 0,
+  "max" : 1,
+  "type" : "",
+  "desc" : ""
+}, {
+  "path" : "eter",
+  "name" : "parameter",
+  "lvl" : 0,
+  "min" : 0,
+  "max" : 1,
+  "type" : "",
+  "desc" : ""
+}, {
+  "path" : "eter.name",
+  "name" : "name",
+  "lvl" : 1,
+  "min" : 0,
+  "max" : 1,
+  "type" : "",
+  "desc" : ""
+}, {
+  "path" : "eter.name",
+  "name" : "name",
+  "lvl" : 1,
+  "min" : 0,
+  "max" : 1,
+  "type" : "",
+  "desc" : ""
+}, {
+  "path" : "eter.name",
+  "name" : "name",
+  "lvl" : 1,
+  "min" : 0,
+  "max" : 1,
+  "type" : "",
+  "desc" : ""
+}, {
+  "path" : "eter.name",
+  "name" : "name",
+  "lvl" : 1,
+  "min" : 0,
+  "max" : 1,
+  "type" : "",
+  "desc" : ""
+}, {
+  "path" : "eter.name",
+  "name" : "name",
+  "lvl" : 1,
+  "min" : 0,
+  "max" : 1,
+  "type" : "",
+  "desc" : ""
+}, {
+  "path" : "eter.name",
+  "name" : "name",
+  "lvl" : 1,
+  "min" : 0,
+  "max" : 1,
+  "type" : "",
+  "desc" : ""
+}, {
+  "path" : "eter.name",
+  "name" : "name",
+  "lvl" : 1,
+  "min" : 0,
+  "max" : 1,
+  "type" : "",
+  "desc" : ""
+}, {
+  "path" : "eter.name",
+  "name" : "name",
+  "lvl" : 1,
+  "min" : 0,
+  "max" : 1,
+  "type" : "",
+  "desc" : ""
+}, {
+  "path" : "eter.name",
+  "name" : "name",
+  "lvl" : 1,
+  "min" : 0,
+  "max" : 1,
+  "type" : "",
+  "desc" : ""
+}, {
+  "path" : "eter.name",
+  "name" : "name",
+  "lvl" : 1,
+  "min" : 0,
+  "max" : 1,
+  "type" : "",
+  "desc" : ""
+}, {
+  "path" : "eter.part",
+  "name" : "part",
+  "lvl" : 1,
+  "min" : 0,
+  "max" : 1,
+  "type" : "",
+  "desc" : ""
+}, {
+  "path" : "eter.part",
+  "name" : "part",
+  "lvl" : 1,
+  "min" : 0,
+  "max" : 1,
+  "type" : "",
+  "desc" : ""
+}, {
+  "path" : "eter.part",
+  "name" : "part",
+  "lvl" : 1,
+  "min" : 0,
+  "max" : 1,
+  "type" : "",
+  "desc" : ""
+}, {
+  "path" : "eter.part",
+  "name" : "part",
+  "lvl" : 1,
+  "min" : 0,
+  "max" : 1,
+  "type" : "",
+  "desc" : ""
+}, {
+  "path" : "eter.part",
+  "name" : "part",
+  "lvl" : 1,
+  "min" : 0,
+  "max" : 1,
+  "type" : "",
+  "desc" : ""
+}, {
+  "path" : "eter.part",
+  "name" : "part",
+  "lvl" : 1,
+  "min" : 0,
+  "max" : 1,
+  "type" : "",
+  "desc" : ""
+}, {
+  "path" : "eter.part",
+  "name" : "part",
+  "lvl" : 1,
+  "min" : 0,
+  "max" : 1,
+  "type" : "",
+  "desc" : ""
+}, {
+  "path" : "eter.part",
+  "name" : "part",
+  "lvl" : 1,
+  "min" : 0,
+  "max" : 1,
+  "type" : "",
+  "desc" : ""
+}, {
+  "path" : "eter.part",
+  "name" : "part",
+  "lvl" : 1,
+  "min" : 0,
+  "max" : 1,
+  "type" : "",
+  "desc" : ""
+}, {
+  "path" : "eter.part",
+  "name" : "part",
+  "lvl" : 1,
+  "min" : 0,
+  "max" : 1,
+  "type" : "",
+  "desc" : ""
+}, {
+  "path" : "eter.resource",
+  "name" : "resource",
+  "lvl" : 1,
+  "min" : 0,
+  "max" : 1,
+  "type" : "",
+  "desc" : ""
+}, {
+  "path" : "eter.resource",
+  "name" : "resource",
+  "lvl" : 1,
+  "min" : 0,
+  "max" : 1,
+  "type" : "",
+  "desc" : ""
+}, {
+  "path" : "eter.resource",
+  "name" : "resource",
+  "lvl" : 1,
+  "min" : 0,
+  "max" : 1,
+  "type" : "",
+  "desc" : ""
+}, {
+  "path" : "eter.resource",
+  "name" : "resource",
+  "lvl" : 1,
+  "min" : 0,
+  "max" : 1,
+  "type" : "",
+  "desc" : ""
+}, {
+  "path" : "eter.resource",
+  "name" : "resource",
+  "lvl" : 1,
+  "min" : 0,
+  "max" : 1,
+  "type" : "",
+  "desc" : ""
+}, {
+  "path" : "eter.resource",
+  "name" : "resource",
+  "lvl" : 1,
+  "min" : 0,
+  "max" : 1,
+  "type" : "",
+  "desc" : ""
+}, {
+  "path" : "eter.resource",
+  "name" : "resource",
+  "lvl" : 1,
+  "min" : 0,
+  "max" : 1,
+  "type" : "",
+  "desc" : ""
+}, {
+  "path" : "eter.resource",
+  "name" : "resource",
+  "lvl" : 1,
+  "min" : 0,
+  "max" : 1,
+  "type" : "",
+  "desc" : ""
+}, {
+  "path" : "eter.resource",
+  "name" : "resource",
+  "lvl" : 1,
+  "min" : 0,
+  "max" : 1,
+  "type" : "",
+  "desc" : ""
+}, {
+  "path" : "eter.resource",
+  "name" : "resource",
+  "lvl" : 1,
+  "min" : 0,
+  "max" : 1,
+  "type" : "",
+  "desc" : ""
+}, {
+  "path" : "eter.value[x]",
+  "name" : "value[x]",
+  "lvl" : 1,
+  "min" : 1,
+  "max" : 1,
+  "type" : "string",
+  "desc" : ""
+}, {
+  "path" : "eter.value[x]",
+  "name" : "value[x]",
+  "lvl" : 1,
+  "min" : 1,
+  "max" : 1,
+  "type" : "integer",
+  "desc" : ""
+}, {
+  "path" : "eter.value[x]",
+  "name" : "value[x]",
+  "lvl" : 1,
+  "min" : 1,
+  "max" : 1,
+  "type" : "string",
+  "desc" : ""
+}, {
+  "path" : "eter.value[x]",
+  "name" : "value[x]",
+  "lvl" : 1,
+  "min" : 1,
+  "max" : 1,
+  "type" : "string",
+  "desc" : ""
+}, {
+  "path" : "eter.value[x]",
+  "name" : "value[x]",
+  "lvl" : 1,
+  "min" : 1,
+  "max" : 1,
+  "type" : "string",
+  "desc" : ""
+}, {
+  "path" : "eter.value[x]",
+  "name" : "value[x]",
+  "lvl" : 1,
+  "min" : 1,
+  "max" : 1,
+  "type" : "string",
+  "desc" : ""
+}, {
+  "path" : "eter.value[x]",
+  "name" : "value[x]",
+  "lvl" : 1,
+  "min" : 1,
+  "max" : 1,
+  "type" : "boolean",
+  "desc" : ""
+}, {
+  "path" : "eter.value[x]",
+  "name" : "value[x]",
+  "lvl" : 1,
+  "min" : 1,
+  "max" : 1,
+  "type" : "boolean",
+  "desc" : ""
+}, {
+  "path" : "eter.value[x]",
+  "name" : "value[x]",
+  "lvl" : 1,
+  "min" : 1,
+  "max" : 1,
+  "type" : "string",
+  "desc" : ""
+}, {
+  "path" : "eter.value[x]",
+  "name" : "value[x]",
+  "lvl" : 1,
+  "min" : 1,
+  "max" : 1,
+  "type" : "string",
+  "desc" : ""
+} ]
+```
+
+
+## aidboxtopicdestination-amqp-rabbitmq-0-9-1-at-least-once
+
+RabbitMQ AMQP 0-9-1 at-least-once delivery profile for AidboxTopicDestination.
+
+```fhir-structure
+[ {
+  "path" : "eter",
+  "name" : "parameter",
+  "lvl" : 0,
+  "min" : 0,
+  "max" : 1,
+  "type" : "",
+  "desc" : ""
+}, {
+  "path" : "eter",
+  "name" : "parameter",
+  "lvl" : 0,
+  "min" : 1,
+  "max" : 1,
+  "type" : "",
+  "desc" : ""
+}, {
+  "path" : "eter",
+  "name" : "parameter",
+  "lvl" : 0,
+  "min" : 0,
+  "max" : 1,
+  "type" : "",
+  "desc" : ""
+}, {
+  "path" : "eter",
+  "name" : "parameter",
+  "lvl" : 0,
+  "min" : 1,
+  "max" : 1,
+  "type" : "",
+  "desc" : ""
+}, {
+  "path" : "eter",
+  "name" : "parameter",
+  "lvl" : 0,
+  "min" : 0,
+  "max" : 1,
+  "type" : "",
+  "desc" : ""
+}, {
+  "path" : "eter",
+  "name" : "parameter",
+  "lvl" : 0,
+  "min" : 0,
+  "max" : 1,
+  "type" : "",
+  "desc" : ""
+}, {
+  "path" : "eter",
+  "name" : "parameter",
+  "lvl" : 0,
+  "min" : 0,
+  "max" : 1,
+  "type" : "",
+  "desc" : ""
+}, {
+  "path" : "eter",
+  "name" : "parameter",
+  "lvl" : 0,
+  "min" : 0,
+  "max" : 1,
+  "type" : "",
+  "desc" : ""
+}, {
+  "path" : "eter",
+  "name" : "parameter",
+  "lvl" : 0,
+  "min" : 0,
+  "max" : 1,
+  "type" : "",
+  "desc" : ""
+}, {
+  "path" : "eter",
+  "name" : "parameter",
+  "lvl" : 0,
+  "min" : 0,
+  "max" : 1,
+  "type" : "",
+  "desc" : ""
+}, {
+  "path" : "eter",
+  "name" : "parameter",
+  "lvl" : 0,
+  "min" : 0,
+  "max" : 1,
+  "type" : "",
+  "desc" : ""
+}, {
+  "path" : "eter.name",
+  "name" : "name",
+  "lvl" : 1,
+  "min" : 0,
+  "max" : 1,
+  "type" : "",
+  "desc" : ""
+}, {
+  "path" : "eter.name",
+  "name" : "name",
+  "lvl" : 1,
+  "min" : 0,
+  "max" : 1,
+  "type" : "",
+  "desc" : ""
+}, {
+  "path" : "eter.name",
+  "name" : "name",
+  "lvl" : 1,
+  "min" : 0,
+  "max" : 1,
+  "type" : "",
+  "desc" : ""
+}, {
+  "path" : "eter.name",
+  "name" : "name",
+  "lvl" : 1,
+  "min" : 0,
+  "max" : 1,
+  "type" : "",
+  "desc" : ""
+}, {
+  "path" : "eter.name",
+  "name" : "name",
+  "lvl" : 1,
+  "min" : 0,
+  "max" : 1,
+  "type" : "",
+  "desc" : ""
+}, {
+  "path" : "eter.name",
+  "name" : "name",
+  "lvl" : 1,
+  "min" : 0,
+  "max" : 1,
+  "type" : "",
+  "desc" : ""
+}, {
+  "path" : "eter.name",
+  "name" : "name",
+  "lvl" : 1,
+  "min" : 0,
+  "max" : 1,
+  "type" : "",
+  "desc" : ""
+}, {
+  "path" : "eter.name",
+  "name" : "name",
+  "lvl" : 1,
+  "min" : 0,
+  "max" : 1,
+  "type" : "",
+  "desc" : ""
+}, {
+  "path" : "eter.name",
+  "name" : "name",
+  "lvl" : 1,
+  "min" : 0,
+  "max" : 1,
+  "type" : "",
+  "desc" : ""
+}, {
+  "path" : "eter.name",
+  "name" : "name",
+  "lvl" : 1,
+  "min" : 0,
+  "max" : 1,
+  "type" : "",
+  "desc" : ""
+}, {
+  "path" : "eter.part",
+  "name" : "part",
+  "lvl" : 1,
+  "min" : 0,
+  "max" : 1,
+  "type" : "",
+  "desc" : ""
+}, {
+  "path" : "eter.part",
+  "name" : "part",
+  "lvl" : 1,
+  "min" : 0,
+  "max" : 1,
+  "type" : "",
+  "desc" : ""
+}, {
+  "path" : "eter.part",
+  "name" : "part",
+  "lvl" : 1,
+  "min" : 0,
+  "max" : 1,
+  "type" : "",
+  "desc" : ""
+}, {
+  "path" : "eter.part",
+  "name" : "part",
+  "lvl" : 1,
+  "min" : 0,
+  "max" : 1,
+  "type" : "",
+  "desc" : ""
+}, {
+  "path" : "eter.part",
+  "name" : "part",
+  "lvl" : 1,
+  "min" : 0,
+  "max" : 1,
+  "type" : "",
+  "desc" : ""
+}, {
+  "path" : "eter.part",
+  "name" : "part",
+  "lvl" : 1,
+  "min" : 0,
+  "max" : 1,
+  "type" : "",
+  "desc" : ""
+}, {
+  "path" : "eter.part",
+  "name" : "part",
+  "lvl" : 1,
+  "min" : 0,
+  "max" : 1,
+  "type" : "",
+  "desc" : ""
+}, {
+  "path" : "eter.part",
+  "name" : "part",
+  "lvl" : 1,
+  "min" : 0,
+  "max" : 1,
+  "type" : "",
+  "desc" : ""
+}, {
+  "path" : "eter.part",
+  "name" : "part",
+  "lvl" : 1,
+  "min" : 0,
+  "max" : 1,
+  "type" : "",
+  "desc" : ""
+}, {
+  "path" : "eter.part",
+  "name" : "part",
+  "lvl" : 1,
+  "min" : 0,
+  "max" : 1,
+  "type" : "",
+  "desc" : ""
+}, {
+  "path" : "eter.resource",
+  "name" : "resource",
+  "lvl" : 1,
+  "min" : 0,
+  "max" : 1,
+  "type" : "",
+  "desc" : ""
+}, {
+  "path" : "eter.resource",
+  "name" : "resource",
+  "lvl" : 1,
+  "min" : 0,
+  "max" : 1,
+  "type" : "",
+  "desc" : ""
+}, {
+  "path" : "eter.resource",
+  "name" : "resource",
+  "lvl" : 1,
+  "min" : 0,
+  "max" : 1,
+  "type" : "",
+  "desc" : ""
+}, {
+  "path" : "eter.resource",
+  "name" : "resource",
+  "lvl" : 1,
+  "min" : 0,
+  "max" : 1,
+  "type" : "",
+  "desc" : ""
+}, {
+  "path" : "eter.resource",
+  "name" : "resource",
+  "lvl" : 1,
+  "min" : 0,
+  "max" : 1,
+  "type" : "",
+  "desc" : ""
+}, {
+  "path" : "eter.resource",
+  "name" : "resource",
+  "lvl" : 1,
+  "min" : 0,
+  "max" : 1,
+  "type" : "",
+  "desc" : ""
+}, {
+  "path" : "eter.resource",
+  "name" : "resource",
+  "lvl" : 1,
+  "min" : 0,
+  "max" : 1,
+  "type" : "",
+  "desc" : ""
+}, {
+  "path" : "eter.resource",
+  "name" : "resource",
+  "lvl" : 1,
+  "min" : 0,
+  "max" : 1,
+  "type" : "",
+  "desc" : ""
+}, {
+  "path" : "eter.resource",
+  "name" : "resource",
+  "lvl" : 1,
+  "min" : 0,
+  "max" : 1,
+  "type" : "",
+  "desc" : ""
+}, {
+  "path" : "eter.resource",
+  "name" : "resource",
+  "lvl" : 1,
+  "min" : 0,
+  "max" : 1,
+  "type" : "",
+  "desc" : ""
+}, {
+  "path" : "eter.value[x]",
+  "name" : "value[x]",
+  "lvl" : 1,
+  "min" : 1,
+  "max" : 1,
+  "type" : "string",
+  "desc" : ""
+}, {
+  "path" : "eter.value[x]",
+  "name" : "value[x]",
+  "lvl" : 1,
+  "min" : 1,
+  "max" : 1,
+  "type" : "integer",
+  "desc" : ""
+}, {
+  "path" : "eter.value[x]",
+  "name" : "value[x]",
+  "lvl" : 1,
+  "min" : 1,
+  "max" : 1,
+  "type" : "string",
+  "desc" : ""
+}, {
+  "path" : "eter.value[x]",
+  "name" : "value[x]",
+  "lvl" : 1,
+  "min" : 1,
+  "max" : 1,
+  "type" : "string",
+  "desc" : ""
+}, {
+  "path" : "eter.value[x]",
+  "name" : "value[x]",
+  "lvl" : 1,
+  "min" : 1,
+  "max" : 1,
+  "type" : "string",
+  "desc" : ""
+}, {
+  "path" : "eter.value[x]",
+  "name" : "value[x]",
+  "lvl" : 1,
+  "min" : 1,
+  "max" : 1,
+  "type" : "string",
+  "desc" : ""
+}, {
+  "path" : "eter.value[x]",
+  "name" : "value[x]",
+  "lvl" : 1,
+  "min" : 1,
+  "max" : 1,
+  "type" : "string",
+  "desc" : ""
+}, {
+  "path" : "eter.value[x]",
+  "name" : "value[x]",
+  "lvl" : 1,
+  "min" : 1,
+  "max" : 1,
+  "type" : "string",
+  "desc" : ""
+}, {
+  "path" : "eter.value[x]",
+  "name" : "value[x]",
+  "lvl" : 1,
+  "min" : 1,
+  "max" : 1,
+  "type" : "boolean",
+  "desc" : ""
+}, {
+  "path" : "eter.value[x]",
+  "name" : "value[x]",
+  "lvl" : 1,
+  "min" : 1,
+  "max" : 1,
+  "type" : "integer",
+  "desc" : ""
+} ]
+```
+
+
+## aidboxtopicdestination-aws-eventbridge-at-least-once
+
+AWS EventBridge at-least-once delivery profile for AidboxTopicDestination.
+
+```fhir-structure
+[ {
+  "path" : "eter",
+  "name" : "parameter",
+  "lvl" : 0,
+  "min" : 0,
+  "max" : 1,
+  "type" : "",
+  "desc" : ""
+}, {
+  "path" : "eter",
+  "name" : "parameter",
+  "lvl" : 0,
+  "min" : 1,
+  "max" : 1,
+  "type" : "",
+  "desc" : ""
+}, {
+  "path" : "eter",
+  "name" : "parameter",
+  "lvl" : 0,
+  "min" : 1,
+  "max" : 1,
+  "type" : "",
+  "desc" : ""
+}, {
+  "path" : "eter",
+  "name" : "parameter",
+  "lvl" : 0,
+  "min" : 1,
+  "max" : 1,
+  "type" : "",
+  "desc" : ""
+}, {
+  "path" : "eter",
+  "name" : "parameter",
+  "lvl" : 0,
+  "min" : 1,
+  "max" : 1,
+  "type" : "",
+  "desc" : ""
+}, {
+  "path" : "eter",
+  "name" : "parameter",
+  "lvl" : 0,
+  "min" : 0,
+  "max" : 1,
+  "type" : "",
+  "desc" : ""
+}, {
+  "path" : "eter",
+  "name" : "parameter",
+  "lvl" : 0,
+  "min" : 0,
+  "max" : 1,
+  "type" : "",
+  "desc" : ""
+}, {
+  "path" : "eter",
+  "name" : "parameter",
+  "lvl" : 0,
+  "min" : 0,
+  "max" : 1,
+  "type" : "",
+  "desc" : ""
+}, {
+  "path" : "eter",
+  "name" : "parameter",
+  "lvl" : 0,
+  "min" : 0,
+  "max" : 1,
+  "type" : "",
+  "desc" : ""
+}, {
+  "path" : "eter.name",
+  "name" : "name",
+  "lvl" : 1,
+  "min" : 0,
+  "max" : 1,
+  "type" : "",
+  "desc" : ""
+}, {
+  "path" : "eter.name",
+  "name" : "name",
+  "lvl" : 1,
+  "min" : 0,
+  "max" : 1,
+  "type" : "",
+  "desc" : ""
+}, {
+  "path" : "eter.name",
+  "name" : "name",
+  "lvl" : 1,
+  "min" : 0,
+  "max" : 1,
+  "type" : "",
+  "desc" : ""
+}, {
+  "path" : "eter.name",
+  "name" : "name",
+  "lvl" : 1,
+  "min" : 0,
+  "max" : 1,
+  "type" : "",
+  "desc" : ""
+}, {
+  "path" : "eter.name",
+  "name" : "name",
+  "lvl" : 1,
+  "min" : 0,
+  "max" : 1,
+  "type" : "",
+  "desc" : ""
+}, {
+  "path" : "eter.name",
+  "name" : "name",
+  "lvl" : 1,
+  "min" : 0,
+  "max" : 1,
+  "type" : "",
+  "desc" : ""
+}, {
+  "path" : "eter.name",
+  "name" : "name",
+  "lvl" : 1,
+  "min" : 0,
+  "max" : 1,
+  "type" : "",
+  "desc" : ""
+}, {
+  "path" : "eter.name",
+  "name" : "name",
+  "lvl" : 1,
+  "min" : 0,
+  "max" : 1,
+  "type" : "",
+  "desc" : ""
+}, {
+  "path" : "eter.part",
+  "name" : "part",
+  "lvl" : 1,
+  "min" : 0,
+  "max" : 1,
+  "type" : "",
+  "desc" : ""
+}, {
+  "path" : "eter.part",
+  "name" : "part",
+  "lvl" : 1,
+  "min" : 0,
+  "max" : 1,
+  "type" : "",
+  "desc" : ""
+}, {
+  "path" : "eter.part",
+  "name" : "part",
+  "lvl" : 1,
+  "min" : 0,
+  "max" : 1,
+  "type" : "",
+  "desc" : ""
+}, {
+  "path" : "eter.part",
+  "name" : "part",
+  "lvl" : 1,
+  "min" : 0,
+  "max" : 1,
+  "type" : "",
+  "desc" : ""
+}, {
+  "path" : "eter.part",
+  "name" : "part",
+  "lvl" : 1,
+  "min" : 0,
+  "max" : 1,
+  "type" : "",
+  "desc" : ""
+}, {
+  "path" : "eter.part",
+  "name" : "part",
+  "lvl" : 1,
+  "min" : 0,
+  "max" : 1,
+  "type" : "",
+  "desc" : ""
+}, {
+  "path" : "eter.part",
+  "name" : "part",
+  "lvl" : 1,
+  "min" : 0,
+  "max" : 1,
+  "type" : "",
+  "desc" : ""
+}, {
+  "path" : "eter.part",
+  "name" : "part",
+  "lvl" : 1,
+  "min" : 0,
+  "max" : 1,
+  "type" : "",
+  "desc" : ""
+}, {
+  "path" : "eter.resource",
+  "name" : "resource",
+  "lvl" : 1,
+  "min" : 0,
+  "max" : 1,
+  "type" : "",
+  "desc" : ""
+}, {
+  "path" : "eter.resource",
+  "name" : "resource",
+  "lvl" : 1,
+  "min" : 0,
+  "max" : 1,
+  "type" : "",
+  "desc" : ""
+}, {
+  "path" : "eter.resource",
+  "name" : "resource",
+  "lvl" : 1,
+  "min" : 0,
+  "max" : 1,
+  "type" : "",
+  "desc" : ""
+}, {
+  "path" : "eter.resource",
+  "name" : "resource",
+  "lvl" : 1,
+  "min" : 0,
+  "max" : 1,
+  "type" : "",
+  "desc" : ""
+}, {
+  "path" : "eter.resource",
+  "name" : "resource",
+  "lvl" : 1,
+  "min" : 0,
+  "max" : 1,
+  "type" : "",
+  "desc" : ""
+}, {
+  "path" : "eter.resource",
+  "name" : "resource",
+  "lvl" : 1,
+  "min" : 0,
+  "max" : 1,
+  "type" : "",
+  "desc" : ""
+}, {
+  "path" : "eter.resource",
+  "name" : "resource",
+  "lvl" : 1,
+  "min" : 0,
+  "max" : 1,
+  "type" : "",
+  "desc" : ""
+}, {
+  "path" : "eter.resource",
+  "name" : "resource",
+  "lvl" : 1,
+  "min" : 0,
+  "max" : 1,
+  "type" : "",
+  "desc" : ""
+}, {
+  "path" : "eter.value[x]",
+  "name" : "value[x]",
+  "lvl" : 1,
+  "min" : 1,
+  "max" : 1,
+  "type" : "string",
+  "desc" : ""
+}, {
+  "path" : "eter.value[x]",
+  "name" : "value[x]",
+  "lvl" : 1,
+  "min" : 1,
+  "max" : 1,
+  "type" : "string",
+  "desc" : ""
+}, {
+  "path" : "eter.value[x]",
+  "name" : "value[x]",
+  "lvl" : 1,
+  "min" : 1,
+  "max" : 1,
+  "type" : "string",
+  "desc" : ""
+}, {
+  "path" : "eter.value[x]",
+  "name" : "value[x]",
+  "lvl" : 1,
+  "min" : 1,
+  "max" : 1,
+  "type" : "string",
+  "desc" : ""
+}, {
+  "path" : "eter.value[x]",
+  "name" : "value[x]",
+  "lvl" : 1,
+  "min" : 1,
+  "max" : 1,
+  "type" : "string",
+  "desc" : ""
+}, {
+  "path" : "eter.value[x]",
+  "name" : "value[x]",
+  "lvl" : 1,
+  "min" : 1,
+  "max" : 1,
+  "type" : "string",
+  "desc" : ""
+}, {
+  "path" : "eter.value[x]",
+  "name" : "value[x]",
+  "lvl" : 1,
+  "min" : 1,
+  "max" : 1,
+  "type" : "string",
+  "desc" : ""
+}, {
+  "path" : "eter.value[x]",
+  "name" : "value[x]",
+  "lvl" : 1,
+  "min" : 1,
+  "max" : 1,
+  "type" : "integer",
+  "desc" : ""
+} ]
+```
+
+
+## aidboxtopicdestination-aws-eventbridge-best-effort
+
+AWS EventBridge best-effort delivery profile for AidboxTopicDestination.
+
+```fhir-structure
+[ {
+  "path" : "eter",
+  "name" : "parameter",
+  "lvl" : 0,
+  "min" : 0,
+  "max" : 1,
+  "type" : "",
+  "desc" : ""
+}, {
+  "path" : "eter",
+  "name" : "parameter",
+  "lvl" : 0,
+  "min" : 1,
+  "max" : 1,
+  "type" : "",
+  "desc" : ""
+}, {
+  "path" : "eter",
+  "name" : "parameter",
+  "lvl" : 0,
+  "min" : 1,
+  "max" : 1,
+  "type" : "",
+  "desc" : ""
+}, {
+  "path" : "eter",
+  "name" : "parameter",
+  "lvl" : 0,
+  "min" : 1,
+  "max" : 1,
+  "type" : "",
+  "desc" : ""
+}, {
+  "path" : "eter",
+  "name" : "parameter",
+  "lvl" : 0,
+  "min" : 1,
+  "max" : 1,
+  "type" : "",
+  "desc" : ""
+}, {
+  "path" : "eter",
+  "name" : "parameter",
+  "lvl" : 0,
+  "min" : 0,
+  "max" : 1,
+  "type" : "",
+  "desc" : ""
+}, {
+  "path" : "eter",
+  "name" : "parameter",
+  "lvl" : 0,
+  "min" : 0,
+  "max" : 1,
+  "type" : "",
+  "desc" : ""
+}, {
+  "path" : "eter",
+  "name" : "parameter",
+  "lvl" : 0,
+  "min" : 0,
+  "max" : 1,
+  "type" : "",
+  "desc" : ""
+}, {
+  "path" : "eter.name",
+  "name" : "name",
+  "lvl" : 1,
+  "min" : 0,
+  "max" : 1,
+  "type" : "",
+  "desc" : ""
+}, {
+  "path" : "eter.name",
+  "name" : "name",
+  "lvl" : 1,
+  "min" : 0,
+  "max" : 1,
+  "type" : "",
+  "desc" : ""
+}, {
+  "path" : "eter.name",
+  "name" : "name",
+  "lvl" : 1,
+  "min" : 0,
+  "max" : 1,
+  "type" : "",
+  "desc" : ""
+}, {
+  "path" : "eter.name",
+  "name" : "name",
+  "lvl" : 1,
+  "min" : 0,
+  "max" : 1,
+  "type" : "",
+  "desc" : ""
+}, {
+  "path" : "eter.name",
+  "name" : "name",
+  "lvl" : 1,
+  "min" : 0,
+  "max" : 1,
+  "type" : "",
+  "desc" : ""
+}, {
+  "path" : "eter.name",
+  "name" : "name",
+  "lvl" : 1,
+  "min" : 0,
+  "max" : 1,
+  "type" : "",
+  "desc" : ""
+}, {
+  "path" : "eter.name",
+  "name" : "name",
+  "lvl" : 1,
+  "min" : 0,
+  "max" : 1,
+  "type" : "",
+  "desc" : ""
+}, {
+  "path" : "eter.part",
+  "name" : "part",
+  "lvl" : 1,
+  "min" : 0,
+  "max" : 1,
+  "type" : "",
+  "desc" : ""
+}, {
+  "path" : "eter.part",
+  "name" : "part",
+  "lvl" : 1,
+  "min" : 0,
+  "max" : 1,
+  "type" : "",
+  "desc" : ""
+}, {
+  "path" : "eter.part",
+  "name" : "part",
+  "lvl" : 1,
+  "min" : 0,
+  "max" : 1,
+  "type" : "",
+  "desc" : ""
+}, {
+  "path" : "eter.part",
+  "name" : "part",
+  "lvl" : 1,
+  "min" : 0,
+  "max" : 1,
+  "type" : "",
+  "desc" : ""
+}, {
+  "path" : "eter.part",
+  "name" : "part",
+  "lvl" : 1,
+  "min" : 0,
+  "max" : 1,
+  "type" : "",
+  "desc" : ""
+}, {
+  "path" : "eter.part",
+  "name" : "part",
+  "lvl" : 1,
+  "min" : 0,
+  "max" : 1,
+  "type" : "",
+  "desc" : ""
+}, {
+  "path" : "eter.part",
+  "name" : "part",
+  "lvl" : 1,
+  "min" : 0,
+  "max" : 1,
+  "type" : "",
+  "desc" : ""
+}, {
+  "path" : "eter.resource",
+  "name" : "resource",
+  "lvl" : 1,
+  "min" : 0,
+  "max" : 1,
+  "type" : "",
+  "desc" : ""
+}, {
+  "path" : "eter.resource",
+  "name" : "resource",
+  "lvl" : 1,
+  "min" : 0,
+  "max" : 1,
+  "type" : "",
+  "desc" : ""
+}, {
+  "path" : "eter.resource",
+  "name" : "resource",
+  "lvl" : 1,
+  "min" : 0,
+  "max" : 1,
+  "type" : "",
+  "desc" : ""
+}, {
+  "path" : "eter.resource",
+  "name" : "resource",
+  "lvl" : 1,
+  "min" : 0,
+  "max" : 1,
+  "type" : "",
+  "desc" : ""
+}, {
+  "path" : "eter.resource",
+  "name" : "resource",
+  "lvl" : 1,
+  "min" : 0,
+  "max" : 1,
+  "type" : "",
+  "desc" : ""
+}, {
+  "path" : "eter.resource",
+  "name" : "resource",
+  "lvl" : 1,
+  "min" : 0,
+  "max" : 1,
+  "type" : "",
+  "desc" : ""
+}, {
+  "path" : "eter.resource",
+  "name" : "resource",
+  "lvl" : 1,
+  "min" : 0,
+  "max" : 1,
+  "type" : "",
+  "desc" : ""
+}, {
+  "path" : "eter.value[x]",
+  "name" : "value[x]",
+  "lvl" : 1,
+  "min" : 1,
+  "max" : 1,
+  "type" : "string",
+  "desc" : ""
+}, {
+  "path" : "eter.value[x]",
+  "name" : "value[x]",
+  "lvl" : 1,
+  "min" : 1,
+  "max" : 1,
+  "type" : "string",
+  "desc" : ""
+}, {
+  "path" : "eter.value[x]",
+  "name" : "value[x]",
+  "lvl" : 1,
+  "min" : 1,
+  "max" : 1,
+  "type" : "string",
+  "desc" : ""
+}, {
+  "path" : "eter.value[x]",
+  "name" : "value[x]",
+  "lvl" : 1,
+  "min" : 1,
+  "max" : 1,
+  "type" : "string",
+  "desc" : ""
+}, {
+  "path" : "eter.value[x]",
+  "name" : "value[x]",
+  "lvl" : 1,
+  "min" : 1,
+  "max" : 1,
+  "type" : "string",
+  "desc" : ""
+}, {
+  "path" : "eter.value[x]",
+  "name" : "value[x]",
+  "lvl" : 1,
+  "min" : 1,
+  "max" : 1,
+  "type" : "string",
+  "desc" : ""
+}, {
+  "path" : "eter.value[x]",
+  "name" : "value[x]",
+  "lvl" : 1,
+  "min" : 1,
+  "max" : 1,
+  "type" : "string",
+  "desc" : ""
+} ]
+```
+
+
+## aidboxtopicdestination-aws-sns-at-least-once
+
+AWS SNS at-least-once delivery profile for AidboxTopicDestination.
+
+```fhir-structure
+[ {
+  "path" : "eter",
+  "name" : "parameter",
+  "lvl" : 0,
+  "min" : 0,
+  "max" : 1,
+  "type" : "",
+  "desc" : ""
+}, {
+  "path" : "eter",
+  "name" : "parameter",
+  "lvl" : 0,
+  "min" : 1,
+  "max" : 1,
+  "type" : "",
+  "desc" : ""
+}, {
+  "path" : "eter",
+  "name" : "parameter",
+  "lvl" : 0,
+  "min" : 1,
+  "max" : 1,
+  "type" : "",
+  "desc" : ""
+}, {
+  "path" : "eter",
+  "name" : "parameter",
+  "lvl" : 0,
+  "min" : 0,
+  "max" : 1,
+  "type" : "",
+  "desc" : ""
+}, {
+  "path" : "eter",
+  "name" : "parameter",
+  "lvl" : 0,
+  "min" : 0,
+  "max" : 1,
+  "type" : "",
+  "desc" : ""
+}, {
+  "path" : "eter",
+  "name" : "parameter",
+  "lvl" : 0,
+  "min" : 0,
+  "max" : 1,
+  "type" : "",
+  "desc" : ""
+}, {
+  "path" : "eter",
+  "name" : "parameter",
+  "lvl" : 0,
+  "min" : 0,
+  "max" : 1,
+  "type" : "",
+  "desc" : ""
+}, {
+  "path" : "eter",
+  "name" : "parameter",
+  "lvl" : 0,
+  "min" : 0,
+  "max" : 1,
+  "type" : "",
+  "desc" : ""
+}, {
+  "path" : "eter.name",
+  "name" : "name",
+  "lvl" : 1,
+  "min" : 0,
+  "max" : 1,
+  "type" : "",
+  "desc" : ""
+}, {
+  "path" : "eter.name",
+  "name" : "name",
+  "lvl" : 1,
+  "min" : 0,
+  "max" : 1,
+  "type" : "",
+  "desc" : ""
+}, {
+  "path" : "eter.name",
+  "name" : "name",
+  "lvl" : 1,
+  "min" : 0,
+  "max" : 1,
+  "type" : "",
+  "desc" : ""
+}, {
+  "path" : "eter.name",
+  "name" : "name",
+  "lvl" : 1,
+  "min" : 0,
+  "max" : 1,
+  "type" : "",
+  "desc" : ""
+}, {
+  "path" : "eter.name",
+  "name" : "name",
+  "lvl" : 1,
+  "min" : 0,
+  "max" : 1,
+  "type" : "",
+  "desc" : ""
+}, {
+  "path" : "eter.name",
+  "name" : "name",
+  "lvl" : 1,
+  "min" : 0,
+  "max" : 1,
+  "type" : "",
+  "desc" : ""
+}, {
+  "path" : "eter.name",
+  "name" : "name",
+  "lvl" : 1,
+  "min" : 0,
+  "max" : 1,
+  "type" : "",
+  "desc" : ""
+}, {
+  "path" : "eter.part",
+  "name" : "part",
+  "lvl" : 1,
+  "min" : 0,
+  "max" : 1,
+  "type" : "",
+  "desc" : ""
+}, {
+  "path" : "eter.part",
+  "name" : "part",
+  "lvl" : 1,
+  "min" : 0,
+  "max" : 1,
+  "type" : "",
+  "desc" : ""
+}, {
+  "path" : "eter.part",
+  "name" : "part",
+  "lvl" : 1,
+  "min" : 0,
+  "max" : 1,
+  "type" : "",
+  "desc" : ""
+}, {
+  "path" : "eter.part",
+  "name" : "part",
+  "lvl" : 1,
+  "min" : 0,
+  "max" : 1,
+  "type" : "",
+  "desc" : ""
+}, {
+  "path" : "eter.part",
+  "name" : "part",
+  "lvl" : 1,
+  "min" : 0,
+  "max" : 1,
+  "type" : "",
+  "desc" : ""
+}, {
+  "path" : "eter.part",
+  "name" : "part",
+  "lvl" : 1,
+  "min" : 0,
+  "max" : 1,
+  "type" : "",
+  "desc" : ""
+}, {
+  "path" : "eter.part",
+  "name" : "part",
+  "lvl" : 1,
+  "min" : 0,
+  "max" : 1,
+  "type" : "",
+  "desc" : ""
+}, {
+  "path" : "eter.resource",
+  "name" : "resource",
+  "lvl" : 1,
+  "min" : 0,
+  "max" : 1,
+  "type" : "",
+  "desc" : ""
+}, {
+  "path" : "eter.resource",
+  "name" : "resource",
+  "lvl" : 1,
+  "min" : 0,
+  "max" : 1,
+  "type" : "",
+  "desc" : ""
+}, {
+  "path" : "eter.resource",
+  "name" : "resource",
+  "lvl" : 1,
+  "min" : 0,
+  "max" : 1,
+  "type" : "",
+  "desc" : ""
+}, {
+  "path" : "eter.resource",
+  "name" : "resource",
+  "lvl" : 1,
+  "min" : 0,
+  "max" : 1,
+  "type" : "",
+  "desc" : ""
+}, {
+  "path" : "eter.resource",
+  "name" : "resource",
+  "lvl" : 1,
+  "min" : 0,
+  "max" : 1,
+  "type" : "",
+  "desc" : ""
+}, {
+  "path" : "eter.resource",
+  "name" : "resource",
+  "lvl" : 1,
+  "min" : 0,
+  "max" : 1,
+  "type" : "",
+  "desc" : ""
+}, {
+  "path" : "eter.resource",
+  "name" : "resource",
+  "lvl" : 1,
+  "min" : 0,
+  "max" : 1,
+  "type" : "",
+  "desc" : ""
+}, {
+  "path" : "eter.value[x]",
+  "name" : "value[x]",
+  "lvl" : 1,
+  "min" : 1,
+  "max" : 1,
+  "type" : "string",
+  "desc" : ""
+}, {
+  "path" : "eter.value[x]",
+  "name" : "value[x]",
+  "lvl" : 1,
+  "min" : 1,
+  "max" : 1,
+  "type" : "string",
+  "desc" : ""
+}, {
+  "path" : "eter.value[x]",
+  "name" : "value[x]",
+  "lvl" : 1,
+  "min" : 1,
+  "max" : 1,
+  "type" : "string",
+  "desc" : ""
+}, {
+  "path" : "eter.value[x]",
+  "name" : "value[x]",
+  "lvl" : 1,
+  "min" : 1,
+  "max" : 1,
+  "type" : "string",
+  "desc" : ""
+}, {
+  "path" : "eter.value[x]",
+  "name" : "value[x]",
+  "lvl" : 1,
+  "min" : 1,
+  "max" : 1,
+  "type" : "string",
+  "desc" : ""
+}, {
+  "path" : "eter.value[x]",
+  "name" : "value[x]",
+  "lvl" : 1,
+  "min" : 1,
+  "max" : 1,
+  "type" : "string",
+  "desc" : ""
+}, {
+  "path" : "eter.value[x]",
+  "name" : "value[x]",
+  "lvl" : 1,
+  "min" : 1,
+  "max" : 1,
+  "type" : "integer",
+  "desc" : ""
+} ]
+```
+
+
+## aidboxtopicdestination-aws-sns-best-effort
+
+AWS SNS best-effort delivery profile for AidboxTopicDestination.
+
+```fhir-structure
+[ {
+  "path" : "eter",
+  "name" : "parameter",
+  "lvl" : 0,
+  "min" : 0,
+  "max" : 1,
+  "type" : "",
+  "desc" : ""
+}, {
+  "path" : "eter",
+  "name" : "parameter",
+  "lvl" : 0,
+  "min" : 1,
+  "max" : 1,
+  "type" : "",
+  "desc" : ""
+}, {
+  "path" : "eter",
+  "name" : "parameter",
+  "lvl" : 0,
+  "min" : 1,
+  "max" : 1,
+  "type" : "",
+  "desc" : ""
+}, {
+  "path" : "eter",
+  "name" : "parameter",
+  "lvl" : 0,
+  "min" : 0,
+  "max" : 1,
+  "type" : "",
+  "desc" : ""
+}, {
+  "path" : "eter",
+  "name" : "parameter",
+  "lvl" : 0,
+  "min" : 0,
+  "max" : 1,
+  "type" : "",
+  "desc" : ""
+}, {
+  "path" : "eter",
+  "name" : "parameter",
+  "lvl" : 0,
+  "min" : 0,
+  "max" : 1,
+  "type" : "",
+  "desc" : ""
+}, {
+  "path" : "eter",
+  "name" : "parameter",
+  "lvl" : 0,
+  "min" : 0,
+  "max" : 1,
+  "type" : "",
+  "desc" : ""
+}, {
+  "path" : "eter.name",
+  "name" : "name",
+  "lvl" : 1,
+  "min" : 0,
+  "max" : 1,
+  "type" : "",
+  "desc" : ""
+}, {
+  "path" : "eter.name",
+  "name" : "name",
+  "lvl" : 1,
+  "min" : 0,
+  "max" : 1,
+  "type" : "",
+  "desc" : ""
+}, {
+  "path" : "eter.name",
+  "name" : "name",
+  "lvl" : 1,
+  "min" : 0,
+  "max" : 1,
+  "type" : "",
+  "desc" : ""
+}, {
+  "path" : "eter.name",
+  "name" : "name",
+  "lvl" : 1,
+  "min" : 0,
+  "max" : 1,
+  "type" : "",
+  "desc" : ""
+}, {
+  "path" : "eter.name",
+  "name" : "name",
+  "lvl" : 1,
+  "min" : 0,
+  "max" : 1,
+  "type" : "",
+  "desc" : ""
+}, {
+  "path" : "eter.name",
+  "name" : "name",
+  "lvl" : 1,
+  "min" : 0,
+  "max" : 1,
+  "type" : "",
+  "desc" : ""
+}, {
+  "path" : "eter.part",
+  "name" : "part",
+  "lvl" : 1,
+  "min" : 0,
+  "max" : 1,
+  "type" : "",
+  "desc" : ""
+}, {
+  "path" : "eter.part",
+  "name" : "part",
+  "lvl" : 1,
+  "min" : 0,
+  "max" : 1,
+  "type" : "",
+  "desc" : ""
+}, {
+  "path" : "eter.part",
+  "name" : "part",
+  "lvl" : 1,
+  "min" : 0,
+  "max" : 1,
+  "type" : "",
+  "desc" : ""
+}, {
+  "path" : "eter.part",
+  "name" : "part",
+  "lvl" : 1,
+  "min" : 0,
+  "max" : 1,
+  "type" : "",
+  "desc" : ""
+}, {
+  "path" : "eter.part",
+  "name" : "part",
+  "lvl" : 1,
+  "min" : 0,
+  "max" : 1,
+  "type" : "",
+  "desc" : ""
+}, {
+  "path" : "eter.part",
+  "name" : "part",
+  "lvl" : 1,
+  "min" : 0,
+  "max" : 1,
+  "type" : "",
+  "desc" : ""
+}, {
+  "path" : "eter.resource",
+  "name" : "resource",
+  "lvl" : 1,
+  "min" : 0,
+  "max" : 1,
+  "type" : "",
+  "desc" : ""
+}, {
+  "path" : "eter.resource",
+  "name" : "resource",
+  "lvl" : 1,
+  "min" : 0,
+  "max" : 1,
+  "type" : "",
+  "desc" : ""
+}, {
+  "path" : "eter.resource",
+  "name" : "resource",
+  "lvl" : 1,
+  "min" : 0,
+  "max" : 1,
+  "type" : "",
+  "desc" : ""
+}, {
+  "path" : "eter.resource",
+  "name" : "resource",
+  "lvl" : 1,
+  "min" : 0,
+  "max" : 1,
+  "type" : "",
+  "desc" : ""
+}, {
+  "path" : "eter.resource",
+  "name" : "resource",
+  "lvl" : 1,
+  "min" : 0,
+  "max" : 1,
+  "type" : "",
+  "desc" : ""
+}, {
+  "path" : "eter.resource",
+  "name" : "resource",
+  "lvl" : 1,
+  "min" : 0,
+  "max" : 1,
+  "type" : "",
+  "desc" : ""
+}, {
+  "path" : "eter.value[x]",
+  "name" : "value[x]",
+  "lvl" : 1,
+  "min" : 1,
+  "max" : 1,
+  "type" : "string",
+  "desc" : ""
+}, {
+  "path" : "eter.value[x]",
+  "name" : "value[x]",
+  "lvl" : 1,
+  "min" : 1,
+  "max" : 1,
+  "type" : "string",
+  "desc" : ""
+}, {
+  "path" : "eter.value[x]",
+  "name" : "value[x]",
+  "lvl" : 1,
+  "min" : 1,
+  "max" : 1,
+  "type" : "string",
+  "desc" : ""
+}, {
+  "path" : "eter.value[x]",
+  "name" : "value[x]",
+  "lvl" : 1,
+  "min" : 1,
+  "max" : 1,
+  "type" : "string",
+  "desc" : ""
+}, {
+  "path" : "eter.value[x]",
+  "name" : "value[x]",
+  "lvl" : 1,
+  "min" : 1,
+  "max" : 1,
+  "type" : "string",
+  "desc" : ""
+}, {
+  "path" : "eter.value[x]",
+  "name" : "value[x]",
+  "lvl" : 1,
+  "min" : 1,
+  "max" : 1,
+  "type" : "string",
+  "desc" : ""
+} ]
+```
+
+
+## aidboxtopicdestination-clickhouse
+
+ClickHouse best-effort delivery profile for AidboxTopicDestination.
+
+```fhir-structure
+[ {
+  "path" : "eter",
+  "name" : "parameter",
+  "lvl" : 0,
+  "min" : 0,
+  "max" : 1,
+  "type" : "",
+  "desc" : ""
+}, {
+  "path" : "eter",
+  "name" : "parameter",
+  "lvl" : 0,
+  "min" : 1,
+  "max" : 1,
+  "type" : "",
+  "desc" : ""
+}, {
+  "path" : "eter",
+  "name" : "parameter",
+  "lvl" : 0,
+  "min" : 1,
+  "max" : 1,
+  "type" : "",
+  "desc" : ""
+}, {
+  "path" : "eter",
+  "name" : "parameter",
+  "lvl" : 0,
+  "min" : 1,
+  "max" : 1,
+  "type" : "",
+  "desc" : ""
+}, {
+  "path" : "eter",
+  "name" : "parameter",
+  "lvl" : 0,
+  "min" : 1,
+  "max" : 1,
+  "type" : "",
+  "desc" : ""
+}, {
+  "path" : "eter",
+  "name" : "parameter",
+  "lvl" : 0,
+  "min" : 1,
+  "max" : 1,
+  "type" : "",
+  "desc" : ""
+}, {
+  "path" : "eter",
+  "name" : "parameter",
+  "lvl" : 0,
+  "min" : 1,
+  "max" : 1,
+  "type" : "",
+  "desc" : ""
+}, {
+  "path" : "eter.name",
+  "name" : "name",
+  "lvl" : 1,
+  "min" : 0,
+  "max" : 1,
+  "type" : "",
+  "desc" : ""
+}, {
+  "path" : "eter.name",
+  "name" : "name",
+  "lvl" : 1,
+  "min" : 0,
+  "max" : 1,
+  "type" : "",
+  "desc" : ""
+}, {
+  "path" : "eter.name",
+  "name" : "name",
+  "lvl" : 1,
+  "min" : 0,
+  "max" : 1,
+  "type" : "",
+  "desc" : ""
+}, {
+  "path" : "eter.name",
+  "name" : "name",
+  "lvl" : 1,
+  "min" : 0,
+  "max" : 1,
+  "type" : "",
+  "desc" : ""
+}, {
+  "path" : "eter.name",
+  "name" : "name",
+  "lvl" : 1,
+  "min" : 0,
+  "max" : 1,
+  "type" : "",
+  "desc" : ""
+}, {
+  "path" : "eter.name",
+  "name" : "name",
+  "lvl" : 1,
+  "min" : 0,
+  "max" : 1,
+  "type" : "",
+  "desc" : ""
+}, {
+  "path" : "eter.part",
+  "name" : "part",
+  "lvl" : 1,
+  "min" : 0,
+  "max" : 1,
+  "type" : "",
+  "desc" : ""
+}, {
+  "path" : "eter.part",
+  "name" : "part",
+  "lvl" : 1,
+  "min" : 0,
+  "max" : 1,
+  "type" : "",
+  "desc" : ""
+}, {
+  "path" : "eter.part",
+  "name" : "part",
+  "lvl" : 1,
+  "min" : 0,
+  "max" : 1,
+  "type" : "",
+  "desc" : ""
+}, {
+  "path" : "eter.part",
+  "name" : "part",
+  "lvl" : 1,
+  "min" : 0,
+  "max" : 1,
+  "type" : "",
+  "desc" : ""
+}, {
+  "path" : "eter.part",
+  "name" : "part",
+  "lvl" : 1,
+  "min" : 0,
+  "max" : 1,
+  "type" : "",
+  "desc" : ""
+}, {
+  "path" : "eter.part",
+  "name" : "part",
+  "lvl" : 1,
+  "min" : 0,
+  "max" : 1,
+  "type" : "",
+  "desc" : ""
+}, {
+  "path" : "eter.resource",
+  "name" : "resource",
+  "lvl" : 1,
+  "min" : 0,
+  "max" : 1,
+  "type" : "",
+  "desc" : ""
+}, {
+  "path" : "eter.resource",
+  "name" : "resource",
+  "lvl" : 1,
+  "min" : 0,
+  "max" : 1,
+  "type" : "",
+  "desc" : ""
+}, {
+  "path" : "eter.resource",
+  "name" : "resource",
+  "lvl" : 1,
+  "min" : 0,
+  "max" : 1,
+  "type" : "",
+  "desc" : ""
+}, {
+  "path" : "eter.resource",
+  "name" : "resource",
+  "lvl" : 1,
+  "min" : 0,
+  "max" : 1,
+  "type" : "",
+  "desc" : ""
+}, {
+  "path" : "eter.resource",
+  "name" : "resource",
+  "lvl" : 1,
+  "min" : 0,
+  "max" : 1,
+  "type" : "",
+  "desc" : ""
+}, {
+  "path" : "eter.resource",
+  "name" : "resource",
+  "lvl" : 1,
+  "min" : 0,
+  "max" : 1,
+  "type" : "",
+  "desc" : ""
+}, {
+  "path" : "eter.value[x]",
+  "name" : "value[x]",
+  "lvl" : 1,
+  "min" : 1,
+  "max" : 1,
+  "type" : "string",
+  "desc" : ""
+}, {
+  "path" : "eter.value[x]",
+  "name" : "value[x]",
+  "lvl" : 1,
+  "min" : 1,
+  "max" : 1,
+  "type" : "string",
+  "desc" : ""
+}, {
+  "path" : "eter.value[x]",
+  "name" : "value[x]",
+  "lvl" : 1,
+  "min" : 1,
+  "max" : 1,
+  "type" : "string",
+  "desc" : ""
+}, {
+  "path" : "eter.value[x]",
+  "name" : "value[x]",
+  "lvl" : 1,
+  "min" : 1,
+  "max" : 1,
+  "type" : "string",
+  "desc" : ""
+}, {
+  "path" : "eter.value[x]",
+  "name" : "value[x]",
+  "lvl" : 1,
+  "min" : 1,
+  "max" : 1,
+  "type" : "string",
+  "desc" : ""
+}, {
+  "path" : "eter.value[x]",
+  "name" : "value[x]",
+  "lvl" : 1,
+  "min" : 1,
+  "max" : 1,
+  "type" : "string",
+  "desc" : ""
+} ]
+```
+
+
+## aidboxtopicdestination-clickhouse-at-least-once
+
+ClickHouse at-least-once delivery profile for AidboxTopicDestination.
+
+```fhir-structure
+[ {
+  "path" : "eter",
+  "name" : "parameter",
+  "lvl" : 0,
+  "min" : 0,
+  "max" : 1,
+  "type" : "",
+  "desc" : ""
+}, {
+  "path" : "eter",
+  "name" : "parameter",
+  "lvl" : 0,
+  "min" : 1,
+  "max" : 1,
+  "type" : "",
+  "desc" : ""
+}, {
+  "path" : "eter",
+  "name" : "parameter",
+  "lvl" : 0,
+  "min" : 1,
+  "max" : 1,
+  "type" : "",
+  "desc" : ""
+}, {
+  "path" : "eter",
+  "name" : "parameter",
+  "lvl" : 0,
+  "min" : 1,
+  "max" : 1,
+  "type" : "",
+  "desc" : ""
+}, {
+  "path" : "eter",
+  "name" : "parameter",
+  "lvl" : 0,
+  "min" : 1,
+  "max" : 1,
+  "type" : "",
+  "desc" : ""
+}, {
+  "path" : "eter",
+  "name" : "parameter",
+  "lvl" : 0,
+  "min" : 1,
+  "max" : 1,
+  "type" : "",
+  "desc" : ""
+}, {
+  "path" : "eter",
+  "name" : "parameter",
+  "lvl" : 0,
+  "min" : 1,
+  "max" : 1,
+  "type" : "",
+  "desc" : ""
+}, {
+  "path" : "eter",
+  "name" : "parameter",
+  "lvl" : 0,
+  "min" : 1,
+  "max" : 1,
+  "type" : "",
+  "desc" : ""
+}, {
+  "path" : "eter",
+  "name" : "parameter",
+  "lvl" : 0,
+  "min" : 1,
+  "max" : 1,
+  "type" : "",
+  "desc" : ""
+}, {
+  "path" : "eter.name",
+  "name" : "name",
+  "lvl" : 1,
+  "min" : 0,
+  "max" : 1,
+  "type" : "",
+  "desc" : ""
+}, {
+  "path" : "eter.name",
+  "name" : "name",
+  "lvl" : 1,
+  "min" : 0,
+  "max" : 1,
+  "type" : "",
+  "desc" : ""
+}, {
+  "path" : "eter.name",
+  "name" : "name",
+  "lvl" : 1,
+  "min" : 0,
+  "max" : 1,
+  "type" : "",
+  "desc" : ""
+}, {
+  "path" : "eter.name",
+  "name" : "name",
+  "lvl" : 1,
+  "min" : 0,
+  "max" : 1,
+  "type" : "",
+  "desc" : ""
+}, {
+  "path" : "eter.name",
+  "name" : "name",
+  "lvl" : 1,
+  "min" : 0,
+  "max" : 1,
+  "type" : "",
+  "desc" : ""
+}, {
+  "path" : "eter.name",
+  "name" : "name",
+  "lvl" : 1,
+  "min" : 0,
+  "max" : 1,
+  "type" : "",
+  "desc" : ""
+}, {
+  "path" : "eter.name",
+  "name" : "name",
+  "lvl" : 1,
+  "min" : 0,
+  "max" : 1,
+  "type" : "",
+  "desc" : ""
+}, {
+  "path" : "eter.name",
+  "name" : "name",
+  "lvl" : 1,
+  "min" : 0,
+  "max" : 1,
+  "type" : "",
+  "desc" : ""
+}, {
+  "path" : "eter.part",
+  "name" : "part",
+  "lvl" : 1,
+  "min" : 0,
+  "max" : 1,
+  "type" : "",
+  "desc" : ""
+}, {
+  "path" : "eter.part",
+  "name" : "part",
+  "lvl" : 1,
+  "min" : 0,
+  "max" : 1,
+  "type" : "",
+  "desc" : ""
+}, {
+  "path" : "eter.part",
+  "name" : "part",
+  "lvl" : 1,
+  "min" : 0,
+  "max" : 1,
+  "type" : "",
+  "desc" : ""
+}, {
+  "path" : "eter.part",
+  "name" : "part",
+  "lvl" : 1,
+  "min" : 0,
+  "max" : 1,
+  "type" : "",
+  "desc" : ""
+}, {
+  "path" : "eter.part",
+  "name" : "part",
+  "lvl" : 1,
+  "min" : 0,
+  "max" : 1,
+  "type" : "",
+  "desc" : ""
+}, {
+  "path" : "eter.part",
+  "name" : "part",
+  "lvl" : 1,
+  "min" : 0,
+  "max" : 1,
+  "type" : "",
+  "desc" : ""
+}, {
+  "path" : "eter.part",
+  "name" : "part",
+  "lvl" : 1,
+  "min" : 0,
+  "max" : 1,
+  "type" : "",
+  "desc" : ""
+}, {
+  "path" : "eter.part",
+  "name" : "part",
+  "lvl" : 1,
+  "min" : 0,
+  "max" : 1,
+  "type" : "",
+  "desc" : ""
+}, {
+  "path" : "eter.resource",
+  "name" : "resource",
+  "lvl" : 1,
+  "min" : 0,
+  "max" : 1,
+  "type" : "",
+  "desc" : ""
+}, {
+  "path" : "eter.resource",
+  "name" : "resource",
+  "lvl" : 1,
+  "min" : 0,
+  "max" : 1,
+  "type" : "",
+  "desc" : ""
+}, {
+  "path" : "eter.resource",
+  "name" : "resource",
+  "lvl" : 1,
+  "min" : 0,
+  "max" : 1,
+  "type" : "",
+  "desc" : ""
+}, {
+  "path" : "eter.resource",
+  "name" : "resource",
+  "lvl" : 1,
+  "min" : 0,
+  "max" : 1,
+  "type" : "",
+  "desc" : ""
+}, {
+  "path" : "eter.resource",
+  "name" : "resource",
+  "lvl" : 1,
+  "min" : 0,
+  "max" : 1,
+  "type" : "",
+  "desc" : ""
+}, {
+  "path" : "eter.resource",
+  "name" : "resource",
+  "lvl" : 1,
+  "min" : 0,
+  "max" : 1,
+  "type" : "",
+  "desc" : ""
+}, {
+  "path" : "eter.resource",
+  "name" : "resource",
+  "lvl" : 1,
+  "min" : 0,
+  "max" : 1,
+  "type" : "",
+  "desc" : ""
+}, {
+  "path" : "eter.resource",
+  "name" : "resource",
+  "lvl" : 1,
+  "min" : 0,
+  "max" : 1,
+  "type" : "",
+  "desc" : ""
+}, {
+  "path" : "eter.value[x]",
+  "name" : "value[x]",
+  "lvl" : 1,
+  "min" : 1,
+  "max" : 1,
+  "type" : "string",
+  "desc" : ""
+}, {
+  "path" : "eter.value[x]",
+  "name" : "value[x]",
+  "lvl" : 1,
+  "min" : 1,
+  "max" : 1,
+  "type" : "string",
+  "desc" : ""
+}, {
+  "path" : "eter.value[x]",
+  "name" : "value[x]",
+  "lvl" : 1,
+  "min" : 1,
+  "max" : 1,
+  "type" : "string",
+  "desc" : ""
+}, {
+  "path" : "eter.value[x]",
+  "name" : "value[x]",
+  "lvl" : 1,
+  "min" : 1,
+  "max" : 1,
+  "type" : "unsignedInt",
+  "desc" : ""
+}, {
+  "path" : "eter.value[x]",
+  "name" : "value[x]",
+  "lvl" : 1,
+  "min" : 1,
+  "max" : 1,
+  "type" : "unsignedInt",
+  "desc" : ""
+}, {
+  "path" : "eter.value[x]",
+  "name" : "value[x]",
+  "lvl" : 1,
+  "min" : 1,
+  "max" : 1,
+  "type" : "string",
+  "desc" : ""
+}, {
+  "path" : "eter.value[x]",
+  "name" : "value[x]",
+  "lvl" : 1,
+  "min" : 1,
+  "max" : 1,
+  "type" : "string",
+  "desc" : ""
+}, {
+  "path" : "eter.value[x]",
+  "name" : "value[x]",
+  "lvl" : 1,
+  "min" : 1,
+  "max" : 1,
+  "type" : "string",
+  "desc" : ""
 } ]
 ```
 
@@ -10335,6 +13296,600 @@ Kafka best-effort mock delivery profile for AidboxTopicDestination.
   "min" : 1,
   "max" : 1,
   "type" : "boolean",
+  "desc" : ""
+} ]
+```
+
+
+## aidboxtopicdestination-nats-core-best-effort
+
+NATS Core best-effort delivery profile for AidboxTopicDestination.
+
+```fhir-structure
+[ {
+  "path" : "eter",
+  "name" : "parameter",
+  "lvl" : 0,
+  "min" : 0,
+  "max" : 1,
+  "type" : "",
+  "desc" : ""
+}, {
+  "path" : "eter",
+  "name" : "parameter",
+  "lvl" : 0,
+  "min" : 1,
+  "max" : 1,
+  "type" : "",
+  "desc" : ""
+}, {
+  "path" : "eter",
+  "name" : "parameter",
+  "lvl" : 0,
+  "min" : 1,
+  "max" : 1,
+  "type" : "",
+  "desc" : ""
+}, {
+  "path" : "eter",
+  "name" : "parameter",
+  "lvl" : 0,
+  "min" : 0,
+  "max" : 1,
+  "type" : "",
+  "desc" : ""
+}, {
+  "path" : "eter",
+  "name" : "parameter",
+  "lvl" : 0,
+  "min" : 0,
+  "max" : 1,
+  "type" : "",
+  "desc" : ""
+}, {
+  "path" : "eter",
+  "name" : "parameter",
+  "lvl" : 0,
+  "min" : 0,
+  "max" : 1,
+  "type" : "",
+  "desc" : ""
+}, {
+  "path" : "eter",
+  "name" : "parameter",
+  "lvl" : 0,
+  "min" : 0,
+  "max" : 1,
+  "type" : "",
+  "desc" : ""
+}, {
+  "path" : "eter",
+  "name" : "parameter",
+  "lvl" : 0,
+  "min" : 0,
+  "max" : 1,
+  "type" : "",
+  "desc" : ""
+}, {
+  "path" : "eter.name",
+  "name" : "name",
+  "lvl" : 1,
+  "min" : 0,
+  "max" : 1,
+  "type" : "",
+  "desc" : ""
+}, {
+  "path" : "eter.name",
+  "name" : "name",
+  "lvl" : 1,
+  "min" : 0,
+  "max" : 1,
+  "type" : "",
+  "desc" : ""
+}, {
+  "path" : "eter.name",
+  "name" : "name",
+  "lvl" : 1,
+  "min" : 0,
+  "max" : 1,
+  "type" : "",
+  "desc" : ""
+}, {
+  "path" : "eter.name",
+  "name" : "name",
+  "lvl" : 1,
+  "min" : 0,
+  "max" : 1,
+  "type" : "",
+  "desc" : ""
+}, {
+  "path" : "eter.name",
+  "name" : "name",
+  "lvl" : 1,
+  "min" : 0,
+  "max" : 1,
+  "type" : "",
+  "desc" : ""
+}, {
+  "path" : "eter.name",
+  "name" : "name",
+  "lvl" : 1,
+  "min" : 0,
+  "max" : 1,
+  "type" : "",
+  "desc" : ""
+}, {
+  "path" : "eter.name",
+  "name" : "name",
+  "lvl" : 1,
+  "min" : 0,
+  "max" : 1,
+  "type" : "",
+  "desc" : ""
+}, {
+  "path" : "eter.part",
+  "name" : "part",
+  "lvl" : 1,
+  "min" : 0,
+  "max" : 1,
+  "type" : "",
+  "desc" : ""
+}, {
+  "path" : "eter.part",
+  "name" : "part",
+  "lvl" : 1,
+  "min" : 0,
+  "max" : 1,
+  "type" : "",
+  "desc" : ""
+}, {
+  "path" : "eter.part",
+  "name" : "part",
+  "lvl" : 1,
+  "min" : 0,
+  "max" : 1,
+  "type" : "",
+  "desc" : ""
+}, {
+  "path" : "eter.part",
+  "name" : "part",
+  "lvl" : 1,
+  "min" : 0,
+  "max" : 1,
+  "type" : "",
+  "desc" : ""
+}, {
+  "path" : "eter.part",
+  "name" : "part",
+  "lvl" : 1,
+  "min" : 0,
+  "max" : 1,
+  "type" : "",
+  "desc" : ""
+}, {
+  "path" : "eter.part",
+  "name" : "part",
+  "lvl" : 1,
+  "min" : 0,
+  "max" : 1,
+  "type" : "",
+  "desc" : ""
+}, {
+  "path" : "eter.part",
+  "name" : "part",
+  "lvl" : 1,
+  "min" : 0,
+  "max" : 1,
+  "type" : "",
+  "desc" : ""
+}, {
+  "path" : "eter.resource",
+  "name" : "resource",
+  "lvl" : 1,
+  "min" : 0,
+  "max" : 1,
+  "type" : "",
+  "desc" : ""
+}, {
+  "path" : "eter.resource",
+  "name" : "resource",
+  "lvl" : 1,
+  "min" : 0,
+  "max" : 1,
+  "type" : "",
+  "desc" : ""
+}, {
+  "path" : "eter.resource",
+  "name" : "resource",
+  "lvl" : 1,
+  "min" : 0,
+  "max" : 1,
+  "type" : "",
+  "desc" : ""
+}, {
+  "path" : "eter.resource",
+  "name" : "resource",
+  "lvl" : 1,
+  "min" : 0,
+  "max" : 1,
+  "type" : "",
+  "desc" : ""
+}, {
+  "path" : "eter.resource",
+  "name" : "resource",
+  "lvl" : 1,
+  "min" : 0,
+  "max" : 1,
+  "type" : "",
+  "desc" : ""
+}, {
+  "path" : "eter.resource",
+  "name" : "resource",
+  "lvl" : 1,
+  "min" : 0,
+  "max" : 1,
+  "type" : "",
+  "desc" : ""
+}, {
+  "path" : "eter.resource",
+  "name" : "resource",
+  "lvl" : 1,
+  "min" : 0,
+  "max" : 1,
+  "type" : "",
+  "desc" : ""
+}, {
+  "path" : "eter.value[x]",
+  "name" : "value[x]",
+  "lvl" : 1,
+  "min" : 1,
+  "max" : 1,
+  "type" : "string",
+  "desc" : ""
+}, {
+  "path" : "eter.value[x]",
+  "name" : "value[x]",
+  "lvl" : 1,
+  "min" : 1,
+  "max" : 1,
+  "type" : "string",
+  "desc" : ""
+}, {
+  "path" : "eter.value[x]",
+  "name" : "value[x]",
+  "lvl" : 1,
+  "min" : 1,
+  "max" : 1,
+  "type" : "string",
+  "desc" : ""
+}, {
+  "path" : "eter.value[x]",
+  "name" : "value[x]",
+  "lvl" : 1,
+  "min" : 1,
+  "max" : 1,
+  "type" : "string",
+  "desc" : ""
+}, {
+  "path" : "eter.value[x]",
+  "name" : "value[x]",
+  "lvl" : 1,
+  "min" : 1,
+  "max" : 1,
+  "type" : "string",
+  "desc" : ""
+}, {
+  "path" : "eter.value[x]",
+  "name" : "value[x]",
+  "lvl" : 1,
+  "min" : 1,
+  "max" : 1,
+  "type" : "string",
+  "desc" : ""
+}, {
+  "path" : "eter.value[x]",
+  "name" : "value[x]",
+  "lvl" : 1,
+  "min" : 1,
+  "max" : 1,
+  "type" : "string",
+  "desc" : ""
+} ]
+```
+
+
+## aidboxtopicdestination-nats-jetstream-at-least-once
+
+NATS JetStream at-least-once delivery profile for AidboxTopicDestination.
+
+```fhir-structure
+[ {
+  "path" : "eter",
+  "name" : "parameter",
+  "lvl" : 0,
+  "min" : 0,
+  "max" : 1,
+  "type" : "",
+  "desc" : ""
+}, {
+  "path" : "eter",
+  "name" : "parameter",
+  "lvl" : 0,
+  "min" : 1,
+  "max" : 1,
+  "type" : "",
+  "desc" : ""
+}, {
+  "path" : "eter",
+  "name" : "parameter",
+  "lvl" : 0,
+  "min" : 1,
+  "max" : 1,
+  "type" : "",
+  "desc" : ""
+}, {
+  "path" : "eter",
+  "name" : "parameter",
+  "lvl" : 0,
+  "min" : 0,
+  "max" : 1,
+  "type" : "",
+  "desc" : ""
+}, {
+  "path" : "eter",
+  "name" : "parameter",
+  "lvl" : 0,
+  "min" : 0,
+  "max" : 1,
+  "type" : "",
+  "desc" : ""
+}, {
+  "path" : "eter",
+  "name" : "parameter",
+  "lvl" : 0,
+  "min" : 0,
+  "max" : 1,
+  "type" : "",
+  "desc" : ""
+}, {
+  "path" : "eter",
+  "name" : "parameter",
+  "lvl" : 0,
+  "min" : 0,
+  "max" : 1,
+  "type" : "",
+  "desc" : ""
+}, {
+  "path" : "eter",
+  "name" : "parameter",
+  "lvl" : 0,
+  "min" : 0,
+  "max" : 1,
+  "type" : "",
+  "desc" : ""
+}, {
+  "path" : "eter.name",
+  "name" : "name",
+  "lvl" : 1,
+  "min" : 0,
+  "max" : 1,
+  "type" : "",
+  "desc" : ""
+}, {
+  "path" : "eter.name",
+  "name" : "name",
+  "lvl" : 1,
+  "min" : 0,
+  "max" : 1,
+  "type" : "",
+  "desc" : ""
+}, {
+  "path" : "eter.name",
+  "name" : "name",
+  "lvl" : 1,
+  "min" : 0,
+  "max" : 1,
+  "type" : "",
+  "desc" : ""
+}, {
+  "path" : "eter.name",
+  "name" : "name",
+  "lvl" : 1,
+  "min" : 0,
+  "max" : 1,
+  "type" : "",
+  "desc" : ""
+}, {
+  "path" : "eter.name",
+  "name" : "name",
+  "lvl" : 1,
+  "min" : 0,
+  "max" : 1,
+  "type" : "",
+  "desc" : ""
+}, {
+  "path" : "eter.name",
+  "name" : "name",
+  "lvl" : 1,
+  "min" : 0,
+  "max" : 1,
+  "type" : "",
+  "desc" : ""
+}, {
+  "path" : "eter.name",
+  "name" : "name",
+  "lvl" : 1,
+  "min" : 0,
+  "max" : 1,
+  "type" : "",
+  "desc" : ""
+}, {
+  "path" : "eter.part",
+  "name" : "part",
+  "lvl" : 1,
+  "min" : 0,
+  "max" : 1,
+  "type" : "",
+  "desc" : ""
+}, {
+  "path" : "eter.part",
+  "name" : "part",
+  "lvl" : 1,
+  "min" : 0,
+  "max" : 1,
+  "type" : "",
+  "desc" : ""
+}, {
+  "path" : "eter.part",
+  "name" : "part",
+  "lvl" : 1,
+  "min" : 0,
+  "max" : 1,
+  "type" : "",
+  "desc" : ""
+}, {
+  "path" : "eter.part",
+  "name" : "part",
+  "lvl" : 1,
+  "min" : 0,
+  "max" : 1,
+  "type" : "",
+  "desc" : ""
+}, {
+  "path" : "eter.part",
+  "name" : "part",
+  "lvl" : 1,
+  "min" : 0,
+  "max" : 1,
+  "type" : "",
+  "desc" : ""
+}, {
+  "path" : "eter.part",
+  "name" : "part",
+  "lvl" : 1,
+  "min" : 0,
+  "max" : 1,
+  "type" : "",
+  "desc" : ""
+}, {
+  "path" : "eter.part",
+  "name" : "part",
+  "lvl" : 1,
+  "min" : 0,
+  "max" : 1,
+  "type" : "",
+  "desc" : ""
+}, {
+  "path" : "eter.resource",
+  "name" : "resource",
+  "lvl" : 1,
+  "min" : 0,
+  "max" : 1,
+  "type" : "",
+  "desc" : ""
+}, {
+  "path" : "eter.resource",
+  "name" : "resource",
+  "lvl" : 1,
+  "min" : 0,
+  "max" : 1,
+  "type" : "",
+  "desc" : ""
+}, {
+  "path" : "eter.resource",
+  "name" : "resource",
+  "lvl" : 1,
+  "min" : 0,
+  "max" : 1,
+  "type" : "",
+  "desc" : ""
+}, {
+  "path" : "eter.resource",
+  "name" : "resource",
+  "lvl" : 1,
+  "min" : 0,
+  "max" : 1,
+  "type" : "",
+  "desc" : ""
+}, {
+  "path" : "eter.resource",
+  "name" : "resource",
+  "lvl" : 1,
+  "min" : 0,
+  "max" : 1,
+  "type" : "",
+  "desc" : ""
+}, {
+  "path" : "eter.resource",
+  "name" : "resource",
+  "lvl" : 1,
+  "min" : 0,
+  "max" : 1,
+  "type" : "",
+  "desc" : ""
+}, {
+  "path" : "eter.resource",
+  "name" : "resource",
+  "lvl" : 1,
+  "min" : 0,
+  "max" : 1,
+  "type" : "",
+  "desc" : ""
+}, {
+  "path" : "eter.value[x]",
+  "name" : "value[x]",
+  "lvl" : 1,
+  "min" : 1,
+  "max" : 1,
+  "type" : "string",
+  "desc" : ""
+}, {
+  "path" : "eter.value[x]",
+  "name" : "value[x]",
+  "lvl" : 1,
+  "min" : 1,
+  "max" : 1,
+  "type" : "string",
+  "desc" : ""
+}, {
+  "path" : "eter.value[x]",
+  "name" : "value[x]",
+  "lvl" : 1,
+  "min" : 1,
+  "max" : 1,
+  "type" : "string",
+  "desc" : ""
+}, {
+  "path" : "eter.value[x]",
+  "name" : "value[x]",
+  "lvl" : 1,
+  "min" : 1,
+  "max" : 1,
+  "type" : "string",
+  "desc" : ""
+}, {
+  "path" : "eter.value[x]",
+  "name" : "value[x]",
+  "lvl" : 1,
+  "min" : 1,
+  "max" : 1,
+  "type" : "string",
+  "desc" : ""
+}, {
+  "path" : "eter.value[x]",
+  "name" : "value[x]",
+  "lvl" : 1,
+  "min" : 1,
+  "max" : 1,
+  "type" : "string",
+  "desc" : ""
+}, {
+  "path" : "eter.value[x]",
+  "name" : "value[x]",
+  "lvl" : 1,
+  "min" : 1,
+  "max" : 1,
+  "type" : "string",
   "desc" : ""
 } ]
 ```
