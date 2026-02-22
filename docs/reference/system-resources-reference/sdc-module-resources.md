@@ -639,6 +639,14 @@ Configuration resource for SDC system settings including language, theme, storag
   "type" : "boolean",
   "desc" : "Highlight download button in the builder's debugger panel"
 }, {
+  "path" : "builder.layout",
+  "name" : "layout",
+  "lvl" : 1,
+  "min" : 0,
+  "max" : 1,
+  "type" : "string",
+  "desc" : "Builder layout variant (default or v2)"
+}, {
   "path" : "builder.translation-languages",
   "name" : "translation-languages",
   "lvl" : 1,
