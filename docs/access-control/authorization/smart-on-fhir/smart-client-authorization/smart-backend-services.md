@@ -8,7 +8,7 @@ This specification is designed to work with FHIR Bulk Data Access, but is not re
 
 ## Register a Client
 
-Before a SMART client can run against a FHIR server, the client SHALL generate or obtain an asymmetric key pair and register its public key set as `jsks_uri` in Client resource. Aidbox provides  `.well-known/jwks.json` endpoint so you can use it.
+Before a SMART client can run against a FHIR server, the client SHALL generate or obtain an asymmetric key pair and register its public key set as `jsks_uri` in Client resource. And you should expose an  `.well-known/jwks.json` endpoint available to Aidbox.
 
 **Request:**
 
@@ -32,7 +32,7 @@ accept: application/json
   "scope": [
     "system/*.read"
   ],
-  "jwks_uri": "<AIDBOX_BASE_URL>/.well-known/jwks.json",
+  "jwks_uri": "<Your-JWKS-server>/.well-known/jwks.json",
   "grant_types": [
     "client_credentials"
   ]
@@ -64,7 +64,7 @@ accept: application/json
  },
  "active": true,
  "id": "",
- "jwks_uri": "https://releasetest.edge.aidbox.app/.well-known/jwks.json"
+ "jwks_uri": "http://localhost:8082/.well-known/jwks.json"
 }
 ```
 
@@ -114,17 +114,11 @@ To obtain an access token use `/auth/token`endpoint with following parameters:
 
 **Request:**
 
-```json
+```http
 POST /auth/token
-accept: application/json
-content-type: application/json
+Content-Type: application/x-www-form-urlencoded
 
-{
-  "client_assertion": "eyJhbGciOiJSUzM4NCIsImtpZCI6ImI0MTUyOGI2ZjM3YTk1MDBlZGI4YTkwNWE1OTViZGQ3IiwidHlwIjoiSldUIn0.eyJpc3MiOiJpbmZlcm5vLW15LWNsaW5pYy1idWxrLWNsaWVudCIsInN1YiI6ImluZmVybm8tbXktY2xpbmljLWJ1bGstY2xpZW50IiwiYXVkIjoiaHR0cHM6Ly9nMTB0ZXN0LmVkZ2UuYWlkYm94LmFwcC9hdXRoL3Rva2VuIiwiZXhwIjoxNzM0MDA5NjI2LCJqdGkiOiJkZGI4NzQ5OTk1YjFkNWRiNDVkNTQ2NDVmZmU0ZmExZTkxODRhODI3YjlmOWM5MDY5ZDQxYzRmYjJhNjBjYTY3In0.hxKAec655NTH7Gs6qy2Cz2CXvETWnxF0jydjEdXNKYyrQvecBWct_ITc92eFiDnZ5jubhExqojeE2HUDn3lmS89Q9qFfGEsByLWXy4nJqSHa2y5mWxD5aI3LF3c4oSOZXSj-jFxAlSmxhV7MxumnJ2XP-6e81QQT-QQ9mDomWhgrIjqaHhv5yPQzI6CqDad9XBInMcE7S_TZ9QTpq3WtzC520-8SH3KdVF9dILO6pBGOOrlZ8468Vwfl5WL6XuhhwjbIIp8B5F0qAOGIGiA8V_-eE6PM1CNZtKQfrZNvVh0VwSu4T2k3gL4ZfI_8nhpUt8EEusOsu_6EvK3sP1yv7w",
-  "client_assertion_type": "urn:ietf:params:oauth:client-assertion-type:jwt-bearer",
-  "grant_type": "client_credentials",
-  "scope": "system/*.read"
-}
+client_assertion=eyJhbGciOiJSUzI1NiIsImtpZCI6ImNsaWVudC1rZXktMSIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJleGFtcGxlLXNtYXJ0LWNsaWVudCIsInN1YiI6ImV4YW1wbGUtc21hcnQtY2xpZW50IiwiYXVkIjoiaHR0cHM6Ly9hdXRoLmV4YW1wbGUuY29tL29hdXRoL3Rva2VuIiwianRpIjoiMTE2YWIxZmQtZjRhMS00NmQxLTg2NTktOWUxOWE1MDc5MjkxIiwiaWF0IjoxNzcxODY0NDYxLCJleHAiOjE3NzE4NjQ3NjF9.j6iQivVrvlvu2kb4ffEpQ_GY5xBIqcizkiv08dwoc9tXeFeEJkzg7KVAfUbkwU_cRWSqgF4999Uiw3G3XvlrHTe7R4nIaH46qgnKFI3s7izS99j09ebAv66NOcuay3901MyEaagdONSqRu63kpWuDxYWUEcCgPSTf5d_UEd6JEDEghitWMnPS0HS5VovmyZfNAcPXQ3bZ0S2pXSOxYxbim0jTa1arWK4-9DTIHtK2UE0-sDk07hS4mtmIp8AmHePkk7DwuxPukNvRF34Jvy9_IC-o2smxxoquLpaOdyra9RylKI5RWbJtafp0p619TmS5C-bIZNmh5qV1Ho5kuVlCQ&client_assertion_type=urn:ietf:params:oauth:client-assertion-type:jwt-bearer&grant_type=client_credentials&scope=system/*.read
 ```
 
 **Response:**
