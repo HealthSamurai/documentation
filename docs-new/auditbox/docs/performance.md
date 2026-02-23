@@ -4,20 +4,25 @@ This page describes in detail particular benchmarks of
 Auditbox.
 
 
-## TODO Write throughput
-
-How many bytes are handled per unit of time (5 seconds, 10 seconds, etc?)
-Get average latency.
-<!-- TODO set memory limits and cpu requests, document -->
+## Write throughput
 
 ### Test method
 
 Tests are done on development environment auditbox with 1 replica.
-<!-- TODO record cpu/memory limits -->
+Auditbox is set up with requests for 300m of CPU and 2142Mi of memory.
+Elasticsearch has unlimited CPU power (uses e2-standard-2 node with 2
+vCPUs & 8 GB Memory) and 2Gi of memory.
 
 Tests are done using [k6](https://k6.io/).
 Each payload has the biggest possible size that Auditbox supports
 (87Mb).
+
+Command used:
+```sh
+K6_WEB_DASHBOARD=true \
+K6_WEB_DASHBOARD_EXPORT=html-report2.html \
+	k6 run test.js
+```
 
 This test file was used:
 
@@ -225,6 +230,25 @@ export default function (data) {
 
 ### Data
 
+{% file src="../../../.gitbook/assets/auditbox/performance/k6-report.html" %}
+    Test report
+{% endfile %}
+
+<!-- TODO adjust parameters to show 5 user result for 5m -->
+
+Using the test report above, we can determine that at most, 5 virtual
+users may be used at the same time without causing any failures.
+Using request rate graph, we can see that between 0.2 and 0.4 bundles
+are processed in the time period. Each bundle has body that is exactly
+8388302 bytes long, thus we can conclude that:
+```js
+const single_bundle_bytes = 8388302
+const average_rate_per_second = (0.2 + 0.4) / 2
+const average_bytes_per_second = single_bundle_bytes * average_rate_per_second
+const average_megabytes_per_second = average_bytes_per_second / 1000000
+```
+
+As a result, we get throughput of about 2.52 megabytes per second.
 
 ## Storage size per year
 
@@ -261,11 +285,12 @@ xychart-beta
     line [4.2, 420]
 -->
 
-
+<!--
 ## TODO Latency
 
 Using k6, you can determine that depending on the load,
 response times vary heavily.
+-->
 
 ## TODO Query latency
 
