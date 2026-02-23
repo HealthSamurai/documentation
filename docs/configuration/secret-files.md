@@ -47,15 +47,15 @@ This setting requires a restart to take effect. The config file itself is re-rea
   "secret": {
     "client-secret": {
       "path": "/run/secrets/client-secret",
-      "scope": ["Client/my-client"]
+      "scope": {"resource_type": "Client", "id": "my-client"}
     },
     "kafka-jaas": {
       "path": "/run/secrets/kafka-jaas",
-      "scope": ["AidboxTopicDestination/kafka-dest-1"]
+      "scope": {"resource_type": "AidboxTopicDestination", "id": "kafka-dest-1"}
     },
     "jwt-key": {
       "path": "/run/secrets/jwt-key",
-      "scope": ["TokenIntrospector"]
+      "scope": {"resource_type": "TokenIntrospector"}
     }
   }
 }
@@ -64,7 +64,7 @@ This setting requires a restart to take effect. The config file itself is re-rea
 
 Each entry under `"secret"` maps a secret name to:
 
-<table><thead><tr><th width="100">Field</th><th>Description</th></tr></thead><tbody><tr><td><code>path</code></td><td>Absolute path to the file containing the secret value</td></tr><tr><td><code>scope</code></td><td>Array of resource references that are allowed to access this secret. Entries can be <code>"ResourceType/id"</code> (specific instance, e.g. <code>"Client/my-client"</code>) or <code>"ResourceType"</code> (any instance of that type, e.g. <code>"Client"</code>)</td></tr></tbody></table>
+<table><thead><tr><th width="100">Field</th><th>Description</th></tr></thead><tbody><tr><td><code>path</code></td><td>Absolute path to the file containing the secret value</td></tr><tr><td><code>scope</code></td><td>Object identifying the resource allowed to access this secret. Use <code>resource_type</code> and <code>id</code> to restrict to a specific instance (e.g. <code>{"resource_type": "Client", "id": "my-client"}</code>), or <code>resource_type</code> alone to allow any instance of that type (e.g. <code>{"resource_type": "TokenIntrospector"}</code>)</td></tr></tbody></table>
 
 ## Extension pattern
 
@@ -135,25 +135,25 @@ This works with any mechanism that updates files in place — Kubernetes Secrets
 
 The following fields support secret references via the extension pattern:
 
-| Resource | Field | Description |
-| --- | --- | --- |
-| **Client** | `secret` | Client secret for authentication |
-| **IdentityProvider** | `client.secret` | Client secret for symmetric authentication |
-| **IdentityProvider** | `client.private-key` | Private key for asymmetric authentication |
-| **IdentityProvider** | `client.certificate` | Certificate for asymmetric authentication |
-| **TokenIntrospector** | `jwt.secret` | Shared secret key for JWT verification |
-| **TokenIntrospector** | `jwt.keys.k` | Symmetric key for validation |
-| **TokenIntrospector** | `introspection_endpoint.authorization` | Authorization header value |
-| **AidboxTopicDestination** | `parameter.saslJaasConfig` | SASL JAAS configuration for Kafka authentication |
-| **AidboxTopicDestination** | `parameter.sslKeystoreKey` | SSL keystore private key for Kafka connection |
+| Resource                   | Field                                  | Description                                      |
+|----------------------------|----------------------------------------|--------------------------------------------------|
+| **Client**                 | `secret`                               | Client secret for authentication                 |
+| **IdentityProvider**       | `client.secret`                        | Client secret for symmetric authentication       |
+| **IdentityProvider**       | `client.private-key`                   | Private key for asymmetric authentication        |
+| **IdentityProvider**       | `client.certificate`                   | Certificate for asymmetric authentication        |
+| **TokenIntrospector**      | `jwt.secret`                           | Shared secret key for JWT verification           |
+| **TokenIntrospector**      | `jwt.keys.k`                           | Symmetric key for validation                     |
+| **TokenIntrospector**      | `introspection_endpoint.authorization` | Authorization header value                       |
+| **AidboxTopicDestination** | `parameter.saslJaasConfig`             | SASL JAAS configuration for Kafka authentication |
+| **AidboxTopicDestination** | `parameter.sslKeystoreKey`             | SSL keystore private key for Kafka connection    |
 
 ## Delivering secrets to the filesystem
 
 The external secrets feature is agnostic to how files are placed on the filesystem. Common approaches:
 
-| Method | Description |
-| --- | --- |
-| [Kubernetes Secrets](https://kubernetes.io/docs/concepts/configuration/secret/) | Mounted as volumes in pods |
-| [Secrets Store CSI Driver](https://secrets-store-csi-driver.sigs.k8s.io/) | Mounts secrets from external vaults with automatic rotation. See the [Azure Key Vault](../tutorials/other-tutorials/azure-key-vault-external-secrets.md) and [HashiCorp Vault](../tutorials/other-tutorials/hashicorp-vault-external-secrets.md) tutorials |
-| [Docker Secrets](https://docs.docker.com/engine/swarm/secrets/) | Available at `/run/secrets/` in swarm mode |
-| Docker volumes | Bind-mount a host directory containing secret files |
+| Method                                                                          | Description                                                                                                                                                                                                                                                |
+|---------------------------------------------------------------------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| [Kubernetes Secrets](https://kubernetes.io/docs/concepts/configuration/secret/) | Mounted as volumes in pods                                                                                                                                                                                                                                 |
+| [Secrets Store CSI Driver](https://secrets-store-csi-driver.sigs.k8s.io/)       | Mounts secrets from external vaults with automatic rotation. See the [Azure Key Vault](../tutorials/other-tutorials/azure-key-vault-external-secrets.md) and [HashiCorp Vault](../tutorials/other-tutorials/hashicorp-vault-external-secrets.md) tutorials |
+| [Docker Secrets](https://docs.docker.com/engine/swarm/secrets/)                 | Available at `/run/secrets/` in swarm mode                                                                                                                                                                                                                 |
+| Docker volumes                                                                  | Bind-mount a host directory containing secret files                                                                                                                                                                                                        |
