@@ -197,6 +197,7 @@
   * [$export](api/bulk-api/export.md)
   * [$load and /fhir/$load](api/bulk-api/load-and-fhir-load.md)
   * [$import and /fhir/$import](api/bulk-api/import-and-fhir-import.md)
+  * [$purge](api/bulk-api/purge.md)
   * [Aidbox.bulk data import](api/bulk-api/aidbox-bulk-data-import.md)
   * [Bulk import from an S3 bucket](api/bulk-api/bulk-import-from-an-s3-bucket.md)
 * [Batch/Transaction](api/batch-transaction.md)
