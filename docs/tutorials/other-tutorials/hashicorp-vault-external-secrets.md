@@ -167,7 +167,7 @@ data:
       "secret": {
         "client-secret": {
           "path": "/run/vault-secrets/client-secret",
-          "scope": ["Client/basic"]
+          "scope": {"resource_type": "Client", "id": "basic"}
         }
       }
     }
@@ -176,7 +176,7 @@ data:
 
 Each entry under `"secret"` maps a secret name to:
 
-<table><thead><tr><th width="100">Field</th><th>Description</th></tr></thead><tbody><tr><td><code>path</code></td><td>Absolute path to the file containing the secret value</td></tr><tr><td><code>scope</code></td><td>Array of resource references allowed to access this secret. Entries can be <code>"ResourceType/id"</code> (specific instance, e.g. <code>"Client/basic"</code>) or <code>"ResourceType"</code> (any instance of that type, e.g. <code>"Client"</code>)</td></tr></tbody></table>
+<table><thead><tr><th width="100">Field</th><th>Description</th></tr></thead><tbody><tr><td><code>path</code></td><td>Absolute path to the file containing the secret value</td></tr><tr><td><code>scope</code></td><td>Object identifying the resource allowed to access this secret. Use <code>resource_type</code> and <code>id</code> to restrict to a specific instance (e.g. <code>{"resource_type": "Client", "id": "basic"}</code>), or <code>resource_type</code> alone to allow any instance of that type (e.g. <code>{"resource_type": "Client"}</code>)</td></tr></tbody></table>
 
 ## Step 7. Deploy Aidbox
 
