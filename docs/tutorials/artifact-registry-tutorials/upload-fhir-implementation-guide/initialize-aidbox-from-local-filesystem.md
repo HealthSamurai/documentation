@@ -37,7 +37,7 @@ Add the following volume and environment variable to the docker compose file:
 aidbox:
   image: docker.io/healthsamurai/aidboxone:edge
   volumes:
-    - ./fhir-packages:/srv/fhir-packages
+    - ./fhir-packages:/srv/aidbox-fhir-packages
   environment:
     # Uncomment the following line if you need to make sure external registry is not used
     # BOX_FHIR_NPM_PACKAGE_REGISTRY: https://broken.org
