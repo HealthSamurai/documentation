@@ -4,6 +4,10 @@ description: Permanently delete a Patient and all resources in their compartment
 
 # $purge
 
+{% hint style="info" %}
+Available since version 2602.
+{% endhint %}
+
 The `$purge` operation permanently deletes a Patient resource and all resources in that patient's compartment, including all historical versions. 
 
 This operation implements the [FHIR Patient Purge](https://build.fhir.org/patient-operation-purge.html) specification. By default, this operation uses the system default compartment for Patient, or a custom compartment can be passed as a parameter.
