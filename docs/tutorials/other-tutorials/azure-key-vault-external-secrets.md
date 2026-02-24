@@ -221,7 +221,7 @@ spec:
         - name: aidbox
           image: healthsamurai/aidboxone:latest
           env:
-            - name: AIDBOX_VAULT_CONFIG
+            - name: BOX_VAULT_CONFIG
               value: "/etc/aidbox/vault-config.json"
             # Add other required env vars
           volumeMounts:
