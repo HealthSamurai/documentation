@@ -11,27 +11,27 @@ PUT /
 Accept: text/yaml
 Content-Type: text/yaml
 
-- status: draft
+- status: planned
   class: {code: IMP}
-  period: {start: "2013-06-08T10:57:34", end: "2013-06-08T12:00:00"}
+  period: {start: "2013-06-08T10:57:34+00:00", end: "2013-06-08T12:00:00+00:00"}
   resourceType: Encounter
   id: enc-1
 
-- status: draft
+- status: planned
   class: {code: IMP}
-  period: {start: "2013-06-08T11:00:05", end: "2013-06-08T11:30:00"}
+  period: {start: "2013-06-08T11:00:05+00:00", end: "2013-06-08T11:30:00+00:00"}
   resourceType: Encounter
   id: enc-2
 
-- status: draft
+- status: planned
   class: {code: AMB}
-  period: {start: "2013-06-08T10:21:01", end: "2013-06-08T11:42:11"}
+  period: {start: "2013-06-08T10:21:01+00:00", end: "2013-06-08T11:42:11+00:00"}
   resourceType: Encounter
   id: enc-3
 
-- status: draft
+- status: planned
   class: {code: IMP}
-  period: {start: "2013-06-07T09:02:01", end: "2013-06-07T15:10:09"}
+  period: {start: "2013-06-07T09:02:01+00:00", end: "2013-06-07T15:10:09+00:00"}
   resourceType: Encounter
   id: enc-3
 ```
