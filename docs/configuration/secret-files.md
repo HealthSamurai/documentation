@@ -36,7 +36,7 @@ flowchart LR
 See [Aidbox Settings Reference](../reference/all-settings.md) for the full list of environment variables.
 
 {% hint style="warning" %}
-This setting requires a restart to take effect. The config file itself is re-read automatically when modified — no restart needed for config changes.
+This setting requires a restart to take effect. The config file is loaded once — restart is required after changing the vault config.
 {% endhint %}
 
 ### Vault config file format
