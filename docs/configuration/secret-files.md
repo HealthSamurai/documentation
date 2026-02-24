@@ -29,9 +29,9 @@ flowchart LR
 
 ## Configuration
 
-| Environment variable | Description | Default |
-| --- | --- | --- |
-| `AIDBOX_VAULT_CONFIG` | Path to the vault config JSON file that maps named secrets to file paths and resource scopes. | empty (feature disabled) |
+| Environment variable | Description                                                                                   | Default                  |
+|----------------------|-----------------------------------------------------------------------------------------------|--------------------------|
+| `BOX_VAULT_CONFIG`   | Path to the vault config JSON file that maps named secrets to file paths and resource scopes. | empty (feature disabled) |
 
 See [Aidbox Settings Reference](../reference/all-settings.md) for the full list of environment variables.
 
