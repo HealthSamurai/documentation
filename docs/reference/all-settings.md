@@ -157,6 +157,16 @@ Format:
 
 <details><summary>Details</summary><table data-header-hidden="true"><thead><tr><th width="200"></th><th></th></tr></thead><tbody><tr><td>ID</td><td><code>module-jar</code></td></tr><tr><td>Type</td><td>String</td></tr><tr><td>Default value</td><td>(no default)</td></tr><tr><td>Environment variable</td><td><code>BOX_MODULE_JAR</code></td></tr><tr><td>Available from</td><td><code>2505</code></td></tr><tr><td>Sensitive</td><td><code>false</code> — value will be visible in plaintext in Admin UI</td></tr><tr><td>Set via</td><td>Environment variables</td></tr><tr><td>Hot reload</td><td><code>false</code> — setting requires system restart</td></tr></tbody></table></details>
 
+### Scheduler executor threads<a href="#scheduler-executors" id="scheduler-executors"></a>
+
+```yaml
+BOX_SCHEDULER_EXECUTORS: 4
+```
+
+Number of executor threads for the async task scheduler.
+
+<details><summary>Details</summary><table data-header-hidden="true"><thead><tr><th width="200"></th><th></th></tr></thead><tbody><tr><td>ID</td><td><code>scheduler-executors</code></td></tr><tr><td>Type</td><td>Int</td></tr><tr><td>Default value</td><td><code>4</code></td></tr><tr><td>Environment variable</td><td><code>BOX_SCHEDULER_EXECUTORS</code></td></tr><tr><td>Available from</td><td><code>2602</code></td></tr><tr><td>Sensitive</td><td><code>false</code> — value will be visible in plaintext in Admin UI</td></tr><tr><td>Set via</td><td>Environment variables</td></tr><tr><td>Hot reload</td><td><code>false</code> — setting requires system restart</td></tr></tbody></table></details>
+
 ## FHIR
 
 FHIR settings
@@ -211,16 +221,6 @@ BOX_FHIR_TRANSACTION_MAX_ISOLATION_LEVEL: "none"
 Sets the maximum (inclusive) isolation level for transactions. Can be overridden by the `x-max-isolation-level` header.
 
 <details><summary>Details</summary><table data-header-hidden="true"><thead><tr><th width="200"></th><th></th></tr></thead><tbody><tr><td>ID</td><td><code>fhir.transaction-max-isolation-level</code></td></tr><tr><td>Type</td><td>Enum</td></tr><tr><td>Values</td><td><code>none</code><br /><code>read-committed</code><br /><code>repeatable-read</code><br /><code>serializable</code></td></tr><tr><td>Default value</td><td><code>none</code></td></tr><tr><td>Environment variable</td><td><code>BOX_FHIR_TRANSACTION_MAX_ISOLATION_LEVEL</code></td></tr><tr><td>Deprecated environment variables</td><td><code>BOX_FEATURES_FHIR_TRANSACTION_MAX__ISOLATION__LEVEL</code></td></tr><tr><td>Sensitive</td><td><code>false</code> — value will be visible in plaintext in Admin UI</td></tr><tr><td>Set via</td><td>Admin UI → Settings<br />Environment variables</td></tr><tr><td>Hot reload</td><td><code>false</code> — setting requires system restart</td></tr></tbody></table></details>
-
-#### Scheduler executor threads<a href="#scheduler-executors" id="scheduler-executors"></a>
-
-```yaml
-BOX_SCHEDULER_EXECUTORS: 4
-```
-
-Number of executor threads for the async task scheduler. Controls how many async tasks (e.g. `$purge` in async mode) can run concurrently.
-
-<details><summary>Details</summary><table data-header-hidden="true"><thead><tr><th width="200"></th><th></th></tr></thead><tbody><tr><td>ID</td><td><code>scheduler-executors</code></td></tr><tr><td>Type</td><td>Int</td></tr><tr><td>Default value</td><td><code>4</code></td></tr><tr><td>Environment variable</td><td><code>BOX_SCHEDULER_EXECUTORS</code></td></tr><tr><td>Sensitive</td><td><code>false</code> — value will be visible in plaintext in Admin UI</td></tr><tr><td>Set via</td><td>Environment variables</td></tr><tr><td>Hot reload</td><td><code>false</code> — setting requires system restart</td></tr></tbody></table></details>
 
 ### Validation
 
@@ -909,16 +909,6 @@ BOX_SECURITY_DEV_MODE: true
 Activates debugging features for access policy development, including the `_debug=policy URL` parameter and `x-debug` header. Returns detailed policy evaluation traces showing why requests were allowed or denied. For development environments only - not recommended for production systems.
 
 <details><summary>Details</summary><table data-header-hidden="true"><thead><tr><th width="200"></th><th></th></tr></thead><tbody><tr><td>ID</td><td><code>security.dev-mode</code></td></tr><tr><td>Type</td><td>Bool</td></tr><tr><td>Recommended value</td><td><code>true</code></td></tr><tr><td>Default value</td><td><code>false</code></td></tr><tr><td>Environment variable</td><td><code>BOX_SECURITY_DEV_MODE</code></td></tr><tr><td>Deprecated environment variables</td><td><code>AIDBOX_DEV_MODE</code></td></tr><tr><td>Sensitive</td><td><code>false</code> — value will be visible in plaintext in Admin UI</td></tr><tr><td>Set via</td><td>Admin UI → Settings<br />Environment variables</td></tr><tr><td>Hot reload</td><td><code>true</code> — setting can be changed at runtime</td></tr></tbody></table></details>
-
-### Vault config<a href="#vault-config" id="vault-config"></a>
-
-```yaml
-BOX_VAULT_CONFIG: "/path/to/vault-config.json"
-```
-
-Path to the vault config JSON file that maps named secrets to file paths and resource scopes. When set, Aidbox can reference secrets stored as files on the filesystem instead of keeping them in the database. See [External Secrets](../configuration/secret-files.md) for details.
-
-<details><summary>Details</summary><table data-header-hidden="true"><thead><tr><th width="200"></th><th></th></tr></thead><tbody><tr><td>ID</td><td><code>vault-config</code></td></tr><tr><td>Type</td><td>String</td></tr><tr><td>Default value</td><td>(no default — feature disabled)</td></tr><tr><td>Environment variable</td><td><code>BOX_VAULT_CONFIG</code></td></tr><tr><td>Available from</td><td><code>2602</code></td></tr><tr><td>Sensitive</td><td><code>false</code> — value will be visible in plaintext in Admin UI</td></tr><tr><td>Set via</td><td>Environment variables</td></tr><tr><td>Hot reload</td><td><code>false</code> — setting requires system restart</td></tr></tbody></table></details>
 
 ## Modules
 
@@ -1691,22 +1681,22 @@ Maximum timeout (in milliseconds) to close idle connection.
 #### Pool minimum idle<a href="#db.pool.minimum-idle" id="db.pool.minimum-idle"></a>
 
 ```yaml
-BOX_DB_POOL_MINIMUM_IDLE: 0
+BOX_DB_POOL_MINIMUM_IDLE: 2
 ```
 
 Minimum number of connections.
 
-<details><summary>Details</summary><table data-header-hidden="true"><thead><tr><th width="200"></th><th></th></tr></thead><tbody><tr><td>ID</td><td><code>db.pool.minimum-idle</code></td></tr><tr><td>Type</td><td>Int</td></tr><tr><td>Default value</td><td><code>0</code></td></tr><tr><td>Environment variable</td><td><code>BOX_DB_POOL_MINIMUM_IDLE</code></td></tr><tr><td>Deprecated environment variables</td><td><code>BOX_DB_POOL_MINIMUM__IDLE</code></td></tr><tr><td>Sensitive</td><td><code>false</code> — value will be visible in plaintext in Admin UI</td></tr><tr><td>Set via</td><td>Admin UI → Settings<br />Environment variables</td></tr><tr><td>Hot reload</td><td><code>false</code> — setting requires system restart</td></tr></tbody></table></details>
+<details><summary>Details</summary><table data-header-hidden="true"><thead><tr><th width="200"></th><th></th></tr></thead><tbody><tr><td>ID</td><td><code>db.pool.minimum-idle</code></td></tr><tr><td>Type</td><td>Int</td></tr><tr><td>Default value</td><td><code>2</code></td></tr><tr><td>Environment variable</td><td><code>BOX_DB_POOL_MINIMUM_IDLE</code></td></tr><tr><td>Deprecated environment variables</td><td><code>BOX_DB_POOL_MINIMUM__IDLE</code></td></tr><tr><td>Sensitive</td><td><code>false</code> — value will be visible in plaintext in Admin UI</td></tr><tr><td>Set via</td><td>Admin UI → Settings<br />Environment variables</td></tr><tr><td>Hot reload</td><td><code>false</code> — setting requires system restart</td></tr></tbody></table></details>
 
 #### Pool size<a href="#db.pool.maximum-pool-size" id="db.pool.maximum-pool-size"></a>
 
 ```yaml
-BOX_DB_POOL_MAXIMUM_POOL_SIZE: 8
+BOX_DB_POOL_MAXIMUM_POOL_SIZE: 16
 ```
 
 Maximum number of simultaneous database connections.
 
-<details><summary>Details</summary><table data-header-hidden="true"><thead><tr><th width="200"></th><th></th></tr></thead><tbody><tr><td>ID</td><td><code>db.pool.maximum-pool-size</code></td></tr><tr><td>Type</td><td>Int</td></tr><tr><td>Default value</td><td><code>8</code></td></tr><tr><td>Environment variable</td><td><code>BOX_DB_POOL_MAXIMUM_POOL_SIZE</code></td></tr><tr><td>Deprecated environment variables</td><td><code>BOX_DB_POOL_MAXIMUM__POOL__SIZE</code></td></tr><tr><td>Sensitive</td><td><code>false</code> — value will be visible in plaintext in Admin UI</td></tr><tr><td>Set via</td><td>Admin UI → Settings<br />Environment variables</td></tr><tr><td>Hot reload</td><td><code>false</code> — setting requires system restart</td></tr></tbody></table></details>
+<details><summary>Details</summary><table data-header-hidden="true"><thead><tr><th width="200"></th><th></th></tr></thead><tbody><tr><td>ID</td><td><code>db.pool.maximum-pool-size</code></td></tr><tr><td>Type</td><td>Int</td></tr><tr><td>Default value</td><td><code>16</code></td></tr><tr><td>Environment variable</td><td><code>BOX_DB_POOL_MAXIMUM_POOL_SIZE</code></td></tr><tr><td>Deprecated environment variables</td><td><code>BOX_DB_POOL_MAXIMUM__POOL__SIZE</code></td></tr><tr><td>Sensitive</td><td><code>false</code> — value will be visible in plaintext in Admin UI</td></tr><tr><td>Set via</td><td>Admin UI → Settings<br />Environment variables</td></tr><tr><td>Hot reload</td><td><code>false</code> — setting requires system restart</td></tr></tbody></table></details>
 
 #### Propagate DB health status to Aidbox<a href="#db.propagate-db-health-status-to-box" id="db.propagate-db-health-status-to-box"></a>
 
