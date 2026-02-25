@@ -136,6 +136,31 @@ You can also use YAML multi-line strings for passing values of the keys:
         -----END PUBLIC KEY-----
 ```
 
+#### Key format requirements
+
+Keys must be provided in full PEM format, including the `BEGIN` and `END` headers.
+
+{% hint style="danger" %}
+Starting from version **2602**, Aidbox validates the keypair at startup and **will not start** if:
+
+* Only one of `BOX_SECURITY_AUTH_KEYS_PRIVATE` / `BOX_SECURITY_AUTH_KEYS_PUBLIC` is set while the other is missing.
+* Either key is malformed (e.g. not valid PEM, base64 decoding fails).
+* The public key does not correspond to the provided private key.
+
+The service will not pass health or readiness checks, and a clear error message will be logged.
+
+This also applies to the deprecated environment variable names `BOX_AUTH_KEYS_PRIVATE` / `BOX_AUTH_KEYS_PUBLIC`.
+{% endhint %}
+
+**Common mistakes:**
+
+| Problem | Example |
+|---|---|
+| Bare base64 without PEM headers | Setting the key value without `-----BEGIN ...-----` / `-----END ...-----` wrappers |
+| Truncated key | Key content is cut off, often due to environment variable quoting issues |
+| Mismatched key pair | Public key was generated from a different private key |
+| Wrong key type | Using an EC key instead of RSA, or vice versa |
+
 #### Generate secret
 
 To generate random string for HS256 algoritm you can run `openssl rand -base64 36` command. The length of the random string must be more than 256 bits (32 bytes).

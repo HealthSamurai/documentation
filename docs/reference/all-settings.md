@@ -808,6 +808,10 @@ BOX_SECURITY_AUTH_KEYS_PUBLIC: "<String>"
 
 RS256 signing algorithm expects providing private key for signing JWT and public key for verifying it.
 
+{% hint style="warning" %}
+Starting from version **2602**, if this variable is set, `BOX_SECURITY_AUTH_KEYS_PRIVATE` must also be set, and the keypair must be valid. Aidbox will fail to start otherwise. The value must be a full PEM-encoded key including `-----BEGIN PUBLIC KEY-----` and `-----END PUBLIC KEY-----` headers.
+{% endhint %}
+
 <details><summary>Details</summary><table data-header-hidden="true"><thead><tr><th width="200"></th><th></th></tr></thead><tbody><tr><td>ID</td><td><code>security.auth.keys.public</code></td></tr><tr><td>Type</td><td>String</td></tr><tr><td>Default value</td><td>(no default)</td></tr><tr><td>Environment variable</td><td><code>BOX_SECURITY_AUTH_KEYS_PUBLIC</code></td></tr><tr><td>Deprecated environment variables</td><td><code>BOX_AUTH_KEYS_PUBLIC</code></td></tr><tr><td>Sensitive</td><td><code>false</code> — value will be visible in plaintext in Admin UI</td></tr><tr><td>Set via</td><td>Admin UI → Settings<br />Environment variables</td></tr><tr><td>Hot reload</td><td><code>false</code> — setting requires system restart</td></tr></tbody></table></details>
 
 ### JWT private key<a href="#security.auth.keys.private" id="security.auth.keys.private"></a>
@@ -817,6 +821,10 @@ BOX_SECURITY_AUTH_KEYS_PRIVATE: "<String>"
 ```
 
 RS256 signing algorithm expects providing private key for signing JWT and public key for verifying it.
+
+{% hint style="warning" %}
+Starting from version **2602**, if this variable is set, `BOX_SECURITY_AUTH_KEYS_PUBLIC` must also be set, and the keypair must be valid. Aidbox will fail to start otherwise. The value must be a full PEM-encoded key including `-----BEGIN RSA PRIVATE KEY-----` and `-----END RSA PRIVATE KEY-----` headers.
+{% endhint %}
 
 <details><summary>Details</summary><table data-header-hidden="true"><thead><tr><th width="200"></th><th></th></tr></thead><tbody><tr><td>ID</td><td><code>security.auth.keys.private</code></td></tr><tr><td>Type</td><td>String</td></tr><tr><td>Default value</td><td>(no default)</td></tr><tr><td>Environment variable</td><td><code>BOX_SECURITY_AUTH_KEYS_PRIVATE</code></td></tr><tr><td>Deprecated environment variables</td><td><code>BOX_AUTH_KEYS_PRIVATE</code></td></tr><tr><td>Sensitive</td><td><code>true</code> — value will be masked in Admin UI</td></tr><tr><td>Set via</td><td>Environment variables</td></tr><tr><td>Hot reload</td><td><code>false</code> — setting requires system restart</td></tr></tbody></table></details>
 

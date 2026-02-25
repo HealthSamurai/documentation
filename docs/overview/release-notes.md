@@ -8,6 +8,9 @@ description: >-
 
 ## February 2026 _`edge`_
 
+* Aidbox FHIR server
+  * Aidbox now **validates JWT auth keys at startup** and will refuse to start if `BOX_SECURITY_AUTH_KEYS_PRIVATE` / `BOX_SECURITY_AUTH_KEYS_PUBLIC` are misconfigured — whether one key is missing, the PEM format is malformed, or the keypair doesn't match. Previously, these errors were only detected at runtime during authentication flows. See [key format requirements](../configuration/configure-aidbox-and-multibox.md#key-format-requirements) for details.
+
 ## January 2026 _`latest, 2601`_
 
 * Aidbox FHIR server
