@@ -188,7 +188,10 @@ data:
       "secret": {
         "client-secret": {
           "path": "/run/azure-secrets/client-secret",
-          "scope": ["Client/basic"]
+          "scope": {
+            "resource_type": "Client",
+            "id": "basic"
+          }
         }
       }
     }
@@ -197,7 +200,7 @@ data:
 
 Each entry under `"secret"` maps a secret name to:
 
-<table><thead><tr><th width="100">Field</th><th>Description</th></tr></thead><tbody><tr><td><code>path</code></td><td>Absolute path to the file containing the secret value</td></tr><tr><td><code>scope</code></td><td>Array of resource references allowed to access this secret. Entries can be <code>"ResourceType/id"</code> (specific instance, e.g. <code>"Client/basic"</code>) or <code>"ResourceType"</code> (any instance of that type, e.g. <code>"Client"</code>)</td></tr></tbody></table>
+<table><thead><tr><th width="100">Field</th><th>Description</th></tr></thead><tbody><tr><td><code>path</code></td><td>Absolute path to the file containing the secret value</td></tr><tr><td><code>scope</code></td><td>Object that controls which resources can access this secret. Required field: <code>resource_type</code> (e.g. <code>"Client"</code>). Optional field: <code>id</code> — when specified, only the resource with that exact id can access the secret. When <code>id</code> is omitted, any resource of the given type can access it.</td></tr></tbody></table>
 
 ## Step 8. Deploy Aidbox
 
@@ -221,7 +224,7 @@ spec:
         - name: aidbox
           image: healthsamurai/aidboxone:latest
           env:
-            - name: AIDBOX_VAULT_CONFIG
+            - name: BOX_VAULT_CONFIG
               value: "/etc/aidbox/vault-config.json"
             # Add other required env vars
           volumeMounts:

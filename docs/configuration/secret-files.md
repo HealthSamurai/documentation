@@ -31,7 +31,7 @@ flowchart LR
 
 | Environment variable | Description | Default |
 | --- | --- | --- |
-| `AIDBOX_VAULT_CONFIG` | Path to the vault config JSON file that maps named secrets to file paths and resource scopes. | empty (feature disabled) |
+| `BOX_VAULT_CONFIG` | Path to the vault config JSON file that maps named secrets to file paths and resource scopes. | empty (feature disabled) |
 
 See [Aidbox Settings Reference](../reference/all-settings.md) for the full list of environment variables.
 
@@ -47,15 +47,23 @@ This setting requires a restart to take effect. The config file itself is re-rea
   "secret": {
     "client-secret": {
       "path": "/run/secrets/client-secret",
-      "scope": ["Client/my-client"]
+      "scope": {
+        "resource_type": "Client",
+        "id": "my-client"
+      }
     },
     "kafka-jaas": {
       "path": "/run/secrets/kafka-jaas",
-      "scope": ["AidboxTopicDestination/kafka-dest-1"]
+      "scope": {
+        "resource_type": "AidboxTopicDestination",
+        "id": "kafka-dest-1"
+      }
     },
     "jwt-key": {
       "path": "/run/secrets/jwt-key",
-      "scope": ["TokenIntrospector"]
+      "scope": {
+        "resource_type": "TokenIntrospector"
+      }
     }
   }
 }
@@ -64,7 +72,7 @@ This setting requires a restart to take effect. The config file itself is re-rea
 
 Each entry under `"secret"` maps a secret name to:
 
-<table><thead><tr><th width="100">Field</th><th>Description</th></tr></thead><tbody><tr><td><code>path</code></td><td>Absolute path to the file containing the secret value</td></tr><tr><td><code>scope</code></td><td>Array of resource references that are allowed to access this secret. Entries can be <code>"ResourceType/id"</code> (specific instance, e.g. <code>"Client/my-client"</code>) or <code>"ResourceType"</code> (any instance of that type, e.g. <code>"Client"</code>)</td></tr></tbody></table>
+<table><thead><tr><th width="100">Field</th><th>Description</th></tr></thead><tbody><tr><td><code>path</code></td><td>Absolute path to the file containing the secret value</td></tr><tr><td><code>scope</code></td><td>Object that controls which resources can access this secret. Required field: <code>resource_type</code> (e.g. <code>"Client"</code>, <code>"TokenIntrospector"</code>). Optional field: <code>id</code> — when specified, only the resource with that exact id can access the secret (e.g. <code>"id": "my-client"</code>). When <code>id</code> is omitted, any resource of the given type can access it.</td></tr></tbody></table>
 
 ## Extension pattern
 
@@ -123,7 +131,7 @@ Reading the Client back returns the extension, not the resolved value:
 
 ## Scope enforcement
 
-Aidbox verifies that the resource requesting a secret is listed in the secret's `scope` array. If the requesting resource is not in scope, Aidbox returns an error.
+Aidbox verifies that the resource requesting a secret matches the secret's `scope`. It checks the `resource_type` field and, if present, the `id` field. If the requesting resource does not match the scope, Aidbox returns an error.
 
 ## Secret rotation
 
