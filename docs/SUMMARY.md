@@ -326,6 +326,7 @@
   * [Aidbox SubSubscriptions](modules/topic-based-subscriptions/aidbox-subsubscriptions.md)
 * [Aidbox Forms](modules/aidbox-forms/README.md)
   * [Getting started](modules/aidbox-forms/getting-started.md)
+  * [Getting started with Formbox](modules/aidbox-forms/getting-started-formbox.md)
   * [Aidbox Forms Interface](modules/aidbox-forms/aidbox-forms-interface.md)
   * [Aidbox UI Builder](modules/aidbox-forms/aidbox-ui-builder-alpha/README.md)
     * [UI Builder Interface](modules/aidbox-forms/aidbox-ui-builder-alpha/ui-builder-interface.md)

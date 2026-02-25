@@ -6,6 +6,8 @@ description: This article outlines the basic steps to get started with Aidbox Fo
 
 You can try the Aidbox Forms module, edit test forms, create new ones, see how the data will be saved to the database and extracted, for this you need to run [the Aidbox Forms in Aidbox Sandbox](getting-started.md#run-aidbox-forms-in-aidbox-sandbox). At the same time, you can run [the Aidbox Forms locally](getting-started.md#run-aidbox-forms-locally).
 
+You can also use the standalone Formbox product — see [Getting started with Formbox](getting-started-formbox.md).
+
 ## Run Aidbox Forms in Aidbox Sandbox
 
 ### Create a license on Aidbox portal
