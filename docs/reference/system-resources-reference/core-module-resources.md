@@ -10,13 +10,21 @@ Core system resources.
 
 ```fhir-structure
 [ {
-  "path" : "matcho",
-  "name" : "matcho",
+  "path" : "_source",
+  "name" : "_source",
   "lvl" : 0,
   "min" : 0,
   "max" : 1,
+  "type" : "string",
+  "desc" : "System Property. DO NOT USE IT."
+}, {
+  "path" : "and",
+  "name" : "and",
+  "lvl" : 0,
+  "min" : 0,
+  "max" : "*",
   "type" : "Object",
-  "desc" : "Defines rules using the Matcho pattern-matching syntax."
+  "desc" : "A list of conditions that must all be satisfied for the policy to grant access."
 }, {
   "path" : "clj",
   "name" : "clj",
@@ -26,21 +34,37 @@ Core system resources.
   "type" : "string",
   "desc" : "Clojure code that defines access policy rules. DEPRECATED. DO NOT USE IT."
 }, {
-  "path" : "schema",
-  "name" : "schema",
-  "lvl" : 0,
-  "min" : 0,
-  "max" : 1,
-  "type" : "Object",
-  "desc" : "JSON Schema used to validate requests against the policy."
-}, {
-  "path" : "_source",
-  "name" : "_source",
+  "path" : "description",
+  "name" : "description",
   "lvl" : 0,
   "min" : 0,
   "max" : 1,
   "type" : "string",
-  "desc" : "System Property. DO NOT USE IT."
+  "desc" : "A textual description of the access policy."
+}, {
+  "path" : "engine",
+  "name" : "engine",
+  "lvl" : 0,
+  "min" : 0,
+  "max" : 1,
+  "type" : "string",
+  "desc" : "Specifies the evaluation engine used for the policy. \n\n**Allowed values**: `json-schema` | `allow` | `sql` | `complex` | `matcho` | `clj` | `matcho-rpc` | `allow-rpc` | `signed-rpc` | `smart-on-fhir`"
+}, {
+  "path" : "link",
+  "name" : "link",
+  "lvl" : 0,
+  "min" : 0,
+  "max" : "*",
+  "type" : "Reference",
+  "desc" : "References to resources associated with this policy. \n\n**Allowed references**: Client, User, Operation"
+}, {
+  "path" : "matcho",
+  "name" : "matcho",
+  "lvl" : 0,
+  "min" : 0,
+  "max" : 1,
+  "type" : "Object",
+  "desc" : "Defines rules using the Matcho pattern-matching syntax."
 }, {
   "path" : "module",
   "name" : "module",
@@ -66,38 +90,6 @@ Core system resources.
   "type" : "string",
   "desc" : "Symbolic link to Role by name."
 }, {
-  "path" : "and",
-  "name" : "and",
-  "lvl" : 0,
-  "min" : 0,
-  "max" : "*",
-  "type" : "Object",
-  "desc" : "A list of conditions that must all be satisfied for the policy to grant access."
-}, {
-  "path" : "link",
-  "name" : "link",
-  "lvl" : 0,
-  "min" : 0,
-  "max" : "*",
-  "type" : "Reference",
-  "desc" : "References to resources associated with this policy. \n\n**Allowed references**: Client, User, Operation"
-}, {
-  "path" : "type",
-  "name" : "type",
-  "lvl" : 0,
-  "min" : 0,
-  "max" : 1,
-  "type" : "string",
-  "desc" : "The type or category of the access policy. \n\n**Allowed values**: `scope` | `rest` | `rpc`"
-}, {
-  "path" : "engine",
-  "name" : "engine",
-  "lvl" : 0,
-  "min" : 0,
-  "max" : 1,
-  "type" : "string",
-  "desc" : "Specifies the evaluation engine used for the policy. \n\n**Allowed values**: `json-schema` | `allow` | `sql` | `complex` | `matcho` | `clj` | `matcho-rpc` | `allow-rpc` | `signed-rpc` | `smart-on-fhir`"
-}, {
   "path" : "rpc",
   "name" : "rpc",
   "lvl" : 0,
@@ -105,6 +97,14 @@ Core system resources.
   "max" : 1,
   "type" : "Object",
   "desc" : "Defines rules for Remote Procedure Calls (RPCs)."
+}, {
+  "path" : "schema",
+  "name" : "schema",
+  "lvl" : 0,
+  "min" : 0,
+  "max" : 1,
+  "type" : "Object",
+  "desc" : "JSON Schema used to validate requests against the policy."
 }, {
   "path" : "sql",
   "name" : "sql",
@@ -122,13 +122,13 @@ Core system resources.
   "type" : "string",
   "desc" : "SQL query used to evaluate access conditions."
 }, {
-  "path" : "description",
-  "name" : "description",
+  "path" : "type",
+  "name" : "type",
   "lvl" : 0,
   "min" : 0,
   "max" : 1,
   "type" : "string",
-  "desc" : "A textual description of the access policy."
+  "desc" : "The type or category of the access policy. \n\n**Allowed values**: `scope` | `rest` | `rpc`"
 } ]
 ```
 
@@ -139,13 +139,21 @@ Archive configuration resource for Aidbox data archival.
 
 ```fhir-structure
 [ {
-  "path" : "storageBackend",
-  "name" : "storageBackend",
+  "path" : "archiveFile",
+  "name" : "archiveFile",
   "lvl" : 0,
-  "min" : 1,
+  "min" : 0,
   "max" : 1,
   "type" : "string",
-  "desc" : "Type of storage backend to use. \n\n**Allowed values**: `gcp` | `aws` | `local`"
+  "desc" : "Name of the archive file."
+}, {
+  "path" : "archivedResourcesCount",
+  "name" : "archivedResourcesCount",
+  "lvl" : 0,
+  "min" : 0,
+  "max" : 1,
+  "type" : "number",
+  "desc" : "Count of resources that have been archived."
 }, {
   "path" : "bucket",
   "name" : "bucket",
@@ -155,14 +163,6 @@ Archive configuration resource for Aidbox data archival.
   "type" : "string",
   "desc" : "Storage bucket where archives are stored."
 }, {
-  "path" : "targetResourceType",
-  "name" : "targetResourceType",
-  "lvl" : 0,
-  "min" : 1,
-  "max" : 1,
-  "type" : "string",
-  "desc" : "Resource type to be archived."
-}, {
   "path" : "criteriaPaths",
   "name" : "criteriaPaths",
   "lvl" : 0,
@@ -170,6 +170,14 @@ Archive configuration resource for Aidbox data archival.
   "max" : "*",
   "type" : "string",
   "desc" : "Paths to use for filtering resources to archive."
+}, {
+  "path" : "history",
+  "name" : "history",
+  "lvl" : 0,
+  "min" : 0,
+  "max" : 1,
+  "type" : "boolean",
+  "desc" : "Whether to include resource history in the archive."
 }, {
   "path" : "period",
   "name" : "period",
@@ -194,30 +202,6 @@ Archive configuration resource for Aidbox data archival.
   "max" : 1,
   "type" : "dateTime",
   "desc" : "End date/time for the archive period."
-}, {
-  "path" : "archiveFile",
-  "name" : "archiveFile",
-  "lvl" : 0,
-  "min" : 0,
-  "max" : 1,
-  "type" : "string",
-  "desc" : "Name of the archive file."
-}, {
-  "path" : "archivedResourcesCount",
-  "name" : "archivedResourcesCount",
-  "lvl" : 0,
-  "min" : 0,
-  "max" : 1,
-  "type" : "number",
-  "desc" : "Count of resources that have been archived."
-}, {
-  "path" : "history",
-  "name" : "history",
-  "lvl" : 0,
-  "min" : 0,
-  "max" : 1,
-  "type" : "boolean",
-  "desc" : "Whether to include resource history in the archive."
 }, {
   "path" : "serviceAccount",
   "name" : "serviceAccount",
@@ -258,6 +242,22 @@ Archive configuration resource for Aidbox data archival.
   "max" : 1,
   "type" : "string",
   "desc" : "Secret key for service account authentication."
+}, {
+  "path" : "storageBackend",
+  "name" : "storageBackend",
+  "lvl" : 0,
+  "min" : 1,
+  "max" : 1,
+  "type" : "string",
+  "desc" : "Type of storage backend to use. \n\n**Allowed values**: `gcp` | `aws` | `local`"
+}, {
+  "path" : "targetResourceType",
+  "name" : "targetResourceType",
+  "lvl" : 0,
+  "min" : 1,
+  "max" : 1,
+  "type" : "string",
+  "desc" : "Resource type to be archived."
 } ]
 ```
 
@@ -275,14 +275,6 @@ Configuration resource for Aidbox settings.
   "max" : 1,
   "type" : "string",
   "desc" : "System Property. DO NOT USE IT."
-}, {
-  "path" : "box",
-  "name" : "box",
-  "lvl" : 0,
-  "min" : 0,
-  "max" : 1,
-  "type" : "",
-  "desc" : "Box configuration parameters."
 }, {
   "path" : "auth",
   "name" : "auth",
@@ -315,6 +307,14 @@ Configuration resource for Aidbox settings.
   "max" : 1,
   "type" : "string",
   "desc" : "Public key used for verification."
+}, {
+  "path" : "box",
+  "name" : "box",
+  "lvl" : 0,
+  "min" : 0,
+  "max" : 1,
+  "type" : "",
+  "desc" : "Box configuration parameters."
 } ]
 ```
 
@@ -333,6 +333,22 @@ Aidbox Job resource for scheduling and executing periodic tasks.
   "type" : "string",
   "desc" : "System Property. DO NOT USE IT."
 }, {
+  "path" : "action",
+  "name" : "action",
+  "lvl" : 0,
+  "min" : 0,
+  "max" : 1,
+  "type" : "Object",
+  "desc" : "Action to be performed when the job runs."
+}, {
+  "path" : "at",
+  "name" : "at",
+  "lvl" : 0,
+  "min" : 0,
+  "max" : 1,
+  "type" : "string",
+  "desc" : "Time of day when the job should run (for each-day type)."
+}, {
   "path" : "every",
   "name" : "every",
   "lvl" : 0,
@@ -340,14 +356,6 @@ Aidbox Job resource for scheduling and executing periodic tasks.
   "max" : 1,
   "type" : "integer",
   "desc" : "Frequency in seconds at which the job should run."
-}, {
-  "path" : "status",
-  "name" : "status",
-  "lvl" : 0,
-  "min" : 0,
-  "max" : 1,
-  "type" : "Object",
-  "desc" : "Current status information for the job."
 }, {
   "path" : "module",
   "name" : "module",
@@ -357,6 +365,14 @@ Aidbox Job resource for scheduling and executing periodic tasks.
   "type" : "string",
   "desc" : "Module that this job belongs to."
 }, {
+  "path" : "status",
+  "name" : "status",
+  "lvl" : 0,
+  "min" : 0,
+  "max" : 1,
+  "type" : "Object",
+  "desc" : "Current status information for the job."
+}, {
   "path" : "text",
   "name" : "text",
   "lvl" : 0,
@@ -365,14 +381,6 @@ Aidbox Job resource for scheduling and executing periodic tasks.
   "type" : "string",
   "desc" : "Human-readable description of the job."
 }, {
-  "path" : "action",
-  "name" : "action",
-  "lvl" : 0,
-  "min" : 0,
-  "max" : 1,
-  "type" : "Object",
-  "desc" : "Action to be performed when the job runs."
-}, {
   "path" : "type",
   "name" : "type",
   "lvl" : 0,
@@ -380,14 +388,6 @@ Aidbox Job resource for scheduling and executing periodic tasks.
   "max" : 1,
   "type" : "string",
   "desc" : "Type of job scheduling pattern. \n\n**Allowed values**: `periodic` | `each-day`"
-}, {
-  "path" : "at",
-  "name" : "at",
-  "lvl" : 0,
-  "min" : 0,
-  "max" : 1,
-  "type" : "string",
-  "desc" : "Time of day when the job should run (for each-day type)."
 } ]
 ```
 
@@ -406,13 +406,13 @@ Status tracking for Aidbox job executions.
   "type" : "string",
   "desc" : "System Property. DO NOT USE IT."
 }, {
-  "path" : "stop",
-  "name" : "stop",
+  "path" : "error",
+  "name" : "error",
   "lvl" : 0,
   "min" : 0,
   "max" : 1,
-  "type" : "dateTime",
-  "desc" : "Time when the job execution stopped."
+  "type" : "Object",
+  "desc" : "Error information if the job failed."
 }, {
   "path" : "job",
   "name" : "job",
@@ -422,21 +422,13 @@ Status tracking for Aidbox job executions.
   "type" : "Reference",
   "desc" : "Reference to the job definition."
 }, {
-  "path" : "error",
-  "name" : "error",
+  "path" : "locked",
+  "name" : "locked",
   "lvl" : 0,
   "min" : 0,
   "max" : 1,
-  "type" : "Object",
-  "desc" : "Error information if the job failed."
-}, {
-  "path" : "status",
-  "name" : "status",
-  "lvl" : 0,
-  "min" : 0,
-  "max" : 1,
-  "type" : "string",
-  "desc" : "Current status of the job execution."
+  "type" : "boolean",
+  "desc" : "Indicates whether the job is currently locked to prevent concurrent execution."
 }, {
   "path" : "module",
   "name" : "module",
@@ -446,22 +438,6 @@ Status tracking for Aidbox job executions.
   "type" : "string",
   "desc" : "Module that this job status belongs to."
 }, {
-  "path" : "start",
-  "name" : "start",
-  "lvl" : 0,
-  "min" : 0,
-  "max" : 1,
-  "type" : "dateTime",
-  "desc" : "Time when the job execution started."
-}, {
-  "path" : "text",
-  "name" : "text",
-  "lvl" : 0,
-  "min" : 0,
-  "max" : 1,
-  "type" : "string",
-  "desc" : "Human-readable status information."
-}, {
   "path" : "nextStart",
   "name" : "nextStart",
   "lvl" : 0,
@@ -470,14 +446,6 @@ Status tracking for Aidbox job executions.
   "type" : "dateTime",
   "desc" : "Scheduled time for the next execution of the job."
 }, {
-  "path" : "locked",
-  "name" : "locked",
-  "lvl" : 0,
-  "min" : 0,
-  "max" : 1,
-  "type" : "boolean",
-  "desc" : "Indicates whether the job is currently locked to prevent concurrent execution."
-}, {
   "path" : "result",
   "name" : "result",
   "lvl" : 0,
@@ -485,6 +453,38 @@ Status tracking for Aidbox job executions.
   "max" : 1,
   "type" : "Object",
   "desc" : "Result data from the job execution."
+}, {
+  "path" : "start",
+  "name" : "start",
+  "lvl" : 0,
+  "min" : 0,
+  "max" : 1,
+  "type" : "dateTime",
+  "desc" : "Time when the job execution started."
+}, {
+  "path" : "status",
+  "name" : "status",
+  "lvl" : 0,
+  "min" : 0,
+  "max" : 1,
+  "type" : "string",
+  "desc" : "Current status of the job execution."
+}, {
+  "path" : "stop",
+  "name" : "stop",
+  "lvl" : 0,
+  "min" : 0,
+  "max" : 1,
+  "type" : "dateTime",
+  "desc" : "Time when the job execution stopped."
+}, {
+  "path" : "text",
+  "name" : "text",
+  "lvl" : 0,
+  "min" : 0,
+  "max" : 1,
+  "type" : "string",
+  "desc" : "Human-readable status information."
 } ]
 ```
 
@@ -503,6 +503,14 @@ Database migration tracking resource for Aidbox.
   "type" : "string",
   "desc" : "System Property. DO NOT USE IT."
 }, {
+  "path" : "action",
+  "name" : "action",
+  "lvl" : 0,
+  "min" : 0,
+  "max" : 1,
+  "type" : "Object",
+  "desc" : "Action to be performed for the migration. \n\n**Allowed values**: `far-migration-fhir-package-install` | `far-migration-fhir-package-uninstall` | `aidbox-migration-run-sql`"
+}, {
   "path" : "dateTime",
   "name" : "dateTime",
   "lvl" : 0,
@@ -510,14 +518,6 @@ Database migration tracking resource for Aidbox.
   "max" : 1,
   "type" : "dateTime",
   "desc" : "Time when the migration was created or executed."
-}, {
-  "path" : "status",
-  "name" : "status",
-  "lvl" : 0,
-  "min" : 0,
-  "max" : 1,
-  "type" : "string",
-  "desc" : "Current status of the migration. \n\n**Allowed values**: `pending` | `done` | `error` | `to-run`"
 }, {
   "path" : "module",
   "name" : "module",
@@ -527,21 +527,13 @@ Database migration tracking resource for Aidbox.
   "type" : "string",
   "desc" : "Module that this migration belongs to."
 }, {
-  "path" : "text",
-  "name" : "text",
-  "lvl" : 0,
-  "min" : 0,
-  "max" : 1,
-  "type" : "string",
-  "desc" : "Human-readable description of the migration."
-}, {
-  "path" : "action",
-  "name" : "action",
+  "path" : "params",
+  "name" : "params",
   "lvl" : 0,
   "min" : 0,
   "max" : 1,
   "type" : "Object",
-  "desc" : "Action to be performed for the migration. \n\n**Allowed values**: `far-migration-fhir-package-install` | `far-migration-fhir-package-uninstall` | `aidbox-migration-run-sql`"
+  "desc" : "Parameters for the migration."
 }, {
   "path" : "result",
   "name" : "result",
@@ -551,13 +543,21 @@ Database migration tracking resource for Aidbox.
   "type" : "Object",
   "desc" : "Result data from the migration execution."
 }, {
-  "path" : "params",
-  "name" : "params",
+  "path" : "status",
+  "name" : "status",
   "lvl" : 0,
   "min" : 0,
   "max" : 1,
-  "type" : "Object",
-  "desc" : "Parameters for the migration."
+  "type" : "string",
+  "desc" : "Current status of the migration. \n\n**Allowed values**: `pending` | `done` | `error` | `to-run`"
+}, {
+  "path" : "text",
+  "name" : "text",
+  "lvl" : 0,
+  "min" : 0,
+  "max" : 1,
+  "type" : "string",
+  "desc" : "Human-readable description of the migration."
 } ]
 ```
 
@@ -609,22 +609,6 @@ Custom SQL query resource for Aidbox.
   "type" : "string",
   "desc" : "System Property. DO NOT USE IT."
 }, {
-  "path" : "params",
-  "name" : "params",
-  "lvl" : 0,
-  "min" : 0,
-  "max" : 1,
-  "type" : "Object",
-  "desc" : "Parameters for the query."
-}, {
-  "path" : "query",
-  "name" : "query",
-  "lvl" : 0,
-  "min" : 1,
-  "max" : 1,
-  "type" : "string",
-  "desc" : "SQL query string."
-}, {
   "path" : "count-query",
   "name" : "count-query",
   "lvl" : 0,
@@ -641,14 +625,6 @@ Custom SQL query resource for Aidbox.
   "type" : "boolean",
   "desc" : "Whether to generate FHIR links for pagination."
 }, {
-  "path" : "type",
-  "name" : "type",
-  "lvl" : 0,
-  "min" : 0,
-  "max" : 1,
-  "type" : "string",
-  "desc" : "Type of query operation. \n\n**Allowed values**: `query` | `execute`"
-}, {
   "path" : "omit-sql",
   "name" : "omit-sql",
   "lvl" : 0,
@@ -656,6 +632,30 @@ Custom SQL query resource for Aidbox.
   "max" : 1,
   "type" : "boolean",
   "desc" : "Whether to omit SQL in response metadata."
+}, {
+  "path" : "params",
+  "name" : "params",
+  "lvl" : 0,
+  "min" : 0,
+  "max" : 1,
+  "type" : "Object",
+  "desc" : "Parameters for the query."
+}, {
+  "path" : "query",
+  "name" : "query",
+  "lvl" : 0,
+  "min" : 1,
+  "max" : 1,
+  "type" : "string",
+  "desc" : "SQL query string."
+}, {
+  "path" : "type",
+  "name" : "type",
+  "lvl" : 0,
+  "min" : 0,
+  "max" : 1,
+  "type" : "string",
+  "desc" : "Type of query operation. \n\n**Allowed values**: `query` | `execute`"
 } ]
 ```
 
@@ -674,14 +674,6 @@ Aidbox subscription resource for event-driven workflows.
   "type" : "string",
   "desc" : "System Property. DO NOT USE IT."
 }, {
-  "path" : "module",
-  "name" : "module",
-  "lvl" : 0,
-  "min" : 0,
-  "max" : 1,
-  "type" : "string",
-  "desc" : "Module that this subscription belongs to."
-}, {
   "path" : "action",
   "name" : "action",
   "lvl" : 0,
@@ -690,13 +682,13 @@ Aidbox subscription resource for event-driven workflows.
   "type" : "Object",
   "desc" : "Action to be performed when the subscription is triggered."
 }, {
-  "path" : "type",
-  "name" : "type",
+  "path" : "module",
+  "name" : "module",
   "lvl" : 0,
   "min" : 0,
   "max" : 1,
   "type" : "string",
-  "desc" : "Type of subscription execution model. \n\n**Allowed values**: `sync` | `async`"
+  "desc" : "Module that this subscription belongs to."
 }, {
   "path" : "resources",
   "name" : "resources",
@@ -705,6 +697,14 @@ Aidbox subscription resource for event-driven workflows.
   "max" : "*",
   "type" : "string",
   "desc" : "List of resource types this subscription applies to."
+}, {
+  "path" : "type",
+  "name" : "type",
+  "lvl" : 0,
+  "min" : 0,
+  "max" : 1,
+  "type" : "string",
+  "desc" : "Type of subscription execution model. \n\n**Allowed values**: `sync` | `async`"
 } ]
 ```
 
@@ -715,38 +715,6 @@ The status of an AidboxTopicDestination during notifications.
 
 ```fhir-structure
 [ {
-  "path" : "type",
-  "name" : "type",
-  "lvl" : 0,
-  "min" : 1,
-  "max" : 1,
-  "type" : "string",
-  "desc" : "handshake | heartbeat | event-notification | query-status | query-event. \n\n**Allowed values**: `handshake` | `heartbeat` | `event-notification` | `query-status` | `query-event`"
-}, {
-  "path" : "topic-destination",
-  "name" : "topic-destination",
-  "lvl" : 0,
-  "min" : 1,
-  "max" : 1,
-  "type" : "Reference",
-  "desc" : "Reference to the AidboxTopicDestination responsible for this notification. \n\n**Allowed references**: AidboxTopicDestination"
-}, {
-  "path" : "status",
-  "name" : "status",
-  "lvl" : 0,
-  "min" : 0,
-  "max" : 1,
-  "type" : "code",
-  "desc" : "requested | active | error | off | entered-in-error. \n\n**Allowed values**: `requested` | `active` | `error` | `off` | `entered-in-error`"
-}, {
-  "path" : "topic",
-  "name" : "topic",
-  "lvl" : 0,
-  "min" : 0,
-  "max" : 1,
-  "type" : "canonical",
-  "desc" : "Reference to the AidboxSubscriptionTopic this notification relates to."
-}, {
   "path" : "error",
   "name" : "error",
   "lvl" : 0,
@@ -802,6 +770,38 @@ The status of an AidboxTopicDestination during notifications.
   "max" : "*",
   "type" : "Reference",
   "desc" : "References related to the focus resource and/or context of this event. \n\n**Allowed references**: Resource"
+}, {
+  "path" : "status",
+  "name" : "status",
+  "lvl" : 0,
+  "min" : 0,
+  "max" : 1,
+  "type" : "code",
+  "desc" : "requested | active | error | off | entered-in-error. \n\n**Allowed values**: `requested` | `active` | `error` | `off` | `entered-in-error`"
+}, {
+  "path" : "topic",
+  "name" : "topic",
+  "lvl" : 0,
+  "min" : 0,
+  "max" : 1,
+  "type" : "canonical",
+  "desc" : "Reference to the AidboxSubscriptionTopic this notification relates to."
+}, {
+  "path" : "topic-destination",
+  "name" : "topic-destination",
+  "lvl" : 0,
+  "min" : 1,
+  "max" : 1,
+  "type" : "Reference",
+  "desc" : "Reference to the AidboxTopicDestination responsible for this notification. \n\n**Allowed references**: AidboxTopicDestination"
+}, {
+  "path" : "type",
+  "name" : "type",
+  "lvl" : 0,
+  "min" : 1,
+  "max" : 1,
+  "type" : "string",
+  "desc" : "handshake | heartbeat | event-notification | query-status | query-event. \n\n**Allowed values**: `handshake` | `heartbeat` | `event-notification` | `query-status` | `query-event`"
 } ]
 ```
 
@@ -812,93 +812,13 @@ Defines the data sources and events that clients can subscribe to. Acts as a con
 
 ```fhir-structure
 [ {
-  "path" : "url",
-  "name" : "url",
-  "lvl" : 0,
-  "min" : 1,
-  "max" : 1,
-  "type" : "uri",
-  "desc" : "Canonical identifier for this subscription topic, represented as an absolute URI (globally unique)."
-}, {
-  "path" : "status",
-  "name" : "status",
-  "lvl" : 0,
-  "min" : 1,
-  "max" : 1,
-  "type" : "code",
-  "desc" : "draft | active | retired | unknown. \n\n**Allowed values**: `draft` | `active` | `retired` | `unknown`"
-}, {
-  "path" : "identifier",
-  "name" : "identifier",
-  "lvl" : 0,
-  "min" : 0,
-  "max" : "*",
-  "type" : "Identifier",
-  "desc" : "Business identifier for subscription topic."
-}, {
-  "path" : "version",
-  "name" : "version",
+  "path" : "approvalDate",
+  "name" : "approvalDate",
   "lvl" : 0,
   "min" : 0,
   "max" : 1,
-  "type" : "string",
-  "desc" : "Business version of the subscription topic."
-}, {
-  "path" : "versionAlgorithm[x]",
-  "name" : "versionAlgorithm[x]",
-  "lvl" : 0,
-  "min" : 0,
-  "max" : 1,
-  "type" : "string",
-  "desc" : "How to compare versions."
-}, {
-  "path" : "name",
-  "name" : "name",
-  "lvl" : 0,
-  "min" : 0,
-  "max" : 1,
-  "type" : "string",
-  "desc" : "Name for this subscription topic (computer friendly)."
-}, {
-  "path" : "title",
-  "name" : "title",
-  "lvl" : 0,
-  "min" : 0,
-  "max" : 1,
-  "type" : "string",
-  "desc" : "Name for this subscription topic (human friendly)."
-}, {
-  "path" : "derivedFrom",
-  "name" : "derivedFrom",
-  "lvl" : 0,
-  "min" : 0,
-  "max" : "*",
-  "type" : "canonical",
-  "desc" : "Based on FHIR protocol or definition."
-}, {
-  "path" : "experimental",
-  "name" : "experimental",
-  "lvl" : 0,
-  "min" : 0,
-  "max" : 1,
-  "type" : "boolean",
-  "desc" : "If for testing purposes, not real usage."
-}, {
-  "path" : "date",
-  "name" : "date",
-  "lvl" : 0,
-  "min" : 0,
-  "max" : 1,
-  "type" : "dateTime",
-  "desc" : "Date status first applied."
-}, {
-  "path" : "publisher",
-  "name" : "publisher",
-  "lvl" : 0,
-  "min" : 0,
-  "max" : 1,
-  "type" : "string",
-  "desc" : "The name of the individual or organization that published the AidboxSubscriptionTopic."
+  "type" : "date",
+  "desc" : "When AidboxSubscriptionTopic is/was approved by publisher."
 }, {
   "path" : "contact",
   "name" : "contact",
@@ -907,38 +827,6 @@ Defines the data sources and events that clients can subscribe to. Acts as a con
   "max" : "*",
   "type" : "ContactDetail",
   "desc" : "Contact details for the publisher."
-}, {
-  "path" : "description",
-  "name" : "description",
-  "lvl" : 0,
-  "min" : 0,
-  "max" : 1,
-  "type" : "markdown",
-  "desc" : "Natural language description of the AidboxSubscriptionTopic."
-}, {
-  "path" : "useContext",
-  "name" : "useContext",
-  "lvl" : 0,
-  "min" : 0,
-  "max" : "*",
-  "type" : "UsageContext",
-  "desc" : "Content intends to support these contexts."
-}, {
-  "path" : "jurisdiction",
-  "name" : "jurisdiction",
-  "lvl" : 0,
-  "min" : 0,
-  "max" : "*",
-  "type" : "CodeableConcept",
-  "desc" : "Intended jurisdiction of the AidboxSubscriptionTopic (if applicable)."
-}, {
-  "path" : "purpose",
-  "name" : "purpose",
-  "lvl" : 0,
-  "min" : 0,
-  "max" : 1,
-  "type" : "markdown",
-  "desc" : "Why this AidboxSubscriptionTopic is defined."
 }, {
   "path" : "copyright",
   "name" : "copyright",
@@ -956,13 +844,61 @@ Defines the data sources and events that clients can subscribe to. Acts as a con
   "type" : "string",
   "desc" : "Copyright holder and year(s)."
 }, {
-  "path" : "approvalDate",
-  "name" : "approvalDate",
+  "path" : "date",
+  "name" : "date",
   "lvl" : 0,
   "min" : 0,
   "max" : 1,
-  "type" : "date",
-  "desc" : "When AidboxSubscriptionTopic is/was approved by publisher."
+  "type" : "dateTime",
+  "desc" : "Date status first applied."
+}, {
+  "path" : "derivedFrom",
+  "name" : "derivedFrom",
+  "lvl" : 0,
+  "min" : 0,
+  "max" : "*",
+  "type" : "canonical",
+  "desc" : "Based on FHIR protocol or definition."
+}, {
+  "path" : "description",
+  "name" : "description",
+  "lvl" : 0,
+  "min" : 0,
+  "max" : 1,
+  "type" : "markdown",
+  "desc" : "Natural language description of the AidboxSubscriptionTopic."
+}, {
+  "path" : "effectivePeriod",
+  "name" : "effectivePeriod",
+  "lvl" : 0,
+  "min" : 0,
+  "max" : 1,
+  "type" : "Period",
+  "desc" : "The effective date range for the AidboxSubscriptionTopic."
+}, {
+  "path" : "experimental",
+  "name" : "experimental",
+  "lvl" : 0,
+  "min" : 0,
+  "max" : 1,
+  "type" : "boolean",
+  "desc" : "If for testing purposes, not real usage."
+}, {
+  "path" : "identifier",
+  "name" : "identifier",
+  "lvl" : 0,
+  "min" : 0,
+  "max" : "*",
+  "type" : "Identifier",
+  "desc" : "Business identifier for subscription topic."
+}, {
+  "path" : "jurisdiction",
+  "name" : "jurisdiction",
+  "lvl" : 0,
+  "min" : 0,
+  "max" : "*",
+  "type" : "CodeableConcept",
+  "desc" : "Intended jurisdiction of the AidboxSubscriptionTopic (if applicable)."
 }, {
   "path" : "lastReviewDate",
   "name" : "lastReviewDate",
@@ -972,13 +908,45 @@ Defines the data sources and events that clients can subscribe to. Acts as a con
   "type" : "date",
   "desc" : "Date the AidboxSubscriptionTopic was last reviewed by the publisher."
 }, {
-  "path" : "effectivePeriod",
-  "name" : "effectivePeriod",
+  "path" : "name",
+  "name" : "name",
   "lvl" : 0,
   "min" : 0,
   "max" : 1,
-  "type" : "Period",
-  "desc" : "The effective date range for the AidboxSubscriptionTopic."
+  "type" : "string",
+  "desc" : "Name for this subscription topic (computer friendly)."
+}, {
+  "path" : "publisher",
+  "name" : "publisher",
+  "lvl" : 0,
+  "min" : 0,
+  "max" : 1,
+  "type" : "string",
+  "desc" : "The name of the individual or organization that published the AidboxSubscriptionTopic."
+}, {
+  "path" : "purpose",
+  "name" : "purpose",
+  "lvl" : 0,
+  "min" : 0,
+  "max" : 1,
+  "type" : "markdown",
+  "desc" : "Why this AidboxSubscriptionTopic is defined."
+}, {
+  "path" : "status",
+  "name" : "status",
+  "lvl" : 0,
+  "min" : 1,
+  "max" : 1,
+  "type" : "code",
+  "desc" : "draft | active | retired | unknown. \n\n**Allowed values**: `draft` | `active` | `retired` | `unknown`"
+}, {
+  "path" : "title",
+  "name" : "title",
+  "lvl" : 0,
+  "min" : 0,
+  "max" : 1,
+  "type" : "string",
+  "desc" : "Name for this subscription topic (human friendly)."
 }, {
   "path" : "trigger",
   "name" : "trigger",
@@ -1059,6 +1027,38 @@ Defines the data sources and events that clients can subscribe to. Acts as a con
   "max" : 1,
   "type" : "markdown",
   "desc" : "Description of this filter parameter."
+}, {
+  "path" : "url",
+  "name" : "url",
+  "lvl" : 0,
+  "min" : 1,
+  "max" : 1,
+  "type" : "uri",
+  "desc" : "Canonical identifier for this subscription topic, represented as an absolute URI (globally unique)."
+}, {
+  "path" : "useContext",
+  "name" : "useContext",
+  "lvl" : 0,
+  "min" : 0,
+  "max" : "*",
+  "type" : "UsageContext",
+  "desc" : "Content intends to support these contexts."
+}, {
+  "path" : "version",
+  "name" : "version",
+  "lvl" : 0,
+  "min" : 0,
+  "max" : 1,
+  "type" : "string",
+  "desc" : "Business version of the subscription topic."
+}, {
+  "path" : "versionAlgorithm[x]",
+  "name" : "versionAlgorithm[x]",
+  "lvl" : 0,
+  "min" : 0,
+  "max" : 1,
+  "type" : "string",
+  "desc" : "How to compare versions."
 } ]
 ```
 
@@ -1067,85 +1067,13 @@ Defines the data sources and events that clients can subscribe to. Acts as a con
 
 ```fhir-structure
 [ {
-  "path" : "definition",
-  "name" : "definition",
-  "lvl" : 0,
-  "min" : 1,
-  "max" : 1,
-  "type" : "string",
-  "desc" : "Identifier for the task definition."
-}, {
-  "path" : "params",
-  "name" : "params",
-  "lvl" : 0,
-  "min" : 1,
-  "max" : 1,
-  "type" : "",
-  "desc" : "Parameters required for task execution."
-}, {
-  "path" : "status",
-  "name" : "status",
-  "lvl" : 0,
-  "min" : 1,
-  "max" : 1,
-  "type" : "string",
-  "desc" : "Current status of the task. \n\n**Allowed values**: `created` | `ready` | `requested` | `in-progress` | `done` | `waiting`"
-}, {
-  "path" : "inProgressTimeout",
-  "name" : "inProgressTimeout",
+  "path" : "allowedRetryCount",
+  "name" : "allowedRetryCount",
   "lvl" : 0,
   "min" : 0,
   "max" : 1,
-  "type" : "decimal",
-  "desc" : "Maximum duration in seconds that a task can remain in in-progress status before timing out."
-}, {
-  "path" : "concurrencyPath",
-  "name" : "concurrencyPath",
-  "lvl" : 0,
-  "min" : 0,
-  "max" : "*",
-  "type" : "",
-  "desc" : ""
-}, {
-  "path" : "executeAt",
-  "name" : "executeAt",
-  "lvl" : 0,
-  "min" : 0,
-  "max" : 1,
-  "type" : "dateTime",
-  "desc" : "Scheduled time for task execution."
-}, {
-  "path" : "retryCount",
-  "name" : "retryCount",
-  "lvl" : 0,
-  "min" : 0,
-  "max" : 1,
-  "type" : "decimal",
-  "desc" : "Number of times the task has been retried."
-}, {
-  "path" : "requestedToStartTimeout",
-  "name" : "requestedToStartTimeout",
-  "lvl" : 0,
-  "min" : 0,
-  "max" : 1,
-  "type" : "decimal",
-  "desc" : "Maximum duration in seconds that a task can remain in requested status before timing out."
-}, {
-  "path" : "outcome",
-  "name" : "outcome",
-  "lvl" : 0,
-  "min" : 0,
-  "max" : 1,
-  "type" : "string",
-  "desc" : "Final outcome of the task execution. \n\n**Allowed values**: `succeeded` | `failed` | `canceled`"
-}, {
-  "path" : "workflow-definition",
-  "name" : "workflow-definition",
-  "lvl" : 0,
-  "min" : 0,
-  "max" : 1,
-  "type" : "string",
-  "desc" : "Reference to the workflow definition for this task."
+  "type" : "integer",
+  "desc" : "Maximum number of retries allowed for this task."
 }, {
   "path" : "concurrencyLimit",
   "name" : "concurrencyLimit",
@@ -1155,13 +1083,117 @@ Defines the data sources and events that clients can subscribe to. Acts as a con
   "type" : "decimal",
   "desc" : "Maximum number of concurrent tasks allowed."
 }, {
-  "path" : "retryDelay",
-  "name" : "retryDelay",
+  "path" : "concurrencyPath",
+  "name" : "concurrencyPath",
+  "lvl" : 0,
+  "min" : 0,
+  "max" : "*",
+  "type" : "",
+  "desc" : ""
+}, {
+  "path" : "definition",
+  "name" : "definition",
+  "lvl" : 0,
+  "min" : 1,
+  "max" : 1,
+  "type" : "string",
+  "desc" : "Identifier for the task definition."
+}, {
+  "path" : "error",
+  "name" : "error",
+  "lvl" : 0,
+  "min" : 0,
+  "max" : 1,
+  "type" : "",
+  "desc" : "Error details if task failed."
+}, {
+  "path" : "execId",
+  "name" : "execId",
+  "lvl" : 0,
+  "min" : 0,
+  "max" : 1,
+  "type" : "string",
+  "desc" : "Unique execution identifier."
+}, {
+  "path" : "executeAt",
+  "name" : "executeAt",
+  "lvl" : 0,
+  "min" : 0,
+  "max" : 1,
+  "type" : "dateTime",
+  "desc" : "Scheduled time for task execution."
+}, {
+  "path" : "inProgressTimeout",
+  "name" : "inProgressTimeout",
   "lvl" : 0,
   "min" : 0,
   "max" : 1,
   "type" : "decimal",
-  "desc" : "Delay in seconds before retrying a failed task."
+  "desc" : "Maximum duration in seconds that a task can remain in in-progress status before timing out."
+}, {
+  "path" : "label",
+  "name" : "label",
+  "lvl" : 0,
+  "min" : 0,
+  "max" : 1,
+  "type" : "string",
+  "desc" : "Label for the task."
+}, {
+  "path" : "outcome",
+  "name" : "outcome",
+  "lvl" : 0,
+  "min" : 0,
+  "max" : 1,
+  "type" : "string",
+  "desc" : "Final outcome of the task execution. \n\n**Allowed values**: `succeeded` | `failed` | `canceled`"
+}, {
+  "path" : "outcomeReason",
+  "name" : "outcomeReason",
+  "lvl" : 0,
+  "min" : 0,
+  "max" : 1,
+  "type" : "BackboneElement",
+  "desc" : "Detailed reason for the task outcome."
+}, {
+  "path" : "outcomeReason.type",
+  "name" : "type",
+  "lvl" : 1,
+  "min" : 1,
+  "max" : 1,
+  "type" : "string",
+  "desc" : "Type of outcome reason. \n\n**Allowed values**: `awf.task/failed-due-to-in-progress-timeout` | `awf.task/failed-by-executor` | `awf.executor/unknown-error`"
+}, {
+  "path" : "outcomeReason.message",
+  "name" : "message",
+  "lvl" : 1,
+  "min" : 1,
+  "max" : 1,
+  "type" : "string",
+  "desc" : "Human-readable explanation of the outcome."
+}, {
+  "path" : "outcomeReason.data",
+  "name" : "data",
+  "lvl" : 1,
+  "min" : 0,
+  "max" : 1,
+  "type" : "",
+  "desc" : "Additional data related to the outcome."
+}, {
+  "path" : "params",
+  "name" : "params",
+  "lvl" : 0,
+  "min" : 1,
+  "max" : 1,
+  "type" : "",
+  "desc" : "Parameters required for task execution."
+}, {
+  "path" : "requestedToStartTimeout",
+  "name" : "requestedToStartTimeout",
+  "lvl" : 0,
+  "min" : 0,
+  "max" : 1,
+  "type" : "decimal",
+  "desc" : "Maximum duration in seconds that a task can remain in requested status before timing out."
 }, {
   "path" : "requester",
   "name" : "requester",
@@ -1219,69 +1251,37 @@ Defines the data sources and events that clients can subscribe to. Acts as a con
   "type" : "",
   "desc" : "Result data produced by successful task execution."
 }, {
-  "path" : "execId",
-  "name" : "execId",
+  "path" : "retryCount",
+  "name" : "retryCount",
   "lvl" : 0,
   "min" : 0,
   "max" : 1,
-  "type" : "string",
-  "desc" : "Unique execution identifier."
+  "type" : "decimal",
+  "desc" : "Number of times the task has been retried."
 }, {
-  "path" : "label",
-  "name" : "label",
+  "path" : "retryDelay",
+  "name" : "retryDelay",
   "lvl" : 0,
   "min" : 0,
   "max" : 1,
-  "type" : "string",
-  "desc" : "Label for the task."
+  "type" : "decimal",
+  "desc" : "Delay in seconds before retrying a failed task."
 }, {
-  "path" : "error",
-  "name" : "error",
+  "path" : "status",
+  "name" : "status",
   "lvl" : 0,
-  "min" : 0,
-  "max" : 1,
-  "type" : "",
-  "desc" : "Error details if task failed."
-}, {
-  "path" : "outcomeReason",
-  "name" : "outcomeReason",
-  "lvl" : 0,
-  "min" : 0,
-  "max" : 1,
-  "type" : "BackboneElement",
-  "desc" : "Detailed reason for the task outcome."
-}, {
-  "path" : "outcomeReason.type",
-  "name" : "type",
-  "lvl" : 1,
   "min" : 1,
   "max" : 1,
   "type" : "string",
-  "desc" : "Type of outcome reason. \n\n**Allowed values**: `awf.task/failed-due-to-in-progress-timeout` | `awf.task/failed-by-executor` | `awf.executor/unknown-error`"
+  "desc" : "Current status of the task. \n\n**Allowed values**: `created` | `ready` | `requested` | `in-progress` | `done` | `waiting`"
 }, {
-  "path" : "outcomeReason.message",
-  "name" : "message",
-  "lvl" : 1,
-  "min" : 1,
-  "max" : 1,
-  "type" : "string",
-  "desc" : "Human-readable explanation of the outcome."
-}, {
-  "path" : "outcomeReason.data",
-  "name" : "data",
-  "lvl" : 1,
-  "min" : 0,
-  "max" : 1,
-  "type" : "",
-  "desc" : "Additional data related to the outcome."
-}, {
-  "path" : "allowedRetryCount",
-  "name" : "allowedRetryCount",
+  "path" : "workflow-definition",
+  "name" : "workflow-definition",
   "lvl" : 0,
   "min" : 0,
   "max" : 1,
-  "type" : "integer",
-  "desc" : "Maximum number of retries allowed for this task."
+  "type" : "string",
+  "desc" : "Reference to the workflow definition for this task."
 } ]
 ```
 
@@ -1290,21 +1290,13 @@ Defines the data sources and events that clients can subscribe to. Acts as a con
 
 ```fhir-structure
 [ {
-  "path" : "status-before",
-  "name" : "status-before",
+  "path" : "action",
+  "name" : "action",
   "lvl" : 0,
   "min" : 0,
   "max" : 1,
   "type" : "string",
-  "desc" : "Task status before the action was performed."
-}, {
-  "path" : "status-after",
-  "name" : "status-after",
-  "lvl" : 0,
-  "min" : 0,
-  "max" : 1,
-  "type" : "string",
-  "desc" : "Task status after the action was performed."
+  "desc" : "Name of the performed action."
 }, {
   "path" : "action-params",
   "name" : "action-params",
@@ -1313,6 +1305,54 @@ Defines the data sources and events that clients can subscribe to. Acts as a con
   "max" : 1,
   "type" : "Object",
   "desc" : "Parameters provided with the action."
+}, {
+  "path" : "re-scheduled",
+  "name" : "re-scheduled",
+  "lvl" : 0,
+  "min" : 0,
+  "max" : 1,
+  "type" : "BackboneElement",
+  "desc" : "Definition of a rescheduled action."
+}, {
+  "path" : "re-scheduled.action",
+  "name" : "action",
+  "lvl" : 1,
+  "min" : 1,
+  "max" : 1,
+  "type" : "string",
+  "desc" : "Name of the rescheduled action."
+}, {
+  "path" : "re-scheduled.id",
+  "name" : "id",
+  "lvl" : 1,
+  "min" : 1,
+  "max" : 1,
+  "type" : "string",
+  "desc" : "Unique identifier for the rescheduled action."
+}, {
+  "path" : "re-scheduled.delay",
+  "name" : "delay",
+  "lvl" : 1,
+  "min" : 0,
+  "max" : 1,
+  "type" : "decimal",
+  "desc" : "New delay in seconds before executing the action."
+}, {
+  "path" : "re-scheduled.at",
+  "name" : "at",
+  "lvl" : 1,
+  "min" : 0,
+  "max" : 1,
+  "type" : "dateTime",
+  "desc" : "New specific time when the action should be executed."
+}, {
+  "path" : "re-scheduled.action-params",
+  "name" : "action-params",
+  "lvl" : 1,
+  "min" : 0,
+  "max" : 1,
+  "type" : "Object",
+  "desc" : "Parameters for the rescheduled action."
 }, {
   "path" : "scheduled",
   "name" : "scheduled",
@@ -1362,13 +1402,21 @@ Defines the data sources and events that clients can subscribe to. Acts as a con
   "type" : "Object",
   "desc" : "Parameters for the scheduled action."
 }, {
-  "path" : "action",
-  "name" : "action",
+  "path" : "status-after",
+  "name" : "status-after",
   "lvl" : 0,
   "min" : 0,
   "max" : 1,
   "type" : "string",
-  "desc" : "Name of the performed action."
+  "desc" : "Task status after the action was performed."
+}, {
+  "path" : "status-before",
+  "name" : "status-before",
+  "lvl" : 0,
+  "min" : 0,
+  "max" : 1,
+  "type" : "string",
+  "desc" : "Task status before the action was performed."
 }, {
   "path" : "subject",
   "name" : "subject",
@@ -1401,54 +1449,6 @@ Defines the data sources and events that clients can subscribe to. Acts as a con
   "max" : 1,
   "type" : "string",
   "desc" : "Human-readable display name of the subject."
-}, {
-  "path" : "re-scheduled",
-  "name" : "re-scheduled",
-  "lvl" : 0,
-  "min" : 0,
-  "max" : 1,
-  "type" : "BackboneElement",
-  "desc" : "Definition of a rescheduled action."
-}, {
-  "path" : "re-scheduled.action",
-  "name" : "action",
-  "lvl" : 1,
-  "min" : 1,
-  "max" : 1,
-  "type" : "string",
-  "desc" : "Name of the rescheduled action."
-}, {
-  "path" : "re-scheduled.id",
-  "name" : "id",
-  "lvl" : 1,
-  "min" : 1,
-  "max" : 1,
-  "type" : "string",
-  "desc" : "Unique identifier for the rescheduled action."
-}, {
-  "path" : "re-scheduled.delay",
-  "name" : "delay",
-  "lvl" : 1,
-  "min" : 0,
-  "max" : 1,
-  "type" : "decimal",
-  "desc" : "New delay in seconds before executing the action."
-}, {
-  "path" : "re-scheduled.at",
-  "name" : "at",
-  "lvl" : 1,
-  "min" : 0,
-  "max" : 1,
-  "type" : "dateTime",
-  "desc" : "New specific time when the action should be executed."
-}, {
-  "path" : "re-scheduled.action-params",
-  "name" : "action-params",
-  "lvl" : 1,
-  "min" : 0,
-  "max" : 1,
-  "type" : "Object",
-  "desc" : "Parameters for the rescheduled action."
 } ]
 ```
 
@@ -1459,6 +1459,14 @@ Configures where and how notifications triggered by a subscription topic should 
 
 ```fhir-structure
 [ {
+  "path" : "content",
+  "name" : "content",
+  "lvl" : 0,
+  "min" : 0,
+  "max" : 1,
+  "type" : "string",
+  "desc" : "empty | id-only | full-resource. \n\n**Allowed values**: `empty` | `id-only` | `full-resource`"
+}, {
   "path" : "kind",
   "name" : "kind",
   "lvl" : 0,
@@ -1466,14 +1474,6 @@ Configures where and how notifications triggered by a subscription topic should 
   "max" : 1,
   "type" : "string",
   "desc" : "Channel type for notifications."
-}, {
-  "path" : "topic",
-  "name" : "topic",
-  "lvl" : 0,
-  "min" : 0,
-  "max" : 1,
-  "type" : "url",
-  "desc" : "Reference to the AidboxSubscriptionTopic being subscribed to."
 }, {
   "path" : "status",
   "name" : "status",
@@ -1483,13 +1483,13 @@ Configures where and how notifications triggered by a subscription topic should 
   "type" : "string",
   "desc" : "requested | active | error | off | entered-in-error."
 }, {
-  "path" : "content",
-  "name" : "content",
+  "path" : "topic",
+  "name" : "topic",
   "lvl" : 0,
   "min" : 0,
   "max" : 1,
-  "type" : "string",
-  "desc" : "empty | id-only | full-resource. \n\n**Allowed values**: `empty` | `id-only` | `full-resource`"
+  "type" : "url",
+  "desc" : "Reference to the AidboxSubscriptionTopic being subscribed to."
 } ]
 ```
 
@@ -1500,20 +1500,20 @@ Aidbox trigger resource for executing SQL on resource create, update, or delete 
 
 ```fhir-structure
 [ {
-  "path" : "resource",
-  "name" : "resource",
-  "lvl" : 0,
-  "min" : 1,
-  "max" : 1,
-  "type" : "string",
-  "desc" : ""
-}, {
   "path" : "action",
   "name" : "action",
   "lvl" : 0,
   "min" : 1,
   "max" : "*",
   "type" : "code",
+  "desc" : ""
+}, {
+  "path" : "resource",
+  "name" : "resource",
+  "lvl" : 0,
+  "min" : 1,
+  "max" : 1,
+  "type" : "string",
   "desc" : ""
 }, {
   "path" : "sql",
@@ -1539,13 +1539,21 @@ Aidbox trigger resource for executing SQL on resource create, update, or delete 
   "type" : "string",
   "desc" : "Workflow definition identifier."
 }, {
-  "path" : "status",
-  "name" : "status",
+  "path" : "error",
+  "name" : "error",
   "lvl" : 0,
-  "min" : 1,
+  "min" : 0,
+  "max" : 1,
+  "type" : "",
+  "desc" : "Error details if workflow failed."
+}, {
+  "path" : "execId",
+  "name" : "execId",
+  "lvl" : 0,
+  "min" : 0,
   "max" : 1,
   "type" : "string",
-  "desc" : "Current status of the workflow. \n\n**Allowed values**: `created` | `in-progress` | `done`"
+  "desc" : "Unique execution identifier."
 }, {
   "path" : "executeAt",
   "name" : "executeAt",
@@ -1555,21 +1563,13 @@ Aidbox trigger resource for executing SQL on resource create, update, or delete 
   "type" : "string",
   "desc" : "Scheduled time for workflow execution."
 }, {
-  "path" : "params",
-  "name" : "params",
+  "path" : "label",
+  "name" : "label",
   "lvl" : 0,
   "min" : 0,
   "max" : 1,
-  "type" : "",
-  "desc" : "Parameters required for workflow execution."
-}, {
-  "path" : "retryCount",
-  "name" : "retryCount",
-  "lvl" : 0,
-  "min" : 0,
-  "max" : 1,
-  "type" : "decimal",
-  "desc" : "Number of times the workflow has been retried."
+  "type" : "string",
+  "desc" : "Human-readable label for the workflow."
 }, {
   "path" : "outcome",
   "name" : "outcome",
@@ -1578,6 +1578,46 @@ Aidbox trigger resource for executing SQL on resource create, update, or delete 
   "max" : 1,
   "type" : "string",
   "desc" : "Final outcome of the workflow execution. \n\n**Allowed values**: `succeeded` | `failed` | `canceled`"
+}, {
+  "path" : "outcomeReason",
+  "name" : "outcomeReason",
+  "lvl" : 0,
+  "min" : 0,
+  "max" : 1,
+  "type" : "BackboneElement",
+  "desc" : "Detailed reason for the workflow outcome."
+}, {
+  "path" : "outcomeReason.type",
+  "name" : "type",
+  "lvl" : 1,
+  "min" : 1,
+  "max" : 1,
+  "type" : "string",
+  "desc" : "Type of outcome reason. \n\n**Allowed values**: `awf.workflow/failed-by-executor` | `awf.executor/unknown-error`"
+}, {
+  "path" : "outcomeReason.message",
+  "name" : "message",
+  "lvl" : 1,
+  "min" : 1,
+  "max" : 1,
+  "type" : "string",
+  "desc" : "Human-readable explanation of the outcome."
+}, {
+  "path" : "outcomeReason.data",
+  "name" : "data",
+  "lvl" : 1,
+  "min" : 0,
+  "max" : 1,
+  "type" : "",
+  "desc" : "Additional data related to the outcome."
+}, {
+  "path" : "params",
+  "name" : "params",
+  "lvl" : 0,
+  "min" : 0,
+  "max" : 1,
+  "type" : "",
+  "desc" : "Parameters required for workflow execution."
 }, {
   "path" : "requester",
   "name" : "requester",
@@ -1635,61 +1675,21 @@ Aidbox trigger resource for executing SQL on resource create, update, or delete 
   "type" : "",
   "desc" : "Result data produced by successful workflow execution."
 }, {
-  "path" : "execId",
-  "name" : "execId",
+  "path" : "retryCount",
+  "name" : "retryCount",
   "lvl" : 0,
   "min" : 0,
   "max" : 1,
-  "type" : "string",
-  "desc" : "Unique execution identifier."
+  "type" : "decimal",
+  "desc" : "Number of times the workflow has been retried."
 }, {
-  "path" : "label",
-  "name" : "label",
+  "path" : "status",
+  "name" : "status",
   "lvl" : 0,
-  "min" : 0,
-  "max" : 1,
-  "type" : "string",
-  "desc" : "Human-readable label for the workflow."
-}, {
-  "path" : "error",
-  "name" : "error",
-  "lvl" : 0,
-  "min" : 0,
-  "max" : 1,
-  "type" : "",
-  "desc" : "Error details if workflow failed."
-}, {
-  "path" : "outcomeReason",
-  "name" : "outcomeReason",
-  "lvl" : 0,
-  "min" : 0,
-  "max" : 1,
-  "type" : "BackboneElement",
-  "desc" : "Detailed reason for the workflow outcome."
-}, {
-  "path" : "outcomeReason.type",
-  "name" : "type",
-  "lvl" : 1,
   "min" : 1,
   "max" : 1,
   "type" : "string",
-  "desc" : "Type of outcome reason. \n\n**Allowed values**: `awf.workflow/failed-by-executor` | `awf.executor/unknown-error`"
-}, {
-  "path" : "outcomeReason.message",
-  "name" : "message",
-  "lvl" : 1,
-  "min" : 1,
-  "max" : 1,
-  "type" : "string",
-  "desc" : "Human-readable explanation of the outcome."
-}, {
-  "path" : "outcomeReason.data",
-  "name" : "data",
-  "lvl" : 1,
-  "min" : 0,
-  "max" : 1,
-  "type" : "",
-  "desc" : "Additional data related to the outcome."
+  "desc" : "Current status of the workflow. \n\n**Allowed values**: `created` | `in-progress` | `done`"
 } ]
 ```
 
@@ -1707,14 +1707,6 @@ Application definition resource for Aidbox.
   "max" : 1,
   "type" : "string",
   "desc" : "System Property. DO NOT USE IT."
-}, {
-  "path" : "type",
-  "name" : "type",
-  "lvl" : 0,
-  "min" : 1,
-  "max" : 1,
-  "type" : "code",
-  "desc" : "Type of application. \n\n**Allowed values**: `app` | `addon`"
 }, {
   "path" : "apiVersion",
   "name" : "apiVersion",
@@ -1756,6 +1748,22 @@ Application definition resource for Aidbox.
   "type" : "code",
   "desc" : "Type of endpoint protocol. \n\n**Allowed values**: `http-rpc` | `ws-rpc` | `native`"
 }, {
+  "path" : "entities",
+  "name" : "entities",
+  "lvl" : 0,
+  "min" : 0,
+  "max" : 1,
+  "type" : "Object",
+  "desc" : "Entities defined by the app."
+}, {
+  "path" : "hooks",
+  "name" : "hooks",
+  "lvl" : 0,
+  "min" : 0,
+  "max" : 1,
+  "type" : "Object",
+  "desc" : "Hooks configuration for the app."
+}, {
   "path" : "migrations",
   "name" : "migrations",
   "lvl" : 0,
@@ -1788,13 +1796,13 @@ Application definition resource for Aidbox.
   "type" : "string",
   "desc" : "Action to be performed for the migration."
 }, {
-  "path" : "hooks",
-  "name" : "hooks",
+  "path" : "operations",
+  "name" : "operations",
   "lvl" : 0,
   "min" : 0,
   "max" : 1,
   "type" : "Object",
-  "desc" : "Hooks configuration for the app."
+  "desc" : "Operations defined by the app."
 }, {
   "path" : "subscriptions",
   "name" : "subscriptions",
@@ -1804,21 +1812,13 @@ Application definition resource for Aidbox.
   "type" : "Object",
   "desc" : "Subscriptions configuration for the app."
 }, {
-  "path" : "entities",
-  "name" : "entities",
+  "path" : "type",
+  "name" : "type",
   "lvl" : 0,
-  "min" : 0,
+  "min" : 1,
   "max" : 1,
-  "type" : "Object",
-  "desc" : "Entities defined by the app."
-}, {
-  "path" : "operations",
-  "name" : "operations",
-  "lvl" : 0,
-  "min" : 0,
-  "max" : 1,
-  "type" : "Object",
-  "desc" : "Operations defined by the app."
+  "type" : "code",
+  "desc" : "Type of application. \n\n**Allowed values**: `app` | `addon`"
 } ]
 ```
 
@@ -1837,37 +1837,29 @@ Attribute definition resource for Aidbox entities.
   "type" : "string",
   "desc" : "System Property. DO NOT USE IT."
 }, {
-  "path" : "resource",
-  "name" : "resource",
+  "path" : "description",
+  "name" : "description",
   "lvl" : 0,
-  "min" : 1,
+  "min" : 0,
   "max" : 1,
-  "type" : "Reference",
-  "desc" : "Reference to the resource type this attribute belongs to."
+  "type" : "string",
+  "desc" : "Human-readable description of the attribute."
 }, {
-  "path" : "path",
-  "name" : "path",
+  "path" : "enum",
+  "name" : "enum",
   "lvl" : 0,
-  "min" : 1,
+  "min" : 0,
   "max" : "*",
   "type" : "string",
-  "desc" : "Path to the attribute within the resource."
+  "desc" : "Enumeration of allowed values for this attribute."
 }, {
-  "path" : "type",
-  "name" : "type",
+  "path" : "extensionUrl",
+  "name" : "extensionUrl",
   "lvl" : 0,
   "min" : 0,
   "max" : 1,
-  "type" : "Reference",
-  "desc" : "Reference to the attribute's data type."
-}, {
-  "path" : "isRequired",
-  "name" : "isRequired",
-  "lvl" : 0,
-  "min" : 0,
-  "max" : 1,
-  "type" : "boolean",
-  "desc" : "Whether this attribute is required."
+  "type" : "string",
+  "desc" : "URL for the extension this attribute represents."
 }, {
   "path" : "isCollection",
   "name" : "isCollection",
@@ -1876,22 +1868,6 @@ Attribute definition resource for Aidbox entities.
   "max" : 1,
   "type" : "boolean",
   "desc" : "Whether this attribute is a collection."
-}, {
-  "path" : "isUnique",
-  "name" : "isUnique",
-  "lvl" : 0,
-  "min" : 0,
-  "max" : 1,
-  "type" : "boolean",
-  "desc" : "Whether this attribute has unique values."
-}, {
-  "path" : "isSummary",
-  "name" : "isSummary",
-  "lvl" : 0,
-  "min" : 0,
-  "max" : 1,
-  "type" : "boolean",
-  "desc" : "Whether this attribute is included in summary views."
 }, {
   "path" : "isModifier",
   "name" : "isModifier",
@@ -1909,21 +1885,29 @@ Attribute definition resource for Aidbox entities.
   "type" : "boolean",
   "desc" : "Whether this attribute allows additional properties."
 }, {
-  "path" : "description",
-  "name" : "description",
+  "path" : "isRequired",
+  "name" : "isRequired",
   "lvl" : 0,
   "min" : 0,
   "max" : 1,
-  "type" : "string",
-  "desc" : "Human-readable description of the attribute."
+  "type" : "boolean",
+  "desc" : "Whether this attribute is required."
 }, {
-  "path" : "text",
-  "name" : "text",
+  "path" : "isSummary",
+  "name" : "isSummary",
   "lvl" : 0,
   "min" : 0,
   "max" : 1,
-  "type" : "string",
-  "desc" : "Human-readable text about the attribute."
+  "type" : "boolean",
+  "desc" : "Whether this attribute is included in summary views."
+}, {
+  "path" : "isUnique",
+  "name" : "isUnique",
+  "lvl" : 0,
+  "min" : 0,
+  "max" : 1,
+  "type" : "boolean",
+  "desc" : "Whether this attribute has unique values."
 }, {
   "path" : "module",
   "name" : "module",
@@ -1941,13 +1925,13 @@ Attribute definition resource for Aidbox entities.
   "type" : "integer",
   "desc" : "Order for display or processing."
 }, {
-  "path" : "extensionUrl",
-  "name" : "extensionUrl",
+  "path" : "path",
+  "name" : "path",
   "lvl" : 0,
-  "min" : 0,
-  "max" : 1,
+  "min" : 1,
+  "max" : "*",
   "type" : "string",
-  "desc" : "URL for the extension this attribute represents."
+  "desc" : "Path to the attribute within the resource."
 }, {
   "path" : "refers",
   "name" : "refers",
@@ -1957,21 +1941,13 @@ Attribute definition resource for Aidbox entities.
   "type" : "string",
   "desc" : "Resource types this attribute can reference."
 }, {
-  "path" : "union",
-  "name" : "union",
+  "path" : "resource",
+  "name" : "resource",
   "lvl" : 0,
-  "min" : 0,
-  "max" : "*",
+  "min" : 1,
+  "max" : 1,
   "type" : "Reference",
-  "desc" : "References to other attributes in a union type."
-}, {
-  "path" : "enum",
-  "name" : "enum",
-  "lvl" : 0,
-  "min" : 0,
-  "max" : "*",
-  "type" : "string",
-  "desc" : "Enumeration of allowed values for this attribute."
+  "desc" : "Reference to the resource type this attribute belongs to."
 }, {
   "path" : "schema",
   "name" : "schema",
@@ -1980,6 +1956,30 @@ Attribute definition resource for Aidbox entities.
   "max" : 1,
   "type" : "Object",
   "desc" : "Schema for the attribute."
+}, {
+  "path" : "text",
+  "name" : "text",
+  "lvl" : 0,
+  "min" : 0,
+  "max" : 1,
+  "type" : "string",
+  "desc" : "Human-readable text about the attribute."
+}, {
+  "path" : "type",
+  "name" : "type",
+  "lvl" : 0,
+  "min" : 0,
+  "max" : 1,
+  "type" : "Reference",
+  "desc" : "Reference to the attribute's data type."
+}, {
+  "path" : "union",
+  "name" : "union",
+  "lvl" : 0,
+  "min" : 0,
+  "max" : "*",
+  "type" : "Reference",
+  "desc" : "References to other attributes in a union type."
 }, {
   "path" : "valueSet",
   "name" : "valueSet",
@@ -2027,6 +2027,14 @@ Attribute definition resource for Aidbox entities.
   "max" : 1,
   "type" : "string",
   "desc" : "System Property. DO NOT USE IT."
+}, {
+  "path" : "asidCookieMaxAge",
+  "name" : "asidCookieMaxAge",
+  "lvl" : 0,
+  "min" : 0,
+  "max" : 1,
+  "type" : "integer",
+  "desc" : "Maximum age of the ASID cookie in seconds. Default is 432000 (5 days)."
 }, {
   "path" : "theme",
   "name" : "theme",
@@ -2123,14 +2131,6 @@ Attribute definition resource for Aidbox entities.
   "max" : 1,
   "type" : "integer",
   "desc" : "Number of past tokens considered valid (useful with webhook since OTP lives ~30s)"
-}, {
-  "path" : "asidCookieMaxAge",
-  "name" : "asidCookieMaxAge",
-  "lvl" : 0,
-  "min" : 0,
-  "max" : 1,
-  "type" : "integer",
-  "desc" : "Maximum age of the ASID cookie in seconds. Default is 432000 (5 days)."
 } ]
 ```
 
@@ -2155,22 +2155,6 @@ Attribute definition resource for Aidbox entities.
   "type" : "string",
   "desc" : "AWS access key identifier for authentication."
 }, {
-  "path" : "secret-access-key",
-  "name" : "secret-access-key",
-  "lvl" : 0,
-  "min" : 0,
-  "max" : 1,
-  "type" : "string",
-  "desc" : "AWS secret access key for authentication."
-}, {
-  "path" : "region",
-  "name" : "region",
-  "lvl" : 0,
-  "min" : 0,
-  "max" : 1,
-  "type" : "string",
-  "desc" : "AWS region where the resources are located."
-}, {
   "path" : "host",
   "name" : "host",
   "lvl" : 0,
@@ -2186,6 +2170,22 @@ Attribute definition resource for Aidbox entities.
   "max" : 1,
   "type" : "boolean",
   "desc" : "Whether to use path-style addressing for S3 requests."
+}, {
+  "path" : "region",
+  "name" : "region",
+  "lvl" : 0,
+  "min" : 0,
+  "max" : 1,
+  "type" : "string",
+  "desc" : "AWS region where the resources are located."
+}, {
+  "path" : "secret-access-key",
+  "name" : "secret-access-key",
+  "lvl" : 0,
+  "min" : 0,
+  "max" : 1,
+  "type" : "string",
+  "desc" : "AWS secret access key for authentication."
 }, {
   "path" : "use-ssl",
   "name" : "use-ssl",
@@ -2210,6 +2210,22 @@ Attribute definition resource for Aidbox entities.
   "type" : "string",
   "desc" : "System Property. DO NOT USE IT."
 }, {
+  "path" : "clientId",
+  "name" : "clientId",
+  "lvl" : 0,
+  "min" : 0,
+  "max" : 1,
+  "type" : "string",
+  "desc" : "Azure AD application/client ID (required for User Delegation SAS). Available since 2508."
+}, {
+  "path" : "clientSecret",
+  "name" : "clientSecret",
+  "lvl" : 0,
+  "min" : 0,
+  "max" : 1,
+  "type" : "string",
+  "desc" : "Azure AD client secret (required for User Delegation SAS). Available since 2508."
+}, {
   "path" : "key",
   "name" : "key",
   "lvl" : 0,
@@ -2233,22 +2249,6 @@ Attribute definition resource for Aidbox entities.
   "max" : 1,
   "type" : "string",
   "desc" : "Azure AD tenant ID (required for User Delegation SAS)."
-}, {
-  "path" : "clientId",
-  "name" : "clientId",
-  "lvl" : 0,
-  "min" : 0,
-  "max" : 1,
-  "type" : "string",
-  "desc" : "Azure AD application/client ID (required for User Delegation SAS). Available since 2508."
-}, {
-  "path" : "clientSecret",
-  "name" : "clientSecret",
-  "lvl" : 0,
-  "min" : 0,
-  "max" : 1,
-  "type" : "string",
-  "desc" : "Azure AD client secret (required for User Delegation SAS). Available since 2508."
 } ]
 ```
 
@@ -2265,13 +2265,13 @@ Attribute definition resource for Aidbox entities.
   "type" : "string",
   "desc" : "System Property. DO NOT USE IT."
 }, {
-  "path" : "storage",
-  "name" : "storage",
+  "path" : "account",
+  "name" : "account",
   "lvl" : 0,
   "min" : 0,
   "max" : 1,
-  "type" : "string",
-  "desc" : "Azure storage account name."
+  "type" : "Reference",
+  "desc" : "Reference to the Azure account credentials. \n\n**Allowed references**: AzureAccount"
 }, {
   "path" : "container",
   "name" : "container",
@@ -2289,13 +2289,13 @@ Attribute definition resource for Aidbox entities.
   "type" : "string",
   "desc" : "File extension for content stored in the container."
 }, {
-  "path" : "account",
-  "name" : "account",
+  "path" : "storage",
+  "name" : "storage",
   "lvl" : 0,
   "min" : 0,
   "max" : 1,
-  "type" : "Reference",
-  "desc" : "Reference to the Azure account credentials. \n\n**Allowed references**: AzureAccount"
+  "type" : "string",
+  "desc" : "Azure storage account name."
 } ]
 ```
 
@@ -2306,6 +2306,22 @@ Validation error resource for batch validation runs.
 
 ```fhir-structure
 [ {
+  "path" : "errors",
+  "name" : "errors",
+  "lvl" : 0,
+  "min" : 0,
+  "max" : "*",
+  "type" : "Object",
+  "desc" : "List of validation errors found."
+}, {
+  "path" : "profiles",
+  "name" : "profiles",
+  "lvl" : 0,
+  "min" : 0,
+  "max" : "*",
+  "type" : "string",
+  "desc" : "Profiles against which the resource was validated."
+}, {
   "path" : "resource",
   "name" : "resource",
   "lvl" : 0,
@@ -2369,22 +2385,6 @@ Validation error resource for batch validation runs.
   "max" : 1,
   "type" : "string",
   "desc" : "Human-readable display name for the validation run."
-}, {
-  "path" : "profiles",
-  "name" : "profiles",
-  "lvl" : 0,
-  "min" : 0,
-  "max" : "*",
-  "type" : "string",
-  "desc" : "Profiles against which the resource was validated."
-}, {
-  "path" : "errors",
-  "name" : "errors",
-  "lvl" : 0,
-  "min" : 0,
-  "max" : "*",
-  "type" : "Object",
-  "desc" : "List of validation errors found."
 } ]
 ```
 
@@ -2395,21 +2395,21 @@ Batch validation run resource for tracking validation processes.
 
 ```fhir-structure
 [ {
-  "path" : "resource",
-  "name" : "resource",
-  "lvl" : 0,
-  "min" : 1,
-  "max" : 1,
-  "type" : "string",
-  "desc" : "Resource type to validate."
-}, {
-  "path" : "status",
-  "name" : "status",
+  "path" : "async",
+  "name" : "async",
   "lvl" : 0,
   "min" : 0,
   "max" : 1,
-  "type" : "string",
-  "desc" : "Current status of the validation run. \n\n**Allowed values**: `in-progress` | `complete`"
+  "type" : "boolean",
+  "desc" : "Whether validation is performed asynchronously."
+}, {
+  "path" : "duration",
+  "name" : "duration",
+  "lvl" : 0,
+  "min" : 0,
+  "max" : 1,
+  "type" : "integer",
+  "desc" : "Duration of the validation run in milliseconds."
 }, {
   "path" : "errorsThreshold",
   "name" : "errorsThreshold",
@@ -2419,21 +2419,13 @@ Batch validation run resource for tracking validation processes.
   "type" : "integer",
   "desc" : "Maximum number of errors before stopping validation."
 }, {
-  "path" : "schemas",
-  "name" : "schemas",
+  "path" : "filter",
+  "name" : "filter",
   "lvl" : 0,
   "min" : 0,
-  "max" : "*",
+  "max" : 1,
   "type" : "string",
-  "desc" : "List of schemas to validate against."
-}, {
-  "path" : "profiles",
-  "name" : "profiles",
-  "lvl" : 0,
-  "min" : 0,
-  "max" : "*",
-  "type" : "string",
-  "desc" : "FHIR profiles to validate against."
+  "desc" : "Expression to filter resources for validation."
 }, {
   "path" : "invalid",
   "name" : "invalid",
@@ -2443,22 +2435,6 @@ Batch validation run resource for tracking validation processes.
   "type" : "integer",
   "desc" : "Count of invalid resources found."
 }, {
-  "path" : "valid",
-  "name" : "valid",
-  "lvl" : 0,
-  "min" : 0,
-  "max" : 1,
-  "type" : "integer",
-  "desc" : "Count of valid resources found."
-}, {
-  "path" : "async",
-  "name" : "async",
-  "lvl" : 0,
-  "min" : 0,
-  "max" : 1,
-  "type" : "boolean",
-  "desc" : "Whether validation is performed asynchronously."
-}, {
   "path" : "limit",
   "name" : "limit",
   "lvl" : 0,
@@ -2467,21 +2443,45 @@ Batch validation run resource for tracking validation processes.
   "type" : "integer",
   "desc" : "Maximum number of resources to validate."
 }, {
-  "path" : "filter",
-  "name" : "filter",
+  "path" : "profiles",
+  "name" : "profiles",
+  "lvl" : 0,
+  "min" : 0,
+  "max" : "*",
+  "type" : "string",
+  "desc" : "FHIR profiles to validate against."
+}, {
+  "path" : "resource",
+  "name" : "resource",
+  "lvl" : 0,
+  "min" : 1,
+  "max" : 1,
+  "type" : "string",
+  "desc" : "Resource type to validate."
+}, {
+  "path" : "schemas",
+  "name" : "schemas",
+  "lvl" : 0,
+  "min" : 0,
+  "max" : "*",
+  "type" : "string",
+  "desc" : "List of schemas to validate against."
+}, {
+  "path" : "status",
+  "name" : "status",
   "lvl" : 0,
   "min" : 0,
   "max" : 1,
   "type" : "string",
-  "desc" : "Expression to filter resources for validation."
+  "desc" : "Current status of the validation run. \n\n**Allowed values**: `in-progress` | `complete`"
 }, {
-  "path" : "duration",
-  "name" : "duration",
+  "path" : "valid",
+  "name" : "valid",
   "lvl" : 0,
   "min" : 0,
   "max" : 1,
   "type" : "integer",
-  "desc" : "Duration of the validation run in milliseconds."
+  "desc" : "Count of valid resources found."
 } ]
 ```
 
@@ -2490,86 +2490,6 @@ Batch validation run resource for tracking validation processes.
 
 ```fhir-structure
 [ {
-  "path" : "url",
-  "name" : "url",
-  "lvl" : 0,
-  "min" : 0,
-  "max" : 1,
-  "type" : "string",
-  "desc" : "URL where the client can check the export status."
-}, {
-  "path" : "status",
-  "name" : "status",
-  "lvl" : 0,
-  "min" : 1,
-  "max" : 1,
-  "type" : "string",
-  "desc" : "Current status of the bulk export operation. \n\n**Allowed values**: `accepted` | `in-progress` | `completed` | `error` | `cancelled`"
-}, {
-  "path" : "transactionTime",
-  "name" : "transactionTime",
-  "lvl" : 0,
-  "min" : 0,
-  "max" : 1,
-  "type" : "dateTime",
-  "desc" : "Time when the bulk export was initiated."
-}, {
-  "path" : "request",
-  "name" : "request",
-  "lvl" : 0,
-  "min" : 0,
-  "max" : 1,
-  "type" : "string",
-  "desc" : "Original request that initiated this export."
-}, {
-  "path" : "requiresAccessToken",
-  "name" : "requiresAccessToken",
-  "lvl" : 0,
-  "min" : 0,
-  "max" : 1,
-  "type" : "boolean",
-  "desc" : "Whether an access token is required to download the exported files."
-}, {
-  "path" : "requester",
-  "name" : "requester",
-  "lvl" : 0,
-  "min" : 0,
-  "max" : 1,
-  "type" : "Reference",
-  "desc" : "Reference to the user or client that requested the export."
-}, {
-  "path" : "output",
-  "name" : "output",
-  "lvl" : 0,
-  "min" : 0,
-  "max" : "*",
-  "type" : "BackboneElement",
-  "desc" : "Information about the exported data files."
-}, {
-  "path" : "output.type",
-  "name" : "type",
-  "lvl" : 1,
-  "min" : 0,
-  "max" : 1,
-  "type" : "string",
-  "desc" : "FHIR resource type for this output file."
-}, {
-  "path" : "output.url",
-  "name" : "url",
-  "lvl" : 1,
-  "min" : 0,
-  "max" : 1,
-  "type" : "string",
-  "desc" : "URL where the client can download this output file."
-}, {
-  "path" : "output.count",
-  "name" : "count",
-  "lvl" : 1,
-  "min" : 0,
-  "max" : 1,
-  "type" : "integer",
-  "desc" : "Number of resources in this output file."
-}, {
   "path" : "error",
   "name" : "error",
   "lvl" : 0,
@@ -2609,6 +2529,38 @@ Batch validation run resource for tracking validation processes.
   "max" : 1,
   "type" : "",
   "desc" : "Additional information about the export."
+}, {
+  "path" : "output",
+  "name" : "output",
+  "lvl" : 0,
+  "min" : 0,
+  "max" : "*",
+  "type" : "BackboneElement",
+  "desc" : "Information about the exported data files."
+}, {
+  "path" : "output.type",
+  "name" : "type",
+  "lvl" : 1,
+  "min" : 0,
+  "max" : 1,
+  "type" : "string",
+  "desc" : "FHIR resource type for this output file."
+}, {
+  "path" : "output.url",
+  "name" : "url",
+  "lvl" : 1,
+  "min" : 0,
+  "max" : 1,
+  "type" : "string",
+  "desc" : "URL where the client can download this output file."
+}, {
+  "path" : "output.count",
+  "name" : "count",
+  "lvl" : 1,
+  "min" : 0,
+  "max" : 1,
+  "type" : "integer",
+  "desc" : "Number of resources in this output file."
 }, {
   "path" : "params",
   "name" : "params",
@@ -2737,6 +2689,54 @@ Batch validation run resource for tracking validation processes.
   "max" : 1,
   "type" : "Reference",
   "desc" : "Reference to account with credentials for accessing the storage."
+}, {
+  "path" : "request",
+  "name" : "request",
+  "lvl" : 0,
+  "min" : 0,
+  "max" : 1,
+  "type" : "string",
+  "desc" : "Original request that initiated this export."
+}, {
+  "path" : "requester",
+  "name" : "requester",
+  "lvl" : 0,
+  "min" : 0,
+  "max" : 1,
+  "type" : "Reference",
+  "desc" : "Reference to the user or client that requested the export."
+}, {
+  "path" : "requiresAccessToken",
+  "name" : "requiresAccessToken",
+  "lvl" : 0,
+  "min" : 0,
+  "max" : 1,
+  "type" : "boolean",
+  "desc" : "Whether an access token is required to download the exported files."
+}, {
+  "path" : "status",
+  "name" : "status",
+  "lvl" : 0,
+  "min" : 1,
+  "max" : 1,
+  "type" : "string",
+  "desc" : "Current status of the bulk export operation. \n\n**Allowed values**: `accepted` | `in-progress` | `completed` | `error` | `cancelled`"
+}, {
+  "path" : "transactionTime",
+  "name" : "transactionTime",
+  "lvl" : 0,
+  "min" : 0,
+  "max" : 1,
+  "type" : "dateTime",
+  "desc" : "Time when the bulk export was initiated."
+}, {
+  "path" : "url",
+  "name" : "url",
+  "lvl" : 0,
+  "min" : 0,
+  "max" : 1,
+  "type" : "string",
+  "desc" : "URL where the client can check the export status."
 } ]
 ```
 
@@ -2753,14 +2753,6 @@ Batch validation run resource for tracking validation processes.
   "type" : "string",
   "desc" : "System Property. DO NOT USE IT."
 }, {
-  "path" : "status",
-  "name" : "status",
-  "lvl" : 0,
-  "min" : 0,
-  "max" : 1,
-  "type" : "string",
-  "desc" : "Current status of the import operation. \n\n**Allowed values**: `active` | `failed` | `cancelled` | `finished`"
-}, {
   "path" : "contentEncoding",
   "name" : "contentEncoding",
   "lvl" : 0,
@@ -2769,22 +2761,6 @@ Batch validation run resource for tracking validation processes.
   "type" : "string",
   "desc" : "Encoding of the imported content (gzip or plain). \n\n**Allowed values**: `gzip` | `plain`"
 }, {
-  "path" : "mode",
-  "name" : "mode",
-  "lvl" : 0,
-  "min" : 0,
-  "max" : 1,
-  "type" : "string",
-  "desc" : "Mode of import operation (bulk or transaction). \n\n**Allowed values**: `bulk` | `transaction`"
-}, {
-  "path" : "type",
-  "name" : "type",
-  "lvl" : 0,
-  "min" : 0,
-  "max" : 1,
-  "type" : "string",
-  "desc" : "Type of data being imported (aidbox or fhir). \n\n**Allowed values**: `aidbox` | `fhir`"
-}, {
   "path" : "inputFormat",
   "name" : "inputFormat",
   "lvl" : 0,
@@ -2792,46 +2768,6 @@ Batch validation run resource for tracking validation processes.
   "max" : 1,
   "type" : "string",
   "desc" : "Format of the input data files. \n\n**Allowed values**: `application/fhir+ndjson`"
-}, {
-  "path" : "update",
-  "name" : "update",
-  "lvl" : 0,
-  "min" : 0,
-  "max" : 1,
-  "type" : "boolean",
-  "desc" : "Whether to update existing resources during import."
-}, {
-  "path" : "source",
-  "name" : "source",
-  "lvl" : 0,
-  "min" : 0,
-  "max" : 1,
-  "type" : "string",
-  "desc" : "Source location of the imported data."
-}, {
-  "path" : "time",
-  "name" : "time",
-  "lvl" : 0,
-  "min" : 0,
-  "max" : 1,
-  "type" : "BackboneElement",
-  "desc" : "Timing information for the import operation."
-}, {
-  "path" : "time.start",
-  "name" : "start",
-  "lvl" : 1,
-  "min" : 0,
-  "max" : 1,
-  "type" : "dateTime",
-  "desc" : "Time when the import operation started."
-}, {
-  "path" : "time.end",
-  "name" : "end",
-  "lvl" : 1,
-  "min" : 0,
-  "max" : 1,
-  "type" : "dateTime",
-  "desc" : "Time when the import operation completed."
 }, {
   "path" : "inputs",
   "name" : "inputs",
@@ -2897,6 +2833,30 @@ Batch validation run resource for tracking validation processes.
   "type" : "integer",
   "desc" : "Import duration time."
 }, {
+  "path" : "mode",
+  "name" : "mode",
+  "lvl" : 0,
+  "min" : 0,
+  "max" : 1,
+  "type" : "string",
+  "desc" : "Mode of import operation (bulk or transaction). \n\n**Allowed values**: `bulk` | `transaction`"
+}, {
+  "path" : "source",
+  "name" : "source",
+  "lvl" : 0,
+  "min" : 0,
+  "max" : 1,
+  "type" : "string",
+  "desc" : "Source location of the imported data."
+}, {
+  "path" : "status",
+  "name" : "status",
+  "lvl" : 0,
+  "min" : 0,
+  "max" : 1,
+  "type" : "string",
+  "desc" : "Current status of the import operation. \n\n**Allowed values**: `active` | `failed` | `cancelled` | `finished`"
+}, {
   "path" : "storageDetail",
   "name" : "storageDetail",
   "lvl" : 0,
@@ -2912,6 +2872,46 @@ Batch validation run resource for tracking validation processes.
   "max" : 1,
   "type" : "string",
   "desc" : "\n\n**Allowed values**: `file` | `https`"
+}, {
+  "path" : "time",
+  "name" : "time",
+  "lvl" : 0,
+  "min" : 0,
+  "max" : 1,
+  "type" : "BackboneElement",
+  "desc" : "Timing information for the import operation."
+}, {
+  "path" : "time.start",
+  "name" : "start",
+  "lvl" : 1,
+  "min" : 0,
+  "max" : 1,
+  "type" : "dateTime",
+  "desc" : "Time when the import operation started."
+}, {
+  "path" : "time.end",
+  "name" : "end",
+  "lvl" : 1,
+  "min" : 0,
+  "max" : 1,
+  "type" : "dateTime",
+  "desc" : "Time when the import operation completed."
+}, {
+  "path" : "type",
+  "name" : "type",
+  "lvl" : 0,
+  "min" : 0,
+  "max" : 1,
+  "type" : "string",
+  "desc" : "Type of data being imported (aidbox or fhir). \n\n**Allowed values**: `aidbox` | `fhir`"
+}, {
+  "path" : "update",
+  "name" : "update",
+  "lvl" : 0,
+  "min" : 0,
+  "max" : 1,
+  "type" : "boolean",
+  "desc" : "Whether to update existing resources during import."
 } ]
 ```
 
@@ -2920,14 +2920,6 @@ Batch validation run resource for tracking validation processes.
 
 ```fhir-structure
 [ {
-  "path" : "active",
-  "name" : "active",
-  "lvl" : 0,
-  "min" : 0,
-  "max" : 1,
-  "type" : "boolean",
-  "desc" : "Indicates whether this client is active and can be used for authentication."
-}, {
   "path" : "_source",
   "name" : "_source",
   "lvl" : 0,
@@ -2936,109 +2928,13 @@ Batch validation run resource for tracking validation processes.
   "type" : "string",
   "desc" : "System Property. DO NOT USE IT."
 }, {
-  "path" : "description",
-  "name" : "description",
-  "lvl" : 0,
-  "min" : 0,
-  "max" : 1,
-  "type" : "string",
-  "desc" : "A description of the client application for administrative purposes."
-}, {
-  "path" : "secret",
-  "name" : "secret",
-  "lvl" : 0,
-  "min" : 0,
-  "max" : 1,
-  "type" : "",
-  "desc" : "Hashed client secret for authentication."
-}, {
-  "path" : "first_party",
-  "name" : "first_party",
+  "path" : "active",
+  "name" : "active",
   "lvl" : 0,
   "min" : 0,
   "max" : 1,
   "type" : "boolean",
-  "desc" : "Indicates whether this is a first-party client."
-}, {
-  "path" : "trusted",
-  "name" : "trusted",
-  "lvl" : 0,
-  "min" : 0,
-  "max" : 1,
-  "type" : "boolean",
-  "desc" : "Indicates whether this client is trusted and given special privileges."
-}, {
-  "path" : "scope",
-  "name" : "scope",
-  "lvl" : 0,
-  "min" : 0,
-  "max" : "*",
-  "type" : "string",
-  "desc" : "List of scopes this client is authorized to request."
-}, {
-  "path" : "type",
-  "name" : "type",
-  "lvl" : 0,
-  "min" : 0,
-  "max" : 1,
-  "type" : "string",
-  "desc" : "The type of client application."
-}, {
-  "path" : "details",
-  "name" : "details",
-  "lvl" : 0,
-  "min" : 0,
-  "max" : 1,
-  "type" : "Object",
-  "desc" : "Additional client details or configuration options."
-}, {
-  "path" : "name",
-  "name" : "name",
-  "lvl" : 0,
-  "min" : 0,
-  "max" : 1,
-  "type" : "string",
-  "desc" : "Human-readable name of the client application."
-}, {
-  "path" : "smart",
-  "name" : "smart",
-  "lvl" : 0,
-  "min" : 0,
-  "max" : 1,
-  "type" : "BackboneElement",
-  "desc" : "SMART on FHIR configuration for this client."
-}, {
-  "path" : "smart.launch_uri",
-  "name" : "launch_uri",
-  "lvl" : 1,
-  "min" : 0,
-  "max" : 1,
-  "type" : "string",
-  "desc" : "URI to launch the SMART app."
-}, {
-  "path" : "smart.name",
-  "name" : "name",
-  "lvl" : 1,
-  "min" : 0,
-  "max" : 1,
-  "type" : "string",
-  "desc" : "Name of the SMART app."
-}, {
-  "path" : "smart.description",
-  "name" : "description",
-  "lvl" : 1,
-  "min" : 0,
-  "max" : 1,
-  "type" : "string",
-  "desc" : "Description of the SMART app."
-}, {
-  "path" : "fhir-base-url",
-  "name" : "fhir-base-url",
-  "lvl" : 0,
-  "min" : 0,
-  "max" : 1,
-  "type" : "string",
-  "desc" : "Base URL of the FHIR server this client interacts with."
+  "desc" : "Indicates whether this client is active and can be used for authentication."
 }, {
   "path" : "allowed-scopes",
   "name" : "allowed-scopes",
@@ -3056,14 +2952,6 @@ Batch validation run resource for tracking validation processes.
   "type" : "string",
   "desc" : "List of authorized token issuers for this client."
 }, {
-  "path" : "grant_types",
-  "name" : "grant_types",
-  "lvl" : 0,
-  "min" : 0,
-  "max" : "*",
-  "type" : "string",
-  "desc" : "OAuth 2.0 grant types this client is authorized to use. \n\n**Allowed values**: `basic` | `authorization_code` | `code` | `password` | `client_credentials` | `implicit` | `refresh_token` | `urn:ietf:params:oauth:grant-type:token-exchange`"
-}, {
   "path" : "allowed_origins",
   "name" : "allowed_origins",
   "lvl" : 0,
@@ -3071,94 +2959,6 @@ Batch validation run resource for tracking validation processes.
   "max" : "*",
   "type" : "uri",
   "desc" : "Allowed Origins are URLs that will be allowed to make requests."
-}, {
-  "path" : "scopes",
-  "name" : "scopes",
-  "lvl" : 0,
-  "min" : 0,
-  "max" : "*",
-  "type" : "BackboneElement",
-  "desc" : "Detailed scope configurations with associated policies."
-}, {
-  "path" : "scopes.policy",
-  "name" : "policy",
-  "lvl" : 1,
-  "min" : 0,
-  "max" : 1,
-  "type" : "Reference",
-  "desc" : "Reference to an AccessPolicy resource for this scope. \n\n**Allowed references**: AccessPolicy"
-}, {
-  "path" : "scopes.parameters",
-  "name" : "parameters",
-  "lvl" : 1,
-  "min" : 0,
-  "max" : 1,
-  "type" : "Object",
-  "desc" : "Parameters to be applied with the scope's policy."
-}, {
-  "path" : "jwks",
-  "name" : "jwks",
-  "lvl" : 0,
-  "min" : 0,
-  "max" : "*",
-  "type" : "BackboneElement",
-  "desc" : "JSON Web Key Set for client authentication and/or verification."
-}, {
-  "path" : "jwks.kid",
-  "name" : "kid",
-  "lvl" : 1,
-  "min" : 0,
-  "max" : 1,
-  "type" : "string",
-  "desc" : "Key ID that identifies this key."
-}, {
-  "path" : "jwks.kty",
-  "name" : "kty",
-  "lvl" : 1,
-  "min" : 0,
-  "max" : 1,
-  "type" : "string",
-  "desc" : "Key type. \n\n**Allowed values**: `RSA`"
-}, {
-  "path" : "jwks.alg",
-  "name" : "alg",
-  "lvl" : 1,
-  "min" : 0,
-  "max" : 1,
-  "type" : "string",
-  "desc" : "Algorithm used with this key. \n\n**Allowed values**: `RS384`"
-}, {
-  "path" : "jwks.e",
-  "name" : "e",
-  "lvl" : 1,
-  "min" : 0,
-  "max" : 1,
-  "type" : "string",
-  "desc" : "Exponent value for RSA key."
-}, {
-  "path" : "jwks.n",
-  "name" : "n",
-  "lvl" : 1,
-  "min" : 0,
-  "max" : 1,
-  "type" : "string",
-  "desc" : "Modulus value for RSA key."
-}, {
-  "path" : "jwks.use",
-  "name" : "use",
-  "lvl" : 1,
-  "min" : 0,
-  "max" : 1,
-  "type" : "string",
-  "desc" : "Key usage. \n\n**Allowed values**: `sig`"
-}, {
-  "path" : "jwks_uri",
-  "name" : "jwks_uri",
-  "lvl" : 0,
-  "min" : 0,
-  "max" : 1,
-  "type" : "url",
-  "desc" : "URI where the client's JSON Web Key Set can be retrieved."
 }, {
   "path" : "auth",
   "name" : "auth",
@@ -3463,6 +3263,206 @@ Batch validation run resource for tracking validation processes.
   "max" : 1,
   "type" : "boolean",
   "desc" : "Whether to issue refresh tokens with this grant type."
+}, {
+  "path" : "description",
+  "name" : "description",
+  "lvl" : 0,
+  "min" : 0,
+  "max" : 1,
+  "type" : "string",
+  "desc" : "A description of the client application for administrative purposes."
+}, {
+  "path" : "details",
+  "name" : "details",
+  "lvl" : 0,
+  "min" : 0,
+  "max" : 1,
+  "type" : "Object",
+  "desc" : "Additional client details or configuration options."
+}, {
+  "path" : "fhir-base-url",
+  "name" : "fhir-base-url",
+  "lvl" : 0,
+  "min" : 0,
+  "max" : 1,
+  "type" : "string",
+  "desc" : "Base URL of the FHIR server this client interacts with."
+}, {
+  "path" : "first_party",
+  "name" : "first_party",
+  "lvl" : 0,
+  "min" : 0,
+  "max" : 1,
+  "type" : "boolean",
+  "desc" : "Indicates whether this is a first-party client."
+}, {
+  "path" : "grant_types",
+  "name" : "grant_types",
+  "lvl" : 0,
+  "min" : 0,
+  "max" : "*",
+  "type" : "string",
+  "desc" : "OAuth 2.0 grant types this client is authorized to use. \n\n**Allowed values**: `basic` | `authorization_code` | `code` | `password` | `client_credentials` | `implicit` | `refresh_token` | `urn:ietf:params:oauth:grant-type:token-exchange`"
+}, {
+  "path" : "jwks",
+  "name" : "jwks",
+  "lvl" : 0,
+  "min" : 0,
+  "max" : "*",
+  "type" : "BackboneElement",
+  "desc" : "JSON Web Key Set for client authentication and/or verification."
+}, {
+  "path" : "jwks.kid",
+  "name" : "kid",
+  "lvl" : 1,
+  "min" : 0,
+  "max" : 1,
+  "type" : "string",
+  "desc" : "Key ID that identifies this key."
+}, {
+  "path" : "jwks.kty",
+  "name" : "kty",
+  "lvl" : 1,
+  "min" : 0,
+  "max" : 1,
+  "type" : "string",
+  "desc" : "Key type. \n\n**Allowed values**: `RSA`"
+}, {
+  "path" : "jwks.alg",
+  "name" : "alg",
+  "lvl" : 1,
+  "min" : 0,
+  "max" : 1,
+  "type" : "string",
+  "desc" : "Algorithm used with this key. \n\n**Allowed values**: `RS384`"
+}, {
+  "path" : "jwks.e",
+  "name" : "e",
+  "lvl" : 1,
+  "min" : 0,
+  "max" : 1,
+  "type" : "string",
+  "desc" : "Exponent value for RSA key."
+}, {
+  "path" : "jwks.n",
+  "name" : "n",
+  "lvl" : 1,
+  "min" : 0,
+  "max" : 1,
+  "type" : "string",
+  "desc" : "Modulus value for RSA key."
+}, {
+  "path" : "jwks.use",
+  "name" : "use",
+  "lvl" : 1,
+  "min" : 0,
+  "max" : 1,
+  "type" : "string",
+  "desc" : "Key usage. \n\n**Allowed values**: `sig`"
+}, {
+  "path" : "jwks_uri",
+  "name" : "jwks_uri",
+  "lvl" : 0,
+  "min" : 0,
+  "max" : 1,
+  "type" : "url",
+  "desc" : "URI where the client's JSON Web Key Set can be retrieved."
+}, {
+  "path" : "name",
+  "name" : "name",
+  "lvl" : 0,
+  "min" : 0,
+  "max" : 1,
+  "type" : "string",
+  "desc" : "Human-readable name of the client application."
+}, {
+  "path" : "scope",
+  "name" : "scope",
+  "lvl" : 0,
+  "min" : 0,
+  "max" : "*",
+  "type" : "string",
+  "desc" : "List of scopes this client is authorized to request."
+}, {
+  "path" : "scopes",
+  "name" : "scopes",
+  "lvl" : 0,
+  "min" : 0,
+  "max" : "*",
+  "type" : "BackboneElement",
+  "desc" : "Detailed scope configurations with associated policies."
+}, {
+  "path" : "scopes.policy",
+  "name" : "policy",
+  "lvl" : 1,
+  "min" : 0,
+  "max" : 1,
+  "type" : "Reference",
+  "desc" : "Reference to an AccessPolicy resource for this scope. \n\n**Allowed references**: AccessPolicy"
+}, {
+  "path" : "scopes.parameters",
+  "name" : "parameters",
+  "lvl" : 1,
+  "min" : 0,
+  "max" : 1,
+  "type" : "Object",
+  "desc" : "Parameters to be applied with the scope's policy."
+}, {
+  "path" : "secret",
+  "name" : "secret",
+  "lvl" : 0,
+  "min" : 0,
+  "max" : 1,
+  "type" : "",
+  "desc" : "Hashed client secret for authentication."
+}, {
+  "path" : "smart",
+  "name" : "smart",
+  "lvl" : 0,
+  "min" : 0,
+  "max" : 1,
+  "type" : "BackboneElement",
+  "desc" : "SMART on FHIR configuration for this client."
+}, {
+  "path" : "smart.launch_uri",
+  "name" : "launch_uri",
+  "lvl" : 1,
+  "min" : 0,
+  "max" : 1,
+  "type" : "string",
+  "desc" : "URI to launch the SMART app."
+}, {
+  "path" : "smart.name",
+  "name" : "name",
+  "lvl" : 1,
+  "min" : 0,
+  "max" : 1,
+  "type" : "string",
+  "desc" : "Name of the SMART app."
+}, {
+  "path" : "smart.description",
+  "name" : "description",
+  "lvl" : 1,
+  "min" : 0,
+  "max" : 1,
+  "type" : "string",
+  "desc" : "Description of the SMART app."
+}, {
+  "path" : "trusted",
+  "name" : "trusted",
+  "lvl" : 0,
+  "min" : 0,
+  "max" : 1,
+  "type" : "boolean",
+  "desc" : "Indicates whether this client is trusted and given special privileges."
+}, {
+  "path" : "type",
+  "name" : "type",
+  "lvl" : 0,
+  "min" : 0,
+  "max" : 1,
+  "type" : "string",
+  "desc" : "The type of client application."
 } ]
 ```
 
@@ -3481,13 +3481,13 @@ Terminology concept resource for Aidbox.
   "type" : "string",
   "desc" : "System Property. DO NOT USE IT."
 }, {
-  "path" : "system",
-  "name" : "system",
+  "path" : "ancestors",
+  "name" : "ancestors",
   "lvl" : 0,
-  "min" : 1,
+  "min" : 0,
   "max" : 1,
-  "type" : "string",
-  "desc" : "Code system that defines the concept."
+  "type" : "Object",
+  "desc" : "List of ancestor concepts in the hierarchy."
 }, {
   "path" : "code",
   "name" : "code",
@@ -3496,14 +3496,6 @@ Terminology concept resource for Aidbox.
   "max" : 1,
   "type" : "string",
   "desc" : "Symbol or identifier for the concept within the system."
-}, {
-  "path" : "display",
-  "name" : "display",
-  "lvl" : 0,
-  "min" : 0,
-  "max" : 1,
-  "type" : "string",
-  "desc" : "Human-readable representation of the concept."
 }, {
   "path" : "definition",
   "name" : "definition",
@@ -3520,38 +3512,6 @@ Terminology concept resource for Aidbox.
   "max" : 1,
   "type" : "boolean",
   "desc" : "Indicates whether the concept is deprecated."
-}, {
-  "path" : "valueset",
-  "name" : "valueset",
-  "lvl" : 0,
-  "min" : 0,
-  "max" : "*",
-  "type" : "string",
-  "desc" : "Value sets that include this concept."
-}, {
-  "path" : "hierarchy",
-  "name" : "hierarchy",
-  "lvl" : 0,
-  "min" : 0,
-  "max" : "*",
-  "type" : "string",
-  "desc" : "Hierarchies this concept belongs to."
-}, {
-  "path" : "ancestors",
-  "name" : "ancestors",
-  "lvl" : 0,
-  "min" : 0,
-  "max" : 1,
-  "type" : "Object",
-  "desc" : "List of ancestor concepts in the hierarchy."
-}, {
-  "path" : "property",
-  "name" : "property",
-  "lvl" : 0,
-  "min" : 0,
-  "max" : 1,
-  "type" : "Object",
-  "desc" : "Additional properties associated with the concept."
 }, {
   "path" : "designation",
   "name" : "designation",
@@ -3576,6 +3536,46 @@ Terminology concept resource for Aidbox.
   "max" : 1,
   "type" : "Object",
   "desc" : "Display names in different languages or contexts."
+}, {
+  "path" : "display",
+  "name" : "display",
+  "lvl" : 0,
+  "min" : 0,
+  "max" : 1,
+  "type" : "string",
+  "desc" : "Human-readable representation of the concept."
+}, {
+  "path" : "hierarchy",
+  "name" : "hierarchy",
+  "lvl" : 0,
+  "min" : 0,
+  "max" : "*",
+  "type" : "string",
+  "desc" : "Hierarchies this concept belongs to."
+}, {
+  "path" : "property",
+  "name" : "property",
+  "lvl" : 0,
+  "min" : 0,
+  "max" : 1,
+  "type" : "Object",
+  "desc" : "Additional properties associated with the concept."
+}, {
+  "path" : "system",
+  "name" : "system",
+  "lvl" : 0,
+  "min" : 1,
+  "max" : 1,
+  "type" : "string",
+  "desc" : "Code system that defines the concept."
+}, {
+  "path" : "valueset",
+  "name" : "valueset",
+  "lvl" : 0,
+  "min" : 0,
+  "max" : "*",
+  "type" : "string",
+  "desc" : "Value sets that include this concept."
 } ]
 ```
 
@@ -3610,6 +3610,38 @@ Concept mapping rule resource for terminology translations.
   "type" : "string",
   "desc" : "URL of the parent concept map."
 }, {
+  "path" : "element",
+  "name" : "element",
+  "lvl" : 0,
+  "min" : 0,
+  "max" : 1,
+  "type" : "BackboneElement",
+  "desc" : "Element mapping definition."
+}, {
+  "path" : "element.target",
+  "name" : "target",
+  "lvl" : 1,
+  "min" : 0,
+  "max" : 1,
+  "type" : "BackboneElement",
+  "desc" : "Target mapping information."
+}, {
+  "path" : "element.target.comment",
+  "name" : "comment",
+  "lvl" : 2,
+  "min" : 0,
+  "max" : 1,
+  "type" : "string",
+  "desc" : "Comment about the mapping."
+}, {
+  "path" : "element.target.equivalence",
+  "name" : "equivalence",
+  "lvl" : 2,
+  "min" : 0,
+  "max" : 1,
+  "type" : "string",
+  "desc" : "Equivalence relationship between source and target."
+}, {
   "path" : "source",
   "name" : "source",
   "lvl" : 0,
@@ -3618,14 +3650,6 @@ Concept mapping rule resource for terminology translations.
   "type" : "string",
   "desc" : "Source system for the mapping."
 }, {
-  "path" : "target",
-  "name" : "target",
-  "lvl" : 0,
-  "min" : 0,
-  "max" : 1,
-  "type" : "string",
-  "desc" : "Target system for the mapping."
-}, {
   "path" : "sourceValueSet",
   "name" : "sourceValueSet",
   "lvl" : 0,
@@ -3633,6 +3657,14 @@ Concept mapping rule resource for terminology translations.
   "max" : 1,
   "type" : "string",
   "desc" : "Source value set for the mapping."
+}, {
+  "path" : "target",
+  "name" : "target",
+  "lvl" : 0,
+  "min" : 0,
+  "max" : 1,
+  "type" : "string",
+  "desc" : "Target system for the mapping."
 }, {
   "path" : "targetValueSet",
   "name" : "targetValueSet",
@@ -3665,38 +3697,6 @@ Concept mapping rule resource for terminology translations.
   "max" : 1,
   "type" : "string",
   "desc" : "Mode for handling unmapped concepts."
-}, {
-  "path" : "element",
-  "name" : "element",
-  "lvl" : 0,
-  "min" : 0,
-  "max" : 1,
-  "type" : "BackboneElement",
-  "desc" : "Element mapping definition."
-}, {
-  "path" : "element.target",
-  "name" : "target",
-  "lvl" : 1,
-  "min" : 0,
-  "max" : 1,
-  "type" : "BackboneElement",
-  "desc" : "Target mapping information."
-}, {
-  "path" : "element.target.comment",
-  "name" : "comment",
-  "lvl" : 2,
-  "min" : 0,
-  "max" : 1,
-  "type" : "string",
-  "desc" : "Comment about the mapping."
-}, {
-  "path" : "element.target.equivalence",
-  "name" : "equivalence",
-  "lvl" : 2,
-  "min" : 0,
-  "max" : 1,
-  "type" : "string",
-  "desc" : "Equivalence relationship between source and target."
 } ]
 ```
 
@@ -3738,22 +3738,6 @@ A modifier extension for ElementDefinition that indicates the element uses a cus
 
 ```fhir-structure
 [ {
-  "path" : "indexname",
-  "name" : "indexname",
-  "lvl" : 0,
-  "min" : 0,
-  "max" : 1,
-  "type" : "string",
-  "desc" : "Name of the database index that has been disabled."
-}, {
-  "path" : "tablespace",
-  "name" : "tablespace",
-  "lvl" : 0,
-  "min" : 0,
-  "max" : 1,
-  "type" : "string",
-  "desc" : "Tablespace where the index is stored."
-}, {
   "path" : "indexdef",
   "name" : "indexdef",
   "lvl" : 0,
@@ -3762,29 +3746,13 @@ A modifier extension for ElementDefinition that indicates the element uses a cus
   "type" : "string",
   "desc" : "SQL definition of the index."
 }, {
-  "path" : "schemaname",
-  "name" : "schemaname",
+  "path" : "indexname",
+  "name" : "indexname",
   "lvl" : 0,
   "min" : 0,
   "max" : 1,
   "type" : "string",
-  "desc" : "Name of the database schema containing the index."
-}, {
-  "path" : "tablename",
-  "name" : "tablename",
-  "lvl" : 0,
-  "min" : 0,
-  "max" : 1,
-  "type" : "string",
-  "desc" : "Name of the table associated with this index."
-}, {
-  "path" : "status",
-  "name" : "status",
-  "lvl" : 0,
-  "min" : 0,
-  "max" : 1,
-  "type" : "string",
-  "desc" : "Current status of the index (restored or disabled). \n\n**Allowed values**: `restored` | `disabled`"
+  "desc" : "Name of the database index that has been disabled."
 }, {
   "path" : "restore",
   "name" : "restore",
@@ -3817,6 +3785,38 @@ A modifier extension for ElementDefinition that indicates the element uses a cus
   "max" : 1,
   "type" : "integer",
   "desc" : "Duration of the index restoration in milliseconds."
+}, {
+  "path" : "schemaname",
+  "name" : "schemaname",
+  "lvl" : 0,
+  "min" : 0,
+  "max" : 1,
+  "type" : "string",
+  "desc" : "Name of the database schema containing the index."
+}, {
+  "path" : "status",
+  "name" : "status",
+  "lvl" : 0,
+  "min" : 0,
+  "max" : 1,
+  "type" : "string",
+  "desc" : "Current status of the index (restored or disabled). \n\n**Allowed values**: `restored` | `disabled`"
+}, {
+  "path" : "tablename",
+  "name" : "tablename",
+  "lvl" : 0,
+  "min" : 0,
+  "max" : 1,
+  "type" : "string",
+  "desc" : "Name of the table associated with this index."
+}, {
+  "path" : "tablespace",
+  "name" : "tablespace",
+  "lvl" : 0,
+  "min" : 0,
+  "max" : 1,
+  "type" : "string",
+  "desc" : "Tablespace where the index is stored."
 } ]
 ```
 
@@ -3835,14 +3835,6 @@ Entity definition resource for custom Aidbox resource types.
   "type" : "string",
   "desc" : "System Property. DO NOT USE IT."
 }, {
-  "path" : "type",
-  "name" : "type",
-  "lvl" : 0,
-  "min" : 1,
-  "max" : 1,
-  "type" : "string",
-  "desc" : "Type of entity definition. \n\n**Allowed values**: `abstract` | `resource` | `type` | `primitive`"
-}, {
   "path" : "description",
   "name" : "description",
   "lvl" : 0,
@@ -3850,54 +3842,6 @@ Entity definition resource for custom Aidbox resource types.
   "max" : 1,
   "type" : "string",
   "desc" : "Human-readable description of the entity."
-}, {
-  "path" : "text",
-  "name" : "text",
-  "lvl" : 0,
-  "min" : 0,
-  "max" : 1,
-  "type" : "string",
-  "desc" : "Human-readable text about the entity."
-}, {
-  "path" : "module",
-  "name" : "module",
-  "lvl" : 0,
-  "min" : 0,
-  "max" : 1,
-  "type" : "string",
-  "desc" : "Module that this entity belongs to."
-}, {
-  "path" : "isOpen",
-  "name" : "isOpen",
-  "lvl" : 0,
-  "min" : 0,
-  "max" : 1,
-  "type" : "boolean",
-  "desc" : "Whether this entity allows additional properties."
-}, {
-  "path" : "isMeta",
-  "name" : "isMeta",
-  "lvl" : 0,
-  "min" : 0,
-  "max" : 1,
-  "type" : "boolean",
-  "desc" : "Whether this entity is a metadata entity."
-}, {
-  "path" : "nonPersistable",
-  "name" : "nonPersistable",
-  "lvl" : 0,
-  "min" : 0,
-  "max" : 1,
-  "type" : "boolean",
-  "desc" : "Whether this entity should not be persisted."
-}, {
-  "path" : "sequencePrefix",
-  "name" : "sequencePrefix",
-  "lvl" : 0,
-  "min" : 0,
-  "max" : 1,
-  "type" : "string",
-  "desc" : "Prefix for sequence-generated IDs."
 }, {
   "path" : "history",
   "name" : "history",
@@ -3915,6 +3859,38 @@ Entity definition resource for custom Aidbox resource types.
   "type" : "string",
   "desc" : "Strategy for generating IDs for this entity. \n\n**Allowed values**: `sequence` | `uuid`"
 }, {
+  "path" : "isMeta",
+  "name" : "isMeta",
+  "lvl" : 0,
+  "min" : 0,
+  "max" : 1,
+  "type" : "boolean",
+  "desc" : "Whether this entity is a metadata entity."
+}, {
+  "path" : "isOpen",
+  "name" : "isOpen",
+  "lvl" : 0,
+  "min" : 0,
+  "max" : 1,
+  "type" : "boolean",
+  "desc" : "Whether this entity allows additional properties."
+}, {
+  "path" : "module",
+  "name" : "module",
+  "lvl" : 0,
+  "min" : 0,
+  "max" : 1,
+  "type" : "string",
+  "desc" : "Module that this entity belongs to."
+}, {
+  "path" : "nonPersistable",
+  "name" : "nonPersistable",
+  "lvl" : 0,
+  "min" : 0,
+  "max" : 1,
+  "type" : "boolean",
+  "desc" : "Whether this entity should not be persisted."
+}, {
   "path" : "schema",
   "name" : "schema",
   "lvl" : 0,
@@ -3922,6 +3898,30 @@ Entity definition resource for custom Aidbox resource types.
   "max" : 1,
   "type" : "Object",
   "desc" : "Schema definition for the entity."
+}, {
+  "path" : "sequencePrefix",
+  "name" : "sequencePrefix",
+  "lvl" : 0,
+  "min" : 0,
+  "max" : 1,
+  "type" : "string",
+  "desc" : "Prefix for sequence-generated IDs."
+}, {
+  "path" : "text",
+  "name" : "text",
+  "lvl" : 0,
+  "min" : 0,
+  "max" : 1,
+  "type" : "string",
+  "desc" : "Human-readable text about the entity."
+}, {
+  "path" : "type",
+  "name" : "type",
+  "lvl" : 0,
+  "min" : 1,
+  "max" : 1,
+  "type" : "string",
+  "desc" : "Type of entity definition. \n\n**Allowed values**: `abstract` | `resource` | `type` | `primitive`"
 } ]
 ```
 
@@ -3932,13 +3932,29 @@ Status tracking resource for flat file imports.
 
 ```fhir-structure
 [ {
-  "path" : "status",
-  "name" : "status",
+  "path" : "error",
+  "name" : "error",
   "lvl" : 0,
   "min" : 0,
   "max" : 1,
+  "type" : "BackboneElement",
+  "desc" : "Error information when import fails."
+}, {
+  "path" : "error.code",
+  "name" : "code",
+  "lvl" : 1,
+  "min" : 0,
+  "max" : 1,
   "type" : "string",
-  "desc" : "Current status of the import process. \n\n**Allowed values**: `in-progress` | `done` | `fail`"
+  "desc" : "Error code."
+}, {
+  "path" : "error.message",
+  "name" : "message",
+  "lvl" : 1,
+  "min" : 0,
+  "max" : 1,
+  "type" : "string",
+  "desc" : "Error message description."
 }, {
   "path" : "params",
   "name" : "params",
@@ -3964,29 +3980,13 @@ Status tracking resource for flat file imports.
   "type" : "integer",
   "desc" : "Count of successfully imported resources."
 }, {
-  "path" : "error",
-  "name" : "error",
+  "path" : "status",
+  "name" : "status",
   "lvl" : 0,
   "min" : 0,
   "max" : 1,
-  "type" : "BackboneElement",
-  "desc" : "Error information when import fails."
-}, {
-  "path" : "error.code",
-  "name" : "code",
-  "lvl" : 1,
-  "min" : 0,
-  "max" : 1,
   "type" : "string",
-  "desc" : "Error code."
-}, {
-  "path" : "error.message",
-  "name" : "message",
-  "lvl" : 1,
-  "min" : 0,
-  "max" : 1,
-  "type" : "string",
-  "desc" : "Error message description."
+  "desc" : "Current status of the import process. \n\n**Allowed values**: `in-progress` | `done` | `fail`"
 } ]
 ```
 
@@ -3997,14 +3997,6 @@ FHIR Terminology Repository configuration resource.
 
 ```fhir-structure
 [ {
-  "path" : "package-name",
-  "name" : "package-name",
-  "lvl" : 0,
-  "min" : 0,
-  "max" : 1,
-  "type" : "string",
-  "desc" : "Name of the FHIR terminology package."
-}, {
   "path" : "module",
   "name" : "module",
   "lvl" : 0,
@@ -4012,6 +4004,14 @@ FHIR Terminology Repository configuration resource.
   "max" : 1,
   "type" : "string",
   "desc" : "Module that this configuration belongs to."
+}, {
+  "path" : "package-name",
+  "name" : "package-name",
+  "lvl" : 0,
+  "min" : 0,
+  "max" : 1,
+  "type" : "string",
+  "desc" : "Name of the FHIR terminology package."
 }, {
   "path" : "tag",
   "name" : "tag",
@@ -4044,14 +4044,6 @@ FHIR Terminology Repository configuration resource.
   "type" : "string",
   "desc" : "System Property. DO NOT USE IT."
 }, {
-  "path" : "service-account-email",
-  "name" : "service-account-email",
-  "lvl" : 0,
-  "min" : 0,
-  "max" : 1,
-  "type" : "string",
-  "desc" : "Email address of the GCP service account."
-}, {
   "path" : "private-key",
   "name" : "private-key",
   "lvl" : 0,
@@ -4059,6 +4051,14 @@ FHIR Terminology Repository configuration resource.
   "max" : 1,
   "type" : "string",
   "desc" : "Private key for GCP service account authentication."
+}, {
+  "path" : "service-account-email",
+  "name" : "service-account-email",
+  "lvl" : 0,
+  "min" : 0,
+  "max" : 1,
+  "type" : "string",
+  "desc" : "Email address of the GCP service account."
 } ]
 ```
 
@@ -4067,14 +4067,6 @@ FHIR Terminology Repository configuration resource.
 
 ```fhir-structure
 [ {
-  "path" : "user",
-  "name" : "user",
-  "lvl" : 0,
-  "min" : 0,
-  "max" : 1,
-  "type" : "Reference",
-  "desc" : "Reference to the user who granted the access. \n\n**Allowed references**: User"
-}, {
   "path" : "_source",
   "name" : "_source",
   "lvl" : 0,
@@ -4091,13 +4083,13 @@ FHIR Terminology Repository configuration resource.
   "type" : "Reference",
   "desc" : "Reference to the client application being granted access. \n\n**Allowed references**: Client"
 }, {
-  "path" : "requested-scope",
-  "name" : "requested-scope",
+  "path" : "patient",
+  "name" : "patient",
   "lvl" : 0,
   "min" : 0,
-  "max" : "*",
-  "type" : "string",
-  "desc" : "List of scopes that were requested by the client."
+  "max" : 1,
+  "type" : "Reference",
+  "desc" : "Reference to the patient this grant is for (in SMART on FHIR scenarios). \n\n**Allowed references**: Patient"
 }, {
   "path" : "provided-scope",
   "name" : "provided-scope",
@@ -4107,13 +4099,13 @@ FHIR Terminology Repository configuration resource.
   "type" : "string",
   "desc" : "List of scopes that were actually granted by the user."
 }, {
-  "path" : "patient",
-  "name" : "patient",
+  "path" : "requested-scope",
+  "name" : "requested-scope",
   "lvl" : 0,
   "min" : 0,
-  "max" : 1,
-  "type" : "Reference",
-  "desc" : "Reference to the patient this grant is for (in SMART on FHIR scenarios). \n\n**Allowed references**: Patient"
+  "max" : "*",
+  "type" : "string",
+  "desc" : "List of scopes that were requested by the client."
 }, {
   "path" : "scope",
   "name" : "scope",
@@ -4130,6 +4122,14 @@ FHIR Terminology Repository configuration resource.
   "max" : 1,
   "type" : "dateTime",
   "desc" : "Time when this grant was created."
+}, {
+  "path" : "user",
+  "name" : "user",
+  "lvl" : 0,
+  "min" : 0,
+  "max" : 1,
+  "type" : "Reference",
+  "desc" : "Reference to the user who granted the access. \n\n**Allowed references**: User"
 } ]
 ```
 
@@ -4145,54 +4145,6 @@ FHIR Terminology Repository configuration resource.
   "max" : 1,
   "type" : "string",
   "desc" : "System Property. DO NOT USE IT."
-}, {
-  "path" : "isStrict",
-  "name" : "isStrict",
-  "lvl" : 0,
-  "min" : 0,
-  "max" : 1,
-  "type" : "boolean",
-  "desc" : "Whether strict validation should be applied."
-}, {
-  "path" : "sortTopLevelExtensions",
-  "name" : "sortTopLevelExtensions",
-  "lvl" : 0,
-  "min" : 0,
-  "max" : 1,
-  "type" : "boolean",
-  "desc" : "Whether to sort top-level extensions during processing."
-}, {
-  "path" : "mapping",
-  "name" : "mapping",
-  "lvl" : 0,
-  "min" : 0,
-  "max" : 1,
-  "type" : "Reference",
-  "desc" : "Reference to a mapping resource for message transformation. \n\n**Allowed references**: Mapping"
-}, {
-  "path" : "text",
-  "name" : "text",
-  "lvl" : 0,
-  "min" : 0,
-  "max" : 1,
-  "type" : "BackboneElement",
-  "desc" : "Narrative text representation."
-}, {
-  "path" : "text.div",
-  "name" : "div",
-  "lvl" : 1,
-  "min" : 0,
-  "max" : 1,
-  "type" : "string",
-  "desc" : "HTML content of the narrative."
-}, {
-  "path" : "text.status",
-  "name" : "status",
-  "lvl" : 1,
-  "min" : 0,
-  "max" : 1,
-  "type" : "string",
-  "desc" : "Status of the narrative text."
 }, {
   "path" : "extensions",
   "name" : "extensions",
@@ -4265,6 +4217,54 @@ FHIR Terminology Repository configuration resource.
   "max" : 1,
   "type" : "string",
   "desc" : "Field type."
+}, {
+  "path" : "isStrict",
+  "name" : "isStrict",
+  "lvl" : 0,
+  "min" : 0,
+  "max" : 1,
+  "type" : "boolean",
+  "desc" : "Whether strict validation should be applied."
+}, {
+  "path" : "mapping",
+  "name" : "mapping",
+  "lvl" : 0,
+  "min" : 0,
+  "max" : 1,
+  "type" : "Reference",
+  "desc" : "Reference to a mapping resource for message transformation. \n\n**Allowed references**: Mapping"
+}, {
+  "path" : "sortTopLevelExtensions",
+  "name" : "sortTopLevelExtensions",
+  "lvl" : 0,
+  "min" : 0,
+  "max" : 1,
+  "type" : "boolean",
+  "desc" : "Whether to sort top-level extensions during processing."
+}, {
+  "path" : "text",
+  "name" : "text",
+  "lvl" : 0,
+  "min" : 0,
+  "max" : 1,
+  "type" : "BackboneElement",
+  "desc" : "Narrative text representation."
+}, {
+  "path" : "text.div",
+  "name" : "div",
+  "lvl" : 1,
+  "min" : 0,
+  "max" : 1,
+  "type" : "string",
+  "desc" : "HTML content of the narrative."
+}, {
+  "path" : "text.status",
+  "name" : "status",
+  "lvl" : 1,
+  "min" : 0,
+  "max" : 1,
+  "type" : "string",
+  "desc" : "Status of the narrative text."
 } ]
 ```
 
@@ -4280,6 +4280,46 @@ FHIR Terminology Repository configuration resource.
   "max" : 1,
   "type" : "string",
   "desc" : "System Property. DO NOT USE IT."
+}, {
+  "path" : "apiOperation",
+  "name" : "apiOperation",
+  "lvl" : 0,
+  "min" : 0,
+  "max" : 1,
+  "type" : "string",
+  "desc" : "API operation to be performed with this message."
+}, {
+  "path" : "config",
+  "name" : "config",
+  "lvl" : 0,
+  "min" : 0,
+  "max" : 1,
+  "type" : "Reference",
+  "desc" : "Reference to the configuration for processing this message. \n\n**Allowed references**: Hl7v2Config"
+}, {
+  "path" : "event",
+  "name" : "event",
+  "lvl" : 0,
+  "min" : 0,
+  "max" : 1,
+  "type" : "code",
+  "desc" : "Event type code from the HL7v2 message."
+}, {
+  "path" : "outcome",
+  "name" : "outcome",
+  "lvl" : 0,
+  "min" : 0,
+  "max" : 1,
+  "type" : "Object",
+  "desc" : "Outcome of message processing."
+}, {
+  "path" : "parsed",
+  "name" : "parsed",
+  "lvl" : 0,
+  "min" : 0,
+  "max" : 1,
+  "type" : "Object",
+  "desc" : "Parsed content of the HL7v2 message."
 }, {
   "path" : "src",
   "name" : "src",
@@ -4304,46 +4344,6 @@ FHIR Terminology Repository configuration resource.
   "max" : 1,
   "type" : "code",
   "desc" : "Message type code from the HL7v2 message."
-}, {
-  "path" : "event",
-  "name" : "event",
-  "lvl" : 0,
-  "min" : 0,
-  "max" : 1,
-  "type" : "code",
-  "desc" : "Event type code from the HL7v2 message."
-}, {
-  "path" : "apiOperation",
-  "name" : "apiOperation",
-  "lvl" : 0,
-  "min" : 0,
-  "max" : 1,
-  "type" : "string",
-  "desc" : "API operation to be performed with this message."
-}, {
-  "path" : "config",
-  "name" : "config",
-  "lvl" : 0,
-  "min" : 0,
-  "max" : 1,
-  "type" : "Reference",
-  "desc" : "Reference to the configuration for processing this message. \n\n**Allowed references**: Hl7v2Config"
-}, {
-  "path" : "parsed",
-  "name" : "parsed",
-  "lvl" : 0,
-  "min" : 0,
-  "max" : 1,
-  "type" : "Object",
-  "desc" : "Parsed content of the HL7v2 message."
-}, {
-  "path" : "outcome",
-  "name" : "outcome",
-  "lvl" : 0,
-  "min" : 0,
-  "max" : 1,
-  "type" : "Object",
-  "desc" : "Outcome of message processing."
 } ]
 ```
 
@@ -4352,14 +4352,6 @@ FHIR Terminology Repository configuration resource.
 
 ```fhir-structure
 [ {
-  "path" : "active",
-  "name" : "active",
-  "lvl" : 0,
-  "min" : 0,
-  "max" : 1,
-  "type" : "boolean",
-  "desc" : "Indicates whether this identity provider is active and can be used for authentication."
-}, {
   "path" : "_source",
   "name" : "_source",
   "lvl" : 0,
@@ -4368,37 +4360,13 @@ FHIR Terminology Repository configuration resource.
   "type" : "string",
   "desc" : "System Property. DO NOT USE IT."
 }, {
-  "path" : "type",
-  "name" : "type",
+  "path" : "active",
+  "name" : "active",
   "lvl" : 0,
   "min" : 0,
   "max" : 1,
-  "type" : "string",
-  "desc" : "The type of identity provider. \n\n**Allowed values**: `aidbox` | `github` | `google` | `OIDC` | `OAuth` | `az-dev` | `yandex` | `okta` | `apple`"
-}, {
-  "path" : "title",
-  "name" : "title",
-  "lvl" : 0,
-  "min" : 0,
-  "max" : 1,
-  "type" : "string",
-  "desc" : "A human-readable name for the identity provider."
-}, {
-  "path" : "scopes",
-  "name" : "scopes",
-  "lvl" : 0,
-  "min" : 0,
-  "max" : "*",
-  "type" : "string",
-  "desc" : "OAuth scopes that should be requested during authentication."
-}, {
-  "path" : "base_url",
-  "name" : "base_url",
-  "lvl" : 0,
-  "min" : 0,
-  "max" : 1,
-  "type" : "uri",
-  "desc" : "Base URL for the identity provider."
+  "type" : "boolean",
+  "desc" : "Indicates whether this identity provider is active and can be used for authentication."
 }, {
   "path" : "authorize_endpoint",
   "name" : "authorize_endpoint",
@@ -4408,125 +4376,13 @@ FHIR Terminology Repository configuration resource.
   "type" : "string",
   "desc" : "The URL of the authorization endpoint."
 }, {
-  "path" : "token_endpoint",
-  "name" : "token_endpoint",
+  "path" : "base_url",
+  "name" : "base_url",
   "lvl" : 0,
   "min" : 0,
   "max" : 1,
-  "type" : "string",
-  "desc" : "The URL of the token endpoint."
-}, {
-  "path" : "team_id",
-  "name" : "team_id",
-  "lvl" : 0,
-  "min" : 0,
-  "max" : 1,
-  "type" : "string",
-  "desc" : "Team ID (for Apple)."
-}, {
-  "path" : "kid",
-  "name" : "kid",
-  "lvl" : 0,
-  "min" : 0,
-  "max" : 1,
-  "type" : "string",
-  "desc" : "Key identifier used for token verification."
-}, {
-  "path" : "system",
-  "name" : "system",
-  "lvl" : 0,
-  "min" : 0,
-  "max" : 1,
-  "type" : "string",
-  "desc" : "System identifier for the identity provider."
-}, {
-  "path" : "toScim",
-  "name" : "toScim",
-  "lvl" : 0,
-  "min" : 0,
-  "max" : 1,
-  "type" : "Object",
-  "desc" : "Mapping rules for transforming identity provider data."
-}, {
-  "path" : "isScim",
-  "name" : "isScim",
-  "lvl" : 0,
-  "min" : 0,
-  "max" : 1,
-  "type" : "boolean",
-  "desc" : "Indicates whether this provider supports SCIM protocol."
-}, {
-  "path" : "isEmailUniqueness",
-  "name" : "isEmailUniqueness",
-  "lvl" : 0,
-  "min" : 0,
-  "max" : 1,
-  "type" : "boolean",
-  "desc" : "Indicates whether email uniqueness should be enforced for this provider."
-}, {
-  "path" : "userinfo_endpoint",
-  "name" : "userinfo_endpoint",
-  "lvl" : 0,
-  "min" : 0,
-  "max" : 1,
-  "type" : "string",
-  "desc" : "The URL of the userinfo endpoint."
-}, {
-  "path" : "userinfo_header",
-  "name" : "userinfo_header",
-  "lvl" : 0,
-  "min" : 0,
-  "max" : 1,
-  "type" : "string",
-  "desc" : "Header to be used when calling the userinfo endpoint."
-}, {
-  "path" : "registration_endpoint",
-  "name" : "registration_endpoint",
-  "lvl" : 0,
-  "min" : 0,
-  "max" : 1,
-  "type" : "string",
-  "desc" : "The URL of the registration endpoint."
-}, {
-  "path" : "revocation_endpoint",
-  "name" : "revocation_endpoint",
-  "lvl" : 0,
-  "min" : 0,
-  "max" : 1,
-  "type" : "string",
-  "desc" : "The URL of the token revocation endpoint."
-}, {
-  "path" : "introspection_endpoint",
-  "name" : "introspection_endpoint",
-  "lvl" : 0,
-  "min" : 0,
-  "max" : 1,
-  "type" : "string",
-  "desc" : "The URL of the token introspection endpoint."
-}, {
-  "path" : "jwks_uri",
-  "name" : "jwks_uri",
-  "lvl" : 0,
-  "min" : 0,
-  "max" : 1,
-  "type" : "string",
-  "desc" : "URI where the provider's JSON Web Key Set can be retrieved."
-}, {
-  "path" : "organizations",
-  "name" : "organizations",
-  "lvl" : 0,
-  "min" : 0,
-  "max" : "*",
-  "type" : "string",
-  "desc" : "Organizations associated with this identity provider."
-}, {
-  "path" : "userinfo-source",
-  "name" : "userinfo-source",
-  "lvl" : 0,
-  "min" : 0,
-  "max" : 1,
-  "type" : "string",
-  "desc" : "Source of userinfo details. \n\n**Allowed values**: `id-token` | `userinfo-endpoint`"
+  "type" : "uri",
+  "desc" : "Base URL for the identity provider."
 }, {
   "path" : "client",
   "name" : "client",
@@ -4599,6 +4455,150 @@ FHIR Terminology Repository configuration resource.
   "max" : 1,
   "type" : "string",
   "desc" : "Credentials timestamp."
+}, {
+  "path" : "introspection_endpoint",
+  "name" : "introspection_endpoint",
+  "lvl" : 0,
+  "min" : 0,
+  "max" : 1,
+  "type" : "string",
+  "desc" : "The URL of the token introspection endpoint."
+}, {
+  "path" : "isEmailUniqueness",
+  "name" : "isEmailUniqueness",
+  "lvl" : 0,
+  "min" : 0,
+  "max" : 1,
+  "type" : "boolean",
+  "desc" : "Indicates whether email uniqueness should be enforced for this provider."
+}, {
+  "path" : "isScim",
+  "name" : "isScim",
+  "lvl" : 0,
+  "min" : 0,
+  "max" : 1,
+  "type" : "boolean",
+  "desc" : "Indicates whether this provider supports SCIM protocol."
+}, {
+  "path" : "jwks_uri",
+  "name" : "jwks_uri",
+  "lvl" : 0,
+  "min" : 0,
+  "max" : 1,
+  "type" : "string",
+  "desc" : "URI where the provider's JSON Web Key Set can be retrieved."
+}, {
+  "path" : "kid",
+  "name" : "kid",
+  "lvl" : 0,
+  "min" : 0,
+  "max" : 1,
+  "type" : "string",
+  "desc" : "Key identifier used for token verification."
+}, {
+  "path" : "organizations",
+  "name" : "organizations",
+  "lvl" : 0,
+  "min" : 0,
+  "max" : "*",
+  "type" : "string",
+  "desc" : "Organizations associated with this identity provider."
+}, {
+  "path" : "registration_endpoint",
+  "name" : "registration_endpoint",
+  "lvl" : 0,
+  "min" : 0,
+  "max" : 1,
+  "type" : "string",
+  "desc" : "The URL of the registration endpoint."
+}, {
+  "path" : "revocation_endpoint",
+  "name" : "revocation_endpoint",
+  "lvl" : 0,
+  "min" : 0,
+  "max" : 1,
+  "type" : "string",
+  "desc" : "The URL of the token revocation endpoint."
+}, {
+  "path" : "scopes",
+  "name" : "scopes",
+  "lvl" : 0,
+  "min" : 0,
+  "max" : "*",
+  "type" : "string",
+  "desc" : "OAuth scopes that should be requested during authentication."
+}, {
+  "path" : "system",
+  "name" : "system",
+  "lvl" : 0,
+  "min" : 0,
+  "max" : 1,
+  "type" : "string",
+  "desc" : "System identifier for the identity provider."
+}, {
+  "path" : "team_id",
+  "name" : "team_id",
+  "lvl" : 0,
+  "min" : 0,
+  "max" : 1,
+  "type" : "string",
+  "desc" : "Team ID (for Apple)."
+}, {
+  "path" : "title",
+  "name" : "title",
+  "lvl" : 0,
+  "min" : 0,
+  "max" : 1,
+  "type" : "string",
+  "desc" : "A human-readable name for the identity provider."
+}, {
+  "path" : "toScim",
+  "name" : "toScim",
+  "lvl" : 0,
+  "min" : 0,
+  "max" : 1,
+  "type" : "Object",
+  "desc" : "Mapping rules for transforming identity provider data."
+}, {
+  "path" : "token_endpoint",
+  "name" : "token_endpoint",
+  "lvl" : 0,
+  "min" : 0,
+  "max" : 1,
+  "type" : "string",
+  "desc" : "The URL of the token endpoint."
+}, {
+  "path" : "type",
+  "name" : "type",
+  "lvl" : 0,
+  "min" : 0,
+  "max" : 1,
+  "type" : "string",
+  "desc" : "The type of identity provider. \n\n**Allowed values**: `aidbox` | `github` | `google` | `OIDC` | `OAuth` | `az-dev` | `yandex` | `okta` | `apple`"
+}, {
+  "path" : "userinfo-source",
+  "name" : "userinfo-source",
+  "lvl" : 0,
+  "min" : 0,
+  "max" : 1,
+  "type" : "string",
+  "desc" : "Source of userinfo details. \n\n**Allowed values**: `id-token` | `userinfo-endpoint`"
+}, {
+  "path" : "userinfo_endpoint",
+  "name" : "userinfo_endpoint",
+  "lvl" : 0,
+  "min" : 0,
+  "max" : 1,
+  "type" : "string",
+  "desc" : "The URL of the userinfo endpoint."
+}, {
+  "path" : "userinfo_header",
+  "name" : "userinfo_header",
+  "lvl" : 0,
+  "min" : 0,
+  "max" : 1,
+  "type" : "string",
+  "desc" : "Header to be used when calling the userinfo endpoint."
 } ]
 ```
 
@@ -4609,29 +4609,13 @@ Database index creation job tracking resource.
 
 ```fhir-structure
 [ {
-  "path" : "procstatus",
-  "name" : "procstatus",
+  "path" : "end",
+  "name" : "end",
   "lvl" : 0,
   "min" : 0,
   "max" : 1,
-  "type" : "string",
-  "desc" : "Current status of the index creation process. \n\n**Allowed values**: `pending` | `in-progress` | `done` | `error`"
-}, {
-  "path" : "message",
-  "name" : "message",
-  "lvl" : 0,
-  "min" : 0,
-  "max" : 1,
-  "type" : "string",
-  "desc" : "Status or error message."
-}, {
-  "path" : "resource",
-  "name" : "resource",
-  "lvl" : 0,
-  "min" : 0,
-  "max" : 1,
-  "type" : "string",
-  "desc" : "Resource type for which the index is being created."
+  "type" : "dateTime",
+  "desc" : "Time when the index creation finished."
 }, {
   "path" : "index",
   "name" : "index",
@@ -4641,6 +4625,14 @@ Database index creation job tracking resource.
   "type" : "string",
   "desc" : "Name of the database index being created."
 }, {
+  "path" : "message",
+  "name" : "message",
+  "lvl" : 0,
+  "min" : 0,
+  "max" : 1,
+  "type" : "string",
+  "desc" : "Status or error message."
+}, {
   "path" : "params",
   "name" : "params",
   "lvl" : 0,
@@ -4649,6 +4641,22 @@ Database index creation job tracking resource.
   "type" : "string",
   "desc" : "Parameters for the index creation."
 }, {
+  "path" : "procstatus",
+  "name" : "procstatus",
+  "lvl" : 0,
+  "min" : 0,
+  "max" : 1,
+  "type" : "string",
+  "desc" : "Current status of the index creation process. \n\n**Allowed values**: `pending` | `in-progress` | `done` | `error`"
+}, {
+  "path" : "resource",
+  "name" : "resource",
+  "lvl" : 0,
+  "min" : 0,
+  "max" : 1,
+  "type" : "string",
+  "desc" : "Resource type for which the index is being created."
+}, {
   "path" : "start",
   "name" : "start",
   "lvl" : 0,
@@ -4656,14 +4664,6 @@ Database index creation job tracking resource.
   "max" : 1,
   "type" : "dateTime",
   "desc" : "Time when the index creation started."
-}, {
-  "path" : "end",
-  "name" : "end",
-  "lvl" : 0,
-  "min" : 0,
-  "max" : 1,
-  "type" : "dateTime",
-  "desc" : "Time when the index creation finished."
 } ]
 ```
 
@@ -4682,14 +4682,6 @@ Lambda function resource for hook-based code execution.
   "type" : "string",
   "desc" : "System Property. DO NOT USE IT."
 }, {
-  "path" : "hook",
-  "name" : "hook",
-  "lvl" : 0,
-  "min" : 1,
-  "max" : 1,
-  "type" : "code",
-  "desc" : "Type of hook this lambda responds to. \n\n**Allowed values**: `audit`"
-}, {
   "path" : "code",
   "name" : "code",
   "lvl" : 0,
@@ -4697,6 +4689,14 @@ Lambda function resource for hook-based code execution.
   "max" : 1,
   "type" : "string",
   "desc" : "Code to be executed by the lambda."
+}, {
+  "path" : "hook",
+  "name" : "hook",
+  "lvl" : 0,
+  "min" : 1,
+  "max" : 1,
+  "type" : "code",
+  "desc" : "Type of hook this lambda responds to. \n\n**Allowed values**: `audit`"
 } ]
 ```
 
@@ -4705,22 +4705,6 @@ Lambda function resource for hook-based code execution.
 
 ```fhir-structure
 [ {
-  "path" : "file",
-  "name" : "file",
-  "lvl" : 0,
-  "min" : 0,
-  "max" : 1,
-  "type" : "string",
-  "desc" : "Path or name of the file being loaded."
-}, {
-  "path" : "type",
-  "name" : "type",
-  "lvl" : 0,
-  "min" : 0,
-  "max" : 1,
-  "type" : "string",
-  "desc" : "Type of the file or contained resources."
-}, {
   "path" : "bucket",
   "name" : "bucket",
   "lvl" : 0,
@@ -4728,54 +4712,6 @@ Lambda function resource for hook-based code execution.
   "max" : 1,
   "type" : "string",
   "desc" : "Storage bucket where the file is located."
-}, {
-  "path" : "status",
-  "name" : "status",
-  "lvl" : 0,
-  "min" : 0,
-  "max" : 1,
-  "type" : "string",
-  "desc" : "Current status of the file loading process. \n\n**Allowed values**: `pending` | `in-progress` | `done` | `error` | `skiped`"
-}, {
-  "path" : "message",
-  "name" : "message",
-  "lvl" : 0,
-  "min" : 0,
-  "max" : 1,
-  "type" : "string",
-  "desc" : "Status or error message related to the file loading process."
-}, {
-  "path" : "loaded",
-  "name" : "loaded",
-  "lvl" : 0,
-  "min" : 0,
-  "max" : 1,
-  "type" : "integer",
-  "desc" : "Number of resources successfully loaded from this file."
-}, {
-  "path" : "size",
-  "name" : "size",
-  "lvl" : 0,
-  "min" : 0,
-  "max" : 1,
-  "type" : "decimal",
-  "desc" : "Size of the file in bytes."
-}, {
-  "path" : "last-modified",
-  "name" : "last-modified",
-  "lvl" : 0,
-  "min" : 0,
-  "max" : 1,
-  "type" : "string",
-  "desc" : "Last modification timestamp of the file."
-}, {
-  "path" : "start",
-  "name" : "start",
-  "lvl" : 0,
-  "min" : 0,
-  "max" : 1,
-  "type" : "dateTime",
-  "desc" : "Time when the file loading process started."
 }, {
   "path" : "end",
   "name" : "end",
@@ -4808,6 +4744,70 @@ Lambda function resource for hook-based code execution.
   "max" : 1,
   "type" : "string",
   "desc" : "Error code or identifier."
+}, {
+  "path" : "file",
+  "name" : "file",
+  "lvl" : 0,
+  "min" : 0,
+  "max" : 1,
+  "type" : "string",
+  "desc" : "Path or name of the file being loaded."
+}, {
+  "path" : "last-modified",
+  "name" : "last-modified",
+  "lvl" : 0,
+  "min" : 0,
+  "max" : 1,
+  "type" : "string",
+  "desc" : "Last modification timestamp of the file."
+}, {
+  "path" : "loaded",
+  "name" : "loaded",
+  "lvl" : 0,
+  "min" : 0,
+  "max" : 1,
+  "type" : "integer",
+  "desc" : "Number of resources successfully loaded from this file."
+}, {
+  "path" : "message",
+  "name" : "message",
+  "lvl" : 0,
+  "min" : 0,
+  "max" : 1,
+  "type" : "string",
+  "desc" : "Status or error message related to the file loading process."
+}, {
+  "path" : "size",
+  "name" : "size",
+  "lvl" : 0,
+  "min" : 0,
+  "max" : 1,
+  "type" : "decimal",
+  "desc" : "Size of the file in bytes."
+}, {
+  "path" : "start",
+  "name" : "start",
+  "lvl" : 0,
+  "min" : 0,
+  "max" : 1,
+  "type" : "dateTime",
+  "desc" : "Time when the file loading process started."
+}, {
+  "path" : "status",
+  "name" : "status",
+  "lvl" : 0,
+  "min" : 0,
+  "max" : 1,
+  "type" : "string",
+  "desc" : "Current status of the file loading process. \n\n**Allowed values**: `pending` | `in-progress` | `done` | `error` | `skiped`"
+}, {
+  "path" : "type",
+  "name" : "type",
+  "lvl" : 0,
+  "min" : 0,
+  "max" : 1,
+  "type" : "string",
+  "desc" : "Type of the file or contained resources."
 } ]
 ```
 
@@ -4834,13 +4834,21 @@ Data transformation mapping resource for Aidbox.
   "type" : "Object",
   "desc" : "Mapping transformation definition."
 }, {
-  "path" : "type",
-  "name" : "type",
+  "path" : "params",
+  "name" : "params",
   "lvl" : 0,
   "min" : 0,
   "max" : 1,
-  "type" : "string",
-  "desc" : "Type of the mapping."
+  "type" : "BackboneElement",
+  "desc" : "Parameters for the mapping execution."
+}, {
+  "path" : "params.omit-drop-blanks",
+  "name" : "omit-drop-blanks",
+  "lvl" : 1,
+  "min" : 0,
+  "max" : 1,
+  "type" : "boolean",
+  "desc" : "Whether to omit blank values from the result."
 }, {
   "path" : "returns",
   "name" : "returns",
@@ -4857,22 +4865,6 @@ Data transformation mapping resource for Aidbox.
   "max" : 1,
   "type" : "Object",
   "desc" : "Schema defining the scope for mapping."
-}, {
-  "path" : "params",
-  "name" : "params",
-  "lvl" : 0,
-  "min" : 0,
-  "max" : 1,
-  "type" : "BackboneElement",
-  "desc" : "Parameters for the mapping execution."
-}, {
-  "path" : "params.omit-drop-blanks",
-  "name" : "omit-drop-blanks",
-  "lvl" : 1,
-  "min" : 0,
-  "max" : 1,
-  "type" : "boolean",
-  "desc" : "Whether to omit blank values from the result."
 }, {
   "path" : "text",
   "name" : "text",
@@ -4897,6 +4889,14 @@ Data transformation mapping resource for Aidbox.
   "max" : 1,
   "type" : "string",
   "desc" : "HTML representation of the text."
+}, {
+  "path" : "type",
+  "name" : "type",
+  "lvl" : 0,
+  "min" : 0,
+  "max" : 1,
+  "type" : "string",
+  "desc" : "Type of the mapping."
 } ]
 ```
 
@@ -4914,22 +4914,6 @@ Module definition resource for Aidbox.
   "max" : 1,
   "type" : "string",
   "desc" : "System Property. DO NOT USE IT."
-}, {
-  "path" : "module",
-  "name" : "module",
-  "lvl" : 0,
-  "min" : 0,
-  "max" : 1,
-  "type" : "string",
-  "desc" : "Identifier for the module."
-}, {
-  "path" : "version",
-  "name" : "version",
-  "lvl" : 0,
-  "min" : 0,
-  "max" : 1,
-  "type" : "integer",
-  "desc" : "Version number of the module."
 }, {
   "path" : "meta",
   "name" : "meta",
@@ -4954,6 +4938,22 @@ Module definition resource for Aidbox.
   "max" : 1,
   "type" : "string",
   "desc" : "SQL to execute after module installation."
+}, {
+  "path" : "module",
+  "name" : "module",
+  "lvl" : 0,
+  "min" : 0,
+  "max" : 1,
+  "type" : "string",
+  "desc" : "Identifier for the module."
+}, {
+  "path" : "version",
+  "name" : "version",
+  "lvl" : 0,
+  "min" : 0,
+  "max" : 1,
+  "type" : "integer",
+  "desc" : "Version number of the module."
 } ]
 ```
 
@@ -4964,70 +4964,6 @@ Notebook resource for interactive documentation and code execution.
 
 ```fhir-structure
 [ {
-  "path" : "name",
-  "name" : "name",
-  "lvl" : 0,
-  "min" : 0,
-  "max" : 1,
-  "type" : "string",
-  "desc" : "Name of the notebook."
-}, {
-  "path" : "description",
-  "name" : "description",
-  "lvl" : 0,
-  "min" : 0,
-  "max" : 1,
-  "type" : "string",
-  "desc" : "Description of the notebook."
-}, {
-  "path" : "origin",
-  "name" : "origin",
-  "lvl" : 0,
-  "min" : 0,
-  "max" : 1,
-  "type" : "string",
-  "desc" : "Origin information for the notebook."
-}, {
-  "path" : "tags",
-  "name" : "tags",
-  "lvl" : 0,
-  "min" : 0,
-  "max" : "*",
-  "type" : "string",
-  "desc" : "Tags associated with the notebook."
-}, {
-  "path" : "publication-id",
-  "name" : "publication-id",
-  "lvl" : 0,
-  "min" : 0,
-  "max" : 1,
-  "type" : "string",
-  "desc" : "Identifier for the published version of the notebook."
-}, {
-  "path" : "edit-secret",
-  "name" : "edit-secret",
-  "lvl" : 0,
-  "min" : 0,
-  "max" : 1,
-  "type" : "string",
-  "desc" : "Secret for edit access to the notebook."
-}, {
-  "path" : "notebook-superuser-secret",
-  "name" : "notebook-superuser-secret",
-  "lvl" : 0,
-  "min" : 0,
-  "max" : 1,
-  "type" : "string",
-  "desc" : "Secret for superuser access to the notebook."
-}, {
-  "path" : "source",
-  "name" : "source",
-  "lvl" : 0,
-  "min" : 0,
-  "max" : 1,
-  "type" : "",
-  "desc" : "Source content for the notebook."
-}, {
   "path" : "cells",
   "name" : "cells",
   "lvl" : 0,
@@ -5115,6 +5051,70 @@ Notebook resource for interactive documentation and code execution.
   "max" : 1,
   "type" : "boolean",
   "desc" : "Whether the result section is folded."
+}, {
+  "path" : "description",
+  "name" : "description",
+  "lvl" : 0,
+  "min" : 0,
+  "max" : 1,
+  "type" : "string",
+  "desc" : "Description of the notebook."
+}, {
+  "path" : "edit-secret",
+  "name" : "edit-secret",
+  "lvl" : 0,
+  "min" : 0,
+  "max" : 1,
+  "type" : "string",
+  "desc" : "Secret for edit access to the notebook."
+}, {
+  "path" : "name",
+  "name" : "name",
+  "lvl" : 0,
+  "min" : 0,
+  "max" : 1,
+  "type" : "string",
+  "desc" : "Name of the notebook."
+}, {
+  "path" : "notebook-superuser-secret",
+  "name" : "notebook-superuser-secret",
+  "lvl" : 0,
+  "min" : 0,
+  "max" : 1,
+  "type" : "string",
+  "desc" : "Secret for superuser access to the notebook."
+}, {
+  "path" : "origin",
+  "name" : "origin",
+  "lvl" : 0,
+  "min" : 0,
+  "max" : 1,
+  "type" : "string",
+  "desc" : "Origin information for the notebook."
+}, {
+  "path" : "publication-id",
+  "name" : "publication-id",
+  "lvl" : 0,
+  "min" : 0,
+  "max" : 1,
+  "type" : "string",
+  "desc" : "Identifier for the published version of the notebook."
+}, {
+  "path" : "source",
+  "name" : "source",
+  "lvl" : 0,
+  "min" : 0,
+  "max" : 1,
+  "type" : "",
+  "desc" : "Source content for the notebook."
+}, {
+  "path" : "tags",
+  "name" : "tags",
+  "lvl" : 0,
+  "min" : 0,
+  "max" : "*",
+  "type" : "string",
+  "desc" : "Tags associated with the notebook."
 } ]
 ```
 
@@ -5123,14 +5123,6 @@ Notebook resource for interactive documentation and code execution.
 
 ```fhir-structure
 [ {
-  "path" : "status",
-  "name" : "status",
-  "lvl" : 0,
-  "min" : 0,
-  "max" : 1,
-  "type" : "string",
-  "desc" : "Status of the notification delivery (delivered or error). \n\n**Allowed values**: `delivered` | `error`"
-}, {
   "path" : "_source",
   "name" : "_source",
   "lvl" : 0,
@@ -5154,6 +5146,14 @@ Notebook resource for interactive documentation and code execution.
   "max" : 1,
   "type" : "Object",
   "desc" : "Provider-specific data."
+}, {
+  "path" : "status",
+  "name" : "status",
+  "lvl" : 0,
+  "min" : 0,
+  "max" : 1,
+  "type" : "string",
+  "desc" : "Status of the notification delivery (delivered or error). \n\n**Allowed values**: `delivered` | `error`"
 } ]
 ```
 
@@ -5162,14 +5162,6 @@ Notebook resource for interactive documentation and code execution.
 
 ```fhir-structure
 [ {
-  "path" : "subject",
-  "name" : "subject",
-  "lvl" : 0,
-  "min" : 0,
-  "max" : 1,
-  "type" : "string",
-  "desc" : "Subject line for the notification template."
-}, {
   "path" : "_source",
   "name" : "_source",
   "lvl" : 0,
@@ -5177,6 +5169,14 @@ Notebook resource for interactive documentation and code execution.
   "max" : 1,
   "type" : "string",
   "desc" : "System Property. DO NOT USE IT."
+}, {
+  "path" : "subject",
+  "name" : "subject",
+  "lvl" : 0,
+  "min" : 0,
+  "max" : 1,
+  "type" : "string",
+  "desc" : "Subject line for the notification template."
 }, {
   "path" : "template",
   "name" : "template",
@@ -5203,61 +5203,13 @@ Custom operation definition resource for Aidbox.
   "type" : "string",
   "desc" : "System Property. DO NOT USE IT."
 }, {
-  "path" : "fhirCode",
-  "name" : "fhirCode",
+  "path" : "action",
+  "name" : "action",
   "lvl" : 0,
   "min" : 0,
   "max" : 1,
-  "type" : "string",
-  "desc" : "FHIR operation code."
-}, {
-  "path" : "fhirUrl",
-  "name" : "fhirUrl",
-  "lvl" : 0,
-  "min" : 0,
-  "max" : 1,
-  "type" : "string",
-  "desc" : "FHIR URL pattern for the operation."
-}, {
-  "path" : "fhirResource",
-  "name" : "fhirResource",
-  "lvl" : 0,
-  "min" : 0,
-  "max" : "*",
-  "type" : "string",
-  "desc" : "FHIR resources this operation applies to."
-}, {
-  "path" : "module",
-  "name" : "module",
-  "lvl" : 0,
-  "min" : 0,
-  "max" : 1,
-  "type" : "string",
-  "desc" : "Module that this operation belongs to."
-}, {
-  "path" : "description",
-  "name" : "description",
-  "lvl" : 0,
-  "min" : 0,
-  "max" : 1,
-  "type" : "string",
-  "desc" : "Human-readable description of the operation."
-}, {
-  "path" : "public",
-  "name" : "public",
-  "lvl" : 0,
-  "min" : 0,
-  "max" : 1,
-  "type" : "boolean",
-  "desc" : "Whether the operation is publicly accessible."
-}, {
-  "path" : "no-op-logs",
-  "name" : "no-op-logs",
-  "lvl" : 0,
-  "min" : 0,
-  "max" : 1,
-  "type" : "boolean",
-  "desc" : "Whether to disable operation logging."
+  "type" : "Object",
+  "desc" : "Action to be performed by the operation."
 }, {
   "path" : "app",
   "name" : "app",
@@ -5267,14 +5219,6 @@ Custom operation definition resource for Aidbox.
   "type" : "Reference",
   "desc" : "Reference to associated App. \n\n**Allowed references**: App"
 }, {
-  "path" : "action",
-  "name" : "action",
-  "lvl" : 0,
-  "min" : 0,
-  "max" : 1,
-  "type" : "Object",
-  "desc" : "Action to be performed by the operation."
-}, {
   "path" : "data",
   "name" : "data",
   "lvl" : 0,
@@ -5283,13 +5227,85 @@ Custom operation definition resource for Aidbox.
   "type" : "Object",
   "desc" : "Additional operation data."
 }, {
-  "path" : "route-params",
-  "name" : "route-params",
+  "path" : "description",
+  "name" : "description",
   "lvl" : 0,
   "min" : 0,
   "max" : 1,
+  "type" : "string",
+  "desc" : "Human-readable description of the operation."
+}, {
+  "path" : "fhirCode",
+  "name" : "fhirCode",
+  "lvl" : 0,
+  "min" : 0,
+  "max" : 1,
+  "type" : "string",
+  "desc" : "FHIR operation code."
+}, {
+  "path" : "fhirResource",
+  "name" : "fhirResource",
+  "lvl" : 0,
+  "min" : 0,
+  "max" : "*",
+  "type" : "string",
+  "desc" : "FHIR resources this operation applies to."
+}, {
+  "path" : "fhirUrl",
+  "name" : "fhirUrl",
+  "lvl" : 0,
+  "min" : 0,
+  "max" : 1,
+  "type" : "string",
+  "desc" : "FHIR URL pattern for the operation."
+}, {
+  "path" : "implicit-params",
+  "name" : "implicit-params",
+  "lvl" : 0,
+  "min" : 0,
+  "max" : 1,
+  "type" : "BackboneElement",
+  "desc" : "Parameters that are implicitly included in the operation."
+}, {
+  "path" : "implicit-params.path",
+  "name" : "path",
+  "lvl" : 1,
+  "min" : 0,
+  "max" : 1,
   "type" : "Object",
-  "desc" : "Parameters for route matching."
+  "desc" : "Path parameters."
+}, {
+  "path" : "implicit-params.query",
+  "name" : "query",
+  "lvl" : 1,
+  "min" : 0,
+  "max" : 1,
+  "type" : "Object",
+  "desc" : "Query parameters."
+}, {
+  "path" : "module",
+  "name" : "module",
+  "lvl" : 0,
+  "min" : 0,
+  "max" : 1,
+  "type" : "string",
+  "desc" : "Module that this operation belongs to."
+}, {
+  "path" : "no-op-logs",
+  "name" : "no-op-logs",
+  "lvl" : 0,
+  "min" : 0,
+  "max" : 1,
+  "type" : "boolean",
+  "desc" : "Whether to disable operation logging."
+}, {
+  "path" : "public",
+  "name" : "public",
+  "lvl" : 0,
+  "min" : 0,
+  "max" : 1,
+  "type" : "boolean",
+  "desc" : "Whether the operation is publicly accessible."
 }, {
   "path" : "request",
   "name" : "request",
@@ -5298,6 +5314,14 @@ Custom operation definition resource for Aidbox.
   "max" : "*",
   "type" : "Object",
   "desc" : "Request configurations."
+}, {
+  "path" : "route-params",
+  "name" : "route-params",
+  "lvl" : 0,
+  "min" : 0,
+  "max" : 1,
+  "type" : "Object",
+  "desc" : "Parameters for route matching."
 }, {
   "path" : "transform",
   "name" : "transform",
@@ -5338,30 +5362,6 @@ Custom operation definition resource for Aidbox.
   "max" : 1,
   "type" : "string",
   "desc" : "Part of the request to transform. \n\n**Allowed values**: `body`"
-}, {
-  "path" : "implicit-params",
-  "name" : "implicit-params",
-  "lvl" : 0,
-  "min" : 0,
-  "max" : 1,
-  "type" : "BackboneElement",
-  "desc" : "Parameters that are implicitly included in the operation."
-}, {
-  "path" : "implicit-params.path",
-  "name" : "path",
-  "lvl" : 1,
-  "min" : 0,
-  "max" : 1,
-  "type" : "Object",
-  "desc" : "Path parameters."
-}, {
-  "path" : "implicit-params.query",
-  "name" : "query",
-  "lvl" : 1,
-  "min" : 0,
-  "max" : 1,
-  "type" : "Object",
-  "desc" : "Query parameters."
 } ]
 ```
 
@@ -5380,14 +5380,6 @@ PostgreSQL sequence definition resource for Aidbox.
   "type" : "string",
   "desc" : "System Property. DO NOT USE IT."
 }, {
-  "path" : "data_type",
-  "name" : "data_type",
-  "lvl" : 0,
-  "min" : 0,
-  "max" : 1,
-  "type" : "string",
-  "desc" : "PostgreSQL data type for the sequence. \n\n**Allowed values**: `smallint` | `integer` | `bigint`"
-}, {
   "path" : "cycle",
   "name" : "cycle",
   "lvl" : 0,
@@ -5395,6 +5387,14 @@ PostgreSQL sequence definition resource for Aidbox.
   "max" : 1,
   "type" : "boolean",
   "desc" : "Whether the sequence should cycle when reaching max/min value."
+}, {
+  "path" : "data_type",
+  "name" : "data_type",
+  "lvl" : 0,
+  "min" : 0,
+  "max" : 1,
+  "type" : "string",
+  "desc" : "PostgreSQL data type for the sequence. \n\n**Allowed values**: `smallint` | `integer` | `bigint`"
 }, {
   "path" : "increment",
   "name" : "increment",
@@ -5404,13 +5404,13 @@ PostgreSQL sequence definition resource for Aidbox.
   "type" : "integer",
   "desc" : "Value to increment by for each sequence call."
 }, {
-  "path" : "start",
-  "name" : "start",
+  "path" : "maxvalue",
+  "name" : "maxvalue",
   "lvl" : 0,
   "min" : 0,
   "max" : 1,
   "type" : "integer",
-  "desc" : "Starting value for the sequence."
+  "desc" : "Maximum value for the sequence."
 }, {
   "path" : "minvalue",
   "name" : "minvalue",
@@ -5420,13 +5420,13 @@ PostgreSQL sequence definition resource for Aidbox.
   "type" : "integer",
   "desc" : "Minimum value for the sequence."
 }, {
-  "path" : "maxvalue",
-  "name" : "maxvalue",
+  "path" : "start",
+  "name" : "start",
   "lvl" : 0,
   "min" : 0,
   "max" : 1,
   "type" : "integer",
-  "desc" : "Maximum value for the sequence."
+  "desc" : "Starting value for the sequence."
 } ]
 ```
 
@@ -5435,22 +5435,6 @@ PostgreSQL sequence definition resource for Aidbox.
 
 ```fhir-structure
 [ {
-  "path" : "resource",
-  "name" : "resource",
-  "lvl" : 0,
-  "min" : 0,
-  "max" : 1,
-  "type" : "Object",
-  "desc" : "Registration form data."
-}, {
-  "path" : "status",
-  "name" : "status",
-  "lvl" : 0,
-  "min" : 0,
-  "max" : 1,
-  "type" : "string",
-  "desc" : "Status of the registration process. \n\n**Allowed values**: `activated` | `active`"
-}, {
   "path" : "_source",
   "name" : "_source",
   "lvl" : 0,
@@ -5466,6 +5450,22 @@ PostgreSQL sequence definition resource for Aidbox.
   "max" : 1,
   "type" : "Object",
   "desc" : ""
+}, {
+  "path" : "resource",
+  "name" : "resource",
+  "lvl" : 0,
+  "min" : 0,
+  "max" : 1,
+  "type" : "Object",
+  "desc" : "Registration form data."
+}, {
+  "path" : "status",
+  "name" : "status",
+  "lvl" : 0,
+  "min" : 0,
+  "max" : 1,
+  "type" : "string",
+  "desc" : "Status of the registration process. \n\n**Allowed values**: `activated` | `active`"
 } ]
 ```
 
@@ -5476,14 +5476,6 @@ Role resource for assigning access roles to users.
 
 ```fhir-structure
 [ {
-  "path" : "name",
-  "name" : "name",
-  "lvl" : 0,
-  "min" : 1,
-  "max" : 1,
-  "type" : "string",
-  "desc" : "Role name is a string that defines role. To assign the same role to multiple users, create multiple Role resources with the same \"name\". [Search param: name => type string]"
-}, {
   "path" : "_source",
   "name" : "_source",
   "lvl" : 0,
@@ -5492,6 +5484,14 @@ Role resource for assigning access roles to users.
   "type" : "string",
   "desc" : "System Property. DO NOT USE IT."
 }, {
+  "path" : "context",
+  "name" : "context",
+  "lvl" : 0,
+  "min" : 0,
+  "max" : 1,
+  "type" : "Object",
+  "desc" : "Additional context data."
+}, {
   "path" : "description",
   "name" : "description",
   "lvl" : 0,
@@ -5499,14 +5499,6 @@ Role resource for assigning access roles to users.
   "max" : 1,
   "type" : "string",
   "desc" : "Text description of the role."
-}, {
-  "path" : "user",
-  "name" : "user",
-  "lvl" : 0,
-  "min" : 1,
-  "max" : 1,
-  "type" : "Reference",
-  "desc" : "Reference to a User resource for which the role will be applied. [Search param: user => type reference] \n\n**Allowed references**: User"
 }, {
   "path" : "links",
   "name" : "links",
@@ -5564,13 +5556,21 @@ Role resource for assigning access roles to users.
   "type" : "Reference",
   "desc" : "Reference to RelatedPerson resource. \n\n**Allowed references**: RelatedPerson"
 }, {
-  "path" : "context",
-  "name" : "context",
+  "path" : "name",
+  "name" : "name",
   "lvl" : 0,
-  "min" : 0,
+  "min" : 1,
   "max" : 1,
-  "type" : "Object",
-  "desc" : "Additional context data."
+  "type" : "string",
+  "desc" : "Role name is a string that defines role. To assign the same role to multiple users, create multiple Role resources with the same \"name\". [Search param: name => type string]"
+}, {
+  "path" : "user",
+  "name" : "user",
+  "lvl" : 0,
+  "min" : 1,
+  "max" : 1,
+  "type" : "Reference",
+  "desc" : "Reference to a User resource for which the role will be applied. [Search param: user => type reference] \n\n**Allowed references**: User"
 } ]
 ```
 
@@ -5579,21 +5579,13 @@ Role resource for assigning access roles to users.
 
 ```fhir-structure
 [ {
-  "path" : "definition",
-  "name" : "definition",
+  "path" : "allowedRetryCount",
+  "name" : "allowedRetryCount",
   "lvl" : 0,
-  "min" : 1,
+  "min" : 0,
   "max" : 1,
-  "type" : "string",
-  "desc" : "Identifier for the scheduler rule definition."
-}, {
-  "path" : "params",
-  "name" : "params",
-  "lvl" : 0,
-  "min" : 1,
-  "max" : 1,
-  "type" : "",
-  "desc" : "Parameters required for rule execution."
+  "type" : "integer",
+  "desc" : "Maximum number of retries allowed for this rule."
 }, {
   "path" : "concurrencyLimit",
   "name" : "concurrencyLimit",
@@ -5603,6 +5595,22 @@ Role resource for assigning access roles to users.
   "type" : "decimal",
   "desc" : "Maximum number of concurrent executions allowed for this rule."
 }, {
+  "path" : "concurrencyPath",
+  "name" : "concurrencyPath",
+  "lvl" : 0,
+  "min" : 0,
+  "max" : "*",
+  "type" : "string",
+  "desc" : "Path to the field used for concurrency control."
+}, {
+  "path" : "definition",
+  "name" : "definition",
+  "lvl" : 0,
+  "min" : 1,
+  "max" : 1,
+  "type" : "string",
+  "desc" : "Identifier for the scheduler rule definition."
+}, {
   "path" : "executeAt",
   "name" : "executeAt",
   "lvl" : 0,
@@ -5611,6 +5619,14 @@ Role resource for assigning access roles to users.
   "type" : "dateTime",
   "desc" : "Next scheduled execution time for this rule."
 }, {
+  "path" : "inProgressTimeout",
+  "name" : "inProgressTimeout",
+  "lvl" : 0,
+  "min" : 0,
+  "max" : 1,
+  "type" : "decimal",
+  "desc" : "Maximum duration in seconds that a task can remain in in-progress status before timing out."
+}, {
   "path" : "label",
   "name" : "label",
   "lvl" : 0,
@@ -5618,6 +5634,14 @@ Role resource for assigning access roles to users.
   "max" : 1,
   "type" : "string",
   "desc" : "Human-readable label for the scheduler rule."
+}, {
+  "path" : "lastSchedule",
+  "name" : "lastSchedule",
+  "lvl" : 0,
+  "min" : 0,
+  "max" : 1,
+  "type" : "dateTime",
+  "desc" : "Timestamp of the last schedule attempt."
 }, {
   "path" : "lastScheduleReference",
   "name" : "lastScheduleReference",
@@ -5659,45 +5683,13 @@ Role resource for assigning access roles to users.
   "type" : "string",
   "desc" : "Status of the last schedule attempt. \n\n**Allowed values**: `started` | `skipped`"
 }, {
-  "path" : "retryDelay",
-  "name" : "retryDelay",
+  "path" : "params",
+  "name" : "params",
   "lvl" : 0,
-  "min" : 0,
+  "min" : 1,
   "max" : 1,
-  "type" : "decimal",
-  "desc" : "Delay in seconds before retrying a failed rule execution."
-}, {
-  "path" : "allowedRetryCount",
-  "name" : "allowedRetryCount",
-  "lvl" : 0,
-  "min" : 0,
-  "max" : 1,
-  "type" : "integer",
-  "desc" : "Maximum number of retries allowed for this rule."
-}, {
-  "path" : "inProgressTimeout",
-  "name" : "inProgressTimeout",
-  "lvl" : 0,
-  "min" : 0,
-  "max" : 1,
-  "type" : "decimal",
-  "desc" : "Maximum duration in seconds that a task can remain in in-progress status before timing out."
-}, {
-  "path" : "concurrencyPath",
-  "name" : "concurrencyPath",
-  "lvl" : 0,
-  "min" : 0,
-  "max" : "*",
-  "type" : "string",
-  "desc" : "Path to the field used for concurrency control."
-}, {
-  "path" : "lastSchedule",
-  "name" : "lastSchedule",
-  "lvl" : 0,
-  "min" : 0,
-  "max" : 1,
-  "type" : "dateTime",
-  "desc" : "Timestamp of the last schedule attempt."
+  "type" : "",
+  "desc" : "Parameters required for rule execution."
 }, {
   "path" : "requestedToStartTimeout",
   "name" : "requestedToStartTimeout",
@@ -5706,6 +5698,14 @@ Role resource for assigning access roles to users.
   "max" : 1,
   "type" : "decimal",
   "desc" : "Maximum duration in seconds that a task can remain in requested status before timing out."
+}, {
+  "path" : "retryDelay",
+  "name" : "retryDelay",
+  "lvl" : 0,
+  "min" : 0,
+  "max" : 1,
+  "type" : "decimal",
+  "desc" : "Delay in seconds before retrying a failed rule execution."
 } ]
 ```
 
@@ -5714,14 +5714,6 @@ Role resource for assigning access roles to users.
 
 ```fhir-structure
 [ {
-  "path" : "scope",
-  "name" : "scope",
-  "lvl" : 0,
-  "min" : 1,
-  "max" : 1,
-  "type" : "string",
-  "desc" : "The value of the scope."
-}, {
   "path" : "_source",
   "name" : "_source",
   "lvl" : 0,
@@ -5730,14 +5722,6 @@ Role resource for assigning access roles to users.
   "type" : "string",
   "desc" : "System Property. DO NOT USE IT."
 }, {
-  "path" : "title",
-  "name" : "title",
-  "lvl" : 0,
-  "min" : 1,
-  "max" : 1,
-  "type" : "string",
-  "desc" : "A user-friendly name for the scope that appears on the consent screen."
-}, {
   "path" : "description",
   "name" : "description",
   "lvl" : 0,
@@ -5745,6 +5729,22 @@ Role resource for assigning access roles to users.
   "max" : 1,
   "type" : "string",
   "desc" : "Scope definition additionally displayed on the consent screen."
+}, {
+  "path" : "scope",
+  "name" : "scope",
+  "lvl" : 0,
+  "min" : 1,
+  "max" : 1,
+  "type" : "string",
+  "desc" : "The value of the scope."
+}, {
+  "path" : "title",
+  "name" : "title",
+  "lvl" : 0,
+  "min" : 1,
+  "max" : 1,
+  "type" : "string",
+  "desc" : "A user-friendly name for the scope that appears on the consent screen."
 } ]
 ```
 
@@ -5763,38 +5763,6 @@ Custom search parameter definition resource for Aidbox.
   "type" : "string",
   "desc" : "System Property. DO NOT USE IT."
 }, {
-  "path" : "resource",
-  "name" : "resource",
-  "lvl" : 0,
-  "min" : 0,
-  "max" : 1,
-  "type" : "Reference",
-  "desc" : "Reference to the resource type this search applies to. ResourceType is always Entity"
-}, {
-  "path" : "name",
-  "name" : "name",
-  "lvl" : 0,
-  "min" : 0,
-  "max" : 1,
-  "type" : "string",
-  "desc" : "Name of the search parameter."
-}, {
-  "path" : "where",
-  "name" : "where",
-  "lvl" : 0,
-  "min" : 0,
-  "max" : 1,
-  "type" : "string",
-  "desc" : "SQL to use in the WHERE expression. Supports `{{table}}` and `{{param}}`."
-}, {
-  "path" : "order-by",
-  "name" : "order-by",
-  "lvl" : 0,
-  "min" : 0,
-  "max" : 1,
-  "type" : "string",
-  "desc" : "SQL to use in the ORDER BY expression. Supports {{table}} and {{param}}. Note that it is used only when _sort=<name> present in the query."
-}, {
   "path" : "format",
   "name" : "format",
   "lvl" : 0,
@@ -5811,6 +5779,30 @@ Custom search parameter definition resource for Aidbox.
   "type" : "string",
   "desc" : "Module that this search belongs to."
 }, {
+  "path" : "multi",
+  "name" : "multi",
+  "lvl" : 0,
+  "min" : 0,
+  "max" : 1,
+  "type" : "string",
+  "desc" : "If you set multi = 'array', parameters will be coerced as PostgreSQL array. \n\n**Allowed values**: `array`"
+}, {
+  "path" : "name",
+  "name" : "name",
+  "lvl" : 0,
+  "min" : 0,
+  "max" : 1,
+  "type" : "string",
+  "desc" : "Name of the search parameter."
+}, {
+  "path" : "order-by",
+  "name" : "order-by",
+  "lvl" : 0,
+  "min" : 0,
+  "max" : 1,
+  "type" : "string",
+  "desc" : "SQL to use in the ORDER BY expression. Supports {{table}} and {{param}}. Note that it is used only when _sort=<name> present in the query."
+}, {
   "path" : "param-parser",
   "name" : "param-parser",
   "lvl" : 0,
@@ -5819,13 +5811,13 @@ Custom search parameter definition resource for Aidbox.
   "type" : "string",
   "desc" : "Parse value as string, identifier, or reference. \n\n**Allowed values**: `token` | `reference`"
 }, {
-  "path" : "multi",
-  "name" : "multi",
+  "path" : "resource",
+  "name" : "resource",
   "lvl" : 0,
   "min" : 0,
   "max" : 1,
-  "type" : "string",
-  "desc" : "If you set multi = 'array', parameters will be coerced as PostgreSQL array. \n\n**Allowed values**: `array`"
+  "type" : "Reference",
+  "desc" : "Reference to the resource type this search applies to. ResourceType is always Entity"
 }, {
   "path" : "token-sql",
   "name" : "token-sql",
@@ -5882,6 +5874,14 @@ Custom search parameter definition resource for Aidbox.
   "max" : 1,
   "type" : "string",
   "desc" : "SQL template when no system is provided."
+}, {
+  "path" : "where",
+  "name" : "where",
+  "lvl" : 0,
+  "min" : 0,
+  "max" : 1,
+  "type" : "string",
+  "desc" : "SQL to use in the WHERE expression. Supports `{{table}}` and `{{param}}`."
 } ]
 ```
 
@@ -5900,22 +5900,6 @@ Custom search query resource for Aidbox.
   "type" : "string",
   "desc" : "System Property. DO NOT USE IT."
 }, {
-  "path" : "resource",
-  "name" : "resource",
-  "lvl" : 0,
-  "min" : 1,
-  "max" : 1,
-  "type" : "Reference",
-  "desc" : "Reference to the resource type to search."
-}, {
-  "path" : "total",
-  "name" : "total",
-  "lvl" : 0,
-  "min" : 0,
-  "max" : 1,
-  "type" : "boolean",
-  "desc" : "Whether to include total count in results."
-}, {
   "path" : "as",
   "name" : "as",
   "lvl" : 0,
@@ -5923,6 +5907,14 @@ Custom search query resource for Aidbox.
   "max" : 1,
   "type" : "string",
   "desc" : "Alias for the resource in the query."
+}, {
+  "path" : "includes",
+  "name" : "includes",
+  "lvl" : 0,
+  "min" : 0,
+  "max" : 1,
+  "type" : "Object",
+  "desc" : "Resources to include with the results."
 }, {
   "path" : "limit",
   "name" : "limit",
@@ -5939,14 +5931,6 @@ Custom search query resource for Aidbox.
   "max" : 1,
   "type" : "Object",
   "desc" : "Search parameters for the query."
-}, {
-  "path" : "includes",
-  "name" : "includes",
-  "lvl" : 0,
-  "min" : 0,
-  "max" : 1,
-  "type" : "Object",
-  "desc" : "Resources to include with the results."
 }, {
   "path" : "query",
   "name" : "query",
@@ -5979,6 +5963,22 @@ Custom search query resource for Aidbox.
   "max" : 1,
   "type" : "string",
   "desc" : "Where clause for the query."
+}, {
+  "path" : "resource",
+  "name" : "resource",
+  "lvl" : 0,
+  "min" : 1,
+  "max" : 1,
+  "type" : "Reference",
+  "desc" : "Reference to the resource type to search."
+}, {
+  "path" : "total",
+  "name" : "total",
+  "lvl" : 0,
+  "min" : 0,
+  "max" : 1,
+  "type" : "boolean",
+  "desc" : "Whether to include total count in results."
 } ]
 ```
 
@@ -6022,14 +6022,6 @@ Seed data import resource for initial data loading.
 
 ```fhir-structure
 [ {
-  "path" : "version",
-  "name" : "version",
-  "lvl" : 0,
-  "min" : 0,
-  "max" : 1,
-  "type" : "string",
-  "desc" : "Version of the seed import format. \n\n**Allowed values**: `v2`"
-}, {
   "path" : "filename",
   "name" : "filename",
   "lvl" : 0,
@@ -6077,6 +6069,14 @@ Seed data import resource for initial data loading.
   "max" : 1,
   "type" : "Object",
   "desc" : "Metadata for the resource."
+}, {
+  "path" : "version",
+  "name" : "version",
+  "lvl" : 0,
+  "min" : 0,
+  "max" : 1,
+  "type" : "string",
+  "desc" : "Version of the seed import format. \n\n**Allowed values**: `v2`"
 } ]
 ```
 
@@ -6085,22 +6085,6 @@ Seed data import resource for initial data loading.
 
 ```fhir-structure
 [ {
-  "path" : "type",
-  "name" : "type",
-  "lvl" : 0,
-  "min" : 0,
-  "max" : 1,
-  "type" : "string",
-  "desc" : "Type of session (e.g., authorization_code, password, client_credentials)."
-}, {
-  "path" : "iss",
-  "name" : "iss",
-  "lvl" : 0,
-  "min" : 0,
-  "max" : 1,
-  "type" : "string",
-  "desc" : "Issuer of token for the current session."
-}, {
   "path" : "_source",
   "name" : "_source",
   "lvl" : 0,
@@ -6108,6 +6092,14 @@ Seed data import resource for initial data loading.
   "max" : 1,
   "type" : "string",
   "desc" : "System Property. DO NOT USE IT."
+}, {
+  "path" : "access_token",
+  "name" : "access_token",
+  "lvl" : 0,
+  "min" : 0,
+  "max" : 1,
+  "type" : "",
+  "desc" : "Access token hash associated with this session."
 }, {
   "path" : "active",
   "name" : "active",
@@ -6117,13 +6109,69 @@ Seed data import resource for initial data loading.
   "type" : "boolean",
   "desc" : "Indicates whether this session is currently active."
 }, {
-  "path" : "user",
-  "name" : "user",
+  "path" : "audience",
+  "name" : "audience",
+  "lvl" : 0,
+  "min" : 0,
+  "max" : 1,
+  "type" : "string",
+  "desc" : "Intended audience for tokens issued in this session."
+}, {
+  "path" : "authorization_code",
+  "name" : "authorization_code",
+  "lvl" : 0,
+  "min" : 0,
+  "max" : 1,
+  "type" : "",
+  "desc" : "Authorization code used to obtain this session."
+}, {
+  "path" : "client",
+  "name" : "client",
   "lvl" : 0,
   "min" : 0,
   "max" : 1,
   "type" : "Reference",
-  "desc" : "Reference to the user associated with this session. \n\n**Allowed references**: User"
+  "desc" : "Reference to the client application associated with this session. \n\n**Allowed references**: Client"
+}, {
+  "path" : "ctx",
+  "name" : "ctx",
+  "lvl" : 0,
+  "min" : 0,
+  "max" : 1,
+  "type" : "Object",
+  "desc" : "Session context data."
+}, {
+  "path" : "end",
+  "name" : "end",
+  "lvl" : 0,
+  "min" : 0,
+  "max" : 1,
+  "type" : "dateTime",
+  "desc" : "Time when the session ended or will end."
+}, {
+  "path" : "exp",
+  "name" : "exp",
+  "lvl" : 0,
+  "min" : 0,
+  "max" : 1,
+  "type" : "integer",
+  "desc" : "Expiration time for the access token (in seconds since epoch)."
+}, {
+  "path" : "iss",
+  "name" : "iss",
+  "lvl" : 0,
+  "min" : 0,
+  "max" : 1,
+  "type" : "string",
+  "desc" : "Issuer of token for the current session."
+}, {
+  "path" : "jti",
+  "name" : "jti",
+  "lvl" : 0,
+  "min" : 0,
+  "max" : 1,
+  "type" : "string",
+  "desc" : "JWT ID."
 }, {
   "path" : "on-behalf",
   "name" : "on-behalf",
@@ -6141,21 +6189,13 @@ Seed data import resource for initial data loading.
   "type" : "Reference",
   "desc" : "Reference to a parent session if this is a child session. \n\n**Allowed references**: Session"
 }, {
-  "path" : "authorization_code",
-  "name" : "authorization_code",
+  "path" : "patient",
+  "name" : "patient",
   "lvl" : 0,
   "min" : 0,
   "max" : 1,
-  "type" : "",
-  "desc" : "Authorization code used to obtain this session."
-}, {
-  "path" : "access_token",
-  "name" : "access_token",
-  "lvl" : 0,
-  "min" : 0,
-  "max" : 1,
-  "type" : "",
-  "desc" : "Access token hash associated with this session."
+  "type" : "Reference",
+  "desc" : "Reference to the patient associated with this session. \n\n**Allowed references**: Patient"
 }, {
   "path" : "refresh_token",
   "name" : "refresh_token",
@@ -6165,14 +6205,6 @@ Seed data import resource for initial data loading.
   "type" : "",
   "desc" : "Refresh token hash associated with this session."
 }, {
-  "path" : "exp",
-  "name" : "exp",
-  "lvl" : 0,
-  "min" : 0,
-  "max" : 1,
-  "type" : "integer",
-  "desc" : "Expiration time for the access token (in seconds since epoch)."
-}, {
   "path" : "refresh_token_exp",
   "name" : "refresh_token_exp",
   "lvl" : 0,
@@ -6180,30 +6212,6 @@ Seed data import resource for initial data loading.
   "max" : 1,
   "type" : "integer",
   "desc" : "Expiration time for the refresh token (in seconds since epoch)."
-}, {
-  "path" : "audience",
-  "name" : "audience",
-  "lvl" : 0,
-  "min" : 0,
-  "max" : 1,
-  "type" : "string",
-  "desc" : "Intended audience for tokens issued in this session."
-}, {
-  "path" : "ctx",
-  "name" : "ctx",
-  "lvl" : 0,
-  "min" : 0,
-  "max" : 1,
-  "type" : "Object",
-  "desc" : "Session context data."
-}, {
-  "path" : "client",
-  "name" : "client",
-  "lvl" : 0,
-  "min" : 0,
-  "max" : 1,
-  "type" : "Reference",
-  "desc" : "Reference to the client application associated with this session. \n\n**Allowed references**: Client"
 }, {
   "path" : "scope",
   "name" : "scope",
@@ -6221,29 +6229,21 @@ Seed data import resource for initial data loading.
   "type" : "dateTime",
   "desc" : "Time when the session started."
 }, {
-  "path" : "end",
-  "name" : "end",
-  "lvl" : 0,
-  "min" : 0,
-  "max" : 1,
-  "type" : "dateTime",
-  "desc" : "Time when the session ended or will end."
-}, {
-  "path" : "jti",
-  "name" : "jti",
+  "path" : "type",
+  "name" : "type",
   "lvl" : 0,
   "min" : 0,
   "max" : 1,
   "type" : "string",
-  "desc" : "JWT ID."
+  "desc" : "Type of session (e.g., authorization_code, password, client_credentials)."
 }, {
-  "path" : "patient",
-  "name" : "patient",
+  "path" : "user",
+  "name" : "user",
   "lvl" : 0,
   "min" : 0,
   "max" : 1,
   "type" : "Reference",
-  "desc" : "Reference to the patient associated with this session. \n\n**Allowed references**: Patient"
+  "desc" : "Reference to the user associated with this session. \n\n**Allowed references**: User"
 } ]
 ```
 
@@ -6262,6 +6262,54 @@ Subscription notification tracking resource.
   "type" : "string",
   "desc" : "System Property. DO NOT USE IT."
 }, {
+  "path" : "duration",
+  "name" : "duration",
+  "lvl" : 0,
+  "min" : 0,
+  "max" : 1,
+  "type" : "integer",
+  "desc" : "Duration of the notification processing in milliseconds."
+}, {
+  "path" : "notification",
+  "name" : "notification",
+  "lvl" : 0,
+  "min" : 0,
+  "max" : 1,
+  "type" : "Object",
+  "desc" : "Content of the notification that was sent."
+}, {
+  "path" : "response",
+  "name" : "response",
+  "lvl" : 0,
+  "min" : 0,
+  "max" : 1,
+  "type" : "Object",
+  "desc" : "Response received from the notification endpoint."
+}, {
+  "path" : "retried",
+  "name" : "retried",
+  "lvl" : 0,
+  "min" : 0,
+  "max" : 1,
+  "type" : "boolean",
+  "desc" : "Whether this notification is a retry."
+}, {
+  "path" : "retries",
+  "name" : "retries",
+  "lvl" : 0,
+  "min" : 0,
+  "max" : "*",
+  "type" : "Reference",
+  "desc" : "References to retry notifications. \n\n**Allowed references**: SubsSubscription"
+}, {
+  "path" : "retryOf",
+  "name" : "retryOf",
+  "lvl" : 0,
+  "min" : 0,
+  "max" : 1,
+  "type" : "Reference",
+  "desc" : "Reference to the original notification this is retrying. \n\n**Allowed references**: SubsSubscription"
+}, {
   "path" : "status",
   "name" : "status",
   "lvl" : 0,
@@ -6277,54 +6325,6 @@ Subscription notification tracking resource.
   "max" : 1,
   "type" : "Reference",
   "desc" : "Reference to the subscription that generated this notification. \n\n**Allowed references**: SubsSubscription"
-}, {
-  "path" : "retried",
-  "name" : "retried",
-  "lvl" : 0,
-  "min" : 0,
-  "max" : 1,
-  "type" : "boolean",
-  "desc" : "Whether this notification is a retry."
-}, {
-  "path" : "retryOf",
-  "name" : "retryOf",
-  "lvl" : 0,
-  "min" : 0,
-  "max" : 1,
-  "type" : "Reference",
-  "desc" : "Reference to the original notification this is retrying. \n\n**Allowed references**: SubsSubscription"
-}, {
-  "path" : "retries",
-  "name" : "retries",
-  "lvl" : 0,
-  "min" : 0,
-  "max" : "*",
-  "type" : "Reference",
-  "desc" : "References to retry notifications. \n\n**Allowed references**: SubsSubscription"
-}, {
-  "path" : "duration",
-  "name" : "duration",
-  "lvl" : 0,
-  "min" : 0,
-  "max" : 1,
-  "type" : "integer",
-  "desc" : "Duration of the notification processing in milliseconds."
-}, {
-  "path" : "response",
-  "name" : "response",
-  "lvl" : 0,
-  "min" : 0,
-  "max" : 1,
-  "type" : "Object",
-  "desc" : "Response received from the notification endpoint."
-}, {
-  "path" : "notification",
-  "name" : "notification",
-  "lvl" : 0,
-  "min" : 0,
-  "max" : 1,
-  "type" : "Object",
-  "desc" : "Content of the notification that was sent."
 } ]
 ```
 
@@ -6342,30 +6342,6 @@ Topic-based subscription resource for event notifications.
   "max" : 1,
   "type" : "string",
   "desc" : "System Property. DO NOT USE IT."
-}, {
-  "path" : "status",
-  "name" : "status",
-  "lvl" : 0,
-  "min" : 0,
-  "max" : 1,
-  "type" : "code",
-  "desc" : "Current status of the subscription. \n\n**Allowed values**: `active` | `off`"
-}, {
-  "path" : "identifier",
-  "name" : "identifier",
-  "lvl" : 0,
-  "min" : 0,
-  "max" : "*",
-  "type" : "Identifier",
-  "desc" : "Business identifiers for the subscription."
-}, {
-  "path" : "trigger",
-  "name" : "trigger",
-  "lvl" : 0,
-  "min" : 0,
-  "max" : 1,
-  "type" : "Object",
-  "desc" : "Events that trigger this subscription."
 }, {
   "path" : "channel",
   "name" : "channel",
@@ -6446,6 +6422,30 @@ Topic-based subscription resource for event notifications.
   "max" : 1,
   "type" : "",
   "desc" : "Additional context for the payload."
+}, {
+  "path" : "identifier",
+  "name" : "identifier",
+  "lvl" : 0,
+  "min" : 0,
+  "max" : "*",
+  "type" : "Identifier",
+  "desc" : "Business identifiers for the subscription."
+}, {
+  "path" : "status",
+  "name" : "status",
+  "lvl" : 0,
+  "min" : 0,
+  "max" : 1,
+  "type" : "code",
+  "desc" : "Current status of the subscription. \n\n**Allowed values**: `active` | `off`"
+}, {
+  "path" : "trigger",
+  "name" : "trigger",
+  "lvl" : 0,
+  "min" : 0,
+  "max" : 1,
+  "type" : "Object",
+  "desc" : "Events that trigger this subscription."
 } ]
 ```
 
@@ -6479,14 +6479,6 @@ Terminology bundle file tracking resource.
 
 ```fhir-structure
 [ {
-  "path" : "type",
-  "name" : "type",
-  "lvl" : 0,
-  "min" : 1,
-  "max" : 1,
-  "type" : "string",
-  "desc" : "Specifies the type of token to introspect. \n\n**Allowed values**: `opaque` | `jwt` | `aspxauth`"
-}, {
   "path" : "_source",
   "name" : "_source",
   "lvl" : 0,
@@ -6494,6 +6486,46 @@ Terminology bundle file tracking resource.
   "max" : 1,
   "type" : "string",
   "desc" : "System Property. DO NOT USE IT."
+}, {
+  "path" : "cache_ttl",
+  "name" : "cache_ttl",
+  "lvl" : 0,
+  "min" : 0,
+  "max" : 1,
+  "type" : "integer",
+  "desc" : "Cache TTL for token introspection results in seconds."
+}, {
+  "path" : "identity_provider",
+  "name" : "identity_provider",
+  "lvl" : 0,
+  "min" : 0,
+  "max" : 1,
+  "type" : "Reference",
+  "desc" : "Link to Identity provider associated with the token introspector. \n\n**Allowed references**: IdentityProvider"
+}, {
+  "path" : "introspection_endpoint",
+  "name" : "introspection_endpoint",
+  "lvl" : 0,
+  "min" : 0,
+  "max" : 1,
+  "type" : "BackboneElement",
+  "desc" : "Remote introspection endpoint configuration."
+}, {
+  "path" : "introspection_endpoint.url",
+  "name" : "url",
+  "lvl" : 1,
+  "min" : 0,
+  "max" : 1,
+  "type" : "string",
+  "desc" : "The fully qualified URL of the remote introspection endpoint."
+}, {
+  "path" : "introspection_endpoint.authorization",
+  "name" : "authorization",
+  "lvl" : 1,
+  "min" : 0,
+  "max" : 1,
+  "type" : "string",
+  "desc" : "The authorization header value."
 }, {
   "path" : "jwks_uri",
   "name" : "jwks_uri",
@@ -6575,45 +6607,13 @@ Terminology bundle file tracking resource.
   "type" : "string",
   "desc" : "The format of the key to use for validation. 'plain' for symmetric algs (HS256) and 'PEM' for all asymmetric algs \n\n**Allowed values**: `PEM` | `plain`"
 }, {
-  "path" : "introspection_endpoint",
-  "name" : "introspection_endpoint",
+  "path" : "type",
+  "name" : "type",
   "lvl" : 0,
-  "min" : 0,
-  "max" : 1,
-  "type" : "BackboneElement",
-  "desc" : "Remote introspection endpoint configuration."
-}, {
-  "path" : "introspection_endpoint.url",
-  "name" : "url",
-  "lvl" : 1,
-  "min" : 0,
+  "min" : 1,
   "max" : 1,
   "type" : "string",
-  "desc" : "The fully qualified URL of the remote introspection endpoint."
-}, {
-  "path" : "introspection_endpoint.authorization",
-  "name" : "authorization",
-  "lvl" : 1,
-  "min" : 0,
-  "max" : 1,
-  "type" : "string",
-  "desc" : "The authorization header value."
-}, {
-  "path" : "identity_provider",
-  "name" : "identity_provider",
-  "lvl" : 0,
-  "min" : 0,
-  "max" : 1,
-  "type" : "Reference",
-  "desc" : "Link to Identity provider associated with the token introspector. \n\n**Allowed references**: IdentityProvider"
-}, {
-  "path" : "cache_ttl",
-  "name" : "cache_ttl",
-  "lvl" : 0,
-  "min" : 0,
-  "max" : 1,
-  "type" : "integer",
-  "desc" : "Cache TTL for token introspection results in seconds."
+  "desc" : "Specifies the type of token to introspect. \n\n**Allowed values**: `opaque` | `jwt` | `aspxauth`"
 } ]
 ```
 
@@ -6630,142 +6630,6 @@ Terminology bundle file tracking resource.
   "type" : "string",
   "desc" : "System Property. DO NOT USE IT."
 }, {
-  "path" : "securityLabel",
-  "name" : "securityLabel",
-  "lvl" : 0,
-  "min" : 0,
-  "max" : "*",
-  "type" : "BackboneElement",
-  "desc" : "List of security labels associated to the user."
-}, {
-  "path" : "securityLabel.system",
-  "name" : "system",
-  "lvl" : 1,
-  "min" : 0,
-  "max" : 1,
-  "type" : "string",
-  "desc" : "Code system."
-}, {
-  "path" : "securityLabel.code",
-  "name" : "code",
-  "lvl" : 1,
-  "min" : 0,
-  "max" : 1,
-  "type" : "string",
-  "desc" : "Code value."
-}, {
-  "path" : "fhirUser",
-  "name" : "fhirUser",
-  "lvl" : 0,
-  "min" : 0,
-  "max" : 1,
-  "type" : "Reference",
-  "desc" : "A reference to a related FHIR resource. \n\n**Allowed references**: Patient, Practitioner, PractitionerRole, Person, RelatedPerson"
-}, {
-  "path" : "gender",
-  "name" : "gender",
-  "lvl" : 0,
-  "min" : 0,
-  "max" : 1,
-  "type" : "string",
-  "desc" : "The user's gender."
-}, {
-  "path" : "link",
-  "name" : "link",
-  "lvl" : 0,
-  "min" : 0,
-  "max" : "*",
-  "type" : "BackboneElement",
-  "desc" : "A collection of references or links associated with the user."
-}, {
-  "path" : "link.link",
-  "name" : "link",
-  "lvl" : 1,
-  "min" : 0,
-  "max" : 1,
-  "type" : "Reference",
-  "desc" : "A referenced resource link."
-}, {
-  "path" : "link.type",
-  "name" : "type",
-  "lvl" : 1,
-  "min" : 0,
-  "max" : 1,
-  "type" : "string",
-  "desc" : "A label indicating the link's function."
-}, {
-  "path" : "data",
-  "name" : "data",
-  "lvl" : 0,
-  "min" : 0,
-  "max" : 1,
-  "type" : "Object",
-  "desc" : "Arbitrary user-related data."
-}, {
-  "path" : "identifier",
-  "name" : "identifier",
-  "lvl" : 0,
-  "min" : 0,
-  "max" : "*",
-  "type" : "Identifier",
-  "desc" : "A list of identifiers for the user."
-}, {
-  "path" : "userName",
-  "name" : "userName",
-  "lvl" : 0,
-  "min" : 0,
-  "max" : 1,
-  "type" : "string",
-  "desc" : "Unique identifier for the User, typically used to directly authenticate."
-}, {
-  "path" : "displayName",
-  "name" : "displayName",
-  "lvl" : 0,
-  "min" : 0,
-  "max" : 1,
-  "type" : "string",
-  "desc" : "The name of the User, suitable for display to end-users."
-}, {
-  "path" : "password",
-  "name" : "password",
-  "lvl" : 0,
-  "min" : 0,
-  "max" : 1,
-  "type" : "",
-  "desc" : "The User's cleartext password, used for initial or reset scenarios."
-}, {
-  "path" : "twoFactor",
-  "name" : "twoFactor",
-  "lvl" : 0,
-  "min" : 0,
-  "max" : 1,
-  "type" : "BackboneElement",
-  "desc" : "Two factor settings for user."
-}, {
-  "path" : "twoFactor.enabled",
-  "name" : "enabled",
-  "lvl" : 1,
-  "min" : 1,
-  "max" : 1,
-  "type" : "boolean",
-  "desc" : "Defines whether two-factor auth is currently enabled."
-}, {
-  "path" : "twoFactor.transport",
-  "name" : "transport",
-  "lvl" : 1,
-  "min" : 0,
-  "max" : 1,
-  "type" : "string",
-  "desc" : "Transport of 2FA confirmation code (if used)."
-}, {
-  "path" : "twoFactor.secretKey",
-  "name" : "secretKey",
-  "lvl" : 1,
-  "min" : 1,
-  "max" : 1,
-  "type" : "string",
-  "desc" : "TOTP Secret key."
-}, {
   "path" : "active",
   "name" : "active",
   "lvl" : 0,
@@ -6773,206 +6637,6 @@ Terminology bundle file tracking resource.
   "max" : 1,
   "type" : "boolean",
   "desc" : "Deprecated. Use 'inactive' instead. Indicates the User's administrative status."
-}, {
-  "path" : "inactive",
-  "name" : "inactive",
-  "lvl" : 0,
-  "min" : 0,
-  "max" : 1,
-  "type" : "boolean",
-  "desc" : "A Boolean value indicating the User's administrative status."
-}, {
-  "path" : "timezone",
-  "name" : "timezone",
-  "lvl" : 0,
-  "min" : 0,
-  "max" : 1,
-  "type" : "string",
-  "desc" : "The User's time zone in the 'Olson' format."
-}, {
-  "path" : "profileUrl",
-  "name" : "profileUrl",
-  "lvl" : 0,
-  "min" : 0,
-  "max" : 1,
-  "type" : "uri",
-  "desc" : "A fully qualified URL pointing to a page representing the User's online profile."
-}, {
-  "path" : "locale",
-  "name" : "locale",
-  "lvl" : 0,
-  "min" : 0,
-  "max" : 1,
-  "type" : "string",
-  "desc" : "Indicates the User's default location for localization."
-}, {
-  "path" : "name",
-  "name" : "name",
-  "lvl" : 0,
-  "min" : 0,
-  "max" : 1,
-  "type" : "BackboneElement",
-  "desc" : "The components of the user's real name."
-}, {
-  "path" : "name.formatted",
-  "name" : "formatted",
-  "lvl" : 1,
-  "min" : 0,
-  "max" : 1,
-  "type" : "string",
-  "desc" : "Full name, including titles and suffixes, formatted for display."
-}, {
-  "path" : "name.familyName",
-  "name" : "familyName",
-  "lvl" : 1,
-  "min" : 0,
-  "max" : 1,
-  "type" : "string",
-  "desc" : "Family name (last name in Western languages)."
-}, {
-  "path" : "name.givenName",
-  "name" : "givenName",
-  "lvl" : 1,
-  "min" : 0,
-  "max" : 1,
-  "type" : "string",
-  "desc" : "Given name (first name in Western languages)."
-}, {
-  "path" : "name.middleName",
-  "name" : "middleName",
-  "lvl" : 1,
-  "min" : 0,
-  "max" : 1,
-  "type" : "string",
-  "desc" : "The middle name(s) of the User."
-}, {
-  "path" : "name.honorificPrefix",
-  "name" : "honorificPrefix",
-  "lvl" : 1,
-  "min" : 0,
-  "max" : 1,
-  "type" : "string",
-  "desc" : "Honorific prefix (title), e.g. 'Ms.'."
-}, {
-  "path" : "name.honorificSuffix",
-  "name" : "honorificSuffix",
-  "lvl" : 1,
-  "min" : 0,
-  "max" : 1,
-  "type" : "string",
-  "desc" : "Honorific suffix, e.g. 'III'."
-}, {
-  "path" : "email",
-  "name" : "email",
-  "lvl" : 0,
-  "min" : 0,
-  "max" : 1,
-  "type" : "string",
-  "desc" : "Primary email for the user."
-}, {
-  "path" : "emails",
-  "name" : "emails",
-  "lvl" : 0,
-  "min" : 0,
-  "max" : "*",
-  "type" : "BackboneElement",
-  "desc" : "Email addresses for the user."
-}, {
-  "path" : "emails.value",
-  "name" : "value",
-  "lvl" : 1,
-  "min" : 0,
-  "max" : 1,
-  "type" : "string",
-  "desc" : "An individual email address (canonicalized)."
-}, {
-  "path" : "emails.display",
-  "name" : "display",
-  "lvl" : 1,
-  "min" : 0,
-  "max" : 1,
-  "type" : "string",
-  "desc" : "A human-readable name for display purposes (READ-ONLY)."
-}, {
-  "path" : "emails.type",
-  "name" : "type",
-  "lvl" : 1,
-  "min" : 0,
-  "max" : 1,
-  "type" : "string",
-  "desc" : "A label indicating the attribute's function, e.g. 'work', 'home'."
-}, {
-  "path" : "emails.primary",
-  "name" : "primary",
-  "lvl" : 1,
-  "min" : 0,
-  "max" : 1,
-  "type" : "boolean",
-  "desc" : "Indicates if this is the primary email."
-}, {
-  "path" : "phoneNumber",
-  "name" : "phoneNumber",
-  "lvl" : 0,
-  "min" : 0,
-  "max" : 1,
-  "type" : "string",
-  "desc" : "Primary phone number."
-}, {
-  "path" : "phoneNumbers",
-  "name" : "phoneNumbers",
-  "lvl" : 0,
-  "min" : 0,
-  "max" : "*",
-  "type" : "BackboneElement",
-  "desc" : "Phone numbers for the User."
-}, {
-  "path" : "phoneNumbers.value",
-  "name" : "value",
-  "lvl" : 1,
-  "min" : 0,
-  "max" : 1,
-  "type" : "string",
-  "desc" : "The user's phone number."
-}, {
-  "path" : "phoneNumbers.display",
-  "name" : "display",
-  "lvl" : 1,
-  "min" : 0,
-  "max" : 1,
-  "type" : "string",
-  "desc" : "A human-readable name for display purposes (READ-ONLY)."
-}, {
-  "path" : "phoneNumbers.type",
-  "name" : "type",
-  "lvl" : 1,
-  "min" : 0,
-  "max" : 1,
-  "type" : "string",
-  "desc" : "A label for the phone number's function."
-}, {
-  "path" : "phoneNumbers.primary",
-  "name" : "primary",
-  "lvl" : 1,
-  "min" : 0,
-  "max" : 1,
-  "type" : "boolean",
-  "desc" : "Indicates if this is the primary phone number."
-}, {
-  "path" : "photo",
-  "name" : "photo",
-  "lvl" : 0,
-  "min" : 0,
-  "max" : 1,
-  "type" : "uri",
-  "desc" : "Primary photo for the user."
-}, {
-  "path" : "preferredLanguage",
-  "name" : "preferredLanguage",
-  "lvl" : 0,
-  "min" : 0,
-  "max" : 1,
-  "type" : "string",
-  "desc" : "The User's preferred written or spoken language."
 }, {
   "path" : "addresses",
   "name" : "addresses",
@@ -7038,37 +6702,21 @@ Terminology bundle file tracking resource.
   "type" : "string",
   "desc" : "A label indicating the address type."
 }, {
-  "path" : "userType",
-  "name" : "userType",
+  "path" : "costCenter",
+  "name" : "costCenter",
   "lvl" : 0,
   "min" : 0,
   "max" : 1,
   "type" : "string",
-  "desc" : "Identifies the relationship between the organization and the user."
+  "desc" : "Identifies the name of a cost center."
 }, {
-  "path" : "title",
-  "name" : "title",
+  "path" : "data",
+  "name" : "data",
   "lvl" : 0,
   "min" : 0,
   "max" : 1,
-  "type" : "string",
-  "desc" : "The user's title, e.g. 'Vice President'."
-}, {
-  "path" : "employeeNumber",
-  "name" : "employeeNumber",
-  "lvl" : 0,
-  "min" : 0,
-  "max" : 1,
-  "type" : "string",
-  "desc" : "Numeric or alphanumeric identifier assigned to a person."
-}, {
-  "path" : "division",
-  "name" : "division",
-  "lvl" : 0,
-  "min" : 0,
-  "max" : 1,
-  "type" : "string",
-  "desc" : "Identifies the name of a division."
+  "type" : "Object",
+  "desc" : "Arbitrary user-related data."
 }, {
   "path" : "department",
   "name" : "department",
@@ -7078,69 +6726,77 @@ Terminology bundle file tracking resource.
   "type" : "string",
   "desc" : "Identifies the name of a department."
 }, {
-  "path" : "costCenter",
-  "name" : "costCenter",
+  "path" : "displayName",
+  "name" : "displayName",
   "lvl" : 0,
   "min" : 0,
   "max" : 1,
   "type" : "string",
-  "desc" : "Identifies the name of a cost center."
+  "desc" : "The name of the User, suitable for display to end-users."
 }, {
-  "path" : "manager",
-  "name" : "manager",
+  "path" : "division",
+  "name" : "division",
   "lvl" : 0,
   "min" : 0,
   "max" : 1,
-  "type" : "Reference",
-  "desc" : "Another User resource who is this User's manager. \n\n**Allowed references**: User"
+  "type" : "string",
+  "desc" : "Identifies the name of a division."
 }, {
-  "path" : "organization",
-  "name" : "organization",
+  "path" : "email",
+  "name" : "email",
   "lvl" : 0,
   "min" : 0,
   "max" : 1,
-  "type" : "Reference",
-  "desc" : "Identifies the name of an organization. \n\n**Allowed references**: Organization"
+  "type" : "string",
+  "desc" : "Primary email for the user."
 }, {
-  "path" : "ims",
-  "name" : "ims",
+  "path" : "emails",
+  "name" : "emails",
   "lvl" : 0,
   "min" : 0,
   "max" : "*",
   "type" : "BackboneElement",
-  "desc" : "Instant messaging addresses for the User."
+  "desc" : "Email addresses for the user."
 }, {
-  "path" : "ims.value",
+  "path" : "emails.value",
   "name" : "value",
   "lvl" : 1,
   "min" : 0,
   "max" : 1,
   "type" : "string",
-  "desc" : "Instant messaging address."
+  "desc" : "An individual email address (canonicalized)."
 }, {
-  "path" : "ims.display",
+  "path" : "emails.display",
   "name" : "display",
   "lvl" : 1,
   "min" : 0,
   "max" : 1,
   "type" : "string",
-  "desc" : "A human-readable name, primarily for display (READ-ONLY)."
+  "desc" : "A human-readable name for display purposes (READ-ONLY)."
 }, {
-  "path" : "ims.type",
+  "path" : "emails.type",
   "name" : "type",
   "lvl" : 1,
   "min" : 0,
   "max" : 1,
   "type" : "string",
-  "desc" : "A label indicating the IM type, e.g. 'aim', 'gtalk'."
+  "desc" : "A label indicating the attribute's function, e.g. 'work', 'home'."
 }, {
-  "path" : "ims.primary",
+  "path" : "emails.primary",
   "name" : "primary",
   "lvl" : 1,
   "min" : 0,
   "max" : 1,
   "type" : "boolean",
-  "desc" : "Indicates if this is the primary IM. Only one may be 'true'."
+  "desc" : "Indicates if this is the primary email."
+}, {
+  "path" : "employeeNumber",
+  "name" : "employeeNumber",
+  "lvl" : 0,
+  "min" : 0,
+  "max" : 1,
+  "type" : "string",
+  "desc" : "Numeric or alphanumeric identifier assigned to a person."
 }, {
   "path" : "entitlements",
   "name" : "entitlements",
@@ -7182,85 +6838,245 @@ Terminology bundle file tracking resource.
   "type" : "boolean",
   "desc" : "Indicates if this is the primary entitlement. Only one may be 'true'."
 }, {
-  "path" : "roles",
-  "name" : "roles",
+  "path" : "fhirUser",
+  "name" : "fhirUser",
+  "lvl" : 0,
+  "min" : 0,
+  "max" : 1,
+  "type" : "Reference",
+  "desc" : "A reference to a related FHIR resource. \n\n**Allowed references**: Patient, Practitioner, PractitionerRole, Person, RelatedPerson"
+}, {
+  "path" : "gender",
+  "name" : "gender",
+  "lvl" : 0,
+  "min" : 0,
+  "max" : 1,
+  "type" : "string",
+  "desc" : "The user's gender."
+}, {
+  "path" : "identifier",
+  "name" : "identifier",
+  "lvl" : 0,
+  "min" : 0,
+  "max" : "*",
+  "type" : "Identifier",
+  "desc" : "A list of identifiers for the user."
+}, {
+  "path" : "ims",
+  "name" : "ims",
   "lvl" : 0,
   "min" : 0,
   "max" : "*",
   "type" : "BackboneElement",
-  "desc" : "A list of roles for the User that collectively represent who the User is (e.g. 'Student', 'Faculty')."
+  "desc" : "Instant messaging addresses for the User."
 }, {
-  "path" : "roles.value",
+  "path" : "ims.value",
   "name" : "value",
   "lvl" : 1,
   "min" : 0,
   "max" : 1,
   "type" : "string",
-  "desc" : "The value of a role."
+  "desc" : "Instant messaging address."
 }, {
-  "path" : "roles.display",
+  "path" : "ims.display",
   "name" : "display",
   "lvl" : 1,
   "min" : 0,
   "max" : 1,
   "type" : "string",
-  "desc" : "A human-readable name, primarily used for display purposes (READ-ONLY)."
+  "desc" : "A human-readable name, primarily for display (READ-ONLY)."
 }, {
-  "path" : "roles.type",
+  "path" : "ims.type",
   "name" : "type",
   "lvl" : 1,
   "min" : 0,
   "max" : 1,
   "type" : "string",
-  "desc" : "A label indicating the attribute's function."
+  "desc" : "A label indicating the IM type, e.g. 'aim', 'gtalk'."
 }, {
-  "path" : "roles.primary",
+  "path" : "ims.primary",
   "name" : "primary",
   "lvl" : 1,
   "min" : 0,
   "max" : 1,
   "type" : "boolean",
-  "desc" : "Indicates if this is the primary role. Only one may be 'true'."
+  "desc" : "Indicates if this is the primary IM. Only one may be 'true'."
 }, {
-  "path" : "x509Certificates",
-  "name" : "x509Certificates",
+  "path" : "inactive",
+  "name" : "inactive",
+  "lvl" : 0,
+  "min" : 0,
+  "max" : 1,
+  "type" : "boolean",
+  "desc" : "A Boolean value indicating the User's administrative status."
+}, {
+  "path" : "link",
+  "name" : "link",
   "lvl" : 0,
   "min" : 0,
   "max" : "*",
   "type" : "BackboneElement",
-  "desc" : "A list of certificates issued to the User."
+  "desc" : "A collection of references or links associated with the user."
 }, {
-  "path" : "x509Certificates.value",
-  "name" : "value",
+  "path" : "link.link",
+  "name" : "link",
   "lvl" : 1,
   "min" : 0,
   "max" : 1,
-  "type" : "base64Binary",
-  "desc" : "The value of an X.509 certificate (base64)."
+  "type" : "Reference",
+  "desc" : "A referenced resource link."
 }, {
-  "path" : "x509Certificates.display",
-  "name" : "display",
-  "lvl" : 1,
-  "min" : 0,
-  "max" : 1,
-  "type" : "string",
-  "desc" : "A human-readable name, primarily used for display purposes (READ-ONLY)."
-}, {
-  "path" : "x509Certificates.type",
+  "path" : "link.type",
   "name" : "type",
   "lvl" : 1,
   "min" : 0,
   "max" : 1,
   "type" : "string",
-  "desc" : "A label indicating the certificate's function."
+  "desc" : "A label indicating the link's function."
 }, {
-  "path" : "x509Certificates.primary",
+  "path" : "locale",
+  "name" : "locale",
+  "lvl" : 0,
+  "min" : 0,
+  "max" : 1,
+  "type" : "string",
+  "desc" : "Indicates the User's default location for localization."
+}, {
+  "path" : "manager",
+  "name" : "manager",
+  "lvl" : 0,
+  "min" : 0,
+  "max" : 1,
+  "type" : "Reference",
+  "desc" : "Another User resource who is this User's manager. \n\n**Allowed references**: User"
+}, {
+  "path" : "name",
+  "name" : "name",
+  "lvl" : 0,
+  "min" : 0,
+  "max" : 1,
+  "type" : "BackboneElement",
+  "desc" : "The components of the user's real name."
+}, {
+  "path" : "name.formatted",
+  "name" : "formatted",
+  "lvl" : 1,
+  "min" : 0,
+  "max" : 1,
+  "type" : "string",
+  "desc" : "Full name, including titles and suffixes, formatted for display."
+}, {
+  "path" : "name.familyName",
+  "name" : "familyName",
+  "lvl" : 1,
+  "min" : 0,
+  "max" : 1,
+  "type" : "string",
+  "desc" : "Family name (last name in Western languages)."
+}, {
+  "path" : "name.givenName",
+  "name" : "givenName",
+  "lvl" : 1,
+  "min" : 0,
+  "max" : 1,
+  "type" : "string",
+  "desc" : "Given name (first name in Western languages)."
+}, {
+  "path" : "name.middleName",
+  "name" : "middleName",
+  "lvl" : 1,
+  "min" : 0,
+  "max" : 1,
+  "type" : "string",
+  "desc" : "The middle name(s) of the User."
+}, {
+  "path" : "name.honorificPrefix",
+  "name" : "honorificPrefix",
+  "lvl" : 1,
+  "min" : 0,
+  "max" : 1,
+  "type" : "string",
+  "desc" : "Honorific prefix (title), e.g. 'Ms.'."
+}, {
+  "path" : "name.honorificSuffix",
+  "name" : "honorificSuffix",
+  "lvl" : 1,
+  "min" : 0,
+  "max" : 1,
+  "type" : "string",
+  "desc" : "Honorific suffix, e.g. 'III'."
+}, {
+  "path" : "organization",
+  "name" : "organization",
+  "lvl" : 0,
+  "min" : 0,
+  "max" : 1,
+  "type" : "Reference",
+  "desc" : "Identifies the name of an organization. \n\n**Allowed references**: Organization"
+}, {
+  "path" : "password",
+  "name" : "password",
+  "lvl" : 0,
+  "min" : 0,
+  "max" : 1,
+  "type" : "",
+  "desc" : "The User's cleartext password, used for initial or reset scenarios."
+}, {
+  "path" : "phoneNumber",
+  "name" : "phoneNumber",
+  "lvl" : 0,
+  "min" : 0,
+  "max" : 1,
+  "type" : "string",
+  "desc" : "Primary phone number."
+}, {
+  "path" : "phoneNumbers",
+  "name" : "phoneNumbers",
+  "lvl" : 0,
+  "min" : 0,
+  "max" : "*",
+  "type" : "BackboneElement",
+  "desc" : "Phone numbers for the User."
+}, {
+  "path" : "phoneNumbers.value",
+  "name" : "value",
+  "lvl" : 1,
+  "min" : 0,
+  "max" : 1,
+  "type" : "string",
+  "desc" : "The user's phone number."
+}, {
+  "path" : "phoneNumbers.display",
+  "name" : "display",
+  "lvl" : 1,
+  "min" : 0,
+  "max" : 1,
+  "type" : "string",
+  "desc" : "A human-readable name for display purposes (READ-ONLY)."
+}, {
+  "path" : "phoneNumbers.type",
+  "name" : "type",
+  "lvl" : 1,
+  "min" : 0,
+  "max" : 1,
+  "type" : "string",
+  "desc" : "A label for the phone number's function."
+}, {
+  "path" : "phoneNumbers.primary",
   "name" : "primary",
   "lvl" : 1,
   "min" : 0,
   "max" : 1,
   "type" : "boolean",
-  "desc" : "Indicates if this is the primary certificate. Only one may be 'true'."
+  "desc" : "Indicates if this is the primary phone number."
+}, {
+  "path" : "photo",
+  "name" : "photo",
+  "lvl" : 0,
+  "min" : 0,
+  "max" : 1,
+  "type" : "uri",
+  "desc" : "Primary photo for the user."
 }, {
   "path" : "photos",
   "name" : "photos",
@@ -7301,6 +7117,190 @@ Terminology bundle file tracking resource.
   "max" : 1,
   "type" : "boolean",
   "desc" : "Indicates if this is the primary photo. Only one may be 'true'."
+}, {
+  "path" : "preferredLanguage",
+  "name" : "preferredLanguage",
+  "lvl" : 0,
+  "min" : 0,
+  "max" : 1,
+  "type" : "string",
+  "desc" : "The User's preferred written or spoken language."
+}, {
+  "path" : "profileUrl",
+  "name" : "profileUrl",
+  "lvl" : 0,
+  "min" : 0,
+  "max" : 1,
+  "type" : "uri",
+  "desc" : "A fully qualified URL pointing to a page representing the User's online profile."
+}, {
+  "path" : "roles",
+  "name" : "roles",
+  "lvl" : 0,
+  "min" : 0,
+  "max" : "*",
+  "type" : "BackboneElement",
+  "desc" : "A list of roles for the User that collectively represent who the User is (e.g. 'Student', 'Faculty')."
+}, {
+  "path" : "roles.value",
+  "name" : "value",
+  "lvl" : 1,
+  "min" : 0,
+  "max" : 1,
+  "type" : "string",
+  "desc" : "The value of a role."
+}, {
+  "path" : "roles.display",
+  "name" : "display",
+  "lvl" : 1,
+  "min" : 0,
+  "max" : 1,
+  "type" : "string",
+  "desc" : "A human-readable name, primarily used for display purposes (READ-ONLY)."
+}, {
+  "path" : "roles.type",
+  "name" : "type",
+  "lvl" : 1,
+  "min" : 0,
+  "max" : 1,
+  "type" : "string",
+  "desc" : "A label indicating the attribute's function."
+}, {
+  "path" : "roles.primary",
+  "name" : "primary",
+  "lvl" : 1,
+  "min" : 0,
+  "max" : 1,
+  "type" : "boolean",
+  "desc" : "Indicates if this is the primary role. Only one may be 'true'."
+}, {
+  "path" : "securityLabel",
+  "name" : "securityLabel",
+  "lvl" : 0,
+  "min" : 0,
+  "max" : "*",
+  "type" : "BackboneElement",
+  "desc" : "List of security labels associated to the user."
+}, {
+  "path" : "securityLabel.system",
+  "name" : "system",
+  "lvl" : 1,
+  "min" : 0,
+  "max" : 1,
+  "type" : "string",
+  "desc" : "Code system."
+}, {
+  "path" : "securityLabel.code",
+  "name" : "code",
+  "lvl" : 1,
+  "min" : 0,
+  "max" : 1,
+  "type" : "string",
+  "desc" : "Code value."
+}, {
+  "path" : "timezone",
+  "name" : "timezone",
+  "lvl" : 0,
+  "min" : 0,
+  "max" : 1,
+  "type" : "string",
+  "desc" : "The User's time zone in the 'Olson' format."
+}, {
+  "path" : "title",
+  "name" : "title",
+  "lvl" : 0,
+  "min" : 0,
+  "max" : 1,
+  "type" : "string",
+  "desc" : "The user's title, e.g. 'Vice President'."
+}, {
+  "path" : "twoFactor",
+  "name" : "twoFactor",
+  "lvl" : 0,
+  "min" : 0,
+  "max" : 1,
+  "type" : "BackboneElement",
+  "desc" : "Two factor settings for user."
+}, {
+  "path" : "twoFactor.enabled",
+  "name" : "enabled",
+  "lvl" : 1,
+  "min" : 1,
+  "max" : 1,
+  "type" : "boolean",
+  "desc" : "Defines whether two-factor auth is currently enabled."
+}, {
+  "path" : "twoFactor.transport",
+  "name" : "transport",
+  "lvl" : 1,
+  "min" : 0,
+  "max" : 1,
+  "type" : "string",
+  "desc" : "Transport of 2FA confirmation code (if used)."
+}, {
+  "path" : "twoFactor.secretKey",
+  "name" : "secretKey",
+  "lvl" : 1,
+  "min" : 1,
+  "max" : 1,
+  "type" : "string",
+  "desc" : "TOTP Secret key."
+}, {
+  "path" : "userName",
+  "name" : "userName",
+  "lvl" : 0,
+  "min" : 0,
+  "max" : 1,
+  "type" : "string",
+  "desc" : "Unique identifier for the User, typically used to directly authenticate."
+}, {
+  "path" : "userType",
+  "name" : "userType",
+  "lvl" : 0,
+  "min" : 0,
+  "max" : 1,
+  "type" : "string",
+  "desc" : "Identifies the relationship between the organization and the user."
+}, {
+  "path" : "x509Certificates",
+  "name" : "x509Certificates",
+  "lvl" : 0,
+  "min" : 0,
+  "max" : "*",
+  "type" : "BackboneElement",
+  "desc" : "A list of certificates issued to the User."
+}, {
+  "path" : "x509Certificates.value",
+  "name" : "value",
+  "lvl" : 1,
+  "min" : 0,
+  "max" : 1,
+  "type" : "base64Binary",
+  "desc" : "The value of an X.509 certificate (base64)."
+}, {
+  "path" : "x509Certificates.display",
+  "name" : "display",
+  "lvl" : 1,
+  "min" : 0,
+  "max" : 1,
+  "type" : "string",
+  "desc" : "A human-readable name, primarily used for display purposes (READ-ONLY)."
+}, {
+  "path" : "x509Certificates.type",
+  "name" : "type",
+  "lvl" : 1,
+  "min" : 0,
+  "max" : 1,
+  "type" : "string",
+  "desc" : "A label indicating the certificate's function."
+}, {
+  "path" : "x509Certificates.primary",
+  "name" : "primary",
+  "lvl" : 1,
+  "min" : 0,
+  "max" : 1,
+  "type" : "boolean",
+  "desc" : "Indicates if this is the primary certificate. Only one may be 'true'."
 } ]
 ```
 
@@ -7309,118 +7309,6 @@ Terminology bundle file tracking resource.
 
 ```fhir-structure
 [ {
-  "path" : "url",
-  "name" : "url",
-  "lvl" : 0,
-  "min" : 0,
-  "max" : 1,
-  "type" : "uri",
-  "desc" : "Canonical identifier for this view definition, represented as a URI (globally unique)"
-}, {
-  "path" : "identifier",
-  "name" : "identifier",
-  "lvl" : 0,
-  "min" : 0,
-  "max" : 1,
-  "type" : "Identifier",
-  "desc" : "Additional identifier for the view definition"
-}, {
-  "path" : "name",
-  "name" : "name",
-  "lvl" : 0,
-  "min" : 0,
-  "max" : 1,
-  "type" : "string",
-  "desc" : "Name of view definition (computer and database friendly)"
-}, {
-  "path" : "title",
-  "name" : "title",
-  "lvl" : 0,
-  "min" : 0,
-  "max" : 1,
-  "type" : "string",
-  "desc" : "Name for this view definition (human friendly)"
-}, {
-  "path" : "meta",
-  "name" : "meta",
-  "lvl" : 0,
-  "min" : 0,
-  "max" : 1,
-  "type" : "Meta",
-  "desc" : "Metadata about the view definition"
-}, {
-  "path" : "status",
-  "name" : "status",
-  "lvl" : 0,
-  "min" : 1,
-  "max" : 1,
-  "type" : "code",
-  "desc" : "draft | active | retired | unknown"
-}, {
-  "path" : "experimental",
-  "name" : "experimental",
-  "lvl" : 0,
-  "min" : 0,
-  "max" : 1,
-  "type" : "boolean",
-  "desc" : "For testing purposes, not real usage"
-}, {
-  "path" : "publisher",
-  "name" : "publisher",
-  "lvl" : 0,
-  "min" : 0,
-  "max" : 1,
-  "type" : "string",
-  "desc" : "Name of the publisher/steward (organization or individual)"
-}, {
-  "path" : "contact",
-  "name" : "contact",
-  "lvl" : 0,
-  "min" : 0,
-  "max" : "*",
-  "type" : "ContactDetail",
-  "desc" : "Contact details for the publisher"
-}, {
-  "path" : "description",
-  "name" : "description",
-  "lvl" : 0,
-  "min" : 0,
-  "max" : 1,
-  "type" : "markdown",
-  "desc" : "Natural language description of the view definition"
-}, {
-  "path" : "useContext",
-  "name" : "useContext",
-  "lvl" : 0,
-  "min" : 0,
-  "max" : "*",
-  "type" : "UsageContext",
-  "desc" : "The context that the content is intended to support"
-}, {
-  "path" : "copyright",
-  "name" : "copyright",
-  "lvl" : 0,
-  "min" : 0,
-  "max" : 1,
-  "type" : "markdown",
-  "desc" : "Use and/or publishing restrictions"
-}, {
-  "path" : "resource",
-  "name" : "resource",
-  "lvl" : 0,
-  "min" : 1,
-  "max" : 1,
-  "type" : "code",
-  "desc" : "FHIR resource for the ViewDefinition"
-}, {
-  "path" : "fhirVersion",
-  "name" : "fhirVersion",
-  "lvl" : 0,
-  "min" : 0,
-  "max" : "*",
-  "type" : "code",
-  "desc" : "FHIR version(s) of the resource for the ViewDefinition"
-}, {
   "path" : "constant",
   "name" : "constant",
   "lvl" : 0,
@@ -7445,29 +7333,85 @@ Terminology bundle file tracking resource.
   "type" : "base64Binary",
   "desc" : "Value of constant"
 }, {
-  "path" : "where",
-  "name" : "where",
+  "path" : "contact",
+  "name" : "contact",
   "lvl" : 0,
   "min" : 0,
   "max" : "*",
-  "type" : "BackboneElement",
-  "desc" : "A series of zero or more FHIRPath constraints to filter resources for the view."
+  "type" : "ContactDetail",
+  "desc" : "Contact details for the publisher"
 }, {
-  "path" : "where.path",
-  "name" : "path",
-  "lvl" : 1,
-  "min" : 1,
+  "path" : "copyright",
+  "name" : "copyright",
+  "lvl" : 0,
+  "min" : 0,
   "max" : 1,
-  "type" : "string",
-  "desc" : "A FHIRPath expression defining a filter condition"
+  "type" : "markdown",
+  "desc" : "Use and/or publishing restrictions"
 }, {
-  "path" : "where.description",
+  "path" : "description",
   "name" : "description",
-  "lvl" : 1,
+  "lvl" : 0,
+  "min" : 0,
+  "max" : 1,
+  "type" : "markdown",
+  "desc" : "Natural language description of the view definition"
+}, {
+  "path" : "experimental",
+  "name" : "experimental",
+  "lvl" : 0,
+  "min" : 0,
+  "max" : 1,
+  "type" : "boolean",
+  "desc" : "For testing purposes, not real usage"
+}, {
+  "path" : "fhirVersion",
+  "name" : "fhirVersion",
+  "lvl" : 0,
+  "min" : 0,
+  "max" : "*",
+  "type" : "code",
+  "desc" : "FHIR version(s) of the resource for the ViewDefinition"
+}, {
+  "path" : "identifier",
+  "name" : "identifier",
+  "lvl" : 0,
+  "min" : 0,
+  "max" : 1,
+  "type" : "Identifier",
+  "desc" : "Additional identifier for the view definition"
+}, {
+  "path" : "meta",
+  "name" : "meta",
+  "lvl" : 0,
+  "min" : 0,
+  "max" : 1,
+  "type" : "Meta",
+  "desc" : "Metadata about the view definition"
+}, {
+  "path" : "name",
+  "name" : "name",
+  "lvl" : 0,
   "min" : 0,
   "max" : 1,
   "type" : "string",
-  "desc" : "A human-readable description of the above where constraint."
+  "desc" : "Name of view definition (computer and database friendly)"
+}, {
+  "path" : "publisher",
+  "name" : "publisher",
+  "lvl" : 0,
+  "min" : 0,
+  "max" : 1,
+  "type" : "string",
+  "desc" : "Name of the publisher/steward (organization or individual)"
+}, {
+  "path" : "resource",
+  "name" : "resource",
+  "lvl" : 0,
+  "min" : 1,
+  "max" : 1,
+  "type" : "code",
+  "desc" : "FHIR resource for the ViewDefinition"
 }, {
   "path" : "select",
   "name" : "select",
@@ -7588,6 +7532,62 @@ Terminology bundle file tracking resource.
   "max" : "*",
   "type" : "string",
   "desc" : ""
+}, {
+  "path" : "status",
+  "name" : "status",
+  "lvl" : 0,
+  "min" : 1,
+  "max" : 1,
+  "type" : "code",
+  "desc" : "draft | active | retired | unknown"
+}, {
+  "path" : "title",
+  "name" : "title",
+  "lvl" : 0,
+  "min" : 0,
+  "max" : 1,
+  "type" : "string",
+  "desc" : "Name for this view definition (human friendly)"
+}, {
+  "path" : "url",
+  "name" : "url",
+  "lvl" : 0,
+  "min" : 0,
+  "max" : 1,
+  "type" : "uri",
+  "desc" : "Canonical identifier for this view definition, represented as a URI (globally unique)"
+}, {
+  "path" : "useContext",
+  "name" : "useContext",
+  "lvl" : 0,
+  "min" : 0,
+  "max" : "*",
+  "type" : "UsageContext",
+  "desc" : "The context that the content is intended to support"
+}, {
+  "path" : "where",
+  "name" : "where",
+  "lvl" : 0,
+  "min" : 0,
+  "max" : "*",
+  "type" : "BackboneElement",
+  "desc" : "A series of zero or more FHIRPath constraints to filter resources for the view."
+}, {
+  "path" : "where.path",
+  "name" : "path",
+  "lvl" : 1,
+  "min" : 1,
+  "max" : 1,
+  "type" : "string",
+  "desc" : "A FHIRPath expression defining a filter condition"
+}, {
+  "path" : "where.description",
+  "name" : "description",
+  "lvl" : 1,
+  "min" : 0,
+  "max" : 1,
+  "type" : "string",
+  "desc" : "A human-readable description of the above where constraint."
 } ]
 ```
 
@@ -7596,6 +7596,14 @@ Terminology bundle file tracking resource.
 
 ```fhir-structure
 [ {
+  "path" : "app",
+  "name" : "app",
+  "lvl" : 0,
+  "min" : 0,
+  "max" : 1,
+  "type" : "string",
+  "desc" : "Application identifier for the subscription."
+}, {
   "path" : "subscription",
   "name" : "subscription",
   "lvl" : 0,
@@ -7667,14 +7675,6 @@ Terminology bundle file tracking resource.
   "max" : 1,
   "type" : "string",
   "desc" : "Fixed value indicating this is a reference to a User resource."
-}, {
-  "path" : "app",
-  "name" : "app",
-  "lvl" : 0,
-  "min" : 0,
-  "max" : 1,
-  "type" : "string",
-  "desc" : "Application identifier for the subscription."
 } ]
 ```
 
@@ -7696,86 +7696,6 @@ AMQP 1.0 at-least-once delivery profile for AidboxTopicDestination.
   "path" : "parameter",
   "name" : "parameter",
   "lvl" : 0,
-  "min" : 0,
-  "max" : 1,
-  "type" : "",
-  "desc" : ""
-}, {
-  "path" : "parameter",
-  "name" : "parameter:host",
-  "lvl" : 0,
-  "min" : 1,
-  "max" : 1,
-  "type" : "",
-  "desc" : ""
-}, {
-  "path" : "parameter.name",
-  "name" : "name",
-  "lvl" : 1,
-  "min" : 0,
-  "max" : 1,
-  "type" : "",
-  "desc" : ""
-}, {
-  "path" : "parameter.value[x]",
-  "name" : "value[x]",
-  "lvl" : 1,
-  "min" : 1,
-  "max" : 1,
-  "type" : "string",
-  "desc" : ""
-}, {
-  "path" : "parameter.resource",
-  "name" : "resource",
-  "lvl" : 1,
-  "min" : 0,
-  "max" : 1,
-  "type" : "",
-  "desc" : ""
-}, {
-  "path" : "parameter.part",
-  "name" : "part",
-  "lvl" : 1,
-  "min" : 0,
-  "max" : 1,
-  "type" : "",
-  "desc" : ""
-}, {
-  "path" : "parameter",
-  "name" : "parameter:port",
-  "lvl" : 0,
-  "min" : 0,
-  "max" : 1,
-  "type" : "",
-  "desc" : ""
-}, {
-  "path" : "parameter.name",
-  "name" : "name",
-  "lvl" : 1,
-  "min" : 0,
-  "max" : 1,
-  "type" : "",
-  "desc" : ""
-}, {
-  "path" : "parameter.value[x]",
-  "name" : "value[x]",
-  "lvl" : 1,
-  "min" : 1,
-  "max" : 1,
-  "type" : "integer",
-  "desc" : ""
-}, {
-  "path" : "parameter.resource",
-  "name" : "resource",
-  "lvl" : 1,
-  "min" : 0,
-  "max" : 1,
-  "type" : "",
-  "desc" : ""
-}, {
-  "path" : "parameter.part",
-  "name" : "part",
-  "lvl" : 1,
   "min" : 0,
   "max" : 1,
   "type" : "",
@@ -7862,9 +7782,9 @@ AMQP 1.0 at-least-once delivery profile for AidboxTopicDestination.
   "desc" : ""
 }, {
   "path" : "parameter",
-  "name" : "parameter:username",
+  "name" : "parameter:host",
   "lvl" : 0,
-  "min" : 0,
+  "min" : 1,
   "max" : 1,
   "type" : "",
   "desc" : ""
@@ -7883,86 +7803,6 @@ AMQP 1.0 at-least-once delivery profile for AidboxTopicDestination.
   "min" : 1,
   "max" : 1,
   "type" : "string",
-  "desc" : ""
-}, {
-  "path" : "parameter.resource",
-  "name" : "resource",
-  "lvl" : 1,
-  "min" : 0,
-  "max" : 1,
-  "type" : "",
-  "desc" : ""
-}, {
-  "path" : "parameter.part",
-  "name" : "part",
-  "lvl" : 1,
-  "min" : 0,
-  "max" : 1,
-  "type" : "",
-  "desc" : ""
-}, {
-  "path" : "parameter",
-  "name" : "parameter:password",
-  "lvl" : 0,
-  "min" : 0,
-  "max" : 1,
-  "type" : "",
-  "desc" : ""
-}, {
-  "path" : "parameter.name",
-  "name" : "name",
-  "lvl" : 1,
-  "min" : 0,
-  "max" : 1,
-  "type" : "",
-  "desc" : ""
-}, {
-  "path" : "parameter.value[x]",
-  "name" : "value[x]",
-  "lvl" : 1,
-  "min" : 1,
-  "max" : 1,
-  "type" : "string",
-  "desc" : ""
-}, {
-  "path" : "parameter.resource",
-  "name" : "resource",
-  "lvl" : 1,
-  "min" : 0,
-  "max" : 1,
-  "type" : "",
-  "desc" : ""
-}, {
-  "path" : "parameter.part",
-  "name" : "part",
-  "lvl" : 1,
-  "min" : 0,
-  "max" : 1,
-  "type" : "",
-  "desc" : ""
-}, {
-  "path" : "parameter",
-  "name" : "parameter:ssl",
-  "lvl" : 0,
-  "min" : 0,
-  "max" : 1,
-  "type" : "",
-  "desc" : ""
-}, {
-  "path" : "parameter.name",
-  "name" : "name",
-  "lvl" : 1,
-  "min" : 0,
-  "max" : 1,
-  "type" : "",
-  "desc" : ""
-}, {
-  "path" : "parameter.value[x]",
-  "name" : "value[x]",
-  "lvl" : 1,
-  "min" : 1,
-  "max" : 1,
-  "type" : "boolean",
   "desc" : ""
 }, {
   "path" : "parameter.resource",
@@ -8020,36 +7860,11 @@ AMQP 1.0 at-least-once delivery profile for AidboxTopicDestination.
   "max" : 1,
   "type" : "",
   "desc" : ""
-} ]
-```
-
-
-## aidboxtopicdestination-amqp-rabbitmq-0-9-1
-
-RabbitMQ AMQP 0-9-1 best-effort delivery profile for AidboxTopicDestination.
-
-```fhir-structure
-[ {
-  "path" : "kind",
-  "name" : "kind",
-  "lvl" : 0,
-  "min" : 0,
-  "max" : 1,
-  "type" : "",
-  "desc" : ""
 }, {
   "path" : "parameter",
-  "name" : "parameter",
+  "name" : "parameter:password",
   "lvl" : 0,
   "min" : 0,
-  "max" : 1,
-  "type" : "",
-  "desc" : ""
-}, {
-  "path" : "parameter",
-  "name" : "parameter:host",
-  "lvl" : 0,
-  "min" : 1,
   "max" : 1,
   "type" : "",
   "desc" : ""
@@ -8127,7 +7942,152 @@ RabbitMQ AMQP 0-9-1 best-effort delivery profile for AidboxTopicDestination.
   "desc" : ""
 }, {
   "path" : "parameter",
-  "name" : "parameter:vhost",
+  "name" : "parameter:ssl",
+  "lvl" : 0,
+  "min" : 0,
+  "max" : 1,
+  "type" : "",
+  "desc" : ""
+}, {
+  "path" : "parameter.name",
+  "name" : "name",
+  "lvl" : 1,
+  "min" : 0,
+  "max" : 1,
+  "type" : "",
+  "desc" : ""
+}, {
+  "path" : "parameter.value[x]",
+  "name" : "value[x]",
+  "lvl" : 1,
+  "min" : 1,
+  "max" : 1,
+  "type" : "boolean",
+  "desc" : ""
+}, {
+  "path" : "parameter.resource",
+  "name" : "resource",
+  "lvl" : 1,
+  "min" : 0,
+  "max" : 1,
+  "type" : "",
+  "desc" : ""
+}, {
+  "path" : "parameter.part",
+  "name" : "part",
+  "lvl" : 1,
+  "min" : 0,
+  "max" : 1,
+  "type" : "",
+  "desc" : ""
+}, {
+  "path" : "parameter",
+  "name" : "parameter:username",
+  "lvl" : 0,
+  "min" : 0,
+  "max" : 1,
+  "type" : "",
+  "desc" : ""
+}, {
+  "path" : "parameter.name",
+  "name" : "name",
+  "lvl" : 1,
+  "min" : 0,
+  "max" : 1,
+  "type" : "",
+  "desc" : ""
+}, {
+  "path" : "parameter.value[x]",
+  "name" : "value[x]",
+  "lvl" : 1,
+  "min" : 1,
+  "max" : 1,
+  "type" : "string",
+  "desc" : ""
+}, {
+  "path" : "parameter.resource",
+  "name" : "resource",
+  "lvl" : 1,
+  "min" : 0,
+  "max" : 1,
+  "type" : "",
+  "desc" : ""
+}, {
+  "path" : "parameter.part",
+  "name" : "part",
+  "lvl" : 1,
+  "min" : 0,
+  "max" : 1,
+  "type" : "",
+  "desc" : ""
+} ]
+```
+
+
+## aidboxtopicdestination-amqp-rabbitmq-0-9-1
+
+RabbitMQ AMQP 0-9-1 best-effort delivery profile for AidboxTopicDestination.
+
+```fhir-structure
+[ {
+  "path" : "kind",
+  "name" : "kind",
+  "lvl" : 0,
+  "min" : 0,
+  "max" : 1,
+  "type" : "",
+  "desc" : ""
+}, {
+  "path" : "parameter",
+  "name" : "parameter",
+  "lvl" : 0,
+  "min" : 0,
+  "max" : 1,
+  "type" : "",
+  "desc" : ""
+}, {
+  "path" : "parameter",
+  "name" : "parameter:automaticallyRecover",
+  "lvl" : 0,
+  "min" : 0,
+  "max" : 1,
+  "type" : "",
+  "desc" : ""
+}, {
+  "path" : "parameter.name",
+  "name" : "name",
+  "lvl" : 1,
+  "min" : 0,
+  "max" : 1,
+  "type" : "",
+  "desc" : ""
+}, {
+  "path" : "parameter.value[x]",
+  "name" : "value[x]",
+  "lvl" : 1,
+  "min" : 1,
+  "max" : 1,
+  "type" : "boolean",
+  "desc" : ""
+}, {
+  "path" : "parameter.resource",
+  "name" : "resource",
+  "lvl" : 1,
+  "min" : 0,
+  "max" : 1,
+  "type" : "",
+  "desc" : ""
+}, {
+  "path" : "parameter.part",
+  "name" : "part",
+  "lvl" : 1,
+  "min" : 0,
+  "max" : 1,
+  "type" : "",
+  "desc" : ""
+}, {
+  "path" : "parameter",
+  "name" : "parameter:connectionName",
   "lvl" : 0,
   "min" : 0,
   "max" : 1,
@@ -8207,6 +8167,126 @@ RabbitMQ AMQP 0-9-1 best-effort delivery profile for AidboxTopicDestination.
   "desc" : ""
 }, {
   "path" : "parameter",
+  "name" : "parameter:host",
+  "lvl" : 0,
+  "min" : 1,
+  "max" : 1,
+  "type" : "",
+  "desc" : ""
+}, {
+  "path" : "parameter.name",
+  "name" : "name",
+  "lvl" : 1,
+  "min" : 0,
+  "max" : 1,
+  "type" : "",
+  "desc" : ""
+}, {
+  "path" : "parameter.value[x]",
+  "name" : "value[x]",
+  "lvl" : 1,
+  "min" : 1,
+  "max" : 1,
+  "type" : "string",
+  "desc" : ""
+}, {
+  "path" : "parameter.resource",
+  "name" : "resource",
+  "lvl" : 1,
+  "min" : 0,
+  "max" : 1,
+  "type" : "",
+  "desc" : ""
+}, {
+  "path" : "parameter.part",
+  "name" : "part",
+  "lvl" : 1,
+  "min" : 0,
+  "max" : 1,
+  "type" : "",
+  "desc" : ""
+}, {
+  "path" : "parameter",
+  "name" : "parameter:password",
+  "lvl" : 0,
+  "min" : 0,
+  "max" : 1,
+  "type" : "",
+  "desc" : ""
+}, {
+  "path" : "parameter.name",
+  "name" : "name",
+  "lvl" : 1,
+  "min" : 0,
+  "max" : 1,
+  "type" : "",
+  "desc" : ""
+}, {
+  "path" : "parameter.value[x]",
+  "name" : "value[x]",
+  "lvl" : 1,
+  "min" : 1,
+  "max" : 1,
+  "type" : "string",
+  "desc" : ""
+}, {
+  "path" : "parameter.resource",
+  "name" : "resource",
+  "lvl" : 1,
+  "min" : 0,
+  "max" : 1,
+  "type" : "",
+  "desc" : ""
+}, {
+  "path" : "parameter.part",
+  "name" : "part",
+  "lvl" : 1,
+  "min" : 0,
+  "max" : 1,
+  "type" : "",
+  "desc" : ""
+}, {
+  "path" : "parameter",
+  "name" : "parameter:port",
+  "lvl" : 0,
+  "min" : 0,
+  "max" : 1,
+  "type" : "",
+  "desc" : ""
+}, {
+  "path" : "parameter.name",
+  "name" : "name",
+  "lvl" : 1,
+  "min" : 0,
+  "max" : 1,
+  "type" : "",
+  "desc" : ""
+}, {
+  "path" : "parameter.value[x]",
+  "name" : "value[x]",
+  "lvl" : 1,
+  "min" : 1,
+  "max" : 1,
+  "type" : "integer",
+  "desc" : ""
+}, {
+  "path" : "parameter.resource",
+  "name" : "resource",
+  "lvl" : 1,
+  "min" : 0,
+  "max" : 1,
+  "type" : "",
+  "desc" : ""
+}, {
+  "path" : "parameter.part",
+  "name" : "part",
+  "lvl" : 1,
+  "min" : 0,
+  "max" : 1,
+  "type" : "",
+  "desc" : ""
+}, {
+  "path" : "parameter",
   "name" : "parameter:routingKey",
   "lvl" : 0,
   "min" : 1,
@@ -8228,86 +8308,6 @@ RabbitMQ AMQP 0-9-1 best-effort delivery profile for AidboxTopicDestination.
   "min" : 1,
   "max" : 1,
   "type" : "string",
-  "desc" : ""
-}, {
-  "path" : "parameter.resource",
-  "name" : "resource",
-  "lvl" : 1,
-  "min" : 0,
-  "max" : 1,
-  "type" : "",
-  "desc" : ""
-}, {
-  "path" : "parameter.part",
-  "name" : "part",
-  "lvl" : 1,
-  "min" : 0,
-  "max" : 1,
-  "type" : "",
-  "desc" : ""
-}, {
-  "path" : "parameter",
-  "name" : "parameter:connectionName",
-  "lvl" : 0,
-  "min" : 0,
-  "max" : 1,
-  "type" : "",
-  "desc" : ""
-}, {
-  "path" : "parameter.name",
-  "name" : "name",
-  "lvl" : 1,
-  "min" : 0,
-  "max" : 1,
-  "type" : "",
-  "desc" : ""
-}, {
-  "path" : "parameter.value[x]",
-  "name" : "value[x]",
-  "lvl" : 1,
-  "min" : 1,
-  "max" : 1,
-  "type" : "string",
-  "desc" : ""
-}, {
-  "path" : "parameter.resource",
-  "name" : "resource",
-  "lvl" : 1,
-  "min" : 0,
-  "max" : 1,
-  "type" : "",
-  "desc" : ""
-}, {
-  "path" : "parameter.part",
-  "name" : "part",
-  "lvl" : 1,
-  "min" : 0,
-  "max" : 1,
-  "type" : "",
-  "desc" : ""
-}, {
-  "path" : "parameter",
-  "name" : "parameter:automaticallyRecover",
-  "lvl" : 0,
-  "min" : 0,
-  "max" : 1,
-  "type" : "",
-  "desc" : ""
-}, {
-  "path" : "parameter.name",
-  "name" : "name",
-  "lvl" : 1,
-  "min" : 0,
-  "max" : 1,
-  "type" : "",
-  "desc" : ""
-}, {
-  "path" : "parameter.value[x]",
-  "name" : "value[x]",
-  "lvl" : 1,
-  "min" : 1,
-  "max" : 1,
-  "type" : "boolean",
   "desc" : ""
 }, {
   "path" : "parameter.resource",
@@ -8407,7 +8407,7 @@ RabbitMQ AMQP 0-9-1 best-effort delivery profile for AidboxTopicDestination.
   "desc" : ""
 }, {
   "path" : "parameter",
-  "name" : "parameter:password",
+  "name" : "parameter:vhost",
   "lvl" : 0,
   "min" : 0,
   "max" : 1,
@@ -8472,47 +8472,7 @@ RabbitMQ AMQP 0-9-1 at-least-once delivery profile for AidboxTopicDestination.
   "desc" : ""
 }, {
   "path" : "parameter",
-  "name" : "parameter:host",
-  "lvl" : 0,
-  "min" : 1,
-  "max" : 1,
-  "type" : "",
-  "desc" : ""
-}, {
-  "path" : "parameter.name",
-  "name" : "name",
-  "lvl" : 1,
-  "min" : 0,
-  "max" : 1,
-  "type" : "",
-  "desc" : ""
-}, {
-  "path" : "parameter.value[x]",
-  "name" : "value[x]",
-  "lvl" : 1,
-  "min" : 1,
-  "max" : 1,
-  "type" : "string",
-  "desc" : ""
-}, {
-  "path" : "parameter.resource",
-  "name" : "resource",
-  "lvl" : 1,
-  "min" : 0,
-  "max" : 1,
-  "type" : "",
-  "desc" : ""
-}, {
-  "path" : "parameter.part",
-  "name" : "part",
-  "lvl" : 1,
-  "min" : 0,
-  "max" : 1,
-  "type" : "",
-  "desc" : ""
-}, {
-  "path" : "parameter",
-  "name" : "parameter:port",
+  "name" : "parameter:connectionTimeout",
   "lvl" : 0,
   "min" : 0,
   "max" : 1,
@@ -8632,89 +8592,9 @@ RabbitMQ AMQP 0-9-1 at-least-once delivery profile for AidboxTopicDestination.
   "desc" : ""
 }, {
   "path" : "parameter",
-  "name" : "parameter:routingKey",
+  "name" : "parameter:host",
   "lvl" : 0,
-  "min" : 0,
-  "max" : 1,
-  "type" : "",
-  "desc" : ""
-}, {
-  "path" : "parameter.name",
-  "name" : "name",
-  "lvl" : 1,
-  "min" : 0,
-  "max" : 1,
-  "type" : "",
-  "desc" : ""
-}, {
-  "path" : "parameter.value[x]",
-  "name" : "value[x]",
-  "lvl" : 1,
   "min" : 1,
-  "max" : 1,
-  "type" : "string",
-  "desc" : ""
-}, {
-  "path" : "parameter.resource",
-  "name" : "resource",
-  "lvl" : 1,
-  "min" : 0,
-  "max" : 1,
-  "type" : "",
-  "desc" : ""
-}, {
-  "path" : "parameter.part",
-  "name" : "part",
-  "lvl" : 1,
-  "min" : 0,
-  "max" : 1,
-  "type" : "",
-  "desc" : ""
-}, {
-  "path" : "parameter",
-  "name" : "parameter:vhost",
-  "lvl" : 0,
-  "min" : 0,
-  "max" : 1,
-  "type" : "",
-  "desc" : ""
-}, {
-  "path" : "parameter.name",
-  "name" : "name",
-  "lvl" : 1,
-  "min" : 0,
-  "max" : 1,
-  "type" : "",
-  "desc" : ""
-}, {
-  "path" : "parameter.value[x]",
-  "name" : "value[x]",
-  "lvl" : 1,
-  "min" : 1,
-  "max" : 1,
-  "type" : "string",
-  "desc" : ""
-}, {
-  "path" : "parameter.resource",
-  "name" : "resource",
-  "lvl" : 1,
-  "min" : 0,
-  "max" : 1,
-  "type" : "",
-  "desc" : ""
-}, {
-  "path" : "parameter.part",
-  "name" : "part",
-  "lvl" : 1,
-  "min" : 0,
-  "max" : 1,
-  "type" : "",
-  "desc" : ""
-}, {
-  "path" : "parameter",
-  "name" : "parameter:username",
-  "lvl" : 0,
-  "min" : 0,
   "max" : 1,
   "type" : "",
   "desc" : ""
@@ -8753,6 +8633,86 @@ RabbitMQ AMQP 0-9-1 at-least-once delivery profile for AidboxTopicDestination.
 }, {
   "path" : "parameter",
   "name" : "parameter:password",
+  "lvl" : 0,
+  "min" : 0,
+  "max" : 1,
+  "type" : "",
+  "desc" : ""
+}, {
+  "path" : "parameter.name",
+  "name" : "name",
+  "lvl" : 1,
+  "min" : 0,
+  "max" : 1,
+  "type" : "",
+  "desc" : ""
+}, {
+  "path" : "parameter.value[x]",
+  "name" : "value[x]",
+  "lvl" : 1,
+  "min" : 1,
+  "max" : 1,
+  "type" : "string",
+  "desc" : ""
+}, {
+  "path" : "parameter.resource",
+  "name" : "resource",
+  "lvl" : 1,
+  "min" : 0,
+  "max" : 1,
+  "type" : "",
+  "desc" : ""
+}, {
+  "path" : "parameter.part",
+  "name" : "part",
+  "lvl" : 1,
+  "min" : 0,
+  "max" : 1,
+  "type" : "",
+  "desc" : ""
+}, {
+  "path" : "parameter",
+  "name" : "parameter:port",
+  "lvl" : 0,
+  "min" : 0,
+  "max" : 1,
+  "type" : "",
+  "desc" : ""
+}, {
+  "path" : "parameter.name",
+  "name" : "name",
+  "lvl" : 1,
+  "min" : 0,
+  "max" : 1,
+  "type" : "",
+  "desc" : ""
+}, {
+  "path" : "parameter.value[x]",
+  "name" : "value[x]",
+  "lvl" : 1,
+  "min" : 1,
+  "max" : 1,
+  "type" : "integer",
+  "desc" : ""
+}, {
+  "path" : "parameter.resource",
+  "name" : "resource",
+  "lvl" : 1,
+  "min" : 0,
+  "max" : 1,
+  "type" : "",
+  "desc" : ""
+}, {
+  "path" : "parameter.part",
+  "name" : "part",
+  "lvl" : 1,
+  "min" : 0,
+  "max" : 1,
+  "type" : "",
+  "desc" : ""
+}, {
+  "path" : "parameter",
+  "name" : "parameter:routingKey",
   "lvl" : 0,
   "min" : 0,
   "max" : 1,
@@ -8832,7 +8792,7 @@ RabbitMQ AMQP 0-9-1 at-least-once delivery profile for AidboxTopicDestination.
   "desc" : ""
 }, {
   "path" : "parameter",
-  "name" : "parameter:connectionTimeout",
+  "name" : "parameter:username",
   "lvl" : 0,
   "min" : 0,
   "max" : 1,
@@ -8852,7 +8812,47 @@ RabbitMQ AMQP 0-9-1 at-least-once delivery profile for AidboxTopicDestination.
   "lvl" : 1,
   "min" : 1,
   "max" : 1,
-  "type" : "integer",
+  "type" : "string",
+  "desc" : ""
+}, {
+  "path" : "parameter.resource",
+  "name" : "resource",
+  "lvl" : 1,
+  "min" : 0,
+  "max" : 1,
+  "type" : "",
+  "desc" : ""
+}, {
+  "path" : "parameter.part",
+  "name" : "part",
+  "lvl" : 1,
+  "min" : 0,
+  "max" : 1,
+  "type" : "",
+  "desc" : ""
+}, {
+  "path" : "parameter",
+  "name" : "parameter:vhost",
+  "lvl" : 0,
+  "min" : 0,
+  "max" : 1,
+  "type" : "",
+  "desc" : ""
+}, {
+  "path" : "parameter.name",
+  "name" : "name",
+  "lvl" : 1,
+  "min" : 0,
+  "max" : 1,
+  "type" : "",
+  "desc" : ""
+}, {
+  "path" : "parameter.value[x]",
+  "name" : "value[x]",
+  "lvl" : 1,
+  "min" : 1,
+  "max" : 1,
+  "type" : "string",
   "desc" : ""
 }, {
   "path" : "parameter.resource",
@@ -8897,247 +8897,7 @@ AWS EventBridge at-least-once delivery profile for AidboxTopicDestination.
   "desc" : ""
 }, {
   "path" : "parameter",
-  "name" : "parameter:eventBusName",
-  "lvl" : 0,
-  "min" : 1,
-  "max" : 1,
-  "type" : "",
-  "desc" : ""
-}, {
-  "path" : "parameter.name",
-  "name" : "name",
-  "lvl" : 1,
-  "min" : 0,
-  "max" : 1,
-  "type" : "",
-  "desc" : ""
-}, {
-  "path" : "parameter.value[x]",
-  "name" : "value[x]",
-  "lvl" : 1,
-  "min" : 1,
-  "max" : 1,
-  "type" : "string",
-  "desc" : ""
-}, {
-  "path" : "parameter.resource",
-  "name" : "resource",
-  "lvl" : 1,
-  "min" : 0,
-  "max" : 1,
-  "type" : "",
-  "desc" : ""
-}, {
-  "path" : "parameter.part",
-  "name" : "part",
-  "lvl" : 1,
-  "min" : 0,
-  "max" : 1,
-  "type" : "",
-  "desc" : ""
-}, {
-  "path" : "parameter",
-  "name" : "parameter:region",
-  "lvl" : 0,
-  "min" : 1,
-  "max" : 1,
-  "type" : "",
-  "desc" : ""
-}, {
-  "path" : "parameter.name",
-  "name" : "name",
-  "lvl" : 1,
-  "min" : 0,
-  "max" : 1,
-  "type" : "",
-  "desc" : ""
-}, {
-  "path" : "parameter.value[x]",
-  "name" : "value[x]",
-  "lvl" : 1,
-  "min" : 1,
-  "max" : 1,
-  "type" : "string",
-  "desc" : ""
-}, {
-  "path" : "parameter.resource",
-  "name" : "resource",
-  "lvl" : 1,
-  "min" : 0,
-  "max" : 1,
-  "type" : "",
-  "desc" : ""
-}, {
-  "path" : "parameter.part",
-  "name" : "part",
-  "lvl" : 1,
-  "min" : 0,
-  "max" : 1,
-  "type" : "",
-  "desc" : ""
-}, {
-  "path" : "parameter",
-  "name" : "parameter:source",
-  "lvl" : 0,
-  "min" : 1,
-  "max" : 1,
-  "type" : "",
-  "desc" : ""
-}, {
-  "path" : "parameter.name",
-  "name" : "name",
-  "lvl" : 1,
-  "min" : 0,
-  "max" : 1,
-  "type" : "",
-  "desc" : ""
-}, {
-  "path" : "parameter.value[x]",
-  "name" : "value[x]",
-  "lvl" : 1,
-  "min" : 1,
-  "max" : 1,
-  "type" : "string",
-  "desc" : ""
-}, {
-  "path" : "parameter.resource",
-  "name" : "resource",
-  "lvl" : 1,
-  "min" : 0,
-  "max" : 1,
-  "type" : "",
-  "desc" : ""
-}, {
-  "path" : "parameter.part",
-  "name" : "part",
-  "lvl" : 1,
-  "min" : 0,
-  "max" : 1,
-  "type" : "",
-  "desc" : ""
-}, {
-  "path" : "parameter",
-  "name" : "parameter:detailType",
-  "lvl" : 0,
-  "min" : 1,
-  "max" : 1,
-  "type" : "",
-  "desc" : ""
-}, {
-  "path" : "parameter.name",
-  "name" : "name",
-  "lvl" : 1,
-  "min" : 0,
-  "max" : 1,
-  "type" : "",
-  "desc" : ""
-}, {
-  "path" : "parameter.value[x]",
-  "name" : "value[x]",
-  "lvl" : 1,
-  "min" : 1,
-  "max" : 1,
-  "type" : "string",
-  "desc" : ""
-}, {
-  "path" : "parameter.resource",
-  "name" : "resource",
-  "lvl" : 1,
-  "min" : 0,
-  "max" : 1,
-  "type" : "",
-  "desc" : ""
-}, {
-  "path" : "parameter.part",
-  "name" : "part",
-  "lvl" : 1,
-  "min" : 0,
-  "max" : 1,
-  "type" : "",
-  "desc" : ""
-}, {
-  "path" : "parameter",
   "name" : "parameter:accessKeyId",
-  "lvl" : 0,
-  "min" : 0,
-  "max" : 1,
-  "type" : "",
-  "desc" : ""
-}, {
-  "path" : "parameter.name",
-  "name" : "name",
-  "lvl" : 1,
-  "min" : 0,
-  "max" : 1,
-  "type" : "",
-  "desc" : ""
-}, {
-  "path" : "parameter.value[x]",
-  "name" : "value[x]",
-  "lvl" : 1,
-  "min" : 1,
-  "max" : 1,
-  "type" : "string",
-  "desc" : ""
-}, {
-  "path" : "parameter.resource",
-  "name" : "resource",
-  "lvl" : 1,
-  "min" : 0,
-  "max" : 1,
-  "type" : "",
-  "desc" : ""
-}, {
-  "path" : "parameter.part",
-  "name" : "part",
-  "lvl" : 1,
-  "min" : 0,
-  "max" : 1,
-  "type" : "",
-  "desc" : ""
-}, {
-  "path" : "parameter",
-  "name" : "parameter:secretAccessKey",
-  "lvl" : 0,
-  "min" : 0,
-  "max" : 1,
-  "type" : "",
-  "desc" : ""
-}, {
-  "path" : "parameter.name",
-  "name" : "name",
-  "lvl" : 1,
-  "min" : 0,
-  "max" : 1,
-  "type" : "",
-  "desc" : ""
-}, {
-  "path" : "parameter.value[x]",
-  "name" : "value[x]",
-  "lvl" : 1,
-  "min" : 1,
-  "max" : 1,
-  "type" : "string",
-  "desc" : ""
-}, {
-  "path" : "parameter.resource",
-  "name" : "resource",
-  "lvl" : 1,
-  "min" : 0,
-  "max" : 1,
-  "type" : "",
-  "desc" : ""
-}, {
-  "path" : "parameter.part",
-  "name" : "part",
-  "lvl" : 1,
-  "min" : 0,
-  "max" : 1,
-  "type" : "",
-  "desc" : ""
-}, {
-  "path" : "parameter",
-  "name" : "parameter:endpointOverride",
   "lvl" : 0,
   "min" : 0,
   "max" : 1,
@@ -9215,27 +8975,82 @@ AWS EventBridge at-least-once delivery profile for AidboxTopicDestination.
   "max" : 1,
   "type" : "",
   "desc" : ""
-} ]
-```
-
-
-## aidboxtopicdestination-aws-eventbridge-best-effort
-
-AWS EventBridge best-effort delivery profile for AidboxTopicDestination.
-
-```fhir-structure
-[ {
-  "path" : "kind",
-  "name" : "kind",
+}, {
+  "path" : "parameter",
+  "name" : "parameter:detailType",
   "lvl" : 0,
+  "min" : 1,
+  "max" : 1,
+  "type" : "",
+  "desc" : ""
+}, {
+  "path" : "parameter.name",
+  "name" : "name",
+  "lvl" : 1,
+  "min" : 0,
+  "max" : 1,
+  "type" : "",
+  "desc" : ""
+}, {
+  "path" : "parameter.value[x]",
+  "name" : "value[x]",
+  "lvl" : 1,
+  "min" : 1,
+  "max" : 1,
+  "type" : "string",
+  "desc" : ""
+}, {
+  "path" : "parameter.resource",
+  "name" : "resource",
+  "lvl" : 1,
+  "min" : 0,
+  "max" : 1,
+  "type" : "",
+  "desc" : ""
+}, {
+  "path" : "parameter.part",
+  "name" : "part",
+  "lvl" : 1,
   "min" : 0,
   "max" : 1,
   "type" : "",
   "desc" : ""
 }, {
   "path" : "parameter",
-  "name" : "parameter",
+  "name" : "parameter:endpointOverride",
   "lvl" : 0,
+  "min" : 0,
+  "max" : 1,
+  "type" : "",
+  "desc" : ""
+}, {
+  "path" : "parameter.name",
+  "name" : "name",
+  "lvl" : 1,
+  "min" : 0,
+  "max" : 1,
+  "type" : "",
+  "desc" : ""
+}, {
+  "path" : "parameter.value[x]",
+  "name" : "value[x]",
+  "lvl" : 1,
+  "min" : 1,
+  "max" : 1,
+  "type" : "string",
+  "desc" : ""
+}, {
+  "path" : "parameter.resource",
+  "name" : "resource",
+  "lvl" : 1,
+  "min" : 0,
+  "max" : 1,
+  "type" : "",
+  "desc" : ""
+}, {
+  "path" : "parameter.part",
+  "name" : "part",
+  "lvl" : 1,
   "min" : 0,
   "max" : 1,
   "type" : "",
@@ -9322,9 +9137,114 @@ AWS EventBridge best-effort delivery profile for AidboxTopicDestination.
   "desc" : ""
 }, {
   "path" : "parameter",
+  "name" : "parameter:secretAccessKey",
+  "lvl" : 0,
+  "min" : 0,
+  "max" : 1,
+  "type" : "",
+  "desc" : ""
+}, {
+  "path" : "parameter.name",
+  "name" : "name",
+  "lvl" : 1,
+  "min" : 0,
+  "max" : 1,
+  "type" : "",
+  "desc" : ""
+}, {
+  "path" : "parameter.value[x]",
+  "name" : "value[x]",
+  "lvl" : 1,
+  "min" : 1,
+  "max" : 1,
+  "type" : "string",
+  "desc" : ""
+}, {
+  "path" : "parameter.resource",
+  "name" : "resource",
+  "lvl" : 1,
+  "min" : 0,
+  "max" : 1,
+  "type" : "",
+  "desc" : ""
+}, {
+  "path" : "parameter.part",
+  "name" : "part",
+  "lvl" : 1,
+  "min" : 0,
+  "max" : 1,
+  "type" : "",
+  "desc" : ""
+}, {
+  "path" : "parameter",
   "name" : "parameter:source",
   "lvl" : 0,
   "min" : 1,
+  "max" : 1,
+  "type" : "",
+  "desc" : ""
+}, {
+  "path" : "parameter.name",
+  "name" : "name",
+  "lvl" : 1,
+  "min" : 0,
+  "max" : 1,
+  "type" : "",
+  "desc" : ""
+}, {
+  "path" : "parameter.value[x]",
+  "name" : "value[x]",
+  "lvl" : 1,
+  "min" : 1,
+  "max" : 1,
+  "type" : "string",
+  "desc" : ""
+}, {
+  "path" : "parameter.resource",
+  "name" : "resource",
+  "lvl" : 1,
+  "min" : 0,
+  "max" : 1,
+  "type" : "",
+  "desc" : ""
+}, {
+  "path" : "parameter.part",
+  "name" : "part",
+  "lvl" : 1,
+  "min" : 0,
+  "max" : 1,
+  "type" : "",
+  "desc" : ""
+} ]
+```
+
+
+## aidboxtopicdestination-aws-eventbridge-best-effort
+
+AWS EventBridge best-effort delivery profile for AidboxTopicDestination.
+
+```fhir-structure
+[ {
+  "path" : "kind",
+  "name" : "kind",
+  "lvl" : 0,
+  "min" : 0,
+  "max" : 1,
+  "type" : "",
+  "desc" : ""
+}, {
+  "path" : "parameter",
+  "name" : "parameter",
+  "lvl" : 0,
+  "min" : 0,
+  "max" : 1,
+  "type" : "",
+  "desc" : ""
+}, {
+  "path" : "parameter",
+  "name" : "parameter:accessKeyId",
+  "lvl" : 0,
+  "min" : 0,
   "max" : 1,
   "type" : "",
   "desc" : ""
@@ -9402,9 +9322,89 @@ AWS EventBridge best-effort delivery profile for AidboxTopicDestination.
   "desc" : ""
 }, {
   "path" : "parameter",
-  "name" : "parameter:accessKeyId",
+  "name" : "parameter:endpointOverride",
   "lvl" : 0,
   "min" : 0,
+  "max" : 1,
+  "type" : "",
+  "desc" : ""
+}, {
+  "path" : "parameter.name",
+  "name" : "name",
+  "lvl" : 1,
+  "min" : 0,
+  "max" : 1,
+  "type" : "",
+  "desc" : ""
+}, {
+  "path" : "parameter.value[x]",
+  "name" : "value[x]",
+  "lvl" : 1,
+  "min" : 1,
+  "max" : 1,
+  "type" : "string",
+  "desc" : ""
+}, {
+  "path" : "parameter.resource",
+  "name" : "resource",
+  "lvl" : 1,
+  "min" : 0,
+  "max" : 1,
+  "type" : "",
+  "desc" : ""
+}, {
+  "path" : "parameter.part",
+  "name" : "part",
+  "lvl" : 1,
+  "min" : 0,
+  "max" : 1,
+  "type" : "",
+  "desc" : ""
+}, {
+  "path" : "parameter",
+  "name" : "parameter:eventBusName",
+  "lvl" : 0,
+  "min" : 1,
+  "max" : 1,
+  "type" : "",
+  "desc" : ""
+}, {
+  "path" : "parameter.name",
+  "name" : "name",
+  "lvl" : 1,
+  "min" : 0,
+  "max" : 1,
+  "type" : "",
+  "desc" : ""
+}, {
+  "path" : "parameter.value[x]",
+  "name" : "value[x]",
+  "lvl" : 1,
+  "min" : 1,
+  "max" : 1,
+  "type" : "string",
+  "desc" : ""
+}, {
+  "path" : "parameter.resource",
+  "name" : "resource",
+  "lvl" : 1,
+  "min" : 0,
+  "max" : 1,
+  "type" : "",
+  "desc" : ""
+}, {
+  "path" : "parameter.part",
+  "name" : "part",
+  "lvl" : 1,
+  "min" : 0,
+  "max" : 1,
+  "type" : "",
+  "desc" : ""
+}, {
+  "path" : "parameter",
+  "name" : "parameter:region",
+  "lvl" : 0,
+  "min" : 1,
   "max" : 1,
   "type" : "",
   "desc" : ""
@@ -9482,9 +9482,9 @@ AWS EventBridge best-effort delivery profile for AidboxTopicDestination.
   "desc" : ""
 }, {
   "path" : "parameter",
-  "name" : "parameter:endpointOverride",
+  "name" : "parameter:source",
   "lvl" : 0,
-  "min" : 0,
+  "min" : 1,
   "max" : 1,
   "type" : "",
   "desc" : ""
@@ -9547,207 +9547,7 @@ AWS SNS at-least-once delivery profile for AidboxTopicDestination.
   "desc" : ""
 }, {
   "path" : "parameter",
-  "name" : "parameter:topicArn",
-  "lvl" : 0,
-  "min" : 1,
-  "max" : 1,
-  "type" : "",
-  "desc" : ""
-}, {
-  "path" : "parameter.name",
-  "name" : "name",
-  "lvl" : 1,
-  "min" : 0,
-  "max" : 1,
-  "type" : "",
-  "desc" : ""
-}, {
-  "path" : "parameter.value[x]",
-  "name" : "value[x]",
-  "lvl" : 1,
-  "min" : 1,
-  "max" : 1,
-  "type" : "string",
-  "desc" : ""
-}, {
-  "path" : "parameter.resource",
-  "name" : "resource",
-  "lvl" : 1,
-  "min" : 0,
-  "max" : 1,
-  "type" : "",
-  "desc" : ""
-}, {
-  "path" : "parameter.part",
-  "name" : "part",
-  "lvl" : 1,
-  "min" : 0,
-  "max" : 1,
-  "type" : "",
-  "desc" : ""
-}, {
-  "path" : "parameter",
-  "name" : "parameter:region",
-  "lvl" : 0,
-  "min" : 1,
-  "max" : 1,
-  "type" : "",
-  "desc" : ""
-}, {
-  "path" : "parameter.name",
-  "name" : "name",
-  "lvl" : 1,
-  "min" : 0,
-  "max" : 1,
-  "type" : "",
-  "desc" : ""
-}, {
-  "path" : "parameter.value[x]",
-  "name" : "value[x]",
-  "lvl" : 1,
-  "min" : 1,
-  "max" : 1,
-  "type" : "string",
-  "desc" : ""
-}, {
-  "path" : "parameter.resource",
-  "name" : "resource",
-  "lvl" : 1,
-  "min" : 0,
-  "max" : 1,
-  "type" : "",
-  "desc" : ""
-}, {
-  "path" : "parameter.part",
-  "name" : "part",
-  "lvl" : 1,
-  "min" : 0,
-  "max" : 1,
-  "type" : "",
-  "desc" : ""
-}, {
-  "path" : "parameter",
   "name" : "parameter:accessKeyId",
-  "lvl" : 0,
-  "min" : 0,
-  "max" : 1,
-  "type" : "",
-  "desc" : ""
-}, {
-  "path" : "parameter.name",
-  "name" : "name",
-  "lvl" : 1,
-  "min" : 0,
-  "max" : 1,
-  "type" : "",
-  "desc" : ""
-}, {
-  "path" : "parameter.value[x]",
-  "name" : "value[x]",
-  "lvl" : 1,
-  "min" : 1,
-  "max" : 1,
-  "type" : "string",
-  "desc" : ""
-}, {
-  "path" : "parameter.resource",
-  "name" : "resource",
-  "lvl" : 1,
-  "min" : 0,
-  "max" : 1,
-  "type" : "",
-  "desc" : ""
-}, {
-  "path" : "parameter.part",
-  "name" : "part",
-  "lvl" : 1,
-  "min" : 0,
-  "max" : 1,
-  "type" : "",
-  "desc" : ""
-}, {
-  "path" : "parameter",
-  "name" : "parameter:secretAccessKey",
-  "lvl" : 0,
-  "min" : 0,
-  "max" : 1,
-  "type" : "",
-  "desc" : ""
-}, {
-  "path" : "parameter.name",
-  "name" : "name",
-  "lvl" : 1,
-  "min" : 0,
-  "max" : 1,
-  "type" : "",
-  "desc" : ""
-}, {
-  "path" : "parameter.value[x]",
-  "name" : "value[x]",
-  "lvl" : 1,
-  "min" : 1,
-  "max" : 1,
-  "type" : "string",
-  "desc" : ""
-}, {
-  "path" : "parameter.resource",
-  "name" : "resource",
-  "lvl" : 1,
-  "min" : 0,
-  "max" : 1,
-  "type" : "",
-  "desc" : ""
-}, {
-  "path" : "parameter.part",
-  "name" : "part",
-  "lvl" : 1,
-  "min" : 0,
-  "max" : 1,
-  "type" : "",
-  "desc" : ""
-}, {
-  "path" : "parameter",
-  "name" : "parameter:endpointOverride",
-  "lvl" : 0,
-  "min" : 0,
-  "max" : 1,
-  "type" : "",
-  "desc" : ""
-}, {
-  "path" : "parameter.name",
-  "name" : "name",
-  "lvl" : 1,
-  "min" : 0,
-  "max" : 1,
-  "type" : "",
-  "desc" : ""
-}, {
-  "path" : "parameter.value[x]",
-  "name" : "value[x]",
-  "lvl" : 1,
-  "min" : 1,
-  "max" : 1,
-  "type" : "string",
-  "desc" : ""
-}, {
-  "path" : "parameter.resource",
-  "name" : "resource",
-  "lvl" : 1,
-  "min" : 0,
-  "max" : 1,
-  "type" : "",
-  "desc" : ""
-}, {
-  "path" : "parameter.part",
-  "name" : "part",
-  "lvl" : 1,
-  "min" : 0,
-  "max" : 1,
-  "type" : "",
-  "desc" : ""
-}, {
-  "path" : "parameter",
-  "name" : "parameter:messageGroupId",
   "lvl" : 0,
   "min" : 0,
   "max" : 1,
@@ -9825,36 +9625,51 @@ AWS SNS at-least-once delivery profile for AidboxTopicDestination.
   "max" : 1,
   "type" : "",
   "desc" : ""
-} ]
-```
-
-
-## aidboxtopicdestination-aws-sns-best-effort
-
-AWS SNS best-effort delivery profile for AidboxTopicDestination.
-
-```fhir-structure
-[ {
-  "path" : "kind",
-  "name" : "kind",
+}, {
+  "path" : "parameter",
+  "name" : "parameter:endpointOverride",
   "lvl" : 0,
   "min" : 0,
   "max" : 1,
   "type" : "",
   "desc" : ""
 }, {
-  "path" : "parameter",
-  "name" : "parameter",
-  "lvl" : 0,
+  "path" : "parameter.name",
+  "name" : "name",
+  "lvl" : 1,
   "min" : 0,
   "max" : 1,
   "type" : "",
   "desc" : ""
 }, {
-  "path" : "parameter",
-  "name" : "parameter:topicArn",
-  "lvl" : 0,
+  "path" : "parameter.value[x]",
+  "name" : "value[x]",
+  "lvl" : 1,
   "min" : 1,
+  "max" : 1,
+  "type" : "string",
+  "desc" : ""
+}, {
+  "path" : "parameter.resource",
+  "name" : "resource",
+  "lvl" : 1,
+  "min" : 0,
+  "max" : 1,
+  "type" : "",
+  "desc" : ""
+}, {
+  "path" : "parameter.part",
+  "name" : "part",
+  "lvl" : 1,
+  "min" : 0,
+  "max" : 1,
+  "type" : "",
+  "desc" : ""
+}, {
+  "path" : "parameter",
+  "name" : "parameter:messageGroupId",
+  "lvl" : 0,
+  "min" : 0,
   "max" : 1,
   "type" : "",
   "desc" : ""
@@ -9932,7 +9747,7 @@ AWS SNS best-effort delivery profile for AidboxTopicDestination.
   "desc" : ""
 }, {
   "path" : "parameter",
-  "name" : "parameter:accessKeyId",
+  "name" : "parameter:secretAccessKey",
   "lvl" : 0,
   "min" : 0,
   "max" : 1,
@@ -9972,7 +9787,72 @@ AWS SNS best-effort delivery profile for AidboxTopicDestination.
   "desc" : ""
 }, {
   "path" : "parameter",
-  "name" : "parameter:secretAccessKey",
+  "name" : "parameter:topicArn",
+  "lvl" : 0,
+  "min" : 1,
+  "max" : 1,
+  "type" : "",
+  "desc" : ""
+}, {
+  "path" : "parameter.name",
+  "name" : "name",
+  "lvl" : 1,
+  "min" : 0,
+  "max" : 1,
+  "type" : "",
+  "desc" : ""
+}, {
+  "path" : "parameter.value[x]",
+  "name" : "value[x]",
+  "lvl" : 1,
+  "min" : 1,
+  "max" : 1,
+  "type" : "string",
+  "desc" : ""
+}, {
+  "path" : "parameter.resource",
+  "name" : "resource",
+  "lvl" : 1,
+  "min" : 0,
+  "max" : 1,
+  "type" : "",
+  "desc" : ""
+}, {
+  "path" : "parameter.part",
+  "name" : "part",
+  "lvl" : 1,
+  "min" : 0,
+  "max" : 1,
+  "type" : "",
+  "desc" : ""
+} ]
+```
+
+
+## aidboxtopicdestination-aws-sns-best-effort
+
+AWS SNS best-effort delivery profile for AidboxTopicDestination.
+
+```fhir-structure
+[ {
+  "path" : "kind",
+  "name" : "kind",
+  "lvl" : 0,
+  "min" : 0,
+  "max" : 1,
+  "type" : "",
+  "desc" : ""
+}, {
+  "path" : "parameter",
+  "name" : "parameter",
+  "lvl" : 0,
+  "min" : 0,
+  "max" : 1,
+  "type" : "",
+  "desc" : ""
+}, {
+  "path" : "parameter",
+  "name" : "parameter:accessKeyId",
   "lvl" : 0,
   "min" : 0,
   "max" : 1,
@@ -10090,34 +9970,9 @@ AWS SNS best-effort delivery profile for AidboxTopicDestination.
   "max" : 1,
   "type" : "",
   "desc" : ""
-} ]
-```
-
-
-## aidboxtopicdestination-clickhouse
-
-ClickHouse best-effort delivery profile for AidboxTopicDestination.
-
-```fhir-structure
-[ {
-  "path" : "kind",
-  "name" : "kind",
-  "lvl" : 0,
-  "min" : 0,
-  "max" : 1,
-  "type" : "",
-  "desc" : ""
 }, {
   "path" : "parameter",
-  "name" : "parameter",
-  "lvl" : 0,
-  "min" : 0,
-  "max" : 1,
-  "type" : "",
-  "desc" : ""
-}, {
-  "path" : "parameter",
-  "name" : "parameter:url",
+  "name" : "parameter:region",
   "lvl" : 0,
   "min" : 1,
   "max" : 1,
@@ -10157,7 +10012,112 @@ ClickHouse best-effort delivery profile for AidboxTopicDestination.
   "desc" : ""
 }, {
   "path" : "parameter",
-  "name" : "parameter:viewDefinition",
+  "name" : "parameter:secretAccessKey",
+  "lvl" : 0,
+  "min" : 0,
+  "max" : 1,
+  "type" : "",
+  "desc" : ""
+}, {
+  "path" : "parameter.name",
+  "name" : "name",
+  "lvl" : 1,
+  "min" : 0,
+  "max" : 1,
+  "type" : "",
+  "desc" : ""
+}, {
+  "path" : "parameter.value[x]",
+  "name" : "value[x]",
+  "lvl" : 1,
+  "min" : 1,
+  "max" : 1,
+  "type" : "string",
+  "desc" : ""
+}, {
+  "path" : "parameter.resource",
+  "name" : "resource",
+  "lvl" : 1,
+  "min" : 0,
+  "max" : 1,
+  "type" : "",
+  "desc" : ""
+}, {
+  "path" : "parameter.part",
+  "name" : "part",
+  "lvl" : 1,
+  "min" : 0,
+  "max" : 1,
+  "type" : "",
+  "desc" : ""
+}, {
+  "path" : "parameter",
+  "name" : "parameter:topicArn",
+  "lvl" : 0,
+  "min" : 1,
+  "max" : 1,
+  "type" : "",
+  "desc" : ""
+}, {
+  "path" : "parameter.name",
+  "name" : "name",
+  "lvl" : 1,
+  "min" : 0,
+  "max" : 1,
+  "type" : "",
+  "desc" : ""
+}, {
+  "path" : "parameter.value[x]",
+  "name" : "value[x]",
+  "lvl" : 1,
+  "min" : 1,
+  "max" : 1,
+  "type" : "string",
+  "desc" : ""
+}, {
+  "path" : "parameter.resource",
+  "name" : "resource",
+  "lvl" : 1,
+  "min" : 0,
+  "max" : 1,
+  "type" : "",
+  "desc" : ""
+}, {
+  "path" : "parameter.part",
+  "name" : "part",
+  "lvl" : 1,
+  "min" : 0,
+  "max" : 1,
+  "type" : "",
+  "desc" : ""
+} ]
+```
+
+
+## aidboxtopicdestination-clickhouse
+
+ClickHouse best-effort delivery profile for AidboxTopicDestination.
+
+```fhir-structure
+[ {
+  "path" : "kind",
+  "name" : "kind",
+  "lvl" : 0,
+  "min" : 0,
+  "max" : 1,
+  "type" : "",
+  "desc" : ""
+}, {
+  "path" : "parameter",
+  "name" : "parameter",
+  "lvl" : 0,
+  "min" : 0,
+  "max" : 1,
+  "type" : "",
+  "desc" : ""
+}, {
+  "path" : "parameter",
+  "name" : "parameter:database",
   "lvl" : 0,
   "min" : 1,
   "max" : 1,
@@ -10237,7 +10197,47 @@ ClickHouse best-effort delivery profile for AidboxTopicDestination.
   "desc" : ""
 }, {
   "path" : "parameter",
-  "name" : "parameter:database",
+  "name" : "parameter:password",
+  "lvl" : 0,
+  "min" : 1,
+  "max" : 1,
+  "type" : "",
+  "desc" : ""
+}, {
+  "path" : "parameter.name",
+  "name" : "name",
+  "lvl" : 1,
+  "min" : 0,
+  "max" : 1,
+  "type" : "",
+  "desc" : ""
+}, {
+  "path" : "parameter.value[x]",
+  "name" : "value[x]",
+  "lvl" : 1,
+  "min" : 1,
+  "max" : 1,
+  "type" : "string",
+  "desc" : ""
+}, {
+  "path" : "parameter.resource",
+  "name" : "resource",
+  "lvl" : 1,
+  "min" : 0,
+  "max" : 1,
+  "type" : "",
+  "desc" : ""
+}, {
+  "path" : "parameter.part",
+  "name" : "part",
+  "lvl" : 1,
+  "min" : 0,
+  "max" : 1,
+  "type" : "",
+  "desc" : ""
+}, {
+  "path" : "parameter",
+  "name" : "parameter:url",
   "lvl" : 0,
   "min" : 1,
   "max" : 1,
@@ -10317,7 +10317,7 @@ ClickHouse best-effort delivery profile for AidboxTopicDestination.
   "desc" : ""
 }, {
   "path" : "parameter",
-  "name" : "parameter:password",
+  "name" : "parameter:viewDefinition",
   "lvl" : 0,
   "min" : 1,
   "max" : 1,
@@ -10382,167 +10382,7 @@ ClickHouse at-least-once delivery profile for AidboxTopicDestination.
   "desc" : ""
 }, {
   "path" : "parameter",
-  "name" : "parameter:url",
-  "lvl" : 0,
-  "min" : 1,
-  "max" : 1,
-  "type" : "",
-  "desc" : ""
-}, {
-  "path" : "parameter.name",
-  "name" : "name",
-  "lvl" : 1,
-  "min" : 0,
-  "max" : 1,
-  "type" : "",
-  "desc" : ""
-}, {
-  "path" : "parameter.value[x]",
-  "name" : "value[x]",
-  "lvl" : 1,
-  "min" : 1,
-  "max" : 1,
-  "type" : "string",
-  "desc" : ""
-}, {
-  "path" : "parameter.resource",
-  "name" : "resource",
-  "lvl" : 1,
-  "min" : 0,
-  "max" : 1,
-  "type" : "",
-  "desc" : ""
-}, {
-  "path" : "parameter.part",
-  "name" : "part",
-  "lvl" : 1,
-  "min" : 0,
-  "max" : 1,
-  "type" : "",
-  "desc" : ""
-}, {
-  "path" : "parameter",
-  "name" : "parameter:viewDefinition",
-  "lvl" : 0,
-  "min" : 1,
-  "max" : 1,
-  "type" : "",
-  "desc" : ""
-}, {
-  "path" : "parameter.name",
-  "name" : "name",
-  "lvl" : 1,
-  "min" : 0,
-  "max" : 1,
-  "type" : "",
-  "desc" : ""
-}, {
-  "path" : "parameter.value[x]",
-  "name" : "value[x]",
-  "lvl" : 1,
-  "min" : 1,
-  "max" : 1,
-  "type" : "string",
-  "desc" : ""
-}, {
-  "path" : "parameter.resource",
-  "name" : "resource",
-  "lvl" : 1,
-  "min" : 0,
-  "max" : 1,
-  "type" : "",
-  "desc" : ""
-}, {
-  "path" : "parameter.part",
-  "name" : "part",
-  "lvl" : 1,
-  "min" : 0,
-  "max" : 1,
-  "type" : "",
-  "desc" : ""
-}, {
-  "path" : "parameter",
-  "name" : "parameter:destinationTable",
-  "lvl" : 0,
-  "min" : 1,
-  "max" : 1,
-  "type" : "",
-  "desc" : ""
-}, {
-  "path" : "parameter.name",
-  "name" : "name",
-  "lvl" : 1,
-  "min" : 0,
-  "max" : 1,
-  "type" : "",
-  "desc" : ""
-}, {
-  "path" : "parameter.value[x]",
-  "name" : "value[x]",
-  "lvl" : 1,
-  "min" : 1,
-  "max" : 1,
-  "type" : "string",
-  "desc" : ""
-}, {
-  "path" : "parameter.resource",
-  "name" : "resource",
-  "lvl" : 1,
-  "min" : 0,
-  "max" : 1,
-  "type" : "",
-  "desc" : ""
-}, {
-  "path" : "parameter.part",
-  "name" : "part",
-  "lvl" : 1,
-  "min" : 0,
-  "max" : 1,
-  "type" : "",
-  "desc" : ""
-}, {
-  "path" : "parameter",
   "name" : "parameter:batchSize",
-  "lvl" : 0,
-  "min" : 1,
-  "max" : 1,
-  "type" : "",
-  "desc" : ""
-}, {
-  "path" : "parameter.name",
-  "name" : "name",
-  "lvl" : 1,
-  "min" : 0,
-  "max" : 1,
-  "type" : "",
-  "desc" : ""
-}, {
-  "path" : "parameter.value[x]",
-  "name" : "value[x]",
-  "lvl" : 1,
-  "min" : 1,
-  "max" : 1,
-  "type" : "unsignedInt",
-  "desc" : ""
-}, {
-  "path" : "parameter.resource",
-  "name" : "resource",
-  "lvl" : 1,
-  "min" : 0,
-  "max" : 1,
-  "type" : "",
-  "desc" : ""
-}, {
-  "path" : "parameter.part",
-  "name" : "part",
-  "lvl" : 1,
-  "min" : 0,
-  "max" : 1,
-  "type" : "",
-  "desc" : ""
-}, {
-  "path" : "parameter",
-  "name" : "parameter:sendIntervalMs",
   "lvl" : 0,
   "min" : 1,
   "max" : 1,
@@ -10622,7 +10462,7 @@ ClickHouse at-least-once delivery profile for AidboxTopicDestination.
   "desc" : ""
 }, {
   "path" : "parameter",
-  "name" : "parameter:user",
+  "name" : "parameter:destinationTable",
   "lvl" : 0,
   "min" : 1,
   "max" : 1,
@@ -10700,6 +10540,166 @@ ClickHouse at-least-once delivery profile for AidboxTopicDestination.
   "max" : 1,
   "type" : "",
   "desc" : ""
+}, {
+  "path" : "parameter",
+  "name" : "parameter:sendIntervalMs",
+  "lvl" : 0,
+  "min" : 1,
+  "max" : 1,
+  "type" : "",
+  "desc" : ""
+}, {
+  "path" : "parameter.name",
+  "name" : "name",
+  "lvl" : 1,
+  "min" : 0,
+  "max" : 1,
+  "type" : "",
+  "desc" : ""
+}, {
+  "path" : "parameter.value[x]",
+  "name" : "value[x]",
+  "lvl" : 1,
+  "min" : 1,
+  "max" : 1,
+  "type" : "unsignedInt",
+  "desc" : ""
+}, {
+  "path" : "parameter.resource",
+  "name" : "resource",
+  "lvl" : 1,
+  "min" : 0,
+  "max" : 1,
+  "type" : "",
+  "desc" : ""
+}, {
+  "path" : "parameter.part",
+  "name" : "part",
+  "lvl" : 1,
+  "min" : 0,
+  "max" : 1,
+  "type" : "",
+  "desc" : ""
+}, {
+  "path" : "parameter",
+  "name" : "parameter:url",
+  "lvl" : 0,
+  "min" : 1,
+  "max" : 1,
+  "type" : "",
+  "desc" : ""
+}, {
+  "path" : "parameter.name",
+  "name" : "name",
+  "lvl" : 1,
+  "min" : 0,
+  "max" : 1,
+  "type" : "",
+  "desc" : ""
+}, {
+  "path" : "parameter.value[x]",
+  "name" : "value[x]",
+  "lvl" : 1,
+  "min" : 1,
+  "max" : 1,
+  "type" : "string",
+  "desc" : ""
+}, {
+  "path" : "parameter.resource",
+  "name" : "resource",
+  "lvl" : 1,
+  "min" : 0,
+  "max" : 1,
+  "type" : "",
+  "desc" : ""
+}, {
+  "path" : "parameter.part",
+  "name" : "part",
+  "lvl" : 1,
+  "min" : 0,
+  "max" : 1,
+  "type" : "",
+  "desc" : ""
+}, {
+  "path" : "parameter",
+  "name" : "parameter:user",
+  "lvl" : 0,
+  "min" : 1,
+  "max" : 1,
+  "type" : "",
+  "desc" : ""
+}, {
+  "path" : "parameter.name",
+  "name" : "name",
+  "lvl" : 1,
+  "min" : 0,
+  "max" : 1,
+  "type" : "",
+  "desc" : ""
+}, {
+  "path" : "parameter.value[x]",
+  "name" : "value[x]",
+  "lvl" : 1,
+  "min" : 1,
+  "max" : 1,
+  "type" : "string",
+  "desc" : ""
+}, {
+  "path" : "parameter.resource",
+  "name" : "resource",
+  "lvl" : 1,
+  "min" : 0,
+  "max" : 1,
+  "type" : "",
+  "desc" : ""
+}, {
+  "path" : "parameter.part",
+  "name" : "part",
+  "lvl" : 1,
+  "min" : 0,
+  "max" : 1,
+  "type" : "",
+  "desc" : ""
+}, {
+  "path" : "parameter",
+  "name" : "parameter:viewDefinition",
+  "lvl" : 0,
+  "min" : 1,
+  "max" : 1,
+  "type" : "",
+  "desc" : ""
+}, {
+  "path" : "parameter.name",
+  "name" : "name",
+  "lvl" : 1,
+  "min" : 0,
+  "max" : 1,
+  "type" : "",
+  "desc" : ""
+}, {
+  "path" : "parameter.value[x]",
+  "name" : "value[x]",
+  "lvl" : 1,
+  "min" : 1,
+  "max" : 1,
+  "type" : "string",
+  "desc" : ""
+}, {
+  "path" : "parameter.resource",
+  "name" : "resource",
+  "lvl" : 1,
+  "min" : 0,
+  "max" : 1,
+  "type" : "",
+  "desc" : ""
+}, {
+  "path" : "parameter.part",
+  "name" : "part",
+  "lvl" : 1,
+  "min" : 0,
+  "max" : 1,
+  "type" : "",
+  "desc" : ""
 } ]
 ```
 
@@ -10722,46 +10722,6 @@ FHIR native topic-based subscription profile for AidboxTopicDestination.
   "name" : "parameter",
   "lvl" : 0,
   "min" : 1,
-  "max" : 1,
-  "type" : "",
-  "desc" : ""
-}, {
-  "path" : "parameter",
-  "name" : "parameter:subscription-specification-version",
-  "lvl" : 0,
-  "min" : 1,
-  "max" : 1,
-  "type" : "",
-  "desc" : ""
-}, {
-  "path" : "parameter.name",
-  "name" : "name",
-  "lvl" : 1,
-  "min" : 0,
-  "max" : 1,
-  "type" : "",
-  "desc" : ""
-}, {
-  "path" : "parameter.value[x]",
-  "name" : "value[x]",
-  "lvl" : 1,
-  "min" : 1,
-  "max" : 1,
-  "type" : "string",
-  "desc" : "\n\n**Allowed values**: `R4-backported` | `R5` | `R4B-backported`"
-}, {
-  "path" : "parameter.resource",
-  "name" : "resource",
-  "lvl" : 1,
-  "min" : 0,
-  "max" : 1,
-  "type" : "",
-  "desc" : ""
-}, {
-  "path" : "parameter.part",
-  "name" : "part",
-  "lvl" : 1,
-  "min" : 0,
   "max" : 1,
   "type" : "",
   "desc" : ""
@@ -10885,6 +10845,46 @@ FHIR native topic-based subscription profile for AidboxTopicDestination.
   "max" : 1,
   "type" : "",
   "desc" : ""
+}, {
+  "path" : "parameter",
+  "name" : "parameter:subscription-specification-version",
+  "lvl" : 0,
+  "min" : 1,
+  "max" : 1,
+  "type" : "",
+  "desc" : ""
+}, {
+  "path" : "parameter.name",
+  "name" : "name",
+  "lvl" : 1,
+  "min" : 0,
+  "max" : 1,
+  "type" : "",
+  "desc" : ""
+}, {
+  "path" : "parameter.value[x]",
+  "name" : "value[x]",
+  "lvl" : 1,
+  "min" : 1,
+  "max" : 1,
+  "type" : "string",
+  "desc" : "\n\n**Allowed values**: `R4-backported` | `R5` | `R4B-backported`"
+}, {
+  "path" : "parameter.resource",
+  "name" : "resource",
+  "lvl" : 1,
+  "min" : 0,
+  "max" : 1,
+  "type" : "",
+  "desc" : ""
+}, {
+  "path" : "parameter.part",
+  "name" : "part",
+  "lvl" : 1,
+  "min" : 0,
+  "max" : 1,
+  "type" : "",
+  "desc" : ""
 } ]
 ```
 
@@ -10912,87 +10912,7 @@ GCP Pub/Sub at-least-once delivery profile for AidboxTopicDestination.
   "desc" : ""
 }, {
   "path" : "parameter",
-  "name" : "parameter:projectId",
-  "lvl" : 0,
-  "min" : 1,
-  "max" : 1,
-  "type" : "",
-  "desc" : ""
-}, {
-  "path" : "parameter.name",
-  "name" : "name",
-  "lvl" : 1,
-  "min" : 0,
-  "max" : 1,
-  "type" : "",
-  "desc" : ""
-}, {
-  "path" : "parameter.value[x]",
-  "name" : "value[x]",
-  "lvl" : 1,
-  "min" : 1,
-  "max" : 1,
-  "type" : "string",
-  "desc" : ""
-}, {
-  "path" : "parameter.resource",
-  "name" : "resource",
-  "lvl" : 1,
-  "min" : 0,
-  "max" : 1,
-  "type" : "",
-  "desc" : ""
-}, {
-  "path" : "parameter.part",
-  "name" : "part",
-  "lvl" : 1,
-  "min" : 0,
-  "max" : 1,
-  "type" : "",
-  "desc" : ""
-}, {
-  "path" : "parameter",
-  "name" : "parameter:topicId",
-  "lvl" : 0,
-  "min" : 1,
-  "max" : 1,
-  "type" : "",
-  "desc" : ""
-}, {
-  "path" : "parameter.name",
-  "name" : "name",
-  "lvl" : 1,
-  "min" : 0,
-  "max" : 1,
-  "type" : "",
-  "desc" : ""
-}, {
-  "path" : "parameter.value[x]",
-  "name" : "value[x]",
-  "lvl" : 1,
-  "min" : 1,
-  "max" : 1,
-  "type" : "string",
-  "desc" : ""
-}, {
-  "path" : "parameter.resource",
-  "name" : "resource",
-  "lvl" : 1,
-  "min" : 0,
-  "max" : 1,
-  "type" : "",
-  "desc" : ""
-}, {
-  "path" : "parameter.part",
-  "name" : "part",
-  "lvl" : 1,
-  "min" : 0,
-  "max" : 1,
-  "type" : "",
-  "desc" : ""
-}, {
-  "path" : "parameter",
-  "name" : "parameter:timeout",
+  "name" : "parameter:bytesThreshold",
   "lvl" : 0,
   "min" : 0,
   "max" : 1,
@@ -11072,7 +10992,47 @@ GCP Pub/Sub at-least-once delivery profile for AidboxTopicDestination.
   "desc" : ""
 }, {
   "path" : "parameter",
-  "name" : "parameter:bytesThreshold",
+  "name" : "parameter:projectId",
+  "lvl" : 0,
+  "min" : 1,
+  "max" : 1,
+  "type" : "",
+  "desc" : ""
+}, {
+  "path" : "parameter.name",
+  "name" : "name",
+  "lvl" : 1,
+  "min" : 0,
+  "max" : 1,
+  "type" : "",
+  "desc" : ""
+}, {
+  "path" : "parameter.value[x]",
+  "name" : "value[x]",
+  "lvl" : 1,
+  "min" : 1,
+  "max" : 1,
+  "type" : "string",
+  "desc" : ""
+}, {
+  "path" : "parameter.resource",
+  "name" : "resource",
+  "lvl" : 1,
+  "min" : 0,
+  "max" : 1,
+  "type" : "",
+  "desc" : ""
+}, {
+  "path" : "parameter.part",
+  "name" : "part",
+  "lvl" : 1,
+  "min" : 0,
+  "max" : 1,
+  "type" : "",
+  "desc" : ""
+}, {
+  "path" : "parameter",
+  "name" : "parameter:timeout",
   "lvl" : 0,
   "min" : 0,
   "max" : 1,
@@ -11093,6 +11053,46 @@ GCP Pub/Sub at-least-once delivery profile for AidboxTopicDestination.
   "min" : 1,
   "max" : 1,
   "type" : "unsignedInt",
+  "desc" : ""
+}, {
+  "path" : "parameter.resource",
+  "name" : "resource",
+  "lvl" : 1,
+  "min" : 0,
+  "max" : 1,
+  "type" : "",
+  "desc" : ""
+}, {
+  "path" : "parameter.part",
+  "name" : "part",
+  "lvl" : 1,
+  "min" : 0,
+  "max" : 1,
+  "type" : "",
+  "desc" : ""
+}, {
+  "path" : "parameter",
+  "name" : "parameter:topicId",
+  "lvl" : 0,
+  "min" : 1,
+  "max" : 1,
+  "type" : "",
+  "desc" : ""
+}, {
+  "path" : "parameter.name",
+  "name" : "name",
+  "lvl" : 1,
+  "min" : 0,
+  "max" : 1,
+  "type" : "",
+  "desc" : ""
+}, {
+  "path" : "parameter.value[x]",
+  "name" : "value[x]",
+  "lvl" : 1,
+  "min" : 1,
+  "max" : 1,
+  "type" : "string",
   "desc" : ""
 }, {
   "path" : "parameter.resource",
@@ -11137,7 +11137,7 @@ Kafka at-least-once delivery profile for AidboxTopicDestination.
   "desc" : ""
 }, {
   "path" : "parameter",
-  "name" : "parameter:kafkaTopic",
+  "name" : "parameter:batchSize",
   "lvl" : 0,
   "min" : 0,
   "max" : 1,
@@ -11157,7 +11157,7 @@ Kafka at-least-once delivery profile for AidboxTopicDestination.
   "lvl" : 1,
   "min" : 1,
   "max" : 1,
-  "type" : "string",
+  "type" : "unsignedInt",
   "desc" : ""
 }, {
   "path" : "parameter.resource",
@@ -11257,7 +11257,7 @@ Kafka at-least-once delivery profile for AidboxTopicDestination.
   "desc" : ""
 }, {
   "path" : "parameter",
-  "name" : "parameter:batchSize",
+  "name" : "parameter:deliveryTimeoutMs",
   "lvl" : 0,
   "min" : 0,
   "max" : 1,
@@ -11297,7 +11297,7 @@ Kafka at-least-once delivery profile for AidboxTopicDestination.
   "desc" : ""
 }, {
   "path" : "parameter",
-  "name" : "parameter:deliveryTimeoutMs",
+  "name" : "parameter:kafkaTopic",
   "lvl" : 0,
   "min" : 0,
   "max" : 1,
@@ -11317,7 +11317,7 @@ Kafka at-least-once delivery profile for AidboxTopicDestination.
   "lvl" : 1,
   "min" : 1,
   "max" : 1,
-  "type" : "unsignedInt",
+  "type" : "string",
   "desc" : ""
 }, {
   "path" : "parameter.resource",
@@ -11457,87 +11457,7 @@ Kafka at-least-once delivery profile for AidboxTopicDestination.
   "desc" : ""
 }, {
   "path" : "parameter",
-  "name" : "parameter:sslKeystoreKey",
-  "lvl" : 0,
-  "min" : 0,
-  "max" : 1,
-  "type" : "",
-  "desc" : ""
-}, {
-  "path" : "parameter.name",
-  "name" : "name",
-  "lvl" : 1,
-  "min" : 0,
-  "max" : 1,
-  "type" : "",
-  "desc" : ""
-}, {
-  "path" : "parameter.value[x]",
-  "name" : "value[x]",
-  "lvl" : 1,
-  "min" : 1,
-  "max" : 1,
-  "type" : "string",
-  "desc" : ""
-}, {
-  "path" : "parameter.resource",
-  "name" : "resource",
-  "lvl" : 1,
-  "min" : 0,
-  "max" : 1,
-  "type" : "",
-  "desc" : ""
-}, {
-  "path" : "parameter.part",
-  "name" : "part",
-  "lvl" : 1,
-  "min" : 0,
-  "max" : 1,
-  "type" : "",
-  "desc" : ""
-}, {
-  "path" : "parameter",
-  "name" : "parameter:securityProtocol",
-  "lvl" : 0,
-  "min" : 0,
-  "max" : 1,
-  "type" : "",
-  "desc" : ""
-}, {
-  "path" : "parameter.name",
-  "name" : "name",
-  "lvl" : 1,
-  "min" : 0,
-  "max" : 1,
-  "type" : "",
-  "desc" : ""
-}, {
-  "path" : "parameter.value[x]",
-  "name" : "value[x]",
-  "lvl" : 1,
-  "min" : 1,
-  "max" : 1,
-  "type" : "string",
-  "desc" : ""
-}, {
-  "path" : "parameter.resource",
-  "name" : "resource",
-  "lvl" : 1,
-  "min" : 0,
-  "max" : 1,
-  "type" : "",
-  "desc" : ""
-}, {
-  "path" : "parameter.part",
-  "name" : "part",
-  "lvl" : 1,
-  "min" : 0,
-  "max" : 1,
-  "type" : "",
-  "desc" : ""
-}, {
-  "path" : "parameter",
-  "name" : "parameter:saslMechanism",
+  "name" : "parameter:saslClientCallbackHandlerClass",
   "lvl" : 0,
   "min" : 0,
   "max" : 1,
@@ -11617,7 +11537,87 @@ Kafka at-least-once delivery profile for AidboxTopicDestination.
   "desc" : ""
 }, {
   "path" : "parameter",
-  "name" : "parameter:saslClientCallbackHandlerClass",
+  "name" : "parameter:saslMechanism",
+  "lvl" : 0,
+  "min" : 0,
+  "max" : 1,
+  "type" : "",
+  "desc" : ""
+}, {
+  "path" : "parameter.name",
+  "name" : "name",
+  "lvl" : 1,
+  "min" : 0,
+  "max" : 1,
+  "type" : "",
+  "desc" : ""
+}, {
+  "path" : "parameter.value[x]",
+  "name" : "value[x]",
+  "lvl" : 1,
+  "min" : 1,
+  "max" : 1,
+  "type" : "string",
+  "desc" : ""
+}, {
+  "path" : "parameter.resource",
+  "name" : "resource",
+  "lvl" : 1,
+  "min" : 0,
+  "max" : 1,
+  "type" : "",
+  "desc" : ""
+}, {
+  "path" : "parameter.part",
+  "name" : "part",
+  "lvl" : 1,
+  "min" : 0,
+  "max" : 1,
+  "type" : "",
+  "desc" : ""
+}, {
+  "path" : "parameter",
+  "name" : "parameter:securityProtocol",
+  "lvl" : 0,
+  "min" : 0,
+  "max" : 1,
+  "type" : "",
+  "desc" : ""
+}, {
+  "path" : "parameter.name",
+  "name" : "name",
+  "lvl" : 1,
+  "min" : 0,
+  "max" : 1,
+  "type" : "",
+  "desc" : ""
+}, {
+  "path" : "parameter.value[x]",
+  "name" : "value[x]",
+  "lvl" : 1,
+  "min" : 1,
+  "max" : 1,
+  "type" : "string",
+  "desc" : ""
+}, {
+  "path" : "parameter.resource",
+  "name" : "resource",
+  "lvl" : 1,
+  "min" : 0,
+  "max" : 1,
+  "type" : "",
+  "desc" : ""
+}, {
+  "path" : "parameter.part",
+  "name" : "part",
+  "lvl" : 1,
+  "min" : 0,
+  "max" : 1,
+  "type" : "",
+  "desc" : ""
+}, {
+  "path" : "parameter",
+  "name" : "parameter:sslKeystoreKey",
   "lvl" : 0,
   "min" : 0,
   "max" : 1,
@@ -11682,7 +11682,7 @@ Kafka at-least-once mock delivery profile for AidboxTopicDestination.
   "desc" : ""
 }, {
   "path" : "parameter",
-  "name" : "parameter:kafkaTopic",
+  "name" : "parameter:autocomplete",
   "lvl" : 0,
   "min" : 0,
   "max" : 1,
@@ -11702,7 +11702,47 @@ Kafka at-least-once mock delivery profile for AidboxTopicDestination.
   "lvl" : 1,
   "min" : 1,
   "max" : 1,
-  "type" : "string",
+  "type" : "boolean",
+  "desc" : ""
+}, {
+  "path" : "parameter.resource",
+  "name" : "resource",
+  "lvl" : 1,
+  "min" : 0,
+  "max" : 1,
+  "type" : "",
+  "desc" : ""
+}, {
+  "path" : "parameter.part",
+  "name" : "part",
+  "lvl" : 1,
+  "min" : 0,
+  "max" : 1,
+  "type" : "",
+  "desc" : ""
+}, {
+  "path" : "parameter",
+  "name" : "parameter:batchSize",
+  "lvl" : 0,
+  "min" : 0,
+  "max" : 1,
+  "type" : "",
+  "desc" : ""
+}, {
+  "path" : "parameter.name",
+  "name" : "name",
+  "lvl" : 1,
+  "min" : 0,
+  "max" : 1,
+  "type" : "",
+  "desc" : ""
+}, {
+  "path" : "parameter.value[x]",
+  "name" : "value[x]",
+  "lvl" : 1,
+  "min" : 1,
+  "max" : 1,
+  "type" : "unsignedInt",
   "desc" : ""
 }, {
   "path" : "parameter.resource",
@@ -11802,46 +11842,6 @@ Kafka at-least-once mock delivery profile for AidboxTopicDestination.
   "desc" : ""
 }, {
   "path" : "parameter",
-  "name" : "parameter:batchSize",
-  "lvl" : 0,
-  "min" : 0,
-  "max" : 1,
-  "type" : "",
-  "desc" : ""
-}, {
-  "path" : "parameter.name",
-  "name" : "name",
-  "lvl" : 1,
-  "min" : 0,
-  "max" : 1,
-  "type" : "",
-  "desc" : ""
-}, {
-  "path" : "parameter.value[x]",
-  "name" : "value[x]",
-  "lvl" : 1,
-  "min" : 1,
-  "max" : 1,
-  "type" : "unsignedInt",
-  "desc" : ""
-}, {
-  "path" : "parameter.resource",
-  "name" : "resource",
-  "lvl" : 1,
-  "min" : 0,
-  "max" : 1,
-  "type" : "",
-  "desc" : ""
-}, {
-  "path" : "parameter.part",
-  "name" : "part",
-  "lvl" : 1,
-  "min" : 0,
-  "max" : 1,
-  "type" : "",
-  "desc" : ""
-}, {
-  "path" : "parameter",
   "name" : "parameter:deliveryTimeoutMs",
   "lvl" : 0,
   "min" : 0,
@@ -11863,366 +11863,6 @@ Kafka at-least-once mock delivery profile for AidboxTopicDestination.
   "min" : 1,
   "max" : 1,
   "type" : "unsignedInt",
-  "desc" : ""
-}, {
-  "path" : "parameter.resource",
-  "name" : "resource",
-  "lvl" : 1,
-  "min" : 0,
-  "max" : 1,
-  "type" : "",
-  "desc" : ""
-}, {
-  "path" : "parameter.part",
-  "name" : "part",
-  "lvl" : 1,
-  "min" : 0,
-  "max" : 1,
-  "type" : "",
-  "desc" : ""
-}, {
-  "path" : "parameter",
-  "name" : "parameter:maxBlockMs",
-  "lvl" : 0,
-  "min" : 0,
-  "max" : 1,
-  "type" : "",
-  "desc" : ""
-}, {
-  "path" : "parameter.name",
-  "name" : "name",
-  "lvl" : 1,
-  "min" : 0,
-  "max" : 1,
-  "type" : "",
-  "desc" : ""
-}, {
-  "path" : "parameter.value[x]",
-  "name" : "value[x]",
-  "lvl" : 1,
-  "min" : 1,
-  "max" : 1,
-  "type" : "unsignedInt",
-  "desc" : ""
-}, {
-  "path" : "parameter.resource",
-  "name" : "resource",
-  "lvl" : 1,
-  "min" : 0,
-  "max" : 1,
-  "type" : "",
-  "desc" : ""
-}, {
-  "path" : "parameter.part",
-  "name" : "part",
-  "lvl" : 1,
-  "min" : 0,
-  "max" : 1,
-  "type" : "",
-  "desc" : ""
-}, {
-  "path" : "parameter",
-  "name" : "parameter:maxRequestSize",
-  "lvl" : 0,
-  "min" : 0,
-  "max" : 1,
-  "type" : "",
-  "desc" : ""
-}, {
-  "path" : "parameter.name",
-  "name" : "name",
-  "lvl" : 1,
-  "min" : 0,
-  "max" : 1,
-  "type" : "",
-  "desc" : ""
-}, {
-  "path" : "parameter.value[x]",
-  "name" : "value[x]",
-  "lvl" : 1,
-  "min" : 1,
-  "max" : 1,
-  "type" : "unsignedInt",
-  "desc" : ""
-}, {
-  "path" : "parameter.resource",
-  "name" : "resource",
-  "lvl" : 1,
-  "min" : 0,
-  "max" : 1,
-  "type" : "",
-  "desc" : ""
-}, {
-  "path" : "parameter.part",
-  "name" : "part",
-  "lvl" : 1,
-  "min" : 0,
-  "max" : 1,
-  "type" : "",
-  "desc" : ""
-}, {
-  "path" : "parameter",
-  "name" : "parameter:requestTimeoutMs",
-  "lvl" : 0,
-  "min" : 0,
-  "max" : 1,
-  "type" : "",
-  "desc" : ""
-}, {
-  "path" : "parameter.name",
-  "name" : "name",
-  "lvl" : 1,
-  "min" : 0,
-  "max" : 1,
-  "type" : "",
-  "desc" : ""
-}, {
-  "path" : "parameter.value[x]",
-  "name" : "value[x]",
-  "lvl" : 1,
-  "min" : 1,
-  "max" : 1,
-  "type" : "unsignedInt",
-  "desc" : ""
-}, {
-  "path" : "parameter.resource",
-  "name" : "resource",
-  "lvl" : 1,
-  "min" : 0,
-  "max" : 1,
-  "type" : "",
-  "desc" : ""
-}, {
-  "path" : "parameter.part",
-  "name" : "part",
-  "lvl" : 1,
-  "min" : 0,
-  "max" : 1,
-  "type" : "",
-  "desc" : ""
-}, {
-  "path" : "parameter",
-  "name" : "parameter:sslKeystoreKey",
-  "lvl" : 0,
-  "min" : 0,
-  "max" : 1,
-  "type" : "",
-  "desc" : ""
-}, {
-  "path" : "parameter.name",
-  "name" : "name",
-  "lvl" : 1,
-  "min" : 0,
-  "max" : 1,
-  "type" : "",
-  "desc" : ""
-}, {
-  "path" : "parameter.value[x]",
-  "name" : "value[x]",
-  "lvl" : 1,
-  "min" : 1,
-  "max" : 1,
-  "type" : "string",
-  "desc" : ""
-}, {
-  "path" : "parameter.resource",
-  "name" : "resource",
-  "lvl" : 1,
-  "min" : 0,
-  "max" : 1,
-  "type" : "",
-  "desc" : ""
-}, {
-  "path" : "parameter.part",
-  "name" : "part",
-  "lvl" : 1,
-  "min" : 0,
-  "max" : 1,
-  "type" : "",
-  "desc" : ""
-}, {
-  "path" : "parameter",
-  "name" : "parameter:securityProtocol",
-  "lvl" : 0,
-  "min" : 0,
-  "max" : 1,
-  "type" : "",
-  "desc" : ""
-}, {
-  "path" : "parameter.name",
-  "name" : "name",
-  "lvl" : 1,
-  "min" : 0,
-  "max" : 1,
-  "type" : "",
-  "desc" : ""
-}, {
-  "path" : "parameter.value[x]",
-  "name" : "value[x]",
-  "lvl" : 1,
-  "min" : 1,
-  "max" : 1,
-  "type" : "string",
-  "desc" : ""
-}, {
-  "path" : "parameter.resource",
-  "name" : "resource",
-  "lvl" : 1,
-  "min" : 0,
-  "max" : 1,
-  "type" : "",
-  "desc" : ""
-}, {
-  "path" : "parameter.part",
-  "name" : "part",
-  "lvl" : 1,
-  "min" : 0,
-  "max" : 1,
-  "type" : "",
-  "desc" : ""
-}, {
-  "path" : "parameter",
-  "name" : "parameter:saslMechanism",
-  "lvl" : 0,
-  "min" : 0,
-  "max" : 1,
-  "type" : "",
-  "desc" : ""
-}, {
-  "path" : "parameter.name",
-  "name" : "name",
-  "lvl" : 1,
-  "min" : 0,
-  "max" : 1,
-  "type" : "",
-  "desc" : ""
-}, {
-  "path" : "parameter.value[x]",
-  "name" : "value[x]",
-  "lvl" : 1,
-  "min" : 1,
-  "max" : 1,
-  "type" : "string",
-  "desc" : ""
-}, {
-  "path" : "parameter.resource",
-  "name" : "resource",
-  "lvl" : 1,
-  "min" : 0,
-  "max" : 1,
-  "type" : "",
-  "desc" : ""
-}, {
-  "path" : "parameter.part",
-  "name" : "part",
-  "lvl" : 1,
-  "min" : 0,
-  "max" : 1,
-  "type" : "",
-  "desc" : ""
-}, {
-  "path" : "parameter",
-  "name" : "parameter:saslJaasConfig",
-  "lvl" : 0,
-  "min" : 0,
-  "max" : 1,
-  "type" : "",
-  "desc" : ""
-}, {
-  "path" : "parameter.name",
-  "name" : "name",
-  "lvl" : 1,
-  "min" : 0,
-  "max" : 1,
-  "type" : "",
-  "desc" : ""
-}, {
-  "path" : "parameter.value[x]",
-  "name" : "value[x]",
-  "lvl" : 1,
-  "min" : 1,
-  "max" : 1,
-  "type" : "string",
-  "desc" : ""
-}, {
-  "path" : "parameter.resource",
-  "name" : "resource",
-  "lvl" : 1,
-  "min" : 0,
-  "max" : 1,
-  "type" : "",
-  "desc" : ""
-}, {
-  "path" : "parameter.part",
-  "name" : "part",
-  "lvl" : 1,
-  "min" : 0,
-  "max" : 1,
-  "type" : "",
-  "desc" : ""
-}, {
-  "path" : "parameter",
-  "name" : "parameter:saslClientCallbackHandlerClass",
-  "lvl" : 0,
-  "min" : 0,
-  "max" : 1,
-  "type" : "",
-  "desc" : ""
-}, {
-  "path" : "parameter.name",
-  "name" : "name",
-  "lvl" : 1,
-  "min" : 0,
-  "max" : 1,
-  "type" : "",
-  "desc" : ""
-}, {
-  "path" : "parameter.value[x]",
-  "name" : "value[x]",
-  "lvl" : 1,
-  "min" : 1,
-  "max" : 1,
-  "type" : "string",
-  "desc" : ""
-}, {
-  "path" : "parameter.resource",
-  "name" : "resource",
-  "lvl" : 1,
-  "min" : 0,
-  "max" : 1,
-  "type" : "",
-  "desc" : ""
-}, {
-  "path" : "parameter.part",
-  "name" : "part",
-  "lvl" : 1,
-  "min" : 0,
-  "max" : 1,
-  "type" : "",
-  "desc" : ""
-}, {
-  "path" : "parameter",
-  "name" : "parameter:autocomplete",
-  "lvl" : 0,
-  "min" : 0,
-  "max" : 1,
-  "type" : "",
-  "desc" : ""
-}, {
-  "path" : "parameter.name",
-  "name" : "name",
-  "lvl" : 1,
-  "min" : 0,
-  "max" : 1,
-  "type" : "",
-  "desc" : ""
-}, {
-  "path" : "parameter.value[x]",
-  "name" : "value[x]",
-  "lvl" : 1,
-  "min" : 1,
-  "max" : 1,
-  "type" : "boolean",
   "desc" : ""
 }, {
   "path" : "parameter.resource",
@@ -12280,31 +11920,6 @@ Kafka at-least-once mock delivery profile for AidboxTopicDestination.
   "max" : 1,
   "type" : "",
   "desc" : ""
-} ]
-```
-
-
-## aidboxtopicdestination-kafka-best-effort
-
-Kafka best-effort delivery profile for AidboxTopicDestination.
-
-```fhir-structure
-[ {
-  "path" : "kind",
-  "name" : "kind",
-  "lvl" : 0,
-  "min" : 0,
-  "max" : 1,
-  "type" : "",
-  "desc" : ""
-}, {
-  "path" : "parameter",
-  "name" : "parameter",
-  "lvl" : 0,
-  "min" : 0,
-  "max" : 1,
-  "type" : "",
-  "desc" : ""
 }, {
   "path" : "parameter",
   "name" : "parameter:kafkaTopic",
@@ -12328,166 +11943,6 @@ Kafka best-effort delivery profile for AidboxTopicDestination.
   "min" : 1,
   "max" : 1,
   "type" : "string",
-  "desc" : ""
-}, {
-  "path" : "parameter.resource",
-  "name" : "resource",
-  "lvl" : 1,
-  "min" : 0,
-  "max" : 1,
-  "type" : "",
-  "desc" : ""
-}, {
-  "path" : "parameter.part",
-  "name" : "part",
-  "lvl" : 1,
-  "min" : 0,
-  "max" : 1,
-  "type" : "",
-  "desc" : ""
-}, {
-  "path" : "parameter",
-  "name" : "parameter:bootstrapServers",
-  "lvl" : 0,
-  "min" : 0,
-  "max" : 1,
-  "type" : "",
-  "desc" : ""
-}, {
-  "path" : "parameter.name",
-  "name" : "name",
-  "lvl" : 1,
-  "min" : 0,
-  "max" : 1,
-  "type" : "",
-  "desc" : ""
-}, {
-  "path" : "parameter.value[x]",
-  "name" : "value[x]",
-  "lvl" : 1,
-  "min" : 1,
-  "max" : 1,
-  "type" : "string",
-  "desc" : ""
-}, {
-  "path" : "parameter.resource",
-  "name" : "resource",
-  "lvl" : 1,
-  "min" : 0,
-  "max" : 1,
-  "type" : "",
-  "desc" : ""
-}, {
-  "path" : "parameter.part",
-  "name" : "part",
-  "lvl" : 1,
-  "min" : 0,
-  "max" : 1,
-  "type" : "",
-  "desc" : ""
-}, {
-  "path" : "parameter",
-  "name" : "parameter:compressionType",
-  "lvl" : 0,
-  "min" : 0,
-  "max" : 1,
-  "type" : "",
-  "desc" : ""
-}, {
-  "path" : "parameter.name",
-  "name" : "name",
-  "lvl" : 1,
-  "min" : 0,
-  "max" : 1,
-  "type" : "",
-  "desc" : ""
-}, {
-  "path" : "parameter.value[x]",
-  "name" : "value[x]",
-  "lvl" : 1,
-  "min" : 1,
-  "max" : 1,
-  "type" : "string",
-  "desc" : ""
-}, {
-  "path" : "parameter.resource",
-  "name" : "resource",
-  "lvl" : 1,
-  "min" : 0,
-  "max" : 1,
-  "type" : "",
-  "desc" : ""
-}, {
-  "path" : "parameter.part",
-  "name" : "part",
-  "lvl" : 1,
-  "min" : 0,
-  "max" : 1,
-  "type" : "",
-  "desc" : ""
-}, {
-  "path" : "parameter",
-  "name" : "parameter:batchSize",
-  "lvl" : 0,
-  "min" : 0,
-  "max" : 1,
-  "type" : "",
-  "desc" : ""
-}, {
-  "path" : "parameter.name",
-  "name" : "name",
-  "lvl" : 1,
-  "min" : 0,
-  "max" : 1,
-  "type" : "",
-  "desc" : ""
-}, {
-  "path" : "parameter.value[x]",
-  "name" : "value[x]",
-  "lvl" : 1,
-  "min" : 1,
-  "max" : 1,
-  "type" : "unsignedInt",
-  "desc" : ""
-}, {
-  "path" : "parameter.resource",
-  "name" : "resource",
-  "lvl" : 1,
-  "min" : 0,
-  "max" : 1,
-  "type" : "",
-  "desc" : ""
-}, {
-  "path" : "parameter.part",
-  "name" : "part",
-  "lvl" : 1,
-  "min" : 0,
-  "max" : 1,
-  "type" : "",
-  "desc" : ""
-}, {
-  "path" : "parameter",
-  "name" : "parameter:deliveryTimeoutMs",
-  "lvl" : 0,
-  "min" : 0,
-  "max" : 1,
-  "type" : "",
-  "desc" : ""
-}, {
-  "path" : "parameter.name",
-  "name" : "name",
-  "lvl" : 1,
-  "min" : 0,
-  "max" : 1,
-  "type" : "",
-  "desc" : ""
-}, {
-  "path" : "parameter.value[x]",
-  "name" : "value[x]",
-  "lvl" : 1,
-  "min" : 1,
-  "max" : 1,
-  "type" : "unsignedInt",
   "desc" : ""
 }, {
   "path" : "parameter.resource",
@@ -12627,87 +12082,7 @@ Kafka best-effort delivery profile for AidboxTopicDestination.
   "desc" : ""
 }, {
   "path" : "parameter",
-  "name" : "parameter:sslKeystoreKey",
-  "lvl" : 0,
-  "min" : 0,
-  "max" : 1,
-  "type" : "",
-  "desc" : ""
-}, {
-  "path" : "parameter.name",
-  "name" : "name",
-  "lvl" : 1,
-  "min" : 0,
-  "max" : 1,
-  "type" : "",
-  "desc" : ""
-}, {
-  "path" : "parameter.value[x]",
-  "name" : "value[x]",
-  "lvl" : 1,
-  "min" : 1,
-  "max" : 1,
-  "type" : "string",
-  "desc" : ""
-}, {
-  "path" : "parameter.resource",
-  "name" : "resource",
-  "lvl" : 1,
-  "min" : 0,
-  "max" : 1,
-  "type" : "",
-  "desc" : ""
-}, {
-  "path" : "parameter.part",
-  "name" : "part",
-  "lvl" : 1,
-  "min" : 0,
-  "max" : 1,
-  "type" : "",
-  "desc" : ""
-}, {
-  "path" : "parameter",
-  "name" : "parameter:securityProtocol",
-  "lvl" : 0,
-  "min" : 0,
-  "max" : 1,
-  "type" : "",
-  "desc" : ""
-}, {
-  "path" : "parameter.name",
-  "name" : "name",
-  "lvl" : 1,
-  "min" : 0,
-  "max" : 1,
-  "type" : "",
-  "desc" : ""
-}, {
-  "path" : "parameter.value[x]",
-  "name" : "value[x]",
-  "lvl" : 1,
-  "min" : 1,
-  "max" : 1,
-  "type" : "string",
-  "desc" : ""
-}, {
-  "path" : "parameter.resource",
-  "name" : "resource",
-  "lvl" : 1,
-  "min" : 0,
-  "max" : 1,
-  "type" : "",
-  "desc" : ""
-}, {
-  "path" : "parameter.part",
-  "name" : "part",
-  "lvl" : 1,
-  "min" : 0,
-  "max" : 1,
-  "type" : "",
-  "desc" : ""
-}, {
-  "path" : "parameter",
-  "name" : "parameter:saslMechanism",
+  "name" : "parameter:saslClientCallbackHandlerClass",
   "lvl" : 0,
   "min" : 0,
   "max" : 1,
@@ -12787,7 +12162,632 @@ Kafka best-effort delivery profile for AidboxTopicDestination.
   "desc" : ""
 }, {
   "path" : "parameter",
+  "name" : "parameter:saslMechanism",
+  "lvl" : 0,
+  "min" : 0,
+  "max" : 1,
+  "type" : "",
+  "desc" : ""
+}, {
+  "path" : "parameter.name",
+  "name" : "name",
+  "lvl" : 1,
+  "min" : 0,
+  "max" : 1,
+  "type" : "",
+  "desc" : ""
+}, {
+  "path" : "parameter.value[x]",
+  "name" : "value[x]",
+  "lvl" : 1,
+  "min" : 1,
+  "max" : 1,
+  "type" : "string",
+  "desc" : ""
+}, {
+  "path" : "parameter.resource",
+  "name" : "resource",
+  "lvl" : 1,
+  "min" : 0,
+  "max" : 1,
+  "type" : "",
+  "desc" : ""
+}, {
+  "path" : "parameter.part",
+  "name" : "part",
+  "lvl" : 1,
+  "min" : 0,
+  "max" : 1,
+  "type" : "",
+  "desc" : ""
+}, {
+  "path" : "parameter",
+  "name" : "parameter:securityProtocol",
+  "lvl" : 0,
+  "min" : 0,
+  "max" : 1,
+  "type" : "",
+  "desc" : ""
+}, {
+  "path" : "parameter.name",
+  "name" : "name",
+  "lvl" : 1,
+  "min" : 0,
+  "max" : 1,
+  "type" : "",
+  "desc" : ""
+}, {
+  "path" : "parameter.value[x]",
+  "name" : "value[x]",
+  "lvl" : 1,
+  "min" : 1,
+  "max" : 1,
+  "type" : "string",
+  "desc" : ""
+}, {
+  "path" : "parameter.resource",
+  "name" : "resource",
+  "lvl" : 1,
+  "min" : 0,
+  "max" : 1,
+  "type" : "",
+  "desc" : ""
+}, {
+  "path" : "parameter.part",
+  "name" : "part",
+  "lvl" : 1,
+  "min" : 0,
+  "max" : 1,
+  "type" : "",
+  "desc" : ""
+}, {
+  "path" : "parameter",
+  "name" : "parameter:sslKeystoreKey",
+  "lvl" : 0,
+  "min" : 0,
+  "max" : 1,
+  "type" : "",
+  "desc" : ""
+}, {
+  "path" : "parameter.name",
+  "name" : "name",
+  "lvl" : 1,
+  "min" : 0,
+  "max" : 1,
+  "type" : "",
+  "desc" : ""
+}, {
+  "path" : "parameter.value[x]",
+  "name" : "value[x]",
+  "lvl" : 1,
+  "min" : 1,
+  "max" : 1,
+  "type" : "string",
+  "desc" : ""
+}, {
+  "path" : "parameter.resource",
+  "name" : "resource",
+  "lvl" : 1,
+  "min" : 0,
+  "max" : 1,
+  "type" : "",
+  "desc" : ""
+}, {
+  "path" : "parameter.part",
+  "name" : "part",
+  "lvl" : 1,
+  "min" : 0,
+  "max" : 1,
+  "type" : "",
+  "desc" : ""
+} ]
+```
+
+
+## aidboxtopicdestination-kafka-best-effort
+
+Kafka best-effort delivery profile for AidboxTopicDestination.
+
+```fhir-structure
+[ {
+  "path" : "kind",
+  "name" : "kind",
+  "lvl" : 0,
+  "min" : 0,
+  "max" : 1,
+  "type" : "",
+  "desc" : ""
+}, {
+  "path" : "parameter",
+  "name" : "parameter",
+  "lvl" : 0,
+  "min" : 0,
+  "max" : 1,
+  "type" : "",
+  "desc" : ""
+}, {
+  "path" : "parameter",
+  "name" : "parameter:batchSize",
+  "lvl" : 0,
+  "min" : 0,
+  "max" : 1,
+  "type" : "",
+  "desc" : ""
+}, {
+  "path" : "parameter.name",
+  "name" : "name",
+  "lvl" : 1,
+  "min" : 0,
+  "max" : 1,
+  "type" : "",
+  "desc" : ""
+}, {
+  "path" : "parameter.value[x]",
+  "name" : "value[x]",
+  "lvl" : 1,
+  "min" : 1,
+  "max" : 1,
+  "type" : "unsignedInt",
+  "desc" : ""
+}, {
+  "path" : "parameter.resource",
+  "name" : "resource",
+  "lvl" : 1,
+  "min" : 0,
+  "max" : 1,
+  "type" : "",
+  "desc" : ""
+}, {
+  "path" : "parameter.part",
+  "name" : "part",
+  "lvl" : 1,
+  "min" : 0,
+  "max" : 1,
+  "type" : "",
+  "desc" : ""
+}, {
+  "path" : "parameter",
+  "name" : "parameter:bootstrapServers",
+  "lvl" : 0,
+  "min" : 0,
+  "max" : 1,
+  "type" : "",
+  "desc" : ""
+}, {
+  "path" : "parameter.name",
+  "name" : "name",
+  "lvl" : 1,
+  "min" : 0,
+  "max" : 1,
+  "type" : "",
+  "desc" : ""
+}, {
+  "path" : "parameter.value[x]",
+  "name" : "value[x]",
+  "lvl" : 1,
+  "min" : 1,
+  "max" : 1,
+  "type" : "string",
+  "desc" : ""
+}, {
+  "path" : "parameter.resource",
+  "name" : "resource",
+  "lvl" : 1,
+  "min" : 0,
+  "max" : 1,
+  "type" : "",
+  "desc" : ""
+}, {
+  "path" : "parameter.part",
+  "name" : "part",
+  "lvl" : 1,
+  "min" : 0,
+  "max" : 1,
+  "type" : "",
+  "desc" : ""
+}, {
+  "path" : "parameter",
+  "name" : "parameter:compressionType",
+  "lvl" : 0,
+  "min" : 0,
+  "max" : 1,
+  "type" : "",
+  "desc" : ""
+}, {
+  "path" : "parameter.name",
+  "name" : "name",
+  "lvl" : 1,
+  "min" : 0,
+  "max" : 1,
+  "type" : "",
+  "desc" : ""
+}, {
+  "path" : "parameter.value[x]",
+  "name" : "value[x]",
+  "lvl" : 1,
+  "min" : 1,
+  "max" : 1,
+  "type" : "string",
+  "desc" : ""
+}, {
+  "path" : "parameter.resource",
+  "name" : "resource",
+  "lvl" : 1,
+  "min" : 0,
+  "max" : 1,
+  "type" : "",
+  "desc" : ""
+}, {
+  "path" : "parameter.part",
+  "name" : "part",
+  "lvl" : 1,
+  "min" : 0,
+  "max" : 1,
+  "type" : "",
+  "desc" : ""
+}, {
+  "path" : "parameter",
+  "name" : "parameter:deliveryTimeoutMs",
+  "lvl" : 0,
+  "min" : 0,
+  "max" : 1,
+  "type" : "",
+  "desc" : ""
+}, {
+  "path" : "parameter.name",
+  "name" : "name",
+  "lvl" : 1,
+  "min" : 0,
+  "max" : 1,
+  "type" : "",
+  "desc" : ""
+}, {
+  "path" : "parameter.value[x]",
+  "name" : "value[x]",
+  "lvl" : 1,
+  "min" : 1,
+  "max" : 1,
+  "type" : "unsignedInt",
+  "desc" : ""
+}, {
+  "path" : "parameter.resource",
+  "name" : "resource",
+  "lvl" : 1,
+  "min" : 0,
+  "max" : 1,
+  "type" : "",
+  "desc" : ""
+}, {
+  "path" : "parameter.part",
+  "name" : "part",
+  "lvl" : 1,
+  "min" : 0,
+  "max" : 1,
+  "type" : "",
+  "desc" : ""
+}, {
+  "path" : "parameter",
+  "name" : "parameter:kafkaTopic",
+  "lvl" : 0,
+  "min" : 0,
+  "max" : 1,
+  "type" : "",
+  "desc" : ""
+}, {
+  "path" : "parameter.name",
+  "name" : "name",
+  "lvl" : 1,
+  "min" : 0,
+  "max" : 1,
+  "type" : "",
+  "desc" : ""
+}, {
+  "path" : "parameter.value[x]",
+  "name" : "value[x]",
+  "lvl" : 1,
+  "min" : 1,
+  "max" : 1,
+  "type" : "string",
+  "desc" : ""
+}, {
+  "path" : "parameter.resource",
+  "name" : "resource",
+  "lvl" : 1,
+  "min" : 0,
+  "max" : 1,
+  "type" : "",
+  "desc" : ""
+}, {
+  "path" : "parameter.part",
+  "name" : "part",
+  "lvl" : 1,
+  "min" : 0,
+  "max" : 1,
+  "type" : "",
+  "desc" : ""
+}, {
+  "path" : "parameter",
+  "name" : "parameter:maxBlockMs",
+  "lvl" : 0,
+  "min" : 0,
+  "max" : 1,
+  "type" : "",
+  "desc" : ""
+}, {
+  "path" : "parameter.name",
+  "name" : "name",
+  "lvl" : 1,
+  "min" : 0,
+  "max" : 1,
+  "type" : "",
+  "desc" : ""
+}, {
+  "path" : "parameter.value[x]",
+  "name" : "value[x]",
+  "lvl" : 1,
+  "min" : 1,
+  "max" : 1,
+  "type" : "unsignedInt",
+  "desc" : ""
+}, {
+  "path" : "parameter.resource",
+  "name" : "resource",
+  "lvl" : 1,
+  "min" : 0,
+  "max" : 1,
+  "type" : "",
+  "desc" : ""
+}, {
+  "path" : "parameter.part",
+  "name" : "part",
+  "lvl" : 1,
+  "min" : 0,
+  "max" : 1,
+  "type" : "",
+  "desc" : ""
+}, {
+  "path" : "parameter",
+  "name" : "parameter:maxRequestSize",
+  "lvl" : 0,
+  "min" : 0,
+  "max" : 1,
+  "type" : "",
+  "desc" : ""
+}, {
+  "path" : "parameter.name",
+  "name" : "name",
+  "lvl" : 1,
+  "min" : 0,
+  "max" : 1,
+  "type" : "",
+  "desc" : ""
+}, {
+  "path" : "parameter.value[x]",
+  "name" : "value[x]",
+  "lvl" : 1,
+  "min" : 1,
+  "max" : 1,
+  "type" : "unsignedInt",
+  "desc" : ""
+}, {
+  "path" : "parameter.resource",
+  "name" : "resource",
+  "lvl" : 1,
+  "min" : 0,
+  "max" : 1,
+  "type" : "",
+  "desc" : ""
+}, {
+  "path" : "parameter.part",
+  "name" : "part",
+  "lvl" : 1,
+  "min" : 0,
+  "max" : 1,
+  "type" : "",
+  "desc" : ""
+}, {
+  "path" : "parameter",
+  "name" : "parameter:requestTimeoutMs",
+  "lvl" : 0,
+  "min" : 0,
+  "max" : 1,
+  "type" : "",
+  "desc" : ""
+}, {
+  "path" : "parameter.name",
+  "name" : "name",
+  "lvl" : 1,
+  "min" : 0,
+  "max" : 1,
+  "type" : "",
+  "desc" : ""
+}, {
+  "path" : "parameter.value[x]",
+  "name" : "value[x]",
+  "lvl" : 1,
+  "min" : 1,
+  "max" : 1,
+  "type" : "unsignedInt",
+  "desc" : ""
+}, {
+  "path" : "parameter.resource",
+  "name" : "resource",
+  "lvl" : 1,
+  "min" : 0,
+  "max" : 1,
+  "type" : "",
+  "desc" : ""
+}, {
+  "path" : "parameter.part",
+  "name" : "part",
+  "lvl" : 1,
+  "min" : 0,
+  "max" : 1,
+  "type" : "",
+  "desc" : ""
+}, {
+  "path" : "parameter",
   "name" : "parameter:saslClientCallbackHandlerClass",
+  "lvl" : 0,
+  "min" : 0,
+  "max" : 1,
+  "type" : "",
+  "desc" : ""
+}, {
+  "path" : "parameter.name",
+  "name" : "name",
+  "lvl" : 1,
+  "min" : 0,
+  "max" : 1,
+  "type" : "",
+  "desc" : ""
+}, {
+  "path" : "parameter.value[x]",
+  "name" : "value[x]",
+  "lvl" : 1,
+  "min" : 1,
+  "max" : 1,
+  "type" : "string",
+  "desc" : ""
+}, {
+  "path" : "parameter.resource",
+  "name" : "resource",
+  "lvl" : 1,
+  "min" : 0,
+  "max" : 1,
+  "type" : "",
+  "desc" : ""
+}, {
+  "path" : "parameter.part",
+  "name" : "part",
+  "lvl" : 1,
+  "min" : 0,
+  "max" : 1,
+  "type" : "",
+  "desc" : ""
+}, {
+  "path" : "parameter",
+  "name" : "parameter:saslJaasConfig",
+  "lvl" : 0,
+  "min" : 0,
+  "max" : 1,
+  "type" : "",
+  "desc" : ""
+}, {
+  "path" : "parameter.name",
+  "name" : "name",
+  "lvl" : 1,
+  "min" : 0,
+  "max" : 1,
+  "type" : "",
+  "desc" : ""
+}, {
+  "path" : "parameter.value[x]",
+  "name" : "value[x]",
+  "lvl" : 1,
+  "min" : 1,
+  "max" : 1,
+  "type" : "string",
+  "desc" : ""
+}, {
+  "path" : "parameter.resource",
+  "name" : "resource",
+  "lvl" : 1,
+  "min" : 0,
+  "max" : 1,
+  "type" : "",
+  "desc" : ""
+}, {
+  "path" : "parameter.part",
+  "name" : "part",
+  "lvl" : 1,
+  "min" : 0,
+  "max" : 1,
+  "type" : "",
+  "desc" : ""
+}, {
+  "path" : "parameter",
+  "name" : "parameter:saslMechanism",
+  "lvl" : 0,
+  "min" : 0,
+  "max" : 1,
+  "type" : "",
+  "desc" : ""
+}, {
+  "path" : "parameter.name",
+  "name" : "name",
+  "lvl" : 1,
+  "min" : 0,
+  "max" : 1,
+  "type" : "",
+  "desc" : ""
+}, {
+  "path" : "parameter.value[x]",
+  "name" : "value[x]",
+  "lvl" : 1,
+  "min" : 1,
+  "max" : 1,
+  "type" : "string",
+  "desc" : ""
+}, {
+  "path" : "parameter.resource",
+  "name" : "resource",
+  "lvl" : 1,
+  "min" : 0,
+  "max" : 1,
+  "type" : "",
+  "desc" : ""
+}, {
+  "path" : "parameter.part",
+  "name" : "part",
+  "lvl" : 1,
+  "min" : 0,
+  "max" : 1,
+  "type" : "",
+  "desc" : ""
+}, {
+  "path" : "parameter",
+  "name" : "parameter:securityProtocol",
+  "lvl" : 0,
+  "min" : 0,
+  "max" : 1,
+  "type" : "",
+  "desc" : ""
+}, {
+  "path" : "parameter.name",
+  "name" : "name",
+  "lvl" : 1,
+  "min" : 0,
+  "max" : 1,
+  "type" : "",
+  "desc" : ""
+}, {
+  "path" : "parameter.value[x]",
+  "name" : "value[x]",
+  "lvl" : 1,
+  "min" : 1,
+  "max" : 1,
+  "type" : "string",
+  "desc" : ""
+}, {
+  "path" : "parameter.resource",
+  "name" : "resource",
+  "lvl" : 1,
+  "min" : 0,
+  "max" : 1,
+  "type" : "",
+  "desc" : ""
+}, {
+  "path" : "parameter.part",
+  "name" : "part",
+  "lvl" : 1,
+  "min" : 0,
+  "max" : 1,
+  "type" : "",
+  "desc" : ""
+}, {
+  "path" : "parameter",
+  "name" : "parameter:sslKeystoreKey",
   "lvl" : 0,
   "min" : 0,
   "max" : 1,
@@ -12852,7 +12852,7 @@ Kafka best-effort mock delivery profile for AidboxTopicDestination.
   "desc" : ""
 }, {
   "path" : "parameter",
-  "name" : "parameter:kafkaTopic",
+  "name" : "parameter:autocomplete",
   "lvl" : 0,
   "min" : 0,
   "max" : 1,
@@ -12872,7 +12872,47 @@ Kafka best-effort mock delivery profile for AidboxTopicDestination.
   "lvl" : 1,
   "min" : 1,
   "max" : 1,
-  "type" : "string",
+  "type" : "boolean",
+  "desc" : ""
+}, {
+  "path" : "parameter.resource",
+  "name" : "resource",
+  "lvl" : 1,
+  "min" : 0,
+  "max" : 1,
+  "type" : "",
+  "desc" : ""
+}, {
+  "path" : "parameter.part",
+  "name" : "part",
+  "lvl" : 1,
+  "min" : 0,
+  "max" : 1,
+  "type" : "",
+  "desc" : ""
+}, {
+  "path" : "parameter",
+  "name" : "parameter:batchSize",
+  "lvl" : 0,
+  "min" : 0,
+  "max" : 1,
+  "type" : "",
+  "desc" : ""
+}, {
+  "path" : "parameter.name",
+  "name" : "name",
+  "lvl" : 1,
+  "min" : 0,
+  "max" : 1,
+  "type" : "",
+  "desc" : ""
+}, {
+  "path" : "parameter.value[x]",
+  "name" : "value[x]",
+  "lvl" : 1,
+  "min" : 1,
+  "max" : 1,
+  "type" : "unsignedInt",
   "desc" : ""
 }, {
   "path" : "parameter.resource",
@@ -12972,7 +13012,7 @@ Kafka best-effort mock delivery profile for AidboxTopicDestination.
   "desc" : ""
 }, {
   "path" : "parameter",
-  "name" : "parameter:batchSize",
+  "name" : "parameter:deliveryTimeoutMs",
   "lvl" : 0,
   "min" : 0,
   "max" : 1,
@@ -13012,7 +13052,7 @@ Kafka best-effort mock delivery profile for AidboxTopicDestination.
   "desc" : ""
 }, {
   "path" : "parameter",
-  "name" : "parameter:deliveryTimeoutMs",
+  "name" : "parameter:fail-on-creation-of-producer",
   "lvl" : 0,
   "min" : 0,
   "max" : 1,
@@ -13032,7 +13072,47 @@ Kafka best-effort mock delivery profile for AidboxTopicDestination.
   "lvl" : 1,
   "min" : 1,
   "max" : 1,
-  "type" : "unsignedInt",
+  "type" : "boolean",
+  "desc" : ""
+}, {
+  "path" : "parameter.resource",
+  "name" : "resource",
+  "lvl" : 1,
+  "min" : 0,
+  "max" : 1,
+  "type" : "",
+  "desc" : ""
+}, {
+  "path" : "parameter.part",
+  "name" : "part",
+  "lvl" : 1,
+  "min" : 0,
+  "max" : 1,
+  "type" : "",
+  "desc" : ""
+}, {
+  "path" : "parameter",
+  "name" : "parameter:kafkaTopic",
+  "lvl" : 0,
+  "min" : 0,
+  "max" : 1,
+  "type" : "",
+  "desc" : ""
+}, {
+  "path" : "parameter.name",
+  "name" : "name",
+  "lvl" : 1,
+  "min" : 0,
+  "max" : 1,
+  "type" : "",
+  "desc" : ""
+}, {
+  "path" : "parameter.value[x]",
+  "name" : "value[x]",
+  "lvl" : 1,
+  "min" : 1,
+  "max" : 1,
+  "type" : "string",
   "desc" : ""
 }, {
   "path" : "parameter.resource",
@@ -13172,87 +13252,7 @@ Kafka best-effort mock delivery profile for AidboxTopicDestination.
   "desc" : ""
 }, {
   "path" : "parameter",
-  "name" : "parameter:sslKeystoreKey",
-  "lvl" : 0,
-  "min" : 0,
-  "max" : 1,
-  "type" : "",
-  "desc" : ""
-}, {
-  "path" : "parameter.name",
-  "name" : "name",
-  "lvl" : 1,
-  "min" : 0,
-  "max" : 1,
-  "type" : "",
-  "desc" : ""
-}, {
-  "path" : "parameter.value[x]",
-  "name" : "value[x]",
-  "lvl" : 1,
-  "min" : 1,
-  "max" : 1,
-  "type" : "string",
-  "desc" : ""
-}, {
-  "path" : "parameter.resource",
-  "name" : "resource",
-  "lvl" : 1,
-  "min" : 0,
-  "max" : 1,
-  "type" : "",
-  "desc" : ""
-}, {
-  "path" : "parameter.part",
-  "name" : "part",
-  "lvl" : 1,
-  "min" : 0,
-  "max" : 1,
-  "type" : "",
-  "desc" : ""
-}, {
-  "path" : "parameter",
-  "name" : "parameter:securityProtocol",
-  "lvl" : 0,
-  "min" : 0,
-  "max" : 1,
-  "type" : "",
-  "desc" : ""
-}, {
-  "path" : "parameter.name",
-  "name" : "name",
-  "lvl" : 1,
-  "min" : 0,
-  "max" : 1,
-  "type" : "",
-  "desc" : ""
-}, {
-  "path" : "parameter.value[x]",
-  "name" : "value[x]",
-  "lvl" : 1,
-  "min" : 1,
-  "max" : 1,
-  "type" : "string",
-  "desc" : ""
-}, {
-  "path" : "parameter.resource",
-  "name" : "resource",
-  "lvl" : 1,
-  "min" : 0,
-  "max" : 1,
-  "type" : "",
-  "desc" : ""
-}, {
-  "path" : "parameter.part",
-  "name" : "part",
-  "lvl" : 1,
-  "min" : 0,
-  "max" : 1,
-  "type" : "",
-  "desc" : ""
-}, {
-  "path" : "parameter",
-  "name" : "parameter:saslMechanism",
+  "name" : "parameter:saslClientCallbackHandlerClass",
   "lvl" : 0,
   "min" : 0,
   "max" : 1,
@@ -13332,7 +13332,7 @@ Kafka best-effort mock delivery profile for AidboxTopicDestination.
   "desc" : ""
 }, {
   "path" : "parameter",
-  "name" : "parameter:saslClientCallbackHandlerClass",
+  "name" : "parameter:saslMechanism",
   "lvl" : 0,
   "min" : 0,
   "max" : 1,
@@ -13372,7 +13372,7 @@ Kafka best-effort mock delivery profile for AidboxTopicDestination.
   "desc" : ""
 }, {
   "path" : "parameter",
-  "name" : "parameter:autocomplete",
+  "name" : "parameter:securityProtocol",
   "lvl" : 0,
   "min" : 0,
   "max" : 1,
@@ -13392,7 +13392,7 @@ Kafka best-effort mock delivery profile for AidboxTopicDestination.
   "lvl" : 1,
   "min" : 1,
   "max" : 1,
-  "type" : "boolean",
+  "type" : "string",
   "desc" : ""
 }, {
   "path" : "parameter.resource",
@@ -13412,7 +13412,7 @@ Kafka best-effort mock delivery profile for AidboxTopicDestination.
   "desc" : ""
 }, {
   "path" : "parameter",
-  "name" : "parameter:fail-on-creation-of-producer",
+  "name" : "parameter:sslKeystoreKey",
   "lvl" : 0,
   "min" : 0,
   "max" : 1,
@@ -13432,7 +13432,7 @@ Kafka best-effort mock delivery profile for AidboxTopicDestination.
   "lvl" : 1,
   "min" : 1,
   "max" : 1,
-  "type" : "boolean",
+  "type" : "string",
   "desc" : ""
 }, {
   "path" : "parameter.resource",
@@ -13471,86 +13471,6 @@ NATS Core best-effort delivery profile for AidboxTopicDestination.
   "path" : "parameter",
   "name" : "parameter",
   "lvl" : 0,
-  "min" : 0,
-  "max" : 1,
-  "type" : "",
-  "desc" : ""
-}, {
-  "path" : "parameter",
-  "name" : "parameter:url",
-  "lvl" : 0,
-  "min" : 1,
-  "max" : 1,
-  "type" : "",
-  "desc" : ""
-}, {
-  "path" : "parameter.name",
-  "name" : "name",
-  "lvl" : 1,
-  "min" : 0,
-  "max" : 1,
-  "type" : "",
-  "desc" : ""
-}, {
-  "path" : "parameter.value[x]",
-  "name" : "value[x]",
-  "lvl" : 1,
-  "min" : 1,
-  "max" : 1,
-  "type" : "string",
-  "desc" : ""
-}, {
-  "path" : "parameter.resource",
-  "name" : "resource",
-  "lvl" : 1,
-  "min" : 0,
-  "max" : 1,
-  "type" : "",
-  "desc" : ""
-}, {
-  "path" : "parameter.part",
-  "name" : "part",
-  "lvl" : 1,
-  "min" : 0,
-  "max" : 1,
-  "type" : "",
-  "desc" : ""
-}, {
-  "path" : "parameter",
-  "name" : "parameter:subject",
-  "lvl" : 0,
-  "min" : 1,
-  "max" : 1,
-  "type" : "",
-  "desc" : ""
-}, {
-  "path" : "parameter.name",
-  "name" : "name",
-  "lvl" : 1,
-  "min" : 0,
-  "max" : 1,
-  "type" : "",
-  "desc" : ""
-}, {
-  "path" : "parameter.value[x]",
-  "name" : "value[x]",
-  "lvl" : 1,
-  "min" : 1,
-  "max" : 1,
-  "type" : "string",
-  "desc" : ""
-}, {
-  "path" : "parameter.resource",
-  "name" : "resource",
-  "lvl" : 1,
-  "min" : 0,
-  "max" : 1,
-  "type" : "",
-  "desc" : ""
-}, {
-  "path" : "parameter.part",
-  "name" : "part",
-  "lvl" : 1,
   "min" : 0,
   "max" : 1,
   "type" : "",
@@ -13637,6 +13557,46 @@ NATS Core best-effort delivery profile for AidboxTopicDestination.
   "desc" : ""
 }, {
   "path" : "parameter",
+  "name" : "parameter:password",
+  "lvl" : 0,
+  "min" : 0,
+  "max" : 1,
+  "type" : "",
+  "desc" : ""
+}, {
+  "path" : "parameter.name",
+  "name" : "name",
+  "lvl" : 1,
+  "min" : 0,
+  "max" : 1,
+  "type" : "",
+  "desc" : ""
+}, {
+  "path" : "parameter.value[x]",
+  "name" : "value[x]",
+  "lvl" : 1,
+  "min" : 1,
+  "max" : 1,
+  "type" : "string",
+  "desc" : ""
+}, {
+  "path" : "parameter.resource",
+  "name" : "resource",
+  "lvl" : 1,
+  "min" : 0,
+  "max" : 1,
+  "type" : "",
+  "desc" : ""
+}, {
+  "path" : "parameter.part",
+  "name" : "part",
+  "lvl" : 1,
+  "min" : 0,
+  "max" : 1,
+  "type" : "",
+  "desc" : ""
+}, {
+  "path" : "parameter",
   "name" : "parameter:sslContext",
   "lvl" : 0,
   "min" : 0,
@@ -13677,9 +13637,9 @@ NATS Core best-effort delivery profile for AidboxTopicDestination.
   "desc" : ""
 }, {
   "path" : "parameter",
-  "name" : "parameter:username",
+  "name" : "parameter:subject",
   "lvl" : 0,
-  "min" : 0,
+  "min" : 1,
   "max" : 1,
   "type" : "",
   "desc" : ""
@@ -13717,7 +13677,47 @@ NATS Core best-effort delivery profile for AidboxTopicDestination.
   "desc" : ""
 }, {
   "path" : "parameter",
-  "name" : "parameter:password",
+  "name" : "parameter:url",
+  "lvl" : 0,
+  "min" : 1,
+  "max" : 1,
+  "type" : "",
+  "desc" : ""
+}, {
+  "path" : "parameter.name",
+  "name" : "name",
+  "lvl" : 1,
+  "min" : 0,
+  "max" : 1,
+  "type" : "",
+  "desc" : ""
+}, {
+  "path" : "parameter.value[x]",
+  "name" : "value[x]",
+  "lvl" : 1,
+  "min" : 1,
+  "max" : 1,
+  "type" : "string",
+  "desc" : ""
+}, {
+  "path" : "parameter.resource",
+  "name" : "resource",
+  "lvl" : 1,
+  "min" : 0,
+  "max" : 1,
+  "type" : "",
+  "desc" : ""
+}, {
+  "path" : "parameter.part",
+  "name" : "part",
+  "lvl" : 1,
+  "min" : 0,
+  "max" : 1,
+  "type" : "",
+  "desc" : ""
+}, {
+  "path" : "parameter",
+  "name" : "parameter:username",
   "lvl" : 0,
   "min" : 0,
   "max" : 1,
@@ -13782,86 +13782,6 @@ NATS JetStream at-least-once delivery profile for AidboxTopicDestination.
   "desc" : ""
 }, {
   "path" : "parameter",
-  "name" : "parameter:url",
-  "lvl" : 0,
-  "min" : 1,
-  "max" : 1,
-  "type" : "",
-  "desc" : ""
-}, {
-  "path" : "parameter.name",
-  "name" : "name",
-  "lvl" : 1,
-  "min" : 0,
-  "max" : 1,
-  "type" : "",
-  "desc" : ""
-}, {
-  "path" : "parameter.value[x]",
-  "name" : "value[x]",
-  "lvl" : 1,
-  "min" : 1,
-  "max" : 1,
-  "type" : "string",
-  "desc" : ""
-}, {
-  "path" : "parameter.resource",
-  "name" : "resource",
-  "lvl" : 1,
-  "min" : 0,
-  "max" : 1,
-  "type" : "",
-  "desc" : ""
-}, {
-  "path" : "parameter.part",
-  "name" : "part",
-  "lvl" : 1,
-  "min" : 0,
-  "max" : 1,
-  "type" : "",
-  "desc" : ""
-}, {
-  "path" : "parameter",
-  "name" : "parameter:subject",
-  "lvl" : 0,
-  "min" : 1,
-  "max" : 1,
-  "type" : "",
-  "desc" : ""
-}, {
-  "path" : "parameter.name",
-  "name" : "name",
-  "lvl" : 1,
-  "min" : 0,
-  "max" : 1,
-  "type" : "",
-  "desc" : ""
-}, {
-  "path" : "parameter.value[x]",
-  "name" : "value[x]",
-  "lvl" : 1,
-  "min" : 1,
-  "max" : 1,
-  "type" : "string",
-  "desc" : ""
-}, {
-  "path" : "parameter.resource",
-  "name" : "resource",
-  "lvl" : 1,
-  "min" : 0,
-  "max" : 1,
-  "type" : "",
-  "desc" : ""
-}, {
-  "path" : "parameter.part",
-  "name" : "part",
-  "lvl" : 1,
-  "min" : 0,
-  "max" : 1,
-  "type" : "",
-  "desc" : ""
-}, {
-  "path" : "parameter",
   "name" : "parameter:connectionName",
   "lvl" : 0,
   "min" : 0,
@@ -13942,6 +13862,46 @@ NATS JetStream at-least-once delivery profile for AidboxTopicDestination.
   "desc" : ""
 }, {
   "path" : "parameter",
+  "name" : "parameter:password",
+  "lvl" : 0,
+  "min" : 0,
+  "max" : 1,
+  "type" : "",
+  "desc" : ""
+}, {
+  "path" : "parameter.name",
+  "name" : "name",
+  "lvl" : 1,
+  "min" : 0,
+  "max" : 1,
+  "type" : "",
+  "desc" : ""
+}, {
+  "path" : "parameter.value[x]",
+  "name" : "value[x]",
+  "lvl" : 1,
+  "min" : 1,
+  "max" : 1,
+  "type" : "string",
+  "desc" : ""
+}, {
+  "path" : "parameter.resource",
+  "name" : "resource",
+  "lvl" : 1,
+  "min" : 0,
+  "max" : 1,
+  "type" : "",
+  "desc" : ""
+}, {
+  "path" : "parameter.part",
+  "name" : "part",
+  "lvl" : 1,
+  "min" : 0,
+  "max" : 1,
+  "type" : "",
+  "desc" : ""
+}, {
+  "path" : "parameter",
   "name" : "parameter:sslContext",
   "lvl" : 0,
   "min" : 0,
@@ -13982,9 +13942,9 @@ NATS JetStream at-least-once delivery profile for AidboxTopicDestination.
   "desc" : ""
 }, {
   "path" : "parameter",
-  "name" : "parameter:username",
+  "name" : "parameter:subject",
   "lvl" : 0,
-  "min" : 0,
+  "min" : 1,
   "max" : 1,
   "type" : "",
   "desc" : ""
@@ -14022,7 +13982,47 @@ NATS JetStream at-least-once delivery profile for AidboxTopicDestination.
   "desc" : ""
 }, {
   "path" : "parameter",
-  "name" : "parameter:password",
+  "name" : "parameter:url",
+  "lvl" : 0,
+  "min" : 1,
+  "max" : 1,
+  "type" : "",
+  "desc" : ""
+}, {
+  "path" : "parameter.name",
+  "name" : "name",
+  "lvl" : 1,
+  "min" : 0,
+  "max" : 1,
+  "type" : "",
+  "desc" : ""
+}, {
+  "path" : "parameter.value[x]",
+  "name" : "value[x]",
+  "lvl" : 1,
+  "min" : 1,
+  "max" : 1,
+  "type" : "string",
+  "desc" : ""
+}, {
+  "path" : "parameter.resource",
+  "name" : "resource",
+  "lvl" : 1,
+  "min" : 0,
+  "max" : 1,
+  "type" : "",
+  "desc" : ""
+}, {
+  "path" : "parameter.part",
+  "name" : "part",
+  "lvl" : 1,
+  "min" : 0,
+  "max" : 1,
+  "type" : "",
+  "desc" : ""
+}, {
+  "path" : "parameter",
+  "name" : "parameter:username",
   "lvl" : 0,
   "min" : 0,
   "max" : 1,
@@ -14127,10 +14127,10 @@ Webhook at-least-once delivery profile for AidboxTopicDestination.
   "desc" : ""
 }, {
   "path" : "parameter",
-  "name" : "parameter:timeout",
+  "name" : "parameter:header",
   "lvl" : 0,
   "min" : 0,
-  "max" : 1,
+  "max" : "*",
   "type" : "",
   "desc" : ""
 }, {
@@ -14147,7 +14147,7 @@ Webhook at-least-once delivery profile for AidboxTopicDestination.
   "lvl" : 1,
   "min" : 1,
   "max" : 1,
-  "type" : "unsignedInt",
+  "type" : "string",
   "desc" : ""
 }, {
   "path" : "parameter.resource",
@@ -14247,10 +14247,10 @@ Webhook at-least-once delivery profile for AidboxTopicDestination.
   "desc" : ""
 }, {
   "path" : "parameter",
-  "name" : "parameter:header",
+  "name" : "parameter:timeout",
   "lvl" : 0,
   "min" : 0,
-  "max" : "*",
+  "max" : 1,
   "type" : "",
   "desc" : ""
 }, {
@@ -14267,7 +14267,7 @@ Webhook at-least-once delivery profile for AidboxTopicDestination.
   "lvl" : 1,
   "min" : 1,
   "max" : 1,
-  "type" : "string",
+  "type" : "unsignedInt",
   "desc" : ""
 }, {
   "path" : "parameter.resource",
@@ -14522,13 +14522,13 @@ UI history tracking resource for Aidbox console.
   "type" : "string",
   "desc" : "System Property. DO NOT USE IT."
 }, {
-  "path" : "user",
-  "name" : "user",
+  "path" : "command",
+  "name" : "command",
   "lvl" : 0,
   "min" : 0,
   "max" : 1,
-  "type" : "Reference",
-  "desc" : "Reference to the user who performed the action. \n\n**Allowed references**: User"
+  "type" : "string",
+  "desc" : "Command that was executed."
 }, {
   "path" : "type",
   "name" : "type",
@@ -14538,13 +14538,13 @@ UI history tracking resource for Aidbox console.
   "type" : "string",
   "desc" : "Type of history entry. \n\n**Allowed values**: `http` | `sql`"
 }, {
-  "path" : "command",
-  "name" : "command",
+  "path" : "user",
+  "name" : "user",
   "lvl" : 0,
   "min" : 0,
   "max" : 1,
-  "type" : "string",
-  "desc" : "Command that was executed."
+  "type" : "Reference",
+  "desc" : "Reference to the user who performed the action. \n\n**Allowed references**: User"
 } ]
 ```
 
@@ -14563,13 +14563,13 @@ UI snippet resource for saved queries and commands in Aidbox console.
   "type" : "string",
   "desc" : "System Property. DO NOT USE IT."
 }, {
-  "path" : "title",
-  "name" : "title",
+  "path" : "collection",
+  "name" : "collection",
   "lvl" : 0,
   "min" : 0,
   "max" : 1,
   "type" : "string",
-  "desc" : "Title of the snippet."
+  "desc" : "Collection the snippet belongs to."
 }, {
   "path" : "command",
   "name" : "command",
@@ -14579,21 +14579,13 @@ UI snippet resource for saved queries and commands in Aidbox console.
   "type" : "string",
   "desc" : "Command or query content."
 }, {
-  "path" : "user",
-  "name" : "user",
-  "lvl" : 0,
-  "min" : 0,
-  "max" : 1,
-  "type" : "Reference",
-  "desc" : "Reference to the user who created the snippet. \n\n**Allowed references**: User"
-}, {
-  "path" : "collection",
-  "name" : "collection",
+  "path" : "title",
+  "name" : "title",
   "lvl" : 0,
   "min" : 0,
   "max" : 1,
   "type" : "string",
-  "desc" : "Collection the snippet belongs to."
+  "desc" : "Title of the snippet."
 }, {
   "path" : "type",
   "name" : "type",
@@ -14602,6 +14594,14 @@ UI snippet resource for saved queries and commands in Aidbox console.
   "max" : 1,
   "type" : "string",
   "desc" : "Type of snippet. \n\n**Allowed values**: `http` | `sql`"
+}, {
+  "path" : "user",
+  "name" : "user",
+  "lvl" : 0,
+  "min" : 0,
+  "max" : 1,
+  "type" : "Reference",
+  "desc" : "Reference to the user who created the snippet. \n\n**Allowed references**: User"
 } ]
 ```
 
