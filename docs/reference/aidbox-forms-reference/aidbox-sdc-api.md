@@ -183,7 +183,7 @@ issue:
 
 > Aidbox uses HS256 to sign JWT token by default. To use RS256 you need to set
 >
-> `BOX_AUTH_KEYS_PRIVATE` and `BOX_AUTH_KEYS_PUBLIC` environment variables.
+> `BOX_SECURITY_AUTH_KEYS_PRIVATE` and `BOX_SECURITY_AUTH_KEYS_PUBLIC` environment variables.
 >
 > [See settings](https://docs.aidbox.app/reference/settings/security-and-access-control#security.auth.keys.public)
 
