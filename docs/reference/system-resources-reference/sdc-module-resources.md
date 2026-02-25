@@ -29,45 +29,37 @@ Theme styling for SDC questionnaire forms including colors, fonts, and component
 
 ```fhir-structure
 [ {
-  "path" : "theme-name",
-  "name" : "theme-name",
+  "path" : "background",
+  "name" : "background",
   "lvl" : 0,
   "min" : 0,
   "max" : 1,
-  "type" : "string",
-  "desc" : "Theme Title"
+  "type" : "BackboneElement",
+  "desc" : "Background styles"
 }, {
-  "path" : "language",
-  "name" : "language",
-  "lvl" : 0,
-  "min" : 0,
-  "max" : 1,
-  "type" : "code",
-  "desc" : "Theme Language"
-}, {
-  "path" : "design-system",
-  "name" : "design-system",
-  "lvl" : 0,
-  "min" : 0,
-  "max" : 1,
-  "type" : "string",
-  "desc" : "Design System used in form components \n\n**Allowed values**: `aidbox-desktop` | `aidbox-mobile` | `NHS`"
-}, {
-  "path" : "main-color",
+  "path" : "background.main-color",
   "name" : "main-color",
-  "lvl" : 0,
+  "lvl" : 1,
   "min" : 0,
   "max" : 1,
   "type" : "string",
-  "desc" : "Main accent color (RGB hex)"
+  "desc" : "Main background color (RGB hex)"
 }, {
-  "path" : "font-family",
-  "name" : "font-family",
-  "lvl" : 0,
+  "path" : "background.form-color",
+  "name" : "form-color",
+  "lvl" : 1,
   "min" : 0,
   "max" : 1,
   "type" : "string",
-  "desc" : "Font-Family \n\n**Allowed values**: `Product Sans` | `Metropolis` | `Inter`"
+  "desc" : "Background color for form (RGB hex)"
+}, {
+  "path" : "background.toolbar-color",
+  "name" : "toolbar-color",
+  "lvl" : 1,
+  "min" : 0,
+  "max" : 1,
+  "type" : "string",
+  "desc" : "Background color for toolbar that displays below the form (with submit button) (RGB hex)"
 }, {
   "path" : "base-font-size",
   "name" : "base-font-size",
@@ -116,86 +108,6 @@ Theme styling for SDC questionnaire forms including colors, fonts, and component
   "max" : 1,
   "type" : "string",
   "desc" : "Web link to bottom-left image"
-}, {
-  "path" : "background",
-  "name" : "background",
-  "lvl" : 0,
-  "min" : 0,
-  "max" : 1,
-  "type" : "BackboneElement",
-  "desc" : "Background styles"
-}, {
-  "path" : "background.main-color",
-  "name" : "main-color",
-  "lvl" : 1,
-  "min" : 0,
-  "max" : 1,
-  "type" : "string",
-  "desc" : "Main background color (RGB hex)"
-}, {
-  "path" : "background.form-color",
-  "name" : "form-color",
-  "lvl" : 1,
-  "min" : 0,
-  "max" : 1,
-  "type" : "string",
-  "desc" : "Background color for form (RGB hex)"
-}, {
-  "path" : "background.toolbar-color",
-  "name" : "toolbar-color",
-  "lvl" : 1,
-  "min" : 0,
-  "max" : 1,
-  "type" : "string",
-  "desc" : "Background color for toolbar that displays below the form (with submit button) (RGB hex)"
-}, {
-  "path" : "input",
-  "name" : "input",
-  "lvl" : 0,
-  "min" : 0,
-  "max" : 1,
-  "type" : "BackboneElement",
-  "desc" : "Input styles"
-}, {
-  "path" : "input.accent-color",
-  "name" : "accent-color",
-  "lvl" : 1,
-  "min" : 0,
-  "max" : 1,
-  "type" : "string",
-  "desc" : "Main color for inputs (border color for text inputs, background for checkbox, etc.) (RGB hex)"
-}, {
-  "path" : "input.text-color",
-  "name" : "text-color",
-  "lvl" : 1,
-  "min" : 0,
-  "max" : 1,
-  "type" : "string",
-  "desc" : "Text color (RGB hex)"
-}, {
-  "path" : "input.background-color",
-  "name" : "background-color",
-  "lvl" : 1,
-  "min" : 0,
-  "max" : 1,
-  "type" : "string",
-  "desc" : "Background color (RGB hex)"
-}, {
-  "path" : "input.font-size",
-  "name" : "font-size",
-  "lvl" : 1,
-  "min" : 0,
-  "max" : 1,
-  "type" : "decimal",
-  "desc" : "Input font size (px)"
-}, {
-  "path" : "input.hierarchy-padding",
-  "name" : "hierarchy-padding",
-  "lvl" : 1,
-  "min" : 0,
-  "max" : 1,
-  "type" : "decimal",
-  "desc" : "Left padding showing hierarchy of nested items (rem)"
 }, {
   "path" : "button",
   "name" : "button",
@@ -348,6 +260,94 @@ Theme styling for SDC questionnaire forms including colors, fonts, and component
   "max" : 1,
   "type" : "string",
   "desc" : ""
+}, {
+  "path" : "design-system",
+  "name" : "design-system",
+  "lvl" : 0,
+  "min" : 0,
+  "max" : 1,
+  "type" : "string",
+  "desc" : "Design System used in form components \n\n**Allowed values**: `aidbox-desktop` | `aidbox-mobile` | `NHS`"
+}, {
+  "path" : "font-family",
+  "name" : "font-family",
+  "lvl" : 0,
+  "min" : 0,
+  "max" : 1,
+  "type" : "string",
+  "desc" : "Font-Family \n\n**Allowed values**: `Product Sans` | `Metropolis` | `Inter`"
+}, {
+  "path" : "input",
+  "name" : "input",
+  "lvl" : 0,
+  "min" : 0,
+  "max" : 1,
+  "type" : "BackboneElement",
+  "desc" : "Input styles"
+}, {
+  "path" : "input.accent-color",
+  "name" : "accent-color",
+  "lvl" : 1,
+  "min" : 0,
+  "max" : 1,
+  "type" : "string",
+  "desc" : "Main color for inputs (border color for text inputs, background for checkbox, etc.) (RGB hex)"
+}, {
+  "path" : "input.text-color",
+  "name" : "text-color",
+  "lvl" : 1,
+  "min" : 0,
+  "max" : 1,
+  "type" : "string",
+  "desc" : "Text color (RGB hex)"
+}, {
+  "path" : "input.background-color",
+  "name" : "background-color",
+  "lvl" : 1,
+  "min" : 0,
+  "max" : 1,
+  "type" : "string",
+  "desc" : "Background color (RGB hex)"
+}, {
+  "path" : "input.font-size",
+  "name" : "font-size",
+  "lvl" : 1,
+  "min" : 0,
+  "max" : 1,
+  "type" : "decimal",
+  "desc" : "Input font size (px)"
+}, {
+  "path" : "input.hierarchy-padding",
+  "name" : "hierarchy-padding",
+  "lvl" : 1,
+  "min" : 0,
+  "max" : 1,
+  "type" : "decimal",
+  "desc" : "Left padding showing hierarchy of nested items (rem)"
+}, {
+  "path" : "language",
+  "name" : "language",
+  "lvl" : 0,
+  "min" : 0,
+  "max" : 1,
+  "type" : "code",
+  "desc" : "Theme Language"
+}, {
+  "path" : "main-color",
+  "name" : "main-color",
+  "lvl" : 0,
+  "min" : 0,
+  "max" : 1,
+  "type" : "string",
+  "desc" : "Main accent color (RGB hex)"
+}, {
+  "path" : "theme-name",
+  "name" : "theme-name",
+  "lvl" : 0,
+  "min" : 0,
+  "max" : 1,
+  "type" : "string",
+  "desc" : "Theme Title"
 } ]
 ```
 
@@ -358,13 +358,13 @@ Addendum resource. Contains additional information about an SDCDocument or SDCWo
 
 ```fhir-structure
 [ {
-  "path" : "type",
-  "name" : "type",
+  "path" : "date",
+  "name" : "date",
   "lvl" : 0,
   "min" : 1,
   "max" : 1,
-  "type" : "string",
-  "desc" : "Type of addendum"
+  "type" : "dateTime",
+  "desc" : "Date of addendum creation"
 }, {
   "path" : "target",
   "name" : "target",
@@ -398,6 +398,14 @@ Addendum resource. Contains additional information about an SDCDocument or SDCWo
   "type" : "string",
   "desc" : ""
 }, {
+  "path" : "type",
+  "name" : "type",
+  "lvl" : 0,
+  "min" : 1,
+  "max" : 1,
+  "type" : "string",
+  "desc" : "Type of addendum"
+}, {
   "path" : "user",
   "name" : "user",
   "lvl" : 0,
@@ -429,14 +437,6 @@ Addendum resource. Contains additional information about an SDCDocument or SDCWo
   "max" : 1,
   "type" : "string",
   "desc" : ""
-}, {
-  "path" : "date",
-  "name" : "date",
-  "lvl" : 0,
-  "min" : 1,
-  "max" : 1,
-  "type" : "dateTime",
-  "desc" : "Date of addendum creation"
 } ]
 ```
 
@@ -447,174 +447,6 @@ Configuration resource for SDC system settings including language, theme, storag
 
 ```fhir-structure
 [ {
-  "path" : "name",
-  "name" : "name",
-  "lvl" : 0,
-  "min" : 1,
-  "max" : 1,
-  "type" : "string",
-  "desc" : "Machine readable config name"
-}, {
-  "path" : "description",
-  "name" : "description",
-  "lvl" : 0,
-  "min" : 0,
-  "max" : 1,
-  "type" : "string",
-  "desc" : "Human readable config description"
-}, {
-  "path" : "default",
-  "name" : "default",
-  "lvl" : 0,
-  "min" : 0,
-  "max" : 1,
-  "type" : "boolean",
-  "desc" : "Sets config as default for system/tenant"
-}, {
-  "path" : "language",
-  "name" : "language",
-  "lvl" : 0,
-  "min" : 0,
-  "max" : 1,
-  "type" : "code",
-  "desc" : "Default language for UI"
-}, {
-  "path" : "theme",
-  "name" : "theme",
-  "lvl" : 0,
-  "min" : 0,
-  "max" : 1,
-  "type" : "Reference",
-  "desc" : "Default theme \n\n**Allowed references**: QuestionnaireTheme"
-}, {
-  "path" : "translations",
-  "name" : "translations",
-  "lvl" : 0,
-  "min" : 0,
-  "max" : 1,
-  "type" : "Object",
-  "desc" : "Custom translation strings for UI"
-}, {
-  "path" : "storage",
-  "name" : "storage",
-  "lvl" : 0,
-  "min" : 0,
-  "max" : 1,
-  "type" : "BackboneElement",
-  "desc" : "Storage configuration for attachments"
-}, {
-  "path" : "storage.account",
-  "name" : "account",
-  "lvl" : 1,
-  "min" : 0,
-  "max" : 1,
-  "type" : "Reference",
-  "desc" : "Storage Account \n\n**Allowed references**: AwsAccount, GcpServiceAccount, AzureContainer"
-}, {
-  "path" : "storage.bucket",
-  "name" : "bucket",
-  "lvl" : 1,
-  "min" : 0,
-  "max" : 1,
-  "type" : "string",
-  "desc" : "Storage bucket (required for GCP and S3)"
-}, {
-  "path" : "storage.storageAccount",
-  "name" : "storageAccount",
-  "lvl" : 1,
-  "min" : 0,
-  "max" : 1,
-  "type" : "string",
-  "desc" : "Azure storage account name (for Azure Workload Identity)"
-}, {
-  "path" : "storage.container",
-  "name" : "container",
-  "lvl" : 1,
-  "min" : 0,
-  "max" : 1,
-  "type" : "string",
-  "desc" : "Azure container name (for Azure Workload Identity)"
-}, {
-  "path" : "storage.store-absolute-url",
-  "name" : "store-absolute-url",
-  "lvl" : 1,
-  "min" : 0,
-  "max" : 1,
-  "type" : "boolean",
-  "desc" : "Store absolute url to QuestionnaireResponse attachments"
-}, {
-  "path" : "form-store",
-  "name" : "form-store",
-  "lvl" : 0,
-  "min" : 0,
-  "max" : 1,
-  "type" : "BackboneElement",
-  "desc" : "FHIR Server settings for storing/getting Questionnaire"
-}, {
-  "path" : "form-store.endpoint",
-  "name" : "endpoint",
-  "lvl" : 1,
-  "min" : 0,
-  "max" : 1,
-  "type" : "url",
-  "desc" : "FHIR Server that will be used for storing/getting Questionnaire (if not set - use Aidbox)"
-}, {
-  "path" : "form-store.headers",
-  "name" : "headers",
-  "lvl" : 1,
-  "min" : 0,
-  "max" : 1,
-  "type" : "Object",
-  "desc" : "Headers with credentials (optional)"
-}, {
-  "path" : "term-server",
-  "name" : "term-server",
-  "lvl" : 0,
-  "min" : 0,
-  "max" : 1,
-  "type" : "BackboneElement",
-  "desc" : ""
-}, {
-  "path" : "term-server.endpoint",
-  "name" : "endpoint",
-  "lvl" : 1,
-  "min" : 0,
-  "max" : 1,
-  "type" : "url",
-  "desc" : "FHIR Server that stores Terminology (ValueSet/expand$) (if not set - use Aidbox)"
-}, {
-  "path" : "term-server.headers",
-  "name" : "headers",
-  "lvl" : 1,
-  "min" : 0,
-  "max" : 1,
-  "type" : "Object",
-  "desc" : "Headers (with credentials) for accessing Service (optional)"
-}, {
-  "path" : "data-store",
-  "name" : "data-store",
-  "lvl" : 0,
-  "min" : 0,
-  "max" : 1,
-  "type" : "BackboneElement",
-  "desc" : ""
-}, {
-  "path" : "data-store.endpoint",
-  "name" : "endpoint",
-  "lvl" : 1,
-  "min" : 0,
-  "max" : 1,
-  "type" : "url",
-  "desc" : "FHIR Server for storing responses, populating data, and extraction (defaults to Aidbox)"
-}, {
-  "path" : "data-store.headers",
-  "name" : "headers",
-  "lvl" : 1,
-  "min" : 0,
-  "max" : 1,
-  "type" : "Object",
-  "desc" : "Headers (with credentials) for accessing Service (optional)"
-}, {
   "path" : "builder",
   "name" : "builder",
   "lvl" : 0,
@@ -823,6 +655,46 @@ Configuration resource for SDC system settings including language, theme, storag
   "type" : "string",
   "desc" : "Builder layout variant (default or v2)"
 }, {
+  "path" : "data-store",
+  "name" : "data-store",
+  "lvl" : 0,
+  "min" : 0,
+  "max" : 1,
+  "type" : "BackboneElement",
+  "desc" : ""
+}, {
+  "path" : "data-store.endpoint",
+  "name" : "endpoint",
+  "lvl" : 1,
+  "min" : 0,
+  "max" : 1,
+  "type" : "url",
+  "desc" : "FHIR Server for storing responses, populating data, and extraction (defaults to Aidbox)"
+}, {
+  "path" : "data-store.headers",
+  "name" : "headers",
+  "lvl" : 1,
+  "min" : 0,
+  "max" : 1,
+  "type" : "Object",
+  "desc" : "Headers (with credentials) for accessing Service (optional)"
+}, {
+  "path" : "default",
+  "name" : "default",
+  "lvl" : 0,
+  "min" : 0,
+  "max" : 1,
+  "type" : "boolean",
+  "desc" : "Sets config as default for system/tenant"
+}, {
+  "path" : "description",
+  "name" : "description",
+  "lvl" : 0,
+  "min" : 0,
+  "max" : 1,
+  "type" : "string",
+  "desc" : "Human readable config description"
+}, {
   "path" : "form",
   "name" : "form",
   "lvl" : 0,
@@ -950,6 +822,134 @@ Configuration resource for SDC system settings including language, theme, storag
   "max" : 1,
   "type" : "boolean",
   "desc" : "Hide download button in attachment widget"
+}, {
+  "path" : "form-store",
+  "name" : "form-store",
+  "lvl" : 0,
+  "min" : 0,
+  "max" : 1,
+  "type" : "BackboneElement",
+  "desc" : "FHIR Server settings for storing/getting Questionnaire"
+}, {
+  "path" : "form-store.endpoint",
+  "name" : "endpoint",
+  "lvl" : 1,
+  "min" : 0,
+  "max" : 1,
+  "type" : "url",
+  "desc" : "FHIR Server that will be used for storing/getting Questionnaire (if not set - use Aidbox)"
+}, {
+  "path" : "form-store.headers",
+  "name" : "headers",
+  "lvl" : 1,
+  "min" : 0,
+  "max" : 1,
+  "type" : "Object",
+  "desc" : "Headers with credentials (optional)"
+}, {
+  "path" : "language",
+  "name" : "language",
+  "lvl" : 0,
+  "min" : 0,
+  "max" : 1,
+  "type" : "code",
+  "desc" : "Default language for UI"
+}, {
+  "path" : "name",
+  "name" : "name",
+  "lvl" : 0,
+  "min" : 1,
+  "max" : 1,
+  "type" : "string",
+  "desc" : "Machine readable config name"
+}, {
+  "path" : "storage",
+  "name" : "storage",
+  "lvl" : 0,
+  "min" : 0,
+  "max" : 1,
+  "type" : "BackboneElement",
+  "desc" : "Storage configuration for attachments"
+}, {
+  "path" : "storage.account",
+  "name" : "account",
+  "lvl" : 1,
+  "min" : 0,
+  "max" : 1,
+  "type" : "Reference",
+  "desc" : "Storage Account \n\n**Allowed references**: AwsAccount, GcpServiceAccount, AzureContainer"
+}, {
+  "path" : "storage.bucket",
+  "name" : "bucket",
+  "lvl" : 1,
+  "min" : 0,
+  "max" : 1,
+  "type" : "string",
+  "desc" : "Storage bucket (required for GCP and S3)"
+}, {
+  "path" : "storage.storageAccount",
+  "name" : "storageAccount",
+  "lvl" : 1,
+  "min" : 0,
+  "max" : 1,
+  "type" : "string",
+  "desc" : "Azure storage account name (for Azure Workload Identity)"
+}, {
+  "path" : "storage.container",
+  "name" : "container",
+  "lvl" : 1,
+  "min" : 0,
+  "max" : 1,
+  "type" : "string",
+  "desc" : "Azure container name (for Azure Workload Identity)"
+}, {
+  "path" : "storage.store-absolute-url",
+  "name" : "store-absolute-url",
+  "lvl" : 1,
+  "min" : 0,
+  "max" : 1,
+  "type" : "boolean",
+  "desc" : "Store absolute url to QuestionnaireResponse attachments"
+}, {
+  "path" : "term-server",
+  "name" : "term-server",
+  "lvl" : 0,
+  "min" : 0,
+  "max" : 1,
+  "type" : "BackboneElement",
+  "desc" : ""
+}, {
+  "path" : "term-server.endpoint",
+  "name" : "endpoint",
+  "lvl" : 1,
+  "min" : 0,
+  "max" : 1,
+  "type" : "url",
+  "desc" : "FHIR Server that stores Terminology (ValueSet/expand$) (if not set - use Aidbox)"
+}, {
+  "path" : "term-server.headers",
+  "name" : "headers",
+  "lvl" : 1,
+  "min" : 0,
+  "max" : 1,
+  "type" : "Object",
+  "desc" : "Headers (with credentials) for accessing Service (optional)"
+}, {
+  "path" : "theme",
+  "name" : "theme",
+  "lvl" : 0,
+  "min" : 0,
+  "max" : 1,
+  "type" : "Reference",
+  "desc" : "Default theme \n\n**Allowed references**: QuestionnaireTheme"
+}, {
+  "path" : "translations",
+  "name" : "translations",
+  "lvl" : 0,
+  "min" : 0,
+  "max" : 1,
+  "type" : "Object",
+  "desc" : "Custom translation strings for UI"
 } ]
 ```
 
@@ -960,38 +960,6 @@ Questionnaire document resource. Stores captured form responses with status trac
 
 ```fhir-structure
 [ {
-  "path" : "based-on",
-  "name" : "based-on",
-  "lvl" : 0,
-  "min" : 0,
-  "max" : 1,
-  "type" : "BackboneElement",
-  "desc" : "Request that led to creation of this document"
-}, {
-  "path" : "based-on.id",
-  "name" : "id",
-  "lvl" : 1,
-  "min" : 0,
-  "max" : 1,
-  "type" : "string",
-  "desc" : ""
-}, {
-  "path" : "based-on.resourceType",
-  "name" : "resourceType",
-  "lvl" : 1,
-  "min" : 0,
-  "max" : 1,
-  "type" : "string",
-  "desc" : ""
-}, {
-  "path" : "based-on.display",
-  "name" : "display",
-  "lvl" : 1,
-  "min" : 0,
-  "max" : 1,
-  "type" : "string",
-  "desc" : ""
-}, {
   "path" : "author",
   "name" : "author",
   "lvl" : 0,
@@ -1024,29 +992,37 @@ Questionnaire document resource. Stores captured form responses with status trac
   "type" : "string",
   "desc" : ""
 }, {
-  "path" : "form",
-  "name" : "form",
+  "path" : "based-on",
+  "name" : "based-on",
   "lvl" : 0,
-  "min" : 1,
+  "min" : 0,
   "max" : 1,
   "type" : "BackboneElement",
-  "desc" : ""
+  "desc" : "Request that led to creation of this document"
 }, {
-  "path" : "form.form",
-  "name" : "form",
+  "path" : "based-on.id",
+  "name" : "id",
   "lvl" : 1,
   "min" : 0,
   "max" : 1,
   "type" : "string",
-  "desc" : "Full name of the form used to capture the document"
+  "desc" : ""
 }, {
-  "path" : "form.version",
-  "name" : "version",
+  "path" : "based-on.resourceType",
+  "name" : "resourceType",
   "lvl" : 1,
   "min" : 0,
   "max" : 1,
-  "type" : "decimal",
-  "desc" : "Form version used to capture the document"
+  "type" : "string",
+  "desc" : ""
+}, {
+  "path" : "based-on.display",
+  "name" : "display",
+  "lvl" : 1,
+  "min" : 0,
+  "max" : 1,
+  "type" : "string",
+  "desc" : ""
 }, {
   "path" : "encounter",
   "name" : "encounter",
@@ -1080,21 +1056,61 @@ Questionnaire document resource. Stores captured form responses with status trac
   "type" : "string",
   "desc" : ""
 }, {
-  "path" : "unit-system",
-  "name" : "unit-system",
+  "path" : "form",
+  "name" : "form",
   "lvl" : 0,
-  "min" : 0,
+  "min" : 1,
   "max" : 1,
-  "type" : "string",
-  "desc" : "Unit system used in this document at launch"
+  "type" : "BackboneElement",
+  "desc" : ""
 }, {
-  "path" : "status",
-  "name" : "status",
-  "lvl" : 0,
+  "path" : "form.form",
+  "name" : "form",
+  "lvl" : 1,
   "min" : 0,
   "max" : 1,
   "type" : "string",
-  "desc" : "Status of the document \n\n**Allowed values**: `draft` | `in-progress` | `canceled` | `completed` | `in-amendment` | `amended`"
+  "desc" : "Full name of the form used to capture the document"
+}, {
+  "path" : "form.version",
+  "name" : "version",
+  "lvl" : 1,
+  "min" : 0,
+  "max" : 1,
+  "type" : "decimal",
+  "desc" : "Form version used to capture the document"
+}, {
+  "path" : "patient",
+  "name" : "patient",
+  "lvl" : 0,
+  "min" : 0,
+  "max" : 1,
+  "type" : "BackboneElement",
+  "desc" : "The patient who is the subject of the document"
+}, {
+  "path" : "patient.id",
+  "name" : "id",
+  "lvl" : 1,
+  "min" : 0,
+  "max" : 1,
+  "type" : "string",
+  "desc" : ""
+}, {
+  "path" : "patient.resourceType",
+  "name" : "resourceType",
+  "lvl" : 1,
+  "min" : 0,
+  "max" : 1,
+  "type" : "string",
+  "desc" : ""
+}, {
+  "path" : "patient.display",
+  "name" : "display",
+  "lvl" : 1,
+  "min" : 0,
+  "max" : 1,
+  "type" : "string",
+  "desc" : ""
 }, {
   "path" : "source",
   "name" : "source",
@@ -1128,6 +1144,14 @@ Questionnaire document resource. Stores captured form responses with status trac
   "type" : "string",
   "desc" : ""
 }, {
+  "path" : "status",
+  "name" : "status",
+  "lvl" : 0,
+  "min" : 0,
+  "max" : 1,
+  "type" : "string",
+  "desc" : "Status of the document \n\n**Allowed values**: `draft` | `in-progress` | `canceled` | `completed` | `in-amendment` | `amended`"
+}, {
   "path" : "type",
   "name" : "type",
   "lvl" : 0,
@@ -1136,37 +1160,13 @@ Questionnaire document resource. Stores captured form responses with status trac
   "type" : "string",
   "desc" : "Name and version of the form used to capture the document"
 }, {
-  "path" : "patient",
-  "name" : "patient",
+  "path" : "unit-system",
+  "name" : "unit-system",
   "lvl" : 0,
   "min" : 0,
   "max" : 1,
-  "type" : "BackboneElement",
-  "desc" : "The patient who is the subject of the document"
-}, {
-  "path" : "patient.id",
-  "name" : "id",
-  "lvl" : 1,
-  "min" : 0,
-  "max" : 1,
   "type" : "string",
-  "desc" : ""
-}, {
-  "path" : "patient.resourceType",
-  "name" : "resourceType",
-  "lvl" : 1,
-  "min" : 0,
-  "max" : 1,
-  "type" : "string",
-  "desc" : ""
-}, {
-  "path" : "patient.display",
-  "name" : "display",
-  "lvl" : 1,
-  "min" : 0,
-  "max" : 1,
-  "type" : "string",
-  "desc" : ""
+  "desc" : "Unit system used in this document at launch"
 } ]
 ```
 
@@ -1202,14 +1202,6 @@ Form metadata for dynamic updates with incremental versioning and hash.
   "type" : "string",
   "desc" : "Form identifier"
 }, {
-  "path" : "version",
-  "name" : "version",
-  "lvl" : 0,
-  "min" : 0,
-  "max" : 1,
-  "type" : "decimal",
-  "desc" : "Incremental number of form version."
-}, {
   "path" : "hash",
   "name" : "hash",
   "lvl" : 0,
@@ -1225,6 +1217,14 @@ Form metadata for dynamic updates with incremental versioning and hash.
   "max" : 1,
   "type" : "string",
   "desc" : "Serialized form snapshot"
+}, {
+  "path" : "version",
+  "name" : "version",
+  "lvl" : 0,
+  "min" : 0,
+  "max" : 1,
+  "type" : "decimal",
+  "desc" : "Incremental number of form version."
 } ]
 ```
 
@@ -1252,14 +1252,6 @@ Workflow definition with status, params, and context for SDC forms.
 
 ```fhir-structure
 [ {
-  "path" : "params",
-  "name" : "params",
-  "lvl" : 0,
-  "min" : 0,
-  "max" : 1,
-  "type" : "Object",
-  "desc" : "Workflow parameters schema definition"
-}, {
   "path" : "cancel-reason",
   "name" : "cancel-reason",
   "lvl" : 0,
@@ -1267,54 +1259,6 @@ Workflow definition with status, params, and context for SDC forms.
   "max" : 1,
   "type" : "string",
   "desc" : "Reason why the workflow was canceled"
-}, {
-  "path" : "items",
-  "name" : "items",
-  "lvl" : 0,
-  "min" : 0,
-  "max" : 1,
-  "type" : "Object",
-  "desc" : "Workflow items"
-}, {
-  "path" : "workflow",
-  "name" : "workflow",
-  "lvl" : 0,
-  "min" : 0,
-  "max" : 1,
-  "type" : "string",
-  "desc" : "Workflow symbolic name"
-}, {
-  "path" : "status",
-  "name" : "status",
-  "lvl" : 0,
-  "min" : 0,
-  "max" : 1,
-  "type" : "string",
-  "desc" : "Workflow lifecycle status. Change via RPC: cancel-wf, complete-wf, cancel-task, complete-task. \n\n**Allowed values**: `new` | `in-progress` | `canceled` | `completed` | `in-amendment` | `amended`"
-}, {
-  "path" : "order",
-  "name" : "order",
-  "lvl" : 0,
-  "min" : 0,
-  "max" : "*",
-  "type" : "string",
-  "desc" : "Order of items (array of item keys)"
-}, {
-  "path" : "title",
-  "name" : "title",
-  "lvl" : 0,
-  "min" : 0,
-  "max" : 1,
-  "type" : "string",
-  "desc" : "Title of the workflow"
-}, {
-  "path" : "version",
-  "name" : "version",
-  "lvl" : 0,
-  "min" : 0,
-  "max" : 1,
-  "type" : "decimal",
-  "desc" : "Workflow version"
 }, {
   "path" : "ctx",
   "name" : "ctx",
@@ -1419,6 +1363,62 @@ Workflow definition with status, params, and context for SDC forms.
   "max" : 1,
   "type" : "string",
   "desc" : ""
+}, {
+  "path" : "items",
+  "name" : "items",
+  "lvl" : 0,
+  "min" : 0,
+  "max" : 1,
+  "type" : "Object",
+  "desc" : "Workflow items"
+}, {
+  "path" : "order",
+  "name" : "order",
+  "lvl" : 0,
+  "min" : 0,
+  "max" : "*",
+  "type" : "string",
+  "desc" : "Order of items (array of item keys)"
+}, {
+  "path" : "params",
+  "name" : "params",
+  "lvl" : 0,
+  "min" : 0,
+  "max" : 1,
+  "type" : "Object",
+  "desc" : "Workflow parameters schema definition"
+}, {
+  "path" : "status",
+  "name" : "status",
+  "lvl" : 0,
+  "min" : 0,
+  "max" : 1,
+  "type" : "string",
+  "desc" : "Workflow lifecycle status. Change via RPC: cancel-wf, complete-wf, cancel-task, complete-task. \n\n**Allowed values**: `new` | `in-progress` | `canceled` | `completed` | `in-amendment` | `amended`"
+}, {
+  "path" : "title",
+  "name" : "title",
+  "lvl" : 0,
+  "min" : 0,
+  "max" : 1,
+  "type" : "string",
+  "desc" : "Title of the workflow"
+}, {
+  "path" : "version",
+  "name" : "version",
+  "lvl" : 0,
+  "min" : 0,
+  "max" : 1,
+  "type" : "decimal",
+  "desc" : "Workflow version"
+}, {
+  "path" : "workflow",
+  "name" : "workflow",
+  "lvl" : 0,
+  "min" : 0,
+  "max" : 1,
+  "type" : "string",
+  "desc" : "Workflow symbolic name"
 } ]
 ```
 
@@ -1429,22 +1429,6 @@ Snapshotted workflow template with incremental versioning.
 
 ```fhir-structure
 [ {
-  "path" : "workflow",
-  "name" : "workflow",
-  "lvl" : 0,
-  "min" : 1,
-  "max" : 1,
-  "type" : "string",
-  "desc" : "Workflow identifier."
-}, {
-  "path" : "version",
-  "name" : "version",
-  "lvl" : 0,
-  "min" : 1,
-  "max" : 1,
-  "type" : "decimal",
-  "desc" : "Incremental number of workflow version."
-}, {
   "path" : "hash",
   "name" : "hash",
   "lvl" : 0,
@@ -1460,6 +1444,22 @@ Snapshotted workflow template with incremental versioning.
   "max" : 1,
   "type" : "string",
   "desc" : "Serialized workflow snapshot."
+}, {
+  "path" : "version",
+  "name" : "version",
+  "lvl" : 0,
+  "min" : 1,
+  "max" : 1,
+  "type" : "decimal",
+  "desc" : "Incremental number of workflow version."
+}, {
+  "path" : "workflow",
+  "name" : "workflow",
+  "lvl" : 0,
+  "min" : 1,
+  "max" : 1,
+  "type" : "string",
+  "desc" : "Workflow identifier."
 } ]
 ```
 
