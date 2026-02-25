@@ -143,13 +143,11 @@ Keys must be provided in full PEM format, including the `BEGIN` and `END` header
 {% hint style="danger" %}
 Starting from version **2602**, Aidbox validates the keypair at startup and **will not start** if:
 
-* Only one of `BOX_SECURITY_AUTH_KEYS_PRIVATE` / `BOX_SECURITY_AUTH_KEYS_PUBLIC` is set while the other is missing.
+* Only one of [`BOX_SECURITY_AUTH_KEYS_PRIVATE`](../reference/all-settings.md#security.auth.keys.private) / [`BOX_SECURITY_AUTH_KEYS_PUBLIC`](../reference/all-settings.md#security.auth.keys.public) is set while the other is missing.
 * Either key is malformed (e.g. not valid PEM, base64 decoding fails).
 * The public key does not correspond to the provided private key.
 
-The service will not pass health or readiness checks, and a clear error message will be logged.
-
-This also applies to the deprecated environment variable names `BOX_AUTH_KEYS_PRIVATE` / `BOX_AUTH_KEYS_PUBLIC`.
+The service will fail health and readiness checks, and will log a clear error message.
 {% endhint %}
 
 **Common mistakes:**
