@@ -5983,6 +5983,39 @@ Custom search query resource for Aidbox.
 ```
 
 
+## SecretReference
+
+Contains the name of a secret defined in the vault config file. Used together with data-absent-reason=masked to indicate that the field value is resolved at runtime from a mounted secret file.
+
+```fhir-structure
+[ {
+  "path" : "extension",
+  "name" : "extension",
+  "lvl" : 0,
+  "min" : 0,
+  "max" : 1,
+  "type" : "",
+  "desc" : ""
+}, {
+  "path" : "url",
+  "name" : "url",
+  "lvl" : 0,
+  "min" : 0,
+  "max" : 1,
+  "type" : "",
+  "desc" : ""
+}, {
+  "path" : "value[x]",
+  "name" : "value[x]",
+  "lvl" : 0,
+  "min" : 1,
+  "max" : 1,
+  "type" : "string",
+  "desc" : ""
+} ]
+```
+
+
 ## SeedImport
 
 Seed data import resource for initial data loading.
