@@ -99,29 +99,43 @@ DROP EXTENSION IF EXISTS fuzzystrmatch
 Then change `BOX_DB_EXTENSION_SCHEMA` and restart Aidbox.
 
 
-### Set up RSA private/public keys and secret
+### Set up private/public keys and secret
 
 Aidbox generates JWT tokens for different purposes:
 
 * As part of OAuth 2.0 authorization it generates authorization\_code in JWT format
 * If you specify auth token format as JWT, then your access\_token and refresh\_token will be in JWT format.
 
-Aidbox supports two signing algorithms: RS256 and HS256. RS256 expects providing private key for signing JWT and public key for verifing it. As far as HS256 needs only having secret for both operations.
+Aidbox supports three signing algorithms: RS256, ES256, and HS256. RS256 and ES256 expect providing private key for signing JWT and public key for verifying it. HS256 needs only a secret for both operations.
 
 {% hint style="warning" %}
-Attention: by default Aidbox generates both keypair and secret on every startup. This means that on every start all previously generated JWT will be invalid. In order to avoid such undesirable situation, you may pass RSA keypair and secret as Aidbox parameters.
+Attention: by default Aidbox generates both keypair and secret on every startup. This means that on every start all previously generated JWT will be invalid. In order to avoid such undesirable situation, you may pass a keypair and secret as Aidbox parameters.
 
-It is required to pass RSA keypair and secret as Aidbox parameters if you have multiple replicas of the same Aidbox/Multibox instance.
+It is required to pass a keypair and secret as Aidbox parameters if you have multiple replicas of the same Aidbox/Multibox instance.
 {% endhint %}
 
-#### Generate RSA keypair
+#### Generate keypair
 
-Generate private key with `openssl genrsa -traditional -out key.pem 2048` in your terminal. Private key will be saved in file `key.pem`. To generate public key run `openssl rsa -in key.pem -outform PEM -pubout -out public.pem`. You will find public key in `public.pem` file.
+Aidbox supports both RSA and EC keys. Generate an RSA or EC private key and the corresponding public key.
 
-Use next env vars to pass RSA keypair:
+**RSA key:**
+
+```bash
+openssl genrsa -traditional -out key.pem 2048
+openssl rsa -in key.pem -outform PEM -pubout -out public.pem
+```
+
+**EC key:**
+
+```bash
+openssl ecparam -name prime256v1 -genkey -noout -out key.pem
+openssl ec -in key.pem -pubout -out public.pem
+```
+
+Use these env vars to pass the keypair:
 
 ```yaml
-BOX_AUTH_KEYS_PRIVATE: "-----BEGIN RSA PRIVATE KEY-----\n...\n-----END RSA PRIVATE KEY-----"
+BOX_AUTH_KEYS_PRIVATE: "-----BEGIN RSA PRIVATE KEY-----\n...\n-----END RSA PRIVATE KEY-----"  # or -----BEGIN EC PRIVATE KEY-----
 BOX_AUTH_KEYS_PUBLIC: "-----BEGIN PUBLIC KEY-----\n...\n-----END PUBLIC KEY-----"
 ```
 
@@ -135,6 +149,29 @@ You can also use YAML multi-line strings for passing values of the keys:
         ewIDAQAB
         -----END PUBLIC KEY-----
 ```
+
+#### Key format requirements
+
+Keys must be provided in full PEM format, including the `BEGIN` and `END` headers.
+
+{% hint style="danger" %}
+Starting from version **2602**, Aidbox validates the keypair at startup and **will not start** if:
+
+* Only one of [`BOX_SECURITY_AUTH_KEYS_PRIVATE`](../reference/all-settings.md#security.auth.keys.private) / [`BOX_SECURITY_AUTH_KEYS_PUBLIC`](../reference/all-settings.md#security.auth.keys.public) is set while the other is missing.
+* Either key is malformed (e.g. not valid PEM, base64 decoding fails).
+* The public key does not correspond to the provided private key.
+
+The service will fail health and readiness checks, and will log a clear error message.
+{% endhint %}
+
+**Common mistakes:**
+
+| Problem | Example |
+|---|---|
+| Bare base64 without PEM headers | Setting the key value without `-----BEGIN ...-----` / `-----END ...-----` wrappers |
+| Truncated key | Key content is cut off, often due to environment variable quoting issues |
+| Mismatched key pair | Public key was generated from a different private key |
+| Unsupported key type | Using a key type other than RSA or EC (e.g. DSA) |
 
 #### Generate secret
 

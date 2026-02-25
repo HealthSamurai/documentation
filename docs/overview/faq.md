@@ -1346,6 +1346,18 @@ Aidbox provides observability features including metrics, logging, and tracing f
 
 Learn more: [Observability](../modules/observability/README.md)
 
+### Aidbox fails to start with an auth key error
+
+Starting from version **2602**, Aidbox validates JWT signing keys at startup and will not become healthy or ready if keys are misconfigured. Previously, these errors were only detected at runtime when authentication flows were triggered. If you see an error about auth keys, check the following:
+
+* **Both keys must be set together.** If you set `BOX_SECURITY_AUTH_KEYS_PRIVATE` (or `BOX_AUTH_KEYS_PRIVATE`), you must also set the corresponding public key, and vice versa.
+* **Keys must be in full PEM format**, including `-----BEGIN ...-----` and `-----END ...-----` headers. Bare base64 content without headers is not accepted.
+* **Base64 content must be valid.** Truncated or corrupted key content will cause a startup failure.
+* **The keypair must match.** The public key must correspond to the private key. Regenerate both if unsure.
+* **Watch out for quoting issues.** When passing keys via environment variables, ensure newlines are preserved (use `\n` in single-line values or YAML multi-line `|` syntax).
+
+Learn more: [Configure keys](../configuration/configure-aidbox-and-multibox.md#key-format-requirements)
+
 ### What are PostgreSQL requirements?
 
 Aidbox requires PostgreSQL 12+ with specific extensions. Actively supports the three most recent versions (currently 18, 17, 16).
