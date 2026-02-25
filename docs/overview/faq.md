@@ -1356,7 +1356,7 @@ Starting from version **2602**, Aidbox validates JWT signing keys at startup and
 * **The keypair must match.** The public key must correspond to the private key. Regenerate both if unsure.
 * **Watch out for quoting issues.** When passing keys via environment variables, ensure newlines are preserved (use `\n` in single-line values or YAML multi-line `|` syntax).
 
-Learn more: [Configure RSA keys](../configuration/configure-aidbox-and-multibox.md#key-format-requirements)
+Learn more: [Configure keys](../configuration/configure-aidbox-and-multibox.md#key-format-requirements)
 
 ### What are PostgreSQL requirements?
 
