@@ -135,14 +135,14 @@ openssl ec -in key.pem -pubout -out public.pem
 Use these env vars to pass the keypair:
 
 ```yaml
-BOX_AUTH_KEYS_PRIVATE: "-----BEGIN RSA PRIVATE KEY-----\n...\n-----END RSA PRIVATE KEY-----"  # or -----BEGIN EC PRIVATE KEY-----
-BOX_AUTH_KEYS_PUBLIC: "-----BEGIN PUBLIC KEY-----\n...\n-----END PUBLIC KEY-----"
+BOX_SECURITY_AUTH_KEYS_PRIVATE: "-----BEGIN RSA PRIVATE KEY-----\n...\n-----END RSA PRIVATE KEY-----"  # or -----BEGIN EC PRIVATE KEY-----
+BOX_SECURITY_AUTH_KEYS_PUBLIC: "-----BEGIN PUBLIC KEY-----\n...\n-----END PUBLIC KEY-----"
 ```
 
 You can also use YAML multi-line strings for passing values of the keys:
 
 ```yaml
-      BOX_AUTH_KEYS_PUBLIC: |
+      BOX_SECURITY_AUTH_KEYS_PUBLIC: |
         -----BEGIN PUBLIC KEY-----
         MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAtknsklLTP1y6HPtR2oYs
         ...
