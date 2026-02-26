@@ -1,7 +1,7 @@
 ---
 description: >-
-  Stream FHIR resource events to AWS SNS for pub/sub messaging,
-  fan-out notifications, and event-driven architectures.
+  Stream FHIR resource events to AWS SNS for pub/sub messaging, fan-out
+  notifications, and event-driven architectures.
 ---
 
 # AidboxTopicSubscription AWS SNS tutorial
@@ -290,15 +290,15 @@ The `batchSize` parameter (1-10) controls how many events are sent in a single [
 
 ### Available Parameters
 
-| Parameter          | Type         | Required | Description                                                                 |
-| ------------------ | ------------ | -------- | --------------------------------------------------------------------------- |
-| `topicArn`         | valueString  | Yes      | SNS topic ARN (`arn:aws:sns:us-east-1:123456789012:my-topic`)               |
-| `region`           | valueString  | Yes      | AWS region (`us-east-1`, `eu-west-1`, etc.)                                 |
-| `accessKeyId`      | valueString  | No       | AWS Access Key ID (uses default credential chain if not provided)           |
-| `secretAccessKey`  | valueString  | No       | AWS Secret Access Key                                                       |
-| `endpointOverride` | valueString  | No       | Override endpoint URL (for LocalStack: `http://localstack:4566`)            |
-| `messageGroupId`   | valueString  | No       | Message group ID for FIFO SNS topics (required for `.fifo` topics)          |
-| `batchSize`        | valueInteger | No       | Events per batch, 1-10 (at-least-once only, default: 1)                     |
+| Parameter          | Type         | Required | Description                                                        |
+| ------------------ | ------------ | -------- | ------------------------------------------------------------------ |
+| `topicArn`         | valueString  | Yes      | SNS topic ARN (`arn:aws:sns:us-east-1:123456789012:my-topic`)      |
+| `region`           | valueString  | Yes      | AWS region (`us-east-1`, `eu-west-1`, etc.)                        |
+| `accessKeyId`      | valueString  | No       | AWS Access Key ID (uses default credential chain if not provided)  |
+| `secretAccessKey`  | valueString  | No       | AWS Secret Access Key                                              |
+| `endpointOverride` | valueString  | No       | Override endpoint URL (for LocalStack: `http://localstack:4566`)   |
+| `messageGroupId`   | valueString  | No       | Message group ID for FIFO SNS topics (required for `.fifo` topics) |
+| `batchSize`        | valueInteger | No       | Events per batch, 1-10 (at-least-once only, default: 1)            |
 
 ### Message Format
 
@@ -491,11 +491,11 @@ content-type: application/json
 2. Open the **Amazon SQS** console, select your queue, and click **Send and receive messages**
 3. In the **Receive messages** section, click **Poll for messages**
 
-<figure><img src="../../../.gitbook/assets/sns-sqs-poll-messages.webp" alt="SQS console showing a received SNS notification after polling"><figcaption><p>Polling for messages in the SQS queue subscribed to the SNS topic</p></figcaption></figure>
+<figure><img src="../../.gitbook/assets/sns-sqs-poll-messages.webp" alt="SQS console showing a received SNS notification after polling"><figcaption><p>Polling for messages in the SQS queue subscribed to the SNS topic</p></figcaption></figure>
 
 4. Click on a message to view its contents — the Body contains the SNS notification envelope with the FHIR Bundle:
 
-<figure><img src="../../../.gitbook/assets/sns-sqs-message-body.webp" alt="SQS message body showing the FHIR notification Bundle delivered via SNS"><figcaption><p>SNS notification containing the FHIR event Bundle with Patient resource</p></figcaption></figure>
+<figure><img src="../../.gitbook/assets/sns-sqs-message-body.webp" alt="SQS message body showing the FHIR notification Bundle delivered via SNS"><figcaption><p>SNS notification containing the FHIR event Bundle with Patient resource</p></figcaption></figure>
 
 You can also verify via CLI:
 

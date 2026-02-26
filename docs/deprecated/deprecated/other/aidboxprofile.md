@@ -1,19 +1,5 @@
 ---
 description: Create a profile with AidboxProfile and validate data
-layout:
-  width: default
-  title:
-    visible: true
-  description:
-    visible: true
-  tableOfContents:
-    visible: true
-  outline:
-    visible: false
-  pagination:
-    visible: true
-  metadata:
-    visible: true
 ---
 
 # AidboxProfile
