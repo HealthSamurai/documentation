@@ -58,6 +58,10 @@ accept: application/json
 
 The `AidboxTopicDestination` resource is used to define channel configurations for processing subscription data.
 
+{% hint style="info" %}
+Sensitive Kafka parameters like `saslJaasConfig` and `sslKeystoreKey` support [external secrets](../../configuration/secret-files.md) — store credentials outside the database using vault config files.
+{% endhint %}
+
 #### Create a TopicDestination
 
 To start processing subscription data, create a `AidboxTopicDestination` resource with a reference to the `AidboxSubscriptionTopic`. Examples of `AidboxTopicDestination` resources can be found in sub-sections.

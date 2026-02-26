@@ -99,7 +99,7 @@ DROP EXTENSION IF EXISTS fuzzystrmatch
 Then change `BOX_DB_EXTENSION_SCHEMA` and restart Aidbox.
 
 
-### Set up private/public keys and secret
+### Set up authentication keys (RSA or EC) and secret
 
 Aidbox generates JWT tokens for different purposes:
 

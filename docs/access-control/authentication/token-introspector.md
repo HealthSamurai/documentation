@@ -46,4 +46,5 @@ Caching improves resilience when external endpoints are temporarily unavailable.
 
 ## See also
 
-[Set up token introspection tutorial](../../tutorials/security-access-control-tutorials/set-up-token-introspection.md)
+* [Set up token introspection tutorial](../../tutorials/security-access-control-tutorials/set-up-token-introspection.md)
+* [External Secrets](../../configuration/secret-files.md) — store `jwt.secret`, `jwt.keys.k`, and `introspection_endpoint.authorization` values outside the database

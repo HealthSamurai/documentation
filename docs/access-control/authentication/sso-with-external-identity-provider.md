@@ -48,6 +48,10 @@ From the user's perspective, the login process is simple:
 
 
 
+{% hint style="info" %}
+IdentityProvider fields `client.secret`, `client.private-key`, and `client.certificate` support [external secrets](../../configuration/secret-files.md) — store sensitive values outside the database using vault config files.
+{% endhint %}
+
 ## See Also
 
 {% content-ref url="../../tutorials/security-access-control-tutorials/managing-admin-access-to-the-aidbox-ui-using-okta-groups.md" %}

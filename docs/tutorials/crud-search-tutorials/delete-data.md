@@ -31,6 +31,30 @@ name:
 id: pt-2
 ```
 
+## Patient $purge
+
+{% hint style="info" %}
+Available since version 2602.
+{% endhint %}
+
+To delete a Patient and **all resources in their compartment** (Observations, Conditions, Encounters, etc.) including full history, use the [`$purge` operation](../../api/bulk-api/purge.md):
+
+```
+POST /fhir/Patient/pt-1/$purge
+```
+
+This is the recommended FHIR-compliant approach for complete patient data removal. It supports both synchronous and asynchronous execution for large datasets.
+
+**When to use $purge vs manual DELETE:**
+
+| Approach | Use case |
+|---|---|
+| `$purge` | Delete a patient and all their compartment resources in one operation |
+| `DELETE` / Transaction | Delete specific individual resources |
+| SQL (see below) | Delete resource history only, without deleting the resource itself |
+
+See the [$purge documentation](../../api/bulk-api/purge.md) for async mode, custom compartment definitions, and more details.
+
 ## Transactional Delete
 
 If you need to delete multiple resources, use [FHIR Transaction](../../api/batch-transaction.md) with multiple `DELETE` requests.

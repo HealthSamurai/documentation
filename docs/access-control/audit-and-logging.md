@@ -32,6 +32,82 @@ When audit logging is enabled, Aidbox produces audit logs for significant events
 * Authentication & Authorization events (login, logout, SMART on FHIR authorization, etc)
 * \[WIP] Security & configuration updates.
 
+### BALP profile selection
+
+Aidbox assigns a BALP profile to each AuditEvent based on the operation type and whether the operation involves a Patient.
+
+| Operation | Generic Profile | Patient-specific Profile |
+|---|---|---|
+| Create | `IHE.BasicAudit.Create` | `IHE.BasicAudit.PatientCreate` |
+| Read / VRead | `IHE.BasicAudit.Read` | `IHE.BasicAudit.PatientRead` |
+| Update / Patch | `IHE.BasicAudit.Update` | `IHE.BasicAudit.PatientUpdate` |
+| Delete | `IHE.BasicAudit.Delete` | `IHE.BasicAudit.PatientDelete` |
+| Search / Query | `IHE.BasicAudit.Query` | `IHE.BasicAudit.PatientQuery` |
+
+**When Patient-specific profiles are used:**
+
+* The resource **is** a Patient — CRUD operations directly on the Patient resource (e.g. `PUT /fhir/Patient/123`)
+* The resource is in the [Patient Compartment](https://www.hl7.org/fhir/compartmentdefinition-patient.html) and references a Patient (e.g. creating an Observation with `subject` pointing to a Patient)
+
+{% hint style="info" %}
+Patient **search** (`GET /fhir/Patient?...`) uses the generic `IHE.BasicAudit.Query` profile, not `IHE.BasicAudit.PatientQuery`. This is because a search does not reference a specific Patient. The `PatientQuery` profile is used when searching compartment resources that reference a Patient (e.g. `GET /fhir/Observation?patient=123`).
+{% endhint %}
+
+#### Example: AuditEvent for Patient update
+
+When you update a Patient resource, the generated AuditEvent uses the `IHE.BasicAudit.PatientUpdate` profile:
+
+```json
+{
+  "resourceType": "AuditEvent",
+  "meta": {
+    "profile": [
+      "https://profiles.ihe.net/ITI/BALP/StructureDefinition/IHE.BasicAudit.PatientUpdate"
+    ]
+  },
+  "type": {
+    "system": "http://dicom.nema.org/resources/ontology/DCM",
+    "code": "110110",
+    "display": "Patient Record"
+  },
+  "subtype": [
+    {
+      "system": "http://hl7.org/fhir/restful-interaction",
+      "code": "update",
+      "display": "update"
+    }
+  ],
+  "action": "U",
+  "recorded": "2026-02-25T12:00:00Z",
+  "outcome": "0",
+  "agent": [
+    {
+      "who": {
+        "reference": "Client/my-client"
+      },
+      "requestor": true
+    }
+  ],
+  "source": {
+    "observer": {
+      "display": "Aidbox"
+    }
+  },
+  "entity": [
+    {
+      "what": {
+        "reference": "Patient/example"
+      },
+      "role": {
+        "system": "http://terminology.hl7.org/CodeSystem/object-role",
+        "code": "1",
+        "display": "Patient"
+      }
+    }
+  ]
+}
+```
+
 ### Aidbox as an Audit record repository
 
 Aidbox is an [Audit record repository](https://profiles.ihe.net/ITI/TF/Volume1/ch-9.html#9.1.1.3) (ARR) for FHIR AuditEvent resources. Aidbox supports

@@ -78,7 +78,7 @@ Server-side applications performing automated tasks:
 When creating and managing Clients, consider these security best practices:
 
 * Assign the minimum necessary permissions using [`AccessPolicies`](../../access-control/authorization/access-policies.md)
-* Use secure client secrets (high entropy, regularly rotated)
+* Use secure client secrets (high entropy, regularly rotated) — consider storing them as [external secrets](../../configuration/secret-files.md) instead of in the database
 * For public clients (like SPAs), use [authorization\_code](../../tutorials/security-access-control-tutorials/authorization-code-grant.md) with [PKCE](https://datatracker.ietf.org/doc/html/rfc7636)
 * Specify allowed redirect URIs for OAuth2 flows
 * Consider token lifetimes and refresh policies
