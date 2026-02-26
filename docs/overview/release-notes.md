@@ -6,12 +6,60 @@ description: >-
 
 # Release Notes
 
-## February 2026 _`edge`_
+## March 2026 _`edge`_
+
+## February 2026 _`latest, 2602`_
 
 * Aidbox FHIR server
+
+  __Features__
+  * Integration with External Vault for managing secrets. See [full documentation](../configuration/secret-files.md) for details.
+  * Support [Amazon SNS](../tutorials/subscriptions-tutorials/aidboxtopicsubscription-sns-tutorial.md) as an AidboxTopicDestination.
+  * Support `$purge` operation for Patient compartment cleanup. See [full documentation](../api/bulk-api/purge.md) for details.
+  * SQL migrations via init bundle are now supported. See [full documentation](../tutorials/other-tutorials/how-to-run-sql-via-init-bundle.md) for details.
+  * Published Aidbox IGs — FHIR StructureDefinitions for Aidbox custom resources are now available as packages.
+  * Configurable `cache_ttl` for TokenIntrospector.
+  * Configurable JDBC application name for `pg_stat_activity` visibility.
+  * Enhanced `_explain` parameter with PostgreSQL EXPLAIN options (analyze, buffers, verbose, etc.). See [full documentation](../api/rest-api/aidbox-search.md#_explain) for details.
   * Aidbox now **validates JWT auth keys at startup** and will refuse to start if `BOX_SECURITY_AUTH_KEYS_PRIVATE` / `BOX_SECURITY_AUTH_KEYS_PUBLIC` are misconfigured — whether one key is missing, the PEM format is malformed, or the keypair doesn't match. Previously, these errors were only detected at runtime during authentication flows. See [key format requirements](../configuration/configure-aidbox-and-multibox.md#key-format-requirements) for details.
 
-## January 2026 _`latest, 2601`_
+  __Bug fixes and improvements__
+  * Fix GCP and Azure URL signing for `$export` operations
+  * Fix BALP audit profiles for Patient resource
+  * Fix JWKS endpoint for EC keys
+  * Fix scope handling in `client_credentials` grant with `client_secret`
+  * Fix CORS headers for streaming responses
+  * Fix package loading when canonical URL clashes exist between packages
+  * Fix search input reset in Resource Browser after resource deletion
+  * Fix search parameters for recursive fields
+  * Fix OrgBac operations definitions
+  * Invalidate caches across all replicas after package install via UI
+  * Optimize FHIR bundle processing with TokenIntrospector authentication
+  * Optimize transaction bundle processing by disabling unnecessary operation resolution
+  * Support `BOX_FHIR_SEARCH_CHAIN_SUBSELECT` for Search resource
+  * Fix FHIR validation:
+    - min cardinality for required fields
+    - primitive extension with choice type
+    - reference validation when the same reference appears multiple times in the same resource
+
+  __Removals__
+  * Removed deprecated ZEN Topic-Based Subscription implementation. Use [FHIR Topic-Based Subscriptions](../modules/topic-based-subscriptions/fhir-topic-based-subscriptions.md) instead.
+
+  __Minor updates__
+  * Fix critical vulnerabilities CVE-2025-15467 in libcrypto3, libssl3, openssl
+    - 2601.1
+    - 2512.3
+    - 2511.4
+    - 2510.4
+    - 2509.4
+    - 2508.4
+    - 2507.5
+    - 2506.3
+    - 2505.5
+    - 2504.4
+    - 2503.7
+
+## January 2026 _`stable, 2601`_
 
 * Aidbox FHIR server
   * Improved support for [FHIR Topic-based subscriptions](../modules/topic-based-subscriptions/fhir-topic-based-subscriptions.md).
