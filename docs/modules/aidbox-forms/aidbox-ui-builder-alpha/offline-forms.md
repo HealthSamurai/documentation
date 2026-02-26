@@ -54,6 +54,28 @@ Aidbox Forms supports offline functionality for filling out forms. This means yo
 * **Single Device Usage**:
   * To avoid issues with multiple submissions, use a single device to fill out and submit the form. This will ensure that your data is accurately recorded and submitted without conflicts.
 
+## Offline renderer integration
+
+> Note: This example is intended as a reference implementation, not a production-ready offline engine. 
+> Production apps typically require stronger persistence and security/encryption.
+
+### Example: Offline renderer integration (reference implementation)
+In addition to the offline capabilities of Aidbox Forms, our Renderer delivered as a web component (<aidbox-form-renderer>) can also operate in offline mode. This is enabled via the component’s fetch proxy mechanism, where all HTTP requests are intercepted by your custom handler (enable-fetch-proxy + onFetch).
+
+Below is a reference example showing one practical way to implement caching, autosave, and queued synchronization after connectivity is restored.
+
+If you want to see a detailed practical integration pattern (caching + autosave + queued sync), check the Offline Mode Example: [Aidbox Forms Renderer Offline Mode](https://github.com/Aidbox/examples/tree/main/aidbox-forms/aidbox-forms-renderer-offline-mode). 
+ 
+### What this example demonstrates
+- Rendering Aidbox Forms with the web component (`aidbox-forms-renderer`)
+- A simple offline layer that caches required resources locally and keeps an operation queue while offline
+- Syncing saved drafts and submit actions to Aidbox once connectivity is restored.
+
+### Where it can be used
+- This is a lightweight reference for teams building mobile/field applications (e.g., caregivers completing visit documentation) where users must continue charting without internet. 
+- It can be used as a starting point for an offline subsystem in a real app
+(the demo uses `localStorage`; production apps typically replace this with IndexedDB/SQLite/secure storage)
+
 ## FAQs
 
 **Q: Can I use the form on multiple devices?** A: Yes, but changes made on one device are not shared with other devices. Only the first submission will be accepted, so it's best to use a single device to avoid conflicts.
