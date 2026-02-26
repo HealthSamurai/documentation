@@ -165,7 +165,7 @@ BOX_SCHEDULER_EXECUTORS: 4
 
 Number of executor threads for the async task scheduler.
 
-<details><summary>Details</summary><table data-header-hidden="true"><thead><tr><th width="200"></th><th></th></tr></thead><tbody><tr><td>ID</td><td><code>scheduler-executors</code></td></tr><tr><td>Type</td><td>Int</td></tr><tr><td>Default value</td><td><code>4</code></td></tr><tr><td>Environment variable</td><td><code>BOX_SCHEDULER_EXECUTORS</code></td></tr><tr><td>Available from</td><td><code>2602</code></td></tr><tr><td>Sensitive</td><td><code>false</code> — value will be visible in plaintext in Admin UI</td></tr><tr><td>Set via</td><td>Environment variables</td></tr><tr><td>Hot reload</td><td><code>false</code> — setting requires system restart</td></tr></tbody></table></details>
+<details><summary>Details</summary><table data-header-hidden="true"><thead><tr><th width="200"></th><th></th></tr></thead><tbody><tr><td>ID</td><td><code>scheduler-executors</code></td></tr><tr><td>Type</td><td>Int</td></tr><tr><td>Default value</td><td><code>4</code></td></tr><tr><td>Environment variable</td><td><code>BOX_SCHEDULER_EXECUTORS</code></td></tr><tr><td>Available from</td><td><code>2602</code></td></tr><tr><td>Sensitive</td><td><code>false</code> — value will be visible in plaintext in Admin UI</td></tr><tr><td>Set via</td><td>Admin UI → Settings<br />Environment variables</td></tr><tr><td>Hot reload</td><td><code>false</code> — setting requires system restart</td></tr></tbody></table></details>
 
 ## FHIR
 
@@ -806,7 +806,9 @@ Skip JWT token validation process.
 BOX_SECURITY_AUTH_KEYS_PUBLIC: "<String>"
 ```
 
-RS256 signing algorithm expects providing private key for signing JWT and public key for verifying it.
+PEM-encoded RSA public key used to verify JWT tokens (RS256).
+Must be set together with `BOX_SECURITY_AUTH_KEYS_PRIVATE`.
+Both keys are validated at startup — Aidbox will not start if the keypair is missing or invalid.
 
 <details><summary>Details</summary><table data-header-hidden="true"><thead><tr><th width="200"></th><th></th></tr></thead><tbody><tr><td>ID</td><td><code>security.auth.keys.public</code></td></tr><tr><td>Type</td><td>String</td></tr><tr><td>Default value</td><td>(no default)</td></tr><tr><td>Environment variable</td><td><code>BOX_SECURITY_AUTH_KEYS_PUBLIC</code></td></tr><tr><td>Deprecated environment variables</td><td><code>BOX_AUTH_KEYS_PUBLIC</code></td></tr><tr><td>Sensitive</td><td><code>false</code> — value will be visible in plaintext in Admin UI</td></tr><tr><td>Set via</td><td>Admin UI → Settings<br />Environment variables</td></tr><tr><td>Hot reload</td><td><code>false</code> — setting requires system restart</td></tr></tbody></table></details>
 
@@ -816,7 +818,9 @@ RS256 signing algorithm expects providing private key for signing JWT and public
 BOX_SECURITY_AUTH_KEYS_PRIVATE: "<String>"
 ```
 
-RS256 signing algorithm expects providing private key for signing JWT and public key for verifying it.
+PEM-encoded RSA private key used to sign JWT tokens (RS256).
+Must be set together with `BOX_SECURITY_AUTH_KEYS_PUBLIC`.
+Both keys are validated at startup — Aidbox will not start if the keypair is missing or invalid.
 
 <details><summary>Details</summary><table data-header-hidden="true"><thead><tr><th width="200"></th><th></th></tr></thead><tbody><tr><td>ID</td><td><code>security.auth.keys.private</code></td></tr><tr><td>Type</td><td>String</td></tr><tr><td>Default value</td><td>(no default)</td></tr><tr><td>Environment variable</td><td><code>BOX_SECURITY_AUTH_KEYS_PRIVATE</code></td></tr><tr><td>Deprecated environment variables</td><td><code>BOX_AUTH_KEYS_PRIVATE</code></td></tr><tr><td>Sensitive</td><td><code>true</code> — value will be masked in Admin UI</td></tr><tr><td>Set via</td><td>Environment variables</td></tr><tr><td>Hot reload</td><td><code>false</code> — setting requires system restart</td></tr></tbody></table></details>
 
@@ -826,7 +830,7 @@ RS256 signing algorithm expects providing private key for signing JWT and public
 BOX_SECURITY_AUTH_KEYS_SECRET: "<String>"
 ```
 
-HS256 signing algorithm needs only having a secret for both operations.
+Shared secret used to sign and verify JWT tokens (HS256).
 
 <details><summary>Details</summary><table data-header-hidden="true"><thead><tr><th width="200"></th><th></th></tr></thead><tbody><tr><td>ID</td><td><code>security.auth.keys.secret</code></td></tr><tr><td>Type</td><td>String</td></tr><tr><td>Default value</td><td>(no default)</td></tr><tr><td>Environment variable</td><td><code>BOX_SECURITY_AUTH_KEYS_SECRET</code></td></tr><tr><td>Deprecated environment variables</td><td><code>BOX_AUTH_KEYS_SECRET</code></td></tr><tr><td>Sensitive</td><td><code>true</code> — value will be masked in Admin UI</td></tr><tr><td>Set via</td><td>Environment variables</td></tr><tr><td>Hot reload</td><td><code>false</code> — setting requires system restart</td></tr></tbody></table></details>
 
