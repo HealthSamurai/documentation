@@ -24,9 +24,6 @@ Let's look at some operations working with Bundle resources.
 * `GET /<resourceType>/<id>/_history`, `GET /fhir/<resourceType>/<id>/_history`\
   Main article: [history.md](./history.md)\
   This operation returns the Bundle resource (with type `history`) containing previous versions of the specified resource.
-* `GET /<resourceType>/_history`, `GET /fhir/<resourceType>/_history`\
-  Main article: [history.md](./history.md)\
-  This operations returns the Bundle resource (with type `history`) containing previous versions of resources with the specified type.
 * CRUD operations with Bundle resource\
   Main article: [crud](./crud/README.md)\
   These are the usual FHIR CRUD operations with Bundle resource. They only store/update/get/search Bundle resources without additional semantics.\
