@@ -1,5 +1,5 @@
 ---
-description: Configure visual hierarchy padding for nested Questionnaire items including groups and question nesting in Aidbox Forms.
+description: Configure visual hierarchy padding for nested Questionnaire items including groups and question nesting in Formbox.
 ---
 
 # Nesting
@@ -9,7 +9,7 @@ Questionnaire has 2 ways to nest items.
 - Items that live inside **group** item
 - Nested items that live inside **question** item
 
-In _Aidbox Forms_ these 2 groups have different ways to represent nesting by default.
+In _Formbox_ these 2 groups have different ways to represent nesting by default.
 
 1. Groups have labels with different sized to convey structure.
 2. Nested items doesn't have any visual representation - to make form look more nicer, visually cleaner and less noisy.

@@ -17,7 +17,7 @@ A common use case is a Country/State relationship:
 - The state/province dropdown is automatically filtered to show only states belonging to the selected country
 - This is achieved by passing the country code as a parameter to the ValueSet expansion
 
-## How to Configure in Aidbox Forms Builder
+## How to Configure in Form Builder
 
 ### Prerequisites
 

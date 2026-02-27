@@ -1,12 +1,12 @@
 ---
 description: >-
-  This article explains how to configure Aidbox Forms to store attachments in
+  This article explains how to configure Formbox to store attachments in
   S3-Compatible storages
 ---
 
 # Store attachments in S3-like storages
 
-Aidbox Forms provides an ability to store files from attachment items in cloud storages like S3.
+Formbox provides an ability to store files from attachment items in cloud storages like S3.
 
 ## 1. Setup storage account
 
@@ -14,7 +14,7 @@ Aidbox supports Amazon S3, Google Cloud Storage, Azure Container. Here is the gu
 
 ## 2. Update SDCConfig
 
-Aidbox Forms supports two authentication methods: credential-based (using stored credentials) and workload identity (using managed identities).
+Formbox supports two authentication methods: credential-based (using stored credentials) and workload identity (using managed identities).
 
 ### Option 1: Workload Identity (Recommended)
 

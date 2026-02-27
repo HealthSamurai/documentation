@@ -1,12 +1,12 @@
 ---
-description: Aidbox forms supports fetching answers into question with conditions and logic
+description: Formbox supports fetching answers into question with conditions and logic
 ---
 
 # How to create a form with dynamical answers into questions
 
 ## What is answer expression
 
-Aidbox Forms allows to create form which dynamically fetch answers into questions. An expression with FHIRPath or FHIR Query that resolves to a list of permitted answers for the question item or that establishes context for a group item. The user may select from among the list to choose answers for the question.&#x20;
+Formbox allows to create form which dynamically fetch answers into questions. An expression with FHIRPath or FHIR Query that resolves to a list of permitted answers for the question item or that establishes context for a group item. The user may select from among the list to choose answers for the question.&#x20;
 
 ## Example Use Case
 

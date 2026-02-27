@@ -1,8 +1,8 @@
 ---
-description: Navigate Aidbox Forms UI including Form Templates, Responses, and Form Gallery with search, filter, and sharing features.
+description: Navigate Formbox UI including Form Templates, Responses, and Form Gallery with search, filter, and sharing features.
 ---
 
-# Aidbox Forms Interface
+# Formbox Interface
 
 The Forms UI consists of three main sections, accessible through tabs at the left side of the page:
 

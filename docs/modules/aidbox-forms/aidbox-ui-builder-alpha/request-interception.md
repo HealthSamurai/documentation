@@ -1,12 +1,12 @@
 ---
-description: A detailed guide on intercepting requests in Aidbox Form Builder and Renderer.
+description: A detailed guide on intercepting requests in Formbox Builder and Renderer.
 ---
 
 # Request Interception
 
-## Aidbox Form Builder & Renderer Request Interception
+## Form Builder & Renderer Request Interception
 
-Request interception allows you to modify network requests made by **Aidbox Form Builder** and **Aidbox Form Renderer**. This is useful for debugging, adding authentication, redirecting requests, or handling custom logic before requests are sent.
+Request interception allows you to modify network requests made by **Form Builder** and **Form Renderer**. This is useful for debugging, adding authentication, redirecting requests, or handling custom logic before requests are sent.
 
 ### Enabling Request Interception
 

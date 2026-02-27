@@ -1,6 +1,6 @@
 ---
 description: >-
-  Aidbox forms supports Observation-based extraction, Definition-based
+  Formbox supports Observation-based extraction, Definition-based
   extraction and Template-based extraction
 ---
 

@@ -1,5 +1,5 @@
 ---
-description: Print or save Aidbox Forms as PDF using browser print dialog, $print API, or custom templates with $render API.
+description: Print or save forms as PDF using browser print dialog, $print API, or custom templates with $render API.
 ---
 
 # Printing forms

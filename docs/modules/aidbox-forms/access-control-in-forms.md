@@ -1,5 +1,5 @@
 ---
-description: Configure access control for Aidbox Forms with roles like SDC Admin, Form Designer, Form Filler, and Response Manager.
+description: Configure access control for Formbox with roles like SDC Admin, Form Designer, Form Filler, and Response Manager.
 ---
 
 # Access control in forms

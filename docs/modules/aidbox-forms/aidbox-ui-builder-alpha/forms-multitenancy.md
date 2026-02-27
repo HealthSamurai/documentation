@@ -103,7 +103,7 @@ Replace `[organization-id]` and `[questionnaire-id]` with the respective Organiz
 
 ## **Multitenancy in Form UI**
 
-Multitenancy in Aidbox Forms allows organizations to manage forms and responses independently within the same instance. When multitenancy is enabled, each user operates within the context of a selected organization, ensuring proper data isolation and controlled access to shared content.
+Multitenancy in Formbox allows organizations to manage forms and responses independently within the same instance. When multitenancy is enabled, each user operates within the context of a selected organization, ensuring proper data isolation and controlled access to shared content.
 
 To use multitenancy, you need to:
 

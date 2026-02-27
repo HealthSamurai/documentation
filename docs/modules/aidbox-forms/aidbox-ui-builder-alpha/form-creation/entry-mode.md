@@ -65,7 +65,7 @@ EntryMode setting can be configured via form builder `>` form settings panel `>`
 
 
 
-> In Aidbox Forms `Random` - means show as is, because our implementaion make this a default approach. But other renderers may choose other direction and `Random` entryMode foreces them to show all questions at once.
+> In Formbox `Random` - means show as is, because our implementaion make this a default approach. But other renderers may choose other direction and `Random` entryMode foreces them to show all questions at once.
 
 Choose based on your clinical/business workflow requirements, user needs, and target device types.
 

@@ -1,22 +1,22 @@
 ---
-description: This article outlines how to use Aidbox Forms with external FHIR servers.
+description: This article outlines how to use Formbox with external FHIR servers.
 ---
 
 # External FHIR servers as a data backend
 
 ## Overview
 
-Aidbox Forms module uses Aidbox's FHIR API capabilities to store all it's data. But sometimes it's appropriate to use other FHIR backends. Aidbox Forms provides a simple and granular way to specify external FHIR servers for data management.
+Formbox module uses Aidbox's FHIR API capabilities to store all it's data. But sometimes it's appropriate to use other FHIR backends. Formbox provides a simple and granular way to specify external FHIR servers for data management.
 
 ## Data Domains
 
-Data used by `Aidbox Forms` has different nature and can have different storage requirements and strategies.
+Data used by `Formbox` has different nature and can have different storage requirements and strategies.
 
 We split data in 4 domains, and last 3 of them can have it's own FHIR backend:
 
 > Because `system resources` are non FHIR resources - there is no FHIR backend configuration for them.
 
-1. `System resources` - non-FHIR resources, used by `Aidbox Forms` for extended functionality.
+1. `System resources` - non-FHIR resources, used by `Formbox` for extended functionality.
 2. `Content resources` - `Questionnaire` resource (the main focus and result of `Forms Builder`).
 3. `Terminology resources` - `ValueSets` and `Concepts`.
 4. `Production resources` - `QuestionnaireResponse` resource and other FHIR resources that contain PHI/Production data.

@@ -1,12 +1,12 @@
 ---
-description: Fill out Aidbox Forms offline with local caching, auto-save, and submission when internet connection is restored.
+description: Fill out Formbox offline with local caching, auto-save, and submission when internet connection is restored.
 ---
 
 # Offline forms
 
 ## Overview
 
-Aidbox Forms supports offline functionality for filling out forms. This means you can access and fill out the form even when you are not connected to the internet. However, to take advantage of this feature, there are some important steps and conditions to keep in mind. This document will guide you through the process of using the offline functionality effectively.
+Formbox supports offline functionality for filling out forms. This means you can access and fill out the form even when you are not connected to the internet. However, to take advantage of this feature, there are some important steps and conditions to keep in mind. This document will guide you through the process of using the offline functionality effectively.
 
 ## Getting Started
 
@@ -60,14 +60,14 @@ Aidbox Forms supports offline functionality for filling out forms. This means yo
 > Production apps typically require stronger persistence and security/encryption.
 
 ### Example: Offline renderer integration (reference implementation)
-In addition to the offline capabilities of Aidbox Forms, our Renderer delivered as a web component (<aidbox-form-renderer>) can also operate in offline mode. This is enabled via the component’s fetch proxy mechanism, where all HTTP requests are intercepted by your custom handler (enable-fetch-proxy + onFetch).
+In addition to the offline capabilities of Formbox, our Renderer delivered as a web component (<aidbox-form-renderer>) can also operate in offline mode. This is enabled via the component’s fetch proxy mechanism, where all HTTP requests are intercepted by your custom handler (enable-fetch-proxy + onFetch).
 
 Below is a reference example showing one practical way to implement caching, autosave, and queued synchronization after connectivity is restored.
 
-If you want to see a detailed practical integration pattern (caching + autosave + queued sync), check the Offline Mode Example: [Aidbox Forms Renderer Offline Mode](https://github.com/Aidbox/examples/tree/main/aidbox-forms/aidbox-forms-renderer-offline-mode). 
+If you want to see a detailed practical integration pattern (caching + autosave + queued sync), check the Offline Mode Example: [Formbox Renderer Offline Mode](https://github.com/Aidbox/examples/tree/main/aidbox-forms/aidbox-forms-renderer-offline-mode). 
  
 ### What this example demonstrates
-- Rendering Aidbox Forms with the web component (`aidbox-forms-renderer`)
+- Rendering Formbox with the web component (`aidbox-forms-renderer`)
 - A simple offline layer that caches required resources locally and keeps an operation queue while offline
 - Syncing saved drafts and submit actions to Aidbox once connectivity is restored.
 

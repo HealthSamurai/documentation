@@ -4,7 +4,7 @@ description: The article describes how to translate or create a multilingual for
 
 # Multilingual forms
 
-In some applications, there is a need to support multiple languages within the same questionnaire. Aidbox Forms allows you to create multilingual forms that can cater to users speaking different languages.
+In some applications, there is a need to support multiple languages within the same questionnaire. Formbox allows you to create multilingual forms that can cater to users speaking different languages.
 
 ## **Steps to create a multilingual form**
 
@@ -189,7 +189,7 @@ An example of the simple multilingual questionnaire:
 ```
 
 {% hint style="info" %}
-Aidbox Forms supports a predefined set of languages:
+Formbox supports a predefined set of languages:
 
 Chinese, Croatian, Czech, Danish, Dutch, English, Finnish, French, German, Hungarian, Italian, Japanese, Korean, Polish, Russian, Spanish
 

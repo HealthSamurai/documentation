@@ -1,5 +1,5 @@
 ---
-description: Configure Questionnaire properties in Aidbox Forms including title, canonical URL, version, status, and metadata.
+description: Configure Questionnaire properties in Formbox including title, canonical URL, version, status, and metadata.
 ---
 
 # Form Settings
@@ -23,7 +23,7 @@ A short, descriptive, user-friendly title for the questionnaire.
 This is the id that will be used to link a QuestionnaireResponse to the Questionnaire the response is for. It is used to identify this questionnaire when it is referenced in a specification, model, design or an instance; also called its canonical identifier.
 
 {% hint style="info" %}
-URL is generated automatically. A custom prefix can be specified in the Aidbox Forms module settings.
+URL is generated automatically. A custom prefix can be specified in the Formbox module settings.
 {% endhint %}
 
 ### Version
@@ -140,7 +140,7 @@ For detailed instructions and example of extracting data visit the[ Data Extract
 
 ## Extensions
 
-Aidbox Forms provide ability to add and edit extensions that are not covered in Forms Builder. Users can edit raw Questionnaire json.
+Formbox provides ability to add and edit extensions that are not covered in Forms Builder. Users can edit raw Questionnaire json.
 
 Extensions editor represents three fields for adding your own custom extension. To add extension you need follow three simple steps:
 
