@@ -1,27 +1,27 @@
 ---
-description: This article outlines the basic steps to get started with Aidbox Forms
+description: This article outlines the basic steps to get started with Formbox
 ---
 
 # Getting started
 
-You can try the Aidbox Forms module, edit test forms, create new ones, see how the data will be saved to the database and extracted, for this you need to run [the Aidbox Forms in Aidbox Sandbox](getting-started.md#run-aidbox-forms-in-aidbox-sandbox). At the same time, you can run [the Aidbox Forms locally](getting-started.md#run-aidbox-forms-locally).
+You can try the Formbox module, edit test forms, create new ones, see how the data will be saved to the database and extracted, for this you need to run [the Formbox in Aidbox Sandbox](getting-started.md#run-aidbox-forms-in-aidbox-sandbox). At the same time, you can run [the Formbox locally](getting-started.md#run-aidbox-forms-locally).
 
 You can also use the standalone Formbox product — see [Getting started with Formbox](getting-started-formbox.md).
 
-## Run Aidbox Forms in Aidbox Sandbox
+## Run Formbox in Aidbox Sandbox
 
 ### Create a license on Aidbox portal
 
 * Sign up on [Aidbox portal](https://aidbox.app/ui/portal#/signin)
 * Create a license: licence type - **production** or **development**, hosting - **in Cloud (for free)**
 
-### Start playing with Aidbox Forms
+### Start playing with Formbox
 
 * Go to [Aidbox portal](https://aidbox.app/ui/portal#/signin), find your license in the "Personal project licenses" list. Click on your new license and navigate to the "URL" link in the "Hosting" box.
 * Press the button `Forms` in the Aidbox console in browser
 * Play with forms
 
-## Run Aidbox Forms locally
+## Run Formbox locally
 
 ### Create a license on Aidbox portal
 
@@ -42,7 +42,7 @@ See [Design form in Aidbox UI Builder](aidbox-ui-builder-alpha/)
 
 ## Enable Audit log
 
-Aidbox Forms support [Audit logs](../../access-control/audit-and-logging.md).
+Formbox support [Audit logs](../../access-control/audit-and-logging.md).
 
 To enable Audit logging follow this [guide](../../tutorials/security-access-control-tutorials/how-to-configure-audit-log.md)
 

@@ -1,5 +1,5 @@
 ---
-description: Build custom FHIR questionnaire renderers as standalone pages for Aidbox Forms Builder preview using SDC SMART Web Messaging.
+description: Build custom FHIR questionnaire renderers as standalone pages for Formbox Builder preview using SDC SMART Web Messaging.
 ---
 
 # External Form Renderer in Builder Preview
@@ -126,7 +126,7 @@ If your renderer emits updates, send [sdc.ui.changedQuestionnaireResponse](https
 4) Provide a name and a renderer URL.
 5) Save and select the renderer in the preview.
 
-Local renderers are saved in your browser and are editable/removable. Do not use the **Aidbox Forms** name.
+Local renderers are saved in your browser and are editable/removable. Do not use the **Formbox** and **Aidbox Forms** names.
 
 ### Managed renderer (via SDCConfig)
 

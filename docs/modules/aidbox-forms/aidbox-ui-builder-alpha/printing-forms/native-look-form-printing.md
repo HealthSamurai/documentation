@@ -1,5 +1,5 @@
 ---
-description: Print Aidbox Forms preserving exact browser appearance using $print API with Puppeteer or Playwright rendering.
+description: Print forms preserving exact browser appearance using $print API with Puppeteer or Playwright rendering.
 ---
 
 # Native look form printing

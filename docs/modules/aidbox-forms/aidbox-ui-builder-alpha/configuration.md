@@ -1,5 +1,5 @@
 ---
-description: Configure Aidbox Forms builder and renderer with language, themes, URL prefixes, redirects, and audit logging.
+description: Configure Formbox builder and renderer with language, themes, URL prefixes, redirects, and audit logging.
 ---
 
 # Configuration
@@ -8,7 +8,7 @@ description: Configure Aidbox Forms builder and renderer with language, themes, 
 
 ### Overview
 
-The Aidbox Forms implements a FHIR-compliant Configuration resource that enables fine-grained control over form builder and renderer behavior. This resource adheres to CRUD operations via the standard FHIR API endpoints. The Configuration resource schema encompasses parameters such as:
+The Formbox implements a FHIR-compliant Configuration resource that enables fine-grained control over form builder and renderer behavior. This resource adheres to CRUD operations via the standard FHIR API endpoints. The Configuration resource schema encompasses parameters such as:
 
 * User Interface Settings: Default language and theme preferences.
 * Form Builder Configuration: Settings that control the behavior and appearance of the form creation interface.
@@ -16,7 +16,7 @@ The Aidbox Forms implements a FHIR-compliant Configuration resource that enables
 * Navigation and Workflow Controls: Settings for redirects, button visibility, and form state (e.g., read-only mode).
 * Logging and Auditing: Configurations related to event tracking and application identification.
 
-A global Configuration resource can be instantiated to serve as the system-wide default, applying to all Questionnaire resources unless explicitly overridden. The system supports configuration inheritance and overriding. When generating a shared form link, developers can specify a custom Configuration resource reference. This allows for context-specific rendering behavior, ensuring that the form presentation adheres to the designated configuration parameters. This architecture facilitates flexible, hierarchical configuration management, enabling both system-wide defaults and use-case specific customizations within the Aidbox Forms ecosystem.
+A global Configuration resource can be instantiated to serve as the system-wide default, applying to all Questionnaire resources unless explicitly overridden. The system supports configuration inheritance and overriding. When generating a shared form link, developers can specify a custom Configuration resource reference. This allows for context-specific rendering behavior, ensuring that the form presentation adheres to the designated configuration parameters. This architecture facilitates flexible, hierarchical configuration management, enabling both system-wide defaults and use-case specific customizations within the Formbox ecosystem.
 
 ### Configuration Resource Structure
 
@@ -217,7 +217,7 @@ GET /$sdc-config
 
 ## Theme
 
-`QuestionnaireTheme` resource allows you to customize the appearance of the Aidbox Form Renderer. The theme resource can include the following properties:
+`QuestionnaireTheme` resource allows you to customize the appearance of the Formbox Renderer. The theme resource can include the following properties:
 
 ```json5
 {
@@ -263,9 +263,9 @@ All of these properties are optional, and you can customize the theme to suit yo
 
 The design system defines the overall look and feel of a form, including common styles, fonts, colors, widgets, and layout.  
 
-Currently, Aidbox Forms supports three design systems:
+Currently, Formbox supports three design systems:
 
-- **aidbox-desktop** – The default Aidbox Forms design system. Widgets are adaptive and optimized for forms with many questions, suitable for both desktop and mobile devices.  
+- **aidbox-desktop** – The default Formbox design system. Widgets are adaptive and optimized for forms with many questions, suitable for both desktop and mobile devices.  
 - **aidbox-mobile** – Optimized for entry modes `sequential` and `prior-edit`, where only one question appears on screen at a time. Widgets are tailored for touch screens and mobile devices.  
 - **NHS** – Widgets and layouts fully follow the [NHS Design System](https://service-manual.nhs.uk/design-system/). Typically used for embedding forms into NHS applications. Supports only `sequential` and `prior-edit` entry modes.
 
@@ -273,9 +273,9 @@ You can set the design system using the `design-system` property.
 
 ## Translations
 
-The translations object in the Configuration resource allows defining custom text for the Aidbox Form Builder and Renderer. It uses a structured, hierarchical format where each key corresponds to a feature or component, and the leaf nodes specify locale-based translations. This structure supports multiple languages and regional variations by enabling you to specify locale codes such as en for English, fr for French, or more granular options like en-US for American English and fr-CA for Canadian French.
+The translations object in the Configuration resource allows defining custom text for Formbox Builder and Renderer. It uses a structured, hierarchical format where each key corresponds to a feature or component, and the leaf nodes specify locale-based translations. This structure supports multiple languages and regional variations by enabling you to specify locale codes such as en for English, fr for French, or more granular options like en-US for American English and fr-CA for Canadian French.
 
-The example provided below represents a comprehensive translations object for English, covering all possible keys. You can extend this object by adding translations for additional languages. If a specific language (e.g., en for English or any other) is omitted, the Aidbox Form will use its standard default translations for that language.
+The example provided below represents a comprehensive translations object for English, covering all possible keys. You can extend this object by adding translations for additional languages. If a specific language (e.g., en for English or any other) is omitted, the Formbox will use its standard default translations for that language.
 
 ```json
 {

@@ -1,19 +1,19 @@
 ---
 description: >-
-  Embedding the Aidbox Form Builder and Renderer into your application using web
+  Embedding the Formbox Builder and Renderer into your application using web
   components.
 ---
 
 # Embedding
 
-## Embedding Aidbox Form Builder and Renderer
+## Embedding Formbox Builder and Renderer
 
 You can embed the **Builder** and **Renderer** into your application or website using web components.
 The Renderer can also be embedded directly as an iframe using SDC SMART Web Messaging (SWM).
 
 ### Renderer in an iframe (SDC SWM)
 
-The Aidbox Forms renderer also supports [SDC SMART Web Messaging](https://github.com/brianpos/sdc-smart-web-messaging). You can embed it directly in an iframe and communicate via `postMessage`, without the web component wrapper.
+The Formbox renderer also supports [SDC SMART Web Messaging](https://github.com/brianpos/sdc-smart-web-messaging). You can embed it directly in an iframe and communicate via `postMessage`, without the web component wrapper.
 
 * **Builder** allows users to create and manage forms directly within your application.
 * **Renderer** enables users to fill out forms within your application without leaving your platform.
@@ -197,7 +197,7 @@ For more complex use cases, such as attaching authorization headers or storing q
 
 Allows to preview attachments in an external editor or viewer.
 
-Return `false` to use default Aidbox Forms attachment preview, or `true` to prevent default behavior and show your previewer.
+Return `false` to use default Formbox attachment preview, or `true` to prevent default behavior and show your previewer.
 
 ```html
 <aidbox-form-renderer id="aidbox-form-renderer" />

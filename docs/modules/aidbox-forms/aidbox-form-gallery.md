@@ -1,10 +1,10 @@
 ---
-description: The article outlines how to use forms from Aidbox Form Gallery
+description: The article outlines how to use forms from Formbox Gallery
 ---
 
 # Aidbox Form Gallery
 
-The Aidbox Form Gallery offers forms in FHIR format (FHIR Questionnaire). There are more than 3000 forms in the Aidbox Form Gallery.&#x20;
+The Formbox Gallery offers forms in FHIR format (FHIR Questionnaire). There are more than 3000 forms in the Formbox Gallery.&#x20;
 
 Previews of these forms are available [here](https://form-builder.aidbox.app/).
 
@@ -16,7 +16,7 @@ These forms can be loaded into Aidbox using various methods:
 
 ## 1. Using the Aidbox Community Notebook (limited set of forms for demo)&#x20;
 
-The Aidbox Form Gallery includes the following forms in FHIR format:
+The Formbox Gallery includes the following forms in FHIR format:
 
 * **ROS (Review of System)**
 * **Physical Exam**
@@ -24,7 +24,7 @@ The Aidbox Form Gallery includes the following forms in FHIR format:
 * **Vitals Sign** (coded in the LOINC code system)
 * **PHQ2 / PHQ9 Depression form** (coded in the LOINC code system)
 
-Users can upload these forms using the `fhir/$load` operation and then open them in the Aidbox Forms module for editing according to their requirements.&#x20;
+Users can upload these forms using the `fhir/$load` operation and then open them in the Formbox module for editing according to their requirements.&#x20;
 
 Use the Aidbox Form Gallery notebook (community) available in the Aidbox console of your instance for this purpose.
 
@@ -41,7 +41,7 @@ Follow these steps:
 
 ## 3. Searching and importing a form from the Aidbox Form Gallery inside the Aidbox Instance
 
-Open the Aidbox console and navigate to the Aidbox Forms page, you will find the Form Gallery section. There, you will discover over 3000 form templates.&#x20;
+Open the Aidbox console and navigate to the Forms page, you will find the Form Gallery section. There, you will discover over 3000 form templates.&#x20;
 
 These templates can be:
 

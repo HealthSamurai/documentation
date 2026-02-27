@@ -14,7 +14,7 @@ Here's how it works:
 
 Users can create custom components that represent question or group of questions that they want to re-use.
 
-These custom components can include any form elements supported by Aidbox Forms, such as text fields, checkboxes, or dropdowns and etc. including their attributes and rules.
+These custom components can include any form elements supported by Formbox, such as text fields, checkboxes, or dropdowns and etc. including their attributes and rules.
 
 When a user is designing a form in the UI builder, he can create a component:
 
@@ -167,7 +167,7 @@ There are some use cases with component editing:
 
 ## Assembling a Form from Other Forms
 
-Aidbox Forms allows you to assemble a new form by reusing existing forms as components. This is a powerful feature that lets you build complex forms efficiently using pre-existing templates.
+Formbox allows you to assemble a new form by reusing existing forms as components. This is a powerful feature that lets you build complex forms efficiently using pre-existing templates.
 
 ### **Steps to Assemble a Form from Ready-Made Forms:**
 

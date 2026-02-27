@@ -1,12 +1,12 @@
 ---
-description: Apply NHS Design System styling to FHIR Questionnaires with Aidbox Forms for UK healthcare applications.
+description: Apply NHS Design System styling to FHIR Questionnaires with Formbox for UK healthcare applications.
 ---
 
 # NHS integration
 
 ### Summary
 
-Aidbox Forms supports an NHS-branded look and feel designed for applications that use FHIR Questionnaires and need to be embedded into the NHS App or other NHS-aligned services.
+Formbox supports an NHS-branded look and feel designed for applications that use FHIR Questionnaires and need to be embedded into the NHS App or other NHS-aligned services.
 This theme follows the official [NHS Design System](https://service-manual.nhs.uk/design-system), including its styling rules, layout patterns, and UI components.
 
 ### What is the NHS?
@@ -20,7 +20,7 @@ The NHS is known for its standardized approach to healthcare delivery, including
 
 #### Implementation
 
-Aidbox Forms introduces the [`QuestionnaireTheme.design-system`](../configuration.md) property, which allows selecting from predefined design systems:
+Formbox introduces the [`QuestionnaireTheme.design-system`](../configuration.md) property, which allows selecting from predefined design systems:
 
 - `aidbox-desktop`
 - `aidbox-mobile`
@@ -38,7 +38,7 @@ Support for additional entry modes may be added in the future.
 
 ### Usage
 
-To enable the NHS look and feel in Aidbox Forms:
+To enable the NHS look and feel in Formbox:
 
 1. Create a `Questionnaire`
    Set its `entry-mode` to one of the modes supported by the NHS design system:

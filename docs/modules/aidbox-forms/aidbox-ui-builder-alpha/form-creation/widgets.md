@@ -4,9 +4,9 @@ description: This page is under construction.
 
 # Widgets
 
-Aidbox Forms provides a set of widgets that allow you to build comprehensive and user-friendly medical forms. Widgets are pre-defined elements that you can add to your forms to capture various types of data from users.
+Formbox provides a set of widgets that allow you to build comprehensive and user-friendly medical forms. Widgets are pre-defined elements that you can add to your forms to capture various types of data from users.
 
-This section details the various widgets available in Aidbox Forms and their corresponding settings.
+This section details the various widgets available in Formbox and their corresponding settings.
 
 ## Common Widget’s Settings
 
@@ -103,7 +103,7 @@ This feature enhances the usability of forms by ensuring users have access to ad
 
 ### Attributes section
 
-Each widget in Aidbox Forms has its own set of customisable attributes that define its behavior, appearance, and functionality.
+Each widget in Formbox has its own set of customisable attributes that define its behavior, appearance, and functionality.
 
 ### Rules section
 
@@ -165,7 +165,7 @@ For detailed instructions and example of populating data visit the[ Population p
 
 ### Extensions
 
-Aidbox Forms provide ability to add and edit extensions that are not covered in Forms Builder. Users can edit raw Questionnaire json.
+Formbox provide ability to add and edit extensions that are not covered in Forms Builder. Users can edit raw Questionnaire json.
 
 Extensions editor represents three fields for adding your own custom extension. To add extension you need follow three simple steps:
 

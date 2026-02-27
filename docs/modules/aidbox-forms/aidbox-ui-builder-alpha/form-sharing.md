@@ -1,12 +1,12 @@
 ---
 description: >-
-  Share Aidbox Forms via links or embed in applications using iframe with RSA
+  Share forms via links or embed in applications using iframe with RSA
   key configuration and $populatelink.
 ---
 
 # Form sharing
 
-Aidbox Forms supports two main scenarios for sharing forms with users:
+Formbox supports two main scenarios for sharing forms with users:
 
 1. [Sharing a Form Link with the User](form-sharing.md#sharing-a-form-link-with-the-user)
 2. [Embed the Form via iframe into an application or website](form-sharing.md#embed-the-form-via-iframe-into-an-application-or-website)
@@ -22,7 +22,7 @@ After creating a form, you can generate a link to the form and send it to the us
 1. **Select the Form:**
    * Choose the form you want to share from your list of forms.
 2. **Generate the Link:**
-   * Use the "Share" option within the Aidbox Forms interface.
+   * Use the "Share" option within the Formbox interface.
    * Generate the link via[ $populatelink ](../../../reference/aidbox-forms-reference/fhir-sdc-api.md)FHIR SDC operation.
 3. **Copy the Link:**
    * Once the link is generated, copy it to your clipboard.
@@ -33,7 +33,7 @@ After creating a form, you can generate a link to the form and send it to the us
    * When the user clicks on the link, they will be directed to the form.
    * The user can then fill out the form online (or [offline](offline-forms.md)) and submit it.
 6. **Review Responses:**
-   * After the user submits the form, you can access and review their responses within Aidbox Forms.
+   * After the user submits the form, you can access and review their responses within Formbox.
 
 {% hint style="info" %}
 You can set up the user redirect after the user submits the form.
@@ -48,7 +48,7 @@ After creating a form, you can generate an iframe code for this form and embed i
 1. **Select the Form:**
    * Choose the form you want to embed from your list of forms.
 2. **Generate the iframe Code:**
-   * Use the "Share" option within the Aidbox Forms interface.
+   * Use the "Share" option within the Formbox interface.
    * Generate the link via[ $populatelink ](../../../reference/aidbox-forms-reference/fhir-sdc-api.md)FHIR SDC operation and use it with iframe.
 
 ```
@@ -65,4 +65,4 @@ After creating a form, you can generate an iframe code for this form and embed i
 6. **User Fills Out the Form:**
    * When users access your application, they will see the embedded form and can fill it out directly within your application.
 7. **Collect and Review Responses:**
-   * After users submit the form, you can access and review their responses within Aidbox Forms.
+   * After users submit the form, you can access and review their responses within Formbox.

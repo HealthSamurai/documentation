@@ -18,7 +18,7 @@ In SDC, adaptive forms are typically implemented through the **Questionnaire/$ne
 
 ### Aidbox Implementation
 
-Aidbox supports **Adaptive Forms** as part of the **Aidbox Forms** product, following the SDC Adaptive Form workflow.
+Aidbox supports **Adaptive Forms** as part of the **Formbox** product, following the SDC Adaptive Form workflow.
 
 Aidbox implements the following key elements:
 
@@ -116,7 +116,7 @@ This ensures compatibility with both standard SDC adaptive forms and Aidbox-spec
 
 ### Forms Builder
 
-In the **Aidbox Forms Builder**, form authors can enable **Adaptive Mode** for a Questionnaire:
+In the **Formbox Builder**, form authors can enable **Adaptive Mode** for a Questionnaire:
 
 * for demonstration purposes (select \***Adaptive Form** option)
 * for specifying their assessment center (set URL for Adaptive form)
@@ -128,7 +128,7 @@ In the **Aidbox Forms Builder**, form authors can enable **Adaptive Mode** for a
 
 ### Form Renderer
 
-The **Aidbox Form Renderer** provides a runtime engine for adaptive questionnaires.
+The **Formbox Renderer** provides a runtime engine for adaptive questionnaires.
 
 Key behaviors:
 

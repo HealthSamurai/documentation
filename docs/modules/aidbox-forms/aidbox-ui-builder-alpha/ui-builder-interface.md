@@ -31,7 +31,7 @@ This interface provides users with the tools needed to create, test, and manage 
 
 ## Multilingual UI Builder Interface
 
-If you need support for another language in the UI builder interface or if you are embedding the UI Builder into your application that is used by users from different countries, Aidbox Forms provides support for multilingual interface.
+If you need support for another language in the UI builder interface or if you are embedding the UI Builder into your application that is used by users from different countries, Formbox provides support for multilingual interface.
 
 To enable this:
 

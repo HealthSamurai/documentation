@@ -4,7 +4,7 @@ description: Pre-fill form fields using Default Value, Observation-Based, or Exp
 
 # Population
 
-### Aidbox Forms provide three options for pre-filling the field:
+### Formbox provide three options for pre-filling the field:
 
 1. **Default Value**: For all fields except groups and display widgets, the user can set the initial value. If the user does not change the value, this is what will appear in the completed QuestionnaireResponse.
 2. **Observation:** Used to pre-fill a field with values ​​that are stored in the database in the Observation resources. To do this, the user needs to select the time period during which these observations could have been made. The mechanism is described in more detail in the [FHIR SDC specification.](https://build.fhir.org/ig/HL7/sdc/populate.html#observation-based-population)
