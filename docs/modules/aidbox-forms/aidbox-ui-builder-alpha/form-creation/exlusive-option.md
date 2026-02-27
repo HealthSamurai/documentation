@@ -1,13 +1,13 @@
 ---
-description: Learn how to add **“exclusive” answer options** to multichoice questions
+description: Learn how to add “exclusive” answer options to multichoice questions
 ---
 
 # Exclusive Option for multichoice questions
 
 ## Overview
 
-This feature adds **“exclusive” answer option(s)** support to Aidbox Forms UI for **multichoice** questions. 
-When an option is marked as exclusive, it **cannot be selected together** with any other option and will automatically clear conflicting selections.
+This feature adds “exclusive” answer option(s) support to Aidbox Forms UI for multichoice questions. 
+When an option is marked as exclusive, it cannot be selected together with any other option and will automatically clear conflicting selections.
 
 ## What Was Implemented
 
