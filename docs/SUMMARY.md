@@ -351,6 +351,7 @@
       * [FHIRPath Expressions with Visual Editor](modules/aidbox-forms/aidbox-ui-builder-alpha/form-creation/fhirpath-editor.md)
       * [Data Extraction](modules/aidbox-forms/aidbox-ui-builder-alpha/form-creation/data-extraction.md)
       * [Population](modules/aidbox-forms/aidbox-ui-builder-alpha/form-creation/population.md)
+      * [Exclusive option](modules/aidbox-forms/aidbox-ui-builder-alpha/form-creation/exlusive-option.md)
     * [Import Questionnaire](modules/aidbox-forms/aidbox-ui-builder-alpha/import-questionnaire.md)
     * [Form sharing](modules/aidbox-forms/aidbox-ui-builder-alpha/form-sharing.md)
     * [Printing forms](modules/aidbox-forms/aidbox-ui-builder-alpha/printing-forms/README.md)
