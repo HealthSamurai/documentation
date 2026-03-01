@@ -508,7 +508,7 @@ Database migration tracking resource for Aidbox.
   "lvl" : 0,
   "min" : 0,
   "max" : 1,
-  "type" : "Object",
+  "type" : "string",
   "desc" : "Action to be performed for the migration. \n\n**Allowed values**: `far-migration-fhir-package-install` | `far-migration-fhir-package-uninstall` | `aidbox-migration-run-sql`"
 }, {
   "path" : "dateTime",
