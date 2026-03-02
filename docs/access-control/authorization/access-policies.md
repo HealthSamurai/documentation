@@ -108,7 +108,7 @@ See tutorials:
 
 Aidbox provides several ways to specify rules for AccessPolicy resources — so-called evaluation engines. They come with their syntax and offer varying degrees of flexibility and convenience for writing those rules.
 
-There are five evaluation engines:
+There are seven evaluation engines:
 
 | Engine      | Description                                                                                     | Use Cases                                                                                                                               |
 | ----------- | ----------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------- |
@@ -117,6 +117,8 @@ There are five evaluation engines:
 | JSON Schema | Uses JSON Schema validation for request objects                                                 | - For those familiar with JSON Schema                                                                                                   |
 | SQL         | Uses SQL queries for access control logic                                                       | <p>- Complex data-dependent rules<br>- When you need to join multiple tables<br>- Performance-critical scenarios</p>                    |
 | Complex     | Combines multiple engines and conditions                                                        | <p>- Multi-step validation workflows<br>- When you need to combine different types of checks<br>- Advanced access control scenarios</p> |
+| Allow-RPC   | Like Allow, but only for RPC endpoints                                                          | - Granting unrestricted access to specific RPC operations                                                                               |
+| Matcho-RPC  | Like Matcho, but only for RPC endpoints                                                         | - Pattern-based access control for RPC operations                                                                                       |
 
 It is recommended to pick the Matcho engine. In 90% of cases, it is enough. Sometimes, the complex access policy can only be written by SQL or Complex engines.
 

@@ -70,7 +70,7 @@ When you update a Patient resource, the generated AuditEvent uses the `IHE.Basic
   "type": {
     "system": "http://terminology.hl7.org/CodeSystem/audit-event-type",
     "code": "rest",
-    "display": "RESTful Operation"
+    "display": "Restful Operation"
   },
   "subtype": [
     {
@@ -102,8 +102,13 @@ When you update a Patient resource, the generated AuditEvent uses the `IHE.Basic
       },
       "role": {
         "system": "http://terminology.hl7.org/CodeSystem/object-role",
-        "code": "1",
-        "display": "Patient"
+        "code": "4",
+        "display": "Domain Resource"
+      },
+      "type": {
+        "system": "http://terminology.hl7.org/CodeSystem/audit-entity-type",
+        "code": "2",
+        "display": "System Object"
       }
     }
   ]

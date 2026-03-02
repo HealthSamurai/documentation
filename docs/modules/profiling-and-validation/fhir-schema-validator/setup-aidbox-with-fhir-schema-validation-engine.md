@@ -59,7 +59,7 @@ If you don't specify the `BOX_FHIR_TERMINOLOGY_SERVICE_BASE_URL` environment var
 Extensions referenced in data instances must be known to Aidbox. If Aidbox encounters an unknown extension during validation, it will raise a validation error.
 
 ```
-BOX_FHIR_VALIDATOR_STRICT_EXTENSION_RESOLUTION_ENABLED=true
+BOX_FHIR_VALIDATOR_STRICT_EXTENSION_RESOLUTION=true
 ```
 
 #### FHIRSchema Validator Strict Profile Resolution
@@ -67,5 +67,5 @@ BOX_FHIR_VALIDATOR_STRICT_EXTENSION_RESOLUTION_ENABLED=true
 Profiles referenced in data instances _(e.g. meta.profile)_ must be known to Aidbox. If Aidbox encounters an unknown profile during validation, it will raise a validation error.
 
 ```
-BOX_FHIR_VALIDATOR_STRICT_PROFILE_RESOLUTION_ENABLED=true
+BOX_FHIR_VALIDATOR_STRICT_PROFILE_RESOLUTION=true
 ```

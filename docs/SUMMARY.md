@@ -156,6 +156,7 @@
 * [Configure Aidbox and Multibox](configuration/configure-aidbox-and-multibox.md)
 * [External Secrets](configuration/secret-files.md)
 * [Init Bundle](configuration/init-bundle.md)
+* [Migrations](configuration/migrations.md)
 
 ## API
 
