@@ -40,7 +40,7 @@ checks:
     - status: pass
       componentType: database
       observedValue: 2
-      observedUnit: msM
+      observedUnit: ms
 ```
 {% endcode %}
 

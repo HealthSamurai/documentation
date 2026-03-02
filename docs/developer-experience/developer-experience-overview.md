@@ -60,7 +60,7 @@ var settings = new FhirClientSettings
 
 var client = new FhirClient("https://your-aidbox.io/fhir", settings);
 
-// Optional: Add Basic Ayth
+// Optional: Add Basic Auth
 client.RequestHeaders.Add("Authorization", "Basic <Base64-encoded client:secret>");
 
 // Create a patient

@@ -123,9 +123,9 @@ params:
     type: integer
     default: 10
 # sql query with parameters {{path.to.ctx.elements}}
-query: 'SELECT * from patient where id ilike = {{params.filter}} limit {{params.count}}'
+query: 'SELECT * from patient where id ilike {{params.filter}} limit {{params.count}}'
 # if count-query is present - it will be evaluated for total property in response
-count-query: 'SELECT count(*) from patient where id ilike = {{params.filter}}'
+count-query: 'SELECT count(*) from patient where id ilike {{params.filter}}'
 # not required. enable links in response, see the section below
 enable-links: false
 # not required. omit sql in query response
@@ -297,8 +297,8 @@ GET /Patient?.name.0.family=Johnson
 GET /Patient?.name.0.family$contains=Joh
 => WHERE resource#>>'{name,0,family}' ilike '%John%'
 
-GET /Encounter?.start::timestamptz$gt=2015-01-01
-=> WHERE (resource#>>'{start}')::timestamptz > '2015-01-01'
+GET /Encounter?.period.start::timestamptz$gt=2015-01-01
+=> WHERE (resource#>>'{period,start}')::timestamptz > '2015-01-01'
 
 GET /Patient?.contact$isnull=true
 => WHERE resource#>>'{contact}' IS NULL

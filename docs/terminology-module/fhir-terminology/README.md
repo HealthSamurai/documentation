@@ -49,116 +49,44 @@ GET /fhir/ValueSet/$expand?url=http://hl7.org/fhir/ValueSet/condition-clinical
 {% endtab %}
 
 {% tab title="Response" %}
-```
+```json
 {
   "resourceType": "ValueSet",
   "url": "http://hl7.org/fhir/ValueSet/condition-clinical",
   "expansion": {
     "identifier": "urn:uuid:9e6375e6-bd2d-4301-8926-5274899038da",
-    "timestamp": "2025-08-01T01:30:03+00:00",
+    "timestamp": "2026-02-01T12:00:00+00:00",
     "total": 6,
-    "parameter": [
-      {
-        "name": "used-codesystem",
-        "valueUri": "http://terminology.hl7.org/CodeSystem/condition-clinical|4.3.0"
-      },
-      {
-        "name": "version",
-        "valueUri": "http://terminology.hl7.org/CodeSystem/condition-clinical|4.3.0"
-      },
-      {
-        "name": "displayLanguage",
-        "valueCode": "en-US,en;q=0.9,es;q=0.8,ja;q=0.7"
-      },
-      {
-        "name": "warning-draft",
-        "valueUri": "http://terminology.hl7.org/CodeSystem/condition-clinical|4.3.0"
-      }
-    ],
     "contains": [
       {
         "system": "http://terminology.hl7.org/CodeSystem/condition-clinical",
         "code": "active",
-        "display": "Active",
-        "designation": [
-          {
-            "use": {
-              "system": "http://terminology.hl7.org/CodeSystem/designation-usage",
-              "code": "display"
-            },
-            "value": "Active"
-          }
-        ]
+        "display": "Active"
       },
       {
         "system": "http://terminology.hl7.org/CodeSystem/condition-clinical",
         "code": "inactive",
-        "display": "Inactive",
-        "designation": [
-          {
-            "use": {
-              "system": "http://terminology.hl7.org/CodeSystem/designation-usage",
-              "code": "display"
-            },
-            "value": "Inactive"
-          }
-        ]
+        "display": "Inactive"
       },
       {
         "system": "http://terminology.hl7.org/CodeSystem/condition-clinical",
         "code": "recurrence",
-        "display": "Recurrence",
-        "designation": [
-          {
-            "use": {
-              "system": "http://terminology.hl7.org/CodeSystem/designation-usage",
-              "code": "display"
-            },
-            "value": "Recurrence"
-          }
-        ]
+        "display": "Recurrence"
       },
       {
         "system": "http://terminology.hl7.org/CodeSystem/condition-clinical",
         "code": "relapse",
-        "display": "Relapse",
-        "designation": [
-          {
-            "use": {
-              "system": "http://terminology.hl7.org/CodeSystem/designation-usage",
-              "code": "display"
-            },
-            "value": "Relapse"
-          }
-        ]
+        "display": "Relapse"
       },
       {
         "system": "http://terminology.hl7.org/CodeSystem/condition-clinical",
         "code": "remission",
-        "display": "Remission",
-        "designation": [
-          {
-            "use": {
-              "system": "http://terminology.hl7.org/CodeSystem/designation-usage",
-              "code": "display"
-            },
-            "value": "Remission"
-          }
-        ]
+        "display": "Remission"
       },
       {
         "system": "http://terminology.hl7.org/CodeSystem/condition-clinical",
         "code": "resolved",
-        "display": "Resolved",
-        "designation": [
-          {
-            "use": {
-              "system": "http://terminology.hl7.org/CodeSystem/designation-usage",
-              "code": "display"
-            },
-            "value": "Resolved"
-          }
-        ]
+        "display": "Resolved"
       }
     ]
   }

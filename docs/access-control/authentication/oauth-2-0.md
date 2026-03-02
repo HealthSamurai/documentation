@@ -49,7 +49,7 @@ sequenceDiagram
   AS->>User: Login & consent UI
   User->>AS: Enter creds + grant consent
   AS->>Client: 302 Redirect → redirect_uri?code=AUTH_CODE&state
-  Client->>AS: POST /token<br/>grant_type=authorization_code<br/>code, client_id, client_secret, redirect_uri
+  Client->>AS: POST /auth/token<br/>grant_type=authorization_code<br/>code, client_id, client_secret, redirect_uri
    AS->>Client: 200 OK<br/>{ "access_token": "...", "token_type": "Bearer", "expires_in": 3600 }
   
   Client->>RS: GET /fhir/{resourceType}<br/>Authorization: Bearer access_token
@@ -76,7 +76,7 @@ sequenceDiagram
   participant RS as Resource Server<br>(Aidbox)
 
   RO->>ClientApp: Provide<br>username and password
-  ClientApp->>AS: POST /token<br/>grant_type=password<br/>username, password, client_id, client_secret
+  ClientApp->>AS: POST /auth/token<br/>grant_type=password<br/>username, password, client_id, client_secret
   AS->>AS: Validate resource owner credentials
   AS->>ClientApp: 200 OK<br/>{ "access_token": "...", "token_type": "Bearer", "expires_in": 3600 }
   RS ->> AS: verify token

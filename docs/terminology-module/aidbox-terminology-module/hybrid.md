@@ -160,8 +160,8 @@ For access to up-to-date curated terminologies in Hybrid Mode, we recommend Term
 
 **Configuration:**
 ```yaml
-FHIR_TERMINOLOGY_ENGINE: hybrid
-FHIR_TERMINOLOGY_ENGINE_HYBRID_EXTERNAL_TX_SERVER: https://tx.health-samurai.io/fhir
+BOX_FHIR_TERMINOLOGY_ENGINE: hybrid
+BOX_FHIR_TERMINOLOGY_ENGINE_HYBRID_EXTERNAL_TX_SERVER: https://tx.health-samurai.io/fhir
 ```
 
 Termbox provides comprehensive coverage of standard terminologies including SNOMED CT, LOINC, RxNorm, and ICD-10, with regular updates and reliable availability.

@@ -12,10 +12,10 @@ Name of view definition (computer and database friendly) sql-name: Name is limit
 
 ### сonstant (optional)
 
-Contact details for the publisher. Defined as an array of elemtents that contain the following elements:
+Named constants that can be referenced in FHIRPath expressions. Defined as an array of elements that contain the following elements:
 
 * **name** — Name of constant (referred to in FHIRPath as `%[name]`). Name is limited to letters, numbers, or underscores and cannot start with an underscore — i.e. with a regular expression of: `^[^][A-Za-z][A-Za-z0-9]+$`
-* **value** — Value of constant.
+* **valueString** — Value of constant.
 
 ### select
 

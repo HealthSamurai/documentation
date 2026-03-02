@@ -28,7 +28,7 @@ name:
   - given:
       - John
     family: Smith
-id: pt-2
+id: pt-1
 ```
 
 ## Patient $purge
@@ -68,7 +68,7 @@ If you need to delete resource history, you need to execute SQL manually.
 Example:
 
 ```
-DELETE * FROM Patient_history
+DELETE FROM Patient_history
 WHERE id='pt-1'
 ```
 

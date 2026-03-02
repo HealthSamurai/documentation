@@ -59,7 +59,7 @@ Parameters:
 
 | Key          | Type                        | Description                                               |
 | ------------ | --------------------------- | --------------------------------------------------------- |
-| **method**   | string                      | One of: `GET`, `POST`, `PUT,` `DELETE`, `PATCH`, `OPTION` |
+| **method**   | string                      | One of: `GET`, `POST`, `PUT`, `DELETE`, `PATCH`, `OPTIONS` |
 | **path**     | array of strings or objects | New endpoint in Aidbox in array                           |
 | **policies** | object                      | Access policies to create and bound to this operation     |
 

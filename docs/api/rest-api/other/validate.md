@@ -35,7 +35,7 @@ parameter:
   value: {string: <mode>}
 - name: profile
   value: {uri: <StructureDefinition.url>}
-- name: esource
+- name: resource
   resource: <resource>
 
 ```
@@ -83,7 +83,7 @@ HTTP 200 OK
 id: allok
 resourceType: OperationOutcome
 issue:
-- {severity: informational, code: informational, diagnostics: all ok}
+- {severity: information, code: informational, diagnostics: all ok}
 ```
 {% endcode %}
 
@@ -105,7 +105,7 @@ HTTP 200 OK
 id: allok
 resourceType: OperationOutcome
 issue:
-- {severity: informational, code: informational, diagnostics: all ok}
+- {severity: information, code: informational, diagnostics: all ok}
 ```
 {% endcode %}
 

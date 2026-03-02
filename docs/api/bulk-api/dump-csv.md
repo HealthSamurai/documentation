@@ -37,7 +37,7 @@ GET /Patient/$dump-csv
 **Curl**
 
 ```bash
-$ curl "$AIDBOX_BASE/\$dump-csv" \
+$ curl "$AIDBOX_BASE/Patient/\$dump-csv" \
     -H 'authorization: Basic YnVsay1jbGllbnQ6c2VjcmV0'
 ```
 {% endtab %}
@@ -86,7 +86,7 @@ GET /Appointment/$dump-csv
 **Curl**
 
 ```bash
-curl -u bulk-client:secret $AIDBOX_BASE_URL/Patient/\$dump-csv
+curl -u bulk-client:secret $AIDBOX_BASE_URL/Appointment/\$dump-csv
 ```
 {% endtab %}
 

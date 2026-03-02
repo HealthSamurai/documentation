@@ -12,6 +12,10 @@ Accept: text/yaml
 Authorization: Basic {base64(Client.id + ':' + Client.secret)}
 ```
 
+{% hint style="warning" %}
+The Client resource must include `"basic"` in its `grant_types` array for Basic Auth to work. For example: `"grant_types": ["basic"]`.
+{% endhint %}
+
 Basic Auth does not natively provide features such as session invalidation, and the credentials stay constant unless changed. As a result, it is typically used for internal services or quick proofs of concept where heightened security and user management systems are not critical concerns.
 
 ## Basic Auth in Aidbox Sandbox

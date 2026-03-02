@@ -20,6 +20,7 @@ accept: application/json
 content-type: application/json
 
 {
+  "resourceType": "Bundle",
   "type": "transaction",
   "entry": [
     {
@@ -82,6 +83,7 @@ accept: application/json
 content-type: application/json
 
 {
+  "resourceType": "Bundle",
   "type": "transaction",
   "entry": [
     {

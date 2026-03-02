@@ -17,7 +17,7 @@ To configure Aidbox to use FHIR Schema Validation Engine you need to:
 To enable the FHIR Schema Validator engine, set the following environment variable:
 
 ```
-AIDBOX_FHIR_SCHEMA_VALIDATION=true
+BOX_FHIR_SCHEMA_VALIDATION=true
 ```
 
 #### Enable a Specific Implementation Guide (IG)
@@ -25,21 +25,31 @@ AIDBOX_FHIR_SCHEMA_VALIDATION=true
 To enable a specific IG, list it in the following environment variable. Separate different packages using a colon (`:`). Package entry template: `<package_name>#<package_version>`.
 
 ```
-AIDBOX_FHIR_PACKAGES=hl7.fhir.r4.core#4.0.1
+BOX_BOOTSTRAP_FHIR_PACKAGES=hl7.fhir.r4.core#4.0.1
 ```
+
+#### Configure Terminology Engine
+
+Aidbox supports different terminology engine modes. To use hybrid mode (recommended) with an external terminology server for codes not available locally, set:
+
+```
+BOX_FHIR_TERMINOLOGY_ENGINE=hybrid
+```
+
+See [Hybrid Mode](../../../terminology-module/aidbox-terminology-module/hybrid.md) for details on terminology engine modes.
 
 #### Configure External Terminology Service
 
 To validate coded values with an external Terminology service, set it in the following environment variable.
 
 ```
-AIDBOX_TERMINOLOGY_SERVICE_BASE_URL=https://tx.health-samurai.io/fhir
+BOX_FHIR_TERMINOLOGY_SERVICE_BASE_URL=https://tx.health-samurai.io/fhir
 ```
 
 {% hint style="warning" %}
 Please note that this external terminology server will be used exclusively to validate terminology bindings.
 
-If you don't specify the AIDBOX\_TERMINOLOGY\_SERVICE\_BASE\_URL environment variable the validation of terminology bindings will be skipped.
+If you don't specify the `BOX_FHIR_TERMINOLOGY_SERVICE_BASE_URL` environment variable the validation of terminology bindings will be skipped.
 {% endhint %}
 
 ### Validation Engine Settings
@@ -49,7 +59,7 @@ If you don't specify the AIDBOX\_TERMINOLOGY\_SERVICE\_BASE\_URL environment var
 Extensions referenced in data instances must be known to Aidbox. If Aidbox encounters an unknown extension during validation, it will raise a validation error.
 
 ```
-AIDBOX_VALIDATOR_STRICT_EXTENSION_RESOLUTION_ENABLED=true
+BOX_FHIR_VALIDATOR_STRICT_EXTENSION_RESOLUTION_ENABLED=true
 ```
 
 #### FHIRSchema Validator Strict Profile Resolution
@@ -57,5 +67,5 @@ AIDBOX_VALIDATOR_STRICT_EXTENSION_RESOLUTION_ENABLED=true
 Profiles referenced in data instances _(e.g. meta.profile)_ must be known to Aidbox. If Aidbox encounters an unknown profile during validation, it will raise a validation error.
 
 ```
-AIDBOX_VALIDATOR_STRICT_PROFILE_RESOLUTION_ENABLED=true
+BOX_FHIR_VALIDATOR_STRICT_PROFILE_RESOLUTION_ENABLED=true
 ```

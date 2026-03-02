@@ -38,7 +38,7 @@ GET /Patient/17b69d79-3d9b-45f8-af79-75f958502763
 
 ```yaml
 name:
-- given: Bob
+- given: [Bob]
 gender: male
 id: 17b69d79-3d9b-45f8-af79-75f958502763
 resourceType: Patient
@@ -46,7 +46,7 @@ meta:
   lastUpdated: '2018-11-29T10:44:10.588Z'
   versionId: '13'
   extension:
-    - url: 'ex:createdAt'
+    - url: 'https://fhir.aidbox.app/fhir/StructureDefinition/created-at'
       valueInstant: '2018-11-29T10:44:10.588Z'
 ```
 {% endtab %}
@@ -56,7 +56,7 @@ meta:
 
 ```yaml
 name:
-- given: Bob
+- given: [Bob]
 gender: male
 id: 17b69d79-3d9b-45f8-af79-75f958502763
 resourceType: Patient
@@ -85,7 +85,7 @@ GET /Patient/some-not-existing-id
 ```
 {% endtab %}
 
-{% tab title="Request (FHIR)" %}
+{% tab title="Response (FHIR)" %}
 **Status:** `404`
 
 ```yaml
@@ -157,7 +157,7 @@ meta:
   lastUpdated: '2018-11-29T10:44:10.588Z'
   versionId: '13'
   extension:
-    - url: 'ex:createdAt'
+    - url: 'https://fhir.aidbox.app/fhir/StructureDefinition/created-at'
       valueInstant: '2018-11-29T10:44:10.588Z'
 ```
 {% endtab %}
@@ -174,7 +174,7 @@ id: '17b69d79-3d9b-45f8-af79-75f958502763'
 resourceType: Patient
 meta:
   lastUpdated: '2018-11-29T10:44:10.588Z'
-  createdAt: '2018-11-29T10:44:10.588ZZ'
+  createdAt: '2018-11-29T10:44:10.588Z'
   versionId: '13'
 ```
 {% endtab %}

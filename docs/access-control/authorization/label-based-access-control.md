@@ -43,7 +43,7 @@ id: some-user-id
 securityLabel:
   - system: http://terminology.hl7.org/CodeSystem/v3-ActCode
     code: PSY
-  - system: https://terminology.hl7.org/CodeSystem/v3-Confidentiality
+  - system: http://terminology.hl7.org/CodeSystem/v3-Confidentiality
     code: M
 ```
 

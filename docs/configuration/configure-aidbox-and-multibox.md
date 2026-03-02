@@ -35,14 +35,16 @@ See also: [How to configure Aidbox to use a proxy](../tutorials/other-tutorials/
 
 ## Configure performance
 
-By default, Aidbox and Multibox runs with 8 web workers and 8 DB connection pool size. That means that Aidbox can process at the same time 8 concurrent connections.
+By default, Aidbox and Multibox runs with 8 web workers and 16 DB connection pool size.
 
-A good practice is stayed pool size the same as CPU count of your database. For example, if your database has 16 CPU cores, you can set `BOX_DB_POOL_MAXIMUM__POOL__SIZE=16`. Box web workers count is dependent on your load profile. For example, if you have a lot of fast read queries, you can set `BOX_WEB_THREAD` equal x2 or x3 of your DB pool size (32 or 48). Or if you have a lot of batch insert queries, we recommend stay web workers count as the same DB pool size.
+Common recommendations:
+- Box web workers count is dependent on your load profile. We recommend to set `BOX_WEB_THREAD` equal X2 of CPU count. 
+- `BOX_DB_POOL_MAXIMUM__POOL__SIZE` equal X2 of your `BOX_WEB_THREADS`.
 
 You can configure this parameter using following environment variables.
 
 ```bash
-BOX_DB_POOL_MAXIMUM_POOL_SIZE=8
+BOX_DB_POOL_MAXIMUM_POOL_SIZE=16
 BOX_WEB_THREAD=8
 ```
 

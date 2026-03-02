@@ -44,7 +44,7 @@ Any chain must finish with a terminal. A terminal is just a search parameter nam
 Example:
 
 ```
-GET /fhir/Observation?_has:Encounter:subject
+GET /fhir/Observation?_has:Encounter:subject:status=finished
 ```
 
 ### Chain

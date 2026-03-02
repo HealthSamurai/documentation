@@ -43,9 +43,11 @@ inputs:
 {% endtab %}
 
 {% tab title="Response" %}
-```yaml
-status: 200
 ```
+HTTP 200 OK
+```
+
+The response body is empty. A `200` status code indicates the import has started successfully.
 {% endtab %}
 {% endtabs %}
 

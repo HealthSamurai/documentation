@@ -65,10 +65,14 @@ Optional list of extensions:&#x20;
 You may encounter `permission denied` error when creating extensions. Just connect to PostgreSQL database using user that can create extension (usually admin user created with a server) and create failed extension manually.
 {% endhint %}
 
-Setup following environment variables. If you're using existing `PGDATABASE` make sure `aidbox` role has `CREATE` privilege on it. Otherwise Aidbox won't be able to install most of the extensions.
+Setup following environment variables. If you're using existing database make sure the `aidbox` role has `CREATE` privilege on it. Otherwise Aidbox won't be able to install most of the extensions.
 
 ```shell
-PGUSER=aidbox
-PGPASSWORD=aidboxpass
-PGDATABASE=aidbox
+BOX_DB_USER=aidbox
+BOX_DB_PASSWORD=aidboxpass
+BOX_DB_DATABASE=aidbox
 ```
+
+{% hint style="info" %}
+Deprecated names `PGUSER`, `PGPASSWORD`, and `PGDATABASE` are still accepted but `BOX_DB_*` variables are recommended.
+{% endhint %}

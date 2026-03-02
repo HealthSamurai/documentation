@@ -95,7 +95,7 @@ Generates SQL like
 </strong><strong>  aidbox_text_search(
 </strong><strong>    knife_extract_text(
 </strong><strong>      resource,
-</strong>      '[["name","family"],["name","given"],["name","middle"],["name","text"]]'
+</strong>      '[["name","family"],["name","given"],["name","middle"],["name","text"],["name","prefix"],["name","suffix"]]'
     )
   ) ILIKE unaccent('% abc%')
 LIMIT 100
@@ -113,7 +113,7 @@ USING GIN (
   aidbox_text_search(
     knife_extract_text(
       resource,
-      '[["name","family"],["name","given"],["name","middle"],["name","text"]]'
+      '[["name","family"],["name","given"],["name","middle"],["name","text"],["name","prefix"],["name","suffix"]]'
     )
   ) gin_trgm_ops
 )

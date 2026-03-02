@@ -109,7 +109,7 @@ resourceType: ViewDefinition
 {% endtab %}
 {% endtabs %}
 
-This step will create both a ViewDefinition resource and the corresponding flat view. `PUT` and `DELETE` operations will also affect both ViewDefinitions and their flat views.
+This step creates a ViewDefinition resource. To materialize it as a database view, table, or materialized view, use the [`$materialize` operation](operation-materialize.md). Creating a ViewDefinition via REST API does not automatically create database objects.
 
 ### With ViewDefinition Builder
 
@@ -135,11 +135,9 @@ extension:
   - url: https://fhir.aidbox.app/fhir/Extension/view-definition
     extension:
       - url: materialization
-        value:
-          code: table
+        valueCode: table
       - url: schema
-        value:
-          string: public
+        valueString: public
 ```
 
 In the example above, the view will be materialized as a table in a schema called `public`. Available materialization options are `table`, `materialized-view` and `view`.

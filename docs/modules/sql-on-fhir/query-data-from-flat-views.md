@@ -12,7 +12,7 @@ Once you've saved your View Definition, the corresponding flat view will be crea
 select * from sof.patient_view
 ```
 
-Note that in the current version of Aidbox, View Definitions can be materialized as SQL views only.
+View Definitions can be materialized as SQL views, tables, or materialized views. See [`$materialize` operation](operation-materialize.md) for details.
 
 From here, you can use your flat views however you like. Popular use cases include building complex queries for data analysis and using BI-tools to build dashboards.
 

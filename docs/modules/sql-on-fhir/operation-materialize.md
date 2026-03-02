@@ -54,7 +54,9 @@ The `ViewDefinition` resource should be specified by:
     ```json
     {
       "name": "viewReference",
-      "valueReference": "ViewDefinition/patient-view"
+      "valueReference": {
+        "reference": "ViewDefinition/patient-view"
+      }
     }
     ```
 
@@ -122,6 +124,7 @@ For example, with the given saved ViewDefinition:
   "resourceType": "ViewDefinition",
   "id": "0448a9a8-6114-4a19-aa8e-fc5f60c4d714",
   "name": "patient_view",
+  "status": "draft",
   "resource": "Patient",
   "select": [{
     "column": [{

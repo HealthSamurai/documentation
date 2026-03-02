@@ -66,7 +66,7 @@ meta:
   lastUpdated: '2018-11-29T10:44:10.588Z'
   versionId: '13'
   extension:
-    - url: 'ex:createdAt'
+    - url: 'https://fhir.aidbox.app/fhir/StructureDefinition/created-at'
       valueInstant: '2018-11-29T10:44:10.588Z'
 ```
 {% endtab %}
@@ -144,7 +144,7 @@ meta:
   lastUpdated: '2018-11-29T10:44:10.588Z'
   versionId: '13'
   extension:
-    - url: 'ex:createdAt'
+    - url: 'https://fhir.aidbox.app/fhir/StructureDefinition/created-at'
       valueInstant: '2018-11-29T10:44:10.588Z'
 ```
 {% endtab %}
@@ -181,7 +181,7 @@ meta:
   lastUpdated: '2018-11-29T10:44:10.588Z'
   versionId: '13'
   extension:
-    - url: 'ex:createdAt'
+    - url: 'https://fhir.aidbox.app/fhir/StructureDefinition/created-at'
       valueInstant: '2018-11-29T10:44:10.588Z'
 ```
 {% endtab %}

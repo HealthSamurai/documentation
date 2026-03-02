@@ -44,7 +44,7 @@ The `_revinclude` parameter returns additional resources that reference the matc
 For example, to find all Provenance resources that reference a specific MedicationRequest:
 
 ```
-GET /fhir/MedicationRequest?_id=123&_revinclude=Provenance
+GET /fhir/MedicationRequest?_id=123&_revinclude=Provenance:target
 ```
 
 ### Syntax
@@ -81,7 +81,7 @@ Aidbox enhances FHIR `_elements` parameter to support fields from included resou
 Example:
 
 ```
-GET /Encounter?_include=patient&_elements=id,status,Patient.name,Patient.birthDate
+GET /Encounter?_include=Encounter:patient&_elements=id,status,Patient.name,Patient.birthDate
 ```
 
 ## :logical modifier

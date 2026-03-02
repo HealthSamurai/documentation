@@ -66,9 +66,9 @@ When you update a Patient resource, the generated AuditEvent uses the `IHE.Basic
     ]
   },
   "type": {
-    "system": "http://dicom.nema.org/resources/ontology/DCM",
-    "code": "110110",
-    "display": "Patient Record"
+    "system": "http://terminology.hl7.org/CodeSystem/audit-event-type",
+    "code": "rest",
+    "display": "RESTful Operation"
   },
   "subtype": [
     {

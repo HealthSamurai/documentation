@@ -57,7 +57,7 @@ rest:
   - {code: batch}
   - {code: transaction}
   operation:
-  - {name: patient_list, deinition: Operation/patient_list}
+  - {name: patient_list, definition: Operation/patient_list}
   ....
   resource:
   - interaction:

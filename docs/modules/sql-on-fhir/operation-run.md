@@ -52,7 +52,9 @@ The `ViewDefinition` resource should be specified by:
     ```json
     {
       "name": "viewReference",
-      "valueReference": "ViewDefinition/patient-view"
+      "valueReference": {
+        "reference": "ViewDefinition/patient-view"
+      }
     }
     ```
 * **viewResource**: provided viewDefinition resource.

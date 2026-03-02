@@ -89,7 +89,7 @@ String searches are **case-insensitive** and **accent-insensitive** by default. 
 For example:
 
 * `name=John` will match "John", "Johnny", "Johnson"
-* `name=eve` will match "Eve" and "Steven"
+* `name=eve` will match "Eve" and "Evelyn"
 * `name=andré` will match "Andre", "André", "Andres"
 
 String searches support these modifiers:
@@ -632,19 +632,27 @@ GET /fhir/Patient?_summary=true
 
 Response:
 
-```
+```yaml
 resourceType: Bundle
 type: searchset
+total: 100
 entry:
-- resource: {id: Patient.active, isSummary: true, resourceType: Attribute}
-  fullUrl: /Attribute/Patient.active
-- resource: {id: Patient.address, isSummary: true, resourceType: Attribute}
-  fullUrl: /Attribute/Patient.address
-- resource: {id: Patient.animal, isSummary: true, resourceType: Attribute}
-  fullUrl: /Attribute/Patient.animal
-- resource: {id: Patient.animal.breed, isSummary: true, resourceType: Attribute}
-  fullUrl: /Attribute/Patient.animal.breed
-# .....
+- resource:
+    resourceType: Patient
+    id: pt-1
+    meta:
+      tag:
+      - code: SUBSETTED
+        system: http://terminology.hl7.org/CodeSystem/v3-ObservationValue
+    active: true
+    name:
+    - given: [John]
+      family: Smith
+    gender: male
+    birthDate: '1990-01-01'
+    address:
+    - city: Boston
+# ... only summary elements are returned
 ```
 
 Values table:
@@ -725,7 +733,7 @@ The `_tag` search parameter allows searching for resources tagged with specific 
 Example:
 
 ```
-GET /fhir/Patient?tag=emergency
+GET /fhir/Patient?_tag=emergency
 ```
 
 ## Custom Search Parameter

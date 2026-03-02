@@ -35,14 +35,18 @@ A complex structure that pairs a code with its source system, providing precise 
 {
   "resourceType": "Observation",
   "code": {
-    "system": "http://loinc.org",
-    "code": "1751-7", 
-    "display": "Albumin [Mass/volume] in Serum or Plasma"
+    "coding": [
+      {
+        "system": "http://loinc.org",
+        "code": "1751-7",
+        "display": "Albumin [Mass/volume] in Serum or Plasma"
+      }
+    ]
   }
 }
 ```
 
-In this example, the `Coding` specifies not only the code `1751-7` (which has no meaning by itself), but also identifies LOINC as the source vocabulary that defines this code. The `display` element provides human-readable text for validation and user interfaces.
+In this example, `Observation.code` is a CodeableConcept that contains a single `Coding`. The Coding specifies not only the code `1751-7` (which has no meaning by itself), but also identifies LOINC as the source vocabulary that defines this code. The `display` element provides human-readable text for validation and user interfaces.
 
 See [definition](https://www.hl7.org/fhir/R4/datatypes.html#coding)
 

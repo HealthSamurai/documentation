@@ -161,7 +161,7 @@ accept: application/json
 Authorization: "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdHYiOjIsImF1ZCI6Imh0dHBzOi8vZzEwdGVzdC5lZGdlLmFpZGJveC5hcHAvZmhpciIsInN1YiI6IjNkMGVmYjgwLTkwMTktNDdhMS1iMzYxLWUwNDUzOGQ4NzFmZSIsImlzcyI6Imh0dHBzOi8vYXV0aC5leGFtcGxlLmNvbSIsImV4cCI6MTczMzIzNDk0ODQsInNjb3BlIjoibGF1bmNoL3BhdGllbnQgb3BlbmlkIGZoaXJVc2VyIG9mZmxpbmVfYWNjZXNzIHBhdGllbnQvUGF0aWVudC5yZWFkIHBhdGllbnQvT2JzZXJ2YXRpb24ucmVhZCIsImp0aSI6IjUzZWQ1MTZhLTNjODEtNGRjZC05NTUxLTdlOTUzYTkzZmMwZSIsImNvbnRleHQiOnsicGF0aWVudCI6InRlc3QtcHQtMSJ9LCJpYXQiOjE3MzMyMzQ2NDh9.PsYalqkaN-6V0tBqLn_9pkDrR0cLmEg237W8xz5Ymdo"
 
 {
-  "resoruceType": "Bundle",
+  "resourceType": "Bundle",
   "type": "batch",
   "entry": [
     {
@@ -262,7 +262,7 @@ Aidbox will limit access and filter retrieved data based on [FHIR Patient Compar
 GET /fhir/Observation
 content-type: application/json
 accept: application/json
-// Token with "patient/Observation.read" scope and "contest.patient" = "test-pt-1"
+// Token with "patient/Observation.read" scope and "context.patient" = "test-pt-1"
 Authorization: "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdHYiOjIsImF1ZCI6Imh0dHBzOi8vZzEwdGVzdC5lZGdlLmFpZGJveC5hcHAvZmhpciIsInN1YiI6IjNkMGVmYjgwLTkwMTktNDdhMS1iMzYxLWUwNDUzOGQ4NzFmZSIsImlzcyI6Imh0dHBzOi8vYXV0aC5leGFtcGxlLmNvbSIsImV4cCI6MTczMzIzNDk0ODQsInNjb3BlIjoibGF1bmNoL3BhdGllbnQgb3BlbmlkIGZoaXJVc2VyIG9mZmxpbmVfYWNjZXNzIHBhdGllbnQvUGF0aWVudC5yZWFkIHBhdGllbnQvT2JzZXJ2YXRpb24ucmVhZCIsImp0aSI6IjUzZWQ1MTZhLTNjODEtNGRjZC05NTUxLTdlOTUzYTkzZmMwZSIsImNvbnRleHQiOnsicGF0aWVudCI6InRlc3QtcHQtMSJ9LCJpYXQiOjE3MzMyMzQ2NDh9.PsYalqkaN-6V0tBqLn_9pkDrR0cLmEg237W8xz5Ymdo"
 ```
 {% endtab %}
@@ -270,7 +270,7 @@ Authorization: "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdHYiOjIsImF1ZCI6
 {% tab title="Response" %}
 ```json
 // 200 OK Return Observation only 
-// with reference to "test-pt-1" Patient (from "contest.patient" claim)
+// with reference to "test-pt-1" Patient (from "context.patient" claim)
 
 {
   "resourceType": "Bundle",

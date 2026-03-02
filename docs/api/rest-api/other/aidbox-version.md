@@ -16,10 +16,9 @@ GET /$version
 {% tab title="Response" %}
 {% code title="Status 200" %}
 ```
-version: '2204'
-channel: edge
-commit: c51312c6
-zen-fhir-version: 0.5.8
+version: '2602'
+commit: abc12345
+timestamp: '2026-02-01T12:00:00Z'
 ```
 {% endcode %}
 {% endtab %}

@@ -49,8 +49,8 @@ Aidbox implements most of the [FHIR specification](https://www.hl7.org/fhir/) an
 * Aidbox stores Resources in [Aidbox format](architecture.md#aidbox-and-fhir-formats), which is isomorphic to FHIR, but not the same.
 * Aidbox serves two sets of API: **Aidbox API** from "/" and **FHIR API** from "/fhir\*\*"\*\*. Aidbox API works with Aidbox format, and FHIR API works with FHIR format. When you interact with FHIR endpoints, Aidbox does on-the-fly conversion between these two formats.
 * Aidbox offers **First-Class Extensions** and **Custom Resources**, which FHIR doesn't support, but these additions are very handy for designing real-world systems.
-* Aidbox uses its own Entity/Attribute, SearchParameter and AidboxProfile framework instead of FHIR Structure Definitions. FHIR Profiles should be converted to Aidbox meta-resources.
+* Aidbox uses [FHIR Schema](modules/profiling-and-validation/fhir-schema-validator/) for validation and profiling. The legacy Entity/Attribute and AidboxProfile framework has been replaced by FHIR StructureDefinitions and FHIR Schema.
 
 ### Resources
 
-In Aidbox, everything is a **Resource.** Each resource type is described with special **Entity** and **Attribute** meta-resources. **Entities** describe resources and types. **Attributes** describe the structure of resources and complex types. For each **Entity**, Aidbox generates database schema in PostgreSQL, REST endpoints for CRUD, history, search and other operations, and JSON-schema for validation.
+In Aidbox, everything is a **Resource.** Each resource type is defined by FHIR StructureDefinitions, loaded from FHIR packages or custom profiles. For each resource type, Aidbox generates database schema in PostgreSQL, REST endpoints for CRUD, history, search and other operations, and validation based on FHIR Schema.

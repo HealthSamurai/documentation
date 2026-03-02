@@ -139,7 +139,7 @@ See also:
 [Custom Resource Tutorials](../tutorials/artifact-registry-tutorials/custom-resources/)
 {% endcontent-ref %}
 
-{% content-ref url="](../modules/profiling-and-validation/" %}
+{% content-ref url="../modules/profiling-and-validation/" %}
 [FHIR Profiling and Validation](../modules/profiling-and-validation/)
 {% endcontent-ref %}
 

@@ -49,17 +49,17 @@ You can open `[aidbox-base]/_logs` in your browser, and Aidbox will produce logs
 
 ### Stdout log
 
-Aidbox sends logs into stdout if one of these env variables defined: [`AIDBOX_STDOUT_JSON`](../../../reference/all-settings.md#observability.stdout.log-level), [`AIDBOX_STDOUT_PRETTY`](../../../reference/all-settings.md#observability.stdout.pretty-log-level).
+Aidbox sends logs into stdout if one of these env variables defined: [`BOX_OBSERVABILITY_STDOUT_LOG_LEVEL`](../../../reference/all-settings.md#observability.stdout.log-level), [`BOX_OBSERVABILITY_STDOUT_PRETTY_LOG_LEVEL`](../../../reference/all-settings.md#observability.stdout.pretty-log-level). Deprecated names `AIDBOX_STDOUT_JSON` and `AIDBOX_STDOUT_PRETTY` are still accepted.
 
 Both environment variables enable logging to stdout but the difference is log format.
 
-#### Example of the log output when `AIDBOX_STDOUT_JSON` enabled
+#### Example of the log output when `BOX_OBSERVABILITY_STDOUT_LOG_LEVEL` enabled
 
 ```json
 {"sql":"SELECT 1","d":2,"ts":"2022-10-26T10:59:59.825Z","w":"main","ev":"db/q"}
 ```
 
-#### Example of the log output when `AIDBOX_STDOUT_PRETTY` enabled
+#### Example of the log output when `BOX_OBSERVABILITY_STDOUT_PRETTY_LOG_LEVEL` enabled
 
 ```
 11:01:12 main [1ms] SELECT 1

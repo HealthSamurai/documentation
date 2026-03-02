@@ -56,9 +56,6 @@ entry:
     meta:
       lastUpdated: '2018-11-27T11:33:59.497Z'
       versionId: '54'
-      tag:
-      - system: https://aidbox.app
-        code: created
   request:
     method: POST
     url: Patient
@@ -80,9 +77,6 @@ entry:
     meta:
       lastUpdated: '2018-11-27T21:58:51.396Z'
       versionId: '57'
-      tag:
-      - system: https://aidbox.app
-        code: updated
   request:
     method: PUT
     url: Patient
@@ -94,9 +88,6 @@ entry:
     meta:
       lastUpdated: '2018-11-27T11:33:59.497Z'
       versionId: '54'
-      tag:
-      - system: https://aidbox.app
-        code: created
   request:
     method: POST
     url: Patient
@@ -118,9 +109,6 @@ entry:
     meta:
       lastUpdated: '2018-11-27T22:01:16.609Z'
       versionId: '58'
-      tag:
-      - system: https://aidbox.app
-        code: deleted
   request:
     method: DELETE
     url: Patient
@@ -133,9 +121,6 @@ entry:
     meta:
       lastUpdated: '2018-11-27T21:58:51.396Z'
       versionId: '57'
-      tag:
-      - system: https://aidbox.app
-        code: updated
   request:
     method: PUT
     url: Patient
@@ -147,9 +132,6 @@ entry:
     meta:
       lastUpdated: '2018-11-27T11:33:59.497Z'
       versionId: '54'
-      tag:
-      - system: https://aidbox.app
-        code: created
   request:
     method: POST
     url: Patient

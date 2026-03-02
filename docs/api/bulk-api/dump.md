@@ -84,9 +84,9 @@ GET /Patient/$dump
 **Body**
 
 ```
-{"id": "pt-1", "meta": {"createdAt": "2021-06-10T08:26:10.707454Z", "versionId": 481, "lastUpdated": "2021-06-10T08:26:10.707454Z"}, "name": [{"given": ["Alice"]}], "resourceType": "Patient"}
-{"id": "pt-2", "meta": {"createdAt": "2021-06-10T08:26:10.707454Z", "versionId": 482, "lastUpdated": "2021-06-10T08:26:10.707454Z"}, "name": [{"given": ["Bob"]}], "resourceType": "Patient"}
-{"id": "pt-3", "meta": {"createdAt": "2021-06-10T08:26:10.707454Z", "versionId": 483, "lastUpdated": "2021-06-10T08:26:10.707454Z"}, "name": [{"given": ["Charles"]}], "citizenship": [{"code": {"text": "ru"}}], "resourceType": "Patient"}
+{"id": "pt-1", "meta": {"createdAt": "2021-06-10T08:26:10.707454Z", "versionId": "481", "lastUpdated": "2021-06-10T08:26:10.707454Z"}, "name": [{"given": ["Alice"]}], "resourceType": "Patient"}
+{"id": "pt-2", "meta": {"createdAt": "2021-06-10T08:26:10.707454Z", "versionId": "482", "lastUpdated": "2021-06-10T08:26:10.707454Z"}, "name": [{"given": ["Bob"]}], "resourceType": "Patient"}
+{"id": "pt-3", "meta": {"createdAt": "2021-06-10T08:26:10.707454Z", "versionId": "483", "lastUpdated": "2021-06-10T08:26:10.707454Z"}, "name": [{"given": ["Charles"]}], "citizenship": [{"code": {"text": "ru"}}], "resourceType": "Patient"}
 ```
 
 **Body (manually formatted)**
@@ -96,7 +96,7 @@ GET /Patient/$dump
   "id": "pt-1",
   "meta": {
     "createdAt": "2021-06-10T08:26:10.707454Z",
-    "versionId": 481,
+    "versionId": "481",
     "lastUpdated": "2021-06-10T08:26:10.707454Z"
   },
   "name": [
@@ -112,7 +112,7 @@ GET /Patient/$dump
   "id": "pt-2",
   "meta": {
     "createdAt": "2021-06-10T08:26:10.707454Z",
-    "versionId": 482,
+    "versionId": "482",
     "lastUpdated": "2021-06-10T08:26:10.707454Z"
   },
   "name": [
@@ -128,7 +128,7 @@ GET /Patient/$dump
   "id": "pt-3",
   "meta": {
     "createdAt": "2021-06-10T08:26:10.707454Z",
-    "versionId": 483,
+    "versionId": "483",
     "lastUpdated": "2021-06-10T08:26:10.707454Z"
   },
   "name": [
@@ -183,9 +183,9 @@ curl -u bulk-client:secret $AIDBOX_BASE_URL/Appointment/\$dump
 **Body**
 
 ```yaml
-{"id": "ap-1", "meta": {"createdAt": "2021-06-10T08:26:10.707454Z", "versionId": 484, "lastUpdated": "2021-06-10T08:26:10.707454Z"}, "status": "fulfilled", "participant": [{"actor": {"id": "pt-1", "resourceType": "Patient"}, "status": "accepted"}], "resourceType": "Appointment"}
-{"id": "ap-2", "meta": {"createdAt": "2021-06-10T08:26:10.707454Z", "versionId": 485, "lastUpdated": "2021-06-10T08:26:10.707454Z"}, "status": "booked", "participant": [{"actor": {"id": "pt-1", "resourceType": "Patient"}, "status": "accepted"}], "resourceType": "Appointment"}
-{"id": "ap-3", "meta": {"createdAt": "2021-06-10T08:26:10.707454Z", "versionId": 486, "lastUpdated": "2021-06-10T08:26:10.707454Z"}, "status": "fulfilled", "participant": [{"actor": {"id": "pt-2", "resourceType": "Patient"}, "status": "accepted"}], "resourceType": "Appointment"}
+{"id": "ap-1", "meta": {"createdAt": "2021-06-10T08:26:10.707454Z", "versionId": "484", "lastUpdated": "2021-06-10T08:26:10.707454Z"}, "status": "fulfilled", "participant": [{"actor": {"id": "pt-1", "resourceType": "Patient"}, "status": "accepted"}], "resourceType": "Appointment"}
+{"id": "ap-2", "meta": {"createdAt": "2021-06-10T08:26:10.707454Z", "versionId": "485", "lastUpdated": "2021-06-10T08:26:10.707454Z"}, "status": "booked", "participant": [{"actor": {"id": "pt-1", "resourceType": "Patient"}, "status": "accepted"}], "resourceType": "Appointment"}
+{"id": "ap-3", "meta": {"createdAt": "2021-06-10T08:26:10.707454Z", "versionId": "486", "lastUpdated": "2021-06-10T08:26:10.707454Z"}, "status": "fulfilled", "participant": [{"actor": {"id": "pt-2", "resourceType": "Patient"}, "status": "accepted"}], "resourceType": "Appointment"}
 ```
 
 **Body (manually formatted)**
@@ -195,7 +195,7 @@ curl -u bulk-client:secret $AIDBOX_BASE_URL/Appointment/\$dump
   "id": "ap-1",
   "meta": {
     "createdAt": "2021-06-10T08:26:10.707454Z",
-    "versionId": 484,
+    "versionId": "484",
     "lastUpdated": "2021-06-10T08:26:10.707454Z"
   },
   "status": "fulfilled",
@@ -214,7 +214,7 @@ curl -u bulk-client:secret $AIDBOX_BASE_URL/Appointment/\$dump
   "id": "ap-2",
   "meta": {
     "createdAt": "2021-06-10T08:26:10.707454Z",
-    "versionId": 485,
+    "versionId": "485",
     "lastUpdated": "2021-06-10T08:26:10.707454Z"
   },
   "status": "booked",
@@ -233,7 +233,7 @@ curl -u bulk-client:secret $AIDBOX_BASE_URL/Appointment/\$dump
   "id": "ap-3",
   "meta": {
     "createdAt": "2021-06-10T08:26:10.707454Z",
-    "versionId": 486,
+    "versionId": "486",
     "lastUpdated": "2021-06-10T08:26:10.707454Z"
   },
   "status": "fulfilled",
@@ -285,9 +285,9 @@ curl -u bulk-client:secret $AIDBOX_BASE_URL/Patient/\$dump?fhir=true
 **Body**
 
 ```
-{"id":"pt-1","meta":{"versionId":481,"lastUpdated":"2021-06-10T08:26:10.707454Z","extension":[{"url":"ex:createdAt","valueInstant":"2021-06-10T08:26:10.707454Z"}]},"name":[{"given":["Alice"]}],"resourceType":"Patient"}
-{"id":"pt-2","meta":{"versionId":482,"lastUpdated":"2021-06-10T08:26:10.707454Z","extension":[{"url":"ex:createdAt","valueInstant":"2021-06-10T08:26:10.707454Z"}]},"name":[{"given":["Bob"]}],"resourceType":"Patient"}
-{"id":"pt-3","meta":{"versionId":483,"lastUpdated":"2021-06-10T08:26:10.707454Z","extension":[{"url":"ex:createdAt","valueInstant":"2021-06-10T08:26:10.707454Z"}]},"name":[{"given":["Charles"]}],"citizenship":[{"code":{"text":"ru"}}],"resourceType":"Patient"}
+{"id":"pt-1","meta":{"versionId":"481","lastUpdated":"2021-06-10T08:26:10.707454Z","extension":[{"url":"ex:createdAt","valueInstant":"2021-06-10T08:26:10.707454Z"}]},"name":[{"given":["Alice"]}],"resourceType":"Patient"}
+{"id":"pt-2","meta":{"versionId":"482","lastUpdated":"2021-06-10T08:26:10.707454Z","extension":[{"url":"ex:createdAt","valueInstant":"2021-06-10T08:26:10.707454Z"}]},"name":[{"given":["Bob"]}],"resourceType":"Patient"}
+{"id":"pt-3","meta":{"versionId":"483","lastUpdated":"2021-06-10T08:26:10.707454Z","extension":[{"url":"ex:createdAt","valueInstant":"2021-06-10T08:26:10.707454Z"}]},"name":[{"given":["Charles"]}],"citizenship":[{"code":{"text":"ru"}}],"resourceType":"Patient"}
 ```
 
 **Body (manually formatted)**
@@ -296,7 +296,7 @@ curl -u bulk-client:secret $AIDBOX_BASE_URL/Patient/\$dump?fhir=true
 {
   "id": "pt-1",
   "meta": {
-    "versionId": 481,
+    "versionId": "481",
     "lastUpdated": "2021-06-10T08:26:10.707454Z",
     "extension": [
       {
@@ -317,7 +317,7 @@ curl -u bulk-client:secret $AIDBOX_BASE_URL/Patient/\$dump?fhir=true
 {
   "id": "pt-2",
   "meta": {
-    "versionId": 482,
+    "versionId": "482",
     "lastUpdated": "2021-06-10T08:26:10.707454Z",
     "extension": [
       {
@@ -338,7 +338,7 @@ curl -u bulk-client:secret $AIDBOX_BASE_URL/Patient/\$dump?fhir=true
 {
   "id": "pt-3",
   "meta": {
-    "versionId": 483,
+    "versionId": "483",
     "lastUpdated": "2021-06-10T08:26:10.707454Z",
     "extension": [
       {

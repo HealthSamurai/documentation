@@ -99,16 +99,16 @@ Let's say we created a patient:
 POST /fhir/Patient
 
 id: pt-1
-name: [{family: 'Wrong'}]
+name: [{family: Wrong}]
 ```
 
 To fix the family for this patient without the risk of overriding someone else's changes, we can use a versioned update request:
 
 ```
-PUT /fhir/Patient/pt-id
+PUT /fhir/Patient/pt-1
 If-Match: 30
 
-name: [{family: ['Smith']}]
+name: [{family: Smith}]
 ```
 
 If someone has already edited the same patient, his version id was changed, and we got OperationOutcome.

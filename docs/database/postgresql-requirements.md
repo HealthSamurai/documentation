@@ -9,7 +9,7 @@ Aidbox uses PostgreSQL as its database engine, leveraging its robust JSON capabi
 ## Version compatibility
 
 * Minimum: PostgreSQL 12 (required for JSON path support). For older versions, use PostgreSQL with `jsonknife` extension
-* Actively supported: Three most recent versions (currently 17, 16, 15)
+* Actively supported: Most recent versions (currently 18, 17, 16)
 
 ## Deployment options
 

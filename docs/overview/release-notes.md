@@ -68,7 +68,7 @@ description: >-
   * Added support for [`$current-canonical`](../artifact-registry/artifact-registry-overview.md#current-canonical-operation) operation.
   * Added **AWS EventBridge** as an AidboxTopicDestination. See [full tutorial](../tutorials/subscriptions-tutorials/aws-eventbridge-aidboxtopicdestination.md)
   * Implemented **AWS Default credentials authorization**. See [full tutorial](../file-storage/aws-s3/)
-  * Performance improvemens:
+  * Performance improvements:
     * +25% on CRUD operations
     * +80% on FHIR bundle import operations.
   * Optimized memory usage on server initialization.

@@ -94,10 +94,10 @@ config:
   BOX_BOOTSTRAP_FHIR_PACKAGES: "hl7.fhir.r4.core#4.0.1"
   BOX_COMPATIBILITY_VALIDATION_JSON__SCHEMA_REGEX: '#{:fhir-datetime}'
   BOX_DB_DATABASE: aidbox
-  BOX_DB_HOST: postgres
+  BOX_DB_HOST: aidbox-db-rw
   BOX_DB_PASSWORD: <pg-password>
   BOX_DB_PORT: '5432'
-  BOX_DB_USER: aidbox
+  BOX_DB_USER: postgres
   BOX_FHIR_BUNDLE_EXECUTION_VALIDATION_MODE: limited
   BOX_FHIR_COMPLIANT_MODE: 'true'
   BOX_FHIR_CORRECT_AIDBOX_FORMAT: 'true'
