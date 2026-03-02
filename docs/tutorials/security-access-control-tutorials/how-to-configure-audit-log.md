@@ -16,6 +16,10 @@ Objectives
 
 Limitation: currently works with only FHIR R4 version. If you need to support R5 or DSTU2, please contact us.
 
+{% hint style="info" %}
+Not all operations generate AuditEvents. Bulk operations (`$import`, `$load`), auth token issuance, and configuration changes are not audited. See [Audit coverage](../../access-control/audit-and-logging.md#audit-coverage) and [Known limitations](../../access-control/audit-and-logging.md#known-limitations) for details.
+{% endhint %}
+
 ## Configure FHIR Audit Log
 
 ### Enable FHIR Audit Log

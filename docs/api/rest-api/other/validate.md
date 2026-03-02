@@ -129,11 +129,11 @@ issue:
 - severity: fatal
   code: invalid
   expression: [Patient.name]
-  diagnostics: expected array
+  diagnostics: The property must be an array
 - severity: fatal
   code: invalid
   expression: [Patient.test]
-  diagnostics: extra property
+  diagnostics: "Unrecognized property 'test'"
 ```
 {% endcode %}
 

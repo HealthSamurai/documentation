@@ -135,7 +135,7 @@ For FHIR Subscriptions, use the `fhir-native-topic-based-subscription` kind with
   "parameter": [
     {
       "name": "fhir-topic",
-      "valueUrl": "http://hl7.org/fhir/us/davinci-pas/SubscriptionTopic/PASSubscriptionTopic"
+      "valueCanonical": "http://hl7.org/fhir/us/davinci-pas/SubscriptionTopic/PASSubscriptionTopic"
     },
     {
       "name": "subscription-specification-version",
@@ -143,11 +143,11 @@ For FHIR Subscriptions, use the `fhir-native-topic-based-subscription` kind with
     },
     {
       "name": "keep-events-for-period",
-      "valueInteger": 86400
+      "valueUnsignedInt": 86400
     },
     {
       "name": "number-of-deliverer",
-      "valueInteger": 2
+      "valueUnsignedInt": 2
     }
   ]
 }

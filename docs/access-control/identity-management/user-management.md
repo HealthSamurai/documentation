@@ -16,6 +16,57 @@ A `User` represents an application‑level identity and is completely stored and
 
 Because everything is a resource, you can manage users the same way you manage clinical data: create [profiles](../../modules/profiling-and-validation/#what-is-profiling) to apply validation, versioned history, transactions, \_history, etc.
 
+### Password management
+
+Passwords are managed through the standard CRUD API on the `User` resource. Aidbox automatically hashes passwords using scrypt before storing them.
+
+#### Creating a user with a password
+
+```http
+PUT /User/my-user
+Content-Type: application/json
+
+{
+  "email": "user@example.com",
+  "password": "my-secret-password"
+}
+```
+
+The response contains the scrypt hash (format `$s0$...`) instead of the plaintext password.
+
+#### Changing a password
+
+Update the `password` field via `PUT` or `PATCH`:
+
+```http
+PATCH /User/my-user
+Content-Type: application/json
+
+{
+  "password": "new-secret-password"
+}
+```
+
+{% hint style="warning" %}
+Password changes do **not** require the current password. Any client with write access to the `User` resource can change any user's password. Protect the `User` resource with an [AccessPolicy](../authorization/access-policies.md) that restricts write access.
+{% endhint %}
+
+When audit logging is enabled, password changes generate an AuditEvent with DICOM subtype `110139` ("User password changed"). See [Audit and Logging](../audit-and-logging.md) for details.
+
+### Security considerations
+
+{% hint style="warning" %}
+**Password hash exposure**: `GET /User/:id` and `GET /User?` return the scrypt password hash in the response body. Only the `/auth/userinfo` endpoint strips the password field. Use an AccessPolicy to restrict read access to the `User` resource for non-admin clients.
+{% endhint %}
+
+{% hint style="info" %}
+**No automatic account lockout**: Aidbox does not lock accounts after repeated failed login attempts. The only lockout mechanism is manually setting `User.inactive` to `true`. See [Prohibit user to login](../../tutorials/security-access-control-tutorials/prohibit-user-to-login.md).
+{% endhint %}
+
+{% hint style="info" %}
+**No built-in password policies**: Aidbox does not enforce password complexity, expiry, or reuse rules. Implement these checks in your application layer before calling the Aidbox API.
+{% endhint %}
+
 See also:
 
 * [User resource reference](../../reference/system-resources-reference/core-module-resources.md#user)

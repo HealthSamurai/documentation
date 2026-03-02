@@ -136,22 +136,43 @@ Response:
 
 ```yaml
 result:
-  - index-name: observation_date_param_knife_date_min_tstz
+  - index-name: observation_date_param_knife_date_min_low_tstz
     name: date
     resource-type: Observation
     statement: >-
       CREATE INDEX CONCURRENTLY IF NOT EXISTS
-      "observation_date_param_knife_date_min_tstz" ON "observation" USING btree
+      "observation_date_param_knife_date_min_low_tstz" ON "observation" USING btree
       ((knife_extract_min_timestamptz("observation".resource,
-      '[["effective","Period","start"],["effective","Period","end"],["effective","dateTime"],["effective","Timing","event"],["effective","instant"]]'))
+      '[["effective","dateTime"],["effective","Period","start"],["effective","Timing","event"],["effective","instant"]]'))
       )
     subtypes:
       - null
+      - ge
       - eq
+      - sa
+      - gt
       - ne
-      - lt
       - le
-      - btw
+      - lt
+    type: date
+  - index-name: observation_date_param_knife_date_max_high_tstz
+    name: date
+    resource-type: Observation
+    statement: >-
+      CREATE INDEX CONCURRENTLY IF NOT EXISTS
+      "observation_date_param_knife_date_max_high_tstz" ON "observation" USING btree
+      ((knife_extract_max_timestamptz("observation".resource,
+      '[["effective","dateTime"],["effective","Period","end"],["effective","Timing","event"],["effective","instant"]]'))
+      )
+    subtypes:
+      - null
+      - ge
+      - eq
+      - gt
+      - ne
+      - le
+      - lt
+      - eb
     type: date
   - index-name: observation_date_param_knife_date_max_tstz
     name: date
@@ -160,14 +181,21 @@ result:
       CREATE INDEX CONCURRENTLY IF NOT EXISTS
       "observation_date_param_knife_date_max_tstz" ON "observation" USING btree
       ((knife_extract_max_timestamptz("observation".resource,
-      '[["effective","Period","start"],["effective","Period","end"],["effective","dateTime"],["effective","Timing","event"],["effective","instant"]]'))
+      '[["effective","dateTime"],["effective","Period","start"],["effective","Period","end"],["effective","Timing","event"],["effective","instant"]]'))
       )
     subtypes:
-      - null
-      - eq
-      - ne
-      - gt
-      - ge
+      - btw
+    type: date
+  - index-name: observation_date_param_knife_date_min_tstz
+    name: date
+    resource-type: Observation
+    statement: >-
+      CREATE INDEX CONCURRENTLY IF NOT EXISTS
+      "observation_date_param_knife_date_min_tstz" ON "observation" USING btree
+      ((knife_extract_min_timestamptz("observation".resource,
+      '[["effective","dateTime"],["effective","Period","start"],["effective","Period","end"],["effective","Timing","event"],["effective","instant"]]'))
+      )
+    subtypes:
       - btw
     type: date
   - index-name: observation_resource_id
@@ -182,4 +210,4 @@ result:
     type: id
 ```
 
-Suggested indexes will increase performance of Observation.date and Observation.\_id.
+Suggested indexes will increase performance of Observation.date and Observation.\_id. The date parameter now returns 4 indexes: `_min_low_tstz` and `_max_high_tstz` for comparison operators (`ge`, `gt`, `le`, `lt`, `eq`, `ne`, `sa`, `eb`), plus `_min_tstz` and `_max_tstz` for the `btw` (between) operator.

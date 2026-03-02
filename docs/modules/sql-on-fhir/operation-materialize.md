@@ -198,6 +198,7 @@ Accept: application/json
         "resourceType": "ViewDefinition",
         "id": "0448a9a8-6114-4a19-aa8e-fc5f60c4d714",
         "name": "patient_view",
+        "status": "draft",
         "resource": "Patient",
         "select": [{
           "column": [{

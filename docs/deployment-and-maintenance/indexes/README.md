@@ -32,23 +32,19 @@ GET /Patient?active=true&_explain=analyze
 
 Possible response is
 
-```
-query:
-  - >-
-    SELECT "patient".* FROM "patient" WHERE "patient".resource @> ? LIMIT ?
-    OFFSET ? 
-  - '{"active":true}'
-  - 100
-  - 0
-plan: >-
-  Limit  (cost=0.00..1.01 rows=1 width=124) (actual time=0.015..0.015 rows=0
-  loops=1)
-    ->  Seq Scan on patient  (cost=0.00..1.01 rows=1 width=124) (actual time=0.014..0.014 rows=0 loops=1)
-          Filter: (resource @> '{"active": true}'::jsonb)
-          Rows Removed by Filter: 1
-  Planning Time: 0.729 ms
-
-  Execution Time: 0.050 ms
+```json
+{
+  "query": [
+    "SELECT \"patient\".* FROM \"patient\" WHERE \"patient\".resource @> ? LIMIT ? OFFSET ?",
+    "{\"active\":true}",
+    100,
+    0
+  ],
+  "query-inline": [
+    "SELECT \"patient\".* FROM \"patient\" WHERE \"patient\".resource @> '{\"active\":true}' LIMIT 100 OFFSET 0"
+  ],
+  "plan": "Limit  (cost=0.00..1.01 rows=1 width=124) (actual time=0.015..0.015 rows=0 loops=1)\n  ->  Seq Scan on patient  (cost=0.00..1.01 rows=1 width=124) (actual time=0.014..0.014 rows=0 loops=1)\n        Filter: (resource @> '{\"active\": true}'::jsonb)\n        Rows Removed by Filter: 1\n  Planning Time: 0.729 ms\n  Execution Time: 0.050 ms"
+}
 ```
 
 Corresponding SQL is
