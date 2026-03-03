@@ -73,7 +73,11 @@ Multiple `override` parameters can be provided in a single request to override s
 
 #### Override examples
 
+The examples below demonstrate installing `hl7.fhir.us.core@8.0.0` from the Simplifier registry. US Core 8.0.0 depends on `us.nlm.vsac@0.23.0`, but Simplifier stopped hosting VSAC versions after `0.17.0`, which causes installation to fail. Overrides solve this problem.
+
 ##### Override dependency version
+
+Pin `us.nlm.vsac` to version `0.17.0` (the latest available on Simplifier) instead of the requested `0.23.0`:
 
 {% tabs %}
 {% tab title="Request" %}
@@ -87,18 +91,22 @@ Accept: application/json
   "parameter": [
     {
       "name": "package",
-      "valueString": "my.custom.ig@1.0.0"
+      "valueString": "hl7.fhir.us.core@8.0.0"
+    },
+    {
+      "name": "registry",
+      "valueString": "https://packages.simplifier.net"
     },
     {
       "name": "override",
       "part": [
         {
           "name": "from",
-          "valueString": "hl7.fhir.us.core"
+          "valueString": "us.nlm.vsac"
         },
         {
           "name": "to",
-          "valueString": "6.1.0"
+          "valueString": "0.17.0"
         }
       ]
     }
@@ -108,7 +116,9 @@ Accept: application/json
 {% endtab %}
 {% endtabs %}
 
-##### Replace dependency with a different package
+##### Override a specific dependency version
+
+Use version-qualified `from` to only override VSAC when the exact version `0.23.0` is requested:
 
 {% tabs %}
 {% tab title="Request" %}
@@ -122,18 +132,22 @@ Accept: application/json
   "parameter": [
     {
       "name": "package",
-      "valueString": "my.custom.ig@1.0.0"
+      "valueString": "hl7.fhir.us.core@8.0.0"
+    },
+    {
+      "name": "registry",
+      "valueString": "https://packages.simplifier.net"
     },
     {
       "name": "override",
       "part": [
         {
           "name": "from",
-          "valueString": "nonexistent.package"
+          "valueString": "us.nlm.vsac@0.23.0"
         },
         {
           "name": "to",
-          "valueString": "npm:hl7.fhir.us.core@3.1.1"
+          "valueString": "0.17.0"
         }
       ]
     }
@@ -145,6 +159,8 @@ Accept: application/json
 
 ##### Skip a dependency
 
+Exclude `us.nlm.vsac` entirely by setting `to` to `false`:
+
 {% tabs %}
 {% tab title="Request" %}
 ```http
@@ -157,14 +173,18 @@ Accept: application/json
   "parameter": [
     {
       "name": "package",
-      "valueString": "my.custom.ig@1.0.0"
+      "valueString": "hl7.fhir.us.core@8.0.0"
+    },
+    {
+      "name": "registry",
+      "valueString": "https://packages.simplifier.net"
     },
     {
       "name": "override",
       "part": [
         {
           "name": "from",
-          "valueString": "unwanted.dependency"
+          "valueString": "us.nlm.vsac"
         },
         {
           "name": "to",
@@ -178,7 +198,9 @@ Accept: application/json
 {% endtab %}
 {% endtabs %}
 
-##### Multiple overrides in one request
+##### Replace dependency with a different package
+
+Replace `us.nlm.vsac` with an alternative package using the `npm:` prefix:
 
 {% tabs %}
 {% tab title="Request" %}
@@ -192,18 +214,63 @@ Accept: application/json
   "parameter": [
     {
       "name": "package",
-      "valueString": "my.custom.ig@1.0.0"
+      "valueString": "hl7.fhir.us.core@8.0.0"
+    },
+    {
+      "name": "registry",
+      "valueString": "https://packages.simplifier.net"
     },
     {
       "name": "override",
       "part": [
         {
           "name": "from",
-          "valueString": "some.package@1.0.0"
+          "valueString": "us.nlm.vsac"
         },
         {
           "name": "to",
-          "valueString": "2.0.0"
+          "valueString": "npm:my.custom.vsac@1.0.0"
+        }
+      ]
+    }
+  ]
+}
+```
+{% endtab %}
+{% endtabs %}
+
+##### Multiple overrides in one request
+
+Combine several overrides — pin VSAC to `0.17.0` and skip another dependency:
+
+{% tabs %}
+{% tab title="Request" %}
+```http
+POST /fhir/$fhir-package-install
+Content-Type: application/json
+Accept: application/json
+
+{
+  "resourceType": "Parameters",
+  "parameter": [
+    {
+      "name": "package",
+      "valueString": "hl7.fhir.us.core@8.0.0"
+    },
+    {
+      "name": "registry",
+      "valueString": "https://packages.simplifier.net"
+    },
+    {
+      "name": "override",
+      "part": [
+        {
+          "name": "from",
+          "valueString": "us.nlm.vsac"
+        },
+        {
+          "name": "to",
+          "valueString": "0.17.0"
         }
       ]
     },
@@ -212,7 +279,7 @@ Accept: application/json
       "part": [
         {
           "name": "from",
-          "valueString": "obsolete.package"
+          "valueString": "us.cdc.phinvads"
         },
         {
           "name": "to",
