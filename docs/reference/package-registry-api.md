@@ -29,6 +29,9 @@ For details on the candidate selection algorithm and recursive pinning process, 
 |------|-------------|------|-------------|
 | package | 1..* | string | Package specification in one of the following formats:<ul><li>`<name>@<version>` — identifier from the registry (e.g., `hl7.fhir.us.core@5.0.0`)</li><li>`https://` — remote gzipped tarball URL (e.g., `https://example.org/package.tgz`)</li><li>`file://` — local gzipped tarball path (e.g., `file:///path/to/package.tgz`)</li></ul> |
 | registry | 0..1 | url | Package registry URL used for resolving non-local packages.<br>Defaults to `https://fs.get-ig.org/pkgs`. |
+| override | 0..* | | Dependency override rule. Each `override` parameter contains two `part` elements: `from` and `to`. See [Dependency Overrides](#dependency-overrides). |
+| override.part:from | 1..1 | string | Dependency to override. Accepts a package name (e.g., `some.package`) or a version-qualified name (e.g., `some.package@1.0.0`). |
+| override.part:to | 1..1 | string \| boolean | Override value. See [Dependency Overrides](#dependency-overrides) for accepted formats. |
 
 ### Output Parameters
 
@@ -41,6 +44,187 @@ For details on the candidate selection algorithm and recursive pinning process, 
 | package.intention | 1..1 | string | `direct` / `transitive` | Whether installed directly or as a dependency. |
 | package.source.type | 1..1 | string | `npm` / `file` | Source type from which the package was fetched. |
 | package.source.registry | 0..1 | string | `https://fs.get-ig.org/pkgs` | Package registry URL. |
+
+### Dependency Overrides
+
+The `override` parameter allows you to control how dependencies are resolved during package installation. This is useful when a package declares a dependency that is unavailable, needs to be pinned to a different version, or should be replaced with an alternative package.
+
+Each `override` parameter must contain exactly two `part` elements:
+
+- **`from`** (`valueString`) — identifies the dependency to override.
+- **`to`** (`valueString` or `valueBoolean`) — specifies the replacement.
+
+#### `from` matching rules
+
+| Format | Description |
+|--------|-------------|
+| `<name>` | Matches the dependency by package name regardless of version (e.g., `some.package`). |
+| `<name>@<version>` | Matches only when both the package name and version match (e.g., `some.package@1.0.0`). Version-qualified overrides take priority over name-only overrides. |
+
+#### `to` override values
+
+| Value | Type | Description |
+|-------|------|-------------|
+| `<version>` | string | Replaces the dependency version (e.g., `"2.0.0"`). The package name stays the same. |
+| `npm:<name>@<version>` | string | Replaces the dependency with an entirely different package (e.g., `"npm:alt.package@1.0.0"`). |
+| `false` | boolean | Skips the dependency entirely — it will not be installed. |
+
+Multiple `override` parameters can be provided in a single request to override several dependencies at once.
+
+#### Override examples
+
+##### Override dependency version
+
+{% tabs %}
+{% tab title="Request" %}
+```http
+POST /fhir/$fhir-package-install
+Content-Type: application/json
+Accept: application/json
+
+{
+  "resourceType": "Parameters",
+  "parameter": [
+    {
+      "name": "package",
+      "valueString": "my.custom.ig@1.0.0"
+    },
+    {
+      "name": "override",
+      "part": [
+        {
+          "name": "from",
+          "valueString": "hl7.fhir.us.core"
+        },
+        {
+          "name": "to",
+          "valueString": "6.1.0"
+        }
+      ]
+    }
+  ]
+}
+```
+{% endtab %}
+{% endtabs %}
+
+##### Replace dependency with a different package
+
+{% tabs %}
+{% tab title="Request" %}
+```http
+POST /fhir/$fhir-package-install
+Content-Type: application/json
+Accept: application/json
+
+{
+  "resourceType": "Parameters",
+  "parameter": [
+    {
+      "name": "package",
+      "valueString": "my.custom.ig@1.0.0"
+    },
+    {
+      "name": "override",
+      "part": [
+        {
+          "name": "from",
+          "valueString": "nonexistent.package"
+        },
+        {
+          "name": "to",
+          "valueString": "npm:hl7.fhir.us.core@3.1.1"
+        }
+      ]
+    }
+  ]
+}
+```
+{% endtab %}
+{% endtabs %}
+
+##### Skip a dependency
+
+{% tabs %}
+{% tab title="Request" %}
+```http
+POST /fhir/$fhir-package-install
+Content-Type: application/json
+Accept: application/json
+
+{
+  "resourceType": "Parameters",
+  "parameter": [
+    {
+      "name": "package",
+      "valueString": "my.custom.ig@1.0.0"
+    },
+    {
+      "name": "override",
+      "part": [
+        {
+          "name": "from",
+          "valueString": "unwanted.dependency"
+        },
+        {
+          "name": "to",
+          "valueBoolean": false
+        }
+      ]
+    }
+  ]
+}
+```
+{% endtab %}
+{% endtabs %}
+
+##### Multiple overrides in one request
+
+{% tabs %}
+{% tab title="Request" %}
+```http
+POST /fhir/$fhir-package-install
+Content-Type: application/json
+Accept: application/json
+
+{
+  "resourceType": "Parameters",
+  "parameter": [
+    {
+      "name": "package",
+      "valueString": "my.custom.ig@1.0.0"
+    },
+    {
+      "name": "override",
+      "part": [
+        {
+          "name": "from",
+          "valueString": "some.package@1.0.0"
+        },
+        {
+          "name": "to",
+          "valueString": "2.0.0"
+        }
+      ]
+    },
+    {
+      "name": "override",
+      "part": [
+        {
+          "name": "from",
+          "valueString": "obsolete.package"
+        },
+        {
+          "name": "to",
+          "valueBoolean": false
+        }
+      ]
+    }
+  ]
+}
+```
+{% endtab %}
+{% endtabs %}
 
 ### Examples
 
