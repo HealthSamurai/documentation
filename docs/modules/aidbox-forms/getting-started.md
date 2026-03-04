@@ -2,7 +2,7 @@
 description: This article outlines the basic steps to get started with Formbox
 ---
 
-# Getting started
+# Getting started (module)
 
 You can try the Formbox module, edit test forms, create new ones, see how the data will be saved to the database and extracted, for this you need to run [the Formbox in Aidbox Sandbox](getting-started.md#run-aidbox-forms-in-aidbox-sandbox). At the same time, you can run [the Formbox locally](getting-started.md#run-aidbox-forms-locally).
 

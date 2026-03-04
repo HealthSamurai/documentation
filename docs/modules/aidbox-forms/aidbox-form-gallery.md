@@ -2,7 +2,7 @@
 description: The article outlines how to use forms from Formbox Gallery
 ---
 
-# Aidbox Form Gallery
+# Form Gallery
 
 The Formbox Gallery offers forms in FHIR format (FHIR Questionnaire). There are more than 3000 forms in the Formbox Gallery.&#x20;
 

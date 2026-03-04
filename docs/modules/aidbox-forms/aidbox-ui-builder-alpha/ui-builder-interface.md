@@ -2,7 +2,7 @@
 description: This article outlines the the UI Builder Interface
 ---
 
-# UI Builder Interface
+# Form Builder Interface
 
 ## UI Builder interface overview
 

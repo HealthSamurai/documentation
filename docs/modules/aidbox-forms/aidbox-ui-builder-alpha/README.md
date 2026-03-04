@@ -4,7 +4,7 @@ description: >-
   builder in browser
 ---
 
-# Aidbox UI Builder
+# Form Builder
 
 ## Overview
 

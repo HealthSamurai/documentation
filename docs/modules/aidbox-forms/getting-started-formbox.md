@@ -2,7 +2,7 @@
 description: Follow these steps to launch Formbox locally using Docker
 ---
 
-# Getting started with Formbox
+# Getting started (standalone)
 
 ## Prerequisites
 
