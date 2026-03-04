@@ -51,7 +51,7 @@ description: >-
   * Fixed critical vulnerability CVE-2025-15467 in libcrypto3, libssl3, openssl for versions: 2601.1, 2512.3, 2511.4, 2510.4, 2509.4, 2508.4, 2507.5, 2506.3, 2505.5, 2504.4, 2503.7.
 * Formbox (formerly Aidbox Forms)
   * Implemented an additional delivery option for [Formbox as a standalone product](../modules/aidbox-forms/#id-1.-formbox-as-a-standalone-product).
-  * Supported [exclusive option](../modules/aidbox-forms/aidbox-ui-builder-alpha/form-creation/exlusive-option.md) behavior for checkbox lists.
+  * Supported exclusive option behavior for checkbox lists.
   * Added [integration with the Twilio email provider](../reference/aidbox-forms-reference/aidbox-sdc-api.md#notify-a-patient-usdnotify-patient).​
   * Added [an example of using the Form Renderer web component with offline support via request interception.](https://github.com/Aidbox/examples/tree/main/aidbox-forms/aidbox-forms-renderer-offline-mode)
   * Updated the [open-source Formbox Renderer](https://github.com/HealthSamurai/formbox-renderer):
