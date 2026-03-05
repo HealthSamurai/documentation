@@ -74,7 +74,7 @@ These attributes control various aspects of the form’s behavior and appearance
 * `language` (optional): Default language for the builder.
 * `translation-languages` (optional): Comma-separated list of allowed languages.
 * `base-url` (optional): The base URL of your Aidbox instance.
-* `style` (optional): Custom styling for the iframe.
+* `style` (optional): Custom styling applied to both iframe and loader container.
 * `config` (optional): The [configuration](configuration.md) as a JSON string.
 * `theme` (optional): Theme settings as a JSON string.
 * `token` (optional): JWT token for authentication.
@@ -87,7 +87,7 @@ These attributes control various aspects of the form’s behavior and appearance
 * `hide-footer` (optional): Hides the form footer.
 * `hide-language-selector` (optional): Hides language selector.
 * `base-url` (optional): The base URL of your Aidbox instance.
-* `style` (optional): Custom styling for the iframe.
+* `style` (optional): Custom styling applied to both iframe and loader container.
 * `config` (optional): The [configuration](configuration.md) as a JSON string.
 * `theme` (optional): Theme settings as a JSON string.
 * `token` (optional): JWT token for authentication.
@@ -352,6 +352,7 @@ Below is a list of events you can listen for:
 * `back`: Emitted when the back button is clicked.
 * `save`: Emitted when the form is saved.
 * `select`: Emitted when an item is selected.
+* `loading`: Emitted when loading state changes. `event.detail.loading` is `true` during load and `false` when done.
 * `ready`: Emitted when the builder is loaded.
 {% endtab %}
 
@@ -359,6 +360,7 @@ Below is a list of events you can listen for:
 * `change`: Triggered when the questionnaire response is updated.
 * `submit`: Emitted when the Submit button is clicked.
 * `extracted`: Emitted when data extraction occurs.
+* `loading`: Emitted when loading state changes. `event.detail.loading` is `true` during load and `false` when done.
 * `ready`: Emitted when the renderer is loaded.
 {% endtab %}
 {% endtabs %}
@@ -394,3 +396,51 @@ Below is an example of how to listen for `change` event:
 ```
 {% endtab %}
 {% endtabs %}
+
+### Step 5: Optional Custom Loading Content
+
+Both web components support a `loading` slot.  
+Put your spinner, skeleton, or any custom HTML inside this slot to display it while the iframe is loading and SWM handshake is in progress.
+The component `style` attribute is applied to both iframe and loader container.
+
+{% tabs %}
+{% tab title="Builder" %}
+```html
+<aidbox-form-builder
+  id="aidbox-form-builder"
+  style="width: 100%; height: 640px; border: none; display: flex"
+  form-id="{{ FORM_ID }}"
+>
+  <div slot="loading">Loading builder...</div>
+</aidbox-form-builder>
+```
+{% endtab %}
+
+{% tab title="Renderer" %}
+```html
+<aidbox-form-renderer
+  id="aidbox-form-renderer"
+  style="width: 100%; height: 640px; border: none; display: flex"
+  questionnaire-id="{{ ID }}"
+>
+  <div slot="loading">Loading form...</div>
+</aidbox-form-renderer>
+```
+{% endtab %}
+{% endtabs %}
+
+You can also observe loading state with events:
+
+```html
+<script>
+  const builder = document.getElementById('aidbox-form-builder');
+
+  builder.addEventListener('loading', (event) => {
+    console.log('Loading state:', event.detail.loading); // true | false
+  });
+
+  builder.addEventListener('ready', () => {
+    console.log('Builder is ready');
+  });
+</script>
+```
