@@ -25,8 +25,8 @@ Aidbox stores canonical resources in a dedicated database schema called `far` (F
 ```mermaid
 graph LR
     subgraph "Aidbox Database"
-        A(Regular FHIR Resources</br>public schema):::neutral2
-        B(Artifact Registry<br/>Canonical Resources</br>far schema):::blue2
+        A(Regular FHIR Resources<br/>public schema):::neutral2
+        B(Artifact Registry<br/>Canonical Resources<br/>far schema):::blue2
     end
 ```
 
