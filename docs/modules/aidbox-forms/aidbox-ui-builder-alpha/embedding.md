@@ -399,8 +399,7 @@ Below is an example of how to listen for `change` event:
 
 ### Step 5: Optional Custom Loading Content
 
-Both web components support a `loading` slot.  
-Put your spinner, skeleton, or any custom HTML inside this slot to display it while the iframe is loading and SWM handshake is in progress.
+Both web components support a `loading` slot. You can place any HTML in this slot, from a simple text message to a complex, fully styled loader (for example: spinners, SVG animations, skeleton screens, or branded layouts). The element you place in `slot="loading"` is fully styleable with your own CSS.
 The component `style` attribute is applied to both iframe and loader container.
 
 {% tabs %}
@@ -429,7 +428,7 @@ The component `style` attribute is applied to both iframe and loader container.
 {% endtab %}
 {% endtabs %}
 
-You can also observe loading state with events:
+If needed, you can also observe loading state with events:
 
 ```html
 <script>
