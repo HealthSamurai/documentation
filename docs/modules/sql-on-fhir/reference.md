@@ -43,7 +43,19 @@ SQL on FHIR engine supports a subset of FHIRPath funcitons:
 * Math operators: **addition (+)**, **subtraction (-)**, **multiplication (\*)**, **division (/)**.
 * Comparison operators: **equals (=)**, **not equals (!=)**, **greater than (>)**, **less or equal (<=)**.
 * **getResourceKey:** resource id from the id column
-* **getReferenceKey**: get id of the reference. The desired type can be specified if the reference may contain different types (for example, Observation.subject).
+* **getReferenceKey**: get id of the reference. The desired type can be specified if the reference may contain different types (for example, Observation.subject). Use the **unquoted** type name (e.g. `Patient`); quoted strings (e.g. `'Patient'`) cause the type filter to be ignored.
+
+### Choice type properties
+
+FHIR choice types (e.g. `Observation.effective[x]`, `Observation.value[x]`) are stored with a type-specific path, not the flattened name. In ViewDefinition paths you must use **ofType()** or the correct JSON path, or the column will be null:
+
+| Incorrect (returns null) | Correct |
+|--------------------------|---------|
+| `effectiveDateTime` | `effective.ofType(dateTime)` |
+| `valueQuantity.value` | `value.ofType(Quantity).value` |
+| `valueQuantity.unit` | `value.ofType(Quantity).unit` |
+
+Using `effectiveDateTime` or `valueQuantity` directly does not raise an error but produces null values in the result.
 
 ## Detailed explanation
 
@@ -235,7 +247,7 @@ Query `id` column of the resource.&#x20;
 
 This is invoked on Reference elements and returns an opaque value that represents the database key of the row being referenced. The value returned must be equal to the getResourceKey value returned on the resource itself.
 
-Users may pass an optional resource type (e.g., `Patient` or `Observation` ) to indicate the expected type that the reference should point to. The getReferenceKey function will return an empty collection (effectively null since FHIRPath always returns collections) if the reference is not of the expected type. For example, `Observation.subject.getReferenceKey(Patient)` would return a row key if the subject is a Patient, or the empty collection ( i.e., `{}`) if it is not.
+Users may pass an optional resource type (e.g., `Patient` or `Observation`) to indicate the expected type that the reference should point to. **Use the unquoted type name**: `getReferenceKey(Patient)` not `getReferenceKey('Patient')`. With a quoted string the type filter is ignored and the reference ID may be returned even when the reference points to a different resource type. The getReferenceKey function will return an empty collection (effectively null) if the reference is not of the expected type. For example, `Observation.subject.getReferenceKey(Patient)` returns a row key if the subject is a Patient, or the empty collection if it is not.
 
 ## Aidbox-specific functions
 

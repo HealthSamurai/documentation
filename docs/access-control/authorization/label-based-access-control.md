@@ -47,6 +47,10 @@ securityLabel:
     code: M
 ```
 
+{% hint style="warning" %}
+**User.securityLabel and Bearer tokens**: Labels from `User.securityLabel` are applied only when the user is identified via **cookie-based session** (e.g. form login in the Aidbox UI). When the request uses a **Bearer token** (e.g. from Resource Owner Password Credentials or an opaque token), Aidbox does not look up the User's `securityLabel`; those sessions do not carry user labels. For API access with LBAC, use **JWT tokens** that include security labels in the `scope` claim (format `system|code`), as described in the **scope claim in JWT** section above.
+{% endhint %}
+
 ### Expanding confidentiality security label
 
 The security label for confidentiality is [hierarchical](https://terminology.hl7.org/ValueSet-v3-Confidentiality.html). The code may contain several others.
@@ -173,8 +177,12 @@ subject:
 To prevent security labels from appearing in the outcome, set the `strip labels` env:
 
 ```yaml
-BOX_FEATURES_SECURITY__LABELS_STRIP__LABELS=true
+BOX_SECURITY_LBAC_STRIP_LABELS=true
 ```
+
+{% hint style="info" %}
+The legacy name `BOX_FEATURES_SECURITY__LABELS_STRIP__LABELS` is deprecated but still supported. See [all-settings](../../../reference/all-settings.md#security.lbac.strip-labels).
+{% endhint %}
 
 **Stripping examples**
 

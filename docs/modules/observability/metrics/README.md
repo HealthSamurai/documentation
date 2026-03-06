@@ -14,4 +14,12 @@ Aidbox supports the [OpenTelemetry protocol](https://opentelemetry.io/) and expo
 
 ## Export metrics to Prometheus
 
-Configure how metrics are getting exposed from the Aidbox.
+Aidbox exposes Prometheus-format metrics on a dedicated metrics server (see `BOX_METRICS_PORT`). Available endpoints:
+
+| Endpoint | Update frequency |
+|----------|------------------|
+| `GET /metrics` | Continuous |
+| `GET /metrics/minutes` | Every minute (e.g. pg_idx_scan, pg_stat_statements) |
+| `GET /metrics/hours` | Every hour (e.g. pg_table_size, jvm_max_memory_size). Response may take longer; set sufficient scraper timeout. |
+
+See [Use Aidbox Metrics Server](monitoring/use-aidbox-metrics-server.md) for setup and Prometheus scrape examples.

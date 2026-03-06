@@ -16,6 +16,10 @@ This operation implements the [FHIR Patient Purge](https://build.fhir.org/patien
 **Idempotent**: Purging a non-existent patient returns 200 (sync) or 202 (async) without error. This allows re-running `$purge` after a partial failure.
 {% endhint %}
 
+{% hint style="info" %}
+**After purge**: Purged resources are permanently removed. Requests to read them return **404 Not Found** (not 410 Gone), since the resources no longer exist.
+{% endhint %}
+
 {% hint style="warning" %}
 **Scoped references**: Only resources that reference the patient with the full reference format (e.g., `Patient/<id>`) are deleted. Resources referencing a different resource type with the same ID are not affected.
 {% endhint %}
@@ -32,7 +36,9 @@ POST /fhir/Patient/<patient-id>/$purge
 
 ## Parameters
 
-The request body is optional. When provided, it must be a `Parameters` resource with the following optional parameter:
+The request body is optional. When provided, it must be a FHIR `Parameters` resource (e.g. `{"resourceType": "Parameters"}`). An empty JSON body `{}` is rejected with **422** and "Request body must be a Parameters resource". Omit the body or send `{"resourceType": "Parameters"}` when no custom parameters are needed.
+
+Optional parameter:
 
 | Parameter                | Type                   | Description                                                                                                                                                                   |
 | ------------------------ | ---------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |

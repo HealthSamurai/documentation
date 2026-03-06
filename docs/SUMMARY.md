@@ -254,6 +254,7 @@
     * [Patient data access API](access-control/authorization/scoped-api/patient-data-access-api.md)
   * [Label-based Access Control](access-control/authorization/label-based-access-control.md)
 * [Audit and Logging](access-control/audit-and-logging.md)
+* [Security Hardening](access-control/security-hardening.md)
 
 ## Artifact Registry
 

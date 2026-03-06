@@ -370,7 +370,7 @@ Learn more: [FHIR Search](../api/rest-api/fhir-search/README.md)
 
 ### What search features are supported?
 
-Aidbox supports **all** FHIR Search features:
+Aidbox supports FHIR Search with standard types and modifiers; a few limitations apply (see [Known limitations](../api/rest-api/fhir-search/README.md#known-limitations)):
 
 - All search parameter types: string, token, reference, date, number, quantity, uri, composite
 - All modifiers: `:exact`, `:contains`, `:missing`, `:not`, `:text`, `:in`, `:below`, etc.

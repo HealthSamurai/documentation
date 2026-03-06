@@ -12,6 +12,8 @@ Export operations run one at a time to prevent resource exhaustion. If you attem
 
 ## Cloud storage setup
 
+$export requires cloud storage to be configured. If no storage provider is set, export requests (system-, group-, or patient-level) return **500** with an error such as "storage-type not specified". Storage validation is performed before other checks (e.g. group existence or output format).
+
 Aidbox exports data to cloud storage backends including GCP, Azure, and AWS. Export files are organized in timestamped folders with the pattern `<datetime>_<uuid>` to ensure unique paths for each export operation.
 
 Each cloud provider supports two authentication modes: credential-based (using stored keys or tokens) and workload identity (using cloud-native pod identity). Workload identity is recommended for managed Kubernetes deployments (GKE, AKS) as it eliminates the need to manage credentials in Aidbox resources and uses the pod's identity to authenticate with cloud storage.

@@ -125,7 +125,7 @@ Token searches support these modifiers:
 | :in      | Search within a ValueSet                                                                                                                          | `code:in=/ValueSet/test-codes` |
 | :i       | Case-insensitive search                                                                                                                           | `code:i=TEST123`               |
 | :not     | Negates the search value                                                                                                                          | `code:not=inactive`            |
-| :of-type | Search for resource identifier                                                                                                                    | \`identifier:of-type=system    |
+| :of-type | Search for resource identifier                                                                                                                    | `identifier:of-type=system`    |
 
 ### uri
 
@@ -143,8 +143,11 @@ URI searches support these modifiers:
 | Modifier | Description                                                                                                                   | Example                           |
 | -------- | ----------------------------------------------------------------------------------------------------------------------------- | --------------------------------- |
 | :missing | Matches resources that do not have a value in the field                                                                       | `url:missing=true`                |
-| :below   | Tests whether the value in a resource is or is subsumed by the supplied parameter value (is-a, or hierarchical relationships) | `url:below=http://acme.org/fhir/` |
 | :not     | Negates the search value                                                                                                      | `url:not=http://example.com`      |
+
+{% hint style="warning" %}
+The **:below** modifier is not supported for the **url** search parameter (e.g. on ValueSet, CodeSystem, StructureDefinition). Queries such as `ValueSet?url:below=http://hl7.org` return 500 with "Unsupported search parameter 'url:below'". Other URI-type parameters (e.g. `_source`) may accept `:below`.
+{% endhint %}
 
 ### reference
 
@@ -240,8 +243,8 @@ Quantity search parameters match against values with units. They support the sam
 | ne     | Not equal       | `weight=ne100` |
 | gt     | Greater than    | `weight=gt100` |
 
-However, Aidbox supports only numbers, not system with code.\
-For example, `weight=100` will match resources with `weight` exactly equal to "100", the unit is ignored.
+However, Aidbox supports only numeric value comparison; unit specification is not implemented.\
+For example, `value-quantity=75.5` matches by value only. Using a unit in the search value (e.g. `value-quantity=75.5\|\|kg`) returns **400** with the message "quantity with unit specified is not implemented".
 
 ### composite
 
@@ -280,6 +283,10 @@ GET /fhir/Observation?code=loinc|12907-2&value-quantity=2 // found
 GET /fhir/Observation?code=loinc|12907-1&value-quantity=1 // found
 GET /fhir/Observation?code=loinc|12907-1&value-quantity=2 // found
 ```
+
+{% hint style="info" %}
+**Component-level composite**: Top-level composite search (e.g. `code-value-quantity`) works as described. The `component-code-value-quantity` parameter (matching on Observation.component) may not return results for component-level matching; this is a known limitation.
+{% endhint %}
 
 ### special
 

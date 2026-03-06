@@ -18,9 +18,11 @@ If you're developing software that receives information from other systems withi
 To process those messages, react to them and modify data stored in your Aidbox, there is a Hl7v2-in module.\
 It provides two resources: `Hl7v2Config` and `Hl7v2Message`.
 
-* `Hl7v2Config`determines how messages will be parsed and processed.
+* `Hl7v2Config` determines how messages will be parsed and processed.
 * `Hl7v2Message` represents a single received HL7 v2 message and contains raw representation, status (processed/error), error description in case of error and other useful information.\
   Both `Hl7v2Config` and `Hl7v2Message` are managed with standard CRUD API.
+
+The parser supports HL7 v2.x message versions (e.g. 2.1 through 2.5.1 as in the MSH segment). The `parsed` field in each message contains a structured AST with common segments such as MSH, PID, PV1, OBR, OBX, ORC, RXA (depending on message type), which your mapping can reference to produce FHIR resources.
 
 ### Mapper module
 
@@ -155,13 +157,47 @@ Newly created messages should have `received` status, otherwise they won't be pr
 
 **outcome** — Transaction Bundle returned by the mapping or error information if the status is `error`.
 
+#### Other message types (ORU, ORM, VXU)
+
+Besides ADT (Admission/Discharge/Transfer), the parser supports common types such as **ORU^R01** (Observation Results), **ORM^O01** (Orders), and **VXU^V04** (Vaccination Update). Use the same `POST /Hl7v2Message` or `POST /fhir/Hl7v2Message` with `src` containing the raw message and `config` referencing your `Hl7v2Config`. The response includes `type` and `event` (e.g. `ORU` / `R01`) and a structured `parsed` object.
+
+**ORU^R01 (Observation Result)** — minimal lab result example:
+
+```yaml
+POST /fhir/Hl7v2Message
+Content-Type: application/json
+
+{
+  "resourceType": "Hl7v2Message",
+  "src": "MSH|^~\\&|SEND|FAC|REC|REC|20230101120000||ORU^R01|1|P|2.3|||\nPID|1||123^^^MR||Doe^John^^^L||19800101|M\nOBR|1||ORD001|GLU^Glucose^LN|||20230101100000\nOBX|1|NM|GLU^Glucose^LN||5.5|mmol/L^^LN|||||F",
+  "status": "received",
+  "config": { "resourceType": "Hl7v2Config", "id": "default" }
+}
+```
+
+The `parsed` body will contain `MSH`, `patient_result` with `PID` and `order_observation` (OBR and OBX segments).
+
+**ORM^O01 (Order)** — minimal order example:
+
+```yaml
+src: "MSH|^~\\&|SEND|FAC|REC|REC|20230101120000||ORM^O01|1|P|2.3\nPID|1||123^^^MR||Doe^John^^^L||19800101|M\nORC|NW|ORD001\nOBR|1||ORD001|CBC^Complete Blood Count^LN"
+```
+
+**VXU^V04 (Vaccination Update)** — minimal immunization example:
+
+```yaml
+src: "MSH|^~\\&|SEND|FAC|REC|REC|20230101120000||VXU^V04|1|P|2.3.1\nPID|1||123^^^MR||Doe^John^^^L||19800101|M\nORC|RE||||||||||||||||||||||||||||||||||||||||\nRXA|0|999|20230101||50^influenza^CVX||||||||||||||||||||||||\nRXR|C28161^Intramuscular^NCIM"
+```
+
+Create a mapping in `Hl7v2Config` that matches the message structure (e.g. `msg.patient_result`, `msg.OBR`) to produce FHIR resources.
+
 ### Testing Messages Without Persistence
 
 Use the `$execute-only` operation to test HL7 v2 message parsing and mapping without persisting any data. This is useful for:
 
-- Validating message structure before processing
-- Testing and debugging mappings
-- Dry-run scenarios where you want to see the result without side effects
+* Validating message structure before processing
+* Testing and debugging mappings
+* Dry-run scenarios where you want to see the result without side effects
 
 ```yaml
 POST /Hl7v2Message/$execute-only
@@ -178,14 +214,17 @@ config:
   id: default
 ```
 
-The response contains parsed message and mapping result, but:
-- No `Hl7v2Message` resource is created
-- No FHIR resources from the mapping are persisted
-- The `outcome.response` field is `null` (since no transaction was executed)
+The response is **200 OK** with an `Hl7v2Message`-shaped body (no resource is stored). It includes:
+
+* **type** and **event** — message type and trigger (e.g. `ORU`, `R01`)
+* **parsed** — full parsed AST of the message
+* **outcome** — mapping result (e.g. Transaction Bundle) or a string such as `"No mapping associated in config"` when the config has no mapping; `outcome.response` is not populated because no transaction is executed
+
+No `Hl7v2Message` resource is created and no FHIR resources from the mapping are persisted. Use this for validation and dry-run testing.
 
 A FHIR-prefixed endpoint is also available: `POST /fhir/Hl7v2Message/$execute-only`
 
-You can try to submit malformed message (truncated) to see what the result will be:
+You can try to submit a malformed message (truncated) to see what the result will be:
 
 ```yaml
 POST /Hl7v2Message
@@ -199,6 +238,31 @@ config:
   resourceType: Hl7v2Config
   id: default
 ```
+
+The message is still created with **201**; the response body has `status: error` and `outcome` containing the parsing error (e.g. "Message is too short (MSH truncated)"). For request-level validation failures (e.g. missing `config` or invalid reference), the API returns **422** with an `OperationOutcome`.
+
+### Searching Hl7v2Message
+
+You can filter stored messages with standard FHIR search:
+
+* **type** (token) — Message type from MSH (e.g. `ADT`, `ORU`, `ORM`, `VXU`)
+* **event** (token) — Event/trigger code (e.g. `A01`, `R01`, `O01`, `V04`)
+* **config** (reference) — Filter by `Hl7v2Config` (e.g. `config=Hl7v2Config/default`)
+
+Examples:
+
+```http
+GET /fhir/Hl7v2Message?type=ORU
+GET /fhir/Hl7v2Message?event=R01
+GET /fhir/Hl7v2Message?config=Hl7v2Config/default
+```
+
+### Response codes and acknowledgments
+
+* **201 Created** — Message resource was created. The body is the `Hl7v2Message` with `status` (`processed` or `error`), `parsed`, and `outcome`. Parsing or mapping failures still return 201; check `status: error` and the `outcome` field for details.
+* **422 Unprocessable Entity** — Request validation failed (e.g. referenced `Hl7v2Config` does not exist). Response is an `OperationOutcome` with diagnostics.
+
+The API does not return HL7v2 ACK/NACK segments; success and errors are indicated by HTTP status and the response body (`status` and `outcome` on the message resource or `OperationOutcome`).
 
 ### Capturing a MLLP Traffic
 
