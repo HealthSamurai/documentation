@@ -181,7 +181,7 @@ BOX_SECURITY_LBAC_STRIP_LABELS=true
 ```
 
 {% hint style="info" %}
-The legacy name `BOX_FEATURES_SECURITY__LABELS_STRIP__LABELS` is deprecated but still supported. See [all-settings](../../../reference/all-settings.md#security.lbac.strip-labels).
+The legacy name `BOX_FEATURES_SECURITY__LABELS_STRIP__LABELS` is deprecated but still supported. See [all-settings](../../reference/all-settings.md#security.lbac.strip-labels).
 {% endhint %}
 
 **Stripping examples**
