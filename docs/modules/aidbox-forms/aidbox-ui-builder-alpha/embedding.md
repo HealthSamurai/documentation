@@ -114,7 +114,7 @@ Unlike **attributes**, which can only store string values and are defined in the
 * `onAlert` (optional): A custom alert handler that allows you to intercept and handle alerts, overriding the visual alert display. The function receives the alert object as an argument.
 * `onChange` (optional): A custom callback function that is invoked when the questionnaire response is modified, without affecting the default behavior. The function receives the updated questionnaire response as an argument.
 * `onPreviewAttachment` (optional): A custom callback function that allows you to handle attachment previews, enabling external editors or viewers. The function receives the attachment object as an argument.
-* `submit()` (optional): Triggers the same validation and submit flow as the built-in Submit button and returns a Promise. The Promise resolves with the renderer reply payload when submit succeeds and rejects when submit is rejected or fails.
+* `submit()` (optional): Triggers the same validation and submit flow as the built-in Submit button and returns a Promise. The Promise resolves with the renderer reply payload when submission succeeds and rejects when submission is rejected or fails.
 {% endtab %}
 {% endtabs %}
 
@@ -345,7 +345,7 @@ If needed, you can also observe loading state with events:
 
 If you use your own submit button outside the renderer component, call `submit()` on the web component instance.
 The method uses the same validation and disabled-state rules as the built-in footer submit action.
-It returns a Promise for the submit request status.
+It returns a Promise with the submission result.
 
 ```html
 <button id="custom-submit">Submit</button>
@@ -362,15 +362,15 @@ It returns a Promise for the submit request status.
   customSubmit.addEventListener('click', async () => {
     try {
       const result = await renderer.submit();
-      console.log('Submit request succeeded:', result);
+      console.log('Form submitted:', result);
     } catch (error) {
-      console.error('Submit request failed:', error.payload || error);
+      console.error('Submission failed:', error.payload || error);
     }
   });
 </script>
 ```
 
-For message-based integrations, `sdc.submit` is also supported as an inbound message type.
+For message-based integrations, `sdc.aidbox.submit` is also supported as an inbound message type.
 
 ## Controlled Mode (Deprecated)
 
