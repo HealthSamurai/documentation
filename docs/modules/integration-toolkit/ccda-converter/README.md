@@ -290,6 +290,16 @@ Persisting is heavily based on C-CDA's `<id root="...">` element. If some entity
 In addition to the FHIR resources that are converted from C-CDA data, the `/ccda/v2/persist` endpoint also creates a [Provenance](https://build.fhir.org/provenance.html) resource that contains references to all of the resources that are created or updated during a single call. This list is useful for identifying all FHIR resources that are related to a specific C-CDA document, such as for deleting them from the database.
 
 If the `create-docref` option is provided, this endpoint will also create a [DocumentReference](https://build.fhir.org/documentreference.html) resource that contains a base64-encoded copy of the original C-CDA XML document in its `content` attribute. This feature is useful if you want to store the original document in the Aidbox database for rare use cases. By default, the `create-docref` option is set to false, so no DocumentReference resource is created.
+The created DocumentReference has the following structure in its content:
+
+{
+  "content": [{
+    "attachment": {
+      "contentType": "application/cda+xml",
+      "data": "<base64-encoded C-CDA XML>"
+    }
+  }]
+}
 
 #### Endpoint Options
 
