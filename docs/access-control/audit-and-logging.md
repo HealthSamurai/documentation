@@ -217,10 +217,6 @@ Aidbox also provides ways to [extend](../modules/observability/logs/extending-ai
 ## Known limitations
 
 {% hint style="warning" %}
-**PUT-create logged as update**: When a `PUT` request creates a new resource (HTTP 201), the AuditEvent uses the `Update` profile and `update` subtype instead of `Create` / `create`. This is a known issue.
-{% endhint %}
-
-{% hint style="warning" %}
 **Delete entity reference includes version**: Delete AuditEvents store the entity reference as `ResourceType/id/_history/versionId` (e.g. `Patient/123/_history/5`). This breaks entity-based AuditEvent search — querying `GET /fhir/AuditEvent?entity=Patient/123` returns no results for delete events.
 {% endhint %}
 

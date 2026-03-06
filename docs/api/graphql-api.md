@@ -241,7 +241,7 @@ Aidbox generates three types of queries:
 
 Aidbox generates query with name `<ResourceType>`
 
-This query accepts a single argument `id` and returns a resource with the specified `id`.
+This query accepts a single argument `id` and returns a resource with the specified `id`. The `id` argument uses GraphQL type **`ID`** (not `String`). When using variables, declare them as `ID` or `ID!`, e.g. `query($pid: ID!) { Patient(id: $pid) { ... } }`.
 
 #### Example
 
@@ -264,6 +264,18 @@ query {
 }
 ```
 
+With a variable (use type `ID`, not `String`):
+
+```graphql
+query($pid: ID!) {
+  Patient(id: $pid) {
+    id
+    name { given }
+  }
+}
+# variables: { "pid": "pt-1" }
+```
+
 Response:
 
 ```yaml
@@ -279,7 +291,7 @@ data:
 
 Aidbox generates a query with the name `<ResourceType>History`
 
-The query accepts `id` argument and return history of a resource with the specified `id`.
+The query accepts an `id` argument (GraphQL type **`ID`**) and returns the history of the resource with the specified `id`.
 
 #### Example
 
@@ -329,6 +341,12 @@ data:
 Aidbox generates a query with the name `<ResourceType>List`.
 
 The query can accept multiple arguments. Aidbox generates arguments from search parameters.
+
+Pagination is supported via `_count` (page size), `_page` (1-based page number), and `_sort` (e.g. `_id`). Example:
+
+```graphql
+{ PatientList(_count: 10, _page: 2, _sort: "_id") { id } }
+```
 
 Each search parameter leads to 2 arguments:
 
@@ -431,6 +449,44 @@ data:
             - Another Patient name
       total_: 10000
 ```
+
+## Error response format
+
+When a GraphQL request fails, the response contains an **`errors`** array (and may omit or partially populate `data`). Each error object includes:
+
+* **`message`** — human-readable error description.
+* **`locations`** — optional array of `{ line, column }` in the query string.
+* **`extensions`** — optional; may include:
+  * **`classification`** — error category, e.g. `InvalidSyntax`, `ValidationError`, `DataFetchingException`.
+  * **`code`** — for access control failures, `403`.
+
+Example:
+
+```json
+{
+  "errors": [{
+    "message": "Variable 'pid' of type 'String!' used in position expecting type 'ID'",
+    "locations": [{ "line": 1, "column": 8 }],
+    "extensions": { "classification": "ValidationError" }
+  }]
+}
+```
+
+Access control denials return errors with `extensions.code: 403`.
+
+## Introspection
+
+The GraphQL endpoint supports standard [introspection](https://graphql.org/learn/introspection/) queries. You can inspect the schema and type definitions:
+
+```graphql
+{ __schema { queryType { name } } }
+```
+
+```graphql
+{ __type(name: "Patient") { name kind fields { name } } }
+```
+
+Use these in the GraphiQL console or via `POST /$graphql` to discover available types, fields, and queries.
 
 ## Complex examples
 

@@ -198,6 +198,49 @@ Accept: application/json
 {% endtab %}
 {% endtabs %}
 
+##### Skip a dependency only for a specific version
+
+Use version-qualified `from` with `to: false` to skip the dependency only when that exact version is requested. Other versions of the same package are still installed normally:
+
+{% tabs %}
+{% tab title="Request" %}
+```http
+POST /fhir/$fhir-package-install
+Content-Type: application/json
+Accept: application/json
+
+{
+  "resourceType": "Parameters",
+  "parameter": [
+    {
+      "name": "package",
+      "valueString": "hl7.fhir.us.core@8.0.0"
+    },
+    {
+      "name": "registry",
+      "valueString": "https://packages.simplifier.net"
+    },
+    {
+      "name": "override",
+      "part": [
+        {
+          "name": "from",
+          "valueString": "us.nlm.vsac@0.23.0"
+        },
+        {
+          "name": "to",
+          "valueBoolean": false
+        }
+      ]
+    }
+  ]
+}
+```
+{% endtab %}
+{% endtabs %}
+
+This skips `us.nlm.vsac` only when version `0.23.0` is requested (e.g. by US Core 8.0.0). If another package requested a different version of `us.nlm.vsac`, it would still be installed.
+
 ##### Replace dependency with a different package
 
 Replace `us.nlm.vsac` with an alternative package using the `npm:` prefix:
