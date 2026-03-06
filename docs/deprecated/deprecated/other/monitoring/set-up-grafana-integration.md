@@ -14,8 +14,8 @@ Use the new official Aidbox dashboard: [24752-aidbox](https://grafana.com/grafan
 
 Before setting up Grafana integration, ensure you have set up the Aidbox Metrics Server. Check the guide below on how to do it.
 
-{% content-ref url="use-aidbox-metrics-server.md" %}
-[use-aidbox-metrics-server.md](use-aidbox-metrics-server.md)
+{% content-ref url="../../../../modules/observability/metrics/monitoring/use-aidbox-metrics-server.md" %}
+[Use Aidbox Metrics Server](../../../../modules/observability/metrics/monitoring/use-aidbox-metrics-server.md)
 {% endcontent-ref %}
 
 {% hint style="info" %}

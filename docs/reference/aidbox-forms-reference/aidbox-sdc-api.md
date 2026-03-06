@@ -493,7 +493,7 @@ subject: New form available
 template: 'A new form is ready for you. Open: {{link}}'
 ```
 
-It's possible to create other templates [see docs](../../../docs/modules/integration-toolkit/email-providers/README.md)
+It's possible to create other templates [see docs](../../modules/integration-toolkit/email-providers/README.md)
 
 ### Output Parameters
 

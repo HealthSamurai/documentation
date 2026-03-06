@@ -12,7 +12,7 @@ Using Aidbox API constructor you can:
 * specify your own middlewares (e.g. Smart on FHIR authorization middleware)
 
 {% hint style="warning" %}
-The API constructor is in beta now. Please [contact](../../../contact-us.md) us if you have questions or need help.
+The API constructor is in beta now. Please [contact](../../../overview/contact-us.md) us if you have questions or need help.
 {% endhint %}
 
 {% hint style="info" %}

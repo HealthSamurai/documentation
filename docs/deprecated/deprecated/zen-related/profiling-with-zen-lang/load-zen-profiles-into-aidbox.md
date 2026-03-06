@@ -26,7 +26,7 @@ AIDBOX_IMAGE=healthsamurai/aidboxone:edge
 
 ## Start with a zen project
 
-The Aidbox starter repository you cloned by following the guide from [Prerequisites](extend-an-ig-with-a-custom-zen-profile.md#prerequisites) is already a zen project. It has `zen-package.edn`, the project package file, and `zrc/system.edn`, the project entry file.
+The Aidbox starter repository you cloned by following the guide from [Prerequisites](write-a-custom-zen-profile.md) is already a zen project. It has `zen-package.edn`, the project package file, and `zrc/system.edn`, the project entry file.
 
 ## Add the required IG packages as dependencies
 

@@ -3,7 +3,7 @@
 {% hint style="warning" %}
 This tutorial is deprecated. Since the 2405 release, using Aidbox in FHIRSchema mode is recommended, which is incompatible with zen or Entity/Attribute options.
 
-[setup.md](../../../../../modules/profiling-and-validation/fhir-schema-validator/setup.md)
+[Setup Aidbox with FHIR Schema validation engine](../../../../../modules/profiling-and-validation/fhir-schema-validator/setup-aidbox-with-fhir-schema-validation-engine.md)
 {% endhint %}
 
 ## Steps
@@ -63,7 +63,7 @@ It should be available now at `http://localhost:8888`.
 
 Note that US Core IG takes about 1.5GB in the database. You can significantly reduce this size by disabling the loading of Concepts, ValueSets and CodeSystems. For that you need to set `BOX_FEATURES_FTR_PULL_ENABLE=true|false`.
 
-You’ll still be able to [validate codes from ValueSets](../../../../../modules/terminology/valueset/value-set-validation.md) but [Concept lookups](../../../../../modules/terminology/codesystem-and-concept/concept-lookup.md) and [ValueSet expansions](../../../../../modules/terminology/valueset/value-set-expansion.md) as well as `GET /Concept`, `GET /ValueSet` and `GET /CodeSystem` endpoints won’t work. Lookups and expansions without loading into database are currently work in progress
+You’ll still be able to [validate codes from ValueSets](../../../../deprecated/other/terminology/valueset/valueset-code-validation.md) but [Concept lookups](../../../../deprecated/other/terminology/codesystem-and-concept/codesystem-concept-lookup.md) and [ValueSet expansions](../../../../deprecated/other/terminology/valueset/valueset-expansion.md) as well as `GET /Concept`, `GET /ValueSet` and `GET /CodeSystem` endpoints won’t work. Lookups and expansions without loading into database are currently work in progress
 
 ### Verify that US Core IG works
 
