@@ -655,6 +655,38 @@ Configuration resource for SDC system settings including language, theme, storag
   "type" : "string",
   "desc" : "Builder layout variant (default or v2)"
 }, {
+  "path" : "builder.external-terminology-servers",
+  "name" : "external-terminology-servers",
+  "lvl" : 1,
+  "min" : 0,
+  "max" : "*",
+  "type" : "BackboneElement",
+  "desc" : "Additional external terminology servers to show in the builder UI"
+}, {
+  "path" : "builder.external-terminology-servers.url",
+  "name" : "url",
+  "lvl" : 2,
+  "min" : 0,
+  "max" : 1,
+  "type" : "url",
+  "desc" : "Terminology server URL"
+}, {
+  "path" : "builder.external-terminology-servers.name",
+  "name" : "name",
+  "lvl" : 2,
+  "min" : 0,
+  "max" : 1,
+  "type" : "string",
+  "desc" : "Display name for the server"
+}, {
+  "path" : "builder.external-terminology-servers.default",
+  "name" : "default",
+  "lvl" : 2,
+  "min" : 0,
+  "max" : 1,
+  "type" : "boolean",
+  "desc" : "Whether this is the default terminology server"
+}, {
   "path" : "data-store",
   "name" : "data-store",
   "lvl" : 0,
