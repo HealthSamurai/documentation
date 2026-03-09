@@ -488,6 +488,12 @@ Status tracking for Aidbox job executions.
 } ]
 ```
 
+### Search Parameters
+
+| SearchParameter | Type | Expression | Description |
+|---|---|---|---|
+| job | reference | `job` | Search AidboxJobStatus by job reference |
+
 
 ## AidboxMigration
 
@@ -3579,6 +3585,18 @@ Terminology concept resource for Aidbox.
 } ]
 ```
 
+### Search Parameters
+
+| SearchParameter | Type | Expression | Description |
+|---|---|---|---|
+| code | string | `code` | Search Concept by code |
+| codetext | string | `code` | Search Concept by code as text |
+| deprecated | token | `deprecated` | Search Concept by deprecated status |
+| display | string | `display` | Search Concept by display |
+| hierarchy | string | `hierarchy` | Search Concept by hierarchy |
+| system | string | `system` | Search Concept by system |
+| valueset | string | `valueset` | Search Concept by valueset |
+
 
 ## ConceptMapRule
 
@@ -4346,6 +4364,14 @@ FHIR Terminology Repository configuration resource.
   "desc" : "Message type code from the HL7v2 message."
 } ]
 ```
+
+### Search Parameters
+
+| SearchParameter | Type | Expression | Description |
+|---|---|---|---|
+| config | reference | `config` | Search Hl7v2Message by config |
+| event | token | `event` | Search Hl7v2Message by event |
+| type | token | `type` | Search Hl7v2Message by type |
 
 
 ## IdentityProvider
@@ -7303,6 +7329,21 @@ Terminology bundle file tracking resource.
   "desc" : "Indicates if this is the primary certificate. Only one may be 'true'."
 } ]
 ```
+
+### Search Parameters
+
+| SearchParameter | Type | Expression | Description |
+|---|---|---|---|
+| active | token | `active` | Search User by active status |
+| email | string | `email` | Search User by email |
+| gender | string | `gender` | Search User by gender |
+| identifier | token | `identifier` | Search User by identifier |
+| inactive | token | `inactive` | Search User by inactive status |
+| name | string | `name.formatted \| name.givenName \| name.familyName` | Search User by name |
+| organization | reference | `organization` | Search User by organization |
+| phoneNumber | string | `phoneNumber` | Search User by phone number |
+| title | string | `title` | Search User by title |
+| userName | string | `userName` | Search User by userName |
 
 
 ## ViewDefinition
@@ -14301,6 +14342,70 @@ Profile for FHIR package installation parameters.
   "min" : 1,
   "max" : 1,
   "type" : "",
+  "desc" : ""
+}, {
+  "path" : "parameter",
+  "name" : "parameter:override",
+  "lvl" : 0,
+  "min" : 0,
+  "max" : "*",
+  "type" : "",
+  "desc" : ""
+}, {
+  "path" : "parameter.name",
+  "name" : "name",
+  "lvl" : 1,
+  "min" : 0,
+  "max" : 1,
+  "type" : "",
+  "desc" : ""
+}, {
+  "path" : "parameter.part",
+  "name" : "part",
+  "lvl" : 1,
+  "min" : 2,
+  "max" : 1,
+  "type" : "",
+  "desc" : ""
+}, {
+  "path" : "parameter.part",
+  "name" : "part:from",
+  "lvl" : 1,
+  "min" : 1,
+  "max" : 1,
+  "type" : "",
+  "desc" : ""
+}, {
+  "path" : "parameter.part.name",
+  "name" : "name",
+  "lvl" : 2,
+  "min" : 0,
+  "max" : 1,
+  "type" : "",
+  "desc" : ""
+}, {
+  "path" : "parameter.part",
+  "name" : "part:to",
+  "lvl" : 1,
+  "min" : 1,
+  "max" : 1,
+  "type" : "",
+  "desc" : ""
+}, {
+  "path" : "parameter.part.name",
+  "name" : "name",
+  "lvl" : 2,
+  "min" : 0,
+  "max" : 1,
+  "type" : "",
+  "desc" : ""
+}, {
+  "path" : "parameter.part.value[x]",
+  "name" : "value[x]",
+  "lvl" : 2,
+  "min" : 0,
+  "max" : 1,
+  "type" : "string",
   "desc" : ""
 }, {
   "path" : "parameter",
