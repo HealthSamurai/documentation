@@ -592,3 +592,36 @@ You can try to subscribe to the subject using Joe's or Pam's credentials, but th
     ```
     Publish Violation - Nkey "UDVE47SBIUZZM76JDTR6T2RBYF2AANUZH7WTJZYHHZF36GACGXQUGMUF", Subject "pam.a"
     ```
+## Updating an AidboxSubscriptionTopic
+
+As your application grows, you may need to extend an existing `AidboxSubscriptionTopic` — for example, adding a new resource type to the `trigger` list. This is a safe operation and can be done at any time without downtime or risk of missed notifications.
+
+When you update an `AidboxSubscriptionTopic`, Aidbox:
+
+1. Persists the change to the database
+2. Dispatches an invalidation event to all running Aidbox nodes
+3. Each node atomically reloads and applies the new topic configuration
+
+Existing triggers continue to fire uninterrupted during this process. For example, if your topic already triggers on `Appointment` and you add `Patient`, in-flight `Appointment` events will not be lost.
+
+If you are using `nats-jetstream-at-least-once` delivery, the at-least-once guarantee provides an additional safety net for any events that occur during the brief propagation window.
+
+To update a topic, use a standard `PUT` request:
+
+```http
+PUT /AidboxSubscriptionTopic/your-topic-id
+Content-Type: application/json
+
+{
+  "resourceType": "AidboxSubscriptionTopic",
+  "id": "your-topic-id",
+  "url": "your-topic-url",
+  "status": "active",
+  "trigger": [
+    { "resource": "Appointment" },
+    { "resource": "Patient" }
+  ]
+}
+```
+
+> **Note:** `AidboxTopicDestination` is **immutable** — it cannot be modified after creation (the API will return `405 Method Not Allowed`). If you need to change your destination configuration (e.g. NATS subject, credentials, or content mode), you must delete the existing `AidboxTopicDestination` and create a new one. Plan your destination configuration carefully before going to production.
