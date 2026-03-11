@@ -489,6 +489,7 @@
   * [Configure MDM module](modules/mdm/configure-mdm-module.md)
   * [Find duplicates: $match](modules/mdm/find-duplicates-match.md)
   * [Merging and Unmerging Records: $merge and $unmerge](modules/mdm/merging-and-unmerging-records-usdmerge-and-usdunmerge.md)
+  * [RBAC configuration](modules/mdm/rbac.md)
   * [Matching Model Explanation](modules/mdm/matching-model-explanation.md)
   * [Mathematical Details](modules/mdm/mathematical-details.md)
 * [Other Modules](modules/other-modules/README.md)
