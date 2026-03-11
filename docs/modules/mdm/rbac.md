@@ -1,4 +1,4 @@
-# MPI Role-Based Access Control (RBAC) — Current State
+# RBAC configuration
 
 > **Note:** RBAC in MPI is minimal and early-stage. It supports only two roles with no granular permissions. We are open to feedback and suggestions on how access control should evolve.
 
