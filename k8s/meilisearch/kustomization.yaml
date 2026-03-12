@@ -8,7 +8,6 @@ resources:
   - configmap.yaml
   - cronjob-cleanup-tasks.yaml
   - cronjob-index-examples.yaml
-  - cronjob-reindex-v2.yaml
   - service.yaml
   - serviceaccount.yaml
   - servicemonitor.yaml
