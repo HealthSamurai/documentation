@@ -25,6 +25,33 @@ Each rule in the **features** section contains an expression `expr` and an assoc
 
 All weights are summed into a **total score**. If the score is above the defined threshold, the record pair is included in the match results; if it is below, it is excluded.
 
+The diagram below illustrates the overall matching score calculation flow:
+
+```mermaid
+flowchart LR
+    A["Record A<br/>(Patient)"] --> C{"Feature<br/>Comparison"}
+    B["Record B<br/>(Patient)"] --> C
+
+    C --> F1["<b>fn</b> — Name"]
+    C --> F2["<b>dob</b> — Birth Date"]
+    C --> F3["<b>ext</b> — Address / Telecom"]
+    C --> F4["<b>sex</b> — Gender"]
+
+    F1 -->|"+13.34"| SUM(["Total Score<br/>= SUM of weights"])
+    F2 -->|"+10.59"| SUM
+    F3 -->|"-10.52"| SUM
+    F4 -->|"+1.85"| SUM
+
+    SUM --> TH{"Threshold<br/>Check"}
+    TH -->|"score ≥ 25"| AUTO["✅ Auto-merge"]
+    TH -->|"16 ≤ score < 25"| MANUAL["⚠️ Manual Review"]
+    TH -->|"score < 16"| NON["❌ Non-match"]
+
+    style AUTO fill:#d4edda,stroke:#28a745,color:#000
+    style MANUAL fill:#fff3cd,stroke:#cc9900,color:#000
+    style NON fill:#ffcccc,stroke:#cc0000,color:#000
+```
+
 ## Model Structure
 
 **Which fields to compare** and **how to compare** them is described in the example model:
@@ -168,6 +195,32 @@ This **reduces** the number of comparisons, which significantly **speeds up proc
 * `dob`: blocks by date of birth
 * `addr`: blocks by address
 
+The diagram below shows how blocking reduces the number of comparisons:
+
+```mermaid
+flowchart TB
+    subgraph BEFORE["Without Blocking"]
+        direction TB
+        ALL["All Records<br/>(N records)"] --> PAIRS["All Possible Pairs<br/>N × (N−1) / 2 comparisons"]
+    end
+
+    subgraph AFTER["With Blocking"]
+        direction TB
+        ALLR["All Records<br/>(N records)"] --> BK["Apply Blocking Keys"]
+        BK --> B1["Block: <b>fn</b><br/>records sharing name"]
+        BK --> B2["Block: <b>dob</b><br/>records sharing birth date"]
+        BK --> B3["Block: <b>addr</b><br/>records sharing address"]
+        B1 --> FP["Filtered Candidate Pairs<br/>(only pairs within at least one block)"]
+        B2 --> FP
+        B3 --> FP
+    end
+
+    BEFORE -. "reduced to" .-> AFTER
+
+    style PAIRS fill:#ffcccc,stroke:#cc0000,color:#000
+    style FP fill:#d4edda,stroke:#28a745,color:#000
+```
+
 ### **Matching Features and Scoring**
 
 Features describe **how resource fields are compared** and **how much each comparison influences** the overall **match score**.
@@ -183,6 +236,25 @@ When records are compared, all satisfied feature expressions **add their weights
 The model uses **Levenshtein distance** to tolerate typos and small text differences. It counts how many single‑character edits (insertions, deletions, substitutions) are needed to make two strings equal.\
 For example, <kbd>levenshtein('Jonathan', 'Jonatan') = 1</kbd>.
 {% endhint %}
+
+**Example: Feature Weight Impact**
+
+The diagram below shows how individual feature weights accumulate into the total score for an example pair of records where names match exactly, dates of birth match, address/telecom do not match, and gender matches:
+
+```mermaid
+flowchart LR
+    S0["Start<br/><b>0.00</b>"] -->|"+13.34<br/>fn: exact name match"| S1["<b>13.34</b>"]
+    S1 -->|"+10.59<br/>dob: exact DOB match"| S2["<b>23.93</b>"]
+    S2 -->|"−10.52<br/>ext: no address/tel match"| S3["<b>13.41</b>"]
+    S3 -->|"+1.85<br/>sex: gender match"| S4["<b>15.26</b><br/>Total Score"]
+    S4 --> RES["⚠️ Manual Review<br/>(15.26 < 25, ≈ 16)"]
+
+    style S0 fill:#f0f0f0,stroke:#999,color:#000
+    style S4 fill:#fff3cd,stroke:#cc9900,color:#000
+    style RES fill:#fff3cd,stroke:#cc9900,color:#000
+```
+
+In this example, a strong name match (+13.34) and DOB match (+10.59) are partially offset by a missing address/telecom (−10.52), resulting in a borderline score that falls into the **Manual Review** zone.
 
 #### **Name Matching (`fn`)**:
 
@@ -315,3 +387,26 @@ After the total score is calculated based on all feature comparisons, it is comp
 * `auto`: matching score ≥ 25 → automatic merge can be processed
 * `manual`: 16 ≤ matching score < 25 → manual review required
 * Below `manual` – score < 16 → non‑match
+
+The diagram below visualizes the threshold decision boundaries as a score scale:
+
+```mermaid
+block-beta
+    columns 3
+    NM["❌ Non-match\nscore < 16"]:1
+    MR["⚠️ Manual Review\n16 ≤ score < 25"]:1
+    AM["✅ Auto-merge\nscore ≥ 25"]:1
+
+    style NM fill:#ffcccc,stroke:#cc0000,color:#000
+    style MR fill:#fff3cd,stroke:#cc9900,color:#000
+    style AM fill:#d4edda,stroke:#28a745,color:#000
+```
+
+**Examples with the model above:**
+
+| Scenario | fn | dob | ext | sex | Total | Decision |
+|---|---|---|---|---|---|---|
+| All features match | +13.34 | +10.59 | +9.24 | +1.85 | **35.02** | ✅ Auto-merge |
+| Name + DOB match, rest mismatch | +13.34 | +10.59 | −10.52 | +1.85 | **15.26** | ❌ Non-match |
+| Name match + DOB close + telecom match | +13.34 | +3.99 | +6.47 | +1.85 | **25.65** | ✅ Auto-merge |
+| Only names similar (Levenshtein ≤ 2) | +9.29 | −10.32 | −10.52 | −4.84 | **−16.39** | ❌ Non-match |
