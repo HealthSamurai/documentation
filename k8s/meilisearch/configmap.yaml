@@ -1,7 +1,0 @@
-apiVersion: v1
-kind: ConfigMap
-metadata:
-  name: meilisearch-config
-  namespace: gitbok
-data:
-  MEILI_ENV: "production"
